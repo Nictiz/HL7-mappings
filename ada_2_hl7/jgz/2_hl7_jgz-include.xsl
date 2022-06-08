@@ -2,12 +2,12 @@
 <stylesheet xmlns="http://www.w3.org/1999/XSL/Transform" xmlns:hl7="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0">
     <import href="../hl7/2_hl7_hl7_include.xsl"/>
     <xsl:variable name="ExportWithQualificationPlaceholder" select="false()"/>
-    
+
     <!-- TransmissionWrapper Initiating -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.100_20140715000000">
         <xsl:param name="interactionId" required="yes" as="xs:string"/>
         <xsl:param name="patientId" select=".//r003_persoonsgegevens/bsn/@value" required="no" as="xs:string*"/>
-        
+
         <xsl:choose>
             <when test="$ExportWithQualificationPlaceholder">
                 <id extension="{{$messageId}}" root="{{$messageIdRoot}}" xmlns="urn:hl7-org:v3"/>
@@ -16,7 +16,7 @@
                 <id extension="1243567" root="2.16.528.1.1007.3.3.12345678.1" xmlns="urn:hl7-org:v3"/>
             </otherwise>
         </xsl:choose>
-            
+
         <creationTime xmlns="urn:hl7-org:v3" value="{format-dateTime(current-dateTime(), '[Y0001][M01][D01][H01][m01][s01]')}"/>
         <versionCode xmlns="urn:hl7-org:v3" code="NICTIZEd2005-Okt"/>
         <interactionId xmlns="urn:hl7-org:v3" extension="{$interactionId}" root="{$oidHL7InteractionID}"/>
@@ -38,57 +38,57 @@
             </xsl:call-template>
         </sender>
     </xsl:template>
-    
+
     <!-- AORTA Application ID -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.1008_20140715000000">
         <xsl:param name="appId" required="yes" as="xs:string"/>
         <id xmlns="urn:hl7-org:v3" extension="{$appId}" root="{$oidAORTAApplicatieID}"/>
     </xsl:template>
-    
+
     <!-- Generic Transmission Checks -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.101_20140715000000"/>
-    
+
     <!-- UZI-nummer systemen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.1010_20140715000000">
         <xsl:if test="@value">
             <id xmlns="urn:hl7-org:v3" extension="{@value}" root="{$oidUZISystems}"/>
         </xsl:if>
     </xsl:template>
-    
+
     <!-- UZI-register abonneenummer (URA) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.1011_20140715000000">
         <xsl:if test="@value">
             <id xmlns="urn:hl7-org:v3" extension="{@value}" root="{$oidURAOrganizations}"/>
         </xsl:if>
     </xsl:template>
-    
+
     <!-- SBV-Z systemen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.1018_20140715000000">
         <xsl:if test="@value">
             <id xmlns="urn:hl7-org:v3" extension="{@value}" root="{$oidSBVZSystems}"/>
         </xsl:if>
     </xsl:template>
-    
+
     <!-- SBV-Z Organization ID -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.1019_20140715000000">
         <id xmlns="urn:hl7-org:v3" extension="4" root="{$oidSBVZOrganization}"/>
     </xsl:template>
-    
+
     <!-- Generic ControlActProcess Checks -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.102_20140715000000"/>
-    
+
     <!-- GBO/GBP -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.1020_20140715000000">
         <xsl:if test="@value">
             <id xmlns="urn:hl7-org:v3" extension="{@value}" root="2.16.840.1.113883.2.4.3.11.25"/>
         </xsl:if>
     </xsl:template>
-    
+
     <!-- GBK Organization ID -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.1021_20140715000000">
         <id xmlns="urn:hl7-org:v3" extension="7" root="2.16.840.1.113883.2.4.3.11"/>
     </xsl:template>
-    
+
     <!-- TransmissionWrapper Device -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.110_20140715000000">
         <xsl:param name="appId" required="yes" as="xs:string"/>
@@ -98,7 +98,7 @@
             </xsl:call-template>
         </device>
     </xsl:template>
-    
+
     <!-- TransmissionWrapper AttentionLine -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.120_20140715000000">
         <xsl:param name="patientId" required="no" as="xs:string*"/>
@@ -109,7 +109,7 @@
             </attentionLine>
         </xsl:if>
     </xsl:template>
-    
+
     <!-- Assigned Device [universal] -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.513_20120901000000">
         <Organization xmlns="urn:hl7-org:v3">
@@ -137,7 +137,7 @@
         </Organization>
         <templateId xmlns="urn:hl7-org:v3"/>
     </xsl:template>
-    
+
     <!-- Notification Party [contact] -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.516_20120901000000">
         <xsl:attribute name="classCode">CON</xsl:attribute>
@@ -162,7 +162,7 @@
             </xsl:choose>
         </contactParty>
     </xsl:template>
-    
+
     <!-- Organization [contact] -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.517_20120901000000">
         <xsl:attribute name="classCode">ORG</xsl:attribute>
@@ -185,7 +185,7 @@
         </contact>
         <templateId xmlns="urn:hl7-org:v3"/>
     </xsl:template>
-    
+
     <!-- Person [contact] -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.518_20120901000000">
         <xsl:attribute name="classCode">PSN</xsl:attribute>
@@ -203,7 +203,7 @@
         </languageCommunication>
         <templateId xmlns="urn:hl7-org:v3"/>
     </xsl:template>
-    
+
     <!-- ControlAct AuthorOrPerformer Device -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.519_20120801000000">
         <authorOrPerformer xmlns="urn:hl7-org:v3" typeCode="AUT">
@@ -215,7 +215,7 @@
             </participant>
         </authorOrPerformer>
     </xsl:template>
-    
+
     <!-- Versturen JGZ-dossieroverdrachtverzoek (payload) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10000_20120801000000">
         <CareProvisionRequest xmlns="urn:hl7-org:v3" classCode="PCPR" moodCode="RQO">
@@ -242,7 +242,7 @@
             </sequelTo>
         </CareProvisionRequest>
     </xsl:template>
-    
+
     <!-- Care Provision Dossier -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10006_20200527000000">
         <careProvisionEvent moodCode="EVN" xmlns="urn:hl7-org:v3">
@@ -296,7 +296,7 @@
             <xsl:for-each select="r050_zorggegevens">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10019_20200527000000"/>
             </xsl:for-each>
-            
+
         </careProvisionEvent>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10006_20120801000000">
@@ -523,7 +523,7 @@
             </subjectOf>-->
         </careProvisionEvent>
     </xsl:template>
-    
+
     <!-- Care Provision Event Appendage -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10008_20120801000000">
         <appendage xmlns="urn:hl7-org:v3" typeCode="APND">
@@ -578,7 +578,7 @@
             </document>
         </appendage>
     </xsl:template>
-    
+
     <!-- Care Provision Event Summary -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10009_20120801000000">
         <summary xmlns="urn:hl7-org:v3">
@@ -595,7 +595,7 @@
             </observationEvent>
         </summary>
     </xsl:template>
-    
+
     <!-- Care Provision Event Authorization -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10010_20120801000000">
         <xsl:variable name="theCode" as="xs:string">
@@ -614,19 +614,33 @@
         </xsl:variable>
         <xsl:variable name="theNegation" as="xs:string">
             <xsl:choose>
-                <xsl:when test="self::toestemming_aan_verpleegkundige_om_te_vaccineren"><xsl:value-of select="self::toestemming_aan_verpleegkundige_om_te_vaccineren/@value = 'false'"/></xsl:when>
-                <xsl:when test="toestemming_overdracht_dossier_binnen_jgz"><xsl:value-of select="toestemming_overdracht_dossier_binnen_jgz/@value = 'false'"/></xsl:when>
-                <xsl:when test="bezwaar_overdracht_dossier_binnen_jgz"><xsl:value-of select="bezwaar_overdracht_dossier_binnen_jgz/@value = 'true'"/></xsl:when>
-                <xsl:when test="toestemming_aanmelding_lsp"><xsl:value-of select="toestemming_aanmelding_lsp/@value = 'false'"/></xsl:when>
-                <xsl:when test="toestemming_verstrekking_informatie_aan_derden"><xsl:value-of select="toestemming_verstrekking_informatie_aan_derden/@value = 'false'"/></xsl:when>
-                <xsl:when test="bezwaar_wetenschappelijk_onderzoek"><xsl:value-of select="bezwaar_wetenschappelijk_onderzoek/@value = 'true'"/></xsl:when>
-                <xsl:when test="toestemming_gegevensuitwisseling_rvp"><xsl:value-of select="toestemming_gegevensuitwisseling_rvp/@value = 'false'"/></xsl:when>
+                <xsl:when test="self::toestemming_aan_verpleegkundige_om_te_vaccineren">
+                    <xsl:value-of select="self::toestemming_aan_verpleegkundige_om_te_vaccineren/@value = 'false'"/>
+                </xsl:when>
+                <xsl:when test="toestemming_overdracht_dossier_binnen_jgz">
+                    <xsl:value-of select="toestemming_overdracht_dossier_binnen_jgz/@value = 'false'"/>
+                </xsl:when>
+                <xsl:when test="bezwaar_overdracht_dossier_binnen_jgz">
+                    <xsl:value-of select="bezwaar_overdracht_dossier_binnen_jgz/@value = 'true'"/>
+                </xsl:when>
+                <xsl:when test="toestemming_aanmelding_lsp">
+                    <xsl:value-of select="toestemming_aanmelding_lsp/@value = 'false'"/>
+                </xsl:when>
+                <xsl:when test="toestemming_verstrekking_informatie_aan_derden">
+                    <xsl:value-of select="toestemming_verstrekking_informatie_aan_derden/@value = 'false'"/>
+                </xsl:when>
+                <xsl:when test="bezwaar_wetenschappelijk_onderzoek">
+                    <xsl:value-of select="bezwaar_wetenschappelijk_onderzoek/@value = 'true'"/>
+                </xsl:when>
+                <xsl:when test="toestemming_gegevensuitwisseling_rvp">
+                    <xsl:value-of select="toestemming_gegevensuitwisseling_rvp/@value = 'false'"/>
+                </xsl:when>
                 <otherwise>
                     <xsl:message>Onbekend type uit Rubriek 10: <xsl:value-of select="local-name()"/>. Weet niet of dit nu toestemming of bezwaar is in template_2.16.840.1.113883.2.4.6.10.100.10010_20120801000000</xsl:message>
                 </otherwise>
             </xsl:choose>
         </xsl:variable>
-        
+
         <authorization xmlns="urn:hl7-org:v3" typeCode="AUTH" contextConductionInd="false">
             <consentEvent classCode="CONS" moodCode="EVN" negationInd="{$theNegation}">
                 <code code="{$theCode}" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -635,13 +649,13 @@
                 <author typeCode="AUT">
                     <!-- Item(s) :: datum_toestemming_aan_verpleegkundige_om_te_vaccineren-->
                     <xsl:for-each select="
-                        self::toestemming_aan_verpleegkundige_om_te_vaccineren/../datum_toestemming_aan_verpleegkundige_om_te_vaccineren |
-                        datum_toestemming_overdracht_dossier_binnen_jgz |
-                        datum_bezwaar_overdracht_dossier_binnen_jgz |
-                        datum_toestemming_aanmelding_lsp |
-                        datum_toestemming_verstrekking_informatie_aan_derden |
-                        datum_bezwaar_wetenschappelijk_onderzoek |
-                        datum_toestemming_gegevensuitwisseling_rvp">
+                            self::toestemming_aan_verpleegkundige_om_te_vaccineren/../datum_toestemming_aan_verpleegkundige_om_te_vaccineren |
+                            datum_toestemming_overdracht_dossier_binnen_jgz |
+                            datum_bezwaar_overdracht_dossier_binnen_jgz |
+                            datum_toestemming_aanmelding_lsp |
+                            datum_toestemming_verstrekking_informatie_aan_derden |
+                            datum_bezwaar_wetenschappelijk_onderzoek |
+                            datum_toestemming_gegevensuitwisseling_rvp">
                         <xsl:call-template name="makeTSValue">
                             <xsl:with-param name="xsiType" select="''"/>
                             <xsl:with-param name="elemName">time</xsl:with-param>
@@ -649,12 +663,12 @@
                     </xsl:for-each>
                     <xsl:choose>
                         <xsl:when test="
-                            bron_toestemming_overdracht_dossier_binnen_jgz[@code = '01'] |
-                            bron_bezwaar_overdracht_dossier_binnen_jgz[@code = '01'] |
-                            bron_toestemming_aanmelding_lsp[@code = '01'] |
-                            bron_toestemming_verstrekking_informatie_aan_derden[@code = '01'] |
-                            bron_bezwaar_wetenschappelijk_onderzoek[@code = '01'] |
-                            bron_toestemming_gegevensuitwisseling_rvp[@code = '01']">
+                                bron_toestemming_overdracht_dossier_binnen_jgz[@code = '01'] |
+                                bron_bezwaar_overdracht_dossier_binnen_jgz[@code = '01'] |
+                                bron_toestemming_aanmelding_lsp[@code = '01'] |
+                                bron_toestemming_verstrekking_informatie_aan_derden[@code = '01'] |
+                                bron_bezwaar_wetenschappelijk_onderzoek[@code = '01'] |
+                                bron_toestemming_gegevensuitwisseling_rvp[@code = '01']">
                             <patient1 classCode="PAT">
                                 <xsl:if test="naam_bron_toestemming_gegevensuitwisseling_rvp[@value]">
                                     <patientPerson>
@@ -691,20 +705,20 @@
                             </patient1>
                         </xsl:when>
                         <xsl:when test="
-                            bron_toestemming_overdracht_dossier_binnen_jgz |
-                            bron_bezwaar_overdracht_dossier_binnen_jgz |
-                            bron_toestemming_aanmelding_lsp |
-                            bron_toestemming_verstrekking_informatie_aan_derden |
-                            bron_bezwaar_wetenschappelijk_onderzoek">
+                                bron_toestemming_overdracht_dossier_binnen_jgz |
+                                bron_bezwaar_overdracht_dossier_binnen_jgz |
+                                bron_toestemming_aanmelding_lsp |
+                                bron_toestemming_verstrekking_informatie_aan_derden |
+                                bron_bezwaar_wetenschappelijk_onderzoek">
                             <personalRelationship classCode="PRS">
                                 <!-- Item(s) :: bron_toestemming_overdracht_dossier_binnen_jgz bron_bezwaar_overdracht_dossier_binnen_jgz bron_toestemming_aanmelding_lsp bron_toestemming_verstrekking_informatie_aan_derden bron_bezwaar_wetenschappelijk_onderzoek-->
                                 <xsl:for-each select="
-                                    bron_toestemming_overdracht_dossier_binnen_jgz |
-                                    bron_bezwaar_overdracht_dossier_binnen_jgz |
-                                    bron_toestemming_aanmelding_lsp |
-                                    bron_toestemming_verstrekking_informatie_aan_derden |
-                                    bron_bezwaar_wetenschappelijk_onderzoek |
-                                    bron_toestemming_gegevensuitwisseling_rvp">
+                                        bron_toestemming_overdracht_dossier_binnen_jgz |
+                                        bron_bezwaar_overdracht_dossier_binnen_jgz |
+                                        bron_toestemming_aanmelding_lsp |
+                                        bron_toestemming_verstrekking_informatie_aan_derden |
+                                        bron_bezwaar_wetenschappelijk_onderzoek |
+                                        bron_toestemming_gegevensuitwisseling_rvp">
                                     <xsl:call-template name="makeCVValue">
                                         <xsl:with-param name="elemName">code</xsl:with-param>
                                     </xsl:call-template>
@@ -779,10 +793,11 @@
                                         <xsl:with-param name="elemName">id</xsl:with-param>
                                     </xsl:call-template>
                                 </xsl:for-each>
-                                <xsl:if test="not(  ../arts_uzi_toestemming_aan_verpleegkundige_om_te_vaccineren |
-                                                    ../arts_big_toestemming_aan_verpleegkundige_om_te_vaccineren |
-                                                    ../arts_agb_toestemming_aan_verpleegkundige_om_te_vaccineren
-                                                    )">
+                                <xsl:if test="
+                                        not(../arts_uzi_toestemming_aan_verpleegkundige_om_te_vaccineren |
+                                        ../arts_big_toestemming_aan_verpleegkundige_om_te_vaccineren |
+                                        ../arts_agb_toestemming_aan_verpleegkundige_om_te_vaccineren
+                                        )">
                                     <id nullFlavor="NI"/>
                                 </xsl:if>
                                 <xsl:for-each select="../arts_naam_toestemming_aan_verpleegkundige_om_te_vaccineren">
@@ -823,7 +838,7 @@
             </consentEvent>
         </authorization>
     </xsl:template>
-    
+
     <!-- Care Provision Event component1 NonBDSData -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10012_20120801000000">
         <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
@@ -857,7 +872,7 @@
             </component1>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Care Provision Event component2 MetaData -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10013_20120801000000">
         <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
@@ -882,7 +897,7 @@
             </component2>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Care Provision Event component6 InformationControlActEvent -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10017_20120801000000">
         <component6 xmlns="urn:hl7-org:v3" typeCode="COMP">
@@ -923,7 +938,7 @@
             </informationControlActEvent>
         </component6>
     </xsl:template>
-    
+
     <!-- Care Provision Event component7 Activiteiten -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10018_20120801000000">
         <xsl:for-each select="r018_activiteit">
@@ -1276,7 +1291,7 @@
             </component7>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Care Provision Event subjectOf CareStatus -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10019_20200527000000">
         <xsl:for-each select="groep_g093_status_in_zorg">
@@ -1346,12 +1361,12 @@
         <xsl:for-each select="groep_g093_status_in_zorg">
             <xsl:variable name="datumStart" select="datum_start_zorg/@value"/>
             <xsl:variable name="organisatie" select="
-                ../../r005_betrokken_jgzorganisaties/*[*/startdatum_geldigheid_uitvoerende_jgzorganisatie/@value = $datumStart],
-                ../../r005_betrokken_jgzorganisaties/*[*/startdatum_geldigheid_verantwoordelijke_jgzorganisatie/@value = $datumStart],
-                ../../r005_betrokken_jgzorganisaties/groep_g085_uitvoerende_jgzorganisatie,
-                ../../r005_betrokken_jgzorganisaties/groep_g091_verantwoordelijke_jgzorganisatie_obv_de_brp
-                " as="element()*"/>
-            
+                    ../../r005_betrokken_jgzorganisaties/*[*/startdatum_geldigheid_uitvoerende_jgzorganisatie/@value = $datumStart],
+                    ../../r005_betrokken_jgzorganisaties/*[*/startdatum_geldigheid_verantwoordelijke_jgzorganisatie/@value = $datumStart],
+                    ../../r005_betrokken_jgzorganisaties/groep_g085_uitvoerende_jgzorganisatie,
+                    ../../r005_betrokken_jgzorganisaties/groep_g091_verantwoordelijke_jgzorganisatie_obv_de_brp
+                    " as="element()*"/>
+
             <subjectOf xmlns="urn:hl7-org:v3" typeCode="SUBJ" contextConductionInd="false">
                 <careStatus classCode="STC" moodCode="EVN">
                     <code code="1197" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -1391,12 +1406,12 @@
         <xsl:for-each select="groep_g092_zorgbeeindiging">
             <xsl:variable name="datumEind" select="datum_zorgbeeindiging/@value"/>
             <xsl:variable name="organisatie" select="
-                ../../r005_betrokken_jgzorganisaties/*[*/einddatum_geldigheid_uitvoerende_jgzorganisatie/@value = $datumEind],
-                ../../r005_betrokken_jgzorganisaties/*[*/einddatum_geldigheid_verantwoordelijke_jgzorganisatie/@value = $datumEind],
-                ../../r005_betrokken_jgzorganisaties/groep_g085_uitvoerende_jgzorganisatie,
-                ../../r005_betrokken_jgzorganisaties/groep_g091_verantwoordelijke_jgzorganisatie_obv_de_brp
-                " as="element()*"/>
-            
+                    ../../r005_betrokken_jgzorganisaties/*[*/einddatum_geldigheid_uitvoerende_jgzorganisatie/@value = $datumEind],
+                    ../../r005_betrokken_jgzorganisaties/*[*/einddatum_geldigheid_verantwoordelijke_jgzorganisatie/@value = $datumEind],
+                    ../../r005_betrokken_jgzorganisaties/groep_g085_uitvoerende_jgzorganisatie,
+                    ../../r005_betrokken_jgzorganisaties/groep_g091_verantwoordelijke_jgzorganisatie_obv_de_brp
+                    " as="element()*"/>
+
             <subjectOf xmlns="urn:hl7-org:v3" typeCode="SUBJ" contextConductionInd="false">
                 <careStatus classCode="STC" moodCode="EVN">
                     <code code="487" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -1434,7 +1449,7 @@
             </subjectOf>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Activiteit Contactmoment -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10020_20120801000000">
         <xsl:for-each select="r018_activiteit">
@@ -1551,7 +1566,7 @@
             </encounter>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Activiteit Contactmomentafspraak -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10021_20120801000000">
         <xsl:for-each select="r018_activiteit">
@@ -1668,7 +1683,7 @@
             </encounter>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Activities performer (uitvoerende persoon) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10022_20120801000000">
         <xsl:if test="uitvoerende_activiteit_uzi | uitvoerende_activiteit_big | uitvoerende_activiteit_agb | uitvoerende_activiteit_naam">
@@ -1711,7 +1726,7 @@
             </performer>
         </xsl:if>
     </xsl:template>
-    
+
     <!-- Activities consultant (contact met) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10024_20120801000000">
         <xsl:if test="contact_met">
@@ -1730,7 +1745,7 @@
             </consultant>
         </xsl:if>
     </xsl:template>
-    
+
     <!-- Activities escort (begeleider) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10025_20120801000000">
         <!-- Item(s) :: begeleider-->
@@ -1746,7 +1761,7 @@
             </escort>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Activities component1 NonBDSData -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000">
         <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
@@ -1779,7 +1794,7 @@
             </nonBDSData>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Activities component2 MetaData -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000">
         <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
@@ -1803,7 +1818,7 @@
             </metaData>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Activities component5 Advice -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10032_20120801000000">
         <advice xmlns="urn:hl7-org:v3" classCode="INFRM" moodCode="EVN">
@@ -1830,7 +1845,7 @@
             </xsl:for-each>
         </advice>
     </xsl:template>
-    
+
     <!-- Activities pertinentInformation RubricCluster -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10033_20120801000000">
         <xsl:for-each select="r012_erfelijke_belasting_en_ouderkenmerken">
@@ -2030,7 +2045,7 @@
             </subjectOf1>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Activities subjectOf2 Annotation -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10034_20120801000000">
         <annotation xmlns="urn:hl7-org:v3">
@@ -2038,7 +2053,7 @@
             <text/>
         </annotation>
     </xsl:template>
-    
+
     <!-- RubricCluster Observation -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10036_20120801000000">
         <xsl:attribute name="classCode">OBS</xsl:attribute>
@@ -2069,7 +2084,7 @@
             </component2>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Activities subjectOf1 Conclusie -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10037_20120801000000">
         <conclusion xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN">
@@ -2204,7 +2219,7 @@
             </xsl:for-each>
         </conclusion>
     </xsl:template>
-    
+
     <!-- TransmissionWrapper Accept Ack -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.101_20120801000000">
         <id xmlns="urn:hl7-org:v3"/>
@@ -2226,7 +2241,7 @@
             </targetMessage>
         </acknowledgement>
     </xsl:template>
-    
+
     <!-- R_PatientNL GBA [identified/confirmable] -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.102_20120801000000">
         <xsl:for-each select="r003_persoonsgegevens">
@@ -2262,12 +2277,16 @@
             </patient>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Adres client -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10222_20120801000000">
         <xsl:for-each select="groep_g001_adres_client">
-            <addr xmlns="urn:hl7-org:v3" >
-                <xsl:attribute name="use" select="concat(soort_adres/(@code, @value)[1], if (adres_is_geheim/@value = 'true') then ' CONF' else '')"/>
+            <addr xmlns="urn:hl7-org:v3">
+                <xsl:attribute name="use" select="
+                        concat(soort_adres/(@code, @value)[1], if (adres_is_geheim/@value = 'true') then
+                            ' CONF'
+                        else
+                            '')"/>
                 <!-- Item(s) :: straatnaam-->
                 <xsl:for-each select="straatnaam">
                     <xsl:call-template name="makeADXPValue">
@@ -2384,7 +2403,7 @@
             </addr>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Adres ouder/verzorger -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10223_20120801000000">
         <xsl:for-each select="groep_g016_ouderverzorger_adres">
@@ -2478,7 +2497,7 @@
             </addr>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- NaamOfficieel -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10230_20120801000000">
         <name xmlns="urn:hl7-org:v3" use="OR">
@@ -2487,7 +2506,7 @@
             <family qualifier="BR"/>
         </name>
     </xsl:template>
-    
+
     <!-- NaamZoalsBekendBijInstelling -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10231_20120801000000">
         <name xmlns="urn:hl7-org:v3" use="L">
@@ -2513,7 +2532,7 @@
             </xsl:if>
         </name>
     </xsl:template>
-    
+
     <!-- NaamKindOfficieel -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10232_20120801000000">
         <xsl:if test="voornaam | voorvoegsel_geslachtsnaam | geslachtsnaam">
@@ -2544,7 +2563,7 @@
             </name>
         </xsl:if>
     </xsl:template>
-    
+
     <!-- NaamKindZoalsBekendBijInstelling -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10233_20120801000000">
         <xsl:if test="roepnaam | voorvoegsel_achternaam | achternaam">
@@ -2576,34 +2595,34 @@
             </name>
         </xsl:if>
     </xsl:template>
-    
+
     <!-- Periode-O-Start-O-Eind-O -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10240_20120801000000">
         <low xmlns="urn:hl7-org:v3"/>
         <high xmlns="urn:hl7-org:v3"/>
     </xsl:template>
-    
+
     <!-- Periode-M-Start-O-Eind-O -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10241_20120801000000"/>
-    
+
     <!-- Periode-M-Start-M-Eind-O -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10242_20120801000000">
         <low xmlns="urn:hl7-org:v3"/>
         <high xmlns="urn:hl7-org:v3"/>
     </xsl:template>
-    
+
     <!-- Periode-M-Start-O-Eind-M -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10243_20120801000000">
         <low xmlns="urn:hl7-org:v3"/>
         <high xmlns="urn:hl7-org:v3"/>
     </xsl:template>
-    
+
     <!-- Periode-M-Start-M-Eind-M -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10244_20120801000000">
         <low xmlns="urn:hl7-org:v3"/>
         <high xmlns="urn:hl7-org:v3"/>
     </xsl:template>
-    
+
     <!-- DatatypeEDTextOrBase64 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10250_20120801000000">
         <xsl:attribute name="mediaType" select="bestand_mimetype/(@code, @value)[1]"/>
@@ -2616,7 +2635,7 @@
             </xsl:call-template>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Periode geldigheid adres kind -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10251_20120801000000">
         <xsl:for-each select="groep_g096_periode_geldigheid_adres_client">
@@ -2642,7 +2661,7 @@
             </useablePeriod>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Periode geldigheid contactpersoon -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10252_20120801000000">
         <xsl:for-each select="groep_g097_periode_geldigheid_contactpersoon">
@@ -2668,7 +2687,7 @@
             </effectiveTime>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Periode geldigheid uitvoerende JGZ-organisatie -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10253_20120801000000">
         <xsl:for-each select="groep_g098_periode_geldigheid_uitvoerende_jgzorganisatie">
@@ -2694,7 +2713,7 @@
             </effectiveTime>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Periode geldigheid verantwoordelijke JGZ-organisatie -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10254_20120801000000">
         <xsl:for-each select="groep_g099_periode_geldigheid_verantwoordelijke_jgzorganisatie">
@@ -2720,7 +2739,7 @@
             </effectiveTime>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Periode geldigheid huisarts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10255_20120801000000">
         <xsl:for-each select="groep_g100_periode_geldigheid_huisarts">
@@ -2746,7 +2765,7 @@
             </effectiveTime>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Periode geldigheid andere betrokken organisaties/hulpverleners -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10256_20120801000000">
         <xsl:for-each select="groep_g101_periode_geldigheid_andere_betrokken_organisatiehulpverlener">
@@ -2772,7 +2791,7 @@
             </effectiveTime>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Periode geldigheid contactpersoon organisatie/hulpverlener -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10257_20120801000000">
         <xsl:for-each select="groep_g102_periode_geldigheid_contactpersoonhulpverlener">
@@ -2798,7 +2817,7 @@
             </effectiveTime>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Periode zorg -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10258_20120801000000">
         <xsl:for-each select="groep_g103_periode_zorg">
@@ -2824,7 +2843,7 @@
             </effectiveTime>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Periode geldigheid voor- of buitenschoolse voorzieningen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10259_20120801000000">
         <xsl:for-each select="groep_g104_periode_geldigheid_voor_of_buitenschoolse_voorzieningen">
@@ -2850,7 +2869,7 @@
             </effectiveTime>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Periode geldigheid contactpersoon voor- of buitenschoolse voorziening -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10260_20120801000000">
         <xsl:for-each select="groep_g105_periode_geldigheid_contactpersoon_voor_of_buitenschoolse_voorziening">
@@ -2876,7 +2895,7 @@
             </effectiveTime>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Periode geldigheid school -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10261_20120801000000">
         <xsl:for-each select="groep_g106_periode_geldigheid_school">
@@ -2902,7 +2921,7 @@
             </effectiveTime>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Periode geldigheid contactpersoon school -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10262_20120801000000">
         <xsl:for-each select="groep_g107_periode_geldigheid_contactpersoon">
@@ -2928,7 +2947,7 @@
             </effectiveTime>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Periode geel zien -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10263_20120801000000">
         <xsl:for-each select="groep_g108_periode_geel_zien">
@@ -2954,7 +2973,7 @@
             </value>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Periode opname kinderafdeling -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10264_20120801000000">
         <xsl:for-each select="groep_g109_periode_opname_kinderafdeling">
@@ -2980,7 +2999,7 @@
             </effectiveTime>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Periode zorg op maat -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10265_20120801000000">
         <xsl:for-each select="groep_g110_periode_duur_zorg_op_maat">
@@ -3006,7 +3025,7 @@
             </effectiveTime>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Periode reactie -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10266_20120801000000">
         <xsl:for-each select="groep_g111_periode_reactie">
@@ -3032,7 +3051,7 @@
             </effectiveTime>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Periode geldigheid voor- of buitenschoolse voorzieningen met dagdelen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10267_20120801000000">
         <effectiveTime xmlns="urn:hl7-org:v3" xsi:type="SXPR_TS">
@@ -3069,7 +3088,7 @@
             </comp>
         </effectiveTime>
     </xsl:template>
-    
+
     <!-- R_PatientNL_JGZ Informal [identified/confirmable] -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.103_20120801000000">
         <xsl:for-each select="r003_persoonsgegevens">
@@ -3188,7 +3207,7 @@
             </patient>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- TransmissionWrapper Application Ack -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.104_20120801000000">
         <id xmlns="urn:hl7-org:v3"/>
@@ -3210,7 +3229,7 @@
             </targetMessage>
         </acknowledgement>
     </xsl:template>
-    
+
     <!-- TransmissionWrapper AttentionLine AORTA -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.105_20120801000000">
         <attentionLine xmlns="urn:hl7-org:v3">
@@ -3218,7 +3237,7 @@
             <value xsi:type="II.NL.BSN" root="{$oidBurgerservicenummer}"/>
         </attentionLine>
     </xsl:template>
-    
+
     <!-- Versturen JGZ-dossieroverdrachtverzoek (interactie) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11_20130709120000">
         <ControlActProcess xmlns="urn:hl7-org:v3">
@@ -3240,7 +3259,7 @@
             </subject>
         </ControlActProcess>
     </xsl:template>
-    
+
     <!-- Versturen JGZ-dossieroverdrachtverzoek (interactie) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11_20120801000000">
         <ControlActProcess xmlns="urn:hl7-org:v3">
@@ -3262,7 +3281,7 @@
             </subject>
         </ControlActProcess>
     </xsl:template>
-    
+
     <!-- Rubriek 12 Erfelijke belasting en ouderkenmerken -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11012_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
@@ -3326,7 +3345,7 @@
             </xsl:for-each>
         </rubricCluster>
     </xsl:template>
-    
+
     <!-- Rubriek 13 Bedreigingen uit de directe omgeving -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11013_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
@@ -3378,7 +3397,7 @@
             </xsl:for-each>
         </rubricCluster>
     </xsl:template>
-    
+
     <!-- Rubriek 19 Terugkerende anamnese -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11019_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
@@ -3590,7 +3609,7 @@
             </xsl:for-each>
         </rubricCluster>
     </xsl:template>
-    
+
     <!-- Rubriek 20 Algemene indruk -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11020_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
@@ -3678,7 +3697,7 @@
             </xsl:for-each>
         </rubricCluster>
     </xsl:template>
-    
+
     <!-- Rubriek 21 Functioneren -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11021_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
@@ -3844,7 +3863,7 @@
             </xsl:for-each>
         </rubricCluster>
     </xsl:template>
-    
+
     <!-- Rubriek 22 Huid/haar/nagels -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11022_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
@@ -3872,7 +3891,7 @@
             </xsl:for-each>
         </rubricCluster>
     </xsl:template>
-    
+
     <!-- Rubriek 23 Hoofd/hals -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11023_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
@@ -3957,7 +3976,7 @@
             </xsl:for-each>
         </rubricCluster>
     </xsl:template>
-    
+
     <!-- Rubriek 24 Romp -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11024_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
@@ -4009,7 +4028,7 @@
             </xsl:for-each>
         </rubricCluster>
     </xsl:template>
-    
+
     <!-- Rubriek 25 Bewegingsapparaat -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11025_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
@@ -4124,7 +4143,7 @@
             </xsl:for-each>
         </rubricCluster>
     </xsl:template>
-    
+
     <!-- Rubriek 26 Genitalia/puberteitsontwikkeling -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11026_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
@@ -4230,7 +4249,7 @@
             </xsl:for-each>
         </rubricCluster>
     </xsl:template>
-    
+
     <!-- Rubriek 27 Groei -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11027_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
@@ -4276,7 +4295,7 @@
             </xsl:for-each>
         </rubricCluster>
     </xsl:template>
-    
+
     <!-- Rubriek 30 Psychosociale en cognitieve ontwikkeling -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11030_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
@@ -4310,7 +4329,7 @@
             </xsl:for-each>
         </rubricCluster>
     </xsl:template>
-    
+
     <!-- Rubriek 31 (Neuro)motorische ontwikkeling -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11031_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
@@ -4368,7 +4387,7 @@
             </xsl:for-each>
         </rubricCluster>
     </xsl:template>
-    
+
     <!-- Rubriek 32 Spraak- en taalontwikkeling -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11032_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
@@ -4480,7 +4499,7 @@
             </xsl:for-each>
         </rubricCluster>
     </xsl:template>
-    
+
     <!-- Rubriek 34 Inschatten verhouding draaglast-draagkracht -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11034_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
@@ -4508,7 +4527,7 @@
             </xsl:for-each>
         </rubricCluster>
     </xsl:template>
-    
+
     <!-- Rubriek 38 Visus- en oogonderzoek -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11038_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
@@ -4752,7 +4771,7 @@
             </xsl:for-each>
         </rubricCluster>
     </xsl:template>
-    
+
     <!-- Rubriek 39 Hartonderzoek -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11039_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
@@ -4855,7 +4874,7 @@
             </xsl:for-each>
         </rubricCluster>
     </xsl:template>
-    
+
     <!-- Rubriek 40 Gehooronderzoek -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11040_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
@@ -5111,7 +5130,7 @@
             </xsl:for-each>
         </rubricCluster>
     </xsl:template>
-    
+
     <!-- Rubriek 42 Van Wiechen ontwikkelingsonderzoek -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11042_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
@@ -6135,7 +6154,7 @@
             </xsl:for-each>
         </rubricCluster>
     </xsl:template>
-    
+
     <!-- Rubriek 43 BFMT -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11043_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
@@ -6379,7 +6398,7 @@
             </xsl:for-each>
         </rubricCluster>
     </xsl:template>
-    
+
     <!-- Rubriek 45 SDQ 7-12 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11045_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
@@ -6635,7 +6654,7 @@
             </xsl:for-each>
         </rubricCluster>
     </xsl:template>
-    
+
     <!-- Rubriek 49 Screening logopedie -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11049_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
@@ -6705,7 +6724,7 @@
             </xsl:for-each>
         </rubricCluster>
     </xsl:template>
-    
+
     <!-- Rubriek 52 Meldingen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11052_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
@@ -6784,7 +6803,7 @@
             </xsl:for-each>
         </rubricCluster>
     </xsl:template>
-    
+
     <!-- Rubriek 54 Screening psychosociale problemen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11054_20120801000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
@@ -6819,7 +6838,7 @@
             </xsl:for-each>
         </rubricCluster>
     </xsl:template>
-    
+
     <!-- A_Rijksvaccinatie [universal] -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.116_20120801000000">
         <substanceAdministrationEvent xmlns="urn:hl7-org:v3" classCode="SBADM" moodCode="EVN" negationInd="{exists(bezwaar)}">
@@ -7031,7 +7050,7 @@
             </xsl:if>
         </substanceAdministrationEvent>
     </xsl:template>
-    
+
     <!-- A_Rijksvaccinatie [informational/administered] -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.117_20120801000000">
         <substanceAdministrationEvent xmlns="urn:hl7-org:v3" classCode="SBADM" moodCode="EVN" negationInd="{exists(bezwaar)}">
@@ -7088,7 +7107,7 @@
             </xsl:for-each>
         </substanceAdministrationEvent>
     </xsl:template>
-    
+
     <!-- A_NeonateData [universal] -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.118_20120801000000">
         <neonateData xmlns="urn:hl7-org:v3" classCode="CATEGORY" moodCode="EVN">
@@ -7487,7 +7506,7 @@
             </xsl:for-each>
         </neonateData>
     </xsl:template>
-    
+
     <!-- A_OntvangenZorg [universal] -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.119_20120801000000">
         <patientCareProvision xmlns="urn:hl7-org:v3" classCode="PCPR" moodCode="EVN">
@@ -7590,7 +7609,7 @@
             </xsl:for-each>
         </patientCareProvision>
     </xsl:template>
-    
+
     <!-- A_ZorgPlan [universal] -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.120_20120801000000">
         <carePlan xmlns="urn:hl7-org:v3" classCode="PCPR" moodCode="INT">
@@ -7706,7 +7725,7 @@
             </xsl:for-each>
         </carePlan>
     </xsl:template>
-    
+
     <!-- A_Zwangerschap [universal] -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.121_20120801000000">
         <pregnancyCondition xmlns="urn:hl7-org:v3" classCode="COND" moodCode="EVN">
@@ -8004,7 +8023,7 @@
             </xsl:for-each>
         </pregnancyCondition>
     </xsl:template>
-    
+
     <!-- R_AssignedEntityNL [identified] -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.122_20120801000000">
         <assignedEntity classCode="ASSIGNED" xmlns="urn:hl7-org:v3">
@@ -8034,7 +8053,7 @@
             </xsl:for-each>
         </assignedEntity>
     </xsl:template>
-    
+
     <!-- A_Rijksvaccinatie [informational/all] -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.123_20121001000000">
         <xsl:for-each select="r041_rijksvaccinatieprogramma_en_andere_vaccinaties | groep_g076_vaccinatie | groep_g095_geplande_vaccinatie">
@@ -8115,7 +8134,7 @@
             </substanceAdministration>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- R_AssignedEntityNL [confirmable/location] -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.124_20120801000000">
         <assignedEntity xmlns="urn:hl7-org:v3" classCode="ASSIGNED">
@@ -8144,7 +8163,7 @@
             </representedOrganization>
         </assignedEntity>
     </xsl:template>
-    
+
     <!-- R_AssignedEntityNL [confirmable] -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.125_20120801000000">
         <assignedEntity xmlns="urn:hl7-org:v3">
@@ -8161,7 +8180,7 @@
             </assignedOrganization>
         </assignedEntity>
     </xsl:template>
-    
+
     <!-- Versturen geldige partijnummers (interactie) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.13_20120801000000">
         <ControlActProcess xmlns="urn:hl7-org:v3">
@@ -8183,7 +8202,7 @@
             </subject>
         </ControlActProcess>
     </xsl:template>
-    
+
     <!-- Bericht 5 Hielprikverzoek (payload) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.130_20120801000000">
         <procedureRequest xmlns="urn:hl7-org:v3" classCode="SPECCOLLECT" moodCode="RQO">
@@ -8249,7 +8268,7 @@
             </xsl:for-each>
         </procedureRequest>
     </xsl:template>
-    
+
     <!-- R_PatientNL_JGZ [universal] -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.131_20200527000000">
         <patient xmlns="urn:hl7-org:v3" classCode="PAT">
@@ -8320,6 +8339,11 @@
                         <xsl:with-param name="elemName">deceasedTime</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
+                <!-- Item(s) :: meerling-->
+                <!-- Item(s) :: volgnummer_bij_meerling-->
+                <!-- R005(R008?)/Element 714 voor- of buitenschoolse voorzieningen -->
+                <!-- R005(R008?)/Groep 006 voor- of buitenschoolse voorzieningen -->
+                <!-- Item(s) :: asielzoekerkind nationaliteit-->
                 <!-- Item(s) :: nationaliteit-->
                 <xsl:for-each select="nationaliteit">
                     <asCitizen classCode="CIT">
@@ -8474,6 +8498,7 @@
                         <xsl:with-param name="elemName">multipleBirthOrderNumber</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
+                <!-- R005/Element 714 voor- of buitenschoolse voorzieningen -->
                 <xsl:for-each select="../r008_voor_of_buitenschoolse_voorzieningenschool/voor_of_buitenschoolse_voorzieningen[@value = 'false'][not(groep_g006_voor_of_buitenschoolse_voorzieningen)]">
                     <asPatientOfOtherProvider classCode="PAT">
                         <subjectOf typeCode="SBJ">
@@ -8488,6 +8513,7 @@
                         </subjectOf>
                     </asPatientOfOtherProvider>
                 </xsl:for-each>
+                <!-- R005/Groep 006 voor- of buitenschoolse voorzieningen -->
                 <xsl:for-each select="../r008_voor_of_buitenschoolse_voorzieningenschool/groep_g006_voor_of_buitenschoolse_voorzieningen">
                     <asPatientOfOtherProvider classCode="PAT">
                         <subjectOf typeCode="SBJ">
@@ -8732,7 +8758,8 @@
                 <xsl:for-each select="../r007_andere_betrokken_organisatieshulpverleners/groep_g082_andere_organisatieshulpverleners">
                     <asPatientOfOtherProvider classCode="PAT">
                         <subjectOf typeCode="SBJ">
-                            <careProvision classCode="PCPR" moodCode="EVN" negationInd="false"><!-- Item(s) :: soort_voor_of_buitenschoolse_voorziening-->
+                            <careProvision classCode="PCPR" moodCode="EVN" negationInd="false">
+                                <!-- Item(s) :: soort_voor_of_buitenschoolse_voorziening-->
                                 <code nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.4">
                                     <originalText>Andere betrokken organisaties/hulpverleners</originalText>
                                 </code>
@@ -8899,6 +8926,7 @@
                         </politicalNation>
                     </asCitizen>
                 </xsl:for-each>
+                <!-- R008/Groep 008 school -->
                 <xsl:for-each select="../r008_voor_of_buitenschoolse_voorzieningenschool/groep_g008_school">
                     <asStudent classCode="STD">
                         <!-- Item(s) :: leerlingonderwijsnummer-->
@@ -9324,11 +9352,13 @@
                                     <xsl:with-param name="elemName">religiousAffiliationCode</xsl:with-param>
                                 </xsl:call-template>
                             </xsl:for-each>
-                                <!-- Item(s) :: inhoud_beroep-->
+                            <!-- Item(s) :: inhoud_beroep-->
                             <xsl:for-each select="inhoud_beroep">
                                 <asEmployee classCode="EMP">
                                     <occupationCode nullFlavor="OTH">
-                                        <originalText><xsl:value-of select="@value"/></originalText>
+                                        <originalText>
+                                            <xsl:value-of select="@value"/>
+                                        </originalText>
                                     </occupationCode>
                                     <employerOrganization classCode="ORG" determinerCode="INSTANCE" nullFlavor="NI" xsi:nil="true"/>
                                 </asEmployee>
@@ -9341,7 +9371,7 @@
                                     </group>
                                 </asMember>
                             </xsl:for-each>
-                                    <!-- Item(s) :: geboorteland_ouder-->
+                            <!-- Item(s) :: geboorteland_ouder-->
                             <xsl:for-each select="geboorteland_ouder">
                                 <birthPlace>
                                     <addr>
@@ -9351,7 +9381,7 @@
                                     </addr>
                                 </birthPlace>
                             </xsl:for-each>
-                                <!-- Item(s) :: spreektaal_ouder-->
+                            <!-- Item(s) :: spreektaal_ouder-->
                             <xsl:for-each select="spreektaal_ouder">
                                 <languageCommunication>
                                     <xsl:call-template name="makeCEValue">
@@ -9580,7 +9610,7 @@
             </subjectOf2>-->
         </patient>
     </xsl:template>
-    
+
     <!-- A_CoverageNL [minimal] -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.132_20120801000000">
         <coverageRecord xmlns="urn:hl7-org:v3" classCode="COV" moodCode="EVN">
@@ -9602,7 +9632,7 @@
             </component>
         </coverageRecord>
     </xsl:template>
-    
+
     <!-- A_HeelPrick [universal] -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.133_20120801000000">
         <xsl:variable name="negationInd" select="exists(hielprik_afgenomen[@value = 'false'] | reden_niet_afgenomen_hielprik)" as="xs:boolean"/>
@@ -9674,7 +9704,7 @@
             </xsl:for-each>
         </heelPrick>
     </xsl:template>
-    
+
     <!-- Hielprikverzoek (geen patiënt) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.134_20120801000000">
         <xsl:for-each select="r037_hielprik_pasgeborene">
@@ -9736,7 +9766,7 @@
             </procedureRequest>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- R_PatientNL_JGZ Informal [optional BSN] -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.135_20150713000000">
         <xsl:for-each select="r003_persoonsgegevens">
@@ -9768,7 +9798,7 @@
             </patient>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- PatientPerson [minimal] -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.136_20150713000000">
         <patientPerson xmlns="urn:hl7-org:v3" classCode="PSN" determinerCode="INSTANCE">
@@ -9872,7 +9902,7 @@
             </birthPlace>
         </patientPerson>
     </xsl:template>
-    
+
     <!-- Versturen vaccinaties (interactie) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.14_20120801000000">
         <ControlActProcess xmlns="urn:hl7-org:v3">
@@ -9894,7 +9924,7 @@
             </subject>
         </ControlActProcess>
     </xsl:template>
-    
+
     <!-- Bericht 3 Geldige partijnummers (payload) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.140_20120801000000">
         <ProductList xmlns="urn:hl7-org:v3" classCode="LIST" moodCode="EVN">
@@ -9938,7 +9968,7 @@
             </product>
         </ProductList>
     </xsl:template>
-    
+
     <!-- Versturen hielprikverzoek (interactie) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.15_20120801000000">
         <ControlActProcess xmlns="urn:hl7-org:v3">
@@ -9960,7 +9990,7 @@
             </subject>
         </ControlActProcess>
     </xsl:template>
-    
+
     <!-- Opvragen vaccinatiestatus (interactie) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.16_20121001000000">
         <ControlActProcess xmlns="urn:hl7-org:v3">
@@ -9980,7 +10010,7 @@
             <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.181_20120901000000"/>
         </ControlActProcess>
     </xsl:template>
-    
+
     <!-- Bericht 7 Vaccinatieoproeplijst (payload) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.160_20150629000000">
         <immunizationRequestList xmlns="urn:hl7-org:v3" classCode="LIST" moodCode="EVN">
@@ -10012,7 +10042,7 @@
             </component>
         </immunizationRequestList>
     </xsl:template>
-    
+
     <!-- PatientPerson [universal] -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.163_20120801000000">
         <patientPerson xmlns="urn:hl7-org:v3" classCode="PSN" determinerCode="INSTANCE">
@@ -10107,7 +10137,7 @@
             </birthPlace>
         </patientPerson>
     </xsl:template>
-    
+
     <!-- Opleveren vaccinatiestatus (interactie) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.17_20121001000000">
         <ControlActProcess xmlns="urn:hl7-org:v3">
@@ -10139,7 +10169,7 @@
             </queryAck>
         </ControlActProcess>
     </xsl:template>
-    
+
     <!-- R_SubjectNL_JGZ Informal [identified/confirmable] -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.172_20120801000000">
         <xsl:for-each select="r003_persoonsgegevens">
@@ -10161,7 +10191,7 @@
             </patient>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Versturen vaccinatiesoproeplijst (interactie) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.18_20150629000000">
         <REPC_IN002160NL xmlns="urn:hl7-org:v3">
@@ -10203,102 +10233,102 @@
             </ControlActProcess>
         </REPC_IN002160NL>
     </xsl:template>
-    
+
     <!-- Bericht 4 Versturen vaccinaties (payload) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.180_20120801000000">
-            <CareProvisionEvent xmlns="urn:hl7-org:v3" classCode="PCPR" moodCode="EVN">
-                <templateId root="2.16.840.1.113883.2.4.6.10.100.180"/>
-                <!-- Item(s) :: dossiernummer-->
-                <xsl:for-each select="dossiernummer">
-                    <xsl:call-template name="makeIIValue">
-                        <xsl:with-param name="xsiType" select="''"/>
-                        <xsl:with-param name="elemName">id</xsl:with-param>
-                    </xsl:call-template>
+        <CareProvisionEvent xmlns="urn:hl7-org:v3" classCode="PCPR" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.100.180"/>
+            <!-- Item(s) :: dossiernummer-->
+            <xsl:for-each select="dossiernummer">
+                <xsl:call-template name="makeIIValue">
+                    <xsl:with-param name="xsiType" select="''"/>
+                    <xsl:with-param name="elemName">id</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <code code="CPHC" codeSystem="2.16.840.1.113883.5.4"/>
+            <!-- Item(s) :: dossier_status-->
+            <xsl:for-each select="dossier_status">
+                <xsl:call-template name="makeCSValue">
+                    <xsl:with-param name="xsiType" select="''"/>
+                    <xsl:with-param name="elemName">statusCode</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <xsl:for-each select="groep_g103_periode_zorg">
+                <effectiveTime xsi:type="IVL_TS">
+                    <xsl:if test="startdatum_zorg">
+                        <!-- Item(s) :: startdatum_zorg-->
+                        <xsl:for-each select="startdatum_zorg">
+                            <xsl:call-template name="makeTSValue">
+                                <xsl:with-param name="xsiType" select="''"/>
+                                <xsl:with-param name="elemName">low</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                    </xsl:if>
+                    <xsl:if test="einddatum_zorg">
+                        <!-- Item(s) :: einddatum_zorg-->
+                        <xsl:for-each select="einddatum_zorg">
+                            <xsl:call-template name="makeTSValue">
+                                <xsl:with-param name="xsiType" select="''"/>
+                                <xsl:with-param name="elemName">high</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                    </xsl:if>
+                </effectiveTime>
+            </xsl:for-each>
+            <xsl:for-each select="r003_persoonsgegevens">
+                <subject typeCode="SBJ">
+                    <!-- Template :: R_PatientNL GBA [identified/confirmable] -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.102_20120801000000"/>
+                </subject>
+            </xsl:for-each>
+            <xsl:for-each select="groep_g091_verantwoordelijke_jgzorganisatie_obv_de_brp | groep_g085_uitvoerende_jgzorganisatie | r005_betrokken_jgzorganisaties">
+                <performer typeCode="PRF">
+                    <!-- Template :: R_AssignedEntityNL [identified] -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.122_20120801000000"/>
+                </performer>
+            </xsl:for-each>
+            <xsl:for-each select="groep_g091_verantwoordelijke_jgzorganisatie_obv_de_brp | groep_g085_uitvoerende_jgzorganisatie | r005_betrokken_jgzorganisaties">
+                <author typeCode="AUT">
+                    <!-- Template :: R_AssignedEntityNL [identified] -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.122_20120801000000"/>
+                </author>
+            </xsl:for-each>
+            <component typeCode="COMP">
+                <xsl:for-each select="r018_activiteit">
+                    <encounterEvent moodCode="EVN" classCode="ENC">
+                        <!-- Item(s) :: activiteit_id-->
+                        <xsl:for-each select="activiteit_id">
+                            <xsl:call-template name="makeIIValue">
+                                <xsl:with-param name="xsiType" select="''"/>
+                                <xsl:with-param name="elemName">id</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                        <!-- Item(s) :: soort_activiteit-->
+                        <xsl:for-each select="soort_activiteit">
+                            <xsl:call-template name="makeCVValue">
+                                <xsl:with-param name="xsiType" select="''"/>
+                                <xsl:with-param name="elemName">code</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                        <!-- Item(s) :: datum_activiteit-->
+                        <xsl:for-each select="datum_activiteit">
+                            <xsl:call-template name="makeTSValue">
+                                <xsl:with-param name="xsiType" select="''"/>
+                                <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                        <xsl:for-each select="r041_rijksvaccinatieprogramma_en_andere_vaccinaties | groep_g076_vaccinatie">
+                            <component typeCode="COMP">
+                                <!-- Template :: A_Rijksvaccinatie [informational/administered] -->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.117_20120801000000"/>
+                            </component>
+                        </xsl:for-each>
+                    </encounterEvent>
                 </xsl:for-each>
-                <code code="CPHC" codeSystem="2.16.840.1.113883.5.4"/>
-                <!-- Item(s) :: dossier_status-->
-                <xsl:for-each select="dossier_status">
-                    <xsl:call-template name="makeCSValue">
-                        <xsl:with-param name="xsiType" select="''"/>
-                        <xsl:with-param name="elemName">statusCode</xsl:with-param>
-                    </xsl:call-template>
-                </xsl:for-each>
-                <xsl:for-each select="groep_g103_periode_zorg">
-                    <effectiveTime xsi:type="IVL_TS">
-                        <xsl:if test="startdatum_zorg">
-                            <!-- Item(s) :: startdatum_zorg-->
-                            <xsl:for-each select="startdatum_zorg">
-                                <xsl:call-template name="makeTSValue">
-                                    <xsl:with-param name="xsiType" select="''"/>
-                                    <xsl:with-param name="elemName">low</xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:for-each>
-                        </xsl:if>
-                        <xsl:if test="einddatum_zorg">
-                            <!-- Item(s) :: einddatum_zorg-->
-                            <xsl:for-each select="einddatum_zorg">
-                                <xsl:call-template name="makeTSValue">
-                                    <xsl:with-param name="xsiType" select="''"/>
-                                    <xsl:with-param name="elemName">high</xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:for-each>
-                        </xsl:if>
-                    </effectiveTime>
-                </xsl:for-each>
-                <xsl:for-each select="r003_persoonsgegevens">
-                    <subject typeCode="SBJ">
-                        <!-- Template :: R_PatientNL GBA [identified/confirmable] -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.102_20120801000000"/>
-                    </subject>
-                </xsl:for-each>
-                <xsl:for-each select="groep_g091_verantwoordelijke_jgzorganisatie_obv_de_brp | groep_g085_uitvoerende_jgzorganisatie | r005_betrokken_jgzorganisaties">
-                    <performer typeCode="PRF">
-                        <!-- Template :: R_AssignedEntityNL [identified] -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.122_20120801000000"/>
-                    </performer>
-                </xsl:for-each>
-                <xsl:for-each select="groep_g091_verantwoordelijke_jgzorganisatie_obv_de_brp | groep_g085_uitvoerende_jgzorganisatie | r005_betrokken_jgzorganisaties">
-                    <author typeCode="AUT">
-                        <!-- Template :: R_AssignedEntityNL [identified] -->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.122_20120801000000"/>
-                    </author>
-                </xsl:for-each>
-                <component typeCode="COMP">
-                    <xsl:for-each select="r018_activiteit">
-                        <encounterEvent moodCode="EVN" classCode="ENC">
-                            <!-- Item(s) :: activiteit_id-->
-                            <xsl:for-each select="activiteit_id">
-                                <xsl:call-template name="makeIIValue">
-                                    <xsl:with-param name="xsiType" select="''"/>
-                                    <xsl:with-param name="elemName">id</xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:for-each>
-                            <!-- Item(s) :: soort_activiteit-->
-                            <xsl:for-each select="soort_activiteit">
-                                <xsl:call-template name="makeCVValue">
-                                    <xsl:with-param name="xsiType" select="''"/>
-                                    <xsl:with-param name="elemName">code</xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:for-each>
-                            <!-- Item(s) :: datum_activiteit-->
-                            <xsl:for-each select="datum_activiteit">
-                                <xsl:call-template name="makeTSValue">
-                                    <xsl:with-param name="xsiType" select="''"/>
-                                    <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:for-each>
-                            <xsl:for-each select="r041_rijksvaccinatieprogramma_en_andere_vaccinaties | groep_g076_vaccinatie">
-                                <component typeCode="COMP">
-                                    <!-- Template :: A_Rijksvaccinatie [informational/administered] -->
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.117_20120801000000"/>
-                                </component>
-                            </xsl:for-each>
-                        </encounterEvent>
-                    </xsl:for-each>
-                </component>
-            </CareProvisionEvent>
+            </component>
+        </CareProvisionEvent>
     </xsl:template>
-    
+
     <!-- Bericht 1 Opvragen vaccinatiestatus (payload) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.181_20120901000000">
         <queryByParameter xmlns="urn:hl7-org:v3">
@@ -10411,7 +10441,7 @@
             </person.name>
         </queryByParameter>
     </xsl:template>
-    
+
     <!-- Bericht 2 Opleveren vaccinatiestatus (payload) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.182_20120901000000">
         <xsl:for-each select="groep_g094_vaccinatieschema">
@@ -10432,7 +10462,7 @@
             </VaccinationAdministrationList>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- ControlAct Initiating -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.200_20120801000000">
         <xsl:attribute name="moodCode">EVN</xsl:attribute>
@@ -10440,7 +10470,7 @@
         <code xmlns="urn:hl7-org:v3"/>
         <effectiveTime xmlns="urn:hl7-org:v3"/>
     </xsl:template>
-    
+
     <!-- ControlAct AuthorOrPerformer Device -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.200.1_20120801000000">
         <authorOrPerformer xmlns="urn:hl7-org:v3" typeCode="AUT">
@@ -10455,7 +10485,7 @@
             </participant>
         </authorOrPerformer>
     </xsl:template>
-    
+
     <!-- ControlAct AuthorOrPerformer Person -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.200.2_20120801000000">
         <authorOrPerformer xmlns="urn:hl7-org:v3" typeCode="AUT">
@@ -10476,7 +10506,7 @@
             </participant>
         </authorOrPerformer>
     </xsl:template>
-    
+
     <!-- ControlAct Overseer Person -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.200.3_20120801000000">
         <overseer xmlns="urn:hl7-org:v3" typeCode="RESP">
@@ -10497,7 +10527,7 @@
             </AssignedPerson>
         </overseer>
     </xsl:template>
-    
+
     <!-- ControlAct QueryByParameter as Stub -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.201_20121001000000">
         <xsl:attribute name="moodCode">EVN</xsl:attribute>
@@ -10506,7 +10536,7 @@
         <effectiveTime xmlns="urn:hl7-org:v3"/>
         <reasonOf xmlns="urn:hl7-org:v3"/>
     </xsl:template>
-    
+
     <!-- ControlAct Overseer Person Query -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.201.2_20121001000000">
         <overseer xmlns="urn:hl7-org:v3" typeCode="RESP">
@@ -10527,7 +10557,7 @@
             </assignedEntity>
         </overseer>
     </xsl:template>
-    
+
     <!-- ControlAct Query Response / Acknowledgement -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.202_20121001000000">
         <xsl:attribute name="moodCode">EVN</xsl:attribute>
@@ -10535,7 +10565,7 @@
         <code xmlns="urn:hl7-org:v3"/>
         <effectiveTime xmlns="urn:hl7-org:v3"/>
     </xsl:template>
-    
+
     <!-- ControlAct Query ReasonOf -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.202.1_20121001000000">
         <reasonOf xmlns="urn:hl7-org:v3">
@@ -10549,7 +10579,7 @@
             </justifiedDetectedIssue>
         </reasonOf>
     </xsl:template>
-    
+
     <!-- ControlAct Query QueryAck -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.202.2_20121001000000">
         <queryAck xmlns="urn:hl7-org:v3">
@@ -10561,7 +10591,7 @@
             <resultRemainingQuantity/>
         </queryAck>
     </xsl:template>
-    
+
     <!-- ControlAct Vaccinatiesoproeplijst -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.203_20150629000000">
         <ControlActProcess xmlns="urn:hl7-org:v3" moodCode="EVN">
@@ -10579,7 +10609,7 @@
             </subject>
         </ControlActProcess>
     </xsl:template>
-    
+
     <!-- obs Ouderkenmerken -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40070_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -10617,7 +10647,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Erfelijke belasting en ouderkenmerken nagevraagd -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40079_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -10643,7 +10673,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Erfelijke bepaalde ziekte in de familie -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40080_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -10681,7 +10711,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs A. femoralis rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40146_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -10707,7 +10737,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Anamnese nagevraagd -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40148_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -10733,7 +10763,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Duur opname ziekenhuis -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40149_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -10760,7 +10790,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Reden opname ziekenhuis -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40150_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -10786,7 +10816,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs (Kinder-)ziekten -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40152_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -10812,7 +10842,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Operaties -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40153_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -10838,7 +10868,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Ongevallen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40154_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -10864,7 +10894,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Medicijn gebruik -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40155_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -10890,7 +10920,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Huid/haar/nagels onderzocht -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40161_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -10916,7 +10946,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden huid/haar/nagels -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40163_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -10942,7 +10972,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Toelichting huidaandoening -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40164_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -10968,7 +10998,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Hoofd/hals onderzocht -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40167_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -10994,7 +11024,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden hoofd -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40170_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11027,7 +11057,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden trommelvlies rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40174_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11053,7 +11083,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden trommelvlies links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40175_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11079,7 +11109,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden neus -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40176_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11105,7 +11135,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden mondgedrag -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40179_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11131,7 +11161,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden tonsillen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40184_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11157,7 +11187,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Poetsen gebit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40188_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11183,7 +11213,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Tandartsbezoek -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40190_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11209,7 +11239,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden gebit/kaak -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40193_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11235,7 +11265,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Romp onderzocht -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40196_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11261,7 +11291,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden thorax -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40201_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11287,7 +11317,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden longen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40202_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11313,7 +11343,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Lever -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40206_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11339,7 +11369,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Milt -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40207_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11365,7 +11395,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden navel -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40209_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11391,7 +11421,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden lies rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40210_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11417,7 +11447,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden lies links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40211_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11443,7 +11473,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bewegingsapparaat onderzocht -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40212_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11469,7 +11499,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden wervelkolom -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40217_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11502,7 +11532,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Scoliose hoekmeting -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40218_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11535,7 +11565,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden heupen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40219_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11568,7 +11598,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden onderste extremiteiten -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40221_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11601,7 +11631,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden voet rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40223_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11627,7 +11657,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Genitalia/puberteitsontwikkeling onderzocht -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40225_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11653,7 +11683,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden genitalia/puberteitsontwikkeling -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40228_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11679,7 +11709,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden vulva -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40230_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11705,7 +11735,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden penis -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40232_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11731,7 +11761,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden scrotum rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40233_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11757,7 +11787,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden groei -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40234_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11783,7 +11813,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Lengte -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40235_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11817,7 +11847,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Lengte biologische moeder -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40238_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11851,7 +11881,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Lengte biologische vader -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40240_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11885,7 +11915,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Gewicht -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40245_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11919,7 +11949,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Indruk JGZ professional gewicht/lengte -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40247_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11945,7 +11975,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Hoofdomtrek -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40252_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11972,7 +12002,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Psychosociale en cognitieve ontwikkeling onderzocht -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40259_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -11998,7 +12028,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden psychische en sociale ontwikkeling -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40265_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12024,7 +12054,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Motorische ontwikkeling onderzocht -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40268_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12050,7 +12080,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden tonus -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40269_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12076,7 +12106,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden centraal zenuwstelsel -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40271_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12102,7 +12132,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden motorische ontwikkeling -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40276_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12128,7 +12158,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Spraak- en taalontwikkeling onderzocht -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40294_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12154,7 +12184,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Meertaligheid -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40301_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12180,7 +12210,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Taal -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40302_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12206,7 +12236,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Eerste/tweede taal -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40307_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12232,7 +12262,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Datum menarche -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40312_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12258,7 +12288,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Ontwikkeling genitalia jongen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40313_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12291,7 +12321,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Pubesbeharing jongen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40315_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12324,7 +12354,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Borstontwikkeling meisje -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40317_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12357,7 +12387,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Lichamelijk functioneren nagevraagd -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40321_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12383,7 +12413,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden slapen/waken -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40322_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12409,7 +12439,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden voeding/eetgedrag -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40323_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12435,7 +12465,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Zindelijkheid -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40324_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12461,7 +12491,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden ontlasten/plassen/zindelijkheid -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40325_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12487,7 +12517,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden gedrag/temperament -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40328_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12513,7 +12543,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden lichaamsbeweging -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40330_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12539,7 +12569,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Verhouding draaglast-draagkracht onderzocht -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40339_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12565,7 +12595,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Balans -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40348_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12591,7 +12621,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden verhouding draaglast-draagkracht -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40349_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12617,7 +12647,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Reflexbeeldjes rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40390_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12643,7 +12673,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Reflexbeeldjes links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40391_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12669,7 +12699,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Afdektest: geen instel beweging rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40392_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12695,7 +12725,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Afdektest: geen instel beweging links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40393_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12721,7 +12751,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Afdektest: geen herstel beweging rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40394_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12747,7 +12777,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Afdektest: geen herstel beweging links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40395_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12773,7 +12803,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Volgbeweging binoculair rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40396_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12799,7 +12829,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Volgbeweging binoculair links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40397_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12825,7 +12855,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Volgbeweging monoculair rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40398_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12851,7 +12881,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Volgbeweging monoculair links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40399_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12877,7 +12907,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Pupil zwart rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40402_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12903,7 +12933,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Pupil zwart links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40403_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12929,7 +12959,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Pupil rond rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40404_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12955,7 +12985,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Pupil rond links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40405_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -12981,7 +13011,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Pupilreactie rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40406_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13007,7 +13037,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Pupilreactie links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40407_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13033,7 +13063,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Conclusie visusbepaling -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40408_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13059,7 +13089,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden testis rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40422_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13085,7 +13115,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Overige bijzonderheden hartonderzoek -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40428_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13111,7 +13141,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Gehooronderzoek uitgevoerd -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40438_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13137,7 +13167,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Uitslag 1e NGS rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40439_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13163,7 +13193,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Uitslag 1e NGS links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40441_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13189,7 +13219,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Uitslag 2e NGS rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40442_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13215,7 +13245,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Uitslag 2e NGS links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40444_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13241,7 +13271,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Uitslag 3e NGS rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40445_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13267,7 +13297,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Uitslag 3e NGS links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40447_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13293,7 +13323,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bedreiging sociaal milieu -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40481_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13319,7 +13349,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Melkvoeding op dit moment -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40496_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13345,7 +13375,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Passief roken in huis -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40510_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13371,7 +13401,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Ervaren gezondheid -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40514_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13397,7 +13427,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs APK-kaart uitslag rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40692_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13423,7 +13453,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Risico-inventarisatie VGV -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40739_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13449,7 +13479,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs A. femoralis links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40746_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13475,7 +13505,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Anamnese -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40748_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13501,7 +13531,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden vrijetijdsbesteding -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40752_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13527,7 +13557,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Zwemdiploma -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40753_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13553,7 +13583,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Consult huisarts/specialist/derden -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40754_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13579,7 +13609,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Ingrijpende gebeurtenissen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40755_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13605,7 +13635,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Algemene indruk verkregen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40756_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13631,7 +13661,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Interactie ouder/kind -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40757_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13657,7 +13687,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Interactie kind/JGZ-professional -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40758_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13683,7 +13713,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Gedrag -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40759_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13709,7 +13739,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Stemming -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40760_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13735,7 +13765,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Verzorging/hygiëne -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40761_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13761,7 +13791,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Ziek -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40762_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13787,7 +13817,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Voorkeurshouding -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40763_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13813,7 +13843,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Lichaamskant voorkeurshouding -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40764_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13839,7 +13869,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden kleur huid -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40765_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13865,7 +13895,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Snel vermoeid -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40766_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13891,7 +13921,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Snel transpireren -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40767_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13917,7 +13947,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Anders -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40768_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13943,7 +13973,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Seksueel actief -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40770_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13969,7 +13999,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Anticonceptie -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40771_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -13995,7 +14025,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Adaptatie/persoonlijkheid/sociaal gedrag nagevraagd -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40772_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14021,7 +14051,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden hechting -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40773_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14047,7 +14077,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden ouder-kind relatie -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40774_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14073,7 +14103,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden karakter/persoonlijkheid -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40775_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14099,7 +14129,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden zelfbeeld -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40776_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14125,7 +14155,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden stemming/angsten -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40777_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14151,7 +14181,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden ontdekkingsdrang -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40778_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14177,7 +14207,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden zelfstandigheid -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40779_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14203,7 +14233,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden begrijpen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40780_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14229,7 +14259,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden wilsontwikkeling -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40781_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14255,7 +14285,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden contact met volwassenen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40782_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14281,7 +14311,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden omgaan met nieuwe situaties -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40783_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14307,7 +14337,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden geweld/delinquent gedrag -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40784_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14333,7 +14363,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden verslavingsrisico -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40785_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14359,7 +14389,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Toelichting verslavingsrisico -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40786_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14385,7 +14415,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Functioneren op school nagevraagd -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40787_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14411,7 +14441,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden functioneren in de klas -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40790_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14437,7 +14467,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden indruk school -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40791_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14463,7 +14493,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden schoolverzuim -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40792_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14489,7 +14519,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden uiterlijk oor rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40794_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14515,7 +14545,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden uiterlijk oor links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40795_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14541,7 +14571,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden mond/tong -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40796_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14567,7 +14597,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden hals -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40797_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14593,7 +14623,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden abdomen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40798_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14619,7 +14649,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Hoogteverschil gibbus bij scoliose -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40800_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14646,7 +14676,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden bovenste extremiteiten -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40802_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14672,7 +14702,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Beenlengteverschil -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40804_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14699,7 +14729,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden voet links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40805_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14725,7 +14755,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Scrotale testes -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40806_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14751,7 +14781,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden anus -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40807_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14777,7 +14807,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden lengte ouders -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40808_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14803,7 +14833,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden cognitieve ontwikkeling -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40814_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14829,7 +14859,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Lateralisatie -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40815_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14855,7 +14885,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Taalomgeving stimulerend -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40816_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14881,7 +14911,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Taalsignaleringsinstrument -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40817_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14907,7 +14937,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Beoordeling taalontwikkeling -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40818_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14933,7 +14963,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden taalsignaleringsinstrument -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40819_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14959,7 +14989,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Aard bijzonderheden spraak- en taalontwikkeling -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40820_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -14985,7 +15015,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Toelichting aard bijzonderheden -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40821_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15011,7 +15041,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Totaalscore SLS -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40822_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15037,7 +15067,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Beoordeling spraak- en taalontwikkeling Nederlands -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40823_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15063,7 +15093,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden menstruatie -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40824_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15089,7 +15119,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Pubesbeharing meisje -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40825_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15122,7 +15152,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bedreiging fysiek milieu -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40827_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15148,7 +15178,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bril/lenzen dragend -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40831_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15174,7 +15204,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs APK-kaart uitslag links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40832_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15200,7 +15230,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs APK-TOV-kaart 3 meter uitslag rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40833_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15226,7 +15256,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs APK-TOV-kaart 3 meter uitslag links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40834_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15252,7 +15282,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs LH-kaart uitslag rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40835_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15278,7 +15308,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs LH-kaart uitslag links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40836_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15304,7 +15334,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Landolt-C-kaart uitslag rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40837_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15330,7 +15360,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Landolt-C-kaart uitslag links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40838_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15356,7 +15386,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden visusbepaling -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40839_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15382,7 +15412,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Fundusreflex rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40840_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15408,7 +15438,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Fundusreflex links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40841_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15434,7 +15464,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden VOV-onderzoek -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40842_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15460,7 +15490,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden inspectie oog -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40851_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15486,7 +15516,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Ishiharatest -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40852_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15512,7 +15542,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Dieptezien -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40853_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15538,7 +15568,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Uitslag oogarts/orthoptist -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40854_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15564,7 +15594,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Hartonderzoek uitgevoerd -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40855_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15590,7 +15620,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Geruis intensiteit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40856_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15623,7 +15653,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Geruis timing -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40858_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15656,7 +15686,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Lokalisatie -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40859_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15682,7 +15712,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Voortgeleiding -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40860_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15708,7 +15738,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden harttonen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40861_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15734,7 +15764,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden hartritme -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40862_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15760,7 +15790,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden gehooronderzoek -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40863_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15786,7 +15816,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Testtoon aangeboden -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40864_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15812,7 +15842,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Uitslag gehoorscreening -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40865_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15838,7 +15868,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Gedragstoestand Van Wiechen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40877_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15864,7 +15894,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Interactie Van Wiechen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40878_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15890,7 +15920,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 1. Ogen fixeren -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40879_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15916,7 +15946,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 1 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40880_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15942,7 +15972,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 2. Volgt met ogen èn hoofd 30º-0º-30º rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40881_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15968,7 +15998,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 2 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40882_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -15994,7 +16024,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 2. Volgt met ogen èn hoofd 30º-0º-30º links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40883_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16020,7 +16050,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 3. Handen af en toe open rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40884_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16046,7 +16076,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 3. Handen af en toe open links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40885_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16072,7 +16102,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 4. Kijkt naar eigen handen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40886_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16098,7 +16128,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 5. Speelt met handen middenvoor -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40887_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16124,7 +16154,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 6. Pakt in rugligging voorwerp binnen bereik rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40888_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16150,7 +16180,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 6. Pakt in rugligging voorwerp binnen bereik links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40889_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16176,7 +16206,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 7. Pakt blokje over -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40890_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16202,7 +16232,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 8. Houdt blokje vast, pakt er nog een in andere hand -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40891_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16228,7 +16258,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 9. Speelt met beide voeten rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40892_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16254,7 +16284,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 9. Speelt met beide voeten links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40893_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16280,7 +16310,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 10. Pakt propje met duim en wijsvinger rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40894_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16306,7 +16336,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 10 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40895_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16332,7 +16362,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 10. Pakt propje met duim en wijsvinger links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40896_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16358,7 +16388,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 11. Doet blokje in/uit doos rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40897_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16384,7 +16414,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 11. Doet blokje in/uit doos links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40898_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16410,7 +16440,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 11 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40899_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16436,7 +16466,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 12. Speelt "geven en nemen" -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40900_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16462,7 +16492,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 12 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40901_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16488,7 +16518,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 13. Stapelt 2 blokjes rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40902_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16514,7 +16544,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 13. Stapelt 2 blokjes links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40903_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16540,7 +16570,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 13 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40904_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16566,7 +16596,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 14. Gaat op onderzoek uit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40905_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16592,7 +16622,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 15. Stapelt 3 blokjes rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40906_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16618,7 +16648,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 15. Stapelt 3 blokjes links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40907_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16644,7 +16674,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 15 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40908_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16670,7 +16700,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 16. Doet anderen na -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40909_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16696,7 +16726,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 17. Stapelt 6 blokjes -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40910_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16722,7 +16752,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 17 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40911_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16748,7 +16778,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 18. Plaatst ronde vorm in stoof -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40912_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16774,7 +16804,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 19. Trekt kledingstuk uit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40913_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16800,7 +16830,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 20. Bouwt vrachtauto na -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40914_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16826,7 +16856,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 20 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40915_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16852,7 +16882,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 21. Plaatst 3 vormen in stoof -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40916_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16878,7 +16908,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 22. Tekent verticale lijn na -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40917_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16904,7 +16934,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 23. Bouwt brug na -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40918_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16930,7 +16960,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 23 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40919_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16956,7 +16986,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 24. Plaatst 4 vormen in stoof -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40920_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16982,7 +17012,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 25. Trekt eigen kledingstuk aan -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40921_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17008,7 +17038,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 26. Tekent cirkel na -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40922_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17034,7 +17064,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 27. Houdt potlood met vingers vast -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40923_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17067,7 +17097,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 27 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40925_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17093,7 +17123,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 28. Tekent kruis na -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40926_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17119,7 +17149,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 29. Reageert op toespreken -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40927_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17145,7 +17175,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 30. Lacht terug -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40928_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17171,7 +17201,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Lacht eerste keer terug -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40929_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17198,7 +17228,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 31. Maakt geluiden terug -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40930_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17224,7 +17254,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 32. Maakt gevarieerde geluiden -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40931_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17250,7 +17280,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 33. Zegt "dada-baba" of "gaga" -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40932_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17276,7 +17306,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 34. Brabbelt bij zijn spel -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40933_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17302,7 +17332,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 35. Reageert op mondeling verzoek -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40934_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17328,7 +17358,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 36. Zwaait "dag", "dag" -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40935_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17354,7 +17384,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 37. Zegt 2 "geluidswoorden" met begrip -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40936_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17380,7 +17410,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 38. Begrijpt enkele dagelijks gebruikte zinnen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40937_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17406,7 +17436,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 39. Zegt 3 "woorden" -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40938_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17432,7 +17462,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 40. Begrijpt spelopdrachtjes -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40939_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17458,7 +17488,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 41. Zegt "zinnen" van 2 woorden -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40940_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17484,7 +17514,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 42. Wijst 6 lichaamsdelen aan bij pop -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40941_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17510,7 +17540,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 42 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40942_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17536,7 +17566,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 43. Noemt zichzelf "mij" en "ik" -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40943_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17562,7 +17592,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 43 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40944_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17588,7 +17618,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 44. Wijst 5 plaatjes aan in boek -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40945_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17614,7 +17644,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 44 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40946_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17640,7 +17670,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 45. Zegt "zinnen" van 3 of meer woorden -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40947_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17666,7 +17696,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 46. Is verstaanbaar voor bekenden -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40948_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17692,7 +17722,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 47. Praat spontaan over gebeurtenissen thuis/speelzaal -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40949_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17718,7 +17748,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 48. Stelt vragen naar "wie", "wat", "waar", "hoe" -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40950_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17744,7 +17774,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 49. Is goed verstaanbaar voor onderzoeker -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40951_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17770,7 +17800,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 49 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40952_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17796,7 +17826,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 50. Stelt vragen naar "hoeveel", "wanneer", "waarom" -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40953_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17822,7 +17852,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 51. Begrijpt analogieën en tegenstellingen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40954_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17848,7 +17878,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 52. Beweegt armen evenveel rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40955_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17874,7 +17904,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 52. Beweegt armen evenveel links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40956_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17900,7 +17930,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 52 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40957_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17926,7 +17956,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 53. Beweegt benen evenveel rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40958_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17952,7 +17982,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 53. Beweegt benen evenveel links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40959_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -17978,7 +18008,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 53 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40960_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18004,7 +18034,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 54. Blijft hangen bij optillen onder de oksels -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40961_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18030,7 +18060,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 55. Reacties bij optrekken tot zit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40962_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18056,7 +18086,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 55 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40963_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18082,7 +18112,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 56. Heft kin even van onderlaag -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40964_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18108,7 +18138,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 56 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40965_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18134,7 +18164,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 57. Heft in buikligging hoofd tot 45º -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40966_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18160,7 +18190,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 57 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40967_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18186,7 +18216,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 58. Kijkt rond met 90º geheven hoofd -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40968_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18212,7 +18242,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 58 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40969_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18238,7 +18268,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 59. Benen gebogen of trappelen bij verticaal zwaaien rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40970_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18264,7 +18294,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 59. Benen gebogen of trappelen bij verticaal zwaaien links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40971_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18290,7 +18320,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 59 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40972_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18316,7 +18346,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 60. Rolt zich om van rug naar buik en omgekeerd -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40973_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18342,7 +18372,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 60 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40974_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18368,7 +18398,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 61. Kan hoofd goed ophouden in zit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40975_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18394,7 +18424,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 61 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40976_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18420,7 +18450,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 62. Zit op billen met gestrekte benen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40977_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18446,7 +18476,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 63. Zit stabiel los -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40978_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18472,7 +18502,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 63 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40979_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18498,7 +18528,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 64. Kruipt vooruit, buik op de grond -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40980_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18524,7 +18554,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 64 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40981_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18550,7 +18580,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 66. Kruipt vooruit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40982_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18576,7 +18606,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 66 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40983_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18602,7 +18632,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 67. Loopt langs -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40984_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18628,7 +18658,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 67 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40985_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18654,7 +18684,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 68. Loopt los / loopt goed los / loopt soepel -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40986_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18680,7 +18710,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 68 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40987_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18706,7 +18736,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Eerste keer los lopen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40988_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18733,7 +18763,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 69. Gooit bal zonder om te vallen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40989_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18759,7 +18789,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 69 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40990_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18785,7 +18815,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 70. Raapt vanuit hurkzit iets op -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40991_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18811,7 +18841,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 70 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40992_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18837,7 +18867,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 71. Schopt bal weg rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40993_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18863,7 +18893,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 71. Schopt bal weg links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40994_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18889,7 +18919,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 71 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40995_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18915,7 +18945,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 72. Kan in zit soepel roteren -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40996_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18941,7 +18971,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 72 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40997_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18967,7 +18997,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 73. Fietst (op driewieler) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40998_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -18993,7 +19023,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 74. Springt met beide voeten tegelijk -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40999_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19019,7 +19049,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 74 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41000_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19045,7 +19075,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 75. Kan minstens 5 seconden op één been staan rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41001_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19071,7 +19101,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 75. Kan minstens 5 seconden op één been staan links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41002_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19097,7 +19127,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 75 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41003_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19123,7 +19153,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden Van Wiechen onderzoek -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41004_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19149,7 +19179,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Observatie bij oefeningen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41005_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19175,7 +19205,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Scan van oefeningenblad -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41006_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19201,7 +19231,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 1. Figuren natekenen - kwantiteit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41007_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19227,7 +19257,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 2. Lijntrekken - kwantiteit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41008_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19253,7 +19283,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 2. Lijntrekken - kwaliteit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41009_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19279,7 +19309,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 3. Stippen zetten - kwantiteit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41010_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19305,7 +19335,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 3. Pengreep - kwaliteit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41011_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19331,7 +19361,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 4. Vinger-duim oppositie - kwantiteit rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41012_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19357,7 +19387,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 4. Vinger-duim oppositie - kwantiteit links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41013_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19383,7 +19413,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 4. Vinger-duim oppositie - kwaliteit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41014_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19409,7 +19439,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 5. Oogbewegingen - kwantiteit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41015_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19435,7 +19465,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 5. Oogbewegingen - kwaliteit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41016_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19461,7 +19491,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 6. Top-neus proef - kwantiteit rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41017_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19487,7 +19517,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 6. Top-neus proef - kwantiteit links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41018_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19513,7 +19543,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 7. Diadochokinese - kwantiteit rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41019_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19539,7 +19569,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 7. Diadochokinese - kwantiteit links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41020_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19565,7 +19595,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 7. Diadochokinese - kwaliteit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41021_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19591,7 +19621,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 8. Veter strikken - kwantiteit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41022_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19617,7 +19647,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 9. Eén been staan - kwantiteit rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41023_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19643,7 +19673,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 9. Eén been staan - kwantiteit links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41024_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19669,7 +19699,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 9. Eén been staan - kwaliteit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41025_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19695,7 +19725,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 10. Hielen lopen - kwantiteit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41026_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19721,7 +19751,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 10. Hielen lopen - kwaliteit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41027_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19747,7 +19777,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 11. Streeplopen - kwantiteit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41028_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19773,7 +19803,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 11. Streeplopen - kwaliteit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41029_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19799,7 +19829,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 12. Hinkelen - kwantiteit rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41030_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19825,7 +19855,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 12. Hinkelen - kwantiteit links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41031_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19851,7 +19881,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 12. Hinkelen - kwaliteit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41032_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19877,7 +19907,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 13. Springen - kwantiteit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41033_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19903,7 +19933,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 13. Springen - kwaliteit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41034_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19929,7 +19959,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Is er sprake van fysieke belemmeringen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41035_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19955,7 +19985,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden fysieke belemmeringen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41036_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -19981,7 +20011,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Is er sprake van negatieve kindfactoren -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41037_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20007,7 +20037,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden negatieve kindfactoren -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41038_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20033,7 +20063,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Is er sprake van negatieve omgevingsfactoren -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41039_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20059,7 +20089,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden negatieve omgevingsfactoren -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41040_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20085,7 +20115,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Percentiel -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41042_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20111,7 +20141,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden BFMT -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41045_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20137,7 +20167,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 1. Houdt rekening met gevoelens van anderen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41078_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20163,7 +20193,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 2. Is rusteloos -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41079_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20189,7 +20219,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 3. Klaagt vaak over hoofdpijn -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41080_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20215,7 +20245,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 4. Deelt makkelijk met andere kinderen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41081_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20241,7 +20271,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 5. Heeft vaak driftbuien of woede-uitbarstingen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41082_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20267,7 +20297,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 6. Is nogal op zichzelf -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41083_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20293,7 +20323,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 7. Is doorgaans gehoorzaam -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41084_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20319,7 +20349,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 8. Heeft veel zorgen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41085_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20345,7 +20375,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 9. Is behulpzaam als iemand zich heeft bezeerd -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41086_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20371,7 +20401,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 10. Is constant aan het wiebelen of wriemelen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41087_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20397,7 +20427,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 11. Heeft minstens één goede vriend of vriendin -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41088_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20423,7 +20453,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 12. Vecht vaak met andere kinderen of pest ze -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41089_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20449,7 +20479,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 13. Is vaak ongelukkig -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41090_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20475,7 +20505,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 14. Wordt over het algemeen aardig gevonden door andere kinderen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41091_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20501,7 +20531,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 15. Is gemakkelijk afgeleid -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41092_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20527,7 +20557,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 16. Is zenuwachtig of zich vastklampend in nieuwe situaties -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41093_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20553,7 +20583,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 17. Is aardig tegen jongere kinderen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41094_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20579,7 +20609,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 18. Liegt of bedriegt vaak -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41095_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20605,7 +20635,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 19. Wordt getreiterd of gepest door andere kinderen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41096_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20631,7 +20661,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 20. Biedt vaak vrijwillig hulp aan anderen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41097_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20657,7 +20687,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 21. Denkt na voor iets te doen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41098_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20683,7 +20713,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 22. Pikt dingen thuis -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41099_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20709,7 +20739,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 23. Kan beter opschieten met volwassenen dan met andere kinderen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41100_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20735,7 +20765,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 24. Is voor heel veel bang -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41101_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20761,7 +20791,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 25. Maakt opdrachten af -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41102_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20787,7 +20817,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Heeft u opmerkingen? -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41103_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20813,7 +20843,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Denkt u over het geheel genomen dat uw kind moeilijkheden heeft op één of meer van de volgende gebieden: emoties, concentratie, gedrag of vermogen om niet andere mensen op te schieten? -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41104_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20839,7 +20869,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Hoe lang bestaan deze moeilijkheden? -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41105_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20865,7 +20895,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Maken de moeilijkheden uw kind overstuur of van slag? -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41106_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20891,7 +20921,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Belemmering thuis -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41107_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20917,7 +20947,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Belemmering vriendschappen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41108_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20943,7 +20973,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Belemmering leren in de klas -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41109_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20969,7 +20999,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Belemmering activiteiten in de vrije tijd -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41110_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -20995,7 +21025,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Belasten de moeilijkheden u of het gezin als geheel? -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41111_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21021,7 +21051,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Score emotionele problemen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41112_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21047,7 +21077,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Score gedragsproblemen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41113_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21073,7 +21103,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Score problemen leeftijdsgenoten -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41114_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21099,7 +21129,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Score hyperactiviteit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41115_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21125,7 +21155,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs SDQ totaal score -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41116_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21151,7 +21181,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Score pro-sociaal gedrag -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41117_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21177,7 +21207,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Papieren dossier aanwezig -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41167_20120801000000">
         <annotationObsEvent xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN">
@@ -21190,7 +21220,7 @@
             </xsl:call-template>
         </annotationObsEvent>
     </xsl:template>
-    
+
     <!-- obs 0. Stoornis -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41173_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21216,7 +21246,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 1. Hoorstoornis -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41174_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21242,7 +21272,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 2. Stemstoornis -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41175_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21268,7 +21298,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 3. Taalstoornis -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41176_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21294,7 +21324,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 5. Articulatie -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41177_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21320,7 +21350,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 6. Nasaliteit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41178_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21346,7 +21376,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 7. Stoornis in vloeiendheid -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41179_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21372,7 +21402,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 8. Afwijkend mondgedrag -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41180_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21398,7 +21428,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 9. Overig -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41181_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21424,7 +21454,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Toelichting aard bijzonderheden screening logopedie -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41182_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21450,7 +21480,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Afmelding Verwijsindex risicojongeren -->
     <!--<groep_g074_melding_verwijsindex_risicojongeren>
         <aanmelder_uzi_verwijsindex_risicojongeren/>
@@ -21507,7 +21537,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Afmelding Verwijsindex_risicojongeren -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41196_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21558,7 +21588,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Testtoon 500 rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41203_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21584,7 +21614,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Testtoon 500 links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41204_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21610,7 +21640,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Testtoon 1000 rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41205_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21636,7 +21666,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Testtoon 1000 links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41206_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21662,7 +21692,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Testtoon 2000 rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41207_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21688,7 +21718,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Testtoon 2000 links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41208_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21714,7 +21744,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Testtoon 3000 rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41209_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21740,7 +21770,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Testtoon 3000 links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41210_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21766,7 +21796,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Testtoon 4000 rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41211_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21792,7 +21822,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Testtoon 4000 links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41212_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21818,7 +21848,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Testtoon 6000 rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41213_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21844,7 +21874,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Testtoon 6000 links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41214_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21870,7 +21900,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Drempel 500 rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41216_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21896,7 +21926,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Drempel 500 links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41218_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21922,7 +21952,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Drempel 1000 rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41220_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21948,7 +21978,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Drempel 1000 links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41222_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -21974,7 +22004,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Drempel 2000 rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41224_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22000,7 +22030,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Drempel 2000 links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41226_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22026,7 +22056,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Drempel 3000 rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41228_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22052,7 +22082,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Drempel 3000 links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41230_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22078,7 +22108,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Drempel 4000 rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41232_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22104,7 +22134,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Drempel 4000 links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41234_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22130,7 +22160,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Drempel 6000 rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41236_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22156,7 +22186,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Drempel 6000 links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41238_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22182,7 +22212,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Uitslag drempelonderzoek -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41239_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22208,7 +22238,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 3 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41240_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22234,7 +22264,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 4 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41241_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22260,7 +22290,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 5 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41242_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22286,7 +22316,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 6 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41243_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22312,7 +22342,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 7 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41244_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22338,7 +22368,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 8 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41245_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22364,7 +22394,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 9 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41246_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22390,7 +22420,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 14 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41247_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22416,7 +22446,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 16 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41248_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22442,7 +22472,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 18 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41249_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22468,7 +22498,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 19 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41250_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22494,7 +22524,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 21 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41251_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22520,7 +22550,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 22 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41252_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22546,7 +22576,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 24 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41253_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22572,7 +22602,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 25 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41254_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22598,7 +22628,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 26 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41255_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22624,7 +22654,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 28 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41256_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22650,7 +22680,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 29 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41257_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22676,7 +22706,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 30 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41258_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22702,7 +22732,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 31 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41259_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22728,7 +22758,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 32 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41260_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22754,7 +22784,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 33 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41261_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22780,7 +22810,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 34 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41262_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22806,7 +22836,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 35 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41263_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22832,7 +22862,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 36 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41264_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22858,7 +22888,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 37 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41265_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22884,7 +22914,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 38 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41266_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22910,7 +22940,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 39 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41267_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22936,7 +22966,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 40 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41268_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22962,7 +22992,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 41 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41269_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -22988,7 +23018,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 45 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41270_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23014,7 +23044,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 46 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41271_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23040,7 +23070,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 47 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41272_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23066,7 +23096,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 48 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41273_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23092,7 +23122,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 50 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41274_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23118,7 +23148,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 51 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41275_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23144,7 +23174,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 54 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41276_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23170,7 +23200,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 62 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41277_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23196,7 +23226,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs 65. Trekt zich op tot staan -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41278_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23222,7 +23252,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 65 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41279_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23248,7 +23278,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Opmerking bij VWO 73 -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41280_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23274,7 +23304,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Melding Veilig Thuis -->
     <!--<groep_g075_melding_veilig_thuis>
         <aanmelder_uzi_veilig_thuis/>
@@ -23330,7 +23360,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Consultatie Veilig Thuis -->
     <!--<groep_g084_consultatie_veilig_thuis>
         <uitvoerende_uzi_consultatie_veilig_thuis/>
@@ -23386,7 +23416,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden consultatie Veilig Thuis -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41328_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23412,7 +23442,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Dialect -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41329_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23438,7 +23468,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Screeningsinstrument NGS -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41331_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23464,7 +23494,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Vitamine K -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41337_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23490,7 +23520,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Vitamine D -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41338_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23516,7 +23546,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Toelichting vitamine -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41339_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23542,7 +23572,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden SPP -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41345_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23613,7 +23643,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Conclusie SPP -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41346_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23639,7 +23669,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Oogonderzoek uitgevoerd -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41379_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23665,7 +23695,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden melding Veilig Thuis -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41380_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23691,7 +23721,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Gebruikt hand -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41382_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23717,7 +23747,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bedreigingen nagevraagd -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41384_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23743,7 +23773,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden testis links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41392_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23769,7 +23799,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden scrotum links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41393_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23795,7 +23825,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden melding Verwijsindex risicojongeren -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41408_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23821,7 +23851,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Datum opname ziekenhuis -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41412_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23848,7 +23878,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Gescreend in NICU -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41413_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23874,7 +23904,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Risico-inschatting VGV op dit moment -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41414_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23900,7 +23930,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Verklaring tegen VGV meegegeven -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41415_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23926,7 +23956,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden VGV -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41416_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23952,7 +23982,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs APK-TOV-kaart 5 meter uitslag rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41418_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -23978,7 +24008,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs APK-TOV-kaart 5 meter uitslag links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41419_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -24004,7 +24034,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs APK-TOV-kaart 4 meter uitslag rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41420_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -24030,7 +24060,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs APK-TOV-kaart 4 meter uitslag links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41421_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -24056,7 +24086,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden omgaan met broer/zus/leeftijdgenoten -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41422_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -24082,7 +24112,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden hand links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41425_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -24108,7 +24138,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden hand rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41426_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -24134,7 +24164,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Diagnose Audiologisch Centrum gehoor links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41433_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -24160,7 +24190,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Diagnose Audiologisch Centrum gehoor rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41434_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -24186,7 +24216,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Interventie Audiologisch Centrum -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41435_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -24212,7 +24242,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Toelichting interventie Audiologisch Centrum -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41436_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -24238,7 +24268,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden sensibiliteit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41437_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -24264,7 +24294,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Proef van Romberg -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41438_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -24290,7 +24320,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Kruis van Reitan -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41439_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -24316,7 +24346,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Menstekening -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41440_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -24342,7 +24372,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Toelichting bijzonderheden heupen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41446_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -24368,7 +24398,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs SDQ impactscore -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41447_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -24394,7 +24424,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Middelomtrek in millimeters -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41485_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -24421,7 +24451,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bloeddruk systolisch -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41486_20111206000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -24445,7 +24475,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bloeddruk diastolisch -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41487_20111206000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -24469,7 +24499,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Overall risicoinschatting SPARK -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41495_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -24495,7 +24525,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Score taalinstrument -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41496_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -24521,7 +24551,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Zwemles -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41499_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -24547,7 +24577,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Schoolzwemmen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41500_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -24573,7 +24603,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Van Wiechen kolom -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41531_20180424000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -24599,7 +24629,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!--obs_A_terme_datum-->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41578_20191128000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -24625,7 +24655,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!--obs_Kinkhoest doorgemaakt na zwangerschapsduur 12w6d-->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41580_20191128000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -24677,7 +24707,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!--obs_Stollingsstoornis-->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41585_20191128000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -24703,7 +24733,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-        
+
     <!--obs_Chronisch drager Hepatitis-B-->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41586_20191128000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -24729,7 +24759,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!--obs_Datum_maternale_kinkhoestvaccinatie-->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41587_20191128000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -24755,7 +24785,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!--obs_Medicijngebruik_tijdens_zwangerschap-->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41588_20191128000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -24781,12 +24811,12 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <xsl:template name="makeBLValue_From_W0141_JaNeeOnbekend">
         <xsl:param name="xsiType">BL</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
         <xsl:param name="elemNamespace">urn:hl7-org:v3</xsl:param>
-        
+
         <xsl:element name="{$elemName}" namespace="{$elemNamespace}">
             <xsl:if test="string-length($xsiType) gt 0">
                 <xsl:attribute name="xsi:type" select="$xsiType"/>
@@ -24802,7 +24832,10 @@
                     <xsl:attribute name="nullFlavor">ASKU</xsl:attribute>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:message><xsl:value-of select="local-name()"/> (W0141 Ja/Nee/Onbekend) heeft onbekende waarde: <xsl:value-of select="for $att in (@code, @codeSystem, @displayName, @value) return concat(local-name($att), '=&quot;',$att,'&quot; ')"/></xsl:message>
+                    <xsl:message><xsl:value-of select="local-name()"/> (W0141 Ja/Nee/Onbekend) heeft onbekende waarde: <xsl:value-of select="
+                                for $att in (@code, @codeSystem, @displayName, @value)
+                                return
+                                    concat(local-name($att), '=&quot;', $att, '&quot; ')"/></xsl:message>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:element>
