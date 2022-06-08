@@ -236,7 +236,7 @@
     
     <!-- Care Provision Dossier -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10006_20200527000000">
-        <careProvisionEvent xmlns="urn:hl7-org:v3">
+        <careProvisionEvent moodCode="EVN" xmlns="urn:hl7-org:v3">
             <!-- Item(s) :: dossiernummer-->
             <xsl:for-each select="r002_dossierinformatie/dossiernummer">
                 <xsl:call-template name="makeIIValue">
