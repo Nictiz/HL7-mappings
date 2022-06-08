@@ -2199,14 +2199,14 @@
                 <!-- Item(s) :: postcode-->
                 <xsl:for-each select="postcode">
                     <xsl:choose>
-                        <xsl:when test="matches(@value, '^\d{4}[A-Za-z]{2}$')">
+                        <xsl:when test="matches(@value, '^\d{4}\s*[A-Za-z]{2}$')">
                             <postalCode>
-                                <xsl:value-of select="replace(@value, '^(\d{4})([A-Za-z]{2})$', '$1 $2')"/>
+                                <xsl:value-of select="replace(@value, '^(\d{4})(\s*)([A-Za-z]{2})$', '$1 $3')"/>
                             </postalCode>
                         </xsl:when>
-                        <xsl:when test="matches(@displayName, '^\d{4}[A-Za-z]{2}$')">
+                        <xsl:when test="matches(@displayName, '^\d{4}\s*[A-Za-z]{2}$')">
                             <postalCode>
-                                <xsl:value-of select="replace(@displayName, '^(\d{4})([A-Za-z]{2})$', '$1 $2')"/>
+                                <xsl:value-of select="replace(@displayName, '^(\d{4})(\s*)([A-Za-z]{2})$', '$1 $3')"/>
                             </postalCode>
                         </xsl:when>
                         <xsl:otherwise>
