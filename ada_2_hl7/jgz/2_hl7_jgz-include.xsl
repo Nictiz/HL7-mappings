@@ -8225,7 +8225,77 @@
                         <xsl:with-param name="elemName">deceasedTime</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
+                <!-- Item(s) :: nationaliteit-->
+                <xsl:for-each select="nationaliteit">
+                    <asCitizen classCode="CIT">
+                        <politicalNation classCode="NAT" determinerCode="INSTANCE">
+                            <xsl:call-template name="makeCVValue">
+                                <xsl:with-param name="elemName">code</xsl:with-param>
+                            </xsl:call-template>
+                        </politicalNation>
+                    </asCitizen>
+                </xsl:for-each>
+                <xsl:if test="geboorteplaats | geboorteland">
+                    <birthPlace>
+                        <addr>
+                            <!-- Item(s) :: geboorteplaats-->
+                            <xsl:for-each select="geboorteplaats">
+                                <xsl:call-template name="makeADXPValue">
+                                    <xsl:with-param name="elemName">county</xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                            <!-- Item(s) :: geboorteland-->
+                            <xsl:for-each select="geboorteland">
+                                <xsl:call-template name="makeADXPValue">
+                                    <xsl:with-param name="elemName">country</xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                        </addr>
+                    </birthPlace>
+                </xsl:if>
             </patientPerson>
+            <!-- Item(s) :: land_vanwaar_ingeschreven-->
+            <xsl:for-each select="land_vanwaar_ingeschreven">
+                <subjectOf1 typeCode="SBJ">
+                    <administrativeObservation classCode="OBS" moodCode="EVN">
+                        <code code="26" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '26'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
+                        <xsl:call-template name="makeCVValue">
+                            <xsl:with-param name="xsiType" select="'CV'"/>
+                            <xsl:with-param name="elemName">value</xsl:with-param>
+                        </xsl:call-template>
+                    </administrativeObservation>
+                </subjectOf1>
+            </xsl:for-each>
+            <!-- Item(s) :: datum_vestiging_in_nederland-->
+            <xsl:for-each select="datum_vestiging_in_nederland">
+                <subjectOf1 typeCode="SBJ">
+                    <administrativeObservation classCode="OBS" moodCode="EVN">
+                        <code code="27" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '27'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
+                        <xsl:call-template name="makeTSValue">
+                            <xsl:with-param name="xsiType" select="'TS'"/>
+                            <xsl:with-param name="elemName">value</xsl:with-param>
+                        </xsl:call-template>
+                    </administrativeObservation>
+                </subjectOf1>
+            </xsl:for-each>
+            <!-- Item(s) :: datum_vertrek_uit_nederland-->
+            <xsl:for-each select="datum_vertrek_uit_nederland">
+                <subjectOf1 typeCode="SBJ">
+                    <administrativeObservation classCode="OBS" moodCode="EVN">
+                        <code code="29" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '29'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
+                        <xsl:call-template name="makeTSValue">
+                            <xsl:with-param name="xsiType" select="'TS'"/>
+                            <xsl:with-param name="elemName">value</xsl:with-param>
+                        </xsl:call-template>
+                    </administrativeObservation>
+                </subjectOf1>
+            </xsl:for-each>
         </patient>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.131_20120801000000">
