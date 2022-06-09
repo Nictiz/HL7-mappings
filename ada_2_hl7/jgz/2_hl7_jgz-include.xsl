@@ -291,6 +291,31 @@
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.122_20120801000000"/>
                 </author>
             </xsl:for-each>
+            <!-- Toestemmingen -->
+            <!-- authorization Toestemming overdracht dossier binnen JGZ -->
+            <xsl:for-each select="r010_informatie_over_werkwijze_jgz/groep_g011_toestemming_overdracht_dossier_binnen_jgz">
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.50011_20200527000000"/>
+            </xsl:for-each>
+            <!-- Bezwaar overdracht dossier binnen JGZ -->
+            <xsl:for-each select="r010_informatie_over_werkwijze_jgz/groep_g010_bezwaar_overdracht_dossier_binnen_jgz">
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.50010_20200527000000"/>
+            </xsl:for-each>
+            <!-- authorization Toestemming aanmelding LSP -->
+            <xsl:for-each select="r010_informatie_over_werkwijze_jgz/groep_g071_toestemming_aanmelding_lsp">
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.50071_20200527000000"/>
+            </xsl:for-each>
+            <!-- authorization Toestemming verstrekking informatie aan derden -->
+            <xsl:for-each select="r010_informatie_over_werkwijze_jgz/groep_g012_toestemming_info_aan_derden">
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.50012_20200527000000"/>
+            </xsl:for-each>
+            <!-- Bezwaar wetenschappelijk onderzoek -->
+            <xsl:for-each select="r010_informatie_over_werkwijze_jgz/groep_g089_bezwaar_wetenschappelijk_onderzoek">
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.50089_20200527000000"/>
+            </xsl:for-each>
+            <!-- authorization Toestemming gegevensuitwisseling RVP -->
+            <xsl:for-each select="r010_informatie_over_werkwijze_jgz/groep_g115_toestemming_gegevensuitwisseling_rvp">
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.50115_20200527000000"/>
+            </xsl:for-each>
 
             <!-- CareStatus -->
             <xsl:for-each select="r050_zorggegevens">
@@ -2054,6 +2079,30 @@
         </annotation>
     </xsl:template>
 
+    <!-- authorization Bezwaar overdracht dossier binnen JGZ -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.50010_20200527000000">
+    </xsl:template>
+    
+    <!-- authorization Bezwaar wetenschappelijk onderzoek -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.50089_20200527000000">
+    </xsl:template>
+    
+    <!-- authorization Toestemming aanmelding LSP -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.50071_20200527000000">
+    </xsl:template>
+    
+    <!-- authorization Toestemming gegevensuitwisseling RVP -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.50115_20200527000000">
+    </xsl:template>
+    
+    <!-- authorization Toestemming overdracht dossier binnen JGZ -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.50011_20200527000000">
+    </xsl:template>
+    
+    <!-- authorization Toestemming verstrekking informatie aan derden -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.50012_20200527000000">
+    </xsl:template>
+    
     <!-- RubricCluster Observation -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10036_20120801000000">
         <xsl:attribute name="classCode">OBS</xsl:attribute>
