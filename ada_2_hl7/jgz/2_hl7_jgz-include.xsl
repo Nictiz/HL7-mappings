@@ -517,35 +517,6 @@
             <xsl:for-each select="r050_zorggegevens">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10019_20120801000000"/>
             </xsl:for-each>
-            <!--<subjectOf>
-                <careStatus>
-                    <code code="1197" displayName="status in zorg" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
-                    <effectiveTime value="{$gRESPSTART}"/>
-                    <reasonCode code="01" displayName="Regulier" codeSystem="2.16.840.1.113883.2.4.4.40.376"/>
-                    <author>
-                        <time nullFlavor="UNK"/>
-                        <assignedEntity classCode="ASSIGNED">
-                            <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
-                            <id extension="00001111" root="{$oidURAOrganizations}"/>
-                        </assignedEntity>
-                    </author>
-                </careStatus>
-            </subjectOf>-->
-            <!-- 22-okt-2013 zorgbeëindiging vanwege overdracht naar andere organisatie vanuit organisatie met URA 00001111-->
-            <!--<subjectOf>
-                <careStatus>
-                    <code code="487" displayName="zorgbeëindiging" codeSystem="2.16.840.1.113883.2.4.4.40.267"/>
-                    <effectiveTime value="{$gRESPEND}"/>
-                    <reasonCode code="01" displayName="Overdracht naar een andere JGZ-organisatie" codeSystem="2.16.840.1.113883.2.4.4.40.82"/>
-                    <author>
-                        <time nullFlavor="UNK"/>
-                        <assignedEntity classCode="ASSIGNED">
-                            <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
-                            <id extension="00001111" root="{$oidURAOrganizations}"/>
-                        </assignedEntity>
-                    </author>
-                </careStatus>
-            </subjectOf>-->
         </careProvisionEvent>
     </xsl:template>
 
