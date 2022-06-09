@@ -17,6 +17,7 @@
                 <achternaam value="YYY_Liere" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.2"/>
                 <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.19" value="8" code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouwelijk"/>
                 <geboortedatum value="T-3Y9M" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.20" id="DOB"/>
+                <datum_overlijden conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.21" datatype="datetime" nullFlavor="MSK"/>
                 <groep_g001_adres_client conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.2.1" comment="">
                     <soort_adres conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.8" value="9" code="PHYS" codeSystem="2.16.840.1.113883.5.1119" displayName="Woonadres"/>
                     <adres_is_geheim value="false" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.697" datatype="boolean"></adres_is_geheim>
@@ -35,10 +36,17 @@
                         <einddatum_geldigheid_adres_client conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1454" datatype="datetime" value="T"/>
                     </groep_g096_periode_geldigheid_adres_client>
                 </groep_g001_adres_client>
+                <land_vanwaar_ingeschreven conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.26" datatype="code" code="6030" codeSystem="2.16.840.1.113883.2.4.4.16.34" displayName="Nederland"/>
+                <datum_vestiging_in_nederland conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.27" value="T-10D" datatype="datetime"/>
+                <datum_vertrek_uit_nederland value="T" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.29"/>
+                <geboorteplaats conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.22" datatype="string" value="Delft" />
+                <geboorteland conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.23" datatype="code" code="6030" codeSystem="2.16.840.1.113883.2.4.4.16.34" displayName="Nederland"/>
+                <nationaliteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.24" datatype="code" code="0001" codeSystem="2.16.840.1.113883.2.4.4.16.32" displayName="Nederlandse"/>
                 <groep_g002_telefoonnummer_client conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.2.2" comment="">
                     <telefoonnummer value="tel:050-7656634" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.609"/>
                     <soort_telefoonnummer conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.610" value="6" code="HP" codeSystem="2.16.840.1.113883.5.1119" displayName="Huisnummer"/>
                 </groep_g002_telefoonnummer_client>
+                <email_client value="test@ADA.nl" datatype="string" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.698"/>
             </r003_persoonsgegevens>
             <r050_zorggegevens conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.1.50" comment="">
                 <groep_g093_status_in_zorg conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.2.93" comment="">
@@ -49,15 +57,16 @@
                     <zorgbeeindiging conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.487" value="7" code="01" codeSystem="2.16.840.1.113883.2.4.4.40.82" displayName="Overdracht naar een andere JGZ-organisatie"/>
                     <datum_zorgbeeindiging value="T" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.488" datatype="datetime"/>
                 </groep_g092_zorgbeeindiging>
-                <toestemming_aan_verpleegkundige_om_te_vaccineren conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.469" value="true"/>
-                <datum_toestemming_aan_verpleegkundige_om_te_vaccineren value="DOB+125D" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1383"/>
-                <arts_uzi_toestemming_aan_verpleegkundige_om_te_vaccineren value="987654321" root="2.16.528.1.1007.3.1" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1385"/>
-                <arts_naam_toestemming_aan_verpleegkundige_om_te_vaccineren value="Jeugdarts" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1505"/>
             </r050_zorggegevens>
             <r005_betrokken_jgzorganisaties conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.1.5" comment="">
                 <groep_g085_uitvoerende_jgzorganisatie conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.2.85" comment="">
                     <uitvoerende_jgzorganisatie_ura value="{$orgId}" root="2.16.528.1.1007.3.3" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.603"/>
+                    <uitvoerende_jgzorganisatie_agb value="12341234" datatype="identifier" root="2.16.840.1.113883.2.4.6.1" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1529"/>
                     <uitvoerende_jgzorganisatie_naam value="GGD Groningen" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1506"/>
+                    <groep_g098_periode_geldigheid_uitvoerende_jgzorganisatie conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.2.98">
+                        <startdatum_geldigheid_uitvoerende_jgzorganisatie conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1457" datatype="datetime" value="T-10D"/>
+                        <einddatum_geldigheid_uitvoerende_jgzorganisatie conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1458" datatype="datetime" value="T"/>
+                    </groep_g098_periode_geldigheid_uitvoerende_jgzorganisatie>
                 </groep_g085_uitvoerende_jgzorganisatie>
             </r005_betrokken_jgzorganisaties>
             <r010_informatie_over_werkwijze_jgz conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.1.10" comment="">
