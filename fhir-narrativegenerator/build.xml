@@ -6,7 +6,7 @@
 
     <property name="ivy.install.version" value="2.5.0-rc1" />
     <property name="ivy.jar.file" value="${ant.library.dir}/ivy.jar" />
-    <property name="ivy.dep.file" value="${narrativegenerator.dir}/build/ivy.xml" />
+    <property name="ivy.dep.file" value="${narrativegenerator.dir}/ivy.xml" />
     <property name="lib.dir" value="${basedir}/lib/ant-dependencies"/>
     <property name="ivy.local.jar.file" value="${lib.dir}/ivy.jar" />
 
@@ -79,7 +79,7 @@
             
             <tempfile property="temp.dir"/>
             
-            <xslt force="true" style="${narrativegenerator.dir}/build/addNarratives.xsl" destdir="${temp.dir}" useImplicitFileset="false">
+            <xslt force="true" style="${narrativegenerator.dir}/addNarratives.xsl" destdir="${temp.dir}" useImplicitFileset="false">
                 <factory name="net.sf.saxon.TransformerFactoryImpl"/>
                 <classpath location="${Saxon-HE.jar}"/>
                 <param name="override" expression="true"/>
@@ -90,7 +90,7 @@
                 <mapper type="identity"/>
             </xslt>
             
-            <xslt style="${narrativegenerator.dir}/util/formatXML.xsl" basedir="${temp.dir}" destdir="@{in.dir.absolute}">
+            <xslt style="${narrativegenerator.dir}/../util/formatXML.xsl" basedir="${temp.dir}" destdir="@{in.dir.absolute}">
                 <mapper type="identity"/>
             </xslt>
             
@@ -105,7 +105,7 @@
             </path>
             
             <sequential>
-                <echo message="@{curr.dir}"/>
+                <echo message="Generating narratives for @{curr.dir}"/>
                 <run-narrative-generator in.dir.absolute="@{curr.dir}"/>
             </sequential>
         </for>
