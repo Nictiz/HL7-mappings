@@ -257,7 +257,14 @@ The following optional parameters may be used:
   targets.additional=Cert-with-setup
   ```
   The TestScript resources can use the `nts:in-targets` to define which element should be included in a target (see above). Multiple extra targets may be separated using comma's.
-- `version.addition`: a string that will be added verbatim to the value in the `TestScript.version` from the input file. If this element is absent, it will be populated with this value. 
+- `version.addition`: a string that will be added verbatim to the value in the `TestScript.version` from the input file. If this element is absent, it will be populated with this value.
+
+### Building multiple projects
+
+An additional buildscript is available (`ant/build-multiple.xml`) to build multiple projects, as long as each project has a `build.properties` file to set the parameters for a normal build using the procedure described above. To use this script, you need to include it in another script and set the following:
+
+* A fileset with the `id` set to `input.files` should be defined with all the `build.properties` files that need to be built.
+* The `basedir` property should point to the same basedir that the `build.properties` files in the project folders use.
 
 ## Schematron
 
