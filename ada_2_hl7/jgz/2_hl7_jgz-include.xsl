@@ -2073,7 +2073,34 @@
     </xsl:template>
     
     <!-- authorization Toestemming overdracht dossier binnen JGZ -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.50011_20200527000000">
+    <xsl:template xmlns="urn:hl7-org:v3" name="template_2.16.840.1.113883.2.4.6.10.50011_20200527000000">
+        <consentEvent classCode="CONS" moodCode="EVN">
+            <!-- Item(s) :: toestemming_overdracht_dossier_binnen_JGZ -->
+            <!-- Als de toestemming 'ja' is dan is negationInd van ConsentEvent 'false'. -->
+            <xsl:attribute name="negationInd" select="if (toestemming_overdracht_dossier_binnen_jgz/@value eq 'true') then 'false' else 'true'"/>
+            <code code="1163" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1163'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
+            <author typeCode="AUTH">
+                <!-- Item(s) :: datum_toestemming_overdracht_dossier_binnen_JGZ -->
+                <xsl:for-each select="datum_toestemming_overdracht_dossier_binnen_jgz">
+                    <xsl:call-template name="makeTSValue">
+                        <xsl:with-param name="elemName">time</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <!-- Item(s) :: bron_toestemming_overdracht_dossier_binnen_JGZ -->
+                <xsl:for-each select="bron_toestemming_overdracht_dossier_binnen_jgz">
+                    <responsibleParty classCode="CON">
+                        <xsl:call-template name="makeCVValue">
+                            <xsl:with-param name="elemName">code</xsl:with-param>
+                        </xsl:call-template>
+                        <agentPerson classCode="PSN" determinerCode="INSTANCE">
+                            <name nullFlavor="NI"/>
+                        </agentPerson>
+                    </responsibleParty>
+                </xsl:for-each>
+            </author>
+        </consentEvent>
     </xsl:template>
     
     <!-- authorization Toestemming verstrekking informatie aan derden -->
