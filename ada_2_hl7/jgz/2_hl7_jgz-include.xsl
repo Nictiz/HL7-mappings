@@ -316,7 +316,13 @@
             <xsl:for-each select="r010_informatie_over_werkwijze_jgz/groep_g115_toestemming_gegevensuitwisseling_rvp">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.50115_20200527000000"/>
             </xsl:for-each>
-
+            <!-- Informatie verstrekt over werkwijze -->
+            <xsl:for-each select="r010_informatie_over_werkwijze_jgz/informatie_verstrekt_over_werkwijze_jgz">
+                <pertinentInformation typeCode="PERT">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.40476_20200527000000"/>
+                </pertinentInformation>
+            </xsl:for-each>
+            
             <!-- CareStatus -->
             <xsl:for-each select="r050_zorggegevens">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10019_20200527000000"/>
@@ -13630,6 +13636,20 @@
         </observation>
     </xsl:template>
 
+    <!-- obs Informatie verstrekt over werkwijze JGZ -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.40476_20200527000000">
+        <annotionObsEvent xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.100.40476"/>
+            <code code="476" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '476'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
+            <!-- Item(s) :: Informatie verstrekt over werkwijze JGZ -->
+            <xsl:call-template name="makeBLValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+        </annotionObsEvent>
+    </xsl:template>
+    
     <!-- obs Ingrijpende gebeurtenissen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40755_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
