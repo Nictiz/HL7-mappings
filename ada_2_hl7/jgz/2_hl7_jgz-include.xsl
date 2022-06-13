@@ -332,6 +332,10 @@
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.40476_20200527000000"/>
                 </pertinentInformation>
             </xsl:for-each>
+            <!-- Care Provision Event component6 InformationControlActEvent - afschrift JGZ dossier verstrekt aan -->
+            <xsl:for-each select="r010_informatie_over_werkwijze_jgz/groep_g088_afschrift_jgzdossier_verstrekt">
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10017_20200527000000"/>
+            </xsl:for-each>
             
             <!-- CareStatus -->
             <xsl:for-each select="r050_zorggegevens">
@@ -911,6 +915,45 @@
     </xsl:template>
 
     <!-- Care Provision Event component6 InformationControlActEvent -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10017_20200527000000">
+        <component6 xmlns="urn:hl7-org:v3" typeCode="COMP">
+            <informationControlActEvent classCode="INFO" moodCode="EVN" negationInd="false">
+                <code code="G088" codeSystem="2.16.840.1.113883.2.4.4.40.393">
+                    <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'G088'][@codeSystem = '2.16.840.1.113883.2.4.4.40.393']/@displayName"/>
+                </code>
+                <!-- Item(s) :: toelichting_verstrekking_afschrift_jgzdossier-->
+                <xsl:for-each select="toelichting_verstrekking_afschrift_jgzdossier">
+                    <xsl:call-template name="makeSTValue">
+                        <xsl:with-param name="elemName">text</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <!-- Item(s) :: datum_verstrekking_afschrift_jgzdossier-->
+                <xsl:for-each select="datum_verstrekking_afschrift_jgzdossier">
+                    <xsl:call-template name="makeTSValue">
+                        <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <informationRecipient typeCode="IRCP">
+                    <xsl:choose>
+                        <xsl:when test="afschrift_jgzdossier_verstrekt_aan[@code = '01']">
+                            <patient classCode="PAT"/>
+                        </xsl:when>
+                        <xsl:when test="afschrift_jgzdossier_verstrekt_aan">
+                            <personalRelationship classCode="PRS">
+                                <!-- Item(s) :: afschrift_jgzdossier_verstrekt_aan-->
+                                <xsl:for-each select="afschrift_jgzdossier_verstrekt_aan">
+                                    <xsl:call-template name="makeCVValue">
+                                        <xsl:with-param name="elemName">code</xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:for-each>
+                                <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
+                            </personalRelationship>
+                        </xsl:when>
+                    </xsl:choose>
+                </informationRecipient>
+            </informationControlActEvent>
+        </component6>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10017_20120801000000">
         <component6 xmlns="urn:hl7-org:v3" typeCode="COMP">
             <informationControlActEvent classCode="INFO" moodCode="EVN" negationInd="false">
@@ -2068,23 +2111,147 @@
 
     <!-- authorization Bezwaar overdracht dossier binnen JGZ -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.50010_20200527000000">
+        <consentEvent xmlns="urn:hl7-org:v3" classCode="CONS" moodCode="EVN">
+            <!-- Item(s) :: bezwaar_overdracht_dossier_binnen_JGZ -->
+            <!-- Als de bezwaar 'ja' is dan is negationInd van ConsentEvent 'true'. -->
+            <xsl:attribute name="negationInd" select="bezwaar_overdracht_dossier_binnen_jgz/@value"/>
+            <code code="1395" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1395'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
+            <author typeCode="AUTH">
+                <!-- Item(s) :: datum_bezwaar_overdracht_dossier_binnen_JGZ -->
+                <xsl:for-each select="datum_bezwaar_overdracht_dossier_binnen_jgz">
+                    <xsl:call-template name="makeTSValue">
+                        <xsl:with-param name="elemName">time</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <!-- Item(s) :: bron_bezwaar_overdracht_dossier_binnen_JGZ -->
+                <xsl:for-each select="bron_bezwaar_overdracht_dossier_binnen_jgz">
+                    <responsibleParty classCode="CON">
+                        <xsl:call-template name="makeCVValue">
+                            <xsl:with-param name="elemName">code</xsl:with-param>
+                        </xsl:call-template>
+                        <agentPerson classCode="PSN" determinerCode="INSTANCE">
+                            <name nullFlavor="NI"/>
+                        </agentPerson>
+                    </responsibleParty>
+                </xsl:for-each>
+            </author>
+        </consentEvent>
     </xsl:template>
     
     <!-- authorization Bezwaar wetenschappelijk onderzoek -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.50089_20200527000000">
+        <consentEvent xmlns="urn:hl7-org:v3" classCode="CONS" moodCode="EVN">
+            <!-- Item(s) :: bezwaar_wetenschappelijk_onderzoek -->
+            <!-- Als de bezwaar 'ja' is dan is negationInd van ConsentEvent 'true'. -->
+            <xsl:attribute name="negationInd" select="bezwaar_wetenschappelijk_onderzoek/@value"/>
+            <code code="1404" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1404'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
+            <author typeCode="AUTH">
+                <!-- Item(s) :: datum_bezwaar_wetenschappelijk_onderzoek -->
+                <xsl:for-each select="datum_bezwaar_wetenschappelijk_onderzoek">
+                    <xsl:call-template name="makeTSValue">
+                        <xsl:with-param name="elemName">time</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <!-- Item(s) :: bron_bezwaar_wetenschappelijk_onderzoek -->
+                <xsl:for-each select="bron_bezwaar_wetenschappelijk_onderzoek">
+                    <responsibleParty classCode="CON">
+                        <xsl:call-template name="makeCVValue">
+                            <xsl:with-param name="elemName">code</xsl:with-param>
+                        </xsl:call-template>
+                        <agentPerson classCode="PSN" determinerCode="INSTANCE">
+                            <name nullFlavor="NI"/>
+                        </agentPerson>
+                    </responsibleParty>
+                </xsl:for-each>
+            </author>
+        </consentEvent>
     </xsl:template>
     
     <!-- authorization Toestemming aanmelding LSP -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.50071_20200527000000">
+        <consentEvent xmlns="urn:hl7-org:v3" classCode="CONS" moodCode="EVN">
+            <!-- Item(s) :: toestemming_aanmelding_LSP -->
+            <!-- Als de toestemming 'ja' is dan is negationInd van ConsentEvent 'false'. -->
+            <xsl:attribute name="negationInd" select="if (toestemming_aanmelding_lsp/@value eq 'true') then 'false' else 'true'"/>
+            <code code="1398" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1398'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
+            <author typeCode="AUTH">
+                <!-- Item(s) :: datum_toestemming_aanmelding_LSP -->
+                <xsl:for-each select="datum_toestemming_aanmelding_lsp">
+                    <xsl:call-template name="makeTSValue">
+                        <xsl:with-param name="elemName">time</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <!-- Item(s) :: bron_toestemming_aanmelding_LSP -->
+                <xsl:for-each select="bron_toestemming_aanmelding_lsp">
+                    <responsibleParty classCode="CON">
+                        <xsl:call-template name="makeCVValue">
+                            <xsl:with-param name="elemName">code</xsl:with-param>
+                        </xsl:call-template>
+                        <agentPerson classCode="PSN" determinerCode="INSTANCE">
+                            <name nullFlavor="NI"/>
+                        </agentPerson>
+                    </responsibleParty>
+                </xsl:for-each>
+            </author>
+        </consentEvent>
     </xsl:template>
     
     <!-- authorization Toestemming gegevensuitwisseling RVP -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.50115_20200527000000">
+        <consentEvent xmlns="urn:hl7-org:v3" classCode="CONS" moodCode="EVN">
+            <!-- Item(s) :: toestemming_gegevensuitwisseling_rvp -->
+            <!-- Als de toestemming 'ja' is dan is negationInd van ConsentEvent 'false'. -->
+            <xsl:attribute name="negationInd" select="if (toestemming_overdracht_dossier_binnen_jgz/@value eq 'true') then 'false' else 'true'"/>
+            <code code="1533" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1533'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
+            <!-- Item(s) :: einddatum_toestemming_gegevensuitwisseling_rvp -->
+            <xsl:for-each select="einddatum_toestemming_gegevensuitwisseling_rvp">
+                <effectiveTime xsi:type="IVL_TS">
+                    <xsl:call-template name="makeTSValue">
+                        <xsl:with-param name="elemName">high</xsl:with-param>
+                    </xsl:call-template>
+                </effectiveTime>
+            </xsl:for-each>
+            <!-- Item(s) :: toestemmingswijze_gegevensuitwisseling_rvp -->
+            <!-- Item(s) :: naam_bron_toestemming_gegevensuitwisseling_rvp -->
+            <author typeCode="AUTH">
+                <!-- Item(s) :: datum_toestemming_gegevensuitwisseling_rvp -->
+                <xsl:for-each select="datum_toestemming_overdracht_dossier_binnen_jgz">
+                    <xsl:call-template name="makeTSValue">
+                        <xsl:with-param name="elemName">time</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <!-- Item(s) :: bron_toestemming_gegevensuitwisseling_rvp -->
+                <xsl:for-each select="bron_toestemming_overdracht_dossier_binnen_jgz">
+                    <responsibleParty classCode="CON">
+                        <xsl:call-template name="makeCVValue">
+                            <xsl:with-param name="elemName">code</xsl:with-param>
+                        </xsl:call-template>
+                        <agentPerson classCode="PSN" determinerCode="INSTANCE">
+                            <name nullFlavor="NI"/>
+                        </agentPerson>
+                    </responsibleParty>
+                </xsl:for-each>
+            </author>
+            <!-- Item(s) :: naam_jgzmedewerker_toestemming_gegevensuitwisseling_rvp -->
+            <!-- Item(s) :: jgzorganisatie_ura_toestemming_gegevensuitwisseling_rvp -->
+            <!-- Item(s) :: jgzorganisatie_naam_toestemming_gegevensuitwisseling_rvp -->
+            <!-- Item(s) :: jgzorganisatie_agb_toestemming_gegevensuitwisseling_rvp -->
+            <consultant></consultant>
+            <subjectOf></subjectOf>
+        </consentEvent>
     </xsl:template>
     
     <!-- authorization Toestemming overdracht dossier binnen JGZ -->
-    <xsl:template xmlns="urn:hl7-org:v3" name="template_2.16.840.1.113883.2.4.6.10.50011_20200527000000">
-        <consentEvent classCode="CONS" moodCode="EVN">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.50011_20200527000000">
+        <consentEvent xmlns="urn:hl7-org:v3" classCode="CONS" moodCode="EVN">
             <!-- Item(s) :: toestemming_overdracht_dossier_binnen_JGZ -->
             <!-- Als de toestemming 'ja' is dan is negationInd van ConsentEvent 'false'. -->
             <xsl:attribute name="negationInd" select="if (toestemming_overdracht_dossier_binnen_jgz/@value eq 'true') then 'false' else 'true'"/>
@@ -2115,6 +2282,43 @@
     
     <!-- authorization Toestemming verstrekking informatie aan derden -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.50012_20200527000000">
+        <consentEvent xmlns="urn:hl7-org:v3" classCode="CONS" moodCode="EVN">
+            <!-- Item(s) :: toestemming_verstrekking_informatie_aan_derden -->
+            <!-- Als de toestemming 'ja' is dan is negationInd van ConsentEvent 'false'. -->
+            <xsl:attribute name="negationInd" select="if (toestemming_verstrekking_informatie_aan_derden/@value eq 'true') then 'false' else 'true'"/>
+            <code code="1165" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1165'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
+            <author typeCode="AUTH">
+                <!-- Item(s) :: datum_toestemming_verstrekking_informatie_aan_derden -->
+                <xsl:for-each select="datum_toestemming_verstrekking_informatie_aan_derden">
+                    <xsl:call-template name="makeTSValue">
+                        <xsl:with-param name="elemName">time</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <!-- Item(s) :: bron_toestemming_verstrekking_informatie_aan_derden -->
+                <xsl:for-each select="bron_toestemming_verstrekking_informatie_aan_derden">
+                    <responsibleParty classCode="CON">
+                        <xsl:call-template name="makeCVValue">
+                            <xsl:with-param name="elemName">code</xsl:with-param>
+                        </xsl:call-template>
+                        <agentPerson classCode="PSN" determinerCode="INSTANCE">
+                            <name nullFlavor="NI"/>
+                        </agentPerson>
+                    </responsibleParty>
+                </xsl:for-each>
+            </author>
+            <xsl:for-each select="toelichting_verstrekking_informatie_aan_derden">
+                <subjectOf>
+                    <code code="1407" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                        <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1407'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                    </code>
+                    <xsl:call-template name="makeSTValue">
+                        <xsl:with-param name="elemName">value</xsl:with-param>
+                    </xsl:call-template>
+                </subjectOf>
+            </xsl:for-each>
+        </consentEvent>
     </xsl:template>
     
     <!-- RubricCluster Observation -->
