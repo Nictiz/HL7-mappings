@@ -291,6 +291,10 @@
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.122_20120801000000"/>
                 </author>
             </xsl:for-each>
+            <!-- Rubriek 9: Externe documenten -->
+            <xsl:for-each select="r009_externe_documenten/groep_g072_toegevoegd_bestand">
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10008_20120801000000"/>
+            </xsl:for-each>
             <!-- Toestemmingen -->
             <!-- authorization Toestemming overdracht dossier binnen JGZ -->
             <xsl:for-each select="r010_informatie_over_werkwijze_jgz/groep_g011_toestemming_overdracht_dossier_binnen_jgz">
@@ -332,6 +336,13 @@
             <xsl:for-each select="r010_informatie_over_werkwijze_jgz/informatie_verstrekt_over_werkwijze_jgz">
                 <pertinentInformation typeCode="PERT">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.40476_20200527000000"/>
+                </pertinentInformation>
+            </xsl:for-each>
+            <!-- obs_Papieren_dossier_aanwezig -->
+            <xsl:for-each select="r009_externe_documenten/papieren_jgzdossier_aanwezig">
+                <pertinentInformation>
+                    <!-- Template :: obs Papieren dossier aanwezig -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41167_20120801000000"/>
                 </pertinentInformation>
             </xsl:for-each>
             <!-- Care Provision Event component6 InformationControlActEvent - afschrift JGZ dossier verstrekt aan -->
@@ -553,7 +564,7 @@
                         <xsl:with-param name="elemName">code</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
-                <!-- Item(s) :: bestand-->
+                <!-- Item(s) :: bestand, bestand_mimetype and bestandsnaam-->
                 <xsl:for-each select="bestand">
                     <xsl:call-template name="makeEDValue">
                         <xsl:with-param name="xsiType" select="''"/>
