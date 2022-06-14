@@ -935,12 +935,12 @@
                 </xsl:for-each>
                 <informationRecipient typeCode="IRCP">
                     <xsl:choose>
-                        <xsl:when test="afschrift_jgzdossier_verstrekt_aan[@code = '01']">
+                        <!-- Item(s) :: afschrift_jgzdossier_verstrekt_aan-->
+                        <xsl:when test="afschrift_jgzdossier_verstrekt_aan[@code = 'ONESELF']">
                             <patient classCode="PAT"/>
                         </xsl:when>
                         <xsl:when test="afschrift_jgzdossier_verstrekt_aan">
                             <personalRelationship classCode="PRS">
-                                <!-- Item(s) :: afschrift_jgzdossier_verstrekt_aan-->
                                 <xsl:for-each select="afschrift_jgzdossier_verstrekt_aan">
                                     <xsl:call-template name="makeCVValue">
                                         <xsl:with-param name="elemName">code</xsl:with-param>
