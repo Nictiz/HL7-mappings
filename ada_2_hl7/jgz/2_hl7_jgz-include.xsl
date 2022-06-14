@@ -2118,7 +2118,7 @@
             <code code="1395" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1395'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
             </code>
-            <author typeCode="AUTH">
+            <author typeCode="AUT">
                 <!-- Item(s) :: datum_bezwaar_overdracht_dossier_binnen_JGZ -->
                 <xsl:for-each select="datum_bezwaar_overdracht_dossier_binnen_jgz">
                     <xsl:call-template name="makeTSValue">
@@ -2149,7 +2149,7 @@
             <code code="1404" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1404'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
             </code>
-            <author typeCode="AUTH">
+            <author typeCode="AUT">
                 <!-- Item(s) :: datum_bezwaar_wetenschappelijk_onderzoek -->
                 <xsl:for-each select="datum_bezwaar_wetenschappelijk_onderzoek">
                     <xsl:call-template name="makeTSValue">
@@ -2184,7 +2184,7 @@
             <code code="1398" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1398'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
             </code>
-            <author typeCode="AUTH">
+            <author typeCode="AUT">
                 <!-- Item(s) :: datum_toestemming_aanmelding_LSP -->
                 <xsl:for-each select="datum_toestemming_aanmelding_lsp">
                     <xsl:call-template name="makeTSValue">
@@ -2227,7 +2227,7 @@
                     </xsl:call-template>
                 </effectiveTime>
             </xsl:for-each>
-            <author typeCode="AUTH">
+            <author typeCode="AUT">
                 <!-- Item(s) :: datum_toestemming_gegevensuitwisseling_rvp -->
                 <xsl:for-each select="datum_toestemming_gegevensuitwisseling_rvp">
                     <xsl:call-template name="makeTSValue">
@@ -2314,7 +2314,7 @@
             <code code="1163" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1163'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
             </code>
-            <author typeCode="AUTH">
+            <author typeCode="AUT">
                 <!-- Item(s) :: datum_toestemming_overdracht_dossier_binnen_JGZ -->
                 <xsl:for-each select="datum_toestemming_overdracht_dossier_binnen_jgz">
                     <xsl:call-template name="makeTSValue">
@@ -2349,7 +2349,7 @@
             <code code="1165" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1165'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
             </code>
-            <author typeCode="AUTH">
+            <author typeCode="AUT">
                 <!-- Item(s) :: datum_toestemming_verstrekking_informatie_aan_derden -->
                 <xsl:for-each select="datum_toestemming_verstrekking_informatie_aan_derden">
                     <xsl:call-template name="makeTSValue">
