@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema targetNamespace="urn:hl7-org:v3" xmlns="urn:hl7-org:v3"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:include schemaLocation="../coreschemas/datatypes.xsd"/>
+	<xs:include schemaLocation="../coreschemas/voc.xsd"/>
+	<xs:include schemaLocation="COCT_MT090300.xsd"/>
+	<xs:include schemaLocation="COCT_MT090000.xsd"/>
+	<xs:include schemaLocation="COCT_MT090100.xsd"/>
+	<xs:include schemaLocation="MCAI_MT900001.xsd"/>
+	<xs:group name="ControlAct">
+		<xs:sequence>
+			<xs:element name="ControlActProcess" type="QUQI_MT021001_OPT_OV.ControlActProcess"/>
+			<!-- naam gewijzigd in controlActProcess -->
+		</xs:sequence>
+	</xs:group>
+	<xs:complexType name="QUQI_MT021001_OPT_OV.ControlActProcess">
+		<xs:sequence>
+			<!-- id niet relevant bij query -->
+			<!--<xs:element name="id" type="II" minOccurs="0" maxOccurs="unbounded"/>-->
+			<xs:element name="code" type="CD" minOccurs="0"/>
+			<xs:element name="text" type="ED" minOccurs="0"/>
+			<xs:element name="effectiveTime" type="IVL_TS" minOccurs="0"/>
+			<xs:element name="priorityCode" type="CE" minOccurs="0" maxOccurs="unbounded"/>
+			<!-- reasonCode niet in NL  -->
+			<!--<xs:element name="reasonCode" type="CE" minOccurs="0" maxOccurs="unbounded"/>-->
+			<xs:element name="languageCode" type="CE" minOccurs="0"/>
+			<xs:element name="authorOrPerformer" type="QUQI_MT021001_OPT_OV.AuthorOrPerformer"/>
+			<xs:element name="dataEnterer" type="QUQI_MT021001_OPT_OV.DataEnterer" minOccurs="0"
+				maxOccurs="unbounded"/>
+			<xs:element name="informationRecipient" type="QUQI_MT021001_OPT_OV.InformationRecipient"
+				minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="overseer" type="QUQI_MT021001_OPT_OV.Overseer" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="reasonOf" type="QUQI_MT021001_OPT_OV.Reason" minOccurs="0"
+				maxOccurs="unbounded"/>
+			<xs:group ref="QueryByParameterPayload"/>
+			<!-- <xs:element name="queryByParameter" type="QUQI_MT021001_OPT_OV.QueryByParameter" minOccurs="0"/> -->
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="ControlAct"/>
+		<xs:attribute name="classCode" type="ActClass" use="optional" default="CACT"/>
+		<xs:attribute name="moodCode" type="ActMood" use="required"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="QUQI_MT021001_OPT_OV.AuthorOrPerformer">
+		<xs:sequence>
+			<xs:element name="noteText" type="ED" minOccurs="0"/>
+			<xs:element name="time" type="IVL_TS" minOccurs="0"/>
+			<xs:element name="modeCode" type="CE" minOccurs="0"/>
+			<xs:element name="signatureCode" type="CE" minOccurs="0"/>
+			<xs:element name="signatureText" type="ED" minOccurs="0"/>
+			<xs:element name="participant" type="QUQI_MT021001_OPT_OV.RoleChoiceA"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="Participation"/>
+		<xs:attribute name="typeCode" type="ParticipationType" use="required"/>
+		<xs:attribute name="contextControlCode" type="ContextControl" use="optional" default="AP"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="QUQI_MT021001_OPT_OV.DataEnterer">
+		<xs:sequence>
+			<xs:element name="time" type="IVL_TS" minOccurs="0"/>
+			<xs:element name="assignedEntity" type="COCT_MT090100.AssignedPerson"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="Participation"/>
+		<xs:attribute name="typeCode" type="ParticipationType" use="optional" default="ENT"/>
+		<xs:attribute name="contextControlCode" type="ContextControl" use="optional" default="AP"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="QUQI_MT021001_OPT_OV.InformationRecipient">
+		<xs:sequence>
+			<xs:element name="time" type="IVL_TS" minOccurs="0"/>
+			<xs:element name="assignedEntity" type="COCT_MT090100.AssignedPerson"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="Participation"/>
+		<xs:attribute name="typeCode" type="ParticipationType" use="required"/>
+		<xs:attribute name="contextControlCode" type="ContextControl" use="optional" default="AP"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="QUQI_MT021001_OPT_OV.Overseer">
+		<xs:sequence>
+			<xs:element name="noteText" type="ED" minOccurs="0"/>
+			<xs:element name="time" type="IVL_TS" minOccurs="0"/>
+			<xs:element name="modeCode" type="CE" minOccurs="0"/>
+			<xs:element name="signatureCode" type="CE" minOccurs="0"/>
+			<xs:element name="signatureText" type="ED" minOccurs="0"/>
+			<xs:element name="assignedEntity" type="COCT_MT090100.AssignedPerson"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="Participation"/>
+		<xs:attribute name="typeCode" type="ParticipationType" use="required"/>
+		<xs:attribute name="contextControlCode" type="ContextControl" use="optional" default="AP"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="QUQI_MT021001_OPT_OV.Reason">
+		<xs:sequence>
+			<xs:element name="justifiedDetectedIssue" type="MCAI_MT900001.DetectedIssueEvent"/>
+		</xs:sequence>
+		<xs:attribute name="type" type="Classes" default="ActRelationship"/>
+		<xs:attribute name="typeCode" type="ActRelationshipType" use="optional" default="RSON"/>
+		<xs:attribute name="contextConductionInd" type="bl" use="optional"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="QUQI_MT021001_OPT_OV.QueryByParameter">
+		<xs:attribute name="type" type="Classes" default="QueryByParameter"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+	</xs:complexType>
+	<!-- CMET Patch to AssignedPerson. removed Device as a choice, turned into a sequence -->
+	<xs:complexType name="QUQI_MT021001_OPT_OV.RoleChoiceA">
+		<xs:choice>
+			<xs:element name="AssignedDevice" type="COCT_MT090300.AssignedDevice"/>
+			<xs:element name="AssignedPerson" type="COCT_MT090100.AssignedPerson"/>
+		</xs:choice>
+		<xs:attribute name="type" type="Classes" default="Role"/>
+		<xs:attribute name="templateId" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="typeID" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="oid"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="realmCode" use="optional">
+			<xs:simpleType>
+				<xs:list itemType="cs"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="nullFlavor" type="cs" use="optional"/>
+		<xs:attribute name="stubId" type="oid" use="optional"/>
+	</xs:complexType>
+</xs:schema>
