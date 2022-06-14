@@ -336,7 +336,7 @@
             <xsl:for-each select="r010_informatie_over_werkwijze_jgz/groep_g088_afschrift_jgzdossier_verstrekt">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10017_20200527000000"/>
             </xsl:for-each>
-            
+
             <!-- CareStatus -->
             <xsl:for-each select="r050_zorggegevens">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10019_20200527000000"/>
@@ -2139,7 +2139,7 @@
             </author>
         </consentEvent>
     </xsl:template>
-    
+
     <!-- authorization Bezwaar wetenschappelijk onderzoek -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.50089_20200527000000">
         <consentEvent xmlns="urn:hl7-org:v3" classCode="CONS" moodCode="EVN">
@@ -2170,7 +2170,7 @@
             </author>
         </consentEvent>
     </xsl:template>
-    
+
     <!-- authorization Toestemming aanmelding LSP -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.50071_20200527000000">
         <consentEvent xmlns="urn:hl7-org:v3" classCode="CONS" moodCode="EVN">
@@ -2201,7 +2201,7 @@
             </author>
         </consentEvent>
     </xsl:template>
-    
+
     <!-- authorization Toestemming gegevensuitwisseling RVP -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.50115_20200527000000">
         <consentEvent xmlns="urn:hl7-org:v3" classCode="CONS" moodCode="EVN">
@@ -2296,7 +2296,7 @@
             </xsl:for-each>
         </consentEvent>
     </xsl:template>
-    
+
     <!-- authorization Toestemming overdracht dossier binnen JGZ -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.50011_20200527000000">
         <consentEvent xmlns="urn:hl7-org:v3" classCode="CONS" moodCode="EVN">
@@ -2331,7 +2331,7 @@
             </author>
         </consentEvent>
     </xsl:template>
-    
+
     <!-- authorization Toestemming verstrekking informatie aan derden -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.50012_20200527000000">
         <consentEvent xmlns="urn:hl7-org:v3" classCode="CONS" moodCode="EVN">
@@ -2372,7 +2372,7 @@
             </xsl:for-each>
         </consentEvent>
     </xsl:template>
-    
+
     <!-- RubricCluster Observation -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10036_20120801000000">
         <xsl:attribute name="classCode">OBS</xsl:attribute>
@@ -13942,7 +13942,7 @@
             </xsl:call-template>
         </annotionObsEvent>
     </xsl:template>
-    
+
     <!-- obs Ingrijpende gebeurtenissen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40755_20120801000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
