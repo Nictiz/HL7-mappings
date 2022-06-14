@@ -2207,45 +2207,93 @@
         <consentEvent xmlns="urn:hl7-org:v3" classCode="CONS" moodCode="EVN">
             <!-- Item(s) :: toestemming_gegevensuitwisseling_rvp -->
             <!-- Als de toestemming 'ja' is dan is negationInd van ConsentEvent 'false'. -->
-            <xsl:attribute name="negationInd" select="if (toestemming_overdracht_dossier_binnen_jgz/@value eq 'true') then 'false' else 'true'"/>
+            <xsl:attribute name="negationInd" select="
+                    if (toestemming_toestemming_gegevensuitwisseling_rvp/@value eq 'true') then
+                        'false'
+                    else
+                        'true'"/>
             <code code="1533" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1533'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
             </code>
             <!-- Item(s) :: einddatum_toestemming_gegevensuitwisseling_rvp -->
             <xsl:for-each select="einddatum_toestemming_gegevensuitwisseling_rvp">
-                <effectiveTime xsi:type="IVL_TS">
+                <effectiveTime>
                     <xsl:call-template name="makeTSValue">
                         <xsl:with-param name="elemName">high</xsl:with-param>
                     </xsl:call-template>
                 </effectiveTime>
             </xsl:for-each>
-            <!-- Item(s) :: toestemmingswijze_gegevensuitwisseling_rvp -->
-            <!-- Item(s) :: naam_bron_toestemming_gegevensuitwisseling_rvp -->
             <author typeCode="AUTH">
                 <!-- Item(s) :: datum_toestemming_gegevensuitwisseling_rvp -->
-                <xsl:for-each select="datum_toestemming_overdracht_dossier_binnen_jgz">
+                <xsl:for-each select="datum_toestemming_gegevensuitwisseling_rvp">
                     <xsl:call-template name="makeTSValue">
                         <xsl:with-param name="elemName">time</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
-                <!-- Item(s) :: bron_toestemming_gegevensuitwisseling_rvp -->
-                <xsl:for-each select="bron_toestemming_overdracht_dossier_binnen_jgz">
+                <xsl:if test="bron_toestemming_gegevensuitwisseling_rvp | naam_bron_toestemming_gegevensuitwisseling_rvp">
                     <responsibleParty classCode="CON">
-                        <xsl:call-template name="makeCVValue">
-                            <xsl:with-param name="elemName">code</xsl:with-param>
-                        </xsl:call-template>
-                        <agentPerson classCode="PSN" determinerCode="INSTANCE">
-                            <name nullFlavor="NI"/>
-                        </agentPerson>
+                        <!-- Item(s) :: bron_toestemming_gegevensuitwisseling_rvp -->
+                        <xsl:for-each select="bron_toestemming_gegevensuitwisseling_rvp">
+                            <xsl:call-template name="makeCVValue">
+                                <xsl:with-param name="elemName">code</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                        <!-- Item(s) :: naam_bron_toestemming_gegevensuitwisseling_rvp -->
+                        <xsl:for-each select="naam_bron_toestemming_gegevensuitwisseling_rvp">
+                            <agentPerson classCode="PSN" determinerCode="INSTANCE">
+                                <xsl:call-template name="makeTNValue">
+                                    <xsl:with-param name="elemName">name</xsl:with-param>
+                                </xsl:call-template>
+                            </agentPerson>
+                        </xsl:for-each>
                     </responsibleParty>
-                </xsl:for-each>
+                </xsl:if>
             </author>
-            <!-- Item(s) :: naam_jgzmedewerker_toestemming_gegevensuitwisseling_rvp -->
-            <!-- Item(s) :: jgzorganisatie_ura_toestemming_gegevensuitwisseling_rvp -->
-            <!-- Item(s) :: jgzorganisatie_naam_toestemming_gegevensuitwisseling_rvp -->
-            <!-- Item(s) :: jgzorganisatie_agb_toestemming_gegevensuitwisseling_rvp -->
-            <consultant></consultant>
-            <subjectOf></subjectOf>
+            <xsl:if test="naam_jgzmedewerker_toestemming_gegevensuitwisseling_rvp | jgzorganisatie_ura_toestemming_gegevensuitwisseling_rvp | jgzorganisatie_agb_toestemming_gegevensuitwisseling_rvp | jgzorganisatie_naam_toestemming_gegevensuitwisseling_rvp">
+                <consultant typeCode="CON">
+                    <!-- Item(s) :: naam_jgzmedewerker_toestemming_gegevensuitwisseling_rvp -->
+                    <xsl:for-each select="naam_jgzmedewerker_toestemming_gegevensuitwisseling_rvp">
+                        <assignedEntity classCode="PSN" determineRCode="INSTANCE">
+                            <xsl:call-template name="makeTNValue">
+                                <xsl:with-param name="elemName">name</xsl:with-param>
+                            </xsl:call-template>
+                        </assignedEntity>
+                    </xsl:for-each>
+                    <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                        <!-- Item(s) :: jgzorganisatie_ura_toestemming_gegevensuitwisseling_rvp -->
+                        <xsl:for-each select="jgzorganisatie_ura_toestemming_gegevensuitwisseling_rvp">
+                            <xsl:call-template name="makeII.NL.URAValue">
+                                <xsl:with-param name="elemName">id</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                        <!-- Item(s) :: jgzorganisatie_agb_toestemming_gegevensuitwisseling_rvp -->
+                        <xsl:for-each select="jgzorganisatie_agb_toestemming_gegevensuitwisseling_rvp">
+                            <xsl:call-template name="makeII.NL.AGBValue">
+                                <xsl:with-param name="elemName">id</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                        <!-- Item(s) :: jgzorganisatie_naam_toestemming_gegevensuitwisseling_rvp -->
+                        <xsl:for-each select="jgzorganisatie_naam_toestemming_gegevensuitwisseling_rvp">
+                            <xsl:call-template name="makeTNValue">
+                                <xsl:with-param name="elemName">name</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                    </representedOrganization>
+                </consultant>
+            </xsl:if>
+            <!-- Item(s) :: toestemmingswijze_gegevensuitwisseling_rvp -->
+            <xsl:for-each select="toestemmingswijze_gegevensuitwisseling_rvp">
+                <subjectOf typeCode="SUBJ">
+                    <annotation>
+                        <code code="1541" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1541'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
+                        <xsl:call-template name="makeCVValue">
+                            <xsl:with-param name="elemName">value</xsl:with-param>
+                        </xsl:call-template>
+                    </annotation>
+                </subjectOf>
+            </xsl:for-each>
         </consentEvent>
     </xsl:template>
     
@@ -2254,7 +2302,11 @@
         <consentEvent xmlns="urn:hl7-org:v3" classCode="CONS" moodCode="EVN">
             <!-- Item(s) :: toestemming_overdracht_dossier_binnen_JGZ -->
             <!-- Als de toestemming 'ja' is dan is negationInd van ConsentEvent 'false'. -->
-            <xsl:attribute name="negationInd" select="if (toestemming_overdracht_dossier_binnen_jgz/@value eq 'true') then 'false' else 'true'"/>
+            <xsl:attribute name="negationInd" select="
+                    if (toestemming_overdracht_dossier_binnen_jgz/@value eq 'true') then
+                        'false'
+                    else
+                        'true'"/>
             <code code="1163" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1163'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
             </code>
