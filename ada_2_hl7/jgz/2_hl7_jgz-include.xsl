@@ -318,7 +318,9 @@
             </xsl:for-each>
             <!-- Bezwaar wetenschappelijk onderzoek -->
             <xsl:for-each select="r010_informatie_over_werkwijze_jgz/groep_g089_bezwaar_wetenschappelijk_onderzoek">
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.50089_20200527000000"/>
+                <authorization xmlns="urn:hl7-org:v3" typeCode="AUTH" contextConductionInd="false">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.50089_20200527000000"/>
+                </authorization>
             </xsl:for-each>
             <!-- authorization Toestemming gegevensuitwisseling RVP -->
             <xsl:for-each select="r010_informatie_over_werkwijze_jgz/groep_g115_toestemming_gegevensuitwisseling_rvp">
@@ -2247,6 +2249,7 @@
                             <agentPerson classCode="PSN" determinerCode="INSTANCE">
                                 <xsl:call-template name="makeTNValue">
                                     <xsl:with-param name="elemName">name</xsl:with-param>
+                                    <xsl:with-param name="xsiType"></xsl:with-param>
                                 </xsl:call-template>
                             </agentPerson>
                         </xsl:for-each>
@@ -2255,34 +2258,38 @@
             </author>
             <xsl:if test="naam_jgzmedewerker_toestemming_gegevensuitwisseling_rvp | jgzorganisatie_ura_toestemming_gegevensuitwisseling_rvp | jgzorganisatie_agb_toestemming_gegevensuitwisseling_rvp | jgzorganisatie_naam_toestemming_gegevensuitwisseling_rvp">
                 <consultant typeCode="CON">
-                    <!-- Item(s) :: naam_jgzmedewerker_toestemming_gegevensuitwisseling_rvp -->
-                    <xsl:for-each select="naam_jgzmedewerker_toestemming_gegevensuitwisseling_rvp">
-                        <assignedEntity classCode="PSN" determineRCode="INSTANCE">
-                            <xsl:call-template name="makeTNValue">
-                                <xsl:with-param name="elemName">name</xsl:with-param>
-                            </xsl:call-template>
-                        </assignedEntity>
-                    </xsl:for-each>
-                    <representedOrganization classCode="ORG" determinerCode="INSTANCE">
-                        <!-- Item(s) :: jgzorganisatie_ura_toestemming_gegevensuitwisseling_rvp -->
-                        <xsl:for-each select="jgzorganisatie_ura_toestemming_gegevensuitwisseling_rvp">
-                            <xsl:call-template name="makeII.NL.URAValue">
-                                <xsl:with-param name="elemName">id</xsl:with-param>
-                            </xsl:call-template>
+                    <assignedEntity1 classCode="ASSIGNED">
+                        <!-- Item(s) :: naam_jgzmedewerker_toestemming_gegevensuitwisseling_rvp -->
+                        <xsl:for-each select="naam_jgzmedewerker_toestemming_gegevensuitwisseling_rvp">
+                            <assignedPerson classCode="PSN" determinerCode="INSTANCE">
+                                <xsl:call-template name="makeTNValue">
+                                    <xsl:with-param name="elemName">name</xsl:with-param>
+                                    <xsl:with-param name="xsiType"></xsl:with-param>
+                                </xsl:call-template>
+                            </assignedPerson>
                         </xsl:for-each>
-                        <!-- Item(s) :: jgzorganisatie_agb_toestemming_gegevensuitwisseling_rvp -->
-                        <xsl:for-each select="jgzorganisatie_agb_toestemming_gegevensuitwisseling_rvp">
-                            <xsl:call-template name="makeII.NL.AGBValue">
-                                <xsl:with-param name="elemName">id</xsl:with-param>
-                            </xsl:call-template>
-                        </xsl:for-each>
-                        <!-- Item(s) :: jgzorganisatie_naam_toestemming_gegevensuitwisseling_rvp -->
-                        <xsl:for-each select="jgzorganisatie_naam_toestemming_gegevensuitwisseling_rvp">
-                            <xsl:call-template name="makeTNValue">
-                                <xsl:with-param name="elemName">name</xsl:with-param>
-                            </xsl:call-template>
-                        </xsl:for-each>
-                    </representedOrganization>
+                        <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                            <!-- Item(s) :: jgzorganisatie_ura_toestemming_gegevensuitwisseling_rvp -->
+                            <xsl:for-each select="jgzorganisatie_ura_toestemming_gegevensuitwisseling_rvp">
+                                <xsl:call-template name="makeII.NL.URAValue">
+                                    <xsl:with-param name="elemName">id</xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                            <!-- Item(s) :: jgzorganisatie_agb_toestemming_gegevensuitwisseling_rvp -->
+                            <xsl:for-each select="jgzorganisatie_agb_toestemming_gegevensuitwisseling_rvp">
+                                <xsl:call-template name="makeII.NL.AGBValue">
+                                    <xsl:with-param name="elemName">id</xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                            <!-- Item(s) :: jgzorganisatie_naam_toestemming_gegevensuitwisseling_rvp -->
+                            <xsl:for-each select="jgzorganisatie_naam_toestemming_gegevensuitwisseling_rvp">
+                                <xsl:call-template name="makeTNValue">
+                                    <xsl:with-param name="elemName">name</xsl:with-param>
+                                    <xsl:with-param name="xsiType"></xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                        </representedOrganization>
+                    </assignedEntity1>
                 </consultant>
             </xsl:if>
             <!-- Item(s) :: toestemmingswijze_gegevensuitwisseling_rvp -->
@@ -2370,12 +2377,14 @@
             </author>
             <xsl:for-each select="toelichting_verstrekking_informatie_aan_derden">
                 <subjectOf>
-                    <code code="1407" codeSystem="2.16.840.1.113883.2.4.4.40.267">
-                        <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1407'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
-                    </code>
-                    <xsl:call-template name="makeSTValue">
-                        <xsl:with-param name="elemName">value</xsl:with-param>
-                    </xsl:call-template>
+                    <annotation>
+                        <code code="1407" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1407'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
+                        <xsl:call-template name="makeSTValue">
+                            <xsl:with-param name="elemName">value</xsl:with-param>
+                        </xsl:call-template>
+                    </annotation>
                 </subjectOf>
             </xsl:for-each>
         </consentEvent>
@@ -13939,7 +13948,7 @@
 
     <!-- obs Informatie verstrekt over werkwijze JGZ -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.40476_20200527000000">
-        <annotionObsEvent xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN">
+        <annotationObsEvent xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40476"/>
             <code code="476" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '476'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
@@ -13948,7 +13957,7 @@
             <xsl:call-template name="makeBLValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
-        </annotionObsEvent>
+        </annotationObsEvent>
     </xsl:template>
 
     <!-- obs Ingrijpende gebeurtenissen -->
