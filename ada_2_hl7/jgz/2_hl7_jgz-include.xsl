@@ -2176,7 +2176,11 @@
         <consentEvent xmlns="urn:hl7-org:v3" classCode="CONS" moodCode="EVN">
             <!-- Item(s) :: toestemming_aanmelding_LSP -->
             <!-- Als de toestemming 'ja' is dan is negationInd van ConsentEvent 'false'. -->
-            <xsl:attribute name="negationInd" select="if (toestemming_aanmelding_lsp/@value eq 'true') then 'false' else 'true'"/>
+            <xsl:attribute name="negationInd" select="
+                    if (toestemming_aanmelding_lsp/@value eq 'true') then
+                        'false'
+                    else
+                        'true'"/>
             <code code="1398" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1398'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
             </code>
@@ -2337,7 +2341,11 @@
         <consentEvent xmlns="urn:hl7-org:v3" classCode="CONS" moodCode="EVN">
             <!-- Item(s) :: toestemming_verstrekking_informatie_aan_derden -->
             <!-- Als de toestemming 'ja' is dan is negationInd van ConsentEvent 'false'. -->
-            <xsl:attribute name="negationInd" select="if (toestemming_verstrekking_informatie_aan_derden/@value eq 'true') then 'false' else 'true'"/>
+            <xsl:attribute name="negationInd" select="
+                    if (toestemming_verstrekking_informatie_aan_derden/@value eq 'true') then
+                        'false'
+                    else
+                        'true'"/>
             <code code="1165" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1165'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
             </code>
