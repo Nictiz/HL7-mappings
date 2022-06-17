@@ -77,7 +77,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:if test="$schematronXsdLinkInOutput">
                     <xsl:attribute name="xsi:schemaLocation">http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd</xsl:attribute>
                 </xsl:if>
-                <id value="{..[1]/@id}"/>
+                <id value="{nf:removeSpecialCharacters(..[1]/@id)}"/>
                 <meta>
                     <profile value="{nf:get-full-profilename-from-adaelement($in/..)}"/>                
                 </meta>
