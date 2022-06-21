@@ -776,12 +776,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:function>
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="in"/>
+        <xd:desc>Removes special characters for example for FHIR logical id. Periods ( . ) are also converted to '-' for Touchstone, since Touchstone does not accept period in fixture id and because it does not harm other stuff.</xd:desc>
+        <xd:param name="in">The input string to be converted.</xd:param>
     </xd:doc>
     <xsl:function name="nf:removeSpecialCharacters" as="xs:string?">
         <xsl:param name="in" as="xs:string?"/>
-        <xsl:value-of select="replace(translate(normalize-space($in),' _àáãäåèéêëìíîïòóôõöùúûüýÿç€ßñ?','--aaaaaeeeeiiiiooooouuuuyycEsnq'), '[^A-Za-z0-9\.-]', '')"/>
+        <xsl:value-of select="replace(translate(normalize-space($in),'. _àáãäåèéêëìíîïòóôõöùúûüýÿç€ßñ?','---aaaaaeeeeiiiiooooouuuuyycEsnq'), '[^A-Za-z0-9\.-]', '')"/>
     </xsl:function>
 
     <xd:doc>

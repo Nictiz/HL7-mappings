@@ -1,58 +1,61 @@
 <RelatedPerson xmlns="http://hl7.org/fhir">
-   <id value="nl-core-relatedperson-cio-ABRAHAMB.M.H.BRAMPASVEER"/>
+   <id value="ore-relatedperson-cio-PETERP-J-PETERVAN-DENHERIKVANXXX-STALEWSKA"/>
    <meta>
       <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson"/>
    </meta>
    <text>
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
-         <div>Abraham B.M.H. Pasveer (Bram)</div>
+         <div>Peter P.J. van den Herik (Peter)</div>
          <div>
-            <a href="tel:06-12345670">06-12345670</a> (Tel Mobiel), <a href="mailto:brampasveer_123@hotmail.com">brampasveer_123@hotmail.com</a> (E-mail Privé)</div>
-         <div>Bolweg 99 b, 9999XX Stitswerd (Bezoek)</div>
+            <a href="tel:06-12345670">06-12345670</a> (Tel Mobiel), <a href="mailto:pjvandenherik123@hotmail.com">pjvandenherik123@hotmail.com</a> (E-mail Privé)</div>
+         <div>Knolweg 1001 b, 9999XX Stitswerd (Bezoek)</div>
          <div>
-            <span title="Vriend(in)/kennis (20 - RoleCodeLijst (COD472-VEKT))">Vriend(in)/kennis</span>, Boezemvriend van Véronique V. Véronique XXX-TEST-D</div>
+            <span title="Eerste relatie/contactpersoon (1 - RoleCodeLijst (COD472-VEKT))">Eerste relatie/contactpersoon</span> van Maria Christina M. Marieke van XXX_Stalewska</div>
       </div>
    </text>
    <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role">
       <valueCodeableConcept>
          <coding>
             <system value="urn:oid:2.16.840.1.113883.2.4.3.11.22.472"/>
-            <code value="20"/>
-            <display value="Vriend(in)/kennis"/>
+            <code value="1"/>
+            <display value="Eerste relatie/contactpersoon"/>
          </coding>
       </valueCodeableConcept>
    </extension>
    <patient>
-      <reference value="Patient/XXX-TEST-D"/>
-      <display value="Véronique V. Véronique XXX-TEST-D"/>
+      <reference value="Patient/XXX-Stalewska"/>
+      <display value="Maria Christina M. Marieke van XXX_Stalewska"/>
    </patient>
-   <relationship>
-      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-         <valueCode value="OTH"/>
-      </extension>
-      <text value="Boezemvriend"/>
-   </relationship>
    <name>
       <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
          <valueCode value="NL1"/>
       </extension>
-      <family value="Pasveer">
+      <family value="van den Herik">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+            <valueString value="van den"/>
+         </extension>
          <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-            <valueString value="Pasveer"/>
+            <valueString value="Herik"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix">
+            <valueString value="van"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+            <valueString value="XXX_Stalewska"/>
          </extension>
       </family>
-      <given value="Abraham">
+      <given value="Peter">
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
             <valueCode value="BR"/>
          </extension>
       </given>
-      <given value="B.M.H.">
+      <given value="P.J.">
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
             <valueCode value="IN"/>
          </extension>
       </given>
-      <given value="Bram">
+      <given value="Peter">
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
             <valueCode value="CL"/>
          </extension>
@@ -74,7 +77,7 @@
    </telecom>
    <telecom>
       <system value="email"/>
-      <value value="brampasveer_123@hotmail.com"/>
+      <value value="pjvandenherik123@hotmail.com"/>
       <use value="home"/>
    </telecom>
    <address>
@@ -89,12 +92,12 @@
       </extension>
       <use value="home"/>
       <type value="physical"/>
-      <line value="Bolweg 99 b">
+      <line value="Knolweg 1001 b">
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
-            <valueString value="Bolweg"/>
+            <valueString value="Knolweg"/>
          </extension>
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
-            <valueString value="99"/>
+            <valueString value="1001"/>
          </extension>
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
             <valueString value="b"/>
