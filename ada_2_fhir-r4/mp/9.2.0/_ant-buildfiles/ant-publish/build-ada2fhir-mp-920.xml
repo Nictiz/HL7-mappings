@@ -53,7 +53,24 @@
         </move>
         <!-- let's cleanup our temp stuff -->
         <delete dir="${build.dir}/${usecase.mg}/ada_instance_4_TS"/>
-
+        
+        <!-- raadplegen_medicatiegegevens  -->
+        <echo>Copying ADA instances from ${refs.dir}/ada_instance_response to ${build.dir}/${usecase.mg.rp}/ada_instance_response</echo>
+        
+        <!-- make dir if it does not exist (anymore) -->
+        <mkdir dir="${build.dir}/${usecase.mg.rp}/ada_instance_response"/>
+        
+        <!-- deleting previous results, if any -->
+        <delete>
+            <fileset dir="${build.dir}/${usecase.mg.rp}/ada_instance_response" includes="*.xml"/>
+        </delete>
+        <copy todir="${build.dir}/${usecase.mg.rp}/ada_instance_response" failonerror="true">
+            <fileset dir="${refs.dir}/${usecase.mg.rp}/ada_instance_response">
+                <include name="*.xml"/>
+                <exclude name="*_ALL.xml"/>
+            </fileset>
+        </copy>
+        
         <!-- beschikbaarstellen_medicatieoverzicht -->
         <antcall target="setup_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mo}"/>
@@ -152,6 +169,23 @@
             <param name="xsl.in" value="${xsl.input.mg}"/>
             <param name="xsl.in.include" value="*.xml"/>
             <param name="xsl.out" value="${xsl.output.mg}"/>
+            <param name="param.tdate" value="${date.T}"/>
+            <param name="param.maskids" value="${mask.ids}"/>
+        </antcall>
+        
+        <!-- raadplegen_medicatiegegevens -->
+        <echo/>
+        <echo>raadplegen_medicatiegegevens</echo>
+        <property name="xsl.input.mg.rp" value="${build.dir}/${usecase.mg.rp}/ada_instance_response"/>
+        <property name="xsl.output.mg.rp" value="${build.dir}/${usecase.mg.rp}/fhir_instance_response"/>
+        
+        <!-- bundles -->
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="usecase" value="${usecase.mg.rp}"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.fhir.fixtures}/payload/${usecase.mg}_2_fhir.xsl"/>
+            <param name="xsl.in" value="${xsl.input.mg.rp}"/>
+            <param name="xsl.in.include" value="*.xml"/>
+            <param name="xsl.out" value="${xsl.output.mg.rp}"/>
             <param name="param.tdate" value="${date.T}"/>
             <param name="param.maskids" value="${mask.ids}"/>
         </antcall>
