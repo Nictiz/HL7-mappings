@@ -1,5 +1,5 @@
 <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatievoorschrift.xsd">
+        xsi:noNamespaceSchemaLocation="../../../9.2.0/sturen_medicatievoorschrift/ada_schemas/ada_sturen_medicatievoorschrift.xsd">
    <meta status="new"
          created-by="medicatieprocesada"
          last-update-by="medicatieprocesada"
@@ -8,7 +8,7 @@
    <data>
       <sturen_medicatievoorschrift app="mp-mp92"
                                    shortName="sturen_medicatievoorschrift"
-                                   formName="sturen_voorschrift"
+                                   formName="sturen_medicatievoorschrift"
                                    transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.322"
                                    transactionEffectiveDate="2022-02-07T00:00:00"
                                    versionDate=""
@@ -73,7 +73,6 @@
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.630"/>
                </gebruiksperiode>
                <medicatieafspraak_stop_type conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.88"
-                                            value="4"
                                             code="113371000146109"
                                             codeSystem="2.16.840.1.113883.6.96"
                                             displayName="definitief gestopt met medicatie"/>
@@ -87,11 +86,11 @@
                                 value="Peter_van_Pulver"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.45"/>
                </voorschrijver>
-               <reden_wijzigen_of_staken conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.89"
-                                         value="17"
-                                         code="183966005"
+               <reden_wijzigen_of_staken code="183966005"
                                          codeSystem="2.16.840.1.113883.6.96"
-                                         displayName="Drug treatment not indicated (situation)"/>
+                                         displayName="geen indicatie voor medicamenteuze behandeling"
+                                         codeSystemName="SNOMED CT"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.89"/>
                <afgesproken_geneesmiddel comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.48">
                   <farmaceutisch_product datatype="reference"
                                          value="PRK_LISINOPRIL_26638"

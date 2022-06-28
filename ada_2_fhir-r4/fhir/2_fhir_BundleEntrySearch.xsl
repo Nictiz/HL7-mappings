@@ -7,15 +7,33 @@
 
     <xd:doc>
         <xd:desc>Add Bundle.entry.request</xd:desc>
+        <xd:param name="entrySearchMode">param to override global param in case a different search mode is needed for a particular entry. 
+            Typically not all resources in a Bundle have the same searchMode. Defaults to global param $searchMode</xd:param>
     </xd:doc>
     <xsl:template match="f:resource" mode="addBundleEntrySearchOrRequest">
+        <!-- AWE: need to distinguish between match and include, which can only be done when invoking this template, so add param here -->
+        <xsl:param name="entrySearchMode" select="$searchMode"/>
         <xsl:copy>
             <xsl:apply-templates select="@* | node()" mode="#current"/>
         </xsl:copy>
-        <xsl:if test="string-length($searchMode) gt 0">
+        <xsl:if test="string-length($entrySearchMode) gt 0">
             <search>
-                <mode value="{$searchMode}"/>
+                <mode value="{$entrySearchMode}"/>
             </search>
         </xsl:if>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Basis copy template in mode addBundleEntrySearchOrRequest</xd:desc>
+        <xd:param name="entrySearchMode">param to override global param in case a different search mode is needed for a particular entry. 
+            Typically not all resources in a Bundle have the same searchMode. Defaults to global param $searchMode</xd:param>
+    </xd:doc>
+    <xsl:template match="@* | node()" mode="addBundleEntrySearchOrRequest">
+        <xsl:param name="entrySearchMode" select="$searchMode"/>
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" mode="#current">
+                <xsl:with-param name="entrySearchMode" select="$entrySearchMode"/>
+            </xsl:apply-templates>
+        </xsl:copy>
     </xsl:template>
 </xsl:stylesheet>

@@ -435,14 +435,4 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:attribute>
     </xsl:template>
 
-    <xd:doc>
-        <xd:desc>Basis copy template in mode addBundleEntrySearchOrRequest</xd:desc>
-    </xd:doc>
-    <xsl:template match="@* | node()" mode="addBundleEntrySearchOrRequest">
-        <xsl:copy>
-            <xsl:apply-templates select="@* | node()" mode="#current"/>
-        </xsl:copy>
-    </xsl:template>
-
-
 </xsl:stylesheet>
