@@ -29,10 +29,19 @@
     <property name="echo.label" value="${echo.label.in} to ${echo.label.out}"/>
     <property name="project.title" value="${echo.label} for ${is.name} ${is.version}"/>
 
+    <property name="usecase.labbr" value="beschikbaarstellen_laboratoriumresultaten"/>
     <property name="usecase.labsr" value="sturen_laboratoriumresultaten"/>
 
     <target name="setup" description="Setup subdirectories, schemas, ada instance xml's in ${build.dir}">
 
+        <!-- beschikbaarstellen_laboratoriumgegevens copies schemas for project dir and appropriate ada instances from refs.dir -->
+        <antcall target="setup_sub">
+            <param name="usecase" value="${usecase.labbr}"/>
+            <param name="fileset.dir" value="ada_instance"/>
+            <param name="fileset.include" value="*.xml"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
+        </antcall>
+        
         <!-- sturen_laboratoriumgegevens copies schemas for project dir and appropriate ada instances from refs.dir -->
         <antcall target="setup_sub">
             <param name="usecase" value="${usecase.labsr}"/>
@@ -50,6 +59,7 @@
         <copy todir="${build.dir}/xml-voorbeelden/ada_schemas" failonerror="true">
             <fileset dir="${ada.project.source.dir}/schemas">
                 <include name="*${usecase.labsr}.xsd"/>
+                <include name="*${usecase.labbr}.xsd"/>
                 <include name="ada_meta.xsd"/>
             </fileset>
         </copy>

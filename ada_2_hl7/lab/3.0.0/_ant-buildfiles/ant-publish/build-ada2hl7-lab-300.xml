@@ -51,6 +51,20 @@
             <param name="fileset.include" value="*.xml"/>
             <param name="refs.ada.dir" value="ada_instance"/>
         </antcall>
+        
+        <!-- at the moment only schemas for nictiz test -->
+        <antcall target="setup_sub_schemas">
+            <param name="usecase" value="${usecase.nt}"/>
+            <param name="schema.string" value="*${usecase.labbr}.xsd"/>
+        </antcall>
+        
+        <!-- laboratoriumresultaten-->
+        <antcall target="setup_sub">
+            <param name="usecase" value="${usecase.labbr}"/>
+            <param name="fileset.dir" value="ada_instance"/>
+            <param name="fileset.include" value="*.xml"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
+        </antcall>
 
         <!-- xml voorbeelden -->
         <!-- schemas -->
@@ -61,6 +75,7 @@
         <copy todir="${build.dir}/xml-voorbeelden/ada_schemas" failonerror="true">
             <fileset dir="${ada.project.source.dir}/schemas">
                 <include name="*${usecase.labsr}.xsd"/>
+                <include name="*${usecase.labbr}.xsd"/>
                 <include name="ada_meta.xsd"/>
             </fileset>
         </copy>
@@ -94,6 +109,22 @@
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="hl7_instance"/>
         </antcall>-->
+        
+        <!-- convert beschikbaarstellen_laboratoriumresultaten -->
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.labbr}"/>
+            <param name="xsl.name" value="../${usecase.labbr}/payload/${usecase.labbr}_org.xsl"/>
+            <param name="xsl.in" value="ada_instance"/>
+            <param name="xsl.out" value="hl7_instance"/>
+        </antcall>
+        
+        <!-- laboratoriumresultaten also to CDA-->
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.labbr}"/>
+            <param name="xsl.name" value="../../${organizer.to.cda.xsl}"/>
+            <param name="xsl.in" value="hl7_instance"/>
+            <param name="xsl.out" value="cda_instance"/>
+        </antcall>
 
         <!-- convert sturen_laboratoriumresultaten -->
         <antcall target="convert_ada_2_hl7_sub">
@@ -127,6 +158,23 @@
         <delete>
             <fileset dir="${build.dir}/xml-voorbeelden/cda_instance" includes="*.xml"/>
         </delete>
+        
+        <!-- beschikbaarstellen_laboratoriumresultaten -->
+        <sequential>
+            <fileset id="inputfiles" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="lu*.xml"/>
+            
+            <echo/>
+            <echo>${echo.label} ${build.dir}/${usecase.labbr}/payload/${usecase.labbr}_org.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
+            <xslt force="true" style="${build.dir}/${usecase.labbr}/payload/${usecase.labbr}_org.xsl" destdir="${build.dir}/xml-voorbeelden/hl7_instance" extension=".xml" useimplicitfileset="false" failonnoresources="false">
+                <fileset refid="inputfiles"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <param name="schematronRef" expression="${gen.schematron.ref}" if="gen.schematron.ref"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+        
         <!-- sturen_laboratoriumresultaten -->
         <sequential>
             <fileset id="inputfiles" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="lu*.xml"/>
@@ -195,6 +243,19 @@
 
         <!-- first the schematrons per instance -->
         <antcall target="validate_hl7_300"/>
+        
+        <!-- beschikbaarstellen_laboratoriumresultaten hl7 organizer -->
+        <antcall target="schematronresults_hl7_300_sub">
+            <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.labbr}.xml"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.labbr}/validate_hl7_instance"/>
+            <param name="input.fileset" value="*.xml"/>
+        </antcall>
+        <!-- beschikbaarstellen_laboratoriumresultaten cda -->
+        <antcall target="schematronresults_hl7_300_sub">
+            <param name="result.xml" value="${build.dir}/validate/cda_${usecase.labbr}.xml"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.labbr}/validate_cda_instance"/>
+            <param name="input.fileset" value="*.xml"/>
+        </antcall>
 
         <!-- sturen_laboratoriumresultaten hl7 organizer -->
         <antcall target="schematronresults_hl7_300_sub">
@@ -212,6 +273,20 @@
     </target>
 
     <target name="validate_hl7_300">
+
+        <!-- beschikbaarstellen_laboratoriumresultaten -->
+        <antcall target="validate_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.labbr}"/>
+            <param name="xsl.input" value="hl7_instance"/>
+            <param name="xsl.output" value="validate_hl7_instance"/>
+            <param name="xsl.lab" value="${validate.dir}/lu-beschikbaarstellenLaboratoriumresultaten.xsl"/>
+        </antcall>
+        <antcall target="validate_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.labbr}"/>
+            <param name="xsl.input" value="cda_instance"/>
+            <param name="xsl.output" value="validate_cda_instance"/>
+            <param name="xsl.lab" value="${validate.dir}/lu-beschikbaarstellenLaboratoriumresultaten.xsl"/>
+        </antcall>
 
         <!-- sturen_laboratoriumresultaten -->
         <antcall target="validate_hl7_sub">
