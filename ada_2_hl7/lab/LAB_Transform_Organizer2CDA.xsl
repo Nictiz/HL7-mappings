@@ -418,6 +418,7 @@
                                 <xsl:for-each select="hl7:participantRole/hl7:scopingEntity">
                                     <asOrganizationPartOf>
                                         <xsl:copy-of select="hl7:id" copy-namespaces="no"/>
+                                        <xsl:copy-of select="hl7:code" copy-namespaces="no"/>
                                         <xsl:if test="hl7:desc | hl7:code">
                                             <wholeOrganization>
                                                 <name>
@@ -431,11 +432,7 @@
                                                 <xsl:if test="empty(hl7:addr)">
                                                     <addr nullFlavor="UNK"/>
                                                 </xsl:if>
-                                                <xsl:if test="hl7:code">
-                                                    <standardIndustryClassCode>
-                                                        <xsl:copy-of select="hl7:code/(@* | node())" copy-namespaces="no"/>
-                                                    </standardIndustryClassCode>
-                                                </xsl:if>
+                                                <xsl:copy-of select="hl7:standardIndustryClassCode" copy-namespaces="no"/>
                                             </wholeOrganization>
                                         </xsl:if>
                                     </asOrganizationPartOf>
@@ -552,6 +549,7 @@
                                 <xsl:if test="hl7:participantRole/hl7:scopingEntity">
                                     <asOrganizationPartOf>
                                         <xsl:copy-of select="hl7:participantRole/hl7:scopingEntity/hl7:id" copy-namespaces="no"/>
+                                        <xsl:copy-of select="hl7:participantRole/hl7:scopingEntity/hl7:code" copy-namespaces="no"/>
                                         <xsl:if test="hl7:participantRole/hl7:scopingEntity/hl7:desc">
                                             <wholeOrganization>
                                                 <name>
@@ -564,11 +562,6 @@
                                                 <xsl:copy-of select="hl7:participantRole/hl7:scopingEntity/hl7:telecom" copy-namespaces="no"/>
                                                 <xsl:if test="empty(hl7:participantRole/hl7:scopingEntity/hl7:telecom)">
                                                     <telecom nullFlavor="UNK"/>
-                                                </xsl:if>
-                                                <xsl:if test="hl7:participantRole/hl7:scopingEntity/hl7:code">
-                                                    <standardIndustryClassCode>
-                                                        <xsl:copy-of select="hl7:participantRole/hl7:scopingEntity/hl7:code/(@* | node())" copy-namespaces="no"/>
-                                                    </standardIndustryClassCode>
                                                 </xsl:if>
                                             </wholeOrganization>
                                         </xsl:if>

@@ -11,11 +11,11 @@ install-ivy:
 fetch-imports:
 [ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
 [ivy:resolve] :: loading settings :: file = /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/_ant-buildfiles/ant-include/ivysettings.xml
-[ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@mbp.local [not transitive]
+[ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@mbp.fritz.box [not transitive]
 [ivy:resolve] 	confs: [default]
 [ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in maven
 [ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 128ms :: artifacts dl 16ms
+[ivy:resolve] :: resolution report :: resolve 190ms :: artifacts dl 24ms
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
 	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
@@ -24,7 +24,7 @@ fetch-imports:
 	---------------------------------------------------------------------
 [ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
 [ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/8ms)
+[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/10ms)
 [ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
 [ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
 [ivy:dependencytree] \- xerces#xercesImpl;2.12.0
@@ -39,4 +39,4 @@ convert_ada_2_hl7_examples_300:
      [echo] ADA to HL7 ../../../LAB_Transform_Organizer2CDA.xsl input dir ../../xml-voorbeelden/hl7_instance
 
 BUILD SUCCESSFUL
-Total time: 1 second
+Total time: 2 seconds
