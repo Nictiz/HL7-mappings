@@ -93,9 +93,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <participantRole classCode="ASSIGNED">
                     <xsl:choose>
                         <xsl:when test="$isAfdeling">
-                            <xsl:for-each select="organisatie_locatie/locatie_nummer">
-                                <xsl:call-template name="makeIIid"/>
-                            </xsl:for-each>
+                            <xsl:choose>
+                                <xsl:when test="organisatie_locatie/locatie_nummer">
+                                    <xsl:for-each select="organisatie_locatie/locatie_nummer">
+                                        <xsl:call-template name="makeIIid"/>
+                                    </xsl:for-each>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <id nullFlavor="NI"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
                             
                             <xsl:for-each select="afdeling_specialisme">
                                 <code>
@@ -227,41 +234,54 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.101_20180611000000"/>
                     </addr>
                 </xsl:for-each>
-
+                <xsl:if test="empty(.//adresgegevens[not(adresgegevens)][.//(@value | @code | @nullFlavor)])">
+                    <addr nullFlavor="UNK"/>
+                </xsl:if>
                 <xsl:for-each select=".//contactgegevens[not(contactgegevens)][.//(@value | @code | @nullFlavor)]">
                     <xsl:call-template name="_CdaTelecom"/>
                 </xsl:for-each>
-
+                <xsl:if test="empty(.//contactgegevens[not(contactgegevens)][.//(@value | @code | @nullFlavor)])">
+                    <telecom nullFlavor="UNK"/>
+                </xsl:if>
                 <xsl:choose>
                     <xsl:when test="$isAfdeling">
                         <representedOrganization classCode="ORG" determinerCode="INSTANCE">
-                            <xsl:for-each select="organisatie_locatie/locatie_naam">
-                                <xsl:call-template name="makeONValue">
-                                    <xsl:with-param name="xsiType"/>
-                                    <xsl:with-param name="elemName">name</xsl:with-param>
-                                </xsl:call-template>
-                                
-                                <xsl:if test="$organisatieNaam">
-                                    <asOrganizationPartOf classCode="ORG" determinerCode="INSTANCE">
-                                        <xsl:for-each select="$organisatieId">
-                                            <xsl:call-template name="makeIIid"/>
-                                        </xsl:for-each>
-
-                                        <xsl:for-each select="organisatie_type">
-                                            <code>
-                                                <xsl:call-template name="makeCodeAttribs"/>
-                                            </code>
-                                        </xsl:for-each>
-
-                                        <xsl:for-each select="$organisatieNaam">
+                            <xsl:choose>
+                                <xsl:when test="organisatie_locatie/locatie_naam">
+                                    <xsl:for-each select="organisatie_locatie/locatie_naam">
+                                        <xsl:call-template name="makeONValue">
+                                            <xsl:with-param name="xsiType"/>
+                                            <xsl:with-param name="elemName">name</xsl:with-param>
+                                        </xsl:call-template>
+                                    </xsl:for-each>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <name nullFlavor="UNK"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                            
+                            <xsl:if test="$organisatieNaam">
+                                <asOrganizationPartOf>
+                                    <xsl:for-each select="$organisatieId">
+                                        <xsl:call-template name="makeIIid"/>
+                                    </xsl:for-each>
+                                    <xsl:for-each select="organisatie_type">
+                                        <code>
+                                            <xsl:call-template name="makeCodeAttribs"/>
+                                        </code>
+                                    </xsl:for-each>
+                                    <xsl:for-each select="$organisatieNaam">
+                                        <wholeOrganization>
                                             <xsl:call-template name="makeONValue">
                                                 <xsl:with-param name="xsiType"/>
-                                                <xsl:with-param name="elemName">desc</xsl:with-param>
+                                                <xsl:with-param name="elemName">name</xsl:with-param>
                                             </xsl:call-template>
-                                        </xsl:for-each>
-                                    </asOrganizationPartOf>
-                                </xsl:if>
-                            </xsl:for-each>
+                                            <telecom nullFlavor="UNK"/>
+                                            <addr nullFlavor="UNK"/>
+                                        </wholeOrganization>
+                                    </xsl:for-each>
+                                </asOrganizationPartOf>
+                            </xsl:if>
                         </representedOrganization>
                     </xsl:when>
                     <xsl:when test="$organisatieNaam">
@@ -272,6 +292,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="elemName">name</xsl:with-param>
                                 </xsl:call-template>
                             </xsl:for-each>
+                            <telecom nullFlavor="UNK"/>
+                            <addr nullFlavor="UNK"/>
                         </representedOrganization>
                     </xsl:when>
                 </xsl:choose>

@@ -28,64 +28,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="doToplevelCopyIndicator" select="count($in) = count($in/kopie_indicator) and count(distinct-values($in/kopie_indicator/@value)) = 1"/>
         <xsl:variable name="doToplevelEdifactReference" select="count($in) = count($in/edifact_referentienummer) and count(distinct-values($in/edifact_referentienummer/@value)) = 1"/>
         <xsl:for-each select="$in"> 
-            
-            <!-- LAY-OUT of the output -->
-            <!--<component typeCode="COMP">
-                <templateId root="2.16.840.1.113883.2.4.3.11.60.25.10.53"/>
-                <templateId root="1.3.6.1.4.1.19376.1.3.1"/>
-                <act classCode="ACT" moodCode="EVN">
-                    <!-\- resultaat_type -\->
-                    <!-\- Specialty Level Entry : LOINC Specialty Code fallback: 26436-6 LABORATORY STUDIES -\->
-                    <code code="18719-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Chemistry Studies"/>
-                    <statusCode code="completed"/>
-                    <!-\- panel with observation -\->
-                    <entryRelationship typeCode="COMP">
-                        <organizer classCode="BATTERY" moodCode="EVN">
-                            <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.2"/>
-                            <templateId root="1.3.6.1.4.1.19376.1.3.1.4"/>
-                            <id root=" " extension=" "/>
-                            <code code="29576-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Some Sort of Panel"/>
-                            <statusCode code="completed"/>
-                            <effectiveTime value="20071108000000.0000-0500"/>
-                            <performer typeCode="PRF">
-                                <templateId root="1.3.6.1.4.1.19376.1.3.3.1.7"/>
-                                <!-\- ... -\->
-                            </performer>
-                            <!-\- observation -\->
-                            <component typeCode="COMP">
-                                <observation classCode="OBS" moodCode="EVN">
-                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.31"/>
-                                    <templateId root="1.3.6.1.4.1.19376.1.3.1.6"/>
-                                    <id extension="0076895251" root="2.16.528.1.1007.3.3.1234567.1.1"/>
-                                    <code code="53553-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Geschatte gemiddelde glucose [mol/volume] in bloed d.m.v. geschat op basis van geglyceerde hemoglobine"/>
-                                    ...
-                                </observation>
-                            </component>
-                            <!-\- comment -\->
-                            <component typeCode="COMP">
-                                <act classCode="ACT" moodCode="EVN">
-                                    <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.2"/>
-                                    <code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Annotation Comment"/>
-                                    <statusCode code="completed"/>
-                                </act>
-                            </component>
-                        </organizer>
-                    </entryRelationship>
-                    <!-\- observation -\->
-                    <entryRelationship typeCode="COMP">
-                        <component typeCode="COMP">
-                            <observation classCode="OBS" moodCode="EVN">
-                                <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.31"/>
-                                <templateId root="1.3.6.1.4.1.19376.1.3.1.6"/>
-                                <id extension="0076895251" root="2.16.528.1.1007.3.3.1234567.1.1"/>
-                                <code code="53553-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Geschatte gemiddelde glucose [mol/volume] in bloed d.m.v. geschat op basis van geglyceerde hemoglobine"/>
-                                ...
-                            </observation>
-                        </component>
-                    </entryRelationship>
-                </act>
-            </component>-->
-            
             <!-- Lay-out:
                 Specialty - Panel - Observation = not supported because Specialty/'resultaat_type' is not supported in the transaction
                 or
@@ -94,122 +36,185 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 Panel - Observation             = only if 'onderzoek'
                 or
                 Observation                     = in absence of 'onderzoek'
+                
+                We always a Laboratory Report Data Processing Entry within a Specialty section 
+                    The code of this entry is either that in 'resultaat_type' or LOINC 26436-6 LABORATORY STUDIES
+                
+                This creates a grouper around everything in 'laboratorium_uitslag'. 
+                If there is a micro-organism then all results go under Laboratory Isolate Organizer NL (2.16.840.1.113883.2.4.3.11.60.7.10.4), 
+                    If there is no micro-organism but an 'onderzoek' then all results go under Laboratory Battery Organizer NL (2.16.840.1.113883.2.4.3.11.60.7.10.2)
+                        If there no micro-organism and no 'onderzoek' then all results go directly under Laboratory Observation NL (2.16.840.1.113883.2.4.3.11.60.7.10.31)
             -->
-            <xsl:choose>
-                <!-- Laboratory Report Data Processing Entry within a Specialty section -->
-                <!-- create a section with panels/items or just items - transaction does NOT support this so leaving as an exercise for future use -->
-                <xsl:when test="resultaat_type">
-                    <xsl:message terminate="yes">2022-05-31 Not Supported in the transaction, hence not supported in hl7-LaboratoriumUitslag. create a section with panels/items or just items</xsl:message>
-                </xsl:when>
-                <!-- Laboratory Report Data Processing Entry within a Report Item Section -->
-                <!-- contains a panel with items template Laboratory Battery Organizer NL (Specimen) 2.16.840.1.113883.2.4.3.11.60.7.10.2 2022-03-30T00:00:00 -->
-                <xsl:when test="onderzoek">
-                    <component typeCode="COMP">
-                        <templateId root="2.16.840.1.113883.2.4.3.11.60.25.10.53"/>
-                        <templateId root="1.3.6.1.4.1.19376.1.3.1"/>
-                        <act classCode="ACT" moodCode="EVN">
-                            <!-- Report Item Level Entry : Result Item Code -->
-                            <xsl:for-each select="onderzoek">
+            <!-- Laboratory Report Data Processing Entry within a Report Item Section -->
+            <!-- contains a panel with items template Laboratory Battery Organizer NL (Specimen) 2.16.840.1.113883.2.4.3.11.60.7.10.2 2022-03-30T00:00:00 -->
+            <xsl:variable name="resultStatus" as="xs:string">
+                <xsl:choose>
+                    <xsl:when test="resultaat_status/@code = 'pending'">active</xsl:when>
+                    <xsl:when test="resultaat_status/@code = 'preliminary'">active</xsl:when>
+                    <xsl:when test="resultaat_status/@code = 'final'">completed</xsl:when>
+                    <xsl:when test="resultaat_status/@code = 'appended'">completed</xsl:when>
+                    <xsl:when test="resultaat_status/@code = 'corrected'">completed</xsl:when>
+                    
+                    <xsl:when test="laboratorium_test/test_uitslag_status/@code = 'pending'">active</xsl:when>
+                    <xsl:when test="laboratorium_test/test_uitslag_status/@code = 'preliminary'">active</xsl:when>
+                    
+                    <xsl:otherwise>completed</xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            <component typeCode="COMP">
+                <templateId root="2.16.840.1.113883.2.4.3.11.60.25.10.53"/>
+                <templateId root="1.3.6.1.4.1.19376.1.3.1"/>
+                <act classCode="ACT" moodCode="EVN">
+                    <!-- Report Item Level Entry : Result Item Code -->
+                    <xsl:choose>
+                        <xsl:when test="resultaat_type">
+                            <xsl:for-each select="resultaat_type">
                                 <xsl:call-template name="makeCDValue">
                                     <xsl:with-param name="elemName">code</xsl:with-param>
                                 </xsl:call-template>
                             </xsl:for-each>
-                            <statusCode code="completed"/>
-                            <!-- subject (patient) comes through contextCondution from a higher level -->
-                            <!-- performer -->
-                            <xsl:for-each select="uitvoerder/zorgaanbieder">
-                                <performer typeCode="PRF">
-                                    <templateId root="1.3.6.1.4.1.19376.1.3.3.1.7"/>
-                                    <xsl:call-template name="template_1.3.6.1.4.1.19376.1.3.3.1.7_20080808000000"/>
-                                </performer>
-                            </xsl:for-each>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <code code="26436-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="LABORATORY STUDIES"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
 
-                            <!--NL-CM:13.1.2  Monster	                      0..1	
-                            Container van het concept Monster. Deze container bevat alle gegevenselementen van het concept Monster.	 123038009 Monster-->
-                            <xsl:for-each select="monster">
-                                <entryRelationship typeCode="COMP">
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3_20171016000000"/>
-                                </entryRelationship>
-                            </xsl:for-each>
+                    <!--NL-CM:13.1.6 ResultaatStatus         0..1
+                        De status van de laboratoriumuitslag. Indien het onderzoek uit meerdere testen bestaat, geeft het de status van het gehele onderzoek aan. 
+                        Indien tevens de status per deelonderzoek gebruikt wordt, moet deze status daarmee in overeenstemming zijn.. ResultaatStatusCodelijst-->
+                    <statusCode code="{$resultStatus}"/>
+                    <!-- subject (patient) comes through contextConduction from a higher level -->
+                    <!-- performer -->
+                    <xsl:for-each select="uitvoerder/zorgaanbieder">
+                        <performer typeCode="PRF">
+                            <templateId root="1.3.6.1.4.1.19376.1.3.3.1.7"/>
+                            <time nullFlavor="NI"/>
+                            <xsl:call-template name="template_1.3.6.1.4.1.19376.1.3.3.1.7_20080808000000"/>
+                        </performer>
+                    </xsl:for-each>
 
-                            <xsl:choose>
-                                <!--NL-CM:13.1.22 Microorganisme                    0..1	
-                                Bij met name microbiologische bepalingen is soms geen sprake van materiaal maar van een isolaat van een bepaald micro-organisme. Dit concept biedt de mogelijkheid 
-                                informatie omtrent dit micro-organisme vast te leggen. MicroorganismeCodelijst-->
-                                <!-- Laboratory Isolate Organizer NL (Specimen) -->
-                                <xsl:when test="microorganisme">
-                                    <entryRelationship typeCode="COMP">
-                                        <organizer classCode="CLUSTER" moodCode="EVN">
-                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.4"/>
-                                            <templateId root="1.3.6.1.4.1.19376.1.3.1.5"/>
-                                            <statusCode code="completed"/>
-                                            <specimen typeCode="SPC">
-                                                <specimenRole classCode="ISLT">
-                                                    <id extension="55584739" root="1.3.6.1.4.1.19376.1.3.4"/>
-                                                    <specimenPlayingEntity classCode="MIC">
-                                                        <xsl:for-each select="microorganisme">
-                                                            <xsl:call-template name="makeCDValue">
-                                                                <xsl:with-param name="elemName">code</xsl:with-param>
-                                                            </xsl:call-template>
-                                                        </xsl:for-each>
-                                                    </specimenPlayingEntity>
-                                                </specimenRole>
-                                            </specimen>
+                    <!--NL-CM:13.1.6 ResultaatStatus         0..1
+                        De status van de laboratoriumuitslag. Indien het onderzoek uit meerdere testen bestaat, geeft het de status van het gehele onderzoek aan. 
+                        Indien tevens de status per deelonderzoek gebruikt wordt, moet deze status daarmee in overeenstemming zijn.. ResultaatStatusCodelijst-->
+                    <xsl:for-each select="resultaat_status">
+                        <entryRelationship typeCode="COMP">
+                            <observation classCode="OBS" moodCode="EVN">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.121.10.55"/>
+                                <code code="92235-1" codeSystem="2.16.840.1.113883.6.1" displayName="Lab order result status"/>
+                                <xsl:call-template name="makeCVValue"/>
+                            </observation>
+                        </entryRelationship>
+                    </xsl:for-each>
+
+                    <!--NL-CM:13.1.2  Monster	                      0..1	
+                        Container van het concept Monster. Deze container bevat alle gegevenselementen van het concept Monster.	 123038009 Monster-->
+                    <xsl:for-each select="monster">
+                        <entryRelationship typeCode="COMP">
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.3_20171016000000"/>
+                        </entryRelationship>
+                    </xsl:for-each>
+
+                    <xsl:choose>
+                        <!--NL-CM:13.1.22 Microorganisme                    0..1	
+                            Bij met name microbiologische bepalingen is soms geen sprake van materiaal maar van een isolaat van een bepaald micro-organisme. 
+                            Dit concept biedt de mogelijkheid informatie omtrent dit micro-organisme vast te leggen. MicroorganismeCodelijst-->
+                        <!-- Laboratory Isolate Organizer NL (Specimen) -->
+                        <xsl:when test="microorganisme">
+                            <entryRelationship typeCode="COMP">
+                                <organizer classCode="CLUSTER" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.4"/>
+                                    <templateId root="1.3.6.1.4.1.19376.1.3.1.5"/>
+                                    <statusCode code="{$resultStatus}"/>
+                                    <specimen typeCode="SPC">
+                                        <specimenRole classCode="ISLT">
+                                            <id extension="55584739" root="1.3.6.1.4.1.19376.1.3.4"/>
+                                            <specimenPlayingEntity classCode="MIC">
+                                                <xsl:for-each select="microorganisme">
+                                                    <xsl:call-template name="makeCDValue">
+                                                        <xsl:with-param name="elemName">code</xsl:with-param>
+                                                    </xsl:call-template>
+                                                </xsl:for-each>
+                                            </specimenPlayingEntity>
+                                        </specimenRole>
+                                    </specimen>
+                                    <xsl:choose>
+                                        <!-- Laboratory Battery Organizer NL (Specimen) -->
+                                        <xsl:when test="onderzoek">
+                                            <entryRelationship typeCode="COMP">
+                                                <organizer classCode="BATTERY" moodCode="EVN">
+                                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.2"/>
+                                                    <templateId root="1.3.6.1.4.1.19376.1.3.1.4"/>
+                                                    <xsl:for-each select="onderzoek">
+                                                        <xsl:call-template name="makeCEValue">
+                                                            <xsl:with-param name="xsiType"/>
+                                                            <xsl:with-param name="elemName">code</xsl:with-param>
+                                                        </xsl:call-template>
+                                                    </xsl:for-each>
+                                                    <statusCode code="{$resultStatus}"/>
+                                                    <xsl:for-each select="laboratorium_test">
+                                                        <component typeCode="COMP">
+                                                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.31_20220330000000"/>
+                                                        </component>
+                                                    </xsl:for-each>
+                                                </organizer>
+                                            </entryRelationship>
+                                        </xsl:when>
+                                        <xsl:otherwise>
                                             <xsl:for-each select="laboratorium_test">
                                                 <entryRelationship typeCode="COMP">
                                                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.31_20220330000000"/>
                                                 </entryRelationship>
                                             </xsl:for-each>
-                                        </organizer>
-                                    </entryRelationship>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:for-each select="laboratorium_test">
-                                        <entryRelationship typeCode="COMP">
-                                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.31_20220330000000"/>
-                                        </entryRelationship>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                </organizer>
+                            </entryRelationship>
+                        </xsl:when>
+                        <xsl:when test="onderzoek">
+                            <entryRelationship typeCode="COMP">
+                                <organizer classCode="BATTERY" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.2"/>
+                                    <templateId root="1.3.6.1.4.1.19376.1.3.1.4"/>
+                                    <xsl:for-each select="onderzoek">
+                                        <xsl:call-template name="makeCEValue">
+                                            <xsl:with-param name="xsiType"/>
+                                            <xsl:with-param name="elemName">code</xsl:with-param>
+                                        </xsl:call-template>
                                     </xsl:for-each>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </act>
-                    </component>
-                    
+                                    <statusCode code="{$resultStatus}"/>
+                                    <xsl:for-each select="laboratorium_test">
+                                        <component typeCode="COMP">
+                                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.31_20220330000000"/>
+                                        </component>
+                                    </xsl:for-each>
+                                </organizer>
+                            </entryRelationship>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:for-each select="laboratorium_test">
+                                <entryRelationship typeCode="COMP">
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.31_20220330000000"/>
+                                </entryRelationship>
+                            </xsl:for-each>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                
                     <xsl:if test="$doToplevelCopyIndicator">
-                        <component typeCode="COMP">
+                        <entryRelationship typeCode="COMP">
                             <xsl:call-template name="doCopyIndicator">
                                 <xsl:with-param name="copyIndicator" select="($in/kopie_indicator)[1]"/>
                             </xsl:call-template>
-                        </component>
+                        </entryRelationship>
                     </xsl:if>
                     <xsl:if test="$doToplevelEdifactReference">
-                        <component typeCode="COMP">
+                        <entryRelationship typeCode="COMP">
                             <xsl:call-template name="doEdifactReference">
                                 <xsl:with-param name="edifactReference" select="($in/edifact_referentienummer)[1]"/>
                             </xsl:call-template>
-                        </component>
+                        </entryRelationship>
                     </xsl:if>
-                </xsl:when>
-                <!-- Laboratory Observation NL - LOINC 53553-4 Glucose mean value 4.95 mmol/L -->
-                <!-- contains items template Laboratory Observation NL 2.16.840.1.113883.2.4.3.11.60.7.10.31 2022-03-30T00:00:00 -->
-                <xsl:otherwise>
-                    <xsl:for-each select="laboratorium_test">
-                        <component typeCode="COMP">
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.31_20220330000000">
-                                <xsl:with-param name="copyIndicator" as="element()*">
-                                    <xsl:if test="$doToplevelCopyIndicator">
-                                        <xsl:copy-of select="($in/kopie_indicator)[1]"/>
-                                    </xsl:if>
-                                </xsl:with-param>
-                                <xsl:with-param name="edifactReference" as="element()*">
-                                    <xsl:if test="$doToplevelEdifactReference">
-                                        <xsl:copy-of select="($in/edifact_referentienummer)[1]"/>
-                                    </xsl:if>
-                                </xsl:with-param>
-                            </xsl:call-template>
-                        </component>
-                    </xsl:for-each>
-                </xsl:otherwise>
-            </xsl:choose>
+                </act>
+            </component>
         </xsl:for-each>
     </xsl:template>
     
@@ -311,10 +316,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:when>
                     </xsl:choose>
                 </xsl:for-each>
-                <xsl:variable name="quantityComparator" select="test_uitslag/replace(normalize-space(@value), '^(&lt;|&gt;=?).*', '$1')" as="xs:string*"/>
-                <xsl:for-each select="$quantityComparator">
-                    <interpretationCode code="{.}" codeSystem="2.16.840.1.113883.4.642.3.59" displayName="{.}"/>
-                </xsl:for-each>
+                <xsl:analyze-string select="test_uitslag/normalize-space(@value)" regex="^(&lt;|&gt;=?)">
+                    <xsl:matching-substring>
+                        <interpretationCode code="{.}" codeSystem="2.16.840.1.113883.4.642.3.59" displayName="{.}"/>
+                    </xsl:matching-substring>
+                </xsl:analyze-string>
                 
                 <!--NL-CM:13.1.9  Testmethode               0..1
                     De gebruikte testmethode voor het verkrijgen van de uitslag. 246501002 Techniek TestmethodeCodelijst-->
@@ -526,7 +532,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:for-each>
                                 </xsl:when>
                             </xsl:choose>
-                            <playingEntity>
+                            <playingEntity classCode="CONT">
                                 <xsl:choose>
                                     <xsl:when test="containertype">
                                         <xsl:for-each select="containertype">
@@ -536,7 +542,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:for-each>
                                     </xsl:when>
                                     <xsl:otherwise>
-                                        <id nullFlavor="NI"/>
+                                        <code nullFlavor="UNK"/>
                                     </xsl:otherwise>
                                 </xsl:choose>
                             </playingEntity>
@@ -580,9 +586,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="template_1.3.6.1.4.1.19376.1.5.3.1.4.2_20131220000000">
         <act classCode="ACT" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.10.20.1.40"/>
             <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.2"/>
             <code code="48767-8" displayName="Annotation Comment" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
-            <xsl:call-template name="makeSTValue">
+            <xsl:call-template name="makeEDValue">
+                <xsl:with-param name="xsiType"/>
                 <xsl:with-param name="elemName">text</xsl:with-param>
             </xsl:call-template>
             <statusCode code="completed"/>

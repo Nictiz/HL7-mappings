@@ -45,12 +45,6 @@
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]"
                     id="d3901e93-false-d3977e0"
                     fpi="RULC-1"/>
-   <svrl:failed-assert test="count(hl7:setId[not(@nullFlavor)]) &gt;= 1"
-                       see="http://decor.nictiz.nl/pub/labuitwisseling/lu-html-20220405T135006/tmp-2.16.840.1.113883.2.4.3.11.60.25.10.51-2022-03-30T000000.html"
-                       role="error"
-                       location="/*:ClinicalDocument[namespace-uri()='urn:hl7-org:v3'][1]">
-      <svrl:text>(Lab2Zorg): element hl7:setId[not(@nullFlavor)] is mandatory [min 1x].</svrl:text>
-   </svrl:failed-assert>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:realmCode[@code = 'NL' or @nullFlavor]"
                     id="d3901e95-false-d4389e0"
                     fpi="RULC-1"/>
@@ -84,26 +78,23 @@
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:languageCode"
                     id="d3901e289-false-d4599e0"
                     fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:setId[not(@nullFlavor)]"
+                    id="d3901e313-false-d4612e0"
+                    fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:recordTarget[hl7:patientRole]"
                     id="d4636e181-false-d4644e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole[hl7:patient]"
                     id="d4636e183-false-d4668e0"
                     fpi="RULC-1"/>
-   <svrl:failed-assert test="count(hl7:addr) &gt;= 1"
-                       see="http://decor.nictiz.nl/pub/labuitwisseling/lu-html-20220405T135006/tmp-2.16.840.1.113883.2.4.3.11.60.121.10.52-2022-03-30T000000.html"
-                       role="error"
-                       location="/*:ClinicalDocument[namespace-uri()='urn:hl7-org:v3'][1]/*:recordTarget[namespace-uri()='urn:hl7-org:v3'][1]/*:patientRole[namespace-uri()='urn:hl7-org:v3'][1]">
-      <svrl:text>(Humanpatientrecordtarget): element hl7:addr is required [min 1x].</svrl:text>
-   </svrl:failed-assert>
-   <svrl:failed-assert test="count(hl7:telecom) &gt;= 1"
-                       see="http://decor.nictiz.nl/pub/labuitwisseling/lu-html-20220405T135006/tmp-2.16.840.1.113883.2.4.3.11.60.121.10.52-2022-03-30T000000.html"
-                       role="error"
-                       location="/*:ClinicalDocument[namespace-uri()='urn:hl7-org:v3'][1]/*:recordTarget[namespace-uri()='urn:hl7-org:v3'][1]/*:patientRole[namespace-uri()='urn:hl7-org:v3'][1]">
-      <svrl:text>(Humanpatientrecordtarget): element hl7:telecom is required [min 1x].</svrl:text>
-   </svrl:failed-assert>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole[hl7:patient]/hl7:id[@root = '2.16.840.1.113883.2.4.6.3']"
                     id="d4636e187-false-d4734e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole[hl7:patient]/hl7:addr"
+                    id="d4636e202-false-d4764e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole[hl7:patient]/hl7:telecom"
+                    id="d4636e211-false-d4777e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole[hl7:patient]/hl7:patient"
                     id="d4636e225-false-d4801e0"
@@ -129,59 +120,30 @@
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:author[hl7:assignedAuthor]/hl7:assignedAuthor"
                     id="d4935e21-false-d5008e0"
                     fpi="RULC-1"/>
-   <svrl:failed-assert test="count(hl7:telecom) &gt;= 1"
-                       see="http://decor.nictiz.nl/pub/labuitwisseling/lu-html-20220405T135006/tmp-1.3.6.1.4.1.19376.1.3.10.2.2-2016-07-05T000000.html"
-                       role="error"
-                       location="/*:ClinicalDocument[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]/*:assignedAuthor[namespace-uri()='urn:hl7-org:v3'][1]">
-      <svrl:text>(IHEHeaderAuthor): element hl7:telecom is required [min 1x].</svrl:text>
-   </svrl:failed-assert>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:author[hl7:assignedAuthor]/hl7:assignedAuthor/hl7:addr"
                     id="d4935e23-false-d5064e0"
                     fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:author[hl7:assignedAuthor]/hl7:assignedAuthor/hl7:telecom"
+                    id="d4935e31-false-d5077e0"
+                    fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:author[hl7:assignedAuthor]/hl7:assignedAuthor/hl7:representedOrganization"
                     fpi="RULC-1"/>
-   <svrl:failed-assert test="count(hl7:name) &gt;= 1"
-                       see="http://decor.nictiz.nl/pub/labuitwisseling/lu-html-20220405T135006/tmp-1.3.6.1.4.1.19376.1.3.10.9.13-2016-07-05T000000.html"
-                       role="error"
-                       location="/*:ClinicalDocument[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]/*:assignedAuthor[namespace-uri()='urn:hl7-org:v3'][1]/*:representedOrganization[namespace-uri()='urn:hl7-org:v3'][1]">
-      <svrl:text>(IHEOrganizationWithNameAddrTelecom): element hl7:name is required [min 1x].</svrl:text>
-   </svrl:failed-assert>
-   <svrl:failed-assert test="count(hl7:telecom) &gt;= 1"
-                       see="http://decor.nictiz.nl/pub/labuitwisseling/lu-html-20220405T135006/tmp-1.3.6.1.4.1.19376.1.3.10.9.13-2016-07-05T000000.html"
-                       role="error"
-                       location="/*:ClinicalDocument[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]/*:assignedAuthor[namespace-uri()='urn:hl7-org:v3'][1]/*:representedOrganization[namespace-uri()='urn:hl7-org:v3'][1]">
-      <svrl:text>(IHEOrganizationWithNameAddrTelecom): element hl7:telecom is required [min 1x].</svrl:text>
-   </svrl:failed-assert>
-   <svrl:failed-assert test="count(hl7:addr) &gt;= 1"
-                       see="http://decor.nictiz.nl/pub/labuitwisseling/lu-html-20220405T135006/tmp-1.3.6.1.4.1.19376.1.3.10.9.13-2016-07-05T000000.html"
-                       role="error"
-                       location="/*:ClinicalDocument[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]/*:assignedAuthor[namespace-uri()='urn:hl7-org:v3'][1]/*:representedOrganization[namespace-uri()='urn:hl7-org:v3'][1]">
-      <svrl:text>(IHEOrganizationWithNameAddrTelecom): element hl7:addr is required [min 1x].</svrl:text>
-   </svrl:failed-assert>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:author[hl7:assignedAuthor]/hl7:assignedAuthor/hl7:representedOrganization/hl7:name"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:author[hl7:assignedAuthor]/hl7:assignedAuthor/hl7:representedOrganization/hl7:telecom"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:author[hl7:assignedAuthor]/hl7:assignedAuthor/hl7:representedOrganization/hl7:addr"
+                    fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:author[hl7:assignedAuthor]/hl7:assignedAuthor/hl7:representedOrganization/hl7:asOrganizationPartOf"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:author[hl7:assignedAuthor]/hl7:assignedAuthor/hl7:representedOrganization/hl7:asOrganizationPartOf/hl7:wholeOrganization"
                     fpi="RULC-1"/>
-   <svrl:failed-assert test="count(hl7:telecom) &gt;= 1"
-                       see="http://decor.nictiz.nl/pub/labuitwisseling/lu-html-20220405T135006/tmp-1.3.6.1.4.1.19376.1.3.10.9.13-2016-07-05T000000.html"
-                       role="error"
-                       location="/*:ClinicalDocument[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]/*:assignedAuthor[namespace-uri()='urn:hl7-org:v3'][1]/*:representedOrganization[namespace-uri()='urn:hl7-org:v3'][1]/*:asOrganizationPartOf[namespace-uri()='urn:hl7-org:v3'][1]/*:wholeOrganization[namespace-uri()='urn:hl7-org:v3'][1]">
-      <svrl:text>(IHEOrganizationWithNameAddrTelecom): element hl7:telecom is required [min 1x].</svrl:text>
-   </svrl:failed-assert>
-   <svrl:failed-assert test="count(hl7:addr) &gt;= 1"
-                       see="http://decor.nictiz.nl/pub/labuitwisseling/lu-html-20220405T135006/tmp-1.3.6.1.4.1.19376.1.3.10.9.13-2016-07-05T000000.html"
-                       role="error"
-                       location="/*:ClinicalDocument[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]/*:assignedAuthor[namespace-uri()='urn:hl7-org:v3'][1]/*:representedOrganization[namespace-uri()='urn:hl7-org:v3'][1]/*:asOrganizationPartOf[namespace-uri()='urn:hl7-org:v3'][1]/*:wholeOrganization[namespace-uri()='urn:hl7-org:v3'][1]">
-      <svrl:text>(IHEOrganizationWithNameAddrTelecom): element hl7:addr is required [min 1x].</svrl:text>
-   </svrl:failed-assert>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:author[hl7:assignedAuthor]/hl7:assignedAuthor/hl7:representedOrganization/hl7:asOrganizationPartOf/hl7:wholeOrganization/hl7:name"
                     fpi="RULC-1"/>
-   <svrl:failed-assert test="@nullFlavor or * or string-length(normalize-space(string-join(text(),'')))&gt;0"
-                       see="https://art-decor.org/mediawiki/index.php?title=DTr1_EN"
-                       role="error"
-                       location="/*:ClinicalDocument[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]/*:assignedAuthor[namespace-uri()='urn:hl7-org:v3'][1]/*:representedOrganization[namespace-uri()='urn:hl7-org:v3'][1]/*:asOrganizationPartOf[namespace-uri()='urn:hl7-org:v3'][1]/*:wholeOrganization[namespace-uri()='urn:hl7-org:v3'][1]/*:name[namespace-uri()='urn:hl7-org:v3'][1]">
-      <svrl:text>dtr1-1.3-EN: entity name that is not null shall not be empty</svrl:text>
-   </svrl:failed-assert>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:author[hl7:assignedAuthor]/hl7:assignedAuthor/hl7:representedOrganization/hl7:asOrganizationPartOf/hl7:wholeOrganization/hl7:telecom"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:author[hl7:assignedAuthor]/hl7:assignedAuthor/hl7:representedOrganization/hl7:asOrganizationPartOf/hl7:wholeOrganization/hl7:addr"
+                    fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:custodian[hl7:assignedCustodian]"
                     id="d5396e11-false-d5404e0"
                     fpi="RULC-1"/>
@@ -191,17 +153,14 @@
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:custodian[hl7:assignedCustodian]/hl7:assignedCustodian[hl7:representedCustodianOrganization]/hl7:representedCustodianOrganization"
                     id="d5396e15-false-d5452e0"
                     fpi="RULC-1"/>
-   <svrl:failed-assert test="count(hl7:telecom) &gt;= 1"
-                       see="http://decor.nictiz.nl/pub/labuitwisseling/lu-html-20220405T135006/tmp-1.3.6.1.4.1.19376.1.3.10.2.3-2016-07-05T000000.html"
-                       role="error"
-                       location="/*:ClinicalDocument[namespace-uri()='urn:hl7-org:v3'][1]/*:custodian[namespace-uri()='urn:hl7-org:v3'][1]/*:assignedCustodian[namespace-uri()='urn:hl7-org:v3'][1]/*:representedCustodianOrganization[namespace-uri()='urn:hl7-org:v3'][1]">
-      <svrl:text>(IHEHeaderCustodian): element hl7:telecom is required [min 1x].</svrl:text>
-   </svrl:failed-assert>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:custodian[hl7:assignedCustodian]/hl7:assignedCustodian[hl7:representedCustodianOrganization]/hl7:representedCustodianOrganization/hl7:id[not(@nullFlavor)]"
                     id="d5396e17-false-d5516e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:custodian[hl7:assignedCustodian]/hl7:assignedCustodian[hl7:representedCustodianOrganization]/hl7:representedCustodianOrganization/hl7:name"
                     id="d5396e25-false-d5529e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:custodian[hl7:assignedCustodian]/hl7:assignedCustodian[hl7:representedCustodianOrganization]/hl7:representedCustodianOrganization/hl7:telecom"
+                    id="d5396e33-false-d5542e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:custodian[hl7:assignedCustodian]/hl7:assignedCustodian[hl7:representedCustodianOrganization]/hl7:representedCustodianOrganization/hl7:addr"
                     id="d5396e41-false-d5555e0"
@@ -212,12 +171,6 @@
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:component[hl7:structuredBody]/hl7:structuredBody[hl7:component]"
                     id="d3901e571-false-d6696e0"
                     fpi="RULC-1"/>
-   <svrl:failed-assert test="count(hl7:component[hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.52'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.1']]]) &gt;= 1"
-                       see="http://decor.nictiz.nl/pub/labuitwisseling/lu-html-20220405T135006/tmp-2.16.840.1.113883.2.4.3.11.60.25.10.51-2022-03-30T000000.html"
-                       role="error"
-                       location="/*:ClinicalDocument[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:structuredBody[namespace-uri()='urn:hl7-org:v3'][1]">
-      <svrl:text>(Lab2Zorg): element hl7:component[hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.52'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.1']]] is required [min 1x].</svrl:text>
-   </svrl:failed-assert>
    <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario5a-5a.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.121.10.51-2022-03-30T000000-closed"
                         name="Laboratory organizer or CDA"/>
@@ -229,6 +182,15 @@
                        role="warning"
                        location="/*:ClinicalDocument[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]/*:assignedAuthor[namespace-uri()='urn:hl7-org:v3'][1]/*:id[namespace-uri()='urn:hl7-org:v3'][1]">
       <svrl:text>(IHEHeaderAuthor)/d10076e21-true-d10148e0: dit element 'id' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: hl7:addr | hl7:telecom | hl7:assignedPerson | hl7:assignedAuthoringDevice | hl7:representedOrganization (rule-reference: d10076e21-true-d10148e0)</svrl:text>
+   </svrl:failed-assert>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:author[hl7:assignedAuthor]/hl7:assignedAuthor/hl7:representedOrganization/*[not(@xsi:nil = 'true')][not(self::hl7:name | self::hl7:telecom | self::hl7:addr | self::hl7:asOrganizationPartOf)]"
+                    id="d10076e58-true-d10247e0"
+                    fpi="RUL-QQQ"/>
+   <svrl:failed-assert test="not(.)"
+                       see="http://decor.nictiz.nl/pub/labuitwisseling/lu-html-20220405T135006/tmp-1.3.6.1.4.1.19376.1.3.10.2.2-2016-07-05T000000.html"
+                       role="warning"
+                       location="/*:ClinicalDocument[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]/*:assignedAuthor[namespace-uri()='urn:hl7-org:v3'][1]/*:representedOrganization[namespace-uri()='urn:hl7-org:v3'][1]/*:id[namespace-uri()='urn:hl7-org:v3'][1]">
+      <svrl:text>(IHEHeaderAuthor)/d10076e58-true-d10247e0: dit element 'id' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: hl7:name | hl7:telecom | hl7:addr | hl7:asOrganizationPartOf (rule-reference: d10076e58-true-d10247e0)</svrl:text>
    </svrl:failed-assert>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:author[hl7:assignedAuthor]/hl7:assignedAuthor/hl7:representedOrganization/*[not(@xsi:nil = 'true')][not(self::hl7:name | self::hl7:telecom | self::hl7:addr | self::hl7:asOrganizationPartOf)]"
                     id="d10076e58-true-d10247e0"
@@ -256,24 +218,6 @@
                        role="warning"
                        location="/*:ClinicalDocument[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]/*:assignedAuthor[namespace-uri()='urn:hl7-org:v3'][1]/*:representedOrganization[namespace-uri()='urn:hl7-org:v3'][1]/*:asOrganizationPartOf[namespace-uri()='urn:hl7-org:v3'][1]/*:wholeOrganization[namespace-uri()='urn:hl7-org:v3'][1]/*:standardIndustryClassCode[namespace-uri()='urn:hl7-org:v3'][1]">
       <svrl:text>(IHEHeaderAuthor)/d10219e30-true-d10309e0: dit element 'standardIndustryClassCode' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: hl7:name | hl7:telecom | hl7:addr (rule-reference: d10219e30-true-d10309e0)</svrl:text>
-   </svrl:failed-assert>
-   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/*[not(@xsi:nil = 'true')][not(self::hl7:realmCode[@code = 'NL' or @nullFlavor] | self::hl7:typeId[@root = '2.16.840.1.113883.1.3'][@extension = 'POCD_HD000040'] | self::hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] | self::hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] | self::hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001'] | self::hl7:id[not(@nullFlavor)] | self::hl7:code[concat(@code, @codeSystem) = doc('include/voc-1.3.6.1.4.1.19376.1.3.11.6-DYNAMIC.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or concat(@code, @codeSystem) = doc('include/voc-1.3.6.1.4.1.19376.1.3.11.1-DYNAMIC.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem)] | self::hl7:title | self::hl7:effectiveTime | self::hl7:confidentialityCode[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.1.11.16926-DYNAMIC.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor] | self::hl7:languageCode | self::hl7:setId[not(@nullFlavor)] | self::hl7:versionNumber | self::hl7:recordTarget[hl7:patientRole] | self::hl7:recordTarget[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.1.2']] | self::hl7:recordTarget[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.1.3']] | self::hl7:author[hl7:assignedAuthor] | self::hl7:custodian[hl7:assignedCustodian] | self::hl7:informationRecipient[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.1.4']] | self::hl7:legalAuthenticator[hl7:signatureCode[@code = 'S' or @nullFlavor]] | self::hl7:authenticator[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.1.5']] | self::hl7:participant[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.1.6']] | self::hl7:inFulfillmentOf[hl7:order] | self::hl7:documentationOf[hl7:serviceEvent] | self::hl7:relatedDocument[@typeCode = 'RPLC'][hl7:parentDocument] | self::hl7:componentOf[hl7:encompassingEncounter] | self::hl7:component[hl7:structuredBody])]"
-                    id="d9370e93-true-d9650e0"
-                    fpi="RUL-QQQ"/>
-   <svrl:failed-assert test="not(.)"
-                       see="http://decor.nictiz.nl/pub/labuitwisseling/lu-html-20220405T135006/tmp-2.16.840.1.113883.2.4.3.11.60.25.10.51-2022-03-30T000000.html"
-                       role="warning"
-                       location="/*:ClinicalDocument[namespace-uri()='urn:hl7-org:v3'][1]/*:participant[namespace-uri()='urn:hl7-org:v3'][1]">
-      <svrl:text>(Lab2Zorg)/d9370e93-true-d9650e0: dit element 'participant' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: hl7:realmCode[@code = 'NL' or @nullFlavor] | hl7:typeId[@root = '2.16.840.1.113883.1.3'][@extension = 'POCD_HD000040'] | hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] | hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] | hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001'] | hl7:id[not(@nullFlavor)] | hl7:code[concat(@code, @codeSystem) = doc('include/voc-1.3.6.1.4.1.19376.1.3.11.6-DYNAMIC.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or concat(@code, @codeSystem) = doc('include/voc-1.3.6.1.4.1.19376.1.3.11.1-DYNAMIC.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem)] | hl7:title | hl7:effectiveTime | hl7:confidentialityCode[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.1.11.16926-DYNAMIC.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor] | hl7:languageCode | hl7:setId[not(@nullFlavor)] | hl7:versionNumber | hl7:recordTarget[hl7:patientRole] | hl7:recordTarget[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.1.2']] | hl7:recordTarget[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.1.3']] | hl7:author[hl7:assignedAuthor] | hl7:custodian[hl7:assignedCustodian] | hl7:informationRecipient[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.1.4']] | hl7:legalAuthenticator[hl7:signatureCode[@code = 'S' or @nullFlavor]] | hl7:authenticator[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.1.5']] | hl7:participant[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.1.6']] | hl7:inFulfillmentOf[hl7:order] | hl7:documentationOf[hl7:serviceEvent] | hl7:relatedDocument[@typeCode = 'RPLC'][hl7:parentDocument] | hl7:componentOf[hl7:encompassingEncounter] | hl7:component[hl7:structuredBody] (rule-reference: d9370e93-true-d9650e0)</svrl:text>
-   </svrl:failed-assert>
-   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:component[hl7:structuredBody]/hl7:structuredBody[hl7:component]/*[not(@xsi:nil = 'true')][not(self::hl7:component[hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.52'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.1']]])]"
-                    id="d9370e571-true-d11805e0"
-                    fpi="RUL-QQQ"/>
-   <svrl:failed-assert test="not(.)"
-                       see="http://decor.nictiz.nl/pub/labuitwisseling/lu-html-20220405T135006/tmp-2.16.840.1.113883.2.4.3.11.60.25.10.51-2022-03-30T000000.html"
-                       role="warning"
-                       location="/*:ClinicalDocument[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:structuredBody[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]">
-      <svrl:text>(Lab2Zorg)/d9370e571-true-d11805e0: dit element 'component' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: hl7:component[hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.52'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.1']]] (rule-reference: d9370e571-true-d11805e0)</svrl:text>
    </svrl:failed-assert>
    <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario5a-5a.xml"
                         id="template-1.3.6.1.4.1.19376.1.3.1.1-2008-08-08T000000"
@@ -353,6 +297,21 @@
    <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario5a-5a.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.25.10.52-2022-03-30T000000"
                         name="Laboratory Specialty Section NL"/>
+   <svrl:fired-rule context="*[hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.52'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.1']]]/hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.52'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.1']]"
+                    id="d40e16864-false-d1382605e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.52'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.1']]]/hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.52'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.1']]/hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.52']"
+                    id="d40e16866-false-d1382968e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.52'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.1']]]/hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.52'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.1']]/hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.1']"
+                    id="d40e16871-false-d1382987e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.52'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.1']]]/hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.52'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.1']]/hl7:code[concat(@code, @codeSystem) = doc('include/voc-1.3.6.1.4.1.19376.1.3.11.1-DYNAMIC.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem)]"
+                    id="d40e16878-false-d1383021e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.52'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.1']]]/hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.52'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.1']]/hl7:title"
+                    id="d40e17130-false-d1383097e0"
+                    fpi="RULC-1"/>
    <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario5a-5a.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.25.10.53-2022-03-30T000000"
                         name="Laboratory Report Data Processing Entry NL"/>
@@ -371,22 +330,37 @@
    <svrl:fired-rule context="*[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.53'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1']]/hl7:act[hl7:statusCode[@code = 'completed' or @code = 'active' or @code = 'aborted']]/hl7:code[not(@nullFlavor)]"
                     id="d40e17328-false-d1384585e0"
                     fpi="RULC-1"/>
-   <svrl:failed-assert test="@nullFlavor or @code or (hl7:originalText and not(hl7:originalText/@nullFlavor))"
-                       see="https://art-decor.org/mediawiki/index.php?title=DTr1_CD"
-                       role="error"
-                       location="/*:ClinicalDocument[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:structuredBody[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:section[namespace-uri()='urn:hl7-org:v3'][1]/*:entry[namespace-uri()='urn:hl7-org:v3'][1]/*:act[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
-      <svrl:text>dtr1-1-CD: null or code and/or originalText</svrl:text>
-   </svrl:failed-assert>
    <svrl:fired-rule context="*[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.53'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1']]/hl7:act[hl7:statusCode[@code = 'completed' or @code = 'active' or @code = 'aborted']]/hl7:statusCode[@code = 'completed' or @code = 'active' or @code = 'aborted']"
                     id="d40e17336-false-d1384598e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.53'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1']]/hl7:act[hl7:statusCode[@code = 'completed' or @code = 'active' or @code = 'aborted']]/hl7:entryRelationship[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]]"
                     fpi="RULC-1"/>
-   <svrl:fired-rule context="*[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.53'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1']]/hl7:act[hl7:statusCode[@code = 'completed' or @code = 'active' or @code = 'aborted']]/hl7:entryRelationship[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]]"
+   <svrl:fired-rule context="*[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.53'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1']]/hl7:act[hl7:statusCode[@code = 'completed' or @code = 'active' or @code = 'aborted']]/hl7:entryRelationship[hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.2'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.4']]]"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.53'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1']]/hl7:act[hl7:statusCode[@code = 'completed' or @code = 'active' or @code = 'aborted']]/hl7:entryRelationship[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9200']]]"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.53'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1']]/hl7:act[hl7:statusCode[@code = 'completed' or @code = 'active' or @code = 'aborted']]/hl7:entryRelationship[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.53']]]"
                     fpi="RULC-1"/>
    <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario5a-5a.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.25.10.54-2022-03-30T000000"
                         name="Laboratory Report Item Section NL"/>
+   <svrl:fired-rule context="*[hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.54'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.2']]]/hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.54'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.2']]"
+                    id="d40e17592-false-d1385676e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.54'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.2']]]/hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.54'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.2']]/hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.54']"
+                    id="d40e17594-false-d1385873e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.54'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.2']]]/hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.54'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.2']]/hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.2']"
+                    id="d40e17599-false-d1385892e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.54'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.2']]]/hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.54'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.2']]/hl7:code[not(@nullFlavor)]"
+                    id="d40e17606-false-d1385924e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.54'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.2']]]/hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.54'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.2']]/hl7:text[not(@nullFlavor)]"
+                    id="d40e17618-false-d1385965e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.54'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.2']]]/hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.54'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.2']]/hl7:entry[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.53'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1']]"
+                    fpi="RULC-1"/>
    <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario5a-5a.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.3.10.0.9-2018-06-11T000000"
                         name="scoping Entity"/>
@@ -396,6 +370,29 @@
    <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario5a-5a.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.7.10.2-2022-03-30T000000"
                         name="Laboratory Battery Organizer NL (Specimen)"/>
+   <svrl:fired-rule context="*[hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.2'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.4']]]/hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.2'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.4']]"
+                    id="d40e21650-false-d1535928e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.2'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.4']]]/hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.2'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.4']]/hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.2']"
+                    id="d40e21656-false-d1536136e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.2'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.4']]]/hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.2'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.4']]/hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.4']"
+                    id="d40e21667-false-d1536155e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.2'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.4']]]/hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.2'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.4']]/hl7:code[@codeSystem = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.13.1.5-2020-09-01T000000.xml')//valueSet[1]/completeCodeSystem/@codeSystem or @nullFlavor]"
+                    id="d40e21688-false-d1536189e0"
+                    fpi="RULC-1"/>
+   <svrl:failed-assert test="@nullFlavor or @code or (hl7:originalText and not(hl7:originalText/@nullFlavor))"
+                       see="https://art-decor.org/mediawiki/index.php?title=DTr1_CD"
+                       role="error"
+                       location="/*:ClinicalDocument[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:structuredBody[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:section[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:section[namespace-uri()='urn:hl7-org:v3'][1]/*:entry[namespace-uri()='urn:hl7-org:v3'][1]/*:act[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][2]/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
+      <svrl:text>dtr1-1-CD: null or code and/or originalText</svrl:text>
+   </svrl:failed-assert>
+   <svrl:fired-rule context="*[hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.2'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.4']]]/hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.2'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.4']]/hl7:statusCode[@code = 'completed' or @code = 'active' or @code = 'aborted']"
+                    id="d40e21716-false-d1536241e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.2'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.4']]]/hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.2'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.4']]/hl7:component[hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31']]"
+                    fpi="RULC-1"/>
    <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario5a-5a.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.7.10.3-2017-10-16T000000"
                         name="Specimen Collection HCIM"/>
@@ -429,7 +426,7 @@
    <svrl:failed-assert test="@nullFlavor or @code or (hl7:originalText and not(hl7:originalText/@nullFlavor))"
                        see="https://art-decor.org/mediawiki/index.php?title=DTr1_CD"
                        role="error"
-                       location="/*:ClinicalDocument[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:structuredBody[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:section[namespace-uri()='urn:hl7-org:v3'][1]/*:entry[namespace-uri()='urn:hl7-org:v3'][1]/*:act[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][1]/*:procedure[namespace-uri()='urn:hl7-org:v3'][1]/*:participant[namespace-uri()='urn:hl7-org:v3'][1]/*:participantRole[namespace-uri()='urn:hl7-org:v3'][1]/*:playingEntity[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
+                       location="/*:ClinicalDocument[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:structuredBody[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:section[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:section[namespace-uri()='urn:hl7-org:v3'][1]/*:entry[namespace-uri()='urn:hl7-org:v3'][1]/*:act[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][1]/*:procedure[namespace-uri()='urn:hl7-org:v3'][1]/*:participant[namespace-uri()='urn:hl7-org:v3'][1]/*:participantRole[namespace-uri()='urn:hl7-org:v3'][1]/*:playingEntity[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
       <svrl:text>dtr1-1-CD: null or code and/or originalText</svrl:text>
    </svrl:failed-assert>
    <svrl:fired-rule context="*[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]]/hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]/hl7:participant[@typeCode = 'SBJ'][hl7:participantRole[@classCode = 'CONT']]"
@@ -441,19 +438,13 @@
    <svrl:fired-rule context="*[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]]/hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]/hl7:participant[@typeCode = 'SBJ'][hl7:participantRole[@classCode = 'CONT']]/hl7:participantRole/hl7:playingEntity"
                     id="d40e22365-false-d1538102e0"
                     fpi="RULC-1"/>
-   <svrl:failed-assert test="string(@classCode) = ('CONT')"
-                       see="http://decor.nictiz.nl/pub/labuitwisseling/lu-html-20220405T135006/tmp-2.16.840.1.113883.2.4.3.11.60.7.10.3-2017-10-16T000000.html"
-                       role="error"
-                       location="/*:ClinicalDocument[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:structuredBody[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:section[namespace-uri()='urn:hl7-org:v3'][1]/*:entry[namespace-uri()='urn:hl7-org:v3'][1]/*:act[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][1]/*:procedure[namespace-uri()='urn:hl7-org:v3'][1]/*:participant[namespace-uri()='urn:hl7-org:v3'][2]/*:participantRole[namespace-uri()='urn:hl7-org:v3'][1]/*:playingEntity[namespace-uri()='urn:hl7-org:v3'][1]">
-      <svrl:text>(SpecimenCollectionHCIM): de waarde van classCode MOET 'CONT' zijn. Gevonden: ""</svrl:text>
-   </svrl:failed-assert>
    <svrl:fired-rule context="*[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]]/hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]/hl7:participant[@typeCode = 'SBJ'][hl7:participantRole[@classCode = 'CONT']]/hl7:participantRole/hl7:playingEntity/hl7:code"
                     id="d40e22369-false-d1538136e0"
                     fpi="RULC-1"/>
    <svrl:failed-assert test="@nullFlavor or @code or (hl7:originalText and not(hl7:originalText/@nullFlavor))"
                        see="https://art-decor.org/mediawiki/index.php?title=DTr1_CD"
                        role="error"
-                       location="/*:ClinicalDocument[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:structuredBody[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:section[namespace-uri()='urn:hl7-org:v3'][1]/*:entry[namespace-uri()='urn:hl7-org:v3'][1]/*:act[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][1]/*:procedure[namespace-uri()='urn:hl7-org:v3'][1]/*:participant[namespace-uri()='urn:hl7-org:v3'][2]/*:participantRole[namespace-uri()='urn:hl7-org:v3'][1]/*:playingEntity[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
+                       location="/*:ClinicalDocument[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:structuredBody[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:section[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:section[namespace-uri()='urn:hl7-org:v3'][1]/*:entry[namespace-uri()='urn:hl7-org:v3'][1]/*:act[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][1]/*:procedure[namespace-uri()='urn:hl7-org:v3'][1]/*:participant[namespace-uri()='urn:hl7-org:v3'][2]/*:participantRole[namespace-uri()='urn:hl7-org:v3'][1]/*:playingEntity[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
       <svrl:text>dtr1-1-CD: null or code and/or originalText</svrl:text>
    </svrl:failed-assert>
    <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario5a-5a.xml"

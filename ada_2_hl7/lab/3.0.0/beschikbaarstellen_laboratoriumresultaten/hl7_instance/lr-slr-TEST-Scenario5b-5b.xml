@@ -16,7 +16,7 @@
          displayName="Laboratory studies"
          codeSystem="2.16.840.1.113883.6.1"
          codeSystemName="LOINC"/>
-   <statusCode nullFlavor="NI"/>
+   <statusCode code="completed"/>
    <recordTarget>
       <patientRole>
          <id extension="999999114" root="2.16.840.1.113883.2.4.6.3"/>
@@ -33,6 +33,7 @@
    </recordTarget>
    <participant typeCode="CST">
       <participantRole classCode="ASSIGNED">
+         <id nullFlavor="NI"/>
          <code code="0100"
                codeSystem="2.16.840.1.113883.2.4.6.7"
                displayName="Huisartsen, niet nader gespecificeerd"
@@ -54,15 +55,26 @@
       </participantRole>
    </participant>
    <component typeCode="COMP">
-      <observation classCode="OBS" moodCode="EVN">
-         <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.31"/>
-         <templateId root="1.3.6.1.4.1.19376.1.3.1.6"/>
-         <id extension="99999" nullFlavor="UNC"/>
-         <code xsi:type="CD"
-               code="14631-6"
+      <templateId root="2.16.840.1.113883.2.4.3.11.60.25.10.53"/>
+      <templateId root="1.3.6.1.4.1.19376.1.3.1"/>
+      <act classCode="ACT" moodCode="EVN">
+         <code code="26436-6"
                codeSystem="2.16.840.1.113883.6.1"
-               displayName="Bilirubine [mol/volume] in serum of plasma"/>
-         <statusCode code="active"/>
+               codeSystemName="LOINC"
+               displayName="LABORATORY STUDIES"/>
+         <statusCode code="completed"/>
+         <entryRelationship typeCode="COMP">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.31"/>
+               <templateId root="1.3.6.1.4.1.19376.1.3.1.6"/>
+               <id extension="99999" nullFlavor="UNC"/>
+               <code xsi:type="CD"
+                     code="14631-6"
+                     codeSystem="2.16.840.1.113883.6.1"
+                     displayName="Bilirubine [mol/volume] in serum of plasma"/>
+               <statusCode code="active"/>
+            </observation>
+         </entryRelationship>
          <entryRelationship typeCode="COMP">
             <observation classCode="OBS" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9200"/>
@@ -81,6 +93,6 @@
                <value xsi:type="ST">111777</value>
             </observation>
          </entryRelationship>
-      </observation>
+      </act>
    </component>
 </organizer>

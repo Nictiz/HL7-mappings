@@ -16,7 +16,7 @@
          displayName="Laboratory studies"
          codeSystem="2.16.840.1.113883.6.1"
          codeSystemName="LOINC"/>
-   <statusCode nullFlavor="NI"/>
+   <statusCode code="completed"/>
    <recordTarget>
       <patientRole>
          <id extension="999999114" root="2.16.840.1.113883.2.4.6.3"/>
@@ -33,6 +33,7 @@
    </recordTarget>
    <participant typeCode="CST">
       <participantRole classCode="ASSIGNED">
+         <id nullFlavor="NI"/>
          <code code="0100"
                codeSystem="2.16.840.1.113883.2.4.6.7"
                displayName="Huisartsen, niet nader gespecificeerd"
@@ -54,48 +55,172 @@
       </participantRole>
    </participant>
    <component typeCode="COMP">
-      <observation classCode="OBS" moodCode="EVN">
-         <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.31"/>
-         <templateId root="1.3.6.1.4.1.19376.1.3.1.6"/>
-         <id extension="88888" nullFlavor="UNC"/>
-         <code xsi:type="CD"
-               code="2829-0"
-               codeSystem="2.16.840.1.113883.2.4.4.30.45"
-               displayName="Kalium [mol/tijdeenheid] in 24-uursurine"/>
+      <templateId root="2.16.840.1.113883.2.4.3.11.60.25.10.53"/>
+      <templateId root="1.3.6.1.4.1.19376.1.3.1"/>
+      <act classCode="ACT" moodCode="EVN">
+         <code code="26436-6"
+               codeSystem="2.16.840.1.113883.6.1"
+               codeSystemName="LOINC"
+               displayName="LABORATORY STUDIES"/>
          <statusCode code="completed"/>
-         <effectiveTime value="20211222"/>
-         <value xsi:type="PQ" value="30" unit="mmol/(24.h)"/>
-         <interpretationCode code="L"
-                             codeSystem="2.16.840.1.113883.5.83"
-                             displayName="Onder referentiewaarde">
-            <translation code="281300000"
-                         codeSystem="2.16.840.1.113883.6.96"
-                         displayName="Onder referentiewaarde"/>
-         </interpretationCode>
-         <interpretationCode code="30"
-                             codeSystem="2.16.840.1.113883.4.642.3.59"
-                             displayName="30"/>
-         <entryRelationship typeCode="COMP">
-            <act classCode="ACT" moodCode="EVN">
-               <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.2"/>
-               <code code="48767-8"
-                     displayName="Annotation Comment"
-                     codeSystem="2.16.840.1.113883.6.1"
-                     codeSystemName="LOINC"/>
-               <text xsi:type="ST">Lager dan referentiebereik.</text>
-               <statusCode code="completed"/>
-            </act>
-         </entryRelationship>
+         <performer typeCode="PRF">
+            <templateId root="1.3.6.1.4.1.19376.1.3.3.1.7"/>
+            <time nullFlavor="NI"/>
+            <assignedEntity classCode="ASSIGNED">
+               <id nullFlavor="NI"/>
+               <code code="5000"
+                     codeSystem="2.16.840.1.113883.2.4.6.7"
+                     displayName="Laboratoria"
+                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <addr>
+                  <streetName>Hoofdstraat</streetName>
+                  <houseNumber>23</houseNumber>
+                  <postalCode>2143 AA</postalCode>
+                  <city>Zorgstad</city>
+               </addr>
+               <telecom use="WP" value="tel:06-11122233"/>
+               <telecom use="WP" value="mailto:tproefje@lab.nl"/>
+               <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                  <name nullFlavor="UNK"/>
+                  <asOrganizationPartOf>
+                     <id extension="00003333" root="2.16.528.1.1007.3.1"/>
+                     <code code="L1"
+                           codeSystem="2.16.840.1.113883.2.4.15.1060"
+                           displayName="Laboratorium"/>
+                     <wholeOrganization>
+                        <name>Klinisch chemisch Lab 't Proefje</name>
+                        <telecom nullFlavor="UNK"/>
+                        <addr nullFlavor="UNK"/>
+                     </wholeOrganization>
+                  </asOrganizationPartOf>
+               </representedOrganization>
+            </assignedEntity>
+         </performer>
          <entryRelationship typeCode="COMP">
             <observation classCode="OBS" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.121.10.54"/>
-               <code code="92236-9"
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.121.10.55"/>
+               <code code="92235-1"
                      codeSystem="2.16.840.1.113883.6.1"
-                     displayName="Lab observation result status"/>
+                     displayName="Lab order result status"/>
                <value xsi:type="CV"
                       code="final"
                       codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
                       displayName="Definitief"/>
+            </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <procedure classCode="PROC" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3"/>
+               <templateId root="1.3.6.1.4.1.19376.1.3.1.2"/>
+               <code code="33882-2"
+                     codeSystem="2.16.840.1.113883.6.1"
+                     codeSystemName="LOINC"
+                     displayName="Specimen Collection"/>
+               <effectiveTime>
+                  <low value="20211222103000"/>
+                  <high value="20211223103000"/>
+               </effectiveTime>
+               <participant typeCode="PRD">
+                  <participantRole classCode="SPEC">
+                     <id extension="335" nullFlavor="UNC"/>
+                     <playingEntity>
+                        <code xsi:type="CE"
+                              code="276833005"
+                              codeSystem="2.16.840.1.113883.6.96"
+                              displayName="24-uursurine"
+                              codeSystemName="SNOMED Clinical Terms"/>
+                        <quantity xsi:type="PQ" value="1.75" unit="l"/>
+                     </playingEntity>
+                  </participantRole>
+               </participant>
+               <participant typeCode="SBJ">
+                  <participantRole classCode="CONT">
+                     <id extension="3351" nullFlavor="UNC"/>
+                     <playingEntity classCode="CONT">
+                        <code xsi:type="CE"
+                              code="706055000"
+                              codeSystem="2.16.840.1.113883.6.96"
+                              displayName="container voor 24-uursurine"
+                              codeSystemName="SNOMED Clinical Terms"/>
+                     </playingEntity>
+                  </participantRole>
+               </participant>
+               <entryRelationship typeCode="COMP">
+                  <act classCode="ACT" moodCode="EVN">
+                     <templateId root="1.3.6.1.4.1.19376.1.3.1.3"/>
+                     <code code="SPRECEIVE"
+                           codeSystem="1.3.5.1.4.1.19376.1.5.3.2"
+                           codeSystemName="IHEActCode"
+                           displayName="monster ontvangen"/>
+                     <effectiveTime value="20211223113000"/>
+                  </act>
+               </entryRelationship>
+               <entryRelationship typeCode="COMP">
+                  <act classCode="ACT" moodCode="EVN">
+                     <templateId root="2.16.840.1.113883.10.20.1.40"/>
+                     <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.2"/>
+                     <code code="48767-8"
+                           displayName="Annotation Comment"
+                           codeSystem="2.16.840.1.113883.6.1"
+                           codeSystemName="LOINC"/>
+                     <text>Monster is door patiënt zelf verzameld en ingeleverd.</text>
+                     <statusCode code="completed"/>
+                  </act>
+               </entryRelationship>
+            </procedure>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.31"/>
+               <templateId root="1.3.6.1.4.1.19376.1.3.1.6"/>
+               <id extension="88888" nullFlavor="UNC"/>
+               <code xsi:type="CD"
+                     code="2829-0"
+                     codeSystem="2.16.840.1.113883.2.4.4.30.45"
+                     displayName="Kalium [mol/tijdeenheid] in 24-uursurine"/>
+               <statusCode code="completed"/>
+               <effectiveTime value="20211222"/>
+               <value xsi:type="PQ" value="30" unit="mmol/(24.h)"/>
+               <interpretationCode code="L"
+                                   codeSystem="2.16.840.1.113883.5.83"
+                                   displayName="Onder referentiewaarde">
+                  <translation code="281300000"
+                               codeSystem="2.16.840.1.113883.6.96"
+                               displayName="Onder referentiewaarde"/>
+               </interpretationCode>
+               <entryRelationship typeCode="COMP">
+                  <act classCode="ACT" moodCode="EVN">
+                     <templateId root="2.16.840.1.113883.10.20.1.40"/>
+                     <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.2"/>
+                     <code code="48767-8"
+                           displayName="Annotation Comment"
+                           codeSystem="2.16.840.1.113883.6.1"
+                           codeSystemName="LOINC"/>
+                     <text>Lager dan referentiebereik.</text>
+                     <statusCode code="completed"/>
+                  </act>
+               </entryRelationship>
+               <entryRelationship typeCode="COMP">
+                  <observation classCode="OBS" moodCode="EVN">
+                     <templateId root="2.16.840.1.113883.2.4.3.11.60.121.10.54"/>
+                     <code code="92236-9"
+                           codeSystem="2.16.840.1.113883.6.1"
+                           displayName="Lab observation result status"/>
+                     <value xsi:type="CV"
+                            code="final"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
+                            displayName="Definitief"/>
+                  </observation>
+               </entryRelationship>
+               <referenceRange typeCode="REFV">
+                  <observationRange classCode="OBS" moodCode="EVN.CRT">
+                     <value xsi:type="IVL_PQ">
+                        <low value="40" unit="mmol/(24.h)"/>
+                        <high value="60" unit="mmol/(24.h)"/>
+                     </value>
+                  </observationRange>
+               </referenceRange>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
@@ -116,14 +241,6 @@
                <value xsi:type="ST">111666</value>
             </observation>
          </entryRelationship>
-         <referenceRange typeCode="REFV">
-            <observationRange classCode="OBS" moodCode="EVN.CRT">
-               <value xsi:type="IVL_PQ">
-                  <low value="40" unit="mmol/(24.h)"/>
-                  <high value="60" unit="mmol/(24.h)"/>
-               </value>
-            </observationRange>
-         </referenceRange>
-      </observation>
+      </act>
    </component>
 </organizer>

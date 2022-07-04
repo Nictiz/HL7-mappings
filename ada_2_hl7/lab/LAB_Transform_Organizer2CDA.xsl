@@ -14,8 +14,8 @@
         <xd:desc>Start template when called from outside</xd:desc>
     </xd:doc>
     <xsl:template match="/">
-        <xsl:copy>
-            <xsl:apply-templates select="@* | node()" mode="organizer2CDA"/>
+        <xsl:copy copy-namespaces="no">
+            <xsl:apply-templates select="@* | node()" mode="organizer2CDA" />
         </xsl:copy>
     </xsl:template>
 
@@ -80,7 +80,9 @@
             <effectiveTime value="{$hl7DocDate}"/>
             <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="normal"/>
             <languageCode code="nl-NL"/>
-            <xsl:copy-of select="./hl7:recordTarget" copy-namespaces="no"/>
+            <!-- Use the template id to make a unique root for document setId -->
+            <setId extension="{uuid:get-uuid(.)}" root="{concat(hl7:templateId[1]/@root, '.1.2.3.999')}"/>
+            <xsl:apply-templates select="hl7:recordTarget" mode="organizer2CDA"/>
             <xsl:apply-templates select="hl7:participant[@typeCode = 'CST']" mode="cdaAuthor"/>
             <!-- custodian, the organization of the author -->
             <custodian>
@@ -96,13 +98,26 @@
                                     </name>
                                 </xsl:if>
                                 <xsl:copy-of select="hl7:participant[@typeCode = 'CST']/hl7:participantRole/hl7:telecom[1]" copy-namespaces="no"/>
+                                <xsl:if test="empty(hl7:participant[@typeCode = 'CST']/hl7:participantRole/hl7:telecom)">
+                                    <telecom nullFlavor="UNK"/>
+                                </xsl:if>
                                 <xsl:copy-of select="hl7:participant[@typeCode = 'CST']/hl7:participantRole/hl7:addr[1]" copy-namespaces="no"/>
+                                <xsl:if test="empty(hl7:participant[@typeCode = 'CST']/hl7:participantRole/hl7:addr)">
+                                    <addr nullFlavor="UNK"/>
+                                </xsl:if>
+                                
                             </xsl:when>
                             <xsl:when test="hl7:participant[@typeCode = 'CST']/hl7:participantRole/hl7:id">
                                 <xsl:copy-of select="hl7:participant[@typeCode = 'CST']/hl7:participantRole/hl7:id" copy-namespaces="no"/>
                                 <xsl:copy-of select="hl7:participant[@typeCode = 'CST']/hl7:participantRole/hl7:playingEntity/hl7:name" copy-namespaces="no"/>
                                 <xsl:copy-of select="hl7:participant[@typeCode = 'CST']/hl7:participantRole/hl7:telecom[1]" copy-namespaces="no"/>
+                                <xsl:if test="empty(hl7:participant[@typeCode = 'CST']/hl7:participantRole/hl7:telecom)">
+                                    <telecom nullFlavor="UNK"/>
+                                </xsl:if>
                                 <xsl:copy-of select="hl7:participant[@typeCode = 'CST']/hl7:participantRole/hl7:addr[1]" copy-namespaces="no"/>
+                                <xsl:if test="empty(hl7:participant[@typeCode = 'CST']/hl7:participantRole/hl7:addr)">
+                                    <addr nullFlavor="UNK"/>
+                                </xsl:if>
                             </xsl:when>
                             <xsl:otherwise>
                                 <!-- ouch, lets add an id element with a nullFlavor, even though the schematron does not like that either... -->
@@ -112,15 +127,197 @@
                     </representedCustodianOrganization>
                 </assignedCustodian>
             </custodian>
-            <xsl:apply-templates select="hl7:participant" mode="organizer2CDA"/>
+            <xsl:apply-templates select="hl7:participant[not(@typeCode = 'CST')]" mode="organizer2CDA"/>
             <component>
                 <structuredBody>
-                    <component>
-                        <section>
-                            <text>Laboratoriumgegevens</text>
-                            <xsl:apply-templates select="comment() | hl7:component" mode="organizer2CDA"/>
-                        </section>
-                    </component>
+                    <xsl:for-each select="hl7:component[hl7:templateId[@root='2.16.840.1.113883.2.4.3.11.60.25.10.53']]">
+                        <component>
+                            <xsl:comment> Laboratory Specialty Section NL </xsl:comment>
+                            <section>
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.25.10.52"/>
+                                <templateId root="1.3.6.1.4.1.19376.1.3.3.2.1"/>
+                                <code code="26436-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="LABORATORY STUDIES"/>
+                                <title>Laboratoriumonderzoek</title>
+                                <component>
+                                    <xsl:comment> Laboratory Report Item Section NL </xsl:comment>
+                                    <section>
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.25.10.54"/>
+                                        <templateId root="1.3.6.1.4.1.19376.1.3.3.2.2"/>
+                                        <xsl:copy-of select="hl7:act/hl7:code" copy-namespaces="no"/>
+                                        <text>
+                                            <paragraph>
+                                                <xsl:choose>
+                                                    <xsl:when test="hl7:act/hl7:code/@displayName">
+                                                        <xsl:value-of select="hl7:act/hl7:code/@displayName"/>
+                                                    </xsl:when>
+                                                    <xsl:otherwise>
+                                                        <xsl:text>Laboratoriumresultaten</xsl:text>
+                                                    </xsl:otherwise>
+                                                </xsl:choose>
+                                                <xsl:for-each select=".//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.2']]/hl7:code">
+                                                    <xsl:text>, </xsl:text>
+                                                    <xsl:value-of select="(@displayName, hl7:originalText, concat(@code, ' - ', @codeSystem))[1]"/>
+                                                </xsl:for-each>
+                                                <xsl:for-each select=".//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.4']]/hl7:specimen/hl7:specimenRole/hl7:specimenPlayingEntity/hl7:code">
+                                                    <xsl:text>, micro-organisme </xsl:text>
+                                                    <xsl:value-of select="(@displayName, hl7:originalText, concat(@code, ' - ', @codeSystem))[1]"/>
+                                                </xsl:for-each>
+                                                <xsl:for-each select="hl7:act/hl7:entryRelationship/hl7:procedure/hl7:participant[@typeCode='PRD']/hl7:participantRole/hl7:playingEntity/hl7:code">
+                                                    <xsl:text>, van materiaal </xsl:text>
+                                                    <xsl:value-of select="(@displayName, hl7:originalText, concat(@code, ' - ', @codeSystem))[1]"/>
+                                                </xsl:for-each>
+                                                <xsl:for-each select="hl7:act/hl7:performer/hl7:assignedEntity/hl7:representedOrganization/hl7:name">
+                                                    <xsl:text>, door </xsl:text>
+                                                    <xsl:value-of select="."/>
+                                                </xsl:for-each>
+                                            </paragraph>
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Test</td>
+                                                        <td>Code</td>
+                                                        <td>Datum</td>
+                                                        <td>Status</td>
+                                                        <td>Resultaat</td>
+                                                        <td>Interpretatie</td>
+                                                        <td>Opmerking</td>
+                                                    </tr>
+                                                    <xsl:for-each select="hl7:act//hl7:entryRelationship/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31']]">
+                                                        <xsl:variable name="abnormal" select="exists(hl7:interpretationCode[@code = ('H', 'L', '281302008', '281300000')] | hl7:interpetationCode[@codeSystem = '2.16.840.1.113883.4.642.3.59'])"/>
+                                                        <tr>
+                                                            <td><xsl:value-of select="hl7:code/@displayName"/></td>
+                                                            <td>
+                                                                <xsl:for-each select="hl7:code | hl7:code/hl7:translation">
+                                                                    <xsl:value-of select="@code"/>
+                                                                    <xsl:choose>
+                                                                        <xsl:when test="@codeSystem = '2.16.840.1.113883.2.4.4.30.45'">
+                                                                            <xsl:text> NHG</xsl:text>
+                                                                        </xsl:when>
+                                                                        <xsl:when test="@codeSystem = '2.16.840.1.113883.6.1'">
+                                                                            <xsl:text> LOINC</xsl:text>
+                                                                        </xsl:when>
+                                                                        <xsl:otherwise>
+                                                                            <xsl:value-of select="@codeSystem"/>
+                                                                            <xsl:text> </xsl:text>
+                                                                        </xsl:otherwise>
+                                                                    </xsl:choose>
+                                                                    <xsl:if test="position() != last()">
+                                                                        <br/>
+                                                                    </xsl:if>
+                                                                </xsl:for-each>
+                                                            </td>
+                                                            <td>
+                                                                <xsl:value-of select="string-join(hl7:effectiveTime/(substring(@value, 1, 4), substring(@value, 5, 2), substring(@value, 7, 2)), '-')"/>
+                                                            </td>
+                                                            <td>
+                                                                <xsl:choose>
+                                                                    <xsl:when test="hl7:entryRelationship/hl7:observation[hl7:code/@code = '92236-9']">
+                                                                        <xsl:value-of select="hl7:entryRelationship/hl7:observation[hl7:code/@code = '92236-9']/hl7:value/@code"/>
+                                                                    </xsl:when>
+                                                                    <xsl:otherwise>
+                                                                        <xsl:value-of select="hl7:statusCode/@code"/>
+                                                                    </xsl:otherwise>
+                                                                </xsl:choose>
+                                                            </td>
+                                                            <td>
+                                                                <xsl:variable name="result">
+                                                                    <xsl:for-each select="hl7:value">
+                                                                        <xsl:choose>
+                                                                            <xsl:when test=".[@xsi:type = 'CE']">
+                                                                                <xsl:choose>
+                                                                                    <xsl:when test="@displayName">
+                                                                                        <xsl:value-of select="@displayName"/>
+                                                                                    </xsl:when>
+                                                                                    <xsl:when test="hl7:originalText">
+                                                                                        <xsl:value-of select="hl7:originalText"/>
+                                                                                    </xsl:when>
+                                                                                    <xsl:when test="@code">
+                                                                                        <xsl:value-of select="@code"/>
+                                                                                        <xsl:choose>
+                                                                                            <xsl:when test="@codeSystem = '2.16.840.1.113883.2.4.4.30.1045'">
+                                                                                                <xsl:text> NHG</xsl:text>
+                                                                                                <xsl:value-of select="@code"/>
+                                                                                            </xsl:when>
+                                                                                            <xsl:when test="@codeSystem = '2.16.840.1.113883.6.1'">
+                                                                                                <xsl:text> LOINC</xsl:text>
+                                                                                            </xsl:when>
+                                                                                            <xsl:otherwise>
+                                                                                                <xsl:text> </xsl:text>
+                                                                                                <xsl:value-of select="@codeSystem"/>
+                                                                                            </xsl:otherwise>
+                                                                                        </xsl:choose>
+                                                                                    </xsl:when>
+                                                                                </xsl:choose>
+                                                                            </xsl:when>
+                                                                            <xsl:when test=".[@xsi:type = 'ST']">
+                                                                                <xsl:value-of select="."/>
+                                                                            </xsl:when>
+                                                                            <xsl:when test=".[@xsi:type = 'PQ']">
+                                                                                <xsl:value-of select="@value"/>
+                                                                                <xsl:text> </xsl:text>
+                                                                                <xsl:value-of select="@unit"/>
+                                                                            </xsl:when>
+                                                                            <xsl:when test=".[@xsi:type = 'TS']">
+                                                                                <xsl:value-of select="@value"/>
+                                                                            </xsl:when>
+                                                                            <xsl:when test=".[@xsi:type = 'BL']">
+                                                                                <xsl:value-of select="@value"/>
+                                                                            </xsl:when>
+                                                                            <!--<xsl:when test=".[@xsi:type = 'REAL']">
+                                                                                <xsl:value-of select="@value"/>
+                                                                            </xsl:when>-->
+                                                                            <xsl:otherwise>
+                                                                                <!-- Unsupported -->
+                                                                                <xsl:value-of select="string-join((@value, hl7:*/@value), ' ')"/>
+                                                                            </xsl:otherwise>
+                                                                        </xsl:choose>
+                                                                    </xsl:for-each>
+                                                                </xsl:variable>
+                                                                <xsl:choose>
+                                                                    <xsl:when test="$abnormal">
+                                                                        <content styleCode="Bold">
+                                                                            <xsl:value-of select="$result"/>
+                                                                        </content>
+                                                                    </xsl:when>
+                                                                    <xsl:otherwise>
+                                                                        <xsl:value-of select="$result"/>
+                                                                    </xsl:otherwise>
+                                                                </xsl:choose>
+                                                            </td>
+                                                            <td>
+                                                                <xsl:variable name="result" select="(hl7:interpretationCode/descendant-or-self::*[@codeSystem = '2.16.840.1.113883.6.96'], hl7:interpretationCode/descendant-or-self::*[@codeSystem = '2.16.840.1.113883.5.83'])[1]"/>
+                                                                <xsl:choose>
+                                                                    <xsl:when test="$abnormal">
+                                                                        <content styleCode="Bold">
+                                                                            <xsl:value-of select="($result/@displayName, $result/@code)[1]"/>
+                                                                        </content>
+                                                                    </xsl:when>
+                                                                    <xsl:otherwise>
+                                                                        <xsl:value-of select="($result/@displayName, $result/@code)[1]"/>
+                                                                    </xsl:otherwise>
+                                                                </xsl:choose>
+                                                            </td>
+                                                            <td>
+                                                                <xsl:for-each select="hl7:entryRelationship/hl7:act[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.5.3.1.4.2']]/hl7:text">
+                                                                    <content ID="{generate-id(.)}">
+                                                                        <xsl:value-of select="."/>
+                                                                    </content>
+                                                                </xsl:for-each>
+                                                            </td>
+                                                        </tr>
+                                                    </xsl:for-each>
+                                                </tbody>
+                                            </table>
+                                        </text>
+                                        <xsl:comment> Laboratory Report Data Processing Entry NL </xsl:comment>
+                                        <entry typeCode="DRIV">
+                                            <xsl:apply-templates select="comment() | hl7:templateId | hl7:act" mode="organizer2CDA"/>
+                                        </entry>
+                                    </section>
+                                </component>
+                            </section>
+                        </component>
+                    </xsl:for-each>
                 </structuredBody>
             </component>
         </ClinicalDocument>
@@ -130,7 +327,7 @@
     <xd:doc>
         <xd:desc> Niet kopiëren </xd:desc>
     </xd:doc>
-    <xsl:template match="hl7:organizer[not(ancestor::hl7:organizer)]/hl7:templateId | hl7:organizer[not(ancestor::hl7:organizer)]/hl7:code | hl7:organizer[not(ancestor::hl7:organizer)]/hl7:statusCode | hl7:organizer[not(ancestor::hl7:organizer)]/hl7:recordTarget | hl7:organizer[not(ancestor::hl7:organizer)]/hl7:author" mode="organizer2CDA"/>
+    <xsl:template match="hl7:organizer[not(ancestor::hl7:organizer)]/hl7:templateId | hl7:organizer[not(ancestor::hl7:organizer)]/hl7:code | hl7:organizer[not(ancestor::hl7:organizer)]/hl7:statusCode | hl7:organizer[not(ancestor::hl7:organizer)]/hl7:author" mode="organizer2CDA"/>
 
     <xd:doc>
         <xd:desc> participantRole element hernomen naar associatedEntity in CDA participant </xd:desc>
@@ -144,10 +341,39 @@
     <xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template match="hl7:organizer/hl7:component" mode="organizer2CDA">
+    <xsl:template match="hl7:organizer/hl7:component" mode="organizer2CDASection">
         <entry xmlns="urn:hl7-org:v3">
             <xsl:apply-templates select="* | node()" mode="organizer2CDA"/>
         </entry>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc/>
+    </xd:doc>
+    <xsl:template match="hl7:entryRelationship/hl7:act[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.5.3.1.4.2']]/hl7:text" mode="organizer2CDA">
+        <xsl:copy copy-namespaces="no">
+            <reference xmlns="urn:hl7-org:v3" value="#{generate-id(.)}"/>
+        </xsl:copy>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc/>
+    </xd:doc>
+    <xsl:template match="hl7:recordTarget/hl7:patientRole" mode="organizer2CDA">
+        <xsl:copy copy-namespaces="no">
+            <xsl:apply-templates select="@*" mode="organizer2CDA"/>
+            
+            <xsl:copy-of select="hl7:id" copy-namespaces="no"/>
+            <xsl:copy-of select="hl7:addr" copy-namespaces="no"/>
+            <xsl:if test="empty(hl7:addr)">
+                <addr nullFlavor="UNK"/>
+            </xsl:if>
+            <xsl:copy-of select="hl7:telecom" copy-namespaces="no"/>
+            <xsl:if test="empty(hl7:telecom)">
+                <telecom nullFlavor="UNK"/>
+            </xsl:if>
+            <xsl:copy-of select="hl7:patient" copy-namespaces="no"/>
+        </xsl:copy>
     </xsl:template>
 
     <xd:doc>
@@ -162,11 +388,28 @@
                     <xsl:when test="hl7:participantRole/hl7:scopingEntity/hl7:id">
                         <id nullFlavor="NI"/>
                         <xsl:copy-of select="hl7:participantRole/hl7:addr" copy-namespaces="no"/>
+                        <xsl:if test="empty(hl7:participantRole/hl7:addr)">
+                            <addr nullFlavor="UNK"/>
+                        </xsl:if>
                         <xsl:copy-of select="hl7:participantRole/hl7:telecom" copy-namespaces="no"/>
+                        <xsl:if test="empty(hl7:participantRole/hl7:telecom)">
+                            <telecom nullFlavor="UNK"/>
+                        </xsl:if>
                         <xsl:if test="hl7:participantRole/hl7:playingEntity[hl7:id | hl7:name | hl7:code] | hl7:participantRole/hl7:scopingEntity[hl7:id | hl7:code | hl7:desc]">
                             <representedOrganization>
-                                <xsl:copy-of select="hl7:participantRole/hl7:id"/>
-                                <xsl:copy-of select="hl7:participantRole/hl7:playingEntity/hl7:name"/>
+                                <xsl:copy-of select="hl7:participantRole/hl7:id" copy-namespaces="no"/>
+                                <xsl:copy-of select="hl7:participantRole/hl7:playingEntity/hl7:name" copy-namespaces="no"/>
+                                <xsl:if test="empty(hl7:participantRole/hl7:playingEntity/hl7:name)">
+                                    <name nullFlavor="UNK"/>
+                                </xsl:if>
+                                <xsl:copy-of select="hl7:participantRole/hl7:playingEntity/hl7:telecom" copy-namespaces="no"/>
+                                <xsl:if test="empty(hl7:participantRole/hl7:playingEntity/hl7:telecom)">
+                                    <telecom nullFlavor="UNK"/>
+                                </xsl:if>
+                                <xsl:copy-of select="hl7:participantRole/hl7:playingEntity/hl7:addr" copy-namespaces="no"/>
+                                <xsl:if test="empty(hl7:participantRole/hl7:playingEntity/hl7:addr)">
+                                    <addr nullFlavor="UNK"/>
+                                </xsl:if>
                                 <xsl:if test="hl7:participantRole/hl7:code">
                                     <standardIndustryClassCode>
                                         <xsl:copy-of select="hl7:participantRole/hl7:code/(@* | node())" copy-namespaces="no"/>
@@ -178,8 +421,16 @@
                                         <xsl:if test="hl7:desc | hl7:code">
                                             <wholeOrganization>
                                                 <name>
-                                                    <xsl:value-of select="hl7:participantRole/hl7:scopingEntity/hl7:desc"/>
+                                                    <xsl:value-of select="hl7:desc"/>
                                                 </name>
+                                                <xsl:copy-of select="hl7:telecom" copy-namespaces="no"/>
+                                                <xsl:if test="empty(hl7:telecom)">
+                                                    <telecom nullFlavor="UNK"/>
+                                                </xsl:if>
+                                                <xsl:copy-of select="hl7:addr" copy-namespaces="no"/>
+                                                <xsl:if test="empty(hl7:addr)">
+                                                    <addr nullFlavor="UNK"/>
+                                                </xsl:if>
                                                 <xsl:if test="hl7:code">
                                                     <standardIndustryClassCode>
                                                         <xsl:copy-of select="hl7:code/(@* | node())" copy-namespaces="no"/>
@@ -202,6 +453,14 @@
                                 <xsl:if test="hl7:participantRole/hl7:playingEntity/hl7:name">
                                     <xsl:copy-of select="hl7:participantRole/hl7:playingEntity/hl7:name" copy-namespaces="no"/>
                                 </xsl:if>
+                                <xsl:copy-of select="hl7:participantRole/hl7:telecom" copy-namespaces="no"/>
+                                <xsl:if test="empty(hl7:participantRole/hl7:telecom)">
+                                    <telecom nullFlavor="UNK"/>
+                                </xsl:if>
+                                <xsl:copy-of select="hl7:participantRole/hl7:addr" copy-namespaces="no"/>
+                                <xsl:if test="empty(hl7:participantRole/hl7:addr)">
+                                    <addr nullFlavor="UNK"/>
+                                </xsl:if>
                                 <xsl:if test="hl7:participantRole/hl7:code">
                                     <standardIndustryClassCode>
                                         <xsl:copy-of select="hl7:participantRole/hl7:code/(@* | node())" copy-namespaces="no"/>
@@ -218,7 +477,45 @@
     <xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template match="hl7:participant[@typeCode = 'CST']" mode="organizer2CDA">
+    <xsl:template match="hl7:performer" mode="organizer2CDA">
+        <xsl:copy copy-namespaces="no">
+            <xsl:apply-templates select="@*" mode="organizer2CDA"/>
+            <xsl:copy-of select="hl7:templateId" copy-namespaces="no"/>
+            <xsl:copy-of select="hl7:time" copy-namespaces="no"/>
+            <xsl:if test="empty(hl7:time)">
+                <time nullFlavor="UNK"/>
+            </xsl:if>
+            <xsl:copy-of select="hl7:modeCode" copy-namespaces="no"/>
+            <xsl:apply-templates select="hl7:assignedEntity" mode="organizer2CDA"/>
+        </xsl:copy>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc/>
+    </xd:doc>
+    <xsl:template match="hl7:assignedEntity" mode="organizer2CDA">
+        <xsl:copy copy-namespaces="no">
+            <xsl:apply-templates select="@*" mode="organizer2CDA"/>
+            <xsl:copy-of select="hl7:templateId" copy-namespaces="no"/>
+            <xsl:copy-of select="hl7:id" copy-namespaces="no"/>
+            <xsl:copy-of select="hl7:code" copy-namespaces="no"/>
+            <xsl:copy-of select="hl7:addr" copy-namespaces="no"/>
+            <xsl:if test="empty(hl7:addr)">
+                <addr nullFlavor="UNK"/>
+            </xsl:if>
+            <xsl:copy-of select="hl7:telecom" copy-namespaces="no"/>
+            <xsl:if test="empty(hl7:telecom)">
+                <telecom nullFlavor="UNK"/>
+            </xsl:if>
+            <xsl:copy-of select="hl7:assignedPerson" copy-namespaces="no"/>
+            <xsl:copy-of select="hl7:representedOrganization" copy-namespaces="no"/>
+        </xsl:copy>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc/>
+    </xd:doc>
+    <xsl:template match="hl7:organizer[not(ancestor::hl7:organizer)]/hl7:participant" mode="organizer2CDA">
         <participant>
             <xsl:copy-of select="@*" copy-namespaces="no"/>
             <associatedEntity classCode="ASSIGNED">
@@ -230,14 +527,22 @@
                             <scopingOrganization>
                                 <xsl:choose>
                                     <xsl:when test="hl7:participantRole/hl7:id">
-                                        <xsl:copy-of select="hl7:participantRole/hl7:id"/>
+                                        <xsl:copy-of select="hl7:participantRole/hl7:id" copy-namespaces="no"/>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <id nullFlavor="NI"/>
                                     </xsl:otherwise>
                                 </xsl:choose>
                                 <xsl:if test="hl7:participantRole/hl7:playingEntity/hl7:name">
-                                    <xsl:copy-of select="hl7:participantRole/hl7:playingEntity/hl7:name"/>
+                                    <xsl:copy-of select="hl7:participantRole/hl7:playingEntity/hl7:name" copy-namespaces="no"/>
+                                </xsl:if>
+                                <xsl:copy-of select="hl7:participantRole/hl7:playingEntity/hl7:addr" copy-namespaces="no"/>
+                                <xsl:if test="empty(hl7:participantRole/hl7:playingEntity/hl7:addr)">
+                                    <addr nullFlavor="UNK"/>
+                                </xsl:if>
+                                <xsl:copy-of select="hl7:participantRole/hl7:playingEntity/hl7:telecom" copy-namespaces="no"/>
+                                <xsl:if test="empty(hl7:participantRole/hl7:playingEntity/hl7:telecom)">
+                                    <telecom nullFlavor="UNK"/>
                                 </xsl:if>
                                 <xsl:if test="hl7:participantRole/hl7:code">
                                     <standardIndustryClassCode>
@@ -252,6 +557,14 @@
                                                 <name>
                                                     <xsl:value-of select="hl7:participantRole/hl7:scopingEntity/hl7:desc"/>
                                                 </name>
+                                                <xsl:copy-of select="hl7:participantRole/hl7:scopingEntity/hl7:addr" copy-namespaces="no"/>
+                                                <xsl:if test="empty(hl7:participantRole/hl7:scopingEntity/hl7:addr)">
+                                                    <addr nullFlavor="UNK"/>
+                                                </xsl:if>
+                                                <xsl:copy-of select="hl7:participantRole/hl7:scopingEntity/hl7:telecom" copy-namespaces="no"/>
+                                                <xsl:if test="empty(hl7:participantRole/hl7:scopingEntity/hl7:telecom)">
+                                                    <telecom nullFlavor="UNK"/>
+                                                </xsl:if>
                                                 <xsl:if test="hl7:participantRole/hl7:scopingEntity/hl7:code">
                                                     <standardIndustryClassCode>
                                                         <xsl:copy-of select="hl7:participantRole/hl7:scopingEntity/hl7:code/(@* | node())" copy-namespaces="no"/>
@@ -272,6 +585,14 @@
                                 <xsl:copy-of select="hl7:participantRole/hl7:id" copy-namespaces="no"/>
                                 <xsl:if test="hl7:participantRole/hl7:playingEntity/hl7:name">
                                     <xsl:copy-of select="hl7:participantRole/hl7:playingEntity/hl7:name" copy-namespaces="no"/>
+                                </xsl:if>
+                                <xsl:copy-of select="hl7:participantRole/hl7:scopingEntity/hl7:addr" copy-namespaces="no"/>
+                                <xsl:if test="empty(hl7:participantRole/hl7:scopingEntity/hl7:addr)">
+                                    <addr nullFlavor="UNK"/>
+                                </xsl:if>
+                                <xsl:copy-of select="hl7:participantRole/hl7:scopingEntity/hl7:telecom" copy-namespaces="no"/>
+                                <xsl:if test="empty(hl7:participantRole/hl7:scopingEntity/hl7:telecom)">
+                                    <telecom nullFlavor="UNK"/>
                                 </xsl:if>
                                 <xsl:if test="hl7:participantRole/hl7:code">
                                     <standardIndustryClassCode>

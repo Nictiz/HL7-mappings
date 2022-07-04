@@ -16,7 +16,7 @@
          displayName="Laboratory studies"
          codeSystem="2.16.840.1.113883.6.1"
          codeSystemName="LOINC"/>
-   <statusCode nullFlavor="NI"/>
+   <statusCode code="completed"/>
    <recordTarget>
       <patientRole>
          <id extension="999999114" root="2.16.840.1.113883.2.4.6.3"/>
@@ -33,6 +33,7 @@
    </recordTarget>
    <participant typeCode="CST">
       <participantRole classCode="ASSIGNED">
+         <id nullFlavor="NI"/>
          <code code="0100"
                codeSystem="2.16.840.1.113883.2.4.6.7"
                displayName="Huisartsen, niet nader gespecificeerd"
@@ -57,9 +58,10 @@
       <templateId root="2.16.840.1.113883.2.4.3.11.60.25.10.53"/>
       <templateId root="1.3.6.1.4.1.19376.1.3.1"/>
       <act classCode="ACT" moodCode="EVN">
-         <code xsi:type="CD"
+         <code code="26436-6"
                codeSystem="2.16.840.1.113883.6.1"
-               codeSystemName="Logical Observation Identifier Names and Codes"/>
+               codeSystemName="LOINC"
+               displayName="LABORATORY STUDIES"/>
          <statusCode code="completed"/>
          <entryRelationship typeCode="COMP">
             <procedure classCode="PROC" moodCode="EVN">
@@ -81,7 +83,7 @@
                </participant>
                <participant typeCode="SBJ">
                   <participantRole classCode="CONT">
-                     <playingEntity>
+                     <playingEntity classCode="CONT">
                         <code xsi:type="CE"
                               codeSystem="2.16.840.1.113883.6.96"
                               codeSystemName="SNOMED Clinical Terms"/>
@@ -91,35 +93,44 @@
             </procedure>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
+            <organizer classCode="BATTERY" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.2"/>
+               <templateId root="1.3.6.1.4.1.19376.1.3.1.4"/>
+               <code codeSystem="2.16.840.1.113883.6.1"
+                     codeSystemName="Logical Observation Identifier Names and Codes"/>
+               <statusCode code="completed"/>
+               <component typeCode="COMP">
+                  <observation classCode="OBS" moodCode="EVN">
+                     <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.31"/>
+                     <templateId root="1.3.6.1.4.1.19376.1.3.1.6"/>
+                     <id extension="99999" nullFlavor="UNC"/>
+                     <code xsi:type="CD"
+                           code="111"
+                           codeSystem="2.16.840.1.113883.2.4.4.30.45"
+                           displayName="Bilirubine totaal"/>
+                     <statusCode code="active"/>
+                  </observation>
+               </component>
+            </organizer>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
             <observation classCode="OBS" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.31"/>
-               <templateId root="1.3.6.1.4.1.19376.1.3.1.6"/>
-               <id extension="99999" nullFlavor="UNC"/>
-               <code xsi:type="CD"
-                     code="111"
-                     codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                     displayName="Bilirubine totaal"/>
-               <statusCode code="active"/>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9200"/>
+               <code displayName="Kopie-indicator"
+                     code="16"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
+               <value xsi:type="BL" value="true"/>
+            </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.121.10.53"/>
+               <code nullFlavor="OTH">
+                  <originalText>MEDLAB-IDE-2</originalText>
+               </code>
+               <value xsi:type="ST">111777</value>
             </observation>
          </entryRelationship>
       </act>
-   </component>
-   <component typeCode="COMP">
-      <observation classCode="OBS" moodCode="EVN">
-         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9200"/>
-         <code displayName="Kopie-indicator"
-               code="16"
-               codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
-         <value xsi:type="BL" value="true"/>
-      </observation>
-   </component>
-   <component typeCode="COMP">
-      <observation classCode="OBS" moodCode="EVN">
-         <templateId root="2.16.840.1.113883.2.4.3.11.60.121.10.53"/>
-         <code nullFlavor="OTH">
-            <originalText>MEDLAB-IDE-2</originalText>
-         </code>
-         <value xsi:type="ST">111777</value>
-      </observation>
    </component>
 </organizer>

@@ -173,11 +173,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="makePQValue">
                         <xsl:with-param name="elemName" select="$elemName"/>
                         <!-- AWE: fix for xsiType, entering empty in parameter overrides the default with an empty value -->
-                        <xsl:with-param name="xsiType" select="
-                                if ($outputXsiType) then
-                                    ('PQ')
-                                else
-                                    ''"/>
+                        <xsl:with-param name="xsiType" select="if ($outputXsiType) then ('PQ') else ''"/>
                     </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$dataType = 'reference'">
@@ -1053,14 +1049,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="elemName" as="xs:string?">value</xsl:param>
         <xsl:param name="unit" as="xs:string?" select="@unit"/>
         <xsl:param name="nullFlavor" as="xs:string?" select="@nullFlavor"/>
+        <xsl:variable name="cleanInputValue" select="replace(normalize-space($inputValue), '^(&lt;|&gt;)=?', '')"/>
         <xsl:element name="{$elemName}">
             <xsl:if test="string-length($xsiType) gt 0">
                 <xsl:attribute name="xsi:type" select="$xsiType"/>
             </xsl:if>
-            <xsl:call-template name="makePQValueAttribs">
-                <xsl:with-param name="value" select="$inputValue"/>
-                <xsl:with-param name="unit" select="$unit"/>
-            </xsl:call-template>
+            <xsl:choose>
+                <xsl:when test="string-length($cleanInputValue) gt 0">
+                    <xsl:call-template name="makePQValueAttribs">
+                        <xsl:with-param name="value" select="$cleanInputValue"/>
+                        <xsl:with-param name="unit" select="$unit"/>
+                    </xsl:call-template>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:call-template name="makePQValueAttribs">
+                        <xsl:with-param name="unit" select="$unit"/>
+                        <xsl:with-param name="nullFlavor" select="($nullFlavor, 'UNK')[1]"/>
+                    </xsl:call-template>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:element>
     </xsl:template>
 
@@ -1071,9 +1078,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="nullFlavor"/>
     </xd:doc>
     <xsl:template name="makePQValueAttribs">
-        <xsl:param name="value" select="@value"/>
-        <xsl:param name="unit" select="@unit"/>
-        <xsl:param name="nullFlavor" select="@nullFlavor"/>
+        <xsl:param name="value" select="@value" as="xs:string?"/>
+        <xsl:param name="unit" select="@unit" as="xs:string?"/>
+        <xsl:param name="nullFlavor" select="@nullFlavor" as="xs:string?"/>
         <xsl:if test="$value">
             <xsl:attribute name="value" select="$value"/>
         </xsl:if>
