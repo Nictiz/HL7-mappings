@@ -354,7 +354,6 @@
             <xsl:for-each select="r050_zorggegevens">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10019_20200527000000"/>
             </xsl:for-each>
-
         </careProvisionEvent>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10006_20120801000000">
