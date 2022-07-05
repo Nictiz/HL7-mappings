@@ -13,7 +13,11 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+    <!-- only comment the package import below out for development purposed, the calling stylesheet should decide on zib version-->
+    <!-- only comment the package import below out for development purposed, the calling stylesheet should decide on zib version-->
     <xsl:import href="../zib2020bbr/payload/ada2hl7_all-zibs.xsl"/>
+    <!--<xsl:import href="../zib2017bbr/payload/ada2hl7_all-zibs.xsl"/>
+    <xsl:import href="../zib2020bbr/payload/ada2hl7_all-zibs.xsl"/>-->
     <!-- only comment the package import below out for development purposed, the calling stylesheet should decide on package version-->
     <!--    <xsl:import href="../../ada_2_fhir/zibs2017/payload/package-2.0.5.xsl"/>-->
 
@@ -2748,10 +2752,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:when test="$ada-auteur/auteur_is_zorgverlener">
                 <author>
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.32_20210701000000">
+                    <xsl:call-template name="makeTSValue">
+                        <xsl:with-param name="elemName">time</xsl:with-param>
+                        <xsl:with-param name="inputValue" select="$authorTime/@value"/>
+                    </xsl:call-template>
+                    <assignedAuthor>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9113_20181205174044">
+                        <xsl:with-param name="in" select="$ada-auteur/ancestor::adaxml/data/*/bouwstenen/zorgverlener[@id = $ada-auteur/auteur_is_zorgverlener/zorgverlener/@value] | $ada-auteur/auteur_is_zorgverlener/zorgverlener[not(@value)][.//(@value | @code)]"/>
+                        </xsl:call-template>
+                    </assignedAuthor>
+                    <!--<xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.32_20210701000000">
                         <xsl:with-param name="in" select="$ada-auteur/ancestor::adaxml/data/*/bouwstenen/zorgverlener[@id = $ada-auteur/auteur_is_zorgverlener/zorgverlener/@value] | $ada-auteur/auteur_is_zorgverlener/zorgverlener[not(@value)][.//(@value | @code)]"/>
                         <xsl:with-param name="theTime" select="$authorTime"/>
-                    </xsl:call-template>
+                    </xsl:call-template>-->
                 </author>
             </xsl:when>
             <xsl:when test="$authorTime">
@@ -2811,43 +2824,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="makeBLValue"/>
             </observation>
         </xsl:for-each>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Creates the response to a proposed dispense request</xd:desc>
-        <xd:param name="in">the ada element for antwoord</xd:param>
-    </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9212_20180420174745" match="antwoord" mode="HandleAvvv">
-        <xsl:param name="in" as="element()?" select="."/>
-
-        <xsl:for-each select="$in">
-            <act classCode="ACT" moodCode="EVN">
-                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9212"/>
-                <code code="9" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3" codeSystemName="Medicatieproces acts" displayName="Antwoord voorstel verstrekkingsverzoek"/>
-                <xsl:for-each select="./auteur[.//(@value | @code)]">
-                    <author>
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.32_20210701000000">
-                            <xsl:with-param name="in" select="ancestor::adaxml/data/*/bouwstenen/zorgverlener[@id = current()/zorgverlener/@value] | current()/zorgverlener[not(@value)][.//(@value | @code)]"/>
-                            <xsl:with-param name="theTime" select="../antwoord_datum"/>
-                        </xsl:call-template>
-                    </author>
-                </xsl:for-each>
-                <xsl:for-each select="antwoord_verstrekkingsverzoek[@code]">
-                    <entryRelationship typeCode="COMP">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9213_20180420181642"/>
-                    </entryRelationship>
-                </xsl:for-each>
-                <xsl:for-each select="relatie_voorstel_gegevens/identificatie[@value]">
-                    <entryRelationship typeCode="SUBJ">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9214_20180423130606"/>
-                    </entryRelationship>
-                </xsl:for-each>
-
-
-            </act>
-        </xsl:for-each>
-
-
     </xsl:template>
 
     <xd:doc>
