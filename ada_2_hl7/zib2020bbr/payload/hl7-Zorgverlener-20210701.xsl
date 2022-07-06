@@ -57,6 +57,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.1.34"/>
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.37_20210701000000"/>
             </assignedEntity>
+            
         </xsl:for-each>
     </xsl:template>
 

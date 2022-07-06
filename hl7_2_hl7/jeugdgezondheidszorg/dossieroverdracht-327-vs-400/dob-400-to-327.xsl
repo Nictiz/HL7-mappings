@@ -4,8 +4,9 @@
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:hl7="urn:hl7-org:v3"
-    exclude-result-prefixes="xs xd hl7 xsi"
-    version="1.1">
+    xmlns:exslt="http://exslt.org/common"
+    exclude-result-prefixes="xs xd hl7 xsi exslt"
+    version="1.0">
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Alexander Henket, Nictiz</xd:p>
@@ -1213,6 +1214,86 @@
     </xsl:template>
     
     <xd:doc>
+        <xd:desc>Nationaliteit. Verplaatsen van subjectOf1/administrativeObservation naar patientPerson/asCitizen</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:subject/hl7:patient[hl7:patientPerson]" mode="dob400">
+        <xsl:copy>
+            <xsl:apply-templates select="@*" mode="dob400"/>
+            <xsl:apply-templates select="hl7:templateId" mode="dob400"/>
+            <xsl:apply-templates select="hl7:id" mode="dob400"/>
+            <xsl:apply-templates select="hl7:addr" mode="dob400"/>
+            <xsl:apply-templates select="hl7:telecom" mode="dob400"/>
+            <xsl:apply-templates select="hl7:statusCode" mode="dob400"/>
+            <xsl:apply-templates select="hl7:confidentialityCode" mode="dob400"/>
+            <xsl:for-each select="hl7:patientPerson">
+                <xsl:copy>
+                    <xsl:apply-templates select="@*" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:templateId" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:id" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:name" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:desc" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:telecom" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:administrativeGenderCode" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:birthTime" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:deceasedInd" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:deceasedTime" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:multipleBirthInd" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:multipleBirthOrderNumber" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:organDonorInd" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:addr" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:maritalStatusCode" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:educationLevelCode" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:disabilityCode" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:livingArrangementCode" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:religiousAffiliationCode" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:raceCode" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:ethnicGroupCode" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:asPatientOfOtherProvider" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:asEmployee" mode="dob400"/>
+                    <xsl:for-each select="hl7:asCitizen">
+                        <xsl:copy>
+                            <xsl:choose>
+                                <xsl:when test="hl7:code">
+                                    <xsl:apply-templates select="hl7:code" mode="dob400"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <code code="CN" codeSystem="2.16.840.1.113883.5.111" displayName="national" xmlns="urn:hl7-org:v3"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                            <xsl:apply-templates select="hl7:politicalNation" mode="dob400"/>
+                        </xsl:copy>
+                    </xsl:for-each>
+                    <xsl:choose>
+                        <!-- Kan eigenlijk niet, maar beter voorkomen dan genezen -->
+                        <xsl:when test="hl7:asCitizen[hl7:code[@code = 'CAS' or @code = 'CASM'][@codeSystem = '2.16.840.1.113883.5.111']]"/>
+                        <xsl:when test="../hl7:subjectOf1/hl7:administrativeObservation[hl7:code[@code='28'][@codeSystem='2.16.840.1.113883.2.4.4.40.267']]/hl7:value[@value = 'true']">
+                            <asCitizen xmlns="urn:hl7-org:v3">
+                                <code code="CAS" codeSystem="2.16.840.1.113883.5.111" displayName="asylum seeker"/>
+                                <politicalNation>
+                                    <code code="0001" codeSystem="2.16.840.1.113883.2.4.4.16.32" displayName="Nederland"/>
+                                </politicalNation>
+                            </asCitizen>
+                        </xsl:when>
+                    </xsl:choose>
+                    <xsl:apply-templates select="hl7:asStudent" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:asMember" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:asOtherIDs" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:contactParty" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:guardian" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:personalRelationship" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:careGiver" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:birthPlace" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:guarantorRole" mode="dob400"/>
+                    <xsl:apply-templates select="hl7:languageCommunication" mode="dob400"/>
+                </xsl:copy>
+            </xsl:for-each>
+            <xsl:apply-templates select="hl7:subjectOf1[not(hl7:administrativeObservation/hl7:code[@code='28'][@codeSystem='2.16.840.1.113883.2.4.4.40.267'])]" mode="dob400"/>
+            <xsl:apply-templates select="hl7:subjectOf2" mode="dob400"/>
+            <xsl:apply-templates select="hl7:coveredPartyOf" mode="dob400"/>
+        </xsl:copy>
+    </xsl:template>
+    
+    <xd:doc>
         <xd:desc>Huisarts: R006 - templateId 2.16.840.1.113883.2.4.6.10.100.104 verwijderen, 
             Andere betrokken organisaties/hulpverleners: R007 - templateId 2.16.840.1.113883.2.4.6.10.100.107 verwijderen en code herschrijven naar @nullFlavor, 
             Voor‑ of buitenschoolse voorzieningen/school: R008 - templateId 2.16.840.1.113883.2.4.6.10.100.108 verwijderen</xd:desc>
@@ -1322,16 +1403,21 @@
                                 <assignedEntity1 classCode="ASSIGNED" xmlns="urn:hl7-org:v3">
                                     <xsl:apply-templates select="hl7:id" mode="dob400"/>
                                     <xsl:apply-templates select="hl7:code" mode="dob400"/>
-                                    <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                                        <xsl:apply-templates select="hl7:agentPerson/hl7:name" mode="dob400"/>
-                                    </assignedPerson>
+                                    <xsl:for-each select="hl7:agentPerson[hl7:name[not(@nullFlavor)]]">
+                                        <assignedPerson>
+                                            <xsl:apply-templates select="@*" mode="dob400"/>
+                                            <xsl:attribute name="classCode">PSN</xsl:attribute>
+                                            <xsl:attribute name="determinerCode">INSTANCE</xsl:attribute>
+                                            <xsl:apply-templates select="node()" mode="dob400"/>
+                                        </assignedPerson>
+                                    </xsl:for-each>
                                 </assignedEntity1>
                             </xsl:when>
                             <!-- responsibleParty als RVP en niet W0691 01 (Cliënt/Jeugdige) -->
                             <xsl:when test="$isRVP1533">
                                 <responsibleParty classCode="CON">
                                     <xsl:apply-templates select="hl7:code" mode="dob400"/>
-                                    <xsl:for-each select="hl7:agentPerson">
+                                    <xsl:for-each select="hl7:agentPerson[hl7:name[not(@nullFlavor)]]">
                                         <agentPerson>
                                             <xsl:apply-templates select="@*" mode="dob400"/>
                                             <xsl:attribute name="classCode">PSN</xsl:attribute>
@@ -1348,13 +1434,13 @@
                                 </responsibleParty>
                             </xsl:when>
                             <xsl:otherwise>
-                                <xsl:message>careProvisionEvent/authorization/consentEvent heeft niet-verwachte waarde voor author</xsl:message>
+                                <xsl:message>careProvisionEvent/authorization/consentEvent heeft niet-verwachte waarde voor author/responsibleParty/code. Gevonden: <xsl:value-of select="concat(hl7:code[1]/@code, ' ', hl7:code[1]/@nullFlavor, ' ', hl7:code[1]/@codeSystem, ' ', hl7:code[1]/@displayName)"/></xsl:message>
                                 <xsl:apply-templates select="." mode="dob400"/>
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:for-each>
                     <xsl:if test="count(hl7:responsibleParty) = 0">
-                        <xsl:message>careProvisionEvent/authorization/consentEvent heeft niet-verwachte waarde voor author</xsl:message>
+                        <xsl:message>careProvisionEvent/authorization/consentEvent heeft niet-verwachte waarde voor author. Verwacht: hl7:responsibleParty. Gevonden: <xsl:value-of select="name(hl7:*[not(local-name() = 'time')])"/></xsl:message>
                         <xsl:apply-templates select="." mode="dob400"/>
                     </xsl:if>
                 </author>
@@ -1386,6 +1472,7 @@
                     </subjectOf>
                 </xsl:when>
             </xsl:choose>
+            <xsl:apply-templates select="hl7:reasonOf" mode="dob400"></xsl:apply-templates>
         </xsl:copy>
     </xsl:template>
     
@@ -1431,7 +1518,7 @@
         <xsl:variable name="encounterOriginalText" select="hl7:code/hl7:originalText"/>
         
         <xsl:choose>
-            <xsl:when test="@moodCode = 'INT' or $encounterCode = $W0188_HL7_Contactmomenten//@code or $encounterOriginalText = $W0188_HL7_Contactmomenten//@displayName">
+            <xsl:when test="@moodCode = 'INT' or $encounterCode = exslt:node-set($W0188_HL7_Contactmomenten)//@code or $encounterOriginalText = exslt:node-set($W0188_HL7_Contactmomenten)//@displayName">
                 <encounter xmlns="urn:hl7-org:v3">
                     <xsl:apply-templates select="@moodCode" mode="dob400"/>
                     <xsl:call-template name="rubricCluster18">
@@ -1439,14 +1526,14 @@
                     </xsl:call-template>
                 </encounter>
             </xsl:when>
-            <xsl:when test="$encounterCode = $W0188_HL7_Activiteiten//@code or $encounterOriginalText = $W0188_HL7_Activiteiten//@displayName">
+            <xsl:when test="$encounterCode = exslt:node-set($W0188_HL7_Activiteiten)//@code or $encounterOriginalText = exslt:node-set($W0188_HL7_Activiteiten)//@displayName">
                 <nonEncounterCareActivity xmlns="urn:hl7-org:v3">
                     <xsl:call-template name="rubricCluster18">
                         <xsl:with-param name="parentElement" select="'encounter'"/>
                     </xsl:call-template>
                 </nonEncounterCareActivity>
             </xsl:when>
-            <xsl:when test="$encounterCode = $W0188_HL7_Registratie//@code or $encounterOriginalText = $W0188_HL7_Registratie//@displayName">
+            <xsl:when test="$encounterCode = exslt:node-set($W0188_HL7_Registratie)//@code or $encounterOriginalText = exslt:node-set($W0188_HL7_Registratie)//@displayName">
                 <registrationEvent xmlns="urn:hl7-org:v3">
                     <xsl:call-template name="rubricCluster18">
                         <xsl:with-param name="parentElement" select="'encounter'"/>
@@ -1468,49 +1555,22 @@
         <xd:desc>Soort activiteit: 494, 1..1 (W0188, KL_AN, Soort activiteit) - waardelijst bijwerken</xd:desc>
     </xd:doc>
     <xsl:template match="hl7:code[@codeSystem = '2.16.840.1.113883.2.4.4.40.308']" mode="dob400">
+        <xsl:variable name="theCode" select="@code"/>
+        <xsl:variable name="theNullFlavor" select="@nullFlavor"/>
+        <xsl:variable name="activiteitSoort1" select="exslt:node-set($W0188_HL7_Activiteiten)//concept[@code = $theCode] | exslt:node-set($W0188_HL7_Contactmomenten)//concept[@code = $theCode] | exslt:node-set($W0188_HL7_Registratie)//concept[@code = $theCode]"/>
+        <xsl:variable name="activiteitSoort2" select="exslt:node-set($W0188_HL7_Activiteiten)//exception[@code = $theNullFlavor] | exslt:node-set($W0188_HL7_Contactmomenten)//exception[@code = $theNullFlavor] | exslt:node-set($W0188_HL7_Registratie)//exception[@code = $theNullFlavor]"/>
         <xsl:copy>
             <xsl:choose>
-                <!--Neonatale gehoorscreening: 35, 35-->
-                <xsl:when test="@code = '35'">
-                    <xsl:attribute name="code">
-                        <xsl:value-of select="'35'"/>
-                    </xsl:attribute>
-                    <xsl:copy-of select="@codeSystem"/>
+                <xsl:when test="$activiteitSoort1">
+                    <xsl:apply-templates select="@*" mode="dob400"/>
                     <xsl:attribute name="displayName">
-                        <xsl:value-of select="'Neonatale gehoorscreening'"/>
+                        <xsl:value-of select="$activiteitSoort1/@displayName"/>
                     </xsl:attribute>
+                    <xsl:apply-templates select="*" mode="dob400"/>
                 </xsl:when>
-                <!--Contact 4-7 dagen: 01, 01-->
-                <xsl:when test="@code = '01'">
-                    <xsl:attribute name="code">
-                        <xsl:value-of select="'01'"/>
-                    </xsl:attribute>
-                    <xsl:copy-of select="@codeSystem"/>
-                    <xsl:attribute name="displayName">
-                        <xsl:value-of select="'Huisbezoek 4-7 dagen'"/>
-                    </xsl:attribute>
+                <xsl:when test="$activiteitSoort2">
+                    <xsl:apply-templates select="@* | *" mode="dob400"/>
                 </xsl:when>
-                <!--Contact speciaal onderwijs 0-18 jaar: 20, 20-->
-                <xsl:when test="@code = '20'">
-                    <xsl:attribute name="code">
-                        <xsl:value-of select="'20'"/>
-                    </xsl:attribute>
-                    <xsl:copy-of select="@codeSystem"/>
-                    <xsl:attribute name="displayName">
-                        <xsl:value-of select="'Contactmoment speciaal onderwijs'"/>
-                    </xsl:attribute>
-                </xsl:when>
-                <!--Contact week 2 t/m 6 maanden: 37, 37-->
-                <!--Contact 7-12 maanden: 38, 38-->
-                <!--Contact 1 tot 4 jaar: 39, 39-->
-                <!--Contact 4 tot 12 jaar: 40, 40-->
-                <!--Contact 12 tot 18 jaar: 41, 41-->
-                <!--Consultatie ivm meldcode: 42, 42-->
-                <!--Contact op indicatie: 22, 22-->
-                <!--Contact met derden-bilateraal: 43, 43-->
-                <!--Contact met derden-multidisciplinair: 44, 44-->
-                <!--Overdracht dossier: 45, 45-->
-                <!--Andere activiteit: 98, OTH (nullFlavor)-->
                 <xsl:otherwise>
                     <xsl:attribute name="nullFlavor">
                         <xsl:value-of select="'OTH'"/>
@@ -1522,6 +1582,67 @@
                             </xsl:when>
                             <xsl:when test="hl7:originalText">
                                 <xsl:value-of select="hl7:originalText"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="@code"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </originalText>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:copy>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Verzoeker activiteit: 1423, 0..* (W0659, KL_AN, Verzoeker activiteit) - waardelijst bijwerken</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:code[@codeSystem = '2.16.840.1.113883.2.4.4.40.411']" mode="dob400">
+        <xsl:variable name="theCode" select="@code"/>
+        <xsl:variable name="theNullFlavor" select="@nullFlavor"/>
+        <xsl:copy>
+            <xsl:choose>
+                <xsl:when test="$theCode = '07'">
+                    <xsl:attribute name="nullFlavor">OTH</xsl:attribute>
+                    <originalText xmlns="urn:hl7-org:v3">JGZ</originalText>
+                </xsl:when>
+                <xsl:when test="$theCode = '08'">
+                    <xsl:attribute name="nullFlavor">OTH</xsl:attribute>
+                    <originalText xmlns="urn:hl7-org:v3">Veilig Thuis / Raad voor de Kinderbescherming</originalText>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="@* | *" mode="dob400"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:copy>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Indicatie activiteit: 1424, 0..* (W0619, KL_AN, Indicatie) - waardelijst bijwerken</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:reasonCode[@codeSystem = '2.16.840.1.113883.2.4.4.40.373']" mode="dob400">
+        <xsl:variable name="theCode" select="@code"/>
+        <xsl:variable name="theNullFlavor" select="@nullFlavor"/>
+        <xsl:copy>
+            <xsl:choose>
+                <xsl:when test="$theCode = '01' or $theCode = '02' or $theCode = '03' or
+                                $theCode = '04' or $theCode = '05' or $theCode = '06' or
+                                $theCode = '07' or $theCode = '08' or $theCode = '09' or
+                                $theCode = '10' or $theCode = '11' or $theCode = '12' or
+                                $theCode = '13' or $theCode = '14' or $theCode = '15' or
+                                $theCode = '16' or $theCode = '17' or $theCode = '18' or
+                                $theCode = '19' or $theCode = '20' or $theCode = '21' or
+                                $theCode = '22' or $theCode = '23' or $theCode = '22' or
+                                $theCode = '25' or $theCode = '26' or $theCode = '27' or
+                                $theCode = '28' or $theCode = '29' or $theCode = '30' or
+                                $theCode = '31' or $theCode = '32'">
+                    <xsl:apply-templates select="@* | *" mode="dob400"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:attribute name="nullFlavor">OTH</xsl:attribute>
+                    <originalText xmlns="urn:hl7-org:v3">
+                        <xsl:choose>
+                            <xsl:when test="@displayName">
+                                <xsl:value-of select="@displayName"/>
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:value-of select="@code"/>
@@ -1567,6 +1688,7 @@
     <xsl:template match="hl7:rubricCluster[hl7:code[@code = 'R013'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']]" mode="dob400">
         <xsl:copy>
             <xsl:apply-templates select="@*" mode="dob400"/>
+            <xsl:apply-templates select="hl7:templateId" mode="dob400"/>
             <xsl:apply-templates select="hl7:code" mode="dob400"/>
             <xsl:if test="not(hl7:component[hl7:observation[hl7:code[@code = '1384'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]])">
                 <component xmlns="urn:hl7-org:v3">
@@ -2446,6 +2568,40 @@
     </xsl:template>
     
     <xd:doc>
+        <xd:desc>Downgrade van CMET Rijksvaccinatie COCT_RM900916NL04 naar COCT_MT900916NL02. In versie 02 werd geen @moodCode='RMD' ondersteund, geen location, geen limitation en geen gegevens in causeOf2/adverseReaction/subjectOf/informationControlActEvent/performer/assignedPerson behalve id
+        </xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:component3/hl7:substanceAdministration[@moodCode='RMD']" mode="dob400"/>
+    <xsl:template match="hl7:component3/hl7:substanceAdministration" mode="dob400">
+        <substanceAdministrationEvent moodCode="EVN" xmlns="urn:hl7-org:v3">
+            <xsl:apply-templates select="@*" mode="dob400"/>
+            <xsl:apply-templates select="hl7:templateId" mode="dob400"/>
+            <xsl:apply-templates select="hl7:code" mode="dob400"/>
+            <xsl:apply-templates select="hl7:effectiveTime" mode="dob400"/>
+            <xsl:apply-templates select="hl7:consumable" mode="dob400"/>
+            <xsl:apply-templates select="hl7:performer" mode="dob400"/>
+            <!--<xsl:apply-templates select="hl7:location" mode="dob400"/>-->
+            <xsl:apply-templates select="hl7:reason" mode="dob400"/>
+            <xsl:apply-templates select="hl7:causeOf1" mode="dob400"/>
+            <xsl:apply-templates select="hl7:causeOf2" mode="dob400"/>
+            <xsl:apply-templates select="hl7:authorization" mode="dob400"/>
+            <!--<xsl:apply-templates select="hl7:limitation" mode="dob400"/>-->
+            <xsl:apply-templates select="hl7:component" mode="dob400"/>
+            <xsl:apply-templates select="hl7:subjectOf" mode="dob400"/>
+        </substanceAdministrationEvent>
+    </xsl:template>
+    <xsl:template match="hl7:component3/hl7:substanceAdministration/hl7:causeOf2/hl7:adverseReaction/hl7:subjectOf/hl7:informationControlActEvent/hl7:performer" mode="dob400">
+        <xsl:copy>
+            <xsl:attribute name="typeCode">PRF</xsl:attribute>
+            <xsl:for-each select="hl7:assignedPerson">
+                <xsl:copy>
+                    <xsl:apply-templates select="hl7:id" mode="dob400"/>
+                </xsl:copy>
+            </xsl:for-each>
+        </xsl:copy>
+    </xsl:template>
+    
+    <xd:doc>
         <xd:desc>BDS-rubrieknamen, BDS-groepnamen en BDS-elementnamen bijwerken conform 3.2.6</xd:desc>
     </xd:doc>
     <xsl:template match="hl7:code[@codeSystem = '2.16.840.1.113883.2.4.4.40.391'] | hl7:code[@codeSystem = '2.16.840.1.113883.2.4.4.40.393'] | hl7:code[@codeSystem = '2.16.840.1.113883.2.4.4.40.267']" mode="dob400">
@@ -2465,7 +2621,7 @@
             <xsl:apply-templates select="@*" mode="dob400"/>
             <xsl:attribute name="code"><xsl:value-of select="$theCode"/></xsl:attribute>
             <xsl:attribute name="codeSystem"><xsl:value-of select="$theCodeSystem"/></xsl:attribute>
-            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7//concept[@code = $theCode][@codeSystem = $theCodeSystem]/@displayName"/>
+            <xsl:copy-of select="exslt:node-set($W0639_HL7_W0646_HL7_W0647_HL7)//concept[@code = $theCode][@codeSystem = $theCodeSystem]/@displayName"/>
             <xsl:apply-templates select="node()" mode="dob400"/>
         </xsl:copy>
     </xsl:template>
@@ -2481,6 +2637,31 @@
             <value  xmlns="urn:hl7-org:v3">
                 <xsl:value-of select="hl7:text"/>
             </value>
+            <xsl:apply-templates select="hl7:author" mode="dob400"/>
+            <xsl:apply-templates select="hl7:pertainsTo" mode="dob400"/>
+        </xsl:copy>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Conversie van nieuwe metaData naar oude metaData</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:metaData" mode="dob400">
+        <xsl:copy>
+            <xsl:apply-templates select="@*" mode="dob400"/>
+            <xsl:apply-templates select="hl7:templateId" mode="dob400"/>
+            <xsl:apply-templates select="hl7:code" mode="dob400"/>
+            <xsl:choose>
+                <xsl:when test="hl7:value">
+                    <xsl:apply-templates select="hl7:value" mode="dob400"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <value xmlns="urn:hl7-org:v3" xsi:type="ST">
+                        <xsl:apply-templates select="hl7:text/@*" mode="dob400"/>
+                        <xsl:value-of select="hl7:text"/>
+                    </value>
+                </xsl:otherwise>
+            </xsl:choose>
+            <xsl:apply-templates select="hl7:author" mode="dob400"/>
             <xsl:apply-templates select="hl7:pertainsTo" mode="dob400"/>
         </xsl:copy>
     </xsl:template>
@@ -2533,56 +2714,9 @@
         
         <xsl:apply-templates select="hl7:templateId" mode="dob400"/>
         <xsl:apply-templates select="hl7:id" mode="dob400"/>
+        <xsl:apply-templates select="hl7:code" mode="dob400"/>
         <xsl:choose>
-            <xsl:when test="hl7:code[@code]">
-                <xsl:apply-templates select="hl7:code" mode="dob400"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:variable name="inputSoort" select="hl7:code/hl7:originalText"/>
-                <xsl:variable name="activiteitSoort1" select="$W0188_HL7_Contactmomenten//concept[@displayName = $inputSoort]"/>
-                
-                <xsl:choose>
-                    <xsl:when test="$activiteitSoort1">
-                        <code xmlns="urn:hl7-org:v3">
-                            <xsl:apply-templates select="$activiteitSoort1/@code"/>
-                            <xsl:apply-templates select="$activiteitSoort1/@codeSystem"/>
-                            <xsl:apply-templates select="$activiteitSoort1/@displayName"/>
-                        </code>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:variable name="activiteitSoort2" select="$W0188_HL7_Activiteiten//concept[@displayName = $inputSoort]"/>
-                        
-                        <xsl:choose>
-                            <xsl:when test="$activiteitSoort2">
-                                <code xmlns="urn:hl7-org:v3">
-                                    <xsl:apply-templates select="$activiteitSoort2/@code"/>
-                                    <xsl:apply-templates select="$activiteitSoort2/@codeSystem"/>
-                                    <xsl:apply-templates select="$activiteitSoort2/@displayName"/>
-                                </code>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:variable name="activiteitSoort3" select="$W0188_HL7_Registratie//concept[@displayName = $inputSoort]"/>
-                                
-                                <xsl:choose>
-                                    <xsl:when test="$activiteitSoort3">
-                                        <code xmlns="urn:hl7-org:v3">
-                                            <xsl:apply-templates select="$activiteitSoort3/@code"/>
-                                            <xsl:apply-templates select="$activiteitSoort3/@codeSystem"/>
-                                            <xsl:apply-templates select="$activiteitSoort3/@displayName"/>
-                                        </code>
-                                    </xsl:when>
-                                    <xsl:otherwise>
-                                        <xsl:apply-templates select="hl7:code" mode="dob400"/>
-                                    </xsl:otherwise>
-                                </xsl:choose>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:otherwise>
-        </xsl:choose>
-        <xsl:choose>
-            <xsl:when test="hl7:statusCode[@code = 'aborted']">
+            <xsl:when test="@moodCode = 'INT' and hl7:statusCode[@code = 'aborted']">
                 <statusCode code="cancelled" xmlns="urn:hl7-org:v3"/>
             </xsl:when>
             <xsl:otherwise>
