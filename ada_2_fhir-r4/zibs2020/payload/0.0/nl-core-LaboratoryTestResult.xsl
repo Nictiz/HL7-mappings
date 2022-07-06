@@ -58,6 +58,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <meta>
                 <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
             </meta>
+            <xsl:for-each select="kopie_indicator[@value = 'true']">
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+                    <valueBoolean value="{@value}"/>
+                </extension>
+            </xsl:for-each>
+            <xsl:for-each select="edifact_referentienummer[@value]">
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
+                    <valueString value="{@value}"/>
+                </extension>
+            </xsl:for-each>
+            <xsl:for-each select="$in/laboratorium_uitslag_identificatie">
+                <identifier>
+                    <xsl:call-template name="id-to-Identifier"/>
+                </identifier>
+            </xsl:for-each>
             <xsl:for-each select="$in/resultaat_status">
                 <status>
                     <xsl:call-template name="code-to-code"/>
@@ -159,6 +174,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <meta>
                 <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
             </meta>
+            <xsl:for-each select="../kopie_indicator[@value = 'true']">
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+                    <valueBoolean value="{@value}"/>
+                </extension>
+            </xsl:for-each>
+            <xsl:for-each select="../edifact_referentienummer[@value]">
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
+                    <valueString value="{@value}"/>
+                </extension>
+            </xsl:for-each>
+            <xsl:for-each select="$in/test_identificatie">
+                <identifier>
+                    <xsl:call-template name="id-to-Identifier"/>
+                </identifier>
+            </xsl:for-each>
             <status>
                 <xsl:attribute name="value">
                     <xsl:choose>
