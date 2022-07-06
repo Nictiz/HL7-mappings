@@ -3,7 +3,7 @@
    <type value="searchset"/>
    <total value="2"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f0b4a-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f2350-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="mp-DspReq--MBH200LengteGewichtVV1"/>
@@ -29,13 +29,22 @@
                   <display value="verstrekkingsverzoek"/>
                </coding>
             </category>
-            <medicationReference/>
+            <medicationReference>
+               <reference value="urn:uuid:c33f238c-6a95-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
+            </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f0b2c-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f2332-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
             <authoredOn value="2021-01-01T07:05:00+01:00"/>
+            <performer>
+               <reference value="urn:uuid:c33f2422-6a95-11ec-0000-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
+            </performer>
             <basedOn>
                <type value="MedicationRequest"/>
                <identifier>
@@ -67,7 +76,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0b68-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f236e-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="mp-DspReq--MBH200LengteGewicht2VV"/>
@@ -93,13 +102,22 @@
                   <display value="verstrekkingsverzoek"/>
                </coding>
             </category>
-            <medicationReference/>
+            <medicationReference>
+               <reference value="urn:uuid:c33f238c-6a95-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
+            </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f0b2c-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f2332-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
             <authoredOn value="2021-01-01T07:05:00+01:00"/>
+            <performer>
+               <reference value="urn:uuid:c33f2422-6a95-11ec-0000-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
+            </performer>
             <basedOn>
                <type value="MedicationRequest"/>
                <identifier>
@@ -131,7 +149,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0b2c-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f2332-6a95-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <id value="nl-core-Patient--E-XXX-Doppen"/>
@@ -172,6 +190,161 @@
             </gender>
             <birthDate value="1963-10-24"/>
          </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c33f23aa-6a95-11ec-0000-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <id value="nl-core-HPrf-PracRol--000001111-0100-00001111"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+            </meta>
+            <practitioner>
+               <reference value="urn:uuid:c33f23c8-6a95-11ec-0000-020000000000"/>
+               <type value="Practitioner"/>
+               <display value="Healthcare professional (person), Peter van Pulver"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:uuid:c33f23e6-6a95-11ec-0000-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2020-10-23T00:00:00"/>
+                  <code value="0100"/>
+                  <display value="Huisartsen, niet nader gespecificeerd"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c33f23c8-6a95-11ec-0000-020000000000"/>
+      <resource>
+         <Practitioner>
+            <id value="nl-core-HPrf-Prac--2165281100731-000001111"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+               <value value="000001111"/>
+            </identifier>
+            <name>
+               <use value="official"/>
+               <text value="Peter van Pulver"/>
+               <family value="van Pulver">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Pulver"/>
+                  </extension>
+               </family>
+               <given value="Peter">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c33f23e6-6a95-11ec-0000-020000000000"/>
+      <resource>
+         <Organization>
+            <id value="nl-core-HPrv-Org--2165281100733-00001111"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00001111"/>
+            </identifier>
+            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c33f2422-6a95-11ec-0000-020000000000"/>
+      <resource>
+         <Organization>
+            <id value="nl-core-HPrv-Org--2165281100733-01236578"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="01236578"/>
+            </identifier>
+            <name value="Apotheek De Gulle Gaper"/>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c33f238c-6a95-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <id value="nl-core-PhPrd--216840111388324410-49484"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="49484"/>
+                  <display value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="103039"/>
+                  <display value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
+               </coding>
+               <text value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
+            </code>
+         </Medication>
       </resource>
       <search>
          <mode value="include"/>
