@@ -89,9 +89,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
             <xsl:for-each select="$in/uitvoerder">
                 <performer>
-                    <xsl:call-template name="makeReference">
-                        <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
-                    </xsl:call-template>
+                    <xsl:choose>
+                        <xsl:when test="afdeling_specialisme">
+                            <xsl:call-template name="makeReference">
+                                <xsl:with-param name="profile" select="'nl-core-HealthcareProvider'"/>
+                            </xsl:call-template>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:call-template name="makeReference">
+                                <xsl:with-param name="profile" select="'nl-core-HealthcareProvider-Organization'"/>
+                            </xsl:call-template>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </performer>
             </xsl:for-each>
                         
@@ -470,6 +479,47 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
     </xd:doc>
     <xsl:template match="laboratorium_uitslag" mode="_generateId">
+        <xsl:param name="profile" as="xs:string" required="yes"/>
+        <xsl:variable name="id" select="replace(tokenize(base-uri(), '/')[last()], '.xml', '')"/>
+        <xsl:variable name="baseId" select="replace($id, '-[0-9]{2}$', '')"/>
+        <xsl:variable name="localName" select="local-name()"/>
+        
+        <xsl:variable name="logicalId">
+            <xsl:choose>
+                <!--<xsl:when test="ancestor::*/local-name() = 'referenties'">
+                    <!-\- This is a contained ada instance, therefore does not have a valid base-uri() -\->
+                    <!-\- Moved position parameter here, because I do not expect it to function outside of 'referenties', but at the moment it does not have to -\->
+                    <xsl:variable name="position" as="xs:integer" select="count(preceding::*[local-name() = $localName][ancestor::*/local-name() = 'referenties'][starts-with(@conceptId, $zib2020Oid) and matches(@conceptId, '(\.1|9\.\d+\.\d+)$')]) + 1"/>
+                    <!-\- This leads to a contained zib AdministrationAgreement being referenced as 'nl-core-MedicationAdministration2-02-MedicationDispense-01'. Could be more clear. On the other hand, do we need to put more effort into contained ADA instances? -\->
+                    <xsl:value-of select="string-join(($id, $ada2resourceType/*[@profile = $profile]/@resource, format-number($position, '00')), '-')"/>
+                    <!-\- Proposal for better naming, but not activated yet because it has implications for the whole zib2020-r4 repo: -\->
+                    <!-\-<xsl:value-of select="string-join(($id, tokenize($profile, '-')[last()], format-number($position, '00')), '-')"/>-\->    
+                </xsl:when>
+                <xsl:when test="$localName = ('soepregel','visueel_resultaat','monster')">
+                    <xsl:value-of select="$baseId"/>
+                    <xsl:value-of select="substring-after($profile, $baseId)"/>
+                    <xsl:text>-</xsl:text>
+                    <xsl:value-of select="format-number(count(preceding-sibling::*[local-name() = $localName])+1, '00')"/>
+                </xsl:when>-->
+                <xsl:when test="$localName = 'laboratorium_test'">
+                    <xsl:value-of select="$baseId"/>
+                    <xsl:value-of select="substring-after($profile, $baseId)"/>
+                    <xsl:text>-LaboratoryTest-</xsl:text>
+                    <xsl:value-of select="format-number(count(preceding-sibling::*[local-name() = 'laboratorium_test'])+1, '00')"/>
+                </xsl:when>
+                <!--<xsl:when test="$profile = $baseId or not(starts-with($profile, $baseId))">
+                    <xsl:value-of select="$id"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="$baseId"/>
+                    <xsl:value-of select="substring-after($profile, $baseId)"/>
+                    <xsl:value-of select="substring-after($id, $baseId)"/>
+                </xsl:otherwise>-->
+            </xsl:choose>
+        </xsl:variable>
+        
+        <!-- Failsafe, ids can get quite long -->
+        <xsl:value-of select="nf:assure-logicalid-length($logicalId)"/>
     </xsl:template>
     
     <xd:doc>
