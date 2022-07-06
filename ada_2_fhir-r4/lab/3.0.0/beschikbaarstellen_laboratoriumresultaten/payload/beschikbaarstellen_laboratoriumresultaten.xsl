@@ -79,6 +79,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </Bundle>        
     </xsl:template>
     
+    <xsl:template match="*" mode="_generateId" priority="2">
+        <xsl:param name="profile" as="xs:string" required="yes"/>
+        <xsl:variable name="id" select="replace(tokenize(base-uri(), '/')[last()], '.xml', '')"/>
+        <xsl:variable name="baseId" select="replace($id, '-[0-9]{2}$', '')"/>
+        <xsl:variable name="localName" select="local-name()"/>
+        <xsl:variable name="logicalId">
+            <xsl:choose>
+                <xsl:when test="$localName = 'laboratorium_test'">
+                    <xsl:text>LaboratoryTest-</xsl:text>
+                    <xsl:value-of select="format-number(count(preceding-sibling::*[local-name() = 'laboratorium_test'])+1, '00')"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="$localName"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <!-- Failsafe, ids can get quite long -->
+        <xsl:value-of select="nf:assure-logicalid-length($logicalId)"/>
+    </xsl:template>
+    
     <xsl:template name="_insertFullUrlById">
         <xsl:param name="in" select="."/>   
         <xsl:param name="fhirId" select="$in/f:id/@value"/>
