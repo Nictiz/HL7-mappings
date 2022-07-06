@@ -56,6 +56,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         
         <Bundle>
+            <type value="searchset"/>
             <xsl:for-each select="$laboratoriumresultaten">
                 <entry>
                     <xsl:call-template name="_insertFullUrlById"/>
@@ -68,13 +69,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </entry>
             </xsl:for-each>
             <xsl:for-each select="$patient">
-                <xsl:call-template name="_insertFullUrlById"/>
-                <resource>
-                    <xsl:copy-of select="."/>
-                </resource>
-                <search>
-                    <mode value="include"/>
-                </search>
+                <entry>
+                    <xsl:call-template name="_insertFullUrlById"/>
+                    <resource>
+                        <xsl:copy-of select="."/>
+                    </resource>
+                    <search>
+                        <mode value="include"/>
+                    </search>
+                </entry>
             </xsl:for-each>
         </Bundle>        
     </xsl:template>
