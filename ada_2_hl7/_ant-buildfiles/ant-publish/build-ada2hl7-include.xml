@@ -16,7 +16,7 @@
 
     <property name="echo.label.in" value="ADA"/>
     <property name="echo.label.out" value="HL7"/>
-    
+
     <property name="echo.label" value="${echo.label.in} to ${echo.label.out}"/>
     <property name="project.author" value="Nictiz"/>
     <property name="project.website" value="http://www.nictiz.nl/"/>
@@ -25,9 +25,8 @@
     <property name="project.copyright" value="true"/>
     <property name="project.description" value="Contains all relevant materials to convert valid ${echo.label.in} instances for ${is.name} to  ${echo.label.out}"/>
     <property name="project.prefix" value="${is.abbreviation}_${is.version}"/>
+
     <property name="dummy.output.dir" value="../../dummy"/>
-    
-    
 
     <target name="setup_sub" description="Setup ${build.dir}/${usecase} containing the new/schemas folder from the original ADA project and refreshed ada instances from test_xslt">
 
@@ -47,7 +46,7 @@
     <target name="setup_sub_schemas" description="Setup ${build.dir}/${usecase} containing the new/schemas folder from the original ADA project">
         <echo/>
         <echo>Setup ${build.dir}/${usecase} containing refreshed ada schemas (${schema.string})</echo>
-        
+
         <mkdir dir="${build.dir}/${usecase}/ada_schemas"/>
         <delete>
             <fileset dir="${build.dir}/${usecase}/ada_schemas" includes="*.xsd"/>
