@@ -64,54 +64,16 @@
                displayName="LABORATORY STUDIES"/>
          <statusCode code="completed"/>
          <entryRelationship typeCode="COMP">
-            <procedure classCode="PROC" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3"/>
-               <templateId root="1.3.6.1.4.1.19376.1.3.1.2"/>
-               <code code="33882-2"
-                     codeSystem="2.16.840.1.113883.6.1"
-                     codeSystemName="LOINC"
-                     displayName="Specimen Collection"/>
-               <participant typeCode="PRD">
-                  <participantRole classCode="SPEC">
-                     <id nullFlavor="NI"/>
-                     <playingEntity>
-                        <code xsi:type="CE"
-                              codeSystem="2.16.840.1.113883.6.96"
-                              codeSystemName="SNOMED Clinical Terms"/>
-                     </playingEntity>
-                  </participantRole>
-               </participant>
-               <participant typeCode="SBJ">
-                  <participantRole classCode="CONT">
-                     <playingEntity classCode="CONT">
-                        <code xsi:type="CE"
-                              codeSystem="2.16.840.1.113883.6.96"
-                              codeSystemName="SNOMED Clinical Terms"/>
-                     </playingEntity>
-                  </participantRole>
-               </participant>
-            </procedure>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP">
-            <organizer classCode="BATTERY" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.2"/>
-               <templateId root="1.3.6.1.4.1.19376.1.3.1.4"/>
-               <code codeSystem="2.16.840.1.113883.6.1"
-                     codeSystemName="Logical Observation Identifier Names and Codes"/>
-               <statusCode code="completed"/>
-               <component typeCode="COMP">
-                  <observation classCode="OBS" moodCode="EVN">
-                     <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.31"/>
-                     <templateId root="1.3.6.1.4.1.19376.1.3.1.6"/>
-                     <id extension="99999" nullFlavor="UNC"/>
-                     <code xsi:type="CD"
-                           code="111"
-                           codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                           displayName="Bilirubine totaal"/>
-                     <statusCode code="active"/>
-                  </observation>
-               </component>
-            </organizer>
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.31"/>
+               <templateId root="1.3.6.1.4.1.19376.1.3.1.6"/>
+               <id extension="99999" root="2.16.840.1.113883.2.4.3.11.999.25.4298"/>
+               <code xsi:type="CD"
+                     code="111"
+                     codeSystem="2.16.840.1.113883.2.4.4.30.45"
+                     displayName="Bilirubine totaal"/>
+               <statusCode code="active"/>
+            </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <observation classCode="OBS" moodCode="EVN">

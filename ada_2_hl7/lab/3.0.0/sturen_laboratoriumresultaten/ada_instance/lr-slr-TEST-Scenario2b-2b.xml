@@ -17,7 +17,7 @@
                                      desc="Een los testresultaat kunnen versturen/ontvangen gecodeerd met LOINC codes."
                                      id="lr-slr-TEST-Scenario2b-2b">
          <scenario-nr value="2b" conceptId="2.16.840.1.113883.2.4.3.11.999.25.2.2.4401.2.1.1"/>
-         <!--Patient found in instance with id: sl-TEST-Scenarioset2a-v30 and title: TEST REPO Scenarioset 2a (ResultatenMicrobiologie_LOINC)-->
+         <!--Patient found in instance with id: sl-TEST-Scenarioset1a-v30 and title: TEST REPO Scenarioset 1a (ResultatenKlinischChemie_NHG)-->
          <patientgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4302">
             <patient conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4303">
                <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4304">
@@ -38,7 +38,7 @@
                          code="F"
                          codeSystem="2.16.840.1.113883.5.1"
                          displayName="Vrouw"/>
-               <meerling_indicator conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4340" nullFlavor="NA"/>
+               <meerling_indicator nullFlavor="NA" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4340"/>
             </patient>
          </patientgegevens>
          <!--Zorgaanbieder found in instance with id: sl-TEST-Scenarioset2b-v30 and title: TEST REPO Scenarioset 2b (ResultatenMicrobiologie_NHG)-->
@@ -78,12 +78,15 @@
          <!--laboratorium_uitslag found in instance with id: sl-TEST-Scenarioset1b-v30 and title: TEST REPO Scenarioset 1b (ResultatenKlinischChemie_LOINC)-->
          <onderzoeksresultaat conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4253">
             <laboratorium_uitslag conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4254">
-               <laboratorium_uitslag_identificatie value="LAR_LosResultaatINR1_LOINC"
+               <laboratorium_uitslag_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4296"
+                                                   value="LAR_LosResultaatINR1_LOINC"
                                                    conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4296"/>
                <edifact_referentienummer value="111333" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4409"/>
                <kopie_indicator value="false" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4297"/>
                <laboratorium_test conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4255">
-                  <test_identificatie value="55555" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4298"/>
+                  <test_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4298"
+                                      value="55555"
+                                      conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4298"/>
                   <test_code code="6301-6"
                              codeSystem="2.16.840.1.113883.6.1"
                              displayName="PT-INR [relatieve tijd] in plaatjesarm plasma d.m.v. stollingsmethode"
@@ -148,6 +151,17 @@
                                            codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
                                            codeSystemVersion="2020-10-23T00:00:00"
                                            displayName="Trombosediensten"/>
+                     <contactgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4376">
+                        <telefoonnummers conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4377">
+                           <telefoonnummer value="06-11122266"
+                                           conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4378"/>
+                           <telecom_type conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4379"
+                                         value="3"
+                                         code="MC"
+                                         codeSystem="2.16.840.1.113883.5.1119"
+                                         displayName="Mobiel telefoonnummer"/>
+                        </telefoonnummers>
+                     </contactgegevens>
                      <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4385">
                         <straat value="Kerkstraat"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4386"/>

@@ -17,7 +17,7 @@
                                      desc="Een bericht gebaseerd op NHG codes met maximale vulling."
                                      id="lr-slr-TEST-Scenario4a-4a">
          <scenario-nr value="4a" conceptId="2.16.840.1.113883.2.4.3.11.999.25.2.2.4401.2.1.1"/>
-         <!--Patient found in instance with id: sl-TEST-Scenarioset2a-v30 and title: TEST REPO Scenarioset 2a (ResultatenMicrobiologie_LOINC)-->
+         <!--Patient found in instance with id: sl-TEST-Scenarioset1a-v30 and title: TEST REPO Scenarioset 1a (ResultatenKlinischChemie_NHG)-->
          <patientgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4302">
             <patient conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4303">
                <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4304">
@@ -38,7 +38,7 @@
                          code="F"
                          codeSystem="2.16.840.1.113883.5.1"
                          displayName="Vrouw"/>
-               <meerling_indicator conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4340" nullFlavor="NA"/>
+               <meerling_indicator nullFlavor="NA" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4340"/>
             </patient>
          </patientgegevens>
          <!--Zorgaanbieder found in instance with id: sl-TEST-Scenarioset2b-v30 and title: TEST REPO Scenarioset 2b (ResultatenMicrobiologie_NHG)-->
@@ -78,12 +78,15 @@
          <!--laboratorium_uitslag found in instance with id: sl-TEST-Scenarioset1a-v30 and title: TEST REPO Scenarioset 1a (ResultatenKlinischChemie_NHG)-->
          <onderzoeksresultaat conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4253">
             <laboratorium_uitslag conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4254">
-               <laboratorium_uitslag_identificatie value="LAR_MaxResultaat_NHG"
+               <laboratorium_uitslag_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4296"
+                                                   value="LAR_MaxResultaat_NHG"
                                                    conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4296"/>
                <edifact_referentienummer value="111666" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4409"/>
                <kopie_indicator value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4297"/>
                <laboratorium_test conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4255">
-                  <test_identificatie value="88888" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4298"/>
+                  <test_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4298"
+                                      value="88888"
+                                      conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4298"/>
                   <test_code code="3272"
                              codeSystem="2.16.840.1.113883.2.4.4.30.45"
                              displayName="Kalium urine 24u"

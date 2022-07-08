@@ -17,7 +17,7 @@
                                      desc="Een bericht gebaseerd op LOINC codes met minimale vulling."
                                      id="lr-slr-TEST-Scenario5b-5b">
          <scenario-nr value="5b" conceptId="2.16.840.1.113883.2.4.3.11.999.25.2.2.4401.2.1.1"/>
-         <!--Patient found in instance with id: sl-TEST-Scenarioset2a-v30 and title: TEST REPO Scenarioset 2a (ResultatenMicrobiologie_LOINC)-->
+         <!--Patient found in instance with id: sl-TEST-Scenarioset1a-v30 and title: TEST REPO Scenarioset 1a (ResultatenKlinischChemie_NHG)-->
          <patientgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4302">
             <patient conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4303">
                <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4304">
@@ -38,7 +38,7 @@
                          code="F"
                          codeSystem="2.16.840.1.113883.5.1"
                          displayName="Vrouw"/>
-               <meerling_indicator conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4340" nullFlavor="NA"/>
+               <meerling_indicator nullFlavor="NA" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4340"/>
             </patient>
          </patientgegevens>
          <!--Zorgaanbieder found in instance with id: sl-TEST-Scenarioset2b-v30 and title: TEST REPO Scenarioset 2b (ResultatenMicrobiologie_NHG)-->
@@ -78,17 +78,27 @@
          <!--laboratorium_uitslag found in instance with id: sl-TEST-Scenarioset1b-v30 and title: TEST REPO Scenarioset 1b (ResultatenKlinischChemie_LOINC)-->
          <onderzoeksresultaat conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4253">
             <laboratorium_uitslag conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4254">
-               <laboratorium_uitslag_identificatie value="LAR_MinResultaat_LOINC"
+               <laboratorium_uitslag_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4296"
+                                                   value="LAR_MinResultaat_LOINC"
                                                    conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4296"/>
                <edifact_referentienummer value="111777" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4409"/>
                <kopie_indicator value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4297"/>
                <laboratorium_test conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4255">
-                  <test_identificatie value="99999" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4298"/>
+                  <test_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4298"
+                                      value="99999"
+                                      conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4298"/>
                   <test_code code="14631-6"
                              codeSystem="2.16.840.1.113883.6.1"
                              displayName="Bilirubine [mol/volume] in serum of plasma"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4256"/>
                </laboratorium_test>
+               <monster conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4266">
+                  <monstermateriaal code="119297000"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED Clinical Terms"
+                                    displayName="Bloed"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4270"/>
+               </monster>
             </laboratorium_uitslag>
          </onderzoeksresultaat>
       </sturen_laboratoriumresultaten>
