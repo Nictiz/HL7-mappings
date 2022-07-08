@@ -10,6 +10,10 @@
     <!-- param to influence whether to output schema references, typically only needed for test instances -->
     <xsl:param name="schematronRef" as="xs:boolean" select="false()"/>
     
+    <!-- https://nictiznl.sharepoint.com/sites/KHSI/Kwaliteitshandboek%20Standaardisatie/XML.aspx -->
+    <xsl:variable name="cdaIdRoot">2.16.840.1.113883.2.4.3.11.999.25.1</xsl:variable>
+    <xsl:variable name="cdaSetIdRoot">2.16.840.1.113883.2.4.3.11.999.25.2</xsl:variable>
+    
     <xd:doc>
         <xd:desc>Start template when called from outside</xd:desc>
     </xd:doc>
@@ -42,7 +46,7 @@
                 <templateId root="2.16.840.1.113883.2.4.6.10.100001"/>
             </xsl:if>
             <!-- Use the template id to make a unique root for document id -->
-            <id extension="{uuid:get-uuid(.)}" root="{concat(hl7:templateId[1]/@root, '.1.2.3.999')}"/>
+            <id extension="{uuid:get-uuid(.)}" root="{$cdaIdRoot}"/>
             <xsl:if test="./hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77']">
                 <code code="11502-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="LABORATORY REPORT.TOTAL"/>
             </xsl:if>
@@ -81,7 +85,7 @@
             <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="normal"/>
             <languageCode code="nl-NL"/>
             <!-- Use the template id to make a unique root for document setId -->
-            <setId extension="{uuid:get-uuid(.)}" root="{concat(hl7:templateId[1]/@root, '.1.2.3.999')}"/>
+            <setId extension="{uuid:get-uuid(.)}" root="{$cdaSetIdRoot}"/>
             <xsl:apply-templates select="hl7:recordTarget" mode="organizer2CDA"/>
             <xsl:apply-templates select="hl7:participant[@typeCode = 'CST']" mode="cdaAuthor"/>
             <!-- custodian, the organization of the author -->
