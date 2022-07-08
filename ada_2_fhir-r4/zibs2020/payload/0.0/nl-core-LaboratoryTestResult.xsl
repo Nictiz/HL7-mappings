@@ -34,6 +34,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create a single nl-core-LaboratoryTestResult instance as an Observation FHIR instance from ADA laboratorium_uitslag for a singlular test, that is, when it contains a single laboratorium_test.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="subject">ADA patient element. Defaults to patient/*</xd:param>
     </xd:doc>
     <xsl:template name="nl-core-LaboratoryTestResult-singular" match="laboratorium_uitslag[count(laboratorium_test) = 1]" mode="nl-core-LaboratoryTestResult" as="element(f:Observation)?">
         <xsl:param name="in" as="element()?" select="."/>
@@ -48,6 +49,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create a hierarchy of nl-core-LaboratoryTestResult instances as Observation FHIR instances from ADA laboratorium_uitslag for a panel test, that is, when a single laboratoriunm_uitslag contains multiple laboratorium_test's.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="subject">ADA patient element. Defaults to patient/*</xd:param>
     </xd:doc>
     <xsl:template name="_nl-core-LaboratoryTestResult-panel" match="laboratorium_uitslag[count(laboratorium_test) &gt; 1]" mode="nl-core-LaboratoryTestResult" as="element(f:Observation)*">
         <xsl:param name="in" as="element()?" select="."/>
@@ -132,7 +134,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="wrapIn">specimen</xsl:with-param>
                     <xsl:with-param name="profile">
                         <xsl:choose>
-                            <xsl:when test="count(microorganisme) &gt; 0">nl-core-LaboratoryTestResult.Specimen.asMicroorganism</xsl:when>
+                            <xsl:when test="microorganisme">nl-core-LaboratoryTestResult.Specimen.asMicroorganism</xsl:when>
                             <xsl:otherwise>nl-core-LaboratoryTestResult.Specimen</xsl:otherwise>
                         </xsl:choose>
                     </xsl:with-param>
@@ -160,6 +162,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xd:p>Helper template to create a nl-core-LaboratoryTestResult instance representing a single LaboratoryTest (depending on the situation, this might be one of the tests within a panel or the entire zib).</xd:p>
             <xd:p>Note that the match is on laboratorium_test, not on laboratorium_uitslag, but that it's assumed that it is passed as part of a laboratorium_uitslag. This mechanism is needed to distinguish different laboratorium_test's withing a single laboratorium_uitslag. This helper template shouldn't be used directly; instead, the public-facing templates should be used.</xd:p>
         </xd:desc>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="subject">ADA patient element. Defaults to parent::laboratorium_uitslag/patient/*</xd:param>
     </xd:doc>
     <xsl:template name="_nl-core-LaboratoryTestResult-individualTest" mode="_nl-core-LaboratoryTestResult-individualTest" match="laboratorium_test" as="element(f:Observation)?">
         <xsl:param name="in" as="element()?" select="."/>
@@ -346,6 +350,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         * If both are populated, two instances are created where the "microorganisme" instance refers the "monstermateriaal" instance.
         </xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="subject">ADA patient element. Has no default</xd:param>
     </xd:doc>
     <xsl:template name="nl-core-LaboratoryTestResult-asMicroorganism" match="monster" mode="nl-core-LaboratoryTestResult.Specimen" as="element(f:Specimen)*">
         <xsl:param name="in" as="element()?" select="."/>
@@ -373,8 +378,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="type">Either the monstermateriaal or microorganisme ADA element.</xd:param>
+        <xd:param name="subject">ADA patient element. Has no default</xd:param>
     </xd:doc>
-    <xsl:template name="_nl-core-LaboratoryTestResult.Specimen" as="element(f:Specimen)?">
+    <xsl:template name="_nl-core-LaboratoryTestResult.Specimen" match="monster" as="element(f:Specimen)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" as="element()?"/>
         <xsl:param name="type" as="element()?"/>
@@ -507,6 +513,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xd:doc>
         <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
+        <xd:param name="profile">Final part of the profile. Has no default</xd:param>
     </xd:doc>
     <xsl:template match="laboratorium_uitslag" mode="_generateId">
         <xsl:param name="profile" as="xs:string" required="yes"/>
