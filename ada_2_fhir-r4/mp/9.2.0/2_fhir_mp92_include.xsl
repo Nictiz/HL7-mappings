@@ -393,7 +393,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:variable>
     <xd:doc>
         <xd:desc>Create the ext-RenderedDosageInstruction extension from ADA InstructionsForUse.</xd:desc>
-        <xd:param name="in">The ADA instance to extract the rendered dosage instruction from, override for default function in mp-InstructionsForUse</xd:param>
+        <xd:param name="in">The ADA instance to extract the rendered dosage instruction from. 
+            Override for default function in mp-InstructionsForUse so that we can generate instruction text based on structured data.</xd:param>
     </xd:doc>
     <xsl:template name="ext-RenderedDosageInstruction" mode="ext-RenderedDosageInstruction" match="gebruiksinstructie" as="element(f:extension)?">
         <xsl:param name="in" as="element()?" select="."/>

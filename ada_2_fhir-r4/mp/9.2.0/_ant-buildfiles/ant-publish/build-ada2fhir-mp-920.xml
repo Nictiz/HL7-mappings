@@ -41,8 +41,8 @@
         <fileset id="inputFiles" dir="${build.dir}/${usecase.mg}/ada_instance_repo" includes="*Scenarioset0*.xml"/>
 
         <echo/>
-        <echo>${echo.label} input files ${build.dir}/${usecase.mg}/ada_instance, to be converted with: ${build.dir}/${usecase.mg}/payload/preprocess_ada_4_Touchstone.xsl</echo>
-        <xslt force="true" style="${build.dir}/${usecase.mg}/payload/preprocess_ada_4_Touchstone.xsl" destdir="${build.dir}/${usecase.mg}/ada_instance_4_TS" extension=".xml" useImplicitFileset="false">
+        <echo>${echo.label} input files ${build.dir}/${usecase.mg}/ada_instance, to be converted with: ${build.dir}/fhir_fixtures4Touchstone/payload/preprocess_ada_4_Touchstone.xsl</echo>
+        <xslt force="true" style="${build.dir}/fhir_fixtures4Touchstone/payload/preprocess_ada_4_Touchstone.xsl" destdir="${build.dir}/${usecase.mg}/ada_instance_4_TS" extension=".xml" useImplicitFileset="false">
             <fileset refid="inputFiles"/>
             <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
             <factory name="${xsl.saxon.class}"/>

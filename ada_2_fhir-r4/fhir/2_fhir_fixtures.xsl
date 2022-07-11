@@ -14,13 +14,41 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <!-- Purpose: do handling for FHIR fixtures for examples and/or Touchstone fixtures
 -->
-<xsl:stylesheet xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:util="urn:hl7:utilities" xmlns:uuid="http://www.uuid.org" version="2.0" exclude-result-prefixes="#all">
+<xsl:stylesheet xmlns="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:util="urn:hl7:utilities" xmlns:uuid="http://www.uuid.org" version="2.0" exclude-result-prefixes="#all">
 
     <xd:doc>
         <xd:desc>Usecasename for resource id. Optional, no default.</xd:desc>
     </xd:doc>
     <xsl:param name="usecase" as="xs:string?"/>
 
+    <xd:doc>
+        <xd:desc>Create the ext-RenderedDosageInstruction extension from ADA InstructionsForUse.</xd:desc>
+        <xd:param name="in">The ADA instance to extract the rendered dosage instruction from. 
+            Override for default function in mp-InstructionsForUse so that we can generate instruction text based on structured data.</xd:param>
+    </xd:doc>
+    <xsl:template name="ext-RenderedDosageInstruction" mode="ext-RenderedDosageInstruction" match="gebruiksinstructie" as="element(f:extension)?">
+        <xsl:param name="in" as="element()?" select="."/>
+        
+        <xsl:for-each select="$in">
+            <xsl:for-each select="omschrijving[@value != '']">
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+                    <valueString>
+                        <xsl:attribute name="value">
+                            <xsl:choose>
+                                <xsl:when test="$generateInstructionText">
+                                    <xsl:value-of select="nf:gebruiksintructie-string(..)"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="@value"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:attribute>
+                    </valueString>
+                </extension>
+            </xsl:for-each>
+        </xsl:for-each>
+    </xsl:template>
+    
     <xd:doc>
         <xd:desc>Helper template for creating logicalId for Touchstone. Adheres to requirements in MM-1752. Profilename-usecase-uniquestring.</xd:desc>
         <xd:param name="in">The ada element for which to create a logical id. Optional. Used to find profileName. Defaults to context.</xd:param>
@@ -49,7 +77,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
 
-
     <xd:doc>
         <xd:desc>Helper template for creating logicalId for Touchstone. Adheres to requirements in MM-1752. Profilename-usecase-uniquestring.</xd:desc>
         <xd:param name="in">The ada element for which to create a logical id. Optional. Used to find profileName. Defaults to context.</xd:param>
@@ -77,9 +104,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
 
-    <!-- override the logicalId generation for our Touchstone resources -->
     <xd:doc>
-        <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
+        <xd:desc>Template to generate a unique id to identify this instance. Override the logicalId generation for our Touchstone resources.</xd:desc>
     </xd:doc>
     <xsl:template match="medicatieafspraak | wisselend_doseerschema | verstrekkingsverzoek | toedieningsafspraak | medicatieverstrekking | medicatiegebruik | medicatietoediening" mode="_generateId">
 
