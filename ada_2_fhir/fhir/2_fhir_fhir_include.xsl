@@ -771,8 +771,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
+    
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>Removed special characters to comply with certain rules for id's. Touchstone also does not like . (period) in fixture id.</xd:desc>
         <xd:param name="in"/>
     </xd:doc>
     <xsl:function name="nf:removeSpecialCharacters" as="xs:string?">
