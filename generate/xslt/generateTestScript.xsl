@@ -282,7 +282,7 @@
         </xsl:copy>
     </xsl:template>
     
-    <!--Add TouchStone assert-stopTestOnFail extension by default.-->
+    <!--Add TouchStone assert-stopTestOnFail extension and warningOnly flag by default.-->
     <xsl:template match="f:TestScript/f:test/f:action/f:assert" mode="filter">
         <xsl:copy>
             <xsl:apply-templates select="@*" mode="#current"/>
@@ -300,6 +300,9 @@
                 </xsl:otherwise>
             </xsl:choose>
             <xsl:apply-templates select="node()" mode="#current"/>
+            <xsl:if test="not(f:warningOnly)">
+                <warningOnly value="false"/>
+            </xsl:if>
         </xsl:copy>
     </xsl:template>
     
