@@ -260,20 +260,25 @@
         </xsl:attribute>
     </xsl:template>
     
-    <!--Add the Accept header, if necessary-->
+    <!--Add the Accept header and encodeRequestUrl, if necessary-->
     <xsl:template match="f:TestScript/f:test/f:action/f:operation" mode="filter">
         <xsl:param name="scenario" tunnel="yes"/>
         <xsl:param name="expectedResponseFormat" tunnel="yes"/>
         
         <!--All elements that can exist before the accept element following the FHIR spec.-->
         <xsl:variable name="pre-accept" select="('type','resource','label','description')"/>
+        <xsl:variable name="pre-encodeRequestUrl" select="('contentType','destination','accept')"/>
         <xsl:copy>
             <xsl:apply-templates select="@*" mode="#current"/>
             <xsl:apply-templates select="f:*[local-name()=$pre-accept]" mode="#current"/>
             <xsl:if test="$scenario='server' and not(f:accept) and $expectedResponseFormat != ''">
                 <accept value="{lower-case($expectedResponseFormat)}"/>
             </xsl:if>
-            <xsl:apply-templates select="f:*[not(local-name()=$pre-accept)]" mode="#current"/>
+            <xsl:apply-templates select="f:*[local-name()=$pre-encodeRequestUrl]" mode="#current"/>
+            <xsl:if test="not(f:encodeRequestUrl)">
+                <encodeRequestUrl value="true"/>
+            </xsl:if>
+            <xsl:apply-templates select="f:*[not(local-name()=$pre-accept or local-name()=$pre-encodeRequestUrl)]" mode="#current"/>
         </xsl:copy>
     </xsl:template>
     
