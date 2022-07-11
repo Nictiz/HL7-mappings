@@ -391,35 +391,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
 
     </xsl:variable>
-    <xd:doc>
-        <xd:desc>Create the ext-RenderedDosageInstruction extension from ADA InstructionsForUse.</xd:desc>
-        <xd:param name="in">The ADA instance to extract the rendered dosage instruction from. 
-            Override for default function in mp-InstructionsForUse so that we can generate instruction text based on structured data.</xd:param>
-    </xd:doc>
-    <xsl:template name="ext-RenderedDosageInstruction" mode="ext-RenderedDosageInstruction" match="gebruiksinstructie" as="element(f:extension)?">
-        <xsl:param name="in" as="element()?" select="."/>
-
-        <xsl:for-each select="$in">
-            <xsl:for-each select="omschrijving[@value != '']">
-                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-                    <valueString>
-                        <xsl:attribute name="value">
-                            <xsl:choose>
-                                <xsl:when test="$generateInstructionText">
-                                    <xsl:value-of select="nf:gebruiksintructie-string(..)"/>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:value-of select="@value"/>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:attribute>
-                    </valueString>
-                </extension>
-            </xsl:for-each>
-        </xsl:for-each>
-    </xsl:template>
-
-
+ 
     <xd:doc>
         <xd:desc> override date xslt template to allow for T-dates, TODO temp solution, should be done outside of normal xslt's </xd:desc>
         <xd:param name="in">the ada date(time) element, may have any name but should have ada datatype date(time)</xd:param>
