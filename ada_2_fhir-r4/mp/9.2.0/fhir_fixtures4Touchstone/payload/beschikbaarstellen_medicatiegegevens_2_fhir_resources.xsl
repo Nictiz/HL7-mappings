@@ -86,9 +86,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="mbh"/>
 
         <xsl:variable name="entries" as="element(f:entry)*">
-            <xsl:apply-templates select="$bouwstenen-920" mode="addBundleEntrySearchOrRequest"/>
+            <xsl:copy-of select="$bouwstenen-920"/>
             <!-- common entries (patient, practitioners, organizations, practitionerroles, relatedpersons, products, locations, gewichten, lengtes, reden van voorschrijven,  bouwstenen -->
-            <xsl:apply-templates select="$commonEntries" mode="addBundleEntrySearchOrRequest"/>
+            <xsl:copy-of select="$commonEntries"/>
         </xsl:variable>
 
         <!-- and output the resource in a file -->
