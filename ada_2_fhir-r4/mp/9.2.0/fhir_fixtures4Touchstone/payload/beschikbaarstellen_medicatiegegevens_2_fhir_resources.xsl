@@ -50,7 +50,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
     <!--    <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>-->
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
-
+    <!-- output dir for our result doc(s) -->
+    <xsl:param name="outputDir" select="'.'"/>
+    
     <xsl:param name="usecase">mp9</xsl:param>
 
     <xd:doc>
@@ -92,7 +94,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
 
         <!-- and output the resource in a file -->
-        <xsl:apply-templates select="($entries)//f:resource/*" mode="doResourceInResultdoc"/>
+        <xsl:apply-templates select="($entries)//f:resource/*" mode="doResourceInResultdoc">
+            <xsl:with-param name="outputDir" select="$outputDir"/>
+        </xsl:apply-templates>
     </xsl:template>
     
 </xsl:stylesheet>

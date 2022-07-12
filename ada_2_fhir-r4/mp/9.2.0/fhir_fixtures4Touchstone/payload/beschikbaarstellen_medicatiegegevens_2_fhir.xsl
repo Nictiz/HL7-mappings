@@ -50,6 +50,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>
     <!--    <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>-->
+    <!-- output dir for our result doc(s) -->
+    <xsl:param name="outputDir">.</xsl:param>
     <!-- whether or nog to output schema / schematron links -->
     <xsl:param name="schematronXsdLinkInOutput" as="xs:boolean?" select="false()"/>
 
@@ -67,6 +69,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="Medicatiegegevens_90">
         <xsl:param name="mbh"/>
+        
+        <xsl:variable name="resultBundle">
+            
         <xsl:if test="$schematronXsdLinkInOutput">
             <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
         </xsl:if>
@@ -100,5 +105,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="entrySearchMode">include</xsl:with-param>
             </xsl:apply-templates>
         </Bundle>
+        </xsl:variable>
+        
+        <xsl:result-document href="{$outputDir}/{$resultBundle/f:Bundle/f:id/@value}.xml">
+            <xsl:copy-of select="$resultBundle"/>
+        </xsl:result-document>
     </xsl:template>
 </xsl:stylesheet>

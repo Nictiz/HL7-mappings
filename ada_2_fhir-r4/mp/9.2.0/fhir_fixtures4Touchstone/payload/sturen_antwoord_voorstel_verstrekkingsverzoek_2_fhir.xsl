@@ -15,7 +15,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:f="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:uuid="http://www.uuid.org" xmlns="http://hl7.org/fhir" xmlns:nm="http://www.nictiz.nl/mappings" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../sturen_antwoord_voorstel_verstrekkingsverzoek/payload/sturen_antwoord_voorstel_verstrekkingsverzoek_2_fhir.xsl"/>
     <xsl:import href="../../../../fhir/2_fhir_fixtures.xsl"/>
-    
+
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Nictiz</xd:p>
@@ -51,9 +51,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- The meta tag to be added. Optional. Typical use case is 'actionable' for prescriptions or proposals. Empty for informational purposes. -->
     <xsl:param name="metaTag" as="xs:string?">actionable</xsl:param>
 
+    <!-- output dir for our result doc(s) -->
+    <xsl:param name="outputDir">.</xsl:param>
     <!-- whether or nog to output schema / schematron links -->
     <xsl:param name="schematronXsdLinkInOutput" as="xs:boolean?" select="false()"/>
-    
+
     <xd:doc>
         <xd:desc>Start conversion. Handle interaction specific stuff for "sturen_antwoord_voorstel_verstrekkingsverzoek".</xd:desc>
     </xd:doc>
@@ -70,39 +72,46 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in"/>
 
         <xsl:for-each select="$in">
-            <xsl:if test="$schematronXsdLinkInOutput">
-                <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
-            </xsl:if>
-            <Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-                <xsl:if test="$schematronXsdLinkInOutput">
-                    <xsl:attribute name="xsi:schemaLocation">http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd</xsl:attribute>
-                </xsl:if>
-                <id value="{nf:removeSpecialCharacters(..[1]/@id)}"/>
-                <meta>
-                    <profile value="{nf:get-full-profilename-from-adaelement($in/..)}"/>                
-                </meta>
-                <type value="transaction"/>
-                <xsl:choose>
-                    <xsl:when test="$bundleSelfLink[not(. = '')]">
-                        <link>
-                            <relation value="self"/>
-                            <url value="{$bundleSelfLink}"/>
-                        </link>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:call-template name="util:logMessage">
-                            <xsl:with-param name="level" select="$logWARN"/>
-                            <xsl:with-param name="msg">Parameter bundleSelfLink is empty, but server SHALL return the parameters that were actually used to process the search.</xsl:with-param>
-                            <xsl:with-param name="terminate" select="false()"/>
-                        </xsl:call-template>
-                    </xsl:otherwise>
-                </xsl:choose>
-      
-                <xsl:apply-templates select="$bouwstenen-920" mode="addBundleEntrySearchOrRequest"/>
+            <xsl:variable name="resultBundle">
 
-                <!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations -->
-                <xsl:apply-templates select="$commonEntries" mode="addBundleEntrySearchOrRequest"/>
-            </Bundle>
+                <xsl:if test="$schematronXsdLinkInOutput">
+                    <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
+                </xsl:if>
+                <Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+                    <xsl:if test="$schematronXsdLinkInOutput">
+                        <xsl:attribute name="xsi:schemaLocation">http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd</xsl:attribute>
+                    </xsl:if>
+                    <id value="{nf:removeSpecialCharacters(..[1]/@id)}"/>
+                    <meta>
+                        <profile value="{nf:get-full-profilename-from-adaelement($in/..)}"/>
+                    </meta>
+                    <type value="transaction"/>
+                    <xsl:choose>
+                        <xsl:when test="$bundleSelfLink[not(. = '')]">
+                            <link>
+                                <relation value="self"/>
+                                <url value="{$bundleSelfLink}"/>
+                            </link>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:call-template name="util:logMessage">
+                                <xsl:with-param name="level" select="$logWARN"/>
+                                <xsl:with-param name="msg">Parameter bundleSelfLink is empty, but server SHALL return the parameters that were actually used to process the search.</xsl:with-param>
+                                <xsl:with-param name="terminate" select="false()"/>
+                            </xsl:call-template>
+                        </xsl:otherwise>
+                    </xsl:choose>
+
+                    <xsl:apply-templates select="$bouwstenen-920" mode="addBundleEntrySearchOrRequest"/>
+
+                    <!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations -->
+                    <xsl:apply-templates select="$commonEntries" mode="addBundleEntrySearchOrRequest"/>
+                </Bundle>
+            </xsl:variable>
+
+            <xsl:result-document href="{$outputDir}/{$resultBundle/f:Bundle/f:id/@value}.xml">
+                <xsl:copy-of select="$resultBundle"/>
+            </xsl:result-document>
         </xsl:for-each>
     </xsl:template>
 </xsl:stylesheet>

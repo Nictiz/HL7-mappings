@@ -295,9 +295,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc>Creates xml document for a FHIR resource</xd:desc>
+        <xd:param name="outputDir">The outputDir for the resource, defaults to 'current dir'.</xd:param>
     </xd:doc>
     <xsl:template match="*" mode="doResourceInResultdoc">
-        <xsl:result-document href="./{f:id/@value}.xml">
+        <xsl:param name="outputDir" select="'.'"/>
+        <xsl:result-document href="{$outputDir}/{f:id/@value}.xml">
             <xsl:copy-of select="."/>
         </xsl:result-document>
     </xsl:template>
