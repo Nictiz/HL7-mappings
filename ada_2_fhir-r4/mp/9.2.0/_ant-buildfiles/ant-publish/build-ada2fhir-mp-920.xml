@@ -28,7 +28,7 @@
         <antcall target="setup_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
             <param name="schema.string" value="*${usecase.mg}.xsd"/>
-            <param name="fileset.dir" value="ada_instance_repo"/>
+            <param name="fileset.dir" value="ada_instance"/>
             <param name="fileset.include" value="*.xml"/>
             <param name="refs.dir" value="${refs.dir}/${usecase.mg}"/>
         </antcall>
@@ -38,7 +38,7 @@
         <delete>
             <fileset dir="${build.dir}/${usecase.mg}/ada_instance_4_TS" includes="*.xml"/>
         </delete>
-        <fileset id="inputFiles" dir="${build.dir}/${usecase.mg}/ada_instance_repo" includes="*Scenarioset0*.xml"/>
+        <fileset id="inputFiles" dir="${build.dir}/${usecase.mg}/ada_instance" includes="*Scenarioset0*.xml"/>
 
         <echo/>
         <echo>${echo.label} input files ${build.dir}/${usecase.mg}/ada_instance, to be converted with: ${build.dir}/fhir_fixtures4Touchstone/payload/preprocess_ada_4_Touchstone.xsl</echo>
@@ -48,7 +48,7 @@
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
         </xslt>
-        <move todir="${build.dir}/${usecase.mg}/ada_instance_repo">
+        <move todir="${build.dir}/${usecase.mg}/ada_instance">
             <fileset dir="${build.dir}/${usecase.mg}/ada_instance_4_TS" includes="*.xml"/>
         </move>
         <!-- let's cleanup our temp stuff -->
@@ -144,8 +144,8 @@
         <echo>the MP stuff for version 9.2.0</echo>
         <echo/>
         <echo>beschikbaarstellen_medicatiegegevens</echo>
-        <property name="xsl.input.mg" value="${build.dir}/${usecase.mg}/ada_instance_repo"/>
-        <property name="xsl.output.mg" value="${build.dir}/${usecase.mg}/fhir_instance_repo"/>
+        <property name="xsl.input.mg" value="${build.dir}/${usecase.mg}/ada_instance"/>
+        <property name="xsl.output.mg" value="${build.dir}/${usecase.mg}/fhir_instance"/>
 
         <!-- make dir if it does not exist (anymore) -->
         <mkdir dir="${xsl.output.mg}"/>
@@ -350,7 +350,7 @@
             <fileset dir="${build.dir}/4TouchstoneMPServe" includes="*.xml"/>
         </delete>
         <copy todir="${build.dir}/4TouchstoneMPServe">
-            <fileset dir="${build.dir}/${usecase.mg}/fhir_instance_repo"/>              
+            <fileset dir="${build.dir}/${usecase.mg}/fhir_instance"/>              
             <fileset dir="${build.dir}/${usecase.mv}/fhir_instance"/>
             <fileset dir="${build.dir}/${usecase.amv}/fhir_instance"/>
             <fileset dir="${build.dir}/${usecase.vma}/fhir_instance"/>
@@ -416,9 +416,9 @@
             <param name="validate.schema" value="${schema.bundle}"/>
         </antcall>-->
 
-        <echo>**/fhir_instance_repo/mg-*.xml</echo>
+        <echo>**/fhir_instance/mg-*.xml</echo>
         <antcall target="schemavalidate_sub_url">
-            <param name="fileset.include" value="**/fhir_instance_repo/mg-*.xml"/>
+            <param name="fileset.include" value="**/fhir_instance/mg-*.xml"/>
             <param name="fileset.exclude" value="nictiz_test/**/*"/>
             <param name="validate.schema" value="${schema.bundle}"/>
         </antcall>
@@ -439,8 +439,8 @@
         <antcall target="validate_fhir_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
             <param name="include" value="mg-*.xml"/>
-            <param name="xsl.input" value="fhir_instance_repo"/>
-            <param name="xsl.output" value="validate_fhir_instance_repo"/>
+            <param name="xsl.input" value="fhir_instance"/>
+            <param name="xsl.output" value="validate_fhir_instance"/>
             <param name="xsl.mp" value="${validate.dir}/bundle.xsl"/>
         </antcall>
 
@@ -525,7 +525,7 @@
         <!-- beschikbaarstellen_medicatiegegevens -->
         <antcall target="schematronresults_fhir_920_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.mg}.xml"/>
-            <param name="input.dir" value="../ada_2_fhir-r4/mp/${is.version}/${usecase.mg}/validate_fhir_instance_repo"/>
+            <param name="input.dir" value="../ada_2_fhir-r4/mp/${is.version}/${usecase.mg}/validate_fhir_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- sturen_medicatievoorschrift -->
