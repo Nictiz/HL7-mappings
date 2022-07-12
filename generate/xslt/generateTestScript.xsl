@@ -323,6 +323,8 @@
     <!-- Expand a nts:fixture element to a FHIR fixture element -->
     <xsl:template match="nts:fixture[@id and @href]" mode="expand">
         <fixture id="{@id}">
+            <autocreate value="false"/>
+            <autodelete value="false"/>
             <resource>
                 <reference value="{nts:constructFilePath($referenceBase, @href)}"/>
             </resource>
