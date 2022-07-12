@@ -1,9 +1,8 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-mp-mg-tst-MA-Scenarioset3-v20-3-1"/>
-   <type value="searchset"/>
-   <total value="2"/>
+   <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f05c8-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0618-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="mp-MedAgr--MBH200stoppenMAstart"/>
@@ -39,18 +38,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f0604-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f0654-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="Acetylsalicylzuur tabletmsr 100mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f05aa-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f05fa-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <authoredOn value="2021-11-02T08:00:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:c33f0622-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f0672-6a95-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
             </requester>
@@ -88,12 +87,13 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
-      <search>
-         <mode value="match"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f05e6-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0636-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="mp-MedAgr--MBH200stoppenMAstaken"/>
@@ -138,18 +138,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f0604-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f0654-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="Acetylsalicylzuur tabletmsr 100mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f05aa-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f05fa-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <authoredOn value="2021-12-22T18:00:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:c33f0622-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f0672-6a95-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
             </requester>
@@ -202,12 +202,13 @@
             </priorPrescription>
          </MedicationRequest>
       </resource>
-      <search>
-         <mode value="match"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f05aa-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f05fa-6a95-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <id value="nl-core-Patient--J-deXXX-Luzac"/>
@@ -252,12 +253,13 @@
             <birthDate value="1985-10-24"/>
          </Patient>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0622-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0672-6a95-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="nl-core-HPrf-PracRol--000001112-0100-00001111"/>
@@ -265,12 +267,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:c33f0640-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f0690-6a95-11ec-0000-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Bertine van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:c33f065e-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f06ae-6a95-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -284,12 +286,13 @@
             </specialty>
          </PractitionerRole>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0640-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0690-6a95-11ec-0000-020000000000"/>
       <resource>
          <Practitioner>
             <id value="nl-core-HPrf-Prac--2165281100731-000001112"/>
@@ -319,12 +322,13 @@
             </name>
          </Practitioner>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="Practitioner"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f065e-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f06ae-6a95-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <id value="nl-core-HPrv-Org--2165281100733-00001111"/>
@@ -360,12 +364,13 @@
             </address>
          </Organization>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0604-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0654-6a95-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <id value="nl-core-PhPrd--216840111388324410-49484"/>
@@ -388,8 +393,9 @@
             </code>
          </Medication>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>

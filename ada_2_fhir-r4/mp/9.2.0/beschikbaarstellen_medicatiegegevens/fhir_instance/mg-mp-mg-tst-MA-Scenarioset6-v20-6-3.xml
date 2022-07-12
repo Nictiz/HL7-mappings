@@ -1,9 +1,8 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-mp-mg-tst-MA-Scenarioset6-v20-6-3"/>
-   <type value="searchset"/>
-   <total value="1"/>
+   <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f1cac-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f1cfc-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="mp-MedAgr--MBH200variabelehoeveelheidMA"/>
@@ -39,18 +38,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f1cca-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f1d1a-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="PARACETAMOL 500MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f1c8e-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f1cde-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <authoredOn value="2022-01-01T08:10:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:c33f1ce8-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f1d38-6a95-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
             </requester>
@@ -104,12 +103,13 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
-      <search>
-         <mode value="match"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1c8e-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f1cde-6a95-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <id value="nl-core-Patient--G-XXX-Hemsbergen"/>
@@ -151,12 +151,13 @@
             <birthDate value="1963-11-02"/>
          </Patient>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1ce8-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f1d38-6a95-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="nl-core-HPrf-PracRol--000001111-0100-00001111"/>
@@ -164,12 +165,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:c33f1d06-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f1d56-6a95-11ec-0000-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:c33f1d24-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f1d74-6a95-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -183,12 +184,13 @@
             </specialty>
          </PractitionerRole>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1d06-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f1d56-6a95-11ec-0000-020000000000"/>
       <resource>
          <Practitioner>
             <id value="nl-core-HPrf-Prac--2165281100731-000001111"/>
@@ -218,12 +220,13 @@
             </name>
          </Practitioner>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="Practitioner"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1d24-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f1d74-6a95-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <id value="nl-core-HPrv-Org--2165281100733-00001111"/>
@@ -259,12 +262,13 @@
             </address>
          </Organization>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1cca-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f1d1a-6a95-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <id value="nl-core-PhPrd--216840111388324410-67903"/>
@@ -287,8 +291,9 @@
             </code>
          </Medication>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>

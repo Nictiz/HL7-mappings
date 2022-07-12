@@ -1,9 +1,8 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-mp-mg-tst-MGB-Scenarioset7-v20-7-3"/>
-   <type value="searchset"/>
-   <total value="1"/>
+   <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f240e-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f245e-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
             <id value="mp-MedUse2--MBH200magistraal90miljoennrMGB"/>
@@ -15,7 +14,7 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:c33f244a-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:c33f249a-6a95-11ec-0000-020000000000"/>
                   <type value="PractitionerRole"/>
                   <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
                </valueReference>
@@ -31,7 +30,7 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
                <valueReference>
-                  <reference value="urn:uuid:c33f23f0-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:c33f2440-6a95-11ec-0000-020000000000"/>
                   <type value="Patient"/>
                   <display value="Patient, G. XXX_Hess"/>
                </valueReference>
@@ -49,12 +48,12 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f242c-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f247c-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="Eigen artikel: ureumzalf"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f23f0-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f2440-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hess"/>
             </subject>
@@ -97,12 +96,13 @@
             </dosage>
          </MedicationStatement>
       </resource>
-      <search>
-         <mode value="match"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationStatement"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f23f0-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f2440-6a95-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <id value="nl-core-Patient--G-XXX-Hess"/>
@@ -144,12 +144,13 @@
             <birthDate value="1963-11-03"/>
          </Patient>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f244a-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f249a-6a95-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="nl-core-HPrf-PracRol--000001111-0100-00001111"/>
@@ -157,12 +158,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:c33f2468-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f24b8-6a95-11ec-0000-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:c33f2486-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f24d6-6a95-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -176,12 +177,13 @@
             </specialty>
          </PractitionerRole>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f2468-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f24b8-6a95-11ec-0000-020000000000"/>
       <resource>
          <Practitioner>
             <id value="nl-core-HPrf-Prac--2165281100731-000001111"/>
@@ -211,12 +213,13 @@
             </name>
          </Practitioner>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="Practitioner"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f2486-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f24d6-6a95-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <id value="nl-core-HPrv-Org--2165281100733-00001111"/>
@@ -252,12 +255,13 @@
             </address>
          </Organization>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f242c-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f247c-6a95-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <id value="nl-core-PhPrd--2168401113883243119999779000000011111-90000001"/>
@@ -316,8 +320,9 @@
             </ingredient>
          </Medication>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>

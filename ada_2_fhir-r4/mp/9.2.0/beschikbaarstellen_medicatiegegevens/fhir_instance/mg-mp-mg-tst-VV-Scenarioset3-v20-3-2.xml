@@ -1,9 +1,8 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-mp-mg-tst-VV-Scenarioset3-v20-3-2"/>
-   <type value="searchset"/>
-   <total value="2"/>
+   <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f0118-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0168-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="mp-DspReq--MBH200wijzigenverhogingVVextra"/>
@@ -30,18 +29,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f0154-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f01a4-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="FUROSEMIDE 40MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f00fa-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f014a-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <authoredOn value="2021-12-30T08:02:00+01:00"/>
             <performer>
-               <reference value="urn:uuid:c33f01ea-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f023a-6a95-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -71,12 +70,13 @@
             </dispenseRequest>
          </MedicationRequest>
       </resource>
-      <search>
-         <mode value="match"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0136-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0186-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="mp-DspReq--MBH200wijzigenverhogingVV"/>
@@ -103,18 +103,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f0154-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f01a4-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="FUROSEMIDE 40MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f00fa-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f014a-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <authoredOn value="2021-12-11T08:02:00+01:00"/>
             <performer>
-               <reference value="urn:uuid:c33f01ea-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f023a-6a95-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -144,12 +144,13 @@
             </dispenseRequest>
          </MedicationRequest>
       </resource>
-      <search>
-         <mode value="match"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f00fa-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f014a-6a95-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <id value="nl-core-Patient--J-deXXX-Luzac"/>
@@ -194,12 +195,13 @@
             <birthDate value="1985-10-24"/>
          </Patient>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0172-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f01c2-6a95-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="nl-core-HPrf-PracRol--000001112-0100-00001111"/>
@@ -207,12 +209,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:c33f0190-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f01e0-6a95-11ec-0000-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Bertine van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:c33f01ae-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f01fe-6a95-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -226,12 +228,13 @@
             </specialty>
          </PractitionerRole>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0190-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f01e0-6a95-11ec-0000-020000000000"/>
       <resource>
          <Practitioner>
             <id value="nl-core-HPrf-Prac--2165281100731-000001112"/>
@@ -261,12 +264,13 @@
             </name>
          </Practitioner>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="Practitioner"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f01ae-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f01fe-6a95-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <id value="nl-core-HPrv-Org--2165281100733-00001111"/>
@@ -302,12 +306,13 @@
             </address>
          </Organization>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f01ea-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f023a-6a95-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <id value="nl-core-HPrv-Org--2165281100733-01236578"/>
@@ -321,12 +326,13 @@
             <name value="Apotheek De Gulle Gaper"/>
          </Organization>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0154-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f01a4-6a95-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <id value="nl-core-PhPrd--216840111388324410-5967"/>
@@ -349,8 +355,9 @@
             </code>
          </Medication>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>

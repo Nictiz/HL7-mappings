@@ -1,9 +1,8 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-mp-mg-tst-MTD-Scenarioset11-v20-11-2"/>
-   <type value="searchset"/>
-   <total value="1"/>
+   <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f0654-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f06a4-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationAdministration>
             <id value="mp-MedAdm2--MBH200wdsmtd1MTD2"/>
@@ -44,19 +43,19 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f0672-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f06c2-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="ACENOCOUMAROL TABLET 1MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f0636-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f0686-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Pherai"/>
             </subject>
             <effectiveDateTime value="2021-12-13T20:00:00+01:00"/>
             <performer>
                <actor>
-                  <reference value="urn:uuid:c33f0690-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:c33f06e0-6a95-11ec-0000-020000000000"/>
                   <type value="PractitionerRole"/>
                   <display value="Healthcare professional (role), Jantien Toedien, Verpleegkundigen, niet nader gespecificeerd"/>
                </actor>
@@ -119,12 +118,13 @@
             </dosage>
          </MedicationAdministration>
       </resource>
-      <search>
-         <mode value="match"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationAdministration"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0636-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0686-6a95-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <id value="nl-core-Patient--M-XXX-Pherai"/>
@@ -166,12 +166,13 @@
             <birthDate value="1985-11-01"/>
          </Patient>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0690-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f06e0-6a95-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="nl-core-HPrf-PracRol--222220000-9100-11110000"/>
@@ -179,12 +180,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:c33f06ae-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f06fe-6a95-11ec-0000-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Jantien Toedien"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:c33f06cc-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f071c-6a95-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Thuiszorg Om en Bij"/>
             </organization>
@@ -198,12 +199,13 @@
             </specialty>
          </PractitionerRole>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f06ae-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f06fe-6a95-11ec-0000-020000000000"/>
       <resource>
          <Practitioner>
             <id value="nl-core-HPrf-Prac--2165281100731-222220000"/>
@@ -230,12 +232,13 @@
             </name>
          </Practitioner>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="Practitioner"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f06cc-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f071c-6a95-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <id value="nl-core-HPrv-Org--2165281100733-11110000"/>
@@ -268,12 +271,13 @@
             </address>
          </Organization>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0672-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f06c2-6a95-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <id value="nl-core-PhPrd--216840111388324410-7323"/>
@@ -296,8 +300,9 @@
             </code>
          </Medication>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>

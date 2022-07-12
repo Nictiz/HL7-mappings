@@ -1,9 +1,8 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-mp-mg-tst-MGB-Scenarioset5-v20-5-5"/>
-   <type value="searchset"/>
-   <total value="1"/>
+   <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f0d0c-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0d5c-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
             <id value="mp-MedUse2--MBH200zelfzorgmedicatieMBG"/>
@@ -21,7 +20,7 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
                <valueReference>
-                  <reference value="urn:uuid:c33f0cee-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:c33f0d3e-6a95-11ec-0000-020000000000"/>
                   <type value="Patient"/>
                   <display value="Patient, M. XXX_Raamsdonk"/>
                </valueReference>
@@ -39,12 +38,12 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f0d2a-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f0d7a-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="PREVALIN ALLERSTOP CETIRIZINE TABLET FILMOMH 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f0cee-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f0d3e-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Raamsdonk"/>
             </subject>
@@ -94,12 +93,13 @@
             </dosage>
          </MedicationStatement>
       </resource>
-      <search>
-         <mode value="match"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationStatement"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0cee-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0d3e-6a95-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <id value="nl-core-Patient--M-XXX-Raamsdonk"/>
@@ -141,12 +141,13 @@
             <birthDate value="1985-11-06"/>
          </Patient>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0d2a-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0d7a-6a95-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <id value="nl-core-PhPrd--21684011138832447-2497905"/>
@@ -174,8 +175,9 @@
             </code>
          </Medication>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>

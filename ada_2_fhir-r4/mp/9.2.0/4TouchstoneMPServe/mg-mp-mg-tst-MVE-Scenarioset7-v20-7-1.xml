@@ -1,9 +1,8 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-mp-mg-tst-MVE-Scenarioset7-v20-7-1"/>
-   <type value="searchset"/>
-   <total value="1"/>
+   <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f175c-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f17ac-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="mp-MedDsp--MBH200magistraalalleingredientenMVE"/>
@@ -29,18 +28,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f177a-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f17ca-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="overig"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f173e-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f178e-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hess"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:c33f1798-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:c33f17e8-6a95-11ec-0000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -70,12 +69,13 @@
             <whenHandedOver value="2022-01-01T13:00:00+01:00"/>
          </MedicationDispense>
       </resource>
-      <search>
-         <mode value="match"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationDispense"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f173e-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f178e-6a95-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <id value="nl-core-Patient--G-XXX-Hess"/>
@@ -117,12 +117,13 @@
             <birthDate value="1963-11-03"/>
          </Patient>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1798-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f17e8-6a95-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <id value="nl-core-HPrv-Org--2165281100733-01236578"/>
@@ -136,15 +137,16 @@
             <name value="Apotheek De Gulle Gaper"/>
          </Organization>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f177a-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f17ca-6a95-11ec-0000-020000000000"/>
       <resource>
          <Medication>
-            <id value="nl-core-PhPrd--c33f22e7-6a95-11ec-0000-020000000000"/>
+            <id value="nl-core-PhPrd--c33f234b-6a95-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct"/>
             </meta>
@@ -239,8 +241,9 @@
             </ingredient>
          </Medication>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>

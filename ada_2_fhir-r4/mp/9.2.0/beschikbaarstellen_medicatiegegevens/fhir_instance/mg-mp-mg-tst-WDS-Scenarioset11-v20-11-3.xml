@@ -1,9 +1,8 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <id value="mg-mp-mg-tst-WDS-Scenarioset11-v20-11-3"/>
-   <type value="searchset"/>
-   <total value="2"/>
+   <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f1612-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f1662-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="mp-VarDosReg--MBH200wdsmtd1WDStechnischestop"/>
@@ -56,18 +55,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f164e-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f169e-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="ACENOCOUMAROL TABLET 1MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f15f4-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f1644-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Pherai"/>
             </subject>
             <authoredOn value="2021-12-25T10:30:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:c33f166c-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f16bc-6a95-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Tanja de Bakker, Trombosediensten"/>
             </requester>
@@ -228,12 +227,13 @@
             </priorPrescription>
          </MedicationRequest>
       </resource>
-      <search>
-         <mode value="match"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1630-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f1680-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="mp-VarDosReg--MBH200wdsmtd1WDSverhoging"/>
@@ -277,18 +277,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f164e-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f169e-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="ACENOCOUMAROL TABLET 1MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f15f4-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f1644-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Pherai"/>
             </subject>
             <authoredOn value="2021-12-25T10:30:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:c33f166c-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f16bc-6a95-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Tanja de Bakker, Trombosediensten"/>
             </requester>
@@ -396,12 +396,13 @@
             </priorPrescription>
          </MedicationRequest>
       </resource>
-      <search>
-         <mode value="match"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f15f4-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f1644-6a95-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <id value="nl-core-Patient--M-XXX-Pherai"/>
@@ -443,12 +444,13 @@
             <birthDate value="1985-11-01"/>
          </Patient>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f166c-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f16bc-6a95-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="nl-core-HPrf-PracRol--222221111-3400-11112222"/>
@@ -456,12 +458,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:c33f168a-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f16da-6a95-11ec-0000-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Tanja de Bakker"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:c33f16a8-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f16f8-6a95-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Trombosedienst Ons Dorp"/>
             </organization>
@@ -475,12 +477,13 @@
             </specialty>
          </PractitionerRole>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f168a-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f16da-6a95-11ec-0000-020000000000"/>
       <resource>
          <Practitioner>
             <id value="nl-core-HPrf-Prac--2165281100731-222221111"/>
@@ -510,12 +513,13 @@
             </name>
          </Practitioner>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="Practitioner"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f16a8-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f16f8-6a95-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <id value="nl-core-HPrv-Org--2165281100733-11112222"/>
@@ -552,12 +556,13 @@
             </address>
          </Organization>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f164e-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f169e-6a95-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <id value="nl-core-PhPrd--216840111388324410-7323"/>
@@ -580,8 +585,9 @@
             </code>
          </Medication>
       </resource>
-      <search>
-         <mode value="include"/>
-      </search>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
    </entry>
 </Bundle>
