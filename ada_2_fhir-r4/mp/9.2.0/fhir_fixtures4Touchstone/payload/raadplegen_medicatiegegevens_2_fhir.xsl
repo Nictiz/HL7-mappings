@@ -15,7 +15,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:f="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:uuid="http://www.uuid.org" xmlns="http://hl7.org/fhir" xmlns:nm="http://www.nictiz.nl/mappings" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../beschikbaarstellen_medicatiegegevens/payload/beschikbaarstellen_medicatiegegevens_2_fhir.xsl"/>
     <xsl:import href="../../../../fhir/2_fhir_fixtures.xsl"/>
-    <xsl:import href="../../../../fhir/2_fhir_BundleEntryRequest.xsl"/>
 
     <xd:doc scope="stylesheet">
         <xd:desc>
@@ -98,9 +97,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </xsl:otherwise>
                 </xsl:choose>
-                <xsl:apply-templates select="$bouwstenen-920" mode="addBundleEntrySearchOrRequest"/>                
+                <xsl:apply-templates select="$bouwstenen-920" mode="addBundleEntrySearchOrRequest">
+                    <xsl:with-param name="entrySearchMode">match</xsl:with-param>
+                </xsl:apply-templates>                
                 <!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations -->
-                <xsl:apply-templates select="$commonEntries" mode="addBundleEntrySearchOrRequest"/>                
+                <xsl:apply-templates select="$commonEntries" mode="addBundleEntrySearchOrRequest">
+                    <xsl:with-param name="entrySearchMode">include</xsl:with-param>                    
+                </xsl:apply-templates>                
             </Bundle>
         </xsl:variable>
 
