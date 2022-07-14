@@ -39,7 +39,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Let's update the periodofuse duration to an end date for a particular MBH</xd:desc>
     </xd:doc>
-    <xsl:template match="medicamenteuze_behandeling[identificatie/@value='MBH_920_QA5']/*/gebruiksperiode/tijds_duur[@value]" mode="preprocess4TS">
+    <xsl:template match="medicamenteuze_behandeling[identificatie/@value='MBH_200_QA5']/*/gebruiksperiode/tijds_duur[@value]" mode="preprocess4TS">
         <!-- let's add the eind_datum_tijd in this very dirty hack -->
         <eind_datum_tijd value="{'T-44D{23:59:59}'}"  datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.630"/>        
     </xsl:template>  

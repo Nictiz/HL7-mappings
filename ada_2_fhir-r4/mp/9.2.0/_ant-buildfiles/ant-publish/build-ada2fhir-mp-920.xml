@@ -25,20 +25,35 @@
 
     <target name="setup_920">
         <!-- beschikbaarstellen_medicatiegegevens -->
-        <antcall target="setup_sub">
+        <mkdir dir="${build.dir}/${usecase.mg}"/>        
+        <antcall target="setup_sub_schemas">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
             <param name="schema.string" value="*${usecase.mg}.xsd"/>
-            <param name="fileset.dir" value="ada_instance"/>
-            <param name="fileset.include" value="*.xml"/>
-            <param name="refs.dir" value="${refs.dir}/${usecase.mg}"/>
         </antcall>
+        
+        <echo>Copying ADA instances from ${refs.dir}/ada_instance to ${sub.build.dir}/${fileset.dir}</echo>
+        <!-- make dir if it does not exist (anymore) -->
+        <mkdir dir="${build.dir}/${usecase.mg}/ada_instance"/>
+        <!-- deleting previous results, if any -->
+        <delete>
+            <fileset dir="${build.dir}/${usecase.mg}/ada_instance" includes="*.*"/>
+        </delete>
+        <copy todir="${build.dir}/${usecase.mg}/ada_instance" failonerror="true">
+            <!-- get these from raadplegen_medicatiegegevens -->
+            <fileset dir="${refs.dir}/${usecase.mg.rp}/ada_instance_response">
+                <include name="*.xml"/>
+            </fileset>
+        </copy>     
 
         <!-- preprocess for Touchstone beschikbaarstellen_medicatiegegevens (update use period to use end date for querying purposes -->
         <mkdir dir="${build.dir}/${usecase.mg}/ada_instance_4_TS"/>
         <delete>
             <fileset dir="${build.dir}/${usecase.mg}/ada_instance_4_TS" includes="*.xml"/>
         </delete>
-        <fileset id="inputFiles" dir="${build.dir}/${usecase.mg}/ada_instance" includes="*Scenarioset0*.xml"/>
+        <fileset id="inputFiles" dir="${build.dir}/${usecase.mg}/ada_instance">
+            <include name="*Scenarioset0*.xml"/>
+            <include name="mg-mgrp-999900389-ALL.xml"/>
+        </fileset>
 
         <echo/>
         <echo>${echo.label} input files ${build.dir}/${usecase.mg}/ada_instance, to be converted with: ${build.dir}/fhir_fixtures4Touchstone/payload/preprocess_ada_4_Touchstone.xsl</echo>
@@ -54,32 +69,25 @@
         <!-- let's cleanup our temp stuff -->
         <delete dir="${build.dir}/${usecase.mg}/ada_instance_4_TS"/>
         
-        <!-- raadplegen_medicatiegegevens  -->
-        <echo>Copying ADA instances from ${refs.dir}/ada_instance_response to ${build.dir}/${usecase.mg.rp}/ada_instance_response</echo>
-        
-        <!-- make dir if it does not exist (anymore) -->
-        <mkdir dir="${build.dir}/${usecase.mg.rp}/ada_instance_response"/>
-        
-        <!-- deleting previous results, if any -->
-        <delete>
-            <fileset dir="${build.dir}/${usecase.mg.rp}/ada_instance_response" includes="*.xml"/>
-        </delete>
-        <copy todir="${build.dir}/${usecase.mg.rp}/ada_instance_response" failonerror="true">
-            <fileset dir="${refs.dir}/${usecase.mg.rp}/ada_instance_response">
-                <include name="*.xml"/>
-                <exclude name="*_ALL.xml"/>
-            </fileset>
-        </copy>
+        <!-- sturen_medicatiegegevens  -->
+        <echo>sturen_medicatiegegevens</echo>
+        <antcall target="setup_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mg.st}"/>
+            <param name="schema.string" value="*${usecase.mg.st}.xsd"/>
+            <param name="fileset.dir" value="ada_instance"/>
+            <param name="fileset.include" value="*.xml"/>
+            <param name="refs.dir" value="${refs.dir}/${usecase.mg.st}"/>
+        </antcall>        
         
         <!-- beschikbaarstellen_medicatieoverzicht -->
-        <antcall target="setup_sub">
+      <!--  <antcall target="setup_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mo}"/>
             <param name="schema.string" value="*${usecase.mo}.xsd"/>
             <param name="fileset.dir" value="ada_instance"/>
             <param name="fileset.include" value="*.xml"/>
-            <!-- exclude the initating scenario's -->
+            <!-\- exclude the initating scenario's -\->
             <param name="refs.dir" value="${refs.dir}/${usecase.mo}"/>
-        </antcall>
+        </antcall>-->
 
         <!-- sturen_medicatievoorschrift -->
         <antcall target="setup_sub">
@@ -153,7 +161,7 @@
         <delete>
             <fileset dir="${xsl.output.mg}" includes="*.*"/>
         </delete>
-        <!-- resources for Touchstone -->
+        <!-- resources for Touchstone for beschikbaarstellen_medicatiegegevens -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="${usecase.mg}"/>
             <param name="xsl.convert" value="${build.dir}/${usecase.fhir.fixtures}/payload/${usecase.mg}_2_fhir_resources.xsl"/>
@@ -166,8 +174,8 @@
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.mg}"/>
         </antcall>
-
-        <!-- bundles, also for Touchstone for push messages -->
+        
+        <!--  bundles for beschikbaarstellen_medicatiegegevens -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="${usecase.mg}"/>
             <param name="xsl.convert" value="${build.dir}/${usecase.fhir.fixtures}/payload/${usecase.mg}_2_fhir.xsl"/>
@@ -180,24 +188,21 @@
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.mg}"/>
         </antcall>
-        
-        <!-- raadplegen_medicatiegegevens -->
-        <echo/>
-        <echo>raadplegen_medicatiegegevens</echo>
-        <property name="xsl.input.mg.rp" value="${build.dir}/${usecase.mg.rp}/ada_instance_response"/>
-        <property name="xsl.output.mg.rp" value="${build.dir}/${usecase.mg.rp}/fhir_instance_response"/>
-        
-        <!-- bundles -->
+
+        <!-- push bundles for Touchstone for sturen_medicatiegegevens -->
         <antcall target="convert_ada_2_fhir_sub">
-            <param name="usecase" value="${usecase.mg.rp}"/>
-            <param name="xsl.convert" value="${build.dir}/${usecase.fhir.fixtures}/payload/${usecase.mg.rp}_2_fhir.xsl"/>
-            <param name="xsl.in" value="${xsl.input.mg.rp}"/>
+            <param name="usecase" value="${usecase.mg.st}"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.fhir.fixtures}/payload/${usecase.mg.st}_2_fhir.xsl"/>
+            <param name="xsl.in" value="${build.dir}/${usecase.mg.st}/ada_instance"/>
             <param name="xsl.in.include" value="*.xml"/>
-            <param name="xsl.out" value="${xsl.output.mg.rp}"/>
+            <!-- the xsl will write it's resources using the output.dir, but ant xslt still needs an output dir -->
+            <param name="xsl.out" value="${xsl.output.dummy}"/>
             <param name="param.tdate" value="${date.T}"/>
             <param name="param.maskids" value="${mask.ids}"/>
+            <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
+            <param name="output.dir" value="../${build.dir}/${usecase.mg.st}/fhir_instance"/>
         </antcall>
-
+        
         <echo>sturen_medicatievoorschrift</echo>
         <property name="xsl.input.mv" value="${build.dir}/${usecase.mv}/ada_instance"/>
         <property name="xsl.output.mv" value="${build.dir}/${usecase.mv}/fhir_instance"/>
@@ -350,7 +355,12 @@
             <fileset dir="${build.dir}/4TouchstoneMPServe" includes="*.xml"/>
         </delete>
         <copy todir="${build.dir}/4TouchstoneMPServe">
-            <fileset dir="${build.dir}/${usecase.mg}/fhir_instance"/>              
+            <fileset dir="${build.dir}/${usecase.mg}/fhir_instance">
+                <include name="*.xml"/>
+                <!-- only the resources are needed on Touchstone / WildFHIR, exclude the bundles -->
+                <exclude name="mg-*.xml"/>
+            </fileset>              
+            <fileset dir="${build.dir}/${usecase.mg.st}/fhir_instance"/>              
             <fileset dir="${build.dir}/${usecase.mv}/fhir_instance"/>
             <fileset dir="${build.dir}/${usecase.amv}/fhir_instance"/>
             <fileset dir="${build.dir}/${usecase.vma}/fhir_instance"/>
