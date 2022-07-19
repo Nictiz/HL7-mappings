@@ -80,8 +80,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="juridische_situatie" resource="Condition" profile="nl-core-LegalSituation-Representation"/>
         <nm:map ada="laboratorium_uitslag" resource="Observation" profile="nl-core-LaboratoryTestResult"/>
         <nm:map ada="laboratorium_test" resource="Observation" profile="nl-core-LaboratoryTestResult"/>
-        <nm:map ada="monster" resource="Specimen" profile="nl-core-LaboratoryTestResult.Specimen"/>
-        <nm:map ada="monster" resource="Specimen" profile="nl-core-LaboratoryTestResult.Specimen.asMicroorganism"/>
         <nm:map ada="lichaamslengte" resource="Observation" profile="nl-core-BodyHeight"/>
         <nm:map ada="lichaamstemperatuur" resource="Observation" profile="nl-core-BodyTemperature"/>
         <nm:map ada="lichaamsgewicht" resource="Observation" profile="nl-core-BodyWeight"/>
@@ -94,6 +92,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-HearingFunction.HearingAid"/>
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-VisualFunction.VisualAid"/>
         <nm:map ada="mobiliteit" resource="Observation" profile="nl-core-Mobility"/>
+        <nm:map ada="monster" resource="Specimen" profile="nl-core-LaboratoryTestResult.Specimen"/>
+        <nm:map ada="monster/microorganisme" resource="Specimen" profile="nl-core-LaboratoryTestResult.Specimen.asMicroorganism"/>
         <nm:map ada="o2saturatie" resource="Observation" profile="nl-core-O2Saturation"/>
         <nm:map ada="patient" resource="Patient" profile="nl-core-Patient"/>
         <nm:map ada="probleem" resource="Condition" profile="nl-core-Problem"/>
@@ -198,7 +198,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="_buildFhirMetadataForAdaEntry" as="element(nm:resource)*">
         <xsl:param name="in" select="current-group()[1]"/>
         
-        <xsl:variable name="adaElement" as="xs:string" select="$in/local-name()"/>
+        <xsl:variable name="adaElement" as="xs:string+">
+            <xsl:value-of select="$in/local-name()"/>
+            <xsl:if test="$in[self::monster][microorganisme]">
+                <xsl:text>monster/microorganisme</xsl:text>
+            </xsl:if>
+        </xsl:variable>
         <xsl:variable name="adaId" select="$in/@id"/>
         <xsl:variable name="groupKey" select="current-grouping-key()"/>
         <xsl:for-each select="$ada2resourceType/nm:map[@ada = $adaElement]">
@@ -336,14 +341,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each-group select="$in/monster" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
                 </xsl:for-each-group>
-                <!-- If and only if there is more than one laboratorium_test's, there should be an instance for each
+                <!-- If and only if there is more than one laboratorium_test, there should be an instance for each
                      distinct laboratorium_test (in addition the "grouping" instance already identified as part of the 
                      main process. -->
-                <xsl:if test="count($in/laboratorium_test) &gt; 1">
                     <xsl:for-each-group select="$in/laboratorium_test" group-by="nf:getGroupingKeyDefault(.)">
                         <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
                     </xsl:for-each-group>
-                </xsl:if>
             </xsl:when>
         </xsl:choose>
     </xsl:template>
