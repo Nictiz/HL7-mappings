@@ -23,13 +23,12 @@
     <property name="usecase.nt" value="nictiz_test"/>
     
     <property name="ada.project.source.dir" value="${build.dir}/../../../../../SVN/art_decor/trunk/ada-data/projects/lab"/>
-    <property name="schema.fhir" value="${build.dir}/../../../../../../Bitbucket/art-decor-backend-existdb5/fhir/4.0/resources/schemas/fhir-single.xsd"/>
+    <property name="schema.fhir" value="https://hl7.org/fhir/R4/fhir-single.xsd"/>
     <property name="schematron.fhir" value="${build.dir}/../../../../../../Bitbucket/art-decor-backend-existdb5/fhir/4.0/resources/schemas/fhir-invariants.xsl"/>
     
     <property name="xsl.validate.svrl" value="${build.dir}/../../validate/validate-svrl-output.xsl"/>
     
     <target name="setup_lab300" description="Setup subdirectories, schemas, ada instance xml's in ${build.dir} for ${is.name} ${is.version}">
-
         <!-- nictiz_test copies appropriate ada instances from refs.dir -->
         <!-- not yet implemented there is no ada project for 9 2.0 yet -->
         <!--<antcall target="setup_sub_instances">
@@ -246,7 +245,7 @@
         <echo>${echo.label} validate schema with input files ${fileset.include} but excluding ${fileset.exclude}  and schema ${validate.schema}</echo>
         <schemavalidate warn="true" failonerror="false">
             <fileset refid="inputfiles.validate"/>
-            <schema namespace="urn:fhir-org:v3" file="${${schema.fhir}"/>
+            <schema namespace="urn:fhir-org:v3" url="${schema.fhir}"/>
         </schemavalidate>
         
     </target>
