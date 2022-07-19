@@ -30,14 +30,14 @@
     <property name="usecase.labbr" value="beschikbaarstellen_laboratoriumresultaten"/>
     <property name="usecase.labsr" value="sturen_laboratoriumresultaten"/>
 
-    <target name="setup" description="Setup subdirectories, schemas, ada instance xml's in ${build.dir}">
+    <target name="setup" description="Setup subdirectories, schemas, ada instance xmls in ${build.dir}">
 
         <!-- beschikbaarstellen_laboratoriumgegevens copies schemas for project dir and appropriate ada instances from refs.dir -->
         <antcall target="setup_sub">
             <param name="usecase" value="${usecase.labbr}"/>
             <param name="fileset.dir" value="ada_instance"/>
             <param name="fileset.include" value="*.xml"/>
-            <param name="refs.ada.dir" value="${usecase.labsr}/ada_instance"/>
+            <param name="refs.ada.dir" value="../${usecase.labbr}/ada_instance"/>
         </antcall>
         
         <!-- sturen_laboratoriumgegevens copies schemas for project dir and appropriate ada instances from refs.dir -->
@@ -45,7 +45,7 @@
             <param name="usecase" value="${usecase.labsr}"/>
             <param name="fileset.dir" value="ada_instance"/>
             <param name="fileset.include" value="*.xml"/>
-            <param name="refs.ada.dir" value="${usecase.labsr}/ada_instance"/>
+            <param name="refs.ada.dir" value="../${usecase.labsr}/ada_instance"/>
         </antcall>
 
         <!--<!-\- xml voorbeelden -\->
@@ -79,10 +79,18 @@
 
     <target name="convert_ada_2_fhir">
 
-        <!-- convert medicatievoorschrift -->
+        <!-- beschikbaarstellen_laboratoriumgegevens -->
         <antcall target="convert_ada_2_fhir_sub">
-            <param name="sub.build.dir" value="${build.dir}/${usecase.labs}"/>
-            <param name="xsl.name" value="payload/${usecase.labs}.xsl"/>
+            <param name="sub.build.dir" value="${build.dir}/${usecase.labbr}"/>
+            <param name="xsl.name" value="payload/${usecase.labbr}.xsl"/>
+            <param name="xsl.in" value="ada_instance"/>
+            <param name="xsl.out" value="fhir_instance"/>
+        </antcall>
+        
+        <!-- sturen_laboratoriumgegevens -->
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.labsr}"/>
+            <param name="xsl.name" value="payload/${usecase.labsr}.xsl"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="fhir_instance"/>
         </antcall>
@@ -92,15 +100,15 @@
 
     </target>
 
-    <target name="convert_ada_2_fhir_examples">
-        <!-- examples -->
+    <!--<target name="convert_ada_2_fhir_examples">
+        <!-\- examples -\->
         <echo>Deleting previous results, if any</echo>
         <mkdir dir="${build.dir}/xml-voorbeelden/fhir_instance"/>
         <delete>
             <fileset dir="${build.dir}/xml-voorbeelden/fhir_instance" includes="*.xml"/>
         </delete>
         
-        <!-- laboratoriumresultaten -->
+        <!-\- laboratoriumresultaten -\->
         <sequential>
             <fileset id="inputfiles" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="mv*.xml"/>
 
@@ -114,7 +122,7 @@
                 <classpath location="${xsl.saxon}"/>
             </xslt>
         </sequential>
-    </target>
+    </target>-->
 
     <target name="convert_ada_2_fhir_sub">
 
