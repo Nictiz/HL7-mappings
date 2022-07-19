@@ -51,7 +51,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">ADA patient element. Defaults to patient/*</xd:param>
     </xd:doc>
-    <xsl:template name="_nl-core-LaboratoryTestResult-panel" match="laboratorium_uitslag[count(laboratorium_test) &gt; 1]" mode="nl-core-LaboratoryTestResult" as="element(f:Observation)*">
+    <xsl:template name="_nl-core-LaboratoryTestResult-panel" match="laboratorium_uitslag[count(laboratorium_test) gt 1]" mode="nl-core-LaboratoryTestResult" as="element(f:Observation)*">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="$in/patient/*" as="element()?"/>
         
@@ -60,12 +60,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <meta>
                 <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
             </meta>
-            <xsl:for-each select="kopie_indicator[@value = 'true']">
+            <xsl:for-each select="$in/kopie_indicator[@value = 'true']">
                 <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
                     <valueBoolean value="{@value}"/>
                 </extension>
             </xsl:for-each>
-            <xsl:for-each select="edifact_referentienummer[@value]">
+            <xsl:for-each select="$in/edifact_referentienummer[@value]">
                 <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
                     <valueString value="{@value}"/>
                 </extension>
@@ -75,11 +75,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="id-to-Identifier"/>
                 </identifier>
             </xsl:for-each>
-            <xsl:for-each select="$in/resultaat_status">
-                <status>
-                    <xsl:call-template name="code-to-code"/>
-                </status>
-            </xsl:for-each>
+            <xsl:choose>
+                <xsl:when test="$in/resultaat_status[@code]">
+                    <xsl:for-each select="$in/resultaat_status">
+                        <status>
+                            <xsl:call-template name="code-to-code"/>
+                        </status>
+                    </xsl:for-each>
+                </xsl:when>
+                <xsl:otherwise>
+                    <status value="unknown"/>
+                </xsl:otherwise>
+            </xsl:choose>
             <category>
                 <coding>
                     <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
@@ -92,11 +99,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="code-to-CodeableConcept"/>
                 </category>
             </xsl:for-each>
-            <xsl:for-each select="$in/onderzoek">
-                <code>
-                    <xsl:call-template name="code-to-CodeableConcept"/>
-                </code>
-            </xsl:for-each>
+            <xsl:choose>
+                <xsl:when test="$in/onderzoek[@code]">
+                    <xsl:for-each select="$in/onderzoek">
+                        <code>
+                            <xsl:call-template name="code-to-CodeableConcept"/>
+                        </code>
+                    </xsl:for-each>
+                </xsl:when>
+                <xsl:otherwise>
+                    <code>
+                        <coding>
+                            <system value="http://terminology.hl7.org/ValueSet/v3-NullFlavor"/>
+                            <code value="UNK"/>
+                            <display value="onbekend"/>
+                        </coding>
+                    </code>
+                </xsl:otherwise>
+            </xsl:choose>
             
             <xsl:for-each select="$subject">
                 <xsl:call-template name="makeReference">
@@ -178,12 +198,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <meta>
                 <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
             </meta>
-            <xsl:for-each select="../kopie_indicator[@value = 'true']">
+            <xsl:for-each select="$parent/kopie_indicator[@value = 'true']">
                 <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
                     <valueBoolean value="{@value}"/>
                 </extension>
             </xsl:for-each>
-            <xsl:for-each select="../edifact_referentienummer[@value]">
+            <xsl:for-each select="$parent/edifact_referentienummer[@value]">
                 <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
                     <valueString value="{@value}"/>
                 </extension>
@@ -484,7 +504,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="container" as="element()*">
                     <xsl:for-each select="$in/monstervolgnummer">
                         <extension url="http://hl7.org/fhir/StructureDefinition/specimen-sequenceNumber">
-                            <value value="{./@value}"/>                            
+                            <valueInteger value="{./@value}"/>                            
                         </extension>
                     </xsl:for-each>
                     
