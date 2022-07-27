@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bundle xmlns="http://hl7.org/fhir">
    <type value="searchset"/>
-   <total value="1"/>
+   <total value="3"/>
+   <link>
+      <relation value="self"/>
+      <url value="${param.bundleSelfLink}"/>
+   </link>
    <entry>
       <fullUrl value="http://example.nictiz.nl/fhir/Observation/labtest-66666"/>
       <resource>
@@ -71,6 +75,139 @@
                </low>
                <high>
                   <value value="145"/>
+                  <unit value="mmol/l"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="mmol/l"/>
+               </high>
+            </referenceRange>
+         </Observation>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="http://example.nictiz.nl/fhir/Observation/labtest-55555"/>
+      <resource>
+         <Observation>
+            <id value="labtest-55555"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+               <valueBoolean value="true"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
+               <valueString value="111333"/>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298"/>
+               <value value="55555"/>
+            </identifier>
+            <status value="final"/>
+            <category>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+                  <code value="laboratory"/>
+                  <display value="Laboratory"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-45-diagnostische-bepalingen"/>
+                  <code value="509"/>
+                  <display value="international normalised ratio (PT-INR)"/>
+               </coding>
+            </code>
+            <effectiveDateTime value="2021-12-22"/>
+            <performer>
+               <reference value="Location/locatie-3400"/>
+               <type value="Location"/>
+               <display value="Healthcare provider (location), Trombosedienst Ons Dorp"/>
+            </performer>
+            <valueQuantity>
+               <value value="2.9"/>
+            </valueQuantity>
+            <interpretation>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="281302008"/>
+                  <display value="boven referentiebereik"/>
+               </coding>
+            </interpretation>
+            <interpretation>
+               <text value="Te hoog let op."/>
+            </interpretation>
+            <specimen>
+               <reference value="Specimen/monster-1122"/>
+               <type value="Specimen"/>
+               <display value="monster"/>
+            </specimen>
+         </Observation>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="http://example.nictiz.nl/fhir/Observation/labtest-77777"/>
+      <resource>
+         <Observation>
+            <id value="labtest-77777"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+               <valueBoolean value="true"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
+               <valueString value="111555"/>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298"/>
+               <value value="77777"/>
+            </identifier>
+            <status value="final"/>
+            <category>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+                  <code value="laboratory"/>
+                  <display value="Laboratory"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-45-diagnostische-bepalingen"/>
+                  <code value="513"/>
+                  <display value="Kalium"/>
+               </coding>
+            </code>
+            <effectiveDateTime value="2021-12-01"/>
+            <performer>
+               <reference value="Location/locatie-5000"/>
+               <type value="Location"/>
+               <display value="Healthcare provider (location), Klinisch chemisch Lab de Erlenmeyer"/>
+            </performer>
+            <valueQuantity>
+               <value value="4.0"/>
+               <unit value="mmol/l"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="mmol/l"/>
+            </valueQuantity>
+            <specimen>
+               <reference value="Specimen/monster-3342"/>
+               <type value="Specimen"/>
+               <display value="monster"/>
+            </specimen>
+            <referenceRange>
+               <low>
+                  <value value="3.5"/>
+                  <unit value="mmol/l"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="mmol/l"/>
+               </low>
+               <high>
+                  <value value="5.0"/>
                   <unit value="mmol/l"/>
                   <system value="http://unitsofmeasure.org"/>
                   <code value="mmol/l"/>
@@ -228,73 +365,6 @@
          <mode value="include"/>
       </search>
    </entry>
-</Bundle>
-<Bundle xmlns="http://hl7.org/fhir">
-   <type value="searchset"/>
-   <total value="1"/>
-   <entry>
-      <fullUrl value="http://example.nictiz.nl/fhir/Observation/labtest-55555"/>
-      <resource>
-         <Observation>
-            <id value="labtest-55555"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
-               <valueBoolean value="true"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
-               <valueString value="111333"/>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298"/>
-               <value value="55555"/>
-            </identifier>
-            <status value="final"/>
-            <category>
-               <coding>
-                  <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
-                  <code value="laboratory"/>
-                  <display value="Laboratory"/>
-               </coding>
-            </category>
-            <code>
-               <coding>
-                  <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-45-diagnostische-bepalingen"/>
-                  <code value="509"/>
-                  <display value="international normalised ratio (PT-INR)"/>
-               </coding>
-            </code>
-            <effectiveDateTime value="2021-12-22"/>
-            <performer>
-               <reference value="Location/locatie-3400"/>
-               <type value="Location"/>
-               <display value="Healthcare provider (location), Trombosedienst Ons Dorp"/>
-            </performer>
-            <valueQuantity>
-               <value value="2.9"/>
-            </valueQuantity>
-            <interpretation>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="281302008"/>
-                  <display value="boven referentiebereik"/>
-               </coding>
-            </interpretation>
-            <interpretation>
-               <text value="Te hoog let op."/>
-            </interpretation>
-            <specimen>
-               <reference value="Specimen/monster-1122"/>
-               <type value="Specimen"/>
-               <display value="monster"/>
-            </specimen>
-         </Observation>
-      </resource>
-      <search>
-         <mode value="match"/>
-      </search>
-   </entry>
    <entry>
       <fullUrl value="http://example.nictiz.nl/fhir/Location/locatie-3400"/>
       <resource>
@@ -442,80 +512,6 @@
       </resource>
       <search>
          <mode value="include"/>
-      </search>
-   </entry>
-</Bundle>
-<Bundle xmlns="http://hl7.org/fhir">
-   <type value="searchset"/>
-   <total value="1"/>
-   <entry>
-      <fullUrl value="http://example.nictiz.nl/fhir/Observation/labtest-77777"/>
-      <resource>
-         <Observation>
-            <id value="labtest-77777"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
-               <valueBoolean value="true"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
-               <valueString value="111555"/>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298"/>
-               <value value="77777"/>
-            </identifier>
-            <status value="final"/>
-            <category>
-               <coding>
-                  <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
-                  <code value="laboratory"/>
-                  <display value="Laboratory"/>
-               </coding>
-            </category>
-            <code>
-               <coding>
-                  <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-45-diagnostische-bepalingen"/>
-                  <code value="513"/>
-                  <display value="Kalium"/>
-               </coding>
-            </code>
-            <effectiveDateTime value="2021-12-01"/>
-            <performer>
-               <reference value="Location/locatie-5000"/>
-               <type value="Location"/>
-               <display value="Healthcare provider (location), Klinisch chemisch Lab de Erlenmeyer"/>
-            </performer>
-            <valueQuantity>
-               <value value="4.0"/>
-               <unit value="mmol/l"/>
-               <system value="http://unitsofmeasure.org"/>
-               <code value="mmol/l"/>
-            </valueQuantity>
-            <specimen>
-               <reference value="Specimen/monster-3342"/>
-               <type value="Specimen"/>
-               <display value="monster"/>
-            </specimen>
-            <referenceRange>
-               <low>
-                  <value value="3.5"/>
-                  <unit value="mmol/l"/>
-                  <system value="http://unitsofmeasure.org"/>
-                  <code value="mmol/l"/>
-               </low>
-               <high>
-                  <value value="5.0"/>
-                  <unit value="mmol/l"/>
-                  <system value="http://unitsofmeasure.org"/>
-                  <code value="mmol/l"/>
-               </high>
-            </referenceRange>
-         </Observation>
-      </resource>
-      <search>
-         <mode value="match"/>
       </search>
    </entry>
    <entry>

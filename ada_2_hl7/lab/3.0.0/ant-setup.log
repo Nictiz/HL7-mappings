@@ -1,33 +1,324 @@
 Buildfile: /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/_ant-buildfiles/ant-publish/build-ada2hl7-lab-300.xml
 
-download-ivy:
-     [echo] installing ivy...
-      [get] Getting: https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.5.0/ivy-2.5.0.jar
-      [get] To: /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/_ant-buildfiles/ant-include/ivy/ivy.jar
-      [get] Not modified - so not downloaded
+setup_lab300:
 
-install-ivy:
+setup_sub_schemas:
+     [echo] 
+     [echo] Setup ../../nictiz_test containing refreshed ada schemas (*sturen_laboratoriumresultaten.xsd)
+     [copy] Copying 3 files to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/nictiz_test/ada_schemas
 
-fetch-imports:
-[ivy:resolve] :: Apache Ivy 2.5.0 - 20191020104435 :: https://ant.apache.org/ivy/ ::
-[ivy:resolve] :: loading settings :: file = /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/_ant-buildfiles/ant-include/ivysettings.xml
-[ivy:resolve] :: resolving dependencies :: nl.nictiz.decor#tools;working@mbp.local [not transitive]
-[ivy:resolve] 	confs: [default]
-[ivy:resolve] 	found net.sf.saxon#Saxon-HE;9.9.1-7 in maven
-[ivy:resolve] 	found xerces#xercesImpl;2.12.0 in maven
-[ivy:resolve] :: resolution report :: resolve 88ms :: artifacts dl 10ms
-	---------------------------------------------------------------------
-	|                  |            modules            ||   artifacts   |
-	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
-	---------------------------------------------------------------------
-	|      default     |   2   |   0   |   0   |   0   ||   6   |   0   |
-	---------------------------------------------------------------------
-[ivy:retrieve] :: retrieving :: nl.nictiz.decor#tools [sync]
-[ivy:retrieve] 	confs: [default]
-[ivy:retrieve] 	0 artifacts copied, 2 already retrieved (0kB/7ms)
-[ivy:dependencytree] Dependency tree for nl.nictiz.decor-tools
-[ivy:dependencytree] +- net.sf.saxon#Saxon-HE;9.9.1-7
-[ivy:dependencytree] \- xerces#xercesImpl;2.12.0
+setup_sub:
+
+setup_sub_schemas:
+     [echo] 
+     [echo] Setup ../../sturen_laboratoriumresultaten containing refreshed ada schemas (*sturen_laboratoriumresultaten.xsd)
+     [copy] Copying 3 files to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/ada_schemas
+
+setup_sub_instances:
+     [echo] 
+     [echo] Setup ../../sturen_laboratoriumresultaten containing refreshed ada production instances (*.xml)
+     [copy] Copying 10 files to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/ada_instance
+
+setup_sub_schemas:
+     [echo] 
+     [echo] Setup ../../nictiz_test containing refreshed ada schemas (*beschikbaarstellen_laboratoriumresultaten.xsd)
+     [copy] Copying 3 files to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/nictiz_test/ada_schemas
+
+setup_sub:
+
+setup_sub_schemas:
+     [echo] 
+     [echo] Setup ../../beschikbaarstellen_laboratoriumresultaten containing refreshed ada schemas (*beschikbaarstellen_laboratoriumresultaten.xsd)
+     [copy] Copying 3 files to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/ada_schemas
+
+setup_sub_instances:
+     [echo] 
+     [echo] Setup ../../beschikbaarstellen_laboratoriumresultaten containing refreshed ada production instances (*.xml)
+     [copy] Copying 10 files to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/ada_instance
+     [copy] Copying 5 files to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/xml-voorbeelden/ada_schemas
+     [echo] 
+     [echo] Setup ../../xml-voorbeelden containing refreshed ada production instances (../../../../../../../../SVN/art_decor/trunk/ada-data/adarefs2ada/lab/3.0.0/xml-voorbeelden/ada_instance/*example*.xml)
+
+convert_ada_2_hl7_300:
+
+convert_ada_2_hl7_sub:
+     [echo] Deleting previous results, if any
+     [echo] 
+     [echo] ADA to HL7 ../../beschikbaarstellen_laboratoriumresultaten/../beschikbaarstellen_laboratoriumresultaten/payload/beschikbaarstellen_laboratoriumresultaten_org.xsl input dir ../../beschikbaarstellen_laboratoriumresultaten/ada_instance
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario1a-1a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario1a-1a.xml
+     [xslt] Loading stylesheet /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/payload/beschikbaarstellen_laboratoriumresultaten_org.xsl
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario1b-1b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario1b-1b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario2a-2a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario2a-2a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario2b-2b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario2b-2b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario3a-3a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario3a-3a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario3b-3b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario3b-3b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario4a-4a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario4a-4a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario4b-4b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario4b-4b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario5a-5a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario5a-5a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario5b-5b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario5b-5b.xml
+
+convert_ada_2_hl7_sub:
+     [echo] Deleting previous results, if any
+     [echo] 
+     [echo] ADA to HL7 ../../beschikbaarstellen_laboratoriumresultaten/../../LAB_Transform_Organizer2CDA.xsl input dir ../../beschikbaarstellen_laboratoriumresultaten/hl7_instance
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario1a-1a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario1a-1a.xml
+     [xslt] Loading stylesheet /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/LAB_Transform_Organizer2CDA.xsl
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario1b-1b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario1b-1b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario2a-2a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario2a-2a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario2b-2b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario2b-2b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario3a-3a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario3a-3a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario3b-3b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario3b-3b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario4a-4a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario4a-4a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario4b-4b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario4b-4b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario5a-5a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario5a-5a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario5b-5b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario5b-5b.xml
+
+convert_ada_2_hl7_sub:
+     [echo] Deleting previous results, if any
+     [echo] 
+     [echo] ADA to HL7 ../../sturen_laboratoriumresultaten/../sturen_laboratoriumresultaten/payload/sturen_laboratoriumresultaten_org.xsl input dir ../../sturen_laboratoriumresultaten/ada_instance
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario1a-1a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario1a-1a.xml
+     [xslt] Loading stylesheet /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/payload/sturen_laboratoriumresultaten_org.xsl
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario1b-1b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario1b-1b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario2a-2a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario2a-2a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario2b-2b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario2b-2b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario3a-3a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario3a-3a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario3b-3b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario3b-3b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario4a-4a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario4a-4a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario4b-4b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario4b-4b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario5a-5a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario5a-5a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario5b-5b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario5b-5b.xml
+
+convert_ada_2_hl7_sub:
+     [echo] Deleting previous results, if any
+     [echo] 
+     [echo] ADA to HL7 ../../sturen_laboratoriumresultaten/../../LAB_Transform_Organizer2CDA.xsl input dir ../../sturen_laboratoriumresultaten/hl7_instance
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario1a-1a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario1a-1a.xml
+     [xslt] Loading stylesheet /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/LAB_Transform_Organizer2CDA.xsl
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario1b-1b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario1b-1b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario2a-2a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario2a-2a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario2b-2b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario2b-2b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario3a-3a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario3a-3a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario3b-3b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario3b-3b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario4a-4a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario4a-4a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario4b-4b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario4b-4b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario5a-5a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario5a-5a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario5b-5b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario5b-5b.xml
+
+convert_ada_2_hl7_examples_300:
+     [echo] Deleting previous results, if any
+     [echo] 
+     [echo] ADA to HL7 ../../beschikbaarstellen_laboratoriumresultaten/payload/beschikbaarstellen_laboratoriumresultaten_org.xsl input dir ../../xml-voorbeelden/ada_instance
+     [echo] 
+     [echo] ADA to HL7 ../../sturen_laboratoriumresultaten/payload/sturen_laboratoriumresultaten_org.xsl input dir ../../xml-voorbeelden/ada_instance
+     [echo] 
+     [echo] ADA to HL7 ../../../LAB_Transform_Organizer2CDA.xsl input dir ../../xml-voorbeelden/hl7_instance
+
+setup:
+
+setup_sub:
+
+setup_sub_schemas:
+     [echo] 
+     [echo] Setup ../../beschikbaarstellen_laboratoriumresultaten containing refreshed ada schemas (*beschikbaarstellen_laboratoriumresultaten.xsd)
+     [copy] Copying 3 files to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/ada_schemas
+
+setup_sub_instances:
+     [echo] 
+     [echo] Setup ../../beschikbaarstellen_laboratoriumresultaten containing refreshed ada production instances (*.xml)
+     [copy] Copying 10 files to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/ada_instance
+
+setup_sub:
+
+setup_sub_schemas:
+     [echo] 
+     [echo] Setup ../../sturen_laboratoriumresultaten containing refreshed ada schemas (*sturen_laboratoriumresultaten.xsd)
+     [copy] Copying 3 files to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/ada_schemas
+
+setup_sub_instances:
+     [echo] 
+     [echo] Setup ../../sturen_laboratoriumresultaten containing refreshed ada production instances (*.xml)
+     [copy] Copying 10 files to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/ada_instance
+     [copy] Copying 5 files to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/xml-voorbeelden/ada_schemas
+     [echo] 
+     [echo] Setup ../../xml-voorbeelden containing refreshed ada production instances (../../../../../../../../SVN/art_decor/trunk/ada-data/adarefs2ada/lab/3.0.0/xml-voorbeelden/ada_instance/*example*.xml)
+
+convert_ada_2_hl7_300:
+
+convert_ada_2_hl7_sub:
+     [echo] Deleting previous results, if any
+     [echo] 
+     [echo] ADA to HL7 ../../beschikbaarstellen_laboratoriumresultaten/../beschikbaarstellen_laboratoriumresultaten/payload/beschikbaarstellen_laboratoriumresultaten_org.xsl input dir ../../beschikbaarstellen_laboratoriumresultaten/ada_instance
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario1a-1a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario1a-1a.xml
+     [xslt] Loading stylesheet /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/payload/beschikbaarstellen_laboratoriumresultaten_org.xsl
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario1b-1b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario1b-1b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario2a-2a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario2a-2a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario2b-2b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario2b-2b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario3a-3a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario3a-3a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario3b-3b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario3b-3b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario4a-4a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario4a-4a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario4b-4b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario4b-4b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario5a-5a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario5a-5a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario5b-5b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario5b-5b.xml
+
+convert_ada_2_hl7_sub:
+     [echo] Deleting previous results, if any
+     [echo] 
+     [echo] ADA to HL7 ../../beschikbaarstellen_laboratoriumresultaten/../../LAB_Transform_Organizer2CDA.xsl input dir ../../beschikbaarstellen_laboratoriumresultaten/hl7_instance
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario1a-1a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario1a-1a.xml
+     [xslt] Loading stylesheet /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/LAB_Transform_Organizer2CDA.xsl
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario1b-1b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario1b-1b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario2a-2a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario2a-2a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario2b-2b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario2b-2b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario3a-3a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario3a-3a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario3b-3b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario3b-3b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario4a-4a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario4a-4a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario4b-4b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario4b-4b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario5a-5a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario5a-5a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario5b-5b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario5b-5b.xml
+
+convert_ada_2_hl7_sub:
+     [echo] Deleting previous results, if any
+     [echo] 
+     [echo] ADA to HL7 ../../sturen_laboratoriumresultaten/../sturen_laboratoriumresultaten/payload/sturen_laboratoriumresultaten_org.xsl input dir ../../sturen_laboratoriumresultaten/ada_instance
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario1a-1a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario1a-1a.xml
+     [xslt] Loading stylesheet /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/payload/sturen_laboratoriumresultaten_org.xsl
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario1b-1b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario1b-1b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario2a-2a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario2a-2a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario2b-2b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario2b-2b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario3a-3a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario3a-3a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario3b-3b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario3b-3b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario4a-4a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario4a-4a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario4b-4b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario4b-4b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario5a-5a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario5a-5a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/ada_instance/lr-slr-TEST-Scenario5b-5b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario5b-5b.xml
+
+convert_ada_2_hl7_sub:
+     [echo] Deleting previous results, if any
+     [echo] 
+     [echo] ADA to HL7 ../../sturen_laboratoriumresultaten/../../LAB_Transform_Organizer2CDA.xsl input dir ../../sturen_laboratoriumresultaten/hl7_instance
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario1a-1a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario1a-1a.xml
+     [xslt] Loading stylesheet /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/LAB_Transform_Organizer2CDA.xsl
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario1b-1b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario1b-1b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario2a-2a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario2a-2a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario2b-2b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario2b-2b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario3a-3a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario3a-3a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario3b-3b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario3b-3b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario4a-4a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario4a-4a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario4b-4b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario4b-4b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario5a-5a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario5a-5a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario5b-5b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario5b-5b.xml
+
+convert_ada_2_hl7_examples_300:
+     [echo] Deleting previous results, if any
+     [echo] 
+     [echo] ADA to HL7 ../../beschikbaarstellen_laboratoriumresultaten/payload/beschikbaarstellen_laboratoriumresultaten_org.xsl input dir ../../xml-voorbeelden/ada_instance
+     [echo] 
+     [echo] ADA to HL7 ../../sturen_laboratoriumresultaten/payload/sturen_laboratoriumresultaten_org.xsl input dir ../../xml-voorbeelden/ada_instance
+     [echo] 
+     [echo] ADA to HL7 ../../../LAB_Transform_Organizer2CDA.xsl input dir ../../xml-voorbeelden/hl7_instance
+
+schemavalidate_hl7_300:
+
+schemavalidate_hl7_sub:
+     [echo] 
+     [echo] ADA to HL7 validate schema with input files **/hl7_instance/*.xml but excluding nictiz_test/**/*  and schema ../../../../../../../../SVN/AORTA/branches/Onderhoud_Lu/XML/schemas_codeGen_flat/organizer.xsd
+
+schemavalidate_hl7_sub:
+     [echo] 
+     [echo] ADA to HL7 validate schema with input files **/cda_instance/*.xml but excluding nictiz_test/**/*  and schema ../../../../../../../../SVN/AORTA/branches/Onderhoud_Lu/XML/schemas_codeGen_flat/CDANL_extended.xsd
+
+schematronvalidate_hl7_300:
+
+validate_hl7_300:
+
+validate_hl7_sub:
+     [echo] Deleting previous results, if any
+     [echo] 
+     [echo] ADA to HL7 ../../../../../../../../SVN/AORTA/branches/Onderhoud_Lu/Publicaties/20220405-Versie-3.0.0/lu-runtime-20220405T135006_svrl/lu-beschikbaarstellenLaboratoriumresultaten.xsl input dir ../../beschikbaarstellen_laboratoriumresultaten/hl7_instance
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario1a-1a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/validate_hl7_instance/lr-slr-TEST-Scenario1a-1a.xml
+     [xslt] Loading stylesheet /Users/ahenket/Development/SVN/AORTA/branches/Onderhoud_Lu/Publicaties/20220405-Versie-3.0.0/lu-runtime-20220405T135006_svrl/lu-beschikbaarstellenLaboratoriumresultaten.xsl
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario1b-1b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/validate_hl7_instance/lr-slr-TEST-Scenario1b-1b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario2a-2a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/validate_hl7_instance/lr-slr-TEST-Scenario2a-2a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario2b-2b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/validate_hl7_instance/lr-slr-TEST-Scenario2b-2b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario3a-3a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/validate_hl7_instance/lr-slr-TEST-Scenario3a-3a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario3b-3b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/validate_hl7_instance/lr-slr-TEST-Scenario3b-3b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario4a-4a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/validate_hl7_instance/lr-slr-TEST-Scenario4a-4a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario4b-4b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/validate_hl7_instance/lr-slr-TEST-Scenario4b-4b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario5a-5a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/validate_hl7_instance/lr-slr-TEST-Scenario5a-5a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario5b-5b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/validate_hl7_instance/lr-slr-TEST-Scenario5b-5b.xml
+
+validate_hl7_sub:
+     [echo] Deleting previous results, if any
+     [echo] 
+     [echo] ADA to HL7 ../../../../../../../../SVN/AORTA/branches/Onderhoud_Lu/Publicaties/20220405-Versie-3.0.0/lu-runtime-20220405T135006_svrl/lu-beschikbaarstellenLaboratoriumresultaten.xsl input dir ../../beschikbaarstellen_laboratoriumresultaten/cda_instance
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario1a-1a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/validate_cda_instance/lr-slr-TEST-Scenario1a-1a.xml
+     [xslt] Loading stylesheet /Users/ahenket/Development/SVN/AORTA/branches/Onderhoud_Lu/Publicaties/20220405-Versie-3.0.0/lu-runtime-20220405T135006_svrl/lu-beschikbaarstellenLaboratoriumresultaten.xsl
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario1b-1b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/validate_cda_instance/lr-slr-TEST-Scenario1b-1b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario2a-2a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/validate_cda_instance/lr-slr-TEST-Scenario2a-2a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario2b-2b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/validate_cda_instance/lr-slr-TEST-Scenario2b-2b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario3a-3a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/validate_cda_instance/lr-slr-TEST-Scenario3a-3a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario3b-3b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/validate_cda_instance/lr-slr-TEST-Scenario3b-3b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario4a-4a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/validate_cda_instance/lr-slr-TEST-Scenario4a-4a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario4b-4b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/validate_cda_instance/lr-slr-TEST-Scenario4b-4b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario5a-5a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/validate_cda_instance/lr-slr-TEST-Scenario5a-5a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario5b-5b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/validate_cda_instance/lr-slr-TEST-Scenario5b-5b.xml
+
+validate_hl7_sub:
+     [echo] Deleting previous results, if any
+     [echo] 
+     [echo] ADA to HL7 ../../../../../../../../SVN/AORTA/branches/Onderhoud_Lu/Publicaties/20220405-Versie-3.0.0/lu-runtime-20220405T135006_svrl/lu-sturenLaboratoriumresultaten.xsl input dir ../../sturen_laboratoriumresultaten/hl7_instance
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario1a-1a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/validate_hl7_instance/lr-slr-TEST-Scenario1a-1a.xml
+     [xslt] Loading stylesheet /Users/ahenket/Development/SVN/AORTA/branches/Onderhoud_Lu/Publicaties/20220405-Versie-3.0.0/lu-runtime-20220405T135006_svrl/lu-sturenLaboratoriumresultaten.xsl
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario1b-1b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/validate_hl7_instance/lr-slr-TEST-Scenario1b-1b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario2a-2a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/validate_hl7_instance/lr-slr-TEST-Scenario2a-2a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario2b-2b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/validate_hl7_instance/lr-slr-TEST-Scenario2b-2b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario3a-3a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/validate_hl7_instance/lr-slr-TEST-Scenario3a-3a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario3b-3b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/validate_hl7_instance/lr-slr-TEST-Scenario3b-3b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario4a-4a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/validate_hl7_instance/lr-slr-TEST-Scenario4a-4a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario4b-4b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/validate_hl7_instance/lr-slr-TEST-Scenario4b-4b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario5a-5a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/validate_hl7_instance/lr-slr-TEST-Scenario5a-5a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/hl7_instance/lr-slr-TEST-Scenario5b-5b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/validate_hl7_instance/lr-slr-TEST-Scenario5b-5b.xml
+
+validate_hl7_sub:
+     [echo] Deleting previous results, if any
+     [echo] 
+     [echo] ADA to HL7 ../../../../../../../../SVN/AORTA/branches/Onderhoud_Lu/Publicaties/20220405-Versie-3.0.0/lu-runtime-20220405T135006_svrl/lu-sturenLaboratoriumresultaten.xsl input dir ../../sturen_laboratoriumresultaten/cda_instance
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario1a-1a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/validate_cda_instance/lr-slr-TEST-Scenario1a-1a.xml
+     [xslt] Loading stylesheet /Users/ahenket/Development/SVN/AORTA/branches/Onderhoud_Lu/Publicaties/20220405-Versie-3.0.0/lu-runtime-20220405T135006_svrl/lu-sturenLaboratoriumresultaten.xsl
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario1b-1b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/validate_cda_instance/lr-slr-TEST-Scenario1b-1b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario2a-2a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/validate_cda_instance/lr-slr-TEST-Scenario2a-2a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario2b-2b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/validate_cda_instance/lr-slr-TEST-Scenario2b-2b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario3a-3a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/validate_cda_instance/lr-slr-TEST-Scenario3a-3a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario3b-3b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/validate_cda_instance/lr-slr-TEST-Scenario3b-3b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario4a-4a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/validate_cda_instance/lr-slr-TEST-Scenario4a-4a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario4b-4b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/validate_cda_instance/lr-slr-TEST-Scenario4b-4b.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario5a-5a.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/validate_cda_instance/lr-slr-TEST-Scenario5a-5a.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario5b-5b.xml to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/validate_cda_instance/lr-slr-TEST-Scenario5b-5b.xml
+
+schematronresults_hl7_300_sub:
+     [echo] 
+     [echo] ADA to HL7 ../../../../../util/validate-svrl-output.xsl make recap of validation in ../../validate/hl7_beschikbaarstellen_laboratoriumresultaten.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/util/validate-svrl-output.xsl to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/validate/hl7_beschikbaarstellen_laboratoriumresultaten.xml
+     [xslt] Loading stylesheet /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/util/validate-svrl-output.xsl
+
+schematronresults_hl7_300_sub:
+     [echo] 
+     [echo] ADA to HL7 ../../../../../util/validate-svrl-output.xsl make recap of validation in ../../validate/cda_beschikbaarstellen_laboratoriumresultaten.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/util/validate-svrl-output.xsl to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/validate/cda_beschikbaarstellen_laboratoriumresultaten.xml
+     [xslt] Loading stylesheet /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/util/validate-svrl-output.xsl
+
+schematronresults_hl7_300_sub:
+     [echo] 
+     [echo] ADA to HL7 ../../../../../util/validate-svrl-output.xsl make recap of validation in ../../validate/hl7_sturen_laboratoriumresultaten.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/util/validate-svrl-output.xsl to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/validate/hl7_sturen_laboratoriumresultaten.xml
+     [xslt] Loading stylesheet /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/util/validate-svrl-output.xsl
+
+schematronresults_hl7_300_sub:
+     [echo] 
+     [echo] ADA to HL7 ../../../../../util/validate-svrl-output.xsl make recap of validation in ../../validate/cda_sturen_laboratoriumresultaten.xml
+     [xslt] Processing /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/util/validate-svrl-output.xsl to /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/validate/cda_sturen_laboratoriumresultaten.xml
+     [xslt] Loading stylesheet /Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/util/validate-svrl-output.xsl
 
 convert_ada_2_hl7_examples_300:
      [echo] Deleting previous results, if any
@@ -39,4 +330,4 @@ convert_ada_2_hl7_examples_300:
      [echo] ADA to HL7 ../../../LAB_Transform_Organizer2CDA.xsl input dir ../../xml-voorbeelden/hl7_instance
 
 BUILD SUCCESSFUL
-Total time: 1 second
+Total time: 1 minute 11 seconds

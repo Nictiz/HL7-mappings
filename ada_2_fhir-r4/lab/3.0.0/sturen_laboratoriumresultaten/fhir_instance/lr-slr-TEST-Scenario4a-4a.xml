@@ -2,11 +2,15 @@
 <Bundle xmlns="http://hl7.org/fhir">
    <type value="searchset"/>
    <total value="2"/>
+   <link>
+      <relation value="self"/>
+      <url value="${param.bundleSelfLink}"/>
+   </link>
    <entry>
-      <fullUrl value="http://example.nictiz.nl/fhir/Observation/laboratorium_uitslag"/>
+      <fullUrl value="http://example.nictiz.nl/fhir/Observation/laboratorium-uitslag"/>
       <resource>
          <Observation>
-            <id value="laboratorium_uitslag"/>
+            <id value="laboratorium-uitslag"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
             </meta>

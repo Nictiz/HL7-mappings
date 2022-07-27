@@ -1,0 +1,61 @@
+<!--start--><start xmlns:saxon="http://saxon.sf.net/"
+       xmlns:schold="http://www.ascc.net/xml/schematron"
+       xmlns:iso="http://purl.oclc.org/dsdl/schematron"
+       xmlns:xhtml="http://www.w3.org/1999/xhtml"
+       xmlns:hl7="urn:hl7-org:v3"
+       xmlns:cda="urn:hl7-org:v3"
+       xmlns:hl7v2="urn:hl7-org:v2xml"
+       xmlns:lab="urn:oid:1.3.6.1.4.1.19376.1.3.2"
+       xmlns:ihe="urn:ihe:pcc:hl7v3"
+       xmlns:sdtc="urn:hl7-org:sdtc"
+       xmlns:nfu="urn:urn:nictiz-nl:v3/nfu"
+       xmlns:pharm="urn:ihe:pharm:medication"
+       xmlns:f="http://hl7.org/fhir"
+       xmlns:hl7nl="urn:hl7-nl:v3"
+       xmlns:h="http://www.w3.org/1999/xhtml"
+       inputDir="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_fhir-r4/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/validate_fhir_instance">
+   <validate>
+      <file name="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_fhir-r4/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/fhir_instance/lr-slr-TEST-Scenario4b-4b.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_fhir-r4/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/fhir_instance/lr-slr-TEST-Scenario5b-5b.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_fhir-r4/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/fhir_instance/lr-slr-TEST-Scenario2a-2a.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_fhir-r4/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/fhir_instance/lr-slr-TEST-Scenario3a-3a.xml">
+         <fail>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="(f:type/@value = 'history') or (count(for $entry in f:entry[f:resource] return $entry[count(parent::f:Bundle/f:entry[f:fullUrl/@value=$entry/f:fullUrl/@value and ((not(f:resource/*/f:meta/f:versionId/@value) and not($entry/f:resource/*/f:meta/f:versionId/@value)) or f:resource/*/f:meta/f:versionId/@value=$entry/f:resource/*/f:meta/f:versionId/@value)])!=1])=0)"
+                                location="/*:Bundle[namespace-uri()='http://hl7.org/fhir'][1]">
+               <svrl:text>bdl-7: FullUrl must be unique in a bundle, or else entries with the same fullUrl must have different meta.versionId (except in history bundles)</svrl:text>
+            </svrl:failed-assert>
+         </fail>
+      </file>
+      <file name="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_fhir-r4/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/fhir_instance/lr-slr-TEST-Scenario1b-1b.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_fhir-r4/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/fhir_instance/lr-slr-TEST-Scenario5a-5a.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_fhir-r4/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/fhir_instance/lr-slr-TEST-Scenario4a-4a.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_fhir-r4/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/fhir_instance/lr-slr-TEST-Scenario1a-1a.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_fhir-r4/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/fhir_instance/lr-slr-TEST-Scenario3b-3b.xml">
+         <fail>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="(f:type/@value = 'history') or (count(for $entry in f:entry[f:resource] return $entry[count(parent::f:Bundle/f:entry[f:fullUrl/@value=$entry/f:fullUrl/@value and ((not(f:resource/*/f:meta/f:versionId/@value) and not($entry/f:resource/*/f:meta/f:versionId/@value)) or f:resource/*/f:meta/f:versionId/@value=$entry/f:resource/*/f:meta/f:versionId/@value)])!=1])=0)"
+                                location="/*:Bundle[namespace-uri()='http://hl7.org/fhir'][1]">
+               <svrl:text>bdl-7: FullUrl must be unique in a bundle, or else entries with the same fullUrl must have different meta.versionId (except in history bundles)</svrl:text>
+            </svrl:failed-assert>
+         </fail>
+      </file>
+      <file name="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_fhir-r4/lab/3.0.0/beschikbaarstellen_laboratoriumresultaten/fhir_instance/lr-slr-TEST-Scenario2b-2b.xml">
+         <pass/>
+      </file>
+   </validate>
+</start>
