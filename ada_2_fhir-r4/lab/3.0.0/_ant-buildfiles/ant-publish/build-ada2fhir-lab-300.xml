@@ -26,7 +26,8 @@
     <property name="schema.fhir" value="https://hl7.org/fhir/R4/fhir-single.xsd"/>
     <property name="schematron.fhir" value="${build.dir}/../../../../../../Bitbucket/art-decor-backend-existdb5/fhir/4.0/resources/schemas/fhir-invariants.xsl"/>
     
-    <property name="xsl.validate.svrl" value="${build.dir}/../../validate/validate-svrl-output.xsl"/>
+    <property name="xsl.validate.svrl" value="${build.dir}/../../../util/validate-svrl-output.xsl"/>
+    <!--<property name="xsl.validate.svrl.input" value="${build.dir}/../../../util/validate-svrl-default-input.xml"/>-->
     
     <target name="setup_lab300" description="Setup subdirectories, schemas, ada instance xml's in ${build.dir} for ${is.name} ${is.version}">
         <!-- nictiz_test copies appropriate ada instances from refs.dir -->
@@ -182,14 +183,14 @@
         <!-- beschikbaarstellen_laboratoriumresultaten fhir organizer -->
         <antcall target="schematronresults_fhir_300_sub">
             <param name="result.xml" value="${build.dir}/validate/fhir_${usecase.labbr}.xml"/>
-            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.labbr}/validate_fhir_instance"/>
+            <param name="input.dir" value="${basedir}/../../${usecase.labbr}/validate_fhir_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
 
         <!-- sturen_laboratoriumresultaten fhir organizer -->
         <antcall target="schematronresults_fhir_300_sub">
             <param name="result.xml" value="${build.dir}/validate/fhir_${usecase.labsr}.xml"/>
-            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.labsr}/validate_fhir_instance"/>
+            <param name="input.dir" value="${basedir}/../../${usecase.labsr}/validate_fhir_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
 
@@ -254,7 +255,7 @@
         
         <echo/>
         <echo>${echo.label} ${xsl.validate.svrl} make recap of validation in ${result.xml}</echo>
-        <xslt force="true" style="${xsl.validate.svrl}" in="${build.dir}/validate/default_input.xml" out="${result.xml}">
+        <xslt force="true" style="${xsl.validate.svrl}" in="${xsl.validate.svrl}" out="${result.xml}">
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
             <param name="inputDir" expression="${input.dir}"/>

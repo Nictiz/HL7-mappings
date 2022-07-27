@@ -27,7 +27,8 @@
     <property name="schema.organizer" value="${build.dir}/../../../../../../SVN/AORTA/branches/Onderhoud_Lu/XML/schemas_codeGen_flat/organizer.xsd"/>
     <property name="schema.cda" value="${build.dir}/../../../../../../SVN/AORTA/branches/Onderhoud_Lu/XML/schemas_codeGen_flat/CDANL_extended.xsd"/>
     
-    <property name="xsl.validate.svrl" value="${build.dir}/../../validate/validate-svrl-output.xsl"/>
+    <!--<property name="xsl.validate.svrl" value="${build.dir}/../../validate/validate-svrl-output.xsl"/>-->
+    <property name="xsl.validate.svrl" value="${build.dir}/../../../util/validate-svrl-output.xsl"/>
     
     <target name="setup_lab300" description="Setup subdirectories, schemas, ada instance xml's in ${build.dir} for ${is.name} ${is.version}">
 
@@ -247,26 +248,26 @@
         <!-- beschikbaarstellen_laboratoriumresultaten hl7 organizer -->
         <antcall target="schematronresults_hl7_300_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.labbr}.xml"/>
-            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.labbr}/validate_hl7_instance"/>
+          <param name="input.dir" value="${basedir}/../../${usecase.labbr}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- beschikbaarstellen_laboratoriumresultaten cda -->
         <antcall target="schematronresults_hl7_300_sub">
             <param name="result.xml" value="${build.dir}/validate/cda_${usecase.labbr}.xml"/>
-            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.labbr}/validate_cda_instance"/>
+            <param name="input.dir" value="${basedir}/../../${usecase.labbr}/validate_cda_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
 
         <!-- sturen_laboratoriumresultaten hl7 organizer -->
         <antcall target="schematronresults_hl7_300_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.labsr}.xml"/>
-            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.labsr}/validate_hl7_instance"/>
+            <param name="input.dir" value="${basedir}/../../${usecase.labsr}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- sturen_laboratoriumresultaten cda -->
         <antcall target="schematronresults_hl7_300_sub">
             <param name="result.xml" value="${build.dir}/validate/cda_${usecase.labsr}.xml"/>
-            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.labsr}/validate_cda_instance"/>
+            <param name="input.dir" value="${basedir}/../../${usecase.labsr}/validate_cda_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
 
@@ -349,15 +350,15 @@
     </target>
     
     <target name="schematronresults_hl7_300_sub">
-        
+      
         <echo/>
         <echo>${echo.label} ${xsl.validate.svrl} make recap of validation in ${result.xml}</echo>
-        <xslt force="true" style="${xsl.validate.svrl}" in="${build.dir}/validate/default_input.xml" out="${result.xml}">
+        <xslt force="true" style="${xsl.validate.svrl}" in="${xsl.validate.svrl}" out="${result.xml}">
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
             <param name="inputDir" expression="${input.dir}"/>
             <param name="inputFileSet" expression="${input.fileset}"/>
         </xslt>
-        
+      
     </target>
 </project>
