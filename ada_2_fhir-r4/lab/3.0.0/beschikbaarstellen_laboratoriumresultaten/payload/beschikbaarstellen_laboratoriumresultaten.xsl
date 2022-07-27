@@ -27,6 +27,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../../../../zibs2020/payload/zib_latest_package.xsl"/>
     
     <xsl:param name="referencingStrategy" select="'logicalId'" as="xs:string"/>
+    <!-- If the desired output is to be a Bundle, then a self link string of type url is required. 
+         See: https://www.hl7.org/fhir/R4/search.html#conformance -->
+    <xsl:param name="bundleSelfLink" as="xs:string?"/>
     
     <!-- Generate metadata for all ADA instances -->
     <xsl:param name="fhirMetadata" as="element()*">
@@ -40,6 +43,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             )"/>
         </xsl:call-template>
     </xsl:param>
+    
+    <xsl:template match="sturen_laboratoriumresultaten | beschikbaarstellen_laboratoriumresultaten">
+        <xsl:variable name="entries" as="element(f:entry)*">
+            <xsl:apply-templates select="onderzoeksresultaat"/>
+        </xsl:variable>
+        <Bundle xmlns="http://hl7.org/fhir">
+            <type value="searchset"/>
+            <total value="{count($entries[*:search/*:mode/@value = 'match'])}"/>
+            <xsl:choose>
+                <xsl:when test="$bundleSelfLink[not(. = '')]">
+                    <link>
+                        <relation value="self"/>
+                        <url value="{$bundleSelfLink}"/>
+                    </link>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:call-template name="util:logMessage">
+                        <xsl:with-param name="level" select="$logWARN"/>
+                        <xsl:with-param name="msg">Parameter bundleSelfLink is empty, but server SHALL return the parameters that were actually used to process the search.</xsl:with-param>
+                        <xsl:with-param name="terminate" select="false()"/>
+                    </xsl:call-template>
+                </xsl:otherwise>
+            </xsl:choose>
+            <xsl:copy-of select="$entries[*:search/*:mode/@value = 'match']"/>
+            <xsl:copy-of select="$entries[not(*:search/*:mode/@value = 'match')]"/>
+        </Bundle>
+    </xsl:template>
     
     <xsl:template match="onderzoeksresultaat">
         <xsl:variable name="laboratoriumresultaten" as="element()*">
@@ -73,32 +103,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
         </xsl:variable>
         <xsl:variable name="all" select="$laboratoriumresultaten | $specimen | $zorgaanbieders | $patient" as="element()*"/>
-        <Bundle>
-            <type value="searchset"/>
-            <total value="{count($laboratoriumresultaten)}"/>
-            <xsl:for-each select="$laboratoriumresultaten">
-                <entry>
-                    <xsl:call-template name="_insertFullUrlById"/>
-                    <resource>
-                        <xsl:copy-of select="."/>
-                    </resource>
-                    <search>
-                        <mode value="match"/>
-                    </search>
-                </entry>
-            </xsl:for-each>
-            <xsl:for-each select="$specimen | $zorgaanbieders | $patient">
-                <entry>
-                    <xsl:call-template name="_insertFullUrlById"/>
-                    <resource>
-                        <xsl:copy-of select="."/>
-                    </resource>
-                    <search>
-                        <mode value="include"/>
-                    </search>
-                </entry>
-            </xsl:for-each>
-        </Bundle>        
+        <xsl:for-each select="$laboratoriumresultaten">
+            <entry xmlns="http://hl7.org/fhir">
+                <xsl:call-template name="_insertFullUrlById"/>
+                <resource>
+                    <xsl:copy-of select="."/>
+                </resource>
+                <search>
+                    <mode value="match"/>
+                </search>
+            </entry>
+        </xsl:for-each>
+        <xsl:for-each select="$specimen | $zorgaanbieders | $patient">
+            <entry xmlns="http://hl7.org/fhir">
+                <xsl:call-template name="_insertFullUrlById"/>
+                <resource>
+                    <xsl:copy-of select="."/>
+                </resource>
+                <search>
+                    <mode value="include"/>
+                </search>
+            </entry>
+        </xsl:for-each>
     </xsl:template>
     
     <xsl:template match="*" mode="_generateId" priority="2">
@@ -127,7 +153,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         , '[^A-Za-z0-9\.-]', ''))"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:value-of select="$localName"/>
+                    <xsl:value-of select="nf:removeSpecialCharacters($localName)"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>

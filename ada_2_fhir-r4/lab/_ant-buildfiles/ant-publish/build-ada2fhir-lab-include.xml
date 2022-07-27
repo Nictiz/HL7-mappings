@@ -85,6 +85,7 @@
             <param name="xsl.name" value="payload/${usecase.labbr}.xsl"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="fhir_instance"/>
+            <param name="param.bundleSelfLink" value="http://dummy.nictiz.nl/dummyquery"/>
         </antcall>
         
         <!-- sturen_laboratoriumgegevens -->
@@ -93,6 +94,7 @@
             <param name="xsl.name" value="payload/${usecase.labsr}.xsl"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="fhir_instance"/>
+            <param name="param.bundleSelfLink" value="http://dummy.nictiz.nl/dummyquery"/>
         </antcall>
 
         <!-- also do the examples -->
@@ -149,6 +151,7 @@
                     typically false for production -->
             <param name="generateInstructionText" expression="true"/>
             <param name="schematronRef" expression="${gen.schematron.ref}" if="gen.schematron.ref"/>
+            <param name="bundleSelfLink" expression="${param.bundleSelfLink}"/>
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
         </xslt>
