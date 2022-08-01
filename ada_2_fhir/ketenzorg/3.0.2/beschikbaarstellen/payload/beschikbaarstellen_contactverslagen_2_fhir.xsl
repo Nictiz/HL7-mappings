@@ -32,12 +32,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- If the desired output is to be a Bundle, then a self link string of type url is required. 
          See: https://www.hl7.org/fhir/stu3/search.html#conformance -->
     <xsl:param name="bundleSelfLink" as="xs:string?"/>
+    <!-- This is a required parameter and matches the [base] of a FHIR server. Expects *not* to end in / so we can make fullUrls like ${baseUrl}/Observation/[id] -->
+    <xsl:param name="baseUrl" select="'https://example.org/fhir'" as="xs:string"/>
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
     <!-- parameter to determine whether to refer by resource/id -->
     <!-- should be false when there is no FHIR server available to retrieve the resources -->
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
+    <!-- if false produces a Bundle. if true produces separate resources -->
+    <xsl:param name="separateResources" as="xs:boolean" select="false()"/>
     
     <!-- OID separated list of oids like 2.16.840.1.113883.2.4.6.3 (bsn) to mask in output -->
     <xsl:param name="mask-ids" select="$oidBurgerservicenummer" as="xs:string"/>
@@ -86,7 +90,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         
         <xsl:choose>
-            <xsl:when test="$referById = true()">
+            <xsl:when test="$separateResources">
                 <xsl:apply-templates select="$entries//f:resource/*" mode="doResourceInResultdoc"/>
             </xsl:when>
             <xsl:otherwise>

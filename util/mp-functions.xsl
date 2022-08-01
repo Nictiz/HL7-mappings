@@ -25,8 +25,13 @@
         <map code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="tijdelijk gestopt"/>
         <map code="2" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="definitief gestopt"/>
     </xsl:variable>
+<<<<<<< HEAD
 
     <xd:doc>
+=======
+    
+     <xd:doc>
+>>>>>>> master
         <xd:desc>Calculates the start date of a dosage instruction</xd:desc>
         <xd:param name="startdatum-dosering-1"/>
         <xd:param name="theDosering"/>
@@ -272,7 +277,7 @@
                                         <xsl:value-of select="$keerdosis/aantal/(vaste_waarde | nominale_waarde)/@value"/>
                                     </xsl:when>
                                     <!-- min/max -->
-                                    <xsl:when test="$keerdosis/aantal/(min | minimum_waarde) | (max | maximum_waarde)[@value]">
+                                    <xsl:when test="$keerdosis/aantal/(min | minimum_waarde | max | maximum_waarde)[@value]">
                                         <xsl:if test="$keerdosis/aantal/(min | minimum_waarde)/@value and not($keerdosis/aantal/(max | maximum_waarde)/@value)">minimaal</xsl:if>
                                         <xsl:if test="$keerdosis/aantal/(max | maximum_waarde)/@value and not($keerdosis/aantal/(min | minimum_waarde)/@value)">maximaal</xsl:if>
                                         <xsl:if test="$keerdosis/aantal/(min | minimum_waarde)/@value">
@@ -284,7 +289,7 @@
                                         </xsl:if>
                                     </xsl:when>
                                 </xsl:choose>
-                                <xsl:variable name="max-aantal" select="max($keerdosis/aantal/((min | minimum_waarde) | (vaste_waarde | nominale_waarde) | (max | maximum_waarde))/@value)"/>
+                                <xsl:variable name="max-aantal" select="max($keerdosis/aantal/(min | minimum_waarde | vaste_waarde | nominale_waarde | max | maximum_waarde)/@value)"/>
                                 <xsl:value-of select="nwf:unit-string($max-aantal, $keerdosis/eenheid/@displayName)"/>
                             </xsl:variable>
                             <xsl:variable name="dagdeel" select="toedieningsschema/dagdeel[.//(@value | @code)]"/>
@@ -307,7 +312,7 @@
                                 </xsl:if>
                             </xsl:variable>
                             <xsl:variable name="isFlexible" as="xs:string?">
-                                <xsl:if test="toedieningsschema/is_flexibel/@value = 'false' or $interval">, let op! Tijden exact aanhouden.</xsl:if>
+                                <xsl:if test="toedieningsschema/is_flexibel/@value = 'false' or $interval">- let op, tijden exact aanhouden</xsl:if>
                             </xsl:variable>
 
                             <xsl:value-of select="normalize-space(concat(string-join($zo-nodig, ' '), ' ', string-join($weekdag-string, ' '), ' ', string-join($frequentie-string, ' '), $interval-string, ' ', string-join($toedientijd-string, ' '), ' ', string-join($keerdosis-string, ' '), ' ', string-join($dagdeel-string, ' '), ' ', $toedieningsduur-string, ' ', string-join($toedieningssnelheid-string, ' '), string-join($maxdose-string, ' '), $isFlexible))"/>
