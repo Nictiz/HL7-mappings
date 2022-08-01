@@ -21,7 +21,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     exclude-result-prefixes="#all"
     version="2.0">
     
+    <xsl:import href="../../../util/constants.xsl"/>
+    <xsl:import href="../../../util/datetime.xsl"/>
+    <xsl:import href="../../../util/units.xsl"/>
+    <xsl:import href="../../../util/utilities.xsl"/>    
+    
     <xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
+    
     <!-- nl-core resources -->
     <xsl:import href="nl-core-patient-2.1.xsl"/>
     <xsl:import href="nl-core-practitioner-2.0.xsl"/>

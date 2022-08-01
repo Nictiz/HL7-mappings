@@ -22,11 +22,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     exclude-result-prefixes="#all"
     version="2.0">
     
-    <xsl:import href="../../util/constants.xsl"/>
-    <xsl:import href="../../util/datetime.xsl"/>
-    <xsl:import href="../../util/units.xsl"/>
-    <xsl:import href="../../util/utilities.xsl"/>
-    
     <xsl:output indent="yes"/>
     <xsl:strip-space elements="*"/>
     
@@ -563,28 +558,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:function>
     
-    <xd:doc>
-        <xd:desc>Converts an UCUM unit as used in FHIR to ada time unit</xd:desc>
-        <xd:param name="UCUMFHIR">The UCUM unit string</xd:param>
-    </xd:doc>
-    <xsl:function name="nf:convertTime_UCUM_FHIR2ADA_unit" as="xs:string?">
-        <xsl:param name="UCUMFHIR" as="xs:string?"/>
-        <xsl:if test="$UCUMFHIR">
-            <xsl:choose>
-                <xsl:when test="$UCUMFHIR = 's'"><xsl:value-of select="$ada-unit-second[1]"/></xsl:when>
-                <xsl:when test="$UCUMFHIR = 'min'"><xsl:value-of select="$ada-unit-minute[1]"/></xsl:when>
-                <xsl:when test="$UCUMFHIR = 'h'"><xsl:value-of select="$ada-unit-hour[1]"/></xsl:when>
-                <xsl:when test="$UCUMFHIR = 'd'"><xsl:value-of select="$ada-unit-day[1]"/></xsl:when>
-                <xsl:when test="$UCUMFHIR = 'wk'"><xsl:value-of select="$ada-unit-week[1]"/></xsl:when>
-                <xsl:when test="$UCUMFHIR = 'mo'"><xsl:value-of select="$ada-unit-month[1]"/></xsl:when>
-                <xsl:when test="$UCUMFHIR = 'a'"><xsl:value-of select="$ada-unit-year[1]"/></xsl:when>
-                <!--<xsl:otherwise>
-                    <!-\- If all else fails: wrap in {} to make it an annotation -\->
-                    <xsl:value-of select="concat('{', $ADAtime, '}')"/>
-                </xsl:otherwise>-->
-            </xsl:choose>
-        </xsl:if>
-    </xsl:function>
+ 
     
     <xd:doc>
         <xd:desc>Remove comments</xd:desc>
