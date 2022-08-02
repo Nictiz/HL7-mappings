@@ -33,25 +33,19 @@
    </recordTarget>
    <participant typeCode="CST">
       <participantRole classCode="ASSIGNED">
-         <id nullFlavor="NI"/>
-         <code code="0100"
-               codeSystem="2.16.840.1.113883.2.4.6.7"
-               displayName="Huisartsen, niet nader gespecificeerd"
-               codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-               codeSystemVersion="2020-10-23T00:00:00"/>
+         <id extension="00005111" root="2.16.528.1.1007.3.3"/>
+         <code code="Z3"
+               codeSystem="2.16.840.1.113883.2.4.15.1060"
+               displayName="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
          <addr use="WP">
-            <streetName>Langelaan </streetName>
+            <streetName>Langelaan</streetName>
             <houseNumber>1</houseNumber>
             <postalCode>1234 ZZ</postalCode>
             <city>Onze Stad</city>
          </addr>
-         <scopingEntity classCode="ORG" determinerCode="INSTANCE">
-            <id extension="00005111" root="2.16.528.1.1007.3.3"/>
-            <code code="Z3"
-                  codeSystem="2.16.840.1.113883.2.4.15.1060"
-                  displayName="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
-            <desc>Huisartsenpraktijk Itis</desc>
-         </scopingEntity>
+         <playingEntity classCode="ORG" determinerCode="INSTANCE">
+            <name>Huisartsenpraktijk Itis</name>
+         </playingEntity>
       </participantRole>
    </participant>
    <component typeCode="COMP">
@@ -68,13 +62,17 @@
             <time nullFlavor="NI"/>
             <assignedEntity classCode="ASSIGNED">
                <id extension="00003333" root="2.16.528.1.1007.3.3"/>
-               <addr>
+               <code code="L1"
+                     codeSystem="2.16.840.1.113883.2.4.15.1060"
+                     displayName="Laboratorium"/>
+               <addr use="WP">
                   <streetName>Hoofdstraat</streetName>
                   <houseNumber>23</houseNumber>
-                  <postalCode>2143 AA</postalCode>
+                  <postalCode>1234 AA</postalCode>
                   <city>Zorgstad</city>
                </addr>
-               <telecom value="tel:06-11122233"/>
+               <telecom use="WP" value="tel:06-11122233"/>
+               <telecom use="WP" value="mailto:tproefje@lab.nl"/>
                <representedOrganization classCode="ORG" determinerCode="INSTANCE">
                   <name>Klinisch chemisch Lab 't Proefje</name>
                   <telecom nullFlavor="UNK"/>
@@ -93,7 +91,7 @@
                <effectiveTime value="20211028"/>
                <participant typeCode="PRD">
                   <participantRole classCode="SPEC">
-                     <id extension="334" nullFlavor="UNC"/>
+                     <id extension="334" root="2.16.840.1.113883.2.4.3.11.999.25.4267.1"/>
                      <playingEntity>
                         <code xsi:type="CE"
                               code="119297000"
@@ -117,7 +115,7 @@
             <observation classCode="OBS" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.31"/>
                <templateId root="1.3.6.1.4.1.19376.1.3.1.6"/>
-               <id extension="66666" root="2.16.840.1.113883.2.4.3.11.999.25.4298"/>
+               <id extension="66666" root="2.16.840.1.113883.2.4.3.11.999.25.4298.1"/>
                <code xsi:type="CD"
                      code="624"
                      codeSystem="2.16.840.1.113883.2.4.4.30.45"
@@ -199,12 +197,10 @@
             <templateId root="1.3.6.1.4.1.19376.1.3.3.1.7"/>
             <time nullFlavor="NI"/>
             <assignedEntity classCode="ASSIGNED">
-               <id nullFlavor="NI"/>
-               <code code="3400"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Trombosediensten"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <id extension="11112222" root="2.16.528.1.1007.3.3"/>
+               <code code="TD"
+                     codeSystem="2.16.840.1.113883.2.4.15.1060"
+                     displayName="Trombosedienst"/>
                <addr>
                   <streetName>Kerkstraat</streetName>
                   <houseNumber>28</houseNumber>
@@ -212,17 +208,11 @@
                   <postalCode>1332 GH</postalCode>
                   <city>Ons Dorp</city>
                </addr>
-               <telecom nullFlavor="UNK"/>
+               <telecom use="MC" value="tel:06-11122266"/>
                <representedOrganization classCode="ORG" determinerCode="INSTANCE">
-                  <name nullFlavor="UNK"/>
-                  <asOrganizationPartOf>
-                     <id extension="11112222" root="2.16.528.1.1007.3.3"/>
-                     <wholeOrganization>
-                        <name>Trombosedienst Ons Dorp</name>
-                        <telecom nullFlavor="UNK"/>
-                        <addr nullFlavor="UNK"/>
-                     </wholeOrganization>
-                  </asOrganizationPartOf>
+                  <name>Trombosedienst Ons Dorp</name>
+                  <telecom nullFlavor="UNK"/>
+                  <addr nullFlavor="UNK"/>
                </representedOrganization>
             </assignedEntity>
          </performer>
@@ -249,7 +239,7 @@
                <effectiveTime value="20211221"/>
                <participant typeCode="PRD">
                   <participantRole classCode="SPEC">
-                     <id extension="1122" nullFlavor="UNC"/>
+                     <id extension="1122" root="2.16.840.1.113883.2.4.3.11.999.25.4267.1"/>
                      <playingEntity>
                         <code xsi:type="CE"
                               code="119361006"
@@ -276,7 +266,7 @@
             <observation classCode="OBS" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.31"/>
                <templateId root="1.3.6.1.4.1.19376.1.3.1.6"/>
-               <id extension="55555" root="2.16.840.1.113883.2.4.3.11.999.25.4298"/>
+               <id extension="55555" root="2.16.840.1.113883.2.4.3.11.999.25.4298.1"/>
                <code xsi:type="CD"
                      code="509"
                      codeSystem="2.16.840.1.113883.2.4.4.30.45"
@@ -358,12 +348,10 @@
             <templateId root="1.3.6.1.4.1.19376.1.3.3.1.7"/>
             <time nullFlavor="NI"/>
             <assignedEntity classCode="ASSIGNED">
-               <id nullFlavor="NI"/>
-               <code code="5000"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Laboratoria"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <id extension="00003335" root="2.16.528.1.1007.3.3"/>
+               <code code="L1"
+                     codeSystem="2.16.840.1.113883.2.4.15.1060"
+                     displayName="Laboratorium"/>
                <addr use="WP">
                   <streetName>Kerkstraat</streetName>
                   <houseNumber>101</houseNumber>
@@ -373,18 +361,9 @@
                </addr>
                <telecom value="tel:06-11122255"/>
                <representedOrganization classCode="ORG" determinerCode="INSTANCE">
-                  <name nullFlavor="UNK"/>
-                  <asOrganizationPartOf>
-                     <id extension="00003335" root="2.16.528.1.1007.3.3"/>
-                     <code code="L1"
-                           codeSystem="2.16.840.1.113883.2.4.15.1060"
-                           displayName="Laboratorium"/>
-                     <wholeOrganization>
-                        <name>Klinisch chemisch Lab de Erlenmeyer</name>
-                        <telecom nullFlavor="UNK"/>
-                        <addr nullFlavor="UNK"/>
-                     </wholeOrganization>
-                  </asOrganizationPartOf>
+                  <name>Klinisch chemisch Lab de Erlenmeyer</name>
+                  <telecom nullFlavor="UNK"/>
+                  <addr nullFlavor="UNK"/>
                </representedOrganization>
             </assignedEntity>
          </performer>
@@ -411,7 +390,7 @@
                <effectiveTime value="20211201"/>
                <participant typeCode="PRD">
                   <participantRole classCode="SPEC">
-                     <id extension="334" nullFlavor="UNC"/>
+                     <id extension="334" root="2.16.840.1.113883.2.4.3.11.999.25.4267.1"/>
                      <playingEntity>
                         <code xsi:type="CE"
                               code="119297000"
@@ -435,7 +414,7 @@
             <observation classCode="OBS" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.31"/>
                <templateId root="1.3.6.1.4.1.19376.1.3.1.6"/>
-               <id extension="77777" root="2.16.840.1.113883.2.4.3.11.999.25.4298"/>
+               <id extension="77777" root="2.16.840.1.113883.2.4.3.11.999.25.4298.1"/>
                <code xsi:type="CD"
                      code="513"
                      codeSystem="2.16.840.1.113883.2.4.4.30.45"

@@ -119,7 +119,17 @@
 
         <!-- also do the examples -->
         <!--<antcall target="convert_ada_2_fhir_examples_300"/>-->
-
+        
+        <!-- delete empty default files that xsl creates in addition to the separate instances -->
+        <delete>
+            <fileset dir="${build.dir}/${usecase.labbr}/fhir_instance" includes="**/lr-slr-*.xml">
+                <size value="0"/>
+            </fileset>
+            <fileset dir="${build.dir}/${usecase.labsr}/fhir_instance" includes="**/lr-slr-*.xml">
+                <size value="0"/>
+            </fileset>
+        </delete>
+        
     </target>
 
     <target name="convert_ada_2_fhir_examples_300">

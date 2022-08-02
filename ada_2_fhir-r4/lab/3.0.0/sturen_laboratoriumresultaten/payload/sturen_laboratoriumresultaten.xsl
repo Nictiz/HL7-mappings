@@ -26,6 +26,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:import href="../../../../zibs2020/payload/zib_latest_package.xsl"/>
     
+    <xd:doc>
+        <xd:desc>If true, write all generated resources to disk in the fhir_instance directory. Otherwise, return all the output in a FHIR Bundle.</xd:desc>
+    </xd:doc>
+    <xsl:param name="writeOutputToDisk" select="true()" as="xs:boolean"/>
+    
     <xsl:param name="referencingStrategy" select="'logicalId'" as="xs:string"/>
     <!-- If the desired output is to be a Bundle, then a self link string of type url is required. 
          See: https://www.hl7.org/fhir/R4/search.html#conformance -->
@@ -39,38 +44,105 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     sturen_laboratoriumresultaten/onderzoeksresultaat/laboratorium_uitslag |
                     sturen_laboratoriumresultaten/patientgegevens/patient | 
                     sturen_laboratoriumresultaten/beschikbaarstellende_partij/zorgaanbieder |
-                    sturen_laboratoriumresultaten/onderzoeksresultaat/laboratorium_uitslag/uitvoerder/zorgaanbieder
+                    sturen_laboratoriumresultaten/onderzoeksresultaat/laboratorium_uitslag/uitvoerder/zorgaanbieder |
+                    beschikbaarstellen_laboratoriumresultaten/onderzoeksresultaat/laboratorium_uitslag |
+                    beschikbaarstellen_laboratoriumresultaten/patientgegevens/patient | 
+                    beschikbaarstellen_laboratoriumresultaten/beschikbaarstellende_partij/zorgaanbieder |
+                    beschikbaarstellen_laboratoriumresultaten/onderzoeksresultaat/laboratorium_uitslag/uitvoerder/zorgaanbieder
             )"/>
         </xsl:call-template>
     </xsl:param>
     
+    <xd:doc>
+        <xd:desc/>
+    </xd:doc>
     <xsl:template match="sturen_laboratoriumresultaten | beschikbaarstellen_laboratoriumresultaten">
-        <xsl:variable name="entries" as="element(f:entry)*">
+        <xsl:variable name="resources" as="element(f:entry)*">
             <xsl:apply-templates select="onderzoeksresultaat"/>
-        </xsl:variable>
-        <Bundle xmlns="http://hl7.org/fhir">
-            <type value="searchset"/>
-            <total value="{count($entries[*:search/*:mode/@value = 'match'])}"/>
-            <xsl:choose>
-                <xsl:when test="$bundleSelfLink[not(. = '')]">
-                    <link>
-                        <relation value="self"/>
-                        <url value="{$bundleSelfLink}"/>
-                    </link>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:call-template name="util:logMessage">
-                        <xsl:with-param name="level" select="$logWARN"/>
-                        <xsl:with-param name="msg">Parameter bundleSelfLink is empty, but server SHALL return the parameters that were actually used to process the search.</xsl:with-param>
-                        <xsl:with-param name="terminate" select="false()"/>
+            
+            <xsl:variable name="specimen" as="element()*">
+                <xsl:for-each-group select="onderzoeksresultaat/laboratorium_uitslag/monster" group-by="nf:getGroupingKeyDefault(.)">
+                    <xsl:call-template name="_nl-core-LaboratoryTestResult.Specimen">
+                        <xsl:with-param name="in" select="current-group()[1]"/>
+                        <xsl:with-param name="type" select="microorganisme"/>
                     </xsl:call-template>
-                </xsl:otherwise>
-            </xsl:choose>
-            <xsl:copy-of select="$entries[*:search/*:mode/@value = 'match']"/>
-            <xsl:copy-of select="$entries[not(*:search/*:mode/@value = 'match')]"/>
-        </Bundle>
+                </xsl:for-each-group>
+            </xsl:variable>
+            <xsl:variable name="zorgaanbieders" as="element()*">
+                <xsl:for-each-group select="beschikbaarstellende_partij/zorgaanbieder | laboratorium_uitslag/uitvoerder/zorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
+                    <xsl:call-template name="nl-core-HealthcareProvider">
+                        <xsl:with-param name="in" select="current-group()[1]"/>
+                    </xsl:call-template>
+                    <xsl:call-template name="nl-core-HealthcareProvider-Organization">
+                        <xsl:with-param name="in" select="current-group()[1]"/>
+                    </xsl:call-template>
+                </xsl:for-each-group>
+            </xsl:variable>
+            <xsl:variable name="patient" as="element()?">
+                <xsl:for-each select="patientgegevens/patient">
+                    <xsl:call-template name="nl-core-Patient"/>
+                </xsl:for-each>
+            </xsl:variable>
+            
+            <xsl:for-each select="$specimen | $zorgaanbieders | $patient">
+                <entry xmlns="http://hl7.org/fhir">
+                    <xsl:call-template name="_insertFullUrlById"/>
+                    <resource>
+                        <xsl:copy-of select="."/>
+                    </resource>
+                    <search>
+                        <mode value="include"/>
+                    </search>
+                </entry>
+            </xsl:for-each>
+        </xsl:variable>
+        
+        <xsl:choose>
+            <xsl:when test="$writeOutputToDisk">
+                <xsl:for-each select="$resources/f:resource/*">
+                    <xsl:choose>
+                        <xsl:when test="string-length(f:id/@value) gt 0">
+                            <xsl:result-document href="../fhir_instance/{f:id/@value}.xml">
+                                <xsl:copy-of select="."/>
+                            </xsl:result-document>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <!-- This happens when transforming a non-saved document in Oxygen -->
+                            <xsl:message>Could not output to result-document without Resource.id. Outputting to console instead.</xsl:message>
+                            <xsl:copy-of select="."/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+                <Bundle xmlns="http://hl7.org/fhir">
+                    <type value="searchset"/>
+                    <total value="{count($resources[*:search/*:mode/@value = 'match'])}"/>
+                    <xsl:choose>
+                        <xsl:when test="$bundleSelfLink[not(. = '')]">
+                            <link>
+                                <relation value="self"/>
+                                <url value="{$bundleSelfLink}"/>
+                            </link>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:call-template name="util:logMessage">
+                                <xsl:with-param name="level" select="$logWARN"/>
+                                <xsl:with-param name="msg">Parameter bundleSelfLink is empty, but server SHALL return the parameters that were actually used to process the search.</xsl:with-param>
+                                <xsl:with-param name="terminate" select="false()"/>
+                            </xsl:call-template>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                    <xsl:copy-of select="$resources[*:search/*:mode/@value = 'match']"/>
+                    <xsl:copy-of select="$resources[not(*:search/*:mode/@value = 'match')]"/>
+                </Bundle>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc/>
+    </xd:doc>
     <xsl:template match="onderzoeksresultaat">
         <xsl:variable name="laboratoriumresultaten" as="element()*">
             <xsl:for-each select="laboratorium_uitslag[onderzoek]">
@@ -84,25 +156,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
             </xsl:for-each>
         </xsl:variable>
-        <xsl:variable name="zorgaanbieders" as="element()*">
-            <xsl:for-each select="beschikbaarstellende_partij/zorgaanbieder | laboratorium_uitslag/uitvoerder/zorgaanbieder">
-                <xsl:call-template name="nl-core-HealthcareProvider"/>
-                <xsl:call-template name="nl-core-HealthcareProvider-Organization"/>
-            </xsl:for-each>
-        </xsl:variable>
-        <xsl:variable name="patient" as="element()?">
-            <xsl:for-each select="../patientgegevens/patient">
-                <xsl:call-template name="nl-core-Patient"/>
-            </xsl:for-each>
-        </xsl:variable>
-        <xsl:variable name="specimen" as="element()?">
-            <xsl:for-each select="laboratorium_uitslag/monster">
-                <xsl:call-template name="_nl-core-LaboratoryTestResult.Specimen">
-                    <xsl:with-param name="type" select="microorganisme"/>
-                </xsl:call-template>
-            </xsl:for-each>
-        </xsl:variable>
-        <xsl:variable name="all" select="$laboratoriumresultaten | $specimen | $zorgaanbieders | $patient" as="element()*"/>
         <xsl:for-each select="$laboratoriumresultaten">
             <entry xmlns="http://hl7.org/fhir">
                 <xsl:call-template name="_insertFullUrlById"/>
@@ -114,19 +167,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </search>
             </entry>
         </xsl:for-each>
-        <xsl:for-each select="$specimen | $zorgaanbieders | $patient">
-            <entry xmlns="http://hl7.org/fhir">
-                <xsl:call-template name="_insertFullUrlById"/>
-                <resource>
-                    <xsl:copy-of select="."/>
-                </resource>
-                <search>
-                    <mode value="include"/>
-                </search>
-            </entry>
-        </xsl:for-each>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="profile"/>
+    </xd:doc>
     <xsl:template match="*" mode="_generateId" priority="2">
         <xsl:param name="profile" as="xs:string" required="yes"/>
         <xsl:variable name="id" select="replace(tokenize(base-uri(), '/')[last()], '.xml', '')"/>
@@ -134,33 +180,41 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="localName" select="local-name()"/>
         <xsl:variable name="logicalId">
             <xsl:choose>
+                <xsl:when test="$localName = 'laboratorium_uitslag'">
+                    <xsl:value-of select="'labresult-' || (laboratorium_uitslag_identificatie/@value, format-number(count(preceding-sibling::laboratorium_uitslag)+1, '00'))[1]"/>
+                </xsl:when>
                 <xsl:when test="$localName = 'laboratorium_test'">
-                    <xsl:value-of select="nf:assure-logicalid-length('labtest-' || replace((test_identificatie/@value, format-number(count(preceding-sibling::*[local-name() = 'laboratorium_test'])+1, '00'))[1], '[^A-Za-z0-9\.-]', ''))"/>
+                    <xsl:value-of select="'labtest-' || ../laboratorium_uitslag_identificatie/@value || '-' || test_identificatie/@value"/>
                 </xsl:when>
                 <xsl:when test="$localName = 'monster' and $profile = 'nl-core-LaboratoryTestResult.Specimen.asMicroorganism'">
-                    <xsl:value-of select="nf:assure-logicalid-length('microorganism-' || replace((@displayName, @code)[1], '[^A-Za-z0-9\.-]', ''))"/>
+                    <xsl:value-of select="'organism-' || (@displayName, @code)[1]"/>
                 </xsl:when>
                 <xsl:when test="$localName = 'monster' and $profile = 'nl-core-LaboratoryTestResult.Specimen'">
-                    <xsl:value-of select="nf:assure-logicalid-length('monster-' || replace(string-join((monsternummer/@value, monstervolgnummer/@value), ''), '[^A-Za-z0-9\.-]', ''))"/>
+                    <xsl:value-of select="'monster-' || string-join((monsternummer/@value, monstervolgnummer/@value, monstermateriaal/@code), '-')"/>
+                </xsl:when>
+                <xsl:when test="$localName = 'patient'">
+                    <xsl:value-of select="'patient-' || string-join((naamgegevens[1]/geslachtsnaam/(voorvoegsels, achternaam)/@value, naamgegevens[1]/geslachtsnaam_partner/(voorvoegsels_partner, achternaam_partner)/@value), '-')"/>
                 </xsl:when>
                 <xsl:when test="$localName = 'zorgaanbieder' and $profile = 'nl-core-HealthcareProvider'">
-                    <xsl:value-of select="nf:assure-logicalid-length('locatie-' || replace((organisatie_locatie/(locatie_nummer, locatie_naam)[1]/@value, afdeling_specialisme/(@displayName, @code))[1], '[^A-Za-z0-9\.-]', ''))"/>
+                    <xsl:value-of select="'loc-' || (organisatie_locatie/(locatie_nummer, locatie_naam)[1]/@value, afdeling_specialisme/(@displayName, @code))[1] || ((zorgaanbieder_identificatienummer, organisatie_naam)/@value, organisatie_type/(@displayName, @code))[1]"/>
                 </xsl:when>
                 <xsl:when test="$localName = 'zorgaanbieder' and $profile = 'nl-core-HealthcareProvider-Organization'">
-                    <xsl:text>locatie-</xsl:text>
-                    <xsl:value-of select="nf:assure-logicalid-length(replace(
-                        ((zorgaanbieder_identificatienummer, organisatie_naam)/@value, organisatie_type/(@displayName, @code))[1]
-                        , '[^A-Za-z0-9\.-]', ''))"/>
+                    <xsl:value-of select="'org-' || ((zorgaanbieder_identificatienummer, organisatie_naam)/@value, organisatie_type/(@displayName, @code))[1]"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:value-of select="nf:removeSpecialCharacters($localName)"/>
+                    <xsl:value-of select="$localName"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
         <!-- Failsafe, ids can get quite long -->
-        <xsl:value-of select="nf:assure-logicalid-length($logicalId)"/>
+        <xsl:value-of select="nf:assure-logicalid-length(nf:removeSpecialCharacters($logicalId))"/>
     </xsl:template>
     
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="in"/>
+        <xd:param name="fhirId"/>
+    </xd:doc>
     <xsl:template name="_insertFullUrlById">
         <xsl:param name="in" select="."/>   
         <xsl:param name="fhirId" select="$in/f:id/@value"/>

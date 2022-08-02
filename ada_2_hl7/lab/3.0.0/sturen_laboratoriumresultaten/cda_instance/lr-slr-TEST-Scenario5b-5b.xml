@@ -13,17 +13,17 @@
    <templateId root="2.16.840.1.113883.2.4.3.11.60.25.10.51"/>
    <templateId root="1.3.6.1.4.1.19376.1.3.3"/>
    <templateId root="2.16.840.1.113883.2.4.6.10.100001"/>
-   <id extension="8c3a329a-0db8-11ed-5041-020000000000"
+   <id extension="31e388d8-0f06-11ed-5041-020000000000"
        root="2.16.840.1.113883.2.4.3.11.999.25.1"/>
    <code code="11502-2"
          codeSystem="2.16.840.1.113883.6.1"
          codeSystemName="LOINC"
          displayName="LABORATORY REPORT.TOTAL"/>
-   <title>Laboratory studies Elise Erelies op 27 jul 2022</title>
-   <effectiveTime value="20220727162939"/>
+   <title>Laboratory studies Elise Erelies op 29 jul 2022</title>
+   <effectiveTime value="20220729081759"/>
    <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="normal"/>
    <languageCode code="nl-NL"/>
-   <setId extension="8c3a329a-0db8-11ed-5041-020000000000"
+   <setId extension="31e388d8-0f06-11ed-5041-020000000000"
           root="2.16.840.1.113883.2.4.3.11.999.25.2"/>
    <recordTarget>
       <patientRole>
@@ -45,33 +45,25 @@
       <time nullFlavor="NI"/>
       <assignedAuthor>
          <id nullFlavor="NI"/>
-         <code code="0100"
-               codeSystem="2.16.840.1.113883.2.4.6.7"
-               displayName="Huisartsen, niet nader gespecificeerd"
-               codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-               codeSystemVersion="2020-10-23T00:00:00"/>
          <addr use="WP">
-            <streetName>Langelaan </streetName>
+            <streetName>Langelaan</streetName>
             <houseNumber>1</houseNumber>
             <postalCode>1234 ZZ</postalCode>
             <city>Onze Stad</city>
          </addr>
-         <telecom nullFlavor="UNK"/>
          <representedOrganization>
-            <name nullFlavor="UNK"/>
+            <id extension="00005111" root="2.16.528.1.1007.3.3"/>
+            <name>Huisartsenpraktijk Itis</name>
             <telecom nullFlavor="UNK"/>
-            <addr nullFlavor="UNK"/>
-            <asOrganizationPartOf>
-               <id extension="00005111" root="2.16.528.1.1007.3.3"/>
-               <code code="Z3"
-                     codeSystem="2.16.840.1.113883.2.4.15.1060"
-                     displayName="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
-               <wholeOrganization>
-                  <name>Huisartsenpraktijk Itis</name>
-                  <telecom nullFlavor="UNK"/>
-                  <addr nullFlavor="UNK"/>
-               </wholeOrganization>
-            </asOrganizationPartOf>
+            <addr use="WP">
+               <streetName>Langelaan</streetName>
+               <houseNumber>1</houseNumber>
+               <postalCode>1234 ZZ</postalCode>
+               <city>Onze Stad</city>
+            </addr>
+            <standardIndustryClassCode code="Z3"
+                                       codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                       displayName="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
          </representedOrganization>
       </assignedAuthor>
    </author>
@@ -82,7 +74,7 @@
             <name>Huisartsenpraktijk Itis</name>
             <telecom nullFlavor="UNK"/>
             <addr use="WP">
-               <streetName>Langelaan </streetName>
+               <streetName>Langelaan</streetName>
                <houseNumber>1</houseNumber>
                <postalCode>1234 ZZ</postalCode>
                <city>Onze Stad</city>
@@ -110,7 +102,7 @@
                            codeSystemName="LOINC"
                            displayName="LABORATORY STUDIES"/>
                      <text>
-                        <paragraph>LABORATORY STUDIES van materiaal Bloed</paragraph>
+                        <paragraph>LABORATORY STUDIES van materiaal Bloed, door Trombosedienst Ons Dorp</paragraph>
                         <paragraph>Deze resultaten zijn een kopie van de bron</paragraph>
                         <paragraph>EDIFACT-referentienummer: 111777</paragraph>
                         <table>
@@ -146,6 +138,29 @@
                                  codeSystemName="LOINC"
                                  displayName="LABORATORY STUDIES"/>
                            <statusCode code="completed"/>
+                           <performer typeCode="PRF">
+                              <templateId root="1.3.6.1.4.1.19376.1.3.3.1.7"/>
+                              <time nullFlavor="NI"/>
+                              <assignedEntity classCode="ASSIGNED">
+                                 <id extension="11112222" root="2.16.528.1.1007.3.3"/>
+                                 <code code="TD"
+                                       codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                       displayName="Trombosedienst"/>
+                                 <addr>
+                                    <streetName>Kerkstraat</streetName>
+                                    <houseNumber>28</houseNumber>
+                                    <buildingNumberSuffix>d</buildingNumberSuffix>
+                                    <postalCode>1332 GH</postalCode>
+                                    <city>Ons Dorp</city>
+                                 </addr>
+                                 <telecom use="MC" value="tel:06-11122266"/>
+                                 <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                                    <name>Trombosedienst Ons Dorp</name>
+                                    <telecom nullFlavor="UNK"/>
+                                    <addr nullFlavor="UNK"/>
+                                 </representedOrganization>
+                              </assignedEntity>
+                           </performer>
                            <entryRelationship typeCode="COMP">
                               <procedure classCode="PROC" moodCode="EVN">
                                  <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3"/>
@@ -172,7 +187,7 @@
                               <observation classCode="OBS" moodCode="EVN">
                                  <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.31"/>
                                  <templateId root="1.3.6.1.4.1.19376.1.3.1.6"/>
-                                 <id extension="99999" root="2.16.840.1.113883.2.4.3.11.999.25.4298"/>
+                                 <id extension="99999" root="2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
                                  <code xsi:type="CD"
                                        code="14631-6"
                                        codeSystem="2.16.840.1.113883.6.1"

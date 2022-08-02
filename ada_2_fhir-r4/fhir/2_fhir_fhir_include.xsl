@@ -180,6 +180,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each-group>
         </xsl:for-each-group>
         
+        <!-- This will build two variants for each monster; one with the actual canonical 
+                 [...]/nl-core-LaboratoryTestResult.Specimen and one with a faux canonical of
+                 [...]/nl-core-LaboratoryTestResult.Specimen.asMicroorganism (see ada2resourceType). This is
+                 needed because a monster might end up as two instances of the same profile. Yes, it's a hack.
+            -->
+        <xsl:for-each-group select="$in[self::laboratorium_uitslag]/monster[.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
+            <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+        </xsl:for-each-group>
+        
+        <!-- If and only if there is more than one laboratorium_test, there should be an instance for each
+                 distinct laboratorium_test (in addition the "grouping" instance already identified as part of the 
+                 main process. -->
+        <xsl:for-each-group select="$in[self::laboratorium_uitslag]/laboratorium_test[.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
+            <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+        </xsl:for-each-group>
+        
         <!-- General rule for all zib root concepts -->
         <xsl:for-each-group select="$in[not(self::patient or self::zorgverlener)][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
             <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
@@ -332,22 +348,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
                 </xsl:for-each-group>
             </xsl:when>
-            <xsl:when test="$in/self::laboratorium_uitslag">
-                <!-- This will build two variants for each monster; one with the actual canonical 
+            <!--<xsl:when test="$in/self::laboratorium_uitslag">
+                <!-\- This will build two variants for each monster; one with the actual canonical 
                      [...]/nl-core-LaboratoryTestResult.Specimen and one with a faux canonical of
                      [...]/nl-core-LaboratoryTestResult.Specimen.asMicroorganism (see ada2resourceType). This is
                      needed because a monster might end up as two instances of the same profile. Yes, it's a hack.
-                -->
+                -\->
                 <xsl:for-each-group select="$in/monster" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
                 </xsl:for-each-group>
-                <!-- If and only if there is more than one laboratorium_test, there should be an instance for each
+                <!-\- If and only if there is more than one laboratorium_test, there should be an instance for each
                      distinct laboratorium_test (in addition the "grouping" instance already identified as part of the 
-                     main process. -->
+                     main process. -\->
                     <xsl:for-each-group select="$in/laboratorium_test" group-by="nf:getGroupingKeyDefault(.)">
                         <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
                     </xsl:for-each-group>
-            </xsl:when>
+            </xsl:when>-->
         </xsl:choose>
     </xsl:template>
     
