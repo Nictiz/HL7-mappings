@@ -80,9 +80,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <valueString value="{normalize-space(@value)}"/>
                         </extension>
                     </xsl:for-each>
+                    <!-- http://nictiz.nl/fhir/StructureDefinition/nl-core-AddressInformation
+                        Export:
+                        If a HouseNumberLetter as well as a HouseNumberAddition is known: HouseNumberLetter first, followed by a space and finally the HouseNumberAddition.
+                        If only a HouseNumberLetter is known, send just that. No trailing space is required.
+                        If only a HouseNumberAddition is known, communicate that with a leading space.
+                    -->
                     <xsl:if test="huisnummerletter | huisnummertoevoeging">
                         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
-                            <valueString value="{concat(huisnummerletter/@value, ' ', huisnummertoevoeging/@value)}"/>
+                            <valueString value="{replace(concat(huisnummerletter/normalize-space(@value), ' ', huisnummertoevoeging/normalize-space(@value)), '\s*$', '')}"/>
                         </extension>
                     </xsl:if>
                     <xsl:for-each select="aanduiding_bij_nummer">
