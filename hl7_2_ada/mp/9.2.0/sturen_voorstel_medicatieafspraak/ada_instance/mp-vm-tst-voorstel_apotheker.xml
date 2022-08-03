@@ -1,0 +1,129 @@
+<!--Generated from HL7v3 instance.-->
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_voorstel_medicatieafspraak.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2021-12-28T14:08:30.271538+01:00"
+         last-update-date="2021-12-28T14:08:30.271538+01:00"/>
+   <data>
+      <sturen_voorstel_medicatieafspraak app="mp-mp920"
+                                         shortName="sturen_voorstel_medicatieafspraak"
+                                         formName="sturen_voorstel_medicatieafspraak"
+                                         transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.274"
+                                         transactionEffectiveDate="2021-05-05T13:11:50"
+                                         versionDate=""
+                                         prefix="mp-"
+                                         language="nl-NL"
+                                         title="mp-vm-tst-voorstel_apotheker"
+                                         id="mp-vm-tst-voorstel_apotheker">
+         <patient>
+            <naamgegevens>
+               <initialen value="C."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Brugge"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900419" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime" value="1963-10-16"/>
+            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+         </patient>
+         <medicamenteuze_behandeling id="d56e66">
+            <identificatie value="MBH_920_start_duur" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime" value="2021-01-02T00:00:00"/>
+                  <tijds_duur value="2" unit="week"/>
+               </gebruiksperiode>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product value="d56e31" datatype="reference"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf 2 jan 2021, gedurende 2 weken, 1 maal per 2 dagen 1 à 2 stuks, Oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen"
+                                  displayName="Oraal"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <minimum_waarde value="1"/>
+                              <maximum_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="2" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="d56e31">
+               <product_code code="26638"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="LISINOPRIL 10MG TABLET"/>
+               <product_code code="71587"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="LISINOPRIL 10MG TABLET"/>
+            </farmaceutisch_product>
+            <zorgverlener id="d56e36">
+               <zorgverlener_identificatienummer value="000001116" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Victor"/>
+                  <naamgebruik code="NL1"
+                               codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                               displayName="Eigen geslachtsnaam"/>
+                  <geslachtsnaam>
+                     <voorvoegsels value="de "/>
+                     <achternaam value="Verstrekker"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0200"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Apothekers"/>
+               <zorgaanbieder>
+                  <zorgaanbieder value="d56e47" datatype="reference"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="d56e47">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+            </zorgaanbieder>
+         </bouwstenen>
+         <voorstel_gegevens>
+            <voorstel>
+               <identificatie value="MBH_920_start_duur_VMA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.2"/>
+               <voorstel_datum datatype="datetime" value="2021-01-01T10:00:00"/>
+               <auteur>
+                  <auteur_is_zorgverlener>
+                     <zorgverlener value="d56e36" datatype="reference"/>
+                  </auteur_is_zorgverlener>
+               </auteur>
+               <medicamenteuze_behandeling value="d56e66" datatype="reference"/>
+               <toelichting value="indien nodig 2 per keer wenselijk voor betere werking"/>
+            </voorstel>
+         </voorstel_gegevens>
+      </sturen_voorstel_medicatieafspraak>
+   </data>
+</adaxml>
