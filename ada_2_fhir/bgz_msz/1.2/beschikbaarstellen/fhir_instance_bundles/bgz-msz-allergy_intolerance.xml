@@ -1,0 +1,592 @@
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
+   <id value="b39988ec-1341-11ed-1920-020000000000"/>
+   <type value="searchset"/>
+   <total value="4"/>
+   <entry>
+      <fullUrl value="urn:uuid:b39988ed-1341-11ed-1920-020000000000"/>
+      <resource>
+         <AllergyIntolerance>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Allergie/intolerantie. Patiënt: <i>afgeschermd (ontbrekend gegeven)</i> (BSN). Id: <i>geen informatie (ontbrekend gegeven)</i>, Categorie: <span title="neiging tot ongewenste reactie op voedsel (418471000 - SNOMED CT)">neiging tot ongewenste reactie op voedsel</span>, Status: actief / bevestigd</caption>
+                     <tfoot>
+                        <tr>
+                           <td colspan="2">Niet allergisch voor cashewnoten</td>
+                        </tr>
+                     </tfoot>
+                     <tbody>
+                        <tr>
+                           <th>Code</th>
+                           <td>
+                              <span title="Noten (294904000 - SNOMED CT)">Noten</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Eerste symptomen</th>
+                           <td>29 mei 1976</td>
+                        </tr>
+                        <tr>
+                           <th>Meest recente voorkomen</th>
+                           <td>18 augustus 2012</td>
+                        </tr>
+                        <tr>
+                           <th>Reactie</th>
+                           <td>
+                              <ul>
+                                 <li>
+                                    <div>18 augustus 2012 <span title="Severe (24484000 - SNOMED CT)">Severe</span>
+                                    </div>
+                                    <div>
+                                       <span title="Anaphylaxis (39579001 - SNOMED CT)">Anaphylaxis</span>
+                                    </div>
+                                    <div>Bewusteloos wegens wegvallen bloeddruk.</div>
+                                 </li>
+                              </ul>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <identifier>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                  <valueCode value="NI"/>
+               </extension>
+            </identifier>
+            <clinicalStatus value="active">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/ActStatus"/>
+                        <code value="active"/>
+                        <display value="Active"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </clinicalStatus>
+            <verificationStatus value="confirmed"/>
+            <category value="food">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="418471000"/>
+                        <display value="neiging tot ongewenste reactie op voedsel"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </category>
+            <criticality value="high">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="24484000"/>
+                        <display value="ernstig"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </criticality>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="294904000"/>
+                  <display value="Noten"/>
+               </coding>
+            </code>
+            <patient>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                        <valueCode value="masked"/>
+                     </extension>
+                  </value>
+               </identifier>
+            </patient>
+            <onsetDateTime value="1976-05-29"/>
+            <lastOccurrence value="2012-08-18"/>
+            <note>
+               <text value="Niet allergisch voor cashewnoten"/>
+            </note>
+            <reaction>
+               <substance>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="260189007"/>
+                     <display value="Pecannoten"/>
+                  </coding>
+               </substance>
+               <manifestation>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="39579001"/>
+                     <display value="Anaphylaxis"/>
+                  </coding>
+               </manifestation>
+               <description value="Bewusteloos wegens wegvallen bloeddruk."/>
+               <onset value="2012-08-18"/>
+               <severity value="severe">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="http://snomed.info/sct"/>
+                           <code value="24484000"/>
+                           <display value="Severe"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </severity>
+               <exposureRoute>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="738956005"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </exposureRoute>
+            </reaction>
+         </AllergyIntolerance>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:b39988f7-1341-11ed-1920-020000000000"/>
+      <resource>
+         <AllergyIntolerance>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Allergie/intolerantie. Patiënt: <i>afgeschermd (ontbrekend gegeven)</i> (BSN). Id: <i>geen informatie (ontbrekend gegeven)</i>, Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / bevestigd</caption>
+                     <tfoot>
+                        <tr>
+                           <td colspan="2">Alleen voor amoxicilline</td>
+                        </tr>
+                     </tfoot>
+                     <tbody>
+                        <tr>
+                           <th>Code</th>
+                           <td>
+                              <span title="penicillines (035 - G-Standaard Tabel 122)">penicillines</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Eerste symptomen</th>
+                           <td>2009</td>
+                        </tr>
+                        <tr>
+                           <th>Meest recente voorkomen</th>
+                           <td>2011</td>
+                        </tr>
+                        <tr>
+                           <th>Reactie</th>
+                           <td>
+                              <ul>
+                                 <li>
+                                    <div>
+                                       <span title="Mild (255604002 - SNOMED CT)">Mild</span>
+                                    </div>
+                                    <div>
+                                       <span title="Nausea and vomiting (16932000 - SNOMED CT)">Nausea and vomiting</span>
+                                    </div>
+                                 </li>
+                              </ul>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <identifier>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                  <valueCode value="NI"/>
+               </extension>
+            </identifier>
+            <clinicalStatus value="active">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/ActStatus"/>
+                        <code value="active"/>
+                        <display value="Active"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </clinicalStatus>
+            <verificationStatus value="confirmed"/>
+            <category value="medication">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="419511003"/>
+                        <display value="neiging tot ongewenste reactie op geneesmiddel"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </category>
+            <criticality value="low">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="255604002"/>
+                        <display value="licht"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </criticality>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.902.122"/>
+                  <code value="035"/>
+                  <display value="penicillines"/>
+               </coding>
+            </code>
+            <patient>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                        <valueCode value="masked"/>
+                     </extension>
+                  </value>
+               </identifier>
+            </patient>
+            <onsetDateTime value="2009"/>
+            <lastOccurrence value="2011"/>
+            <note>
+               <text value="Alleen voor amoxicilline"/>
+            </note>
+            <reaction>
+               <substance>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.1.750"/>
+                     <code value="023167"/>
+                     <display value="Amoxicilline"/>
+                  </coding>
+               </substance>
+               <manifestation>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="16932000"/>
+                     <display value="Nausea and vomiting"/>
+                  </coding>
+               </manifestation>
+               <severity value="mild">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="http://snomed.info/sct"/>
+                           <code value="255604002"/>
+                           <display value="Mild"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </severity>
+               <exposureRoute>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="738956005"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </exposureRoute>
+            </reaction>
+         </AllergyIntolerance>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:b3998901-1341-11ed-1920-020000000000"/>
+      <resource>
+         <AllergyIntolerance>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Allergie/intolerantie. Patiënt: <i>afgeschermd (ontbrekend gegeven)</i> (BSN). Id: <i>geen informatie (ontbrekend gegeven)</i>, Categorie: <span title="allergie voor substantie (419199007 - SNOMED CT)">allergie voor substantie</span>, Status: opgelost / bevestigd</caption>
+                     <tbody>
+                        <tr>
+                           <th>Code</th>
+                           <td>
+                              <span title="Latex (111088007 - SNOMED CT)">Latex</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Eerste symptomen</th>
+                           <td>2006</td>
+                        </tr>
+                        <tr>
+                           <th>Meest recente voorkomen</th>
+                           <td>2012</td>
+                        </tr>
+                        <tr>
+                           <th>Reactie</th>
+                           <td>
+                              <ul>
+                                 <li>
+                                    <div>
+                                       <span title="Mild (255604002 - SNOMED CT)">Mild</span>
+                                    </div>
+                                    <div>
+                                       <span title="Itching of skin (418363000 - SNOMED CT)">Itching of skin</span>
+                                    </div>
+                                    <div>Huidproblemen</div>
+                                 </li>
+                              </ul>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <identifier>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                  <valueCode value="NI"/>
+               </extension>
+            </identifier>
+            <clinicalStatus value="resolved">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/ActStatus"/>
+                        <code value="completed"/>
+                        <display value="Completed"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </clinicalStatus>
+            <verificationStatus value="confirmed"/>
+            <category value="biologic">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="419199007"/>
+                        <display value="allergie voor substantie"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </category>
+            <criticality value="high">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="6736007"/>
+                        <display value="matig"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </criticality>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="111088007"/>
+                  <display value="Latex"/>
+               </coding>
+            </code>
+            <patient>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                        <valueCode value="masked"/>
+                     </extension>
+                  </value>
+               </identifier>
+            </patient>
+            <onsetDateTime value="2006"/>
+            <lastOccurrence value="2012"/>
+            <reaction>
+               <manifestation>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="418363000"/>
+                     <display value="Itching of skin"/>
+                  </coding>
+               </manifestation>
+               <description value="Huidproblemen"/>
+               <severity value="mild">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="http://snomed.info/sct"/>
+                           <code value="255604002"/>
+                           <display value="Mild"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </severity>
+               <exposureRoute>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="448598008"/>
+                     <display value="via de huid"/>
+                  </coding>
+               </exposureRoute>
+            </reaction>
+         </AllergyIntolerance>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:b3998a9b-1341-11ed-1920-020000000000"/>
+      <resource>
+         <AllergyIntolerance>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Allergie/intolerantie. Patiënt: <i>afgeschermd (ontbrekend gegeven)</i> (BSN). Id: <i>geen informatie (ontbrekend gegeven)</i>, Categorie: <span title="allergie voor substantie (419199007 - SNOMED CT)">allergie voor substantie</span>, Status: opgelost / bevestigd</caption>
+                     <tfoot>
+                        <tr>
+                           <td colspan="2">Patiënt heeft succesvolle desensitisatie ondergaan.</td>
+                        </tr>
+                     </tfoot>
+                     <tbody>
+                        <tr>
+                           <th>Code</th>
+                           <td>
+                              <span title="wespengif (256440004 - SNOMED CT)">wespengif</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Eerste symptomen</th>
+                           <td>1980-08</td>
+                        </tr>
+                        <tr>
+                           <th>Meest recente voorkomen</th>
+                           <td>2 augustus 2015</td>
+                        </tr>
+                        <tr>
+                           <th>Reactie</th>
+                           <td>
+                              <ul>
+                                 <li>
+                                    <div>
+                                       <span title="Severe (24484000 - SNOMED CT)">Severe</span>
+                                    </div>
+                                    <div>
+                                       <span title="Anaphylaxis (39579001 - SNOMED CT)">Anaphylaxis</span>
+                                    </div>
+                                    <div>Sterk verlaagde bloeddruk en ademfrequentie.</div>
+                                 </li>
+                              </ul>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <identifier>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                  <valueCode value="NI"/>
+               </extension>
+            </identifier>
+            <clinicalStatus value="resolved">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/ActStatus"/>
+                        <code value="completed"/>
+                        <display value="Completed"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </clinicalStatus>
+            <verificationStatus value="confirmed"/>
+            <category value="biologic">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="419199007"/>
+                        <display value="allergie voor substantie"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </category>
+            <criticality value="high">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="24484000"/>
+                        <display value="ernstig"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </criticality>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="256440004"/>
+                  <display value="wespengif"/>
+               </coding>
+            </code>
+            <patient>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                        <valueCode value="masked"/>
+                     </extension>
+                  </value>
+               </identifier>
+            </patient>
+            <onsetDateTime value="1980-08"/>
+            <lastOccurrence value="2015-08-02"/>
+            <note>
+               <text value="Patiënt heeft succesvolle desensitisatie ondergaan."/>
+            </note>
+            <reaction>
+               <manifestation>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="39579001"/>
+                     <display value="Anaphylaxis"/>
+                  </coding>
+               </manifestation>
+               <description value="Sterk verlaagde bloeddruk en ademfrequentie."/>
+               <severity value="severe">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="http://snomed.info/sct"/>
+                           <code value="24484000"/>
+                           <display value="Severe"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </severity>
+            </reaction>
+         </AllergyIntolerance>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+</Bundle>
