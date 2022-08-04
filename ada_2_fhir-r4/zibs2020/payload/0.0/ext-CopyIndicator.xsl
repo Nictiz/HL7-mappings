@@ -5,7 +5,7 @@
     </xd:doc>
     <xsl:template name="ext-CopyIndicator" match="*" as="element()?" mode="ext-CopyIndicator">
         <xsl:param name="in" as="element()?" select="."/>
-        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+        <extension url="{$urlExtCopyIndicator}">
             <valueBoolean>
                 <xsl:call-template name="boolean-to-boolean"/>
             </valueBoolean>

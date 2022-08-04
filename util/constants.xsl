@@ -119,6 +119,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="urlExtComment"><xsl:value-of select="$urlBaseNictizProfile"/>ext-Comment</xsl:variable>
     <xsl:variable name="urlExtCommunicationPayloadContentCodeableConcept"><xsl:value-of select="$urlBaseNictizProfile"/>ext-Communication.Payload.ContentCodeableConcept</xsl:variable>
     <xsl:variable name="urlExtContextEpisodeOfCare"><xsl:value-of select="$urlBaseNictizProfile"/>ext-Context-EpisodeOfCare</xsl:variable>
+    <xsl:variable name="urlExtCopyIndicator"><xsl:value-of select="$urlBaseNictizProfile"/>ext-CopyIndicator</xsl:variable>
     <xsl:variable name="urlExtNLCodeSpecification"><xsl:value-of select="$urlBaseNictizProfile"/>code-specification</xsl:variable>
     <xsl:variable name="urlExtNLMissingTypeReference"><xsl:value-of select="$urlBaseNictizProfile"/>missing-type-reference</xsl:variable>
     <xsl:variable name="urlExtNLPractitionerRoleReference"><xsl:value-of select="$urlBaseNictizProfile"/>practitionerrole-reference</xsl:variable>
