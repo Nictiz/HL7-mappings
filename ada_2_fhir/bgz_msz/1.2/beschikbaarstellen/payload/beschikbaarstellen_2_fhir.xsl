@@ -46,7 +46,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="separateResources" as="xs:boolean" select="$referById"/>
     
     <!-- OID separated list of oids like 2.16.840.1.113883.2.4.6.3 (bsn) to mask in output -->
-    <xsl:param name="mask-ids" select="$oidBurgerservicenummer" as="xs:string"/>
+    <xsl:param name="mask-ids" select="(:$oidBurgerservicenummer:)''" as="xs:string"/>
     
     <xsl:variable name="usecase">bgz-msz</xsl:variable> 
     <!--<xsl:variable name="commonEntries" as="element(f:entry)*">
@@ -56,29 +56,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- JD: All files in ada_instance as a collection -->
     <xsl:variable name="input" select="collection('../ada_instance/?select=*.xml')"/>
     
-    <xsl:variable name="adaElementList" select="('allergy_intolerance')"/>
+    <xsl:variable name="adaElementList" select="('allergy_intolerance','alert')"/>
     
     <xd:doc>
         <xd:desc>Start conversion. This conversion tries to account for all zibs in BgZ MSZ "beschikbaarstellen" in one go. Either build a FHIR Bundle of type searchset per zib, or build individual files.</xd:desc>
     </xd:doc>
     <xsl:template match="/">
+        <!-- JD: Should not only be grouped by local-name, but also by Patient(-id)! -->
         <xsl:for-each-group select="$input//*[local-name() = $adaElementList]" group-by="local-name()">
             <xsl:variable name="bouwstenen" as="element(f:entry)*">
                 <xsl:for-each select="current-group()">
                     <xsl:variable name="inPatientId" select="hcimroot/subject/patient/patient"/>
                     <xsl:variable name="adaPatient" select="($input/adaxml/data/*/patient[patient_identification_number[@value = $inPatientId/@value][@root = $inPatientId/@root]])[1]"/>
                     <entry xmlns="http://hl7.org/fhir">
-                        <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'AllergyIntolerance', false())}"/>
-                        <resource>
-                            <xsl:choose>
-                                <xsl:when test="current-grouping-key() = 'allergy_intolerance'">
+                        <xsl:choose>
+                            <xsl:when test="current-grouping-key() = 'allergy_intolerance'">
+                                <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'AllergyIntolerance', false())}"/>
+                                <resource>
                                     <xsl:call-template name="zib-AllergyIntolerance-2.1">
                                         <xsl:with-param name="in" select="."/>
                                         <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
                                     </xsl:call-template>
-                                </xsl:when>
-                            </xsl:choose>
-                        </resource>
+                                </resource>
+                            </xsl:when>
+                            <xsl:when test="current-grouping-key() = 'alert'">
+                                <!-- ??? -->
+                            </xsl:when>
+                        </xsl:choose>
                         <search>
                             <mode value="match"/>
                         </search>
@@ -95,15 +99,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
             <xsl:choose>
                 <xsl:when test="$separateResources">
-                    <xsl:variable name="zib-name" select="tokenize(f:meta/f:profile/@value, '/')[last()]"/>
-                    <xsl:result-document href="../fhir_instance_resources/{$usecase}-{$zib-name}-{ancestor::f:entry/f:fullUrl/tokenize(@value, '[/:]')[last()]}.xml">
-                        <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/<xsl:value-of select="lower-case(local-name())"/>.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
-                        <xsl:copy>
-                            <xsl:copy-of select="@*"/>
-                            <xsl:attribute name="xsi:schemaLocation">http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd</xsl:attribute>
-                            <xsl:copy-of select="node()"/>
-                        </xsl:copy>
-                    </xsl:result-document>
+                    <xsl:for-each select="$entries">
+                        <xsl:variable name="zib-name" select="tokenize(f:meta/f:profile/@value, '/')[last()]"/>
+                        <xsl:result-document href="../fhir_instance_resources/{$usecase}-{$zib-name}-{ancestor::f:entry/f:fullUrl/tokenize(@value, '[/:]')[last()]}.xml">
+                            <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/<xsl:value-of select="lower-case(local-name())"/>.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
+                            <!-- JD: To do, should only copy f:entry/f:resource/f:* -->
+                            <!--<xsl:copy>
+                                <xsl:copy-of select="@*"/>
+                                <xsl:attribute name="xsi:schemaLocation">http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd</xsl:attribute>
+                                <xsl:copy-of select="node()"/>
+                            </xsl:copy>-->
+                        </xsl:result-document>
+                    </xsl:for-each>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:result-document href="../fhir_instance_bundles/{$usecase}-{current-grouping-key()}.xml">
