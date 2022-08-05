@@ -687,5 +687,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:value-of select="$ada2resourceType/nm:map[@ada = $adaElement/local-name()][1]/@profile"/>
     </xsl:function>
+    
+    <xd:doc>
+        <xd:desc>Helper template to build the a quantity for medication.</xd:desc>
+        <xd:param name="adaValue">The ada element containing the value of quantity</xd:param>
+        <xd:param name="adaUnit">The ada alement containing the code/codeSystem in Gstd eenheden</xd:param>
+    </xd:doc>
+    <xsl:template name="_buildMedicationQuantity">
+        <xsl:param name="adaValue" as="element()"/>
+        <xsl:param name="adaUnit" as="element()"/>
+        
+        <!-- G-Standaard (Simple)Quantity -->
+        <xsl:for-each select="$adaUnit[@codeSystem = $oidGStandaardBST902THES2]">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                <valueQuantity>
+                    <value value="{$adaValue/@value}"/>
+                    <unit value="{@displayName}"/>
+                    <system value="{concat('urn:oid:', $oidGStandaardBST902THES2)}"/>
+                    <code value="{@code}"/>
+                </valueQuantity>
+            </extension>
+        </xsl:for-each>
+        <!-- UCUM -->
+        <value value="{$adaValue/@value}"/>
+        <unit value="{$adaUnit[@codeSystem=$oidGStandaardBST902THES2]/@displayName}"/>
+        <system value="{$oidMap[@oid=$oidUCUM]/@uri}"/>
+        <code value="{nf:convertGstdBasiseenheid2UCUM($adaUnit[@codeSystem=$oidGStandaardBST902THES2]/@code)}"/>
+        
+    </xsl:template>
 
 </xsl:stylesheet>

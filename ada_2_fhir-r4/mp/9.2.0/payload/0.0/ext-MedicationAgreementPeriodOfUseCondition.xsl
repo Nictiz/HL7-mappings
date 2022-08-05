@@ -20,26 +20,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc scope="stylesheet">
         <xd:desc>
-            <xd:p>Converts ADA Gebruiksinstructie/criterium to FHIR extension. See the documentation on the templates.</xd:p>
+            <xd:p>Converts ADA Gebruiksinstructie/criterium to FHIR extension. Is not converted in this file but in zib2020/payload/x.x/ext-TimeInterval, as this file is not imported in non-mp9 projects.</xd:p>
         </xd:desc>
     </xd:doc>
-
-    <xd:doc>
-        <xd:desc>
-            <xd:p>If needed, create the criterium part from ADA  input. </xd:p>
-        </xd:desc>
-        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-    </xd:doc>
-    <xsl:template name="ext-MedicationAgreement.PeriodOfUse.Condition" as="element()*">
-        <xsl:param name="in" as="element()?" select="."/>
-
-        <xsl:for-each select="$in">
-            <extension url="{$urlExtMedicationAgreementPeriodOfUseCondition}">
-                <valueString>
-                    <xsl:call-template name="string-to-string"/>
-                </valueString>
-            </extension>
-        </xsl:for-each>
-    </xsl:template>
 
 </xsl:stylesheet>

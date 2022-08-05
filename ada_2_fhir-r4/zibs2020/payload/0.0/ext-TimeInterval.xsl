@@ -131,9 +131,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:if test="string-join($start, '') or $end or $in/tijds_duur">
                             <xsl:element name="{$wrapIn}">
                                 <xsl:call-template name="ext-TimeInterval.Duration"/>
+                                <!-- Converts ADA Gebruiksinstructie/criterium to FHIR extension for MP9 2.0 -->
                                 <xsl:for-each select="criterium[@value]">
-                                    <!-- This calls a template present in mp/9.2.0. Does this cause non MP-projects to fail? If so, perhaps we should remove the template and just build the extension here (although strange for an 'mp-extension'). -->
-                                    <xsl:call-template name="ext-MedicationAgreement.PeriodOfUse.Condition"/>
+                                    <extension url="{$urlExtMedicationAgreementPeriodOfUseCondition}">
+                                        <valueString>
+                                            <xsl:call-template name="string-to-string"/>
+                                        </valueString>
+                                    </extension>
                                 </xsl:for-each>
                                 <xsl:if test="string-join($start, '')">
                                     <start value="{$start}"/>
