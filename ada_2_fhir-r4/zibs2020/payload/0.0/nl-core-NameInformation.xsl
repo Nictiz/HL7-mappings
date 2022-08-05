@@ -10,17 +10,7 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="#all"
-    xmlns="http://hl7.org/fhir"
-    xmlns:util="urn:hl7:utilities" 
-    xmlns:f="http://hl7.org/fhir" 
-    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    xmlns:nf="http://www.nictiz.nl/functions" 
-    xmlns:nm="http://www.nictiz.nl/mappings"
-    xmlns:uuid="http://www.uuid.org"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-    version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:f="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nm="http://www.nictiz.nl/mappings" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
@@ -44,7 +34,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- Construct the full given name string and family string -->
             <xsl:variable name="given" as="xs:string?" select="nf:_renderGivenNames($normalizedFirstNames, $normalizedInitials)"/>
             <xsl:variable name="family" as="xs:string?" select="nf:_renderFamilyName(.)"/>
-                        
+
             <!-- Create the main .name instance containing all official names -->
             <name>
                 <xsl:if test="naamgebruik">
@@ -56,12 +46,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueCode>
                     </extension>
                 </xsl:if>
-                
+
                 <use value="official"/>
                 <xsl:if test="$given or $family">
                     <text value="{nf:_renderNameFromParts($given, $family, roepnaam)}"/>
                 </xsl:if>
-                
+
                 <xsl:if test="$family">
                     <family value="{$family}">
                         <xsl:for-each select="geslachtsnaam/voorvoegsels">
@@ -86,7 +76,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:when test="count($normalizedFirstNames) &gt; 0">
                         <xsl:for-each select="$normalizedFirstNames">
                             <xsl:copy-of select="nf:_writeGiven(., 'BR')"/>
-                        </xsl:for-each>                        
+                        </xsl:for-each>
                     </xsl:when>
                     <xsl:when test="count($normalizedInitials) &gt; 0">
                         <xsl:for-each select="$normalizedInitials">
@@ -94,13 +84,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:for-each>
                     </xsl:when>
                 </xsl:choose>
-                
+
                 <xsl:if test="titels/@value">
                     <!-- 'titels' can be mapped both to prefix and suffix, but we cannot determine the type of 'titel' more specifically -->
                     <prefix value="{normalize-space(titels/@value)}"/>
                 </xsl:if>
             </name>
-            
+
             <!-- If both first names and initials are provided, check if they match. If not, write out a second .name
                  instance containing just the initials. -->
             <xsl:variable name="generatedInitials" as="xs:string*">
@@ -110,8 +100,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:if>
                 </xsl:for-each>
             </xsl:variable>
-            <xsl:if test="count($generatedInitials) &gt; 0 and count($normalizedInitials) &gt; 0 and
-                not(deep-equal($generatedInitials, $normalizedInitials))">
+            <xsl:if test="
+                    count($generatedInitials) &gt; 0 and count($normalizedInitials) &gt; 0 and
+                    not(deep-equal($generatedInitials, $normalizedInitials))">
                 <name>
                     <use value="official"/>
                     <xsl:for-each select="$normalizedInitials">
@@ -141,9 +132,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="firstNames" select="nf:_normalizeFirstNames($in/voornamen)" as="xs:string*"/>
         <xsl:variable name="initials" select="nf:_normalizeInitials($in/initialen)" as="xs:string*"/>
         <xsl:variable name="given" select="nf:_renderGivenNames($firstNames, $initials)" as="xs:string?"/>
-        <xsl:value-of select="nf:_renderNameFromParts($given, nf:_renderFamilyName($in), $in/roepnaam)"/>        
+        <xsl:value-of select="nf:_renderNameFromParts($given, nf:_renderFamilyName($in), $in/roepnaam)"/>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc>Helper function to render the name of the person from pre-rendered parts.</xd:desc>
         <xd:param name="given">The rendered given names of the person</xd:param>
@@ -155,7 +146,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="given" as="xs:string?"/>
         <xsl:param name="family" as="xs:string?"/>
         <xsl:param name="roepnaam" as="element(roepnaam)?"/>
-        
+
         <xsl:choose>
             <xsl:when test="$given or $family">
                 <xsl:variable name="usual" as="xs:string?">
@@ -170,7 +161,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
         </xsl:choose>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc>Helper function to parse the first names (voornamen) string.</xd:desc>
         <xd:param name="voornamen">The ADA voornamen element</xd:param>
@@ -198,7 +189,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
         </xsl:for-each>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc>Build the given name string, that is the complete collection of known official given names, based on the input. Note: not the "GivenName" according to the zib, which is used for the nickname, not the official name of the person.</xd:desc>
         <xd:param name="normalizedFirstNames">The list of normalized first names (as returned by <xd:ref name="nf:_normalizeFirstNames()"/></xd:param>
@@ -217,7 +208,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
         </xsl:choose>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc>Helper function to build the familiy name from the name parts as specified by the zib.</xd:desc>
         <xd:param name="in">The ADA naamgegevens element</xd:param>
@@ -255,7 +246,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
         </xsl:for-each>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc>Helper function to write out part of the family name using the provided extensions.</xd:desc>
         <xd:param name="in">The element containing the value to write in the extension</xd:param>
@@ -264,7 +255,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:function name="nf:_writeFamilyExtension">
         <xsl:param name="in" as="element()?"/>
         <xsl:param name="extensionId" as="xs:string"/>
-        
+
         <extension url="http://hl7.org/fhir/StructureDefinition/{$extensionId}">
             <valueString>
                 <xsl:call-template name="string-to-string">
@@ -273,7 +264,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </valueString>
         </extension>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc>Helper function to write a .given element augmented with the iso21090-EN-qualifier extension.</xd:desc>
         <xd:param name="value">The value of the .given element</xd:param>
@@ -282,7 +273,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:function name="nf:_writeGiven">
         <xsl:param name="value" as="xs:string"/>
         <xsl:param name="iso21090Qualifier" as="xs:string"/>
-        
+
         <given value="{$value}">
             <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
                 <valueCode value="{$iso21090Qualifier}"/>

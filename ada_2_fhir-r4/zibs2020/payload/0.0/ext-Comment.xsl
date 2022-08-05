@@ -37,8 +37,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="*" name="ext-Comment" mode="ext-Comment" as="element()?">
         <xsl:param name="in" as="element()?" select="."/>
-        <xsl:for-each select="$in[string-length(./@value) gt 0]">
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
+        <xsl:for-each select="$in[string-length(@value) gt 0]">
+            <extension url="{$urlExtComment}">
                 <valueString value="{@value}"/>
             </extension>
         </xsl:for-each>

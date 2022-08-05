@@ -10,32 +10,24 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 
-<xsl:stylesheet exclude-result-prefixes="#all"
-    xmlns="http://hl7.org/fhir"
-    xmlns:util="urn:hl7:utilities" 
-    xmlns:f="http://hl7.org/fhir" 
-    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    xmlns:nf="http://www.nictiz.nl/functions" 
-    xmlns:nm="http://www.nictiz.nl/mappings"
-    xmlns:uuid="http://www.uuid.org"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-    version="2.0">
-    
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:f="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nm="http://www.nictiz.nl/mappings" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
-    
+
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ada contact to FHIR Encounter resource conforming to profile nl-core-Encounter</xd:desc>
     </xd:doc>
-    
+
     <xd:doc>
         <xd:desc>Create a nl-core-Contactperson as a RelatedPerson FHIR instance from ada Contactpersoon.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
     <xsl:template match="contact" name="nl-core-Encounter" mode="nl-core-Encounter" as="element(f:Encounter)?">
         <xsl:param name="in" select="." as="element()?"/>
-        
+        <xsl:param name="participantIndividual" select="contact_met/zorgverlener"/>
+        <xsl:param name="location" select="locatie/zorgaanbieder"/>
+
         <xsl:for-each select="$in">
             <Encounter>
                 <xsl:call-template name="insertLogicalId"/>
@@ -102,9 +94,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:for-each>
                         <xsl:for-each select="verrichting">
                             <xsl:call-template name="makeReference">
-                            <xsl:with-param name="in" select="."/>
-                            <xsl:with-param name="profile" select="'nl-core-Procedure'"/>
-                        </xsl:call-template>
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="profile" select="'nl-core-Procedure'"/>
+                            </xsl:call-template>
                         </xsl:for-each>
                         <xsl:for-each select="afwijkende_uitslag">
                             <xsl:comment>TODO: nl-core-LaboratoryTestResult, nl-core-Problem and nl-core-Procedure</xsl:comment>
@@ -146,7 +138,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </Encounter>
         </xsl:for-each>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
     </xd:doc>
@@ -165,5 +157,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
     </xsl:template>
-    
+
+    <xd:doc>
+        <xd:desc>Creates an Encounter reference based on identifier using ada identificatie element</xd:desc>
+    </xd:doc>
+    <xsl:template name="nl-core-Encounter-RefIdentifier" match="identificatie | identificatienummer" mode="nl-core-Encounter-RefIdentifier">
+        <type value="Encounter"/>
+        <identifier>
+            <xsl:call-template name="id-to-Identifier"/>
+        </identifier>
+        <display value="relatie naar contact met identificatie: {string-join((@value, @root), ' || ')}"/>
+    </xsl:template>
+
 </xsl:stylesheet>

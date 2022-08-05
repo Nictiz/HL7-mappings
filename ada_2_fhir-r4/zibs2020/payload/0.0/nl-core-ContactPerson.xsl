@@ -13,22 +13,12 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 
-<xsl:stylesheet exclude-result-prefixes="#all"
-    xmlns="http://hl7.org/fhir"
-    xmlns:util="urn:hl7:utilities" 
-    xmlns:f="http://hl7.org/fhir" 
-    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    xmlns:nf="http://www.nictiz.nl/functions" 
-    xmlns:nm="http://www.nictiz.nl/mappings"
-    xmlns:uuid="http://www.uuid.org"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-    version="2.0">
-    
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:f="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nm="http://www.nictiz.nl/mappings" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
-    
-    <xd:doc scope="stylesheet"> 
+
+    <xd:doc scope="stylesheet">
         <xd:desc>Converts ada patient to FHIR resource conforming to profile nl-core-Patient</xd:desc>
     </xd:doc>
 
@@ -40,7 +30,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="contactpersoon" name="nl-core-ContactPerson" mode="nl-core-ContactPerson" as="element(f:RelatedPerson)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="patient" select="patient" as="element()?"/>
-        
+
         <xsl:for-each select="$in">
             <RelatedPerson>
                 <xsl:call-template name="insertLogicalId"/>
@@ -53,7 +43,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="wrapIn" select="'patient'"/>
                 </xsl:call-template>
 
-                <xsl:for-each select="rol">
+                <xsl:for-each select="rol[@code]">
                     <relationship>
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
@@ -61,7 +51,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </relationship>
                 </xsl:for-each>
 
-                <xsl:for-each select="relatie">
+                <xsl:for-each select="relatie[@code]">
                     <relationship>
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
@@ -83,14 +73,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </RelatedPerson>
         </xsl:for-each>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Create a nl-core-Contactperson FHIR instance emmbedded in the Patient instance from ada Contactpersoon. Since it is embedded in the Patient no Resource.id is needed.</xd:desc>
         <xd:param name="in">Node to consider in the creation of a Patient.contact element.</xd:param>
     </xd:doc>
     <xsl:template match="contactpersoon" name="nl-core-ContactPerson-embedded" mode="nl-core-ContactPerson-embedded" as="element(f:contact)?">
         <xsl:param name="in" select="." as="element()?"/>
-        
+
         <xsl:for-each select="$in">
             <contact>
                 <xsl:for-each select="rol">
@@ -100,7 +90,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </relationship>
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="relatie">
                     <relationship>
                         <xsl:call-template name="code-to-CodeableConcept">
@@ -108,7 +98,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </relationship>
                 </xsl:for-each>
-                
+
                 <!-- We can't add the full name information here, just the name information needed to address the 
                      contact person -->
                 <xsl:variable name="nameInformation" as="element(f:name)*">
@@ -119,32 +109,46 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:if test="count($nameInformation) &gt; 0">
                     <xsl:copy-of select="$nameInformation[1]"/>
                 </xsl:if>
-                
+
                 <xsl:for-each select="contactgegevens">
                     <xsl:call-template name="nl-core-ContactInformation"/>
                 </xsl:for-each>
-                
+
                 <xsl:for-each select="adresgegevens">
                     <xsl:call-template name="nl-core-AddressInformation"/>
                 </xsl:for-each>
             </contact>
         </xsl:for-each>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Template to generate a unique id to identify a patient present in a (set of) ada-instance(s)</xd:desc>
     </xd:doc>
     <xsl:template match="contactpersoon" mode="_generateId">
-        <xsl:choose>
-            <xsl:when test="naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value">
-                <xsl:value-of select="upper-case(nf:removeSpecialCharacters(normalize-space(string-join(naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value, ' '))))"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:next-match/>
-            </xsl:otherwise>
-        </xsl:choose>
+
+        <xsl:variable name="uniqueString" as="xs:string?">
+            <xsl:choose>
+                <xsl:when test="identificatie[@root][@value]">
+                    <xsl:for-each select="(identificatie[@root][@value])[1]">
+                        <!-- we remove '.' in root oid and '_' in extension to enlarge the chance of staying in 64 chars -->
+                        <xsl:value-of select="concat(replace(@root, '\.', ''), '-', replace(@value, '_', ''))"/>
+                    </xsl:for-each>
+                </xsl:when>
+                <xsl:when test="naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value">
+                    <xsl:value-of select="upper-case(replace(string-join(naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value, ' '), '\s', ''))"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- we do not have anything to create a stable logicalId, lets return a UUID -->
+                    <xsl:value-of select="uuid:get-uuid(.)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+
+        <xsl:call-template name="generateLogicalId">
+            <xsl:with-param name="uniqueString" select="$uniqueString"/>
+        </xsl:call-template>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
     </xd:doc>
@@ -156,5 +160,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
         <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
     </xsl:template>
-        
+
 </xsl:stylesheet>
