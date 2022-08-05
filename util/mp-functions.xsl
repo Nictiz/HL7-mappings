@@ -25,13 +25,8 @@
         <map code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="tijdelijk gestopt"/>
         <map code="2" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="definitief gestopt"/>
     </xsl:variable>
-<<<<<<< HEAD
 
     <xd:doc>
-=======
-    
-     <xd:doc>
->>>>>>> master
         <xd:desc>Calculates the start date of a dosage instruction</xd:desc>
         <xd:param name="startdatum-dosering-1"/>
         <xd:param name="theDosering"/>
