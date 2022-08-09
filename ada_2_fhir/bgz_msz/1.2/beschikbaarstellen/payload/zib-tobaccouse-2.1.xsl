@@ -134,7 +134,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
                     
-                    <xsl:if test="(observation_of_use/start_date) or observation_of_use/stop_date">
+                    <xsl:if test="observation_of_use/start_date or observation_of_use/stop_date">
                         <effectivePeriod>
                             <xsl:for-each select="observation_of_use/start_date[@value]">
                                 <start>
@@ -201,7 +201,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:call-template name="hoeveelheid-to-Quantity">
                                     <xsl:with-param name="in" select="."/>
                                 </xsl:call-template>
-                            </valueQuantity	>
+                            </valueQuantity>
                         </component>
                     </xsl:for-each>
                     

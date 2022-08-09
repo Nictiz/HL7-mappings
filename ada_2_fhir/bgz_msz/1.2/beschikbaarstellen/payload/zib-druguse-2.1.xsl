@@ -11,7 +11,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <!--<xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>-->
+    
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
@@ -125,7 +125,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <coding>
                             <system value="http://snomed.info/sct"/>
                             <code value="228366006"/>
-                            <display value="Finding relating to drug misuse behavior (finding)"/>
+                            <display value="bevinding betreffende drugsgebruik"/>
                         </coding>
                     </code>
                     
@@ -134,7 +134,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
                     
-                    <xsl:if test="(observation_of_use/start_date) or observation_of_use/stop_date">
+                    <xsl:if test="observation_of_use/start_date or observation_of_use/stop_date">
                         <effectivePeriod>
                             <xsl:for-each select="observation_of_use/start_date[@value]">
                                 <start>
@@ -177,7 +177,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <coding>
                                     <system value="http://snomed.info/sct"/>
                                     <code value="410942007"/>
-                                    <display value="Drug or medicament (substance)"/>
+                                    <display value="drug of geneesmiddel"/>
                                 </coding>
                             </code>
                             <valueCodeableConcept>
@@ -194,23 +194,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <coding>
                                     <system value="http://snomed.info/sct"/>
                                     <code value="410675002"/>
-                                    <display value="Route of administration (attribute)"/>
+                                    <display value="toedieningsweg"/>
                                 </coding>
                             </code>
-                            <valueQuantity>
-                                <system>
-                                    <xsl:attribute name="system" select="./@codeSystem"/>
-                                </system>
-                                <value>
-                                    <xsl:attribute name="value" select="./@value"/>
-                                </value>
-                                <code>
-                                    <xsl:attribute name="code" select="./@code"/>
-                                </code>
-                                <display>
-                                    <xsl:attribute name="display" select="./@displayName"/>
-                                </display>
-                            </valueQuantity>
+                            <valueCodeableConcept>
+                                <xsl:call-template name="code-to-CodeableConcept">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </valueCodeableConcept>
                         </component>
                     </xsl:for-each>
                     
@@ -230,7 +221,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </valueQuantity	>
                         </component>
                     </xsl:for-each>
-                    
                 </Observation>
             </xsl:variable>
             
