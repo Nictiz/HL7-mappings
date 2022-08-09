@@ -16,6 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- import because we want to be able to override the param for macAddress for UUID generation and the param for referById -->
     <!--<xsl:import href="../../../2_fhir_bgz_msz_include.xsl"/>-->
     <xsl:import href="../../../../zibs2017/payload/package-2.0.5.xsl"/>
+    <xsl:import href="zib-tobaccouse-2.1.xsl"/>
     
     <xd:doc scope="stylesheet">
         <xd:desc>
@@ -56,7 +57,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- JD: All files in ada_instance as a collection -->
     <xsl:variable name="input" select="collection('../ada_instance/?select=*.xml')"/>
     
-    <xsl:variable name="adaElementList" select="('allergy_intolerance','alert')"/>
+    <xsl:variable name="adaElementList" select="('allergy_intolerance','alert','tobacco_use')"/>
     
     <xd:doc>
         <xd:desc>Start conversion. This conversion tries to account for all zibs in BgZ MSZ "beschikbaarstellen" in one go. Either build a FHIR Bundle of type searchset per zib, or build individual files.</xd:desc>
@@ -88,8 +89,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:call-template>
                                 </resource>
                             </xsl:when>
-                            <xsl:when test="current-grouping-key() = 'alert'">
-                                <!-- ??? -->
+                            <xsl:when test="current-grouping-key() = 'tobacco_use'">
+                                <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>
+                                <resource>
+                                    <xsl:call-template name="zib-TobaccoUse-2.1">
+                                        <xsl:with-param name="in" select="."/>
+                                        <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                    </xsl:call-template>
+                                </resource>
                             </xsl:when>
                         </xsl:choose>
                         <search>
