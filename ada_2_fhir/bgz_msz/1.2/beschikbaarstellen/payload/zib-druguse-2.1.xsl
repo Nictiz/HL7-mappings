@@ -214,11 +214,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <display value="Frequency of drug misuse (observable entity)"/>
                                 </coding>
                             </code>
-                            <valueQuantity>
-                                <xsl:call-template name="hoeveelheid-to-Quantity">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
-                            </valueQuantity	>
+                            <valueString>
+                                <xsl:attribute name="value" select="./@value"/>
+                            </valueString>
                         </component>
                     </xsl:for-each>
                 </Observation>
