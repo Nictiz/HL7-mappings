@@ -181,11 +181,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </coding>
                             </code>
                             <valueQuantity>
-                                <value>
-                                    <xsl:attribute name="value" select="./@value"/>
-                                </value>
-                                <system value="http://unitsofmeasure.org"/>
-                                <code value="{{alcoholic_units}}"/>
                                 <xsl:call-template name="hoeveelheid-to-Quantity">
                                     <xsl:with-param name="in" select="."/>
                                 </xsl:call-template>
