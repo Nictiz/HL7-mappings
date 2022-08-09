@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 Copyright (c) Nictiz
-
 This program is free software; you can redistribute it and/or modify it under the terms of the
 GNU Lesser General Public License as published by the Free Software Foundation; either version
 2.1 of the License, or (at your option) any later version.
-
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
 without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 See the GNU Lesser General Public License for more details.
-
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
+
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <!--<xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
@@ -45,7 +43,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Produces a FHIR entry element with a Flag resource</xd:desc>
+        <xd:desc>Produces a FHIR entry element with a Flag resource for Alert</xd:desc>
         <xd:param name="uuid">If true generate uuid from scratch. Defaults to false(). Generating a uuid from scratch limits reproduction of the same output as the uuids will be different every time.</xd:param>
         <xd:param name="adaPatient">Optional, but should be there. Patient this resource is for.</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
@@ -91,9 +89,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Mapping of nl.zorg.Alert concept in ADA to FHIR resource <xd:a href="https://simplifier.net/search?canonical=http://nictiz.nl/fhir/StructureDefinition/zib-Alert">zib-Alert</xd:a>, version 2.1.</xd:desc>
+        <xd:desc>Mapping of HCIM Alert concept in ADA to FHIR resource <xd:a href="https://simplifier.net/search?canonical=http://nictiz.nl/fhir/StructureDefinition/zib-Alert">zib-Alert</xd:a>.</xd:desc>
         <xd:param name="logicalId">Optional FHIR logical id for the patient record.</xd:param>
+        <xd:param name="in">Node to consider in the creation of the Flag resource for Alert.</xd:param>
         <xd:param name="adaPatient">The ada patient that is subject of this Alert.</xd:param>
+        <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
     <xsl:template name="zib-Alert-2.1" match="alert[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element()" mode="doZibAlert-2.1">
         <xsl:param name="in" select="." as="element()?"/>
@@ -119,15 +119,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="{$profileValue}"/>
                     </meta>
         
-                    <xsl:for-each select="nf:ada-resolve-reference(conditie/probleem | condition/problem)">
-                        <extension url="http://hl7.org/fhir/StructureDefinition/flag-detail">
-                            <valueReference>
-                                <xsl:call-template name="_doReference">
-                                    <xsl:with-param name="ResourceType">Condition</xsl:with-param>
-                                </xsl:call-template>
-                            </valueReference>
-                        </extension>
-                    </xsl:for-each>
+                    <xsl:if test="conditie/probleem | condition/problem">
+                        <xsl:for-each select="nf:ada-resolve-reference(conditie/probleem | condition/problem)">
+                            <extension url="http://hl7.org/fhir/StructureDefinition/flag-detail">
+                                <valueReference>
+                                    <xsl:call-template name="_doReference">
+                                        <xsl:with-param name="ResourceType">Condition</xsl:with-param>
+                                    </xsl:call-template>
+                                </valueReference>
+                            </extension>
+                        </xsl:for-each>
+                    </xsl:if>
+                    
                     <!-- status does not exist in zib but is 1..1 in FHIR profile -->
                     <status>
                         <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
