@@ -14,7 +14,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:f="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <!-- import because we want to be able to override the param for macAddress for UUID generation and the param for referById -->
-    <!--<xsl:import href="../../../2_fhir_bgz_msz_include.xsl"/>-->
     <xsl:import href="../../../../zibs2017/payload/package-2.0.5.xsl"/>
     <xsl:import href="zib-druguse-2.1.xsl"/>
     <xsl:import href="zib-tobaccouse-2.1.xsl"/>
@@ -58,7 +57,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- JD: All files in ada_instance as a collection -->
     <xsl:variable name="input" select="collection('../ada_instance/?select=*.xml')"/>
     
-    <xsl:variable name="adaElementList" select="('allergy_intolerance','alert','drug_use','tobacco_use')"/>
+    <xsl:variable name="adaElementList" select="('allergy_intolerance','alert','body_height','body_weight','drug_use','tobacco_use')"/>
     
     <xd:doc>
         <xd:desc>Start conversion. This conversion tries to account for all zibs in BgZ MSZ "beschikbaarstellen" in one go. Either build a FHIR Bundle of type searchset per zib, or build individual files.</xd:desc>
@@ -85,6 +84,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'AllergyIntolerance', false())}"/>
                                 <resource>
                                     <xsl:call-template name="zib-AllergyIntolerance-2.1">
+                                        <xsl:with-param name="in" select="."/>
+                                        <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                    </xsl:call-template>
+                                </resource>
+                            </xsl:when>
+                            <xsl:when test="current-grouping-key() = 'body_height'">
+                                <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>
+                                <resource>
+                                    <xsl:call-template name="zib-BodyHeight-2.1">
+                                        <xsl:with-param name="in" select="."/>
+                                        <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                    </xsl:call-template>
+                                </resource>
+                            </xsl:when>
+                            <xsl:when test="current-grouping-key() = 'body_weight'">
+                                <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>
+                                <resource>
+                                    <xsl:call-template name="zib-BodyWeight-2.1">
                                         <xsl:with-param name="in" select="."/>
                                         <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
                                     </xsl:call-template>
