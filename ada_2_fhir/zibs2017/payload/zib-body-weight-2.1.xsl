@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 Copyright © Nictiz
-
 This program is free software; you can redistribute it and/or modify it under the terms of the
 GNU Lesser General Public License as published by the Free Software Foundation; either version
 2.1 of the License, or (at your option) any later version.
-
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
 without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 See the GNU Lesser General Public License for more details.
-
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
+
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <!--<xsl:import href="_zib2017.xsl"/>
-    <xsl:import href="nl-core-patient-2.1.xsl"/>-->
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
@@ -64,8 +60,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Produces a FHIR entry element with an Observation resource for body weight</xd:desc>
-        <xd:param name="uuid">If true generate uuid from scratch. Defaults to false(). Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
+        <xd:desc>Produces a FHIR entry element with an Observation resource for BodyWeight</xd:desc>
+        <xd:param name="uuid">If true generate uuid from scratch. Defaults to false(). Generating a uuid from scratch limits reproduction of the same output as the uuids will be different every time.</xd:param>
         <xd:param name="adaPatient">Optional, but should be there. Patient this resource is for.</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
         <xd:param name="entryFullUrl">Optional. Value for the entry.fullUrl</xd:param>
@@ -113,13 +109,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Mapping of HCIM Body weight concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-BodyWeight">zib-BodyWeight</xd:a>.</xd:desc>
+        <xd:desc>Mapping of HCIM BodyWeight concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-BodyWeight">zib-BodyWeight</xd:a>.</xd:desc>
         <xd:param name="logicalId">Optional FHIR logical id for the record.</xd:param>
-        <xd:param name="in">Node to consider in the creation of the Observation resource for Body weight</xd:param>
+        <xd:param name="in">Node to consider in the creation of the Observation resource for BodyWeight</xd:param>
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-BodyWeight-2.1" match="lichaamsgewicht | body_weight" mode="doBodyWeight-2.1">
+    <xsl:template name="zib-BodyWeight-2.1" match="lichaamsgewicht | body_weight" mode="doZibBodyWeight-2.1">
         <!-- not complete zib implemented yet, only the elements as used in MP dataset -->
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
