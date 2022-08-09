@@ -384,7 +384,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:copy-of select="$patientRef[self::f:display]"/>
                     </patient>
 
-                    <!--TS    NL-CM:0.0.14    DatumTijd    0..1-->
+                    <!-- TS    NL-CM:0.0.14    DatumTijd    0..1-->
                     <!-- onsetDateTime -->
                     <xsl:for-each select="(begin_datum_tijd | start_date_time)[@value]">
                         <onsetDateTime>

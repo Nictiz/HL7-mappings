@@ -70,6 +70,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:variable name="adaPatient" select="($input/adaxml/data/*/patient[patient_identification_number[@value = $inPatientId/@value][@root = $inPatientId/@root]])[1]"/>
                     <entry xmlns="http://hl7.org/fhir">
                         <xsl:choose>
+                            <xsl:when test="current-grouping-key() = 'alert'">
+                                <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Flag', false())}"/>
+                                <resource>
+                                    <xsl:call-template name="zib-Alert-2.1">
+                                        <xsl:with-param name="in" select="."/>
+                                        <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                    </xsl:call-template>
+                                </resource>
+                            </xsl:when>
                             <xsl:when test="current-grouping-key() = 'allergy_intolerance'">
                                 <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'AllergyIntolerance', false())}"/>
                                 <resource>

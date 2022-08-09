@@ -45,12 +45,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Produces a FHIR entry element with an Alert resource</xd:desc>
-        <xd:param name="uuid">If true generate uuid from scratch. Defaults to false(). Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
-        <xd:param name="adaPatient">Optional, but should be there. Patient this Alert is for.</xd:param>
+        <xd:desc>Produces a FHIR entry element with a Flag resource</xd:desc>
+        <xd:param name="uuid">If true generate uuid from scratch. Defaults to false(). Generating a uuid from scratch limits reproduction of the same output as the uuids will be different every time.</xd:param>
+        <xd:param name="adaPatient">Optional, but should be there. Patient this resource is for.</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
         <xd:param name="entryFullUrl">Optional. Value for the entry.fullUrl</xd:param>
-        <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Alert.id</xd:param>
+        <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Flag.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
     <xsl:template name="alertEntry" match="alert[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doAlertEntry-2.1" as="element(f:entry)">
@@ -147,14 +147,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <code>
                         <xsl:variable name="nullFlavorsInValueset" select="('OTH')"/>
                         <xsl:choose>
-                            <xsl:when test="alert_naam[@code]">
+                            <xsl:when test="alert_naam[@code] | alert_name[@code]">
                                 <xsl:call-template name="code-to-CodeableConcept">
-                                    <xsl:with-param name="in" select="alert_naam[@code]"/>
-                                    <xsl:with-param name="treatNullFlavorAsCoding" select="alert_naam/@code = $nullFlavorsInValueset and alert_naam/@codeSystem = $oidHL7NullFlavor"/>
+                                    <xsl:with-param name="in" select="alert_naam[@code] | alert_name[@code]"/>
+                                    <xsl:with-param name="treatNullFlavorAsCoding" select="alert_naam/@code | alert_name/@code = $nullFlavorsInValueset and alert_naam/@codeSystem | alert_name/@codeSystem = $oidHL7NullFlavor"/>
                                 </xsl:call-template>
-                                <xsl:if test="alert_naam[@displayName]">
-                                    <text value="{alert_naam/@displayName}"/>
-                                </xsl:if>
                             </xsl:when>
                             <!-- code is 1..1 in FHIR profile, but alert_name is 0..1 in zib -->
                             <xsl:otherwise>
@@ -172,6 +169,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:copy-of select="$patientRef[self::f:identifier]"/>
                         <xsl:copy-of select="$patientRef[self::f:display]"/>
                     </subject>
+                    
+                    <!-- TS    NL-CM:8.3.5        BeginDatumTijd            0..1    -->
+                    <!-- period.start -->
+                    <xsl:for-each select="(begin_datum_tijd | start_date_time)[@value]">
+                        <period>
+                            <start>
+                                <xsl:attribute name="value">
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                        <xsl:with-param name="dateT" select="$dateT"/>
+                                    </xsl:call-template>
+                                </xsl:attribute>
+                            </start>
+                        </period>
+                    </xsl:for-each>
                 </Flag>
             </xsl:variable>
             
