@@ -120,13 +120,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
-
-        <xsl:variable name="patientRef" as="element()*">
-            <xsl:for-each select="$adaPatient">
-                <xsl:call-template name="patientReference"/>
-            </xsl:for-each>
-        </xsl:variable>
-
+        
         <xsl:for-each select="$in">
             <xsl:variable name="resource">
                 <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-BodyHeight</xsl:variable>
@@ -228,7 +222,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueQuantity>
                     </xsl:for-each>
                     
-                    <xsl:for-each select="(toelichting | comment)[@value]">
+                    <xsl:for-each select="toelichting | comment">
                         <comment>
                             <xsl:attribute name="value" select="./@value"/>
                         </comment>

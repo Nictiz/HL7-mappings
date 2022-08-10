@@ -375,11 +375,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
 
                     <!-- >     NL-CM:0.0.12    Onderwerp Patient via nl.zorg.part.basiselementen -->
+                    <!-- Patient reference -->
                     <patient>
-                        <xsl:copy-of select="$patientRef[self::f:extension]"/>
-                        <xsl:copy-of select="$patientRef[self::f:reference]"/>
-                        <xsl:copy-of select="$patientRef[self::f:identifier]"/>
-                        <xsl:copy-of select="$patientRef[self::f:display]"/>
+                        <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </patient>
 
                     <!-- TS    NL-CM:0.0.14    DatumTijd    0..1-->

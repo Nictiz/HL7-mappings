@@ -101,12 +101,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
         
-        <xsl:variable name="patientRef" as="element()*">
-            <xsl:for-each select="$adaPatient">
-                <xsl:call-template name="patientReference"/>
-            </xsl:for-each>
-        </xsl:variable>
-        
         <xsl:for-each select="$in">
             <xsl:variable name="resource">
                 <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-Alert</xsl:variable>
@@ -166,11 +160,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </code>
                     
                     <!-- >     NL-CM:0.0.12    Onderwerp Patient via nl.zorg.part.basiselementen -->
+                    <!-- Patient reference -->
                     <subject>
-                        <xsl:copy-of select="$patientRef[self::f:extension]"/>
-                        <xsl:copy-of select="$patientRef[self::f:reference]"/>
-                        <xsl:copy-of select="$patientRef[self::f:identifier]"/>
-                        <xsl:copy-of select="$patientRef[self::f:display]"/>
+                        <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
                     
                     <!-- TS    NL-CM:8.3.5        BeginDatumTijd            0..1    -->
