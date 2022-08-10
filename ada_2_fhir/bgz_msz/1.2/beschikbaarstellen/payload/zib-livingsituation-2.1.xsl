@@ -134,46 +134,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
                     
-                    <xsl:if test="observation_of_use/start_date or observation_of_use/stop_date">
-                        <effectivePeriod>
-                            <xsl:for-each select="observation_of_use/start_date[@value]">
-                                <start>
-                                    <xsl:attribute name="value">
-                                        <xsl:call-template name="format2FHIRDate">
-                                            <xsl:with-param name="dateTime" select="xs:string(@value)"/>
-                                        </xsl:call-template>
-                                    </xsl:attribute>
-                                </start>
-                            </xsl:for-each>
-                            <xsl:for-each select="observation_of_use/stop_date[@value]">
-                                <end>
-                                    <xsl:attribute name="value">
-                                        <xsl:call-template name="format2FHIRDate">
-                                            <xsl:with-param name="dateTime" select="xs:string(@value)"/>
-                                        </xsl:call-template>
-                                    </xsl:attribute>
-                                </end>
-                            </xsl:for-each>
-                        </effectivePeriod>
-                    </xsl:if>
-                    
-                    <xsl:for-each select="living_situation_status">
+                    <xsl:for-each select="house_type">
                         <valueCodeableConcept>
                             <xsl:variable name="nullFlavorsInValueset" select="('OTH')"/>
-                            <xsl:choose>
-                                <xsl:when test="@code">
-                                    <xsl:call-template name="code-to-CodeableConcept">
-                                        <xsl:with-param name="in" select="."/>
-                                        <xsl:with-param name="treatNullFlavorAsCoding" select="@code = $nullFlavorsInValueset and @codeSystem = $oidHL7NullFlavor"/>
-                                    </xsl:call-template>
-                                </xsl:when>
-                                <!-- code is 1..1 in FHIR profile, but alert_name is 0..1 in zib -->
-                                <xsl:otherwise>
-                                    <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                                        <valueCode value="unknown"/>
-                                    </extension>
-                                </xsl:otherwise>
-                            </xsl:choose>
+                                <xsl:call-template name="code-to-CodeableConcept">
+                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="treatNullFlavorAsCoding" select="@code = $nullFlavorsInValueset and @codeSystem = $oidHL7NullFlavor"/>
+                                </xsl:call-template>
                         </valueCodeableConcept>
                     </xsl:for-each>
                     
@@ -183,15 +150,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </comment>
                     </xsl:for-each>
                     
-                    <xsl:for-each select="house_type">
-                        <component>
-                            <code>
-                                <xsl:call-template name="code-to-CodeableConcept">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
-                            </code>
-                        </component>
-                    </xsl:for-each>
                 </Observation>
             </xsl:variable>
             
