@@ -2,13 +2,22 @@
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:f="http://hl7.org/fhir" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nwf="http://www.nictiz.nl/wiki-functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <!-- this import should be commented out here, as the import must be chosen in the calling xslt -->
     <!-- uncomment only for development purposes -->
-<!--        <xsl:import href="../ada_2_fhir/zibs2017/payload/package-2.0.5.xsl"/>-->
+    <!--        <xsl:import href="../ada_2_fhir/zibs2017/payload/package-2.0.5.xsl"/>-->
 
     <!-- give dateT a value when you need conversion of relative T dates, typically only needed for test instances -->
     <!--    <xsl:param name="dateT" as="xs:date?" select="current-date()"/>-->
     <xsl:param name="dateT" as="xs:date?"/>
 
     <!-- mp constants -->
+    <xsl:variable name="maCode" as="xs:string*" select="('16076005', '33633005')"/>
+    <xsl:variable name="maCodeMP920" as="xs:string">33633005</xsl:variable>
+    <xsl:variable name="wdsCode" as="xs:string*" select="('395067002')"/>
+    <xsl:variable name="vvCode" as="xs:string*" select="('52711000146108')"/>
+    <xsl:variable name="taCode" as="xs:string*" select="('422037009')"/>
+    <xsl:variable name="mveCode" as="xs:string*" select="('373784005')"/>
+    <xsl:variable name="mgbCode" as="xs:string*" select="('422979000')"/>
+    <xsl:variable name="mtdCode" as="xs:string*" select="('18629005')"/>
+
     <xsl:variable name="stoptypeMap" as="element()+">
         <map code="113381000146106" codeSystem="2.16.840.1.113883.6.96" displayName="tijdelijk gestopt"/>
         <map code="113371000146109" codeSystem="2.16.840.1.113883.6.96" displayName="definitief gestopt"/>
@@ -16,8 +25,8 @@
         <map code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="tijdelijk gestopt"/>
         <map code="2" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="definitief gestopt"/>
     </xsl:variable>
-    
-     <xd:doc>
+
+    <xd:doc>
         <xd:desc>Calculates the start date of a dosage instruction</xd:desc>
         <xd:param name="startdatum-dosering-1"/>
         <xd:param name="theDosering"/>
@@ -74,7 +83,7 @@
                 <xsl:value-of select="concat('onverwachte tijdseenheid, kan niet omrekenen naar dagen: ', $inputDuur, ' ', $eenheid_UCUM)"/>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:function>   
+    </xsl:function>
 
     <xd:doc>
         <xd:desc>Outputs a human readable date based on input.</xd:desc>
@@ -238,10 +247,10 @@
                                             </xsl:otherwise>
                                         </xsl:choose>
                                     </xsl:variable>
-                                <xsl:value-of select="concat(nwf:unit-string(1, $toedieningssnelheid/eenheid/@displayName), ' per ', $unitString)"/>
+                                    <xsl:value-of select="concat(nwf:unit-string(1, $toedieningssnelheid/eenheid/@displayName), ' per ', $unitString)"/>
                                 </xsl:if>
                             </xsl:variable>
-                            <xsl:variable name="toedieningsduur" select="./(toedieningsduur | toedieningsduur/tijds_duur)[@value | @unit]"/>
+                            <xsl:variable name="toedieningsduur" select="(toedieningsduur | toedieningsduur/tijds_duur)[(@value | @unit)]"/>
                             <xsl:variable name="toedieningsduur-string" as="xs:string?">
                                 <xsl:if test="$toedieningsduur">
                                     <xsl:value-of select="concat('gedurende ', $toedieningsduur/@value, ' ', nwf:unit-string($toedieningsduur/@value, $toedieningsduur/@unit))"/>
@@ -410,16 +419,16 @@
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:for-each>
-                
+
                 <!-- bij medicatiegebruik kan er ook sprake zijn van NIET gebruiken gedurende de gebruiksperiode, dat hoort ook bij de omschrijving -->
                 <xsl:if test="../gebruik_indicator/@value = 'false'">
                     <xsl:value-of>geneesmiddel niet in gebruik</xsl:value-of>
                 </xsl:if>
-                
+
                 <!-- en ten slotte hoort het stoptype ook in de omschrijving -->
                 <xsl:for-each select="../(stoptype | medicatieafspraak_stop_type | toedieningsafspraak_stop_type | medicatiegebruik_stop_type | medicatie_gebruik_stop_type | stop_type | wisselend_doseerschema_stop_type)[@code]">
-                    <xsl:value-of select="$stoptypeMap[@code=current()/@code][@codeSystem=current()/@codeSystem]/@displayName"/>
-                </xsl:for-each>                
+                    <xsl:value-of select="$stoptypeMap[@code = current()/@code][@codeSystem = current()/@codeSystem]/@displayName"/>
+                </xsl:for-each>
             </xsl:variable>
             <xsl:value-of select="string-join($theOmschrijving, ', ')"/>
         </xsl:for-each>
