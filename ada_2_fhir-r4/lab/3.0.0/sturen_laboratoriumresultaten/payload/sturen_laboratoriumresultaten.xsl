@@ -69,10 +69,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each-group>
             </xsl:variable>
             <xsl:variable name="zorgaanbieders" as="element()*">
-                <xsl:for-each-group select="beschikbaarstellende_partij/zorgaanbieder | laboratorium_uitslag/uitvoerder/zorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
-                    <xsl:call-template name="nl-core-HealthcareProvider">
-                        <xsl:with-param name="in" select="current-group()[1]"/>
-                    </xsl:call-template>
+                <xsl:for-each-group select="beschikbaarstellende_partij/zorgaanbieder | onderzoeksresultaat/laboratorium_uitslag/uitvoerder/zorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
+                    <xsl:if test="afdeling_specialisme">
+                        <xsl:call-template name="nl-core-HealthcareProvider">
+                            <xsl:with-param name="in" select="current-group()[1]"/>
+                        </xsl:call-template>
+                    </xsl:if>
                     <xsl:call-template name="nl-core-HealthcareProvider-Organization">
                         <xsl:with-param name="in" select="current-group()[1]"/>
                     </xsl:call-template>
