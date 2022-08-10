@@ -16,13 +16,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
     
-    <xd:doc>
+    <!--<xd:doc>
         <xd:desc/>
     </xd:doc>
     <xsl:template name="livingSituationReference" match="living_situation[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doLivingSituationReference-2.1">
         <xsl:variable name="theIdentifier" select="identificatie_nummer[@value] | identification_number[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
-        <xsl:variable name="theGroupElement" select="$alerts[group-key = $theGroupKey]" as="element()?"/>
+        <xsl:variable name="theGroupElement" select="$livingSituations[group-key = $theGroupKey]" as="element()?"/>
         <xsl:choose>
             <xsl:when test="$theGroupElement">
                 <xsl:variable name="fullUrl" select="nf:getFullUrlOrId(($theGroupElement/f:entry)[1])"/>
@@ -86,7 +86,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </search>
             </xsl:if>
         </entry>
-    </xsl:template>
+    </xsl:template>-->
     
     <xd:doc>
         <xd:desc>Mapping of HCIM LivingSituation concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-LivingSituation">zib-LivingSituation</xd:a>.</xd:desc>

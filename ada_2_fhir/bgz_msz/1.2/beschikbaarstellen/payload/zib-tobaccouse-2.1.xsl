@@ -11,18 +11,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <!--<xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>-->
+    
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
     
-    <xd:doc>
-        <xd:desc/>
+    <!--<xd:doc>
+        <xd:desc>Returns contents of Reference datatype element</xd:desc>
     </xd:doc>
     <xsl:template name="tobaccoUseReference" match="tobacco_use[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doTobaccoUseReference-2.1">
-        <xsl:variable name="theIdentifier" select="identificatie_nummer[@value] | identification_number[@value]"/>
+        <xsl:variable name="theIdentifier" select="(zibroot/identificatienummer | hcimroot/identification_number)[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
-        <xsl:variable name="theGroupElement" select="$alerts[group-key = $theGroupKey]" as="element()?"/>
+        <xsl:variable name="theGroupElement" select="$tobaccoUses[group-key = $theGroupKey]" as="element()?"/>
         <xsl:choose>
             <xsl:when test="$theGroupElement">
                 <xsl:variable name="fullUrl" select="nf:getFullUrlOrId(($theGroupElement/f:entry)[1])"/>
@@ -86,7 +86,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </search>
             </xsl:if>
         </entry>
-    </xsl:template>
+    </xsl:template>-->
     
     <xd:doc>
         <xd:desc>Mapping of HCIM TobaccoUse concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-TobaccoUse">zib-TobaccoUse</xd:a>.</xd:desc>
@@ -136,7 +136,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <xsl:if test="observation_of_use/start_date or observation_of_use/stop_date">
                         <effectivePeriod>
-                            <xsl:for-each select="observation_of_use/start_date[@value]">
+                            <xsl:for-each select="observation_of_use/start_date">
                                 <start>
                                     <xsl:attribute name="value">
                                         <xsl:call-template name="format2FHIRDate">
@@ -145,7 +145,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:attribute>
                                 </start>
                             </xsl:for-each>
-                            <xsl:for-each select="observation_of_use/stop_date[@value]">
+                            <xsl:for-each select="observation_of_use/stop_date">
                                 <end>
                                     <xsl:attribute name="value">
                                         <xsl:call-template name="format2FHIRDate">
@@ -160,20 +160,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="tobacco_use_status">
                         <valueCodeableConcept>
                             <xsl:variable name="nullFlavorsInValueset" select="('OTH')"/>
-                            <xsl:choose>
-                                <xsl:when test="@code">
-                                    <xsl:call-template name="code-to-CodeableConcept">
-                                        <xsl:with-param name="in" select="."/>
-                                        <xsl:with-param name="treatNullFlavorAsCoding" select="@code = $nullFlavorsInValueset and @codeSystem = $oidHL7NullFlavor"/>
-                                    </xsl:call-template>
-                                </xsl:when>
-                                <!-- code is 1..1 in FHIR profile, but alert_name is 0..1 in zib -->
-                                <xsl:otherwise>
-                                    <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                                        <valueCode value="unknown"/>
-                                    </extension>
-                                </xsl:otherwise>
-                            </xsl:choose>
+                                <xsl:call-template name="code-to-CodeableConcept">
+                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="treatNullFlavorAsCoding" select="@code = $nullFlavorsInValueset and @codeSystem = $oidHL7NullFlavor"/>
+                                </xsl:call-template>
                         </valueCodeableConcept>
                     </xsl:for-each>
                     
@@ -194,20 +184,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </code>
                             <valueCodeableConcept>
                                 <xsl:variable name="nullFlavorsInValueset" select="('OTH')"/>
-                                <xsl:choose>
-                                    <xsl:when test="@code">
-                                        <xsl:call-template name="code-to-CodeableConcept">
-                                            <xsl:with-param name="in" select="."/>
-                                            <xsl:with-param name="treatNullFlavorAsCoding" select="@code = $nullFlavorsInValueset and @codeSystem = $oidHL7NullFlavor"/>
-                                        </xsl:call-template>
-                                    </xsl:when>
-                                    <!-- code is 1..1 in FHIR profile, but alert_name is 0..1 in zib -->
-                                    <xsl:otherwise>
-                                        <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                                            <valueCode value="unknown"/>
-                                        </extension>
-                                    </xsl:otherwise>
-                                </xsl:choose>
+                                    <xsl:call-template name="code-to-CodeableConcept">
+                                        <xsl:with-param name="in" select="."/>
+                                        <xsl:with-param name="treatNullFlavorAsCoding" select="@code = $nullFlavorsInValueset and @codeSystem = $oidHL7NullFlavor"/>
+                                    </xsl:call-template>
                             </valueCodeableConcept>
                         </component>
                     </xsl:for-each>
@@ -247,6 +227,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </valueQuantity>
                         </component>
                     </xsl:for-each>
+                    
                 </Observation>
             </xsl:variable>
             
