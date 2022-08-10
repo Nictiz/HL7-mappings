@@ -66,8 +66,10 @@
 
     <target name="setup_sub_instances" description="Setup ${build.dir}/${usecase} containing refreshed ada production instances (${fileset.dir}/${fileset.include})" depends="run-ivy">
 
-        <echo/>
-        <echo>Setup ${build.dir}/${usecase} containing refreshed ada production instances (${fileset.include})</echo>
+        <echo>Copying ADA instances from ${refs.dir}/ada_instance to ${sub.build.dir}/${fileset.dir}</echo>
+
+        <!-- make dir if it does not exist (anymore) -->
+        <mkdir dir="${sub.build.dir}/${fileset.dir}"/>
 
         <mkdir dir="${build.dir}/${usecase}/${fileset.dir}"/>
         <delete>
@@ -83,39 +85,38 @@
 
     <!-- from ada2fhir -->
     <target name="convert_ada_2_fhir_sub">
+        
+        <fileset id="inputFiles" dir="${xsl.in}" includes="${xsl.in.include}"/>
 
-        <property name="xsl.ada2fhir" value="${build.dir}/${usecase}/payload/${usecase}_2_fhir.xsl"/>
-        <property name="xsl.ada2fhir.resources" value="${build.dir}/${usecase}/payload/${usecase}_2_fhir_resources.xsl"/>
+        <echo/>
+        <echo>${echo.label} input files ${xsl.in}/${xsl.in.include}, to be converted with: ${xsl.convert}</echo>
+        <xslt force="true" style="${xsl.convert}" destdir="${xsl.out}" extension=".xml" useImplicitFileset="false">
+            <fileset refid="inputFiles"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+            <param name="generateInstructionText" expression="true"/>
+            <param name="dateT" expression="${param.tdate}" if="param.tdate"/>
+            <param name="mask-ids" expression="${param.maskids}" if="param.maskids"/>
+            <param name="outputDir" expression="${output.dir}" if="output.dir"/>            
+        </xslt>
+        
+    </target>
 
-        <property name="xsl.input" value="${build.dir}/${usecase}/${xsl.in}"/>
-        <property name="xsl.output" value="${build.dir}/${usecase}/${xsl.out}"/>
+    <!-- validates xml using xsd -->
+    <target name="schemavalidate_sub">
 
-        <!-- make dir if it does not exist (anymore) -->
-        <mkdir dir="${xsl.output}"/>
-        <echo>Deleting previous results, if any</echo>
-        <delete>
-            <fileset dir="${xsl.output}" includes="*.*"/>
-        </delete>
+        <fileset id="inputfiles.validate" dir="${build.dir}">
+            <include name="${fileset.include}"/>
+            <exclude name="${fileset.exclude}"/>
+        </fileset>
 
-        <sequential>
-            <fileset id="inputFiles" dir="${xsl.input}" includes="*.xml"/>
+        <echo/>
+        <echo>${echo.label} validate schema with input files ${fileset.include} but excluding ${fileset.exclude}  and schema ${validate.schema}</echo>
+        <schemavalidate warn="true" failonerror="false">
+            <fileset refid="inputfiles.validate"/>
+            <schema namespace="urn:hl7-org:v3" file="${validate.schema}"/>
+        </schemavalidate>
 
-            <echo/>
-            <echo>${echo.label} input files ${xsl.input}, to be converted with: ${xsl.ada2fhir.resources}</echo>
-            <xslt force="true" style="${xsl.ada2fhir.resources}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
-                <fileset refid="inputFiles"/>
-                <factory name="${xsl.saxon.class}"/>
-                <classpath location="${xsl.saxon}"/>
-            </xslt>
-
-            <echo/>
-            <echo>${echo.label} input files ${xsl.input}, to be converted with: ${xsl.ada2fhir}</echo>
-            <xslt force="true" style="${xsl.ada2fhir}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
-                <fileset refid="inputFiles"/>
-                <factory name="${xsl.saxon.class}"/>
-                <classpath location="${xsl.saxon}"/>
-            </xslt>
-        </sequential>
     </target>
 
 

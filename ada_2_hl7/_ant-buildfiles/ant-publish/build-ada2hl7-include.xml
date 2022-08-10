@@ -80,5 +80,53 @@
         </copy>
 
     </target>
+    
+    <!-- validates xml using xsd -->
+    <target name="schemavalidate_hl7_sub">
+        
+        <fileset id="inputfiles.validate" dir="${build.dir}">
+            <include name="${fileset.include}"/>
+            <exclude name="${fileset.exclude}"/>
+        </fileset>
+        
+        <echo/>
+        <echo>${echo.label} validate schema with input files ${fileset.include} but excluding ${fileset.exclude}  and schema ${validate.schema}</echo>
+        <schemavalidate warn="true" failonerror="false">
+            <fileset refid="inputfiles.validate"/>
+            <schema namespace="urn:hl7-org:v3" file="${validate.schema}"/>
+        </schemavalidate>
+        
+    </target>
+    
+    <target name="schematronresults_sub">
+        
+        <echo/>
+        <echo>${echo.label} ${xsl.validate.svrl} make recap of validation in ${result.xml}</echo>
+        <xslt force="true" style="${xsl.validate.svrl}" in="${build.dir}/../../validate/default_input.xml" out="${result.xml}">
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+            <param name="inputDir" expression="${input.dir}"/>
+            <param name="inputFileSet" expression="${input.fileset}"/>
+        </xslt>
+        
+    </target>
+    
+    <target name="validate_hl7_sub">
+        <echo>Deleting previous results, if any</echo>
+        <mkdir dir="${sub.build.dir}/${xsl.output}"/>
+        <delete>
+            <fileset dir="${sub.build.dir}/${xsl.output}" includes="*.xml"/>
+        </delete>
+        
+        <fileset id="inputfilesMP" dir="${sub.build.dir}/${xsl.input}" includes="*.xml"/>
+        
+        <echo/>
+        <echo>${echo.label} ${xsl.mp} input dir ${sub.build.dir}/${xsl.input}</echo>
+        <xslt force="true" style="${xsl.mp}" destdir="${sub.build.dir}/${xsl.output}" extension=".xml" useImplicitFileset="false">
+            <fileset refid="inputfilesMP"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+        </xslt>
+    </target>
 
 </project>
