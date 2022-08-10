@@ -51,7 +51,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="inputDir" as="xs:string">../sturen_medicatievoorschrift/validate_hl7_instance</xsl:param>
     <xsl:param name="inputFileSet" as="xs:string">*.xml</xsl:param>
     
-    <xsl:variable name="inputFiles" select="collection(concat($inputDir, '/?select=', $inputFileSet))" as="document-node()*"/>
+    <xsl:variable name="cleanDir" select="'file:///' || replace($inputDir, '\\', '/')"/>
+    <xsl:variable name="inputFiles" select="collection(concat($cleanDir, '/?select=', $inputFileSet))" as="document-node()*"/>
     
     <xsl:variable name="results" as="element(validate)">
         <validate>
@@ -84,7 +85,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
         
         <xsl:comment>start</xsl:comment>
-        <start inputDir="{resolve-uri($inputDir)}"
+        <start inputDir="{resolve-uri($cleanDir)}"
             xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
             xmlns:xs="http://www.w3.org/2001/XMLSchema"
             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
