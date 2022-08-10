@@ -78,7 +78,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     -->
                     <xsl:if test="huisnummerletter | huisnummertoevoeging">
                         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
-                            <valueString value="{replace(concat(huisnummerletter/normalize-space(@value), ' ', huisnummertoevoeging/normalize-space(@value)), '\s*$', '')}"/>
+                            <valueString value="{replace(concat(huisnummerletter/normalize-space(@value), ' ', huisnummertoevoeging/normalize-space(@value)), '\s+$', '')}"/>
                         </extension>
                     </xsl:if>
                     <xsl:for-each select="aanduiding_bij_nummer">
