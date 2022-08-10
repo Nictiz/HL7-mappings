@@ -17,7 +17,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
 
     <xsl:variable name="bodyHeights" as="element()*">
-        <!-- lichaamslengte body-heights -->
         <xsl:for-each-group select="//(lichaamslengte | body_height)" group-by="nf:getGroupingKeyDefault(.)">
             <unieke-observatie xmlns="">
                 <group-key xmlns="">
@@ -135,10 +134,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:if test="string-length($logicalId) gt 0">
                         <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
                     </xsl:if>
+                    
                     <meta>
                         <profile value="{$profileValue}"/>
                     </meta>
+                    
                     <status value="final"/>
+                    
                     <category>
                         <coding>
                             <system value="{local:getUri($oidFHIRObservationCategory)}"/>
@@ -146,17 +148,39 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <display value="Vital Signs"/>
                         </coding>
                     </category>
+                    
                     <code>
                         <coding>
                             <system value="http://loinc.org"/>
                             <code value="8302-2"/>
                             <display value="lichaamslengte"/>
                         </coding>
+                        
+                        <xsl:for-each select="positie | position">
+                            <xsl:choose>
+                                <xsl:when test="@code = '10904000' and @codeSystem = '2.16.840.1.113883.6.96'">
+                                    <coding>
+                                        <system value="http://loinc.org"/>
+                                        <code value="8308-9"/>
+                                        <display value="Body height --standing"/>
+                                    </coding>
+                                </xsl:when>
+                                <xsl:when test="@code = '102538003' and @codeSystem = '2.16.840.1.113883.6.96'">
+                                    <coding>
+                                        <system value="http://loinc.org"/>
+                                        <code value="8306-3"/>
+                                        <display value="Body height --lying"/>
+                                    </coding>
+                                </xsl:when>
+                            </xsl:choose>
+                        </xsl:for-each>
                     </code>
-                    <!-- patient reference -->
+                    
+                    <!-- Patient reference -->
                     <subject>
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
+                    
                     <!-- effectiveDateTime is required in the FHIR profile, so always output effectiveDateTime, data-absent-reason if no actual value -->
                     <effectiveDateTime>
                         <xsl:choose>
@@ -166,14 +190,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:with-param name="dateTime" select="xs:string((lengte_datum_tijd | height_date_time)/@value)"/>
                                     </xsl:call-template>
                                 </xsl:attribute>
-                                </xsl:when>
+                            </xsl:when>
                         <xsl:otherwise>
-                                    <extension url="{$urlExtHL7DataAbsentReason}">
-                                        <valueCode value="unknown"/>
-                                    </extension>
-                                </xsl:otherwise>
-                            </xsl:choose>
+                            <extension url="{$urlExtHL7DataAbsentReason}">
+                                <valueCode value="unknown"/>
+                            </extension>
+                        </xsl:otherwise>
+                    </xsl:choose>
                     </effectiveDateTime>
+                    
                     <!-- performer is mandatory in FHIR profile, we have no information in MP, so we are hardcoding data-absent reason -->
                     <!-- https://bits.nictiz.nl/browse/MM-434 -->
                     <performer>
@@ -182,6 +207,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </extension>
                         <display value="onbekend"/>
                     </performer>
+                    
                     <xsl:for-each select="(lengte_waarde | height_value)[@value]">
                         <valueQuantity>
                             <!-- ada has cm or m, FHIR only allows cm -->
@@ -201,6 +227,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:choose>
                         </valueQuantity>
                     </xsl:for-each>
+                    
+                    <xsl:for-each select="(toelichting | comment)[@value]">
+                        <comment>
+                            <xsl:attribute name="value" select="./@value"/>
+                        </comment>
+                    </xsl:for-each>
+                    
                 </Observation>
             </xsl:variable>
 

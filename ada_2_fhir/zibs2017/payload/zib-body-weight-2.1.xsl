@@ -17,7 +17,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
 
     <xsl:variable name="bodyWeights" as="element()*">
-        <!-- lichaamsgewicht body-weights -->
         <xsl:for-each-group select="//(lichaamsgewicht | body_weight)" group-by="nf:getGroupingKeyDefault(.)">
             <unieke-observatie xmlns="">
                 <group-key xmlns="">
@@ -135,10 +134,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:if test="string-length($logicalId) gt 0">
                         <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
                     </xsl:if>
+                    
                     <meta>
                         <profile value="{$profileValue}"/>
                     </meta>
+                    
                     <status value="final"/>
+                    
                     <category>
                         <coding>
                             <system value="{local:getUri($oidFHIRObservationCategory)}"/>
@@ -146,6 +148,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <display value="Vital Signs"/>
                         </coding>
                     </category>
+                    
                     <code>
                         <coding>
                             <system value="http://loinc.org"/>
@@ -153,14 +156,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <display value="lichaamsgewicht"/>
                         </coding>
                     </code>
-                    <!-- patient reference -->
+                    
+                    <!-- Patient reference -->
                     <subject>
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
+                    
                     <!-- effectiveDateTime is required in the FHIR profile, so always output effectiveDateTime, data-absent-reason if no actual value -->
                     <effectiveDateTime>
                         <xsl:choose>
-                            <xsl:when test="gewicht_datum_tijd[@value]">
+                            <xsl:when test="(gewicht_datum_tijd | weight_date_time)[@value]">
                                 <xsl:attribute name="value">
                                     <xsl:call-template name="format2FHIRDate">
                                         <xsl:with-param name="dateTime" select="xs:string((gewicht_datum_tijd | weight_date_time)/@value)"/>
@@ -174,6 +179,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:otherwise>
                         </xsl:choose>
                     </effectiveDateTime>
+                    
                     <!-- performer is mandatory in FHIR profile, we have no information in MP, so we are hardcoding data-absent reason -->
                     <!-- https://bits.nictiz.nl/browse/MM-434 -->
                     <performer>
@@ -182,13 +188,38 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </extension>
                         <display value="onbekend"/>
                     </performer>
-                    <xsl:for-each select="gewicht_waarde[@value]">
+                    
+                    <xsl:for-each select="(gewicht_waarde | weight_value)[@value]">
                         <valueQuantity>
                             <xsl:call-template name="hoeveelheid-to-Quantity">
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
                         </valueQuantity>
                     </xsl:for-each>
+                    
+                    <xsl:for-each select="(toelichting | comment)[@value]">
+                        <comment>
+                            <xsl:attribute name="value" select="./@value"/>
+                        </comment>
+                    </xsl:for-each>
+                    
+                    <xsl:for-each select="kleding | clothing">
+                        <component>
+                            <code>
+                                <coding>
+                                    <system value="http://loinc.org"/>
+                                    <code value="8352-7"/>
+                                    <display value="Clothing worn during measure "/>
+                                </coding>
+                            </code>
+                            <valueCodeableConcept>
+                                <xsl:call-template name="code-to-CodeableConcept">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </valueCodeableConcept>
+                        </component>
+                    </xsl:for-each>
+                    
                 </Observation>
             </xsl:variable>
 
