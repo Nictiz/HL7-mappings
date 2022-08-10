@@ -159,9 +159,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <xsl:for-each select="drug_use_status">
                         <valueCodeableConcept>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
+                            <xsl:variable name="nullFlavorsInValueset" select="('OTH')"/>
+                            <xsl:choose>
+                                <xsl:when test="@code">
+                                    <xsl:call-template name="code-to-CodeableConcept">
+                                        <xsl:with-param name="in" select="."/>
+                                        <xsl:with-param name="treatNullFlavorAsCoding" select="@code = $nullFlavorsInValueset and @codeSystem = $oidHL7NullFlavor"/>
+                                    </xsl:call-template>
+                                </xsl:when>
+                                <!-- code is 1..1 in FHIR profile, but alert_name is 0..1 in zib -->
+                                <xsl:otherwise>
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                                        <valueCode value="unknown"/>
+                                    </extension>
+                                </xsl:otherwise>
+                            </xsl:choose>
                         </valueCodeableConcept>
                     </xsl:for-each>
                     
@@ -181,9 +193,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </coding>
                             </code>
                             <valueCodeableConcept>
-                                <xsl:call-template name="code-to-CodeableConcept">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
+                                <xsl:variable name="nullFlavorsInValueset" select="('OTH')"/>
+                                <xsl:choose>
+                                    <xsl:when test="@code">
+                                        <xsl:call-template name="code-to-CodeableConcept">
+                                            <xsl:with-param name="in" select="."/>
+                                            <xsl:with-param name="treatNullFlavorAsCoding" select="@code = $nullFlavorsInValueset and @codeSystem = $oidHL7NullFlavor"/>
+                                        </xsl:call-template>
+                                    </xsl:when>
+                                    <!-- code is 1..1 in FHIR profile, but alert_name is 0..1 in zib -->
+                                    <xsl:otherwise>
+                                        <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                                            <valueCode value="unknown"/>
+                                        </extension>
+                                    </xsl:otherwise>
+                                </xsl:choose>
                             </valueCodeableConcept>
                         </component>
                     </xsl:for-each>
@@ -198,9 +222,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </coding>
                             </code>
                             <valueCodeableConcept>
-                                <xsl:call-template name="code-to-CodeableConcept">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
+                                <xsl:variable name="nullFlavorsInValueset" select="('OTH')"/>
+                                <xsl:choose>
+                                    <xsl:when test="@code">
+                                        <xsl:call-template name="code-to-CodeableConcept">
+                                            <xsl:with-param name="in" select="."/>
+                                            <xsl:with-param name="treatNullFlavorAsCoding" select="@code = $nullFlavorsInValueset and @codeSystem = $oidHL7NullFlavor"/>
+                                        </xsl:call-template>
+                                    </xsl:when>
+                                    <!-- code is 1..1 in FHIR profile, but alert_name is 0..1 in zib -->
+                                    <xsl:otherwise>
+                                        <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                                            <valueCode value="unknown"/>
+                                        </extension>
+                                    </xsl:otherwise>
+                                </xsl:choose>
                             </valueCodeableConcept>
                         </component>
                     </xsl:for-each>
