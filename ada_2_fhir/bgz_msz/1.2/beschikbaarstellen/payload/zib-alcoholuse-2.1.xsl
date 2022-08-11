@@ -19,7 +19,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!--<xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template name="alcoholUseReference" match="alcohol_use[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doAlcoholUseReference-2.1">
+    <xsl:template name="alcoholUseReference" match="alcohol_gebruik[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | alcohol_use[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doAlcoholUseReference-2.1">
         <xsl:variable name="theIdentifier" select="identificatie_nummer[@value] | identification_number[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$alcoholUses[group-key = $theGroupKey]" as="element()?"/>
@@ -51,7 +51,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Observation.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="alcoholUseEntry" match="alcohol_use[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doAlcoholUseEntry-2.1" as="element(f:entry)">
+    <xsl:template name="alcoholUseEntry" match="alcohol_gebruik[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | alcohol_use[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doAlcoholUseEntry-2.1" as="element(f:entry)">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
@@ -95,7 +95,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-AlcoholUse-2.1" match="alcohol_use[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Observation)" mode="doZibAlcoholUse-2.1">
+    <xsl:template name="zib-AlcoholUse-2.1" match="alcohol_gebruik[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | alcohol_use[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Observation)" mode="doZibAlcoholUse-2.1">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
@@ -128,9 +128,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
                     
-                    <xsl:if test="observation_of_use/start_date or observation_of_use/stop_date">
+                    <xsl:if test="(waarneming_gebruik/start_datum | observation_of_use/start_date) or (waarneming_gebruik/stop_datum | observation_of_use/stop_date)">
                         <effectivePeriod>
-                            <xsl:for-each select="observation_of_use/start_date">
+                            <xsl:for-each select="waarneming_gebruik/start_datum | observation_of_use/start_date">
                                 <start>
                                     <xsl:attribute name="value">
                                         <xsl:call-template name="format2FHIRDate">
@@ -139,7 +139,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:attribute>
                                 </start>
                             </xsl:for-each>
-                            <xsl:for-each select="observation_of_use/stop_date">
+                            <xsl:for-each select="waarneming_gebruik/stop_datum | observation_of_use/stop_date">
                                 <end>
                                     <xsl:attribute name="value">
                                         <xsl:call-template name="format2FHIRDate">
@@ -151,7 +151,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </effectivePeriod>
                     </xsl:if>
                     
-                    <xsl:for-each select="alcohol_use_status">
+                    <xsl:for-each select="alcohol_gebruik_status | alcohol_use_status">
                         <valueCodeableConcept>
                             <xsl:variable name="nullFlavorsInValueset" select="('OTH')"/>
                                 <xsl:call-template name="code-to-CodeableConcept">
@@ -161,13 +161,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueCodeableConcept>
                     </xsl:for-each>
                     
-                    <xsl:for-each select="comment">
+                    <xsl:for-each select="toelichting | comment">
                         <comment>
                             <xsl:attribute name="value" select="./@value"/>
                         </comment>
                     </xsl:for-each>
                     
-                    <xsl:for-each select="observation_of_use/amount">
+                    <xsl:for-each select="waarneming_gebruik/hoeveelheid | observation_of_use/amount">
                         <component>
                             <code>
                                 <coding>

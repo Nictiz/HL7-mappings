@@ -19,7 +19,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!--<xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template name="livingSituationReference" match="living_situation[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doLivingSituationReference-2.1">
+    <xsl:template name="livingSituationReference" match="woonsituatie[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | living_situation[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doLivingSituationReference-2.1">
         <xsl:variable name="theIdentifier" select="identificatie_nummer[@value] | identification_number[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$livingSituations[group-key = $theGroupKey]" as="element()?"/>
@@ -51,7 +51,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Observation.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="livingSituationEntry" match="living_situation[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doLivingSituationEntry-2.1" as="element(f:entry)">
+    <xsl:template name="livingSituationEntry" match="woonsituatie[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | living_situation[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doLivingSituationEntry-2.1" as="element(f:entry)">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
@@ -95,7 +95,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-LivingSituation-2.1" match="living_situation[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Observation)" mode="doZibLivingSituation-2.1">
+    <xsl:template name="zib-LivingSituation-2.1" match="woonsituatie[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | living_situation[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Observation)" mode="doZibLivingSituation-2.1">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
@@ -128,7 +128,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
                     
-                    <xsl:for-each select="house_type">
+                    <xsl:for-each select="woning_type | house_type">
                         <valueCodeableConcept>
                             <xsl:variable name="nullFlavorsInValueset" select="('OTH')"/>
                                 <xsl:call-template name="code-to-CodeableConcept">
@@ -138,7 +138,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueCodeableConcept>
                     </xsl:for-each>
                     
-                    <xsl:for-each select="comment">
+                    <xsl:for-each select="toelichting | comment">
                         <comment>
                             <xsl:attribute name="value" select="./@value"/>
                         </comment>
