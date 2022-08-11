@@ -300,8 +300,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
             
             <xsl:for-each select="$in/interpretatie_vlaggen">
-                <interpretation>
+                <xsl:variable name="fhirCoding" as="element()">
+                    <xsl:call-template name="code-to-CodeableConcept">
+                        <xsl:with-param name="codeMap" select="$zibInterpretatieVlaggen_to_fhirObservationInterpretation/*" as="element()+"/>
+                    </xsl:call-template>
+                </xsl:variable>
+                <xsl:variable name="zibCoding" as="element()">
                     <xsl:call-template name="code-to-CodeableConcept"/>
+                </xsl:variable>
+                <interpretation>
+                    <xsl:choose>
+                        <xsl:when test="$fhirCoding[*:code/@value = $zibCoding/*:code/@value][*:system/@value = $zibCoding/*:system/@value]">
+                            <!-- skip ... apparently our input code was not mappable -->
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:call-template name="code-to-CodeableConcept"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                    <xsl:copy-of select="$fhirCoding"/>
                 </interpretation>
             </xsl:for-each>
             <xsl:for-each select="$in/uitslag_interpretatie">

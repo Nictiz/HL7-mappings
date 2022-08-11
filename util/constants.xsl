@@ -473,6 +473,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <map inCode="131196009" inCodeSystem="{$oidSNOMEDCT}" code="S" codeSystem="http://hl7.org/fhir/v2/0078" displayName="Susceptible"/>
         </map>
     </xsl:variable>
+    
+    <!-- https://zibs.nl/wiki/LaboratoriumUitslag-v4.6(2020NL)#InterpretatieVlaggenCodelijst -->
+    <!-- http://hl7.org/fhir/R4/valueset-observation-interpretation.html -->
+    <xsl:variable name="zibInterpretatieVlaggen_to_fhirObservationInterpretation" as="element(map)">
+        <map>
+            <!-- Above reference range || Boven referentiewaarde -->
+            <map inCode="281302008" inCodeSystem="{$oidSNOMEDCT}" code="H" codeSystem="http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation" displayName="High"/>
+            <!--Below reference range || Onder referentiewaarde-->
+            <map inCode="281300000" inCodeSystem="{$oidSNOMEDCT}" code="L" codeSystem="http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation" displayName="Low"/>
+            <!--Intermediate || Intermediair-->
+            <map inCode="11896004" inCodeSystem="{$oidSNOMEDCT}" code="I" codeSystem="http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation" displayName="Intermediate"/>
+            <!--Resistant || Resistent-->
+            <map inCode="30714006" inCodeSystem="{$oidSNOMEDCT}" code="R" codeSystem="http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation" displayName="Resistant"/>
+            <!--Susceptible || Sensitief-->
+            <map inCode="131196009" inCodeSystem="{$oidSNOMEDCT}" code="S" codeSystem="http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation" displayName="Susceptible"/>
+        </map>
+    </xsl:variable>
 
     <!-- mp constants -->
     <xsl:variable name="daypartMap" as="element()+">
