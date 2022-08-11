@@ -2,7 +2,7 @@
    <id value="mg-mp-mg-tst-MA-Scenarioset4-v20-4-1"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f24b8-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0348-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="mp-MedAgr--MBH200LengteGewichtMA1"/>
@@ -10,11 +10,11 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 1 jan 2021, 1 maal per dag 1 stuk, Oraal"/>
+               <valueString value="Vanaf T - 1 jaar, 1 maal per dag 1 stuk, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="2021-01-01T00:00:00+01:00"/>
+                  <start value="${DATE, T, Y, -1}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -37,18 +37,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f24d6-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f0366-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f249a-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f032a-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
-            <authoredOn value="2021-01-01T07:05:00+01:00"/>
+            <authoredOn value="${DATE, T, Y, -1}T07:05:00+02:00"/>
             <requester>
-               <reference value="urn:uuid:c33f24f4-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f0384-6a95-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
             </requester>
@@ -92,7 +92,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f249a-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f032a-6a95-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <id value="nl-core-Patient--E-XXX-Doppen"/>
@@ -140,7 +140,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f24f4-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0384-6a95-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="nl-core-HPrf-PracRol--000001111-0100-00001111"/>
@@ -148,12 +148,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:c33f2512-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f03a2-6a95-11ec-0000-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:c33f2530-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f03c0-6a95-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -173,7 +173,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f2512-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f03a2-6a95-11ec-0000-020000000000"/>
       <resource>
          <Practitioner>
             <id value="nl-core-HPrf-Prac--2165281100731-000001111"/>
@@ -209,7 +209,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f2530-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f03c0-6a95-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <id value="nl-core-HPrv-Org--2165281100733-00001111"/>
@@ -251,7 +251,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f24d6-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0366-6a95-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <id value="nl-core-PhPrd--216840111388324410-49484"/>

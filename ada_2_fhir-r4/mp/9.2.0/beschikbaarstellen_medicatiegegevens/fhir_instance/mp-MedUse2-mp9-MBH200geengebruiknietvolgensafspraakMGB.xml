@@ -4,7 +4,7 @@
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
    </meta>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-      <valueString value="Vanaf 26 dec 2021, tot en met 27 dec 2021, geneesmiddel niet in gebruik, tijdelijk gestopt"/>
+      <valueString value="Vanaf T - 6 dagen, tot en met T - 5 dagen, geneesmiddel niet in gebruik, tijdelijk gestopt"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
       <valueReference>
@@ -61,10 +61,10 @@
       <display value="Patient, M. XXX_Raamsdonk"/>
    </subject>
    <effectivePeriod>
-      <start value="2021-12-26T00:00:00+01:00"/>
-      <end value="2021-12-27T23:59:50+01:00"/>
+      <start value="${DATE, T, D, -6}T00:00:00+02:00"/>
+      <end value="${DATE, T, D, -5}T23:59:50+02:00"/>
    </effectivePeriod>
-   <dateAsserted value="2021-12-28T08:00:00+01:00"/>
+   <dateAsserted value="${DATE, T, D, -4}T08:00:00+02:00"/>
    <informationSource>
       <reference value="Patient/nl-core-Patient-mp9-M-XXX-Raamsdonk"/>
       <type value="Patient"/>

@@ -4,7 +4,7 @@
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
    </meta>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-      <valueString value="Vanaf 1 jan 2022, tot en met 9 jan 2022, toedieningssnelheid: maximaal 0.2 à 0.5 ml per uur, parenteraal"/>
+      <valueString value="Vanaf T, tot en met T + 8 dagen, toedieningssnelheid: maximaal 0.2 à 0.5 ml per uur, parenteraal"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
       <valueReference>
@@ -52,10 +52,10 @@
       <display value="Patient, G. XXX_Hemsbergen"/>
    </subject>
    <effectivePeriod>
-      <start value="2022-01-01T00:00:00+01:00"/>
-      <end value="2022-01-09T23:59:59+01:00"/>
+      <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
+      <end value="${DATE, T, D, +8}T23:59:59+02:00"/>
    </effectivePeriod>
-   <dateAsserted value="2022-01-09T23:59:59+01:00"/>
+   <dateAsserted value="${DATE, T, D, +8}T23:59:59+02:00"/>
    <informationSource>
       <reference value="Patient/nl-core-Patient-mp9-G-XXX-Hemsbergen"/>
       <type value="Patient"/>

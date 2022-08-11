@@ -4,12 +4,12 @@
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
    </meta>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-      <valueString value="Vanaf 1 jan 2022, tot en met 8 jan 2022, elke dag om 09:00, 12:00 en 15:00 1 stuk , let op! Tijden exact aanhouden., oraal"/>
+      <valueString value="Vanaf T, tot en met T + 7 dagen, elke dag om 09:00, 12:00 en 15:00 1 stuk - let op, tijden exact aanhouden, oraal"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
       <valuePeriod>
-         <start value="2022-01-01T00:00:00+01:00"/>
-         <end value="2022-01-08T23:59:59+01:00"/>
+         <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
+         <end value="${DATE, T, D, +7}T23:59:59+02:00"/>
       </valuePeriod>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -41,7 +41,7 @@
       <type value="Patient"/>
       <display value="Patient, G. XXX_Hemsbergen"/>
    </subject>
-   <authoredOn value="2022-01-01T09:15:00+01:00"/>
+   <authoredOn value="${DATE, T, D, +0}T09:15:00+02:00"/>
    <requester>
       <reference value="PractitionerRole/nl-core-HPrf-PracRol-mp9-000001111-0100-00001111"/>
       <type value="PractitionerRole"/>

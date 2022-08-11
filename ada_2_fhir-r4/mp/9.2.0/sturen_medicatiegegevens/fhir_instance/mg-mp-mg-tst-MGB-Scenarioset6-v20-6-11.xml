@@ -2,7 +2,7 @@
    <id value="mg-mp-mg-tst-MGB-Scenarioset6-v20-6-11"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f1c16-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f05c8-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
             <id value="mp-MedUse2--MBH200afbouwschemaMGB"/>
@@ -10,11 +10,11 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 1 jan 2022, tot en met 22 jan 2022, eerst gedurende 2 weken 1 maal per dag 3 gram, dan gedurende 3 weken 1 maal per dag 2 gram, dan gedurende 6 dagen 1 maal per dag 1 gram, cutaan"/>
+               <valueString value="Vanaf T, tot en met T + 21 dagen, eerst gedurende 2 weken 1 maal per dag 3 gram, dan gedurende 3 weken 1 maal per dag 2 gram, dan gedurende 6 dagen 1 maal per dag 1 gram, cutaan"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:c33f1c52-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:c33f0604-6a95-11ec-0000-020000000000"/>
                   <type value="PractitionerRole"/>
                   <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
                </valueReference>
@@ -30,7 +30,7 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
                <valueReference>
-                  <reference value="urn:uuid:c33f1c52-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:c33f0604-6a95-11ec-0000-020000000000"/>
                   <type value="PractitionerRole"/>
                   <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
                </valueReference>
@@ -48,22 +48,22 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f1c34-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f05e6-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="Fusidinezuur creme 20mg/g"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f1bf8-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f05aa-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <effectivePeriod>
-               <start value="2022-01-01T00:00:00+01:00"/>
-               <end value="2022-01-22T23:59:59+01:00"/>
+               <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
+               <end value="${DATE, T, D, +21}T23:59:59+02:00"/>
             </effectivePeriod>
-            <dateAsserted value="2022-01-22T23:59:59+01:00"/>
+            <dateAsserted value="${DATE, T, D, +21}T23:59:59+02:00"/>
             <informationSource>
-               <reference value="urn:uuid:c33f1bf8-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f05aa-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </informationSource>
@@ -208,7 +208,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1bf8-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f05aa-6a95-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <id value="nl-core-Patient--G-XXX-Hemsbergen"/>
@@ -256,7 +256,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1c52-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0604-6a95-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="nl-core-HPrf-PracRol--000001111-0100-00001111"/>
@@ -264,12 +264,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:c33f1c70-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f0622-6a95-11ec-0000-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:c33f1c8e-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f0640-6a95-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -289,7 +289,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1c70-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0622-6a95-11ec-0000-020000000000"/>
       <resource>
          <Practitioner>
             <id value="nl-core-HPrf-Prac--2165281100731-000001111"/>
@@ -325,7 +325,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1c8e-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0640-6a95-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <id value="nl-core-HPrv-Org--2165281100733-00001111"/>
@@ -367,7 +367,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1c34-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f05e6-6a95-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <id value="nl-core-PhPrd--216840111388324410-16705"/>

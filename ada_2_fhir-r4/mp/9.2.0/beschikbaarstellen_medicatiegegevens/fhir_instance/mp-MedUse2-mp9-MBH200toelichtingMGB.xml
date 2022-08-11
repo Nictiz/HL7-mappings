@@ -4,7 +4,7 @@
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
    </meta>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-      <valueString value="Vanaf 25 dec 2021, tot en met 31 dec 2021, 2 maal per dag 1 stuk, Oraal"/>
+      <valueString value="Vanaf T - 7 dagen, tot en met T - 1 dag, 2 maal per dag 1 stuk, Oraal"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
       <valueReference>
@@ -52,10 +52,10 @@
       <display value="Patient, C. XXX_Coenen"/>
    </subject>
    <effectivePeriod>
-      <start value="2021-12-25T00:00:00+01:00"/>
-      <end value="2021-12-31T23:59:59+01:00"/>
+      <start value="${DATE, T, D, -7}T00:00:00+02:00"/>
+      <end value="${DATE, T, D, -1}T23:59:59+02:00"/>
    </effectivePeriod>
-   <dateAsserted value="2022-01-01T10:14:00+01:00"/>
+   <dateAsserted value="${DATE, T, D, +0}T10:14:00+02:00"/>
    <informationSource>
       <reference value="Patient/nl-core-Patient-mp9-C-XXX-Coenen"/>
       <type value="Patient"/>

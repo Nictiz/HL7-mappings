@@ -5,7 +5,7 @@
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f065e-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f087a-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="mp-AdmAgr--MBH200aanvullendeinstructieTA"/>
@@ -17,15 +17,15 @@
                </tag>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
-               <valueDateTime value="2022-01-01T09:00:00+01:00"/>
+               <valueDateTime value="${DATE, T, D, +0}T09:00:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 1 jan 2022, tot en met 1 jan 2023, 1 maal per dag 1 stuk, Bij het eten innemen, Oraal"/>
+               <valueString value="Vanaf T, tot en met T + 12 maanden, 1 maal per dag 1 stuk, Bij het eten innemen, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="2022-01-01T00:00:00+01:00"/>
-                  <end value="2023-01-01T23:59:59+01:00"/>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
+                  <end value="${DATE, T, M, +12}T23:59:59+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -47,18 +47,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f069a-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f08b6-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f0640-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f085c-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:c33f06b8-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:c33f08d4-6a95-11ec-0000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -119,7 +119,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f067c-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0898-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="mp-MedDsp--MBH200aanvullendeinstructieMVE"/>
@@ -149,18 +149,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f069a-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f08b6-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f0640-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f085c-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:c33f06b8-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:c33f08d4-6a95-11ec-0000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -187,7 +187,7 @@
                <system value="http://unitsofmeasure.org"/>
                <code value="1"/>
             </quantity>
-            <whenHandedOver value="2022-01-01T09:00:00+01:00"/>
+            <whenHandedOver value="${DATE, T, D, +0}T09:00:00+02:00"/>
          </MedicationDispense>
       </resource>
       <request>
@@ -196,7 +196,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0640-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f085c-6a95-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <id value="nl-core-Patient--C-XXX-Coenen"/>
@@ -244,7 +244,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f06b8-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f08d4-6a95-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <id value="nl-core-HPrv-Org--2165281100733-01236578"/>
@@ -264,7 +264,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f069a-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f08b6-6a95-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <id value="nl-core-PhPrd--21684011138832447-1110837"/>

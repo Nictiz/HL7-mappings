@@ -2,7 +2,7 @@
    <id value="mg-mp-mg-tst-TA-Scenarioset9-v20-9-1c"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f051e-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0708-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="mp-AdmAgr--MBH200logistiekeverbruiksperiodeduurdagenTA"/>
@@ -10,15 +10,15 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
-               <valueDateTime value="2022-01-01T12:02:00+01:00"/>
+               <valueDateTime value="${DATE, T, D, +0}T12:02:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 1 jan 2022, tot en met 31 mei 2022, 1 maal per dag 1 stuk, Oraal"/>
+               <valueString value="Vanaf T, tot en met T + 150 dagen, 1 maal per dag 1 stuk, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="2022-01-01T00:00:00+01:00"/>
-                  <end value="2022-05-31T23:59:59+02:00"/>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, +150}T23:59:59+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -40,18 +40,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f053c-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f0726-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="PARACETAMOL PCH TABLET 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f0500-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f06ea-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:c33f055a-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:c33f0744-6a95-11ec-0000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -104,7 +104,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0500-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f06ea-6a95-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <id value="nl-core-Patient--M-XXX-Nederveen"/>
@@ -152,7 +152,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f055a-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0744-6a95-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <id value="nl-core-HPrv-Org--2165281100733-01236578"/>
@@ -172,7 +172,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f053c-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0726-6a95-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <id value="nl-core-PhPrd--21684011138832447-768901"/>

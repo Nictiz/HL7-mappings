@@ -2,7 +2,7 @@
    <id value="mg-mp-mg-tst-TA-Scenarioset7-v20"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f249a-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0906-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="mp-AdmAgr--MBH200magistraalalleingredientenTA"/>
@@ -10,15 +10,15 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
-               <valueDateTime value="2022-01-01T13:00:00+01:00"/>
+               <valueDateTime value="${DATE, T, D, +0}T13:00:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 1 jan 2022, tot en met 1 feb 2022, Zo nodig, cutaan"/>
+               <valueString value="Vanaf T, tot en met T + 31 dagen, Zo nodig, cutaan"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="2022-01-01T00:00:00+01:00"/>
-                  <end value="2022-02-01T23:59:59+01:00"/>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, +31}T23:59:59+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -40,18 +40,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f24f4-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f0960-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="overig"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f247c-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f08e8-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hess"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:c33f254e-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:c33f09ba-6a95-11ec-0000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -88,7 +88,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f24b8-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0924-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="mp-AdmAgr--MBH200magistraalactieveingredientTA"/>
@@ -96,15 +96,15 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
-               <valueDateTime value="2022-01-01T13:05:00+01:00"/>
+               <valueDateTime value="${DATE, T, D, +0}T13:05:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 2 jan 2022, tot en met 12 mar 2022, 1 maal per dag, cutaan"/>
+               <valueString value="Vanaf T + 1 dag, tot en met T + 70 dagen, 1 maal per dag, cutaan"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="2022-01-02T00:00:00+01:00"/>
-                  <end value="2022-03-12T23:59:59+01:00"/>
+                  <start value="${DATE, T, D, +1}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, +70}T23:59:59+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -126,18 +126,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f2512-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f097e-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="overig"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f247c-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f08e8-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hess"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:c33f254e-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:c33f09ba-6a95-11ec-0000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -174,7 +174,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f24d6-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0942-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="mp-AdmAgr--MBH200magistraal90miljoennrTA"/>
@@ -182,15 +182,15 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
-               <valueDateTime value="2022-01-01T13:08:00+01:00"/>
+               <valueDateTime value="${DATE, T, D, +0}T13:08:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 1 jan 2022, tot en met 31 jan 2022, 1 maal per dag, cutaan"/>
+               <valueString value="Vanaf T, tot en met T + 30 dagen, 1 maal per dag, cutaan"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="2022-01-01T00:00:00+01:00"/>
-                  <end value="2022-01-31T23:59:59+01:00"/>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, +30}T23:59:59+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -212,18 +212,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f2530-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f099c-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="Eigen artikel: ureumzalf"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f247c-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f08e8-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hess"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:c33f254e-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:c33f09ba-6a95-11ec-0000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -260,7 +260,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f247c-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f08e8-6a95-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <id value="nl-core-Patient--G-XXX-Hess"/>
@@ -308,7 +308,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f254e-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f09ba-6a95-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <id value="nl-core-HPrv-Org--2165281100733-01236578"/>
@@ -328,10 +328,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f24f4-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0960-6a95-11ec-0000-020000000000"/>
       <resource>
          <Medication>
-            <id value="nl-core-PhPrd--c33f088f-6a95-11ec-0000-020000000000"/>
+            <id value="nl-core-PhPrd--c33f1466-6a95-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct"/>
             </meta>
@@ -432,10 +432,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f2512-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f097e-6a95-11ec-0000-020000000000"/>
       <resource>
          <Medication>
-            <id value="nl-core-PhPrd--c33f045a-6a95-11ec-0000-020000000000"/>
+            <id value="nl-core-PhPrd--c33f149e-6a95-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct"/>
             </meta>
@@ -497,7 +497,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f2530-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f099c-6a95-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <id value="nl-core-PhPrd--2168401113883243119999779000000011111-90000001"/>

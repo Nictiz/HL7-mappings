@@ -5,10 +5,10 @@
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f11ee-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f12de-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
-            <id value="mp-MedAgr--c33f10dc-6a95-11ec-0000-020000000000"/>
+            <id value="mp-MedAgr--c33f1a4e-6a95-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
                <tag>
@@ -17,7 +17,7 @@
                </tag>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 2 jan 2022, gedurende 2 weken, 1 maal per 2 dagen 1 à 2 stuks, Oraal"/>
+               <valueString value="Vanaf T + 1 dag, gedurende 2 weken, 1 maal per 2 dagen 1 à 2 stuks, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -29,7 +29,7 @@
                         <code value="wk"/>
                      </valueDuration>
                   </extension>
-                  <start value="2022-01-02T00:00:00+01:00"/>
+                  <start value="${DATE, T, D, +1}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -55,18 +55,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f120c-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f12fc-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="LISINOPRIL 10MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f11d0-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f12c0-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
-            <authoredOn value="2022-01-01T10:00:00+01:00"/>
+            <authoredOn value="${DATE, T, D, +0}T10:00:00+02:00"/>
             <requester>
-               <reference value="urn:uuid:c33f122a-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f131a-6a95-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </requester>
@@ -126,7 +126,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f11d0-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f12c0-6a95-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <id value="nl-core-Patient--C-XXX-Brugge"/>
@@ -174,7 +174,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f122a-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f131a-6a95-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <id value="nl-core-HPrv-Org--2165281100733-01236578"/>
@@ -194,7 +194,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f120c-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f12fc-6a95-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <id value="nl-core-PhPrd--216840111388324410-26638"/>
