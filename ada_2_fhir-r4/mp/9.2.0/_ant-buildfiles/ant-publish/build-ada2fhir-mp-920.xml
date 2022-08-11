@@ -10,7 +10,7 @@
     <property name="is.version" value="9.2.0"/>
     <property name="is.version.short" value="92"/>
     <!-- date.T, currently only used for the examples -->
-    <property name="date.T" value="2022-01-01"/>
+    <!--<property name="date.T" value="2022-01-01"/>-->
     <!-- specify BSN oid for masking BSN identifiers -->
     <property name="mask.ids" value=""/>
     <!--    <property name="mask.ids" value="2.16.840.1.113883.2.4.6.3"/>-->
@@ -169,7 +169,7 @@
             <param name="xsl.in.include" value="*.xml"/>
             <!-- the xsl will write it's resources using the output.dir, but ant xslt still needs an output dir -->
             <param name="xsl.out" value="${xsl.output.dummy}"/>
-            <param name="param.tdate" value="${date.T}"/>
+            <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.mg}"/>
@@ -183,7 +183,7 @@
             <param name="xsl.in.include" value="*.xml"/>
             <!-- the xsl will write it's resources using the output.dir, but ant xslt still needs an output dir -->
             <param name="xsl.out" value="${xsl.output.dummy}"/>
-            <param name="param.tdate" value="${date.T}"/>
+            <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.mg}"/>
@@ -197,7 +197,7 @@
             <param name="xsl.in.include" value="*.xml"/>
             <!-- the xsl will write it's resources using the output.dir, but ant xslt still needs an output dir -->
             <param name="xsl.out" value="${xsl.output.dummy}"/>
-            <param name="param.tdate" value="${date.T}"/>
+            <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${build.dir}/${usecase.mg.st}/fhir_instance"/>
@@ -221,7 +221,7 @@
             <param name="xsl.in.include" value="*.xml"/>
             <!-- the xsl will write it's resources, but ant xslt still needs output dir -->
             <param name="xsl.out" value="${xsl.output.dummy}"/>
-            <param name="param.tdate" value="${date.T}"/>
+            <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.mv}"/>
@@ -245,7 +245,7 @@
             <param name="xsl.in.include" value="*.xml"/>
             <!-- the xsl will write it's resources, but ant xslt still needs output dir -->
             <param name="xsl.out" value="${xsl.output.dummy}"/>
-            <param name="param.tdate" value="${date.T}"/>
+            <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.amv}"/>
@@ -269,7 +269,7 @@
             <param name="xsl.in.include" value="*.xml"/>
             <!-- the xsl will write it's resources, but ant xslt still needs output dir -->
             <param name="xsl.out" value="${xsl.output.dummy}"/>
-            <param name="param.tdate" value="${date.T}"/>
+            <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.vma}"/>
@@ -293,7 +293,7 @@
             <param name="xsl.in.include" value="*.xml"/>
             <!-- the xsl will write it's resources, but ant xslt still needs output dir -->
             <param name="xsl.out" value="${xsl.output.dummy}"/>
-            <param name="param.tdate" value="${date.T}"/>
+            <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.avma}"/>
@@ -317,7 +317,7 @@
             <param name="xsl.in.include" value="*.xml"/>
             <!-- the xsl will write it's resources, but ant xslt still needs output dir -->
             <param name="xsl.out" value="${xsl.output.dummy}"/>
-            <param name="param.tdate" value="${date.T}"/>
+            <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.vvv}"/>
@@ -341,7 +341,7 @@
             <param name="xsl.in.include" value="*.xml"/>
             <!-- the xsl will write it's resources, but ant xslt still needs output dir -->
             <param name="xsl.out" value="${xsl.output.dummy}"/>
-            <param name="param.tdate" value="${date.T}"/>
+            <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.avvv}"/>
@@ -397,7 +397,7 @@
             <param name="xsl.in" value="${xsl.input.mo}"/>
             <param name="xsl.in.include" value="*.xml"/>
             <param name="xsl.out" value="${xsl.output.mo}"/>
-            <param name="param.tdate" value="${date.T}"/>
+            <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
         </antcall>-->
         
