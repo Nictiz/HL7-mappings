@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Location xmlns="http://hl7.org/fhir">
+   <id value="loc-500000003333"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider"/>
+   </meta>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
+         <valueString value="Bel met vragen"/>
+      </extension>
+      <system value="phone"/>
+      <value value="06-11122233"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="tproefje@lab.nl"/>
+      <use value="work"/>
+   </telecom>
+   <address>
+      <line value="Hoofdstraat 23">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Hoofdstraat"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="23"/>
+         </extension>
+      </line>
+      <city value="Zorgstad"/>
+      <postalCode value="2143AA"/>
+   </address>
+   <managingOrganization>
+      <reference value="Organization/org-00003333"/>
+      <type value="Organization"/>
+      <display value="Healthcare provider (organization), Klinisch chemisch Lab 't Proefje"/>
+   </managingOrganization>
+</Location>
