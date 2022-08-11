@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="36081d76-195a-11ed-1273-020000000000"/>
+   <id value="ff7d5f13-195a-11ed-1301-020000000000"/>
    <type value="searchset"/>
    <total value="5"/>
    <entry>
-      <fullUrl value="urn:uuid:36081d77-195a-11ed-1273-020000000000"/>
+      <fullUrl value="urn:uuid:ff7d5f14-195a-11ed-1301-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -15,11 +15,23 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Observatie/bepaling. Subject: 999999151 (BSN). Categorie: vital-signs (observation-category), Status: definitief</caption>
+                     <caption>Observatie/bepaling. Subject: 999999151 (BSN). Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief</caption>
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
                            <td/>
+                        </tr>
+                        <tr>
+                           <th>Methode</th>
+                           <td>
+                              <span title="Non-invasive (22762002 - SNOMED CT)">Non-invasive</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Deel van lichaam</th>
+                           <td>
+                              <span title="Right upper arm structure (368209003 - SNOMED CT)">Right upper arm structure</span>
+                           </td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -29,9 +41,7 @@
                            <td>
                               <span title="Blood pressure panel with all children optional (85354-9 - LOINC)">Blood pressure panel with all children optional</span>
                            </td>
-                           <td>
-                              <span title="Right upper arm structure (368209003 - SNOMED CT)">Right upper arm structure</span>, <span title="Non-invasive (22762002 - SNOMED CT)">Non-invasive</span>
-                           </td>
+                           <td/>
                         </tr>
                         <tr>
                            <td>
@@ -70,7 +80,7 @@
                <coding>
                   <system value="http://hl7.org/fhir/observation-category"/>
                   <code value="vital-signs"/>
-                  <displau value="Vital Signs"/>
+                  <display value="Vital Signs"/>
                </coding>
             </category>
             <code>
@@ -87,20 +97,20 @@
                </identifier>
             </subject>
             <effectiveDateTime>${DATE, T, D, +1}T11:05:00+02:00</effectiveDateTime>
-            <valueCodeableConcept>
+            <bodySite>
                <coding>
                   <system value="http://snomed.info/sct"/>
                   <code value="368209003"/>
                   <display value="Right upper arm structure"/>
                </coding>
-            </valueCodeableConcept>
-            <valueCodeableConcept>
+            </bodySite>
+            <method>
                <coding>
                   <system value="http://snomed.info/sct"/>
                   <code value="22762002"/>
                   <display value="Non-invasive"/>
                </coding>
-            </valueCodeableConcept>
+            </method>
             <component>
                <code>
                   <coding>
@@ -170,7 +180,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:36081d81-195a-11ed-1273-020000000000"/>
+      <fullUrl value="urn:uuid:ff7d5f1e-195a-11ed-1301-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -180,11 +190,23 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Observatie/bepaling. Subject: 999999151 (BSN). Categorie: vital-signs (observation-category), Status: definitief</caption>
+                     <caption>Observatie/bepaling. Subject: 999999151 (BSN). Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief</caption>
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
                            <td/>
+                        </tr>
+                        <tr>
+                           <th>Methode</th>
+                           <td>
+                              <span title="Non-invasive (22762002 - SNOMED CT)">Non-invasive</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Deel van lichaam</th>
+                           <td>
+                              <span title="Right upper arm structure (368209003 - SNOMED CT)">Right upper arm structure</span>
+                           </td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -194,9 +216,7 @@
                            <td>
                               <span title="Blood pressure panel with all children optional (85354-9 - LOINC)">Blood pressure panel with all children optional</span>
                            </td>
-                           <td>
-                              <span title="Right upper arm structure (368209003 - SNOMED CT)">Right upper arm structure</span>, <span title="Non-invasive (22762002 - SNOMED CT)">Non-invasive</span>
-                           </td>
+                           <td/>
                         </tr>
                         <tr>
                            <td>
@@ -235,7 +255,7 @@
                <coding>
                   <system value="http://hl7.org/fhir/observation-category"/>
                   <code value="vital-signs"/>
-                  <displau value="Vital Signs"/>
+                  <display value="Vital Signs"/>
                </coding>
             </category>
             <code>
@@ -252,20 +272,20 @@
                </identifier>
             </subject>
             <effectiveDateTime>${DATE, T, D, +2}T09:00:00+02:00</effectiveDateTime>
-            <valueCodeableConcept>
+            <bodySite>
                <coding>
                   <system value="http://snomed.info/sct"/>
                   <code value="368209003"/>
                   <display value="Right upper arm structure"/>
                </coding>
-            </valueCodeableConcept>
-            <valueCodeableConcept>
+            </bodySite>
+            <method>
                <coding>
                   <system value="http://snomed.info/sct"/>
                   <code value="22762002"/>
                   <display value="Non-invasive"/>
                </coding>
-            </valueCodeableConcept>
+            </method>
             <component>
                <code>
                   <coding>
@@ -335,7 +355,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:36081f11-195a-11ed-1273-020000000000"/>
+      <fullUrl value="urn:uuid:ff7d60ae-195a-11ed-1301-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -345,11 +365,23 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Observatie/bepaling. Subject: 999999072 (BSN). Categorie: vital-signs (observation-category), Status: definitief</caption>
+                     <caption>Observatie/bepaling. Subject: 999999072 (BSN). Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief</caption>
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
                            <td/>
+                        </tr>
+                        <tr>
+                           <th>Methode</th>
+                           <td>
+                              <span title="Non-invasive (22762002 - SNOMED CT)">Non-invasive</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Deel van lichaam</th>
+                           <td>
+                              <span title="Left upper arm structure (368208006 - SNOMED CT)">Left upper arm structure</span>
+                           </td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -359,9 +391,7 @@
                            <td>
                               <span title="Blood pressure panel with all children optional (85354-9 - LOINC)">Blood pressure panel with all children optional</span>
                            </td>
-                           <td>
-                              <span title="Left upper arm structure (368208006 - SNOMED CT)">Left upper arm structure</span>, <span title="Non-invasive (22762002 - SNOMED CT)">Non-invasive</span>
-                           </td>
+                           <td/>
                         </tr>
                         <tr>
                            <td>
@@ -392,7 +422,7 @@
                <coding>
                   <system value="http://hl7.org/fhir/observation-category"/>
                   <code value="vital-signs"/>
-                  <displau value="Vital Signs"/>
+                  <display value="Vital Signs"/>
                </coding>
             </category>
             <code>
@@ -409,20 +439,20 @@
                </identifier>
             </subject>
             <effectiveDateTime>${DATE, T, D, +1}T07:15:00+02:00</effectiveDateTime>
-            <valueCodeableConcept>
+            <bodySite>
                <coding>
                   <system value="http://snomed.info/sct"/>
                   <code value="368208006"/>
                   <display value="Left upper arm structure"/>
                </coding>
-            </valueCodeableConcept>
-            <valueCodeableConcept>
+            </bodySite>
+            <method>
                <coding>
                   <system value="http://snomed.info/sct"/>
                   <code value="22762002"/>
                   <display value="Non-invasive"/>
                </coding>
-            </valueCodeableConcept>
+            </method>
             <component>
                <code>
                   <coding>
@@ -476,7 +506,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:36081f1b-195a-11ed-1273-020000000000"/>
+      <fullUrl value="urn:uuid:ff7d60b8-195a-11ed-1301-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -486,11 +516,23 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Observatie/bepaling. Subject: 999999072 (BSN). Categorie: vital-signs (observation-category), Status: definitief</caption>
+                     <caption>Observatie/bepaling. Subject: 999999072 (BSN). Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief</caption>
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
                            <td/>
+                        </tr>
+                        <tr>
+                           <th>Methode</th>
+                           <td>
+                              <span title="Non-invasive (22762002 - SNOMED CT)">Non-invasive</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Deel van lichaam</th>
+                           <td>
+                              <span title="Left upper arm structure (368208006 - SNOMED CT)">Left upper arm structure</span>
+                           </td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -500,9 +542,7 @@
                            <td>
                               <span title="Blood pressure panel with all children optional (85354-9 - LOINC)">Blood pressure panel with all children optional</span>
                            </td>
-                           <td>
-                              <span title="Left upper arm structure (368208006 - SNOMED CT)">Left upper arm structure</span>, <span title="Non-invasive (22762002 - SNOMED CT)">Non-invasive</span>
-                           </td>
+                           <td/>
                         </tr>
                         <tr>
                            <td>
@@ -533,7 +573,7 @@
                <coding>
                   <system value="http://hl7.org/fhir/observation-category"/>
                   <code value="vital-signs"/>
-                  <displau value="Vital Signs"/>
+                  <display value="Vital Signs"/>
                </coding>
             </category>
             <code>
@@ -550,20 +590,20 @@
                </identifier>
             </subject>
             <effectiveDateTime>${DATE, T, D, +2}T07:45:00+02:00</effectiveDateTime>
-            <valueCodeableConcept>
+            <bodySite>
                <coding>
                   <system value="http://snomed.info/sct"/>
                   <code value="368208006"/>
                   <display value="Left upper arm structure"/>
                </coding>
-            </valueCodeableConcept>
-            <valueCodeableConcept>
+            </bodySite>
+            <method>
                <coding>
                   <system value="http://snomed.info/sct"/>
                   <code value="22762002"/>
                   <display value="Non-invasive"/>
                </coding>
-            </valueCodeableConcept>
+            </method>
             <component>
                <code>
                   <coding>
@@ -617,7 +657,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:36081f25-195a-11ed-1273-020000000000"/>
+      <fullUrl value="urn:uuid:ff7d60c2-195a-11ed-1301-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -627,11 +667,23 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Observatie/bepaling. Subject: 999999072 (BSN). Categorie: vital-signs (observation-category), Status: definitief</caption>
+                     <caption>Observatie/bepaling. Subject: 999999072 (BSN). Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief</caption>
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
                            <td/>
+                        </tr>
+                        <tr>
+                           <th>Methode</th>
+                           <td>
+                              <span title="Non-invasive (22762002 - SNOMED CT)">Non-invasive</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Deel van lichaam</th>
+                           <td>
+                              <span title="Left upper arm structure (368208006 - SNOMED CT)">Left upper arm structure</span>
+                           </td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -641,9 +693,7 @@
                            <td>
                               <span title="Blood pressure panel with all children optional (85354-9 - LOINC)">Blood pressure panel with all children optional</span>
                            </td>
-                           <td>
-                              <span title="Left upper arm structure (368208006 - SNOMED CT)">Left upper arm structure</span>, <span title="Non-invasive (22762002 - SNOMED CT)">Non-invasive</span>
-                           </td>
+                           <td/>
                         </tr>
                         <tr>
                            <td>
@@ -674,7 +724,7 @@
                <coding>
                   <system value="http://hl7.org/fhir/observation-category"/>
                   <code value="vital-signs"/>
-                  <displau value="Vital Signs"/>
+                  <display value="Vital Signs"/>
                </coding>
             </category>
             <code>
@@ -691,20 +741,20 @@
                </identifier>
             </subject>
             <effectiveDateTime>${DATE, T, D, +2}T16:15:00+02:00</effectiveDateTime>
-            <valueCodeableConcept>
+            <bodySite>
                <coding>
                   <system value="http://snomed.info/sct"/>
                   <code value="368208006"/>
                   <display value="Left upper arm structure"/>
                </coding>
-            </valueCodeableConcept>
-            <valueCodeableConcept>
+            </bodySite>
+            <method>
                <coding>
                   <system value="http://snomed.info/sct"/>
                   <code value="22762002"/>
                   <display value="Non-invasive"/>
                </coding>
-            </valueCodeableConcept>
+            </method>
             <component>
                <code>
                   <coding>

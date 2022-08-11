@@ -119,7 +119,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <coding>
                             <system value="http://hl7.org/fhir/observation-category"/>
                             <code value="vital-signs"/>
-                            <displau value="Vital Signs"/>
+                            <display value="Vital Signs"/>
                         </coding>
                     </category>
                     
@@ -155,19 +155,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
                     
                     <xsl:for-each select="measuring_location">
-                        <valueCodeableConcept>
+                        <bodySite>
                             <xsl:call-template name="code-to-CodeableConcept">
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
-                        </valueCodeableConcept>
+                        </bodySite>
                     </xsl:for-each>
                     
                     <xsl:for-each select="measuring_method">
-                        <valueCodeableConcept>
+                        <method>
                             <xsl:call-template name="code-to-CodeableConcept">
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
-                        </valueCodeableConcept>
+                        </method>
                     </xsl:for-each>
                     
                     <xsl:for-each select="systolic_blood_pressure">
