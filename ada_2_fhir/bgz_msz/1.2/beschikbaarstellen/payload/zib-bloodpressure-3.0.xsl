@@ -19,10 +19,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!--<xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template name="alcoholUseReference" match="alcohol_use[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doBloodPressureReference-3.0">
+    <xsl:template name="bloodPressureReference" match="blood_pressure[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doBloodPressureReference-3.0">
         <xsl:variable name="theIdentifier" select="identificatie_nummer[@value] | identification_number[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
-        <xsl:variable name="theGroupElement" select="$alcoholUses[group-key = $theGroupKey]" as="element()?"/>
+        <xsl:variable name="theGroupElement" select="$bloodPressures[group-key = $theGroupKey]" as="element()?"/>
         <xsl:choose>
             <xsl:when test="$theGroupElement">
                 <xsl:variable name="fullUrl" select="nf:getFullUrlOrId(($theGroupElement/f:entry)[1])"/>
@@ -51,7 +51,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Observation.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="alcoholUseEntry" match="alcohol_use[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doBloodPressureEntry-3.0" as="element(f:entry)">
+    <xsl:template name="bloodPressureEntry" match="blood_pressure[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doBloodPressureEntry-3.0" as="element(f:entry)">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
@@ -95,7 +95,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-BloodPressure-3.0" match="alcohol_use[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Observation)" mode="doZibBloodPressure-3.0">
+    <xsl:template name="zib-BloodPressure-3.0" match="blood_pressure[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Observation)" mode="doZibBloodPressure-3.0">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
@@ -136,17 +136,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
                     
-                    
-                    
-                    <xsl:if test="blood_pressure_date_time">
+                    <xsl:for-each select="blood_pressure_date_time">
                         <effectiveDateTime>
-                            <xsl:for-each select="blood_pressure_date_time">
-                                <xsl:call-template name="format2FHIRDate">
-                                    <xsl:with-param name="dateTime" select="xs:string(@value)"/>
-                                </xsl:call-template>
-                            </xsl:for-each>
+                            <xsl:call-template name="format2FHIRDate">
+                                <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                            </xsl:call-template>
                         </effectiveDateTime>
-                    </xsl:if>
+                    </xsl:for-each>
                     
                     <xsl:for-each select="comment">
                         <comment>
