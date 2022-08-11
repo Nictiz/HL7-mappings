@@ -16,6 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- import because we want to be able to override the param for macAddress for UUID generation and the param for referById -->
     <xsl:import href="../../../../zibs2017/payload/package-2.0.5.xsl"/>
     <xsl:import href="zib-alcoholuse-2.1.xsl"/>
+    <xsl:import href="zib-bloodpressure-3.0.xsl"/>
     <xsl:import href="zib-druguse-2.1.xsl"/>
     <xsl:import href="zib-livingsituation-2.1.xsl"/>
     <xsl:import href="zib-tobaccouse-2.1.xsl"/>
@@ -59,7 +60,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- JD: All files in ada_instance as a collection -->
     <xsl:variable name="input" select="collection('../ada_instance/?select=*.xml')"/>
     
-    <xsl:variable name="adaElementList" select="('alcohol_use', 'allergy_intolerance','alert','body_height','body_weight','drug_use', 'living_situation', 'tobacco_use')"/>
+    <xsl:variable name="adaElementList" select="('alcohol_use', 'allergy_intolerance','alert', 'blood_pressure', 'body_height','body_weight','drug_use', 'living_situation', 'tobacco_use')"/>
     
     <xd:doc>
         <xd:desc>Start conversion. This conversion tries to account for all zibs in BgZ MSZ "beschikbaarstellen" in one go. Either build a FHIR Bundle of type searchset per zib, or build individual files.</xd:desc>
@@ -95,6 +96,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'AllergyIntolerance', false())}"/>
                                 <resource>
                                     <xsl:call-template name="zib-AllergyIntolerance-2.1">
+                                        <xsl:with-param name="in" select="."/>
+                                        <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                    </xsl:call-template>
+                                </resource>
+                            </xsl:when>
+                            <xsl:when test="current-grouping-key() = 'blood_pressure'">
+                                <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>
+                                <resource>
+                                    <xsl:call-template name="zib-BloodPressure-3.0">
                                         <xsl:with-param name="in" select="."/>
                                         <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
                                     </xsl:call-template>
