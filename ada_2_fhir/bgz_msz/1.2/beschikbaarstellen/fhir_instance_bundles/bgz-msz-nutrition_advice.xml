@@ -1,0 +1,67 @@
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
+   <id value="5b884b68-197e-11ed-1768-020000000000"/>
+   <type value="searchset"/>
+   <total value="1"/>
+   <entry>
+      <fullUrl value="urn:uuid:5b884b69-197e-11ed-1768-020000000000"/>
+      <resource>
+         <NutritionOrder>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-NutritionAdvice"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Voedingsadvies. Patiënt: 999999072 (BSN). Status: actief</caption>
+                     <tbody>
+                        <tr>
+                           <th>Aanvraagdatum</th>
+                           <td/>
+                        </tr>
+                        <tr>
+                           <td colspan="2">
+                              <table>
+                                 <caption>Orale voeding</caption>
+                                 <thead>
+                                    <tr>
+                                       <th>Type</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr>
+                                       <td>eiwitrijk</td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-NutritionAdvice-Explanation">
+               <valueString value="In verband met lage spiermassa"/>
+            </extension>
+            <status value="active"/>
+            <patient>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value value="999999072"/>
+               </identifier>
+            </patient>
+            <dateTime value=""/>
+            <oralDiet>
+               <type>
+                  <text value="eiwitrijk"/>
+               </type>
+            </oralDiet>
+         </NutritionOrder>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+</Bundle>
