@@ -293,7 +293,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="displayName" as="xs:string?" select="./@displayName"/>
         <xsl:param name="elemName" as="xs:string?">value</xsl:param>
         <xsl:param name="originalText"/>
-        <xsl:param name="strOriginalText" as="xs:string?"/>
+        <xsl:param name="strOriginalText" as="xs:string?" select="./@originalText"/>
         <xsl:param name="translations" as="element(hl7:translation)*"/>
         <xsl:param name="xsiType" as="xs:string?">CD</xsl:param>
         <xsl:element name="{$elemName}">

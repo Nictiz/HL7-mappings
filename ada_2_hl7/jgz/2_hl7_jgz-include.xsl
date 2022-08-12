@@ -1013,164 +1013,93 @@
             <xsl:sort select="datum_activiteit/@value"/>
             <xsl:variable name="activiteitId" select="activiteit_id/@value"/>
             <xsl:variable name="activiteitType" select="soort_activiteit/@code"/>
-            <xsl:variable name="activiteitVorm" select="vorm_activiteit/@code"/>
             <xsl:variable name="activiteitStatus" select="status_activiteit/@code"/>
-            <xsl:variable name="activiteitElement">encounter</xsl:variable>
             <xsl:variable name="activiteitActies" select="//versturen_jgzdossieroverdrachtverzoek_v03/*[ends-with(@comment, concat('activiteit-', $activiteitId))]"/>
             
             <component7 xmlns="urn:hl7-org:v3" typeCode="COMP">
-                <xsl:element name="encounter">
+                <encounter classCode="ENC">
                     <xsl:choose>
-                        <xsl:when test="$activiteitStatus = '01' or $activiteitStatus = '02'">
+                        <!-- Activiteit Contactmoment -->
+                        <xsl:when test="$activiteitStatus = ('01', '02')">
                             <xsl:attribute name="moodCode">EVN</xsl:attribute>
                         </xsl:when>
+                        <!-- Activiteit Contactmomentafspraak -->
                         <xsl:otherwise>
                             <xsl:attribute name="moodCode">INT</xsl:attribute>
                         </xsl:otherwise>
                     </xsl:choose>
+                    <!-- Item(s) :: activiteit_id -->
                     <xsl:for-each select="activiteit_id">
                         <xsl:call-template name="makeIIValue">
                             <xsl:with-param name="elemName">id</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
-                    <!-- Item(s) :: soort_activiteit-->
+                    <!-- Item(s) :: soort_activiteit -->
                     <xsl:for-each select="soort_activiteit">
                         <xsl:call-template name="makeCVValue">
+                            <xsl:with-param name="xsiType" select="''"/>
                             <xsl:with-param name="elemName">code</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
-                    
-                    <!-- Item(s) :: status_activiteit-->
+                    <!-- statusCode -->
                     <xsl:choose>
-                        <xsl:when test="toelichting_niet_verschenen">
-                            <statusCode code="cancelled"/>
+                        <!-- Activiteit Contactmoment -->
+                        <xsl:when test="$activiteitStatus = '01'">
+                            <statusCode code="completed"/>
                         </xsl:when>
+                        <xsl:when test="$activiteitStatus = '02'">
+                            <statusCode code="aborted"/>
+                        </xsl:when>
+                        <!-- Activiteit Contactmomentafspraak -->
                         <xsl:otherwise>
-                            <xsl:for-each select="status_activiteit">
-                                <xsl:call-template name="makeCSValue">
-                                    <xsl:with-param name="xsiType" select="''"/>
-                                    <xsl:with-param name="elemName">statusCode</xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:for-each>
+                            <statusCode code="cancelled"/>
                         </xsl:otherwise>
                     </xsl:choose>
-                    <!-- Item(s) :: datum_activiteit-->
+                    <!-- Item(s) :: datum_activiteit -->
                     <xsl:for-each select="datum_activiteit">
                         <xsl:call-template name="makeTSValue">
                             <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
-                    <!-- Item(s) :: indicatie_activiteit-->
+                    <!-- Item(s) :: indicatie_activiteit -->
                     <xsl:for-each select="indicatie_activiteit">
                         <xsl:call-template name="makeCVValue">
+                            <xsl:with-param name="xsiType" select="''"/>
                             <xsl:with-param name="elemName">reasonCode</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
                     <!-- Item(s) :: uitvoerende_activiteit -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10022_20120801000000"/>
-                    <xsl:for-each select="verzoeker_activiteit[not($activiteitStatus = 'completed')]">
-                        <author typeCode="AUT">
-                            <xsl:choose>
-                                <xsl:when test="@code = '03'">
-                                    <patient classCode="PAT"/>
-                                </xsl:when>
-                                <xsl:when test="@code = '02'">
-                                    <personalRelationship classCode="PRS">
-                                        <code code="02" codeSystem="2.16.840.1.113883.2.4.4.40.411"/>
-                                        <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
-                                    </personalRelationship>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <assignedEntity1 classCode="ASSIGNED">
-                                        <xsl:call-template name="makeCVValue">
-                                            <xsl:with-param name="xsiType" select="''"/>
-                                            <xsl:with-param name="elemName">code</xsl:with-param>
-                                        </xsl:call-template>
-                                    </assignedEntity1>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </author>
-                    </xsl:for-each>
-                    <!-- Item(s) :: contact_met-->
-                    <xsl:for-each select="contact_met">
-                        <consultant typeCode="CON">
-                            <assignedEntity classCode="ASSIGNED">
-                                <code nullFlavor="OTH">
-                                    <xsl:call-template name="makeSTValue">
-                                        <xsl:with-param name="elemName">originalText</xsl:with-param>
-                                    </xsl:call-template>
-                                </code>
-                            </assignedEntity>
-                        </consultant>
-                    </xsl:for-each>
-                    <!-- Item(s) :: begeleider-->
-                    <xsl:for-each select="begeleider">
-                        <escort typeCode="ESC">
-                            <responsibleParty classCode="ASSIGNED">
-                                <xsl:call-template name="makeCVValue">
-                                    <xsl:with-param name="elemName">code</xsl:with-param>
-                                </xsl:call-template>
-                                <agentPerson nullFlavor="NI"/>
-                            </responsibleParty>
-                        </escort>
-                    </xsl:for-each>
-                    <xsl:if test="verzoeker_activiteit[$activiteitStatus = 'completed']">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10022_20200527000000"/>
+                    <!-- Item(s) :: verzoeker_activiteit (Activiteit Contactmomentafspraak) -->
+                    <xsl:if test="verzoeker_activiteit[not($activiteitStatus = ('01', '02'))]">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10023_20200527000000"/>
+                    </xsl:if>
+                    <!-- Item(s) :: begeleider -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10025_20200527000000"/>
+                    <!-- Item(s) :: verzoeker_activiteit (Activiteit Contactmoment) -->
+                    <xsl:if test="verzoeker_activiteit[$activiteitStatus = ('01', '02')]">
                         <inFulfillmentOf typeCode="FLFS">
                             <encounter classCode="ENC" moodCode="INT">
-                                <!-- Mag niet van template, maar zonder mag niet van schema. Schema gaat voor -->
                                 <id nullFlavor="NI"/>
-                                <!-- Item(s) :: soort_activiteit-->
+                                <!-- Item(s) :: soort_activiteit -->
                                 <xsl:for-each select="soort_activiteit">
                                     <xsl:call-template name="makeCVValue">
                                         <xsl:with-param name="xsiType" select="''"/>
                                         <xsl:with-param name="elemName">code</xsl:with-param>
                                     </xsl:call-template>
                                 </xsl:for-each>
-                                <!-- Item(s) :: status_activiteit-->
-<!--                                <xsl:for-each select="status_activiteit">
-                                    <xsl:call-template name="makeCSValue">
-                                        <xsl:with-param name="xsiType" select="''"/>
-                                        <xsl:with-param name="elemName">statusCode</xsl:with-param>
-                                    </xsl:call-template>
-                                </xsl:for-each>-->
-                                
-                                <!--<statusCode code="completed"/>-->
-                                
-                                <xsl:for-each select="verzoeker_activiteit">
-                                    <author typeCode="AUT">
-                                        <xsl:choose>
-                                            <xsl:when test="@code = '03'">
-                                                <patient classCode="PAT"/>
-                                            </xsl:when>
-                                            <xsl:when test="@code = '02'">
-                                                <personalRelationship classCode="PRS">
-                                                    <code code="02" codeSystem="2.16.840.1.113883.2.4.4.40.411"/>
-                                                    <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
-                                                </personalRelationship>
-                                            </xsl:when>
-                                            <xsl:otherwise>
-                                                <assignedEntity1 classCode="ASSIGNED">
-                                                    <xsl:call-template name="makeCVValue">
-                                                        <xsl:with-param name="xsiType" select="''"/>
-                                                        <xsl:with-param name="elemName">code</xsl:with-param>
-                                                    </xsl:call-template>
-                                                </assignedEntity1>
-                                            </xsl:otherwise>
-                                        </xsl:choose>
-                                    </author>
-                                </xsl:for-each>
+                                <statusCode code="completed"/>
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10023_20200527000000"/>
                             </encounter>
                         </inFulfillmentOf>
                     </xsl:if>
-<!--                    <xsl:if test="vorm_activiteit | status_activiteit">
+                    <!-- Item(s) :: vorm_activiteit, status_activiteit -->
+                    <xsl:if test="vorm_activiteit | status_activiteit">
                         <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
                         <pertinentInformation typeCode="PERT">
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11018_20200527000000">
-                                <xsl:with-param name="vorm_activiteit" select="vorm_activiteit"/>
-                                <xsl:with-param name="status_activiteit" select="status_activiteit"/>
-                            </xsl:call-template>
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11018_20200527000000"/>
                         </pertinentInformation>
-                    </xsl:if>-->
+                    </xsl:if>
                     <xsl:for-each select="$activiteitActies">
                         <xsl:choose>
                             <xsl:when test="self::r012_erfelijke_belasting_en_ouderkenmerken">
@@ -1364,7 +1293,7 @@
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10037_20120801000000"/>
                         </subjectOf1>
                     </xsl:for-each>
-                </xsl:element>
+                </encounter>
             </component7>
         </xsl:for-each>
     </xsl:template>
@@ -1392,6 +1321,7 @@
                             <xsl:attribute name="moodCode">EVN</xsl:attribute>
                         </xsl:otherwise>
                     </xsl:choose>
+                    <!-- Item(s) :: activiteit_id-->
                     <xsl:for-each select="activiteit_id">
                         <xsl:call-template name="makeIIValue">
                             <xsl:with-param name="elemName">id</xsl:with-param>
@@ -1881,50 +1811,51 @@
     <!-- Activiteit Contactmoment -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10020_20200527000000">
         <xsl:for-each select="r018_activiteit">
+            <xsl:sort select="datum_activiteit/@value"/>
+            <xsl:variable name="activiteitStatus" select="status_activiteit/@code"/>
+            
             <encounter xmlns="urn:hl7-org:v3" classCode="ENC" moodCode="EVN">
-                <!-- Item(s) :: activiteit_id-->
+                <!-- Item(s) :: activiteit_id -->
                 <xsl:for-each select="activiteit_id">
                     <xsl:call-template name="makeIIValue">
-                        <xsl:with-param name="xsiType" select="''"/>
                         <xsl:with-param name="elemName">id</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
-                <!-- Item(s) :: soort_activiteit-->
+                <!-- Item(s) :: soort_activiteit -->
                 <xsl:for-each select="soort_activiteit">
                     <xsl:call-template name="makeCVValue">
                         <xsl:with-param name="xsiType" select="''"/>
                         <xsl:with-param name="elemName">code</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
-                <!-- Item(s) :: status_activiteit-->
-                <xsl:for-each select="status_activiteit">
-                    <xsl:call-template name="makeCSValue">
-                        <xsl:with-param name="xsiType" select="''"/>
-                        <xsl:with-param name="elemName">statusCode</xsl:with-param>
-                    </xsl:call-template>
-                </xsl:for-each>
-                <!-- Item(s) :: datum_activiteit-->
+                <!-- statusCode -->
+                <xsl:choose>
+                    <xsl:when test="$activiteitStatus = '01'">
+                        <statusCode code="completed"/>
+                    </xsl:when>
+                    <xsl:when test="$activiteitStatus = '02'">
+                        <statusCode code="aborted"/>
+                    </xsl:when>
+                </xsl:choose>
+                <!-- Item(s) :: datum_activiteit -->
                 <xsl:for-each select="datum_activiteit">
                     <xsl:call-template name="makeTSValue">
-                        <xsl:with-param name="xsiType" select="''"/>
                         <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
-                <!-- Item(s) :: indicatie_activiteit-->
+                <!-- Item(s) :: indicatie_activiteit -->
                 <xsl:for-each select="indicatie_activiteit">
                     <xsl:call-template name="makeCVValue">
                         <xsl:with-param name="xsiType" select="''"/>
                         <xsl:with-param name="elemName">reasonCode</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
-                <!-- performer -->
-                <xsl:if test="uitvoerende_activiteit_uzi | uitvoerende_activiteit_big | uitvoerende_activiteit_agb | uitvoerende_activiteit_naam">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10022_20120801000000"/>
-                </xsl:if>
-                <consultant typeCode="CON">
+                <!-- Item(s) :: uitvoerende_activiteit -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10022_20200527000000"/>
+                <!--<consultant typeCode="CON">
                     <assignedEntity classCode="ASSIGNED">
                         <code nullFlavor="OTH">
-                            <!-- Item(s) :: contact_met-->
+                            <!-\- Item(s) :: contact_met-\->
                             <xsl:for-each select="contact_met">
                                 <xsl:call-template name="makeSTValue">
                                     <xsl:with-param name="xsiType" select="''"/>
@@ -1933,22 +1864,14 @@
                             </xsl:for-each>
                         </code>
                     </assignedEntity>
-                </consultant>
-                <!-- Item(s) :: begeleider-->
-                <xsl:for-each select="begeleider">
-                    <escort typeCode="ESC">
-                        <responsibleParty classCode="ASSIGNED">
-                            <xsl:call-template name="makeCVValue">
-                                <xsl:with-param name="xsiType" select="''"/>
-                                <xsl:with-param name="elemName">code</xsl:with-param>
-                            </xsl:call-template>
-                            <agentPerson nullFlavor="NI"/>
-                        </responsibleParty>
-                    </escort>
-                </xsl:for-each>
+                </consultant>-->
+                <!-- Item(s) :: begeleider -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10025_20200527000000"/>
+                <!-- Item(s) :: verzoeker_activiteit -->
                 <xsl:if test="verzoeker_activiteit">
                     <inFulfillmentOf typeCode="FLFS">
                         <encounter classCode="ENC" moodCode="INT">
+                            <id nullFlavor="NI"/>
                             <!-- Item(s) :: soort_activiteit-->
                             <xsl:for-each select="soort_activiteit">
                                 <xsl:call-template name="makeCVValue">
@@ -1956,41 +1879,13 @@
                                     <xsl:with-param name="elemName">code</xsl:with-param>
                                 </xsl:call-template>
                             </xsl:for-each>
-                            <!-- Item(s) :: status_activiteit-->
-                            <xsl:for-each select="status_activiteit">
-                                <xsl:call-template name="makeCSValue">
-                                    <xsl:with-param name="xsiType" select="''"/>
-                                    <xsl:with-param name="elemName">statusCode</xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:for-each>
-                            <xsl:for-each select="verzoeker_activiteit">
-                                <author typeCode="AUT">
-                                    <xsl:choose>
-                                        <xsl:when test="@code = '03'">
-                                            <patient classCode="PAT"/>
-                                        </xsl:when>
-                                        <xsl:when test="@code = '02'">
-                                            <personalRelationship classCode="PRS">
-                                                <code code="02" codeSystem="2.16.840.1.113883.2.4.4.40.411"/>
-                                                <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
-                                            </personalRelationship>
-                                        </xsl:when>
-                                        <xsl:otherwise>
-                                            <assignedEntity1 classCode="ASSIGNED">
-                                                <xsl:call-template name="makeCVValue">
-                                                    <xsl:with-param name="xsiType" select="''"/>
-                                                    <xsl:with-param name="elemName">code</xsl:with-param>
-                                                </xsl:call-template>
-                                            </assignedEntity1>
-                                        </xsl:otherwise>
-                                    </xsl:choose>
-                                </author>
-                            </xsl:for-each>
+                            <statusCode code="completed"/>
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10023_20200527000000"/>
                         </encounter>
                     </inFulfillmentOf>
                 </xsl:if>
                 <!-- Rubrieken, subjectOf1, component3, component4 -->
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10033_20120801000000"/>
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10033_20200527000000"/>
             </encounter>
         </xsl:for-each>
     </xsl:template>
@@ -2111,6 +2006,64 @@
     </xsl:template>
 
     <!-- Activiteit Contactmomentafspraak -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10021_20200527000000">
+        <xsl:for-each select="r018_activiteit">
+            <xsl:sort select="datum_activiteit/@value"/>
+            <xsl:variable name="activiteitStatus" select="status_activiteit/@code"/>
+            
+            <encounter xmlns="urn:hl7-org:v3" classCode="ENC" moodCode="INT">
+                <!-- Item(s) :: activiteit_id -->
+                <xsl:for-each select="activiteit_id">
+                    <xsl:call-template name="makeIIValue">
+                        <xsl:with-param name="elemName">id</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <!-- Item(s) :: soort_activiteit -->
+                <xsl:for-each select="soort_activiteit">
+                    <xsl:call-template name="makeCVValue">
+                        <xsl:with-param name="xsiType" select="''"/>
+                        <xsl:with-param name="elemName">code</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <!-- statusCode -->
+                <statusCode code="cancelled"/>
+                <!-- Item(s) :: datum_activiteit -->
+                <xsl:for-each select="datum_activiteit">
+                    <xsl:call-template name="makeTSValue">
+                        <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <!-- Item(s) :: indicatie_activiteit -->
+                <xsl:for-each select="indicatie_activiteit">
+                    <xsl:call-template name="makeCVValue">
+                        <xsl:with-param name="xsiType" select="''"/>
+                        <xsl:with-param name="elemName">reasonCode</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <!-- Item(s) :: uitvoerende_activiteit -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10022_20200527000000"/>
+                <!-- Item(s) :: verzoeker_activiteit -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10023_20200527000000"/>
+                <!--<consultant typeCode="CON">
+                    <assignedEntity classCode="ASSIGNED">
+                        <code nullFlavor="OTH">
+                            <!-\- Item(s) :: contact_met-\->
+                            <xsl:for-each select="contact_met">
+                                <xsl:call-template name="makeSTValue">
+                                    <xsl:with-param name="xsiType" select="''"/>
+                                    <xsl:with-param name="elemName">originalText</xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                        </code>
+                    </assignedEntity>
+                </consultant>-->
+                <!-- Item(s) :: begeleider -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10025_20200527000000"/>
+                <!-- Rubrieken, subjectOf1, component3, component4 -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10033_20200527000000"/>
+            </encounter>
+        </xsl:for-each>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10021_20120801000000">
         <xsl:for-each select="r018_activiteit">
             <encounter xmlns="urn:hl7-org:v3" classCode="ENC" moodCode="INT">
@@ -2228,6 +2181,54 @@
     </xsl:template>
 
     <!-- Activities performer (uitvoerende persoon) -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10022_20200527000000">
+        <xsl:if test="uitvoerende_activiteit_uzi | uitvoerende_activiteit_big | uitvoerende_activiteit_agb | uitvoerende_activiteit_discipline | uitvoerende_activiteit_naam">
+            <performer xmlns="urn:hl7-org:v3" typeCode="PRF">
+                <assignedEntity classCode="ASSIGNED">
+                    <!-- Item(s) :: uitvoerende_activiteit_uzi-->
+                    <xsl:for-each select="uitvoerende_activiteit_uzi">
+                        <xsl:call-template name="makeII.NL.UZIValue">
+                            <xsl:with-param name="xsiType" select="''"/>
+                            <xsl:with-param name="elemName">id</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    <!-- Item(s) :: uitvoerende_activiteit_big-->
+                    <xsl:for-each select="uitvoerende_activiteit_big">
+                        <xsl:call-template name="makeII.NL.BIGValue">
+                            <xsl:with-param name="xsiType" select="''"/>
+                            <xsl:with-param name="elemName">id</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    <!-- Item(s) :: uitvoerende_activiteit_agb-->
+                    <xsl:for-each select="uitvoerende_activiteit_agb">
+                        <xsl:call-template name="makeII.NL.AGBValue">
+                            <xsl:with-param name="xsiType" select="''"/>
+                            <xsl:with-param name="elemName">id</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    <xsl:if test="not(uitvoerende_activiteit_uzi | uitvoerende_activiteit_big | uitvoerende_activiteit_agb)">
+                        <id nullFlavor="NI"/>
+                    </xsl:if>
+                    <!-- Item(s) :: uitvoerende_activiteit_discipline-->
+                    <xsl:for-each select="uitvoerende_activiteit_discipline">
+                        <xsl:call-template name="makeCVValue">
+                            <xsl:with-param name="xsiType" select="''"/>
+                            <xsl:with-param name="elemName">code</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    <assignedPerson classCode="PSN" determinerCode="INSTANCE">
+                        <!-- Item(s) :: uitvoerende_activiteit_naam-->
+                        <xsl:for-each select="uitvoerende_activiteit_naam">
+                            <xsl:call-template name="makePNValue">
+                                <xsl:with-param name="xsiType" select="''"/>
+                                <xsl:with-param name="elemName">name</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                    </assignedPerson>
+                </assignedEntity>
+            </performer>
+        </xsl:if>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10022_20120801000000">
         <xsl:if test="uitvoerende_activiteit_uzi | uitvoerende_activiteit_big | uitvoerende_activiteit_agb | uitvoerende_activiteit_naam">
             <performer xmlns="urn:hl7-org:v3" typeCode="PRF">
@@ -2269,6 +2270,34 @@
             </performer>
         </xsl:if>
     </xsl:template>
+    
+    <!-- Activities encounterINT author (Verzoeker activiteit) -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10023_20200527000000">
+        <!-- Item(s) :: verzoeker_activiteit -->
+        <xsl:for-each select="verzoeker_activiteit">
+            <author xmlns="urn:hl7-org:v3" typeCode="AUT">
+                <xsl:choose>
+                    <xsl:when test="@code = '03'">
+                        <patient classCode="PAT"/>
+                    </xsl:when>
+                    <xsl:when test="@code = '02'">
+                        <personalRelationship classCode="PRS">
+                            <code code="02" codeSystem="2.16.840.1.113883.2.4.4.40.411" displayName="Ouder(s)/verzorger(s)"/>
+                            <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
+                        </personalRelationship>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <assignedEntity1 classCode="ASSIGNED">
+                            <xsl:call-template name="makeCVValue">
+                                <xsl:with-param name="xsiType" select="''"/>
+                                <xsl:with-param name="elemName">code</xsl:with-param>
+                            </xsl:call-template>
+                        </assignedEntity1>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </author>
+        </xsl:for-each>
+    </xsl:template>
 
     <!-- Activities consultant (contact met) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10024_20120801000000">
@@ -2290,6 +2319,21 @@
     </xsl:template>
 
     <!-- Activities escort (begeleider) -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10025_20200527000000">
+        <!-- Item(s) :: begeleider-->
+        <xsl:for-each select="begeleider">
+            <escort xmlns="urn:hl7-org:v3" typeCode="ESC">
+                <responsibleParty classCode="ASSIGNED">
+                    <xsl:call-template name="makeCVValue">
+                        <xsl:with-param name="xsiType" select="''"/>
+                        <xsl:with-param name="elemName">code</xsl:with-param>
+                        <!--<xsl:with-param name="originalText" select="@originalText"/>-->
+                    </xsl:call-template>
+                    <agentPerson nullFlavor="NI"/>
+                </responsibleParty>
+            </escort>
+        </xsl:for-each>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10025_20120801000000">
         <!-- Item(s) :: begeleider-->
         <xsl:for-each select="begeleider">
@@ -4466,17 +4510,18 @@
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.10018"/>
             <code code="R018" codeSystem="2.16.840.1.113883.2.4.4.40.391" displayName="Activiteit"/>
-            <component>
-                <!-- obs_Vorm activiteit -->
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41577_20200527000000"/>
-            </component>
-            <component>
-                <!-- obs_Status activiteit -->
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41605_20200527000000"/>
-            </component>
-            <!--<component>
-                <!-\- obs_Contact ivm meldcode met -\->
-            </component>-->
+            <xsl:for-each select="vorm_activiteit">
+                <component>
+                    <!-- obs_Vorm activiteit -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41577_20200527000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="status_activiteit">
+                <component>
+                    <!-- obs_Status activiteit -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41605_20200527000000"/>
+                </component>
+            </xsl:for-each>
         </rubricCluster>
     </xsl:template>
         
@@ -25729,10 +25774,10 @@
     <!-- obs Vorm activiteit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41577_20200527000000">
         <observation  xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.6.10.100.41577"/>            
-           <xsl:call-template name="makeCVValue">
-                <xsl:with-param name="elemName">code</xsl:with-param>
-            </xsl:call-template>
+            <templateId root="2.16.840.1.113883.2.4.6.10.100.41577"/>
+            <code code="1577" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1577'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
@@ -25937,9 +25982,9 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41605_20200527000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41605"/>
-            <xsl:call-template name="makeCVValue">
-                <xsl:with-param name="elemName">code</xsl:with-param>
-            </xsl:call-template>
+            <code code="1605" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1605'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
