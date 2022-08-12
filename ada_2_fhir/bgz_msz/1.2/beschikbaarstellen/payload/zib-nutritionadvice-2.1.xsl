@@ -128,7 +128,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </patient>
                     
-                    <dateTime value=""/>
+                    <xsl:choose>
+                        <xsl:when test="date_time[@value]">
+                            <xsl:for-each select="date_time | dateTime">
+                                <dateTime>
+                                    <xsl:attribute name="value">
+                                        <xsl:call-template name="format2FHIRDate">
+                                            <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                            <xsl:with-param name="dateT" select="$dateT"/>
+                                        </xsl:call-template>
+                                    </xsl:attribute>
+                                </dateTime>
+                            </xsl:for-each>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <dateTime>
+                                 <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                                     <valueCode value="unknown"/>
+                                 </extension>
+                            </dateTime>
+                        </xsl:otherwise>
+                    </xsl:choose>
+
                     
                     <xsl:for-each select="diet_type | dieet_type">
                         <oralDiet>
