@@ -129,17 +129,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </patient>
                     
                     <xsl:choose>
-                        <xsl:when test="date_time[@value]">
-                            <xsl:for-each select="date_time | dateTime">
-                                <dateTime>
-                                    <xsl:attribute name="value">
-                                        <xsl:call-template name="format2FHIRDate">
-                                            <xsl:with-param name="dateTime" select="xs:string(@value)"/>
-                                            <xsl:with-param name="dateT" select="$dateT"/>
-                                        </xsl:call-template>
-                                    </xsl:attribute>
-                                </dateTime>
-                            </xsl:for-each>
+                        <xsl:when test="hcimroot/date_time[@value]">
+                            <dateTime>
+                                <xsl:attribute name="value">
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="xs:string(hcimroot/date_time/@value)"/>
+                                        <xsl:with-param name="dateT" select="$dateT"/>
+                                    </xsl:call-template>
+                                </xsl:attribute>
+                            </dateTime>
+                            
                         </xsl:when>
                         <xsl:otherwise>
                             <dateTime>
