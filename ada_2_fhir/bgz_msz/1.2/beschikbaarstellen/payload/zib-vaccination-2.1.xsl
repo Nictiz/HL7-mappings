@@ -99,6 +99,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
+<!--        <xsl:param name="adaPractitioner" select="(ancestor::*/health_professional[*//@value] | ancestor::*/bundle/subject/health_professional[*//@value])[1]" as="element()"/>-->
         <xsl:param name="dateT" as="xs:date?"/>
         
         <xsl:for-each select="$in">
@@ -131,7 +132,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </patient>
                     
-                    <date value=""/>
+                    <xsl:choose>
+                        <xsl:when test="vaccination_date[@value]">
+                            <xsl:for-each select="vaccination_date | vaccinatie_datum">
+                                <date>
+                                    <xsl:attribute name="value">
+                                        <xsl:call-template name="format2FHIRDate">
+                                            <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                            <xsl:with-param name="dateT" select="$dateT"/>
+                                        </xsl:call-template>
+                                    </xsl:attribute>
+                                </date>
+                            </xsl:for-each>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <date>
+                                <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                                    <valueCode value="unknown"/>
+                                </extension>
+                            </date>
+                        </xsl:otherwise>
+                    </xsl:choose>
                     
                     <primarySource value="false"/>
                     
@@ -143,9 +164,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </doseQuantity>
                     </xsl:for-each>
                     
-                    <!-- Practitioner reference -->
-                    <practitioner>practitioner
-                    </practitioner>
+                    <!-- TODO Practitioner reference -->
+                    <xsl:for-each select="administrator/health_professional">
+                        <practitioner>
+                            <actor>
+                                 <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                                     <valueReference>
+                                         <xsl:apply-templates select="." mode="doPractitionerRoleReference-2.0"/>
+                                     </valueReference>
+                                 </extension>
+                                <xsl:apply-templates select="." mode="doPractitionerReference-2.0"/>
+                                <xsl:apply-templates select="$adaPractitioner" mode="doPractitionerReference-2.0"/>
+                            </actor>
+                        </practitioner>
+                    </xsl:for-each>
+                    
                     
                     <xsl:for-each select="note">
                         <note>
@@ -156,6 +189,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
                     
                 </Immunization>
+                
+              
             </xsl:variable>
             
             <!-- Add resource.text -->
