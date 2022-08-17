@@ -1,10 +1,10 @@
-<!--ada full xml for subscenario nr: 3a--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<!--ada full xml for subscenario nr: 3b2--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="../../sturen_laboratoriumresultaten/ada_schemas/ada_sturen_laboratoriumresultaten.xsd">
    <meta status="new"
          created-by="labuitwisselingada"
          last-update-by="labuitwisselingada"
-         creation-date="2022-05-05T09:30:17.484+02:00"
-         last-update-date="2022-08-05T10:15:57.474+02:00"/>
+         creation-date="2022-06-02T10:50:53.16+02:00"
+         last-update-date="2022-08-05T10:28:01.065+02:00"/>
    <data>
       <sturen_laboratoriumresultaten app="lab"
                                      shortName="sturen_laboratoriumresultaten"
@@ -13,10 +13,11 @@
                                      transactionEffectiveDate="2022-03-03T00:00:00"
                                      prefix="lab-"
                                      language="nl-NL"
-                                     title="TEST Scenario 3a_LosseTests_KC_NHG"
-                                     desc="In dit scenario worden meerdere losse laboratoriumtests getest. Dit zijn dus 3 losse laboratoriumtests zonder overkoepelend onderzoek/panel, in dit geval zijn deze gecodeerd met NHG. "
-                                     id="lr-slr-TEST-Scenario3a-3a">
-         <scenario-nr value="3a" conceptId="2.16.840.1.113883.2.4.3.11.999.25.2.2.4401.2.1.1"/>
+                                     title="TEST Scenario 3b_LosseTests_KC_LOINC"
+                                     desc="In dit scenario worden meerdere losse laboratoriumtests getest. Dit zijn dus 3 losse laboratoriumtests zonder overkoepelend onderzoek/panel, in dit geval zijn deze gecodeerd met LOINC. "
+                                     id="lr-slr-TEST-Scenario3b-3b2">
+         <scenario-nr value="3b2"
+                      conceptId="2.16.840.1.113883.2.4.3.11.999.25.2.2.4401.2.1.1"/>
          <!--Patient found in instance with id: sl-TEST-Scenarioset1a-v30 and title: TEST REPO Scenarioset 1a (ResultatenKlinischChemie_NHG)-->
          <patientgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4302">
             <patient conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4303">
@@ -69,21 +70,21 @@
                                  displayName="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
             </zorgaanbieder>
          </beschikbaarstellende_partij>
-         <!--laboratorium_uitslag found in instance with id: sl-TEST-Scenarioset1a-v30 and title: TEST REPO Scenarioset 1a (ResultatenKlinischChemie_NHG)-->
+         <!--laboratorium_uitslag found in instance with id: sl-TEST-Scenarioset1b-v30 and title: TEST REPO Scenarioset 1b (ResultatenKlinischChemie_LOINC)-->
          <onderzoeksresultaat conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4253">
             <laboratorium_uitslag conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4254">
-               <laboratorium_uitslag_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4296.1"
-                                                   value="LAR_LosResultaatNa_NHG"
+               <laboratorium_uitslag_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4296.2"
+                                                   value="LAR_LosResultaatNa_LOINC"
                                                    conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4296"/>
                <edifact_referentienummer value="111444" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4409"/>
                <kopie_indicator value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4297"/>
                <laboratorium_test conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4255">
-                  <test_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4298.1"
+                  <test_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4298.2"
                                       value="66666"
                                       conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4298"/>
-                  <test_code code="624"
-                             codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                             displayName="Natrium"
+                  <test_code code="2947-0"
+                             codeSystem="2.16.840.1.113883.6.1"
+                             displayName="Natrium [mol/volume] in bloed"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4256"/>
                   <test_datum_tijd value="T-64D"
                                    datatype="datetime"
@@ -114,7 +115,7 @@
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4265"/>
                </laboratorium_test>
                <monster conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4266">
-                  <monsternummer root="2.16.840.1.113883.2.4.3.11.999.25.4267.1"
+                  <monsternummer root="2.16.840.1.113883.2.4.3.11.999.25.4267.2"
                                  value="334"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4267"/>
                   <monstervolgnummer value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4268"/>
@@ -174,31 +175,29 @@
                                      displayName="Werkadres"/>
                      </adresgegevens>
                      <organisatie_type conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4397"
-                                       value="20"
+                                       value="18"
                                        code="L1"
                                        codeSystem="2.16.840.1.113883.2.4.15.1060"
-                                       codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"
-                                       codeSystemVersion="2022-07-07T00:00:00"
                                        displayName="Laboratorium"/>
                   </zorgaanbieder>
                </uitvoerder>
             </laboratorium_uitslag>
          </onderzoeksresultaat>
-         <!--laboratorium_uitslag found in instance with id: sl-TEST-Scenarioset1a-v30 and title: TEST REPO Scenarioset 1a (ResultatenKlinischChemie_NHG)-->
+         <!--laboratorium_uitslag found in instance with id: sl-TEST-Scenarioset1b-v30 and title: TEST REPO Scenarioset 1b (ResultatenKlinischChemie_LOINC)-->
          <onderzoeksresultaat conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4253">
             <laboratorium_uitslag conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4254">
-               <laboratorium_uitslag_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4296.1"
-                                                   value="LAR_LosResultaatINR1_NHG"
+               <laboratorium_uitslag_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4296.2"
+                                                   value="LAR_LosResultaatINR1_LOINC"
                                                    conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4296"/>
                <edifact_referentienummer value="111333" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4409"/>
                <kopie_indicator value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4297"/>
                <laboratorium_test conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4255">
-                  <test_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4298.1"
+                  <test_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4298.2"
                                       value="55555"
                                       conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4298"/>
-                  <test_code code="509"
-                             codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                             displayName="international normalised ratio (PT-INR)"
+                  <test_code code="6301-6"
+                             codeSystem="2.16.840.1.113883.6.1"
+                             displayName="PT-INR [relatieve tijd] in plaatjesarm plasma d.m.v. stollingsmethode"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4256"/>
                   <test_datum_tijd value="T-10D"
                                    datatype="datetime"
@@ -226,8 +225,8 @@
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4265"/>
                </laboratorium_test>
                <monster conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4266">
-                  <monsternummer root="2.16.840.1.113883.2.4.3.11.999.25.4267.1"
-                                 value="1122"
+                  <monsternummer root="2.16.840.1.113883.2.4.3.11.999.25.4267.2"
+                                 value="#1"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4267"/>
                   <containertype code="767387006"
                                  codeSystem="2.16.840.1.113883.6.96"
@@ -255,6 +254,7 @@
                                                         conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4373"/>
                      <organisatie_naam value="Trombosedienst Ons Dorp"
                                        conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4374"/>
+                     <!--<afdeling_specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4375" value="240" code="3400" codeSystem="2.16.840.1.113883.2.4.6.7" codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)" codeSystemVersion="2020-10-23T00:00:00" displayName="Trombosediensten"/>-->
                      <contactgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4376">
                         <telefoonnummers conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4377">
                            <telefoonnummer value="06-11122266"
@@ -275,31 +275,28 @@
                         <woonplaats value="Ons Dorp" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4392"/>
                      </adresgegevens>
                      <organisatie_type conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4397"
-                                       value="34"
                                        code="TD"
                                        codeSystem="2.16.840.1.113883.2.4.15.1060"
-                                       codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"
-                                       codeSystemVersion="2022-07-07T00:00:00"
                                        displayName="Trombosedienst"/>
                   </zorgaanbieder>
                </uitvoerder>
             </laboratorium_uitslag>
          </onderzoeksresultaat>
-         <!--laboratorium_uitslag found in instance with id: sl-TEST-Scenarioset1a-v30 and title: TEST REPO Scenarioset 1a (ResultatenKlinischChemie_NHG)-->
+         <!--laboratorium_uitslag found in instance with id: sl-TEST-Scenarioset1b-v30 and title: TEST REPO Scenarioset 1b (ResultatenKlinischChemie_LOINC)-->
          <onderzoeksresultaat conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4253">
             <laboratorium_uitslag conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4254">
-               <laboratorium_uitslag_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4296.1"
-                                                   value="LAR_LosResultaatK_NHG"
+               <laboratorium_uitslag_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4296.2"
+                                                   value="LAR_LosResultaatK_LOINC"
                                                    conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4296"/>
                <edifact_referentienummer value="111555" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4409"/>
                <kopie_indicator value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4297"/>
                <laboratorium_test conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4255">
-                  <test_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4298.1"
+                  <test_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4298.2"
                                       value="77777"
                                       conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4298"/>
-                  <test_code code="513"
-                             codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                             displayName="Kalium"
+                  <test_code code="6298-4"
+                             codeSystem="2.16.840.1.113883.6.1"
+                             displayName="Kalium [mol/volume] in bloed"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4256"/>
                   <test_datum_tijd value="T-1M"
                                    datatype="datetime"
@@ -323,14 +320,14 @@
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4262"/>
                </laboratorium_test>
                <monster conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4266">
-                  <monsternummer root="2.16.840.1.113883.2.4.3.11.999.25.4267.1"
+                  <monsternummer root="2.16.840.1.113883.2.4.3.11.999.25.4267.2"
                                  value="334"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4267"/>
                   <monstervolgnummer value="2" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4268"/>
                   <monstermateriaal code="119297000"
                                     codeSystem="2.16.840.1.113883.6.96"
                                     codeSystemName="SNOMED Clinical Terms"
-                                    displayName="bloed"
+                                    displayName="Bloed"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4270"/>
                   <afname_datum_tijd value="T-1M"
                                      datatype="datetime"
@@ -373,11 +370,9 @@
                                      displayName="Werkadres"/>
                      </adresgegevens>
                      <organisatie_type conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4397"
-                                       value="20"
+                                       value="18"
                                        code="L1"
                                        codeSystem="2.16.840.1.113883.2.4.15.1060"
-                                       codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"
-                                       codeSystemVersion="2022-07-07T00:00:00"
                                        displayName="Laboratorium"/>
                   </zorgaanbieder>
                </uitvoerder>
