@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="labtest-LAR-NierfunctiePanelNHG-22222"/>
+   <id value="labtest-LAR-NierfunctiePanelLOINC-22222-C"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
    </meta>
@@ -11,7 +11,7 @@
       <valueString value="111222"/>
    </extension>
    <identifier>
-      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298"/>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
       <value value="22222"/>
    </identifier>
    <status value="final"/>
@@ -24,16 +24,11 @@
    </category>
    <code>
       <coding>
-         <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-45-diagnostische-bepalingen"/>
-         <code value="523"/>
-         <display value="creatinine"/>
+         <system value="http://loinc.org"/>
+         <code value="14683-7"/>
+         <display value="Creatinine [mol/volume] in urine"/>
       </coding>
    </code>
-   <subject>
-      <reference value="Patient/patient-Erelies"/>
-      <type value="Patient"/>
-      <display value="Patient, Elise Erelies"/>
-   </subject>
    <effectiveDateTime value="2021-12-02"/>
    <performer>
       <reference value="Organization/org-00003333"/>
@@ -42,9 +37,9 @@
    </performer>
    <valueQuantity>
       <value value="135"/>
-      <unit value="micromol/l"/>
+      <unit value="mmol/l"/>
       <system value="http://unitsofmeasure.org"/>
-      <code value="{micromol/l}"/>
+      <code value="mmol/l"/>
    </valueQuantity>
    <interpretation>
       <coding>
@@ -69,22 +64,22 @@
       </coding>
    </method>
    <specimen>
-      <reference value="Specimen/monster-1111-122575003"/>
+      <reference value="Specimen/monster-123-122575003"/>
       <type value="Specimen"/>
       <display value="monster"/>
    </specimen>
    <referenceRange>
       <low>
          <value value="62"/>
-         <unit value="micromol/l"/>
+         <unit value="mmol/l"/>
          <system value="http://unitsofmeasure.org"/>
-         <code value="{micromol/l}"/>
+         <code value="mmol/l"/>
       </low>
       <high>
          <value value="134"/>
-         <unit value="micromol/l"/>
+         <unit value="mmol/l"/>
          <system value="http://unitsofmeasure.org"/>
-         <code value="{micromol/l}"/>
+         <code value="mmol/l"/>
       </high>
    </referenceRange>
 </Observation>

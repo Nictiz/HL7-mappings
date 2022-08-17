@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="labtest-LAR-LosResultaatINR1-LOINC-55555"/>
+   <id value="labtest-KWAL-LAR-LosResultaatK-KC-NHG-97777"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
    </meta>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
-      <valueString value="111333"/>
+      <valueString value="999555"/>
    </extension>
    <identifier>
-      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
-      <value value="55555"/>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.1"/>
+      <value value="97777"/>
    </identifier>
    <status value="final"/>
    <category>
@@ -21,19 +21,22 @@
    </category>
    <code>
       <coding>
-         <system value="http://loinc.org"/>
-         <code value="6301-6"/>
-         <display value="PT-INR [relatieve tijd] in plaatjesarm plasma d.m.v. stollingsmethode"/>
+         <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-45-diagnostische-bepalingen"/>
+         <code value="513"/>
+         <display value="Kalium"/>
       </coding>
    </code>
-   <effectiveDateTime value="2021-12-22"/>
+   <effectiveDateTime value="2021-12-01"/>
    <performer>
-      <reference value="Organization/org-11112222"/>
+      <reference value="Organization/org-00003335"/>
       <type value="Organization"/>
-      <display value="Healthcare provider (organization), Trombosedienst Ons Dorp"/>
+      <display value="Healthcare provider (organization), Klinisch chemisch Lab de Erlenmeyer"/>
    </performer>
    <valueQuantity>
-      <value value="2.9"/>
+      <value value="5.5"/>
+      <unit value="mmol/l"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="mmol/l"/>
    </valueQuantity>
    <interpretation>
       <coding>
@@ -48,11 +51,25 @@
       </coding>
    </interpretation>
    <interpretation>
-      <text value="Te hoog let op."/>
+      <text value="Boven referentiebereik. "/>
    </interpretation>
    <specimen>
-      <reference value="Specimen/monster-1-119361006"/>
+      <reference value="Specimen/monster-334-2-119297000"/>
       <type value="Specimen"/>
       <display value="monster"/>
    </specimen>
+   <referenceRange>
+      <low>
+         <value value="3.5"/>
+         <unit value="mmol/l"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mmol/l"/>
+      </low>
+      <high>
+         <value value="5.0"/>
+         <unit value="mmol/l"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mmol/l"/>
+      </high>
+   </referenceRange>
 </Observation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="labtest-LAR-MaxResultaat-NHG-88888"/>
+   <id value="labtest-LAR-LosResultaatK-LOINC-77777-C"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
    </meta>
@@ -8,11 +8,11 @@
       <valueBoolean value="true"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
-      <valueString value="111666"/>
+      <valueString value="111555"/>
    </extension>
    <identifier>
-      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298"/>
-      <value value="88888"/>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
+      <value value="77777"/>
    </identifier>
    <status value="final"/>
    <category>
@@ -24,51 +24,40 @@
    </category>
    <code>
       <coding>
-         <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-45-diagnostische-bepalingen"/>
-         <code value="3272"/>
-         <display value="Kalium urine 24u"/>
+         <system value="http://loinc.org"/>
+         <code value="6298-4"/>
+         <display value="Kalium [mol/volume] in bloed"/>
       </coding>
    </code>
-   <subject>
-      <reference value="Patient/patient-Erelies"/>
-      <type value="Patient"/>
-      <display value="Patient, Elise Erelies"/>
-   </subject>
-   <effectiveDateTime value="2021-12-22"/>
+   <effectiveDateTime value="2021-12-01"/>
    <performer>
-      <reference value="Organization/org-00003333"/>
+      <reference value="Organization/org-00003335"/>
       <type value="Organization"/>
-      <display value="Healthcare provider (organization), Klinisch chemisch Lab 't Proefje"/>
+      <display value="Healthcare provider (organization), Klinisch chemisch Lab de Erlenmeyer"/>
    </performer>
    <valueQuantity>
-      <value value="30"/>
-      <unit value="mmol/24u."/>
+      <value value="4.0"/>
+      <unit value="mmol/l"/>
       <system value="http://unitsofmeasure.org"/>
-      <code value="{mmol/24u.}"/>
+      <code value="mmol/l"/>
    </valueQuantity>
-   <interpretation>
-      <text value="Lager dan referentiebereik."/>
-   </interpretation>
-   <note>
-      <text value="Onderzoek voltooid."/>
-   </note>
    <specimen>
-      <reference value="Specimen/monster-335-1-276833005"/>
+      <reference value="Specimen/monster-334-2-119297000"/>
       <type value="Specimen"/>
       <display value="monster"/>
    </specimen>
    <referenceRange>
       <low>
-         <value value="40"/>
-         <unit value="mmol/24u."/>
+         <value value="3.5"/>
+         <unit value="mmol/l"/>
          <system value="http://unitsofmeasure.org"/>
-         <code value="{mmol/24u.}"/>
+         <code value="mmol/l"/>
       </low>
       <high>
-         <value value="60"/>
-         <unit value="mmol/24u."/>
+         <value value="5.0"/>
+         <unit value="mmol/l"/>
          <system value="http://unitsofmeasure.org"/>
-         <code value="{mmol/24u.}"/>
+         <code value="mmol/l"/>
       </high>
    </referenceRange>
 </Observation>

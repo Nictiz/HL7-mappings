@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="labtest-LAR-NierfunctiePanelLOINC-44444"/>
+   <id value="labtest-LAR-LosResultaatINR1-LOINC-55555-C"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
    </meta>
@@ -8,11 +8,11 @@
       <valueBoolean value="true"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
-      <valueString value="111222"/>
+      <valueString value="111333"/>
    </extension>
    <identifier>
-      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298"/>
-      <value value="44444"/>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
+      <value value="55555"/>
    </identifier>
    <status value="final"/>
    <category>
@@ -25,27 +25,36 @@
    <code>
       <coding>
          <system value="http://loinc.org"/>
-         <code value="14957-5"/>
-         <display value="Albumine [massa/volume] in urine d.m.v. detectielimiet &lt;= 20 mg/L"/>
+         <code value="6301-6"/>
+         <display value="PT-INR [relatieve tijd] in plaatjesarm plasma d.m.v. stollingsmethode"/>
       </coding>
    </code>
-   <effectiveDateTime value="2021-12-02"/>
+   <effectiveDateTime value="2021-12-22"/>
    <performer>
-      <reference value="Organization/org-00003333"/>
+      <reference value="Organization/org-11112222"/>
       <type value="Organization"/>
-      <display value="Healthcare provider (organization), Klinisch chemisch Lab 't Proefje"/>
+      <display value="Healthcare provider (organization), Trombosedienst Ons Dorp"/>
    </performer>
    <valueQuantity>
-      <value value="0"/>
-      <unit value="mg/L"/>
-      <system value="http://unitsofmeasure.org"/>
-      <code value="mg/L"/>
+      <value value="2.9"/>
    </valueQuantity>
    <interpretation>
-      <text value="Zie ratio voor interpretatie."/>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="281302008"/>
+         <display value="boven referentiebereik"/>
+      </coding>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"/>
+         <code value="H"/>
+         <display value="High"/>
+      </coding>
+   </interpretation>
+   <interpretation>
+      <text value="Te hoog let op."/>
    </interpretation>
    <specimen>
-      <reference value="Specimen/monster-123-122575003"/>
+      <reference value="Specimen/monster-1-119361006"/>
       <type value="Specimen"/>
       <display value="monster"/>
    </specimen>

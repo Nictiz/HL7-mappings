@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="labtest-LAR-NierfunctiePanelNHG-33333"/>
+   <id value="labtest-KWAL-LAR-MaxBericht-KC-NHG-44444-C"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
    </meta>
@@ -8,11 +8,11 @@
       <valueBoolean value="true"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
-      <valueString value="111222"/>
+      <valueString value="999111"/>
    </extension>
    <identifier>
-      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298"/>
-      <value value="33333"/>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.1"/>
+      <value value="44444"/>
    </identifier>
    <status value="final"/>
    <category>
@@ -25,15 +25,10 @@
    <code>
       <coding>
          <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-45-diagnostische-bepalingen"/>
-         <code value="40"/>
-         <display value="albumine/creatinine ratio urine (ACR)"/>
+         <code value="38"/>
+         <display value="albumine urine portie"/>
       </coding>
    </code>
-   <subject>
-      <reference value="Patient/patient-Erelies"/>
-      <type value="Patient"/>
-      <display value="Patient, Elise Erelies"/>
-   </subject>
    <effectiveDateTime value="2021-12-02"/>
    <performer>
       <reference value="Organization/org-00003333"/>
@@ -41,32 +36,20 @@
       <display value="Healthcare provider (organization), Klinisch chemisch Lab 't Proefje"/>
    </performer>
    <valueQuantity>
-      <value value="2"/>
-      <unit value="mg albumine/mmol creatinine"/>
+      <value value="0.1"/>
+      <unit value="mg/L"/>
       <system value="http://unitsofmeasure.org"/>
-      <code value="{mg albumine/mmol creatinine}"/>
+      <code value="mg/L"/>
    </valueQuantity>
    <interpretation>
-      <text value="Goede uitslag voor een patient van 75 jaar."/>
+      <text value="Zie ratio voor interpretatie."/>
    </interpretation>
-   <method>
-      <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="258026004"/>
-         <display value="enzyme method"/>
-      </coding>
-   </method>
+   <note>
+      <text value="Let op: Afwijkende nierfunctie. "/>
+   </note>
    <specimen>
       <reference value="Specimen/monster-1111-122575003"/>
       <type value="Specimen"/>
       <display value="monster"/>
    </specimen>
-   <referenceRange>
-      <high>
-         <value value="3"/>
-         <unit value="mg albumine/mmol creatinine"/>
-         <system value="http://unitsofmeasure.org"/>
-         <code value="{mg albumine/mmol creatinine}"/>
-      </high>
-   </referenceRange>
 </Observation>

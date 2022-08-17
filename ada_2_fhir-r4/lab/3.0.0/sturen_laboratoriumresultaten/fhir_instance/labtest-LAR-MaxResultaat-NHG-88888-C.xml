@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="labresult-LAR-NierfunctiePanelNHG"/>
+   <id value="labtest-LAR-MaxResultaat-NHG-88888-C"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
    </meta>
@@ -8,11 +8,11 @@
       <valueBoolean value="true"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
-      <valueString value="111222"/>
+      <valueString value="111666"/>
    </extension>
    <identifier>
-      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4296"/>
-      <value value="LAR_NierfunctiePanelNHG"/>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.1"/>
+      <value value="88888"/>
    </identifier>
    <status value="final"/>
    <category>
@@ -24,9 +24,9 @@
    </category>
    <code>
       <coding>
-         <system value="http://loinc.org"/>
-         <code value="72"/>
-         <display value="CVRM nierfunctie en kalium"/>
+         <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-45-diagnostische-bepalingen"/>
+         <code value="3272"/>
+         <display value="Kalium urine 24u"/>
       </coding>
    </code>
    <subject>
@@ -34,34 +34,41 @@
       <type value="Patient"/>
       <display value="Patient, Elise Erelies"/>
    </subject>
+   <effectiveDateTime value="2021-12-22"/>
    <performer>
       <reference value="Organization/org-00003333"/>
       <type value="Organization"/>
       <display value="Healthcare provider (organization), Klinisch chemisch Lab 't Proefje"/>
    </performer>
+   <valueQuantity>
+      <value value="30"/>
+      <unit value="mmol/24u."/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="{mmol/24u.}"/>
+   </valueQuantity>
+   <interpretation>
+      <text value="Lager dan referentiebereik."/>
+   </interpretation>
+   <note>
+      <text value="Onderzoek voltooid."/>
+   </note>
    <specimen>
-      <reference value="Specimen/monster-1111-122575003"/>
+      <reference value="Specimen/monster-335-1-276833005"/>
       <type value="Specimen"/>
       <display value="monster"/>
    </specimen>
-   <hasMember>
-      <reference value="Observation/labtest-LAR-NierfunctiePanelNHG-11111"/>
-      <type value="Observation"/>
-      <display value="laboratorium_test"/>
-   </hasMember>
-   <hasMember>
-      <reference value="Observation/labtest-LAR-NierfunctiePanelNHG-22222"/>
-      <type value="Observation"/>
-      <display value="laboratorium_test"/>
-   </hasMember>
-   <hasMember>
-      <reference value="Observation/labtest-LAR-NierfunctiePanelNHG-33333"/>
-      <type value="Observation"/>
-      <display value="laboratorium_test"/>
-   </hasMember>
-   <hasMember>
-      <reference value="Observation/labtest-LAR-NierfunctiePanelNHG-44444"/>
-      <type value="Observation"/>
-      <display value="laboratorium_test"/>
-   </hasMember>
+   <referenceRange>
+      <low>
+         <value value="40"/>
+         <unit value="mmol/24u."/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="{mmol/24u.}"/>
+      </low>
+      <high>
+         <value value="60"/>
+         <unit value="mmol/24u."/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="{mmol/24u.}"/>
+      </high>
+   </referenceRange>
 </Observation>
