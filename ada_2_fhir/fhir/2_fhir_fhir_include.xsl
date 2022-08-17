@@ -1081,6 +1081,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:value-of select="string-join($patientKey, '')"/>
         </xsl:if>
     </xsl:function>
+    
+    <xd:doc>
+        <xd:desc>If <xd:ref name="in" type="parameter"/> holds a value, return the upper-cased combined string of @value/@root/@code/@codeSystem/@nullFlavor. Else return empty</xd:desc>
+        <xd:param name="in"/>
+    </xd:doc>
+    <xsl:function name="nf:getGroupingKeyLaboratoryTest" as="xs:string?">
+        <xsl:param name="in" as="element()?"/>
+        <xsl:if test="$in">
+            <xsl:value-of select="upper-case(string-join((nf:getGroupingKeyDefault($in), $in/../kopie_indicator/@value[. = 'true']), ''))"/>
+        </xsl:if>
+    </xsl:function>
 
     <xd:doc>
         <xd:desc/>

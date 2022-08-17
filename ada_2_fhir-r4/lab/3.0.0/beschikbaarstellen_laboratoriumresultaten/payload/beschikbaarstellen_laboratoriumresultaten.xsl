@@ -183,10 +183,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="logicalId">
             <xsl:choose>
                 <xsl:when test="$localName = 'laboratorium_uitslag'">
-                    <xsl:value-of select="'labresult-' || (laboratorium_uitslag_identificatie/@value, format-number(count(preceding-sibling::laboratorium_uitslag)+1, '00'))[1]"/>
+                  <xsl:variable name="kopie_indicator" select="if (kopie_indicator/@value[. = 'true']) then '-C' else ()" as="xs:string?"/>
+                  
+                  <xsl:value-of select="'labresult-' || (laboratorium_uitslag_identificatie/@value, format-number(count(preceding-sibling::laboratorium_uitslag)+1, '00'))[1] || $kopie_indicator"/>
                 </xsl:when>
                 <xsl:when test="$localName = 'laboratorium_test'">
-                    <xsl:value-of select="'labtest-' || ../laboratorium_uitslag_identificatie/@value || '-' || test_identificatie/@value"/>
+                    <!-- The copy-indicator lives at panel level -->
+                    <xsl:variable name="kopie_indicator" select="if (../kopie_indicator/@value[. = 'true']) then '-C' else ()" as="xs:string?"/>
+                    
+                    <xsl:value-of select="'labtest-' || ../laboratorium_uitslag_identificatie/@value || '-' || test_identificatie/@value || $kopie_indicator"/>
                 </xsl:when>
                 <xsl:when test="$localName = 'monster' and $profile = 'nl-core-LaboratoryTestResult.Specimen.asMicroorganism'">
                     <xsl:value-of select="'organism-' || (@displayName, @code)[1]"/>

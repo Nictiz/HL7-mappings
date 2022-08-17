@@ -197,7 +197,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- If and only if there is more than one laboratorium_test, there should be an instance for each
                  distinct laboratorium_test (in addition the "grouping" instance already identified as part of the 
                  main process. -->
-        <xsl:for-each-group select="$in[self::laboratorium_uitslag]/laboratorium_test[.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
+        <xsl:for-each-group select="$in[self::laboratorium_uitslag]/laboratorium_test[.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyLaboratoryTest(.)">
             <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
         </xsl:for-each-group>
         
@@ -414,6 +414,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$in[@datatype = 'reference' and @value] and not(empty(nf:resolveAdaInstance($in, /)))">
                     <xsl:value-of select="nf:getGroupingKeyDefault(nf:resolveAdaInstance($in, /))"/>
                 </xsl:when>
+                <xsl:when test="$in[self::laboratorium_test]">
+                    <xsl:value-of select="nf:getGroupingKeyLaboratoryTest($in)"/>
+                </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="nf:getGroupingKeyDefault($in)"/>
                 </xsl:otherwise>
@@ -527,7 +530,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="."/>
         <xsl:param name="profile" as="xs:string" select="''"/>
 
-        <xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>
+        <!--<xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>-->
+
+        <xsl:variable name="groupKey">
+            <xsl:choose>
+                <xsl:when test="$in[self::laboratorium_test]">
+                    <xsl:value-of select="nf:getGroupingKeyLaboratoryTest($in)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="nf:getGroupingKeyDefault($in)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
 
         <xsl:if test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1 and string-length($profile) = 0">
             <xsl:message terminate="yes">insertId: Duplicate entry found in $fhirMetadata, while no $profile was supplied. $groupKey: <xsl:value-of select="$groupKey"/></xsl:message>
@@ -558,7 +572,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="."/>
         <xsl:param name="profile" as="xs:string" select="''"/>
 
-        <xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>
+        <!--<xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>-->
+
+        <xsl:variable name="groupKey">
+            <xsl:choose>
+                <xsl:when test="$in[self::laboratorium_test]">
+                    <xsl:value-of select="nf:getGroupingKeyLaboratoryTest($in)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="nf:getGroupingKeyDefault($in)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
 
         <xsl:if test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1 and string-length($profile) = 0">
             <xsl:message terminate="yes">insertFullUrl: Duplicate entry found in $fhirMetadata, while no $profile was supplied.</xsl:message>
@@ -699,6 +724,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc>Returns true (boolean) if the date or dateTime is in the past. Defaults to false. Input should be a value that is castable to a date or dateTime. Input may be empty which results in the default false value.</xd:desc>
+        <xd:param name="dateOrDt"/>
     </xd:doc>
     <xsl:function name="nf:isPast" as="xs:boolean">
         <xsl:param name="dateOrDt"/>
