@@ -126,18 +126,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
             <xsl:for-each select="$in/uitvoerder">
                 <performer>
-                    <xsl:choose>
+                    <!--<xsl:choose>
                         <xsl:when test="afdeling_specialisme">
                             <xsl:call-template name="makeReference">
                                 <xsl:with-param name="profile" select="'nl-core-HealthcareProvider'"/>
                             </xsl:call-template>
                         </xsl:when>
-                        <xsl:otherwise>
+                        <xsl:otherwise>-->
                             <xsl:call-template name="makeReference">
                                 <xsl:with-param name="profile" select="'nl-core-HealthcareProvider-Organization'"/>
                             </xsl:call-template>
-                        </xsl:otherwise>
-                    </xsl:choose>
+                        <!--</xsl:otherwise>
+                    </xsl:choose>-->
                 </performer>
             </xsl:for-each>
                         
