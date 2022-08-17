@@ -60,21 +60,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="resources" as="element(f:entry)*">
             <xsl:apply-templates select="onderzoeksresultaat"/>
             
+            <xsl:variable name="device" as="element()*">
+                <xsl:for-each-group select="onderzoeksresultaat/laboratorium_uitslag/monster/bron_monster" group-by="nf:getGroupingKeyDefault(.)">
+                    <xsl:call-template name="_nl-core-LaboratoryTestResult.Specimen.Source">
+                        <xsl:with-param name="in" select="current-group()[1]"/>
+                        <xsl:with-param name="subject" select="../../../../patientgegevens/patient"/>
+                    </xsl:call-template>
+                </xsl:for-each-group>
+            </xsl:variable>
             <xsl:variable name="specimen" as="element()*">
                 <xsl:for-each-group select="onderzoeksresultaat/laboratorium_uitslag/monster" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="_nl-core-LaboratoryTestResult.Specimen">
                         <xsl:with-param name="in" select="current-group()[1]"/>
+                        <xsl:with-param name="subject" select="../../../patientgegevens/patient"/>
                         <xsl:with-param name="type" select="microorganisme"/>
                     </xsl:call-template>
                 </xsl:for-each-group>
             </xsl:variable>
             <xsl:variable name="zorgaanbieders" as="element()*">
                 <xsl:for-each-group select="beschikbaarstellende_partij/zorgaanbieder | onderzoeksresultaat/laboratorium_uitslag/uitvoerder/zorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
-                    <xsl:if test="afdeling_specialisme">
+                    <!--<xsl:if test="afdeling_specialisme">
                         <xsl:call-template name="nl-core-HealthcareProvider">
                             <xsl:with-param name="in" select="current-group()[1]"/>
                         </xsl:call-template>
-                    </xsl:if>
+                    </xsl:if>-->
                     <xsl:call-template name="nl-core-HealthcareProvider-Organization">
                         <xsl:with-param name="in" select="current-group()[1]"/>
                     </xsl:call-template>
@@ -86,7 +95,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </xsl:variable>
             
-            <xsl:for-each select="$specimen | $zorgaanbieders | $patient">
+            <xsl:for-each select="$specimen | $device | $zorgaanbieders | $patient">
                 <entry xmlns="http://hl7.org/fhir">
                     <xsl:call-template name="_insertFullUrlById"/>
                     <resource>
@@ -199,6 +208,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$localName = 'monster' and $profile = 'nl-core-LaboratoryTestResult.Specimen'">
                     <xsl:value-of select="'monster-' || string-join((monsternummer/@value, monstervolgnummer/@value, monstermateriaal/@code), '-')"/>
                 </xsl:when>
+                <xsl:when test="$localName = 'bron_monster' and $profile = 'nl-core-LaboratoryTestResult.Specimen.Source'">
+                    <xsl:value-of select="'bron-' || @value"/>
+                </xsl:when>
                 <xsl:when test="$localName = 'patient'">
                     <xsl:value-of select="'patient-' || string-join((naamgegevens[1]/geslachtsnaam/(voorvoegsels, achternaam)/@value, naamgegevens[1]/geslachtsnaam_partner/(voorvoegsels_partner, achternaam_partner)/@value), '-')"/>
                 </xsl:when>
@@ -229,7 +241,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="theMetaData" select="$fhirMetadata[nm:logical-id = $fhirId]" as="element()*"/>
         <xsl:choose>
             <xsl:when test="count($theMetaData) = 0">
-                <xsl:message terminate="yes">_insertFullUrlById: Nothing found.  (<xsl:value-of select="count($fhirId)"/>)</xsl:message>
+                <xsl:message terminate="yes">_insertFullUrlById: Nothing found. (<xsl:value-of select="count($fhirId)"/>)</xsl:message>
             </xsl:when>
             <xsl:when test="count($theMetaData) gt 1">
                 <xsl:message terminate="no">_insertFullUrlById: Multiple found (<xsl:value-of select="count($theMetaData)"/>): <xsl:value-of select="$fhirId"/> - <xsl:value-of select="$theMetaData/nm:full-url"/></xsl:message>

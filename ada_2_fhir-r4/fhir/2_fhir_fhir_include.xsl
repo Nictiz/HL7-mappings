@@ -59,6 +59,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="alcohol_gebruik" resource="Observation" profile="nl-core-AlcoholUse"/>
         <nm:map ada="alert" resource="Flag" profile="nl-core-alert"/>
         <nm:map ada="allergie_intolerantie" resource="AllergyIntolerance" profile="nl-core-AllergyIntolerance"/>
+        <nm:map ada="monster/bron_monster" resource="Device" profile="nl-core-LaboratoryTestResult.Specimen.Source"/>
         <nm:map ada="bloeddruk" resource="Observation" profile="nl-core-BloodPressure"/>
         <nm:map ada="contact" resource="Encounter" profile="nl-core-Encounter"/>
         <nm:map ada="contactpersoon" resource="RelatedPerson" profile="nl-core-ContactPerson"/>
@@ -224,6 +225,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:if test="$in[self::monster][microorganisme]">
                 <xsl:text>monster/microorganisme</xsl:text>
             </xsl:if>
+            <xsl:if test="$in[self::monster][bron_monster]">
+                <xsl:text>monster/bron_monster</xsl:text>
+            </xsl:if>
         </xsl:variable>
         <xsl:variable name="adaId" select="$in/@id"/>
         <xsl:variable name="groupKey" select="current-grouping-key()"/>
@@ -244,7 +248,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </nm:ada-id>
                 </xsl:if>
                 <nm:group-key>
-                    <xsl:value-of select="$groupKey"/>
+                    <xsl:choose>
+                        <xsl:when test="@ada = 'monster/bron_monster'">
+                            <xsl:value-of select="nf:getGroupingKeyDefault($in/bron_monster)"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="$groupKey"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </nm:group-key>
                 <xsl:variable name="logicalId">
                     <xsl:choose>
@@ -262,6 +273,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:value-of select="$in/@logicalId"/>
                                 </xsl:otherwise>
                             </xsl:choose>
+                        </xsl:when>
+                        <xsl:when test="@ada = 'monster/bron_monster'">
+                            <xsl:apply-templates select="$in/bron_monster" mode="_generateId">
+                                <xsl:with-param name="profile" select="$profile"/>
+                            </xsl:apply-templates>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:apply-templates select="$in" mode="_generateId">

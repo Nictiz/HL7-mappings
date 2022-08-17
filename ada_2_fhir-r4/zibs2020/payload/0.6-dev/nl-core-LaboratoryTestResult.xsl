@@ -53,7 +53,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="_nl-core-LaboratoryTestResult-panel" match="laboratorium_uitslag[count(laboratorium_test) gt 1]" mode="nl-core-LaboratoryTestResult" as="element(f:Observation)*">
         <xsl:param name="in" as="element()?" select="."/>
-        <xsl:param name="subject" select="$in/patient/*" as="element()?"/>
+        <xsl:param name="subject" select="$in/../../patientgegevens/patient" as="element()?"/>
         
         <Observation>
             <xsl:call-template name="insertLogicalId"/>
@@ -399,16 +399,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="nl-core-LaboratoryTestResult-asMicroorganism" match="monster" mode="nl-core-LaboratoryTestResult.Specimen" as="element(f:Specimen)*">
         <xsl:param name="in" as="element()?" select="."/>
-        <xsl:param name="subject" as="element()?"/>
+        <xsl:param name="subject" select="$in/../../../patientgegevens/patient" as="element()?"/>
 
         <xsl:choose>
             <xsl:when test="not(monstermateriaal or microorganisme)">
-                <xsl:call-template name="_nl-core-LaboratoryTestResult.Specimen"/>
+                <xsl:call-template name="_nl-core-LaboratoryTestResult.Specimen">
+                    <xsl:with-param name="subject" select="$subject" as="element()"/>
+                </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:for-each select="(monstermateriaal | microorganisme)">
                     <xsl:call-template name="_nl-core-LaboratoryTestResult.Specimen">
                         <xsl:with-param name="in" select="./parent::monster"/>
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
                         <xsl:with-param name="type" select="."/>
                     </xsl:call-template>
                 </xsl:for-each>
@@ -427,7 +430,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="_nl-core-LaboratoryTestResult.Specimen" match="monster" as="element(f:Specimen)?">
         <xsl:param name="in" as="element()?" select="."/>
-        <xsl:param name="subject" as="element()?"/>
+        <xsl:param name="subject" select="$in/../../../patientgegevens/patient" as="element()?"/>
         <xsl:param name="type" as="element()?"/>
         
         <xsl:for-each select="$in">
@@ -454,6 +457,35 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <type>
                         <xsl:call-template name="code-to-CodeableConcept"/>
                     </type>
+                </xsl:for-each>
+                
+                <xsl:choose>
+                    <xsl:when test="$in/bron_monster">
+                        <xsl:for-each select="$in/bron_monster">
+                            <xsl:call-template name="makeReference">
+                                <xsl:with-param name="wrapIn">subject</xsl:with-param>
+                                <xsl:with-param name="profile">nl-core-LaboratoryTestResult.Specimen.Source</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:for-each select="$subject">
+                            <xsl:call-template name="makeReference">
+                                <xsl:with-param name="wrapIn">subject</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                    </xsl:otherwise>
+                </xsl:choose>
+                <xsl:for-each select="$in/monster">
+                    <xsl:call-template name="makeReference">
+                        <xsl:with-param name="wrapIn">specimen</xsl:with-param>
+                        <xsl:with-param name="profile">
+                            <xsl:choose>
+                                <xsl:when test="microorganisme">nl-core-LaboratoryTestResult.Specimen.asMicroorganism</xsl:when>
+                                <xsl:otherwise>nl-core-LaboratoryTestResult.Specimen</xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:with-param>
+                    </xsl:call-template>
                 </xsl:for-each>
                 
                 <xsl:for-each select="$in/aanname_datum_tijd">
@@ -553,6 +585,38 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </note>
                 </xsl:for-each>
             </Specimen>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Helper template to create a nl-core-LaboratoryTestResult.Specimen.Source instance as Device FHIR instance from ADA laboratorium_uitslag/monster/bron_monster.</xd:desc>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="subject">ADA patient element. Has no default</xd:param>
+    </xd:doc>
+    <xsl:template name="_nl-core-LaboratoryTestResult.Specimen.Source" match="bron_monster" as="element(f:Device)?">
+        <xsl:param name="in" as="element()?" select="."/>
+        <xsl:param name="subject" select="$in/../../../../patientgegevens/patient" as="element()?"/>
+        
+        <xsl:for-each select="$in">
+            <Device>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile">nl-core-LaboratoryTestResult.Specimen.Source</xsl:with-param>
+                </xsl:call-template>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen.Source"/>
+                </meta>
+                
+                <deviceName>
+                    <name value="{@value}"/>
+                    <type value="other"/>
+                </deviceName>
+                
+                <xsl:for-each select="$subject">
+                    <xsl:call-template name="makeReference">
+                        <xsl:with-param name="wrapIn">patient</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:for-each>
+            </Device>
         </xsl:for-each>
     </xsl:template>
     
