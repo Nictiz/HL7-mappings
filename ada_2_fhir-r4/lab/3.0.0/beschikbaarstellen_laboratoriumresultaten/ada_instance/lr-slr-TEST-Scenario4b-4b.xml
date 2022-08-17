@@ -4,7 +4,7 @@
          created-by="labuitwisselingada"
          last-update-by="labuitwisselingada"
          creation-date="2022-06-02T15:12:33.147+02:00"
-         last-update-date="2022-06-02T15:13:11.901+02:00"/>
+         last-update-date="2022-08-05T10:36:07.866+02:00"/>
    <data>
       <sturen_laboratoriumresultaten app="lab"
                                      shortName="sturen_laboratoriumresultaten"
@@ -14,7 +14,7 @@
                                      prefix="lab-"
                                      language="nl-NL"
                                      title="TEST Scenario 4b_MaximaalBericht_KC_LOINC"
-                                     desc="Een bericht gebaseerd op LOINC codes met maximale vulling."
+                                     desc="In dit scenario wordt een maximaal gevuld onderzoek voor klinisch chemisch onderzoek getest. Hierin zijn zo veel mogelijk velden gevuld, in dit geval zijn deze gecodeerd met NHG. "
                                      id="lr-slr-TEST-Scenario4b-4b">
          <scenario-nr value="4b" conceptId="2.16.840.1.113883.2.4.3.11.999.25.2.2.4401.2.1.1"/>
          <!--Patient found in instance with id: sl-TEST-Scenarioset1a-v30 and title: TEST REPO Scenarioset 1a (ResultatenKlinischChemie_NHG)-->
@@ -41,7 +41,7 @@
                <meerling_indicator nullFlavor="NA" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4340"/>
             </patient>
          </patientgegevens>
-         <!--Zorgaanbieder found in instance with id: sl-TEST-Scenarioset2b-v30 and title: TEST REPO Scenarioset 2b (ResultatenMicrobiologie_NHG)-->
+         <!--Zorgaanbieder found in instance with id: sl-KWAL-MMB-NHG-v30 and title: KWALIFICATIE REPO ResultatenMicrobiologie_NHG-->
          <beschikbaarstellende_partij>
             <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4221">
                <zorgaanbieder_identificatienummer value="00005111"
@@ -49,16 +49,8 @@
                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4222"/>
                <organisatie_naam value="Huisartsenpraktijk Itis"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4223"/>
-               <afdeling_specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4224"
-                                     value="1"
-                                     code="0100"
-                                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                                     codeSystemVersion="2020-10-23T00:00:00"
-                                     displayName="Huisartsen, niet nader gespecificeerd"/>
                <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4234">
-                  <straat value="Langelaan "
-                          conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4235"/>
+                  <straat value="Langelaan" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4235"/>
                   <huisnummer value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4236"/>
                   <postcode value="1234ZZ" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4240"/>
                   <woonplaats value="Onze Stad" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4241"/>
@@ -69,26 +61,28 @@
                                displayName="Werkadres"/>
                </adresgegevens>
                <organisatie_type conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4246"
-                                 value="15"
+                                 value="17"
                                  code="Z3"
                                  codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                 codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"
+                                 codeSystemVersion="2022-07-07T00:00:00"
                                  displayName="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
             </zorgaanbieder>
          </beschikbaarstellende_partij>
          <!--laboratorium_uitslag found in instance with id: sl-TEST-Scenarioset1b-v30 and title: TEST REPO Scenarioset 1b (ResultatenKlinischChemie_LOINC)-->
          <onderzoeksresultaat conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4253">
             <laboratorium_uitslag conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4254">
-               <laboratorium_uitslag_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4296"
+               <laboratorium_uitslag_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4296.2"
                                                    value="LAR_MaxResultaat_LOINC"
                                                    conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4296"/>
                <edifact_referentienummer value="111666" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4409"/>
                <kopie_indicator value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4297"/>
                <laboratorium_test conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4255">
-                  <test_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4298"
+                  <test_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4298.2"
                                       value="88888"
                                       conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4298"/>
                   <test_code code="2829-0"
-                             codeSystem="2.16.840.1.113883.2.4.4.30.45"
+                             codeSystem="2.16.840.1.113883.6.1"
                              displayName="Kalium [mol/tijdeenheid] in 24-uursurine"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4256"/>
                   <test_datum_tijd value="T-10D"
@@ -120,7 +114,9 @@
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4265"/>
                </laboratorium_test>
                <monster conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4266">
-                  <monsternummer value="335" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4267"/>
+                  <monsternummer root="2.16.840.1.113883.2.4.3.11.999.25.4267.2"
+                                 value="335"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4267"/>
                   <monstervolgnummer value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4268"/>
                   <containertype code="706055000"
                                  codeSystem="2.16.840.1.113883.6.96"
@@ -168,13 +164,6 @@
                                                         conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4373"/>
                      <organisatie_naam value="Klinisch chemisch Lab 't Proefje"
                                        conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4374"/>
-                     <afdeling_specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4375"
-                                           value="265"
-                                           code="5000"
-                                           codeSystem="2.16.840.1.113883.2.4.6.7"
-                                           codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                                           codeSystemVersion="2020-10-23T00:00:00"
-                                           displayName="Laboratoria"/>
                      <contactgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4376">
                         <telefoonnummers conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4377">
                            <telefoonnummer value="06-11122233"
@@ -201,8 +190,13 @@
                         <straat value="Hoofdstraat"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4386"/>
                         <huisnummer value="23" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4387"/>
-                        <postcode value="2143AA" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4391"/>
+                        <postcode value="1234 AA" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4391"/>
                         <woonplaats value="Zorgstad" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4392"/>
+                        <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4396"
+                                     value="5"
+                                     code="WP"
+                                     codeSystem="2.16.840.1.113883.5.1119"
+                                     displayName="Werkadres"/>
                      </adresgegevens>
                      <organisatie_type conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4397"
                                        value="18"
