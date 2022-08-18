@@ -155,7 +155,7 @@
             <xslt force="true" style="${build.dir}/${usecase.labbr}/payload/${usecase.labbr}.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useimplicitfileset="false" failonnoresources="false">
                 <fileset refid="inputfiles"/>
                 <param name="generateInstructionText" expression="true"/>
-                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <!--<param name="dateT" expression="${date.T}" if="date.T"/>-->
                 <param name="schematronRef" expression="${gen.schematron.ref}" if="gen.schematron.ref"/>
                 <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
                 <factory name="${xsl.saxon.class}"/>
@@ -172,7 +172,7 @@
             <xslt force="true" style="${build.dir}/${usecase.labsr}/payload/${usecase.labsr}.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useimplicitfileset="false" failonnoresources="false">
                 <fileset refid="inputfiles"/>
                 <param name="generateInstructionText" expression="true"/>
-                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <!--<param name="dateT" expression="${date.T}" if="date.T"/>-->
                 <param name="schematronRef" expression="${gen.schematron.ref}" if="gen.schematron.ref"/>
                 <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
                 <factory name="${xsl.saxon.class}"/>
