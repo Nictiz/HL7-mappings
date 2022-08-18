@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bundle xmlns="http://hl7.org/fhir">
+   <type value="transaction"/>
+   <total value="5"/>
+   <entry>
+      <fullUrl value="http://example.nictiz.nl/fhir/Observation/labtest-LAR-LosResultaatINR1-LOINC-55555"/>
+      <resource>
+         <Observation>
+            <id value="labtest-LAR-LosResultaatINR1-LOINC-55555"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
+               <valueString value="111333"/>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
+               <value value="55555"/>
+            </identifier>
+            <status value="final"/>
+            <category>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+                  <code value="laboratory"/>
+                  <display value="Laboratory"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="6301-6"/>
+                  <display value="PT-INR [relatieve tijd] in plaatjesarm plasma d.m.v. stollingsmethode"/>
+               </coding>
+            </code>
+            <effectiveDateTime value="${DATE, T, D, -10}"/>
+            <performer>
+               <reference value="Organization/org-11112222"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Trombosedienst Ons Dorp"/>
+            </performer>
+            <valueQuantity>
+               <value value="2.9"/>
+            </valueQuantity>
+            <interpretation>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="281302008"/>
+                  <display value="boven referentiebereik"/>
+               </coding>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"/>
+                  <code value="H"/>
+                  <display value="High"/>
+               </coding>
+            </interpretation>
+            <interpretation>
+               <text value="Te hoog let op."/>
+            </interpretation>
+            <specimen>
+               <reference value="Specimen/monster-1-119361006"/>
+               <type value="Specimen"/>
+               <display value="monster"/>
+            </specimen>
+         </Observation>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Observation"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="http://example.nictiz.nl/fhir/Specimen/monster-1-119361006"/>
+      <resource>
+         <Specimen>
+            <id value="monster-1-119361006"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4267.2"/>
+               <value value="#1"/>
+            </identifier>
+            <subject>
+               <reference value="Patient/patient-Erelies"/>
+               <type value="Patient"/>
+               <display value="Patient, Elise Erelies"/>
+            </subject>
+            <collection>
+               <collectedDateTime value="${DATE, T, D, -11}"/>
+            </collection>
+            <container>
+               <type>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="767387006"/>
+                     <display value="vacuümbuis voor bloedafname met citraat, theofylline, adenosine en dipyramidol (fysiek object)"/>
+                  </coding>
+               </type>
+            </container>
+         </Specimen>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Specimen"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="http://example.nictiz.nl/fhir/Organization/org-00005111"/>
+      <resource>
+         <Organization>
+            <id value="org-00005111"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00005111"/>
+            </identifier>
+            <type>
+               <coding>
+                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+                  <version value="2022-07-07T00:00:00"/>
+                  <code value="Z3"/>
+                  <display value="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
+               </coding>
+            </type>
+            <name value="Huisartsenpraktijk Itis"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Langelaan 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Langelaan"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Onze Stad"/>
+               <postalCode value="1234ZZ"/>
+            </address>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="http://example.nictiz.nl/fhir/Organization/org-11112222"/>
+      <resource>
+         <Organization>
+            <id value="org-11112222"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="11112222"/>
+            </identifier>
+            <type>
+               <coding>
+                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+                  <code value="TD"/>
+                  <display value="Trombosedienst"/>
+               </coding>
+            </type>
+            <name value="Trombosedienst Ons Dorp"/>
+            <telecom>
+               <system value="phone">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                           <code value="MC"/>
+                           <display value="Mobiel telefoonnummer"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </system>
+               <value value="06-11122266"/>
+            </telecom>
+            <address>
+               <line value="Kerkstraat 28 d">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Kerkstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="28"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="d"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1332GH"/>
+            </address>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="http://example.nictiz.nl/fhir/Patient/patient-Erelies"/>
+      <resource>
+         <Patient>
+            <id value="patient-Erelies"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value value="999999114"/>
+            </identifier>
+            <name>
+               <use value="official"/>
+               <text value="Elise Erelies"/>
+               <family value="Erelies">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Erelies"/>
+                  </extension>
+               </family>
+               <given value="Elise">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="1950-11-01"/>
+         </Patient>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
+   </entry>
+</Bundle>
