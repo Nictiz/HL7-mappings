@@ -133,7 +133,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <Bundle xmlns="http://hl7.org/fhir">
                     <id value="{nf:assure-logicalid-length(nf:removeSpecialCharacters(@id))}"/>
                     <type value="transaction"/>
-                    <total value="{count($resources)}"/>
+                    <!--<total value="{count($resources)}"/>-->
                     <!--<xsl:choose>
                         <xsl:when test="$bundleSelfLink[not(. = '')]">
                             <link>
