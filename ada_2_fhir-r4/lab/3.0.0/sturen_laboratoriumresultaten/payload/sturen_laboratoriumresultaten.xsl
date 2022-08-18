@@ -29,7 +29,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>If true, write all generated resources to disk in the fhir_instance directory. Otherwise, return all the output in a FHIR Bundle.</xd:desc>
     </xd:doc>
-    <xsl:param name="writeOutputToDisk" select="true()" as="xs:boolean"/>
+    <xsl:param name="writeOutputToDisk" select="false()" as="xs:boolean"/>
     
     <xsl:param name="referencingStrategy" select="'logicalId'" as="xs:string"/>
     <!-- If the desired output is to be a Bundle, then a self link string of type url is required. 
@@ -57,6 +57,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc/>
     </xd:doc>
     <xsl:template match="sturen_laboratoriumresultaten | beschikbaarstellen_laboratoriumresultaten">
+        <!--<xsl:message>Parameter writeOutputToDisk has value = <xsl:value-of select="$writeOutputToDisk"/></xsl:message>
+        <xsl:message>Parameter dateT has value = <xsl:value-of select="$dateT"/></xsl:message>-->
+        
         <xsl:variable name="resources" as="element(f:entry)*">
             <xsl:apply-templates select="onderzoeksresultaat"/>
             
@@ -101,9 +104,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <resource>
                         <xsl:copy-of select="."/>
                     </resource>
-                    <search>
-                        <mode value="include"/>
-                    </search>
+                    <request>
+                        <method value="POST"/>
+                        <url value="{local-name(.)}"/>
+                    </request>
                 </entry>
             </xsl:for-each>
         </xsl:variable>
@@ -127,9 +131,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:otherwise>
                 <Bundle xmlns="http://hl7.org/fhir">
-                    <type value="searchset"/>
-                    <total value="{count($resources[*:search/*:mode/@value = 'match'])}"/>
-                    <xsl:choose>
+                    <type value="transaction"/>
+                    <total value="{count($resources)}"/>
+                    <!--<xsl:choose>
                         <xsl:when test="$bundleSelfLink[not(. = '')]">
                             <link>
                                 <relation value="self"/>
@@ -143,9 +147,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:with-param name="terminate" select="false()"/>
                             </xsl:call-template>
                         </xsl:otherwise>
-                    </xsl:choose>
-                    <xsl:copy-of select="$resources[*:search/*:mode/@value = 'match']"/>
-                    <xsl:copy-of select="$resources[not(*:search/*:mode/@value = 'match')]"/>
+                    </xsl:choose>-->
+                    <xsl:copy-of select="$resources"/>
                 </Bundle>
             </xsl:otherwise>
         </xsl:choose>
@@ -173,9 +176,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <resource>
                     <xsl:copy-of select="."/>
                 </resource>
-                <search>
-                    <mode value="match"/>
-                </search>
+                <request>
+                    <method value="POST"/>
+                    <url value="{local-name(.)}"/>
+                </request>
             </entry>
         </xsl:for-each>
     </xsl:template>

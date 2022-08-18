@@ -145,7 +145,8 @@
         <echo>${echo.label} ${xsl.lab} input dir ${xsl.input}</echo>
         <xslt force="true" style="${xsl.lab}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
             <fileset refid="inputfiles"/>
-            <param name="dateT" expression="${date.T}" if="date.T"/>
+            <param name="dateT" expression="${param.tdate}" if="param.tdate"/>
+            <param name="writeOutputToDisk" expression="${param.writeOutputToDisk}" if="param.writeOutputToDisk"/>
             <!-- whether to generate the textual instruction for use based on structured data, 
                     typically true for test/example instances 
                     typically false for production -->

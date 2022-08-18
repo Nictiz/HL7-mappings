@@ -109,6 +109,8 @@
             <param name="xsl.name" value="../${usecase.labbr}/payload/${usecase.labbr}.xsl"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="fhir_instance"/>
+            <!--<param name="param.tdate" value="${date.T}}"/>-->
+            <param name="param.writeOutputToDisk" value="true"/>
         </antcall>
 
         <!-- convert sturen_laboratoriumresultaten -->
@@ -117,6 +119,8 @@
             <param name="xsl.name" value="../${usecase.labsr}/payload/${usecase.labsr}.xsl"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="fhir_instance"/>
+            <!--<param name="param.tdate" value="${date.T}}"/>-->
+            <param name="param.writeOutputToDisk" value="false"/>
         </antcall>
 
         <!-- also do the examples -->
@@ -124,10 +128,10 @@
         
         <!-- delete empty default files that xsl creates in addition to the separate instances -->
         <delete>
-            <fileset dir="${build.dir}/${usecase.labbr}/fhir_instance" includes="**/lr-slr-*.xml">
+            <fileset dir="${build.dir}/${usecase.labbr}/fhir_instance" includes="**/*.xml">
                 <size value="0"/>
             </fileset>
-            <fileset dir="${build.dir}/${usecase.labsr}/fhir_instance" includes="**/lr-slr-*.xml">
+            <fileset dir="${build.dir}/${usecase.labsr}/fhir_instance" includes="**/*.xml">
                 <size value="0"/>
             </fileset>
         </delete>
