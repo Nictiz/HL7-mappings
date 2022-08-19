@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Generated from ada instance with title: "TEST Scenarioset 1 Gebruiksperiode ingangsdatum en einddatum" and id: "mv-mp-vo-tst-1.1-ingangsdatum_einddatum".-->
+<!--Generated from ada instance with title: "TEST Scenarioset 8 Staken andermans MA" and id: "mv-mp-vo-tst-8.2-staken_andermans_ma".-->
 <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xmlns="urn:hl7-org:v3"
            xmlns:cda="urn:hl7-org:v3"
@@ -18,14 +18,15 @@
    <statusCode nullFlavor="NI"/>
    <recordTarget>
       <patientRole>
-         <id extension="999900419" root="2.16.840.1.113883.2.4.6.3"/>
+         <id extension="999900808" root="2.16.840.1.113883.2.4.6.3"/>
          <patient>
             <name>
-               <given qualifier="IN">C.</given>
-               <family qualifier="BR">XXX_Brugge</family>
+               <given qualifier="IN">L.</given>
+               <prefix qualifier="VV">van </prefix>
+               <family qualifier="BR">XXX_Meijs</family>
             </name>
-            <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
-            <birthTime value="19631016"/>
+            <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            <birthTime value="19851026"/>
          </patient>
       </patientRole>
    </recordTarget>
@@ -33,39 +34,39 @@
       <substanceAdministration classCode="SBADM" moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9324"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9323"/>
-         <id extension="MBH_920_start_eind_MA"
+         <id extension="MBH_920_stakenandermansMA_MA2"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="33633005"
                displayName="voorschrijven van geneesmiddel (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 22 dec 2020, tot en met 27 dec 2020, 1 maal per dag 1 stuk, oraal</text>
+         <text mediaType="text/plain">Vanaf 27 dec 2020, tot en met 1 jan 2021, 1 maal per dag 1 stuk, Oraal, definitief gestopt</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20201222000000"/>
-            <high value="20201227235959"/>
+            <low value="20201227000000"/>
+            <high value="20210101235959"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
-                    displayName="oraal"
+                    displayName="Oraal"
                     codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
          <consumable>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="6947"
+                  <code code="26638"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
-                        displayName="METOCLOPRAMIDE TABLET 10MG"
+                        displayName="LISINOPRIL 10MG TABLET"
                         codeSystemName="G-Standaard PRK">
-                     <translation code="19429"
+                     <translation code="71587"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="METOCLOPRAMIDE TABLET 10MG"
+                                  displayName="LISINOPRIL 10MG TABLET"
                                   codeSystemName="G-Standaard GPK"/>
                   </code>
                </manufacturedMaterial>
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20201222112000"/>
+            <time value="20210101090500"/>
             <assignedAuthor>
                <id extension="000001111" root="2.16.528.1.1007.3.1"/>
                <code code="0100"
@@ -93,6 +94,32 @@
             </assignedAuthor>
          </author>
          <entryRelationship typeCode="COMP">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9372"/>
+               <code code="274512008"
+                     displayName="behandeling met geneesmiddel stopgezet"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+               <value xsi:type="CE"
+                      code="113371000146109"
+                      codeSystem="2.16.840.1.113883.6.96"
+                      displayName="definitief gestopt met medicatie"/>
+            </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="RSON">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9370"/>
+               <code code="112241000146101"
+                     displayName="Reason for prescription"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+               <value xsi:type="CE"
+                      code="183966005"
+                      codeSystem="2.16.840.1.113883.6.96"
+                      displayName="Drug treatment not indicated (situation)"/>
+            </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
@@ -115,91 +142,10 @@
                <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
-               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_920_start_eind"/>
-               <code code="1"
-                     displayName="Medicamenteuze behandeling"
-                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
-            </procedure>
-         </entryRelationship>
-      </substanceAdministration>
-   </component>
-   <component typeCode="COMP">
-      <supply classCode="SPLY" moodCode="RQO">
-         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9356"/>
-         <id extension="MBH_920_start_eind_VV"
-             root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-         <code code="52711000146108"
-               displayName="Verstrekkingsverzoek"
-               codeSystem="2.16.840.1.113883.6.96"
-               codeSystemName="SNOMED CT"/>
-         <quantity value="5" unit="1">
-            <translation value="5"
-                         code="245"
-                         displayName="stuk"
-                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                         codeSystemName="G-Standaard thesaurus basiseenheden"/>
-         </quantity>
-         <product>
-            <manufacturedProduct>
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="6947"
-                        codeSystem="2.16.840.1.113883.2.4.4.10"
-                        displayName="METOCLOPRAMIDE TABLET 10MG"
-                        codeSystemName="G-Standaard PRK">
-                     <translation code="19429"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="METOCLOPRAMIDE TABLET 10MG"
-                                  codeSystemName="G-Standaard GPK"/>
-                  </code>
-               </manufacturedMaterial>
-            </manufacturedProduct>
-         </product>
-         <performer>
-            <assignedEntity>
-               <id nullFlavor="NI"/>
-               <representedOrganization>
-                  <id extension="01236578" root="2.16.528.1.1007.3.3"/>
-                  <name>Apotheek De Gulle Gaper</name>
-               </representedOrganization>
-            </assignedEntity>
-         </performer>
-         <author>
-            <time value="20201222112000"/>
-            <assignedAuthor>
-               <id extension="000001111" root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
-               <assignedPerson>
-                  <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
-                  </name>
-               </assignedPerson>
-               <representedOrganization>
-                  <id extension="00001111" root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
-                  <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
-                     <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
-                  </addr>
-               </representedOrganization>
-            </assignedAuthor>
-         </author>
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_920_start_eind_MA"
+               <id extension="MBH_920_stakenandermansMA_MA1"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
@@ -212,12 +158,12 @@
             <procedure classCode="PROC" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_920_start_eind"/>
+                   extension="MBH_920_stakenandermansMA"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
             </procedure>
          </entryRelationship>
-      </supply>
+      </substanceAdministration>
    </component>
 </organizer>

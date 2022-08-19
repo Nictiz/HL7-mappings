@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Generated from ada instance with title: "TEST Scenarioset 1 Gebruiksperiode ingangsdatum en einddatum" and id: "mv-mp-vo-tst-1.1-ingangsdatum_einddatum".-->
+<!--Generated from ada instance with title: "TEST Scenarioset 1 MA met eenheid 'dosis/stuks'" and id: "mv-mp-vo-tst-1.5-eenheid_dosis_stuks".-->
 <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xmlns="urn:hl7-org:v3"
            xmlns:cda="urn:hl7-org:v3"
@@ -33,39 +33,39 @@
       <substanceAdministration classCode="SBADM" moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9324"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9323"/>
-         <id extension="MBH_920_start_eind_MA"
+         <id extension="MBH_920_dosis_stuks_MA"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="33633005"
                displayName="voorschrijven van geneesmiddel (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 22 dec 2020, tot en met 27 dec 2020, 1 maal per dag 1 stuk, oraal</text>
+         <text mediaType="text/plain">Vanaf 24 aug 2020, tot en met 22 sep 2020, 2 maal per dag 1 dosis, inhalatie</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20201222000000"/>
-            <high value="20201227235959"/>
+            <low value="20200824000000"/>
+            <high value="20200922235959"/>
          </effectiveTime>
-         <routeCode code="9"
+         <routeCode code="62"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
-                    displayName="oraal"
+                    displayName="inhalatie"
                     codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
          <consumable>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="6947"
+                  <code code="45624"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
-                        displayName="METOCLOPRAMIDE TABLET 10MG"
+                        displayName="FLUTICASON INHALATIEPOEDER 100UG/DO 60DO DISKUS"
                         codeSystemName="G-Standaard PRK">
-                     <translation code="19429"
+                     <translation code="92487"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="METOCLOPRAMIDE TABLET 10MG"
+                                  displayName="FLUTICASON INHALATIEPOEDER 100UG/DO"
                                   codeSystemName="G-Standaard GPK"/>
                   </code>
                </manufacturedMaterial>
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20201222112000"/>
+            <time value="20200824113500"/>
             <assignedAuthor>
                <id extension="000001111" root="2.16.528.1.1007.3.1"/>
                <code code="0100"
@@ -98,7 +98,7 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
                   <repeat>
-                     <frequency value="1"/>
+                     <frequency value="2"/>
                      <period value="1"/>
                      <periodUnit value="d"/>
                   </repeat>
@@ -106,8 +106,8 @@
                <doseQuantity>
                   <center value="1" unit="1">
                      <translation value="1"
-                                  code="245"
-                                  displayName="stuk"
+                                  code="208"
+                                  displayName="dosis"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
@@ -119,7 +119,7 @@
             <procedure classCode="PROC" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_920_start_eind"/>
+                   extension="MBH_920_dosis_stuks"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -130,14 +130,14 @@
    <component typeCode="COMP">
       <supply classCode="SPLY" moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9356"/>
-         <id extension="MBH_920_start_eind_VV"
+         <id extension="MBH_920_dosis_stuks_VV"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
          <code code="52711000146108"
                displayName="Verstrekkingsverzoek"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <quantity value="5" unit="1">
-            <translation value="5"
+         <quantity value="1" unit="1">
+            <translation value="1"
                          code="245"
                          displayName="stuk"
                          codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -147,13 +147,13 @@
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="6947"
+                  <code code="45624"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
-                        displayName="METOCLOPRAMIDE TABLET 10MG"
+                        displayName="FLUTICASON INHALATIEPOEDER 100UG/DO 60DO DISKUS"
                         codeSystemName="G-Standaard PRK">
-                     <translation code="19429"
+                     <translation code="92487"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="METOCLOPRAMIDE TABLET 10MG"
+                                  displayName="FLUTICASON INHALATIEPOEDER 100UG/DO"
                                   codeSystemName="G-Standaard GPK"/>
                   </code>
                </manufacturedMaterial>
@@ -169,7 +169,7 @@
             </assignedEntity>
          </performer>
          <author>
-            <time value="20201222112000"/>
+            <time value="20200824113500"/>
             <assignedAuthor>
                <id extension="000001111" root="2.16.528.1.1007.3.1"/>
                <code code="0100"
@@ -199,7 +199,7 @@
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_920_start_eind_MA"
+               <id extension="MBH_920_dosis_stuks_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
@@ -212,7 +212,7 @@
             <procedure classCode="PROC" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_920_start_eind"/>
+                   extension="MBH_920_dosis_stuks"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
