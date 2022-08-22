@@ -25773,7 +25773,7 @@
 
     <!-- obs Vorm activiteit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41577_20200527000000">
-        <observation  xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN">
+        <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41577"/>
             <code code="1577" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1577'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
@@ -25980,7 +25980,7 @@
 
     <!-- obs Status activiteit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41605_20200527000000">
-        <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN">
+        <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41605"/>
             <code code="1605" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1605'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
