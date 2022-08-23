@@ -1123,7 +1123,7 @@
                             <xsl:when test="self::r019_terugkerende_anamnese">
                                 <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
                                 <pertinentInformation>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11019_20120801000000"/>
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11019_20200527000000"/>
                                 </pertinentInformation>
                             </xsl:when>
                             <xsl:when test="self::r020_algemene_indruk">
@@ -4701,6 +4701,210 @@
                 <component>
                     <!-- Template :: obs medicijngebruik_tijdens_zwangerschap -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41588_20191128000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="ingrijpende_gebeurtenissen">
+                <component>
+                    <!-- Template :: obs Ingrijpende gebeurtenissen -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40755_20120801000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="a_terme_datum">
+                <component>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41578_20191128000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="kinkhoest_doorgemaakt_na_zwangerschapsduur_12w6d">
+                <component>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41580_20191128000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="kinkhoestvaccinatie_gekregen_na_zwangerschapsduur_12w6d">
+                <component>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41582_20191128000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="stollingsstoornis">
+                <component>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41585_20191128000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="chronisch_drager_hepatitisb">
+                <component>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41586_20191128000000"/>
+                </component>
+            </xsl:for-each>
+        </rubricCluster>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11019_20200527000000">
+        <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.100.11019"/>
+            <code code="R019" codeSystem="2.16.840.1.113883.2.4.4.40.391">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R019'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
+            </code>
+            <xsl:for-each select="anamnese">
+                <component>
+                    <!-- Template :: obs Anamnese -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40748_20120801000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="ervaren_gezondheid">
+                <component>
+                    <!-- Template :: obs Ervaren gezondheid -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40514_20120801000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="bijzonderheden_voedingeetgedrag">
+                <component>
+                    <!-- Template :: obs Bijzonderheden voeding/eetgedrag -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40323_20120801000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="melkvoeding_op_dit_moment">
+                <component>
+                    <!-- Template :: obs Melkvoeding op dit moment -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40496_20120801000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="vitamine_k">
+                <component>
+                    <!-- Template :: obs Vitamine K -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41337_20120801000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="vitamine_d">
+                <component>
+                    <!-- Template :: obs Vitamine D -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41338_20120801000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="toelichting_vitamine">
+                <component>
+                    <!-- Template :: obs Toelichting vitamine -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41339_20120801000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="bijzonderheden_slapenwaken">
+                <component>
+                    <!-- Template :: obs Bijzonderheden slapen/waken -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40322_20120801000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="bijzonderheden_mondgedrag">
+                <component>
+                    <!-- Template :: obs Bijzonderheden mondgedrag -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40179_20120801000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="poetsen_gebit">
+                <component>
+                    <!-- Template :: obs Poetsen gebit -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40188_20120801000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="tandartsbezoek">
+                <component>
+                    <!-- Template :: obs Tandartsbezoek -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40190_20120801000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="passief_roken_in_huis">
+                <component>
+                    <!-- Template :: obs Passief roken in huis -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40510_20120801000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="bijzonderheden_lichaamsbeweging">
+                <component>
+                    <!-- Template :: obs Bijzonderheden lichaamsbeweging -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40330_20120801000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="bijzonderheden_vrijetijdsbesteding">
+                <component>
+                    <!-- Template :: obs Bijzonderheden vrijetijdsbesteding -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40752_20120801000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="zwemdiploma">
+                <component>
+                    <!-- Template :: obs Zwemdiploma -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40753_20120801000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="zwemles">
+                <component>
+                    <!-- Template :: obs Zwemles -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41499_20120801000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="schoolzwemmen">
+                <component>
+                    <!-- Template :: obs Schoolzwemmen -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41500_20120801000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="groep_g087_opname_ziekenhuis">
+                <component>
+                    <groupCluster>
+                        <code code="G087" codeSystem="2.16.840.1.113883.2.4.4.40.393">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'G087'][@codeSystem = '2.16.840.1.113883.2.4.4.40.393']/@displayName"/>
+                        </code>
+                        <xsl:for-each select="reden_opname_ziekenhuis">
+                            <component>
+                                <!-- Template :: obs Reden opname ziekenhuis -->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40150_20120801000000"/>
+                            </component>
+                        </xsl:for-each>
+                        <xsl:for-each select="datum_opname_ziekenhuis">
+                            <component>
+                                <!-- Template :: obs Datum opname ziekenhuis -->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41412_20120801000000"/>
+                            </component>
+                        </xsl:for-each>
+                        <xsl:for-each select="duur_opname_ziekenhuis">
+                            <component>
+                                <!-- Template :: obs Duur opname ziekenhuis -->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40149_20120801000000"/>
+                            </component>
+                        </xsl:for-each>
+                    </groupCluster>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="ontvangen_paramedische_zorg">
+                <component>
+                    <!-- Template :: obs Consult huisarts/specialist/derden -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40754_20120801000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="kinderziekten">
+                <component>
+                    <!-- Template :: obs (Kinder-)ziekten -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40152_20120801000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="operaties">
+                <component>
+                    <!-- Template :: obs Operaties -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40153_20120801000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="ongevallen">
+                <component>
+                    <!-- Template :: obs Ongevallen -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40154_20120801000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="medicijn_gebruik">
+                <component>
+                    <!-- Template :: obs Medicijn gebruik -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40155_20120801000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="medicijngebruik_tijdens_zwangerschap">
+                <component>
+                    <!-- Template :: obs medicijngebruik_tijdens_zwangerschap -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41588_20200527000000"/>
                 </component>
             </xsl:for-each>
             <xsl:for-each select="ingrijpende_gebeurtenissen">
@@ -25959,6 +26163,30 @@
 
     <!--obs_Medicijngebruik_tijdens_zwangerschap-->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41588_20191128000000">
+        <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
+            <templateId root="2.16.840.1.113883.2.4.6.10.100.41588"/>
+            <code code="1588" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1588'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
+            <xsl:call-template name="makeCVValue">
+                <xsl:with-param name="xsiType">CV</xsl:with-param>
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+                <component1>
+                    <!-\- Template :: Activities component1 NonBDSData -\->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
+                </component1>
+            </xsl:for-each>
+            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+                <component2>
+                    <!-\- Template :: Activities component2 MetaData -\->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
+                </component2>
+            </xsl:for-each>-->
+        </observation>
+    </xsl:template>
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41588_20200527000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41588"/>
             <code code="1588" codeSystem="2.16.840.1.113883.2.4.4.40.267">
