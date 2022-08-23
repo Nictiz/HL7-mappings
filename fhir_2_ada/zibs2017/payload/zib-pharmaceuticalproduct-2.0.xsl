@@ -29,25 +29,55 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to convert f:Medication to ADA product</xd:desc>
     </xd:doc>
-    <xsl:template match="f:Medication" mode="zib-PharmaceuticalProduct-2.0">  
-        <product>
-            <!-- product_code -->
+<!--xxxwim
+		ADA product (boven) is nu farmaceutisch_product
+		afgesproken_geneesmiddel/farmaceutisch_product/@value="PRK_ibuprofen_17469" @datatype="reference"
+	referentie is naar bouwstenen/farmaceutisch_product id="PRK_ibuprofen_17469"  -->
+	
+	<xsl:template match="f:Medication" mode="zib-PharmaceuticalProduct-2.0">
+		<product> 
+			<!-- product_code -->
+			<xsl:apply-templates select="f:code" mode="#current"/>
+			<xsl:if test="f:extension|f:form|f:ingredient or (f:code/f:extension/@url=$urlExtHL7NullFlavor and (f:extension|f:form|f:ingredient))">
+				<!-- product_specificatie -->
+				<product_specificatie>
+					<!-- product_naam -->
+					<xsl:apply-templates select="f:code/f:text" mode="#current"/>
+					<!-- omschrijving -->
+					<xsl:apply-templates select="f:extension[@url =$zib-Product-Description]" mode="#current"/>
+					<!-- farmaceutische_vorm -->
+					<xsl:apply-templates select="f:form" mode="#current"/>
+					<!-- ingredient -->
+					<xsl:apply-templates select="f:ingredient" mode="#current"/>
+				</product_specificatie>
+			</xsl:if>
+		</product>
+		
+		<!-- ook nog bouwstenen/farmaceutisch_product met alle gegevens aanmaken  -->
+		
+			
+	
+    	
+<!--    	xxxwim removed
+    	<product> 
+            <!-\- product_code -\->
             <xsl:apply-templates select="f:code" mode="#current"/>
             <xsl:if test="f:extension|f:form|f:ingredient or (f:code/f:extension/@url=$urlExtHL7NullFlavor and (f:extension|f:form|f:ingredient))">
-                <!-- product_specificatie -->
+                <!-\- product_specificatie -\->
                 <product_specificatie>
-                    <!-- product_naam -->
+                    <!-\- product_naam -\->
                     <xsl:apply-templates select="f:code/f:text" mode="#current"/>
-                    <!-- omschrijving -->
+                    <!-\- omschrijving -\->
                     <xsl:apply-templates select="f:extension[@url =$zib-Product-Description]" mode="#current"/>
-                    <!-- farmaceutische_vorm -->
+                    <!-\- farmaceutische_vorm -\->
                     <xsl:apply-templates select="f:form" mode="#current"/>
-                    <!-- ingredient -->
+                    <!-\- ingredient -\->
                     <xsl:apply-templates select="f:ingredient" mode="#current"/>
                 </product_specificatie>
             </xsl:if>
-        </product>
+        </product>-->
     </xsl:template>
+
     
     <xd:doc>
         <xd:desc>Template to convert f:code to product_code</xd:desc>
