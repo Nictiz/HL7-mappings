@@ -3575,21 +3575,21 @@
                 </xsl:for-each>
                 <!-- Item(s) :: gemeente_ouderverzorger-->
                 <xsl:for-each select="gemeente_ouderverzorger">
-                    <xsl:call-template name="makeADXPValue">
+                    <xsl:call-template name="makeSCValue">
                         <xsl:with-param name="xsiType" select="''"/>
                         <xsl:with-param name="elemName">county</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
                 <!-- Item(s) :: woonplaats_ouderverzorger-->
                 <xsl:for-each select="woonplaats_ouderverzorger">
-                    <xsl:call-template name="makeADXPValue">
+                    <xsl:call-template name="makeSCValue">
                         <xsl:with-param name="xsiType" select="''"/>
                         <xsl:with-param name="elemName">city</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
                 <!-- Item(s) :: land_ouderverzorger-->
                 <xsl:for-each select="land_ouderverzorger">
-                    <xsl:call-template name="makeADXPValue">
+                    <xsl:call-template name="makeSCValue">
                         <xsl:with-param name="xsiType" select="''"/>
                         <xsl:with-param name="elemName">country</xsl:with-param>
                     </xsl:call-template>
@@ -4296,14 +4296,14 @@
                         <addr>
                             <!-- Item(s) :: geboorteplaats-->
                             <xsl:for-each select="geboorteplaats">
-                                <xsl:call-template name="makeADXPValue">
+                                <xsl:call-template name="makeSCValue">
                                     <xsl:with-param name="xsiType" select="''"/>
                                     <xsl:with-param name="elemName">county</xsl:with-param>
                                 </xsl:call-template>
                             </xsl:for-each>
                             <!-- Item(s) :: geboorteland-->
                             <xsl:for-each select="geboorteland">
-                                <xsl:call-template name="makeADXPValue">
+                                <xsl:call-template name="makeSCValue">
                                     <xsl:with-param name="xsiType" select="''"/>
                                     <xsl:with-param name="elemName">country</xsl:with-param>
                                 </xsl:call-template>
@@ -9486,13 +9486,15 @@
                         <addr>
                             <!-- Item(s) :: geboorteplaats-->
                             <xsl:for-each select="geboorteplaats">
-                                <xsl:call-template name="makeADXPValue">
+                                <xsl:call-template name="makeSCValue">
+                                    <xsl:with-param name="xsiType" select="''"/>
                                     <xsl:with-param name="elemName">county</xsl:with-param>
                                 </xsl:call-template>
                             </xsl:for-each>
                             <!-- Item(s) :: geboorteland-->
                             <xsl:for-each select="geboorteland">
-                                <xsl:call-template name="makeADXPValue">
+                                <xsl:call-template name="makeSCValue">
+                                    <xsl:with-param name="xsiType" select="''"/>
                                     <xsl:with-param name="elemName">country</xsl:with-param>
                                 </xsl:call-template>
                             </xsl:for-each>
@@ -10357,19 +10359,19 @@
                                 </xsl:for-each>
                                 <!-- Item(s) :: gemeente_ouderverzorger-->
                                 <xsl:for-each select="gemeente_ouderverzorger">
-                                    <xsl:call-template name="makeADXPValue">
+                                    <xsl:call-template name="makeSCValue">
                                         <xsl:with-param name="elemName">county</xsl:with-param>
                                     </xsl:call-template>
                                 </xsl:for-each>
                                 <!-- Item(s) :: woonplaats_ouderverzorger-->
                                 <xsl:for-each select="woonplaats_ouderverzorger">
-                                    <xsl:call-template name="makeADXPValue">
+                                    <xsl:call-template name="makeSCValue">
                                         <xsl:with-param name="elemName">city</xsl:with-param>
                                     </xsl:call-template>
                                 </xsl:for-each>
                                 <!-- Item(s) :: land_ouderverzorger-->
                                 <xsl:for-each select="land_ouderverzorger">
-                                    <xsl:call-template name="makeADXPValue">
+                                    <xsl:call-template name="makeSCValue">
                                         <xsl:with-param name="elemName">country</xsl:with-param>
                                     </xsl:call-template>
                                 </xsl:for-each>
@@ -10502,7 +10504,8 @@
                             <xsl:for-each select="geboorteland_ouder">
                                 <birthPlace>
                                     <addr>
-                                        <xsl:call-template name="makeADXPValue">
+                                        <xsl:call-template name="makeSCValue">
+                                            <xsl:with-param name="xsiType" select="''"/>
                                             <xsl:with-param name="elemName">country</xsl:with-param>
                                         </xsl:call-template>
                                     </addr>
@@ -10602,13 +10605,15 @@
                         <addr>
                             <!-- Item(s) :: geboorteplaats-->
                             <xsl:for-each select="geboorteplaats">
-                                <xsl:call-template name="makeADXPValue">
+                                <xsl:call-template name="makeSCValue">
+                                    <xsl:with-param name="xsiType" select="''"/>
                                     <xsl:with-param name="elemName">county</xsl:with-param>
                                 </xsl:call-template>
                             </xsl:for-each>
                             <!-- Item(s) :: geboorteland-->
                             <xsl:for-each select="geboorteland">
-                                <xsl:call-template name="makeADXPValue">
+                                <xsl:call-template name="makeSCValue">
+                                    <xsl:with-param name="xsiType" select="''"/>
                                     <xsl:with-param name="elemName">country</xsl:with-param>
                                 </xsl:call-template>
                             </xsl:for-each>
@@ -11013,14 +11018,14 @@
                 <addr>
                     <!-- Item(s) :: geboorteplaats-->
                     <xsl:for-each select="geboorteplaats">
-                        <xsl:call-template name="makeADXPValue">
+                        <xsl:call-template name="makeSCValue">
                             <xsl:with-param name="xsiType" select="''"/>
                             <xsl:with-param name="elemName">county</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
                     <!-- Item(s) :: geboorteland-->
                     <xsl:for-each select="geboorteland">
-                        <xsl:call-template name="makeADXPValue">
+                        <xsl:call-template name="makeSCValue">
                             <xsl:with-param name="xsiType" select="''"/>
                             <xsl:with-param name="elemName">country</xsl:with-param>
                         </xsl:call-template>
@@ -11248,14 +11253,14 @@
                 <addr>
                     <!-- Item(s) :: geboorteplaats-->
                     <xsl:for-each select="geboorteplaats">
-                        <xsl:call-template name="makeADXPValue">
+                        <xsl:call-template name="makeSCValue">
                             <xsl:with-param name="xsiType" select="''"/>
                             <xsl:with-param name="elemName">county</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
                     <!-- Item(s) :: geboorteland-->
                     <xsl:for-each select="geboorteland">
-                        <xsl:call-template name="makeADXPValue">
+                        <xsl:call-template name="makeSCValue">
                             <xsl:with-param name="xsiType" select="''"/>
                             <xsl:with-param name="elemName">country</xsl:with-param>
                         </xsl:call-template>
