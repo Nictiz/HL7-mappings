@@ -70,17 +70,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9324_20201015132016">
         <xsl:param name="ma_hl7" select="."/>
         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9323_20201015131556">
-            <xsl:with-param name="ma_hl7" select="$ma_hl7"/>
+            <xsl:with-param name="in" select="$ma_hl7"/>
         </xsl:call-template>
     </xsl:template>
 
     <xd:doc>
         <xd:desc> Medicatieafspraak MP 9.2 Inhoud </xd:desc>
-        <xd:param name="ma_hl7">HL7 medicatieafspraak, defaults to context.</xd:param>
+        <xd:param name="in">HL7 medicatieafspraak, defaults to context.</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9323_20201015131556">
-        <xsl:param name="ma_hl7" select="."/>
-        <xsl:for-each select="$ma_hl7">
+        <xsl:param name="in" select="."/>
+        <xsl:for-each select="$in">
             <xsl:element name="medicatieafspraak">
 
                 <!-- identificatie -->
@@ -222,6 +222,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.32_20210701">
                 <xsl:with-param name="author-hl7" select="."/>
                 <xsl:with-param name="generateId" select="true()"/>
+                <!-- naamgebruik not in MP transactions -->
+                <xsl:with-param name="outputNaamgebruik" select="false()"/>
             </xsl:call-template>
         </voorschrijver>
     </xsl:template>

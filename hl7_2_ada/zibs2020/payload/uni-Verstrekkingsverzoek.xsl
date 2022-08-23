@@ -150,6 +150,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.32_20210701">
                 <xsl:with-param name="author-hl7" select="."/>
                 <xsl:with-param name="generateId" select="true()"/>
+                <!-- naamgebruik is not part of the MP transactions for bouwstenen/zorgverlener -->
+                <xsl:with-param name="outputNaamgebruik" select="false()"/>
             </xsl:call-template>
         </auteur>
     </xsl:template>

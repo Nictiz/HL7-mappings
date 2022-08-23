@@ -16,9 +16,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../../util/mp-functions.xsl"/>
     <xsl:import href="../../fhir_2_ada/fhir/fhir_2_ada_fhir_include.xsl"/>
     <xsl:import href="../hl7/hl7_2_ada_hl7_include.xsl"/>
-    <xsl:import href="../../util/comment.xsl"/>
-    <xsl:import href="../../util/units.xsl"/>
-    <xsl:import href="../../util/datetime.xsl"/>
 
     <xsl:output method="xml" indent="yes"/>
     <!-- ada output language -->

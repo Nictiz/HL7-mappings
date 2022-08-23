@@ -1,0 +1,136 @@
+<!--Generated from HL7v3 instance.-->
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_afhandeling_medicatievoorschrift.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2022-08-23T13:41:45.059289+02:00"
+         last-update-date="2022-08-23T13:41:45.059289+02:00"/>
+   <data>
+      <sturen_afhandeling_medicatievoorschrift app="mp-mp92"
+                                               shortName="sturen_afhandeling_medicatievoorschrift"
+                                               formName="afhandelen_medicatievoorschrift_voorschrift"
+                                               transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.334"
+                                               transactionEffectiveDate="2022-02-07T00:00:00"
+                                               versionDate=""
+                                               prefix="mp-"
+                                               language="nl-NL"
+                                               title="av-mp-va-tst-2-5-toedieningsweg-v20"
+                                               id="av-mp-va-tst-2-5-toedieningsweg-v20">
+         <patient>
+            <naamgegevens>
+               <initialen value="C."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Coenen"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900420" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime" value="1963-10-17"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_200_Toedieningsweg"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <toedieningsafspraak>
+               <identificatie value="MBH_200_Toedieningsweg_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <toedieningsafspraak_datum_tijd datatype="datetime" value="2022-01-01T09:15:00"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime" value="2022-01-01T00:00:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2022-01-08T23:59:59"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder value="d152e40" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d152e32" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf 1 jan 2022, tot en met 8 jan 2022, 2 maal per dag 1 druppel, In het rechter oog, oculair"/>
+                  <toedieningsweg code="7"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="oculair"/>
+                  <aanvullende_instructie code="OTH"
+                                          codeSystem="2.16.840.1.113883.5.1008"
+                                          displayName="overig"
+                                          originalText="In het rechter oog"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="303"
+                                    displayName="Druppel"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <toedieningsafspraak_aanvullende_informatie value="Gebruiksinstructie gegeven"/>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_200_Toedieningsweg_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+            <medicatieverstrekking>
+               <identificatie value="MBH_200_Toedieningsweg_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2022-01-01T09:15:00"/>
+               <verstrekker>
+                  <zorgaanbieder value="d152e40" datatype="reference"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid>
+                  <aantal value="1"/>
+                  <eenheid value="1"
+                           code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product value="d152e32" datatype="reference"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek>
+                  <identificatie value="MBH_200_Toedieningsweg_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="d152e32">
+               <product_code code="644781"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="SOFRADEX OORDRUPPELS"/>
+               <product_code code="80691"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
+               <product_code code="79804"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
+            </farmaceutisch_product>
+            <zorgaanbieder id="d152e40">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </sturen_afhandeling_medicatievoorschrift>
+   </data>
+</adaxml>
