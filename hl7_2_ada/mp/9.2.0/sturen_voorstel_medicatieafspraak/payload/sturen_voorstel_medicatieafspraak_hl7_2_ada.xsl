@@ -24,7 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="schemaFileString" as="xs:string?">../../hl7_2_ada/mp/9.2.0/sturen_voorstel_medicatieafspraak/ada_schemas/sturen_voorstel_medicatieafspraak.xsd</xsl:param>
     <!-- whether or not this hl7_2_ada conversion should deduplicate bouwstenen, such as products, health providers, health professionals, contact persons -->
     <xsl:param name="deduplicateAdaBouwstenen" as="xs:boolean?" select="false()"/>
-    <!--    <xsl:param name="deduplicateAdaBouwstenen" as="xs:boolean?" select="true()"/>-->
+<!--        <xsl:param name="deduplicateAdaBouwstenen" as="xs:boolean?" select="true()"/>-->
 
     <xsl:variable name="medicatiegegevensLijst" select="//hl7:organizer[hl7:code/@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4'] | //hl7:ClinicalDocument"/>
     <xsl:variable name="filename" select="tokenize(document-uri(/), '/')[last()]"/>
@@ -74,7 +74,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:attribute name="last-update-date" select="current-dateTime()"/>
                 </meta>
                 <data>
-                    <sturen_voorstel_medicatieafspraak app="mp-mp920" shortName="sturen_voorstel_medicatieafspraak" formName="sturen_voorstel_medicatieafspraak" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.274" transactionEffectiveDate="2021-05-05T13:11:50" versionDate="" prefix="mp-" language="nl-NL" title="{$theId}" id="{$theId}">
+                    <sturen_voorstel_medicatieafspraak app="mp-mp92" shortName="sturen_voorstel_medicatieafspraak" formName="sturen_voorstel_medicatieafspraak" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.325" transactionEffectiveDate="2022-02-07T00:00:00" versionDate="" prefix="mp-" language="nl-NL" title="{$theId}" id="{$theId}">
                         <xsl:for-each select="$patient">
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1_20210701">
                                 <xsl:with-param name="in" select="."/>
@@ -85,7 +85,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:variable name="component" select="//*[@moodCode = 'PRP'][hl7:code/@code = $maCode]"/>
                         <xsl:for-each-group select="$component" group-by="concat(hl7:entryRelationship/hl7:procedure[hl7:templateId = $templateId-medicamenteuze-behandeling]/hl7:id/@root, hl7:entryRelationship/hl7:procedure[hl7:templateId/@root = $templateId-medicamenteuze-behandeling]/hl7:id/@extension)">
                             <!-- medicamenteuze_behandeling -->
-                            <xsl:variable name="mbhAdaId" select="generate-id(current-group()[1]/hl7:entryRelationship/hl7:procedure[hl7:templateId/@root = $templateId-medicamenteuze-behandeling])"/>
+                            <xsl:variable name="mbhAdaIdtemp" as="xs:string?" select="generate-id(current-group()[1]/hl7:entryRelationship/hl7:procedure[hl7:templateId/@root = $templateId-medicamenteuze-behandeling])"/>
+                            <xsl:variable name="mbhAdaId">
+                                <xsl:choose>
+                                    <xsl:when test="string-length($mbhAdaIdtemp) = 0">mbh-1</xsl:when>
+                                    <xsl:otherwise><xsl:value-of select="$mbhAdaIdtemp"/></xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:variable>
                             <medicamenteuze_behandeling id="{$mbhAdaId}">
                                 <xsl:for-each select="hl7:entryRelationship/hl7:procedure[hl7:templateId/@root = $templateId-medicamenteuze-behandeling]/hl7:id">
                                     <xsl:variable name="elemName">identificatie</xsl:variable>

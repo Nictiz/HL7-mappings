@@ -160,7 +160,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="hl7:author/hl7:time" mode="uni-Verstrekkingsverzoek">
         <xsl:call-template name="handleTS">
             <xsl:with-param name="in" select="."/>
-            <xsl:with-param name="elemName">verstrekkingsverzoek_datum</xsl:with-param>
+            <xsl:with-param name="elemName">verstrekkingsverzoek_datum_tijd</xsl:with-param>
             <xsl:with-param name="vagueDate" select="true()"/>
             <xsl:with-param name="datatype">datetime</xsl:with-param>
         </xsl:call-template>

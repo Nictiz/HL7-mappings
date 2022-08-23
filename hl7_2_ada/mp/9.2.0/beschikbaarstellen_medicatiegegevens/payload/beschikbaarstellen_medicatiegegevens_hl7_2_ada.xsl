@@ -77,7 +77,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="$medicatiegegevens-lijst">
                         <xsl:call-template name="doGeneratedComment"/>
                         <xsl:variable name="patient" select="hl7:recordTarget/hl7:patientRole"/>
-                        <beschikbaarstellen_medicatiegegevens app="mp-mp920" shortName="beschikbaarstellen_medicatiegegevens" formName="medicatiegegevens" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.172" transactionEffectiveDate="2021-04-02T09:33:39" prefix="mp-" language="nl-NL" title="{$theId}" id="{$theId}">
+                        <beschikbaarstellen_medicatiegegevens app="mp-mp92" shortName="beschikbaarstellen_medicatiegegevens" formName="medicatiegegevens" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.301" transactionEffectiveDate="2022-02-07T00:00:00" prefix="mp-" language="nl-NL" title="{$theId}" id="{$theId}">
                             <xsl:for-each select="$patient">
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1_20210701">
                                     <xsl:with-param name="in" select="."/>
