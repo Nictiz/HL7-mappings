@@ -230,7 +230,7 @@
             <!-- Dossierstatus -->
             <statusCode code="{r002_dossierinformatie/dossier_status/@code}"/>
             <effectiveTime>
-                <high value="20200607213533"/>
+                <low nullFlavor="UNK"/>
             </effectiveTime>
             <!-- Kindgegevens -->
             <xsl:for-each select="r003_persoonsgegevens">
