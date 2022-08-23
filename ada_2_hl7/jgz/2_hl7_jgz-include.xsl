@@ -4508,7 +4508,7 @@
     <!-- Rubriek 18 Activiteit -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11018_20200527000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.6.10.100.10018"/>
+            <templateId root="2.16.840.1.113883.2.4.6.10.100.11018"/>
             <code code="R018" codeSystem="2.16.840.1.113883.2.4.4.40.391" displayName="Activiteit"/>
             <xsl:for-each select="vorm_activiteit">
                 <component>
