@@ -925,7 +925,7 @@
                             <xsl:when test="self::r023_hoofdhals">
                                 <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
                                 <pertinentInformation>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11023_20120801000000"/>
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11023_20200527000000"/>
                                 </pertinentInformation>
                             </xsl:when>
                             <xsl:when test="self::r024_romp">
@@ -3638,7 +3638,7 @@
     </xsl:template>
 
     <!-- Rubriek 23 Hoofd/hals -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11023_20120801000000">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11023_20200527000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.11023"/>
             <code code="R023" codeSystem="2.16.840.1.113883.2.4.4.40.391">
@@ -3647,7 +3647,7 @@
             <xsl:for-each select="hoofdhals_onderzocht">
                 <component>
                     <!-- Template :: obs Hoofd/hals onderzocht -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40167_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40167_20200527000000"/>
                 </component>
             </xsl:for-each>
             <xsl:for-each select="groep_g023_hoofd">
@@ -3659,7 +3659,7 @@
                         <xsl:for-each select="bijzonderheden_hoofd">
                             <component>
                                 <!-- Template :: obs Bijzonderheden hoofd -->
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40170_20120801000000"/>
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40170_20200527000000"/>
                             </component>
                         </xsl:for-each>
                     </groupCluster>
@@ -3668,55 +3668,55 @@
             <xsl:for-each select="bijzonderheden_uiterlijk_oor_rechts">
                 <component>
                     <!-- Template :: obs Bijzonderheden uiterlijk oor rechts -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40794_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40794_20200527000000"/>
                 </component>
             </xsl:for-each>
             <xsl:for-each select="bijzonderheden_uiterlijk_oor_links">
                 <component>
                     <!-- Template :: obs Bijzonderheden uiterlijk oor links -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40795_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40795_20200527000000"/>
                 </component>
             </xsl:for-each>
             <xsl:for-each select="bijzonderheden_trommelvlies_rechts">
                 <component>
                     <!-- Template :: obs Bijzonderheden trommelvlies rechts -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40174_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40174_20200527000000"/>
                 </component>
             </xsl:for-each>
             <xsl:for-each select="bijzonderheden_trommelvlies_links">
                 <component>
                     <!-- Template :: obs Bijzonderheden trommelvlies links -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40175_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40175_20200527000000"/>
                 </component>
             </xsl:for-each>
             <xsl:for-each select="bijzonderheden_neus">
                 <component>
                     <!-- Template :: obs Bijzonderheden neus -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40176_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40176_20200527000000"/>
                 </component>
             </xsl:for-each>
             <xsl:for-each select="bijzonderheden_mondtong">
                 <component>
                     <!-- Template :: obs Bijzonderheden mond/tong -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40796_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40796_20200527000000"/>
                 </component>
             </xsl:for-each>
             <xsl:for-each select="bijzonderheden_tonsillen">
                 <component>
                     <!-- Template :: obs Bijzonderheden tonsillen -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40184_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40184_20200527000000"/>
                 </component>
             </xsl:for-each>
             <xsl:for-each select="bijzonderheden_hals">
                 <component>
                     <!-- Template :: obs Bijzonderheden hals -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40797_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40797_20200527000000"/>
                 </component>
             </xsl:for-each>
             <xsl:for-each select="bijzonderheden_gebitkaak">
                 <component>
                     <!-- Template :: obs Bijzonderheden gebit/kaak -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40193_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40193_20200527000000"/>
                 </component>
             </xsl:for-each>
         </rubricCluster>
@@ -10750,7 +10750,7 @@
     </xsl:template>
 
     <!-- obs Hoofd/hals onderzocht -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40167_20120801000000">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40167_20200527000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40167"/>
             <code code="167" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -10763,20 +10763,20 @@
             <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
                     <!-\- Template :: Activities component1 NonBDSData -\->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20200527000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
                     <!-\- Template :: Activities component2 MetaData -\->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20200527000000"/>
                 </component2>
             </xsl:for-each>-->
         </observation>
     </xsl:template>
 
     <!-- obs Bijzonderheden hoofd -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40170_20120801000000">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40170_20200527000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40170"/>
             <code code="170" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -10796,20 +10796,20 @@
             <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
                     <!-\- Template :: Activities component1 NonBDSData -\->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20200527000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
                     <!-\- Template :: Activities component2 MetaData -\->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20200527000000"/>
                 </component2>
             </xsl:for-each>-->
         </observation>
     </xsl:template>
 
     <!-- obs Bijzonderheden trommelvlies rechts -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40174_20120801000000">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40174_20200527000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40174"/>
             <code code="174" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -10822,20 +10822,20 @@
             <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
                     <!-\- Template :: Activities component1 NonBDSData -\->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20200527000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
                     <!-\- Template :: Activities component2 MetaData -\->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20200527000000"/>
                 </component2>
             </xsl:for-each>-->
         </observation>
     </xsl:template>
 
     <!-- obs Bijzonderheden trommelvlies links -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40175_20120801000000">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40175_20200527000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40175"/>
             <code code="175" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -10848,20 +10848,20 @@
             <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
                     <!-\- Template :: Activities component1 NonBDSData -\->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20200527000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
                     <!-\- Template :: Activities component2 MetaData -\->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20200527000000"/>
                 </component2>
             </xsl:for-each>-->
         </observation>
     </xsl:template>
 
     <!-- obs Bijzonderheden neus -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40176_20120801000000">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40176_20200527000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40176"/>
             <code code="176" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -10874,13 +10874,13 @@
             <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
                     <!-\- Template :: Activities component1 NonBDSData -\->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20200527000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
                     <!-\- Template :: Activities component2 MetaData -\->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20200527000000"/>
                 </component2>
             </xsl:for-each>-->
         </observation>
@@ -10913,7 +10913,7 @@
     </xsl:template>
 
     <!-- obs Bijzonderheden tonsillen -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40184_20120801000000">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40184_20200527000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40184"/>
             <code code="184" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -10926,13 +10926,13 @@
             <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
                     <!-\- Template :: Activities component1 NonBDSData -\->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20200527000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
                     <!-\- Template :: Activities component2 MetaData -\->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20200527000000"/>
                 </component2>
             </xsl:for-each>-->
         </observation>
@@ -10991,7 +10991,7 @@
     </xsl:template>
 
     <!-- obs Bijzonderheden gebit/kaak -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40193_20120801000000">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40193_20200527000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40193"/>
             <code code="193" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -11004,13 +11004,13 @@
             <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
                     <!-\- Template :: Activities component1 NonBDSData -\->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20200527000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
                     <!-\- Template :: Activities component2 MetaData -\->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20200527000000"/>
                 </component2>
             </xsl:for-each>-->
         </observation>
@@ -14259,7 +14259,7 @@
     </xsl:template>
 
     <!-- obs Bijzonderheden uiterlijk oor rechts -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40794_20120801000000">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40794_20200527000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40794"/>
             <code code="794" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -14272,20 +14272,20 @@
             <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
                     <!-\- Template :: Activities component1 NonBDSData -\->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20200527000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
                     <!-\- Template :: Activities component2 MetaData -\->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20200527000000"/>
                 </component2>
             </xsl:for-each>-->
         </observation>
     </xsl:template>
 
     <!-- obs Bijzonderheden uiterlijk oor links -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40795_20120801000000">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40795_20200527000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40795"/>
             <code code="795" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -14298,20 +14298,20 @@
             <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
                     <!-\- Template :: Activities component1 NonBDSData -\->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20200527000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
                     <!-\- Template :: Activities component2 MetaData -\->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20200527000000"/>
                 </component2>
             </xsl:for-each>-->
         </observation>
     </xsl:template>
 
     <!-- obs Bijzonderheden mond/tong -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40796_20120801000000">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40796_20200527000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40796"/>
             <code code="796" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -14324,20 +14324,20 @@
             <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
                     <!-\- Template :: Activities component1 NonBDSData -\->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20200527000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
                     <!-\- Template :: Activities component2 MetaData -\->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20200527000000"/>
                 </component2>
             </xsl:for-each>-->
         </observation>
     </xsl:template>
 
     <!-- obs Bijzonderheden hals -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40797_20120801000000">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40797_20200527000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40797"/>
             <code code="797" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -14350,13 +14350,13 @@
             <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component1>
                     <!-\- Template :: Activities component1 NonBDSData -\->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20200527000000"/>
                 </component1>
             </xsl:for-each>
             <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
                 <component2>
                     <!-\- Template :: Activities component2 MetaData -\->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20120801000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20200527000000"/>
                 </component2>
             </xsl:for-each>-->
         </observation>
