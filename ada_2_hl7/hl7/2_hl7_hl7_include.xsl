@@ -1013,15 +1013,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc/>
         <xd:param name="xsiType"/>
         <xd:param name="elemName"/>
+        <xd:param name="nullFlavor"/>
     </xd:doc>
     <xsl:template name="makeSTValue">
         <xsl:param name="xsiType">ST</xsl:param>
         <xsl:param name="elemName">value</xsl:param>
+        <xsl:param name="nullFlavor" select="@nullFlavor"/>
         <xsl:element name="{$elemName}">
             <xsl:if test="string-length($xsiType) gt 0">
                 <xsl:attribute name="xsi:type" select="$xsiType"/>
             </xsl:if>
             <xsl:value-of select="@value"/>
+            <xsl:if test="$nullFlavor">
+                <xsl:attribute name="nullFlavor" select="$nullFlavor"/>
+            </xsl:if>
         </xsl:element>
     </xsl:template>
 
