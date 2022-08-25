@@ -16,7 +16,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet xmlns="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:util="urn:hl7:utilities" xmlns:uuid="http://www.uuid.org" version="2.0" exclude-result-prefixes="#all">
 
-    <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
+    <xd:doc>
+        <xd:desc>Whether to generate a user instruction description text from the structured information, typically only needed for test instances.</xd:desc>
+    </xd:doc>
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>
 
     <xd:doc>
