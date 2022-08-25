@@ -4,7 +4,7 @@
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
    </meta>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-      <valueString value="Vanaf 23 sep 2021, tot en met 21 okt 2021, 1 maal per dag 10 millimeter, oraal"/>
+      <valueString value="Vanaf T - 100 dagen, tot en met T - 72 dagen, 1 maal per dag 10 millimeter, oraal"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
       <valueReference>
@@ -52,10 +52,10 @@
       <display value="Patient, B. XXX_Blik"/>
    </subject>
    <effectivePeriod>
-      <start value="2021-09-23T00:00:00+02:00"/>
-      <end value="2021-10-21T23:59:59+02:00"/>
+      <start value="${DATE, T, D, -100}T00:00:00+02:00"/>
+      <end value="${DATE, T, D, -72}T23:59:59+02:00"/>
    </effectivePeriod>
-   <dateAsserted value="2021-10-25T12:13:55+02:00"/>
+   <dateAsserted value="${DATE, T, D, -68}T12:13:55+02:00"/>
    <derivedFrom>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
          <valueCodeableConcept>

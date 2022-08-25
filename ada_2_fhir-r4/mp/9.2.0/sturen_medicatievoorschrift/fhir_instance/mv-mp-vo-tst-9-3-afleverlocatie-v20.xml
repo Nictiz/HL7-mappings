@@ -17,12 +17,12 @@
                </tag>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 2 jan 2022, tot en met 11 jan 2022, 3 maal per dag 1 stuk, Oraal"/>
+               <valueString value="Vanaf T + 1 dag, tot en met T + 10 dagen, 3 maal per dag 1 stuk, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="2022-01-02T00:00:00+01:00"/>
-                  <end value="2022-01-11T23:59:59+01:00"/>
+                  <start value="${DATE, T, D, +1}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, +10}T23:59:59+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -54,7 +54,7 @@
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
-            <authoredOn value="2022-01-01T11:07:00+01:00"/>
+            <authoredOn value="${DATE, T, D, +0}T11:07:00+02:00"/>
             <requester>
                <reference value="urn:uuid:c33f1644-6a95-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
@@ -140,7 +140,7 @@
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
-            <authoredOn value="2022-01-01T11:07:00+01:00"/>
+            <authoredOn value="${DATE, T, D, +0}T11:07:00+02:00"/>
             <requester>
                <reference value="urn:uuid:c33f1644-6a95-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>

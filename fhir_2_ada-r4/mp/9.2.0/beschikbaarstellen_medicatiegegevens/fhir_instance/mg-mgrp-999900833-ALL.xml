@@ -2,552 +2,7 @@
    <id value="mg-mgrp-999900833-ALL"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f0028-6a95-11ec-0000-020000000000"/>
-      <resource>
-         <MedicationRequest>
-            <id value="mp-MedAgr--MBH200logistiekeverbruiksperiodestarteindMA"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 1 jan 2022, tot en met 1 jan 2023, 1 maal per dag 1 stuk, Oraal"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
-               <valuePeriod>
-                  <start value="2022-01-01T00:00:00+01:00"/>
-                  <end value="2023-01-01T23:59:59+01:00"/>
-               </valuePeriod>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_200_logistiekeverbruiksperiode_start_eind"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_200_logistiekeverbruiksperiode_start_eind_MA"/>
-            </identifier>
-            <status value="unknown"/>
-            <intent value="order"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="33633005"/>
-                  <display value="voorschrijven van geneesmiddel"/>
-               </coding>
-            </category>
-            <medicationReference>
-               <reference value="urn:uuid:c33f0280-6a95-11ec-0000-020000000000"/>
-               <type value="Medication"/>
-               <display value="Acetylsalicylzuur tabletmsr 100mg"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:c33f000a-6a95-11ec-0000-020000000000"/>
-               <type value="Patient"/>
-               <display value="Patient, M. XXX_Nederveen"/>
-            </subject>
-            <authoredOn value="2022-01-01T11:00:00+01:00"/>
-            <requester>
-               <reference value="urn:uuid:c33f03ac-6a95-11ec-0000-020000000000"/>
-               <type value="PractitionerRole"/>
-               <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
-            </requester>
-            <dosageInstruction>
-               <timing>
-                  <repeat>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="Oraal"/>
-                  </coding>
-               </route>
-               <doseAndRate>
-                  <doseQuantity>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
-                        <valueQuantity>
-                           <value value="1"/>
-                           <unit value="stuk"/>
-                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                           <code value="245"/>
-                        </valueQuantity>
-                     </extension>
-                     <value value="1"/>
-                     <unit value="stuk"/>
-                     <system value="http://unitsofmeasure.org"/>
-                     <code value="1"/>
-                  </doseQuantity>
-               </doseAndRate>
-            </dosageInstruction>
-         </MedicationRequest>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationRequest"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:c33f0082-6a95-11ec-0000-020000000000"/>
-      <resource>
-         <MedicationRequest>
-            <id value="mp-MedAgr--MBH200herhalingenMA"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 12 nov 2021, 1 maal per dag 1 stuk, Oraal"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
-               <valuePeriod>
-                  <start value="2021-11-12T00:00:00+01:00"/>
-               </valuePeriod>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_200_herhalingen"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_200_herhalingen_MA"/>
-            </identifier>
-            <status value="unknown"/>
-            <intent value="order"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="33633005"/>
-                  <display value="voorschrijven van geneesmiddel"/>
-               </coding>
-            </category>
-            <medicationReference>
-               <reference value="urn:uuid:c33f02bc-6a95-11ec-0000-020000000000"/>
-               <type value="Medication"/>
-               <display value="FUROSEMIDE 40MG TABLET"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:c33f000a-6a95-11ec-0000-020000000000"/>
-               <type value="Patient"/>
-               <display value="Patient, M. XXX_Nederveen"/>
-            </subject>
-            <authoredOn value="2021-11-12T11:05:00+01:00"/>
-            <requester>
-               <reference value="urn:uuid:c33f03ac-6a95-11ec-0000-020000000000"/>
-               <type value="PractitionerRole"/>
-               <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
-            </requester>
-            <dosageInstruction>
-               <timing>
-                  <repeat>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="Oraal"/>
-                  </coding>
-               </route>
-               <doseAndRate>
-                  <doseQuantity>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
-                        <valueQuantity>
-                           <value value="1"/>
-                           <unit value="stuk"/>
-                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                           <code value="245"/>
-                        </valueQuantity>
-                     </extension>
-                     <value value="1"/>
-                     <unit value="stuk"/>
-                     <system value="http://unitsofmeasure.org"/>
-                     <code value="1"/>
-                  </doseQuantity>
-               </doseAndRate>
-            </dosageInstruction>
-         </MedicationRequest>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationRequest"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:c33f00be-6a95-11ec-0000-020000000000"/>
-      <resource>
-         <MedicationRequest>
-            <id value="mp-MedAgr--MBH200afleverlocatieMA"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 2 jan 2022, tot en met 11 jan 2022, 3 maal per dag 1 stuk, Oraal"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
-               <valuePeriod>
-                  <start value="2022-01-02T00:00:00+01:00"/>
-                  <end value="2022-01-11T23:59:59+01:00"/>
-               </valuePeriod>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_200_afleverlocatie"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_200_afleverlocatie_MA"/>
-            </identifier>
-            <status value="unknown"/>
-            <intent value="order"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="33633005"/>
-                  <display value="voorschrijven van geneesmiddel"/>
-               </coding>
-            </category>
-            <medicationReference>
-               <reference value="urn:uuid:c33f02da-6a95-11ec-0000-020000000000"/>
-               <type value="Medication"/>
-               <display value="FENETICILLINE CAPSULE 500MG"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:c33f000a-6a95-11ec-0000-020000000000"/>
-               <type value="Patient"/>
-               <display value="Patient, M. XXX_Nederveen"/>
-            </subject>
-            <authoredOn value="2022-01-01T11:07:00+01:00"/>
-            <requester>
-               <reference value="urn:uuid:c33f03ac-6a95-11ec-0000-020000000000"/>
-               <type value="PractitionerRole"/>
-               <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
-            </requester>
-            <dosageInstruction>
-               <timing>
-                  <repeat>
-                     <frequency value="3"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="Oraal"/>
-                  </coding>
-               </route>
-               <doseAndRate>
-                  <doseQuantity>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
-                        <valueQuantity>
-                           <value value="1"/>
-                           <unit value="stuk"/>
-                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                           <code value="245"/>
-                        </valueQuantity>
-                     </extension>
-                     <value value="1"/>
-                     <unit value="stuk"/>
-                     <system value="http://unitsofmeasure.org"/>
-                     <code value="1"/>
-                  </doseQuantity>
-               </doseAndRate>
-            </dosageInstruction>
-         </MedicationRequest>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationRequest"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:c33f0154-6a95-11ec-0000-020000000000"/>
-      <resource>
-         <MedicationRequest>
-            <id value="mp-MedAgr--MBH200logistiekeverbruiksperiodeeindMA"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 23 dec 2021, tot en met 20 jul 2022, 1 maal per dag 1 stuk, Oraal"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
-               <valuePeriod>
-                  <start value="2021-12-23T00:00:00+01:00"/>
-                  <end value="2022-07-20T23:59:59+02:00"/>
-               </valuePeriod>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_200_logistiekeverbruiksperiode_eind"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_200_logistiekeverbruiksperiode_eind_MA"/>
-            </identifier>
-            <status value="unknown"/>
-            <intent value="order"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="33633005"/>
-                  <display value="voorschrijven van geneesmiddel"/>
-               </coding>
-            </category>
-            <medicationReference>
-               <reference value="urn:uuid:c33f0316-6a95-11ec-0000-020000000000"/>
-               <type value="Medication"/>
-               <display value="MIZOLASTINE TABLET MGA 10MG"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:c33f000a-6a95-11ec-0000-020000000000"/>
-               <type value="Patient"/>
-               <display value="Patient, M. XXX_Nederveen"/>
-            </subject>
-            <authoredOn value="2021-12-23T11:01:00+01:00"/>
-            <requester>
-               <reference value="urn:uuid:c33f03ac-6a95-11ec-0000-020000000000"/>
-               <type value="PractitionerRole"/>
-               <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
-            </requester>
-            <dosageInstruction>
-               <timing>
-                  <repeat>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="Oraal"/>
-                  </coding>
-               </route>
-               <doseAndRate>
-                  <doseQuantity>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
-                        <valueQuantity>
-                           <value value="1"/>
-                           <unit value="stuk"/>
-                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                           <code value="245"/>
-                        </valueQuantity>
-                     </extension>
-                     <value value="1"/>
-                     <unit value="stuk"/>
-                     <system value="http://unitsofmeasure.org"/>
-                     <code value="1"/>
-                  </doseQuantity>
-               </doseAndRate>
-            </dosageInstruction>
-         </MedicationRequest>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationRequest"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:c33f01cc-6a95-11ec-0000-020000000000"/>
-      <resource>
-         <MedicationRequest>
-            <id value="mp-MedAgr--MBH200logistiekeverbruiksperiodeduurdagenMA"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 1 jan 2022, tot en met 31 mei 2022, 1 maal per dag 1 stuk, Oraal"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
-               <valuePeriod>
-                  <start value="2022-01-01T00:00:00+01:00"/>
-                  <end value="2022-05-31T23:59:59+02:00"/>
-               </valuePeriod>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_200_logistiekeverbruiksperiode_duur_dagen"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_200_logistiekeverbruiksperiode_duur_dagen_MA"/>
-            </identifier>
-            <status value="unknown"/>
-            <intent value="order"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="33633005"/>
-                  <display value="voorschrijven van geneesmiddel"/>
-               </coding>
-            </category>
-            <medicationReference>
-               <reference value="urn:uuid:c33f0352-6a95-11ec-0000-020000000000"/>
-               <type value="Medication"/>
-               <display value="PARACETAMOL 500MG TABLET"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:c33f000a-6a95-11ec-0000-020000000000"/>
-               <type value="Patient"/>
-               <display value="Patient, M. XXX_Nederveen"/>
-            </subject>
-            <authoredOn value="2022-01-01T11:02:00+01:00"/>
-            <requester>
-               <reference value="urn:uuid:c33f03ac-6a95-11ec-0000-020000000000"/>
-               <type value="PractitionerRole"/>
-               <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
-            </requester>
-            <dosageInstruction>
-               <timing>
-                  <repeat>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="Oraal"/>
-                  </coding>
-               </route>
-               <doseAndRate>
-                  <doseQuantity>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
-                        <valueQuantity>
-                           <value value="1"/>
-                           <unit value="stuk"/>
-                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                           <code value="245"/>
-                        </valueQuantity>
-                     </extension>
-                     <value value="1"/>
-                     <unit value="stuk"/>
-                     <system value="http://unitsofmeasure.org"/>
-                     <code value="1"/>
-                  </doseQuantity>
-               </doseAndRate>
-            </dosageInstruction>
-         </MedicationRequest>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationRequest"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:c33f0244-6a95-11ec-0000-020000000000"/>
-      <resource>
-         <MedicationRequest>
-            <id value="mp-MedAgr--MBH200financieleindicatiecodeMA"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 1 jan 2022, tot en met 14 jan 2022, 4 maal per dag 1 stuk, oraal"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
-               <valuePeriod>
-                  <start value="2022-01-01T00:00:00+01:00"/>
-                  <end value="2022-01-14T23:59:59+01:00"/>
-               </valuePeriod>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_200_financiele_indicatiecode"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_200_financiele_indicatiecode_MA"/>
-            </identifier>
-            <status value="unknown"/>
-            <intent value="order"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="33633005"/>
-                  <display value="voorschrijven van geneesmiddel"/>
-               </coding>
-            </category>
-            <medicationReference>
-               <reference value="urn:uuid:c33f038e-6a95-11ec-0000-020000000000"/>
-               <type value="Medication"/>
-               <display value="OXAZEPAM 10MG TABLET"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:c33f000a-6a95-11ec-0000-020000000000"/>
-               <type value="Patient"/>
-               <display value="Patient, M. XXX_Nederveen"/>
-            </subject>
-            <authoredOn value="2022-01-01T11:35:00+01:00"/>
-            <requester>
-               <reference value="urn:uuid:c33f03ac-6a95-11ec-0000-020000000000"/>
-               <type value="PractitionerRole"/>
-               <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
-            </requester>
-            <dosageInstruction>
-               <timing>
-                  <repeat>
-                     <frequency value="4"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="oraal"/>
-                  </coding>
-               </route>
-               <doseAndRate>
-                  <doseQuantity>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
-                        <valueQuantity>
-                           <value value="1"/>
-                           <unit value="stuk"/>
-                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                           <code value="245"/>
-                        </valueQuantity>
-                     </extension>
-                     <value value="1"/>
-                     <unit value="stuk"/>
-                     <system value="http://unitsofmeasure.org"/>
-                     <code value="1"/>
-                  </doseQuantity>
-               </doseAndRate>
-            </dosageInstruction>
-         </MedicationRequest>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationRequest"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:c33f0046-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f06fe-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="mp-DspReq--MBH200logistiekeverbruiksperiodestarteindVV"/>
@@ -574,23 +29,23 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f0280-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f082a-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="Acetylsalicylzuur tabletmsr 100mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f000a-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f06e0-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <authoredOn value="2022-01-01T11:00:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:c33f03ac-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f0938-6a95-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:c33f0424-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f09b0-6a95-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -616,7 +71,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f00a0-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f071c-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="mp-DspReq--MBH200herhalingenVV"/>
@@ -643,23 +98,23 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f02bc-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f0848-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="FUROSEMIDE 40MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f000a-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f06e0-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <authoredOn value="2021-11-12T11:05:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:c33f03ac-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f0938-6a95-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:c33f0424-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f09b0-6a95-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -696,7 +151,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f00dc-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f073a-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="mp-DspReq--MBH200afleverlocatieVV"/>
@@ -723,23 +178,23 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f02da-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f0866-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="FENETICILLINE CAPSULE 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f000a-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f06e0-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <authoredOn value="2022-01-01T11:07:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:c33f03ac-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f0938-6a95-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:c33f0424-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f09b0-6a95-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -754,7 +209,7 @@
             <dispenseRequest>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-DispenseRequest.DispenseLocation">
                   <valueReference>
-                     <reference value="urn:uuid:c33f00fa-6a95-11ec-0000-020000000000"/>
+                     <reference value="urn:uuid:c33f0758-6a95-11ec-0000-020000000000"/>
                      <type value="Location"/>
                      <display value="afleverlocatie"/>
                   </valueReference>
@@ -782,7 +237,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0172-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0794-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="mp-DspReq--MBH200logistiekeverbruiksperiodeeindVV"/>
@@ -809,23 +264,23 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f0316-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f08a2-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="MIZOLASTINE TABLET MGA 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f000a-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f06e0-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <authoredOn value="2021-12-23T11:01:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:c33f03ac-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f0938-6a95-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:c33f0424-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f09b0-6a95-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -850,7 +305,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f01ea-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f07d0-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="mp-DspReq--MBH200logistiekeverbruiksperiodeduurdagenVV"/>
@@ -877,23 +332,23 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f0352-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f08de-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="PARACETAMOL 500MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f000a-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f06e0-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <authoredOn value="2022-01-01T11:02:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:c33f03ac-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f0938-6a95-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:c33f0424-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f09b0-6a95-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -925,7 +380,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0262-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f080c-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <id value="mp-DspReq--MBH200financieleindicatiecodeVV"/>
@@ -960,23 +415,23 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f038e-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f091a-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="OXAZEPAM 10MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f000a-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f06e0-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <authoredOn value="2022-01-01T11:35:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:c33f03ac-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f0938-6a95-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:c33f0424-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f09b0-6a95-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -1012,424 +467,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0064-6a95-11ec-0000-020000000000"/>
-      <resource>
-         <MedicationDispense>
-            <id value="mp-AdmAgr--MBH200logistiekeverbruiksperiodestarteindTA"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
-               <valueDateTime value="2022-01-01T12:00:00+01:00"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 1 jan 2022, tot en met 1 jan 2023, 1 maal per dag 1 stuk, Oraal"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
-               <valuePeriod>
-                  <start value="2022-01-01T00:00:00+01:00"/>
-                  <end value="2023-01-01T23:59:59+01:00"/>
-               </valuePeriod>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_200_logistiekeverbruiksperiode_start_eind"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <value value="MBH_200_logistiekeverbruiksperiode_start_eind_TA"/>
-            </identifier>
-            <status value="unknown"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="422037009"/>
-                  <display value="toedieningsafspraak"/>
-               </coding>
-            </category>
-            <medicationReference>
-               <reference value="urn:uuid:c33f029e-6a95-11ec-0000-020000000000"/>
-               <type value="Medication"/>
-               <display value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:c33f000a-6a95-11ec-0000-020000000000"/>
-               <type value="Patient"/>
-               <display value="Patient, M. XXX_Nederveen"/>
-            </subject>
-            <performer>
-               <actor>
-                  <reference value="urn:uuid:c33f0424-6a95-11ec-0000-020000000000"/>
-                  <type value="Organization"/>
-                  <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
-               </actor>
-            </performer>
-            <authorizingPrescription>
-               <type value="MedicationRequest"/>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_200_logistiekeverbruiksperiode_start_eind_MA"/>
-               </identifier>
-               <display value="relatie naar medicatieafspraak met identificatie: MBH_200_logistiekeverbruiksperiode_start_eind_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-            </authorizingPrescription>
-            <dosageInstruction>
-               <timing>
-                  <repeat>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="Oraal"/>
-                  </coding>
-               </route>
-               <doseAndRate>
-                  <doseQuantity>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
-                        <valueQuantity>
-                           <value value="1"/>
-                           <unit value="stuk"/>
-                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                           <code value="245"/>
-                        </valueQuantity>
-                     </extension>
-                     <value value="1"/>
-                     <unit value="stuk"/>
-                     <system value="http://unitsofmeasure.org"/>
-                     <code value="1"/>
-                  </doseQuantity>
-               </doseAndRate>
-            </dosageInstruction>
-         </MedicationDispense>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationDispense"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:c33f0118-6a95-11ec-0000-020000000000"/>
-      <resource>
-         <MedicationDispense>
-            <id value="mp-AdmAgr--MBH200afleverlocatieTA"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
-               <valueDateTime value="2022-01-01T12:07:00+01:00"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 2 jan 2022, tot en met 11 jan 2022, 3 maal per dag 1 stuk, Oraal"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
-               <valuePeriod>
-                  <start value="2022-01-02T00:00:00+01:00"/>
-                  <end value="2022-01-11T23:59:59+01:00"/>
-               </valuePeriod>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_200_afleverlocatie"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <value value="MBH_200_afleverlocatie_TA"/>
-            </identifier>
-            <status value="unknown"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="422037009"/>
-                  <display value="toedieningsafspraak"/>
-               </coding>
-            </category>
-            <medicationReference>
-               <reference value="urn:uuid:c33f02f8-6a95-11ec-0000-020000000000"/>
-               <type value="Medication"/>
-               <display value="BROXIL CAPSULE 500MG"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:c33f000a-6a95-11ec-0000-020000000000"/>
-               <type value="Patient"/>
-               <display value="Patient, M. XXX_Nederveen"/>
-            </subject>
-            <performer>
-               <actor>
-                  <reference value="urn:uuid:c33f0424-6a95-11ec-0000-020000000000"/>
-                  <type value="Organization"/>
-                  <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
-               </actor>
-            </performer>
-            <authorizingPrescription>
-               <type value="MedicationRequest"/>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_200_afleverlocatie_MA"/>
-               </identifier>
-               <display value="relatie naar medicatieafspraak met identificatie: MBH_200_afleverlocatie_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-            </authorizingPrescription>
-            <dosageInstruction>
-               <timing>
-                  <repeat>
-                     <frequency value="3"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="Oraal"/>
-                  </coding>
-               </route>
-               <doseAndRate>
-                  <doseQuantity>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
-                        <valueQuantity>
-                           <value value="1"/>
-                           <unit value="stuk"/>
-                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                           <code value="245"/>
-                        </valueQuantity>
-                     </extension>
-                     <value value="1"/>
-                     <unit value="stuk"/>
-                     <system value="http://unitsofmeasure.org"/>
-                     <code value="1"/>
-                  </doseQuantity>
-               </doseAndRate>
-            </dosageInstruction>
-         </MedicationDispense>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationDispense"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:c33f0190-6a95-11ec-0000-020000000000"/>
-      <resource>
-         <MedicationDispense>
-            <id value="mp-AdmAgr--MBH200logistiekeverbruiksperiodeeindTA"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
-               <valueDateTime value="2021-12-23T12:01:00+01:00"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 23 dec 2021, tot en met 20 jul 2022, 1 maal per dag 1 stuk, Oraal"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
-               <valuePeriod>
-                  <start value="2021-12-23T00:00:00+01:00"/>
-                  <end value="2022-07-20T23:59:59+02:00"/>
-               </valuePeriod>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_200_logistiekeverbruiksperiode_eind"/>
-               </valueIdentifier>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.DistributionForm">
-               <valueCodeableConcept>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8"/>
-                     <code value="1"/>
-                     <display value="GDS"/>
-                  </coding>
-               </valueCodeableConcept>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <value value="MBH_200_logistiekeverbruiksperiode_eind_TA"/>
-            </identifier>
-            <status value="unknown"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="422037009"/>
-                  <display value="toedieningsafspraak"/>
-               </coding>
-            </category>
-            <medicationReference>
-               <reference value="urn:uuid:c33f0334-6a95-11ec-0000-020000000000"/>
-               <type value="Medication"/>
-               <display value="MIZOLLEN TABLET MGA 10MG"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:c33f000a-6a95-11ec-0000-020000000000"/>
-               <type value="Patient"/>
-               <display value="Patient, M. XXX_Nederveen"/>
-            </subject>
-            <performer>
-               <actor>
-                  <reference value="urn:uuid:c33f0424-6a95-11ec-0000-020000000000"/>
-                  <type value="Organization"/>
-                  <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
-               </actor>
-            </performer>
-            <authorizingPrescription>
-               <type value="MedicationRequest"/>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_200_logistiekeverbruiksperiode_eind_MA"/>
-               </identifier>
-               <display value="relatie naar medicatieafspraak met identificatie: MBH_200_logistiekeverbruiksperiode_eind_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-            </authorizingPrescription>
-            <dosageInstruction>
-               <timing>
-                  <repeat>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="Oraal"/>
-                  </coding>
-               </route>
-               <doseAndRate>
-                  <doseQuantity>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
-                        <valueQuantity>
-                           <value value="1"/>
-                           <unit value="stuk"/>
-                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                           <code value="245"/>
-                        </valueQuantity>
-                     </extension>
-                     <value value="1"/>
-                     <unit value="stuk"/>
-                     <system value="http://unitsofmeasure.org"/>
-                     <code value="1"/>
-                  </doseQuantity>
-               </doseAndRate>
-            </dosageInstruction>
-         </MedicationDispense>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationDispense"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:c33f0208-6a95-11ec-0000-020000000000"/>
-      <resource>
-         <MedicationDispense>
-            <id value="mp-AdmAgr--MBH200logistiekeverbruiksperiodeduurdagenTA"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
-               <valueDateTime value="2022-01-01T12:02:00+01:00"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 1 jan 2022, tot en met 31 mei 2022, 1 maal per dag 1 stuk, Oraal"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
-               <valuePeriod>
-                  <start value="2022-01-01T00:00:00+01:00"/>
-                  <end value="2022-05-31T23:59:59+02:00"/>
-               </valuePeriod>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_200_logistiekeverbruiksperiode_duur_dagen"/>
-               </valueIdentifier>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <value value="MBH_200_logistiekeverbruiksperiode_duur_dagen_TA"/>
-            </identifier>
-            <status value="unknown"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="422037009"/>
-                  <display value="toedieningsafspraak"/>
-               </coding>
-            </category>
-            <medicationReference>
-               <reference value="urn:uuid:c33f0370-6a95-11ec-0000-020000000000"/>
-               <type value="Medication"/>
-               <display value="PARACETAMOL PCH TABLET 500MG"/>
-            </medicationReference>
-            <subject>
-               <reference value="urn:uuid:c33f000a-6a95-11ec-0000-020000000000"/>
-               <type value="Patient"/>
-               <display value="Patient, M. XXX_Nederveen"/>
-            </subject>
-            <performer>
-               <actor>
-                  <reference value="urn:uuid:c33f0424-6a95-11ec-0000-020000000000"/>
-                  <type value="Organization"/>
-                  <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
-               </actor>
-            </performer>
-            <authorizingPrescription>
-               <type value="MedicationRequest"/>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_200_logistiekeverbruiksperiode_duur_dagen_MA"/>
-               </identifier>
-               <display value="relatie naar medicatieafspraak met identificatie: MBH_200_logistiekeverbruiksperiode_duur_dagen_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-            </authorizingPrescription>
-            <dosageInstruction>
-               <timing>
-                  <repeat>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </timing>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="9"/>
-                     <display value="Oraal"/>
-                  </coding>
-               </route>
-               <doseAndRate>
-                  <doseQuantity>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
-                        <valueQuantity>
-                           <value value="1"/>
-                           <unit value="stuk"/>
-                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                           <code value="245"/>
-                        </valueQuantity>
-                     </extension>
-                     <value value="1"/>
-                     <unit value="stuk"/>
-                     <system value="http://unitsofmeasure.org"/>
-                     <code value="1"/>
-                  </doseQuantity>
-               </doseAndRate>
-            </dosageInstruction>
-         </MedicationDispense>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationDispense"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:c33f0136-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0776-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="mp-MedDsp--MBH200afleverlocatieMVE"/>
@@ -1458,18 +496,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f02f8-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f0884-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="BROXIL CAPSULE 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f000a-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f06e0-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:c33f0424-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:c33f09b0-6a95-11ec-0000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -1498,7 +536,7 @@
             </quantity>
             <whenHandedOver value="2022-01-01T12:07:00+01:00"/>
             <destination>
-               <reference value="urn:uuid:c33f00fa-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f0758-6a95-11ec-0000-020000000000"/>
                <type value="Location"/>
                <display value="afleverlocatie"/>
             </destination>
@@ -1510,7 +548,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f01ae-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f07b2-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="mp-MedDsp--MBH200logistiekeverbruiksperiodeeindMVE"/>
@@ -1545,18 +583,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f0334-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f08c0-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="MIZOLLEN TABLET MGA 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f000a-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f06e0-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:c33f0424-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:c33f09b0-6a95-11ec-0000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -1592,7 +630,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0226-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f07ee-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <id value="mp-MedDsp--MBH200logistiekeverbruiksperiodeduurdagenMVE"/>
@@ -1618,18 +656,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f0370-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f08fc-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="PARACETAMOL PCH TABLET 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f000a-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f06e0-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:c33f0424-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:c33f09b0-6a95-11ec-0000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -1671,7 +709,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f000a-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f06e0-6a95-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <id value="nl-core-Patient--M-XXX-Nederveen"/>
@@ -1719,7 +757,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f03ac-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0938-6a95-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <id value="nl-core-HPrf-PracRol--000001112-0100-00001111"/>
@@ -1727,12 +765,12 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:c33f03ca-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f0956-6a95-11ec-0000-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Bertine van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:c33f03e8-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f0974-6a95-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -1752,7 +790,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f03ca-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0956-6a95-11ec-0000-020000000000"/>
       <resource>
          <Practitioner>
             <id value="nl-core-HPrf-Prac--2165281100731-000001112"/>
@@ -1788,7 +826,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f03e8-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0974-6a95-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <id value="nl-core-HPrv-Org--2165281100733-00001111"/>
@@ -1830,7 +868,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0424-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f09b0-6a95-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <id value="nl-core-HPrv-Org--2165281100733-01236578"/>
@@ -1850,7 +888,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0280-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f082a-6a95-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <id value="nl-core-PhPrd--216840111388324410-49484"/>
@@ -1879,41 +917,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f029e-6a95-11ec-0000-020000000000"/>
-      <resource>
-         <Medication>
-            <id value="nl-core-PhPrd--21684011138832447-1110837"/>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="1110837"/>
-                  <display value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="49484"/>
-                  <display value="Acetylsalicylzuur tabletmsr 100mg"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="103039"/>
-                  <display value="Acetylsalicylzuur tabletmsr 100mg"/>
-               </coding>
-               <text value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
-            </code>
-         </Medication>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:c33f02bc-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0848-6a95-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <id value="nl-core-PhPrd--216840111388324410-5967"/>
@@ -1942,7 +946,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f02da-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0866-6a95-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <id value="nl-core-PhPrd--216840111388324410-17205"/>
@@ -1971,7 +975,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f02f8-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0884-6a95-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <id value="nl-core-PhPrd--21684011138832447-425087"/>
@@ -2005,7 +1009,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0316-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f08a2-6a95-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <id value="nl-core-PhPrd--216840111388324410-48291"/>
@@ -2034,7 +1038,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0334-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f08c0-6a95-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <id value="nl-core-PhPrd--21684011138832447-1101099"/>
@@ -2068,7 +1072,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0352-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f08de-6a95-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <id value="nl-core-PhPrd--216840111388324410-67903"/>
@@ -2097,7 +1101,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0370-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f08fc-6a95-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <id value="nl-core-PhPrd--21684011138832447-768901"/>
@@ -2131,7 +1135,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f038e-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f091a-6a95-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <id value="nl-core-PhPrd--216840111388324410-353"/>
@@ -2160,7 +1164,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f00fa-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0758-6a95-11ec-0000-020000000000"/>
       <resource>
          <Location>
             <id value="nl-core-Dummy--Dorpsrand2001256ZZOnsDorp"/>

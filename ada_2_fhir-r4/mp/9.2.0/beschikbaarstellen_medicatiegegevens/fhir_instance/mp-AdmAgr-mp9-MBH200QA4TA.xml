@@ -4,15 +4,15 @@
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
    </meta>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
-      <valueDateTime value="2021-12-22T09:12:00+01:00"/>
+      <valueDateTime value="${DATE, T, D, -10}T09:12:00+02:00"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-      <valueString value="Vanaf 22 dec 2021, tot en met 20 jan 2022, 1 maal per dag 1 stuk, oraal"/>
+      <valueString value="Vanaf T - 10 dagen, tot en met T + 19 dagen, 1 maal per dag 1 stuk, oraal"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
       <valuePeriod>
-         <start value="2021-12-22T00:00:00+01:00"/>
-         <end value="2022-01-20T23:59:59+01:00"/>
+         <start value="${DATE, T, D, -10}T00:00:00+02:00"/>
+         <end value="${DATE, T, D, +19}T23:59:59+02:00"/>
       </valuePeriod>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">

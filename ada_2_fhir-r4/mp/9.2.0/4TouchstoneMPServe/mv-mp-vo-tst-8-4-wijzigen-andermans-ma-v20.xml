@@ -17,12 +17,12 @@
                </tag>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 25 dec 2021, tot en met 31 dec 2021, 1 maal per dag 2 stuks, oraal, definitief gestopt"/>
+               <valueString value="Vanaf T - 7 dagen, tot en met T - 1 dag, 1 maal per dag 2 stuks, oraal, definitief gestopt"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="2021-12-25T00:00:00+01:00"/>
-                  <end value="2021-12-31T23:59:59+01:00"/>
+                  <start value="${DATE, T, D, -7}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, -1}T23:59:59+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -63,7 +63,7 @@
                <type value="Patient"/>
                <display value="Patient, L. van XXX_Meijs"/>
             </subject>
-            <authoredOn value="2022-01-01T09:10:00+01:00"/>
+            <authoredOn value="${DATE, T, D, +0}T09:10:00+02:00"/>
             <requester>
                <reference value="urn:uuid:c33f1e14-6a95-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
@@ -129,11 +129,11 @@
                </tag>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 1 jan 2022, 1 maal per dag 1 stuk, oraal"/>
+               <valueString value="Vanaf T, 1 maal per dag 1 stuk, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="2022-01-01T00:00:00+01:00"/>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -165,7 +165,7 @@
                <type value="Patient"/>
                <display value="Patient, L. van XXX_Meijs"/>
             </subject>
-            <authoredOn value="2022-01-01T09:10:00+01:00"/>
+            <authoredOn value="${DATE, T, D, +0}T09:10:00+02:00"/>
             <requester>
                <reference value="urn:uuid:c33f1e14-6a95-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
