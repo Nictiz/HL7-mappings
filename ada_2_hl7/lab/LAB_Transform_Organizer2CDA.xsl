@@ -454,7 +454,13 @@
                     <xsl:otherwise>
                         <id nullFlavor="NI"/>
                         <xsl:copy-of select="hl7:participantRole/hl7:addr" copy-namespaces="no"/>
+                        <xsl:if test="empty(hl7:participantRole/hl7:addr)">
+                            <addr nullFlavor="UNK"/>
+                        </xsl:if>
                         <xsl:copy-of select="hl7:participantRole/hl7:telecom" copy-namespaces="no"/>
+                        <xsl:if test="empty(hl7:participantRole/hl7:playingEntity/hl7:telecom)">
+                            <telecom nullFlavor="UNK"/>
+                        </xsl:if>
                         <xsl:if test="hl7:participantRole/hl7:code | hl7:participantRole/hl7:playingEntity[hl7:name]">
                             <representedOrganization>
                                 <xsl:copy-of select="hl7:participantRole/hl7:id" copy-namespaces="no"/>
