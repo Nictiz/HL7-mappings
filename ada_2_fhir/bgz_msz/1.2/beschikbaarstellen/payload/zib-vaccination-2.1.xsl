@@ -164,7 +164,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </doseQuantity>
                     </xsl:for-each>
                     
-                    <!-- TODO Practitioner reference -->
+                    <!-- TODO Practitioner reference-->
                     <xsl:for-each select="administrator/health_professional">
                         <practitioner>
                             <actor>
@@ -176,7 +176,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:apply-templates select="$adaPractitioner" mode="doPractitionerReference-2.0"/>
                             </actor>
                         </practitioner>
-                    </xsl:for-each>-->
+                    </xsl:for-each>
                     
                     <xsl:for-each select="note">
                         <note>
