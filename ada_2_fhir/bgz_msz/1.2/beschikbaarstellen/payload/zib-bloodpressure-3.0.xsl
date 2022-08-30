@@ -182,6 +182,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </valueQuantity>
                         </component>
                     </xsl:for-each>
+                    
                     <xsl:for-each select="diastolic_blood_pressure">
                         <component>
                             <code>
@@ -198,6 +199,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </valueQuantity>
                         </component>
                     </xsl:for-each>
+                    
                     <xsl:for-each select="cuff_type">
                         <component>
                             <code>
@@ -214,6 +216,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </valueCodeableConcept>
                         </component>
                     </xsl:for-each>
+                    
                     <xsl:for-each select="position">
                         <component>
                             <code>
@@ -230,7 +233,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </valueCodeableConcept>
                         </component>
                     </xsl:for-each>
-                    
                     
                 </Observation>
             </xsl:variable>
