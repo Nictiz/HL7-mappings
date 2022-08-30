@@ -74,6 +74,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="current-group()">
                     <xsl:variable name="inPatientId" select="hcimroot/subject/patient/patient"/>
                     <xsl:variable name="adaPatient" select="($input/adaxml/data/*/patient[patient_identification_number[@value = $inPatientId/@value][@root = $inPatientId/@root]])[1]"/>
+                    
                     <entry xmlns="http://hl7.org/fhir">
                         <xsl:choose>
                             <xsl:when test="current-grouping-key() = 'alcohol_use'">
@@ -169,9 +170,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:when test="current-grouping-key() = 'vaccination'">
                                 <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Immunization', false())}"/>
                                 <resource>
+                                    <xsl:variable name="adaPractitioner" select="$input/adaxml/data/health_professional_registration/health_professional[./hcimroot/identification_number/@value = 'zib-2017-bgz-patA-healthProf1']"/>
                                     <xsl:call-template name="zib-Vaccination-2.1">
                                         <xsl:with-param name="in" select="."/>
                                         <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                        <xsl:with-param name="adaPractitioner" select="$adaPractitioner" as="element()"/>
                                     </xsl:call-template>
                                 </resource>
                             </xsl:when>

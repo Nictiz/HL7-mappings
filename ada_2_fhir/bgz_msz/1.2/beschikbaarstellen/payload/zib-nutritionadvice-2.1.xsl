@@ -148,7 +148,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </dateTime>
                         </xsl:otherwise>
                     </xsl:choose>
-
                     
                     <xsl:for-each select="diet_type | dieet_type">
                         <oralDiet>
