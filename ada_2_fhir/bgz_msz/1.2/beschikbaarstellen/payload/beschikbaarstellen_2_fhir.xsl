@@ -69,7 +69,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="/">
         <!-- JD: Should not only be grouped by local-name, but also by Patient(-id)! -->
-        <xsl:for-each-group select="$input//*[local-name() = $adaElementList]" group-by="local-name()">
+        <xsl:for-each-group select="$input//adaxml/data/*[1][@formName = $adaElementList]/*" group-by="local-name()">
             <xsl:variable name="bouwstenen" as="element(f:entry)*">
                 <xsl:for-each select="current-group()">
                     <xsl:variable name="inPatientId" select="hcimroot/subject/patient/patient"/>
