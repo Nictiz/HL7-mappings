@@ -14,6 +14,48 @@
                type="beschikbaarstellen_laboratoriumresultaten_type"/>
    <xs:complexType name="beschikbaarstellen_laboratoriumresultaten_type">
       <xs:sequence>
+         <xs:element name="scenario-nr-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId"
+                             fixed="2.16.840.1.113883.2.4.3.11.999.25.2.2.4401.2.1.1"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="scenario-nr"
+                     type="scenario-nr_type_2_16_840_1_113883_2_4_3_11_999_25_2_2_4401_2_1_1"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="beschrijving-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId"
+                             fixed="2.16.840.1.113883.2.4.3.11.999.25.2.2.4401.2.1.2"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="beschrijving"
+                     type="beschrijving_type_2_16_840_1_113883_2_4_3_11_999_25_2_2_4401_2_1_2"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="systeemrol-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.25.2.2.4401.7"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="systeemrol"
+                     type="systeemrol_type_2_16_840_1_113883_2_4_3_11_999_25_2_2_4401_7"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="screenshot-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.25.2.2.4401.5"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="screenshot"
+                     type="screenshot_type_2_16_840_1_113883_2_4_3_11_999_25_2_2_4401_5"
+                     minOccurs="0"
+                     maxOccurs="1"/>
          <xs:element name="patientgegevens-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.25.2.2.4302"/>
@@ -134,6 +176,16 @@
                      type="contactgegevens_type_2_16_840_1_113883_2_4_3_11_60_25_2_2_4328"
                      minOccurs="0"
                      maxOccurs="1"/>
+         <xs:element name="identificatienummer-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.25.2.2.4337"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="identificatienummer"
+                     type="identificatienummer_type_2_16_840_1_113883_2_4_3_11_60_25_2_2_4337"
+                     minOccurs="0"
+                     maxOccurs="unbounded"/>
          <xs:element name="geboortedatum-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.25.2.2.4338"/>
@@ -1928,6 +1980,142 @@
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.25.2.2.4398"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Scenario nummer - 0..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="scenario-nr_type_2_16_840_1_113883_2_4_3_11_999_25_2_2_4401_2_1_1">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId"
+                    fixed="2.16.840.1.113883.2.4.3.11.999.25.2.2.4401.2.1.1"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="string"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Beschrijving - 0..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="beschrijving_type_2_16_840_1_113883_2_4_3_11_999_25_2_2_4401_2_1_2">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId"
+                    fixed="2.16.840.1.113883.2.4.3.11.999.25.2.2.4401.2.1.2"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="text"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Systeemrol - 0..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="systeemrol_type_2_16_840_1_113883_2_4_3_11_999_25_2_2_4401_7">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.25.2.2.4401.7"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:annotation>
+                  <xs:documentation>valueSet/conceptList/concept</xs:documentation>
+               </xs:annotation>
+               <xs:enumeration value="">
+                  <xs:annotation>
+                     <xs:documentation>Empty</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="1">
+                  <xs:annotation>
+                     <xs:documentation>Raadplegend/Beschikbaarstellend</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="2">
+                  <xs:annotation>
+                     <xs:documentation>Raadplegend</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="3">
+                  <xs:annotation>
+                     <xs:documentation>Beschikbaarstellend</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="4">
+                  <xs:annotation>
+                     <xs:documentation>Sturend/Ontvangend</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="5">
+                  <xs:annotation>
+                     <xs:documentation>Sturend</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="6">
+                  <xs:annotation>
+                     <xs:documentation>Ontvangend</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="7">
+                  <xs:annotation>
+                     <xs:documentation>Alle</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="code"/>
+      <xs:attribute name="code" type="xs:string"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="preferred" type="BooleanOrEmpty"/>
+      <xs:attribute name="originalText" type="xs:string"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Screenshot tekst voor sturende/beschikbaarstellende systeemrollen - 0..1 R</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="screenshot_type_2_16_840_1_113883_2_4_3_11_999_25_2_2_4401_5">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.999.25.2.2.4401.5"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="text"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Voornamen - 0..1 R</xs:documentation>
@@ -5817,6 +6005,27 @@
       <xs:attribute name="displayName" type="xs:string"/>
       <xs:attribute name="preferred" type="BooleanOrEmpty"/>
       <xs:attribute name="originalText" type="xs:string"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Identificatienummer - 0..* C</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="identificatienummer_type_2_16_840_1_113883_2_4_3_11_60_25_2_2_4337">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.25.2.2.4337"/>
+      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="identifier"/>
+      <xs:attribute name="root" type="xs:string" default="2.16.840.1.113883.2.4.6.3"/>
+      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
    </xs:complexType>
    <xs:annotation>
       <xs:documentation>Type for concept item: Geboortedatum - 1..1 R</xs:documentation>
@@ -12833,147 +13042,202 @@
                </xs:enumeration>
                <xs:enumeration value="1">
                   <xs:annotation>
-                     <xs:documentation>Ziekenhuis</xs:documentation>
+                     <xs:documentation>Een roltype wordt gebruikt om een entiteit verder aan te duiden, die een rol speelt met AssignedEntity als modelattribuut RoleClass.</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="2">
                   <xs:annotation>
-                     <xs:documentation>Universitair Medisch Centrum</xs:documentation>
+                     <xs:documentation>Ziekenhuis</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="3">
                   <xs:annotation>
-                     <xs:documentation>Algemeen ziekenhuis</xs:documentation>
+                     <xs:documentation>Universitair Medisch Centrum</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="4">
                   <xs:annotation>
-                     <xs:documentation>Brandwondencentrum</xs:documentation>
+                     <xs:documentation>Algemeen ziekenhuis</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="5">
                   <xs:annotation>
-                     <xs:documentation>Zelfstandig behandelcentrum</xs:documentation>
+                     <xs:documentation>Brandwondencentrum</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="6">
                   <xs:annotation>
-                     <xs:documentation>Diagnostisch centrum</xs:documentation>
+                     <xs:documentation>Zelfstandig behandelcentrum</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="7">
                   <xs:annotation>
-                     <xs:documentation>Echocentrum</xs:documentation>
+                     <xs:documentation>Diagnostisch centrum</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="8">
                   <xs:annotation>
-                     <xs:documentation>Verplegings- of verzorgingsinstelling</xs:documentation>
+                     <xs:documentation>Beeldvormende diagnostiek</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="9">
                   <xs:annotation>
-                     <xs:documentation>Verpleeghuis</xs:documentation>
+                     <xs:documentation>Echocentrum</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="10">
                   <xs:annotation>
-                     <xs:documentation>Verzorgingstehuis</xs:documentation>
+                     <xs:documentation>Verplegings- of verzorgingsinstelling</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="11">
                   <xs:annotation>
-                     <xs:documentation>Apotheekinstelling</xs:documentation>
+                     <xs:documentation>Verpleeghuis</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="12">
                   <xs:annotation>
-                     <xs:documentation>Openbare apotheek</xs:documentation>
+                     <xs:documentation>Verzorgingstehuis</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="13">
                   <xs:annotation>
-                     <xs:documentation>Zelfstandig opererende ziekenhuisapotheek</xs:documentation>
+                     <xs:documentation>Apotheekinstelling</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="14">
                   <xs:annotation>
-                     <xs:documentation>Huisartsinstelling</xs:documentation>
+                     <xs:documentation>Openbare apotheek</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="15">
                   <xs:annotation>
-                     <xs:documentation>Huisartspraktijk (zelfstandig of groepspraktijk)</xs:documentation>
+                     <xs:documentation>Zelfstandig opererende ziekenhuisapotheek</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="16">
                   <xs:annotation>
-                     <xs:documentation>Apotheekhoudende huisartspraktijk</xs:documentation>
+                     <xs:documentation>Huisartsinstelling</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="17">
                   <xs:annotation>
-                     <xs:documentation>Huisartsenpost (t.b.v. dienstwaarneming)</xs:documentation>
+                     <xs:documentation>Huisartspraktijk (zelfstandig of groepspraktijk)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="18">
                   <xs:annotation>
-                     <xs:documentation>Laboratorium</xs:documentation>
+                     <xs:documentation>Apotheekhoudende huisartspraktijk</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="19">
                   <xs:annotation>
-                     <xs:documentation>Polikliniek (als onderdeel van een ziekenhuis)</xs:documentation>
+                     <xs:documentation>Huisartsenpost (t.b.v. dienstwaarneming)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="20">
                   <xs:annotation>
-                     <xs:documentation>Revalidatiecentrum</xs:documentation>
+                     <xs:documentation>Laboratorium</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="21">
                   <xs:annotation>
-                     <xs:documentation>Preventieve gezondheidszorg</xs:documentation>
+                     <xs:documentation>Polikliniek (als onderdeel van een ziekenhuis)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="22">
                   <xs:annotation>
-                     <xs:documentation>Geestelijke Gezondheidszorg</xs:documentation>
+                     <xs:documentation>Revalidatiecentrum</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="23">
                   <xs:annotation>
-                     <xs:documentation>Verstandelijk gehandicaptenzorg</xs:documentation>
+                     <xs:documentation>Preventieve gezondheidszorg (waaronder Bevolkingsonderzoek)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="24">
                   <xs:annotation>
-                     <xs:documentation>Thuiszorg</xs:documentation>
+                     <xs:documentation>Geestelijke Gezondheidszorg</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="25">
                   <xs:annotation>
-                     <xs:documentation>Kraamzorg</xs:documentation>
+                     <xs:documentation>Verslavingszorg</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="26">
                   <xs:annotation>
-                     <xs:documentation>Hospice</xs:documentation>
+                     <xs:documentation>Verstandelijk gehandicaptenzorg</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="27">
                   <xs:annotation>
-                     <xs:documentation>Jeugdgezondheidszorg</xs:documentation>
+                     <xs:documentation>Thuiszorg</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="28">
                   <xs:annotation>
-                     <xs:documentation>Verloskundigenpraktijk</xs:documentation>
+                     <xs:documentation>Kraamzorg</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="29">
                   <xs:annotation>
+                     <xs:documentation>Hospice</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="30">
+                  <xs:annotation>
+                     <xs:documentation>Jeugdgezondheidszorg</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="31">
+                  <xs:annotation>
+                     <xs:documentation>Verloskundigenpraktijk</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="32">
+                  <xs:annotation>
+                     <xs:documentation>Geboortecentrum</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="33">
+                  <xs:annotation>
                      <xs:documentation>Dialysecentrum</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="34">
+                  <xs:annotation>
+                     <xs:documentation>Trombosedienst</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="35">
+                  <xs:annotation>
+                     <xs:documentation>Jeugdzorg</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="36">
+                  <xs:annotation>
+                     <xs:documentation>Fysiotherapiepraktijk</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="37">
+                  <xs:annotation>
+                     <xs:documentation>Specialistisch Centrum</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="38">
+                  <xs:annotation>
+                     <xs:documentation>Tandartsinstelling</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="39">
+                  <xs:annotation>
+                     <xs:documentation>Tandartspraktijk (zelfstandig of groepspraktijk)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="40">
+                  <xs:annotation>
+                     <xs:documentation>Zorggroep</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
             </xs:restriction>
@@ -20942,147 +21206,202 @@
                </xs:enumeration>
                <xs:enumeration value="1">
                   <xs:annotation>
-                     <xs:documentation>Ziekenhuis</xs:documentation>
+                     <xs:documentation>Een roltype wordt gebruikt om een entiteit verder aan te duiden, die een rol speelt met AssignedEntity als modelattribuut RoleClass.</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="2">
                   <xs:annotation>
-                     <xs:documentation>Universitair Medisch Centrum</xs:documentation>
+                     <xs:documentation>Ziekenhuis</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="3">
                   <xs:annotation>
-                     <xs:documentation>Algemeen ziekenhuis</xs:documentation>
+                     <xs:documentation>Universitair Medisch Centrum</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="4">
                   <xs:annotation>
-                     <xs:documentation>Brandwondencentrum</xs:documentation>
+                     <xs:documentation>Algemeen ziekenhuis</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="5">
                   <xs:annotation>
-                     <xs:documentation>Zelfstandig behandelcentrum</xs:documentation>
+                     <xs:documentation>Brandwondencentrum</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="6">
                   <xs:annotation>
-                     <xs:documentation>Diagnostisch centrum</xs:documentation>
+                     <xs:documentation>Zelfstandig behandelcentrum</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="7">
                   <xs:annotation>
-                     <xs:documentation>Echocentrum</xs:documentation>
+                     <xs:documentation>Diagnostisch centrum</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="8">
                   <xs:annotation>
-                     <xs:documentation>Verplegings- of verzorgingsinstelling</xs:documentation>
+                     <xs:documentation>Beeldvormende diagnostiek</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="9">
                   <xs:annotation>
-                     <xs:documentation>Verpleeghuis</xs:documentation>
+                     <xs:documentation>Echocentrum</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="10">
                   <xs:annotation>
-                     <xs:documentation>Verzorgingstehuis</xs:documentation>
+                     <xs:documentation>Verplegings- of verzorgingsinstelling</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="11">
                   <xs:annotation>
-                     <xs:documentation>Apotheekinstelling</xs:documentation>
+                     <xs:documentation>Verpleeghuis</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="12">
                   <xs:annotation>
-                     <xs:documentation>Openbare apotheek</xs:documentation>
+                     <xs:documentation>Verzorgingstehuis</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="13">
                   <xs:annotation>
-                     <xs:documentation>Zelfstandig opererende ziekenhuisapotheek</xs:documentation>
+                     <xs:documentation>Apotheekinstelling</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="14">
                   <xs:annotation>
-                     <xs:documentation>Huisartsinstelling</xs:documentation>
+                     <xs:documentation>Openbare apotheek</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="15">
                   <xs:annotation>
-                     <xs:documentation>Huisartspraktijk (zelfstandig of groepspraktijk)</xs:documentation>
+                     <xs:documentation>Zelfstandig opererende ziekenhuisapotheek</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="16">
                   <xs:annotation>
-                     <xs:documentation>Apotheekhoudende huisartspraktijk</xs:documentation>
+                     <xs:documentation>Huisartsinstelling</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="17">
                   <xs:annotation>
-                     <xs:documentation>Huisartsenpost (t.b.v. dienstwaarneming)</xs:documentation>
+                     <xs:documentation>Huisartspraktijk (zelfstandig of groepspraktijk)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="18">
                   <xs:annotation>
-                     <xs:documentation>Laboratorium</xs:documentation>
+                     <xs:documentation>Apotheekhoudende huisartspraktijk</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="19">
                   <xs:annotation>
-                     <xs:documentation>Polikliniek (als onderdeel van een ziekenhuis)</xs:documentation>
+                     <xs:documentation>Huisartsenpost (t.b.v. dienstwaarneming)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="20">
                   <xs:annotation>
-                     <xs:documentation>Revalidatiecentrum</xs:documentation>
+                     <xs:documentation>Laboratorium</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="21">
                   <xs:annotation>
-                     <xs:documentation>Preventieve gezondheidszorg</xs:documentation>
+                     <xs:documentation>Polikliniek (als onderdeel van een ziekenhuis)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="22">
                   <xs:annotation>
-                     <xs:documentation>Geestelijke Gezondheidszorg</xs:documentation>
+                     <xs:documentation>Revalidatiecentrum</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="23">
                   <xs:annotation>
-                     <xs:documentation>Verstandelijk gehandicaptenzorg</xs:documentation>
+                     <xs:documentation>Preventieve gezondheidszorg (waaronder Bevolkingsonderzoek)</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="24">
                   <xs:annotation>
-                     <xs:documentation>Thuiszorg</xs:documentation>
+                     <xs:documentation>Geestelijke Gezondheidszorg</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="25">
                   <xs:annotation>
-                     <xs:documentation>Kraamzorg</xs:documentation>
+                     <xs:documentation>Verslavingszorg</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="26">
                   <xs:annotation>
-                     <xs:documentation>Hospice</xs:documentation>
+                     <xs:documentation>Verstandelijk gehandicaptenzorg</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="27">
                   <xs:annotation>
-                     <xs:documentation>Jeugdgezondheidszorg</xs:documentation>
+                     <xs:documentation>Thuiszorg</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="28">
                   <xs:annotation>
-                     <xs:documentation>Verloskundigenpraktijk</xs:documentation>
+                     <xs:documentation>Kraamzorg</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="29">
                   <xs:annotation>
+                     <xs:documentation>Hospice</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="30">
+                  <xs:annotation>
+                     <xs:documentation>Jeugdgezondheidszorg</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="31">
+                  <xs:annotation>
+                     <xs:documentation>Verloskundigenpraktijk</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="32">
+                  <xs:annotation>
+                     <xs:documentation>Geboortecentrum</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="33">
+                  <xs:annotation>
                      <xs:documentation>Dialysecentrum</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="34">
+                  <xs:annotation>
+                     <xs:documentation>Trombosedienst</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="35">
+                  <xs:annotation>
+                     <xs:documentation>Jeugdzorg</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="36">
+                  <xs:annotation>
+                     <xs:documentation>Fysiotherapiepraktijk</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="37">
+                  <xs:annotation>
+                     <xs:documentation>Specialistisch Centrum</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="38">
+                  <xs:annotation>
+                     <xs:documentation>Tandartsinstelling</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="39">
+                  <xs:annotation>
+                     <xs:documentation>Tandartspraktijk (zelfstandig of groepspraktijk)</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="40">
+                  <xs:annotation>
+                     <xs:documentation>Zorggroep</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
             </xs:restriction>

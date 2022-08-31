@@ -4,7 +4,7 @@
          created-by="labuitwisselingada"
          last-update-by="labuitwisselingada"
          creation-date="2022-06-02T15:12:33.147+02:00"
-         last-update-date="2022-06-02T15:13:11.901+02:00"/>
+         last-update-date="2022-08-05T10:36:07.866+02:00"/>
    <data>
       <sturen_laboratoriumresultaten app="lab"
                                      shortName="sturen_laboratoriumresultaten"
@@ -14,7 +14,7 @@
                                      prefix="lab-"
                                      language="nl-NL"
                                      title="TEST Scenario 4b_MaximaalBericht_KC_LOINC"
-                                     desc="Een bericht gebaseerd op LOINC codes met maximale vulling."
+                                     desc="In dit scenario wordt een maximaal gevuld onderzoek voor klinisch chemisch onderzoek getest. Hierin zijn zo veel mogelijk velden gevuld, in dit geval zijn deze gecodeerd met NHG. "
                                      id="lr-slr-TEST-Scenario4b-4b">
          <scenario-nr value="4b" conceptId="2.16.840.1.113883.2.4.3.11.999.25.2.2.4401.2.1.1"/>
          <!--Patient found in instance with id: sl-TEST-Scenarioset1a-v30 and title: TEST REPO Scenarioset 1a (ResultatenKlinischChemie_NHG)-->
@@ -41,7 +41,7 @@
                <meerling_indicator nullFlavor="NA" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4340"/>
             </patient>
          </patientgegevens>
-         <!--Zorgaanbieder found in instance with id: sl-TEST-Scenarioset2b-v30 and title: TEST REPO Scenarioset 2b (ResultatenMicrobiologie_NHG)-->
+         <!--Zorgaanbieder found in instance with id: sl-KWAL-MMB-NHG-v30 and title: KWALIFICATIE REPO ResultatenMicrobiologie_NHG-->
          <beschikbaarstellende_partij>
             <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4221">
                <zorgaanbieder_identificatienummer value="00005111"
@@ -61,9 +61,11 @@
                                displayName="Werkadres"/>
                </adresgegevens>
                <organisatie_type conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4246"
-                                 value="15"
+                                 value="17"
                                  code="Z3"
                                  codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                 codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"
+                                 codeSystemVersion="2022-07-07T00:00:00"
                                  displayName="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
             </zorgaanbieder>
          </beschikbaarstellende_partij>
@@ -80,7 +82,7 @@
                                       value="88888"
                                       conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4298"/>
                   <test_code code="2829-0"
-                             codeSystem="2.16.840.1.113883.2.4.4.30.45"
+                             codeSystem="2.16.840.1.113883.6.1"
                              displayName="Kalium [mol/tijdeenheid] in 24-uursurine"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4256"/>
                   <test_datum_tijd value="T-10D"

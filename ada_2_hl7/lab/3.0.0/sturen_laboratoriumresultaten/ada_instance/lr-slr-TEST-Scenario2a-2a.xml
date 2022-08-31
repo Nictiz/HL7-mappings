@@ -4,7 +4,7 @@
          created-by="labuitwisselingada"
          last-update-by="labuitwisselingada"
          creation-date="2022-05-04T16:58:37.228+02:00"
-         last-update-date="2022-06-02T14:40:52.678+02:00"/>
+         last-update-date="2022-08-05T10:27:22.702+02:00"/>
    <data>
       <sturen_laboratoriumresultaten app="lab"
                                      shortName="sturen_laboratoriumresultaten"
@@ -14,7 +14,7 @@
                                      prefix="lab-"
                                      language="nl-NL"
                                      title="TEST Scenario 2a_LosseTest_KC_NHG"
-                                     desc="Een los testresultaat kunnen versturen/ontvangen gecodeerd met NHG codes."
+                                     desc="In dit scenario wordt 1 losse laboratoriumtest van klinisch chemisch onderzoek getest. Dit is dus 1 losse laboratoriumtest zonder overkoepelend onderzoek/panel, in dit geval is deze gecodeerd met NHG. "
                                      id="lr-slr-TEST-Scenario2a-2a">
          <scenario-nr value="2a" conceptId="2.16.840.1.113883.2.4.3.11.999.25.2.2.4401.2.1.1"/>
          <!--Patient found in instance with id: sl-TEST-Scenarioset1a-v30 and title: TEST REPO Scenarioset 1a (ResultatenKlinischChemie_NHG)-->
@@ -41,7 +41,7 @@
                <meerling_indicator nullFlavor="NA" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4340"/>
             </patient>
          </patientgegevens>
-         <!--Zorgaanbieder found in instance with id: sl-TEST-Scenarioset2b-v30 and title: TEST REPO Scenarioset 2b (ResultatenMicrobiologie_NHG)-->
+         <!--Zorgaanbieder found in instance with id: sl-KWAL-MMB-NHG-v30 and title: KWALIFICATIE REPO ResultatenMicrobiologie_NHG-->
          <beschikbaarstellende_partij>
             <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4221">
                <zorgaanbieder_identificatienummer value="00005111"
@@ -61,9 +61,11 @@
                                displayName="Werkadres"/>
                </adresgegevens>
                <organisatie_type conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4246"
-                                 value="15"
+                                 value="17"
                                  code="Z3"
                                  codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                 codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"
+                                 codeSystemVersion="2022-07-07T00:00:00"
                                  displayName="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
             </zorgaanbieder>
          </beschikbaarstellende_partij>
@@ -138,7 +140,6 @@
                                                         conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4373"/>
                      <organisatie_naam value="Trombosedienst Ons Dorp"
                                        conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4374"/>
-                     <!--<afdeling_specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4375" value="240" code="3400" codeSystem="2.16.840.1.113883.2.4.6.7" codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)" codeSystemVersion="2020-10-23T00:00:00" displayName="Trombosediensten"/>-->
                      <contactgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4376">
                         <telefoonnummers conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4377">
                            <telefoonnummer value="06-11122266"
@@ -159,8 +160,11 @@
                         <woonplaats value="Ons Dorp" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4392"/>
                      </adresgegevens>
                      <organisatie_type conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4397"
+                                       value="34"
                                        code="TD"
                                        codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                       codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"
+                                       codeSystemVersion="2022-07-07T00:00:00"
                                        displayName="Trombosedienst"/>
                   </zorgaanbieder>
                </uitvoerder>

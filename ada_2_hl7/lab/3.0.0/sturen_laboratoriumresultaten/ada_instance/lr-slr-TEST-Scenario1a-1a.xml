@@ -4,7 +4,7 @@
          created-by="labuitwisselingada"
          last-update-by="labuitwisselingada"
          creation-date="2022-04-29T13:42:20.357+02:00"
-         last-update-date="2022-06-02T11:09:00.06+02:00"/>
+         last-update-date="2022-08-05T10:19:05.94+02:00"/>
    <data>
       <sturen_laboratoriumresultaten app="lab"
                                      shortName="sturen_laboratoriumresultaten"
@@ -14,7 +14,7 @@
                                      prefix="lab-"
                                      language="nl-NL"
                                      title="TEST Scenario 1a_Panel_KC_NHG"
-                                     desc="1 Onderzoek sturen met meerdere laboratoriumtesten mbt nierfunctie in NHG codering."
+                                     desc="In dit scenario wordt 1 panel van klinisch chemisch onderzoek getest. Dit is 1 onderzoek (nierfunctie) met meerdere laboratoriumtests, in dit geval zijn deze gecodeerd met NHG codes. "
                                      id="lr-slr-TEST-Scenario1a-1a">
          <scenario-nr value="1a" conceptId="2.16.840.1.113883.2.4.3.11.999.25.2.2.4401.2.1.1"/>
          <!--Patient found in instance with id: sl-TEST-Scenarioset1a-v30 and title: TEST REPO Scenarioset 1a (ResultatenKlinischChemie_NHG)-->
@@ -41,7 +41,7 @@
                <meerling_indicator nullFlavor="NA" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4340"/>
             </patient>
          </patientgegevens>
-         <!--Zorgaanbieder found in instance with id: sl-TEST-Scenarioset2b-v30 and title: TEST REPO Scenarioset 2b (ResultatenMicrobiologie_NHG)-->
+         <!--Zorgaanbieder found in instance with id: sl-KWAL-MMB-NHG-v30 and title: KWALIFICATIE REPO ResultatenMicrobiologie_NHG-->
          <beschikbaarstellende_partij>
             <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4221">
                <zorgaanbieder_identificatienummer value="00005111"
@@ -61,22 +61,24 @@
                                displayName="Werkadres"/>
                </adresgegevens>
                <organisatie_type conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4246"
-                                 value="15"
+                                 value="17"
                                  code="Z3"
                                  codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                 codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"
+                                 codeSystemVersion="2022-07-07T00:00:00"
                                  displayName="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
             </zorgaanbieder>
          </beschikbaarstellende_partij>
          <!--laboratorium_uitslag found in instance with id: sl-TEST-Scenarioset1a-v30 and title: TEST REPO Scenarioset 1a (ResultatenKlinischChemie_NHG)-->
          <onderzoeksresultaat conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4253">
             <laboratorium_uitslag conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4254">
-               <laboratorium_uitslag_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4296.1"
+               <laboratorium_uitslag_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4296.2"
                                                    value="LAR_NierfunctiePanelNHG"
                                                    conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4296"/>
                <edifact_referentienummer value="111222" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4409"/>
                <kopie_indicator value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4297"/>
                <laboratorium_test conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4255">
-                  <test_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4298.1"
+                  <test_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4298.2"
                                       value="11111"
                                       conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4298"/>
                   <test_code code="3583"
@@ -90,7 +92,7 @@
                   <test_uitslag value="97"
                                 datatype="quantity"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4259"
-                                unit="ml/min/1.73m2"/>
+                                unit="mL/min/{1.73_m2}"/>
                   <test_uitslag_status conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4260"
                                        value="3"
                                        code="final"
@@ -99,12 +101,12 @@
                   <referentie_ondergrens value="90"
                                          datatype="quantity"
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4262"
-                                         unit="ml/min/1.73m2"/>
+                                         unit="mL/min/{1.73_m2}"/>
                   <uitslag_interpretatie value="Waarde is goed."
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4265"/>
                </laboratorium_test>
                <laboratorium_test conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4255">
-                  <test_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4298.1"
+                  <test_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4298.2"
                                       value="22222"
                                       conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4298"/>
                   <test_code code="523"
@@ -146,7 +148,7 @@
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4265"/>
                </laboratorium_test>
                <laboratorium_test conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4255">
-                  <test_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4298.1"
+                  <test_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4298.2"
                                       value="33333"
                                       conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4298"/>
                   <test_code code="40"
@@ -164,7 +166,7 @@
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4258"/>
                   <test_uitslag value="2"
                                 datatype="quantity"
-                                unit="mg albumine/mmol creatinine"
+                                unit="mg/mmol"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4259"/>
                   <test_uitslag_status conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4260"
                                        value="3"
@@ -173,13 +175,13 @@
                                        displayName="Definitief"/>
                   <referentie_bovengrens value="3"
                                          datatype="quantity"
-                                         unit="mg albumine/mmol creatinine"
+                                         unit="mg/mmol"
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4261"/>
                   <uitslag_interpretatie value="Goede uitslag voor een patient van 75 jaar."
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4265"/>
                </laboratorium_test>
                <laboratorium_test conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4255">
-                  <test_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4298.1"
+                  <test_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4298.2"
                                       value="44444"
                                       conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4298"/>
                   <test_code code="38"
@@ -203,7 +205,7 @@
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4265"/>
                </laboratorium_test>
                <monster conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4266">
-                  <monsternummer root="2.16.840.1.113883.2.4.3.11.999.25.4267.1"
+                  <monsternummer root="2.16.840.1.113883.2.4.3.11.999.25.4267.2"
                                  value="1111"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4267"/>
                   <monstermateriaal code="122575003"
@@ -217,11 +219,6 @@
                   <toelichting value="Urine ingeleverd door patiënt."
                                conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4285"/>
                </monster>
-               <onderzoek code="72"
-                          displayName="CVRM nierfunctie en kalium"
-                          conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4286"
-                          codeSystem="2.16.840.1.113883.6.1"
-                          codeSystemName="Logical Observation Identifier Names and Codes"/>
                <resultaat_status conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4287"
                                  value="3"
                                  code="final"
@@ -269,9 +266,11 @@
                                      displayName="Werkadres"/>
                      </adresgegevens>
                      <organisatie_type conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4397"
-                                       value="18"
+                                       value="20"
                                        code="L1"
                                        codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                       codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"
+                                       codeSystemVersion="2022-07-07T00:00:00"
                                        displayName="Laboratorium"/>
                   </zorgaanbieder>
                </uitvoerder>

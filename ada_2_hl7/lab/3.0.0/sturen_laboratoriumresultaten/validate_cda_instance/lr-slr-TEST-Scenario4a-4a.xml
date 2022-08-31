@@ -12,11 +12,11 @@
                         xmlns:hl7v2="urn:hl7-org:v2xml"
                         xmlns:lab="urn:oid:1.3.6.1.4.1.19376.1.3.2"
                         xmlns:nfu="urn:urn:nictiz-nl:v3/nfu"
-                        xmlns:sdtc="urn:hl7-org:sdtc"
                         xmlns:pharm="urn:ihe:pharm:medication"
-                        xmlns:hl7nl="urn:hl7-nl:v3"
+                        xmlns:sdtc="urn:hl7-org:sdtc"
                         xmlns:f="http://hl7.org/fhir"
-                        title="Scenario: sturenLaboratoriumresultaten - Sturen laboratoriumresultaten (2.16.840.1.113883.2.4.3.11.60.25.4.28)"
+                        xmlns:hl7nl="urn:hl7-nl:v3"
+                        title="Schematron file for transaction Sturen laboratoriumresultaten (2.16.840.1.113883.2.4.3.11.60.25.4.28 2022-03-03T00:00:00)"
                         schemaVersion=""><!--   
 		   
 		   
@@ -29,106 +29,103 @@
    <svrl:ns-prefix-in-attribute-values uri="http://www.w3.org/XML/1998/namespace" prefix="xml"/>
    <svrl:ns-prefix-in-attribute-values uri="urn:oid:1.3.6.1.4.1.19376.1.3.2" prefix="lab"/>
    <svrl:ns-prefix-in-attribute-values uri="urn:urn:nictiz-nl:v3/nfu" prefix="nfu"/>
-   <svrl:ns-prefix-in-attribute-values uri="urn:hl7-org:sdtc" prefix="sdtc"/>
    <svrl:ns-prefix-in-attribute-values uri="urn:ihe:pharm:medication" prefix="pharm"/>
-   <svrl:ns-prefix-in-attribute-values uri="urn:hl7-nl:v3" prefix="hl7nl"/>
+   <svrl:ns-prefix-in-attribute-values uri="urn:hl7-org:sdtc" prefix="sdtc"/>
    <svrl:ns-prefix-in-attribute-values uri="http://hl7.org/fhir" prefix="f"/>
+   <svrl:ns-prefix-in-attribute-values uri="urn:hl7-nl:v3" prefix="hl7nl"/>
    <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario4a-4a.xml"/>
    <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario4a-4a.xml"
                         name="LabOrganizerOrCDA"/>
-   <svrl:fired-rule context="/"/>
+   <svrl:fired-rule context="/" fpi="RUL-EXPEL"/>
    <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario4a-4a.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.121.10.51-2022-03-30T000000"
                         name="Laboratory organizer or CDA"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]"
-                    id="d36078e93-false-d36155e0"
+                    id="d3438e845-false-d3516e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:realmCode[@code = 'NL' or @nullFlavor]"
-                    id="d36078e95-false-d36569e0"
+                    id="d3438e847-false-d3930e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:typeId[@root = '2.16.840.1.113883.1.3'][@extension = 'POCD_HD000040']"
-                    id="d36078e119-false-d36588e0"
+                    id="d3438e871-false-d3950e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51']"
-                    id="d36078e146-false-d36617e0"
+                    id="d3438e898-false-d3980e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3']"
-                    id="d36078e157-false-d36635e0"
+                    id="d3438e909-false-d3999e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']"
-                    id="d36078e172-false-d36653e0"
+                    id="d3438e924-false-d4018e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:id[not(@nullFlavor)]"
-                    id="d36078e184-false-d36671e0"
+                    id="d3438e936-false-d4037e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:code[concat(@code, @codeSystem) = doc('include/voc-1.3.6.1.4.1.19376.1.3.11.6-DYNAMIC.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or concat(@code, @codeSystem) = doc('include/voc-1.3.6.1.4.1.19376.1.3.11.1-DYNAMIC.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem)]"
-                    id="d36078e202-false-d36687e0"
+                    id="d3438e954-false-d4054e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:title"
-                    id="d36078e243-false-d36716e0"
+                    id="d3438e995-false-d4084e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:effectiveTime"
-                    id="d36078e256-false-d36728e0"
+                    id="d3438e1008-false-d4097e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:confidentialityCode[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.1.11.16926-DYNAMIC.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor]"
-                    id="d36078e274-false-d36746e0"
+                    id="d3438e1022-false-d4116e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:languageCode"
-                    id="d36078e289-false-d36769e0"
+                    id="d3438e1033-false-d4140e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:setId[not(@nullFlavor)]"
-                    id="d36078e313-false-d36781e0"
+                    id="d3438e1053-false-d4153e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:recordTarget[hl7:patientRole]"
-                    id="d36804e181-false-d36811e0"
+                    id="d4177e181-false-d4185e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole[hl7:patient]"
-                    id="d36804e183-false-d36834e0"
+                    id="d4177e183-false-d4209e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole[hl7:patient]/hl7:id[@root = '2.16.840.1.113883.2.4.6.3']"
-                    id="d36804e187-false-d36899e0"
+                    id="d4177e187-false-d4275e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole[hl7:patient]/hl7:addr"
-                    id="d36804e202-false-d36927e0"
+                    id="d4177e202-false-d4305e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole[hl7:patient]/hl7:telecom"
-                    id="d36804e211-false-d36939e0"
+                    id="d4177e211-false-d4318e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole[hl7:patient]/hl7:patient"
-                    id="d36804e225-false-d36962e0"
+                    id="d4177e225-false-d4342e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole[hl7:patient]/hl7:patient/hl7:name"
-                    id="d36804e229-false-d37040e0"
+                    id="d4177e229-false-d4422e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole[hl7:patient]/hl7:patient/hl7:administrativeGenderCode"
-                    id="d36804e231-false-d37052e0"
+                    id="d4177e231-false-d4435e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole[hl7:patient]/hl7:patient/hl7:birthTime"
-                    id="d36804e233-false-d37064e0"
+                    id="d4177e233-false-d4448e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole[hl7:patient]/hl7:patient/sdtc:multipleBirthInd"
-                    id="d36804e235-false-d37080e0"
+                    id="d4177e235-false-d4465e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:author[hl7:assignedAuthor]"
-                    id="d37091e29-false-d37101e0"
+                    id="d4476e29-false-d4487e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:author[hl7:assignedAuthor]/hl7:time"
-                    id="d37091e31-false-d37142e0"
+                    id="d4476e31-false-d4529e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:author[hl7:assignedAuthor]/hl7:assignedAuthor"
-                    id="d37091e38-false-d37161e0"
+                    id="d4476e38-false-d4549e0"
                     fpi="RULC-1"/>
-   <svrl:failed-assert test="count(hl7:telecom) &gt;= 1"
-                       see="http://decor.nictiz.nl/art-decor/decor-templates--lu-?id=2.16.840.1.113883.2.4.3.11.60.121.10.56"
-                       role="error"
-                       location="/*:ClinicalDocument[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]/*:assignedAuthor[namespace-uri()='urn:hl7-org:v3'][1]">
-      <svrl:text>(IHEHeaderAuthorNL): element hl7:telecom is required [min 1x].</svrl:text>
-   </svrl:failed-assert>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:author[hl7:assignedAuthor]/hl7:assignedAuthor/hl7:id"
-                    id="d37091e40-false-d37243e0"
+                    id="d4476e40-false-d4632e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:author[hl7:assignedAuthor]/hl7:assignedAuthor/hl7:addr"
-                    id="d37091e67-false-d37319e0"
+                    id="d4476e67-false-d4705e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:author[hl7:assignedAuthor]/hl7:assignedAuthor/hl7:telecom"
+                    id="d4476e79-false-d4719e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:author[hl7:assignedAuthor]/hl7:assignedAuthor/hl7:representedOrganization"
                     fpi="RULC-1"/>
@@ -143,31 +140,31 @@
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:author[hl7:assignedAuthor]/hl7:assignedAuthor/hl7:representedOrganization/hl7:standardIndustryClassCode[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.17.2.3-DYNAMIC.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.17.2.4-DYNAMIC.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor]"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:custodian[hl7:assignedCustodian]"
-                    id="d37759e11-false-d37766e0"
+                    id="d5166e11-false-d5174e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:custodian[hl7:assignedCustodian]/hl7:assignedCustodian[hl7:representedCustodianOrganization]"
-                    id="d37759e13-false-d37789e0"
+                    id="d5166e13-false-d5198e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:custodian[hl7:assignedCustodian]/hl7:assignedCustodian[hl7:representedCustodianOrganization]/hl7:representedCustodianOrganization"
-                    id="d37759e15-false-d37812e0"
+                    id="d5166e15-false-d5222e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:custodian[hl7:assignedCustodian]/hl7:assignedCustodian[hl7:representedCustodianOrganization]/hl7:representedCustodianOrganization/hl7:id[not(@nullFlavor)]"
-                    id="d37759e17-false-d37875e0"
+                    id="d5166e17-false-d5286e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:custodian[hl7:assignedCustodian]/hl7:assignedCustodian[hl7:representedCustodianOrganization]/hl7:representedCustodianOrganization/hl7:name"
-                    id="d37759e25-false-d37887e0"
+                    id="d5166e25-false-d5299e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:custodian[hl7:assignedCustodian]/hl7:assignedCustodian[hl7:representedCustodianOrganization]/hl7:representedCustodianOrganization/hl7:telecom"
-                    id="d37759e33-false-d37899e0"
+                    id="d5166e33-false-d5312e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:custodian[hl7:assignedCustodian]/hl7:assignedCustodian[hl7:representedCustodianOrganization]/hl7:representedCustodianOrganization/hl7:addr"
-                    id="d37759e41-false-d37911e0"
+                    id="d5166e41-false-d5325e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:component[hl7:structuredBody]"
-                    id="d36078e569-false-d38915e0"
+                    id="d3438e1309-false-d6374e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.51'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100001']]/hl7:component[hl7:structuredBody]/hl7:structuredBody[hl7:component]"
-                    id="d36078e571-false-d39012e0"
+                    id="d3438e1311-false-d6472e0"
                     fpi="RULC-1"/>
    <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario4a-4a.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.121.10.51-2022-03-30T000000-closed"
@@ -188,19 +185,19 @@
                         id="template-1.3.6.1.4.1.19376.1.3.1.3-2008-08-08T000000"
                         name="Specimen Received"/>
    <svrl:fired-rule context="*[hl7:act[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.3']]]"
-                    id="d153e502-false-d30786e0"
+                    id="d40e349-false-d1442e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:act[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.3']]]/hl7:act[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.3']]"
-                    id="d153e537-false-d30808e0"
+                    id="d40e384-false-d1465e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:act[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.3']]]/hl7:act[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.3']]/hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.3']"
-                    id="d153e543-false-d30873e0"
+                    id="d40e390-false-d1531e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:act[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.3']]]/hl7:act[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.3']]/hl7:code[(@code = 'SPRECEIVE' and @codeSystem = '1.3.5.1.4.1.19376.1.5.3.2') or @nullFlavor]"
-                    id="d153e548-false-d30891e0"
+                    id="d40e395-false-d1550e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:act[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.3']]]/hl7:act[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.3']]/hl7:effectiveTime"
-                    id="d153e556-false-d30910e0"
+                    id="d40e403-false-d1570e0"
                     fpi="RULC-1"/>
    <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario4a-4a.xml"
                         id="template-1.3.6.1.4.1.19376.1.3.3.1.2-2008-08-08T000000"
@@ -227,141 +224,129 @@
                         id="template-1.3.6.1.4.1.19376.1.3.3.1.7-2008-08-08T000000"
                         name="Laboratory Performer"/>
    <svrl:fired-rule context="*[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.1.7']]"
-                    id="d153e2904-false-d35001e0"
+                    id="d40e1743-false-d3211e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.1.7']]/hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.1.7']"
-                    id="d153e3060-false-d35053e0"
+                    id="d40e1899-false-d3264e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.1.7']]/hl7:time"
-                    id="d153e3065-false-d35071e0"
+                    id="d40e1904-false-d3283e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.1.7']]/hl7:assignedEntity"
-                    id="d153e3071-false-d35083e0"
+                    id="d40e1910-false-d3296e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.1.7']]/hl7:assignedEntity/hl7:id"
-                    id="d153e3075-false-d35154e0"
+                    id="d40e1914-false-d3368e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.1.7']]/hl7:assignedEntity/hl7:code"
-                    id="d153e3081-false-d35166e0"
+                    id="d40e1920-false-d3381e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.1.7']]/hl7:assignedEntity/hl7:addr"
-                    id="d153e3083-false-d35178e0"
+                    id="d40e1922-false-d3394e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.1.7']]/hl7:assignedEntity/hl7:telecom"
-                    id="d153e3089-false-d35190e0"
+                    id="d40e1928-false-d3407e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.1.7']]/hl7:assignedEntity/hl7:telecom"
-                    id="d153e3089-false-d35190e0"
+                    id="d40e1928-false-d3407e0"
                     fpi="RULC-1"/>
    <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario4a-4a.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.121.10.53-2022-03-30T000000"
                         name="MEDLAB 1.0 IDE+2 Identificatie materiaal/aanvraag"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.53']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.53']]"
-                    id="d153e3714-false-d132919e0"
+                    id="d40e2229-false-d106076e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.53']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.53']]/hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.53']"
-                    id="d153e3720-false-d132984e0"
+                    id="d40e2235-false-d106142e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.53']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.53']]/hl7:code[@nullFlavor = 'OTH']"
-                    id="d153e3725-false-d133002e0"
+                    id="d40e2240-false-d106161e0"
                     fpi="RULC-1"/>
-   <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.53']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.53']]/hl7:code[@nullFlavor = 'OTH']/hl7:originalText"
-                    id="d153e3735-false-d133035e0"
+   <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.53']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.53']]/hl7:code[@nullFlavor = 'OTH']/hl7:originalText[not(@nullFlavor)]"
+                    id="d40e2250-false-d106195e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.53']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.53']]/hl7:value[resolve-QName(@xsi:type, .) = QName('urn:hl7-org:v3', 'ST')]"
-                    id="d153e3741-false-d133053e0"
+                    id="d40e2256-false-d106214e0"
                     fpi="RULC-1"/>
    <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario4a-4a.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.121.10.54-2022-03-30T000000"
                         name="TestResultStatus"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.54']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.54']]"
-                    id="d153e3779-false-d133085e0"
+                    id="d40e2294-false-d106248e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.54']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.54']]/hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.54']"
-                    id="d153e3785-false-d133152e0"
+                    id="d40e2300-false-d106316e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.54']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.54']]/hl7:code[(@code = '92236-9' and @codeSystem = '2.16.840.1.113883.6.1')]"
-                    id="d153e3790-false-d133170e0"
+                    id="d40e2305-false-d106335e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.54']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.54']]/hl7:value[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.13.1.15-2020-09-01T000000.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor]"
-                    id="d153e3804-false-d133196e0"
+                    id="d40e2319-false-d106362e0"
                     fpi="RULC-1"/>
    <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario4a-4a.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.121.10.55-2022-03-30T000000"
                         name="ResultStatus"/>
-   <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.55']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.55']]"
-                    id="d153e3840-false-d133237e0"
-                    fpi="RULC-1"/>
-   <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.55']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.55']]/hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.55']"
-                    id="d153e3846-false-d133304e0"
-                    fpi="RULC-1"/>
-   <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.55']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.55']]/hl7:code[(@code = '92235-1' and @codeSystem = '2.16.840.1.113883.6.1')]"
-                    id="d153e3851-false-d133322e0"
-                    fpi="RULC-1"/>
-   <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.55']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.55']]/hl7:value[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.13.1.15-2020-09-01T000000.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor]"
-                    id="d153e3865-false-d133348e0"
-                    fpi="RULC-1"/>
    <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario4a-4a.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9200-2018-01-12T101847"
                         name="Kopie-indicator"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9200']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9200']]"
-                    id="d153e4373-false-d133388e0"
+                    id="d40e2900-false-d106561e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9200']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9200']]/hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9200']"
-                    id="d153e4379-false-d133453e0"
+                    id="d40e2906-false-d106627e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9200']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9200']]/hl7:code[(@code = '16' and @codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.2')]"
-                    id="d153e4384-false-d133471e0"
+                    id="d40e2911-false-d106646e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9200']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9200']]/hl7:value"
-                    id="d153e4395-false-d133487e0"
+                    id="d40e2922-false-d106663e0"
                     fpi="RULC-1"/>
    <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario4a-4a.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.25.10.52-2022-03-30T000000"
                         name="Laboratory Specialty Section NL"/>
    <svrl:fired-rule context="*[hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.52'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.1']]]/hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.52'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.1']]"
-                    id="d153e19089-false-d1345648e0"
+                    id="d40e17955-false-d1385101e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.52'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.1']]]/hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.52'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.1']]/hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.52']"
-                    id="d153e19091-false-d1346022e0"
+                    id="d40e17957-false-d1385476e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.52'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.1']]]/hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.52'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.1']]/hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.1']"
-                    id="d153e19096-false-d1346040e0"
+                    id="d40e17962-false-d1385495e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.52'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.1']]]/hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.52'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.1']]/hl7:code[concat(@code, @codeSystem) = doc('include/voc-1.3.6.1.4.1.19376.1.3.11.1-DYNAMIC.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem)]"
-                    id="d153e19103-false-d1346072e0"
+                    id="d40e17969-false-d1385529e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.52'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.1']]]/hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.52'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.1']]/hl7:title"
-                    id="d153e19355-false-d1346146e0"
+                    id="d40e18210-false-d1385605e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.52'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.1']]]/hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.52'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.1']]/hl7:component[hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.54'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.2']]]"
                     fpi="RULC-1"/>
    <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario4a-4a.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.25.10.53-2022-03-30T000000"
                         name="Laboratory Report Data Processing Entry NL"/>
    <svrl:fired-rule context="*[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.53'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1']]"
-                    id="d153e20065-false-d1348538e0"
+                    id="d40e18268-false-d1386099e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.53'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1']]/hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.53']"
-                    id="d153e20168-false-d1348853e0"
+                    id="d40e18371-false-d1386415e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.53'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1']]/hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1']"
-                    id="d153e20173-false-d1348871e0"
+                    id="d40e18376-false-d1386434e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.53'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1']]/hl7:act[hl7:statusCode[@code = 'completed' or @code = 'active' or @code = 'aborted']]"
-                    id="d153e20179-false-d1349152e0"
+                    id="d40e18382-false-d1386716e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.53'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1']]/hl7:act[hl7:statusCode[@code = 'completed' or @code = 'active' or @code = 'aborted']]/hl7:code[not(@nullFlavor)]"
-                    id="d153e20249-false-d1349582e0"
+                    id="d40e18452-false-d1387147e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.53'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1']]/hl7:act[hl7:statusCode[@code = 'completed' or @code = 'active' or @code = 'aborted']]/hl7:statusCode[@code = 'completed' or @code = 'active' or @code = 'aborted']"
-                    id="d153e20257-false-d1349594e0"
+                    id="d40e18460-false-d1387160e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.53'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1']]/hl7:act[hl7:statusCode[@code = 'completed' or @code = 'active' or @code = 'aborted']]/hl7:performer[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.1.7']]"
                     fpi="RULC-1"/>
-   <svrl:fired-rule context="*[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.53'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1']]/hl7:act[hl7:statusCode[@code = 'completed' or @code = 'active' or @code = 'aborted']]/hl7:entryRelationship[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.55']]]"
-                    fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.53'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1']]/hl7:act[hl7:statusCode[@code = 'completed' or @code = 'active' or @code = 'aborted']]/hl7:entryRelationship[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]]"
                     fpi="RULC-1"/>
-   <svrl:fired-rule context="*[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.53'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1']]/hl7:act[hl7:statusCode[@code = 'completed' or @code = 'active' or @code = 'aborted']]/hl7:entryRelationship[hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.2'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.4']]]"
+   <svrl:fired-rule context="*[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.53'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1']]/hl7:act[hl7:statusCode[@code = 'completed' or @code = 'active' or @code = 'aborted']]/hl7:entryRelationship[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]]"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.53'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1']]/hl7:act[hl7:statusCode[@code = 'completed' or @code = 'active' or @code = 'aborted']]/hl7:entryRelationship[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9200']]]"
                     fpi="RULC-1"/>
@@ -371,19 +356,19 @@
                         id="template-2.16.840.1.113883.2.4.3.11.60.25.10.54-2022-03-30T000000"
                         name="Laboratory Report Item Section NL"/>
    <svrl:fired-rule context="*[hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.54'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.2']]]/hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.54'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.2']]"
-                    id="d153e21299-false-d1354776e0"
+                    id="d40e18839-false-d1388734e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.54'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.2']]]/hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.54'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.2']]/hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.54']"
-                    id="d153e21301-false-d1354976e0"
+                    id="d40e18841-false-d1388935e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.54'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.2']]]/hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.54'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.2']]/hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.2']"
-                    id="d153e21306-false-d1354994e0"
+                    id="d40e18846-false-d1388954e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.54'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.2']]]/hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.54'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.2']]/hl7:code[not(@nullFlavor)]"
-                    id="d153e21313-false-d1355024e0"
+                    id="d40e18853-false-d1388986e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.54'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.2']]]/hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.54'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.2']]/hl7:text[not(@nullFlavor)]"
-                    id="d153e21325-false-d1355063e0"
+                    id="d40e18865-false-d1389027e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.54'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.2']]]/hl7:section[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.54'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.3.2.2']]/hl7:entry[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.25.10.53'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1']]"
                     fpi="RULC-1"/>
@@ -396,73 +381,56 @@
    <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario4a-4a.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.7.10.2-2022-03-30T000000"
                         name="Laboratory Battery Organizer NL (Specimen)"/>
-   <svrl:fired-rule context="*[hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.2'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.4']]]/hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.2'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.4']]"
-                    id="d153e26057-false-d1506768e0"
-                    fpi="RULC-1"/>
-   <svrl:fired-rule context="*[hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.2'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.4']]]/hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.2'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.4']]/hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.2']"
-                    id="d153e26063-false-d1506975e0"
-                    fpi="RULC-1"/>
-   <svrl:fired-rule context="*[hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.2'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.4']]]/hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.2'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.4']]/hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.4']"
-                    id="d153e26074-false-d1506993e0"
-                    fpi="RULC-1"/>
-   <svrl:fired-rule context="*[hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.2'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.4']]]/hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.2'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.4']]/hl7:code[@codeSystem = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.13.1.5-2020-09-01T000000.xml')//valueSet[1]/completeCodeSystem/@codeSystem or @nullFlavor]"
-                    id="d153e26095-false-d1507025e0"
-                    fpi="RULC-1"/>
-   <svrl:fired-rule context="*[hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.2'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.4']]]/hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.2'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.4']]/hl7:statusCode[@code = 'completed' or @code = 'active' or @code = 'aborted']"
-                    id="d153e26123-false-d1507075e0"
-                    fpi="RULC-1"/>
-   <svrl:fired-rule context="*[hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.2'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.4']]]/hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.2'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.4']]/hl7:component[hl7:observation[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31']]"
-                    fpi="RULC-1"/>
    <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario4a-4a.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.7.10.3-2022-03-30T000000"
                         name="Specimen Collection HCIM"/>
    <svrl:fired-rule context="*[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]]/hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]"
-                    id="d153e27625-false-d1513336e0"
+                    id="d40e23471-false-d1541068e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]]/hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]/hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3']"
-                    id="d153e27631-false-d1513506e0"
+                    id="d40e23477-false-d1541233e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]]/hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]/hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']"
-                    id="d153e27642-false-d1513524e0"
+                    id="d40e23488-false-d1541252e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]]/hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]/hl7:code[(@code = '33882-2' and @codeSystem = '2.16.840.1.113883.6.1')]"
-                    id="d153e27653-false-d1513542e0"
+                    id="d40e23499-false-d1541271e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]]/hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]/hl7:effectiveTime"
-                    id="d153e27676-false-d1513566e0"
+                    id="d40e23522-false-d1541296e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]]/hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]/hl7:participant[@typeCode = 'PRD'][hl7:participantRole]"
-                    id="d153e27789-false-d1513868e0"
+                    id="d40e23638-false-d1541613e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]]/hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]/hl7:participant[@typeCode = 'PRD'][hl7:participantRole]/hl7:participantRole"
-                    id="d153e27799-false-d1513901e0"
+                    id="d40e23648-false-d1541647e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]]/hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]/hl7:participant[@typeCode = 'PRD'][hl7:participantRole]/hl7:participantRole/hl7:id"
-                    id="d153e27803-false-d1513947e0"
+                    id="d40e23652-false-d1541694e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]]/hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]/hl7:participant[@typeCode = 'PRD'][hl7:participantRole]/hl7:participantRole/hl7:playingEntity"
-                    id="d153e27812-false-d1513961e0"
+                    id="d40e23661-false-d1541709e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]]/hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]/hl7:participant[@typeCode = 'PRD'][hl7:participantRole]/hl7:participantRole/hl7:playingEntity/hl7:code"
-                    id="d153e27814-false-d1513997e0"
+                    id="d40e23663-false-d1541746e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]]/hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]/hl7:participant[@typeCode = 'PRD'][hl7:participantRole]/hl7:participantRole/hl7:playingEntity/hl7:quantity"
-                    id="d153e27825-false-d1514013e0"
+                    id="d40e23674-false-d1541764e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]]/hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]/hl7:participant[@typeCode = 'SBJ'][hl7:participantRole[@classCode = 'CONT']]"
-                    id="d153e27838-false-d1514032e0"
+                    id="d40e23687-false-d1541784e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]]/hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]/hl7:participant[@typeCode = 'SBJ'][hl7:participantRole[@classCode = 'CONT']]/hl7:participantRole"
-                    id="d153e27848-false-d1514065e0"
+                    id="d40e23697-false-d1541818e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]]/hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]/hl7:participant[@typeCode = 'SBJ'][hl7:participantRole[@classCode = 'CONT']]/hl7:participantRole/hl7:id"
-                    id="d153e27852-false-d1514105e0"
+                    id="d40e23701-false-d1541859e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]]/hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]/hl7:participant[@typeCode = 'SBJ'][hl7:participantRole[@classCode = 'CONT']]/hl7:participantRole/hl7:playingEntity"
-                    id="d153e27861-false-d1514119e0"
+                    id="d40e23710-false-d1541874e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]]/hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]/hl7:participant[@typeCode = 'SBJ'][hl7:participantRole[@classCode = 'CONT']]/hl7:participantRole/hl7:playingEntity/hl7:code"
-                    id="d153e27865-false-d1514152e0"
+                    id="d40e23714-false-d1541907e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]]/hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.3'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.2']]/hl7:entryRelationship[hl7:act[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.3']]]"
                     fpi="RULC-1"/>
@@ -486,31 +454,31 @@
                         id="template-2.16.840.1.113883.2.4.3.11.60.7.10.31-2022-03-30T000000"
                         name="Laboratory Observation NL"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]]"
-                    id="d153e28260-false-d1515643e0"
+                    id="d40e23751-false-d1542507e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]"
-                    id="d153e28593-false-d1515783e0"
+                    id="d40e24090-false-d1542648e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]/hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31']"
-                    id="d153e28599-false-d1516033e0"
+                    id="d40e24096-false-d1542899e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]/hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']"
-                    id="d153e28610-false-d1516051e0"
+                    id="d40e24107-false-d1542918e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]/hl7:id"
-                    id="d153e28621-false-d1516069e0"
+                    id="d40e24118-false-d1542937e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]/hl7:code[@codeSystem = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.121.11.7-2020-09-01T000000.xml')//valueSet[1]/completeCodeSystem/@codeSystem or @nullFlavor]"
-                    id="d153e28631-false-d1516083e0"
+                    id="d40e24128-false-d1542952e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]/hl7:statusCode[@code = 'completed' or @code = 'active' or @code = 'aborted']"
-                    id="d153e28659-false-d1516133e0"
+                    id="d40e24156-false-d1543004e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]/hl7:effectiveTime"
-                    id="d153e28792-false-d1516156e0"
+                    id="d40e24289-false-d1543028e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]/hl7:value"
-                    id="d153e28801-false-d1516172e0"
+                    id="d40e24298-false-d1543045e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]/hl7:entryRelationship[hl7:act[hl7:templateId[@root = '1.3.6.1.4.1.19376.1.5.3.1.4.2'] and hl7:templateId[@root = '2.16.840.1.113883.10.20.1.40']]]"
                     fpi="RULC-1"/>
@@ -531,13 +499,13 @@
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]/hl7:entryRelationship[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.54']]]"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]/hl7:referenceRange[hl7:observationRange]"
-                    id="d153e29563-false-d1517235e0"
+                    id="d40e25060-false-d1544151e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]/hl7:referenceRange[hl7:observationRange]/hl7:observationRange[not(@nullFlavor)]"
-                    id="d153e29573-false-d1517264e0"
+                    id="d40e25070-false-d1544181e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31'] and hl7:templateId[@root = '1.3.6.1.4.1.19376.1.3.1.6']]/hl7:referenceRange[hl7:observationRange]/hl7:observationRange[not(@nullFlavor)]/hl7:value"
-                    id="d153e29579-false-d1517302e0"
+                    id="d40e25076-false-d1544220e0"
                     fpi="RULC-1"/>
    <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_hl7/lab/3.0.0/sturen_laboratoriumresultaten/cda_instance/lr-slr-TEST-Scenario4a-4a.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.7.10.4-2022-03-30T000000"

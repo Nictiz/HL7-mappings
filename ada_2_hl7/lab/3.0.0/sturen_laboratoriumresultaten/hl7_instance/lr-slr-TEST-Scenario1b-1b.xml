@@ -36,7 +36,9 @@
          <id extension="00005111" root="2.16.528.1.1007.3.3"/>
          <code code="Z3"
                codeSystem="2.16.840.1.113883.2.4.15.1060"
-               displayName="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
+               displayName="Huisartspraktijk (zelfstandig of groepspraktijk)"
+               codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"
+               codeSystemVersion="2022-07-07T00:00:00"/>
          <addr use="WP">
             <streetName>Langelaan</streetName>
             <houseNumber>1</houseNumber>
@@ -147,7 +149,7 @@
                      displayName=" Glomerulaire filtratiesnelheid/1,73 m2.voorspeld [filtratiesnelheid/oppervlakte] in serum of plasma of bloed d.m.v. formule gebaseerd op creatinine (CKD-EPI)formule"/>
                <statusCode code="completed"/>
                <effectiveTime value="20211202"/>
-               <value xsi:type="PQ" value="97" unit="ml/min/1.73m2"/>
+               <value xsi:type="PQ" value="97" unit="mL/min/{1.73_m2}"/>
                <entryRelationship typeCode="COMP">
                   <act classCode="ACT" moodCode="EVN">
                      <templateId root="2.16.840.1.113883.10.20.1.40"/>
@@ -175,7 +177,7 @@
                <referenceRange typeCode="REFV">
                   <observationRange classCode="OBS" moodCode="EVN.CRT">
                      <value xsi:type="IVL_PQ">
-                        <low value="90" unit="ml/min/1.73m2"/>
+                        <low value="90" unit="mL/min/{1.73_m2}"/>
                      </value>
                   </observationRange>
                </referenceRange>
@@ -245,7 +247,7 @@
                      displayName="Albumine/creatinine [verhouding] in urine d.m.v. detectielimiet &lt;= 20 mg/L"/>
                <statusCode code="completed"/>
                <effectiveTime value="20211202"/>
-               <value xsi:type="PQ" value="2" unit="mg albumine/mmol creatinine"/>
+               <value xsi:type="PQ" value="2" unit="mg/mmol"/>
                <entryRelationship typeCode="COMP">
                   <act classCode="ACT" moodCode="EVN">
                      <templateId root="2.16.840.1.113883.10.20.1.40"/>
@@ -273,7 +275,7 @@
                <referenceRange typeCode="REFV">
                   <observationRange classCode="OBS" moodCode="EVN.CRT">
                      <value xsi:type="IVL_PQ">
-                        <high value="3" unit="mg albumine/mmol creatinine"/>
+                        <high value="3" unit="mg/mmol"/>
                      </value>
                   </observationRange>
                </referenceRange>

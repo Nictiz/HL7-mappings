@@ -1,0 +1,311 @@
+<!--ada full xml for subscenario nr: 3--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../sturen_laboratoriumresultaten/ada_schemas/ada_sturen_laboratoriumresultaten.xsd">
+   <meta status="new"
+         created-by="labuitwisselingada"
+         last-update-by="labuitwisselingada"
+         creation-date="2022-08-18T16:37:34.594+02:00"
+         last-update-date="2022-08-22T09:24:55.13+02:00"/>
+   <data>
+      <sturen_laboratoriumresultaten app="lab"
+                                     shortName="sturen_laboratoriumresultaten"
+                                     formName="sturen_laboratoriumresultaten"
+                                     transactionRef="2.16.840.1.113883.2.4.3.11.60.25.4.28"
+                                     transactionEffectiveDate="2022-03-03T00:00:00"
+                                     prefix="lab-"
+                                     language="nl-NL"
+                                     title="KWAL BeschikbaarStellen_MMB_NHG"
+                                     desc="Alle resultaten van een specifiek tijdsvak (DatumTijd = T tot T-3M) van een bepaalde patiënt  (antwoord: bericht met 5 laboratoriumresultaten)"
+                                     id="lr-blr-KWAL-BS-MMB-NHG-3">
+         <scenario-nr value="3" conceptId="2.16.840.1.113883.2.4.3.11.999.25.2.2.4401.2.1.1"/>
+         <screenshot value="Screenshot hoe gegevens opgevoerd zijn aanleveren. "
+                     conceptId="2.16.840.1.113883.2.4.3.11.999.25.2.2.4401.5"/>
+         <!--Patient found in instance with id: sl-KWAL-MMB-LOINC-v30 and title: KWALIFICATIE REPO ResultatenMicrobiologie_LOINC-->
+         <patientgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4302">
+            <patient conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4303">
+               <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4304">
+                  <voornamen value="Patricia" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4305"/>
+                  <initialen value="P." conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4306"/>
+                  <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4309">
+                     <achternaam value="XXX_Sacht" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4311"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <identificatienummer value="999901011"
+                                    root="2.16.840.1.113883.2.4.6.3"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4337"/>
+               <geboortedatum value="2000-11-13"
+                              datatype="datetime"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4338"/>
+               <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4339"
+                         value="3"
+                         code="F"
+                         codeSystem="2.16.840.1.113883.5.1"
+                         displayName="Vrouw"/>
+               <meerling_indicator conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4340" nullFlavor="NA"/>
+            </patient>
+         </patientgegevens>
+         <!--No override for beschikbaarstellende_partij, partij found in instance with id: sl-KWAL-MMB-NHG-v30 and title: KWALIFICATIE REPO ResultatenMicrobiologie_NHG-->
+         <beschikbaarstellende_partij conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4179">
+            <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4221">
+               <zorgaanbieder_identificatienummer value="00005111"
+                                                  root="2.16.528.1.1007.3.3"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4222"/>
+               <organisatie_naam value="Huisartsenpraktijk Itis"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4223"/>
+               <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4234">
+                  <straat value="Langelaan" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4235"/>
+                  <huisnummer value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4236"/>
+                  <postcode value="1234ZZ" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4240"/>
+                  <woonplaats value="Onze Stad" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4241"/>
+                  <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4245"
+                               value="5"
+                               code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+               <organisatie_type conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4246"
+                                 value="17"
+                                 code="Z3"
+                                 codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                 codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"
+                                 codeSystemVersion="2022-07-07T00:00:00"
+                                 displayName="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
+            </zorgaanbieder>
+         </beschikbaarstellende_partij>
+         <!--laboratorium_uitslag found in instance with id: sl-KWAL-MMB-NHG-v30 and title: KWALIFICATIE REPO ResultatenMicrobiologie_NHG-->
+         <onderzoeksresultaat conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4253">
+            <laboratorium_uitslag conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4254">
+               <laboratorium_uitslag_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4296.3"
+                                                   value="KWAL_LAR_GebundeldOnderzoek_MMB_NHG"
+                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4296"/>
+               <edifact_referentienummer value="222222" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4409"/>
+               <kopie_indicator value="false" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4297"/>
+               <laboratorium_test conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4255">
+                  <test_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4298.3"
+                                      value="92222"
+                                      conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4298"/>
+                  <test_code code="3373"
+                             codeSystem="2.16.840.1.113883.2.4.4.30.45"
+                             displayName="Herpes simplex v type 1 DNA urine (PCR)"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4256"/>
+                  <test_datum_tijd value="T-4M"
+                                   datatype="datetime"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4258"/>
+                  <test_uitslag datatype="code"
+                                code="31"
+                                codeSystem="2.16.840.1.113883.2.4.4.30.1045"
+                                displayName="negatief"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4259"/>
+                  <test_uitslag_status conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4260"
+                                       value="3"
+                                       code="final"
+                                       codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
+                                       displayName="Definitief"/>
+               </laboratorium_test>
+               <laboratorium_test conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4255">
+                  <test_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4298.3"
+                                      value="92223"
+                                      conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4298"/>
+                  <test_code code="3382"
+                             codeSystem="2.16.840.1.113883.2.4.4.30.45"
+                             displayName="Herpes simplex v type 2 DNA urine (PCR)"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4256"/>
+                  <test_datum_tijd value="T-4M"
+                                   datatype="datetime"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4258"/>
+                  <test_uitslag datatype="code"
+                                code="32"
+                                codeSystem="2.16.840.1.113883.2.4.4.30.1045"
+                                displayName="positief"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4259"/>
+                  <test_uitslag_status conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4260"
+                                       value="3"
+                                       code="final"
+                                       codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
+                                       displayName="Definitief"/>
+                  <uitslag_interpretatie value="HSV 2 positief getest"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4265"/>
+               </laboratorium_test>
+               <monster conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4266">
+                  <monsternummer root="2.16.840.1.113883.2.4.3.11.999.25.4267.3"
+                                 value="100001"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4267"/>
+                  <monstermateriaal code="447955000"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED Clinical Terms"
+                                    displayName="monster van rectum"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4270"/>
+                  <afname_datum_tijd value="T-35D"
+                                     datatype="datetime"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4280"/>
+                  <afnameprocedure code="285570007"
+                                   codeSystem="2.16.840.1.113883.6.96"
+                                   codeSystemName="SNOMED Clinical Terms"
+                                   displayName="afnemen van swab"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4282"/>
+               </monster>
+               <resultaat_status conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4287"
+                                 value="3"
+                                 code="final"
+                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
+                                 displayName="Definitief"/>
+               <toelichting value="D.m.v nucleïnezuur-amplificatie is genoom aangetoond- vanvan herpes simplex virus type 1 en herpes en simplexvirus 2"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4288"/>
+               <uitvoerder conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4294">
+                  <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4372">
+                     <zorgaanbieder_identificatienummer value="00003334"
+                                                        root="2.16.528.1.1007.3.3"
+                                                        conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4373"/>
+                     <organisatie_naam value="Microbiologisch Lab Flagel"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4374"/>
+                     <contactgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4376">
+                        <telefoonnummers conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4377">
+                           <telefoonnummer value="06-11122244"
+                                           conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4378"/>
+                        </telefoonnummers>
+                     </contactgegevens>
+                     <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4385">
+                        <straat value="Kerkstraat"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4386"/>
+                        <huisnummer value="23" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4387"/>
+                        <postcode value="2143BB" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4391"/>
+                        <woonplaats value="Zorgstad" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4392"/>
+                        <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4396"
+                                     value="5"
+                                     code="WP"
+                                     codeSystem="2.16.840.1.113883.5.1119"
+                                     displayName="Werkadres"/>
+                     </adresgegevens>
+                     <organisatie_type conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4397"
+                                       value="20"
+                                       code="L1"
+                                       codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                       codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"
+                                       codeSystemVersion="2022-07-07T00:00:00"
+                                       displayName="Laboratorium"/>
+                  </zorgaanbieder>
+               </uitvoerder>
+            </laboratorium_uitslag>
+         </onderzoeksresultaat>
+         <!--laboratorium_uitslag found in instance with id: sl-KWAL-MMB-NHG-v30 and title: KWALIFICATIE REPO ResultatenMicrobiologie_NHG-->
+         <onderzoeksresultaat conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4253">
+            <laboratorium_uitslag conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4254">
+               <laboratorium_uitslag_identificatie value="KWAL_LAR_LosResultaat_MMB_NHG"
+                                                   root="2.16.840.1.113883.2.4.3.11.999.25.4296.2"
+                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4296"/>
+               <edifact_referentienummer value="222444" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4409"/>
+               <kopie_indicator value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4297"/>
+               <laboratorium_test conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4255">
+                  <test_identificatie value="92225"
+                                      root="2.16.840.1.113883.2.4.3.11.999.25.4298.2"
+                                      conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4298"/>
+                  <test_code code="4029"
+                             codeSystem="2.16.840.1.113883.2.4.4.30.45"
+                             displayName="SARS-CoV-2 RNA (COVID-19) keel (PCR) kz"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4256"/>
+                  <test_datum_tijd value="T-3D"
+                                   datatype="datetime"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4258"/>
+                  <test_uitslag datatype="code"
+                                code="32"
+                                codeSystem="2.16.840.1.113883.2.4.4.30.1045"
+                                displayName="positief"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4259"/>
+                  <test_uitslag_status conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4260"
+                                       value="3"
+                                       code="final"
+                                       codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
+                                       displayName="Definitief"/>
+                  <uitslag_interpretatie value="Covid aanwezig"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4265"/>
+               </laboratorium_test>
+               <monster conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4266">
+                  <monsternummer value="13344"
+                                 root="2.16.840.1.113883.2.4.3.11.999.25.4267.2"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4267"/>
+                  <monstermateriaal code="119389009"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED Clinical Terms"
+                                    displayName="specimen uit keelholte"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4270"/>
+                  <anatomische_locatie conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4271">
+                     <locatie code="54066008"
+                              codeSystem="2.16.840.1.113883.6.96"
+                              displayName="keelholte"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4272"/>
+                  </anatomische_locatie>
+                  <afname_datum_tijd value="T-4D"
+                                     datatype="datetime"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4280"/>
+               </monster>
+               <uitvoerder conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4294">
+                  <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4372">
+                     <zorgaanbieder_identificatienummer value="00003333"
+                                                        root="2.16.528.1.1007.3.3"
+                                                        conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4373"/>
+                     <organisatie_naam value="Klinisch chemisch Lab 't Proefje"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4374"/>
+                     <organisatie_type conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4397"
+                                       value="20"
+                                       code="L1"
+                                       codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                       codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"
+                                       codeSystemVersion="2022-07-07T00:00:00"
+                                       displayName="Laboratorium"/>
+                  </zorgaanbieder>
+               </uitvoerder>
+            </laboratorium_uitslag>
+         </onderzoeksresultaat>
+         <!--laboratorium_uitslag found in instance with id: sl-KWAL-MMB-NHG-v30 and title: KWALIFICATIE REPO ResultatenMicrobiologie_NHG-->
+         <onderzoeksresultaat conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4253">
+            <laboratorium_uitslag conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4254">
+               <laboratorium_uitslag_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4296.3"
+                                                   value="KWAL_LAR_MinimaalResultaat_MMB_NHG"
+                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4296"/>
+               <edifact_referentienummer value="222333" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4409"/>
+               <kopie_indicator value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4297"/>
+               <laboratorium_test conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4255">
+                  <test_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4298.3"
+                                      value="92224"
+                                      conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4298"/>
+                  <test_code code="3260"
+                             codeSystem="2.16.840.1.113883.2.4.4.30.45"
+                             displayName="Chlamydia trachomatis DNA urine (PCR)"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4256"/>
+                  <test_uitslag datatype="code"
+                                code="32"
+                                codeSystem="2.16.840.1.113883.2.4.4.30.1045"
+                                displayName="positief"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4259"/>
+               </laboratorium_test>
+               <uitvoerder conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4294">
+                  <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4372">
+                     <zorgaanbieder_identificatienummer value="00003334"
+                                                        root="2.16.528.1.1007.3.3"
+                                                        conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4373"/>
+                     <organisatie_naam value="Microbiologisch Lab Flagel"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4374"/>
+                     <contactgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4376">
+                        <telefoonnummers conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4377">
+                           <telefoonnummer value="06-11122244"
+                                           conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4378"/>
+                        </telefoonnummers>
+                     </contactgegevens>
+                     <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4385">
+                        <straat value="Kerkstraat"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4386"/>
+                        <huisnummer value="23" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4387"/>
+                        <postcode value="2143BB" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4391"/>
+                        <woonplaats value="Zorgstad" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4392"/>
+                        <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4396"
+                                     value="5"
+                                     code="WP"
+                                     codeSystem="2.16.840.1.113883.5.1119"
+                                     displayName="Werkadres"/>
+                     </adresgegevens>
+                  </zorgaanbieder>
+               </uitvoerder>
+            </laboratorium_uitslag>
+         </onderzoeksresultaat>
+      </sturen_laboratoriumresultaten>
+   </data>
+</adaxml>
