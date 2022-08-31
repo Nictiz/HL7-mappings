@@ -346,6 +346,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="nl-core-SOAPReport-Observation"/>
                 </xsl:for-each>
             </xsl:when>
+            <xsl:when test="$localName = 'stoma'">
+                <xsl:apply-templates select="$in" mode="nl-core-Stoma"/>
+                <xsl:for-each select="nf:resolveAdaInstance(stoma_materiaal/medisch_hulpmiddel,$in)">
+                    <xsl:call-template name="???">
+                        <xsl:with-param name="subject" select="$subject"/>
+                        <xsl:with-param name="reasonReference" select="$in"/>
+                    </xsl:call-template>
+                    <xsl:for-each select="product">
+                        <xsl:call-template name="???">
+                            <xsl:with-param name="subject" select="$subject"/>
+                        </xsl:call-template>    
+                    </xsl:for-each>
+                </xsl:for-each>
+            </xsl:when>
             <xsl:when test="$localName = 'tabak_gebruik'">
                 <xsl:apply-templates select="$in" mode="nl-core-TobaccoUse">
                     <xsl:with-param name="subject" select="$subject"/>
