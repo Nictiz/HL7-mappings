@@ -95,10 +95,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-Procedure-2.1" match="verrichting[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | procedure[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Immunization)" mode="doZibProcedure-2.1">
+    <xsl:template name="zib-Procedure-2.1" match="verrichting[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | procedure[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Procedure)" mode="doZibProcedure-2.1">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
+        <xsl:param name="adaPractitioner" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
         
         <xsl:for-each select="$in">
@@ -113,15 +114,76 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="{$profileValue}"/>
                     </meta>
                     
-                    <status value="completed"/>
-                    <notGiven value="false"/>
+                    <xsl:for-each select="procedure_method">
+                      <extension url="http://hl7.org/fhir/StructureDefinition/procedure-method">
+                          <valueCodeableConcept>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                          </valueCodeableConcept>
+                      </extension>
+                    </xsl:for-each>
                     
+                    <status value="completed"/>
+                    
+                    <xsl:for-each select="procedure_type">
+                        <code>
+                             <xsl:call-template name="code-to-CodeableConcept">
+                                 <xsl:with-param name="in" select="."/>
+                             </xsl:call-template>
+                        </code>
+                    </xsl:for-each>
                     
                     <!-- Patient reference -->
-                    <patient>
+                    <subject>
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
-                    </patient>
+                    </subject>
                     
+                    <xsl:if test="(procedure_start_date) or (procedure_end_date)">
+                        <performedPeriod>
+                            <xsl:for-each select="procedure_start_date">
+                                <start>
+                                    <xsl:attribute name="value">
+                                        <xsl:call-template name="format2FHIRDate">
+                                            <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                        </xsl:call-template>
+                                    </xsl:attribute>
+                                </start>
+                            </xsl:for-each>
+                            <xsl:for-each select="procedure_end_date">
+                                <end>
+                                    <xsl:attribute name="value">
+                                        <xsl:call-template name="format2FHIRDate">
+                                            <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                        </xsl:call-template>
+                                    </xsl:attribute>
+                                </end>
+                            </xsl:for-each>
+                        </performedPeriod>
+                    </xsl:if>
+                    
+                    <xsl:for-each select="performer/health_professional">
+                        <performer>
+                            <actor>
+                                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                                    <valueReference>
+                                        <xsl:apply-templates select="$adaPractitioner" mode="doPractitionerRoleReference-2.0"/>
+                                    </valueReference>
+                                </extension>
+                                <xsl:apply-templates select="$adaPractitioner" mode="doPractitionerReference-2.0"/>
+                            </actor>
+                        </performer>
+                    </xsl:for-each> 
+                    
+                    <xsl:for-each select="procedure_anatomical_location">
+                        <bodySite>
+                            <coding>
+                                <xsl:call-template name="code-to-Coding">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </coding>
+                        </bodySite>
+                    </xsl:for-each>                   
                     
                 </Procedure>
                 

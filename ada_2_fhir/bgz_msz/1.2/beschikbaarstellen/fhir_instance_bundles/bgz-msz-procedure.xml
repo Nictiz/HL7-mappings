@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="103302ca-2865-11ed-1664-020000000000"/>
+   <id value="1696d239-29ce-11ed-1613-020000000000"/>
    <type value="searchset"/>
    <total value="6"/>
    <entry>
-      <fullUrl value="urn:uuid:103302cb-2865-11ed-1664-020000000000"/>
+      <fullUrl value="urn:uuid:1696d23a-29ce-11ed-1613-020000000000"/>
       <resource>
          <Procedure>
             <meta>
@@ -15,24 +15,68 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Verrichting. Patiënt: 999999151 (BSN). Status: voltooid</caption>
+                     <caption>Verrichting. Subject: 999999151 (BSN). Status: voltooid<span style="display: block;">Uitvoerende: 88776655 (AGB-Z)</span>
+                     </caption>
                      <tbody>
                         <tr>
-                           <td/>
-                           <td/>
+                           <td>
+                              <span title="Operatieve behandeling fractuur van de malleolus (111501000146106 - SNOMED CT)">Operatieve behandeling fractuur van de malleolus</span>
+                           </td>
+                           <td>
+                              <div>Uitgevoerd: ${DATE, T, D, +1}T14:00:00+02:00 - ${DATE, T, D, +1}T15:00:00+02:00</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Deel van lichaam</th>
+                           <td>
+                              <span title="Enkel (70258002 - SNOMED CT)">Enkel</span>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
             <status value="completed"/>
-            <notGiven value="false"/>
-            <patient>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="111501000146106"/>
+                  <display value="Operatieve behandeling fractuur van de malleolus"/>
+               </coding>
+            </code>
+            <subject>
                <identifier>
                   <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
                   <value value="999999151"/>
                </identifier>
-            </patient>
+            </subject>
+            <performedPeriod>
+               <start value="${DATE, T, D, +1}T14:00:00+02:00"/>
+               <end value="${DATE, T, D, +1}T15:00:00+02:00"/>
+            </performedPeriod>
+            <performer>
+               <actor>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <identifier>
+                           <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+                           <value value="88776655"/>
+                        </identifier>
+                     </valueReference>
+                  </extension>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+                     <value value="88776655"/>
+                  </identifier>
+               </actor>
+            </performer>
+            <bodySite>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="70258002"/>
+                  <display value="Enkel"/>
+               </coding>
+            </bodySite>
          </Procedure>
       </resource>
       <search>
@@ -40,7 +84,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:103302d5-2865-11ed-1664-020000000000"/>
+      <fullUrl value="urn:uuid:1696d244-29ce-11ed-1613-020000000000"/>
       <resource>
          <Procedure>
             <meta>
@@ -50,24 +94,50 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Verrichting. Patiënt: 999999151 (BSN). Status: voltooid</caption>
+                     <caption>Verrichting. Subject: 999999151 (BSN). Status: voltooid</caption>
                      <tbody>
                         <tr>
-                           <td/>
-                           <td/>
+                           <td>
+                              <span title="Aanleggen van loopgips voor onderbeen (122531000146102 - SNOMED CT)">Aanleggen van loopgips voor onderbeen</span>
+                           </td>
+                           <td>
+                              <div>Uitgevoerd: Vanaf ${DATE, T, D, +2}T09:30:00+02:00</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Deel van lichaam</th>
+                           <td>
+                              <span title="Enkel (70258002 - SNOMED CT)">Enkel</span>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
             <status value="completed"/>
-            <notGiven value="false"/>
-            <patient>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="122531000146102"/>
+                  <display value="Aanleggen van loopgips voor onderbeen"/>
+               </coding>
+            </code>
+            <subject>
                <identifier>
                   <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
                   <value value="999999151"/>
                </identifier>
-            </patient>
+            </subject>
+            <performedPeriod>
+               <start value="${DATE, T, D, +2}T09:30:00+02:00"/>
+            </performedPeriod>
+            <bodySite>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="70258002"/>
+                  <display value="Enkel"/>
+               </coding>
+            </bodySite>
          </Procedure>
       </resource>
       <search>
@@ -75,7 +145,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:10330479-2865-11ed-1664-020000000000"/>
+      <fullUrl value="urn:uuid:1696d3e8-29ce-11ed-1613-020000000000"/>
       <resource>
          <Procedure>
             <meta>
@@ -85,24 +155,55 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Verrichting. Patiënt: 999999072 (BSN). Status: voltooid</caption>
+                     <caption>Verrichting. Subject: 999999072 (BSN). Status: voltooid<span style="display: block;">Uitvoerende: 88776655 (AGB-Z)</span>
+                     </caption>
                      <tbody>
                         <tr>
-                           <td/>
-                           <td/>
+                           <td>
+                              <span title="Intraveneuze trombolyse exclusief bij acute diepe trombose (77381000146102 - SNOMED CT)">Intraveneuze trombolyse exclusief bij acute diepe trombose</span>
+                           </td>
+                           <td>
+                              <div>Uitgevoerd: 1 juli 2010 - 1 juli 2020</div>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
             <status value="completed"/>
-            <notGiven value="false"/>
-            <patient>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="77381000146102"/>
+                  <display value="Intraveneuze trombolyse exclusief bij acute diepe trombose"/>
+               </coding>
+            </code>
+            <subject>
                <identifier>
                   <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
                   <value value="999999072"/>
                </identifier>
-            </patient>
+            </subject>
+            <performedPeriod>
+               <start value="2010-07-01"/>
+               <end value="2020-07-01"/>
+            </performedPeriod>
+            <performer>
+               <actor>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <identifier>
+                           <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+                           <value value="88776655"/>
+                        </identifier>
+                     </valueReference>
+                  </extension>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+                     <value value="88776655"/>
+                  </identifier>
+               </actor>
+            </performer>
          </Procedure>
       </resource>
       <search>
@@ -110,7 +211,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:10330483-2865-11ed-1664-020000000000"/>
+      <fullUrl value="urn:uuid:1696d3f2-29ce-11ed-1613-020000000000"/>
       <resource>
          <Procedure>
             <meta>
@@ -120,24 +221,77 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Verrichting. Patiënt: 999999072 (BSN). Status: voltooid</caption>
+                     <caption>Verrichting. Subject: 999999072 (BSN). Status: voltooid<span style="display: block;">Uitvoerende: 88776655 (AGB-Z)</span>
+                     </caption>
                      <tbody>
                         <tr>
-                           <td/>
-                           <td/>
+                           <td>
+                              <span title="mechanische trombectomie van arteria carotis interna links (84581000146105 - SNOMED CT)">mechanische trombectomie van arteria carotis interna links</span>
+                           </td>
+                           <td>
+                              <div>Uitgevoerd: 2 juli 2010 - 2 juli 2020</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Deel van lichaam</th>
+                           <td>
+                              <span title="structuur van intracranieel bloedvat (281138005 - SNOMED CT)">structuur van intracranieel bloedvat</span>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
+            <extension url="http://hl7.org/fhir/StructureDefinition/procedure-method">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="439625002"/>
+                     <display value="fluoroscopisch geleide percutane mechanische trombectomie van sinus durae matris"/>
+                  </coding>
+               </valueCodeableConcept>
+            </extension>
             <status value="completed"/>
-            <notGiven value="false"/>
-            <patient>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="84581000146105"/>
+                  <display value="mechanische trombectomie van arteria carotis interna links"/>
+               </coding>
+            </code>
+            <subject>
                <identifier>
                   <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
                   <value value="999999072"/>
                </identifier>
-            </patient>
+            </subject>
+            <performedPeriod>
+               <start value="2010-07-02"/>
+               <end value="2020-07-02"/>
+            </performedPeriod>
+            <performer>
+               <actor>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <identifier>
+                           <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+                           <value value="88776655"/>
+                        </identifier>
+                     </valueReference>
+                  </extension>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+                     <value value="88776655"/>
+                  </identifier>
+               </actor>
+            </performer>
+            <bodySite>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="281138005"/>
+                  <display value="structuur van intracranieel bloedvat"/>
+               </coding>
+            </bodySite>
          </Procedure>
       </resource>
       <search>
@@ -145,7 +299,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:1033048d-2865-11ed-1664-020000000000"/>
+      <fullUrl value="urn:uuid:1696d3fc-29ce-11ed-1613-020000000000"/>
       <resource>
          <Procedure>
             <meta>
@@ -155,24 +309,68 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Verrichting. Patiënt: 999999072 (BSN). Status: voltooid</caption>
+                     <caption>Verrichting. Subject: 999999072 (BSN). Status: voltooid<span style="display: block;">Uitvoerende: 88776655 (AGB-Z)</span>
+                     </caption>
                      <tbody>
                         <tr>
-                           <td/>
-                           <td/>
+                           <td>
+                              <span title="mastectomie met huidreductie (172043006 - SNOMED CT)">mastectomie met huidreductie</span>
+                           </td>
+                           <td>
+                              <div>Uitgevoerd: ${DATE, T, D, +1}T10:00:00+02:00 - ${DATE, T, D, +1}T12:00:00+02:00</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Deel van lichaam</th>
+                           <td>
+                              <span title="structuur van mamma (76752008 - SNOMED CT)">structuur van mamma</span>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
             <status value="completed"/>
-            <notGiven value="false"/>
-            <patient>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="172043006"/>
+                  <display value="mastectomie met huidreductie"/>
+               </coding>
+            </code>
+            <subject>
                <identifier>
                   <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
                   <value value="999999072"/>
                </identifier>
-            </patient>
+            </subject>
+            <performedPeriod>
+               <start value="${DATE, T, D, +1}T10:00:00+02:00"/>
+               <end value="${DATE, T, D, +1}T12:00:00+02:00"/>
+            </performedPeriod>
+            <performer>
+               <actor>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <identifier>
+                           <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+                           <value value="88776655"/>
+                        </identifier>
+                     </valueReference>
+                  </extension>
+                  <identifier>
+                     <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+                     <value value="88776655"/>
+                  </identifier>
+               </actor>
+            </performer>
+            <bodySite>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="76752008"/>
+                  <display value="structuur van mamma"/>
+               </coding>
+            </bodySite>
          </Procedure>
       </resource>
       <search>
@@ -180,7 +378,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:10330497-2865-11ed-1664-020000000000"/>
+      <fullUrl value="urn:uuid:1696d406-29ce-11ed-1613-020000000000"/>
       <resource>
          <Procedure>
             <meta>
@@ -190,24 +388,50 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Verrichting. Patiënt: 999999072 (BSN). Status: voltooid</caption>
+                     <caption>Verrichting. Subject: 999999072 (BSN). Status: voltooid</caption>
                      <tbody>
                         <tr>
-                           <td/>
-                           <td/>
+                           <td>
+                              <span title="incisie en drainage van diep abces (103751000146104 - SNOMED CT)">incisie en drainage van diep abces</span>
+                           </td>
+                           <td>
+                              <div>Uitgevoerd: Vanaf ${DATE, T, D, +2}T17:45:00+02:00</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Deel van lichaam</th>
+                           <td>
+                              <span title="structuur van mamma (76752008 - SNOMED CT)">structuur van mamma</span>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
             <status value="completed"/>
-            <notGiven value="false"/>
-            <patient>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="103751000146104"/>
+                  <display value="incisie en drainage van diep abces"/>
+               </coding>
+            </code>
+            <subject>
                <identifier>
                   <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
                   <value value="999999072"/>
                </identifier>
-            </patient>
+            </subject>
+            <performedPeriod>
+               <start value="${DATE, T, D, +2}T17:45:00+02:00"/>
+            </performedPeriod>
+            <bodySite>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="76752008"/>
+                  <display value="structuur van mamma"/>
+               </coding>
+            </bodySite>
          </Procedure>
       </resource>
       <search>

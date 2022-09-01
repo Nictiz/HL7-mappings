@@ -165,6 +165,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:call-template name="zib-Procedure-2.1">
                                         <xsl:with-param name="in" select="."/>
                                         <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                        <xsl:with-param name="adaPractitioner" select="$adaPractitioner" as="element()"/>
                                     </xsl:call-template>
                                 </resource>
                             </xsl:when>
