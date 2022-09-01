@@ -18,6 +18,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="zib-alcoholuse-2.1.xsl"/>
     <xsl:import href="zib-bloodpressure-3.0.xsl"/>
     <xsl:import href="zib-druguse-2.1.xsl"/>
+    <xsl:import href="zib-encounter-2.1.xsl"/>
     <xsl:import href="zib-livingsituation-2.1.xsl"/>
     <xsl:import href="zib-nutritionadvice-2.1.xsl"/>
     <xsl:import href="zib-procedure-2.1.xsl"/>
@@ -63,7 +64,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- JD: All files in ada_instance as a collection -->
     <xsl:variable name="input" select="collection('../ada_instance/?select=*.xml')"/>
     
-    <xsl:variable name="adaElementList" select="('alcohol_use', 'allergy_intolerance','alert', 'blood_pressure', 'body_height','body_weight','drug_use', 'living_situation', 'nutrition_advice', 'procedure', 'tobacco_use', 'vaccination')"/>
+    <xsl:variable name="adaElementList" select="('alcohol_use', 'allergy_intolerance','alert', 'blood_pressure', 'body_height','body_weight','drug_use', 'encounter', 'living_situation', 'nutrition_advice', 'procedure', 'tobacco_use', 'vaccination')"/>
     
     <xd:doc>
         <xd:desc>Start conversion. This conversion tries to account for all zibs in BgZ MSZ "beschikbaarstellen" in one go. Either build a FHIR Bundle of type searchset per zib, or build individual files.</xd:desc>
@@ -141,6 +142,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:call-template>
                                 </resource>
                             </xsl:when>
+                            <xsl:when test="current-grouping-key() = 'encounter'">
+                                <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Encounter', false())}"/>
+                                <xsl:variable name="adaPractitioner" select="$input/adaxml/data/health_professional_registration/health_professional[./hcimroot/identification_number/@value = 'zib-2017-bgz-patA-healthProf1']"/>
+                                <resource>
+                                    <xsl:call-template name="zib-Encounter-2.1">
+                                        <xsl:with-param name="in" select="."/>
+                                        <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                        <xsl:with-param name="adaPractitioner" select="$adaPractitioner" as="element()"/>
+                                    </xsl:call-template>
+                                </resource>
+                            </xsl:when>
                             <xsl:when test="current-grouping-key() = 'living_situation'">
                                 <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>
                                 <resource>
@@ -161,6 +173,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:when>
                             <xsl:when test="current-grouping-key() = 'procedure'">
                                 <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Procedure', false())}"/>
+                                <xsl:variable name="adaPractitioner" select="$input/adaxml/data/health_professional_registration/health_professional[./hcimroot/identification_number/@value = 'zib-2017-bgz-patA-healthProf1']"/>
                                 <resource>
                                     <xsl:call-template name="zib-Procedure-2.1">
                                         <xsl:with-param name="in" select="."/>
