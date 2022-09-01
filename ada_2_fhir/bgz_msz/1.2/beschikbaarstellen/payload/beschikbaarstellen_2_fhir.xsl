@@ -161,6 +161,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:when>
                             <xsl:when test="current-grouping-key() = 'procedure'">
                                 <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Procedure', false())}"/>
+                                <xsl:variable name="adaPractitioner" select="$input/adaxml/data/health_professional_registration/health_professional[./hcimroot/identification_number/@value = 'zib-2017-bgz-patA-healthProf1']"/>
                                 <resource>
                                     <xsl:call-template name="zib-Procedure-2.1">
                                         <xsl:with-param name="in" select="."/>
