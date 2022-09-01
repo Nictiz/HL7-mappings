@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="labtest-KWAL-LAR-GebundeldOnderzoek-MMB-NHG-92223"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
+      <valueString value="222222"/>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.3"/>
+      <value value="92223"/>
+   </identifier>
+   <status value="final"/>
+   <category>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+         <code value="laboratory"/>
+         <display value="Laboratory"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-45-diagnostische-bepalingen"/>
+         <code value="3382"/>
+         <display value="Herpes simplex v type 2 DNA urine (PCR)"/>
+      </coding>
+   </code>
+   <effectiveDateTime value="${DATE, T, M, -4}"/>
+   <performer>
+      <reference value="Organization/org-00003334"/>
+      <type value="Organization"/>
+      <display value="Healthcare provider (organization), Microbiologisch Lab Flagel"/>
+   </performer>
+   <valueCodeableConcept>
+      <coding>
+         <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-45-diagnostische-bepalingen#resultaten"/>
+         <code value="32"/>
+         <display value="positief"/>
+      </coding>
+   </valueCodeableConcept>
+   <interpretation>
+      <text value="HSV 2 positief getest"/>
+   </interpretation>
+   <note>
+      <text value="D.m.v nucleïnezuur-amplificatie is genoom aangetoond- vanvan herpes simplex virus type 1 en herpes en simplexvirus 2"/>
+   </note>
+   <specimen>
+      <reference value="Specimen/monster-100001-447955000"/>
+      <type value="Specimen"/>
+      <display value="monster"/>
+   </specimen>
+</Observation>

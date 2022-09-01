@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="labtest-KWAL-LAR-GebundeldeResultaten-MMB-NHG-91111"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
+      <valueString value="222111"/>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.3"/>
+      <value value="91111"/>
+   </identifier>
+   <status value="final"/>
+   <category>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+         <code value="laboratory"/>
+         <display value="Laboratory"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-45-diagnostische-bepalingen"/>
+         <code value="3260"/>
+         <display value="Chlamydia trachomatis DNA urine (PCR)"/>
+      </coding>
+   </code>
+   <effectiveDateTime value="${DATE, T, D, -39}"/>
+   <performer>
+      <reference value="Organization/org-00003334"/>
+      <type value="Organization"/>
+      <display value="Healthcare provider (organization), Microbiologisch Lab Flagel"/>
+   </performer>
+   <valueCodeableConcept>
+      <coding>
+         <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-45-diagnostische-bepalingen#resultaten"/>
+         <code value="31"/>
+         <display value="negatief"/>
+      </coding>
+   </valueCodeableConcept>
+   <interpretation>
+      <text value="Geen chlamydia aanwezig."/>
+   </interpretation>
+   <note>
+      <text value="Positief voor gonorrhoeae in urine."/>
+   </note>
+   <specimen>
+      <reference value="Specimen/monster-110068-258574006"/>
+      <type value="Specimen"/>
+      <display value="monster"/>
+   </specimen>
+</Observation>

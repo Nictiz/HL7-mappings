@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bundle xmlns="http://hl7.org/fhir">
+   <id value="lr-slr-KWAL-KC-NHG-Scenario1-KCNHG1"/>
    <type value="transaction"/>
-   <total value="8"/>
    <entry>
       <fullUrl value="http://example.nictiz.nl/fhir/Observation/labtest-KWAL-LAR-MaxBericht-KC-NHG-91111-C"/>
       <resource>
@@ -17,7 +17,7 @@
                <valueString value="999111"/>
             </extension>
             <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.1"/>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
                <value value="91111"/>
             </identifier>
             <status value="final"/>
@@ -50,9 +50,6 @@
             <interpretation>
                <text value="Waarde is goed."/>
             </interpretation>
-            <note>
-               <text value="Let op: Afwijkende nierfunctie. "/>
-            </note>
             <specimen>
                <reference value="Specimen/monster-1111-122575003"/>
                <type value="Specimen"/>
@@ -88,7 +85,7 @@
                <valueString value="999111"/>
             </extension>
             <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.1"/>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
                <value value="92222"/>
             </identifier>
             <status value="final"/>
@@ -133,9 +130,6 @@
             <interpretation>
                <text value="Creatinine iets hoger dan normaal."/>
             </interpretation>
-            <note>
-               <text value="Let op: Afwijkende nierfunctie. "/>
-            </note>
             <method>
                <coding>
                   <system value="http://snomed.info/sct"/>
@@ -184,7 +178,7 @@
                <valueString value="999111"/>
             </extension>
             <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.1"/>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
                <value value="93333"/>
             </identifier>
             <status value="final"/>
@@ -217,9 +211,6 @@
             <interpretation>
                <text value="Goede uitslag voor een patient van 75 jaar."/>
             </interpretation>
-            <note>
-               <text value="Let op: Afwijkende nierfunctie. "/>
-            </note>
             <method>
                <coding>
                   <system value="http://snomed.info/sct"/>
@@ -262,7 +253,7 @@
                <valueString value="999111"/>
             </extension>
             <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.1"/>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
                <value value="44444"/>
             </identifier>
             <status value="final"/>
@@ -295,9 +286,6 @@
             <interpretation>
                <text value="Zie ratio voor interpretatie."/>
             </interpretation>
-            <note>
-               <text value="Let op: Afwijkende nierfunctie. "/>
-            </note>
             <specimen>
                <reference value="Specimen/monster-1111-122575003"/>
                <type value="Specimen"/>
@@ -311,6 +299,30 @@
       </request>
    </entry>
    <entry>
+      <fullUrl value="http://example.nictiz.nl/fhir/Device/bron-Katheter"/>
+      <resource>
+         <Device>
+            <id value="bron-Katheter"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen.Source"/>
+            </meta>
+            <deviceName>
+               <name value="Katheter"/>
+               <type value="other"/>
+            </deviceName>
+            <patient>
+               <reference value="Patient/patient-XXX-Sacht"/>
+               <type value="Patient"/>
+               <display value="Patient, Patricia XXX_Sacht"/>
+            </patient>
+         </Device>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Device"/>
+      </request>
+   </entry>
+   <entry>
       <fullUrl value="http://example.nictiz.nl/fhir/Specimen/monster-1111-122575003"/>
       <resource>
          <Specimen>
@@ -319,13 +331,13 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen"/>
             </meta>
             <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4267.1"/>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4267.2"/>
                <value value="1111"/>
             </identifier>
             <subject>
-               <reference value="Patient/patient-XXX-Sacht"/>
-               <type value="Patient"/>
-               <display value="Patient, Patricia XXX_Sacht"/>
+               <reference value="Device/bron-Katheter"/>
+               <type value="Device"/>
+               <display value="monster"/>
             </subject>
             <receivedTime value="${DATE, T, D, -31}"/>
             <note>

@@ -1,23 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bundle xmlns="http://hl7.org/fhir">
+   <id value="lr-slr-KWAL-MMB-Scenario4b-MMB4b"/>
    <type value="transaction"/>
-   <total value="5"/>
    <entry>
-      <fullUrl value="http://example.nictiz.nl/fhir/Observation/labtest-KWAL-LAR-LosResultaatK2-KC-NHG-97777"/>
+      <fullUrl value="http://example.nictiz.nl/fhir/Observation/labtest-KWAL-LAR-GebundeldeResultaten2-MMB-NHG-91111-C"/>
       <resource>
          <Observation>
-            <id value="labtest-KWAL-LAR-LosResultaatK2-KC-NHG-97777"/>
+            <id value="labtest-KWAL-LAR-GebundeldeResultaten2-MMB-NHG-91111-C"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+               <valueBoolean value="true"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
-               <valueString value="999666"/>
+               <valueString value="222777"/>
             </extension>
             <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.1"/>
-               <value value="97777"/>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.3"/>
+               <value value="91111"/>
             </identifier>
-            <status value="unknown"/>
+            <status value="final"/>
             <category>
                <coding>
                   <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
@@ -28,44 +31,31 @@
             <code>
                <coding>
                   <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-45-diagnostische-bepalingen"/>
-                  <code value="513"/>
-                  <display value="Kalium"/>
+                  <code value="3260"/>
+                  <display value="Chlamydia trachomatis DNA urine (PCR)"/>
                </coding>
             </code>
-            <effectiveDateTime value="${DATE, T, M, -1}"/>
+            <effectiveDateTime value="${DATE, T, D, -39}"/>
             <performer>
-               <reference value="Organization/org-00003335"/>
+               <reference value="Organization/org-00003334"/>
                <type value="Organization"/>
-               <display value="Healthcare provider (organization), Klinisch chemisch Lab de Erlenmeyer"/>
+               <display value="Healthcare provider (organization), Microbiologisch Lab Flagel"/>
             </performer>
-            <valueQuantity>
-               <value value="5.5"/>
-               <unit value="mmol/l"/>
-               <system value="http://unitsofmeasure.org"/>
-               <code value="mmol/l"/>
-            </valueQuantity>
+            <valueCodeableConcept>
+               <coding>
+                  <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-45-diagnostische-bepalingen#resultaten"/>
+                  <code value="31"/>
+                  <display value="negatief"/>
+               </coding>
+            </valueCodeableConcept>
             <interpretation>
-               <text value="Prima binnen referentiebereik"/>
+               <text value="Geen chlamydia aanwezig."/>
             </interpretation>
             <specimen>
-               <reference value="Specimen/monster-334-6-119297000"/>
+               <reference value="Specimen/monster-110068-258574006"/>
                <type value="Specimen"/>
                <display value="monster"/>
             </specimen>
-            <referenceRange>
-               <low>
-                  <value value="4.5"/>
-                  <unit value="mmol/l"/>
-                  <system value="http://unitsofmeasure.org"/>
-                  <code value="mmol/l"/>
-               </low>
-               <high>
-                  <value value="6.0"/>
-                  <unit value="mmol/l"/>
-                  <system value="http://unitsofmeasure.org"/>
-                  <code value="mmol/l"/>
-               </high>
-            </referenceRange>
          </Observation>
       </resource>
       <request>
@@ -74,30 +64,126 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="http://example.nictiz.nl/fhir/Specimen/monster-334-6-119297000"/>
+      <fullUrl value="http://example.nictiz.nl/fhir/Observation/labtest-KWAL-LAR-GebundeldeResultaten2-MMB-NHG-91112-C"/>
+      <resource>
+         <Observation>
+            <id value="labtest-KWAL-LAR-GebundeldeResultaten2-MMB-NHG-91112-C"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+               <valueBoolean value="true"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
+               <valueString value="222777"/>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.3"/>
+               <value value="91112"/>
+            </identifier>
+            <status value="final"/>
+            <category>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+                  <code value="laboratory"/>
+                  <display value="Laboratory"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-45-diagnostische-bepalingen"/>
+                  <code value="2109"/>
+                  <display value="Gonokokken DNA urine (PCR)"/>
+               </coding>
+            </code>
+            <effectiveDateTime value="${DATE, T, D, -39}"/>
+            <performer>
+               <reference value="Organization/org-00003334"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Microbiologisch Lab Flagel"/>
+            </performer>
+            <valueCodeableConcept>
+               <coding>
+                  <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-45-diagnostische-bepalingen#resultaten"/>
+                  <code value="32"/>
+                  <display value="positief"/>
+               </coding>
+            </valueCodeableConcept>
+            <interpretation>
+               <text value="Gonorrhoeae aanwezig."/>
+            </interpretation>
+            <specimen>
+               <reference value="Specimen/monster-110068-258574006"/>
+               <type value="Specimen"/>
+               <display value="monster"/>
+            </specimen>
+         </Observation>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Observation"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="http://example.nictiz.nl/fhir/Device/bron-Katheter"/>
+      <resource>
+         <Device>
+            <id value="bron-Katheter"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen.Source"/>
+            </meta>
+            <deviceName>
+               <name value="Katheter"/>
+               <type value="other"/>
+            </deviceName>
+            <patient>
+               <reference value="Patient/patient-XXX-Sacht"/>
+               <type value="Patient"/>
+               <display value="Patient, Patricia XXX_Sacht"/>
+            </patient>
+         </Device>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Device"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="http://example.nictiz.nl/fhir/Specimen/monster-110068-258574006"/>
       <resource>
          <Specimen>
-            <id value="monster-334-6-119297000"/>
+            <id value="monster-110068-258574006"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen"/>
             </meta>
             <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.99"/>
-               <value value="334"/>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4267.3"/>
+               <value value="110068"/>
             </identifier>
             <subject>
-               <reference value="Patient/patient-XXX-Sacht"/>
-               <type value="Patient"/>
-               <display value="Patient, Patricia XXX_Sacht"/>
+               <reference value="Device/bron-Katheter"/>
+               <type value="Device"/>
+               <display value="monster"/>
             </subject>
             <collection>
-               <collectedDateTime value="${DATE, T, M, -1}"/>
+               <collectedDateTime value="${DATE, T, D, -40}"/>
+               <quantity>
+                  <value value="100"/>
+                  <unit value="ml"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="ml"/>
+               </quantity>
+               <method>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="225271002"/>
+                     <display value="afname van monster van urine uit midstraalurine"/>
+                  </coding>
+               </method>
             </collection>
-            <container>
-               <extension url="http://hl7.org/fhir/StructureDefinition/specimen-sequenceNumber">
-                  <valueInteger value="6"/>
-               </extension>
-            </container>
+            <note>
+               <text value="Urine afgenomen"/>
+            </note>
          </Specimen>
       </resource>
       <request>
@@ -156,21 +242,29 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="http://example.nictiz.nl/fhir/Organization/org-00003335"/>
+      <fullUrl value="http://example.nictiz.nl/fhir/Organization/org-00003334"/>
       <resource>
          <Organization>
-            <id value="org-00003335"/>
+            <id value="org-00003334"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
-               <value value="00003335"/>
+               <value value="00003334"/>
             </identifier>
-            <name value="Klinisch chemisch Lab de Erlenmeyer"/>
+            <type>
+               <coding>
+                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+                  <version value="2022-07-07T00:00:00"/>
+                  <code value="L1"/>
+                  <display value="Laboratorium"/>
+               </coding>
+            </type>
+            <name value="Microbiologisch Lab Flagel"/>
             <telecom>
                <system value="phone"/>
-               <value value="06-11122255"/>
+               <value value="06-11122244"/>
             </telecom>
             <address>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
@@ -183,15 +277,12 @@
                   </valueCodeableConcept>
                </extension>
                <use value="work"/>
-               <line value="Kerkstraat 101 A">
+               <line value="Kerkstraat 23">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
                      <valueString value="Kerkstraat"/>
                   </extension>
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
-                     <valueString value="101"/>
-                  </extension>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
-                     <valueString value="A"/>
+                     <valueString value="23"/>
                   </extension>
                </line>
                <city value="Zorgstad"/>

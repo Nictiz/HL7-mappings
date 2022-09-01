@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bundle xmlns="http://hl7.org/fhir">
+   <id value="lr-slr-KWAL-KC-LOINC-Scenario1-KCLOINC1"/>
    <type value="transaction"/>
-   <total value="8"/>
    <entry>
       <fullUrl value="http://example.nictiz.nl/fhir/Observation/labresult-KWAL-LAR-Panel-KC-LOINC-C"/>
       <resource>
@@ -17,7 +17,7 @@
                <valueString value="888777"/>
             </extension>
             <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4296.2"/>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4296.4"/>
                <value value="KWAL_LAR_Panel_KC_LOINC"/>
             </identifier>
             <status value="final"/>
@@ -90,7 +90,7 @@
                <valueString value="888777"/>
             </extension>
             <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.4"/>
                <value value="99993"/>
             </identifier>
             <status value="final"/>
@@ -169,7 +169,7 @@
                <valueString value="888777"/>
             </extension>
             <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.4"/>
                <value value="99994"/>
             </identifier>
             <status value="final"/>
@@ -248,7 +248,7 @@
                <valueString value="888777"/>
             </extension>
             <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.4"/>
                <value value="99995"/>
             </identifier>
             <status value="final"/>
@@ -333,7 +333,7 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen"/>
             </meta>
             <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4267.2"/>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4267.4"/>
                <value value="2233"/>
             </identifier>
             <subject>
@@ -422,6 +422,35 @@
                </coding>
             </type>
             <name value="Klinisch chemisch Lab de Erlenmeyer"/>
+            <telecom>
+               <system value="phone"/>
+               <value value="06-11122255"/>
+            </telecom>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Kerkstraat 101 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Kerkstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="101"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Zorgstad"/>
+               <postalCode value="2143BB"/>
+            </address>
          </Organization>
       </resource>
       <request>
@@ -466,7 +495,7 @@
                   </valueCodeableConcept>
                </extension>
             </gender>
-            <birthDate value="${DATE, T, Y, -22}"/>
+            <birthDate value="2000-11-13"/>
          </Patient>
       </resource>
       <request>
