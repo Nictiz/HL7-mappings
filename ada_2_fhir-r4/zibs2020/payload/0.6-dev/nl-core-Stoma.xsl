@@ -34,10 +34,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
-               
-               
-              
-      
+                <category>               
+                    <coding> 
+                        <system value="http://snomed.info/sct"/> 
+                        <code value="245857005"/> 
+                        <display value="stoma"/> 
+                    </coding> 
+                </category>  
+                <xsl:if test="stoma_type">
+                    <xsl:call-template name="code-to-CodeableConcept">
+                        <xsl:with-param name="in" select="stoma_type"/>
+                    </xsl:call-template>
+                </xsl:if>                
+                <xsl:for-each select="aanleg_datum">
+                    <onsetDateTime>
+                        <xsl:call-template name="date-to-datetime">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </onsetDateTime>
+                </xsl:for-each>
+                    <xsl:for-each select="toelichting">
+                        <note>
+                            <text value="{normalize-space(@value)}"/>
+                        </note>
+                    </xsl:for-each>
             </Condition>
         </xsl:for-each>
     </xsl:template>
@@ -70,15 +90,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
     </xd:doc>
- <!--   <xsl:template match="stoma" mode="_generateDisplay">
+    <xsl:template match="stoma" mode="_generateDisplay">
         <xsl:variable name="parts" as="item()*">
             <xsl:text>Stoma</xsl:text>
             <xsl:value-of select="stoma/@value"/>
-            <xsl:if test="probleem_type/@displayName">
-                <xsl:value-of select="concat('type: ', probleem_type/@displayName)"/>
+            <xsl:if test="stoma_type/@displayName">
+                <xsl:value-of select="concat('type: ', stoma_type/@displayName)"/>
             </xsl:if>
         </xsl:variable>
         <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
-    </xsl:template>-->
-
+    </xsl:template>
 </xsl:stylesheet>
