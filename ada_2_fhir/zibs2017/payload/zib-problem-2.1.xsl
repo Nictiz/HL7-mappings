@@ -78,7 +78,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Produces a FHIR entry element with an Condition resource</xd:desc>
+        <xd:desc>Produces a FHIR entry element with a Condition resource</xd:desc>
         <xd:param name="uuid">If true generate uuid from scratch. Defaults to false(). Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
         <xd:param name="adaPatient">Optional, but should be there. Patient for which this Condition is for.</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
