@@ -140,6 +140,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:attribute name="value">
                                        <xsl:call-template name="format2FHIRDate">
                                             <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                           <xsl:with-param name="dateT" select="$dateT"/>
                                         </xsl:call-template>
                                     </xsl:attribute>
                                 </start>
@@ -149,6 +150,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:attribute name="value">
                                         <xsl:call-template name="format2FHIRDate">
                                             <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                            <xsl:with-param name="dateT" select="$dateT"/>
                                         </xsl:call-template>
                                     </xsl:attribute>
                                 </end>
