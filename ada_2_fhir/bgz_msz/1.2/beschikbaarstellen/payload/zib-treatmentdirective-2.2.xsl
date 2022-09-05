@@ -119,7 +119,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:for-each select="verified">
                                 <extension url="Verified">
                                     <valueBoolean>
-                                        <xsl:value-of select="@value"/>
+                                        <xsl:attribute name="value">
+                                            <xsl:value-of select="@value"/>
+                                        </xsl:attribute>
                                     </valueBoolean>
                                 </extension>
                             </xsl:for-each>
@@ -152,7 +154,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="comment">
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/Comment">
                             <valueString>
-                                <xsl:value-of select="@value"/>
+                                <xsl:attribute name="value">
+                                    <xsl:value-of select="@value"/>
+                                </xsl:attribute>
                             </valueString>
                         </extension>
                     </xsl:for-each>
@@ -195,7 +199,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </patient>
                     
                     <xsl:if test="start_date or end_date">
-                        <effectivePeriod>
+                        <period>
                             <xsl:for-each select="start_date">
                                 <start>
                                     <xsl:attribute name="value">
@@ -216,7 +220,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:attribute>
                                 </end>
                             </xsl:for-each>
-                        </effectivePeriod>
+                        </period>
                     </xsl:if>
                     
                     <xsl:for-each select="hcimroot/date_time">
@@ -253,7 +257,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:for-each select="restrictions">
                                 <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective-Restrictions">
                                     <valueString>
-                                        <xsl:value-of select="@value"/>
+                                        <xsl:attribute name="value">
+                                            <xsl:value-of select="@value"/>
+                                        </xsl:attribute>
                                     </valueString>
                                 </extension>
                             </xsl:for-each>

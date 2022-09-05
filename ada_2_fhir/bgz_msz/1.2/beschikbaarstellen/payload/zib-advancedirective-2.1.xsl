@@ -127,7 +127,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="toelichting | comment">
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/Comment">
                             <valueString>
-                                <xsl:value-of select="@value"/>
+                                <xsl:attribute name="value">
+                                    <xsl:value-of select="@value"/>
+                                </xsl:attribute>
                             </valueString>
                         </extension>
                     </xsl:for-each>
@@ -142,23 +144,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </coding>
                     </category>
                     
-                    <!--<xsl:for-each select="wilsverklaring_type | living_will_type">
-                        <category>
-                            <xsl:variable name="nullFlavorsInValueset" select="('OTH')"/>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="."/>
-                                <xsl:with-param name="treatNullFlavorAsCoding" select="@code = $nullFlavorsInValueset and @codeSystem = $oidHL7NullFlavor"/>
-                            </xsl:call-template>
-                        </category>
-                    </xsl:for-each>-->
-                    
                     <!-- category typeOfLivingWill is required in the FHIR profile, so always output category, data-absent-reason if no actual value -->
                     <category>
                         <xsl:choose>
-                            <xsl:when test="(wilsverklaring_type | living_will_type)[@value]">
+                            <xsl:when test="(wilsverklaring_type | living_will_type)[@code]">
                                 <xsl:variable name="nullFlavorsInValueset" select="('OTH')"/>
                                 <xsl:call-template name="code-to-CodeableConcept">
-                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="in" select="wilsverklaring_type | living_will_type"/>
                                     <xsl:with-param name="treatNullFlavorAsCoding" select="@code = $nullFlavorsInValueset and @codeSystem = $oidHL7NullFlavor"/>
                                 </xsl:call-template>
                             </xsl:when>
@@ -205,7 +197,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="wilsverklaring_document | living_will_document">
                         <sourceAttachment>
                             <data>
-                                <xsl:value-of select="@value"/>
+                                <xsl:attribute name="value">
+                                    <xsl:value-of select="@value"/>
+                                </xsl:attribute>
                             </data>
                         </sourceAttachment>
                     </xsl:for-each>
