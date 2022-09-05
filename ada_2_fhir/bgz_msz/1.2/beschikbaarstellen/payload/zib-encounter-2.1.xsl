@@ -169,7 +169,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="origin">
                         <hospitalization>
                             <origin>
-                                <!--Reference to location-->
+                               <!--Reference to location-->
                                <xsl:call-template name="code-to-CodeableConcept">
                                    <xsl:with-param name="in" select="."/>
                                </xsl:call-template>
@@ -178,8 +178,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
                     
                 </Encounter>
-                
-              
             </xsl:variable>
             
             <!-- Add resource.text -->

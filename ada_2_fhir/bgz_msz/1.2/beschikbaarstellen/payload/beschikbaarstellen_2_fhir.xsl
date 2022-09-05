@@ -20,7 +20,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="zib-bloodpressure-3.0.xsl"/>
     <xsl:import href="zib-druguse-2.1.xsl"/>
     <xsl:import href="zib-encounter-2.1.xsl"/>
-    <xsl:import href="zib-funcment-2.1.xsl"/>
+    <xsl:import href="zib-functionalormentalstatus-2.1.xsl"/>
     <xsl:import href="zib-livingsituation-2.1.xsl"/>
     <xsl:import href="zib-medicaldevice-2.2.xsl"/>
     <xsl:import href="zib-nutritionadvice-2.1.xsl"/>
@@ -187,7 +187,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:when test="current-grouping-key() = 'functional_or_mental_status'">
                                     <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>
                                     <resource>
-                                        <xsl:call-template name="zib-funcment-2.1">
+                                        <xsl:call-template name="zib-FunctionalOrMentalStatus-2.1">
                                             <xsl:with-param name="in" select="."/>
                                             <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
                                         </xsl:call-template>
@@ -206,7 +206,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'DeviceUseStatement', false())}"/>
                                     <xsl:variable name="adaPractitioner" select="$input/adaxml/data/health_professional_registration/health_professional[./hcimroot/identification_number/@value = 'zib-2017-bgz-patA-healthProf1']"/>
                                     <resource>
-                                        <xsl:call-template name="zib-medDevice-2.2">
+                                        <xsl:call-template name="zib-MedicalDevice-2.2">
                                             <xsl:with-param name="in" select="."/>
                                             <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
                                             <xsl:with-param name="adaPractitioner" select="$adaPractitioner" as="element()"/>

@@ -19,10 +19,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!--<xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template name="funcmentReference" match="drugs_gebruik[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | drug_use[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doFunctional_or_mental_statusReference-2.1">
+    <xsl:template name="functionalOrMentalStatusReference" match="functionele_of_mentale_status[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | functional_or_mental_status[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doFunctionalOrMentalStatusReference-2.1">
         <xsl:variable name="theIdentifier" select="(zibroot/identificatienummer | hcimroot/identification_number)[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
-        <xsl:variable name="theGroupElement" select="$funcments[group-key = $theGroupKey]" as="element()?"/>
+        <xsl:variable name="theGroupElement" select="$functionalOrMentalStatuses[group-key = $theGroupKey]" as="element()?"/>
         <xsl:choose>
             <xsl:when test="$theGroupElement">
                 <xsl:variable name="fullUrl" select="nf:getFullUrlOrId(($theGroupElement/f:entry)[1])"/>
@@ -43,7 +43,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Produces a FHIR entry element with an Observation resource for Functional_or_mental_status</xd:desc>
+        <xd:desc>Produces a FHIR entry element with an Observation resource for FunctionalOrMentalStatus</xd:desc>
         <xd:param name="uuid">If true generate uuid from scratch. Defaults to false(). Generating a uuid from scratch limits reproduction of the same output as the uuids will be different every time.</xd:param>
         <xd:param name="adaPatient">Optional, but should be there. Patient this resource is for.</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
@@ -51,7 +51,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Observation.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="funcmentEntry" match="drugs_gebruik[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | drug_use[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doFunctional_or_mental_statusEntry-2.1" as="element(f:entry)">
+    <xsl:template name="functionalOrMentalStatusEntry" match="functionele_of_mentale_status[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | functional_or_mental_status[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doFunctionalOrMentalStatusEntry-2.1" as="element(f:entry)">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
@@ -89,13 +89,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>-->
     
     <xd:doc>
-        <xd:desc>Mapping of HCIM Functional_or_mental_status concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-Functional_or_mental_status">zib-Functional_or_mental_status</xd:a>.</xd:desc>
+        <xd:desc>Mapping of HCIM FunctionalOrMentalStatus concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-FunctionalOrMentalStatus">zib-FunctionalOrMentalStatus</xd:a>.</xd:desc>
         <xd:param name="logicalId">Optional FHIR logical id for the record.</xd:param>
-        <xd:param name="in">Node to consider in the creation of the Observation resource for Functional_or_mental_status.</xd:param>
+        <xd:param name="in">Node to consider in the creation of the Observation resource for FunctionalOrMentalStatus.</xd:param>
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-funcment-2.1" match="functional_or_mental_status[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Observation)" mode="doZibFunctional_or_mental_status-2.1">
+    <xsl:template name="zib-FunctionalOrMentalStatus-2.1" match="functional_or_mental_status[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Observation)" mode="doZibFunctional_or_mental_status-2.1">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
@@ -159,8 +159,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <!--TODO medical device reference -->
                 </Observation>
-                
-              
             </xsl:variable>
             
             <!-- Add resource.text -->
