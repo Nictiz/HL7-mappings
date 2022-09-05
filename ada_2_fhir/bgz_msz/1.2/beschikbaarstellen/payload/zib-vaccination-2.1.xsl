@@ -181,7 +181,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="note">
                         <note>
                             <text>
-                                <xsl:attribute name="value" select="./@value"/>
+                                <xsl:call-template name="string-to-string">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
                             </text>
                         </note>    
                     </xsl:for-each>

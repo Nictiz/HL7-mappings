@@ -115,7 +115,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <status value="final"/>
                     
-                    <!-- TODO category -->
+                    <!-- Not able to determine category code in general, so is determined by the ada instances present -->
+                    <category>
+                        <coding>
+                            <xsl:choose>
+                                <xsl:when test="status_name[@code = ('15188001', '301438001', '713512009') and @codeSystem = '2.16.840.1.113883.6.96']">
+                                    <system value="http://snomed.info/sct"/>
+                                    <code value="118228005"/>
+                                    <display value="bevinding betreffende functioneren"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <system value="http://snomed.info/sct"/>
+                                    <code value="384821006"/>
+                                    <display value="bevinding betreffende mentale toestand, gedrag en/of psychosociaal functioneren"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </coding>
+                    </category>
                     
                     <xsl:for-each select="status_name">
                         <code>
@@ -153,7 +169,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <xsl:for-each select="comment">
                         <comment>
-                            <xsl:attribute name="value" select="./@value"/>
+                            <xsl:call-template name="string-to-string">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
                         </comment>
                     </xsl:for-each>
                     

@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="6a99b178-2d20-11ed-1600-020000000000"/>
+   <id value="b5099e50-2d2d-11ed-1980-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:6a99b179-2d20-11ed-1600-020000000000"/>
+      <fullUrl value="urn:uuid:b5099e51-2d2d-11ed-1980-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -15,7 +15,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Observatie/bepaling. Subject: 999999072 (BSN). Status: definitief</caption>
+                     <caption>Observatie/bepaling. Subject: 999999072 (BSN). Categorie: <span title="bevinding betreffende functioneren (118228005 - SNOMED CT)">bevinding betreffende functioneren</span>, Status: definitief</caption>
                      <tfoot>
                         <tr>
                            <td colspan="2">krachtsvermindering rechterarm na CVA</td>
@@ -43,6 +43,13 @@
                </div>
             </text>
             <status value="final"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="118228005"/>
+                  <display value="bevinding betreffende functioneren"/>
+               </coding>
+            </category>
             <code>
                <coding>
                   <system value="http://snomed.info/sct"/>

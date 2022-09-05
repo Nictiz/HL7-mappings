@@ -139,7 +139,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
                     
-                    <xsl:if test="(procedure_start_date) or (procedure_end_date)">
+                    <xsl:if test="procedure_start_date or procedure_end_date">
                         <performedPeriod>
                             <xsl:for-each select="procedure_start_date">
                                 <start>
@@ -179,11 +179,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <xsl:for-each select="procedure_anatomical_location">
                         <bodySite>
-                            <coding>
-                                <xsl:call-template name="code-to-Coding">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
-                            </coding>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
                         </bodySite>
                     </xsl:for-each>                   
                     

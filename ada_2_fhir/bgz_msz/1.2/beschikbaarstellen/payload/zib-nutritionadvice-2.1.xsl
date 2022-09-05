@@ -116,7 +116,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="comment">
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-NutritionAdvice-Explanation">
                             <valueString>
-                                <xsl:attribute name="value" select="./@value"/>
+                                <xsl:call-template name="string-to-string">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
                             </valueString>
                         </extension>    
                     </xsl:for-each>
@@ -152,7 +154,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <oralDiet>
                             <type>
                                 <text>
-                                    <xsl:attribute name="value" select="./@value"/>
+                                    <xsl:call-template name="string-to-string">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
                                 </text>
                             </type>
                         </oralDiet>

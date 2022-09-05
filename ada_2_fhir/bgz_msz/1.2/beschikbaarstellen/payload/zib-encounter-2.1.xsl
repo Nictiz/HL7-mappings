@@ -120,9 +120,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <class>
                             <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                                 <valueCodeableConcept>
-                                  <xsl:call-template name="code-to-CodeableConcept">
-                                      <xsl:with-param name="in" select="."/>
-                                  </xsl:call-template>
+                                    <xsl:call-template name="code-to-CodeableConcept">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
                                 </valueCodeableConcept>
                             </extension>
                         </class>
@@ -133,7 +133,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
                     
-                    <xsl:if test="(start_date_time) or (end_date_time)">
+                    <xsl:if test="start_date_time or end_date_time">
                         <period>
                             <xsl:for-each select="start_date_time">
                                 <start>
