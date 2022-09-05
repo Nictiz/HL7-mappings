@@ -1,0 +1,76 @@
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
+   <id value="6a99b178-2d20-11ed-1600-020000000000"/>
+   <type value="searchset"/>
+   <total value="1"/>
+   <entry>
+      <fullUrl value="urn:uuid:6a99b179-2d20-11ed-1600-020000000000"/>
+      <resource>
+         <Observation>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-FunctionalOrMentalStatus"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Observatie/bepaling. Subject: 999999072 (BSN). Status: definitief</caption>
+                     <tfoot>
+                        <tr>
+                           <td colspan="2">krachtsvermindering rechterarm na CVA</td>
+                        </tr>
+                     </tfoot>
+                     <tbody>
+                        <tr>
+                           <th>Bepalingdatum/tijd</th>
+                           <td>Vanaf 2010</td>
+                        </tr>
+                        <tr>
+                           <th>Code</th>
+                           <th>Waarde</th>
+                        </tr>
+                        <tr>
+                           <td>
+                              <span title="Muscle weakness of upper limb (finding) (713512009 - SNOMED CT)">Muscle weakness of upper limb (finding)</span>
+                           </td>
+                           <td>
+                              <span title="matig (6736007 - SNOMED CT)">matig</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <status value="final"/>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="713512009"/>
+                  <display value="Muscle weakness of upper limb (finding)"/>
+               </coding>
+            </code>
+            <subject>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value value="999999072"/>
+               </identifier>
+            </subject>
+            <effectivePeriod>
+               <start value="2010"/>
+            </effectivePeriod>
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="6736007"/>
+                  <display value="matig"/>
+               </coding>
+            </valueCodeableConcept>
+            <comment value="krachtsvermindering rechterarm na CVA"/>
+         </Observation>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+</Bundle>

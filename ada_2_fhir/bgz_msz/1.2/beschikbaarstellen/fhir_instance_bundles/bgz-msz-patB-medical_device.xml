@@ -1,0 +1,93 @@
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
+   <id value="6a99b1d2-2d20-11ed-1600-020000000000"/>
+   <type value="searchset"/>
+   <total value="1"/>
+   <entry>
+      <fullUrl value="urn:uuid:6a99b1d3-2d20-11ed-1600-020000000000"/>
+      <resource>
+         <DeviceUseStatement>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-FunctionalOrMentalStatus"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Beschrijving apparaatgebruik. Subject: 999999072 (BSN). Status: voltooid</caption>
+                     <tfoot>
+                        <tr>
+                           <td colspan="2">Vanwege spierzwakte rechterarm</td>
+                        </tr>
+                     </tfoot>
+                     <tbody>
+                        <tr>
+                           <th>Apparaat/Systeem</th>
+                           <td/>
+                        </tr>
+                        <tr>
+                           <th>Deel van lichaam</th>
+                           <td>
+                              <span title="structuur van membrum superius (53120007 - SNOMED CT)">structuur van membrum superius</span>
+                              <span title="Right (24028007 - SNOMED CT)">Right</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Gebruiksperiode</th>
+                           <td>Vanaf 3 februari 2016</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <status value="completed"/>
+            <subject>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value value="999999072"/>
+               </identifier>
+            </subject>
+            <whenUsed>
+               <start value="2016-02-03"/>
+            </whenUsed>
+            <source>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                  <valueReference>
+                     <identifier>
+                        <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+                        <value value="88776655"/>
+                     </identifier>
+                  </valueReference>
+               </extension>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+                  <value value="88776655"/>
+               </identifier>
+            </source>
+            <bodySite>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="24028007"/>
+                        <display value="Right"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="53120007"/>
+                  <display value="structuur van membrum superius"/>
+               </coding>
+            </bodySite>
+            <note>
+               <text value="Vanwege spierzwakte rechterarm"/>
+            </note>
+         </DeviceUseStatement>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+</Bundle>
