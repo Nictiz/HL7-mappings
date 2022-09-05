@@ -46,8 +46,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- If the desired output is to be a Bundle, then a self link string of type url is required. 
          See: https://www.hl7.org/fhir/stu3/search.html#conformance -->
     <xsl:param name="bundleSelfLink" as="xs:string?"/>
-     <!-- This is a required parameter and matches the [base] of a FHIR server. Expects *not* to end in / so we can make fullUrls like ${baseUrl}/Observation/[id] -->
-     <!--<xsl:param name="baseUrl" as="xs:string"/>-->
+    <!-- This is a required parameter and matches the [base] of a FHIR server. Expects *not* to end in / so we can make fullUrls like ${baseUrl}/Observation/[id] -->
+    <!--<xsl:param name="baseUrl" as="xs:string"/>-->
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
