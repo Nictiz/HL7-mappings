@@ -22,6 +22,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="zib-encounter-2.1.xsl"/>
     <xsl:import href="zib-livingsituation-2.1.xsl"/>
     <xsl:import href="zib-nutritionadvice-2.1.xsl"/>
+    <xsl:import href="zib-payer-2.0.xsl"/>
     <xsl:import href="zib-procedure-2.1.xsl"/>
     <xsl:import href="zib-tobaccouse-2.1.xsl"/>
     <xsl:import href="zib-treatmentdirective-2.2.xsl"/>
@@ -66,7 +67,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- JD: All files in ada_instance as a collection -->
     <xsl:variable name="input" select="collection('../ada_instance/?select=*.xml')"/>
     
-    <xsl:variable name="adaElementList" select="('advance_directive', 'alcohol_use', 'allergy_intolerance','alert', 'blood_pressure', 'body_height','body_weight','drug_use', 'encounter', 'living_situation', 'nutrition_advice', 'procedure', 'tobacco_use', 'treatment_directive', 'vaccination')"/>
+    <xsl:variable name="adaElementList" select="('advance_directive', 'alcohol_use', 'allergy_intolerance','alert', 'blood_pressure', 'body_height','body_weight','drug_use', 'encounter', 'living_situation', 'nutrition_advice', 'payer', 'procedure', 'tobacco_use', 'treatment_directive', 'vaccination')"/>
     
     <xd:doc>
         <xd:desc>Start conversion. This conversion tries to account for all zibs in BgZ MSZ "beschikbaarstellen" in one go. Either build a FHIR Bundle of type searchset per zib, or build individual files.</xd:desc>
@@ -181,6 +182,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'NutritionOrder', false())}"/>
                                 <resource>
                                     <xsl:call-template name="zib-NutritionAdvice-2.1">
+                                        <xsl:with-param name="in" select="."/>
+                                        <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                    </xsl:call-template>
+                                </resource>
+                            </xsl:when>
+                            <xsl:when test="current-grouping-key() = 'payer'">
+                                <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Coverage', false())}"/>
+                                <resource>
+                                    <xsl:call-template name="zib-Payer-2.0">
                                         <xsl:with-param name="in" select="."/>
                                         <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
                                     </xsl:call-template>
