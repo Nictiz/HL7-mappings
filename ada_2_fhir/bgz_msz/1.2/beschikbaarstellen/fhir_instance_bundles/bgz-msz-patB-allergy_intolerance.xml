@@ -1,0 +1,143 @@
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
+   <id value="6a99b0f6-2d20-11ed-1600-020000000000"/>
+   <type value="searchset"/>
+   <total value="1"/>
+   <entry>
+      <fullUrl value="urn:uuid:6a99b0f7-2d20-11ed-1600-020000000000"/>
+      <resource>
+         <AllergyIntolerance>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Allergie/intolerantie. Patiënt: 999999072 (BSN). Id: <i>geen informatie (ontbrekend gegeven)</i>, Categorie: <span title="allergie voor substantie (419199007 - SNOMED CT)">allergie voor substantie</span>, Status: opgelost / bevestigd</caption>
+                     <tfoot>
+                        <tr>
+                           <td colspan="2">Patiënt heeft succesvolle desensitisatie ondergaan.</td>
+                        </tr>
+                     </tfoot>
+                     <tbody>
+                        <tr>
+                           <th>Code</th>
+                           <td>
+                              <span title="wespengif (256440004 - SNOMED CT)">wespengif</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Eerste symptomen</th>
+                           <td>1980-08</td>
+                        </tr>
+                        <tr>
+                           <th>Meest recente voorkomen</th>
+                           <td>2 augustus 2015</td>
+                        </tr>
+                        <tr>
+                           <th>Reactie</th>
+                           <td>
+                              <ul>
+                                 <li>
+                                    <div>
+                                       <span title="Severe (24484000 - SNOMED CT)">Severe</span>
+                                    </div>
+                                    <div>
+                                       <span title="Anaphylaxis (39579001 - SNOMED CT)">Anaphylaxis</span>
+                                    </div>
+                                    <div>Sterk verlaagde bloeddruk en ademfrequentie.</div>
+                                 </li>
+                              </ul>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <identifier>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+                  <valueCode value="NI"/>
+               </extension>
+            </identifier>
+            <clinicalStatus value="resolved">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/ActStatus"/>
+                        <code value="completed"/>
+                        <display value="Completed"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </clinicalStatus>
+            <verificationStatus value="confirmed"/>
+            <category value="biologic">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="419199007"/>
+                        <display value="allergie voor substantie"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </category>
+            <criticality value="high">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="24484000"/>
+                        <display value="ernstig"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </criticality>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="256440004"/>
+                  <display value="wespengif"/>
+               </coding>
+            </code>
+            <patient>
+               <identifier>
+                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+                  <value value="999999072"/>
+               </identifier>
+            </patient>
+            <onsetDateTime value="1980-08"/>
+            <lastOccurrence value="2015-08-02"/>
+            <note>
+               <text value="Patiënt heeft succesvolle desensitisatie ondergaan."/>
+            </note>
+            <reaction>
+               <manifestation>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="39579001"/>
+                     <display value="Anaphylaxis"/>
+                  </coding>
+               </manifestation>
+               <description value="Sterk verlaagde bloeddruk en ademfrequentie."/>
+               <severity value="severe">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="http://snomed.info/sct"/>
+                           <code value="24484000"/>
+                           <display value="Severe"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </severity>
+            </reaction>
+         </AllergyIntolerance>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+</Bundle>

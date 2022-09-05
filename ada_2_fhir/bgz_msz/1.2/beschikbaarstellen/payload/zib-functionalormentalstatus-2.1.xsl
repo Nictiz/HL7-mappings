@@ -19,10 +19,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!--<xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template name="encounterReference" match="drugs_gebruik[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | drug_use[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doEncounterReference-2.1">
+    <xsl:template name="functionalOrMentalStatusReference" match="functionele_of_mentale_status[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | functional_or_mental_status[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doFunctionalOrMentalStatusReference-2.1">
         <xsl:variable name="theIdentifier" select="(zibroot/identificatienummer | hcimroot/identification_number)[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
-        <xsl:variable name="theGroupElement" select="$encounters[group-key = $theGroupKey]" as="element()?"/>
+        <xsl:variable name="theGroupElement" select="$functionalOrMentalStatuses[group-key = $theGroupKey]" as="element()?"/>
         <xsl:choose>
             <xsl:when test="$theGroupElement">
                 <xsl:variable name="fullUrl" select="nf:getFullUrlOrId(($theGroupElement/f:entry)[1])"/>
@@ -43,7 +43,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Produces a FHIR entry element with an Observation resource for Encounter</xd:desc>
+        <xd:desc>Produces a FHIR entry element with an Observation resource for FunctionalOrMentalStatus</xd:desc>
         <xd:param name="uuid">If true generate uuid from scratch. Defaults to false(). Generating a uuid from scratch limits reproduction of the same output as the uuids will be different every time.</xd:param>
         <xd:param name="adaPatient">Optional, but should be there. Patient this resource is for.</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
@@ -51,7 +51,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Observation.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="encounterEntry" match="drugs_gebruik[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | drug_use[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doEncounterEntry-2.1" as="element(f:entry)">
+    <xsl:template name="functionalOrMentalStatusEntry" match="functionele_of_mentale_status[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | functional_or_mental_status[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doFunctionalOrMentalStatusEntry-2.1" as="element(f:entry)">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
@@ -73,7 +73,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <entry>
             <fullUrl value="{$entryFullUrl}"/>
             <resource>
-                <xsl:call-template name="zib-Encounter-2.1">
+                <xsl:call-template name="zib-Functional_or_mental_status-2.1">
                     <xsl:with-param name="in" select="."/>
                     <xsl:with-param name="logicalId" select="$fhirResourceId"/>
                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
@@ -89,23 +89,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>-->
     
     <xd:doc>
-        <xd:desc>Mapping of HCIM Encounter concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-Encounter">zib-Encounter</xd:a>.</xd:desc>
+        <xd:desc>Mapping of HCIM FunctionalOrMentalStatus concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-FunctionalOrMentalStatus">zib-FunctionalOrMentalStatus</xd:a>.</xd:desc>
         <xd:param name="logicalId">Optional FHIR logical id for the record.</xd:param>
-        <xd:param name="in">Node to consider in the creation of the Observation resource for Encounter.</xd:param>
+        <xd:param name="in">Node to consider in the creation of the Observation resource for FunctionalOrMentalStatus.</xd:param>
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-Encounter-2.1" match="contact[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | encounter[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Encounter)" mode="doZibEncounter-2.1">
+    <xsl:template name="zib-FunctionalOrMentalStatus-2.1" match="functional_or_mental_status[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Observation)" mode="doZibFunctional_or_mental_status-2.1">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
-        <xsl:param name="adaPractitioner" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
         
         <xsl:for-each select="$in">
             <xsl:variable name="resource">
-                <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-Encounter</xsl:variable>
-                <Encounter>
+                <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-FunctionalOrMentalStatus</xsl:variable>
+                <Observation>
                     <xsl:if test="string-length($logicalId) gt 0">
                         <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
                     </xsl:if>
@@ -114,18 +113,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="{$profileValue}"/>
                     </meta>
                     
-                    <status value="finished"/>
+                    <status value="final"/>
                     
-                    <xsl:for-each select="contact_type">
-                        <class>
-                            <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
-                                <valueCodeableConcept>
-                                  <xsl:call-template name="code-to-CodeableConcept">
-                                      <xsl:with-param name="in" select="."/>
-                                  </xsl:call-template>
-                                </valueCodeableConcept>
-                            </extension>
-                        </class>
+                    <!-- TODO category -->
+                    
+                    <xsl:for-each select="status_name">
+                        <code>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </code>
                     </xsl:for-each>
                     
                     <!-- Patient reference -->
@@ -133,51 +130,35 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
                     
-                    <xsl:if test="(start_date_time) or (end_date_time)">
-                        <period>
-                            <xsl:for-each select="start_date_time">
-                                <start>
-                                    <xsl:attribute name="value">
-                                       <xsl:call-template name="format2FHIRDate">
-                                            <xsl:with-param name="dateTime" select="xs:string(@value)"/>
-                                           <xsl:with-param name="dateT" select="$dateT"/>
-                                        </xsl:call-template>
-                                    </xsl:attribute>
-                                </start>
-                            </xsl:for-each>
-                            <xsl:for-each select="end_date_time">
-                                <end>
-                                    <xsl:attribute name="value">
-                                        <xsl:call-template name="format2FHIRDate">
-                                            <xsl:with-param name="dateTime" select="xs:string(@value)"/>
-                                            <xsl:with-param name="dateT" select="$dateT"/>
-                                        </xsl:call-template>
-                                    </xsl:attribute>
-                                </end>
-                            </xsl:for-each>
-                        </period>
-                    </xsl:if>
-                    
-                    <!--<xsl:for-each select="contact_reason">
-                        <reason>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="problem/@value"/>
-                            </xsl:call-template>
-                        </reason>
-                    </xsl:for-each>-->
-                    
-                    <xsl:for-each select="origin">
-                        <hospitalization>
-                            <origin>
-                               <!--Reference to location-->
-                               <xsl:call-template name="code-to-CodeableConcept">
-                                   <xsl:with-param name="in" select="."/>
-                               </xsl:call-template>
-                            </origin>
-                        </hospitalization>
+                    <xsl:for-each select="status_date">
+                        <effectivePeriod>
+                            <start>
+                                <xsl:attribute name="value">
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                        <xsl:with-param name="dateT" select="$dateT"/>
+                                    </xsl:call-template>
+                                </xsl:attribute>
+                            </start>
+                        </effectivePeriod>
                     </xsl:for-each>
                     
-                </Encounter>
+                    <xsl:for-each select="status_value">
+                        <valueCodeableConcept>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </valueCodeableConcept>
+                    </xsl:for-each>
+                    
+                    <xsl:for-each select="comment">
+                        <comment>
+                            <xsl:attribute name="value" select="./@value"/>
+                        </comment>
+                    </xsl:for-each>
+                    
+                    <!--TODO medical device reference -->
+                </Observation>
             </xsl:variable>
             
             <!-- Add resource.text -->

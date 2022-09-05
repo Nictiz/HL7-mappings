@@ -19,10 +19,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!--<xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template name="encounterReference" match="drugs_gebruik[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | drug_use[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doEncounterReference-2.1">
+    <xsl:template name="medicalDeviceReference" match="medisch_hulpmiddel[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | medical_device[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doMedicalDeviceReference-2.2">
         <xsl:variable name="theIdentifier" select="(zibroot/identificatienummer | hcimroot/identification_number)[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
-        <xsl:variable name="theGroupElement" select="$encounters[group-key = $theGroupKey]" as="element()?"/>
+        <xsl:variable name="theGroupElement" select="$medicalDevices[group-key = $theGroupKey]" as="element()?"/>
         <xsl:choose>
             <xsl:when test="$theGroupElement">
                 <xsl:variable name="fullUrl" select="nf:getFullUrlOrId(($theGroupElement/f:entry)[1])"/>
@@ -43,15 +43,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Produces a FHIR entry element with an Observation resource for Encounter</xd:desc>
+        <xd:desc>Produces a FHIR entry element with a DeviceUseStatement resource for MedicalDevice</xd:desc>
         <xd:param name="uuid">If true generate uuid from scratch. Defaults to false(). Generating a uuid from scratch limits reproduction of the same output as the uuids will be different every time.</xd:param>
         <xd:param name="adaPatient">Optional, but should be there. Patient this resource is for.</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
         <xd:param name="entryFullUrl">Optional. Value for the entry.fullUrl</xd:param>
-        <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Observation.id</xd:param>
+        <xd:param name="fhirResourceId">Optional. Value for the entry.resource.DeviceUseStatement.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="encounterEntry" match="drugs_gebruik[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | drug_use[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doEncounterEntry-2.1" as="element(f:entry)">
+    <xsl:template name="medicalDeviceEntry" match="medisch_hulpmiddel[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | medical_device[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doMedicalDeviceEntry-2.2" as="element(f:entry)">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
@@ -73,7 +73,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <entry>
             <fullUrl value="{$entryFullUrl}"/>
             <resource>
-                <xsl:call-template name="zib-Encounter-2.1">
+                <xsl:call-template name="zib-MedicalDevice-2.2">
                     <xsl:with-param name="in" select="."/>
                     <xsl:with-param name="logicalId" select="$fhirResourceId"/>
                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
@@ -89,13 +89,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>-->
     
     <xd:doc>
-        <xd:desc>Mapping of HCIM Encounter concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-Encounter">zib-Encounter</xd:a>.</xd:desc>
+        <xd:desc>Mapping of HCIM MedicalDevice concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice">zib-MedicalDevice</xd:a>.</xd:desc>
         <xd:param name="logicalId">Optional FHIR logical id for the record.</xd:param>
-        <xd:param name="in">Node to consider in the creation of the Observation resource for Encounter.</xd:param>
+        <xd:param name="in">Node to consider in the creation of the DeviceUseStatement resource for MedicalDevice.</xd:param>
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-Encounter-2.1" match="contact[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | encounter[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Encounter)" mode="doZibEncounter-2.1">
+    <xsl:template name="zib-MedicalDevice-2.2" match="medical_device[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:DeviceUseStatement)" mode="doZibMedicalDevice-2.2">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
@@ -104,8 +104,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <xsl:variable name="resource">
-                <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-Encounter</xsl:variable>
-                <Encounter>
+                <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice</xsl:variable>
+                <DeviceUseStatement>
                     <xsl:if test="string-length($logicalId) gt 0">
                         <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
                     </xsl:if>
@@ -114,70 +114,68 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="{$profileValue}"/>
                     </meta>
                     
-                    <status value="finished"/>
-                    
-                    <xsl:for-each select="contact_type">
-                        <class>
-                            <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
-                                <valueCodeableConcept>
-                                  <xsl:call-template name="code-to-CodeableConcept">
-                                      <xsl:with-param name="in" select="."/>
-                                  </xsl:call-template>
-                                </valueCodeableConcept>
-                            </extension>
-                        </class>
-                    </xsl:for-each>
+                    <status value="completed"/>
                     
                     <!-- Patient reference -->
                     <subject>
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
                     
-                    <xsl:if test="(start_date_time) or (end_date_time)">
-                        <period>
-                            <xsl:for-each select="start_date_time">
-                                <start>
-                                    <xsl:attribute name="value">
-                                       <xsl:call-template name="format2FHIRDate">
-                                            <xsl:with-param name="dateTime" select="xs:string(@value)"/>
-                                           <xsl:with-param name="dateT" select="$dateT"/>
-                                        </xsl:call-template>
-                                    </xsl:attribute>
-                                </start>
-                            </xsl:for-each>
-                            <xsl:for-each select="end_date_time">
-                                <end>
-                                    <xsl:attribute name="value">
-                                        <xsl:call-template name="format2FHIRDate">
-                                            <xsl:with-param name="dateTime" select="xs:string(@value)"/>
-                                            <xsl:with-param name="dateT" select="$dateT"/>
-                                        </xsl:call-template>
-                                    </xsl:attribute>
-                                </end>
-                            </xsl:for-each>
-                        </period>
-                    </xsl:if>
-                    
-                    <!--<xsl:for-each select="contact_reason">
-                        <reason>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="problem/@value"/>
-                            </xsl:call-template>
-                        </reason>
-                    </xsl:for-each>-->
-                    
-                    <xsl:for-each select="origin">
-                        <hospitalization>
-                            <origin>
-                               <!--Reference to location-->
-                               <xsl:call-template name="code-to-CodeableConcept">
-                                   <xsl:with-param name="in" select="."/>
-                               </xsl:call-template>
-                            </origin>
-                        </hospitalization>
+                    <xsl:for-each select="start_date">
+                        <whenUsed>
+                            <start>
+                                <xsl:attribute name="value">
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                        <xsl:with-param name="dateT" select="$dateT"/>
+                                    </xsl:call-template>
+                                </xsl:attribute>
+                            </start>
+                        </whenUsed>
                     </xsl:for-each>
                     
-                </Encounter>
+                    <xsl:for-each select="health_professional/health_professional">
+                        <source>
+                                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                                    <valueReference>
+                                        <xsl:apply-templates select="$adaPractitioner" mode="doPractitionerRoleReference-2.0"/>
+                                    </valueReference>
+                                </extension>
+                                <xsl:apply-templates select="$adaPractitioner" mode="doPractitionerReference-2.0"/>
+                        </source>
+                    </xsl:for-each>
+                    
+                    <!-- TODO device -->
+                    
+                    <xsl:if test="laterality or anatomical_location">
+                        <bodySite>
+                            <xsl:for-each select="laterality">
+                                <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+                                    <valueCodeableConcept>
+                                        <xsl:call-template name="code-to-CodeableConcept">
+                                            <xsl:with-param name="in" select="."/>
+                                        </xsl:call-template>
+                                    </valueCodeableConcept>
+                                </extension>
+                            </xsl:for-each>
+                            <xsl:for-each select="anatomical_location">
+                                <xsl:call-template name="code-to-CodeableConcept">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                        </bodySite>
+                    </xsl:if>
+                    
+                    <xsl:for-each select="comment">
+                        <note>
+                            <text>
+                                <xsl:attribute name="value" select="./@value"/>
+                            </text>
+                        </note>
+                    </xsl:for-each>
+                    
+                    <!--TODO medical device reference -->
+                </DeviceUseStatement>
             </xsl:variable>
             
             <!-- Add resource.text -->

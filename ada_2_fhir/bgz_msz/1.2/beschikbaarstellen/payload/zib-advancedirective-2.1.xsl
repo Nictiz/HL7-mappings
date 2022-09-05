@@ -127,9 +127,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="toelichting | comment">
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/Comment">
                             <valueString>
-                                <xsl:attribute name="value">
-                                    <xsl:value-of select="@value"/>
-                                </xsl:attribute>
+                                <xsl:call-template name="string-to-string">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
                             </valueString>
                         </extension>
                     </xsl:for-each>
