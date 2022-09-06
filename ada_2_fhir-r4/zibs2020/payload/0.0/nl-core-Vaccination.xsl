@@ -39,9 +39,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="vaccinatie" name="nl-core-Vaccination-event" mode="nl-core-Vaccination-event" as="element(f:Immunization)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="patient" select="patient/*" as="element()?"/>
-        
+        <xsl:param name="pharmaceuticalProduct" select="farmaceutisch_product" as="element()?"/>
+
         <xsl:for-each select="$in">
             <Immunization>
+                <xsl:for-each select="farmaceutisch_product">
+                    <!-- call make pharmaceuticalProduct instance -->
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Vaccination.PharmaceuticalProduct">
+                            <xsl:call-template name="makeReference">
+                                <xsl:with-param name="in" select="$pharmaceuticalProduct"/>
+                                <xsl:with-param name="wrapIn" select="'valueReference'"/>
+                            </xsl:call-template>
+                    </extension>
+                </xsl:for-each>
                 <xsl:call-template name="insertLogicalId">
                     <xsl:with-param name="profile" select="'nl-core-Vaccination-event'"/>
                 </xsl:call-template>

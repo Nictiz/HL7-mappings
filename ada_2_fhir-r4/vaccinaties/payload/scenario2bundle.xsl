@@ -32,7 +32,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="fhirMetadata" as="element()*">
         <xsl:call-template name="buildFhirMetadata">
             <!-- ADA instances for this project start with $zib2020Oid and end in .1, or in 9.*.* in the case of the medication related zibs -->
-            <xsl:with-param name="in" select="collection('../ada_instance/')//(vaccinatie | bundel/patient | bundel/zorgaanbieder | vaccinatie/farmaceutisch_product)"/>
+            <xsl:with-param name="in" select="collection('../ada_instance/')//(vaccinatie | bundel/patient | bundel/zorgaanbieder | vaccinatie/farmaceutisch_product | bundel/zorgverlener)"/>
         </xsl:call-template>
     </xsl:param>
     
@@ -44,9 +44,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
             </xsl:for-each>
         </xsl:variable>
-        <xsl:variable name="patient" as="element()?">
+        <xsl:variable name="includes" as="element()*">
             <xsl:for-each select="bundel/patient">
                 <xsl:call-template name="nl-core-Patient"/>
+            </xsl:for-each>
+            <xsl:for-each select="vaccinatie/farmaceutisch_product">
+                <xsl:call-template name="nl-core-PharmaceuticalProduct"/>
+            </xsl:for-each>
+            <xsl:for-each select="bundel/zorgaanbieder">
+                <xsl:call-template name="nl-core-HealthcareProvider-Organization"/>
+            </xsl:for-each>
+            <xsl:for-each select="bundel/zorgverlener">
+                <xsl:call-template name="nl-core-HealthProfessional-Practitioner"/>
+                <xsl:call-template name="nl-core-HealthProfessional-PractitionerRole"/>
             </xsl:for-each>
         </xsl:variable>
         
@@ -62,14 +72,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </search>
                 </entry>
             </xsl:for-each>
-            <xsl:for-each select="$patient">
-                <xsl:call-template name="_insertFullUrlById"/>
-                <resource>
-                    <xsl:copy-of select="."/>
-                </resource>
-                <search>
-                    <mode value="include"/>
-                </search>
+            <xsl:for-each select="$includes">
+                <entry>
+                    <xsl:call-template name="_insertFullUrlById"/>
+                    <resource>
+                        <xsl:copy-of select="."/>
+                    </resource>
+                    <search>
+                        <mode value="include"/>
+                    </search>
+                </entry>
             </xsl:for-each>
         </Bundle>        
     </xsl:template>
