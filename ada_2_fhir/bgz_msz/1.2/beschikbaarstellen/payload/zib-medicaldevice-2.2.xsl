@@ -100,6 +100,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="adaPractitioner" as="element()"/>
+        <!--<xsl:param name="adaProblem" as="element()"/>-->
         <xsl:param name="dateT" as="xs:date?"/>
         
         <xsl:for-each select="$in">
@@ -145,7 +146,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </source>
                     </xsl:for-each>
                     
-                    <!-- TODO device -->
+                    <!-- TODO device reference -->
+                    <xsl:for-each select="product">
+                        <valueReference>
+                            
+                        </valueReference>
+                    </xsl:for-each>
+                    
+                    <!-- TODO problem reference -->
+                    <xsl:for-each select="indication">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Problem">
+                            <valueReference>
+                                <!--<xsl:apply-templates select="$adaProblem" mode="doProblemReference-2.0"/>-->
+                            </valueReference>
+                        </extension>
+                    </xsl:for-each>
+                    
                     
                     <xsl:if test="laterality or anatomical_location">
                         <bodySite>
