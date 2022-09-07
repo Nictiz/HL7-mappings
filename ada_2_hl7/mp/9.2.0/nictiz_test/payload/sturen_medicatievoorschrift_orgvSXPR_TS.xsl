@@ -22,7 +22,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!--    <xsl:param name="dateT" as="xs:date?" select="xs:date('2020-03-24')"/>-->
     <xsl:param name="dateT" as="xs:date?"/>
     <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
-    <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>
+    <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
     <!-- param to influence whether to output schematron references, typically only needed for test instances -->
     <xsl:param name="schematronRef" as="xs:boolean" select="false()"/>
 
