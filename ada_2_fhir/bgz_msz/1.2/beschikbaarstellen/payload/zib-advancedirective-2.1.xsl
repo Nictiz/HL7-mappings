@@ -187,15 +187,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </dateTime>
                     
                     <!-- TODO RelatedPerson reference -->
-                    <xsl:for-each select="vertegenwoordiger | representative">
+                    <!--<xsl:for-each select="vertegenwoordiger | representative">
                         <consentingParty>
                             <xsl:apply-templates select="$adaRelatedPerson" mode="doRelatedPersonReference-2.0"/>
                         </consentingParty>
-                    </xsl:for-each>
+                    </xsl:for-each>-->
                     
                     <!-- TODO living_will_document -->
                     <xsl:for-each select="wilsverklaring_document | living_will_document">
                         <sourceAttachment>
+                            <contentType value="application/pdf"/>
                             <data>
                                 <xsl:attribute name="value">
                                     <xsl:value-of select="@value"/>
