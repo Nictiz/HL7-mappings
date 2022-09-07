@@ -19,7 +19,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!--<xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template name="nutritionAdviceReference" match="drugs_gebruik[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | drug_use[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doNutritionAdviceReference-2.1">
+    <xsl:template name="nutritionAdviceReference" match="voedingsadvies[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | nutrition_advice[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doNutritionAdviceReference-2.1">
         <xsl:variable name="theIdentifier" select="(zibroot/identificatienummer | hcimroot/identification_number)[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$nutritionAdvices[group-key = $theGroupKey]" as="element()?"/>
@@ -43,15 +43,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Produces a FHIR entry element with an Observation resource for NutritionAdvice</xd:desc>
+        <xd:desc>Produces a FHIR entry element with a NutritionOrder resource for NutritionAdvice</xd:desc>
         <xd:param name="uuid">If true generate uuid from scratch. Defaults to false(). Generating a uuid from scratch limits reproduction of the same output as the uuids will be different every time.</xd:param>
         <xd:param name="adaPatient">Optional, but should be there. Patient this resource is for.</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
         <xd:param name="entryFullUrl">Optional. Value for the entry.fullUrl</xd:param>
-        <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Observation.id</xd:param>
+        <xd:param name="fhirResourceId">Optional. Value for the entry.resource.NutritionOrder.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="nutritionAdviceEntry" match="drugs_gebruik[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | drug_use[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doNutritionAdviceEntry-2.1" as="element(f:entry)">
+    <xsl:template name="nutritionAdviceEntry" match="voedingsadvies[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | nutrition_advice[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doNutritionAdviceEntry-2.1" as="element(f:entry)">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
@@ -91,7 +91,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Mapping of HCIM NutritionAdvice concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-NutritionAdvice">zib-NutritionAdvice</xd:a>.</xd:desc>
         <xd:param name="logicalId">Optional FHIR logical id for the record.</xd:param>
-        <xd:param name="in">Node to consider in the creation of the Observation resource for NutritionAdvice.</xd:param>
+        <xd:param name="in">Node to consider in the creation of the NutritionOrder resource for NutritionAdvice.</xd:param>
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
@@ -113,7 +113,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="{$profileValue}"/>
                     </meta>
                     
-                    <xsl:for-each select="comment">
+                    <xsl:for-each select="(toelichting | comment)[@value]">
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-NutritionAdvice-Explanation">
                             <valueString>
                                 <xsl:call-template name="string-to-string">
@@ -130,27 +130,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </patient>
                     
-                    <xsl:choose>
-                        <xsl:when test="hcimroot/date_time[@value]">
-                            <dateTime>
+                    <!-- dateTime is required in the FHIR profile, so always output dateTime, data-absent-reason if no actual value -->
+                    <dateTime>
+                        <xsl:choose>
+                            <xsl:when test="(zibroot/datum_tijd | hcimroot/date_time)[@value]">
                                 <xsl:attribute name="value">
                                     <xsl:call-template name="format2FHIRDate">
-                                        <xsl:with-param name="dateTime" select="xs:string(hcimroot/date_time/@value)"/>
+                                        <xsl:with-param name="dateTime" select="xs:string((zibroot/datum_tijd | hcimroot/date_time)/@value)"/>
                                         <xsl:with-param name="dateT" select="$dateT"/>
                                     </xsl:call-template>
                                 </xsl:attribute>
-                            </dateTime>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <dateTime>
-                                 <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                                     <valueCode value="unknown"/>
-                                 </extension>
-                            </dateTime>
-                        </xsl:otherwise>
-                    </xsl:choose>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <extension url="{$urlExtHL7DataAbsentReason}">
+                                    <valueCode value="unknown"/>
+                                </extension>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </dateTime>
                     
-                    <xsl:for-each select="diet_type | dieet_type">
+                    <xsl:for-each select="(dieet_type | diet_type)[@value]">
                         <oralDiet>
                             <type>
                                 <text>
@@ -160,6 +159,32 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </text>
                             </type>
                         </oralDiet>
+                    </xsl:for-each>
+                    
+                    <xsl:for-each select="(consistentie | consistency)[@value]">
+                        <texture>
+                            <modifier>
+                                <text>
+                                    <xsl:call-template name="string-to-string">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </text>
+                            </modifier>
+                            <foodType>
+                                <text>
+                                    <xsl:call-template name="string-to-string">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </text>
+                            </foodType>
+                        </texture>
+                        <fluidConsistencyType>
+                            <text>
+                                <xsl:call-template name="string-to-string">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </text>
+                        </fluidConsistencyType>
                     </xsl:for-each>
                     
                 </NutritionOrder>

@@ -115,7 +115,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="{$profileValue}"/>
                     </meta>
                     
-                    <!-- TODO Problem reference -->
                     <!--<xsl:for-each select="aandoening | disorder">
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdvanceDirective-Disorder">
                             <valueReference>
@@ -186,7 +185,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:choose>
                     </dateTime>
                     
-                    <!-- TODO RelatedPerson reference -->
                     <!--<xsl:for-each select="vertegenwoordiger | representative">
                         <consentingParty>
                             <xsl:apply-templates select="$adaRelatedPerson" mode="doRelatedPersonReference-2.0"/>

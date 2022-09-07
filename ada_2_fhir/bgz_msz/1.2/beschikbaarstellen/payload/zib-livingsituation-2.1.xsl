@@ -128,7 +128,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
                     
-                    <xsl:for-each select="woning_type | house_type">
+                    <xsl:for-each select="(woning_type | house_type)[@code]">
                         <valueCodeableConcept>
                             <xsl:variable name="nullFlavorsInValueset" select="('OTH')"/>
                                 <xsl:call-template name="code-to-CodeableConcept">
@@ -138,7 +138,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueCodeableConcept>
                     </xsl:for-each>
                     
-                    <xsl:for-each select="toelichting | comment">
+                    <xsl:for-each select="(toelichting | comment)[@value]">
                         <comment>
                             <xsl:call-template name="string-to-string">
                                 <xsl:with-param name="in" select="."/>
