@@ -124,7 +124,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </extension>
                     </xsl:for-each>-->
                     
-                    <xsl:for-each select="toelichting | comment">
+                    <xsl:for-each select="(toelichting | comment)[@value]">
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/Comment">
                             <valueString>
                                 <xsl:call-template name="string-to-string">
@@ -151,7 +151,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:variable name="nullFlavorsInValueset" select="('OTH')"/>
                                 <xsl:call-template name="code-to-CodeableConcept">
                                     <xsl:with-param name="in" select="wilsverklaring_type | living_will_type"/>
-                                    <xsl:with-param name="treatNullFlavorAsCoding" select="@code = $nullFlavorsInValueset and @codeSystem = $oidHL7NullFlavor"/>
+                                    <xsl:with-param name="treatNullFlavorAsCoding" select="(wilsverklaring_type | living_will_type)/@code = $nullFlavorsInValueset and (wilsverklaring_type | living_will_type)/@codeSystem = $oidHL7NullFlavor"/>
                                 </xsl:call-template>
                             </xsl:when>
                             <xsl:otherwise>
@@ -193,8 +193,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </consentingParty>
                     </xsl:for-each>-->
                     
-                    <!-- TODO living_will_document -->
-                    <xsl:for-each select="wilsverklaring_document | living_will_document">
+                    <xsl:for-each select="(wilsverklaring_document | living_will_document)[@value]">
                         <sourceAttachment>
                             <contentType value="application/pdf"/>
                             <data>
