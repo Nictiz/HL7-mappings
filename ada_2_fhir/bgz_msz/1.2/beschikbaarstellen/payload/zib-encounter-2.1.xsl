@@ -100,6 +100,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="adaPractitioner" as="element()"/>
+        <xsl:param name="adaProblem" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
         
         <xsl:for-each select="$in">
@@ -133,6 +134,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
                     
+                    <!-- Practitioner reference-->
+                    <xsl:for-each select="contact_with/health_professional">
+                        <participant>
+                            <individual>
+                                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                                    <valueReference>
+                                        <xsl:apply-templates select="$adaPractitioner" mode="doPractitionerRoleReference-2.0"/>
+                                    </valueReference>
+                                </extension>
+                                <xsl:apply-templates select="$adaPractitioner" mode="doPractitionerReference-2.0"/>
+                            </individual>
+                        </participant>
+                    </xsl:for-each>
+                    
                     <xsl:if test="start_date_time or end_date_time">
                         <period>
                             <xsl:for-each select="start_date_time">
@@ -158,24 +173,35 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </period>
                     </xsl:if>
                     
-                    <!--<xsl:for-each select="contact_reason">
-                        <reason>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="problem/@value"/>
-                            </xsl:call-template>
-                        </reason>
-                    </xsl:for-each>-->
+                    <xsl:for-each select="contact_reason/problem/problem">
+                        <diagnosis>
+                            <reference>
+                                <xsl:apply-templates select="$adaProblem" mode="doProblemReference-2.1"/>
+                            </reference>
+                        </diagnosis>
+                    </xsl:for-each>
                     
                     <xsl:for-each select="origin">
                         <hospitalization>
-                            <origin>
-                               <!--Reference to location-->
-                               <xsl:call-template name="code-to-CodeableConcept">
-                                   <xsl:with-param name="in" select="."/>
-                               </xsl:call-template>
-                            </origin>
+                            <admitSource>
+                                <xsl:call-template name="code-to-CodeableConcept">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </admitSource>
                         </hospitalization>
+                        
                     </xsl:for-each>
+                    
+                    <!-- TODO location/organization Reference-->
+                    <!--<xsl:for-each select="location/healthcare_provider">
+                        <location>
+                             <!-\-Reference to location-\->
+                             <valueReference>
+                                 
+                             </valueReference>
+                            
+                        </location>
+                    </xsl:for-each>-->
                     
                 </Encounter>
             </xsl:variable>

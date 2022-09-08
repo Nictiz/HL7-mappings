@@ -177,11 +177,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:when test="current-grouping-key() = 'encounter'">
                                     <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Encounter', false())}"/>
                                     <xsl:variable name="adaPractitioner" select="$input/adaxml/data/health_professional_registration/health_professional[./hcimroot/identification_number/@value = 'zib-2017-bgz-patA-healthProf1']"/>
+                                    <xsl:variable name="adaProblem" select="$input/adaxml/data/problem_registration/problem[./hcimroot/identification_number/@value = 'zib-2017-bgz-patA-problem5']"/>
                                     <resource>
                                         <xsl:call-template name="zib-Encounter-2.1">
                                             <xsl:with-param name="in" select="."/>
                                             <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
                                             <xsl:with-param name="adaPractitioner" select="$adaPractitioner" as="element()"/>
+                                            <xsl:with-param name="adaProblem" select="$adaProblem" as="element()"/>
                                         </xsl:call-template>
                                     </resource>
                                 </xsl:when>
