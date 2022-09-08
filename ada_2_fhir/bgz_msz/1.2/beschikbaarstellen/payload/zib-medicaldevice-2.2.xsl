@@ -95,7 +95,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-MedicalDevice-2.2" match="medical_device[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:DeviceUseStatement)" mode="doZibMedicalDevice-2.2">
+    <xsl:template name="zib-MedicalDevice-2.2" match="medisch_hulpmiddel[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | medical_device[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:DeviceUseStatement)" mode="doZibMedicalDevice-2.2">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
@@ -114,14 +114,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="{$profileValue}"/>
                     </meta>
                     
-                    <status value="completed"/>
+                    <status value="active"/>
                     
                     <!-- Patient reference -->
                     <subject>
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
                     
-                    <xsl:for-each select="start_date">
+                    <xsl:for-each select="(begin_datum | start_date)[@value]">
                         <whenUsed>
                             <start>
                                 <xsl:attribute name="value">
@@ -134,7 +134,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </whenUsed>
                     </xsl:for-each>
                     
-                    <xsl:for-each select="health_professional/health_professional">
+                    <xsl:for-each select="zorgverlener/zorgverlener | health_professional/health_professional">
                         <source>
                                 <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                                     <valueReference>
@@ -147,9 +147,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <!-- TODO device -->
                     
-                    <xsl:if test="laterality or anatomical_location">
+                    <xsl:if test="(lateraliteit | laterality)[@code] or (anatomische_locatie | anatomical_location)[@code]">
                         <bodySite>
-                            <xsl:for-each select="laterality">
+                            <xsl:for-each select="(lateraliteit | laterality)[@code]">
                                 <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
                                     <valueCodeableConcept>
                                         <xsl:call-template name="code-to-CodeableConcept">
@@ -158,7 +158,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </valueCodeableConcept>
                                 </extension>
                             </xsl:for-each>
-                            <xsl:for-each select="anatomical_location">
+                            <xsl:for-each select="(anatomische_locatie | anatomical_location)[@code]">
                                 <xsl:call-template name="code-to-CodeableConcept">
                                     <xsl:with-param name="in" select="."/>
                                 </xsl:call-template>
@@ -166,7 +166,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </bodySite>
                     </xsl:if>
                     
-                    <xsl:for-each select="comment">
+                    <xsl:for-each select="(toelichting | comment)[@value]">
                         <note>
                             <text>
                                 <xsl:call-template name="string-to-string">
@@ -176,7 +176,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </note>
                     </xsl:for-each>
                     
-                    <!--TODO medical device reference -->
                 </DeviceUseStatement>
             </xsl:variable>
             
