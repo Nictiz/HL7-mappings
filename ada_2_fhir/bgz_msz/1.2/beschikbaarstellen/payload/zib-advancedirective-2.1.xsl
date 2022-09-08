@@ -99,7 +99,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
-        <xsl:param name="adaProblem" as="element()"/>
+        <xsl:param name="adaProblem" select="disorder/problem" as="element()*"/>
         <xsl:param name="adaRelatedPerson" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
         
@@ -115,7 +115,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="{$profileValue}"/>
                     </meta>
                     
-                    <!--<xsl:for-each select="aandoening | disorder">
+                    <!--<xsl:for-each select="$adaProblem">
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdvanceDirective-Disorder">
                             <valueReference>
                                 <xsl:apply-templates select="$adaProblem" mode="doProblemReference-2.1"/>
