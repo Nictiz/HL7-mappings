@@ -173,13 +173,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </period>
                     </xsl:if>
                     
+                    <!-- TODO Problem Reference 
                     <xsl:for-each select="contact_reason/problem/problem">
                         <diagnosis>
                             <reference>
                                 <xsl:apply-templates select="$adaProblem" mode="doProblemReference-2.1"/>
                             </reference>
                         </diagnosis>
-                    </xsl:for-each>
+                    </xsl:for-each> -->
                     
                     <xsl:for-each select="origin">
                         <hospitalization>
