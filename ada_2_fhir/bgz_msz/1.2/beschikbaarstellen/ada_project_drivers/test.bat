@@ -6,7 +6,9 @@ if "%saxonPath%"=="" (
   SET saxonPath=C:\Program Files\Java\Saxon\saxon-he-11.4.jar
 )
 SET inputDir=..\ada_processed
+SET xsltDir=..\payload
 SET outputDir=..\fhir_instance_bundles
+
 
 if not exist "%saxonPath%" (
     echo.
@@ -15,21 +17,14 @@ if not exist "%saxonPath%" (
     pause
 )
 
-if "%1"=="" (
-	for /f %%f in ('dir /b "%inputDir%"') do (
-		set id=%%~nf
-		if "!id:~0,8!" == "nl-core-" (
-			if not exist "%inputDir%\!id!-bundled.xml" (			
-				call :doTransformation !id!
-			)
-		)
-	)
-) else (
-		set input=%1
-		call :doTransformation !input!
+for /f %%f in ('dir /b "%inputDir%"') do (
+	set id=%%~nf
+	call :doTransformation !id!
 )
 
+pause
 exit /b
+
 
 :doTransformation
 set input=%1
@@ -43,10 +38,5 @@ if exist "%outputDir%\!noDriverId!*.xml" (
 	del "%outputDir%\!noDriverId!*.xml" /Q
 )
 
-if exist "!baseId!-driver.xsl" (
-	set xslPath=!baseId!-driver.xsl
-) else (
-	set xslPath=nl-core-driver.xsl
-)
 
-java -jar "%saxonPath%" -s:"%inputDir%/!input!.xml" -xsl:!xslPath! -o:"%outputDir%/!noDriverId!.xml
+java -jar "%saxonPath%" -s:"%inputDir%/!input!.xml" -xsl:"%xsltDir%/beschikbaarstellen_2_fhir.xsl" -o:"%outputDir%/!noDriverId!.xml
