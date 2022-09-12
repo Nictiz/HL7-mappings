@@ -81,7 +81,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:call-template name="zib-AdvanceDirective-2.1">
                                 <xsl:with-param name="in" select="."/>
                                 <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                <xsl:with-param name="logicalId" select="'Test123'"/>
                             </xsl:call-template>
                         </resource>
                     </xsl:if>
