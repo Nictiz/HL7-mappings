@@ -75,181 +75,169 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="adaPatient" select="hcimroot/subject/patient/patient"/>
                 
                 <entry xmlns="http://hl7.org/fhir">
-                    <xsl:choose>
-                        <xsl:when test="local-name() = 'advance_directive'">
-                            <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Consent', false())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-AdvanceDirective-2.1">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="'Test123'"/>
-                                </xsl:call-template>
-                            </resource>
-                        </xsl:when>
-                        <xsl:when test="local-name() = 'alcohol_use'">
-                            <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-AlcoholUse-2.1">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                </xsl:call-template>
-                            </resource>
-                        </xsl:when>
-                        <xsl:when test="local-name() = 'alert'">
-                            <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Flag', false())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-Alert-2.1">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                </xsl:call-template>
-                            </resource>
-                        </xsl:when>
-                        <xsl:when test="local-name() = 'allergy_intolerance'">
-                            <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'AllergyIntolerance', false())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-AllergyIntolerance-2.1">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                </xsl:call-template>
-                            </resource>
-                        </xsl:when>
-                        <xsl:when test="local-name() = 'blood_pressure'">
-                            <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-BloodPressure-3.0">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                </xsl:call-template>
-                            </resource>
-                        </xsl:when>
-                        <xsl:when test="local-name() = 'body_height'">
-                            <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-BodyHeight-2.1">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                </xsl:call-template>
-                            </resource>
-                        </xsl:when>
-                        <xsl:when test="local-name() = 'body_weight'">
-                            <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-BodyWeight-2.1">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                </xsl:call-template>
-                            </resource>
-                        </xsl:when>
-                        <xsl:when test="local-name() = 'drug_use'">
-                            <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-DrugUse-2.1">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                </xsl:call-template>
-                            </resource>
-                        </xsl:when>
-                        <xsl:when test="local-name() = 'encounter'">
-                            <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Encounter', false())}"/>
-                            <xsl:variable name="adaPractitioner" select="$input/adaxml/data/health_professional_registration/health_professional[./hcimroot/identification_number/@value = 'zib-2017-bgz-patA-healthProf1']"/>
-                            <resource>
-                                <xsl:call-template name="zib-Encounter-2.1">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="adaPractitioner" select="$adaPractitioner" as="element()"/>
-                                </xsl:call-template>
-                            </resource>
-                        </xsl:when>
-                        <xsl:when test="local-name() = 'functional_or_mental_status'">
-                            <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-FunctionalOrMentalStatus-2.1">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                </xsl:call-template>
-                            </resource>
-                        </xsl:when>
-                        <xsl:when test="local-name() = 'living_situation'">
-                            <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-LivingSituation-2.1">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                </xsl:call-template>
-                            </resource>
-                        </xsl:when>
-                        <xsl:when test="local-name() = 'medical_device'">
-                            <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'DeviceUseStatement', false())}"/>
-                            <xsl:variable name="adaPractitioner" select="$input/adaxml/data/health_professional_registration/health_professional[./hcimroot/identification_number/@value = 'zib-2017-bgz-patA-healthProf1']"/>
-                            <resource>
-                                <xsl:call-template name="zib-MedicalDevice-2.2">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="adaPractitioner" select="$adaPractitioner" as="element()"/>
-                                </xsl:call-template>
-                            </resource>
-                        </xsl:when>
-                        <xsl:when test="local-name() = 'nutrition_advice'">
-                            <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'NutritionOrder', false())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-NutritionAdvice-2.1">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                </xsl:call-template>
-                            </resource>
-                        </xsl:when>
-                        <xsl:when test="local-name() = 'payer'">
-                            <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Coverage', false())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-Payer-2.0">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                </xsl:call-template>
-                            </resource>
-                        </xsl:when>
-                        <xsl:when test="local-name() = 'procedure'">
-                            <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Procedure', false())}"/>
-                            <xsl:variable name="adaPractitioner" select="$input/adaxml/data/health_professional_registration/health_professional[./hcimroot/identification_number/@value = 'zib-2017-bgz-patA-healthProf1']"/>
-                            <resource>
-                                <xsl:call-template name="zib-Procedure-2.1">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="adaPractitioner" select="$adaPractitioner" as="element()"/>
-                                </xsl:call-template>
-                            </resource>
-                        </xsl:when>
-                        <xsl:when test="local-name() = 'tobacco_use'">
-                            <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-TobaccoUse-2.1">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                </xsl:call-template>
-                            </resource>
-                        </xsl:when>
-                        <xsl:when test="local-name() = 'treatment_directive'">
-                            <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Consent', false())}"/>
-                            <resource>
-                                <xsl:variable name="adaAdvanceDirective" select="$input/adaxml/data/advance_directive_registration/advance_directive[./hcimroot/identification_number/@value = 'zib-2017-bgz-patA-advdir']"/>
-                                <xsl:call-template name="zib-TreatmentDirective-2.2">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="adaAdvanceDirective" select="$adaAdvanceDirective" as="element()"/>
-                                </xsl:call-template>
-                            </resource>
-                        </xsl:when>
-                        <xsl:when test="local-name() = 'vaccination'">
-                            <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Immunization', false())}"/>
-                            <resource>
-                                <xsl:variable name="adaPractitioner" select="$input/adaxml/data/health_professional_registration/health_professional[./hcimroot/identification_number/@value = 'zib-2017-bgz-patA-healthProf1']"/>
-                                <xsl:call-template name="zib-Vaccination-2.1">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="adaPractitioner" select="$adaPractitioner" as="element()"/>
-                                </xsl:call-template>
-                            </resource>
-                        </xsl:when>
-                    </xsl:choose>
+                    <xsl:if test="local-name() = 'advance_directive'">
+                        <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Consent', false())}"/>
+                        <resource>
+                            <xsl:call-template name="zib-AdvanceDirective-2.1">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                <xsl:with-param name="logicalId" select="'Test123'"/>
+                            </xsl:call-template>
+                        </resource>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'alcohol_use'">
+                        <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>
+                        <resource>
+                            <xsl:call-template name="zib-AlcoholUse-2.1">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                            </xsl:call-template>
+                        </resource>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'alert'">
+                        <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Flag', false())}"/>
+                        <resource>
+                            <xsl:call-template name="zib-Alert-2.1">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                            </xsl:call-template>
+                        </resource>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'allergy_intolerance'">
+                        <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'AllergyIntolerance', false())}"/>
+                        <resource>
+                            <xsl:call-template name="zib-AllergyIntolerance-2.1">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                            </xsl:call-template>
+                        </resource>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'blood_pressure'">
+                        <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>
+                        <resource>
+                            <xsl:call-template name="zib-BloodPressure-3.0">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                            </xsl:call-template>
+                        </resource>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'body_height'">
+                        <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>
+                        <resource>
+                            <xsl:call-template name="zib-BodyHeight-2.1">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                            </xsl:call-template>
+                        </resource>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'body_weight'">
+                        <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>
+                        <resource>
+                            <xsl:call-template name="zib-BodyWeight-2.1">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                            </xsl:call-template>
+                        </resource>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'drug_use'">
+                        <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>
+                        <resource>
+                            <xsl:call-template name="zib-DrugUse-2.1">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                            </xsl:call-template>
+                        </resource>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'encounter'">
+                        <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Encounter', false())}"/>
+                        <resource>
+                            <xsl:call-template name="zib-Encounter-2.1">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                            </xsl:call-template>
+                        </resource>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'functional_or_mental_status'">
+                        <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>
+                        <resource>
+                            <xsl:call-template name="zib-FunctionalOrMentalStatus-2.1">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                            </xsl:call-template>
+                        </resource>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'living_situation'">
+                        <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>
+                        <resource>
+                            <xsl:call-template name="zib-LivingSituation-2.1">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                            </xsl:call-template>
+                        </resource>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'medical_device'">
+                        <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'DeviceUseStatement', false())}"/>
+                        <resource>
+                            <xsl:call-template name="zib-MedicalDevice-2.2">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                            </xsl:call-template>
+                        </resource>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'nutrition_advice'">
+                        <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'NutritionOrder', false())}"/>
+                        <resource>
+                            <xsl:call-template name="zib-NutritionAdvice-2.1">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                            </xsl:call-template>
+                        </resource>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'payer'">
+                        <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Coverage', false())}"/>
+                        <resource>
+                            <xsl:call-template name="zib-Payer-2.0">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                            </xsl:call-template>
+                        </resource>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'procedure'">
+                        <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Procedure', false())}"/>
+                        <resource>
+                            <xsl:call-template name="zib-Procedure-2.1">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                            </xsl:call-template>
+                        </resource>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'tobacco_use'">
+                        <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>
+                        <resource>
+                            <xsl:call-template name="zib-TobaccoUse-2.1">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                            </xsl:call-template>
+                        </resource>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'treatment_directive'">
+                        <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Consent', false())}"/>
+                        <resource>
+                            <xsl:call-template name="zib-TreatmentDirective-2.2">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                            </xsl:call-template>
+                        </resource>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'vaccination'">
+                        <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Immunization', false())}"/>
+                        <resource>
+                            <xsl:call-template name="zib-Vaccination-2.1">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                            </xsl:call-template>
+                        </resource>
+                    </xsl:if>
                     <search>
                         <mode value="match"/>
                     </search>
@@ -259,7 +247,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:variable name="entries" as="element(f:entry)*">
             <xsl:copy-of select="$bouwstenen"/>
-            <!-- common entries (patient, practitioners, organizations, practitionerroles -->
+            <!-- common entries (patient, practitioners, organizations, practitionerroles) -->
             <xsl:copy-of select="$commonEntries"/>
         </xsl:variable>
         
@@ -279,7 +267,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:result-document href="../fhir_instance_bundles/{$usecase}-{$patientName}-{current-grouping-key()}.xml">
+                <xsl:result-document href="../fhir_instance_bundles/{tokenize(base-uri(.), '/')[last()]}">
                     <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
                     <Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
                         <id value="{nf:get-uuid(*[1])}"/>
