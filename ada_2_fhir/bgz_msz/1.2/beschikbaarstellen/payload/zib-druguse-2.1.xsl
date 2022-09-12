@@ -128,9 +128,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
                     
-                    <xsl:if test="(waarneming_gebruik/start_datum | observation_of_use/start_date) or (waarneming_gebruik/stop_datum | observation_of_use/stop_date)">
+                    <xsl:if test="(waarneming_gebruik/start_datum | observation_of_use/start_date)[@value] or (waarneming_gebruik/stop_datum | observation_of_use/stop_date)[@value]">
                         <effectivePeriod>
-                            <xsl:for-each select="waarneming_gebruik/start_datum | observation_of_use/start_date">
+                            <xsl:for-each select="(waarneming_gebruik/start_datum | observation_of_use/start_date)[@value]">
                                 <start>
                                     <xsl:attribute name="value">
                                         <xsl:call-template name="format2FHIRDate">
@@ -140,7 +140,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:attribute>
                                 </start>
                             </xsl:for-each>
-                            <xsl:for-each select="waarneming_gebruik/stop_datum | observation_of_use/stop_date">
+                            <xsl:for-each select="(waarneming_gebruik/stop_datum | observation_of_use/stop_date)[@value]">
                                 <end>
                                     <xsl:attribute name="value">
                                         <xsl:call-template name="format2FHIRDate">
@@ -153,17 +153,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </effectivePeriod>
                     </xsl:if>
                     
-                    <xsl:for-each select="drugs_gebruik_status | drug_use_status">
-                        <valueCodeableConcept>
-                            <xsl:variable name="nullFlavorsInValueset" select="('OTH')"/>
+                    <!-- valueCodeableConcept is required in the FHIR profile, so always output valueCodeableConcept, data-absent-reason if no actual value -->
+                    <valueCodeableConcept>
+                        <xsl:choose>
+                            <xsl:when test="(drugs_gebruik_status | drug_use_status)[@code]">
+                                <xsl:variable name="nullFlavorsInValueset" select="('OTH')"/>
                                 <xsl:call-template name="code-to-CodeableConcept">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="treatNullFlavorAsCoding" select="@code = $nullFlavorsInValueset and @codeSystem = $oidHL7NullFlavor"/>
+                                    <xsl:with-param name="in" select="drugs_gebruik_status | drug_use_status"/>
+                                    <xsl:with-param name="treatNullFlavorAsCoding" select="(drugs_gebruik_status | drug_use_status)/@code = $nullFlavorsInValueset and (drugs_gebruik_status | drug_use_status)/@codeSystem = $oidHL7NullFlavor"/>
                                 </xsl:call-template>
-                        </valueCodeableConcept>
-                    </xsl:for-each>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <extension url="{$urlExtHL7DataAbsentReason}">
+                                    <valueCode value="unknown"/>
+                                </extension>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </valueCodeableConcept>
                     
-                    <xsl:for-each select="toelichting | comment">
+                    <xsl:for-each select="(toelichting | comment)[@value]">
                         <comment>
                             <xsl:call-template name="string-to-string">
                                 <xsl:with-param name="in" select="."/>
@@ -171,7 +179,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </comment>
                     </xsl:for-each>
                     
-                    <xsl:for-each select="drugs_of_geneesmiddel_soort | drug_or_medication_type">
+                    <xsl:for-each select="(drugs_of_geneesmiddel_soort | drug_or_medication_type)[@code]">
                         <component>
                             <code>
                                 <coding>
@@ -190,7 +198,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </component>
                     </xsl:for-each>
                     
-                    <xsl:for-each select="toedieningsweg | route_of_administration">
+                    <xsl:for-each select="(toedieningsweg | route_of_administration)[@code]">
                         <component>
                             <code>
                                 <coding>
@@ -209,7 +217,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </component>
                     </xsl:for-each>
                     
-                    <xsl:for-each select="waarneming_gebruik/hoeveelheid | observation_of_use/amount">
+                    <xsl:for-each select="(waarneming_gebruik/hoeveelheid | observation_of_use/amount)[@value]">
                         <component>
                             <code>
                                 <coding>

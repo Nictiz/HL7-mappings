@@ -95,7 +95,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-BloodPressure-3.0" match="blood_pressure[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Observation)" mode="doZibBloodPressure-3.0">
+    <xsl:template name="zib-BloodPressure-3.0" match="bloeddruk[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | blood_pressure[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Observation)" mode="doZibBloodPressure-3.0">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
@@ -136,16 +136,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
                     
-                    <xsl:for-each select="blood_pressure_date_time">
-                        <effectiveDateTime>
-                            <xsl:call-template name="format2FHIRDate">
-                                <xsl:with-param name="dateTime" select="xs:string(@value)"/>
-                                <xsl:with-param name="dateT" select="$dateT"/>
-                            </xsl:call-template>
-                        </effectiveDateTime>
-                    </xsl:for-each>
+                    <!-- effectiveDateTime is required in the FHIR profile, so always output effectiveDateTime, data-absent-reason if no actual value -->
+                    <effectiveDateTime>
+                        <xsl:choose>
+                            <xsl:when test="(bloeddruk_datum_tijd | blood_pressure_date_time)[@value]">
+                                <xsl:attribute name="value">
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="xs:string((bloeddruk_datum_tijd | blood_pressure_date_time)/@value)"/>
+                                        <xsl:with-param name="dateT" select="$dateT"/>
+                                    </xsl:call-template>
+                                </xsl:attribute>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <extension url="{$urlExtHL7DataAbsentReason}">
+                                    <valueCode value="unknown"/>
+                                </extension>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </effectiveDateTime>
                     
-                    <xsl:for-each select="comment">
+                    <xsl:for-each select="(toelichting | comment)[@value]">
                         <comment>
                             <xsl:call-template name="string-to-string">
                                 <xsl:with-param name="in" select="."/>
@@ -153,7 +163,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </comment>
                     </xsl:for-each>
                     
-                    <xsl:for-each select="measuring_location">
+                    <xsl:for-each select="(meet_locatie | measuring_location)[@code]">
                         <bodySite>
                             <xsl:call-template name="code-to-CodeableConcept">
                                 <xsl:with-param name="in" select="."/>
@@ -161,7 +171,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </bodySite>
                     </xsl:for-each>
                     
-                    <xsl:for-each select="measuring_method">
+                    <xsl:for-each select="(meetmethode | measuring_method)[@code]">
                         <method>
                             <xsl:call-template name="code-to-CodeableConcept">
                                 <xsl:with-param name="in" select="."/>
@@ -169,13 +179,78 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </method>
                     </xsl:for-each>
                     
-                    <xsl:for-each select="systolic_blood_pressure">
+                    <!-- component SystolicBP is required in the FHIR profile, so always output component, data-absent-reason if no actual value -->
+                    <component>
+                        <code>
+                            <coding>
+                                <system value="http://loinc.org"/>
+                                <code value="8480-6"/>
+                                <display value="Intravasculaire systolische bloeddruk"/>
+                            </coding>
+                        </code>
+                        <valueQuantity>
+                            <xsl:choose>
+                                <xsl:when test="(systolische_bloeddruk | systolic_blood_pressure)[@value]">
+                                    <xsl:call-template name="hoeveelheid-to-Quantity">
+                                        <xsl:with-param name="in" select="systolische_bloeddruk | systolic_blood_pressure"/>
+                                    </xsl:call-template>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <extension url="{$urlExtHL7DataAbsentReason}">
+                                        <valueCode value="unknown"/>
+                                    </extension>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </valueQuantity>
+                    </component>
+                    
+                    <!-- component DiastolicBP is required in the FHIR profile, so always output component, data-absent-reason if no actual value -->
+                    <component>
+                        <code>
+                            <coding>
+                                <system value="http://loinc.org"/>
+                                <code value="8462-4"/>
+                                <display value="Intravasculaire diastolische bloeddruk"/>
+                            </coding>
+                        </code>
+                        <valueQuantity>
+                            <xsl:choose>
+                                <xsl:when test="(diastolische_bloeddruk | diastolic_blood_pressure)[@value]">
+                                    <xsl:call-template name="hoeveelheid-to-Quantity">
+                                        <xsl:with-param name="in" select="diastolische_bloeddruk | diastolic_blood_pressure"/>
+                                    </xsl:call-template>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <extension url="{$urlExtHL7DataAbsentReason}">
+                                        <valueCode value="unknown"/>
+                                    </extension>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </valueQuantity>
+                    </component>
+                    
+                    <xsl:for-each select="(gemiddelde_bloeddruk | average_blood_pressure)[@value]">
                         <component>
                             <code>
                                 <coding>
                                     <system value="http://loinc.org"/>
-                                    <code value="8480-6"/>
-                                    <display value="Intravasculaire systolische bloeddruk"/>
+                                    <code value="8478-0"/>
+                                    <display value="Mean blood pressure"/>
+                                </coding>
+                            </code>
+                            <valueQuantity>
+                                <xsl:call-template name="hoeveelheid-to-Quantity">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </valueQuantity>
+                        </component>
+                        
+                        <component>
+                            <code>
+                                <coding>
+                                    <system value="http://snomed.info/sct"/>
+                                    <code value="6797001"/>
+                                    <display value="gemiddelde bloeddruk"/>
                                 </coding>
                             </code>
                             <valueQuantity>
@@ -186,24 +261,39 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </component>
                     </xsl:for-each>
                     
-                    <xsl:for-each select="diastolic_blood_pressure">
+                    <xsl:for-each select="(diastolisch_eindpunt | diastolic_endpoint)[@code]">
+                        <component>
+                            <code>
+                                <coding>
+                                    <system value="http://snomed.info/sct"/>
+                                    <code value="85549003"/>
+                                    <display value="Korotkofftonen"/>
+                                </coding>
+                            </code>
+                            <valueCodeableConcept>
+                                <xsl:call-template name="code-to-CodeableConcept">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </valueCodeableConcept>
+                        </component>
+                    </xsl:for-each>
+                    
+                    <xsl:for-each select="(manchet_type | cuff_type)[@code]">
                         <component>
                             <code>
                                 <coding>
                                     <system value="http://loinc.org"/>
-                                    <code value="8462-4"/>
-                                    <display value="Intravasculaire diastolische bloeddruk"/>
+                                    <code value="8358-4"/>
+                                    <display value="Blood pressure device Cuff size"/>
                                 </coding>
                             </code>
-                            <valueQuantity>
-                                <xsl:call-template name="hoeveelheid-to-Quantity">
+                            <valueCodeableConcept>
+                                <xsl:call-template name="code-to-CodeableConcept">
                                     <xsl:with-param name="in" select="."/>
                                 </xsl:call-template>
-                            </valueQuantity>
+                            </valueCodeableConcept>
                         </component>
-                    </xsl:for-each>
-                    
-                    <xsl:for-each select="cuff_type">
+                        
                         <component>
                             <code>
                                 <coding>
@@ -220,13 +310,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </component>
                     </xsl:for-each>
                     
-                    <xsl:for-each select="position">
+                    <xsl:for-each select="(houding | position)[@code]">
                         <component>
                             <code>
                                 <coding>
                                     <system value="http://snomed.info/sct"/>
                                     <code value="424724000"/>
                                     <display value="lichaamspositie voor bepalen van bloeddruk"/>
+                                </coding>
+                            </code>
+                            <valueCodeableConcept>
+                                <xsl:call-template name="code-to-CodeableConcept">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </valueCodeableConcept>
+                        </component>
+                        
+                        <component>
+                            <code>
+                                <coding>
+                                    <system value="http://loinc.org"/>
+                                    <code value="8361-8"/>
+                                    <display value="Body position with respect to gravity"/>
                                 </coding>
                             </code>
                             <valueCodeableConcept>

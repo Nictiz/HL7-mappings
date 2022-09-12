@@ -15,12 +15,14 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Contact. Subject: 999999151 (BSN). Status: voltooid</caption>
+                     <caption>Contact. Subject: 999999151 (BSN). Status: onbekend</caption>
                      <tbody>
                         <tr>
                            <th>Type contact</th>
                            <td>
-                              <div/>
+                              <div>
+                                 <span title="Emergency (EMER - v3/ActCode)">Emergency</span>
+                              </div>
                            </td>
                         </tr>
                         <tr>
@@ -31,7 +33,7 @@
                   </table>
                </div>
             </text>
-            <status value="finished"/>
+            <status value="unknown"/>
             <class>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                   <valueCodeableConcept>
@@ -42,6 +44,9 @@
                      </coding>
                   </valueCodeableConcept>
                </extension>
+               <system value="http://hl7.org/fhir/v3/ActCode"/>
+               <code value="EMER"/>
+               <display value="Emergency"/>
             </class>
             <subject>
                <identifier>
@@ -54,13 +59,13 @@
                <end value="${DATE, T, D, +1}T13:30:00+02:00"/>
             </period>
             <hospitalization>
-               <origin>
+               <admitSource>
                   <coding>
                      <system value="http://snomed.info/sct"/>
                      <code value="264362003"/>
                      <display value="Home"/>
                   </coding>
-               </origin>
+               </admitSource>
             </hospitalization>
          </Encounter>
       </resource>
@@ -79,12 +84,14 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Contact. Subject: 999999151 (BSN). Status: voltooid</caption>
+                     <caption>Contact. Subject: 999999151 (BSN). Status: onbekend</caption>
                      <tbody>
                         <tr>
                            <th>Type contact</th>
                            <td>
-                              <div/>
+                              <div>
+                                 <span title="Inpatient (IMP - v3/ActCode)">Inpatient</span>
+                              </div>
                            </td>
                         </tr>
                         <tr>
@@ -95,7 +102,7 @@
                   </table>
                </div>
             </text>
-            <status value="finished"/>
+            <status value="unknown"/>
             <class>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                   <valueCodeableConcept>
@@ -106,6 +113,9 @@
                      </coding>
                   </valueCodeableConcept>
                </extension>
+               <system value="http://hl7.org/fhir/v3/ActCode"/>
+               <code value="IMP"/>
+               <display value="Inpatient"/>
             </class>
             <subject>
                <identifier>
@@ -117,6 +127,15 @@
                <start value="${DATE, T, D, +1}T13:30:00+02:00"/>
                <end value="${DATE, T, D, +2}T12:00:00+02:00"/>
             </period>
+            <hospitalization>
+               <dischargeDisposition>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="80522000"/>
+                     <display value="Rehabilitation hospital"/>
+                  </coding>
+               </dischargeDisposition>
+            </hospitalization>
          </Encounter>
       </resource>
       <search>
@@ -134,12 +153,14 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Contact. Subject: 999999151 (BSN). Status: voltooid</caption>
+                     <caption>Contact. Subject: 999999151 (BSN). Status: onbekend</caption>
                      <tbody>
                         <tr>
                            <th>Type contact</th>
                            <td>
-                              <div/>
+                              <div>
+                                 <span title="Ambulatory (AMB - v3/ActCode)">Ambulatory</span>
+                              </div>
                            </td>
                         </tr>
                         <tr>
@@ -150,7 +171,7 @@
                   </table>
                </div>
             </text>
-            <status value="finished"/>
+            <status value="unknown"/>
             <class>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                   <valueCodeableConcept>
@@ -161,6 +182,9 @@
                      </coding>
                   </valueCodeableConcept>
                </extension>
+               <system value="http://hl7.org/fhir/v3/ActCode"/>
+               <code value="AMB"/>
+               <display value="Ambulatory"/>
             </class>
             <subject>
                <identifier>

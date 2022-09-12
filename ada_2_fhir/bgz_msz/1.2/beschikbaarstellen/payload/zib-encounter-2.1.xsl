@@ -43,12 +43,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Produces a FHIR entry element with an Observation resource for Encounter</xd:desc>
+        <xd:desc>Produces a FHIR entry element with an Encounter resource for Encounter</xd:desc>
         <xd:param name="uuid">If true generate uuid from scratch. Defaults to false(). Generating a uuid from scratch limits reproduction of the same output as the uuids will be different every time.</xd:param>
         <xd:param name="adaPatient">Optional, but should be there. Patient this resource is for.</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
         <xd:param name="entryFullUrl">Optional. Value for the entry.fullUrl</xd:param>
-        <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Observation.id</xd:param>
+        <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Encounter.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
     <xsl:template name="encounterEntry" match="drugs_gebruik[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | drug_use[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doEncounterEntry-2.1" as="element(f:entry)">
@@ -91,7 +91,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Mapping of HCIM Encounter concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-Encounter">zib-Encounter</xd:a>.</xd:desc>
         <xd:param name="logicalId">Optional FHIR logical id for the record.</xd:param>
-        <xd:param name="in">Node to consider in the creation of the Observation resource for Encounter.</xd:param>
+        <xd:param name="in">Node to consider in the creation of the Encounter resource for Encounter.</xd:param>
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
@@ -115,25 +115,61 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="{$profileValue}"/>
                     </meta>
                     
-                    <status value="finished"/>
+                    <xsl:variable name="startDate" select="(begin_datum_tijd | start_date_time)/@value"/>
+                    <xsl:variable name="endDate" select="(eind_datum_tijd | end_date_time)/@value"/>
                     
-                    <xsl:for-each select="contact_type">
-                        <class>
-                            <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
-                                <valueCodeableConcept>
-                                    <xsl:call-template name="code-to-CodeableConcept">
-                                        <xsl:with-param name="in" select="."/>
-                                    </xsl:call-template>
-                                </valueCodeableConcept>
-                            </extension>
-                        </class>
-                    </xsl:for-each>
+                    <status>
+                        <xsl:choose>
+                            <xsl:when test="nf:isFuture($startDate)">
+                                <xsl:attribute name="value" select="'planned'"/>
+                            </xsl:when>
+                            <xsl:when test="nf:isPast($startDate) and (nf:isFuture($endDate) or not($endDate))">
+                                <xsl:attribute name="value" select="'in-progress'"/>
+                            </xsl:when>
+                            <xsl:when test="(not($startDate) or nf:isPast($startDate)) and nf:isPast($endDate)">
+                                <xsl:attribute name="value" select="'finished'"/>
+                            </xsl:when>
+                            <xsl:when test="not($startDate) and nf:isFuture($endDate)">
+                                <xsl:attribute name="value" select="'in-progress'"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:attribute name="value" select="'unknown'"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </status>
+                    
+                    <!-- class is required in the FHIR profile, so always output class, data-absent-reason if no actual value -->
+                    <class>
+                        <xsl:choose>
+                            <xsl:when test="contact_type[@code]">
+                                <xsl:variable name="nullFlavorsInValueset" select="('OTH')"/>
+                                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                                    <valueCodeableConcept>
+                                        <xsl:call-template name="code-to-CodeableConcept">
+                                            <xsl:with-param name="in" select="contact_type"/>
+                                            <xsl:with-param name="treatNullFlavorAsCoding" select="contact_type/@code = $nullFlavorsInValueset and contact_type/@codeSystem = $oidHL7NullFlavor"/>
+                                        </xsl:call-template>
+                                    </valueCodeableConcept>
+                                </extension>
+                                <xsl:call-template name="code-to-Coding">
+                                    <xsl:with-param name="in" select="contact_type"/>
+                                    <xsl:with-param name="treatNullFlavorAsCoding" select="contact_type/@code = $nullFlavorsInValueset and contact_type/@codeSystem = $oidHL7NullFlavor"/>
+                                </xsl:call-template>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <extension url="{$urlExtHL7DataAbsentReason}">
+                                    <valueCode value="unknown"/>
+                                </extension>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </class>
                     
                     <!-- Patient reference -->
                     <subject>
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
                     
+                    <xsl:if test="(begin_datum_tijd | start_date_time)[@value] or (eind_datum_tijd | end_date_time)[@value]">
                     <!-- Practitioner reference-->
                     <xsl:for-each select="contact_with/health_professional">
                         <participant>
@@ -148,19 +184,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </participant>
                     </xsl:for-each>
                     
-                    <xsl:if test="start_date_time or end_date_time">
+                   <xsl:if test="(begin_datum_tijd | start_date_time)[@value] or (eind_datum_tijd | end_date_time)[@value]">
                         <period>
-                            <xsl:for-each select="start_date_time">
-                                <start>
-                                    <xsl:attribute name="value">
-                                       <xsl:call-template name="format2FHIRDate">
-                                            <xsl:with-param name="dateTime" select="xs:string(@value)"/>
-                                           <xsl:with-param name="dateT" select="$dateT"/>
-                                        </xsl:call-template>
-                                    </xsl:attribute>
-                                </start>
-                            </xsl:for-each>
-                            <xsl:for-each select="end_date_time">
+                            <!-- period.start is required in the FHIR profile, so always output period.start, data-absent-reason if no actual value -->
+                            <start>
+                                <xsl:choose>
+                                    <xsl:when test="(begin_datum_tijd | start_date_time)[@value]">
+                                        <xsl:attribute name="value">
+                                            <xsl:call-template name="format2FHIRDate">
+                                                <xsl:with-param name="dateTime" select="xs:string((begin_datum_tijd | start_date_time)/@value)"/>
+                                                <xsl:with-param name="dateT" select="$dateT"/>
+                                            </xsl:call-template>
+                                        </xsl:attribute>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <extension url="{$urlExtHL7DataAbsentReason}">
+                                            <valueCode value="unknown"/>
+                                        </extension>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </start>
+                            <xsl:for-each select="(eind_datum_tijd | end_date_time)[@value]">
                                 <end>
                                     <xsl:attribute name="value">
                                         <xsl:call-template name="format2FHIRDate">
@@ -172,26 +216,56 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:for-each>
                         </period>
                     </xsl:if>
-                    
-                    <!-- TODO Problem Reference 
-                    <xsl:for-each select="contact_reason/problem/problem">
-                        <diagnosis>
-                            <reference>
-                                <xsl:apply-templates select="$adaProblem" mode="doProblemReference-2.1"/>
-                            </reference>
-                        </diagnosis>
-                    </xsl:for-each> -->
-                    
-                    <xsl:for-each select="origin">
-                        <hospitalization>
-                            <admitSource>
-                                <xsl:call-template name="code-to-CodeableConcept">
+                       
+                    <xsl:for-each select="(reden_contact/afwijkende_uitslag | contact_reason/deviating_result)[@value]">
+                        <reason>
+                            <text>
+                                <xsl:call-template name="string-to-string">
                                     <xsl:with-param name="in" select="."/>
                                 </xsl:call-template>
-                            </admitSource>
-                        </hospitalization>
-                        
+                            </text>
+                        </reason>
                     </xsl:for-each>
+                    
+                    <!-- TODO Problem Reference 
+                    <xsl:for-each select="(reden_contact/probleem | contact_reason/problem) or (reden_contact/verrichting | contact_reason/procedure)">
+                        <diagnosis>
+                            <condition>
+                                <xsl:call-template name="code-to-CodeableConcept">
+                                    <xsl:with-param name="in" select="problem/@value"/>
+                                </xsl:call-template>
+                            </condition>
+                        </diagnosis>
+                    </xsl:for-each>
+                    
+                    <xsl:if test="(herkomst | origin)[@code] or (bestemming | destination)[@code]">
+                        <hospitalization>
+                            <xsl:for-each select="(herkomst | origin)[@code]">
+                                <admitSource>
+                                    <xsl:variable name="nullFlavorsInValueset" select="('OTH')"/>
+                                    <xsl:call-template name="code-to-CodeableConcept">
+                                        <xsl:with-param name="in" select="."/>
+                                        <xsl:with-param name="treatNullFlavorAsCoding" select="@code = $nullFlavorsInValueset and @codeSystem = $oidHL7NullFlavor"/>
+                                    </xsl:call-template>
+                                </admitSource>
+                            </xsl:for-each>
+                            <xsl:for-each select="(bestemming | destination)[@code]">
+                                <dischargeDisposition>
+                                    <xsl:variable name="nullFlavorsInValueset" select="('OTH')"/>
+                                    <xsl:call-template name="code-to-CodeableConcept">
+                                        <xsl:with-param name="in" select="."/>
+                                        <xsl:with-param name="treatNullFlavorAsCoding" select="@code = $nullFlavorsInValueset and @codeSystem = $oidHL7NullFlavor"/>
+                                    </xsl:call-template>
+                                </dischargeDisposition>
+                            </xsl:for-each>
+                        </hospitalization>
+                    </xsl:if>
+                    
+                    <!--<xsl:for-each select="locatie | location">
+                        <serviceProvider>
+                                                      
+                        </serviceProvider>
+                    </xsl:for-each>-->
                     
                     <!-- TODO location/organization Reference-->
                     <!--<xsl:for-each select="location/healthcare_provider">

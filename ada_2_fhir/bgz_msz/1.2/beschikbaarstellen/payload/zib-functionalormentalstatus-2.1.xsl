@@ -73,7 +73,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <entry>
             <fullUrl value="{$entryFullUrl}"/>
             <resource>
-                <xsl:call-template name="zib-Functional_or_mental_status-2.1">
+                <xsl:call-template name="zib-FunctionalOrMentalStatus-2.1">
                     <xsl:with-param name="in" select="."/>
                     <xsl:with-param name="logicalId" select="$fhirResourceId"/>
                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
@@ -95,7 +95,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-FunctionalOrMentalStatus-2.1" match="functional_or_mental_status[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Observation)" mode="doZibFunctional_or_mental_status-2.1">
+    <xsl:template name="zib-FunctionalOrMentalStatus-2.1" match="functionele_of_mentale_status[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | functional_or_mental_status[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Observation)" mode="doZibFunctionalOrMentalStatus-2.1">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
@@ -113,13 +113,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="{$profileValue}"/>
                     </meta>
                     
+                    <!--<xsl:for-each select="hulpmiddel | medical_device">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-FunctionalOrMentalStatus-MedicalDevice">
+                            <valueReference>
+                                <xsl:apply-templates select="$adaProblem" mode="doMedicalDeviceReference-2.2"/>
+                            </valueReference>
+                        </extension>
+                    </xsl:for-each>-->
+                    
                     <status value="final"/>
                     
-                    <!-- Not able to determine category code in general, so is determined by the ada instances present -->
+                    <!-- Not able to determine category code in general, so is determined explicitly by the codes present in the ada instances -->
                     <category>
                         <coding>
                             <xsl:choose>
-                                <xsl:when test="status_name[@code = ('15188001', '301438001', '713512009') and @codeSystem = '2.16.840.1.113883.6.96']">
+                                <xsl:when test="(status_naam | status_name)[@code = ('15188001', '301438001', '713512009') and @codeSystem = '2.16.840.1.113883.6.96']">
                                     <system value="http://snomed.info/sct"/>
                                     <code value="118228005"/>
                                     <display value="bevinding betreffende functioneren"/>
@@ -133,20 +141,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </coding>
                     </category>
                     
-                    <xsl:for-each select="status_name">
-                        <code>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </code>
-                    </xsl:for-each>
+                    <!-- code is required in the FHIR profile, so always output code, data-absent-reason if no actual value -->
+                    <code>
+                        <xsl:choose>
+                            <xsl:when test="(status_naam | status_name)[@code]">
+                                <xsl:call-template name="code-to-CodeableConcept">
+                                    <xsl:with-param name="in" select="status_naam | status_name"/>
+                                </xsl:call-template>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <extension url="{$urlExtHL7DataAbsentReason}">
+                                    <valueCode value="unknown"/>
+                                </extension>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </code>
                     
                     <!-- Patient reference -->
                     <subject>
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
                     
-                    <xsl:for-each select="status_date">
+                    <xsl:for-each select="(status_datum | status_date)[@value]">
                         <effectivePeriod>
                             <start>
                                 <xsl:attribute name="value">
@@ -159,7 +175,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </effectivePeriod>
                     </xsl:for-each>
                     
-                    <xsl:for-each select="status_value">
+                    <xsl:for-each select="(status_waarde | status_value)[@code]">
                         <valueCodeableConcept>
                             <xsl:call-template name="code-to-CodeableConcept">
                                 <xsl:with-param name="in" select="."/>
@@ -167,7 +183,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueCodeableConcept>
                     </xsl:for-each>
                     
-                    <xsl:for-each select="comment">
+                    <xsl:for-each select="(toelichting | comment)[@value]">
                         <comment>
                             <xsl:call-template name="string-to-string">
                                 <xsl:with-param name="in" select="."/>
@@ -175,7 +191,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </comment>
                     </xsl:for-each>
                     
-                    <!--TODO medical device reference -->
                 </Observation>
             </xsl:variable>
             
