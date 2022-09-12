@@ -17,10 +17,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes"/>
     <xsl:output name="ada-xml" method="xml" indent="yes" omit-xml-declaration="yes" xmlns=""/>
     <xsl:strip-space elements="*"/>
-
-   <!-- <xsl:param name="ada-input" select="collection('../ada_instance/?select=*.xml')"/>
-    <!-\- the input ada instances which contain the full patient/ma/vv which are referenced in $ada_input -\->
-    <xsl:param name="inputFulladaFiles" select="collection('../beschikbaarstellen_medicatiegegevens/ada_instance_repo/?select=*.xml')"/>-->
     
     <xsl:param name="ada-input" select="collection('../../ada_instance/?select=*.xml')"/>
     
@@ -53,7 +49,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="resolved-ada-input" as="node()*">
                     <xsl:apply-templates select="current-group()" mode="copy-for-resolve"/>
                 </xsl:variable>
-                <xsl:result-document href="{$outputDir}/{concat($patientName, '-', current-grouping-key(), '.xml')}" format="ada-xml">
+                <xsl:result-document href="{$outputDir}/{concat('bgz-msz-', $patientName, '-', current-grouping-key(), '.xml')}" format="ada-xml">
                     <bundle>
                         <xsl:copy-of select="$resolved-ada-input"/>
                     </bundle>
