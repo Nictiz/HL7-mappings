@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="6a99af66-2d20-11ed-1600-020000000000"/>
+   <id value="aefef7d5-329b-11ed-4735-020000000000"/>
    <type value="searchset"/>
    <total value="2"/>
    <entry>
-      <fullUrl value="urn:uuid:6a99af67-2d20-11ed-1600-020000000000"/>
+      <fullUrl value="urn:uuid:aefef7d8-329b-11ed-4735-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -15,7 +15,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Observatie/bepaling. Subject: 999999151 (BSN). Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief</caption>
+                     <caption>Observatie/bepaling. Subject: Dennis D. Dennis Janse. Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief</caption>
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
@@ -115,10 +115,8 @@
                </coding>
             </code>
             <subject>
-               <identifier>
-                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-                  <value value="999999151"/>
-               </identifier>
+               <reference value="urn:uuid:aeff0be8-329b-11ed-4735-020000000000"/>
+               <display value="Dennis D. Dennis Janse"/>
             </subject>
             <effectiveDateTime value="${DATE, T, D, +1}T11:05:00+02:00"/>
             <bodySite>
@@ -252,7 +250,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6a99af71-2d20-11ed-1600-020000000000"/>
+      <fullUrl value="urn:uuid:aeff0c13-329b-11ed-4735-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -262,7 +260,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Observatie/bepaling. Subject: 999999151 (BSN). Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief</caption>
+                     <caption>Observatie/bepaling. Subject: Dennis D. Dennis Janse. Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief</caption>
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
@@ -362,10 +360,8 @@
                </coding>
             </code>
             <subject>
-               <identifier>
-                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-                  <value value="999999151"/>
-               </identifier>
+               <reference value="urn:uuid:aeff0be8-329b-11ed-4735-020000000000"/>
+               <display value="Dennis D. Dennis Janse"/>
             </subject>
             <effectiveDateTime value="${DATE, T, D, +2}T09:00:00+02:00"/>
             <bodySite>
@@ -496,6 +492,89 @@
       </resource>
       <search>
          <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:aefef7db-329b-11ed-4735-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div/>
+               </div>
+            </text>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:aeff0be8-329b-11ed-4735-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id 999999151 (BSN), Dennis D. Janse (Dennis), Man, 2 februari 1950</div>
+                  <div/>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value value="999999151"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <family value="Janse">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Janse"/>
+                  </extension>
+               </family>
+               <given value="Dennis">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+               <given value="D.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+               <given value="Dennis">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="CL"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Male"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="1950-02-02"/>
+            <deceasedBoolean/>
+            <address/>
+            <multipleBirthBoolean value="false"/>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
       </search>
    </entry>
 </Bundle>

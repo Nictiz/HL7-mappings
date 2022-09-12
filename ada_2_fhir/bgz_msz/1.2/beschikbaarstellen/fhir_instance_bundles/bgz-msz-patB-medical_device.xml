@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="4d749610-2d22-11ed-4127-020000000000"/>
+   <id value="bed4d5a3-329b-11ed-1789-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:4d749611-2d22-11ed-4127-020000000000"/>
+      <fullUrl value="urn:uuid:bed4d5a6-329b-11ed-1789-020000000000"/>
       <resource>
          <DeviceUseStatement>
             <meta>
@@ -15,7 +15,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Beschrijving apparaatgebruik. Subject: 999999072 (BSN). Status: actief</caption>
+                     <caption>Beschrijving apparaatgebruik. Subject: Maria Francisca M.F. Maria van 't Hoen Verheul. Status: actief</caption>
                      <tfoot>
                         <tr>
                            <td colspan="2">Vanwege spierzwakte rechterarm</td>
@@ -43,28 +43,13 @@
             </text>
             <status value="active"/>
             <subject>
-               <identifier>
-                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-                  <value value="999999072"/>
-               </identifier>
+               <reference value="urn:uuid:bed4e9b6-329b-11ed-1789-020000000000"/>
+               <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
             </subject>
             <whenUsed>
                <start value="2016-02-03"/>
             </whenUsed>
-            <source>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                  <valueReference>
-                     <identifier>
-                        <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
-                        <value value="88776655"/>
-                     </identifier>
-                  </valueReference>
-               </extension>
-               <identifier>
-                  <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
-                  <value value="88776655"/>
-               </identifier>
-            </source>
+            <valueReference/>
             <bodySite>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
                   <valueCodeableConcept>
@@ -88,6 +73,229 @@
       </resource>
       <search>
          <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:bed4d5a9-329b-11ed-1789-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div/>
+               </div>
+            </text>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:bed4e9b6-329b-11ed-1789-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id 999999072 (BSN), Maria Francisca M.F. van 't Hoen-Verheul (Maria), Vrouw, 16 april 1956, Meerling</div>
+                  <div/>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value value="999999072"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL4"/>
+               </extension>
+               <family value="van 't Hoen-Verheul">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van 't"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Hoen"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+                     <valueString value="Verheul"/>
+                  </extension>
+               </family>
+               <given value="Maria Francisca">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+               <given value="M.F.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+               <given value="Maria">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="CL"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Female"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="1956-04-16"/>
+            <deceasedBoolean/>
+            <address/>
+            <multipleBirthBoolean value="true"/>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.1.131313"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id 00131313 (AGB-Z), Anna A. Bijns-de Vries (Anna)</div>
+                  <div/>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+               <value value="00131313"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL3"/>
+               </extension>
+               <family value="Bijns-de Vries">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="de"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Vries"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+                     <valueString value="Bijns"/>
+                  </extension>
+               </family>
+               <given value="Anna">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+               <given value="A.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+               <given value="Anna">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="CL"/>
+                  </extension>
+               </given>
+            </name>
+            <address/>
+         </Practitioner>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:bed4e9e4-329b-11ed-1789-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Organisatie. </caption>
+                     <tbody>
+                        <tr>
+                           <th>Naam</th>
+                           <td/>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:bed4e9e6-329b-11ed-1789-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Zorgverlenerrol. </caption>
+                     <tbody>
+                        <tr>
+                           <th>Zorgverlener</th>
+                           <td>
+                              <div>Anna A. Anna de Vries Bijns</div>
+                              <div>Organisatie informatie: Huisartsenpraktijk Molenhoek</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Specialisme</th>
+                           <td>
+                              <span title="Huisarts (01.015 - http://fhir.nl/fhir/NamingSystem/uzi-rolcode)">Huisarts</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <practitioner>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.6.1.131313"/>
+               <display value="Anna A. Anna de Vries Bijns"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:uuid:bed4e9e4-329b-11ed-1789-020000000000"/>
+               <display value="Organisatie informatie: Huisartsenpraktijk Molenhoek"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+                  <code value="01.015"/>
+                  <display value="Huisarts"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
       </search>
    </entry>
 </Bundle>

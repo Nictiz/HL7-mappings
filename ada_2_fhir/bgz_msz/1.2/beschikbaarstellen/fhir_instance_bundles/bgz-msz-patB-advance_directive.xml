@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="6a99b0ce-2d20-11ed-1600-020000000000"/>
+   <id value="b7d16e65-329b-11ed-1508-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:6a99b0cf-2d20-11ed-1600-020000000000"/>
+      <fullUrl value="urn:uuid:b7d16e68-329b-11ed-1508-020000000000"/>
       <resource>
          <Consent>
             <meta>
@@ -15,7 +15,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Toestemming. Patiënt: 999999072 (BSN). Categorie: <span title="levenstestament en wilsverklaring in dossier (11341000146107 - SNOMED CT)">levenstestament en wilsverklaring in dossier</span>, <span title="Niet reanimeren verklaring (NR - 2.16.840.1.113883.2.4.3.11.60.40.4.14.1)">Niet reanimeren verklaring</span>, Status: actief</caption>
+                     <caption>Toestemming. Patiënt: Maria Francisca M.F. Maria van 't Hoen Verheul. Categorie: <span title="levenstestament en wilsverklaring in dossier (11341000146107 - SNOMED CT)">levenstestament en wilsverklaring in dossier</span>, <span title="Niet reanimeren verklaring (NR - 2.16.840.1.113883.2.4.3.11.60.40.4.14.1)">Niet reanimeren verklaring</span>, Status: actief</caption>
                      <tbody>
                         <tr>
                            <th>Gemaakt</th>
@@ -48,10 +48,8 @@
                </coding>
             </category>
             <patient>
-               <identifier>
-                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-                  <value value="999999072"/>
-               </identifier>
+               <reference value="urn:uuid:b7d18278-329b-11ed-1508-020000000000"/>
+               <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
             </patient>
             <dateTime value="2007-07-07"/>
             <sourceAttachment>
@@ -65,6 +63,95 @@
       </resource>
       <search>
          <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:b7d16e6b-329b-11ed-1508-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div/>
+               </div>
+            </text>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:b7d18278-329b-11ed-1508-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id 999999072 (BSN), Maria Francisca M.F. van 't Hoen-Verheul (Maria), Vrouw, 16 april 1956, Meerling</div>
+                  <div/>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value value="999999072"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL4"/>
+               </extension>
+               <family value="van 't Hoen-Verheul">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van 't"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Hoen"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+                     <valueString value="Verheul"/>
+                  </extension>
+               </family>
+               <given value="Maria Francisca">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+               <given value="M.F.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+               <given value="Maria">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="CL"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Female"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="1956-04-16"/>
+            <deceasedBoolean/>
+            <address/>
+            <multipleBirthBoolean value="true"/>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
       </search>
    </entry>
 </Bundle>

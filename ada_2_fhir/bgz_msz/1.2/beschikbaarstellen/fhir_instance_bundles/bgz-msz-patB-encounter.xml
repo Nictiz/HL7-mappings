@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="6a99b15a-2d20-11ed-1600-020000000000"/>
+   <id value="bc27ebdd-329b-11ed-1572-020000000000"/>
    <type value="searchset"/>
    <total value="3"/>
    <entry>
-      <fullUrl value="urn:uuid:6a99b15b-2d20-11ed-1600-020000000000"/>
+      <fullUrl value="urn:uuid:bc27ebe0-329b-11ed-1572-020000000000"/>
       <resource>
          <Encounter>
             <meta>
@@ -15,7 +15,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Contact. Subject: 999999072 (BSN). Status: onbekend</caption>
+                     <caption>Contact. Subject: Maria Francisca M.F. Maria van 't Hoen Verheul. Status: onbekend</caption>
                      <tbody>
                         <tr>
                            <th>Type contact</th>
@@ -49,10 +49,8 @@
                <display value="Inpatient"/>
             </class>
             <subject>
-               <identifier>
-                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-                  <value value="999999072"/>
-               </identifier>
+               <reference value="urn:uuid:bc27fff0-329b-11ed-1572-020000000000"/>
+               <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
             </subject>
             <period>
                <start value="${DATE, T, D, +1}T07:00:00+02:00"/>
@@ -81,7 +79,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6a99b165-2d20-11ed-1600-020000000000"/>
+      <fullUrl value="urn:uuid:bc280038-329b-11ed-1572-020000000000"/>
       <resource>
          <Encounter>
             <meta>
@@ -91,7 +89,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Contact. Subject: 999999072 (BSN). Status: onbekend</caption>
+                     <caption>Contact. Subject: Maria Francisca M.F. Maria van 't Hoen Verheul. Status: onbekend</caption>
                      <tbody>
                         <tr>
                            <th>Type contact</th>
@@ -125,10 +123,8 @@
                <display value="Emergency"/>
             </class>
             <subject>
-               <identifier>
-                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-                  <value value="999999072"/>
-               </identifier>
+               <reference value="urn:uuid:bc27fff0-329b-11ed-1572-020000000000"/>
+               <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
             </subject>
             <period>
                <start value="${DATE, T, D, +2}T16:00:00+02:00"/>
@@ -150,7 +146,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6a99b16f-2d20-11ed-1600-020000000000"/>
+      <fullUrl value="urn:uuid:bc280591-329b-11ed-1572-020000000000"/>
       <resource>
          <Encounter>
             <meta>
@@ -160,7 +156,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Contact. Subject: 999999072 (BSN). Status: onbekend</caption>
+                     <caption>Contact. Subject: Maria Francisca M.F. Maria van 't Hoen Verheul. Status: onbekend</caption>
                      <tbody>
                         <tr>
                            <th>Type contact</th>
@@ -194,10 +190,8 @@
                <display value="Inpatient"/>
             </class>
             <subject>
-               <identifier>
-                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-                  <value value="999999072"/>
-               </identifier>
+               <reference value="urn:uuid:bc27fff0-329b-11ed-1572-020000000000"/>
+               <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
             </subject>
             <period>
                <start value="${DATE, T, D, +2}T17:00:00+02:00"/>
@@ -216,6 +210,401 @@
       </resource>
       <search>
          <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:bc27ebe3-329b-11ed-1572-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div/>
+               </div>
+            </text>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:bc27fff0-329b-11ed-1572-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id 999999072 (BSN), Maria Francisca M.F. van 't Hoen-Verheul (Maria), Vrouw, 16 april 1956, Meerling</div>
+                  <div/>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value value="999999072"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL4"/>
+               </extension>
+               <family value="van 't Hoen-Verheul">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van 't"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Hoen"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+                     <valueString value="Verheul"/>
+                  </extension>
+               </family>
+               <given value="Maria Francisca">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+               <given value="M.F.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+               <given value="Maria">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="CL"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Female"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="1956-04-16"/>
+            <deceasedBoolean/>
+            <address/>
+            <multipleBirthBoolean value="true"/>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:bc27f2b2-329b-11ed-1572-020000000000"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div/>
+               </div>
+            </text>
+         </Practitioner>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:bc27f2da-329b-11ed-1572-020000000000"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div/>
+               </div>
+            </text>
+         </Practitioner>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:bc27f302-329b-11ed-1572-020000000000"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div/>
+               </div>
+            </text>
+         </Practitioner>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.1.151515"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id 00151515 (AGB-Z), Antonius Franciscus A.F. Zoomers (Ton)</div>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+               <value value="00151515"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <family value="Zoomers">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Zoomers"/>
+                  </extension>
+               </family>
+               <given value="Antonius Franciscus">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+               <given value="A.F.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+               <given value="Ton">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="CL"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:bc280019-329b-11ed-1572-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Organisatie. </caption>
+                     <tbody>
+                        <tr>
+                           <th>Naam</th>
+                           <td/>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:bc28002f-329b-11ed-1572-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Organisatie. </caption>
+                     <tbody>
+                        <tr>
+                           <th>Naam</th>
+                           <td/>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:bc280017-329b-11ed-1572-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Zorgverlenerrol. </caption>
+                     <tbody>
+                        <tr>
+                           <th>Zorgverlener</th>
+                           <td>
+                              <div>urn:uuid:bc27f2b2-329b-11ed-1572-020000000000</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <practitioner>
+               <reference value="urn:uuid:bc27f2b2-329b-11ed-1572-020000000000"/>
+            </practitioner>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:bc280031-329b-11ed-1572-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Zorgverlenerrol. </caption>
+                     <tbody>
+                        <tr>
+                           <th>Zorgverlener</th>
+                           <td>
+                              <div>urn:uuid:bc27f2da-329b-11ed-1572-020000000000</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <practitioner>
+               <reference value="urn:uuid:bc27f2da-329b-11ed-1572-020000000000"/>
+            </practitioner>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:bc280033-329b-11ed-1572-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Zorgverlenerrol. </caption>
+                     <tbody>
+                        <tr>
+                           <th>Zorgverlener</th>
+                           <td>
+                              <div>urn:uuid:bc27f302-329b-11ed-1572-020000000000</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <practitioner>
+               <reference value="urn:uuid:bc27f302-329b-11ed-1572-020000000000"/>
+            </practitioner>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:bc2805be-329b-11ed-1572-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Zorgverlenerrol. </caption>
+                     <tbody>
+                        <tr>
+                           <th>Zorgverlener</th>
+                           <td>
+                              <div>Antonius Franciscus A.F. Ton Zoomers</div>
+                              <div>Organisatie informatie: naam eigen ziekenhuis</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Specialisme</th>
+                           <td>
+                              <span title="Chirurg (01.014 - http://fhir.nl/fhir/NamingSystem/uzi-rolcode)">Chirurg</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <practitioner>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.6.1.151515"/>
+               <display value="Antonius Franciscus A.F. Ton Zoomers"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:uuid:bc28002f-329b-11ed-1572-020000000000"/>
+               <display value="Organisatie informatie: naam eigen ziekenhuis"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+                  <code value="01.014"/>
+                  <display value="Chirurg"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
       </search>
    </entry>
 </Bundle>

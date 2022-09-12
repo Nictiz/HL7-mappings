@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="6a99b088-2d20-11ed-1600-020000000000"/>
+   <id value="b5ae4abd-329b-11ed-2065-020000000000"/>
    <type value="searchset"/>
    <total value="2"/>
    <entry>
-      <fullUrl value="urn:uuid:6a99b089-2d20-11ed-1600-020000000000"/>
+      <fullUrl value="urn:uuid:b5ae4ac0-329b-11ed-2065-020000000000"/>
       <resource>
          <Procedure>
             <meta>
@@ -15,8 +15,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Verrichting. Subject: 999999151 (BSN). Status: voltooid<span style="display: block;">Uitvoerende: 88776655 (AGB-Z)</span>
-                     </caption>
+                     <caption>Verrichting. Subject: Dennis D. Dennis Janse. Status: voltooid</caption>
                      <tbody>
                         <tr>
                            <td>
@@ -45,31 +44,13 @@
                </coding>
             </code>
             <subject>
-               <identifier>
-                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-                  <value value="999999151"/>
-               </identifier>
+               <reference value="urn:uuid:b5ae5ed0-329b-11ed-2065-020000000000"/>
+               <display value="Dennis D. Dennis Janse"/>
             </subject>
             <performedPeriod>
                <start value="${DATE, T, D, +1}T14:00:00+02:00"/>
                <end value="${DATE, T, D, +1}T15:00:00+02:00"/>
             </performedPeriod>
-            <performer>
-               <actor>
-                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                     <valueReference>
-                        <identifier>
-                           <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
-                           <value value="88776655"/>
-                        </identifier>
-                     </valueReference>
-                  </extension>
-                  <identifier>
-                     <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
-                     <value value="88776655"/>
-                  </identifier>
-               </actor>
-            </performer>
             <bodySite>
                <coding>
                   <system value="http://snomed.info/sct"/>
@@ -84,7 +65,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6a99b093-2d20-11ed-1600-020000000000"/>
+      <fullUrl value="urn:uuid:b5ae6472-329b-11ed-2065-020000000000"/>
       <resource>
          <Procedure>
             <meta>
@@ -94,7 +75,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Verrichting. Subject: 999999151 (BSN). Status: voltooid</caption>
+                     <caption>Verrichting. Subject: Dennis D. Dennis Janse. Status: voltooid</caption>
                      <tbody>
                         <tr>
                            <td>
@@ -123,10 +104,8 @@
                </coding>
             </code>
             <subject>
-               <identifier>
-                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-                  <value value="999999151"/>
-               </identifier>
+               <reference value="urn:uuid:b5ae5ed0-329b-11ed-2065-020000000000"/>
+               <display value="Dennis D. Dennis Janse"/>
             </subject>
             <performedPeriod>
                <start value="${DATE, T, D, +2}T09:30:00+02:00"/>
@@ -142,6 +121,318 @@
       </resource>
       <search>
          <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:b5ae4ac3-329b-11ed-2065-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div/>
+               </div>
+            </text>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:b5ae5ed0-329b-11ed-2065-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id 999999151 (BSN), Dennis D. Janse (Dennis), Man, 2 februari 1950</div>
+                  <div/>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value value="999999151"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <family value="Janse">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Janse"/>
+                  </extension>
+               </family>
+               <given value="Dennis">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+               <given value="D.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+               <given value="Dennis">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="CL"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Male"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="1950-02-02"/>
+            <deceasedBoolean/>
+            <address/>
+            <multipleBirthBoolean value="false"/>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.1.45678912"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id 45678912 (AGB-Z), Jeroen Hendrik Robert J.H.R. Peters (Jeroen)</div>
+                  <div/>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+               <value value="45678912"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <family value="Peters">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Peters"/>
+                  </extension>
+               </family>
+               <given value="Jeroen Hendrik Robert">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+               <given value="J.H.R.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+               <given value="Jeroen">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="CL"/>
+                  </extension>
+               </given>
+            </name>
+            <address/>
+         </Practitioner>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.1.12345678"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id 12345678 (AGB-Z), Alfred Bart A.B. Bakker (Alfred)</div>
+                  <div/>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+               <value value="12345678"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <family value="Bakker">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Bakker"/>
+                  </extension>
+               </family>
+               <given value="Alfred Bart">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+               <given value="A.B.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+               <given value="Alfred">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="CL"/>
+                  </extension>
+               </given>
+            </name>
+            <address/>
+         </Practitioner>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:b5ae5f09-329b-11ed-2065-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Organisatie. </caption>
+                     <tbody>
+                        <tr>
+                           <th>Naam</th>
+                           <td/>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:b5ae5f0b-329b-11ed-2065-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Zorgverlenerrol. </caption>
+                     <tbody>
+                        <tr>
+                           <th>Zorgverlener</th>
+                           <td>
+                              <div>Jeroen Hendrik Robert J.H.R. Jeroen Peters</div>
+                              <div>Organisatie informatie: naam eigen ziekenhuis</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Specialisme</th>
+                           <td>
+                              <span title="Orthopedisch chirurg (01.032 - http://fhir.nl/fhir/NamingSystem/uzi-rolcode)">Orthopedisch chirurg</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <practitioner>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.6.1.45678912"/>
+               <display value="Jeroen Hendrik Robert J.H.R. Jeroen Peters"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:uuid:b5ae5f09-329b-11ed-2065-020000000000"/>
+               <display value="Organisatie informatie: naam eigen ziekenhuis"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+                  <code value="01.032"/>
+                  <display value="Orthopedisch chirurg"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:b5ae6448-329b-11ed-2065-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Zorgverlenerrol. </caption>
+                     <tbody>
+                        <tr>
+                           <th>Zorgverlener</th>
+                           <td>
+                              <div>Alfred Bart A.B. Alfred Bakker</div>
+                              <div>Organisatie informatie: naam eigen ziekenhuis</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Specialisme</th>
+                           <td>
+                              <span title="Spoedeisende hulp arts (01.071 - http://fhir.nl/fhir/NamingSystem/uzi-rolcode)">Spoedeisende hulp arts</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <practitioner>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.6.1.12345678"/>
+               <display value="Alfred Bart A.B. Alfred Bakker"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:uuid:b5ae5f09-329b-11ed-2065-020000000000"/>
+               <display value="Organisatie informatie: naam eigen ziekenhuis"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+                  <code value="01.071"/>
+                  <display value="Spoedeisende hulp arts"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
       </search>
    </entry>
 </Bundle>
