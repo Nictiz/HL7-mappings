@@ -242,8 +242,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </entry>
                 
                 <!--Additional resources-->
-                <xsl:if test="local-name() = 'vaccination' and (gewenste_datum_hervaccinatie | prefered_date_for_revaccination)[@value]">
+                <xsl:if test="(local-name() = 'medical_device') or (local-name() = 'vaccination' and (gewenste_datum_hervaccinatie | prefered_date_for_revaccination)[@value])">
                     <entry xmlns="http://hl7.org/fhir">
+                        <xsl:if test="local-name() = 'medical_device'">
+                            <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Device', false())}"/>
+                            <resource>
+                                <xsl:call-template name="zib-MedicalDeviceProduct-2.2">
+                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                </xsl:call-template>
+                            </resource>
+                        </xsl:if>
                         <xsl:if test="local-name() = 'vaccination' and (gewenste_datum_hervaccinatie | prefered_date_for_revaccination)[@value]">
                             <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'ImmunizationRecommendation', false())}"/>
                             <resource>

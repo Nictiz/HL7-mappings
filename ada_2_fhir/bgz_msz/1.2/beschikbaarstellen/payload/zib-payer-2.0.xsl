@@ -221,7 +221,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:if>
                     <xsl:if test="verzekeraar | insurance_company">
                         <payor>
-                            <!--First create Organization resource that includes both organisatie_naam | iorganization_name and identificatie_nummer | identification_number -->
+                            <!--First create Organization resource that includes both organisatie_naam | organization_name and identificatie_nummer | identification_number -->
                             <!--<reference>
                                     
                             </reference>-->
