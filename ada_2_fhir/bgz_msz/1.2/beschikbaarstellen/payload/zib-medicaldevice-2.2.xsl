@@ -115,6 +115,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="{$profileValue}"/>
                     </meta>
                     
+                    <!-- TODO HealthcareProvider reference-->
+                    <!--<xsl:for-each select="locatie/zorgaanbieder | location/healthcare_provider">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Organization">
+                            <valueReference>
+                                <xsl:apply-templates select="$adaOrganization" mode="doOrganizationReference-2.0"/>
+                            </valueReference>
+                        </extension>
+                    </xsl:for-each>-->
+                    
+                    <!-- TODO Practitioner reference-->
+                    <!--<xsl:for-each select="zorgverlener/zorgverlener | health_professional/health_professional">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Practitioner">
+                            <valueReference>
+                                <xsl:apply-templates select="$adaPractitioner" mode="doPractitionerReference-2.0"/>
+                            </valueReference>
+                        </extension>
+                    </xsl:for-each>-->
+                    
                     <status value="active"/>
                     
                     <!-- Patient reference -->
@@ -135,33 +153,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </whenUsed>
                     </xsl:for-each>
                     
-                    <!--<xsl:for-each select="zorgverlener/zorgverlener | health_professional/health_professional">
-                        <source>
-                                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                                    <valueReference>
-                                        <xsl:apply-templates select="$adaPractitioner" mode="doPractitionerRoleReference-2.0"/>
-                                    </valueReference>
-                                </extension>
-                                <xsl:apply-templates select="$adaPractitioner" mode="doPractitionerReference-2.0"/>
-                        </source>
-                    </xsl:for-each>-->
-                    
                     <!-- TODO device reference -->
-                    <xsl:for-each select="product">
+                    <!--<xsl:for-each select="product">
                         <valueReference>
                             
                         </valueReference>
-                    </xsl:for-each>
+                    </xsl:for-each>-->
                     
                     <!-- TODO problem reference -->
-                    <xsl:for-each select="indication">
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Problem">
-                            <valueReference>
-                                <!--<xsl:apply-templates select="$adaProblem" mode="doProblemReference-2.0"/>-->
-                            </valueReference>
-                        </extension>
-                    </xsl:for-each>
-                    
+                    <!--<xsl:for-each select="indicatie/probleem | indication/problem">
+                        <indication>
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Problem">
+                                <valueReference>
+                                    <xsl:apply-templates select="$adaProblem" mode="doProblemReference-2.0"/>
+                                </valueReference>
+                            </extension>
+                        </indication>
+                    </xsl:for-each>-->
                     
                     <xsl:if test="(lateraliteit | laterality)[@code] or (anatomische_locatie | anatomical_location)[@code]">
                         <bodySite>
@@ -193,6 +201,81 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
                     
                 </DeviceUseStatement>
+            </xsl:variable>
+            
+            <!-- Add resource.text -->
+            <xsl:apply-templates select="$resource" mode="addNarrative"/>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Mapping of HCIM MedicalDevice concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDeviceProduct">zib-MedicalDeviceProduct</xd:a>.</xd:desc>
+        <xd:param name="logicalId">Optional FHIR logical id for the record.</xd:param>
+        <xd:param name="in">Node to consider in the creation of the Device resource for MedicalDevice.</xd:param>
+        <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
+        <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
+    </xd:doc>
+    <xsl:template name="zib-MedicalDeviceProduct-2.2" match="medisch_hulpmiddel[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | medical_device[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Device)" mode="doZibMedicalDeviceProduct-2.2">
+        <xsl:param name="in" select="." as="element()?"/>
+        <xsl:param name="logicalId" as="xs:string?"/>
+        <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
+        <xsl:param name="dateT" as="xs:date?"/>
+        
+        <xsl:for-each select="$in">
+            <xsl:variable name="resource">
+                <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDeviceProduct</xsl:variable>
+                <Device>
+                    <xsl:if test="string-length($logicalId) gt 0">
+                        <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
+                    </xsl:if>
+                    
+                    <meta>
+                        <profile value="{$profileValue}"/>
+                    </meta>
+                    
+                    <xsl:for-each select="product_id[@code]">
+                        <identifier>
+                            <system>
+                                <xsl:value-of select="@codeSystem"/>
+                            </system>
+                            <value>
+                                <xsl:value-of select="@code"/>
+                            </value>
+                        </identifier>
+                        
+                        <udi>
+                            <carrierHRF>
+                                <xsl:value-of select="@code"/>
+                            </carrierHRF>
+                        </udi>
+                    </xsl:for-each>
+                    
+                    <status value="active"/>
+                    
+                    <xsl:for-each select="product_type[@code]">
+                        <type>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </type>
+                    </xsl:for-each>
+                    
+                    <!-- Patient reference -->
+                    <patient>
+                        <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
+                    </patient>
+                    
+                    <xsl:for-each select="(product_omschrijving | product_description)[@value]">
+                        <note>
+                            <text>
+                                <xsl:call-template name="string-to-string">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </text>
+                        </note>
+                    </xsl:for-each>
+                    
+                </Device>
             </xsl:variable>
             
             <!-- Add resource.text -->
