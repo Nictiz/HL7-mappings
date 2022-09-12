@@ -72,8 +72,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="/">
         <xsl:variable name="bouwstenen" as="element(f:entry)*">
             <xsl:for-each select="bundle/*">
-                <xsl:variable name="adaPatient" select="hcimroot/subject/patient/patient"/>
-                
+                <xsl:variable name="adaPatient" select="hcimroot/subject/patient/patient"/>                
                 <entry xmlns="http://hl7.org/fhir">
                     <xsl:if test="local-name() = 'advance_directive'">
                         <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Consent', false())}"/>
