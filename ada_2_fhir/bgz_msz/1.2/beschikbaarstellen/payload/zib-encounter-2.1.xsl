@@ -99,8 +99,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
-        <xsl:param name="adaPractitioner" as="element()"/>
-        <xsl:param name="adaProblem" as="element()"/>
+        <!--<xsl:param name="adaPractitioner" as="element()"/>
+        <xsl:param name="adaProblem" as="element()"/>-->
         <xsl:param name="dateT" as="xs:date?"/>
         
         <xsl:for-each select="$in">
@@ -169,9 +169,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
                     
-                    <xsl:if test="(begin_datum_tijd | start_date_time)[@value] or (eind_datum_tijd | end_date_time)[@value]">
                     <!-- Practitioner reference-->
-                    <xsl:for-each select="contact_with/health_professional">
+                    <!--<xsl:for-each select="contact_met/zorgverlener | contact_with/health_professional">
                         <participant>
                             <individual>
                                 <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
@@ -182,7 +181,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:apply-templates select="$adaPractitioner" mode="doPractitionerReference-2.0"/>
                             </individual>
                         </participant>
-                    </xsl:for-each>
+                    </xsl:for-each>-->
                     
                    <xsl:if test="(begin_datum_tijd | start_date_time)[@value] or (eind_datum_tijd | end_date_time)[@value]">
                         <period>
@@ -227,7 +226,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </reason>
                     </xsl:for-each>
                     
-                    <!-- TODO Problem Reference 
+                    <!--TODO Problem Reference 
                     <xsl:for-each select="(reden_contact/probleem | contact_reason/problem) or (reden_contact/verrichting | contact_reason/procedure)">
                         <diagnosis>
                             <condition>
@@ -236,7 +235,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:call-template>
                             </condition>
                         </diagnosis>
-                    </xsl:for-each>
+                    </xsl:for-each>-->
                     
                     <xsl:if test="(herkomst | origin)[@code] or (bestemming | destination)[@code]">
                         <hospitalization>
@@ -274,7 +273,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                              <valueReference>
                                  
                              </valueReference>
-                            
                         </location>
                     </xsl:for-each>-->
                     

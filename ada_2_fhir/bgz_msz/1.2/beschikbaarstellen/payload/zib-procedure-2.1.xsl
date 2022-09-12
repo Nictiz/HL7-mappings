@@ -99,7 +99,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
-        <xsl:param name="adaPractitioner" as="element()"/>
+        <!--<xsl:param name="adaPractitioner" as="element()"/>-->
         <xsl:param name="dateT" as="xs:date?"/>
         
         <xsl:for-each select="$in">
@@ -164,7 +164,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </performedPeriod>
                     </xsl:if>
                     
-                    <xsl:for-each select="performer/health_professional">
+                    <!--<xsl:for-each select="performer/health_professional">
                         <performer>
                             <actor>
                                 <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
@@ -175,7 +175,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:apply-templates select="$adaPractitioner" mode="doPractitionerReference-2.0"/>
                             </actor>
                         </performer>
-                    </xsl:for-each> 
+                    </xsl:for-each>-->
                     
                     <xsl:for-each select="procedure_anatomical_location">
                         <bodySite>

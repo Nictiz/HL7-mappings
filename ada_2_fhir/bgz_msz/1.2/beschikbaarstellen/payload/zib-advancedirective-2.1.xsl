@@ -100,7 +100,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="adaProblem" select="disorder/problem" as="element()*"/>
-        <xsl:param name="adaRelatedPerson" as="element()"/>
+        <!--<xsl:param name="adaRelatedPerson" as="element()"/>-->
         <xsl:param name="dateT" as="xs:date?"/>
         
         <xsl:for-each select="$in">
