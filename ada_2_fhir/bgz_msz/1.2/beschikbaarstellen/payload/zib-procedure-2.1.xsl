@@ -19,7 +19,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!--<xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template name="procedureReference" match="drugs_gebruik[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | drug_use[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProcedureReference-2.1">
+    <xsl:template name="procedureReference" match="verrichting[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | procedure[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProcedureReference-2.1">
         <xsl:variable name="theIdentifier" select="(zibroot/identificatienummer | hcimroot/identification_number)[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$procedures[group-key = $theGroupKey]" as="element()?"/>
@@ -43,15 +43,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Produces a FHIR entry element with an Observation resource for Procedure</xd:desc>
+        <xd:desc>Produces a FHIR entry element with an Procedure resource for Procedure</xd:desc>
         <xd:param name="uuid">If true generate uuid from scratch. Defaults to false(). Generating a uuid from scratch limits reproduction of the same output as the uuids will be different every time.</xd:param>
         <xd:param name="adaPatient">Optional, but should be there. Patient this resource is for.</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
         <xd:param name="entryFullUrl">Optional. Value for the entry.fullUrl</xd:param>
-        <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Observation.id</xd:param>
+        <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Procedure.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="procedureEntry" match="drugs_gebruik[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | drug_use[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProcedureEntry-2.1" as="element(f:entry)">
+    <xsl:template name="procedureEntry" match="verrichting[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | procedure[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProcedureEntry-2.1" as="element(f:entry)">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
@@ -91,7 +91,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Mapping of HCIM Procedure concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-Procedure">zib-Procedure</xd:a>.</xd:desc>
         <xd:param name="logicalId">Optional FHIR logical id for the record.</xd:param>
-        <xd:param name="in">Node to consider in the creation of the Observation resource for Procedure.</xd:param>
+        <xd:param name="in">Node to consider in the creation of the Procedure resource for Procedure.</xd:param>
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
@@ -114,7 +114,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="{$profileValue}"/>
                     </meta>
                     
-                    <xsl:for-each select="procedure_method">
+                    <xsl:for-each select="(verrichting_methode | procedure_method)[@code]">
                       <extension url="http://hl7.org/fhir/StructureDefinition/procedure-method">
                           <valueCodeableConcept>
                             <xsl:call-template name="code-to-CodeableConcept">
@@ -124,9 +124,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                       </extension>
                     </xsl:for-each>
                     
-                    <status value="completed"/>
+                    <xsl:variable name="endDate" select="(verrichting_eind_datum | procedure_end_date)/@value"/>
+                    <status>
+                        <xsl:choose>
+                            <xsl:when test="nf:isPast($endDate)">
+                                <xsl:attribute name="value" select="'completed'"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:attribute name="value" select="'in-progress'"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </status>
                     
-                    <xsl:for-each select="procedure_type">
+                    <!-- category is required in the FHIR profile, so always output category, data-absent-reason if no actual value -->
+                    <category>
+                        <extension url="{$urlExtHL7DataAbsentReason}">
+                            <valueCode value="unknown"/>
+                        </extension>
+                    </category>
+                    
+                    <xsl:for-each select="(verrichting_type | procedure_type)[@code]">
                         <code>
                              <xsl:call-template name="code-to-CodeableConcept">
                                  <xsl:with-param name="in" select="."/>
@@ -139,9 +156,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
                     
-                    <xsl:if test="procedure_start_date or procedure_end_date">
+                    <xsl:if test="(verrichting_start_datum | procedure_start_date)[@value] or (verrichting_eind_datum | procedure_end_date)[@value]">
                         <performedPeriod>
-                            <xsl:for-each select="procedure_start_date">
+                            <xsl:for-each select="(verrichting_start_datum | procedure_start_date)[@value]">
                                 <start>
                                     <xsl:attribute name="value">
                                         <xsl:call-template name="format2FHIRDate">
@@ -151,7 +168,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:attribute>
                                 </start>
                             </xsl:for-each>
-                            <xsl:for-each select="procedure_end_date">
+                            <xsl:for-each select="(verrichting_eind_datum | procedure_end_date)[@value]">
                                 <end>
                                     <xsl:attribute name="value">
                                         <xsl:call-template name="format2FHIRDate">
@@ -164,7 +181,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </performedPeriod>
                     </xsl:if>
                     
-                    <!--<xsl:for-each select="performer/health_professional">
+                    <!--<xsl:for-each select="locatie/zorgaanbieder | location/healthcare_provider">
+                        <performer>
+                            <actor>
+                                <xsl:apply-templates select="$adaOrganization" mode="doOrganizationReference-2.0"/>
+                            </actor>
+                        </performer>
+                    </xsl:for-each>-->
+                    
+                    <!--<xsl:for-each select="uitvoerder/zorgverlener | performer/health_professional">
                         <performer>
                             <actor>
                                 <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
@@ -177,15 +202,175 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </performer>
                     </xsl:for-each>-->
                     
-                    <xsl:for-each select="procedure_anatomical_location">
+                    <!--<xsl:for-each select="indicatie/probleem | indication/problem">
+                        <reasonReference>
+                            <xsl:apply-templates select="$adaPractitioner" mode="doProblemReference-2.1"/>
+                        </reasonReference>
+                    </xsl:for-each>-->
+                    
+                    <xsl:if test="(verrichting_lateraliteit | procedure_laterality)[@code] or (verrichting_anatomische_locatie | procedure_anatomical_location)[@code]">
                         <bodySite>
+                            <xsl:for-each select="(verrichting_lateraliteit | procedure_laterality)[@code]">
+                                <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+                                    <valueCodeableConcept>
+                                        <xsl:call-template name="code-to-CodeableConcept">
+                                            <xsl:with-param name="in" select="."/>
+                                        </xsl:call-template>
+                                    </valueCodeableConcept>
+                                </extension>
+                            </xsl:for-each>
+                            <xsl:for-each select="(verrichting_anatomische_locatie | procedure_anatomical_location)[@code]">
+                                <xsl:call-template name="code-to-CodeableConcept">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                        </bodySite>
+                    </xsl:if>
+                    
+                    <!--<xsl:for-each select="medisch_hulpmiddel | medical_device">
+                        <focalDevice>
+                            <manipulated>
+                                <xsl:apply-templates select="$adaMedicalDevice" mode="doMedicalDeviceReference-2.2"/>
+                            </manipulated>
+                        </focalDevice>
+                    </xsl:for-each>-->
+                    
+                </Procedure>
+            </xsl:variable>
+            
+            <!-- Add resource.text -->
+            <xsl:apply-templates select="$resource" mode="addNarrative"/>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Mapping of HCIM Procedure concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-ProcedureRequest">zib-ProcedureRequest</xd:a>.</xd:desc>
+        <xd:param name="logicalId">Optional FHIR logical id for the record.</xd:param>
+        <xd:param name="in">Node to consider in the creation of the ProcedureRequest resource for Procedure.</xd:param>
+        <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
+        <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
+    </xd:doc>
+    <xsl:template name="zib-ProcedureRequest-2.1" match="verrichting[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | procedure[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:ProcedureRequest)" mode="doZibProcedureRequest-2.1">
+        <xsl:param name="in" select="." as="element()?"/>
+        <xsl:param name="logicalId" as="xs:string?"/>
+        <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
+        <!--<xsl:param name="adaPractitioner" as="element()"/>-->
+        <xsl:param name="dateT" as="xs:date?"/>
+        
+        <xsl:for-each select="$in">
+            <xsl:variable name="resource">
+                <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-ProcedureRequest</xsl:variable>
+                <ProcedureRequest>
+                    <xsl:if test="string-length($logicalId) gt 0">
+                        <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
+                    </xsl:if>
+                    
+                    <meta>
+                        <profile value="{$profileValue}"/>
+                    </meta>
+                    
+                    <status value="active"/>
+                    
+                    <intent value="plan"/>
+                    
+                    <xsl:for-each select="(verrichting_type | procedure_type)[@code]">
+                        <code>
                             <xsl:call-template name="code-to-CodeableConcept">
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
-                        </bodySite>
-                    </xsl:for-each>                   
+                        </code>
+                    </xsl:for-each>
                     
-                </Procedure>
+                    <!-- Patient reference -->
+                    <subject>
+                        <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
+                    </subject>
+                    
+                    <xsl:if test="(verrichting_start_datum | procedure_start_date)[@value] or (verrichting_eind_datum | procedure_end_date)[@value]">
+                        <occurrencePeriod>
+                            <xsl:for-each select="(verrichting_start_datum | procedure_start_date)[@value]">
+                                <start>
+                                    <xsl:attribute name="value">
+                                        <xsl:call-template name="format2FHIRDate">
+                                            <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                            <xsl:with-param name="dateT" select="$dateT"/>
+                                        </xsl:call-template>
+                                    </xsl:attribute>
+                                </start>
+                            </xsl:for-each>
+                            <xsl:for-each select="(verrichting_eind_datum | procedure_end_date)[@value]">
+                                <end>
+                                    <xsl:attribute name="value">
+                                        <xsl:call-template name="format2FHIRDate">
+                                            <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                            <xsl:with-param name="dateT" select="$dateT"/>
+                                        </xsl:call-template>
+                                    </xsl:attribute>
+                                </end>
+                            </xsl:for-each>
+                        </occurrencePeriod>
+                    </xsl:if>
+                    
+                    <!--<xsl:for-each select="aanvrager/zorgverlener | requester/health_professional">
+                        <requester>
+                            <agent>
+                                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                                    <valueReference>
+                                        <xsl:apply-templates select="$adaPractitioner" mode="doPractitionerRoleReference-2.0"/>
+                                    </valueReference>
+                                </extension>
+                                <xsl:apply-templates select="$adaPractitioner" mode="doPractitionerReference-2.0"/>
+                            </agent>
+                        </requester>
+                    </xsl:for-each>-->
+                    
+                    <!--<xsl:for-each select="locatie/zorgaanbieder | location/healthcare_provider">
+                        <performer>
+                            <actor>
+                                <xsl:apply-templates select="$adaOrganization" mode="doOrganizationReference-2.0"/>
+                            </actor>
+                        </performer>
+                    </xsl:for-each>-->
+                    
+                    <!--<xsl:for-each select="uitvoerder/zorgverlener | performer/health_professional">
+                        <performer>
+                            <actor>
+                                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                                    <valueReference>
+                                        <xsl:apply-templates select="$adaPractitioner" mode="doPractitionerRoleReference-2.0"/>
+                                    </valueReference>
+                                </extension>
+                                <xsl:apply-templates select="$adaPractitioner" mode="doPractitionerReference-2.0"/>
+                            </actor>
+                        </performer>
+                    </xsl:for-each>-->
+                    
+                    <!--<xsl:for-each select="indicatie/probleem | indication/problem">
+                        <reasonReference>
+                            <xsl:apply-templates select="$adaPractitioner" mode="doProblemReference-2.1"/>
+                        </reasonReference>
+                    </xsl:for-each>-->
+                    
+                    <xsl:if test="(verrichting_lateraliteit | procedure_laterality)[@code] or (verrichting_anatomische_locatie | procedure_anatomical_location)[@code]">
+                        <bodySite>
+                            <xsl:for-each select="(verrichting_lateraliteit | procedure_laterality)[@code]">
+                                <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+                                    <valueCodeableConcept>
+                                        <xsl:call-template name="code-to-CodeableConcept">
+                                            <xsl:with-param name="in" select="."/>
+                                        </xsl:call-template>
+                                    </valueCodeableConcept>
+                                </extension>
+                            </xsl:for-each>
+                            <xsl:for-each select="(verrichting_anatomische_locatie | procedure_anatomical_location)[@code]">
+                                <xsl:call-template name="code-to-CodeableConcept">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                        </bodySite>
+                    </xsl:if>
+                    
+                </ProcedureRequest>
             </xsl:variable>
             
             <!-- Add resource.text -->

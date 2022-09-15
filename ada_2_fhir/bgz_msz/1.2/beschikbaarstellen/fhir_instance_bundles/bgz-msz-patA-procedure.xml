@@ -1,41 +1,48 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="b5ae4abd-329b-11ed-2065-020000000000"/>
+   <id value="83076577-34fd-11ed-1958-020000000000"/>
    <type value="searchset"/>
    <total value="2"/>
    <entry>
-      <fullUrl value="urn:uuid:b5ae4ac0-329b-11ed-2065-020000000000"/>
+      <fullUrl value="urn:uuid:8307657a-34fd-11ed-1958-020000000000"/>
       <resource>
-         <Procedure>
+         <ProcedureRequest>
             <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ProcedureRequest"/>
             </meta>
             <text>
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Verrichting. Subject: Dennis D. Dennis Janse. Status: voltooid</caption>
+                     <caption>Verrichtingaanvraag. Subject: Dennis D. Dennis Janse. Status: actief<span style="display: block;">Intentie: plan</span>
+                     </caption>
                      <tbody>
                         <tr>
                            <td>
                               <span title="Operatieve behandeling fractuur van de malleolus (111501000146106 - SNOMED CT)">Operatieve behandeling fractuur van de malleolus</span>
                            </td>
                            <td>
-                              <div>Uitgevoerd: ${DATE, T, D, +1}T14:00:00+02:00 - ${DATE, T, D, +1}T15:00:00+02:00</div>
+                              <div>Wanneer: ${DATE, T, D, +1}T14:00:00+02:00 - ${DATE, T, D, +1}T15:00:00+02:00</div>
                            </td>
                         </tr>
                         <tr>
-                           <th>Deel van lichaam</th>
+                           <th>Reden</th>
+                           <td/>
+                        </tr>
+                        <tr>
+                           <td>Deel van lichaam</td>
                            <td>
                               <span title="Enkel (70258002 - SNOMED CT)">Enkel</span>
+                              <span title="Left (7771000 - SNOMED CT)">Left</span>
                            </td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
-            <status value="completed"/>
+            <status value="active"/>
+            <intent value="plan"/>
             <code>
                <coding>
                   <system value="http://snomed.info/sct"/>
@@ -44,58 +51,74 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:b5ae5ed0-329b-11ed-2065-020000000000"/>
+               <reference value="urn:uuid:8307798a-34fd-11ed-1958-020000000000"/>
                <display value="Dennis D. Dennis Janse"/>
             </subject>
-            <performedPeriod>
+            <occurrencePeriod>
                <start value="${DATE, T, D, +1}T14:00:00+02:00"/>
                <end value="${DATE, T, D, +1}T15:00:00+02:00"/>
-            </performedPeriod>
+            </occurrencePeriod>
             <bodySite>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="7771000"/>
+                        <display value="Left"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <coding>
                   <system value="http://snomed.info/sct"/>
                   <code value="70258002"/>
                   <display value="Enkel"/>
                </coding>
             </bodySite>
-         </Procedure>
+         </ProcedureRequest>
       </resource>
       <search>
          <mode value="match"/>
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b5ae6472-329b-11ed-2065-020000000000"/>
+      <fullUrl value="urn:uuid:83077f2c-34fd-11ed-1958-020000000000"/>
       <resource>
-         <Procedure>
+         <ProcedureRequest>
             <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ProcedureRequest"/>
             </meta>
             <text>
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Verrichting. Subject: Dennis D. Dennis Janse. Status: voltooid</caption>
+                     <caption>Verrichtingaanvraag. Subject: Dennis D. Dennis Janse. Status: actief<span style="display: block;">Intentie: plan</span>
+                     </caption>
                      <tbody>
                         <tr>
                            <td>
                               <span title="Aanleggen van loopgips voor onderbeen (122531000146102 - SNOMED CT)">Aanleggen van loopgips voor onderbeen</span>
                            </td>
                            <td>
-                              <div>Uitgevoerd: Vanaf ${DATE, T, D, +2}T09:30:00+02:00</div>
+                              <div>Wanneer: Vanaf ${DATE, T, D, +2}T09:30:00+02:00</div>
                            </td>
                         </tr>
                         <tr>
-                           <th>Deel van lichaam</th>
+                           <th>Reden</th>
+                           <td/>
+                        </tr>
+                        <tr>
+                           <td>Deel van lichaam</td>
                            <td>
                               <span title="Enkel (70258002 - SNOMED CT)">Enkel</span>
+                              <span title="Left (7771000 - SNOMED CT)">Left</span>
                            </td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
-            <status value="completed"/>
+            <status value="active"/>
+            <intent value="plan"/>
             <code>
                <coding>
                   <system value="http://snomed.info/sct"/>
@@ -104,27 +127,36 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:b5ae5ed0-329b-11ed-2065-020000000000"/>
+               <reference value="urn:uuid:8307798a-34fd-11ed-1958-020000000000"/>
                <display value="Dennis D. Dennis Janse"/>
             </subject>
-            <performedPeriod>
+            <occurrencePeriod>
                <start value="${DATE, T, D, +2}T09:30:00+02:00"/>
-            </performedPeriod>
+            </occurrencePeriod>
             <bodySite>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="7771000"/>
+                        <display value="Left"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
                <coding>
                   <system value="http://snomed.info/sct"/>
                   <code value="70258002"/>
                   <display value="Enkel"/>
                </coding>
             </bodySite>
-         </Procedure>
+         </ProcedureRequest>
       </resource>
       <search>
          <mode value="match"/>
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b5ae4ac3-329b-11ed-2065-020000000000"/>
+      <fullUrl value="urn:uuid:8307657d-34fd-11ed-1958-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -143,7 +175,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b5ae5ed0-329b-11ed-2065-020000000000"/>
+      <fullUrl value="urn:uuid:8307798a-34fd-11ed-1958-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -307,7 +339,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b5ae5f09-329b-11ed-2065-020000000000"/>
+      <fullUrl value="urn:uuid:830779c3-34fd-11ed-1958-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -334,7 +366,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b5ae5f0b-329b-11ed-2065-020000000000"/>
+      <fullUrl value="urn:uuid:830779c5-34fd-11ed-1958-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -368,7 +400,7 @@
                <display value="Jeroen Hendrik Robert J.H.R. Jeroen Peters"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:b5ae5f09-329b-11ed-2065-020000000000"/>
+               <reference value="urn:uuid:830779c3-34fd-11ed-1958-020000000000"/>
                <display value="Organisatie informatie: naam eigen ziekenhuis"/>
             </organization>
             <specialty>
@@ -385,7 +417,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b5ae6448-329b-11ed-2065-020000000000"/>
+      <fullUrl value="urn:uuid:83077f02-34fd-11ed-1958-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -419,7 +451,7 @@
                <display value="Alfred Bart A.B. Alfred Bakker"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:b5ae5f09-329b-11ed-2065-020000000000"/>
+               <reference value="urn:uuid:830779c3-34fd-11ed-1958-020000000000"/>
                <display value="Organisatie informatie: naam eigen ziekenhuis"/>
             </organization>
             <specialty>
