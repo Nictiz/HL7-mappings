@@ -31,7 +31,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- Main entry template to call -->
     <xsl:template name="addNarrative" match="*" mode="addNarrative">
         <xsl:choose>
-            <!-- Don't generate text on anything contained and assume it was not done before us, soo just copy as-is
+            <!-- Don't generate text on anything contained and assume it was not done before us, so just copy as-is
                 https://www.hl7.org/fhir/STU3/domainresource-definitions.html#DomainResource.text
                 dom-1: If the resource is contained in another resource, it SHALL NOT contain any narrative (expression : contained.text.empty(), xpath: not(parent::f:contained and f:text))
             -->
