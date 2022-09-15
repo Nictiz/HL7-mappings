@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="b6d5762f-32a8-11ed-1595-020000000000"/>
+   <id value="e1afb84d-3513-11ed-1039-020000000000"/>
    <type value="searchset"/>
    <total value="4"/>
    <entry>
-      <fullUrl value="urn:uuid:b6d57632-32a8-11ed-1595-020000000000"/>
+      <fullUrl value="urn:uuid:e1afb850-3513-11ed-1039-020000000000"/>
       <resource>
          <DeviceUseStatement>
             <meta>
@@ -43,7 +43,7 @@
             </text>
             <status value="active"/>
             <subject>
-               <reference value="urn:uuid:b6d58a42-32a8-11ed-1595-020000000000"/>
+               <reference value="urn:uuid:e1afcc60-3513-11ed-1039-020000000000"/>
                <display value="Dennis D. Dennis Janse"/>
             </subject>
             <whenUsed>
@@ -75,7 +75,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b6d57632-32a8-11ed-1595-020000000000"/>
+      <fullUrl value="urn:uuid:e1afb850-3513-11ed-1039-020000000000"/>
       <resource>
          <Device>
             <meta>
@@ -102,7 +102,7 @@
             </text>
             <status value="active"/>
             <patient>
-               <reference value="urn:uuid:b6d58a42-32a8-11ed-1595-020000000000"/>
+               <reference value="urn:uuid:e1afcc60-3513-11ed-1039-020000000000"/>
                <display value="Dennis D. Dennis Janse"/>
             </patient>
             <note>
@@ -115,7 +115,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b6d58fbe-32a8-11ed-1595-020000000000"/>
+      <fullUrl value="urn:uuid:e1afd1dc-3513-11ed-1039-020000000000"/>
       <resource>
          <DeviceUseStatement>
             <meta>
@@ -141,7 +141,7 @@
             </text>
             <status value="active"/>
             <subject>
-               <reference value="urn:uuid:b6d58a42-32a8-11ed-1595-020000000000"/>
+               <reference value="urn:uuid:e1afcc60-3513-11ed-1039-020000000000"/>
                <display value="Dennis D. Dennis Janse"/>
             </subject>
             <whenUsed>
@@ -154,7 +154,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b6d58fbe-32a8-11ed-1595-020000000000"/>
+      <fullUrl value="urn:uuid:e1afd1dc-3513-11ed-1039-020000000000"/>
       <resource>
          <Device>
             <meta>
@@ -181,7 +181,7 @@
             </text>
             <status value="active"/>
             <patient>
-               <reference value="urn:uuid:b6d58a42-32a8-11ed-1595-020000000000"/>
+               <reference value="urn:uuid:e1afcc60-3513-11ed-1039-020000000000"/>
                <display value="Dennis D. Dennis Janse"/>
             </patient>
             <note>
@@ -194,7 +194,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b6d57635-32a8-11ed-1595-020000000000"/>
+      <fullUrl value="urn:uuid:e1afb853-3513-11ed-1039-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -213,7 +213,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b6d58a42-32a8-11ed-1595-020000000000"/>
+      <fullUrl value="urn:uuid:e1afcc60-3513-11ed-1039-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -223,7 +223,9 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id 999999151 (BSN), Dennis D. Janse (Dennis), Man, 2 februari 1950</div>
-                  <div/>
+                  <div>
+                     <a href="tel:+316-11122233">+316-11122233</a> (Tel Mobiel), <a href="mailto:djanse@test.nl">djanse@test.nl</a> (E-mail Privé)</div>
+                  <div>Huweelstraat 15 Tijdelijk adres 1, 1248CC Barendrecht (TMP)</div>
                </div>
             </text>
             <identifier>
@@ -255,6 +257,25 @@
                   </extension>
                </given>
             </name>
+            <telecom>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="MC"/>
+                        <display value="Mobile Phone"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <system value="phone"/>
+               <value value="+316-11122233"/>
+               <use value="mobile"/>
+            </telecom>
+            <telecom>
+               <system value="email"/>
+               <value value="djanse@test.nl"/>
+               <use value="home"/>
+            </telecom>
             <gender value="male">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                   <valueCodeableConcept>
@@ -267,8 +288,35 @@
                </extension>
             </gender>
             <birthDate value="1950-02-02"/>
-            <deceasedBoolean/>
-            <address/>
+            <deceasedBoolean value="false"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="TMP"/>
+                        <display value="Tijdelijk adres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="temp"/>
+               <line value="Huweelstraat 15 Tijdelijk adres 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Huweelstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="15"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-unitID">
+                     <valueString value="Tijdelijk adres"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Barendrecht"/>
+               <postalCode value="1248CC"/>
+            </address>
             <multipleBirthBoolean value="false"/>
          </Patient>
       </resource>
@@ -377,7 +425,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b6d58a7e-32a8-11ed-1595-020000000000"/>
+      <fullUrl value="urn:uuid:e1afcc9c-3513-11ed-1039-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -404,7 +452,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b6d58ffd-32a8-11ed-1595-020000000000"/>
+      <fullUrl value="urn:uuid:e1afd21b-3513-11ed-1039-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -431,7 +479,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b6d58a80-32a8-11ed-1595-020000000000"/>
+      <fullUrl value="urn:uuid:e1afcc9e-3513-11ed-1039-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -465,7 +513,7 @@
                <display value="Ria Alexandra R.A. Ria Slot"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:b6d58a7e-32a8-11ed-1595-020000000000"/>
+               <reference value="urn:uuid:e1afcc9c-3513-11ed-1039-020000000000"/>
                <display value="Organisatie informatie: Huisartsenpraktijk Rotterdam"/>
             </organization>
             <specialty>
@@ -482,7 +530,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b6d58fff-32a8-11ed-1595-020000000000"/>
+      <fullUrl value="urn:uuid:e1afd21d-3513-11ed-1039-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -516,7 +564,7 @@
                <display value="Jeroen Hendrik Robert J.H.R. Jeroen Peters"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:b6d58ffd-32a8-11ed-1595-020000000000"/>
+               <reference value="urn:uuid:e1afd21b-3513-11ed-1039-020000000000"/>
                <display value="Organisatie informatie: naam eigen ziekenhuis"/>
             </organization>
             <specialty>

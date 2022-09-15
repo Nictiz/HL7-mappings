@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="afa923c7-329b-11ed-6505-020000000000"/>
+   <id value="ce792e53-3513-11ed-1724-020000000000"/>
    <type value="searchset"/>
    <total value="2"/>
    <entry>
-      <fullUrl value="urn:uuid:afa923ca-329b-11ed-6505-020000000000"/>
+      <fullUrl value="urn:uuid:ce792e56-3513-11ed-1724-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -60,7 +60,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:afa937da-329b-11ed-6505-020000000000"/>
+               <reference value="urn:uuid:ce794266-3513-11ed-1724-020000000000"/>
                <display value="Dennis D. Dennis Janse"/>
             </subject>
             <effectiveDateTime value="${DATE, T, D, +1}"/>
@@ -99,7 +99,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:afa93800-329b-11ed-6505-020000000000"/>
+      <fullUrl value="urn:uuid:ce79428c-3513-11ed-1724-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -154,7 +154,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:afa937da-329b-11ed-6505-020000000000"/>
+               <reference value="urn:uuid:ce794266-3513-11ed-1724-020000000000"/>
                <display value="Dennis D. Dennis Janse"/>
             </subject>
             <effectiveDateTime value="${DATE, T, D, +2}"/>
@@ -193,7 +193,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:afa923cd-329b-11ed-6505-020000000000"/>
+      <fullUrl value="urn:uuid:ce792e59-3513-11ed-1724-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -212,7 +212,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:afa937da-329b-11ed-6505-020000000000"/>
+      <fullUrl value="urn:uuid:ce794266-3513-11ed-1724-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -222,7 +222,9 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id 999999151 (BSN), Dennis D. Janse (Dennis), Man, 2 februari 1950</div>
-                  <div/>
+                  <div>
+                     <a href="tel:+316-11122233">+316-11122233</a> (Tel Mobiel), <a href="mailto:djanse@test.nl">djanse@test.nl</a> (E-mail Privé)</div>
+                  <div>Huweelstraat 15 Tijdelijk adres 1, 1248CC Barendrecht (TMP)</div>
                </div>
             </text>
             <identifier>
@@ -254,6 +256,25 @@
                   </extension>
                </given>
             </name>
+            <telecom>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="MC"/>
+                        <display value="Mobile Phone"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <system value="phone"/>
+               <value value="+316-11122233"/>
+               <use value="mobile"/>
+            </telecom>
+            <telecom>
+               <system value="email"/>
+               <value value="djanse@test.nl"/>
+               <use value="home"/>
+            </telecom>
             <gender value="male">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                   <valueCodeableConcept>
@@ -266,8 +287,35 @@
                </extension>
             </gender>
             <birthDate value="1950-02-02"/>
-            <deceasedBoolean/>
-            <address/>
+            <deceasedBoolean value="false"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="TMP"/>
+                        <display value="Tijdelijk adres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="temp"/>
+               <line value="Huweelstraat 15 Tijdelijk adres 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Huweelstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="15"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-unitID">
+                     <valueString value="Tijdelijk adres"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Barendrecht"/>
+               <postalCode value="1248CC"/>
+            </address>
             <multipleBirthBoolean value="false"/>
          </Patient>
       </resource>

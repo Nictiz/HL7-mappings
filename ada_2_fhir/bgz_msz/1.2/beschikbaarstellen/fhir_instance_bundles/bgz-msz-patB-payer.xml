@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="bfb78a97-329b-11ed-8378-020000000000"/>
+   <id value="1fece2b1-3514-11ed-1724-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:bfb78a9a-329b-11ed-8378-020000000000"/>
+      <fullUrl value="urn:uuid:1fece2b4-3514-11ed-1724-020000000000"/>
       <resource>
          <Coverage>
             <meta>
@@ -51,12 +51,12 @@
                </coding>
             </type>
             <subscriber>
-               <reference value="urn:uuid:bfb79eaa-329b-11ed-8378-020000000000"/>
+               <reference value="urn:uuid:1fecf6c4-3514-11ed-1724-020000000000"/>
                <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
             </subscriber>
             <subscriberId value="98765432"/>
             <beneficiary>
-               <reference value="urn:uuid:bfb79eaa-329b-11ed-8378-020000000000"/>
+               <reference value="urn:uuid:1fecf6c4-3514-11ed-1724-020000000000"/>
                <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
             </beneficiary>
             <period>
@@ -77,7 +77,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:bfb78a9d-329b-11ed-8378-020000000000"/>
+      <fullUrl value="urn:uuid:1fece2b7-3514-11ed-1724-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -96,7 +96,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:bfb79eaa-329b-11ed-8378-020000000000"/>
+      <fullUrl value="urn:uuid:1fecf6c4-3514-11ed-1724-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -106,7 +106,9 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id 999999072 (BSN), Maria Francisca M.F. van 't Hoen-Verheul (Maria), Vrouw, 16 april 1956, Meerling</div>
-                  <div/>
+                  <div>
+                     <a href="tel:+316-10101010">+316-10101010</a> (Tel Mobiel), <a href="mailto:francisca@maria.org">francisca@maria.org</a> (E-mail Privé)</div>
+                  <div>Steenstraat 143 A II, 6584YZ Molenhoek Mook en Middelaar (officieel Privé (hoofd) Bezoek)</div>
                </div>
             </text>
             <identifier>
@@ -144,6 +146,25 @@
                   </extension>
                </given>
             </name>
+            <telecom>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="MC"/>
+                        <display value="Mobile Phone"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <system value="phone"/>
+               <value value="+316-10101010"/>
+               <use value="mobile"/>
+            </telecom>
+            <telecom>
+               <system value="email"/>
+               <value value="francisca@maria.org"/>
+               <use value="home"/>
+            </telecom>
             <gender value="female">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
                   <valueCodeableConcept>
@@ -156,8 +177,40 @@
                </extension>
             </gender>
             <birthDate value="1956-04-16"/>
-            <deceasedBoolean/>
-            <address/>
+            <deceasedBoolean value="false"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="HP"/>
+                        <display value="Officieel adres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-address-official">
+                  <valueBoolean value="true"/>
+               </extension>
+               <use value="home"/>
+               <type value="physical"/>
+               <line value="Steenstraat 143 A II">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Steenstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="143"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="II"/>
+                  </extension>
+               </line>
+               <city value="Molenhoek"/>
+               <district value="Mook en Middelaar"/>
+               <postalCode value="6584YZ"/>
+            </address>
             <multipleBirthBoolean value="true"/>
          </Patient>
       </resource>
