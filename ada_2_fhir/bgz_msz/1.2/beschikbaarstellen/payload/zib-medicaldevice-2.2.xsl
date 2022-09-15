@@ -155,9 +155,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <!-- TODO device reference -->
                     <!--<xsl:for-each select="product">
-                        <valueReference>
+                        <device>
                             
-                        </valueReference>
+                        </device>
                     </xsl:for-each>-->
                     
                     <!-- TODO problem reference -->

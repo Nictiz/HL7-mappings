@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="6a99b0e2-2d20-11ed-1600-020000000000"/>
+   <id value="421a426b-3500-11ed-4830-020000000000"/>
    <type value="searchset"/>
    <total value="2"/>
    <entry>
-      <fullUrl value="urn:uuid:6a99b0e3-2d20-11ed-1600-020000000000"/>
+      <fullUrl value="urn:uuid:421a426e-3500-11ed-4830-020000000000"/>
       <resource>
          <Flag>
             <meta>
@@ -15,7 +15,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Attentievlag. Subject: 999999072 (BSN). Categorie: <span title="condition (75323-6 - LOINC)">condition</span>, Status: <i>onbekend (ontbrekend gegeven)</i>
+                     <caption>Attentievlag. Subject: Maria Francisca M.F. Maria van 't Hoen Verheul. Categorie: <span title="condition (75323-6 - LOINC)">condition</span>, Status: <i>onbekend (ontbrekend gegeven)</i>
                      </caption>
                      <tbody>
                         <tr>
@@ -51,10 +51,8 @@
                <text value="Mevrouw kan rechterarm niet goed gebruiken"/>
             </code>
             <subject>
-               <identifier>
-                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-                  <value value="999999072"/>
-               </identifier>
+               <reference value="urn:uuid:421a567e-3500-11ed-4830-020000000000"/>
+               <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
             </subject>
             <period>
                <start value="2010-07-03"/>
@@ -66,7 +64,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6a99b0ed-2d20-11ed-1600-020000000000"/>
+      <fullUrl value="urn:uuid:421a56a8-3500-11ed-4830-020000000000"/>
       <resource>
          <Flag>
             <meta>
@@ -76,7 +74,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Attentievlag. Subject: 999999072 (BSN). Categorie: <span title="condition (75323-6 - LOINC)">condition</span>, Status: <i>onbekend (ontbrekend gegeven)</i>
+                     <caption>Attentievlag. Subject: Maria Francisca M.F. Maria van 't Hoen Verheul. Categorie: <span title="condition (75323-6 - LOINC)">condition</span>, Status: <i>onbekend (ontbrekend gegeven)</i>
                      </caption>
                      <tbody>
                         <tr>
@@ -86,10 +84,6 @@
                            </td>
                         </tr>
                         <tr>
-                           <th>Detail</th>
-                           <td/>
-                        </tr>
-                        <tr>
                            <th>Periode</th>
                            <td>Vanaf 4 maart 2010</td>
                         </tr>
@@ -97,12 +91,6 @@
                   </table>
                </div>
             </text>
-            <extension url="http://hl7.org/fhir/StructureDefinition/flag-detail">
-               <valueReference>
-                  <reference value=""/>
-                  <display value=""/>
-               </valueReference>
-            </extension>
             <status>
                <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
                   <valueCode value="unknown"/>
@@ -121,10 +109,8 @@
                </extension>
             </code>
             <subject>
-               <identifier>
-                  <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-                  <value value="999999072"/>
-               </identifier>
+               <reference value="urn:uuid:421a567e-3500-11ed-4830-020000000000"/>
+               <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
             </subject>
             <period>
                <start value="2010-03-04"/>
@@ -133,6 +119,95 @@
       </resource>
       <search>
          <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:421a4271-3500-11ed-4830-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div/>
+               </div>
+            </text>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:421a567e-3500-11ed-4830-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id 999999072 (BSN), Maria Francisca M.F. van 't Hoen-Verheul (Maria), Vrouw, 16 april 1956, Meerling</div>
+                  <div/>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value value="999999072"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL4"/>
+               </extension>
+               <family value="van 't Hoen-Verheul">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van 't"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Hoen"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+                     <valueString value="Verheul"/>
+                  </extension>
+               </family>
+               <given value="Maria Francisca">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+               <given value="M.F.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+               <given value="Maria">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="CL"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Female"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="1956-04-16"/>
+            <deceasedBoolean/>
+            <address/>
+            <multipleBirthBoolean value="true"/>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
       </search>
    </entry>
 </Bundle>

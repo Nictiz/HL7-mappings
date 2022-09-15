@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Copyright (c) Nictiz
+Copyright © Nictiz
 This program is free software; you can redistribute it and/or modify it under the terms of the
 GNU Lesser General Public License as published by the Free Software Foundation; either version
 2.1 of the License, or (at your option) any later version.
@@ -113,7 +113,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="{$profileValue}"/>
                     </meta>
         
-                    <xsl:if test="conditie/probleem | condition/problem">
+                    <!--<xsl:if test="conditie/probleem | condition/problem">
                         <xsl:for-each select="nf:ada-resolve-reference(conditie/probleem | condition/problem)">
                             <extension url="http://hl7.org/fhir/StructureDefinition/flag-detail">
                                 <valueReference>
@@ -123,7 +123,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </valueReference>
                             </extension>
                         </xsl:for-each>
-                    </xsl:if>
+                    </xsl:if>-->
                     
                     <!-- status does not exist in zib but is 1..1 in FHIR profile -->
                     <status>
@@ -147,10 +147,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:when test="alert_naam[@code] | alert_name[@code]">
                                 <xsl:call-template name="code-to-CodeableConcept">
                                     <xsl:with-param name="in" select="alert_naam | alert_name"/>
-                                    <xsl:with-param name="treatNullFlavorAsCoding" select="alert_naam/@code | alert_name/@code = $nullFlavorsInValueset and alert_naam/@codeSystem | alert_name/@codeSystem = $oidHL7NullFlavor"/>
+                                    <xsl:with-param name="treatNullFlavorAsCoding" select="(alert_naam | alert_name)/@code = $nullFlavorsInValueset and (alert_naam | alert_name)/@codeSystem = $oidHL7NullFlavor"/>
                                 </xsl:call-template>
                             </xsl:when>
-                            <!-- code is 1..1 in FHIR profile, but alert_name is 0..1 in zib -->
                             <xsl:otherwise>
                                 <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
                                     <valueCode value="unknown"/>
@@ -159,14 +158,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:choose>
                     </code>
                     
-                    <!-- >     NL-CM:0.0.12    Onderwerp Patient via nl.zorg.part.basiselementen -->
                     <!-- Patient reference -->
                     <subject>
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
                     
-                    <!-- TS    NL-CM:8.3.5        BeginDatumTijd            0..1    -->
-                    <!-- period.start -->
                     <xsl:for-each select="(begin_datum_tijd | start_date_time)[@value]">
                         <period>
                             <start>
