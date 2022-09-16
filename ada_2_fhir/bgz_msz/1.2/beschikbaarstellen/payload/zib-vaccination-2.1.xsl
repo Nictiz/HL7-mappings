@@ -249,7 +249,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </vaccineCode>    
                             </xsl:for-each>
                             
-                            <forecastStatus value="due"/>
+                            <forecastStatus>
+                                <coding>
+                                    <system value="http://hl7.org/fhir/immunization-recommendation-status"/>
+                                        <code value="due"/>
+                                    <display value="Due"/>
+                                </coding>
+                            </forecastStatus>
                         </recommendation>
                     </xsl:for-each>
                     
