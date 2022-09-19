@@ -209,8 +209,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <!-- in some data sets the address_information is unfortunately unnecessarily nested in an extra group, hence the extra predicate -->
                         <xsl:with-param name="in" select=".//(adresgegevens[not(adresgegevens)] | address_information[not(address_information)])" as="element()*"/>
                     </xsl:call-template>
-                    <!-- maritalStatus -->
-
+                    <!-- maritalStatus (assumed to be manually added to the ada instance of patient) -->
+                    <xsl:for-each select="(burgerlijke_staat | marital_status)[@code]">
+                        <maritalStatus>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </maritalStatus>
+                    </xsl:for-each>
                     <!-- multipleBirth -->
                     <xsl:for-each select="(meerling_indicator | multiple_birth_indicator)[@value]">
                         <multipleBirthBoolean>

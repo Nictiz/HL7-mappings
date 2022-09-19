@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="a15a5ddb-37f0-11ed-1085-020000000000"/>
+   <id value="ddcec229-3828-11ed-1334-020000000000"/>
    <type value="searchset"/>
    <total value="3"/>
    <entry>
-      <fullUrl value="urn:uuid:a15a5dde-37f0-11ed-1085-020000000000"/>
+      <fullUrl value="urn:uuid:ddcec22c-3828-11ed-1334-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -91,7 +91,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:a15a71ee-37f0-11ed-1085-020000000000"/>
+               <reference value="urn:uuid:ddced696-3828-11ed-1334-020000000000"/>
                <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
             </subject>
             <effectiveDateTime value="${DATE, T, D, +1}T07:15:00+02:00"/>
@@ -178,7 +178,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a15a721b-37f0-11ed-1085-020000000000"/>
+      <fullUrl value="urn:uuid:ddced6c4-3828-11ed-1334-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -264,7 +264,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:a15a71ee-37f0-11ed-1085-020000000000"/>
+               <reference value="urn:uuid:ddced696-3828-11ed-1334-020000000000"/>
                <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
             </subject>
             <effectiveDateTime value="${DATE, T, D, +2}T07:45:00+02:00"/>
@@ -351,7 +351,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a15a7762-37f0-11ed-1085-020000000000"/>
+      <fullUrl value="urn:uuid:ddcedf90-3828-11ed-1334-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -437,7 +437,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:a15a71ee-37f0-11ed-1085-020000000000"/>
+               <reference value="urn:uuid:ddced696-3828-11ed-1334-020000000000"/>
                <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
             </subject>
             <effectiveDateTime value="${DATE, T, D, +2}T16:15:00+02:00"/>
@@ -524,7 +524,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a15a5de1-37f0-11ed-1085-020000000000"/>
+      <fullUrl value="urn:uuid:ddcec22f-3828-11ed-1334-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -543,7 +543,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a15a71ee-37f0-11ed-1085-020000000000"/>
+      <fullUrl value="urn:uuid:ddced696-3828-11ed-1334-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -552,7 +552,8 @@
             <text>
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
-                  <div>Id 999999072 (BSN), Maria Francisca M.F. van 't Hoen-Verheul (Maria), Vrouw, 16 april 1956, Meerling</div>
+                  <div>Id 999999072 (BSN), Maria Francisca M.F. van 't Hoen-Verheul (Maria), Vrouw, 16 april 1956, Meerling, <span title="Domestic partner (T - MaritalStatus)">Domestic partner</span>
+                  </div>
                   <div>
                      <a href="tel:+316-10101010">+316-10101010</a> (Tel Mobiel), <a href="mailto:francisca@maria.org">francisca@maria.org</a> (E-mail Privé)</div>
                   <div>Steenstraat 143 A II, 6584YZ Molenhoek Mook en Middelaar, NL (officieel Privé (hoofd) Bezoek)</div>
@@ -669,6 +670,13 @@
                   </extension>
                </country>
             </address>
+            <maritalStatus>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.5.2"/>
+                  <code value="T"/>
+                  <display value="Domestic partner"/>
+               </coding>
+            </maritalStatus>
             <multipleBirthBoolean value="true"/>
          </Patient>
       </resource>
