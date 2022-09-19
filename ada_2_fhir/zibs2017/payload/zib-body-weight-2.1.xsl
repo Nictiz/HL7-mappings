@@ -115,7 +115,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
     <xsl:template name="zib-BodyWeight-2.1" match="lichaamsgewicht | body_weight" mode="doZibBodyWeight-2.1">
-        <!-- not complete zib implemented yet, only the elements as used in MP dataset -->
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
@@ -174,15 +173,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:choose>
                     </effectiveDateTime>
                     
-                    <!-- performer is mandatory in FHIR profile, we have no information in MP, so we are hardcoding data-absent reason -->
-                    <!-- https://bits.nictiz.nl/browse/MM-434 -->
-                    <performer>
-                        <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                            <valueCode value="unknown"/>
-                        </extension>
-                        <display value="onbekend"/>
-                    </performer>
-                    
                     <xsl:for-each select="(gewicht_waarde | weight_value)[@value]">
                         <valueQuantity>
                             <xsl:call-template name="hoeveelheid-to-Quantity">
@@ -191,13 +181,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueQuantity>
                     </xsl:for-each>
                     
-                    <xsl:for-each select="toelichting | comment">
+                    <xsl:for-each select="(toelichting | comment)[@value]">
                         <comment>
-                            <xsl:attribute name="value" select="./@value"/>
+                            <xsl:call-template name="string-to-string">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
                         </comment>
                     </xsl:for-each>
                     
-                    <xsl:for-each select="kleding | clothing">
+                    <xsl:for-each select="(kleding | clothing)[@code]">
                         <component>
                             <code>
                                 <coding>

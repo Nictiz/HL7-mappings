@@ -150,7 +150,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <display value="lichaamslengte"/>
                         </coding>
                         
-                        <xsl:for-each select="positie | position">
+                        <xsl:for-each select="(positie | position)[@code]">
                             <xsl:choose>
                                 <xsl:when test="@code = '10904000' and @codeSystem = '2.16.840.1.113883.6.96'">
                                     <coding>
@@ -193,15 +193,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:choose>
                     </effectiveDateTime>
                     
-                    <!-- performer is mandatory in FHIR profile, we have no information in MP, so we are hardcoding data-absent reason -->
-                    <!-- https://bits.nictiz.nl/browse/MM-434 -->
-                    <performer>
-                        <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                            <valueCode value="unknown"/>
-                        </extension>
-                        <display value="onbekend"/>
-                    </performer>
-                    
                     <xsl:for-each select="(lengte_waarde | height_value)[@value]">
                         <valueQuantity>
                             <!-- ada has cm or m, FHIR only allows cm -->
@@ -222,9 +213,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueQuantity>
                     </xsl:for-each>
                     
-                    <xsl:for-each select="toelichting | comment">
+                    <xsl:for-each select="(toelichting | comment)[@value]">
                         <comment>
-                            <xsl:attribute name="value" select="./@value"/>
+                            <xsl:call-template name="string-to-string">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
                         </comment>
                     </xsl:for-each>
                     
