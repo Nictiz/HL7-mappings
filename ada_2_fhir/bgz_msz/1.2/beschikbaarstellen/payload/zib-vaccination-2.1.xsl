@@ -246,13 +246,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:call-template name="code-to-CodeableConcept">
                                         <xsl:with-param name="in" select="."/>
                                     </xsl:call-template>
-                                </vaccineCode>    
+                                </vaccineCode>
                             </xsl:for-each>
                             
                             <forecastStatus>
                                 <coding>
                                     <system value="http://hl7.org/fhir/immunization-recommendation-status"/>
-                                        <code value="due"/>
+                                    <code value="due"/>
                                     <display value="Due"/>
                                 </coding>
                             </forecastStatus>

@@ -153,12 +153,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </whenUsed>
                     </xsl:for-each>
                     
-                    <!-- TODO device reference -->
-                    <!--<xsl:for-each select="product">
-                        <device>
-                            
-                        </device>
-                    </xsl:for-each>-->
+                    <!-- device is required in the FHIR profile, so always output this device, data-absent-reason if no actual value -->
+                    <device>
+                        <!--<xsl:choose>
+                            <xsl:when test="product">
+                                
+                            </xsl:when>
+                            <xsl:otherwise>-->
+                                <extension url="{$urlExtHL7DataAbsentReason}">
+                                    <valueCode value="unknown"/>
+                                </extension>
+                            <!--</xsl:otherwise>
+                        </xsl:choose>-->
+                    </device>
                     
                     <!-- TODO problem reference -->
                     <!--<xsl:for-each select="indicatie/probleem | indication/problem">

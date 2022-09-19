@@ -116,15 +116,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <xsl:for-each select="verification">
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective-Verification">
-                            <xsl:for-each select="verified[@value]">
-                                <extension url="Verified">
-                                    <valueBoolean>
-                                        <xsl:call-template name="boolean-to-boolean">
-                                            <xsl:with-param name="in" select="."/>
-                                        </xsl:call-template>
-                                    </valueBoolean>
-                                </extension>
-                            </xsl:for-each>
+                            <!-- extension Verified is required in the FHIR profile, so always output this extension, data-absent-reason if no actual value -->
+                            <extension url="Verified">
+                                <valueBoolean>
+                                    <xsl:choose>
+                                        <xsl:when test="verified[@value]">
+                                            <xsl:call-template name="boolean-to-boolean">
+                                                <xsl:with-param name="in" select="verified"/>
+                                            </xsl:call-template>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <extension url="{$urlExtHL7DataAbsentReason}">
+                                                <valueCode value="unknown"/>
+                                            </extension>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                </valueBoolean>
+                            </extension>
                             <xsl:for-each select="verified_with[@code]">
                                 <extension url="VerifiedWith">
                                     <valueCodeableConcept>
@@ -173,8 +181,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </extension>
                     </xsl:for-each>
                     
-                    <!-- extension treatmentPermitted is required in the FHIR profile, so always output this extension, data-absent-reason if no actual value -->
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective-TreatmentPermitted">
+                    <!-- modifierExtension treatmentPermitted is required in the FHIR profile, so always output this modifierExtension, data-absent-reason if no actual value -->
+                    <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective-TreatmentPermitted">
                         <valueCodeableConcept>
                             <xsl:choose>
                                 <xsl:when test="treatment_permitted[@code]">
@@ -189,7 +197,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:otherwise>
                             </xsl:choose>
                         </valueCodeableConcept>
-                    </extension>
+                    </modifierExtension>
                     
                     <status value="active" />
                     
