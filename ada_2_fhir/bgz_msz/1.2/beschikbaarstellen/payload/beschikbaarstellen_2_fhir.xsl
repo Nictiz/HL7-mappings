@@ -23,6 +23,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="zib-medicaldevice-2.2.xsl"/>
     <xsl:import href="zib-nutritionadvice-2.1.xsl"/>
     <xsl:import href="zib-payer-2.0.xsl"/>
+    <xsl:import href="zib-problem-3.0.xsl"/>
     <xsl:import href="zib-procedure-2.1.xsl"/>
     <xsl:import href="zib-tobaccouse-2.1.xsl"/>
     <xsl:import href="zib-treatmentdirective-2.2.xsl"/>
@@ -67,7 +68,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="adaPatient" select="hcimroot/subject/patient/patient"/>
                 
                 <!--Zibs that result in only a single resource, or  resources that have no special conditions-->
-                <xsl:if test="local-name() = ('advance_directive', 'alcohol_use', 'alert', 'allergy_intolerance', 'blood_pressure', 'body_height', 'body_weight', 'drug_use', 'encounter', 'functional_or_mental_status', 'living_situation', 'medical_device', 'nutrition_advice', 'patient', 'payer', 'tobacco_use', 'treatment_directive', 'vaccination')">
+                <xsl:if test="local-name() = ('advance_directive', 'alcohol_use', 'alert', 'allergy_intolerance', 'blood_pressure', 'body_height', 'body_weight', 'drug_use', 'encounter', 'functional_or_mental_status', 'living_situation', 'medical_device', 'nutrition_advice', 'patient', 'payer', 'problem', 'tobacco_use', 'treatment_directive', 'vaccination')">
                     <entry xmlns="http://hl7.org/fhir">
                         <xsl:if test="local-name() = 'advance_directive'">
                             <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Consent', false())}"/>
@@ -198,6 +199,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Coverage', false())}"/>
                             <resource>
                                 <xsl:call-template name="zib-Payer-2.0">
+                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                </xsl:call-template>
+                            </resource>
+                        </xsl:if>
+                        <xsl:if test="local-name() = 'problem'">
+                            <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Condition', false())}"/>
+                            <resource>
+                                <xsl:call-template name="zib-Problem-3.0">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
                                 </xsl:call-template>
