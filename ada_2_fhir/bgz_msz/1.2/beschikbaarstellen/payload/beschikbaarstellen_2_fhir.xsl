@@ -31,13 +31,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Nictiz</xd:p>
-            <!--<xd:p><xd:b>Purpose:</xd:b> This XSL was created to facilitate mapping from ADA BundleOfAllergyIntolerance-transaction, to HL7 FHIR STU3 profiles <xd:a href="https://simplifier.net/resolve?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance">http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance</xd:a>.</xd:p>
-            <xd:p>
-                <xd:b>History:</xd:b>
-                <xd:ul>
-                    <xd:li>2018-10-10 version 0.1 <xd:ul><xd:li>Initial version</xd:li></xd:ul></xd:li>
-                </xd:ul>
-            </xd:p>-->
+            <!--<xd:p><xd:b>Purpose:</xd:b> This XSL was created to facilitate mapping from ADA to HL7 FHIR STU3 profiles for BgZ.</xd:p>-->
         </xd:desc>
     </xd:doc>
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
@@ -73,7 +67,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="adaPatient" select="hcimroot/subject/patient/patient"/>
                 
                 <!--Zibs that result in only a single resource, or  resources that have no special conditions-->
-                <xsl:if test="local-name() = ('advance_directive', 'alcohol_use', 'alert', 'allergy_intolerance', 'blood_pressure', 'body_height', 'body_weight', 'drug_use', 'encounter', 'functional_or_mental_status', 'living_situation', 'medical_device', 'nutrition_advice', 'payer', 'tobacco_use', 'treatment_directive', 'vaccination')">
+                <xsl:if test="local-name() = ('advance_directive', 'alcohol_use', 'alert', 'allergy_intolerance', 'blood_pressure', 'body_height', 'body_weight', 'drug_use', 'encounter', 'functional_or_mental_status', 'living_situation', 'medical_device', 'nutrition_advice', 'patient', 'payer', 'tobacco_use', 'treatment_directive', 'vaccination')">
                     <entry xmlns="http://hl7.org/fhir">
                         <xsl:if test="local-name() = 'advance_directive'">
                             <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Consent', false())}"/>
@@ -189,6 +183,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:call-template name="zib-NutritionAdvice-2.1">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                </xsl:call-template>
+                            </resource>
+                        </xsl:if>
+                        <xsl:if test="local-name() = 'patient'">
+                            <fullUrl value="{nf:getUriFromAdaId(., 'Patient', false())}"/>
+                            <resource>
+                                <xsl:call-template name="nl-core-patient-2.1">
+                                    <xsl:with-param name="in" select="."/>
                                 </xsl:call-template>
                             </resource>
                         </xsl:if>
