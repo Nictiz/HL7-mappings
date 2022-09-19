@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="f4f1350d-3513-11ed-1039-020000000000"/>
+   <id value="959f3dc7-37f0-11ed-5318-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:f4f13510-3513-11ed-1039-020000000000"/>
+      <fullUrl value="urn:uuid:959f3dca-37f0-11ed-5318-020000000000"/>
       <resource>
          <Consent>
             <meta>
@@ -48,7 +48,7 @@
                </coding>
             </category>
             <patient>
-               <reference value="urn:uuid:f4f14920-3513-11ed-1039-020000000000"/>
+               <reference value="urn:uuid:959f51da-37f0-11ed-5318-020000000000"/>
                <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
             </patient>
             <dateTime value="2007-07-07"/>
@@ -66,7 +66,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f4f13513-3513-11ed-1039-020000000000"/>
+      <fullUrl value="urn:uuid:959f3dcd-37f0-11ed-5318-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -85,7 +85,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f4f14920-3513-11ed-1039-020000000000"/>
+      <fullUrl value="urn:uuid:959f51da-37f0-11ed-5318-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -97,7 +97,7 @@
                   <div>Id 999999072 (BSN), Maria Francisca M.F. van 't Hoen-Verheul (Maria), Vrouw, 16 april 1956, Meerling</div>
                   <div>
                      <a href="tel:+316-10101010">+316-10101010</a> (Tel Mobiel), <a href="mailto:francisca@maria.org">francisca@maria.org</a> (E-mail Privé)</div>
-                  <div>Steenstraat 143 A II, 6584YZ Molenhoek Mook en Middelaar (officieel Privé (hoofd) Bezoek)</div>
+                  <div>Steenstraat 143 A II, 6584YZ Molenhoek Mook en Middelaar, NL (officieel Privé (hoofd) Bezoek)</div>
                </div>
             </text>
             <identifier>
@@ -199,6 +199,17 @@
                <city value="Molenhoek"/>
                <district value="Mook en Middelaar"/>
                <postalCode value="6584YZ"/>
+               <country value="NL">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="urn:iso:std:iso:3166"/>
+                           <code value="NL"/>
+                           <display value="Nederland"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </country>
             </address>
             <multipleBirthBoolean value="true"/>
          </Patient>

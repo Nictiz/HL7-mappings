@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="d23b6ac9-3513-11ed-1724-020000000000"/>
+   <id value="683a3701-37f0-11ed-1085-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:d23b6acc-3513-11ed-1724-020000000000"/>
+      <fullUrl value="urn:uuid:683a3704-37f0-11ed-1085-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -73,7 +73,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:d23b7edc-3513-11ed-1724-020000000000"/>
+               <reference value="urn:uuid:683a4b14-37f0-11ed-1085-020000000000"/>
                <display value="Dennis D. Dennis Janse"/>
             </subject>
             <effectivePeriod>
@@ -137,7 +137,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d23b6acf-3513-11ed-1724-020000000000"/>
+      <fullUrl value="urn:uuid:683a3707-37f0-11ed-1085-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -156,7 +156,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d23b7edc-3513-11ed-1724-020000000000"/>
+      <fullUrl value="urn:uuid:683a4b14-37f0-11ed-1085-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -168,7 +168,7 @@
                   <div>Id 999999151 (BSN), Dennis D. Janse (Dennis), Man, 2 februari 1950</div>
                   <div>
                      <a href="tel:+316-11122233">+316-11122233</a> (Tel Mobiel), <a href="mailto:djanse@test.nl">djanse@test.nl</a> (E-mail Privé)</div>
-                  <div>Huweelstraat 15 Tijdelijk adres 1, 1248CC Barendrecht (TMP)</div>
+                  <div>Huweelstraat 15 Tijdelijk adres to, 1248CC Barendrecht, NL (TMP)</div>
                </div>
             </text>
             <identifier>
@@ -243,7 +243,7 @@
                   </valueCodeableConcept>
                </extension>
                <use value="temp"/>
-               <line value="Huweelstraat 15 Tijdelijk adres 1">
+               <line value="Huweelstraat 15 Tijdelijk adres to">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
                      <valueString value="Huweelstraat"/>
                   </extension>
@@ -254,11 +254,22 @@
                      <valueString value="Tijdelijk adres"/>
                   </extension>
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator">
-                     <valueString value="1"/>
+                     <valueString value="to"/>
                   </extension>
                </line>
                <city value="Barendrecht"/>
                <postalCode value="1248CC"/>
+               <country value="NL">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="urn:iso:std:iso:3166"/>
+                           <code value="NL"/>
+                           <display value="Nederland"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </country>
             </address>
             <multipleBirthBoolean value="false"/>
          </Patient>
