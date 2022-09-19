@@ -173,6 +173,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:choose>
                     </effectiveDateTime>
                     
+                    <!-- performer is mandatory in FHIR profile, we have no information in MP, so we are hardcoding data-absent reason -->
+                    <!-- https://bits.nictiz.nl/browse/MM-434 -->
+                    <performer>
+                        <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                            <valueCode value="unknown"/>
+                        </extension>
+                        <display value="onbekend"/>
+                    </performer>
+                    
                     <xsl:for-each select="(gewicht_waarde | weight_value)[@value]">
                         <valueQuantity>
                             <xsl:call-template name="hoeveelheid-to-Quantity">
