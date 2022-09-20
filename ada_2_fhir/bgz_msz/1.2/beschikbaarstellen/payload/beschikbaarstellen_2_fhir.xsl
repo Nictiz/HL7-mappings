@@ -53,7 +53,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="adaPatient" select="hcimroot/subject/patient/patient"/>
                 
                 <!--Zibs that result in only a single resource, or  resources that have no special conditions-->
-                <xsl:if test="local-name() = ('advance_directive', 'alcohol_use', 'alert', 'allergy_intolerance', 'blood_pressure', 'body_height', 'body_weight', 'drug_use', 'encounter', 'functional_or_mental_status', 'living_situation', 'medical_device', 'nutrition_advice', 'patient', 'payer', 'problem', 'tobacco_use', 'treatment_directive', 'vaccination')">
+                <xsl:if test="local-name() = ('advance_directive', 'alcohol_use', 'alert', 'allergy_intolerance', 'blood_pressure', 'body_height', 'body_weight', 'contact', 'drug_use', 'encounter', 'functional_or_mental_status', 'living_situation', 'medical_device', 'nutrition_advice', 'patient', 'payer', 'problem', 'tobacco_use', 'treatment_directive', 'vaccination')">
                     <entry xmlns="http://hl7.org/fhir">
                         <xsl:if test="local-name() = 'advance_directive'">
                             <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Consent', false())}"/>
@@ -113,6 +113,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>
                             <resource>
                                 <xsl:call-template name="zib-BodyWeight-2.x">
+                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                </xsl:call-template>
+                            </resource>
+                        </xsl:if>
+                        <xsl:if test="local-name() = 'contact'">
+                            <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'RelatedPerson', false())}"/>
+                            <resource>
+                                <xsl:call-template name="nl-core-relatedperson-2.0">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
                                 </xsl:call-template>

@@ -1,0 +1,394 @@
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
+   <id value="f62ee1dd-38ea-11ed-1093-020000000000"/>
+   <type value="searchset"/>
+   <total value="2"/>
+   <entry>
+      <fullUrl value="urn:uuid:f62ee1e0-38ea-11ed-1093-020000000000"/>
+      <resource>
+         <RelatedPerson>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Peter P. Verheul-van 't Hoen (Peer)</div>
+                  <div>
+                     <a href="tel:0611119999">0611119999</a> (Tel Mobiel), <a href="mailto:peer@verheul.org">peer@verheul.org</a> (E-mail Privé)</div>
+                  <div>Steenstraat 143 A II, 6584YZ Molenhoek Mook en Middelaar, NL (officieel Privé (hoofd) Bezoek)</div>
+                  <div>
+                     <span title="Eerste relatie/contactpersoon (1 - RoleCodeLijst (COD472-VEKT))">Eerste relatie/contactpersoon</span>, <span title="Domestic partner (DOMPART - v3/RoleCode)">Domestic partner</span> van Maria Francisca M.F. Maria van 't Hoen Verheul</div>
+               </div>
+            </text>
+            <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.22.472"/>
+                     <code value="1"/>
+                     <display value="Eerste relatie/contactpersoon"/>
+                  </coding>
+               </valueCodeableConcept>
+            </extension>
+            <patient>
+               <reference value="urn:uuid:f62a1288-38ea-11ed-1093-020000000000"/>
+               <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
+            </patient>
+            <relationship>
+               <coding>
+                  <system value="http://hl7.org/fhir/v3/RoleCode"/>
+                  <code value="DOMPART"/>
+                  <display value="Domestic partner"/>
+               </coding>
+            </relationship>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL4"/>
+               </extension>
+               <family value="Verheul-van 't Hoen">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Verheul"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix">
+                     <valueString value="van 't"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+                     <valueString value="Hoen"/>
+                  </extension>
+               </family>
+               <given value="Peter">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+               <given value="P.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+               <given value="Peer">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="CL"/>
+                  </extension>
+               </given>
+            </name>
+            <telecom>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="MC"/>
+                        <display value="Mobile Phone"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <system value="phone"/>
+               <value value="0611119999"/>
+               <use value="mobile"/>
+            </telecom>
+            <telecom>
+               <system value="email"/>
+               <value value="peer@verheul.org"/>
+               <use value="home"/>
+            </telecom>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="HP"/>
+                        <display value="Officieel adres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-address-official">
+                  <valueBoolean value="true"/>
+               </extension>
+               <use value="home"/>
+               <type value="physical"/>
+               <line value="Steenstraat 143 A II">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Steenstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="143"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="II"/>
+                  </extension>
+               </line>
+               <city value="Molenhoek"/>
+               <district value="Mook en Middelaar"/>
+               <postalCode value="6584YZ"/>
+               <country value="NL">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="urn:iso:std:iso:3166"/>
+                           <code value="NL"/>
+                           <display value="Nederland"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </country>
+            </address>
+         </RelatedPerson>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:f62ef639-38ea-11ed-1093-020000000000"/>
+      <resource>
+         <RelatedPerson>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Puck P. van 't Hoen</div>
+                  <div>Straatweg 11, 1256DC Venlo (officieel Privé (hoofd) Bezoek)</div>
+                  <div>
+                     <span title="Tweede relatie/contactpersoon (2 - RoleCodeLijst (COD472-VEKT))">Tweede relatie/contactpersoon</span>, <span title="Daughter (DAUC - v3/RoleCode)">Daughter</span> van Maria Francisca M.F. Maria van 't Hoen Verheul</div>
+               </div>
+            </text>
+            <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.22.472"/>
+                     <code value="2"/>
+                     <display value="Tweede relatie/contactpersoon"/>
+                  </coding>
+               </valueCodeableConcept>
+            </extension>
+            <patient>
+               <reference value="urn:uuid:f62a1288-38ea-11ed-1093-020000000000"/>
+               <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
+            </patient>
+            <relationship>
+               <coding>
+                  <system value="http://hl7.org/fhir/v3/RoleCode"/>
+                  <code value="DAUC"/>
+                  <display value="Daughter"/>
+               </coding>
+            </relationship>
+            <name>
+               <family value="van 't Hoen">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van 't"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Hoen"/>
+                  </extension>
+               </family>
+               <given value="Puck">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+               <given value="P.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+            </name>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="HP"/>
+                        <display value="Officieel adres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-address-official">
+                  <valueBoolean value="true"/>
+               </extension>
+               <use value="home"/>
+               <type value="physical"/>
+               <line value="Straatweg 11">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Straatweg"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="11"/>
+                  </extension>
+               </line>
+               <city value="Venlo"/>
+               <postalCode value="1256DC"/>
+            </address>
+         </RelatedPerson>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:f629fe7b-38ea-11ed-1093-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div/>
+               </div>
+            </text>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:f62a1288-38ea-11ed-1093-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id 999999072 (BSN), Maria Francisca M.F. van 't Hoen-Verheul (Maria), Vrouw, 16 april 1956, Meerling, <span title="Domestic partner (T - MaritalStatus)">Domestic partner</span>
+                  </div>
+                  <div>
+                     <a href="tel:+316-10101010">+316-10101010</a> (Tel Mobiel), <a href="mailto:francisca@maria.org">francisca@maria.org</a> (E-mail Privé)</div>
+                  <div>Steenstraat 143 A II, 6584YZ Molenhoek Mook en Middelaar, NL (officieel Privé (hoofd) Bezoek)</div>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value value="999999072"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL4"/>
+               </extension>
+               <family value="van 't Hoen-Verheul">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van 't"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Hoen"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+                     <valueString value="Verheul"/>
+                  </extension>
+               </family>
+               <given value="Maria Francisca">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+               <given value="M.F.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+               <given value="Maria">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="CL"/>
+                  </extension>
+               </given>
+            </name>
+            <telecom>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="MC"/>
+                        <display value="Mobile Phone"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <system value="phone"/>
+               <value value="+316-10101010"/>
+               <use value="mobile"/>
+            </telecom>
+            <telecom>
+               <system value="email"/>
+               <value value="francisca@maria.org"/>
+               <use value="home"/>
+            </telecom>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Female"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="1956-04-16"/>
+            <deceasedBoolean value="false"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="HP"/>
+                        <display value="Officieel adres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-address-official">
+                  <valueBoolean value="true"/>
+               </extension>
+               <use value="home"/>
+               <type value="physical"/>
+               <line value="Steenstraat 143 A II">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Steenstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="143"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="II"/>
+                  </extension>
+               </line>
+               <city value="Molenhoek"/>
+               <district value="Mook en Middelaar"/>
+               <postalCode value="6584YZ"/>
+               <country value="NL">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="urn:iso:std:iso:3166"/>
+                           <code value="NL"/>
+                           <display value="Nederland"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </country>
+            </address>
+            <maritalStatus>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.5.2"/>
+                  <code value="T"/>
+                  <display value="Domestic partner"/>
+               </coding>
+            </maritalStatus>
+            <multipleBirthBoolean value="true"/>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+</Bundle>
