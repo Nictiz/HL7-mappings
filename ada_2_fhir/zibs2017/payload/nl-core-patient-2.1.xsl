@@ -14,6 +14,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
+    
     <xd:doc>
         <xd:desc>Converts ada patient to FHIR resource conforming to profile nl-core-patient-2.1</xd:desc>
         <xd:param name="referById">Optional parameter to indicate whether to output resource logical id. Defaults to false.</xd:param>
@@ -50,7 +51,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc>Produces a FHIR entry element with a Patient resource</xd:desc>
-        <xd:param name="uuid">If true generate uuid from scratch. Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
+        <xd:param name="uuid">If true generate uuid from scratch. Generating a uuid from scratch limits reproduction of the same output as the uuids will be different every time.</xd:param>
         <xd:param name="entryFullUrl">Optional. Value for the entry.fullUrl</xd:param>
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Patient.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
@@ -136,7 +137,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- contactgegevens -->
                     <xsl:call-template name="nl-core-contactpoint-1.0">
                         <!-- in some data sets the contact_information is unfortunately unnecessarily nested in an extra group, hence the extra predicate -->
-                        <xsl:with-param name="in" select=".//(contactgegevens[not(contactgegevens)] | contact_information[not(name_information)])" as="element()*"/>
+                        <xsl:with-param name="in" select=".//(contactgegevens[not(contactgegevens)] | contact_information[not(contact_information)])" as="element()*"/>
                     </xsl:call-template>
                     <!-- geslacht -->
                     <xsl:for-each select="(geslacht | gender)[@value | @code]">

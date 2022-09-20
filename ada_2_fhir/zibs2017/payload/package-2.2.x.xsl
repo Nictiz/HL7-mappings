@@ -60,8 +60,4 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../../bgz_msz/1.2/beschikbaarstellen/payload/zib-tobaccouse-2.1.xsl"/>
     <xsl:import href="../../bgz_msz/1.2/beschikbaarstellen/payload/zib-treatmentdirective-2.2.xsl"/>
     <xsl:import href="../../bgz_msz/1.2/beschikbaarstellen/payload/zib-vaccination-2.1.xsl"/>
-    
-    <!--<xsl:template match="/">
-        <xsl:copy-of select="$labSpecimens"></xsl:copy-of>
-    </xsl:template>-->
 </xsl:stylesheet>
