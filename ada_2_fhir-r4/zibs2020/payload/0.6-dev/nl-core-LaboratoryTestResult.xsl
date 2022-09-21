@@ -51,7 +51,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">ADA patient element. Defaults to patient/*</xd:param>
     </xd:doc>
-    <xsl:template name="_nl-core-LaboratoryTestResult-panel" match="laboratorium_uitslag[count(laboratorium_test) gt 1]" mode="nl-core-LaboratoryTestResult" as="element(f:Observation)*">
+    <xsl:template name="_nl-core-LaboratoryTestResult-panel" match="laboratorium_uitslag[count(laboratorium_test) gt 1]" mode="nl-core-LaboratoryTestResult" as="element(f:Observation)">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="$in/../../patientgegevens/patient" as="element()?"/>
         
@@ -169,12 +169,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
             <!-- TODO: derivedFrom, sequelTo -->
         </Observation>
-        
-        <xsl:for-each select="$in/laboratorium_test">
-            <xsl:call-template name="_nl-core-LaboratoryTestResult-individualTest">
-                <xsl:with-param name="subject" select="$subject"/>
-            </xsl:call-template>
-        </xsl:for-each>
     </xsl:template>
     
     <xd:doc>
