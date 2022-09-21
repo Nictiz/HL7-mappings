@@ -123,7 +123,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </patient>
                     
-                    <!-- relatie -->
                     <xsl:for-each select="(relatie | relationship)[@code]">
                         <relationship>
                             <xsl:call-template name="code-to-CodeableConcept">
@@ -132,31 +131,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </relationship>
                     </xsl:for-each>
                     
-                    <!-- naamgegevens -->
-                    <xsl:call-template name="nl-core-humanname-2.0">
-                        <!-- in some data sets the name_information is unfortunately unnecessarily nested in an extra group, hence the extra predicate -->
-                        <xsl:with-param name="in" select=".//(naamgegevens[not(naamgegevens)][not(ancestor::patient)] | name_information[not(name_information)][not(ancestor::patient)])" as="element()*"/>
-                    </xsl:call-template>
+                    <!-- in some data sets the name_information is unfortunately unnecessarily nested in an extra group, hence the extra predicate -->
+                    <xsl:for-each select=".//(naamgegevens[not(naamgegevens)][not(ancestor::patient)] | name_information[not(name_information)][not(ancestor::patient)])">
+                        <xsl:call-template name="nl-core-humanname-2.0">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </xsl:for-each>
                     
-                    <!-- contactgegevens -->
-                    <xsl:call-template name="nl-core-contactpoint-1.0">
-                        <!-- in some data sets the contact_information is unfortunately unnecessarily nested in an extra group, hence the extra predicate -->
-                        <xsl:with-param name="in" select=".//(contactgegevens[not(contactgegevens)][not(ancestor::patient)] | contact_information[not(contact_information)][not(ancestor::patient)])" as="element()*"/>
-                    </xsl:call-template>
+                    <!-- in some data sets the contact_information is unfortunately unnecessarily nested in an extra group, hence the extra predicate -->
+                    <xsl:for-each select=".//(contactgegevens[not(contactgegevens)][not(ancestor::patient)] | contact_information[not(contact_information)][not(ancestor::patient)])">
+                        <xsl:call-template name="nl-core-contactpoint-1.0">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </xsl:for-each>
                     
-                    <!-- gender -->
+                    <!-- in some data sets the address_information is unfortunately unnecessarily nested in an extra group, hence the extra predicate -->
+                    <xsl:for-each select=".//(adresgegevens[not(adresgegevens)][not(ancestor::patient)] | address_information[not(address_information)][not(ancestor::patient)])">
+                        <xsl:call-template name="nl-core-address-2.0">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </xsl:for-each>
                     
-                    <!-- birthDate -->
-                    
-                    <!-- address -->
-                    <xsl:call-template name="nl-core-address-2.0">
-                        <!-- in some data sets the address_information is unfortunately unnecessarily nested in an extra group, hence the extra predicate -->
-                        <xsl:with-param name="in" select=".//(adresgegevens[not(adresgegevens)][not(ancestor::patient)] | address_information[not(address_information)][not(ancestor::patient)])" as="element()*"/>
-                    </xsl:call-template>
-                    
-                    <!-- photo -->
-                    
-                    <!-- period -->
                 </RelatedPerson>
             </xsl:variable>
             
