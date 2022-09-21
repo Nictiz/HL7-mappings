@@ -1,0 +1,1012 @@
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
+   <id value="01c9e2e1-39bc-11ed-1339-020000000000"/>
+   <type value="searchset"/>
+   <total value="7"/>
+   <entry>
+      <fullUrl value="urn:uuid:01c9e2e4-39bc-11ed-1339-020000000000"/>
+      <resource>
+         <Observation>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Observatie/bepaling. Subject: Dennis D. Dennis Janse. Categorie: <span title="Laboratory test finding (49581000146104 - SNOMED CT)">Laboratory test finding</span>, <span title="Chemistry (275711006 - SNOMED CT)">Chemistry</span>, Status: definitief</caption>
+                     <tbody>
+                        <tr>
+                           <th>Code</th>
+                           <th>Waarde</th>
+                        </tr>
+                        <tr>
+                           <td>
+                              <span title="Hemocytometrie (58410-2 - LOINC)">Hemocytometrie</span>
+                           </td>
+                           <td/>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <status value="final">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.16.1"/>
+                        <code value="final"/>
+                        <display value="Final"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </status>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="49581000146104"/>
+                  <display value="Laboratory test finding"/>
+               </coding>
+            </category>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="275711006"/>
+                  <display value="Chemistry"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="58410-2"/>
+                  <display value="Hemocytometrie"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:01be3594-39bc-11ed-1339-020000000000"/>
+               <display value="Dennis D. Dennis Janse"/>
+            </subject>
+         </Observation>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:01c9e2e4-39bc-11ed-1339-020000000000"/>
+      <resource>
+         <Observation>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Observatie/bepaling. Subject: Dennis D. Dennis Janse. Categorie: <span title="Laboratory test finding (49581000146104 - SNOMED CT)">Laboratory test finding</span>, Status: definitief</caption>
+                     <tbody>
+                        <tr>
+                           <th>Bepalingdatum/tijd</th>
+                           <td colspan="2">${DATE, T, D, +1}T13:00:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Code</th>
+                           <th>Waarde</th>
+                           <th>Referentiewaarden</th>
+                        </tr>
+                        <tr>
+                           <td>
+                              <span title="Hemoglobin A1c [Mass/volume] in Blood (41995-2 - LOINC)">Hemoglobin A1c [Mass/volume] in Blood</span>
+                           </td>
+                           <td>8.1 mmol/L</td>
+                           <td>
+                              <div>
+                                 <span title="Normal Range (normal - referencerange-meaning)">Normal Range</span> 7.4 mmol/L - 9.9 mmol/L</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <status value="final">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.16.1"/>
+                        <code value="final"/>
+                        <display value="Final"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </status>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="49581000146104"/>
+                  <display value="Laboratory test finding"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="41995-2"/>
+                  <display value="Hemoglobin A1c [Mass/volume] in Blood"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:01be3594-39bc-11ed-1339-020000000000"/>
+               <display value="Dennis D. Dennis Janse"/>
+            </subject>
+            <effectiveDateTime value="${DATE, T, D, +1}T13:00:00+02:00"/>
+            <valueQuantity>
+               <value value="8.1"/>
+               <unit value="mmol/L"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="mmol/L"/>
+            </valueQuantity>
+            <referenceRange>
+               <low>
+                  <value value="7.4"/>
+                  <unit value="mmol/L"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="mmol/L"/>
+               </low>
+               <high>
+                  <value value="9.9"/>
+                  <unit value="mmol/L"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="mmol/L"/>
+               </high>
+               <type>
+                  <coding>
+                     <system value="http://hl7.org/fhir/referencerange-meaning"/>
+                     <code value="normal"/>
+                     <display value="Normal Range"/>
+                  </coding>
+               </type>
+            </referenceRange>
+         </Observation>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:01c9e2e4-39bc-11ed-1339-020000000000"/>
+      <resource>
+         <Observation>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Observatie/bepaling. Subject: Dennis D. Dennis Janse. Categorie: <span title="Laboratory test finding (49581000146104 - SNOMED CT)">Laboratory test finding</span>, Status: definitief</caption>
+                     <tbody>
+                        <tr>
+                           <th>Bepalingdatum/tijd</th>
+                           <td colspan="2">${DATE, T, D, +1}T13:00:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Code</th>
+                           <th>Waarde</th>
+                           <th>Referentiewaarden</th>
+                        </tr>
+                        <tr>
+                           <td>
+                              <span title="Hematocrit [Volume Fraction] of Blood (20570-8 - LOINC)">Hematocrit [Volume Fraction] of Blood</span>
+                           </td>
+                           <td>0.39 L/L</td>
+                           <td>
+                              <div>
+                                 <span title="Normal Range (normal - referencerange-meaning)">Normal Range</span> 0.36 L/L - 0.46 L/L</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <status value="final">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.16.1"/>
+                        <code value="final"/>
+                        <display value="Final"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </status>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="49581000146104"/>
+                  <display value="Laboratory test finding"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="20570-8"/>
+                  <display value="Hematocrit [Volume Fraction] of Blood"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:01be3594-39bc-11ed-1339-020000000000"/>
+               <display value="Dennis D. Dennis Janse"/>
+            </subject>
+            <effectiveDateTime value="${DATE, T, D, +1}T13:00:00+02:00"/>
+            <valueQuantity>
+               <value value="0.39"/>
+               <unit value="L/L"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="L/L"/>
+            </valueQuantity>
+            <referenceRange>
+               <low>
+                  <value value="0.36"/>
+                  <unit value="L/L"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="L/L"/>
+               </low>
+               <high>
+                  <value value="0.46"/>
+                  <unit value="L/L"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="L/L"/>
+               </high>
+               <type>
+                  <coding>
+                     <system value="http://hl7.org/fhir/referencerange-meaning"/>
+                     <code value="normal"/>
+                     <display value="Normal Range"/>
+                  </coding>
+               </type>
+            </referenceRange>
+         </Observation>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:01c9e2e4-39bc-11ed-1339-020000000000"/>
+      <resource>
+         <Observation>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Observatie/bepaling. Subject: Dennis D. Dennis Janse. Categorie: <span title="Laboratory test finding (49581000146104 - SNOMED CT)">Laboratory test finding</span>, Status: definitief</caption>
+                     <tbody>
+                        <tr>
+                           <th>Bepalingdatum/tijd</th>
+                           <td colspan="2">${DATE, T, D, +1}T13:00:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Code</th>
+                           <th>Waarde</th>
+                           <th>Referentiewaarden</th>
+                        </tr>
+                        <tr>
+                           <td>
+                              <span title="Leukocytes [#/volume] in Blood (26464-8 - LOINC)">Leukocytes [#/volume] in Blood</span>
+                           </td>
+                           <td>6.6E+9 /L</td>
+                           <td>
+                              <div>
+                                 <span title="Normal Range (normal - referencerange-meaning)">Normal Range</span> 4.0E+9 /L - 11.0E+9 /L</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <status value="final">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.16.1"/>
+                        <code value="final"/>
+                        <display value="Final"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </status>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="49581000146104"/>
+                  <display value="Laboratory test finding"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="26464-8"/>
+                  <display value="Leukocytes [#/volume] in Blood"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:01be3594-39bc-11ed-1339-020000000000"/>
+               <display value="Dennis D. Dennis Janse"/>
+            </subject>
+            <effectiveDateTime value="${DATE, T, D, +1}T13:00:00+02:00"/>
+            <valueQuantity>
+               <value value="6.6E+9"/>
+               <unit value="/L"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="/L"/>
+            </valueQuantity>
+            <referenceRange>
+               <low>
+                  <value value="4.0E+9"/>
+                  <unit value="/L"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="/L"/>
+               </low>
+               <high>
+                  <value value="11.0E+9"/>
+                  <unit value="/L"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="/L"/>
+               </high>
+               <type>
+                  <coding>
+                     <system value="http://hl7.org/fhir/referencerange-meaning"/>
+                     <code value="normal"/>
+                     <display value="Normal Range"/>
+                  </coding>
+               </type>
+            </referenceRange>
+         </Observation>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:01c9e2e4-39bc-11ed-1339-020000000000"/>
+      <resource>
+         <Specimen>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Specimen"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Specimen. Subject: Dennis D. Dennis Janse. Id: 9876</caption>
+                     <tbody>
+                        <tr>
+                           <th>Type</th>
+                           <td>
+                              <span title="Bloed (87612001 - SNOMED CT)">Bloed</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Inzameling</th>
+                           <td>T+1D{12:00}<div>
+                                 <span title="gehele regio cubiti (76248009 - SNOMED CT)">gehele regio cubiti</span>
+                                 <span title="Left (7771000 - SNOMED CT)">Left</span>
+                              </div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Container</th>
+                           <td>
+                              <div>Id: 9876-2</div>
+                              <div>Type: <span title="Bloedbuis (700957004 - SNOMED CT)">Bloedbuis</span>
+                              </div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <identifier>
+               <value value="9876"/>
+            </identifier>
+            <type>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="87612001"/>
+                  <display value="Bloed"/>
+               </coding>
+            </type>
+            <subject>
+               <reference value="urn:uuid:01be3594-39bc-11ed-1339-020000000000"/>
+               <display value="Dennis D. Dennis Janse"/>
+            </subject>
+            <collection>
+               <collectedDateTime value="T+1D{12:00}"/>
+               <bodySite>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="http://snomed.info/sct"/>
+                           <code value="7771000"/>
+                           <display value="Left"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="76248009"/>
+                     <display value="gehele regio cubiti"/>
+                  </coding>
+               </bodySite>
+            </collection>
+            <container>
+               <identifier>
+                  <value value="9876-2"/>
+               </identifier>
+               <type>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="700957004"/>
+                     <display value="Bloedbuis"/>
+                  </coding>
+               </type>
+            </container>
+         </Specimen>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:01c9fc75-39bc-11ed-1339-020000000000"/>
+      <resource>
+         <Observation>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Observatie/bepaling. Subject: Dennis D. Dennis Janse. Categorie: <span title="Laboratory test finding (49581000146104 - SNOMED CT)">Laboratory test finding</span>, Status: definitief</caption>
+                     <tbody>
+                        <tr>
+                           <th>Bepalingdatum/tijd</th>
+                           <td colspan="2">${DATE, T, D, +2}T09:00:00+02:00</td>
+                        </tr>
+                        <tr>
+                           <th>Code</th>
+                           <th>Waarde</th>
+                           <th>Referentiewaarden</th>
+                        </tr>
+                        <tr>
+                           <td>
+                              <span title="Hemoglobin A1c [Mass/volume] in Blood (41995-2 - LOINC)">Hemoglobin A1c [Mass/volume] in Blood</span>
+                           </td>
+                           <td>8.9 mmol/L</td>
+                           <td>
+                              <div>
+                                 <span title="Normal Range (normal - referencerange-meaning)">Normal Range</span> 7.4 mmol/L - 9.9 mmol/L</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <status value="final">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.16.1"/>
+                        <code value="final"/>
+                        <display value="Final"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </status>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="49581000146104"/>
+                  <display value="Laboratory test finding"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="41995-2"/>
+                  <display value="Hemoglobin A1c [Mass/volume] in Blood"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:01be3594-39bc-11ed-1339-020000000000"/>
+               <display value="Dennis D. Dennis Janse"/>
+            </subject>
+            <effectiveDateTime value="${DATE, T, D, +2}T09:00:00+02:00"/>
+            <valueQuantity>
+               <value value="8.9"/>
+               <unit value="mmol/L"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="mmol/L"/>
+            </valueQuantity>
+            <referenceRange>
+               <low>
+                  <value value="7.4"/>
+                  <unit value="mmol/L"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="mmol/L"/>
+               </low>
+               <high>
+                  <value value="9.9"/>
+                  <unit value="mmol/L"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="mmol/L"/>
+               </high>
+               <type>
+                  <coding>
+                     <system value="http://hl7.org/fhir/referencerange-meaning"/>
+                     <code value="normal"/>
+                     <display value="Normal Range"/>
+                  </coding>
+               </type>
+            </referenceRange>
+         </Observation>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:01c9fc75-39bc-11ed-1339-020000000000"/>
+      <resource>
+         <Specimen>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Specimen"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Specimen. Subject: Dennis D. Dennis Janse. Id: 9877</caption>
+                     <tbody>
+                        <tr>
+                           <th>Type</th>
+                           <td>
+                              <span title="Bloed (87612001 - SNOMED CT)">Bloed</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Inzameling</th>
+                           <td>T+2D{08:00}<div>
+                                 <span title="gehele regio cubiti (76248009 - SNOMED CT)">gehele regio cubiti</span>
+                                 <span title="Right (24028007 - SNOMED CT)">Right</span>
+                              </div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Container</th>
+                           <td>
+                              <div>Id: 9877-2</div>
+                              <div>Type: <span title="Bloedbuis (700957004 - SNOMED CT)">Bloedbuis</span>
+                              </div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <identifier>
+               <value value="9877"/>
+            </identifier>
+            <type>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="87612001"/>
+                  <display value="Bloed"/>
+               </coding>
+            </type>
+            <subject>
+               <reference value="urn:uuid:01be3594-39bc-11ed-1339-020000000000"/>
+               <display value="Dennis D. Dennis Janse"/>
+            </subject>
+            <collection>
+               <collectedDateTime value="T+2D{08:00}"/>
+               <bodySite>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="http://snomed.info/sct"/>
+                           <code value="24028007"/>
+                           <display value="Right"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="76248009"/>
+                     <display value="gehele regio cubiti"/>
+                  </coding>
+               </bodySite>
+            </collection>
+            <container>
+               <identifier>
+                  <value value="9877-2"/>
+               </identifier>
+               <type>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="700957004"/>
+                     <display value="Bloedbuis"/>
+                  </coding>
+               </type>
+            </container>
+         </Specimen>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:01be2187-39bc-11ed-1339-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div/>
+               </div>
+            </text>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:01be3594-39bc-11ed-1339-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id 999999151 (BSN), Dennis D. Janse (Dennis), Man, 2 februari 1950, <span title="Married (M - MaritalStatus)">Married</span>
+                  </div>
+                  <div>
+                     <a href="tel:+316-11122233">+316-11122233</a> (Tel Mobiel), <a href="mailto:djanse@test.nl">djanse@test.nl</a> (E-mail Privé)</div>
+                  <div>Huweelstraat 15 Tijdelijk adres to, 1248CC Barendrecht, NL (TMP)</div>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value value="999999151"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <family value="Janse">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Janse"/>
+                  </extension>
+               </family>
+               <given value="Dennis">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+               <given value="D.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+               <given value="Dennis">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="CL"/>
+                  </extension>
+               </given>
+            </name>
+            <telecom>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="MC"/>
+                        <display value="Mobile Phone"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <system value="phone"/>
+               <value value="+316-11122233"/>
+               <use value="mobile"/>
+            </telecom>
+            <telecom>
+               <system value="email"/>
+               <value value="djanse@test.nl"/>
+               <use value="home"/>
+            </telecom>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Male"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="1950-02-02"/>
+            <deceasedBoolean value="false"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="TMP"/>
+                        <display value="Tijdelijk adres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="temp"/>
+               <line value="Huweelstraat 15 Tijdelijk adres to">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Huweelstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="15"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-unitID">
+                     <valueString value="Tijdelijk adres"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator">
+                     <valueString value="to"/>
+                  </extension>
+               </line>
+               <city value="Barendrecht"/>
+               <postalCode value="1248CC"/>
+               <country value="NL">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="urn:iso:std:iso:3166"/>
+                           <code value="NL"/>
+                           <display value="Nederland"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </country>
+            </address>
+            <maritalStatus>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.5.2"/>
+                  <code value="M"/>
+                  <display value="Married"/>
+               </coding>
+            </maritalStatus>
+            <multipleBirthBoolean value="false"/>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.1.12345678"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id 12345678 (AGB-Z), Alfred Bart A.B. Bakker (Alfred)</div>
+                  <div>
+                     <a href="tel:06-33334444">06-33334444</a> (Tel Mobiel), <a href="mailto:a.b.bakker@hospital.nl">a.b.bakker@hospital.nl</a> (E-mail Werk)</div>
+                  <div>Dr. Molewaterplein 40, 3015GD Rotterdam Rotterdam, NL (WP)</div>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+               <value value="12345678"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <family value="Bakker">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Bakker"/>
+                  </extension>
+               </family>
+               <given value="Alfred Bart">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+               <given value="A.B.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+               <given value="Alfred">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="CL"/>
+                  </extension>
+               </given>
+            </name>
+            <telecom>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="MC"/>
+                        <display value="Mobile Phone"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <system value="phone"/>
+               <value value="06-33334444"/>
+               <use value="mobile"/>
+            </telecom>
+            <telecom>
+               <system value="email"/>
+               <value value="a.b.bakker@hospital.nl"/>
+               <use value="work"/>
+            </telecom>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dr. Molewaterplein 40">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dr. Molewaterplein"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="40"/>
+                  </extension>
+               </line>
+               <city value="Rotterdam"/>
+               <district value="Rotterdam"/>
+               <postalCode value="3015GD"/>
+               <country value="NL">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="urn:iso:std:iso:3166"/>
+                           <code value="NL"/>
+                           <display value="Nederland"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </country>
+            </address>
+         </Practitioner>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:01be3b11-39bc-11ed-1339-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Organisatie. </caption>
+                     <tbody>
+                        <tr>
+                           <th>Naam</th>
+                           <td/>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:01be35d7-39bc-11ed-1339-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Zorgverlenerrol. </caption>
+                     <tbody>
+                        <tr>
+                           <th>Zorgverlener</th>
+                           <td>
+                              <div>Alfred Bart A.B. Alfred Bakker</div>
+                              <div>Organisatie informatie: naam eigen ziekenhuis</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Specialisme</th>
+                           <td>
+                              <span title="Spoedeisende hulp arts (01.071 - http://fhir.nl/fhir/NamingSystem/uzi-rolcode)">Spoedeisende hulp arts</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Contactgegevens</th>
+                           <td>
+                              <div>
+                                 <a href="tel:06-33334444">06-33334444</a> (Tel Mobiel)</div>
+                              <div>
+                                 <a href="mailto:a.b.bakker@hospital.nl">a.b.bakker@hospital.nl</a> (E-mail Werk)</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <practitioner>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.6.1.12345678"/>
+               <display value="Alfred Bart A.B. Alfred Bakker"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:uuid:01be3b11-39bc-11ed-1339-020000000000"/>
+               <display value="Organisatie informatie: naam eigen ziekenhuis"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+                  <code value="01.071"/>
+                  <display value="Spoedeisende hulp arts"/>
+               </coding>
+            </specialty>
+            <telecom>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="MC"/>
+                        <display value="Mobile Phone"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <system value="phone"/>
+               <value value="06-33334444"/>
+               <use value="mobile"/>
+            </telecom>
+            <telecom>
+               <system value="email"/>
+               <value value="a.b.bakker@hospital.nl"/>
+               <use value="work"/>
+            </telecom>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+</Bundle>
