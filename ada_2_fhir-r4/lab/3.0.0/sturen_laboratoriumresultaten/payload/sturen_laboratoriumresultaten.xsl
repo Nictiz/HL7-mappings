@@ -75,7 +75,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="device" as="element()*">
                 <xsl:for-each-group select="onderzoeksresultaat/laboratorium_uitslag/monster/bron_monster" group-by="nf:getGroupingKeyDefault(.)">
                     <entry xmlns="http://hl7.org/fhir">
-                        <fullUrl value="{$fhirMetadata[nm:group-key/text() = current-grouping-key()]/nm:full-url/text()}"/>
+                        <xsl:call-template name="_insertFullUrlByGroupKey">
+                            <xsl:with-param name="groupKey" select="current-grouping-key()"/>
+                        </xsl:call-template>
                         <resource>
                             <xsl:call-template name="_nl-core-LaboratoryTestResult.Specimen.Source">
                                 <xsl:with-param name="in" select="current-group()[1]"/>
@@ -88,7 +90,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="specimen" as="element()*">
                 <xsl:for-each-group select="onderzoeksresultaat/laboratorium_uitslag/monster" group-by="nf:getGroupingKeyDefault(.)">
                     <entry xmlns="http://hl7.org/fhir">
-                        <fullUrl value="{$fhirMetadata[nm:group-key/text() = current-grouping-key()]/nm:full-url/text()}"/>
+                        <xsl:call-template name="_insertFullUrlByGroupKey">
+                            <xsl:with-param name="groupKey" select="current-grouping-key()"/>
+                        </xsl:call-template>
                         <resource>
                             <xsl:call-template name="_nl-core-LaboratoryTestResult.Specimen">
                                 <xsl:with-param name="in" select="current-group()[1]"/>
@@ -107,7 +111,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </xsl:if>-->
                     <entry xmlns="http://hl7.org/fhir">
-                        <fullUrl value="{$fhirMetadata[nm:group-key/text() = current-grouping-key()]/nm:full-url/text()}"/>
+                        <xsl:call-template name="_insertFullUrlByGroupKey">
+                            <xsl:with-param name="groupKey" select="current-grouping-key()"/>
+                            <xsl:with-param name="resourceType" select="'Organization'"/>
+                        </xsl:call-template>
                         <resource>
                             <xsl:call-template name="nl-core-HealthcareProvider-Organization">
                                 <xsl:with-param name="in" select="current-group()[1]"/>
@@ -119,7 +126,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="patient" as="element()?">
                 <xsl:for-each select="patientgegevens/patient">
                     <entry xmlns="http://hl7.org/fhir">
-                        <fullUrl value="{$fhirMetadata[nm:group-key/text() = nf:getGroupingKeyDefault(current())]/nm:full-url/text()}"/>
+                        <xsl:call-template name="_insertFullUrlByGroupKey">
+                            <xsl:with-param name="groupKey" select="nf:getGroupingKeyDefault(current())"/>
+                        </xsl:call-template>
                         <resource>
                             <xsl:call-template name="nl-core-Patient"/>
                         </resource>
@@ -181,7 +190,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="laboratoriumresultaten" as="element()*">
             <xsl:for-each select="laboratorium_uitslag[onderzoek]">
                 <entry xmlns="http://hl7.org/fhir">
-                    <fullUrl value="{$fhirMetadata[nm:group-key/text() = nf:getGroupingKeyDefault(current())]/nm:full-url/text()}"/>
+                    <xsl:call-template name="_insertFullUrlByGroupKey">
+                        <xsl:with-param name="groupKey" select="nf:getGroupingKeyDefault(current())"/>
+                    </xsl:call-template>
                     <resource>
                         <xsl:call-template name="_nl-core-LaboratoryTestResult-panel">
                             <xsl:with-param name="subject" select="../../patientgegevens/patient"/>
@@ -190,7 +201,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </entry>
                 <xsl:for-each select="laboratorium_test">
                     <entry xmlns="http://hl7.org/fhir">
-                        <fullUrl value="{$fhirMetadata[nm:group-key/text() = nf:getGroupingKeyLaboratoryTest(current())]/nm:full-url/text()}"/>
+                        <xsl:call-template name="_insertFullUrlByGroupKey">
+                            <xsl:with-param name="groupKey" select="nf:getGroupingKeyLaboratoryTest(current())"/>
+                        </xsl:call-template>
                         <resource>
                             <xsl:call-template name="_nl-core-LaboratoryTestResult-individualTest">
                                 <xsl:with-param name="subject" select="../../../patientgegevens/patient"/>
@@ -201,7 +214,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
             <xsl:for-each select="laboratorium_uitslag[not(onderzoek)]/laboratorium_test">
                 <entry xmlns="http://hl7.org/fhir">
-                    <fullUrl value="{$fhirMetadata[nm:group-key/text() = nf:getGroupingKeyLaboratoryTest(current())]/nm:full-url/text()}"/>
+                    <xsl:call-template name="_insertFullUrlByGroupKey">
+                        <xsl:with-param name="groupKey" select="nf:getGroupingKeyLaboratoryTest(current())"/>
+                    </xsl:call-template>
                     <resource>
                         <xsl:call-template name="_nl-core-LaboratoryTestResult-individualTest">
                             <xsl:with-param name="subject" select="../../../patientgegevens/patient"/>
@@ -283,6 +298,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
         </xsl:choose>
         
+        <xsl:variable name="fullUrl" select="$theMetaData/nm:full-url"/>
+        
+        <xsl:if test="string-length($fullUrl) gt 0">
+            <fullUrl value="{$fullUrl}"/>
+        </xsl:if>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="groupKey"/>
+        <xd:param name="resourceType"/>
+    </xd:doc>
+    <xsl:template name="_insertFullUrlByGroupKey">
+        <xsl:param name="groupKey" select="nf:getGroupingKeyDefault(.)" as="xs:string"/>
+        <xsl:param name="resourceType" select="''" as="xs:string"/>
+        
+        <xsl:variable name="theMetaData" select="$fhirMetadata[nm:group-key/text() = $groupKey][if (string-length($resourceType) gt 0) then nm:resource-type/text() = $resourceType else true()]" as="element()*"/>
+        
+        <xsl:choose>
+            <xsl:when test="count($theMetaData) = 0">
+                <xsl:message terminate="yes">_insertFullUrlByUuid: Nothing found.</xsl:message>
+            </xsl:when>
+            <xsl:when test="count($theMetaData) gt 1">
+                <xsl:message terminate="no">_insertFullUrlByUuid: Multiple found.</xsl:message>
+            </xsl:when>
+        </xsl:choose>
+
         <xsl:variable name="fullUrl" select="$theMetaData/nm:full-url"/>
         
         <xsl:if test="string-length($fullUrl) gt 0">
