@@ -204,7 +204,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <fullUrl value="{$fhirMetadata[nm:group-key/text() = nf:getGroupingKeyLaboratoryTest(current())]/nm:full-url/text()}"/>
                     <resource>
                         <xsl:call-template name="_nl-core-LaboratoryTestResult-individualTest">
-                            <xsl:with-param name="subject" select="../../patientgegevens/patient"/>
+                            <xsl:with-param name="subject" select="../../../patientgegevens/patient"/>
                         </xsl:call-template>
                     </resource>
                 </entry>
