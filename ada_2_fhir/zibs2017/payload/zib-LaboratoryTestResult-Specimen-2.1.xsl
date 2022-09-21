@@ -165,10 +165,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!--TS	NL-CM:13.1.25			AannameDatumTijd	0..1	Datum en tijdstip waarop het materiaal bij het laboratorium of prikpunt is afgegeven. Het gaat hierbij om materiaal dat door de patiënt zelf verzameld is.		-->
                 <xsl:if test="received_date_time | aanname_datum_tijd">
                     <receivedTime>
-                        <xsl:call-template name="date-to-datetime">
-                            <xsl:with-param name="in" select="received_date_time | aanname_datum_tijd"/>
-                            <xsl:with-param name="inputDateT" select="$dateT"/>
-                        </xsl:call-template>
+                        <xsl:attribute name="value">
+                            <xsl:call-template name="format2FHIRDate">
+                                <xsl:with-param name="dateTime" select="xs:string((received_date_time | aanname_datum_tijd)/@value)"/>
+                                <xsl:with-param name="dateT" select="$dateT"/>
+                            </xsl:call-template>
+                        </xsl:attribute>
                     </receivedTime>
                 </xsl:if>
             </xsl:variable>
@@ -210,9 +212,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <!--TS	NL-CM:13.1.17			AfnameDatumTijd	0..1	Tijdstip van afname van het materiaal.	399445004 specimen collection date-->
                             <xsl:when test="collection_period[@nullFlavor | @value] | verzamelperiode[@nullFlavor | @value] | collection_date_time | afname_datum_tijd">
                                 <collectedDateTime>
-                                    <xsl:call-template name="date-to-datetime">
-                                        <xsl:with-param name="in" select="collection_date_time | afname_datum_tijd"/>
-                                    </xsl:call-template>
+                                    <xsl:attribute name="value">
+                                        <xsl:call-template name="format2FHIRDate">
+                                            <xsl:with-param name="dateTime" select="xs:string((collection_date_time | afname_datum_tijd)/@value)"/>
+                                            <xsl:with-param name="dateT" select="$dateT"/>
+                                        </xsl:call-template>
+                                    </xsl:attribute>
                                 </collectedDateTime>
                             </xsl:when>
                         </xsl:choose>
