@@ -25,13 +25,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     version="2.0">
     
     <xsl:import href="../../../../zibs2020/payload/zib_latest_package.xsl"/>
+    <xsl:import href="../../../../fhir/2_fhir_BundleEntryRequest.xsl"/>
     
     <xd:doc>
         <xd:desc>If true, write all generated resources to disk in the fhir_instance directory. Otherwise, return all the output in a FHIR Bundle.</xd:desc>
     </xd:doc>
     <xsl:param name="writeOutputToDisk" select="false()" as="xs:boolean"/>
     
-    <xsl:param name="referencingStrategy" select="'logicalId'" as="xs:string"/>
+    <xd:doc>
+        <xd:desc>populateId 'false' means Resource.id is absent, for transaction Bundles. Not forbidden per se, but prevents some validation warnings.</xd:desc>
+    </xd:doc>
+    <xsl:param name="populateId" select="false()" as="xs:boolean"/>
+    
+    <xd:doc>
+        <xd:desc>referencingStrategy 'uuid' means Reference.reference's are populated with uuid for transaction Bundles.</xd:desc>
+    </xd:doc>
+    <xsl:param name="referencingStrategy" select="'uuid'" as="xs:string"/>
     <!-- If the desired output is to be a Bundle, then a self link string of type url is required. 
          See: https://www.hl7.org/fhir/R4/search.html#conformance -->
     <xsl:param name="bundleSelfLink" as="xs:string?"/>
@@ -65,19 +74,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
             <xsl:variable name="device" as="element()*">
                 <xsl:for-each-group select="onderzoeksresultaat/laboratorium_uitslag/monster/bron_monster" group-by="nf:getGroupingKeyDefault(.)">
-                    <xsl:call-template name="_nl-core-LaboratoryTestResult.Specimen.Source">
-                        <xsl:with-param name="in" select="current-group()[1]"/>
-                        <xsl:with-param name="subject" select="../../../../patientgegevens/patient"/>
-                    </xsl:call-template>
+                    <entry xmlns="http://hl7.org/fhir">
+                        <fullUrl value="{$fhirMetadata[nm:group-key/text() = current-grouping-key()]/nm:full-url/text()}"/>
+                        <resource>
+                            <xsl:call-template name="_nl-core-LaboratoryTestResult.Specimen.Source">
+                                <xsl:with-param name="in" select="current-group()[1]"/>
+                                <xsl:with-param name="subject" select="../../../../patientgegevens/patient"/>
+                            </xsl:call-template>
+                        </resource>
+                    </entry>
                 </xsl:for-each-group>
             </xsl:variable>
             <xsl:variable name="specimen" as="element()*">
                 <xsl:for-each-group select="onderzoeksresultaat/laboratorium_uitslag/monster" group-by="nf:getGroupingKeyDefault(.)">
-                    <xsl:call-template name="_nl-core-LaboratoryTestResult.Specimen">
-                        <xsl:with-param name="in" select="current-group()[1]"/>
-                        <xsl:with-param name="subject" select="../../../patientgegevens/patient"/>
-                        <xsl:with-param name="type" select="microorganisme"/>
-                    </xsl:call-template>
+                    <entry xmlns="http://hl7.org/fhir">
+                        <fullUrl value="{$fhirMetadata[nm:group-key/text() = current-grouping-key()]/nm:full-url/text()}"/>
+                        <resource>
+                            <xsl:call-template name="_nl-core-LaboratoryTestResult.Specimen">
+                                <xsl:with-param name="in" select="current-group()[1]"/>
+                                <xsl:with-param name="subject" select="../../../patientgegevens/patient"/>
+                                <xsl:with-param name="type" select="microorganisme"/>
+                            </xsl:call-template>
+                        </resource>
+                    </entry>
                 </xsl:for-each-group>
             </xsl:variable>
             <xsl:variable name="zorgaanbieders" as="element()*">
@@ -87,28 +106,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="in" select="current-group()[1]"/>
                         </xsl:call-template>
                     </xsl:if>-->
-                    <xsl:call-template name="nl-core-HealthcareProvider-Organization">
-                        <xsl:with-param name="in" select="current-group()[1]"/>
-                    </xsl:call-template>
+                    <entry xmlns="http://hl7.org/fhir">
+                        <fullUrl value="{$fhirMetadata[nm:group-key/text() = current-grouping-key()]/nm:full-url/text()}"/>
+                        <resource>
+                            <xsl:call-template name="nl-core-HealthcareProvider-Organization">
+                                <xsl:with-param name="in" select="current-group()[1]"/>
+                            </xsl:call-template>
+                        </resource>
+                    </entry>
                 </xsl:for-each-group>
             </xsl:variable>
             <xsl:variable name="patient" as="element()?">
                 <xsl:for-each select="patientgegevens/patient">
-                    <xsl:call-template name="nl-core-Patient"/>
+                    <entry xmlns="http://hl7.org/fhir">
+                        <fullUrl value="{$fhirMetadata[nm:group-key/text() = nf:getGroupingKeyDefault(current())]/nm:full-url/text()}"/>
+                        <resource>
+                            <xsl:call-template name="nl-core-Patient"/>
+                        </resource>
+                    </entry>
                 </xsl:for-each>
             </xsl:variable>
-            
             <xsl:for-each select="$specimen | $device | $zorgaanbieders | $patient">
-                <entry xmlns="http://hl7.org/fhir">
-                    <xsl:call-template name="_insertFullUrlById"/>
-                    <resource>
-                        <xsl:copy-of select="."/>
-                    </resource>
-                    <request>
-                        <method value="POST"/>
-                        <url value="{local-name(.)}"/>
-                    </request>
-                </entry>
+                <xsl:apply-templates select="." mode="addBundleEntrySearchOrRequest"/>
             </xsl:for-each>
         </xsl:variable>
         
@@ -161,27 +180,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="onderzoeksresultaat">
         <xsl:variable name="laboratoriumresultaten" as="element()*">
             <xsl:for-each select="laboratorium_uitslag[onderzoek]">
-                <xsl:call-template name="_nl-core-LaboratoryTestResult-panel">
-                    <xsl:with-param name="subject" select="../../patientgegevens/patient"/>
-                </xsl:call-template>
+                <entry xmlns="http://hl7.org/fhir">
+                    <fullUrl value="{$fhirMetadata[nm:group-key/text() = nf:getGroupingKeyDefault(current())]/nm:full-url/text()}"/>
+                    <resource>
+                        <xsl:call-template name="_nl-core-LaboratoryTestResult-panel">
+                            <xsl:with-param name="subject" select="../../patientgegevens/patient"/>
+                        </xsl:call-template>
+                    </resource>
+                </entry>
             </xsl:for-each>
             <xsl:for-each select="laboratorium_uitslag[not(onderzoek)]/laboratorium_test">
-                <xsl:call-template name="_nl-core-LaboratoryTestResult-individualTest">
-                    <xsl:with-param name="subject" select="../../patientgegevens/patient"/>
-                </xsl:call-template>
+                <entry xmlns="http://hl7.org/fhir">
+                    <fullUrl value="{$fhirMetadata[nm:group-key/text() = nf:getGroupingKeyLaboratoryTest(current())]/nm:full-url/text()}"/>
+                    <resource>
+                        <xsl:call-template name="_nl-core-LaboratoryTestResult-individualTest">
+                            <xsl:with-param name="subject" select="../../patientgegevens/patient"/>
+                        </xsl:call-template>
+                    </resource>
+                </entry>
             </xsl:for-each>
         </xsl:variable>
         <xsl:for-each select="$laboratoriumresultaten">
-            <entry xmlns="http://hl7.org/fhir">
-                <xsl:call-template name="_insertFullUrlById"/>
-                <resource>
-                    <xsl:copy-of select="."/>
-                </resource>
-                <request>
-                    <method value="POST"/>
-                    <url value="{local-name(.)}"/>
-                </request>
-            </entry>
+            <xsl:apply-templates select="." mode="addBundleEntrySearchOrRequest"/>
         </xsl:for-each>
     </xsl:template>
     
