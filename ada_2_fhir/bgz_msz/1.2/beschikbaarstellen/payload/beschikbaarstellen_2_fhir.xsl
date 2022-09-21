@@ -53,7 +53,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="adaPatient" select="hcimroot/subject/patient/patient"/>
                 
                 <!--Zibs that result in only a single resource, or  resources that have no special conditions-->
-                <xsl:if test="local-name() = ('advance_directive', 'alcohol_use', 'alert', 'allergy_intolerance', 'blood_pressure', 'body_height', 'body_weight', 'contact', 'drug_use', 'encounter', 'functional_or_mental_status', 'living_situation', 'medical_device', 'nutrition_advice', 'patient', 'payer', 'problem', 'tobacco_use', 'treatment_directive', 'vaccination')">
+                <xsl:if test="local-name() = ('advance_directive', 'alcohol_use', 'alert', 'allergy_intolerance', 'blood_pressure', 'body_height', 'body_weight', 'contact', 'drug_use', 'encounter', 'functional_or_mental_status', 'health_professional', 'living_situation', 'medical_device', 'nutrition_advice', 'patient', 'payer', 'problem', 'tobacco_use', 'treatment_directive', 'vaccination')">
                     <entry xmlns="http://hl7.org/fhir">
                         <xsl:if test="local-name() = 'advance_directive'">
                             <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Consent', false())}"/>
@@ -154,6 +154,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:call-template>
                             </resource>
                         </xsl:if>
+                        <xsl:if test="local-name() = 'health_professional'">
+                            <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Practitioner', false())}"/>
+                            <resource>
+                                <xsl:call-template name="nl-core-practitioner-2.0">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </resource>
+                        </xsl:if>
                         <xsl:if test="local-name() = 'living_situation'">
                             <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>
                             <resource>
@@ -241,6 +249,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
                 
                 <!--Additional resources or resources with special conditions-->
+                <xsl:if test="local-name() = 'health_professional'">
+                    <entry>
+                        <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'PractitionerRole', false())}"/>
+                        <resource>
+                            <xsl:call-template name="nl-core-practitionerrole-2.0">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </resource>
+                        <search>
+                            <mode value="match"/>
+                        </search>
+                    </entry>
+                </xsl:if>
+                
                 <xsl:if test="local-name() = 'medical_device'">
                     <entry>
                         <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Device', false())}"/>
