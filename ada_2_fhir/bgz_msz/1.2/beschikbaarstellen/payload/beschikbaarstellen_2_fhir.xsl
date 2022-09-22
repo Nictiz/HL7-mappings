@@ -246,7 +246,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
                 
                 <xsl:if test="local-name() = 'laboratory_test_result'">
-                    <xsl:if test="panel_or_battery">
+                    <xsl:if test="panel_or_battery[@code]">
                         <entry>
                             <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>
                             <resource>

@@ -413,6 +413,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </coding>
                     </category>
                     
+                    <!--NL-CM:13.1.7	ResultType	0..1	The type of result defines the laboratory specialty under which the test is categorized.		ListResultTypeCodelist-->
+                    <!-- If no panel Observation is present, add ResultType to all individual LaboratoryTest Observations -->
+                    <xsl:if test="../not((onderzoek | panel_or_battery)[@code])">
+                        <xsl:for-each select="../(resultaat_type | result_type)[@code]">
+                            <category>
+                                <xsl:call-template name="code-to-CodeableConcept">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </category>
+                        </xsl:for-each>
+                    </xsl:if>
+                    
                     <!--NL-CM:13.1.8	TestCode	1	The name and code of the executed test.		ListTestNameCodelist-->
                     <!-- code is required in the FHIR profile, so always output code, data-absent-reason if no actual value -->
                     <code>
