@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="e76e8acb-3b34-11ed-1219-020000000000"/>
+   <id value="61c710c3-3b48-11ed-1981-020000000000"/>
    <type value="searchset"/>
    <total value="2"/>
    <entry>
-      <fullUrl value="urn:uuid:e76e8ace-3b34-11ed-1219-020000000000"/>
+      <fullUrl value="urn:uuid:61c710c6-3b48-11ed-1981-020000000000"/>
       <resource>
          <Flag>
             <meta>
@@ -51,7 +51,7 @@
                <text value="Mevrouw kan rechterarm niet goed gebruiken"/>
             </code>
             <subject>
-               <reference value="urn:uuid:e76e9ede-3b34-11ed-1219-020000000000"/>
+               <reference value="urn:uuid:61c724d6-3b48-11ed-1981-020000000000"/>
                <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
             </subject>
             <period>
@@ -64,7 +64,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e76e9f09-3b34-11ed-1219-020000000000"/>
+      <fullUrl value="urn:uuid:61c72501-3b48-11ed-1981-020000000000"/>
       <resource>
          <Flag>
             <meta>
@@ -109,7 +109,7 @@
                </extension>
             </code>
             <subject>
-               <reference value="urn:uuid:e76e9ede-3b34-11ed-1219-020000000000"/>
+               <reference value="urn:uuid:61c724d6-3b48-11ed-1981-020000000000"/>
                <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
             </subject>
             <period>
@@ -122,7 +122,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e76e9ede-3b34-11ed-1219-020000000000"/>
+      <fullUrl value="urn:uuid:61c724d6-3b48-11ed-1981-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -258,6 +258,96 @@
             </maritalStatus>
             <multipleBirthBoolean value="true"/>
          </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:61c72a44-3b48-11ed-1981-020000000000"/>
+      <resource>
+         <Condition>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Aandoening. Subject: Maria Francisca M.F. Maria van 't Hoen Verheul. Categorie: <span title="Diagnosis (282291009 - SNOMED CT)">Diagnosis</span>, Status: actief / bevestigd</caption>
+                     <tbody>
+                        <tr>
+                           <th>Code</th>
+                           <td>
+                              <span title="ischemisch cerebrovasculair accident (432504007 - SNOMED CT)">ischemisch cerebrovasculair accident</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Eerste symptomen</th>
+                           <td>1 juli 2010</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <clinicalStatus value="active">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="55561003"/>
+                        <display value="Active"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </clinicalStatus>
+            <verificationStatus value="confirmed">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="410605003"/>
+                        <display value="Confirmed present"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </verificationStatus>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="282291009"/>
+                  <display value="Diagnosis"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="432504007"/>
+                  <display value="ischemisch cerebrovasculair accident"/>
+               </coding>
+            </code>
+            <bodySite>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="7771000"/>
+                        <display value="Left"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="83678007"/>
+                  <display value="structuur van cerebrum"/>
+               </coding>
+            </bodySite>
+            <subject>
+               <reference value="urn:uuid:61c724d6-3b48-11ed-1981-020000000000"/>
+               <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
+            </subject>
+            <onsetDateTime value="2010-07-01"/>
+         </Condition>
       </resource>
       <search>
          <mode value="include"/>

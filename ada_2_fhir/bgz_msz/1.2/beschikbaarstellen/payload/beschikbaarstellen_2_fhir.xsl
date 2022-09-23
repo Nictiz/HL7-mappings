@@ -39,15 +39,41 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- OID separated list of oids like 2.16.840.1.113883.2.4.6.3 (bsn) to mask in output -->
     <xsl:param name="mask-ids" select="(:$oidBurgerservicenummer:)''" as="xs:string"/>
     
-    <xsl:variable name="usecase">bgz-msz</xsl:variable> 
-    <xsl:variable name="commonEntries" as="element(f:entry)*">
-        <xsl:copy-of select="$patients/f:entry , $practitioners/f:entry , $organizations/f:entry , $practitionerRoles/f:entry (:, $products/f:entry , $locations/f:entry, $body-observations/f:entry , $prescribe-reasons/f:entry:)"/>
-    </xsl:variable>
+    <xsl:variable name="usecase">bgz-msz</xsl:variable>
     
     <xd:doc>
         <xd:desc>Start conversion. This conversion tries to account for all zibs in BgZ MSZ "beschikbaarstellen" in one go. Either build a FHIR Bundle of type searchset per zib, or build individual files.</xd:desc>
     </xd:doc>
     <xsl:template match="/">
+        <xsl:variable name="commonEntries" as="element(f:entry)*">
+            <xsl:choose>
+                <xsl:when test="bundle/*/local-name() = 'advance_directive'">
+                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $medicalDevices/f:entry"/>
+                </xsl:when>
+                <xsl:when test="bundle/*/local-name() = 'contact'">
+                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $problems/f:entry, $procedures/f:entry, $medicalDevices/f:entry, $advanceDirectives/f:entry"/>
+                </xsl:when>
+                <xsl:when test="bundle/*/local-name() = 'health_professional'">
+                    <xsl:copy-of select="$patients/f:entry, $organizations/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $medicalDevices/f:entry, $advanceDirectives/f:entry"/>
+                </xsl:when>
+                <xsl:when test="bundle/*/local-name() = 'medical_device'">
+                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $advanceDirectives/f:entry"/>
+                </xsl:when>
+                <xsl:when test="bundle/*/local-name() = 'patient'">
+                    <xsl:copy-of select="$practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $medicalDevices/f:entry, $advanceDirectives/f:entry"/>
+                </xsl:when>
+                <xsl:when test="bundle/*/local-name() = 'problem'">
+                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $procedures/f:entry, $medicalDevices/f:entry, $advanceDirectives/f:entry"/>
+                </xsl:when>
+                <xsl:when test="bundle/*/local-name() = 'procedure'">
+                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $problems/f:entry, $medicalDevices/f:entry, $advanceDirectives/f:entry"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $medicalDevices/f:entry, $advanceDirectives/f:entry"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        
         <xsl:variable name="bouwstenen" as="element(f:entry)*">
             <xsl:for-each select="bundle/*">
                 <xsl:variable name="adaPatient" select="hcimroot/subject/patient/patient"/>

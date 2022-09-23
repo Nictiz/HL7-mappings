@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="0065c6bb-3b35-11ed-1219-020000000000"/>
+   <id value="7a63ba91-3b48-11ed-1981-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:0065c6be-3b35-11ed-1219-020000000000"/>
+      <fullUrl value="urn:uuid:7a63ba94-3b48-11ed-1981-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -58,7 +58,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0065dace-3b35-11ed-1219-020000000000"/>
+               <reference value="urn:uuid:7a63cea4-3b48-11ed-1981-020000000000"/>
                <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
             </subject>
             <effectivePeriod>
@@ -79,7 +79,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0065dace-3b35-11ed-1219-020000000000"/>
+      <fullUrl value="urn:uuid:7a63cea4-3b48-11ed-1981-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -331,7 +331,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0065e044-3b35-11ed-1219-020000000000"/>
+      <fullUrl value="urn:uuid:7a63d41a-3b48-11ed-1981-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -358,7 +358,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0065e046-3b35-11ed-1219-020000000000"/>
+      <fullUrl value="urn:uuid:7a63d41c-3b48-11ed-1981-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -401,7 +401,7 @@
                <display value="Maria Francisca M.F. Maria van 't Hoen Verheul Anna A. Anna de Vries Bijns"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:0065e044-3b35-11ed-1219-020000000000"/>
+               <reference value="urn:uuid:7a63d41a-3b48-11ed-1981-020000000000"/>
                <display value="Organisatie informatie: Huisartsenpraktijk Molenhoek"/>
             </organization>
             <specialty>
@@ -431,6 +431,121 @@
                <use value="work"/>
             </telecom>
          </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:7a63cecf-3b48-11ed-1981-020000000000"/>
+      <resource>
+         <DeviceUseStatement>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Beschrijving apparaatgebruik. Subject: Maria Francisca M.F. Maria van 't Hoen Verheul. Status: actief</caption>
+                     <tfoot>
+                        <tr>
+                           <td colspan="2">Vanwege spierzwakte rechterarm</td>
+                        </tr>
+                     </tfoot>
+                     <tbody>
+                        <tr>
+                           <th>Apparaat/Systeem</th>
+                           <td/>
+                        </tr>
+                        <tr>
+                           <th>Deel van lichaam</th>
+                           <td>
+                              <span title="structuur van membrum superius (53120007 - SNOMED CT)">structuur van membrum superius</span>
+                              <span title="Right (24028007 - SNOMED CT)">Right</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Gebruiksperiode</th>
+                           <td>Vanaf 3 februari 2016</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <status value="active"/>
+            <subject>
+               <reference value="urn:uuid:7a63cea4-3b48-11ed-1981-020000000000"/>
+               <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
+            </subject>
+            <whenUsed>
+               <start value="2016-02-03"/>
+            </whenUsed>
+            <device>
+               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                  <valueCode value="unknown"/>
+               </extension>
+            </device>
+            <bodySite>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="24028007"/>
+                        <display value="Right"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="53120007"/>
+                  <display value="structuur van membrum superius"/>
+               </coding>
+            </bodySite>
+            <note>
+               <text value="Vanwege spierzwakte rechterarm"/>
+            </note>
+         </DeviceUseStatement>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:7a63cecf-3b48-11ed-1981-020000000000"/>
+      <resource>
+         <Device>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDeviceProduct"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Apparaat/Systeem. Patiënt: Maria Francisca M.F. Maria van 't Hoen Verheul. Status: actief</caption>
+                     <tfoot>
+                        <tr>
+                           <td colspan="2">armondersteuning bij eten en drinken en computerwerk</td>
+                        </tr>
+                     </tfoot>
+                     <tbody>
+                        <tr>
+                           <th>Type</th>
+                           <td/>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <status value="active"/>
+            <patient>
+               <reference value="urn:uuid:7a63cea4-3b48-11ed-1981-020000000000"/>
+               <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
+            </patient>
+            <note>
+               <text value="armondersteuning bij eten en drinken en computerwerk"/>
+            </note>
+         </Device>
       </resource>
       <search>
          <mode value="include"/>

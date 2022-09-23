@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="db68f153-3b34-11ed-1219-020000000000"/>
+   <id value="55c38b8f-3b48-11ed-1981-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:db68f156-3b34-11ed-1219-020000000000"/>
+      <fullUrl value="urn:uuid:55c38b92-3b48-11ed-1981-020000000000"/>
       <resource>
          <Consent>
             <meta>
@@ -94,7 +94,7 @@
                </coding>
             </category>
             <patient>
-               <reference value="urn:uuid:db690566-3b34-11ed-1219-020000000000"/>
+               <reference value="urn:uuid:55c39fa2-3b48-11ed-1981-020000000000"/>
                <display value="Dennis D. Dennis Janse"/>
             </patient>
             <policy>
@@ -113,7 +113,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:db690566-3b34-11ed-1219-020000000000"/>
+      <fullUrl value="urn:uuid:55c39fa2-3b48-11ed-1981-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -238,6 +238,164 @@
             </maritalStatus>
             <multipleBirthBoolean value="false"/>
          </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:55c3a510-3b48-11ed-1981-020000000000"/>
+      <resource>
+         <Condition>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Aandoening. Subject: Dennis D. Dennis Janse. Categorie: <span title="Diagnosis (282291009 - SNOMED CT)">Diagnosis</span>, Status: actief / bevestigd</caption>
+                     <tfoot>
+                        <tr>
+                           <td colspan="2">Kortademig</td>
+                        </tr>
+                     </tfoot>
+                     <tbody>
+                        <tr>
+                           <th>Code</th>
+                           <td>
+                              <span title="astma (195967001 - SNOMED CT)">astma</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Eerste symptomen</th>
+                           <td>2000</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <clinicalStatus value="active">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="55561003"/>
+                        <display value="Active"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </clinicalStatus>
+            <verificationStatus value="confirmed">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="410605003"/>
+                        <display value="Confirmed present"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </verificationStatus>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="282291009"/>
+                  <display value="Diagnosis"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="195967001"/>
+                  <display value="astma"/>
+               </coding>
+            </code>
+            <bodySite>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="181216001"/>
+                  <display value="Longen"/>
+               </coding>
+            </bodySite>
+            <subject>
+               <reference value="urn:uuid:55c39fa2-3b48-11ed-1981-020000000000"/>
+               <display value="Dennis D. Dennis Janse"/>
+            </subject>
+            <onsetDateTime value="2000"/>
+            <note>
+               <text value="Kortademig"/>
+            </note>
+         </Condition>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:55c39fcd-3b48-11ed-1981-020000000000"/>
+      <resource>
+         <Consent>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdvanceDirective"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Toestemming. Patiënt: Dennis D. Dennis Janse. Categorie: <span title="levenstestament en wilsverklaring in dossier (11341000146107 - SNOMED CT)">levenstestament en wilsverklaring in dossier</span>, <span title="Levenswensverklaring (LW - 2.16.840.1.113883.2.4.3.11.60.40.4.14.1)">Levenswensverklaring</span>, Status: actief</caption>
+                     <tfoot>
+                        <tr>
+                           <td colspan="2">gescand document</td>
+                        </tr>
+                     </tfoot>
+                     <tbody>
+                        <tr>
+                           <th>Gemaakt</th>
+                           <td>16 september 2012</td>
+                        </tr>
+                        <tr>
+                           <th>Bron </th>
+                           <td>
+                              <img src="data:application/pdf;base64,ZHVtbXktd2lsc3ZlcmtsYXJpbmcgRGVubmlzIEphbnNlLnBkZg=="
+                                   alt=""/>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/Comment">
+               <valueString value="gescand document"/>
+            </extension>
+            <status value="active"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="11341000146107"/>
+                  <display value="levenstestament en wilsverklaring in dossier"/>
+               </coding>
+            </category>
+            <category>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.14.1"/>
+                  <code value="LW"/>
+                  <display value="Levenswensverklaring"/>
+               </coding>
+            </category>
+            <patient>
+               <reference value="urn:uuid:55c39fa2-3b48-11ed-1981-020000000000"/>
+               <display value="Dennis D. Dennis Janse"/>
+            </patient>
+            <dateTime value="2012-09-16"/>
+            <sourceAttachment>
+               <contentType value="application/pdf"/>
+               <data value="ZHVtbXktd2lsc3ZlcmtsYXJpbmcgRGVubmlzIEphbnNlLnBkZg=="/>
+            </sourceAttachment>
+            <policy>
+               <uri value="http://wetten.overheid.nl/"/>
+            </policy>
+         </Consent>
       </resource>
       <search>
          <mode value="include"/>

@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="9d0c1c69-3b34-11ed-1772-020000000000"/>
+   <id value="148c6db7-3b48-11ed-5024-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:9d0c1c6c-3b34-11ed-1772-020000000000"/>
+      <fullUrl value="urn:uuid:148c6dba-3b48-11ed-5024-020000000000"/>
       <resource>
          <Consent>
             <meta>
@@ -56,7 +56,7 @@
                </coding>
             </category>
             <patient>
-               <reference value="urn:uuid:9d0c307c-3b34-11ed-1772-020000000000"/>
+               <reference value="urn:uuid:148c81ca-3b48-11ed-5024-020000000000"/>
                <display value="Dennis D. Dennis Janse"/>
             </patient>
             <dateTime value="2012-09-16"/>
@@ -74,7 +74,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9d0c307c-3b34-11ed-1772-020000000000"/>
+      <fullUrl value="urn:uuid:148c81ca-3b48-11ed-5024-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -199,6 +199,95 @@
             </maritalStatus>
             <multipleBirthBoolean value="false"/>
          </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:148c81f1-3b48-11ed-5024-020000000000"/>
+      <resource>
+         <Condition>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Aandoening. Subject: Dennis D. Dennis Janse. Categorie: <span title="Diagnosis (282291009 - SNOMED CT)">Diagnosis</span>, Status: actief / bevestigd</caption>
+                     <tfoot>
+                        <tr>
+                           <td colspan="2">Kortademig</td>
+                        </tr>
+                     </tfoot>
+                     <tbody>
+                        <tr>
+                           <th>Code</th>
+                           <td>
+                              <span title="astma (195967001 - SNOMED CT)">astma</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Eerste symptomen</th>
+                           <td>2000</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <clinicalStatus value="active">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="55561003"/>
+                        <display value="Active"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </clinicalStatus>
+            <verificationStatus value="confirmed">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="410605003"/>
+                        <display value="Confirmed present"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </verificationStatus>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="282291009"/>
+                  <display value="Diagnosis"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="195967001"/>
+                  <display value="astma"/>
+               </coding>
+            </code>
+            <bodySite>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="181216001"/>
+                  <display value="Longen"/>
+               </coding>
+            </bodySite>
+            <subject>
+               <reference value="urn:uuid:148c81ca-3b48-11ed-5024-020000000000"/>
+               <display value="Dennis D. Dennis Janse"/>
+            </subject>
+            <onsetDateTime value="2000"/>
+            <note>
+               <text value="Kortademig"/>
+            </note>
+         </Condition>
       </resource>
       <search>
          <mode value="include"/>

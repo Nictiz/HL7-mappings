@@ -16,6 +16,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
     
+    <xsl:variable name="advanceDirectives" as="element()*">
+        <xsl:for-each-group select="//(wilsverklaring[not(wilsverklaring)] | advance_directive[not(advance_directive)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
+            <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
+            <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
+            <unique-advanceDirective xmlns="">
+                <group-key>
+                    <xsl:value-of select="current-grouping-key()"/>
+                </group-key>
+                <reference-display>
+                    <xsl:value-of select="(wilsverklaring_type | living_will_type)/@displayName"/>
+                </reference-display>
+                <xsl:apply-templates select="current-group()[1]" mode="doAdvanceDirectiveEntry-2.1">
+                    <xsl:with-param name="uuid" select="$uuid"/>
+                </xsl:apply-templates>
+            </unique-advanceDirective>
+        </xsl:for-each-group>
+    </xsl:variable>
+    
     <!--<xd:doc>
         <xd:desc/>
     </xd:doc>
@@ -40,7 +58,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:if test="string-length($theGroupElement/reference-display) gt 0">
             <display value="{$theGroupElement/reference-display}"/>
         </xsl:if>
-    </xsl:template>
+    </xsl:template>-->
     
     <xd:doc>
         <xd:desc>Produces a FHIR entry element with a Consent resource for AdvanceDirective</xd:desc>
@@ -51,9 +69,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Consent.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="advanceDirectiveEntry" match="wilsverklaring[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | advance_directive[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doAdvanceDirectiveEntry-2.1" as="element(f:entry)">
+    <xsl:template name="advanceDirectiveEntry" match="wilsverklaring[not(wilsverklaring)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | advance_directive[not(advance_directive)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doAdvanceDirectiveEntry-2.1" as="element(f:entry)">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
-        <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
+        <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value] | ancestor::bundle//subject//patient[not(patient)][*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
         <xsl:param name="entryFullUrl" select="nf:get-fhir-uuid(.)"/>
         <xsl:param name="fhirResourceId">
@@ -86,7 +104,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </search>
             </xsl:if>
         </entry>
-    </xsl:template>-->
+    </xsl:template>
     
     <xd:doc>
         <xd:desc>Mapping of HCIM AdvanceDirective concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-AdvanceDirective">zib-AdvanceDirective</xd:a>.</xd:desc>
@@ -95,11 +113,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-AdvanceDirective-2.1" match="wilsverklaring[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | advance_directive[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Consent)" mode="doZibAdvanceDirective-2.1">
+    <xsl:template name="zib-AdvanceDirective-2.1" match="wilsverklaring[not(wilsverklaring)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | advance_directive[not(advance_directive)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Consent)" mode="doZibAdvanceDirective-2.1">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
-        <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
-        <xsl:param name="adaProblem" select="disorder/problem" as="element()*"/>
+        <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value] | ancestor::bundle//subject//patient[not(patient)][*//@value])[1]" as="element()"/>
+        <!--<xsl:param name="adaProblem" select="disorder/problem" as="element()*"/>-->
         <!--<xsl:param name="adaRelatedPerson" as="element()"/>-->
         <xsl:param name="dateT" as="xs:date?"/>
         

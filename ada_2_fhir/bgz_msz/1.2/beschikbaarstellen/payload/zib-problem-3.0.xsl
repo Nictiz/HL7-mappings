@@ -17,11 +17,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
 
     <xsl:variable name="problems" as="element()*">
-        <!-- probleem in problem -->
         <xsl:for-each-group select="//(probleem[not(probleem)] | problem[not(problem)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
             <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
             <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
-            <unieke-problem xmlns="">
+            <unique-problem xmlns="">
                 <group-key xmlns="">
                     <xsl:value-of select="current-grouping-key()"/>
                 </group-key>
@@ -30,9 +29,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </reference-display>
                 <xsl:apply-templates select="current-group()[1]" mode="doProblemEntry-3.0">
                     <xsl:with-param name="uuid" select="$uuid"/>
-                    <xsl:with-param name="searchMode">match</xsl:with-param>
                 </xsl:apply-templates>
-            </unieke-problem>
+            </unique-problem>
         </xsl:for-each-group>
     </xsl:variable>
 
@@ -73,7 +71,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="problemEntry" match="probleem[not(probleem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | problem[not(problem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProblemEntry-3.0" as="element(f:entry)">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
-        <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
+        <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value] | ancestor::bundle//subject//patient[not(patient)][*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
         <xsl:param name="entryFullUrl">
             <xsl:choose>
@@ -137,7 +135,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="zib-Problem-3.0" match="probleem[not(probleem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | problem[not(problem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Condition)" mode="doZibProblem-3.0">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
-        <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
+        <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value] | ancestor::bundle//subject//patient[not(patient)][*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
         
         <xsl:for-each select="$in">
