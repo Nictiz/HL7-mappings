@@ -28,7 +28,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:variable name="patients" as="element()*">
         <!-- Patiënten -->
-        <xsl:for-each-group select="//patient[not(patient)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="
+        <xsl:for-each-group select="//patient[not(patient)][ancestor::subject][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="
                 string-join(for $att in nf:ada-pat-id(identificatienummer | patient_identificatie_nummer | patient_identification_number)/(@root, @value)
                 return
                     $att, '')">

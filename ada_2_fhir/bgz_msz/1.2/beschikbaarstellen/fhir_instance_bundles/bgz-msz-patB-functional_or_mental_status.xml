@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="eeb03721-3828-11ed-1334-020000000000"/>
+   <id value="0065c6bb-3b35-11ed-1219-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:eeb03724-3828-11ed-1334-020000000000"/>
+      <fullUrl value="urn:uuid:0065c6be-3b35-11ed-1219-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -58,7 +58,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:eeb04b8e-3828-11ed-1334-020000000000"/>
+               <reference value="urn:uuid:0065dace-3b35-11ed-1219-020000000000"/>
                <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
             </subject>
             <effectivePeriod>
@@ -79,26 +79,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:eeb03727-3828-11ed-1334-020000000000"/>
-      <resource>
-         <Patient>
-            <meta>
-               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
-            </meta>
-            <text>
-               <status value="extensions"/>
-               <div xmlns="http://www.w3.org/1999/xhtml">
-                  <div/>
-               </div>
-            </text>
-         </Patient>
-      </resource>
-      <search>
-         <mode value="include"/>
-      </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:eeb04b8e-3828-11ed-1334-020000000000"/>
+      <fullUrl value="urn:uuid:0065dace-3b35-11ed-1219-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -240,7 +221,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:eeb03dce-3828-11ed-1334-020000000000"/>
+      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.1.131313"/>
       <resource>
          <Practitioner>
             <meta>
@@ -249,9 +230,100 @@
             <text>
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
-                  <div/>
+                  <div>Id 00131313 (AGB-Z), Anna A. Bijns-de Vries (Anna)</div>
+                  <div>
+                     <a href="tel:077-1234567">077-1234567</a> (Tel Werk), <a href="mailto:Bijns.DeVries@HPMolenhoek.nl">Bijns.DeVries@HPMolenhoek.nl</a> (E-mail Werk)</div>
+                  <div>Dorpsstraat 1, 6585XY Molenhoek Mook en Middelaar, NL (WP)</div>
                </div>
             </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+               <value value="00131313"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL3"/>
+               </extension>
+               <family value="Bijns-de Vries">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="de"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Vries"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+                     <valueString value="Bijns"/>
+                  </extension>
+               </family>
+               <given value="Anna">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+               <given value="A.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+               <given value="Anna">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="CL"/>
+                  </extension>
+               </given>
+            </name>
+            <telecom>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+                        <code value="LL"/>
+                        <display value="Land Line"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <system value="phone"/>
+               <value value="077-1234567"/>
+               <use value="work"/>
+            </telecom>
+            <telecom>
+               <system value="email"/>
+               <value value="Bijns.DeVries@HPMolenhoek.nl"/>
+               <use value="work"/>
+            </telecom>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Molenhoek"/>
+               <district value="Mook en Middelaar"/>
+               <postalCode value="6585XY"/>
+               <country value="NL">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="urn:iso:std:iso:3166"/>
+                           <code value="NL"/>
+                           <display value="Nederland"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </country>
+            </address>
          </Practitioner>
       </resource>
       <search>
@@ -259,7 +331,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:eeb04bcb-3828-11ed-1334-020000000000"/>
+      <fullUrl value="urn:uuid:0065e044-3b35-11ed-1219-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -286,7 +358,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:eeb04bcd-3828-11ed-1334-020000000000"/>
+      <fullUrl value="urn:uuid:0065e046-3b35-11ed-1219-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -301,7 +373,23 @@
                         <tr>
                            <th>Zorgverlener</th>
                            <td>
-                              <div>urn:uuid:eeb03dce-3828-11ed-1334-020000000000</div>
+                              <div>Maria Francisca M.F. Maria van 't Hoen Verheul Anna A. Anna de Vries Bijns</div>
+                              <div>Organisatie informatie: Huisartsenpraktijk Molenhoek</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Specialisme</th>
+                           <td>
+                              <span title="Huisarts (01.015 - http://fhir.nl/fhir/NamingSystem/uzi-rolcode)">Huisarts</span>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Contactgegevens</th>
+                           <td>
+                              <div>
+                                 <a href="tel:077-1234567">077-1234567</a> (Tel Werk)</div>
+                              <div>
+                                 <a href="mailto:Bijns.DeVries@HPMolenhoek.nl">Bijns.DeVries@HPMolenhoek.nl</a> (E-mail Werk)</div>
                            </td>
                         </tr>
                      </tbody>
@@ -309,8 +397,39 @@
                </div>
             </text>
             <practitioner>
-               <reference value="urn:uuid:eeb03dce-3828-11ed-1334-020000000000"/>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.6.1.131313"/>
+               <display value="Maria Francisca M.F. Maria van 't Hoen Verheul Anna A. Anna de Vries Bijns"/>
             </practitioner>
+            <organization>
+               <reference value="urn:uuid:0065e044-3b35-11ed-1219-020000000000"/>
+               <display value="Organisatie informatie: Huisartsenpraktijk Molenhoek"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+                  <code value="01.015"/>
+                  <display value="Huisarts"/>
+               </coding>
+            </specialty>
+            <telecom>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+                        <code value="LL"/>
+                        <display value="Land Line"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <system value="phone"/>
+               <value value="077-1234567"/>
+               <use value="work"/>
+            </telecom>
+            <telecom>
+               <system value="email"/>
+               <value value="Bijns.DeVries@HPMolenhoek.nl"/>
+               <use value="work"/>
+            </telecom>
          </PractitionerRole>
       </resource>
       <search>
