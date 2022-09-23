@@ -47,6 +47,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="resolved-ada-input" as="node()*">
                     <xsl:apply-templates select="current-group()" mode="copy-for-resolve"/>
                 </xsl:variable>
+                
                 <xsl:result-document href="{$outputDir}/{concat('bgz-msz-', $patientName, '-', current-grouping-key(), '.xml')}" format="ada-xml">
                     <bundle>
                         <xsl:copy-of select="$resolved-ada-input"/>
@@ -57,12 +58,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xsl:template match="patient[@value and @root = '2.16.840.1.113883.2.4.6.3'][not(*)]" mode="copy-for-resolve">
-        <xsl:sequence select="($ada-input/adaxml/data/*/patient[patient_identification_number[@value = current()/@value][@root = current()/@root]])[1]"/>
+        <xsl:apply-templates select="($ada-input/adaxml/data/*/patient[patient_identification_number[@value = current()/@value][@root = current()/@root]])[1]" mode="#current"/>
     </xsl:template>
     
     <!-- Matching on @value and @root, and excluding local-name containing 'identification' but should be on @datatype = 'reference' -->
     <xsl:template match="*[@value and @root = '2.16.840.1.113883.2.4.3.11.999.7'][not(*)][not(contains(local-name(), 'identification'))]" mode="copy-for-resolve">
-        <xsl:sequence select="($ada-input/adaxml/data/*/*[hcimroot/identification_number[@value = current()/@value][@root = current()/@root]])[1]"/>
+        <xsl:apply-templates select="($ada-input/adaxml/data/*/*[hcimroot/identification_number[@value = current()/@value][@root = current()/@root]])[1]" mode="#current"/>
     </xsl:template>
     
     <xd:doc>
