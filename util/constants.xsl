@@ -484,14 +484,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <map xmlns="" dayPart="evening" fhirWhen="EVE" hl7PIVLPhaseLow="1970010118" hl7PIVLPhaseHigh="1970010200" code="3157002" codeSystem="{$oidSNOMEDCT}" displayName="'s avonds" codeSystemName="SNOMED CT"/>
     </xsl:variable>
 
-    <xsl:variable name="stoptypeMap" as="element()+">
-        <map code="113381000146106" codeSystem="2.16.840.1.113883.6.96" displayName="tijdelijk gestopt"/>
-        <map code="113371000146109" codeSystem="2.16.840.1.113883.6.96" displayName="definitief gestopt"/>
-        <!-- deprecated codes from pre MP 9.2 -->
-        <map hl7Code="1" hl7CodeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="tijdelijk gestopt"/>
-        <map hl7Code="2" hl7CodeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="definitief gestopt"/>
-    </xsl:variable>
-
     <xsl:variable name="weekdayMap" as="element()+">
         <map xmlns="" dayOfWeek="1" weekday="monday" fhirDayOfWeek="mon" hl7PIVLPhaseLow="19700601" code="307145004" codeSystem="{$oidSNOMEDCT}" displayName="maandag" codeSystemName="SNOMED CT"/>
         <map xmlns="" dayOfWeek="2" weekday="tuesday" fhirDayOfWeek="tue" hl7PIVLPhaseLow="19700602" code="307147007" codeSystem="{$oidSNOMEDCT}" displayName="dinsdag" codeSystemName="SNOMED CT"/>
