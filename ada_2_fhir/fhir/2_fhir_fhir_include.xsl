@@ -374,7 +374,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </version>
                 </xsl:if>
-                <code value="{$in/@code}"/>
+                <code value="{normalize-space($in/@code)}"/>
                 <xsl:if test="$in/@displayName">
                     <display>
                         <xsl:call-template name="string-to-string">
