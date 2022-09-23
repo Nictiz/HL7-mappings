@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="9290d131-37f0-11ed-1085-020000000000"/>
+   <id value="0fbf48df-39be-11ed-6284-020000000000"/>
    <type value="searchset"/>
    <total value="4"/>
    <entry>
-      <fullUrl value="urn:uuid:9290d134-37f0-11ed-1085-020000000000"/>
+      <fullUrl value="urn:uuid:0fbf48e2-39be-11ed-6284-020000000000"/>
       <resource>
          <Immunization>
             <meta>
@@ -51,7 +51,7 @@
                </coding>
             </vaccineCode>
             <patient>
-               <reference value="urn:uuid:9290e544-37f0-11ed-1085-020000000000"/>
+               <reference value="urn:uuid:0fbf5cf2-39be-11ed-6284-020000000000"/>
                <display value="Dennis D. Dennis Janse"/>
             </patient>
             <date value="2019-04-03"/>
@@ -72,7 +72,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9290d134-37f0-11ed-1085-020000000000"/>
+      <fullUrl value="urn:uuid:0fbf48e2-39be-11ed-6284-020000000000"/>
       <resource>
          <ImmunizationRecommendation>
             <meta>
@@ -97,7 +97,7 @@
                </div>
             </text>
             <patient>
-               <reference value="urn:uuid:9290e544-37f0-11ed-1085-020000000000"/>
+               <reference value="urn:uuid:0fbf5cf2-39be-11ed-6284-020000000000"/>
                <display value="Dennis D. Dennis Janse"/>
             </patient>
             <recommendation>
@@ -124,7 +124,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9290e595-37f0-11ed-1085-020000000000"/>
+      <fullUrl value="urn:uuid:0fbf5d44-39be-11ed-6284-020000000000"/>
       <resource>
          <Immunization>
             <meta>
@@ -170,7 +170,7 @@
                </coding>
             </vaccineCode>
             <patient>
-               <reference value="urn:uuid:9290e544-37f0-11ed-1085-020000000000"/>
+               <reference value="urn:uuid:0fbf5cf2-39be-11ed-6284-020000000000"/>
                <display value="Dennis D. Dennis Janse"/>
             </patient>
             <date value="2015-03-02"/>
@@ -191,7 +191,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9290e595-37f0-11ed-1085-020000000000"/>
+      <fullUrl value="urn:uuid:0fbf5d44-39be-11ed-6284-020000000000"/>
       <resource>
          <ImmunizationRecommendation>
             <meta>
@@ -216,7 +216,7 @@
                </div>
             </text>
             <patient>
-               <reference value="urn:uuid:9290e544-37f0-11ed-1085-020000000000"/>
+               <reference value="urn:uuid:0fbf5cf2-39be-11ed-6284-020000000000"/>
                <display value="Dennis D. Dennis Janse"/>
             </patient>
             <recommendation>
@@ -243,7 +243,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9290d137-37f0-11ed-1085-020000000000"/>
+      <fullUrl value="urn:uuid:0fbf48e5-39be-11ed-6284-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -262,7 +262,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9290e544-37f0-11ed-1085-020000000000"/>
+      <fullUrl value="urn:uuid:0fbf5cf2-39be-11ed-6284-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -271,7 +271,8 @@
             <text>
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
-                  <div>Id 999999151 (BSN), Dennis D. Janse (Dennis), Man, 2 februari 1950</div>
+                  <div>Id 999999151 (BSN), Dennis D. Janse (Dennis), Man, 2 februari 1950, <span title="Married (M - MaritalStatus)">Married</span>
+                  </div>
                   <div>
                      <a href="tel:+316-11122233">+316-11122233</a> (Tel Mobiel), <a href="mailto:djanse@test.nl">djanse@test.nl</a> (E-mail Privé)</div>
                   <div>Huweelstraat 15 Tijdelijk adres to, 1248CC Barendrecht, NL (TMP)</div>
@@ -377,6 +378,13 @@
                   </extension>
                </country>
             </address>
+            <maritalStatus>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.5.2"/>
+                  <code value="M"/>
+                  <display value="Married"/>
+               </coding>
+            </maritalStatus>
             <multipleBirthBoolean value="false"/>
          </Patient>
       </resource>
@@ -395,7 +403,9 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id 88776655 (AGB-Z), Ria Alexandra R.A. Slot (Ria)</div>
-                  <div/>
+                  <div>
+                     <a href="tel:06-12345767">06-12345767</a> (Tel Mobiel), <a href="mailto:r.a.slot@huisarts.nl">r.a.slot@huisarts.nl</a> (E-mail Werk)</div>
+                  <div>Talmastraat 84 B, 3071AS Rotterdam Rotterdam, NL (WP)</div>
                </div>
             </text>
             <identifier>
@@ -427,7 +437,62 @@
                   </extension>
                </given>
             </name>
-            <address/>
+            <telecom>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="MC"/>
+                        <display value="Mobile Phone"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <system value="phone"/>
+               <value value="06-12345767"/>
+               <use value="mobile"/>
+            </telecom>
+            <telecom>
+               <system value="email"/>
+               <value value="r.a.slot@huisarts.nl"/>
+               <use value="work"/>
+            </telecom>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Talmastraat 84 B">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Talmastraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="84"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="B"/>
+                  </extension>
+               </line>
+               <city value="Rotterdam"/>
+               <district value="Rotterdam"/>
+               <postalCode value="3071AS"/>
+               <country value="NL">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="urn:iso:std:iso:3166"/>
+                           <code value="NL"/>
+                           <display value="Nederland"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </country>
+            </address>
          </Practitioner>
       </resource>
       <search>
@@ -435,7 +500,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9290e591-37f0-11ed-1085-020000000000"/>
+      <fullUrl value="urn:uuid:0fbf5d40-39be-11ed-6284-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -462,7 +527,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9290e56a-37f0-11ed-1085-020000000000"/>
+      <fullUrl value="urn:uuid:0fbf5d19-39be-11ed-6284-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -487,6 +552,15 @@
                               <span title="Huisarts (01.015 - http://fhir.nl/fhir/NamingSystem/uzi-rolcode)">Huisarts</span>
                            </td>
                         </tr>
+                        <tr>
+                           <th>Contactgegevens</th>
+                           <td>
+                              <div>
+                                 <a href="tel:06-12345767">06-12345767</a> (Tel Mobiel)</div>
+                              <div>
+                                 <a href="mailto:r.a.slot@huisarts.nl">r.a.slot@huisarts.nl</a> (E-mail Werk)</div>
+                           </td>
+                        </tr>
                      </tbody>
                   </table>
                </div>
@@ -496,7 +570,7 @@
                <display value="Ria Alexandra R.A. Ria Slot"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:9290e591-37f0-11ed-1085-020000000000"/>
+               <reference value="urn:uuid:0fbf5d40-39be-11ed-6284-020000000000"/>
                <display value="Organisatie informatie: Huisartsenpraktijk Rotterdam"/>
             </organization>
             <specialty>
@@ -506,6 +580,25 @@
                   <display value="Huisarts"/>
                </coding>
             </specialty>
+            <telecom>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="MC"/>
+                        <display value="Mobile Phone"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <system value="phone"/>
+               <value value="06-12345767"/>
+               <use value="mobile"/>
+            </telecom>
+            <telecom>
+               <system value="email"/>
+               <value value="r.a.slot@huisarts.nl"/>
+               <use value="work"/>
+            </telecom>
          </PractitionerRole>
       </resource>
       <search>

@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="6b4c28a5-37f0-11ed-1085-020000000000"/>
+   <id value="ec17a32d-39bd-11ed-6284-020000000000"/>
    <type value="searchset"/>
    <total value="3"/>
    <entry>
-      <fullUrl value="urn:uuid:6b4c28a8-37f0-11ed-1085-020000000000"/>
+      <fullUrl value="urn:uuid:ec17a330-39bd-11ed-6284-020000000000"/>
       <resource>
          <Encounter>
             <meta>
@@ -49,7 +49,7 @@
                <display value="Emergency"/>
             </class>
             <subject>
-               <reference value="urn:uuid:6b4c3cb8-37f0-11ed-1085-020000000000"/>
+               <reference value="urn:uuid:ec17b740-39bd-11ed-6284-020000000000"/>
                <display value="Dennis D. Dennis Janse"/>
             </subject>
             <period>
@@ -72,7 +72,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6b4c4231-37f0-11ed-1085-020000000000"/>
+      <fullUrl value="urn:uuid:ec17bcba-39bd-11ed-6284-020000000000"/>
       <resource>
          <Encounter>
             <meta>
@@ -116,7 +116,7 @@
                <display value="Inpatient"/>
             </class>
             <subject>
-               <reference value="urn:uuid:6b4c3cb8-37f0-11ed-1085-020000000000"/>
+               <reference value="urn:uuid:ec17b740-39bd-11ed-6284-020000000000"/>
                <display value="Dennis D. Dennis Janse"/>
             </subject>
             <period>
@@ -139,7 +139,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6b4c42a1-37f0-11ed-1085-020000000000"/>
+      <fullUrl value="urn:uuid:ec17bd2b-39bd-11ed-6284-020000000000"/>
       <resource>
          <Encounter>
             <meta>
@@ -183,7 +183,7 @@
                <display value="Ambulatory"/>
             </class>
             <subject>
-               <reference value="urn:uuid:6b4c3cb8-37f0-11ed-1085-020000000000"/>
+               <reference value="urn:uuid:ec17b740-39bd-11ed-6284-020000000000"/>
                <display value="Dennis D. Dennis Janse"/>
             </subject>
             <period>
@@ -196,7 +196,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6b4c28ab-37f0-11ed-1085-020000000000"/>
+      <fullUrl value="urn:uuid:ec17a333-39bd-11ed-6284-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -215,7 +215,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6b4c3cb8-37f0-11ed-1085-020000000000"/>
+      <fullUrl value="urn:uuid:ec17b740-39bd-11ed-6284-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -224,7 +224,8 @@
             <text>
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
-                  <div>Id 999999151 (BSN), Dennis D. Janse (Dennis), Man, 2 februari 1950</div>
+                  <div>Id 999999151 (BSN), Dennis D. Janse (Dennis), Man, 2 februari 1950, <span title="Married (M - MaritalStatus)">Married</span>
+                  </div>
                   <div>
                      <a href="tel:+316-11122233">+316-11122233</a> (Tel Mobiel), <a href="mailto:djanse@test.nl">djanse@test.nl</a> (E-mail Privé)</div>
                   <div>Huweelstraat 15 Tijdelijk adres to, 1248CC Barendrecht, NL (TMP)</div>
@@ -330,6 +331,13 @@
                   </extension>
                </country>
             </address>
+            <maritalStatus>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.5.2"/>
+                  <code value="M"/>
+                  <display value="Married"/>
+               </coding>
+            </maritalStatus>
             <multipleBirthBoolean value="false"/>
          </Patient>
       </resource>
@@ -348,7 +356,9 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id 45678912 (AGB-Z), Jeroen Hendrik Robert J.H.R. Peters (Jeroen)</div>
-                  <div/>
+                  <div>
+                     <a href="tel:06-23412345">06-23412345</a> (Tel Mobiel), <a href="mailto:j.peters@hospital.nl">j.peters@hospital.nl</a> (E-mail Werk)</div>
+                  <div>Dr. Molewaterplein 40, 3015GD Rotterdam Rotterdam, NL (WP)</div>
                </div>
             </text>
             <identifier>
@@ -380,7 +390,59 @@
                   </extension>
                </given>
             </name>
-            <address/>
+            <telecom>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="MC"/>
+                        <display value="Mobile Phone"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <system value="phone"/>
+               <value value="06-23412345"/>
+               <use value="mobile"/>
+            </telecom>
+            <telecom>
+               <system value="email"/>
+               <value value="j.peters@hospital.nl"/>
+               <use value="work"/>
+            </telecom>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dr. Molewaterplein 40">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dr. Molewaterplein"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="40"/>
+                  </extension>
+               </line>
+               <city value="Rotterdam"/>
+               <district value="Rotterdam"/>
+               <postalCode value="3015GD"/>
+               <country value="NL">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="urn:iso:std:iso:3166"/>
+                           <code value="NL"/>
+                           <display value="Nederland"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </country>
+            </address>
          </Practitioner>
       </resource>
       <search>
@@ -398,7 +460,9 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id 12345678 (AGB-Z), Alfred Bart A.B. Bakker (Alfred)</div>
-                  <div/>
+                  <div>
+                     <a href="tel:06-33334444">06-33334444</a> (Tel Mobiel), <a href="mailto:a.b.bakker@hospital.nl">a.b.bakker@hospital.nl</a> (E-mail Werk)</div>
+                  <div>Dr. Molewaterplein 40, 3015GD Rotterdam Rotterdam, NL (WP)</div>
                </div>
             </text>
             <identifier>
@@ -430,7 +494,59 @@
                   </extension>
                </given>
             </name>
-            <address/>
+            <telecom>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="MC"/>
+                        <display value="Mobile Phone"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <system value="phone"/>
+               <value value="06-33334444"/>
+               <use value="mobile"/>
+            </telecom>
+            <telecom>
+               <system value="email"/>
+               <value value="a.b.bakker@hospital.nl"/>
+               <use value="work"/>
+            </telecom>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dr. Molewaterplein 40">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dr. Molewaterplein"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="40"/>
+                  </extension>
+               </line>
+               <city value="Rotterdam"/>
+               <district value="Rotterdam"/>
+               <postalCode value="3015GD"/>
+               <country value="NL">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="urn:iso:std:iso:3166"/>
+                           <code value="NL"/>
+                           <display value="Nederland"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </country>
+            </address>
          </Practitioner>
       </resource>
       <search>
@@ -438,7 +554,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6b4c31b4-37f0-11ed-1085-020000000000"/>
+      <fullUrl value="urn:uuid:ec17af2a-39bd-11ed-6284-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -457,7 +573,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6b4c31dc-37f0-11ed-1085-020000000000"/>
+      <fullUrl value="urn:uuid:ec17af52-39bd-11ed-6284-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -476,7 +592,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6b4c3d01-37f0-11ed-1085-020000000000"/>
+      <fullUrl value="urn:uuid:ec17b78a-39bd-11ed-6284-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -503,7 +619,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6b4c3cdb-37f0-11ed-1085-020000000000"/>
+      <fullUrl value="urn:uuid:ec17b764-39bd-11ed-6284-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -528,6 +644,15 @@
                               <span title="Orthopedisch chirurg (01.032 - http://fhir.nl/fhir/NamingSystem/uzi-rolcode)">Orthopedisch chirurg</span>
                            </td>
                         </tr>
+                        <tr>
+                           <th>Contactgegevens</th>
+                           <td>
+                              <div>
+                                 <a href="tel:06-23412345">06-23412345</a> (Tel Mobiel)</div>
+                              <div>
+                                 <a href="mailto:j.peters@hospital.nl">j.peters@hospital.nl</a> (E-mail Werk)</div>
+                           </td>
+                        </tr>
                      </tbody>
                   </table>
                </div>
@@ -537,7 +662,7 @@
                <display value="Jeroen Hendrik Robert J.H.R. Jeroen Peters"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:6b4c3d01-37f0-11ed-1085-020000000000"/>
+               <reference value="urn:uuid:ec17b78a-39bd-11ed-6284-020000000000"/>
                <display value="Organisatie informatie: naam eigen ziekenhuis"/>
             </organization>
             <specialty>
@@ -547,6 +672,25 @@
                   <display value="Orthopedisch chirurg"/>
                </coding>
             </specialty>
+            <telecom>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="MC"/>
+                        <display value="Mobile Phone"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <system value="phone"/>
+               <value value="06-23412345"/>
+               <use value="mobile"/>
+            </telecom>
+            <telecom>
+               <system value="email"/>
+               <value value="j.peters@hospital.nl"/>
+               <use value="work"/>
+            </telecom>
          </PractitionerRole>
       </resource>
       <search>
@@ -554,7 +698,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6b4c425a-37f0-11ed-1085-020000000000"/>
+      <fullUrl value="urn:uuid:ec17bce4-39bd-11ed-6284-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -579,6 +723,15 @@
                               <span title="Spoedeisende hulp arts (01.071 - http://fhir.nl/fhir/NamingSystem/uzi-rolcode)">Spoedeisende hulp arts</span>
                            </td>
                         </tr>
+                        <tr>
+                           <th>Contactgegevens</th>
+                           <td>
+                              <div>
+                                 <a href="tel:06-33334444">06-33334444</a> (Tel Mobiel)</div>
+                              <div>
+                                 <a href="mailto:a.b.bakker@hospital.nl">a.b.bakker@hospital.nl</a> (E-mail Werk)</div>
+                           </td>
+                        </tr>
                      </tbody>
                   </table>
                </div>
@@ -588,7 +741,7 @@
                <display value="Alfred Bart A.B. Alfred Bakker"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:6b4c3d01-37f0-11ed-1085-020000000000"/>
+               <reference value="urn:uuid:ec17b78a-39bd-11ed-6284-020000000000"/>
                <display value="Organisatie informatie: naam eigen ziekenhuis"/>
             </organization>
             <specialty>
@@ -598,6 +751,25 @@
                   <display value="Spoedeisende hulp arts"/>
                </coding>
             </specialty>
+            <telecom>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="MC"/>
+                        <display value="Mobile Phone"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <system value="phone"/>
+               <value value="06-33334444"/>
+               <use value="mobile"/>
+            </telecom>
+            <telecom>
+               <system value="email"/>
+               <value value="a.b.bakker@hospital.nl"/>
+               <use value="work"/>
+            </telecom>
          </PractitionerRole>
       </resource>
       <search>
@@ -605,7 +777,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6b4c429b-37f0-11ed-1085-020000000000"/>
+      <fullUrl value="urn:uuid:ec17bd25-39bd-11ed-6284-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -620,7 +792,7 @@
                         <tr>
                            <th>Zorgverlener</th>
                            <td>
-                              <div>urn:uuid:6b4c31b4-37f0-11ed-1085-020000000000</div>
+                              <div>urn:uuid:ec17af2a-39bd-11ed-6284-020000000000</div>
                            </td>
                         </tr>
                      </tbody>
@@ -628,7 +800,7 @@
                </div>
             </text>
             <practitioner>
-               <reference value="urn:uuid:6b4c31b4-37f0-11ed-1085-020000000000"/>
+               <reference value="urn:uuid:ec17af2a-39bd-11ed-6284-020000000000"/>
             </practitioner>
          </PractitionerRole>
       </resource>
@@ -637,7 +809,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6b4c429d-37f0-11ed-1085-020000000000"/>
+      <fullUrl value="urn:uuid:ec17bd27-39bd-11ed-6284-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -652,7 +824,7 @@
                         <tr>
                            <th>Zorgverlener</th>
                            <td>
-                              <div>urn:uuid:6b4c31dc-37f0-11ed-1085-020000000000</div>
+                              <div>urn:uuid:ec17af52-39bd-11ed-6284-020000000000</div>
                            </td>
                         </tr>
                      </tbody>
@@ -660,7 +832,7 @@
                </div>
             </text>
             <practitioner>
-               <reference value="urn:uuid:6b4c31dc-37f0-11ed-1085-020000000000"/>
+               <reference value="urn:uuid:ec17af52-39bd-11ed-6284-020000000000"/>
             </practitioner>
          </PractitionerRole>
       </resource>

@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="4dc3e403-37f0-11ed-5318-020000000000"/>
+   <id value="90be73e9-3828-11ed-8355-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:4dc3e406-37f0-11ed-5318-020000000000"/>
+      <fullUrl value="urn:uuid:90be73ec-3828-11ed-8355-020000000000"/>
       <resource>
          <Consent>
             <meta>
@@ -56,7 +56,7 @@
                </coding>
             </category>
             <patient>
-               <reference value="urn:uuid:4dc3f816-37f0-11ed-5318-020000000000"/>
+               <reference value="urn:uuid:90be8856-3828-11ed-8355-020000000000"/>
                <display value="Dennis D. Dennis Janse"/>
             </patient>
             <dateTime value="2012-09-16"/>
@@ -74,7 +74,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4dc3e409-37f0-11ed-5318-020000000000"/>
+      <fullUrl value="urn:uuid:90be73ef-3828-11ed-8355-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -93,7 +93,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4dc3f816-37f0-11ed-5318-020000000000"/>
+      <fullUrl value="urn:uuid:90be8856-3828-11ed-8355-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -102,7 +102,8 @@
             <text>
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
-                  <div>Id 999999151 (BSN), Dennis D. Janse (Dennis), Man, 2 februari 1950</div>
+                  <div>Id 999999151 (BSN), Dennis D. Janse (Dennis), Man, 2 februari 1950, <span title="Married (M - MaritalStatus)">Married</span>
+                  </div>
                   <div>
                      <a href="tel:+316-11122233">+316-11122233</a> (Tel Mobiel), <a href="mailto:djanse@test.nl">djanse@test.nl</a> (E-mail Privé)</div>
                   <div>Huweelstraat 15 Tijdelijk adres to, 1248CC Barendrecht, NL (TMP)</div>
@@ -208,6 +209,13 @@
                   </extension>
                </country>
             </address>
+            <maritalStatus>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.5.2"/>
+                  <code value="M"/>
+                  <display value="Married"/>
+               </coding>
+            </maritalStatus>
             <multipleBirthBoolean value="false"/>
          </Patient>
       </resource>

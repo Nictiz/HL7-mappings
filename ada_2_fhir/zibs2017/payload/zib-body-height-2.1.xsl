@@ -115,7 +115,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
     <xsl:template name="zib-BodyHeight-2.1" match="lichaamslengte | body_height" mode="doZibBodyHeight-2.1">
-        <!-- not complete zib implemented yet, only the elements as used in MP dataset -->
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
@@ -192,6 +191,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:otherwise>
                     </xsl:choose>
                     </effectiveDateTime>
+                    
+                    <!-- performer is mandatory in FHIR profile, we have no information in MP, so we are hardcoding data-absent reason -->
+                    <!-- https://bits.nictiz.nl/browse/MM-434 -->
+                    <performer>
+                        <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                            <valueCode value="unknown"/>
+                        </extension>
+                        <display value="onbekend"/>
+                    </performer>
                     
                     <xsl:for-each select="(lengte_waarde | height_value)[@value]">
                         <valueQuantity>

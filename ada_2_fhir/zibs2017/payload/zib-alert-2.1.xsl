@@ -144,7 +144,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <code>
                         <xsl:variable name="nullFlavorsInValueset" select="('OTH')"/>
                         <xsl:choose>
-                            <xsl:when test="alert_naam[@code] | alert_name[@code]">
+                            <xsl:when test="(alert_naam | alert_name)[@code]">
                                 <xsl:call-template name="code-to-CodeableConcept">
                                     <xsl:with-param name="in" select="alert_naam | alert_name"/>
                                     <xsl:with-param name="treatNullFlavorAsCoding" select="(alert_naam | alert_name)/@code = $nullFlavorsInValueset and (alert_naam | alert_name)/@codeSystem = $oidHL7NullFlavor"/>
@@ -175,6 +175,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </start>
                         </period>
                     </xsl:for-each>
+                    
                 </Flag>
             </xsl:variable>
             

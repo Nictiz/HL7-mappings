@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="851ca873-37f4-11ed-1374-020000000000"/>
+   <id value="9fac8cf1-3828-11ed-1758-020000000000"/>
    <type value="searchset"/>
    <total value="2"/>
    <entry>
-      <fullUrl value="urn:uuid:851ca876-37f4-11ed-1374-020000000000"/>
+      <fullUrl value="urn:uuid:9fac8cf4-3828-11ed-1758-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -59,7 +59,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:851cbc86-37f4-11ed-1374-020000000000"/>
+               <reference value="urn:uuid:9faca15e-3828-11ed-1758-020000000000"/>
                <display value="Dennis D. Dennis Janse"/>
             </subject>
             <effectiveDateTime value="${DATE, T, D, +1}"/>
@@ -92,7 +92,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:851cbcac-37f4-11ed-1374-020000000000"/>
+      <fullUrl value="urn:uuid:9faca185-3828-11ed-1758-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -146,7 +146,7 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:851cbc86-37f4-11ed-1374-020000000000"/>
+               <reference value="urn:uuid:9faca15e-3828-11ed-1758-020000000000"/>
                <display value="Dennis D. Dennis Janse"/>
             </subject>
             <effectiveDateTime value="${DATE, T, D, +2}"/>
@@ -179,7 +179,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:851ca879-37f4-11ed-1374-020000000000"/>
+      <fullUrl value="urn:uuid:9fac8cf7-3828-11ed-1758-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -198,7 +198,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:851cbc86-37f4-11ed-1374-020000000000"/>
+      <fullUrl value="urn:uuid:9faca15e-3828-11ed-1758-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -207,7 +207,8 @@
             <text>
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
-                  <div>Id 999999151 (BSN), Dennis D. Janse (Dennis), Man, 2 februari 1950</div>
+                  <div>Id 999999151 (BSN), Dennis D. Janse (Dennis), Man, 2 februari 1950, <span title="Married (M - MaritalStatus)">Married</span>
+                  </div>
                   <div>
                      <a href="tel:+316-11122233">+316-11122233</a> (Tel Mobiel), <a href="mailto:djanse@test.nl">djanse@test.nl</a> (E-mail Privé)</div>
                   <div>Huweelstraat 15 Tijdelijk adres to, 1248CC Barendrecht, NL (TMP)</div>
@@ -313,6 +314,13 @@
                   </extension>
                </country>
             </address>
+            <maritalStatus>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.5.2"/>
+                  <code value="M"/>
+                  <display value="Married"/>
+               </coding>
+            </maritalStatus>
             <multipleBirthBoolean value="false"/>
          </Patient>
       </resource>

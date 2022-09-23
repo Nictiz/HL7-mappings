@@ -1,25 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 Copyright © Nictiz
-
 This program is free software; you can redistribute it and/or modify it under the terms of the
 GNU Lesser General Public License as published by the Free Software Foundation; either version
 2.1 of the License, or (at your option) any later version.
-
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
 without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 See the GNU Lesser General Public License for more details.
-
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
+
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:naf="http://www.nictiz.nl/ada-functions"  xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <!--<xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>
-    <xsl:import href="nl-core-practitioner-2.0.xsl"/>
-    <xsl:import href="nl-core-organization-2.0.xsl"/>
-    <xsl:import href="nl-core-contactpoint-1.0.xsl"/>
-    <xsl:import href="nl-core-humanname-2.0.xsl"/>
-    <xsl:import href="nl-core-address-2.0.xsl"/>
-    <xsl:import href="ext-code-specification-1.0.xsl"/>-->
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
@@ -61,8 +52,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each-group>
         </xsl:for-each-group>
     </xsl:variable>
-
-
+    
     <xd:doc>
         <xd:desc>Returns contents of Reference datatype element</xd:desc>
         <xd:param name="useExtension">Boolean to control whether the NL extension should be used to output the reference. Defaults to false.</xd:param>
@@ -118,8 +108,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Produces a FHIR entry element with a PractitionerRole resource</xd:desc>
-        <xd:param name="uuid">If false and (zorgverlener_identificatie_nummer | health_professional_identification_number) have a file generate an id/fullUrl from that. Otherwise generate uuid from scratch. Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
+        <xd:desc>Produces a FHIR entry element with a PractitionerRole resource for HealthProfessional</xd:desc>
+        <xd:param name="uuid">If false and (zorgverlener_identificatie_nummer | health_professional_identification_number) generate from that. Otherwise generate uuid from scratch. Generating a uuid from scratch limits reproduction of the same output as the uuids will be different every time.</xd:param>
         <xd:param name="entryFullUrl">Optional. Value for the entry.fullUrl</xd:param>
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.PractitionerRole.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
@@ -177,9 +167,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="logicalId">PractitionerRole.id value</xd:param>
-        <xd:param name="in">Node to consider in the creation of a PractitionerRole resource</xd:param>
+        <xd:desc>Mapping of HCIM HealthProfessional concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole">nl-core-practitionerrole</xd:a>.</xd:desc>
+        <xd:param name="logicalId">Optional FHIR logical id for the record.</xd:param>
+        <xd:param name="in">Node to consider in the creation of the PractitionerRole resource for HealthProfessional.</xd:param>
         <xd:param name="practitionerRef">Optional. Reference datatype elements for the Practitioner that holds the person data</xd:param>
         <xd:param name="organizationRef">Optional. Reference datatype elements for the Organization that holds the organization data</xd:param>
     </xd:doc>
@@ -203,9 +193,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:if>
+                    
                     <meta>
                         <profile value="{$profileValue}"/>
                     </meta>
+                    
                     <xsl:if test="$practitionerRef">
                         <practitioner>
                             <xsl:copy-of select="$practitionerRef[self::f:extension]"/>
@@ -214,6 +206,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:copy-of select="$practitionerRef[self::f:display]"/>
                         </practitioner>
                     </xsl:if>
+                    
                     <xsl:if test="$organizationRef">
                         <organization>
                             <xsl:copy-of select="$organizationRef[self::f:extension]"/>
@@ -222,15 +215,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:copy-of select="$organizationRef[self::f:display]"/>
                         </organization>
                     </xsl:if>
-                    <!-- See for details why this was deactivated: https://simplifier.net/NictizSTU3-Zib2017/nl-core-practitionerrole/~overview -->
-                    <!--<xsl:for-each select="zorgverlener_rol | health_professional_role">
-                        <code>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </code>
-                    </xsl:for-each>-->
-                    <xsl:for-each select="specialisme | specialty">
+                    
+                    <xsl:for-each select="(specialisme | specialty)[@code]">
                         <xsl:variable name="display" select="@displayName[not(. = '')]"/>
                         <specialty>
                             <xsl:call-template name="code-to-CodeableConcept">
@@ -242,7 +228,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <xsl:attribute name="inCodeSystem" select="@hl7CodeSystem"/>
                                             <xsl:attribute name="code" select="@hl7Code"/>
                                             <xsl:attribute name="codeSystem" select="@hl7CodeSystem"/>
-                                                <!-- reuse original displayName -->
+                                            <!-- reuse original displayName -->
                                             <xsl:attribute name="displayName" select="($display, @displayName)[1]"/>
                                         </map>
                                     </xsl:for-each>
@@ -250,12 +236,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </specialty>
                     </xsl:for-each>
-                    <!-- telecom -->
+                    
+                    <!-- in some data sets the contact_information is unfortunately unnecessarily nested in an extra group, hence the extra predicate -->
                     <!-- MM-2693 Filter private contact details -->
-                    <xsl:call-template name="nl-core-contactpoint-1.0">
-                        <xsl:with-param name="in" select="contactgegevens | contact_information" as="element()*"/>
-                        <xsl:with-param name="filterprivate" select="true()" as="xs:boolean"/>
-                    </xsl:call-template>
+                    <xsl:for-each select=".//(contactgegevens[not(contactgegevens)][not(ancestor::patient)] | contact_information[not(contact_information)][not(ancestor::patient)])">
+                        <xsl:call-template name="nl-core-contactpoint-1.0">
+                            <xsl:with-param name="in" select="."/>
+                            <xsl:with-param name="filterprivate" select="true()" as="xs:boolean"/>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    
                 </PractitionerRole>
             </xsl:variable>
 

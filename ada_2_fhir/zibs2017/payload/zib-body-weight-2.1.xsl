@@ -12,6 +12,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 
+    <!--The name of this stylesheet should actually have been 'zib-body-weight-2.0.xsl' as it corresponds to the zib-BodyWeight profile of version 2.0.x, but this has not been corrected to stay compatible with already existing references to this stylesheet.-->
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
@@ -172,6 +173,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:otherwise>
                         </xsl:choose>
                     </effectiveDateTime>
+                    
+                    <!-- performer is mandatory in FHIR profile, we have no information in MP, so we are hardcoding data-absent reason -->
+                    <!-- https://bits.nictiz.nl/browse/MM-434 -->
+                    <performer>
+                        <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                            <valueCode value="unknown"/>
+                        </extension>
+                        <display value="onbekend"/>
+                    </performer>
                     
                     <xsl:for-each select="(gewicht_waarde | weight_value)[@value]">
                         <valueQuantity>

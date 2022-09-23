@@ -12,21 +12,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:f="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <!-- import because we want to be able to override the param for macAddress for UUID generation and the param for referById -->
-    <xsl:import href="../../../../zibs2017/payload/package-2.0.5.xsl"/>
-    <xsl:import href="zib-advancedirective-2.1.xsl"/>
-    <xsl:import href="zib-alcoholuse-2.1.xsl"/>
-    <xsl:import href="zib-bloodpressure-3.0.xsl"/>
-    <xsl:import href="zib-druguse-2.1.xsl"/>
-    <xsl:import href="zib-encounter-2.1.xsl"/>
-    <xsl:import href="zib-functionalormentalstatus-2.1.xsl"/>
-    <xsl:import href="zib-livingsituation-2.1.xsl"/>
-    <xsl:import href="zib-medicaldevice-2.2.xsl"/>
-    <xsl:import href="zib-nutritionadvice-2.1.xsl"/>
-    <xsl:import href="zib-payer-2.0.xsl"/>
-    <xsl:import href="zib-procedure-2.1.xsl"/>
-    <xsl:import href="zib-tobaccouse-2.1.xsl"/>
-    <xsl:import href="zib-treatmentdirective-2.2.xsl"/>
-    <xsl:import href="zib-vaccination-2.1.xsl"/>
+    <xsl:import href="../../../../zibs2017/payload/package-2.2.x.xsl"/>
     
     <xd:doc scope="stylesheet">
         <xd:desc>
@@ -67,7 +53,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="adaPatient" select="hcimroot/subject/patient/patient"/>
                 
                 <!--Zibs that result in only a single resource, or  resources that have no special conditions-->
-                <xsl:if test="local-name() = ('advance_directive', 'alcohol_use', 'alert', 'allergy_intolerance', 'blood_pressure', 'body_height', 'body_weight', 'drug_use', 'encounter', 'functional_or_mental_status', 'living_situation', 'medical_device', 'nutrition_advice', 'patient', 'payer', 'tobacco_use', 'treatment_directive', 'vaccination')">
+                <xsl:if test="local-name() = ('advance_directive', 'alcohol_use', 'alert', 'allergy_intolerance', 'blood_pressure', 'body_height', 'body_weight', 'contact', 'drug_use', 'encounter', 'functional_or_mental_status', 'health_professional', 'living_situation', 'nutrition_advice', 'patient', 'payer', 'problem', 'tobacco_use', 'treatment_directive')">
                     <entry xmlns="http://hl7.org/fhir">
                         <xsl:if test="local-name() = 'advance_directive'">
                             <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Consent', false())}"/>
@@ -117,7 +103,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:if test="local-name() = 'body_height'">
                             <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>
                             <resource>
-                                <xsl:call-template name="zib-BodyHeight-2.1">
+                                <xsl:call-template name="zib-BodyHeight-2.x">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
                                 </xsl:call-template>
@@ -126,7 +112,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:if test="local-name() = 'body_weight'">
                             <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>
                             <resource>
-                                <xsl:call-template name="zib-BodyWeight-2.1">
+                                <xsl:call-template name="zib-BodyWeight-2.x">
+                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                </xsl:call-template>
+                            </resource>
+                        </xsl:if>
+                        <xsl:if test="local-name() = 'contact'">
+                            <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'RelatedPerson', false())}"/>
+                            <resource>
+                                <xsl:call-template name="nl-core-relatedperson-2.0">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
                                 </xsl:call-template>
@@ -159,19 +154,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:call-template>
                             </resource>
                         </xsl:if>
+                        <xsl:if test="local-name() = 'health_professional'">
+                            <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Practitioner', false())}"/>
+                            <resource>
+                                <xsl:call-template name="nl-core-practitioner-2.0">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </resource>
+                        </xsl:if>
                         <xsl:if test="local-name() = 'living_situation'">
                             <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>
                             <resource>
                                 <xsl:call-template name="zib-LivingSituation-2.1">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                </xsl:call-template>
-                            </resource>
-                        </xsl:if>
-                        <xsl:if test="local-name() = 'medical_device'">
-                            <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'DeviceUseStatement', false())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-MedicalDevice-2.2">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
                                 </xsl:call-template>
@@ -203,6 +197,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:call-template>
                             </resource>
                         </xsl:if>
+                        <xsl:if test="local-name() = 'problem'">
+                            <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Condition', false())}"/>
+                            <resource>
+                                <xsl:call-template name="zib-Problem-3.0">
+                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                </xsl:call-template>
+                            </resource>
+                        </xsl:if>
                         <xsl:if test="local-name() = 'tobacco_use'">
                             <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>
                             <resource>
@@ -221,15 +224,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:call-template>
                             </resource>
                         </xsl:if>
-                        <xsl:if test="local-name() = 'vaccination'">
-                            <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Immunization', false())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-Vaccination-2.1">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                </xsl:call-template>
-                            </resource>
-                        </xsl:if>
                         <search>
                             <mode value="match"/>
                         </search>
@@ -237,7 +231,81 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
                 
                 <!--Additional resources or resources with special conditions-->
+                <xsl:if test="local-name() = 'health_professional'">
+                    <entry>
+                        <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'PractitionerRole', false())}"/>
+                        <resource>
+                            <xsl:call-template name="nl-core-practitionerrole-2.0">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </resource>
+                        <search>
+                            <mode value="match"/>
+                        </search>
+                    </entry>
+                </xsl:if>
+                
+                <xsl:if test="local-name() = 'laboratory_test_result'">
+                    <xsl:if test="panel_or_battery[@code]">
+                        <entry>
+                            <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>
+                            <resource>
+                                <xsl:call-template name="zib-LaboratoryTestResult-PanelObservation-2.1">
+                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                </xsl:call-template>
+                            </resource>
+                            <search>
+                                <mode value="match"/>
+                            </search>
+                        </entry>
+                    </xsl:if>
+                    
+                    <xsl:for-each select="laboratory_test">
+                        <entry>
+                            <fullUrl value="{nf:getUriFromAdaId(../hcimroot/identification_number, 'Observation', false())}"/>
+                            <resource>
+                                <xsl:call-template name="zib-LaboratoryTestResult-Observation-2.1">
+                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                </xsl:call-template>
+                            </resource>
+                            <search>
+                                <mode value="match"/>
+                            </search>
+                        </entry>
+                    </xsl:for-each>
+                    
+                    <xsl:for-each select="specimen">
+                        <entry>
+                            <fullUrl value="{nf:getUriFromAdaId(../hcimroot/identification_number, 'Specimen', false())}"/>
+                            <resource>
+                                <xsl:call-template name="zib-LaboratoryTestResult-Specimen-2.1">
+                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                </xsl:call-template>
+                            </resource>
+                            <search>
+                                <mode value="match"/>
+                            </search>
+                        </entry>
+                    </xsl:for-each> 
+                </xsl:if>
+                
                 <xsl:if test="local-name() = 'medical_device'">
+                    <entry>
+                        <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'DeviceUseStatement', false())}"/>
+                        <resource>
+                            <xsl:call-template name="zib-MedicalDevice-2.2">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                            </xsl:call-template>
+                        </resource>
+                        <search>
+                            <mode value="match"/>
+                        </search>
+                    </entry>
+                    
                     <entry>
                         <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Device', false())}"/>
                         <resource>
@@ -283,11 +351,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:if>
                 </xsl:if>
                 
-                <xsl:if test="local-name() = 'vaccination' and (gewenste_datum_hervaccinatie | prefered_date_for_revaccination)[@value]">
+                <xsl:if test="local-name() = 'vaccination'">
                     <entry>
-                        <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'ImmunizationRecommendation', false())}"/>
+                        <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Immunization', false())}"/>
                         <resource>
-                            <xsl:call-template name="zib-VaccinationRecommendation-2.0">
+                            <xsl:call-template name="zib-Vaccination-2.1">
                                 <xsl:with-param name="in" select="."/>
                                 <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
                             </xsl:call-template>
@@ -296,7 +364,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <mode value="match"/>
                         </search>
                     </entry>
+                    
+                    <xsl:if test="(gewenste_datum_hervaccinatie | prefered_date_for_revaccination)[@value]">
+                        <entry>
+                            <fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'ImmunizationRecommendation', false())}"/>
+                            <resource>
+                                <xsl:call-template name="zib-VaccinationRecommendation-2.0">
+                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                </xsl:call-template>
+                            </resource>
+                            <search>
+                                <mode value="match"/>
+                            </search>
+                        </entry>
+                    </xsl:if>
                 </xsl:if>
+                
             </xsl:for-each>
         </xsl:variable>
         
