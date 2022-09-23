@@ -91,6 +91,9 @@
             </xslt>
             
             <xslt style="${narrativegenerator.dir}/../util/formatXML.xsl" basedir="${temp.dir}" destdir="@{in.dir.absolute}">
+                <factory name="org.apache.xalan.processor.TransformerFactoryImpl"/>
+                <classpath location="${serializer.jar}"/>
+                <classpath location="${xalan.jar}"/>
                 <mapper type="identity"/>
             </xslt>
             

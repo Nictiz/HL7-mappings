@@ -300,10 +300,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <map hl7Code="GC" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Geboortecentrum"/>
         <map hl7Code="DIA" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Dialysecentrum"/>
     </xsl:variable>
-
+    
+    <!-- 2022-09-07 oidAORTAApplicatieID Added on https://hl7.nl/wiki/index.php?title=OIDs_en_FHIR_System_URIs -->
     <xsl:variable name="oidMap" as="element()+">
         <map oid="{$oidAGB}" uri="http://fhir.nl/fhir/NamingSystem/agb-z" displayName="AGB-Z"/>
         <map oid="{$oidAGBSpecialismen}" displayName="Vektis AGB-medische specialismen"/>
+        <map oid="{$oidAORTAApplicatieID}" uri="http://fhir.nl/fhir/NamingSystem/aorta-app-id" displayName="AORTA ApplicatieID"/>
         <map oid="{$oidATC}" uri="http://www.whocc.no/atc" displayName="Anatomic Therapeutic Classification (ATC)"/>
         <map oid="{$oidBIGregister}" uri="http://fhir.nl/fhir/NamingSystem/big" displayName="BIG"/>
         <map oid="{$oidBurgerservicenummer}" uri="http://fhir.nl/fhir/NamingSystem/bsn" displayName="BSN"/>
