@@ -22,7 +22,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- ============================================================================================== -->
     
     <xsl:variable name="labObservations" as="element()*">
-        <xsl:for-each-group select="//laboratory_test[not(laboratory_test)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
+        <xsl:for-each-group select="//(laboratorium_test[not(laboratorium_test)] | laboratory_test[not(laboratory_test)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
             <xsl:for-each select="current-group()">
                 <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
                 <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
@@ -31,7 +31,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:value-of select="current-grouping-key()"/>
                     </group-key>
                     <reference-display xmlns="">
-                        <xsl:value-of select="(test_code | test_result)/(@displayName | @originalText)"/>
+                        <xsl:value-of select="(test_code | test_uitslag | test_result)/(@displayName | @originalText)"/>
                     </reference-display>
                     <xsl:apply-templates select="." mode="doLaboratoryResultObservationEntry-2.1">
                         <xsl:with-param name="uuid" select="$uuid"/>
@@ -45,7 +45,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template name="laboratoryResultObservationReference" match="laboratory_test[not(laboratory_test)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | laboratory_test[not(laboratory_test)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doLaboratoryResultObservationReference-2.1" as="element()+">
+    <xsl:template name="laboratoryResultObservationReference" match="(laboratorium_test[not(laboratorium_test)] | laboratory_test[not(laboratory_test)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doLaboratoryResultObservationReference-2.1" as="element()+">
         <xsl:variable name="theIdentifier" select="identificatie_nummer[@value] | identification_number[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$labObservations[group-key = $theGroupKey]" as="element()?"/>
@@ -77,9 +77,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Observation.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="laboratoryResultObservationEntry" match="laboratory_test[not(laboratory_test)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | laboratory_test[not(laboratory_test)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doLaboratoryResultObservationEntry-2.1" as="element(f:entry)">
+    <xsl:template name="laboratoryResultObservationEntry" match="(laboratorium_test[not(laboratorium_test)] | laboratory_test[not(laboratory_test)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doLaboratoryResultObservationEntry-2.1" as="element(f:entry)">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
-        <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
+        <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value] | ancestor::bundle//subject//patient[not(patient)][*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
         
         <xsl:param name="entryFullUrl">
@@ -136,10 +136,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-LaboratoryTestResult-PanelObservation-2.1" match="laboratorium_uitslag[not(laboratorium_uitslag)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | laboratory_test_result[not(laboratory_test_result)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Observation)" mode="doZibLaboratoryTestResultPanelObservation-2.1">
+    <xsl:template name="zib-LaboratoryTestResult-PanelObservation-2.1" match="(laboratorium_uitslag[not(laboratorium_uitslag)] | laboratory_test_result[not(laboratory_test_result)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Observation)" mode="doZibLaboratoryTestResultPanelObservation-2.1">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
-        <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
+        <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value] | ancestor::bundle//subject//patient[not(patient)][*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
         
         <xsl:for-each select="$in">
@@ -297,13 +297,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
                     
                     <!--NL-CM:13.1.3	LaboratoryTest	0..*	Container of the LaboratoryTest concept. This container contains all data elements of the LaboratoryTest concept. -->
-                    <!--<xsl:for-each select="laboratorium_test | laboratory_test">
+                    <xsl:for-each select="laboratorium_test | laboratory_test">
                         <related>
+                            <type value="has-member"/>
                             <target>
-                                TO DO reference
+                                <xsl:apply-templates select="." mode="doLaboratoryResultObservationReference-2.1"/>
                             </target>
                         </related>
-                    </xsl:for-each>-->
+                    </xsl:for-each>
                     
                 </Observation>
             </xsl:variable>
@@ -320,10 +321,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-LaboratoryTestResult-Observation-2.1" match="laboratorium_test[not(laboratorium_test)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | laboratory_test[not(laboratory_test)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Observation)" mode="doZibLaboratoryTestResultObservation-2.1">
+    <xsl:template name="zib-LaboratoryTestResult-Observation-2.1" match="(laboratorium_test[not(laboratorium_test)] | laboratory_test[not(laboratory_test)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Observation)" mode="doZibLaboratoryTestResultObservation-2.1">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
-        <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
+        <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value] | ancestor::bundle//subject//patient[not(patient)][*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
         
         <xsl:for-each select="$in">

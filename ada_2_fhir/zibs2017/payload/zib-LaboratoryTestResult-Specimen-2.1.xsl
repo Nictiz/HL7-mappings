@@ -24,7 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- ============================================================================================== -->
 
     <xsl:variable name="labSpecimens" as="element()*">
-        <xsl:for-each-group select="//laboratory_test_result/specimen[.//(@value | @code | @nullFlavor)] | //laboratorium_uitslag/monster[.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
+        <xsl:for-each-group select="//(laboratory_test_result/specimen | //laboratorium_uitslag/monster)[.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
             <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
             <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
             <uniek-materiaal xmlns="">
@@ -45,7 +45,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template name="laboratoryResultSpecimenReference" match="laboratory_test_result/specimen[.//(@value | @code | @nullFlavor)] | laboratorium_uitslag/monster[.//(@value | @code | @nullFlavor)]" mode="doLaboratoryResultSpecimenReference-2.1" as="element()+">
+    <xsl:template name="laboratoryResultSpecimenReference" match="(laboratory_test_result/specimen | laboratorium_uitslag/monster)[.//(@value | @code | @nullFlavor)]" mode="doLaboratoryResultSpecimenReference-2.1" as="element()+">
         <xsl:variable name="theIdentifier" select="identificatie_nummer[@value] | identification_number[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$labSpecimens[group-key = $theGroupKey]" as="element()?"/>
@@ -76,7 +76,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Specimen.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="laboratoryResultSpecimenEntry" match="laboratory_test_result/specimen[.//(@value | @code | @nullFlavor)] | laboratorium_uitslag/monster[.//(@value | @code | @nullFlavor)]" mode="doLaboratoryResultSpecimenEntry-2.1" as="element(f:entry)">
+    <xsl:template name="laboratoryResultSpecimenEntry" match="(laboratory_test_result/specimen | laboratorium_uitslag/monster)[.//(@value | @code | @nullFlavor)]" mode="doLaboratoryResultSpecimenEntry-2.1" as="element(f:entry)">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value] | ancestor::*/hcimroot/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
@@ -120,7 +120,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-LaboratoryTestResult-Specimen-2.1" match="laboratorium_test[not(laboratorium_test)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | laboratory_test[not(laboratory_test)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element()" mode="doZibLaboratoryTestResultSpecimen-2.1">
+    <xsl:template name="zib-LaboratoryTestResult-Specimen-2.1" match="(laboratorium_test[not(laboratorium_test)] | laboratory_test[not(laboratory_test)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element()" mode="doZibLaboratoryTestResultSpecimen-2.1">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
