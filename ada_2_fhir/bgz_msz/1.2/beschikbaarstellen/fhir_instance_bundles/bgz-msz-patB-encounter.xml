@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="772cb139-3b48-11ed-1981-020000000000"/>
+   <id value="dfffddb9-3da8-11ed-1919-020000000000"/>
    <type value="searchset"/>
    <total value="3"/>
    <entry>
-      <fullUrl value="urn:uuid:772cb13c-3b48-11ed-1981-020000000000"/>
+      <fullUrl value="urn:uuid:dfffddbc-3da8-11ed-1919-020000000000"/>
       <resource>
          <Encounter>
             <meta>
@@ -29,6 +29,10 @@
                            <th>Periode</th>
                            <td>${DATE, T, D, +1}T07:00:00+02:00 - ${DATE, T, D, +2}T09:00:00+02:00</td>
                         </tr>
+                        <tr>
+                           <th>Problem/Procedure</th>
+                           <td>mastectomie met huidreductie</td>
+                        </tr>
                      </tbody>
                   </table>
                </div>
@@ -49,13 +53,19 @@
                <display value="Inpatient"/>
             </class>
             <subject>
-               <reference value="urn:uuid:772cc54c-3b48-11ed-1981-020000000000"/>
+               <reference value="urn:uuid:dffff1cc-3da8-11ed-1919-020000000000"/>
                <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
             </subject>
             <period>
                <start value="${DATE, T, D, +1}T07:00:00+02:00"/>
                <end value="${DATE, T, D, +2}T09:00:00+02:00"/>
             </period>
+            <diagnosis>
+               <condition>
+                  <reference value="urn:uuid:dffff1fb-3da8-11ed-1919-020000000000"/>
+                  <display value="mastectomie met huidreductie"/>
+               </condition>
+            </diagnosis>
             <hospitalization>
                <admitSource>
                   <coding>
@@ -79,7 +89,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:772ccb85-3b48-11ed-1981-020000000000"/>
+      <fullUrl value="urn:uuid:dffff805-3da8-11ed-1919-020000000000"/>
       <resource>
          <Encounter>
             <meta>
@@ -103,6 +113,10 @@
                            <th>Periode</th>
                            <td>${DATE, T, D, +2}T16:00:00+02:00 - ${DATE, T, D, +2}T17:00:00+02:00</td>
                         </tr>
+                        <tr>
+                           <th>Problem/Procedure</th>
+                           <td>postoperatieve wondinfectie</td>
+                        </tr>
                      </tbody>
                   </table>
                </div>
@@ -123,13 +137,19 @@
                <display value="Emergency"/>
             </class>
             <subject>
-               <reference value="urn:uuid:772cc54c-3b48-11ed-1981-020000000000"/>
+               <reference value="urn:uuid:dffff1cc-3da8-11ed-1919-020000000000"/>
                <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
             </subject>
             <period>
                <start value="${DATE, T, D, +2}T16:00:00+02:00"/>
                <end value="${DATE, T, D, +2}T17:00:00+02:00"/>
             </period>
+            <diagnosis>
+               <condition>
+                  <reference value="urn:uuid:dffff838-3da8-11ed-1919-020000000000"/>
+                  <display value="postoperatieve wondinfectie"/>
+               </condition>
+            </diagnosis>
             <hospitalization>
                <admitSource>
                   <coding>
@@ -146,7 +166,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:772ccbf0-3b48-11ed-1981-020000000000"/>
+      <fullUrl value="urn:uuid:dffff870-3da8-11ed-1919-020000000000"/>
       <resource>
          <Encounter>
             <meta>
@@ -170,6 +190,16 @@
                            <th>Periode</th>
                            <td>${DATE, T, D, +2}T17:00:00+02:00 - ${DATE, T, D, +3}T10:00:00+02:00</td>
                         </tr>
+                        <tr>
+                           <th>Problem/Procedure</th>
+                           <td>incisie en drainage van diep abces</td>
+                        </tr>
+                        <tr>
+                           <th>Participant</th>
+                           <td>
+                              <div>Maria Francisca M.F. Maria van 't Hoen Verheul Antonius Franciscus A.F. Ton Zoomers || Chirurg</div>
+                           </td>
+                        </tr>
                      </tbody>
                   </table>
                </div>
@@ -190,13 +220,31 @@
                <display value="Inpatient"/>
             </class>
             <subject>
-               <reference value="urn:uuid:772cc54c-3b48-11ed-1981-020000000000"/>
+               <reference value="urn:uuid:dffff1cc-3da8-11ed-1919-020000000000"/>
                <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
             </subject>
+            <participant>
+               <individual>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:dffff77b-3da8-11ed-1919-020000000000"/>
+                        <display value="Maria Francisca M.F. Maria van 't Hoen Verheul Antonius Franciscus A.F. Ton Zoomers || Chirurg"/>
+                     </valueReference>
+                  </extension>
+                  <reference value="urn:oid:2.16.840.1.113883.2.4.6.1.151515"/>
+                  <display value="Maria Francisca M.F. Maria van 't Hoen Verheul Antonius Franciscus A.F. Ton Zoomers"/>
+               </individual>
+            </participant>
             <period>
                <start value="${DATE, T, D, +2}T17:00:00+02:00"/>
                <end value="${DATE, T, D, +3}T10:00:00+02:00"/>
             </period>
+            <diagnosis>
+               <condition>
+                  <reference value="urn:uuid:dffff8e4-3da8-11ed-1919-020000000000"/>
+                  <display value="incisie en drainage van diep abces"/>
+               </condition>
+            </diagnosis>
             <hospitalization>
                <dischargeDisposition>
                   <coding>
@@ -213,7 +261,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:772cc54c-3b48-11ed-1981-020000000000"/>
+      <fullUrl value="urn:uuid:dffff1cc-3da8-11ed-1919-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -355,7 +403,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:772cb9a8-3b48-11ed-1981-020000000000"/>
+      <fullUrl value="urn:uuid:dfffe2f4-3da8-11ed-1919-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -527,7 +575,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:772cc576-3b48-11ed-1981-020000000000"/>
+      <fullUrl value="urn:uuid:dffff1f6-3da8-11ed-1919-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -554,7 +602,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:772ccaf9-3b48-11ed-1981-020000000000"/>
+      <fullUrl value="urn:uuid:dffff779-3da8-11ed-1919-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -581,7 +629,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:772cc574-3b48-11ed-1981-020000000000"/>
+      <fullUrl value="urn:uuid:dffff1f4-3da8-11ed-1919-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -596,7 +644,7 @@
                         <tr>
                            <th>Zorgverlener</th>
                            <td>
-                              <div>urn:uuid:772cb9a8-3b48-11ed-1981-020000000000</div>
+                              <div>urn:uuid:dfffe2f4-3da8-11ed-1919-020000000000</div>
                            </td>
                         </tr>
                      </tbody>
@@ -604,7 +652,7 @@
                </div>
             </text>
             <practitioner>
-               <reference value="urn:uuid:772cb9a8-3b48-11ed-1981-020000000000"/>
+               <reference value="urn:uuid:dfffe2f4-3da8-11ed-1919-020000000000"/>
             </practitioner>
          </PractitionerRole>
       </resource>
@@ -613,7 +661,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:772ccafb-3b48-11ed-1981-020000000000"/>
+      <fullUrl value="urn:uuid:dffff77b-3da8-11ed-1919-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -652,7 +700,7 @@
                <display value="Maria Francisca M.F. Maria van 't Hoen Verheul Antonius Franciscus A.F. Ton Zoomers"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:772ccaf9-3b48-11ed-1981-020000000000"/>
+               <reference value="urn:uuid:dffff779-3da8-11ed-1919-020000000000"/>
                <display value="Organisatie informatie: naam eigen ziekenhuis"/>
             </organization>
             <specialty>
@@ -682,7 +730,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:772ccb3c-3b48-11ed-1981-020000000000"/>
+      <fullUrl value="urn:uuid:dffff7bc-3da8-11ed-1919-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -721,7 +769,7 @@
                <display value="Maria Francisca M.F. Maria van 't Hoen Verheul Johanna J. Joke de Bruin"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:772ccaf9-3b48-11ed-1981-020000000000"/>
+               <reference value="urn:uuid:dffff779-3da8-11ed-1919-020000000000"/>
                <display value="Organisatie informatie: naam eigen ziekenhuis"/>
             </organization>
             <specialty>
@@ -751,7 +799,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:772ccac4-3b48-11ed-1981-020000000000"/>
+      <fullUrl value="urn:uuid:dffff744-3da8-11ed-1919-020000000000"/>
       <resource>
          <Condition>
             <meta>
@@ -830,7 +878,7 @@
                </coding>
             </bodySite>
             <subject>
-               <reference value="urn:uuid:772cc54c-3b48-11ed-1981-020000000000"/>
+               <reference value="urn:uuid:dffff1cc-3da8-11ed-1919-020000000000"/>
                <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
             </subject>
             <onsetDateTime value="2019-03-28"/>
@@ -841,7 +889,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:772ccbb8-3b48-11ed-1981-020000000000"/>
+      <fullUrl value="urn:uuid:dffff838-3da8-11ed-1919-020000000000"/>
       <resource>
          <Condition>
             <meta>
@@ -913,7 +961,7 @@
                </coding>
             </bodySite>
             <subject>
-               <reference value="urn:uuid:772cc54c-3b48-11ed-1981-020000000000"/>
+               <reference value="urn:uuid:dffff1cc-3da8-11ed-1919-020000000000"/>
                <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
             </subject>
             <onsetDateTime value="${DATE, T, D, +2}"/>
@@ -925,7 +973,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:772cc57b-3b48-11ed-1981-020000000000"/>
+      <fullUrl value="urn:uuid:dffff1fb-3da8-11ed-1919-020000000000"/>
       <resource>
          <Procedure>
             <meta>
@@ -935,7 +983,8 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Verrichting. Subject: Maria Francisca M.F. Maria van 't Hoen Verheul. Categorie: , Status: is bezig</caption>
+                     <caption>Verrichting. Subject: Maria Francisca M.F. Maria van 't Hoen Verheul. Categorie: , Status: is bezig<span style="display: block;">Uitvoerende: Maria Francisca M.F. Maria van 't Hoen Verheul Antonius Franciscus A.F. Ton Zoomers || Chirurg</span>
+                     </caption>
                      <tbody>
                         <tr>
                            <td>
@@ -952,10 +1001,18 @@
                               <span title="Right (24028007 - SNOMED CT)">Right</span>
                            </td>
                         </tr>
+                        <tr>
+                           <th>Reden</th>
+                           <td>maligne neoplasma van mamma</td>
+                        </tr>
                      </tbody>
                   </table>
                </div>
             </text>
+            <request>
+               <reference value="urn:uuid:dffff1fb-3da8-11ed-1919-020000000000"/>
+               <display value="mastectomie met huidreductie"/>
+            </request>
             <status value="in-progress"/>
             <category>
                <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
@@ -970,13 +1027,29 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:772cc54c-3b48-11ed-1981-020000000000"/>
+               <reference value="urn:uuid:dffff1cc-3da8-11ed-1919-020000000000"/>
                <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
             </subject>
             <performedPeriod>
                <start value="${DATE, T, D, +1}T10:00:00+02:00"/>
                <end value="${DATE, T, D, +1}T12:00:00+02:00"/>
             </performedPeriod>
+            <performer>
+               <actor>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:dffff77b-3da8-11ed-1919-020000000000"/>
+                        <display value="Maria Francisca M.F. Maria van 't Hoen Verheul Antonius Franciscus A.F. Ton Zoomers || Chirurg"/>
+                     </valueReference>
+                  </extension>
+                  <reference value="urn:oid:2.16.840.1.113883.2.4.6.1.151515"/>
+                  <display value="Maria Francisca M.F. Maria van 't Hoen Verheul Antonius Franciscus A.F. Ton Zoomers"/>
+               </actor>
+            </performer>
+            <reasonReference>
+               <reference value="urn:uuid:dffff744-3da8-11ed-1919-020000000000"/>
+               <display value="maligne neoplasma van mamma"/>
+            </reasonReference>
             <bodySite>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
                   <valueCodeableConcept>
@@ -1000,83 +1073,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:772cc57b-3b48-11ed-1981-020000000000"/>
-      <resource>
-         <ProcedureRequest>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ProcedureRequest"/>
-            </meta>
-            <text>
-               <status value="extensions"/>
-               <div xmlns="http://www.w3.org/1999/xhtml">
-                  <table>
-                     <caption>Verrichtingaanvraag. Subject: Maria Francisca M.F. Maria van 't Hoen Verheul. Status: actief<span style="display: block;">Intentie: plan</span>
-                     </caption>
-                     <tbody>
-                        <tr>
-                           <td>
-                              <span title="mastectomie met huidreductie (172043006 - SNOMED CT)">mastectomie met huidreductie</span>
-                           </td>
-                           <td>
-                              <div>Wanneer: ${DATE, T, D, +1}T10:00:00+02:00 - ${DATE, T, D, +1}T12:00:00+02:00</div>
-                           </td>
-                        </tr>
-                        <tr>
-                           <th>Reden</th>
-                           <td/>
-                        </tr>
-                        <tr>
-                           <td>Deel van lichaam</td>
-                           <td>
-                              <span title="structuur van mamma (76752008 - SNOMED CT)">structuur van mamma</span>
-                              <span title="Right (24028007 - SNOMED CT)">Right</span>
-                           </td>
-                        </tr>
-                     </tbody>
-                  </table>
-               </div>
-            </text>
-            <status value="active"/>
-            <intent value="plan"/>
-            <code>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="172043006"/>
-                  <display value="mastectomie met huidreductie"/>
-               </coding>
-            </code>
-            <subject>
-               <reference value="urn:uuid:772cc54c-3b48-11ed-1981-020000000000"/>
-               <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
-            </subject>
-            <occurrencePeriod>
-               <start value="${DATE, T, D, +1}T10:00:00+02:00"/>
-               <end value="${DATE, T, D, +1}T12:00:00+02:00"/>
-            </occurrencePeriod>
-            <bodySite>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
-                  <valueCodeableConcept>
-                     <coding>
-                        <system value="http://snomed.info/sct"/>
-                        <code value="24028007"/>
-                        <display value="Right"/>
-                     </coding>
-                  </valueCodeableConcept>
-               </extension>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="76752008"/>
-                  <display value="structuur van mamma"/>
-               </coding>
-            </bodySite>
-         </ProcedureRequest>
-      </resource>
-      <search>
-         <mode value="include"/>
-      </search>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:772ccc64-3b48-11ed-1981-020000000000"/>
+      <fullUrl value="urn:uuid:dffff8e4-3da8-11ed-1919-020000000000"/>
       <resource>
          <Procedure>
             <meta>
@@ -1103,6 +1100,10 @@
                               <span title="Right (24028007 - SNOMED CT)">Right</span>
                            </td>
                         </tr>
+                        <tr>
+                           <th>Reden</th>
+                           <td>postoperatieve wondinfectie</td>
+                        </tr>
                      </tbody>
                   </table>
                </div>
@@ -1121,12 +1122,16 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:772cc54c-3b48-11ed-1981-020000000000"/>
+               <reference value="urn:uuid:dffff1cc-3da8-11ed-1919-020000000000"/>
                <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
             </subject>
             <performedPeriod>
                <start value="${DATE, T, D, +2}T17:45:00+02:00"/>
             </performedPeriod>
+            <reasonReference>
+               <reference value="urn:uuid:dffff838-3da8-11ed-1919-020000000000"/>
+               <display value="postoperatieve wondinfectie"/>
+            </reasonReference>
             <bodySite>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
                   <valueCodeableConcept>
@@ -1150,7 +1155,116 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:772ccc64-3b48-11ed-1981-020000000000"/>
+      <fullUrl value="urn:uuid:dffff1fb-3da8-11ed-1919-020000000000"/>
+      <resource>
+         <ProcedureRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ProcedureRequest"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Verrichtingaanvraag. Subject: Maria Francisca M.F. Maria van 't Hoen Verheul. Status: actief<span style="display: block;">Intentie: plan</span>
+                        <span style="display: block;">Aangevraagd door: Maria Francisca M.F. Maria van 't Hoen Verheul Johanna J. Joke de Bruin || Internist</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <span title="mastectomie met huidreductie (172043006 - SNOMED CT)">mastectomie met huidreductie</span>
+                           </td>
+                           <td>
+                              <div>Wanneer: ${DATE, T, D, +1}T10:00:00+02:00 - ${DATE, T, D, +1}T12:00:00+02:00</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Beoogde uitvoerende</th>
+                           <td>
+                              <div>Maria Francisca M.F. Maria van 't Hoen Verheul Antonius Franciscus A.F. Ton Zoomers || Chirurg</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Reden</th>
+                           <td>maligne neoplasma van mamma</td>
+                        </tr>
+                        <tr>
+                           <td>Deel van lichaam</td>
+                           <td>
+                              <span title="structuur van mamma (76752008 - SNOMED CT)">structuur van mamma</span>
+                              <span title="Right (24028007 - SNOMED CT)">Right</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <status value="active"/>
+            <intent value="plan"/>
+            <code>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="172043006"/>
+                  <display value="mastectomie met huidreductie"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:dffff1cc-3da8-11ed-1919-020000000000"/>
+               <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
+            </subject>
+            <occurrencePeriod>
+               <start value="${DATE, T, D, +1}T10:00:00+02:00"/>
+               <end value="${DATE, T, D, +1}T12:00:00+02:00"/>
+            </occurrencePeriod>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:dffff7bc-3da8-11ed-1919-020000000000"/>
+                        <display value="Maria Francisca M.F. Maria van 't Hoen Verheul Johanna J. Joke de Bruin || Internist"/>
+                     </valueReference>
+                  </extension>
+                  <reference value="urn:oid:2.16.840.1.113883.2.4.6.1.141414"/>
+                  <display value="Maria Francisca M.F. Maria van 't Hoen Verheul Johanna J. Joke de Bruin"/>
+               </agent>
+            </requester>
+            <performer>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                  <valueReference>
+                     <reference value="urn:uuid:dffff77b-3da8-11ed-1919-020000000000"/>
+                     <display value="Maria Francisca M.F. Maria van 't Hoen Verheul Antonius Franciscus A.F. Ton Zoomers || Chirurg"/>
+                  </valueReference>
+               </extension>
+               <reference value="urn:oid:2.16.840.1.113883.2.4.6.1.151515"/>
+               <display value="Maria Francisca M.F. Maria van 't Hoen Verheul Antonius Franciscus A.F. Ton Zoomers"/>
+            </performer>
+            <reasonReference>
+               <reference value="urn:uuid:dffff744-3da8-11ed-1919-020000000000"/>
+               <display value="maligne neoplasma van mamma"/>
+            </reasonReference>
+            <bodySite>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="24028007"/>
+                        <display value="Right"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="76752008"/>
+                  <display value="structuur van mamma"/>
+               </coding>
+            </bodySite>
+         </ProcedureRequest>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:dffff8e4-3da8-11ed-1919-020000000000"/>
       <resource>
          <ProcedureRequest>
             <meta>
@@ -1173,7 +1287,7 @@
                         </tr>
                         <tr>
                            <th>Reden</th>
-                           <td/>
+                           <td>postoperatieve wondinfectie</td>
                         </tr>
                         <tr>
                            <td>Deel van lichaam</td>
@@ -1196,12 +1310,16 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:772cc54c-3b48-11ed-1981-020000000000"/>
+               <reference value="urn:uuid:dffff1cc-3da8-11ed-1919-020000000000"/>
                <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
             </subject>
             <occurrencePeriod>
                <start value="${DATE, T, D, +2}T17:45:00+02:00"/>
             </occurrencePeriod>
+            <reasonReference>
+               <reference value="urn:uuid:dffff838-3da8-11ed-1919-020000000000"/>
+               <display value="postoperatieve wondinfectie"/>
+            </reasonReference>
             <bodySite>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
                   <valueCodeableConcept>

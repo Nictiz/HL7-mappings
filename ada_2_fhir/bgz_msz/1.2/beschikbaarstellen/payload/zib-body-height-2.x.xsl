@@ -37,7 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Returns contents of Reference datatype element</xd:desc>
     </xd:doc>
-    <xsl:template name="bodyHeightReference" match="lichaamslengte[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | body_height[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doBodyHeightReference-2.x">
+    <xsl:template name="bodyHeightReference" match="(lichaamslengte | body_height)[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doBodyHeightReference-2.x">
         <xsl:variable name="theIdentifier" select="(zibroot/identificatienummer | hcimroot/identification_number)[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$bodyHeights[group-key = $theGroupKey]" as="element()?"/>
@@ -68,7 +68,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Observation.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="bodyHeightEntry" match="lichaamslengte[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | body_height[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doBodyHeightEntry-2.x" as="element(f:entry)">
+    <xsl:template name="bodyHeightEntry" match="(lichaamslengte | body_height)[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doBodyHeightEntry-2.x" as="element(f:entry)">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
@@ -115,7 +115,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-BodyHeight-2.x" match="lichaamslengte | body_height" mode="doZibBodyHeight-2.x">
+    <xsl:template name="zib-BodyHeight-2.x" match="(lichaamslengte | body_height)[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doZibBodyHeight-2.x">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>

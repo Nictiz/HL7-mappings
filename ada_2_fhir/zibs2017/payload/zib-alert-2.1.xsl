@@ -112,18 +112,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <meta>
                         <profile value="{$profileValue}"/>
                     </meta>
-        
-                    <!--<xsl:if test="conditie/probleem | condition/problem">
-                        <xsl:for-each select="nf:ada-resolve-reference(conditie/probleem | condition/problem)">
-                            <extension url="http://hl7.org/fhir/StructureDefinition/flag-detail">
-                                <valueReference>
-                                    <xsl:call-template name="_doReference">
-                                        <xsl:with-param name="ResourceType">Condition</xsl:with-param>
-                                    </xsl:call-template>
-                                </valueReference>
-                            </extension>
-                        </xsl:for-each>
-                    </xsl:if>-->
+                    
+                    <xsl:for-each select="conditie/probleem | condition/problem">
+                        <xsl:choose>
+                            <xsl:when test="*">
+                                <extension url="http://hl7.org/fhir/StructureDefinition/flag-detail">
+                                    <valueReference>
+                                        <xsl:apply-templates select="." mode="doProblemReference-3.0"/>
+                                    </valueReference>
+                                </extension>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:for-each select="nf:ada-resolve-reference(.)">
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/flag-detail">
+                                        <valueReference>
+                                            <xsl:call-template name="_doReference">
+                                                <xsl:with-param name="ResourceType">Condition</xsl:with-param>
+                                            </xsl:call-template>
+                                        </valueReference>
+                                    </extension>
+                                </xsl:for-each>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:for-each>
                     
                     <!-- status does not exist in zib but is 1..1 in FHIR profile -->
                     <status>

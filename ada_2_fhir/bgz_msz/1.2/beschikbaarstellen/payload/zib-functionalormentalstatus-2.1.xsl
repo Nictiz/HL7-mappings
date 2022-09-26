@@ -23,7 +23,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-FunctionalOrMentalStatus-2.1" match="functionele_of_mentale_status[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | functional_or_mental_status[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Observation)" mode="doZibFunctionalOrMentalStatus-2.1">
+    <xsl:template name="zib-FunctionalOrMentalStatus-2.1" match="(functionele_of_mentale_status | functional_or_mental_status)[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Observation)" mode="doZibFunctionalOrMentalStatus-2.1">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
@@ -41,13 +41,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="{$profileValue}"/>
                     </meta>
                     
-                    <!--<xsl:for-each select="hulpmiddel | medical_device">
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-FunctionalOrMentalStatus-MedicalDevice">
-                            <valueReference>
-                                <xsl:apply-templates select="$adaProblem" mode="doMedicalDeviceReference-2.2"/>
-                            </valueReference>
-                        </extension>
-                    </xsl:for-each>-->
+                    <xsl:for-each select="hulpmiddel/medisch_hulpmiddel | medical_device/medical_device">
+                        <xsl:choose>
+                            <xsl:when test="*">
+                                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-FunctionalOrMentalStatus-MedicalDevice">
+                                    <valueReference>
+                                        <xsl:apply-templates select="." mode="doMedicalDeviceReference-2.2"/>
+                                    </valueReference>
+                                </extension>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:for-each>
                     
                     <status value="final"/>
                     

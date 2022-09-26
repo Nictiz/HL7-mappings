@@ -34,10 +34,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each-group>
     </xsl:variable>
     
-    <!--<xd:doc>
-        <xd:desc/>
+    <xd:doc>
+        <xd:desc>Returns contents of Reference datatype element</xd:desc>
     </xd:doc>
-    <xsl:template name="advanceDirectiveReference" match="wilsverklaring[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | advance_directive[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doAdvanceDirectiveReference-2.1">
+    <xsl:template name="advanceDirectiveReference" match="(wilsverklaring[not(wilsverklaring)] | advance_directive[not(advance_directive)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doAdvanceDirectiveReference-2.1">
         <xsl:variable name="theIdentifier" select="identificatie_nummer[@value] | identification_number[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$advanceDirectives[group-key = $theGroupKey]" as="element()?"/>
@@ -58,7 +58,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:if test="string-length($theGroupElement/reference-display) gt 0">
             <display value="{$theGroupElement/reference-display}"/>
         </xsl:if>
-    </xsl:template>-->
+    </xsl:template>
     
     <xd:doc>
         <xd:desc>Produces a FHIR entry element with a Consent resource for AdvanceDirective</xd:desc>
@@ -69,7 +69,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Consent.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="advanceDirectiveEntry" match="wilsverklaring[not(wilsverklaring)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | advance_directive[not(advance_directive)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doAdvanceDirectiveEntry-2.1" as="element(f:entry)">
+    <xsl:template name="advanceDirectiveEntry" match="(wilsverklaring[not(wilsverklaring)] | advance_directive[not(advance_directive)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doAdvanceDirectiveEntry-2.1" as="element(f:entry)">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value] | ancestor::bundle//subject//patient[not(patient)][*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
@@ -113,12 +113,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-AdvanceDirective-2.1" match="wilsverklaring[not(wilsverklaring)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | advance_directive[not(advance_directive)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Consent)" mode="doZibAdvanceDirective-2.1">
+    <xsl:template name="zib-AdvanceDirective-2.1" match="(wilsverklaring[not(wilsverklaring)] | advance_directive[not(advance_directive)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Consent)" mode="doZibAdvanceDirective-2.1">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value] | ancestor::bundle//subject//patient[not(patient)][*//@value])[1]" as="element()"/>
-        <!--<xsl:param name="adaProblem" select="disorder/problem" as="element()*"/>-->
-        <!--<xsl:param name="adaRelatedPerson" as="element()"/>-->
         <xsl:param name="dateT" as="xs:date?"/>
         
         <xsl:for-each select="$in">
@@ -133,13 +131,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="{$profileValue}"/>
                     </meta>
                     
-                    <!--<xsl:for-each select="$adaProblem">
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdvanceDirective-Disorder">
-                            <valueReference>
-                                <xsl:apply-templates select="$adaProblem" mode="doProblemReference-2.1"/>
-                            </valueReference>
-                        </extension>
-                    </xsl:for-each>-->
+                    <xsl:for-each select="aandoening/probleem | disorder/problem">
+                        <xsl:choose>
+                            <xsl:when test="*">
+                                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdvanceDirective-Disorder">
+                                    <valueReference>
+                                        <xsl:apply-templates select="." mode="doProblemReference-3.0"/>
+                                    </valueReference>
+                                </extension>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:for-each>
                     
                     <xsl:for-each select="(toelichting | comment)[@value]">
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/Comment">
@@ -203,11 +205,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:choose>
                     </dateTime>
                     
-                    <!--<xsl:for-each select="vertegenwoordiger | representative">
-                        <consentingParty>
-                            <xsl:apply-templates select="$adaRelatedPerson" mode="doRelatedPersonReference-2.0"/>
-                        </consentingParty>
-                    </xsl:for-each>-->
+                    <xsl:for-each select="vertegenwoordiger/contactpersoon | representative/contact">
+                        <xsl:choose>
+                            <xsl:when test="*">
+                                <consentingParty>
+                                    <xsl:apply-templates select="." mode="doRelatedPersonReference-2.0"/>
+                                </consentingParty>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:for-each>
                     
                     <xsl:for-each select="(wilsverklaring_document | living_will_document)[@value]">
                         <sourceAttachment>

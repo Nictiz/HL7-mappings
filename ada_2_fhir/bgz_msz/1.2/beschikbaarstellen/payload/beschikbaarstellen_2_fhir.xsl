@@ -48,28 +48,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="commonEntries" as="element(f:entry)*">
             <xsl:choose>
                 <xsl:when test="bundle/*/local-name() = 'advance_directive'">
-                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $medicalDevices/f:entry"/>
+                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $vaccinations/f:entry"/>
                 </xsl:when>
                 <xsl:when test="bundle/*/local-name() = 'contact'">
-                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $problems/f:entry, $procedures/f:entry, $medicalDevices/f:entry, $advanceDirectives/f:entry"/>
+                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry"/>
                 </xsl:when>
                 <xsl:when test="bundle/*/local-name() = 'health_professional'">
-                    <xsl:copy-of select="$patients/f:entry, $organizations/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $medicalDevices/f:entry, $advanceDirectives/f:entry"/>
+                    <xsl:copy-of select="$patients/f:entry, $organizations/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry"/>
                 </xsl:when>
                 <xsl:when test="bundle/*/local-name() = 'medical_device'">
-                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $advanceDirectives/f:entry"/>
+                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry"/>
                 </xsl:when>
                 <xsl:when test="bundle/*/local-name() = 'patient'">
-                    <xsl:copy-of select="$practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $medicalDevices/f:entry, $advanceDirectives/f:entry"/>
+                    <xsl:copy-of select="$practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry"/>
                 </xsl:when>
                 <xsl:when test="bundle/*/local-name() = 'problem'">
-                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $procedures/f:entry, $medicalDevices/f:entry, $advanceDirectives/f:entry"/>
+                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry"/>
                 </xsl:when>
                 <xsl:when test="bundle/*/local-name() = 'procedure'">
-                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $problems/f:entry, $medicalDevices/f:entry, $advanceDirectives/f:entry"/>
+                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $problems/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry"/>
+                </xsl:when>
+                <xsl:when test="bundle/*/local-name() = 'vaccination'">
+                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $medicalDevices/f:entry, $advanceDirectives/f:entry"/>
+                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>

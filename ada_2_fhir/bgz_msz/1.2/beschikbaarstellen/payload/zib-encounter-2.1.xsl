@@ -23,12 +23,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-Encounter-2.1" match="contact[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | encounter[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Encounter)" mode="doZibEncounter-2.1">
+    <xsl:template name="zib-Encounter-2.1" match="(contact | encounter)[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Encounter)" mode="doZibEncounter-2.1">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
-        <!--<xsl:param name="adaPractitioner" as="element()"/>
-        <xsl:param name="adaProblem" as="element()"/>-->
         <xsl:param name="dateT" as="xs:date?"/>
         
         <xsl:for-each select="$in">
@@ -97,19 +95,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
                     
-                    <!-- Practitioner reference-->
-                    <!--<xsl:for-each select="contact_met/zorgverlener | contact_with/health_professional">
-                        <participant>
-                            <individual>
-                                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                                    <valueReference>
-                                        <xsl:apply-templates select="$adaPractitioner" mode="doPractitionerRoleReference-2.0"/>
-                                    </valueReference>
-                                </extension>
-                                <xsl:apply-templates select="$adaPractitioner" mode="doPractitionerReference-2.0"/>
-                            </individual>
-                        </participant>
-                    </xsl:for-each>-->
+                    <xsl:for-each select="contact_met/zorgverlener | contact_with/health_professional">
+                        <xsl:choose>
+                            <xsl:when test="*">
+                                <participant>
+                                    <individual>
+                                        <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                                            <valueReference>
+                                                <xsl:apply-templates select="." mode="doPractitionerRoleReference-2.0"/>
+                                            </valueReference>
+                                        </extension>
+                                        <xsl:apply-templates select="." mode="doPractitionerReference-2.0"/>
+                                    </individual>
+                                </participant>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:for-each>
                     
                    <xsl:if test="(begin_datum_tijd | start_date_time)[@value] or (eind_datum_tijd | end_date_time)[@value]">
                         <period>
@@ -154,16 +155,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </reason>
                     </xsl:for-each>
                     
-                    <!--TODO Problem Reference 
-                    <xsl:for-each select="(reden_contact/probleem | contact_reason/problem) or (reden_contact/verrichting | contact_reason/procedure)">
-                        <diagnosis>
-                            <condition>
-                                <xsl:call-template name="code-to-CodeableConcept">
-                                    <xsl:with-param name="in" select="problem/@value"/>
-                                </xsl:call-template>
-                            </condition>
-                        </diagnosis>
-                    </xsl:for-each>-->
+                    <xsl:for-each select="reden_contact/probleem | contact_reason/problem">
+                        <xsl:choose>
+                            <xsl:when test="*">
+                                <diagnosis>
+                                    <condition>
+                                        <xsl:apply-templates select="." mode="doProblemReference-3.0"/>
+                                    </condition>
+                                </diagnosis>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:for-each>
+                    
+                    <xsl:for-each select="reden_contact/verrichting | contact_reason/procedure">
+                        <xsl:choose>
+                            <xsl:when test="*">
+                                <diagnosis>
+                                    <condition>
+                                        <xsl:apply-templates select="." mode="doProcedureReference-2.1"/>
+                                    </condition>
+                                </diagnosis>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:for-each>
                     
                     <xsl:if test="(herkomst | origin)[@code] or (bestemming | destination)[@code]">
                         <hospitalization>
@@ -188,20 +202,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </hospitalization>
                     </xsl:if>
                     
-                    <!--<xsl:for-each select="locatie | location">
+                    <!--<xsl:for-each select="locatie/zorgaanbieder | location/healthcare_provider">
                         <serviceProvider>
                                                       
                         </serviceProvider>
-                    </xsl:for-each>-->
-                    
-                    <!-- TODO location/organization Reference-->
-                    <!--<xsl:for-each select="location/healthcare_provider">
-                        <location>
-                             <!-\-Reference to location-\->
-                             <valueReference>
-                                 
-                             </valueReference>
-                        </location>
                     </xsl:for-each>-->
                     
                 </Encounter>

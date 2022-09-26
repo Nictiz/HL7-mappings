@@ -1,11 +1,11 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="de5514c3-3b34-11ed-1219-020000000000"/>
+   <id value="c343faed-3da8-11ed-1919-020000000000"/>
    <type value="searchset"/>
    <total value="4"/>
    <entry>
-      <fullUrl value="urn:uuid:de5514c6-3b34-11ed-1219-020000000000"/>
+      <fullUrl value="urn:uuid:c343faf0-3da8-11ed-1919-020000000000"/>
       <resource>
          <Immunization>
             <meta>
@@ -32,6 +32,10 @@
                            </td>
                         </tr>
                         <tr>
+                           <th>Zorgverlener</th>
+                           <td>Dennis D. Dennis Janse Ria Alexandra R.A. Ria Slot || Huisarts</td>
+                        </tr>
+                        <tr>
                            <th>Vaccine Details</th>
                            <td>
                               <div>Dosering: 2 ml</div>
@@ -51,7 +55,7 @@
                </coding>
             </vaccineCode>
             <patient>
-               <reference value="urn:uuid:de5528d6-3b34-11ed-1219-020000000000"/>
+               <reference value="urn:uuid:c3440f00-3da8-11ed-1919-020000000000"/>
                <display value="Dennis D. Dennis Janse"/>
             </patient>
             <date value="2019-04-03"/>
@@ -62,6 +66,18 @@
                <system value="http://unitsofmeasure.org"/>
                <code value="ml"/>
             </doseQuantity>
+            <practitioner>
+               <actor>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:c3440f27-3da8-11ed-1919-020000000000"/>
+                        <display value="Dennis D. Dennis Janse Ria Alexandra R.A. Ria Slot || Huisarts"/>
+                     </valueReference>
+                  </extension>
+                  <reference value="urn:oid:2.16.840.1.113883.2.4.6.1.88776655"/>
+                  <display value="Dennis D. Dennis Janse Ria Alexandra R.A. Ria Slot"/>
+               </actor>
+            </practitioner>
             <note>
                <text value="Gebeten door een hond"/>
             </note>
@@ -72,7 +88,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:de5514c6-3b34-11ed-1219-020000000000"/>
+      <fullUrl value="urn:uuid:c343faf0-3da8-11ed-1919-020000000000"/>
       <resource>
          <ImmunizationRecommendation>
             <meta>
@@ -92,12 +108,16 @@
                            </th>
                            <td/>
                         </tr>
+                        <tr>
+                           <th>Eerdere vaccinatie</th>
+                           <td>Tetanusvaccin</td>
+                        </tr>
                      </tbody>
                   </table>
                </div>
             </text>
             <patient>
-               <reference value="urn:uuid:de5528d6-3b34-11ed-1219-020000000000"/>
+               <reference value="urn:uuid:c3440f00-3da8-11ed-1919-020000000000"/>
                <display value="Dennis D. Dennis Janse"/>
             </patient>
             <recommendation>
@@ -116,6 +136,10 @@
                      <display value="Due"/>
                   </coding>
                </forecastStatus>
+               <supportingImmunization>
+                  <reference value="urn:uuid:c343faee-3da8-11ed-1919-020000000000"/>
+                  <display value="Tetanusvaccin"/>
+               </supportingImmunization>
             </recommendation>
          </ImmunizationRecommendation>
       </resource>
@@ -124,7 +148,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:de552e5d-3b34-11ed-1219-020000000000"/>
+      <fullUrl value="urn:uuid:c3441487-3da8-11ed-1919-020000000000"/>
       <resource>
          <Immunization>
             <meta>
@@ -151,6 +175,10 @@
                            </td>
                         </tr>
                         <tr>
+                           <th>Zorgverlener</th>
+                           <td>Dennis D. Dennis Janse Ria Alexandra R.A. Ria Slot || Huisarts</td>
+                        </tr>
+                        <tr>
                            <th>Vaccine Details</th>
                            <td>
                               <div>Dosering: 1 ml</div>
@@ -170,7 +198,7 @@
                </coding>
             </vaccineCode>
             <patient>
-               <reference value="urn:uuid:de5528d6-3b34-11ed-1219-020000000000"/>
+               <reference value="urn:uuid:c3440f00-3da8-11ed-1919-020000000000"/>
                <display value="Dennis D. Dennis Janse"/>
             </patient>
             <date value="2015-03-02"/>
@@ -181,6 +209,18 @@
                <system value="http://unitsofmeasure.org"/>
                <code value="ml"/>
             </doseQuantity>
+            <practitioner>
+               <actor>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:c3440f27-3da8-11ed-1919-020000000000"/>
+                        <display value="Dennis D. Dennis Janse Ria Alexandra R.A. Ria Slot || Huisarts"/>
+                     </valueReference>
+                  </extension>
+                  <reference value="urn:oid:2.16.840.1.113883.2.4.6.1.88776655"/>
+                  <display value="Dennis D. Dennis Janse Ria Alexandra R.A. Ria Slot"/>
+               </actor>
+            </practitioner>
             <note>
                <text value="Reis door Indonesië"/>
             </note>
@@ -191,7 +231,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:de552e5d-3b34-11ed-1219-020000000000"/>
+      <fullUrl value="urn:uuid:c3441487-3da8-11ed-1919-020000000000"/>
       <resource>
          <ImmunizationRecommendation>
             <meta>
@@ -211,12 +251,16 @@
                            </th>
                            <td/>
                         </tr>
+                        <tr>
+                           <th>Eerdere vaccinatie</th>
+                           <td>Hepatitis A+B-vaccin</td>
+                        </tr>
                      </tbody>
                   </table>
                </div>
             </text>
             <patient>
-               <reference value="urn:uuid:de5528d6-3b34-11ed-1219-020000000000"/>
+               <reference value="urn:uuid:c3440f00-3da8-11ed-1919-020000000000"/>
                <display value="Dennis D. Dennis Janse"/>
             </patient>
             <recommendation>
@@ -235,6 +279,10 @@
                      <display value="Due"/>
                   </coding>
                </forecastStatus>
+               <supportingImmunization>
+                  <reference value="urn:uuid:c3441485-3da8-11ed-1919-020000000000"/>
+                  <display value="Hepatitis A+B-vaccin"/>
+               </supportingImmunization>
             </recommendation>
          </ImmunizationRecommendation>
       </resource>
@@ -243,7 +291,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:de5528d6-3b34-11ed-1219-020000000000"/>
+      <fullUrl value="urn:uuid:c3440f00-3da8-11ed-1919-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -481,7 +529,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:de552e59-3b34-11ed-1219-020000000000"/>
+      <fullUrl value="urn:uuid:c3441483-3da8-11ed-1919-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -508,7 +556,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:de5528fd-3b34-11ed-1219-020000000000"/>
+      <fullUrl value="urn:uuid:c3440f27-3da8-11ed-1919-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -551,7 +599,7 @@
                <display value="Dennis D. Dennis Janse Ria Alexandra R.A. Ria Slot"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:de552e59-3b34-11ed-1219-020000000000"/>
+               <reference value="urn:uuid:c3441483-3da8-11ed-1919-020000000000"/>
                <display value="Organisatie informatie: Huisartsenpraktijk Rotterdam"/>
             </organization>
             <specialty>

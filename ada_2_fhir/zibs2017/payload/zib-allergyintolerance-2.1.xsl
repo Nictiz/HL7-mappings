@@ -19,7 +19,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Returns contents of Reference datatype element</xd:desc>
     </xd:doc>
-    <xsl:template name="allergyintoleranceReference" match="allergie_intolerantie[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | allergy_intolerance[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doAllergyIntoleranceReference-2.1">
+    <xsl:template name="allergyintoleranceReference" match="(allergie_intolerantie | allergy_intolerance)[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doAllergyIntoleranceReference-2.1">
         <xsl:variable name="theIdentifier" select="(identificatie_nummer | zibroot/identificatienummer | identification_number | hcimroot/identification_number)[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$allergyIntolerances[group-key = $theGroupKey]" as="element()?"/>
@@ -51,11 +51,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.AllergyIntolerance.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="allergyIntoleranceEntry" match="allergie_intolerantie[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | allergy_intolerance[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doAllergyIntoleranceEntry-2.1" as="element(f:entry)">
+    <xsl:template name="allergyIntoleranceEntry" match="(allergie_intolerantie | allergy_intolerance)[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doAllergyIntoleranceEntry-2.1" as="element(f:entry)">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
-        <!--<xsl:param name="entryFullUrl" select="nf:get-fhir-uuid(.)"/>-->
         <xsl:param name="entryFullUrl">
             <xsl:choose>
                 <xsl:when test="$uuid or empty(zibroot/identificatienummer | hcimroot/identification_number)">
@@ -366,13 +365,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
 
                     <!-- CD    NL-CM:8.2.2        VeroorzakendeStof        1..1 VeroorzakendeStofAllergeneStoffenCodelijst, VeroorzakendeStofHPKCodelijst, VeroorzakendeStofSNKCodelijst, VeroorzakendeStofSSKCodelijst, VeroorzakendeStofThesaurus122Codelijst-->
-                    <xsl:for-each select="veroorzakende_stof | causative_agent">
-                        <code>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </code>
-                    </xsl:for-each>
+                    <!-- code is required in the FHIR profile, so always output code, data-absent-reason if no actual value -->
+                    <code>
+                        <xsl:choose>
+                            <xsl:when test="(veroorzakende_stof | causative_agent)[@code]">
+                                <xsl:call-template name="code-to-CodeableConcept">
+                                    <xsl:with-param name="in" select="veroorzakende_stof | causative_agent"/>
+                                </xsl:call-template>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                                    <valueCode value="unknown"/>
+                                </extension>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </code>
 
                     <!-- >     NL-CM:0.0.12    Onderwerp Patient via nl.zorg.part.basiselementen -->
                     <!-- Patient reference -->
@@ -497,7 +504,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- ST    NL-CM:8.2.9        Toelichting                0..1 -->
                     <xsl:for-each select="(toelichting | comment)[@value]">
                         <note>
-                            <text value="{@value}"/>
+                            <text>
+                                <xsl:call-template name="string-to-string">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </text>
                         </note>
                     </xsl:for-each>
 
@@ -524,7 +535,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                             <!--TS    NL-CM:8.2.13            ReactieBeschrijving    0..1-->
                             <xsl:for-each select="(reactie_beschrijving | reaction_description)[@value]">
-                                <description value="{@value}"/>
+                                <description>
+                                    <xsl:call-template name="string-to-string">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </description>
                             </xsl:for-each>
 
                             <!--TS    NL-CM:8.2.17            ReactieTijdstip    0..1-->

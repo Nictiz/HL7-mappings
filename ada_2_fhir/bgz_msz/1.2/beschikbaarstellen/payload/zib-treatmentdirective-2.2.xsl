@@ -23,11 +23,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-TreatmentDirective-2.2" match="treatment_directive[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Consent)" mode="doZibTreatmentDirective-2.2">
+    <xsl:template name="zib-TreatmentDirective-2.2" match="(behandel_aanwijzing | treatment_directive)[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Consent)" mode="doZibTreatmentDirective-2.2">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
-        <!--<xsl:param name="adaAdvanceDirective" as="element()"/>-->
         <xsl:param name="dateT" as="xs:date?"/>
         
         <xsl:for-each select="$in">
@@ -42,13 +41,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="{$profileValue}"/>
                     </meta>
                     
-                    <xsl:for-each select="verification">
+                    <xsl:for-each select="verificatie | verification">
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective-Verification">
                             <!-- extension Verified is required in the FHIR profile, so always output this extension, data-absent-reason if no actual value -->
                             <extension url="Verified">
                                 <valueBoolean>
                                     <xsl:choose>
-                                        <xsl:when test="verified[@value]">
+                                        <xsl:when test="(geverifieerd | verified)[@value]">
                                             <xsl:call-template name="boolean-to-boolean">
                                                 <xsl:with-param name="in" select="verified"/>
                                             </xsl:call-template>
@@ -61,7 +60,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:choose>
                                 </valueBoolean>
                             </extension>
-                            <xsl:for-each select="verified_with[@code]">
+                            <xsl:for-each select="(geverifieerd_bij | verified_with)[@code]">
                                 <extension url="VerifiedWith">
                                     <valueCodeableConcept>
                                         <xsl:variable name="nullFlavorsInValueset" select="('OTH')"/>
@@ -72,7 +71,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </valueCodeableConcept>
                                 </extension>
                             </xsl:for-each>
-                            <xsl:for-each select="verification_date[@value]">
+                            <xsl:for-each select="(verificatie_datum | verification_date)[@value]">
                                 <extension url="VerificationDate">
                                     <valueDateTime>
                                         <xsl:attribute name="value">
@@ -87,7 +86,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </extension>
                     </xsl:for-each>
                     
-                    <xsl:for-each select="comment[@value]">
+                    <xsl:for-each select="(toelichting | comment)[@value]">
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/Comment">
                             <valueString>
                                 <xsl:call-template name="string-to-string">
@@ -97,7 +96,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </extension>
                     </xsl:for-each>
                     
-                    <xsl:for-each select="treatment[@code]">
+                    <xsl:for-each select="(behandeling | treatment)[@code]">
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective-Treatment">
                             <valueCodeableConcept>
                                 <xsl:variable name="nullFlavorsInValueset" select="('OTH')"/>
@@ -109,13 +108,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </extension>
                     </xsl:for-each>
                     
+                    <xsl:for-each select="(wilsverklaring/wilsverklaring | advance_directive/advance_directive)[position() > 1]">
+                        <xsl:choose>
+                            <xsl:when test="*">
+                                <extension url="http://nictiz.nl/fhir/StructureDefinition/consent-additionalSources">
+                                    <valueReference>
+                                        <xsl:apply-templates select="." mode="doAdvanceDirectiveReference-2.1"/>
+                                    </valueReference>
+                                </extension>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:for-each>
+                    
                     <!-- modifierExtension treatmentPermitted is required in the FHIR profile, so always output this modifierExtension, data-absent-reason if no actual value -->
                     <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective-TreatmentPermitted">
                         <valueCodeableConcept>
                             <xsl:choose>
-                                <xsl:when test="treatment_permitted[@code]">
+                                <xsl:when test="(behandeling_toegestaan | treatment_permitted)[@code]">
                                     <xsl:call-template name="code-to-CodeableConcept">
-                                        <xsl:with-param name="in" select="treatment_permitted"/>
+                                        <xsl:with-param name="in" select="behandeling_toegestaan | treatment_permitted"/>
                                     </xsl:call-template>
                                 </xsl:when>
                                 <xsl:otherwise>
@@ -142,9 +153,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </patient>
                     
-                    <xsl:if test="start_date[@value] or end_date[@value]">
+                    <xsl:if test="(begin_datum | start_date)[@value] or (eind_datum | end_date)[@value]">
                         <period>
-                            <xsl:for-each select="start_date[@value]">
+                            <xsl:for-each select="(begin_datum | start_date)[@value]">
                                 <start>
                                     <xsl:attribute name="value">
                                         <xsl:call-template name="format2FHIRDate">
@@ -154,7 +165,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:attribute>
                                 </start>
                             </xsl:for-each>
-                            <xsl:for-each select="end_date[@value]">
+                            <xsl:for-each select="(eind_datum | end_date)[@value]">
                                 <end>
                                     <xsl:attribute name="value">
                                         <xsl:call-template name="format2FHIRDate">
@@ -167,7 +178,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </period>
                     </xsl:if>
                     
-                    <xsl:for-each select="hcimroot/date_time">
+                    <xsl:for-each select="(zibroot/datum_tijd | hcimroot/date_time)[@value]">
                         <dateTime>
                             <xsl:attribute name="value">
                                 <xsl:call-template name="format2FHIRDate">
@@ -184,20 +195,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </consentingParty>
                     </xsl:for-each>-->
                     
-                    <!-- To do: Add logic for multiple advance directives -->
-                    <!--<xsl:for-each select="advance_directive">
-                        <sourceReference>
-                            <xsl:apply-templates select="$adaAdvanceDirective" mode="doAdvanceDirectiveReference-2.1"/>
-                        </sourceReference>
-                    </xsl:for-each>-->
+                    <xsl:for-each select="(wilsverklaring/wilsverklaring | advance_directive/advance_directive)[1]">
+                        <xsl:choose>
+                            <xsl:when test="*">
+                                <sourceReference>
+                                    <xsl:apply-templates select="." mode="doAdvanceDirectiveReference-2.1"/>
+                                </sourceReference>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:for-each>
                     
                     <policy>
                         <uri value="http://wetten.overheid.nl/"/>
                     </policy>
                     
-                    <xsl:if test="restrictions[@value] or treatment_permitted/@code ='JA_MAAR'">
+                    <xsl:if test="(beperkingen | restrictions)[@value] or (behandeling_toegestaan | treatment_permitted)/@code ='JA_MAAR'">
                         <except>
-                            <xsl:for-each select="restrictions[@value]">
+                            <xsl:for-each select="(beperkingen | restrictions)[@value]">
                                 <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-TreatmentDirective-Restrictions">
                                     <valueString>
                                         <xsl:call-template name="string-to-string">
@@ -206,9 +220,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </valueString>
                                 </extension>
                             </xsl:for-each>
+                            
                             <type>
                                 <xsl:choose>
-                                    <xsl:when test="treatment_permitted/@code ='JA_MAAR'">
+                                    <xsl:when test="(behandeling_toegestaan | treatment_permitted)/@code ='JA_MAAR'">
                                         <xsl:attribute name="value">
                                             <xsl:value-of select="'deny'"/>
                                         </xsl:attribute>

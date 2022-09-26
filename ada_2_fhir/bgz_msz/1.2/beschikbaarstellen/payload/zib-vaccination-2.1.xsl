@@ -16,6 +16,96 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
     
+    <xsl:variable name="vaccinations" as="element()*">
+        <xsl:for-each-group select="//(vaccinatie | vaccination)[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
+            <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
+            <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
+            <unique-vaccination xmlns="">
+                <group-key>
+                    <xsl:value-of select="current-grouping-key()"/>
+                </group-key>
+                <reference-display>
+                    <xsl:value-of select="product_code/@displayName"/>
+                </reference-display>
+                <xsl:apply-templates select="current-group()[1]" mode="doVaccinationEntry-2.1">
+                    <xsl:with-param name="uuid" select="$uuid"/>
+                </xsl:apply-templates>
+            </unique-vaccination>
+        </xsl:for-each-group>
+    </xsl:variable>
+    
+    <xd:doc>
+        <xd:desc>Returns contents of Reference datatype element</xd:desc>
+    </xd:doc>
+    <xsl:template name="vaccinationReference" match="(vaccinatie | vaccination)[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doVaccinationReference-2.1">
+        <xsl:variable name="theIdentifier" select="(zibroot/identificatienummer | hcimroot/identification_number)[@value]"/>
+        <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
+        <xsl:variable name="theGroupElement" select="$vaccinations[group-key = $theGroupKey]" as="element()?"/>
+        <xsl:choose>
+            <xsl:when test="$theGroupElement">
+                <xsl:variable name="fullUrl" select="nf:getFullUrlOrId(($theGroupElement/f:entry)[1])"/>
+                <reference value="{$fullUrl}"/>
+            </xsl:when>
+            <xsl:when test="$theIdentifier">
+                <identifier>
+                    <xsl:call-template name="id-to-Identifier">
+                        <xsl:with-param name="in" select="($theIdentifier[not(@root = $mask-ids-var)], $theIdentifier)[1]"/>
+                    </xsl:call-template>
+                </identifier>
+            </xsl:when>
+        </xsl:choose>
+        
+        <xsl:if test="string-length($theGroupElement/reference-display) gt 0">
+            <display value="{$theGroupElement/reference-display}"/>
+        </xsl:if>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Produces a FHIR entry element with an Immunization resource for Vaccination</xd:desc>
+        <xd:param name="uuid">If true generate uuid from scratch. Defaults to false(). Generating a uuid from scratch limits reproduction of the same output as the uuids will be different every time.</xd:param>
+        <xd:param name="adaPatient">Optional, but should be there. Patient this resource is for.</xd:param>
+        <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
+        <xd:param name="entryFullUrl">Optional. Value for the entry.fullUrl</xd:param>
+        <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Immunization.id</xd:param>
+        <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
+    </xd:doc>
+    <xsl:template name="vaccinationEntry" match="(vaccinatie | vaccination)[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doVaccinationEntry-2.1" as="element(f:entry)">
+        <xsl:param name="uuid" select="false()" as="xs:boolean"/>
+        <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value] | ancestor::bundle//subject//patient[not(patient)][*//@value])[1]" as="element()"/>
+        <xsl:param name="dateT" as="xs:date?"/>
+        <xsl:param name="entryFullUrl" select="nf:get-fhir-uuid(.)"/>
+        <xsl:param name="fhirResourceId">
+            <xsl:if test="$referById">
+                <xsl:choose>
+                    <xsl:when test="not($uuid) and string-length(nf:removeSpecialCharacters((zibroot/identificatienummer | hcimroot/identification_number)/@value)) gt 0">
+                        <xsl:value-of select="nf:removeSpecialCharacters(string-join((zibroot/identificatienummer | hcimroot/identification_number)/@value, ''))"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:if>
+        </xsl:param>
+        <xsl:param name="searchMode">include</xsl:param>
+        
+        <entry>
+            <fullUrl value="{$entryFullUrl}"/>
+            <resource>
+                <xsl:call-template name="zib-Vaccination-2.1">
+                    <xsl:with-param name="in" select="."/>
+                    <xsl:with-param name="logicalId" select="$fhirResourceId"/>
+                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                    <xsl:with-param name="dateT" select="$dateT"/>
+                </xsl:call-template>
+            </resource>
+            <xsl:if test="string-length($searchMode) gt 0">
+                <search>
+                    <mode value="{$searchMode}"/>
+                </search>
+            </xsl:if>
+        </entry>
+    </xsl:template>
+    
     <xd:doc>
         <xd:desc>Mapping of HCIM Vaccination concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-Vaccination">zib-Vaccination</xd:a>.</xd:desc>
         <xd:param name="logicalId">Optional FHIR logical id for the record.</xd:param>
@@ -23,11 +113,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-Vaccination-2.1" match="vaccinatie[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | vaccination[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Immunization)" mode="doZibVaccination-2.1">
+    <xsl:template name="zib-Vaccination-2.1" match="(vaccinatie | vaccination)[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Immunization)" mode="doZibVaccination-2.1">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
-        <!--<xsl:param name="adaPractitioner" as="element()"/>-->
         <xsl:param name="dateT" as="xs:date?"/>
         
         <xsl:for-each select="$in">
@@ -96,19 +185,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </doseQuantity>
                     </xsl:for-each>
                     
-                    <!-- TODO Practitioner reference-->
-                    <!--<xsl:for-each select="toediener/zorgverlener | administrator/health_professional">
-                        <practitioner>
-                            <actor>
-                                 <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                                     <valueReference>
-                                         <xsl:apply-templates select="$adaPractitioner" mode="doPractitionerRoleReference-2.0"/>
-                                     </valueReference>
-                                 </extension>
-                                <xsl:apply-templates select="$adaPractitioner" mode="doPractitionerReference-2.0"/>
-                            </actor>
-                        </practitioner>
-                    </xsl:for-each>-->
+                    <xsl:for-each select="toediener/zorgverlener | administrator/health_professional">
+                        <xsl:choose>
+                            <xsl:when test="*">
+                                <practitioner>
+                                    <actor>
+                                        <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                                            <valueReference>
+                                                <xsl:apply-templates select="." mode="doPractitionerRoleReference-2.0"/>
+                                            </valueReference>
+                                        </extension>
+                                        <xsl:apply-templates select="." mode="doPractitionerReference-2.0"/>
+                                    </actor>
+                                </practitioner>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:for-each>
                     
                     <xsl:for-each select="(toelichting | comment)[@value]">
                         <note>
@@ -135,7 +227,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-VaccinationRecommendation-2.0" match="vaccinatie[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | vaccination[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:ImmunizationRecommendation)" mode="doZibVaccinationRecommendation-2.0">
+    <xsl:template name="zib-VaccinationRecommendation-2.0" match="(vaccinatie | vaccination)[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:ImmunizationRecommendation)" mode="doZibVaccinationRecommendation-2.0">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
@@ -184,6 +276,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <display value="Due"/>
                                 </coding>
                             </forecastStatus>
+                            
+                            <supportingImmunization>
+                                <xsl:apply-templates select=".." mode="doVaccinationReference-2.1"/>
+                            </supportingImmunization>
                         </recommendation>
                     </xsl:for-each>
                     

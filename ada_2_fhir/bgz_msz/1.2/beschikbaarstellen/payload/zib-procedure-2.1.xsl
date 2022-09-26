@@ -31,7 +31,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="uuid" select="$uuid"/>
                 </xsl:apply-templates>
             </unique-procedure>
-            <xsl:variable name="uuid2" as="xs:boolean" select="position() > 1"/>
+        </xsl:for-each-group>
+    </xsl:variable>
+    
+    <xsl:variable name="procedureRequests" as="element()*">
+        <xsl:for-each-group select="//(verrichting[not(verrichting)] | procedure[not(procedure)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
+            <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
+            <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
             <unique-procedureRequest xmlns="">
                 <group-key>
                     <xsl:value-of select="current-grouping-key()"/>
@@ -40,16 +46,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:value-of select="(verrichting_type | procedure_type)/(@displayName | @originalText)"/>
                 </reference-display>
                 <xsl:apply-templates select="current-group()[1]" mode="doProcedureRequestEntry-2.1">
-                    <xsl:with-param name="uuid" select="$uuid2"/>
+                    <xsl:with-param name="uuid" select="$uuid"/>
                 </xsl:apply-templates>
             </unique-procedureRequest>
         </xsl:for-each-group>
     </xsl:variable>
     
-    <!--<xd:doc>
+    <xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template name="procedureReference" match="verrichting[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | procedure[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProcedureReference-2.1">
+    <xsl:template name="procedureReference" match="(verrichting[not(verrichting)] | procedure[not(procedure)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProcedureReference-2.1">
         <xsl:variable name="theIdentifier" select="(zibroot/identificatienummer | hcimroot/identification_number)[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$procedures[group-key = $theGroupKey]" as="element()?"/>
@@ -70,7 +76,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:if test="string-length($theGroupElement/reference-display) gt 0">
             <display value="{$theGroupElement/reference-display}"/>
         </xsl:if>
-    </xsl:template>-->
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc/>
+    </xd:doc>
+    <xsl:template name="procedureRequestReference" match="(verrichting[not(verrichting)] | procedure[not(procedure)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProcedureRequestReference-2.1">
+        <xsl:variable name="theIdentifier" select="(zibroot/identificatienummer | hcimroot/identification_number)[@value]"/>
+        <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
+        <xsl:variable name="theGroupElement" select="$procedureRequests[group-key = $theGroupKey]" as="element()?"/>
+        <xsl:choose>
+            <xsl:when test="$theGroupElement">
+                <xsl:variable name="fullUrl" select="nf:getFullUrlOrId(($theGroupElement/f:entry)[1])"/>
+                <reference value="{$fullUrl}"/>
+            </xsl:when>
+            <xsl:when test="$theIdentifier">
+                <identifier>
+                    <xsl:call-template name="id-to-Identifier">
+                        <xsl:with-param name="in" select="($theIdentifier[not(@root = $mask-ids-var)], $theIdentifier)[1]"/>
+                    </xsl:call-template>
+                </identifier>
+            </xsl:when>
+        </xsl:choose>
+        
+        <xsl:if test="string-length($theGroupElement/reference-display) gt 0">
+            <display value="{$theGroupElement/reference-display}"/>
+        </xsl:if>
+    </xsl:template>
     
     <xd:doc>
         <xd:desc>Produces a FHIR entry element with a Procedure resource for Procedure</xd:desc>
@@ -81,7 +113,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Procedure.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="procedureEntry" match="verrichting[not(verrichting)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | procedure[not(procedure)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProcedureEntry-2.1" as="element(f:entry)">
+    <xsl:template name="procedureEntry" match="(verrichting[not(verrichting)] | procedure[not(procedure)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProcedureEntry-2.1" as="element(f:entry)">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value] | ancestor::bundle//subject//patient[not(patient)][*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
@@ -127,7 +159,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.ProcedureRequest.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="procedureRequestEntry" match="verrichting[not(verrichting)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | procedure[not(procedure)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProcedureRequestEntry-2.1" as="element(f:entry)">
+    <xsl:template name="procedureRequestEntry" match="(verrichting[not(verrichting)] | procedure[not(procedure)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProcedureRequestEntry-2.1" as="element(f:entry)">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value] | ancestor::bundle//subject//patient[not(patient)][*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
@@ -171,11 +203,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-Procedure-2.1" match="verrichting[not(verrichting)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | procedure[not(procedure)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Procedure)" mode="doZibProcedure-2.1">
+    <xsl:template name="zib-Procedure-2.1" match="(verrichting[not(verrichting)] | procedure[not(procedure)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Procedure)" mode="doZibProcedure-2.1">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value] | ancestor::bundle//subject//patient[not(patient)][*//@value])[1]" as="element()"/>
-        <!--<xsl:param name="adaPractitioner" as="element()"/>-->
         <xsl:param name="dateT" as="xs:date?"/>
         
         <xsl:for-each select="$in">
@@ -199,6 +230,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                           </valueCodeableConcept>
                       </extension>
                     </xsl:for-each>
+                    
+                    <xsl:if test="aanvrager/zorgverlener | requester/health_professional">
+                        <xsl:choose>
+                            <xsl:when test="(aanvrager/zorgverlener | requester/health_professional)/*">
+                                <request>
+                                    <xsl:apply-templates select="." mode="doProcedureRequestReference-2.1"/>
+                                </request>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:if>
                     
                     <xsl:variable name="endDate" select="(verrichting_eind_datum | procedure_end_date)/@value"/>
                     <status>
@@ -265,24 +306,32 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </performer>
                     </xsl:for-each>-->
                     
-                    <!--<xsl:for-each select="uitvoerder/zorgverlener | performer/health_professional">
-                        <performer>
-                            <actor>
-                                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                                    <valueReference>
-                                        <xsl:apply-templates select="$adaPractitioner" mode="doPractitionerRoleReference-2.0"/>
-                                    </valueReference>
-                                </extension>
-                                <xsl:apply-templates select="$adaPractitioner" mode="doPractitionerReference-2.0"/>
-                            </actor>
-                        </performer>
-                    </xsl:for-each>-->
+                    <xsl:for-each select="uitvoerder/zorgverlener | performer/health_professional">
+                        <xsl:choose>
+                            <xsl:when test="*">
+                                <performer>
+                                    <actor>
+                                        <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                                            <valueReference>
+                                                <xsl:apply-templates select="." mode="doPractitionerRoleReference-2.0"/>
+                                            </valueReference>
+                                        </extension>
+                                        <xsl:apply-templates select="." mode="doPractitionerReference-2.0"/>
+                                    </actor>
+                                </performer>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:for-each>
                     
-                    <!--<xsl:for-each select="indicatie/probleem | indication/problem">
-                        <reasonReference>
-                            <xsl:apply-templates select="$adaPractitioner" mode="doProblemReference-2.1"/>
-                        </reasonReference>
-                    </xsl:for-each>-->
+                    <xsl:for-each select="indicatie/probleem | indication/problem">
+                        <xsl:choose>
+                            <xsl:when test="*">
+                                <reasonReference>
+                                    <xsl:apply-templates select="." mode="doProblemReference-3.0"/>
+                                </reasonReference>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:for-each>
                     
                     <xsl:if test="(verrichting_lateraliteit | procedure_laterality)[@code] or (verrichting_anatomische_locatie | procedure_anatomical_location)[@code]">
                         <bodySite>
@@ -303,13 +352,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </bodySite>
                     </xsl:if>
                     
-                    <!--<xsl:for-each select="medisch_hulpmiddel | medical_device">
-                        <focalDevice>
-                            <manipulated>
-                                <xsl:apply-templates select="$adaMedicalDevice" mode="doMedicalDeviceReference-2.2"/>
-                            </manipulated>
-                        </focalDevice>
-                    </xsl:for-each>-->
+                    <xsl:for-each select="medisch_hulpmiddel/medisch_hulpmiddel | medical_device/medical_device">
+                        <xsl:choose>
+                            <xsl:when test="*">
+                                <focalDevice>
+                                    <manipulated>
+                                        <xsl:apply-templates select="." mode="doMedicalDeviceReference-2.2"/>
+                                    </manipulated>
+                                </focalDevice>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:for-each>
                     
                 </Procedure>
             </xsl:variable>
@@ -326,11 +379,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-ProcedureRequest-2.1" match="verrichting[not(verrichting)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | procedure[not(procedure)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:ProcedureRequest)" mode="doZibProcedureRequest-2.1">
+    <xsl:template name="zib-ProcedureRequest-2.1" match="(verrichting[not(verrichting)] | procedure[not(procedure)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:ProcedureRequest)" mode="doZibProcedureRequest-2.1">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value] | ancestor::bundle//subject//patient[not(patient)][*//@value])[1]" as="element()"/>
-        <!--<xsl:param name="adaPractitioner" as="element()"/>-->
         <xsl:param name="dateT" as="xs:date?"/>
         
         <xsl:for-each select="$in">
@@ -387,18 +439,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </occurrencePeriod>
                     </xsl:if>
                     
-                    <!--<xsl:for-each select="aanvrager/zorgverlener | requester/health_professional">
-                        <requester>
-                            <agent>
-                                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                                    <valueReference>
-                                        <xsl:apply-templates select="$adaPractitioner" mode="doPractitionerRoleReference-2.0"/>
-                                    </valueReference>
-                                </extension>
-                                <xsl:apply-templates select="$adaPractitioner" mode="doPractitionerReference-2.0"/>
-                            </agent>
-                        </requester>
-                    </xsl:for-each>-->
+                    <xsl:for-each select="aanvrager/zorgverlener | requester/health_professional">
+                        <xsl:choose>
+                            <xsl:when test="*">
+                                <requester>
+                                    <agent>
+                                        <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                                            <valueReference>
+                                                <xsl:apply-templates select="." mode="doPractitionerRoleReference-2.0"/>
+                                            </valueReference>
+                                        </extension>
+                                        <xsl:apply-templates select="." mode="doPractitionerReference-2.0"/>
+                                    </agent>
+                                </requester>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:for-each>
                     
                     <!--<xsl:for-each select="locatie/zorgaanbieder | location/healthcare_provider">
                         <performer>
@@ -408,24 +464,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </performer>
                     </xsl:for-each>-->
                     
-                    <!--<xsl:for-each select="uitvoerder/zorgverlener | performer/health_professional">
-                        <performer>
-                            <actor>
-                                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
-                                    <valueReference>
-                                        <xsl:apply-templates select="$adaPractitioner" mode="doPractitionerRoleReference-2.0"/>
-                                    </valueReference>
-                                </extension>
-                                <xsl:apply-templates select="$adaPractitioner" mode="doPractitionerReference-2.0"/>
-                            </actor>
-                        </performer>
-                    </xsl:for-each>-->
+                    <xsl:for-each select="uitvoerder/zorgverlener | performer/health_professional">
+                        <xsl:choose>
+                            <xsl:when test="*">
+                                <performer>
+                                    <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                                        <valueReference>
+                                            <xsl:apply-templates select="." mode="doPractitionerRoleReference-2.0"/>
+                                        </valueReference>
+                                    </extension>
+                                    <xsl:apply-templates select="." mode="doPractitionerReference-2.0"/>
+                                </performer>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:for-each>
                     
-                    <!--<xsl:for-each select="indicatie/probleem | indication/problem">
-                        <reasonReference>
-                            <xsl:apply-templates select="$adaPractitioner" mode="doProblemReference-2.1"/>
-                        </reasonReference>
-                    </xsl:for-each>-->
+                    <xsl:for-each select="indicatie/probleem | indication/problem">
+                        <xsl:choose>
+                            <xsl:when test="*">
+                                <reasonReference>
+                                    <xsl:apply-templates select="." mode="doProblemReference-3.0"/>
+                                </reasonReference>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:for-each>
                     
                     <xsl:if test="(verrichting_lateraliteit | procedure_laterality)[@code] or (verrichting_anatomische_locatie | procedure_anatomical_location)[@code]">
                         <bodySite>
