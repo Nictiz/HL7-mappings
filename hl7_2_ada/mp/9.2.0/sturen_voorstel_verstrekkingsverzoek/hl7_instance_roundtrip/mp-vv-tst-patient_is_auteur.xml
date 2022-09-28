@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Generated from ada instance with title: "mp-vv-tst-patient_is_auteur" and id: "mp-vv-tst-patient_is_auteur".-->
+<organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="urn:hl7-org:v3"
+           xmlns:cda="urn:hl7-org:v3"
+           xmlns:hl7nl="urn:hl7-nl:v3"
+           xmlns:pharm="urn:ihe:pharm:medication"
+           xmlns:sdtc="urn:hl7-org:sdtc"
+           xmlns:hl7="urn:hl7-org:v3"
+           xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd"
+           classCode="CLUSTER"
+           moodCode="EVN">
+   <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9130"/>
+   <id extension="MBH_920_Voorstelgegevens_patient_is_auteur_VVV"
+       root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.2"/>
+   <code code="104"
+         displayName="Sturen voorstel verstrekkingsverzoek"
+         codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4"
+         codeSystemName="ART DECOR transacties"/>
+   <statusCode nullFlavor="NI"/>
+   <recordTarget>
+      <patientRole>
+         <id extension="999900419" root="2.16.840.1.113883.2.4.6.3"/>
+         <patient>
+            <name>
+               <given qualifier="IN">C.</given>
+               <prefix qualifier="VV">van de </prefix>
+               <family qualifier="BR">XXX_Brugge</family>
+            </name>
+            <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+            <birthTime value="19631016"/>
+         </patient>
+      </patientRole>
+   </recordTarget>
+   <component typeCode="COMP">
+      <supply classCode="SPLY" moodCode="PRP">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9131"/>
+         <code code="52711000146108"
+               displayName="Verstrekkingsverzoek"
+               codeSystem="2.16.840.1.113883.6.96"
+               codeSystemName="SNOMED CT"/>
+         <quantity value="10" unit="1">
+            <translation value="10"
+                         code="245"
+                         displayName="stuk"
+                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                         codeSystemName="G-Standaard thesaurus basiseenheden"/>
+         </quantity>
+         <product>
+            <manufacturedProduct>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9363"/>
+               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                  <code code="6947"
+                        codeSystem="2.16.840.1.113883.2.4.4.10"
+                        displayName="METOCLOPRAMIDE TABLET 10MG"
+                        codeSystemName="G-Standaard PRK">
+                     <translation code="19429"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1"
+                                  displayName="METOCLOPRAMIDE TABLET 10MG"
+                                  codeSystemName="G-Standaard GPK"/>
+                  </code>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </product>
+         <performer>
+            <assignedEntity>
+               <id nullFlavor="NI"/>
+               <representedOrganization>
+                  <id extension="01236578" root="2.16.528.1.1007.3.3"/>
+                  <name>Apotheek De Gulle Gaper</name>
+               </representedOrganization>
+            </assignedEntity>
+         </performer>
+         <author>
+            <time value="20210101132400"/>
+            <assignedAuthor>
+               <id extension="999900419" root="2.16.840.1.113883.2.4.6.3"/>
+               <code code="ONESELF"
+                     displayName="Self"
+                     codeSystem="2.16.840.1.113883.5.111"
+                     codeSystemName="RoleCode"/>
+            </assignedAuthor>
+         </author>
+         <entryRelationship typeCode="REFR">
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
+               <id extension="MBH_920_start_eind_MA"
+                   root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <code code="33633005"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"
+                     displayName="Medicatieafspraak"/>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+      </supply>
+   </component>
+   <component typeCode="COMP">
+      <act classCode="ACT" moodCode="EVN">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
+         <code code="48767-8"
+               codeSystem="2.16.840.1.113883.6.1"
+               codeSystemName="LOINC"
+               displayName="Annotation comment"/>
+         <text mediaType="text/plain">Veel last van misselijkheid en ik heb onvoldoende voorraad</text>
+      </act>
+   </component>
+</organizer>

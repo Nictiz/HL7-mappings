@@ -22,8 +22,24 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
 ===Release Notes===
+2021-12-14
+* MM-2740 Fixed handling of organizations with multiple ids (e.g. AGB, UZI)
+2021-12-03
+* MM-2606 Reset references to fullUrl instead of making those relative. Reset referById parameter from default true() to default false()
+* Added missing display on Observation.referenceRange.type "Normal display"
+2021-12-01
+* MM-2651 Fix for XPath 2 compatibility. Replaced || syntax with concat()
+* MM-2606 Improved references by making them relative instead of absolute
+* MM-2693 AVG: Filter address/contactinformation marked private from Practitioner(Role) and Organization. Contact information marked "Emergency Number" is also filtered (V3: EC)
+2021-11-30
+* MM-2606 Enhance mapping Huisartsgegevens <> Ketenzorg with resource.id. Keeps fullURL, Resource.id and references to them in sync
+  * NOTE: GP Data/Ketenzorg **now requires new parameter baseId** that allows creation of fullURL [baseId]/[type]/[id] where [id] matches Resource.id. Its value SHALL be the generic fhir endpoint and SHALL NOT end with a forward slash. Example: https://example.org/fhir 
+  * Fixed nf:removeSpecialCharacters() function. Now keeps the dot instead replacing it because it is perfectly valid. Smarter handling of diacriticals
+* MM-2559 Fixed Condition.clinicalStatus so it defaults to 'active' instead an illegal extension dataAbsentReason
+* Fixed Laboratory results where the second and latter groups of results would always get uuid. This should have been second or latter instance within a group
+* Fixed narrative block when separator is br. This should have lead to but came out textual 'br'
 2021-08-16
-* MM-2235 Revised mapping for AllergyIntolernace.verificationStatus to always produce a valid @value
+* MM-2235 Revised mapping for AllergyIntolerance.verificationStatus to always produce a valid @value
 2021-08-04
 * Add a check for valid booleans based on input where value=0 was sent. Will terminate processing if invalid boolean is found
 2021-08-03
