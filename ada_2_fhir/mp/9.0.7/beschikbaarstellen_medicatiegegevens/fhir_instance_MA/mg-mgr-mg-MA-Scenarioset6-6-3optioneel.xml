@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="4e83285c-5992-11eb-6011-020000000000"/>
+   <id value="7d7fdbaa-8d8f-11ec-6812-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:4e832828-5992-11eb-6011-020000000000"/>
+      <fullUrl value="urn:uuid:7d7fec42-8d8f-11ec-6812-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -42,7 +42,7 @@
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: Vanaf T+0D{00:00:00}, tot en met T+28D{23:59:59}, 3 maal per dag 1 à 2 stuks, oraal</div>
+                              <div>Tekst: Vanaf T, tot en met T + 28 dagen, 3 maal per dag 1 à 2 stuks, oraal</div>
                               <div>Timing: <div>3 maal per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
@@ -84,7 +84,7 @@
                <display value="PARACETAMOL 500MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:4e832862-5992-11eb-6011-020000000000"/>
+               <reference value="urn:uuid:7d7fec20-8d8f-11ec-6812-020000000000"/>
                <display value="N. XXX_Maasz"/>
             </subject>
             <authoredOn value="${DATE, T, D, +0}T08:10:00+02:00"/>
@@ -92,7 +92,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:4e83282e-5992-11eb-6011-020000000000"/>
+                        <reference value="urn:uuid:7d7fec48-8d8f-11ec-6812-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -101,7 +101,7 @@
                </agent>
             </requester>
             <dosageInstruction>
-               <text value="Vanaf T+0D{00:00:00}, tot en met T+28D{23:59:59}, 3 maal per dag 1 à 2 stuks, oraal"/>
+               <text value="Vanaf T, tot en met T + 28 dagen, 3 maal per dag 1 à 2 stuks, oraal"/>
                <timing>
                   <repeat>
                      <frequency value="3"/>
@@ -138,7 +138,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4e832862-5992-11eb-6011-020000000000"/>
+      <fullUrl value="urn:uuid:7d7fec20-8d8f-11ec-6812-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -173,7 +173,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="female"/>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1954-08-10"/>
          </Patient>
       </resource>
@@ -278,7 +288,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4e83282e-5992-11eb-6011-020000000000"/>
+      <fullUrl value="urn:uuid:7d7fec48-8d8f-11ec-6812-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -333,6 +343,7 @@
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.67903"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.10-67903"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>

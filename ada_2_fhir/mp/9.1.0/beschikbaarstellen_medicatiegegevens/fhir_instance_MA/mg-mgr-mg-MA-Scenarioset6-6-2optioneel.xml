@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="39ac6808-5992-11eb-6804-020000000000"/>
+   <id value="c21d8f24-4d3d-11ec-2032-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:39ac56e0-5992-11eb-6804-020000000000"/>
+      <fullUrl value="urn:uuid:c21d9a58-4d3d-11ec-2032-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -42,7 +42,7 @@
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Timing: <div>12 uren</div>
+                              <div>Timing: <div>12 uren. Tijden zo precies mogelijk aanhouden</div>
                               </div>
                               <div>Toedieningsweg: <span title="subcutaan (21 - G-Standaard thesaurus subtabel 0007)">subcutaan</span>
                               </div>
@@ -65,7 +65,7 @@
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-InstructionsForUseDescription">
-               <valueString value="Vanaf T+0D{00:00:00}, exact iedere 12 uur 16 internationale eenheid, subcutaan"/>
+               <valueString value="Vanaf T, iedere 12 uur 16 internationale eenheid , let op! Tijden exact aanhouden., subcutaan"/>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -85,7 +85,7 @@
                <display value="INSULINE ISOFAAN 100IE/ML"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:39ac680e-5992-11eb-6804-020000000000"/>
+               <reference value="urn:uuid:c21d8f2a-4d3d-11ec-2032-020000000000"/>
                <display value="N. XXX_Maasz"/>
             </subject>
             <authoredOn value="${DATE, T, D, +0}T08:04:00+02:00"/>
@@ -93,7 +93,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:39ac56e5-5992-11eb-6804-020000000000"/>
+                        <reference value="urn:uuid:c21d9a5d-4d3d-11ec-2032-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -104,6 +104,9 @@
             <dosageInstruction>
                <timing>
                   <repeat>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="true"/>
+                     </extension>
                      <period value="12"/>
                      <periodUnit value="h"/>
                   </repeat>
@@ -129,7 +132,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:39ac680e-5992-11eb-6804-020000000000"/>
+      <fullUrl value="urn:uuid:c21d8f2a-4d3d-11ec-2032-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -164,7 +167,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="female"/>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1954-08-10"/>
          </Patient>
       </resource>
@@ -269,7 +282,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:39ac56e5-5992-11eb-6804-020000000000"/>
+      <fullUrl value="urn:uuid:c21d9a5d-4d3d-11ec-2032-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -324,6 +337,7 @@
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.34851"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.10-34851"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>

@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="4e76ebaa-5992-11eb-1861-020000000000"/>
+   <id value="7d3fe9fa-8d8f-11ec-1278-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:4e76f454-5992-11eb-1861-020000000000"/>
+      <fullUrl value="urn:uuid:7d3fe412-8d8f-11ec-1278-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -42,7 +42,7 @@
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: Vanaf T+0D{00:00:00}, tot en met T+8D{23:59:59}, 0.2 à 0.5 ml per uur, parenteraal</div>
+                              <div>Tekst: Vanaf T, tot en met T + 8 dagen, toedieningssnelheid: 0.2 à 0.5 ml per uur, parenteraal</div>
                               <div>Toedieningsweg: <span title="parenteraal (10 - G-Standaard thesaurus subtabel 0007)">parenteraal</span>
                               </div>
                               <div>Doseerverhouding: 0.2 ml/h - 0.5 ml/h</div>
@@ -82,7 +82,7 @@
                <display value="MORFINE INFVLST 5MG/ML CAS 100ML"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:4e76ebb0-5992-11eb-1861-020000000000"/>
+               <reference value="urn:uuid:7d3fe3f0-8d8f-11ec-1278-020000000000"/>
                <display value="N. XXX_Maasz"/>
             </subject>
             <authoredOn value="${DATE, T, D, +0}T08:47:00+02:00"/>
@@ -90,7 +90,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:4e76f45a-5992-11eb-1861-020000000000"/>
+                        <reference value="urn:uuid:7d3fe418-8d8f-11ec-1278-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -99,7 +99,7 @@
                </agent>
             </requester>
             <dosageInstruction>
-               <text value="Vanaf T+0D{00:00:00}, tot en met T+8D{23:59:59}, 0.2 à 0.5 ml per uur, parenteraal"/>
+               <text value="Vanaf T, tot en met T + 8 dagen, toedieningssnelheid: 0.2 à 0.5 ml per uur, parenteraal"/>
                <route>
                   <coding>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
@@ -129,7 +129,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4e76ebb0-5992-11eb-1861-020000000000"/>
+      <fullUrl value="urn:uuid:7d3fe3f0-8d8f-11ec-1278-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -164,7 +164,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="female"/>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1954-08-10"/>
          </Patient>
       </resource>
@@ -269,7 +279,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4e76f45a-5992-11eb-1861-020000000000"/>
+      <fullUrl value="urn:uuid:7d3fe418-8d8f-11ec-1278-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -324,6 +334,7 @@
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.94692"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.10-94692"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>

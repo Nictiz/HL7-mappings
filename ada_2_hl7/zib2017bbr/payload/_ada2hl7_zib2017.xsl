@@ -15,8 +15,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nff="http://www.nictiz.nl/fhir-functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../2_hl7_zib2017bbr_include.xsl"/>
     <xsl:output method="xml" indent="yes"/>
-
     <xsl:strip-space elements="*"/>
+    
+    <!-- Do not import this xsl directly, it should be imported via ada2hl7_all-zibs.xsl -->
+    
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
     <!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
@@ -102,6 +104,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="xsiType"/>
             </xsl:call-template>
         </xsl:for-each>
+        
         <!-- meerlingindicator -->
         <xsl:for-each select="meerling_indicator[@value | @nullFlavor]">
             <xsl:call-template name="makeBLValue">
