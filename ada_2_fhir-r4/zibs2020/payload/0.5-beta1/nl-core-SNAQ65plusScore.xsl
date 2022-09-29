@@ -74,7 +74,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:value-of select="@value"/>
                         </xsl:attribute>
                     </valueInteger>
-                </xsl:for-each>                
+                </xsl:for-each>
                 <xsl:for-each select="toelichting">
                     <note>
                         <text>
