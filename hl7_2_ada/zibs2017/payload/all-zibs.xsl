@@ -15,11 +15,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:hl7="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <!-- Without this import, all depending XSLs need to import it -->
     <xsl:import href="_zib2017.xsl"/>
-    <xsl:import href="../../../util/comment.xsl"/>
-    <xsl:import href="../../../util/constants.xsl"/>
-    <xsl:import href="../../../util/datetime.xsl"/>
-    <xsl:import href="../../../util/units.xsl"/>
-    <xsl:import href="../../../util/utilities.xsl"/>
     
     <xsl:import href="zib-LaboratoryTestResult-Observation-4.1.xsl"/>
     <xsl:import href="zib-Lichaamsgewicht-3.1.xsl"/>

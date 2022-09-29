@@ -14,6 +14,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <!-- Templates of the form 'make<datatype/flavor>Value' correspond to ART-DECOR supported datatypes / HL7 V3 Datatypes R1 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:util="urn:hl7:utilities" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+    <xsl:import href="../../util/constants.xsl"/>
+    <xsl:import href="../../util/datetime.xsl"/>
+    <xsl:import href="../../util/units.xsl"/>
+    <xsl:import href="../../util/utilities.xsl"/>
+    <xsl:import href="../../util/uuid.xsl"/>
 
     <!-- ada output language -->
     <xsl:param name="language">nl-NL</xsl:param>
