@@ -211,6 +211,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
             </xsl:when>
+            <xsl:when test="$localName = 'behandel_aanwijzing'">
+                <xsl:apply-templates select="$in" mode="nl-core-TreatmentDirective2">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'bloeddruk'">
                 <xsl:apply-templates select="$in" mode="nl-core-BloodPressure">
                     <xsl:with-param name="subject" select="$subject"/>
@@ -311,7 +316,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="product">
                     <xsl:call-template name="nl-core-MedicalDevice.Product">
                         <xsl:with-param name="subject" select="$subject"/>
-                    </xsl:call-template>
+                    </xsl:call-template>    
                 </xsl:for-each>
             </xsl:when>
             <xsl:when test="$localName = 'mobiliteit'">
