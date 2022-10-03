@@ -13,10 +13,9 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:pharm="urn:ihe:pharm:medication" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <xsl:import href="../../hl7_2_ada_mp92_include.xsl"/>
     <xsl:import href="../../../../zibs2020/payload/all-zibs.xsl"/>
-    <xsl:import href="../../../../../ada_2_ada/ada/AddConceptIds.xsl"/>
-
+    <xsl:import href="../../../mp-handle-bouwstenen.xsl"/>
+    
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all" omit-xml-declaration="yes"/>
     <!-- Dit is een conversie van MP 9.1.0 naar ADA 9.0 voorschrift bericht -->
     <!-- parameter to control whether or not the result should contain a reference to the ada xsd -->
@@ -25,11 +24,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- whether or not this hl7_2_ada conversion should deduplicate bouwstenen, such as products, health providers, health professionals, contact persons -->
     <xsl:param name="deduplicateAdaBouwstenen" as="xs:boolean?" select="false()"/>
     <!--    <xsl:param name="deduplicateAdaBouwstenen" as="xs:boolean?" select="true()"/>-->
-    <!-- wether or not to add adaconcept id's, this is not really necessary, so out of performance considerations this should be false() -->
-    <!--        <xsl:param name="addAdaConceptId" as="xs:boolean?" select="false()"/>-->
-    <xsl:param name="addAdaConceptId" as="xs:boolean?" select="true()"/>
-    
-    <xsl:variable name="medicatiegegevens-lijst-92" select="//hl7:organizer[@codeSystem='2.16.840.1.113883.2.4.3.11.60.20.77.4'] | //hl7:ClinicalDocument"/>
+   
+    <xsl:variable name="medicatiegegevens-lijst-92" select="//hl7:organizer[@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4'] | //hl7:ClinicalDocument"/>
     <xsl:variable name="filename" select="tokenize(document-uri(/), '/')[last()]"/>
     <xsl:variable name="extension" select="tokenize($filename, '\.')[last()]"/>
     <xsl:variable name="idBasedOnFilename" select="replace($filename, concat('.', $extension, '$'), '')"/>
@@ -42,13 +38,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- let's use the extension of the message id -->
                 <xsl:value-of select="$medicatiegegevens-lijst-92/../../../hl7:id/@extension"/>
             </xsl:when>
-            <xsl:otherwise><xsl:value-of select="generate-id(.)"/></xsl:otherwise>
+            <xsl:otherwise>
+                <xsl:value-of select="generate-id(.)"/>
+            </xsl:otherwise>
         </xsl:choose>
     </xsl:param>
-    
-    
+
     <xd:doc>
-        <xd:desc> if this xslt is used stand alone the template below could be used. </xd:desc>
+        <xd:desc>Template to start conversion for stand alone use. </xd:desc>
     </xd:doc>
     <xsl:template match="/">
         <xsl:variable name="patient-recordTarget" select="//hl7:recordTarget/hl7:patientRole"/>
@@ -114,16 +111,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </medicamenteuze_behandeling>
                         </xsl:for-each-group>
                         <!-- lengte / gewicht van vóór 9.1.0 die in MA zitten ook converteren -->
-                        <xsl:if test="//*[hl7:templateId/@root = ($templateId-lichaamslengte, $templateId-lichaamsgewicht, $templateId-labuitslag)]">
+                        <xsl:if test="//*[hl7:templateId/@root = ($templateId-lichaamslengte, $templateId-lichaamsgewicht)]">
                             <bouwstenen>
                                 <!-- lichaamslengte  -->
                                 <xsl:for-each select="//*[hl7:templateId/@root = $templateId-lichaamslengte]">
-                                    <xsl:call-template name="zib-Lichaamslengte-3.1"/> 
+                                    <xsl:call-template name="uni-Lichaamslengte"/>
                                 </xsl:for-each>
                                 <!-- lichaamsgewicht  -->
                                 <xsl:for-each select="//*[hl7:templateId/@root = $templateId-lichaamsgewicht]">
-                                    <xsl:call-template name="zib-Lichaamsgewicht-3.1"/> 
-                                </xsl:for-each>                               
+                                    <xsl:call-template name="uni-Lichaamsgewicht"/>
+                                </xsl:for-each>
                             </bouwstenen>
                         </xsl:if>
                     </sturen_medicatievoorschrift>
@@ -146,101 +143,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:variable>
 
-        <!-- add conceptIds, not really necessary but for now helpful in comparing roundtrip stuff -->
-        <xsl:apply-templates select="$adaXmlWithBouwstenen" mode="addConceptId"/>
-
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Handle HL7 stuff to create an ada zibRoot HCIM</xd:desc>
-        <xd:param name="schemaFragment">Optional for generating ada conceptId's. XSD Schema complexType for ada parent of zibroot</xd:param>
-    </xd:doc>
-    <xsl:template name="HL7element2Zibroot" match="hl7:*" mode="HL7element2Zibroot">
-        <xsl:param name="schemaFragment" as="element(xs:complexType)?"/>
-
-        <!-- multi language support for ada element names -->
-        <xsl:variable name="elmZibroot">
-            <xsl:choose>
-                <xsl:when test="$language = 'en-US'">hcimroot</xsl:when>
-                <xsl:otherwise>zibroot</xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="elmZibrootIdentification">
-            <xsl:choose>
-                <xsl:when test="$language = 'en-US'">identification_number</xsl:when>
-                <xsl:otherwise>identificatienummer</xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="elmZibrootAuthor">
-            <xsl:choose>
-                <xsl:when test="$language = 'en-US'">author</xsl:when>
-                <xsl:otherwise>auteur</xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="elmZibrootAuthorPatient">
-            <xsl:choose>
-                <xsl:when test="$language = 'en-US'">patient_as_author</xsl:when>
-                <xsl:otherwise>patient_als_auteur</xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="elmZibrootAuthorHealthProfessional">
-            <xsl:choose>
-                <xsl:when test="$language = 'en-US'">health_professional_as_author</xsl:when>
-                <xsl:otherwise>zorgverlener_als_auteur</xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-
-        <xsl:element name="{$elmZibroot}">
-
-            <!-- identification number -->
-            <xsl:for-each select="hl7:id">
-                <xsl:call-template name="handleII">
-                    <xsl:with-param name="in" select="."/>
-                    <xsl:with-param name="elemName" select="$elmZibrootIdentification"/>
-                </xsl:call-template>
-            </xsl:for-each>
-
-            <!-- author -->
-            <!-- participant exists in HL7 template, don't want to throw that information away -->
-            <!-- may be only one author in zibroot, could theoretically encounter both author and participant in HL7 -->
-            <xsl:variable name="hl7Author">
-                <xsl:choose>
-                    <xsl:when test="hl7:author">
-                        <xsl:sequence select="hl7:author"/>
-                    </xsl:when>
-                    <xsl:when test="hl7:participant[@typeCode = 'RESP']">
-                        <xsl:sequence select="hl7:participant[@typeCode = 'RESP']"/>
-                    </xsl:when>
-                </xsl:choose>
-            </xsl:variable>
-            <xsl:for-each select="$hl7Author/*">
-                <xsl:element name="{$elmZibrootAuthor}">
-
-                    <xsl:choose>
-                        <xsl:when test="hl7:patient | hl7:assignedAuthor[hl7:code/@code = 'ONESELF']">
-                            <xsl:element name="{$elmZibrootAuthorPatient}">
-                                <xsl:element name="{$elmPatient}">
-                                    <xsl:attribute name="value" select="$patients/patient_information/*[local-name() = $elmPatient]/@id"/>
-                                    <xsl:attribute name="datatype">reference</xsl:attribute>
-                                </xsl:element>
-                            </xsl:element>
-                        </xsl:when>
-                        <!-- healthprofessional as author -->
-                        <xsl:when test="(hl7:assignedPerson | hl7:assignedAuthor | hl7:participantRole)[not(hl7:code/@code = 'ONESELF')]">
-                            <xsl:for-each select="hl7:assignedPerson | hl7:assignedAuthor | hl7:participantRole">
-                                <xsl:element name="{$elmZibrootAuthorHealthProfessional}">
-                                    <!-- output the actual healthcare professional -->
-                                    <xsl:call-template name="HandleHealthProfessional"/>
-                                </xsl:element>
-                            </xsl:for-each>
-                        </xsl:when>
-                        <!-- related person as author not in HL7v3 template  -->
-                        <!-- no mapping needed -->
-                    </xsl:choose>
-                </xsl:element>
-            </xsl:for-each>
-
-        </xsl:element>
+        <xsl:copy-of select="$adaXmlWithBouwstenen"/>
+        
     </xsl:template>
 
 </xsl:stylesheet>
