@@ -78,13 +78,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Override the id generation with the file name of the ADA instance</xd:desc>
         <xd:param name="profile">The id of the profile that is targeted. This is needed to specify which profile is targeted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
+        <xd:param name="partNumber">The sequence number of the ADA instance being passed in the total collection of ADA instances of this kind. This sequence number is needed for ids in resources that represent just a part of a zib.</xd:param>
     </xd:doc>
     <xsl:template match="*" mode="_generateId" priority="2">
         <xsl:param name="profile" as="xs:string" required="yes"/>
+        <xsl:param name="partNumber" as="xs:integer"/>
+        
         <xsl:variable name="id" select="replace(tokenize(base-uri(), '/')[last()], '.xml', '')"/>
         <xsl:variable name="baseId" select="replace($id, '-[0-9]{2}$', '')"/>
         <xsl:variable name="localName" select="local-name()"/>
-        
+
         <xsl:variable name="logicalId">
             <xsl:choose>
                 <xsl:when test="ancestor::*/local-name() = 'referenties'">
@@ -103,7 +106,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:value-of select="$baseId"/>
                     <xsl:value-of select="substring-after($profile, $baseId)"/>
                     <xsl:text>-</xsl:text>
-                    <xsl:value-of select="format-number(count(preceding-sibling::*[local-name() = $localName])+1, '00')"/>
+                    <xsl:value-of select="format-number($partNumber, '00')"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="$baseId"/>
