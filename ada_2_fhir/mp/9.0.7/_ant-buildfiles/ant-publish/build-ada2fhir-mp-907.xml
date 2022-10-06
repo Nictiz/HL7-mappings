@@ -138,12 +138,33 @@
 
     <target name="convert_ada_2_fhir_907">
         <!-- The generic MP stuff -->
-        <echo>convert_ada_2_fhir_907. The generic MP stuff for convert_ada_2_fhir</echo>
-        <antcall target="convert_ada_2_fhir"/>
+        <echo>convert_ada_2_fhir_907. The generic MP stuff, originally convert_ada_2_fhir, but now edited for Touchstone</echo>
+        <!--<antcall target="convert_ada_2_fhir"/>-->
+        <!-- beschikbaarstellen_medicatiegegevens -->
+        <antcall target="convert_ada_2_fhir_sub_mp_Touchstone">
+            <param name="usecase" value="${usecase.mg}"/>
+            <param name="xsl.in" value="ada_instance_MA"/>
+            <param name="xsl.out" value="fhir_instance_MA"/>
+        </antcall>
+        <antcall target="convert_ada_2_fhir_sub_mp_Touchstone">
+            <param name="usecase" value="${usecase.mg}"/>
+            <param name="xsl.in" value="ada_instance_VV"/>
+            <param name="xsl.out" value="fhir_instance_VV"/>
+        </antcall>
+        
+        <!-- beschikbaarstellen_medicatieoverzicht -->
+        <antcall target="convert_ada_2_fhir_sub_mp_Touchstone">
+            <param name="usecase" value="${usecase.mo}"/>
+            <param name="xsl.in" value="ada_instance_mp"/>
+            <param name="xsl.out" value="fhir_instance_mp"/>
+        </antcall>
+        
+        <!-- also do the examples -->
+        <antcall target="convert_ada_2_fhir_examples"/>
 
         <!-- beschikbaarstellen_verstrekkingenvertaling, not yet implemented in 9.1.0,
         this call should be moved to generic function convert_ada_2_fhir after it has been implemented in 9.1.0-->
-        <antcall target="convert_ada_2_fhir_sub_mp">
+        <antcall target="convert_ada_2_fhir_sub_mp_Touchstone">
             <param name="usecase" value="${usecase.vv}"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="fhir_instance"/>
@@ -156,14 +177,14 @@
         <echo>the MP specific stuff for version 9.0.7</echo>
         <echo/>
         <echo>MedMij stuff beschikbaarstellen_medicatiegegevens</echo>
-        <antcall target="convert_ada_2_fhir_sub_mp">
+        <antcall target="convert_ada_2_fhir_sub_mp_Touchstone">
             <param name="usecase" value="${usecase.mg}"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="fhir_instance"/>
         </antcall>
 
         <echo>MedMij stuff beschikbaarstellen_medicatieoverzicht</echo>
-        <antcall target="convert_ada_2_fhir_sub_mp">
+        <antcall target="convert_ada_2_fhir_sub_mp_Touchstone">
             <param name="usecase" value="${usecase.mo}"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="fhir_instance"/>
@@ -171,7 +192,7 @@
 
         <!-- beschikbaarstellen_medicatiegegevens nictiz (regression) test stuff -->
         <echo>Nictiz test stuff beschikbaarstellen_medicatiegegevens</echo>
-        <antcall target="convert_ada_2_fhir_sub_mp">
+        <antcall target="convert_ada_2_fhir_sub_mp_Touchstone">
             <param name="usecase" value="${usecase.mg}"/>
             <param name="xsl.in" value="ada_instance_test_nictiz"/>
             <param name="xsl.out" value="fhir_instance_test_nictiz"/>
@@ -209,18 +230,18 @@
     <target name="convert_ada_2_fhir_907_TestSet">
         <!-- TestSet -->
         <!-- beschikbaarstellen_medicatiegegevens -->
-        <antcall target="convert_ada_2_fhir_sub_mp">
+        <antcall target="convert_ada_2_fhir_sub_mp_Touchstone">
             <param name="usecase" value="${usecase.mg}"/>
             <param name="xsl.in" value="ada_instance_TestSet_MA"/>
             <param name="xsl.out" value="fhir_instance_TestSet_MA"/>
         </antcall>
-        <antcall target="convert_ada_2_fhir_sub_mp">
+        <antcall target="convert_ada_2_fhir_sub_mp_Touchstone">
             <param name="usecase" value="${usecase.mg}"/>
             <param name="xsl.in" value="ada_instance_TestSet_VV"/>
             <param name="xsl.out" value="fhir_instance_TestSet_VV"/>
         </antcall>
         <!-- medicatieoverzicht -->
-        <antcall target="convert_ada_2_fhir_sub_mp">
+        <antcall target="convert_ada_2_fhir_sub_mp_Touchstone">
             <param name="usecase" value="${usecase.mo}"/>
             <param name="xsl.in" value="ada_instance_TestSet"/>
             <param name="xsl.out" value="fhir_instance_TestSet"/>
