@@ -16,7 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- import because we want to be able to override the param for macAddress for UUID generation
          and the param for referById -->
     <xsl:import href="../../../2_fhir_mp90_include.xsl"/>
-    <xsl:import href="../../../../fhir/2_fhir_fixtures.xsl"/>
+    <xsl:import href="../../../../fhir/2_fhir_fixtures_Touchstone.xsl"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Nictiz</xd:p>
