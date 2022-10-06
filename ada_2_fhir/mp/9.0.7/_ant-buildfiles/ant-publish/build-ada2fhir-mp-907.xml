@@ -206,8 +206,9 @@
             <fileset dir="${build.dir}/4TouchstoneMPServe" includes="*.xml"/>
         </delete>
         <copy todir="${build.dir}/4TouchstoneMPServe">
-            <fileset dir="${build.dir}/${usecase.mo}/fhir_instance_mp" includes="mo-mor*.xml"/>
-            <fileset dir="${build.dir}/${usecase.mo}/fhir_instance_mp" includes="*XXX-*.xml"/>
+            <!-- MO is excluded from MedMij in https://bits.nictiz.nl/browse/MM-3705, so we still build, but don't copy for Touchstone -->
+            <!--<fileset dir="${build.dir}/${usecase.mo}/fhir_instance_mp" includes="mo-mor*.xml"/>
+            <fileset dir="${build.dir}/${usecase.mo}/fhir_instance_mp" includes="*XXX-*.xml"/>-->
             <fileset dir="${build.dir}/${usecase.mg}/fhir_instance_VV" excludes="mg-mgr-*.xml"/>
             <fileset dir="${build.dir}/${usecase.mg}/fhir_instance_MA" excludes="mg-mgr-*.xml"/>
         </copy>
@@ -219,7 +220,8 @@
             <fileset dir="${build.dir}/4TouchstoneMPClient" includes="*.xml"/>
         </delete>
         <copy todir="${build.dir}/4TouchstoneMPClient">
-            <fileset dir="${build.dir}/${usecase.mo}/fhir_instance" includes="XXX*.xml"/>
+            <!-- MO is excluded from MedMij in https://bits.nictiz.nl/browse/MM-3705, so we still build, but don't copy for Touchstone -->
+            <!--<fileset dir="${build.dir}/${usecase.mo}/fhir_instance" includes="XXX*.xml"/>-->
             <fileset dir="${build.dir}/${usecase.mg}/fhir_instance" includes="*.xml" excludes="*-907.xml"/>
             <fileset dir="${build.dir}/${usecase.vv}/fhir_instance" includes="*.xml" excludes="QURX*.xml"/>
         </copy>
@@ -255,8 +257,9 @@
             <fileset dir="${build.dir}/4TouchstoneMPServeTestSet" includes="*.xml"/>
         </delete>
         <copy todir="${build.dir}/4TouchstoneMPServeTestSet">
-            <fileset dir="${build.dir}/${usecase.mo}/fhir_instance_TestSet" includes="mo-mor*.xml"/>
-            <fileset dir="${build.dir}/${usecase.mo}/fhir_instance_TestSet" includes="*XXX-*.xml"/>
+            <!-- MO is excluded from MedMij in https://bits.nictiz.nl/browse/MM-3705, so we still build, but don't copy for Touchstone -->
+            <!--<fileset dir="${build.dir}/${usecase.mo}/fhir_instance_TestSet" includes="mo-mor*.xml"/>
+            <fileset dir="${build.dir}/${usecase.mo}/fhir_instance_TestSet" includes="*XXX-*.xml"/>-->
             <fileset dir="${build.dir}/${usecase.mg}/fhir_instance_TestSet_VV" excludes="mg-mgr-*.xml"/>
             <fileset dir="${build.dir}/${usecase.mg}/fhir_instance_TestSet_MA" excludes="mg-mgr-*.xml"/>
         </copy>
