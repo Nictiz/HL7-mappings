@@ -53,6 +53,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- parameter to determine whether to refer by resource/id -->
     <!-- should be false when there is no FHIR server available to retrieve the resources -->
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
+    <!-- Replaces dots with hyphens in Resource.id -->
+    <xsl:param name="forTouchstone" as="xs:boolean" select="true()"/>
 
     <xsl:variable name="commonEntries" as="element(f:entry)*">
         <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $products/f:entry, $locations/f:entry"/>

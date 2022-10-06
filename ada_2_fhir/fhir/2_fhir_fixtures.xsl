@@ -25,7 +25,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Creates xml document for a FHIR resource</xd:desc>
     </xd:doc>
     <xsl:template match="*" mode="doResourceInResultdoc">
-        <xsl:result-document href="./{replace(./f:id/@value, '\.', '-')}.xml">
+        <xsl:result-document href="./{./f:id/@value}.xml">
             <xsl:copy-of select="."/>
         </xsl:result-document>
     </xsl:template>

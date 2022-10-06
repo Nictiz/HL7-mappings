@@ -48,6 +48,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
     <!-- use case acronym to be added in resource.id -->
     <xsl:param name="usecase" as="xs:string?">mp9</xsl:param>
+    <!-- Replaces dots with hyphens in Resource.id -->
+    <xsl:param name="forTouchstone" as="xs:boolean" select="true()"/>
     
     <xsl:variable name="commonEntries" as="element(f:entry)*">
         <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $products/f:entry, $locations/f:entry"/>

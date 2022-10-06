@@ -35,6 +35,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="dateT" as="xs:date?"/>
     <!-- use case acronym to be added in resource.id -->
     <xsl:param name="usecase" as="xs:string?"/>
+    <!-- If true, dots will be replaced by hyphens in Resource.id -->
+    <xsl:param name="forTouchstone" as="xs:boolean" select="false()"/>
 
     <xd:doc>
         <xd:param name="patientTokensXml">Optional parameter containing XML document based on QualificationTokens.json as used on Github / Touchstone</xd:param>
@@ -812,7 +814,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:function name="nf:removeSpecialCharacters" as="xs:string?">
         <xsl:param name="in" as="xs:string?"/>
-        <xsl:value-of select="replace(translate(normalize-space($in),' _àáãäåèéêëìíîïòóôõöùúûüýÿç€ßñ?','--aaaaaeeeeiiiiooooouuuuyycEsnq'), '[^A-Za-z0-9\.-]', '')"/>
+        <xsl:choose>
+            <xsl:when test="$forTouchstone">
+                <xsl:value-of select="replace(translate(normalize-space($in),' ._àáãäåèéêëìíîïòóôõöùúûüýÿç€ßñ?','---aaaaaeeeeiiiiooooouuuuyycEsnq'), '[^A-Za-z0-9\.-]', '')"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="replace(translate(normalize-space($in),' _àáãäåèéêëìíîïòóôõöùúûüýÿç€ßñ?','--aaaaaeeeeiiiiooooouuuuyycEsnq'), '[^A-Za-z0-9\.-]', '')"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:function>
 
     <xd:doc>

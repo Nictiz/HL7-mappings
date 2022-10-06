@@ -53,6 +53,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
      <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
     <!--    <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>-->
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
+    <!-- Replaces dots with hyphens in Resource.id -->
+    <xsl:param name="forTouchstone" as="xs:boolean" select="true()"/>
     
     <xsl:variable name="commonEntries" as="element(f:entry)*">
         <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $products/f:entry, $locations/f:entry, $body-observations/f:entry, $problems/f:entry"/>
