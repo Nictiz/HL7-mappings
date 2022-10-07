@@ -234,9 +234,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:if test="aanvrager/zorgverlener | requester/health_professional">
                         <xsl:choose>
                             <xsl:when test="(aanvrager/zorgverlener | requester/health_professional)/*">
-                                <request>
+                                <basedOn>
                                     <xsl:apply-templates select="." mode="doProcedureRequestReference-2.1"/>
-                                </request>
+                                </basedOn>
                             </xsl:when>
                         </xsl:choose>
                     </xsl:if>
