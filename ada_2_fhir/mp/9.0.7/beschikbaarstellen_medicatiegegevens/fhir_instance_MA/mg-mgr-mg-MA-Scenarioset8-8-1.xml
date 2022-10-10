@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="4e9a1c38-5992-11eb-1240-020000000000"/>
+   <id value="7e21c6ae-8d8f-11ec-2115-020000000000"/>
    <type value="searchset"/>
    <total value="0"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:4e9a1c3f-5992-11eb-1240-020000000000"/>
+      <fullUrl value="urn:uuid:7e21bc5a-8d8f-11ec-2115-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -47,7 +47,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="male"/>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1954-06-08"/>
          </Patient>
       </resource>
@@ -152,7 +162,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4e9a3b38-5992-11eb-1240-020000000000"/>
+      <fullUrl value="urn:uuid:7e21bc84-8d8f-11ec-2115-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -207,6 +217,7 @@
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.8052"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.10-8052"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>

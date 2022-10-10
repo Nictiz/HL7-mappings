@@ -61,7 +61,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:when test="string-length(current-grouping-key()) gt 0">
                         <medicamenteuze_behandeling>
                             <xsl:for-each select="hl7:entryRelationship/hl7:procedure[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9084']/hl7:id">
-                                <identificatie value="{@extension}" root="{@root}"/>
+                                <xsl:call-template name="handleII">
+                                    <xsl:with-param name="elemName">identificatie</xsl:with-param>
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                                <!--<identificatie value="{@extension}" root="{@root}"/>-->
                             </xsl:for-each>
                             <!-- medicatieafspraak -->
                             <xsl:for-each select="current-group()[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9235']">
@@ -75,7 +79,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:for-each select="current-group()[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9235']">
                             <medicamenteuze_behandeling>
                                 <xsl:for-each select="hl7:entryRelationship/hl7:procedure[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9084']/hl7:id">
-                                    <identificatie value="{@extension}" root="{@root}"/>
+                                    <xsl:call-template name="handleII">
+                                        <xsl:with-param name="elemName">identificatie</xsl:with-param>
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                    <!--<identificatie value="{@extension}" root="{@root}"/>-->
                                 </xsl:for-each>
                                 <!-- medicatieafspraak -->
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9235_20181204143321">

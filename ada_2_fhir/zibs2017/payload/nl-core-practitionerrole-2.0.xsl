@@ -78,7 +78,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="referenceOrIdentifier" as="element()*">
             <xsl:choose>
                 <xsl:when test="$theGroupElement">
-                    <reference value="{nf:getFullUrlOrId($theGroupElement/f:entry)}"/>
+                    <xsl:variable name="fullUrl" select="nf:getFullUrlOrId(($theGroupElement/f:entry)[1])"/>
+                    <reference value="{$fullUrl}"/>
                 </xsl:when>
                 <xsl:when test="$theIdentifier">
                     <identifier>
@@ -127,19 +128,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="entryFullUrl" select="nf:get-fhir-uuid(./..)"/>
         <xsl:param name="fhirResourceId">
-            <xsl:if test="$referById">
-                <xsl:choose>
-                    <xsl:when test="$uuid">
-                        <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
-                    </xsl:when>
-                    <xsl:when test="nf:getValueAttrPractitionerRole(.)">
-                        <xsl:value-of select="nf:removeSpecialCharacters(nf:getValueAttrPractitionerRole(.))"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:if>
+            <xsl:choose>
+                <xsl:when test="$referById">
+                    <xsl:choose>
+                        <xsl:when test="$uuid">
+                            <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
+                        </xsl:when>
+                        <xsl:when test="nf:getValueAttrPractitionerRole(.)">
+                            <xsl:value-of select="nf:removeSpecialCharacters(nf:getValueAttrPractitionerRole(.))"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+                <xsl:when test="matches($entryFullUrl, '^https?:')">
+                    <xsl:value-of select="tokenize($entryFullUrl, '/')[last()]"/>
+                </xsl:when>
+            </xsl:choose>
         </xsl:param>
         <xsl:param name="searchMode">include</xsl:param>
         <entry xmlns="http://hl7.org/fhir">
@@ -185,16 +191,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:for-each select="$in">
             <xsl:variable name="resource">
+                <xsl:variable name="profileValue">http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole</xsl:variable>
                 <PractitionerRole>
                     <xsl:if test="string-length($logicalId) gt 0">
-                        <id value="{$logicalId}"/>
+                        <xsl:choose>
+                            <xsl:when test="$referById">
+                                <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <id value="{$logicalId}"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:if>
                     <meta>
-                        <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+                        <profile value="{$profileValue}"/>
                     </meta>
                     <xsl:if test="$practitionerRef">
                         <practitioner>
-                            <xsl:copy-of select="$organizationRef[self::f:extension]"/>
+                            <xsl:copy-of select="$practitionerRef[self::f:extension]"/>
                             <xsl:copy-of select="$practitionerRef[self::f:reference]"/>
                             <xsl:copy-of select="$practitionerRef[self::f:identifier]"/>
                             <xsl:copy-of select="$practitionerRef[self::f:display]"/>
@@ -217,15 +231,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </code>
                     </xsl:for-each>-->
                     <xsl:for-each select="specialisme | specialty">
+                        <xsl:variable name="display" select="@displayName[not(. = '')]"/>
                         <specialty>
                             <xsl:call-template name="code-to-CodeableConcept">
                                 <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="codeMap" as="element()*">
+                                    <xsl:for-each select="$uziRoleCodeMap">
+                                        <map>
+                                            <xsl:attribute name="inCode" select="@hl7Code"/>
+                                            <xsl:attribute name="inCodeSystem" select="@hl7CodeSystem"/>
+                                            <xsl:attribute name="code" select="@hl7Code"/>
+                                            <xsl:attribute name="codeSystem" select="@hl7CodeSystem"/>
+                                                <!-- reuse original displayName -->
+                                            <xsl:attribute name="displayName" select="($display, @displayName)[1]"/>
+                                        </map>
+                                    </xsl:for-each>
+                                </xsl:with-param>
                             </xsl:call-template>
                         </specialty>
                     </xsl:for-each>
                     <!-- telecom -->
+                    <!-- MM-2693 Filter private contact details -->
                     <xsl:call-template name="nl-core-contactpoint-1.0">
                         <xsl:with-param name="in" select="contactgegevens | contact_information" as="element()*"/>
+                        <xsl:with-param name="filterprivate" select="true()" as="xs:boolean"/>
                     </xsl:call-template>
                 </PractitionerRole>
             </xsl:variable>

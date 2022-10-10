@@ -33,7 +33,9 @@
     <property name="usecase.bsai" value="beschikbaarstellen_allergie_intolerantie"/>
     <property name="usecase.bsaiv" value="beschikbaarstellen_allergie_intolerantie_vertaling"/>
     <property name="xmlvoorbeelden.dir" value="xml-voorbeelden"/>
+    <property name="nictiztest.dir" value="nictiz_test"/>
     
+
     <target name="setup" description="Setup subdirectories in ${build.dir}">
         <!-- copies schemas for project dir -->
         <antcall target="setup_sub_schemas">
@@ -155,6 +157,34 @@
                 <classpath location="${xsl.saxon}"/>
             </xslt>           
            
+        </sequential>
+        
+        <!-- nictiz test -->
+        <echo>Deleting previous results, if any</echo>
+        <delete>
+            <fileset dir="${build.dir}/${nictiztest.dir}" includes="*.*"/>
+        </delete>
+        
+        <sequential>
+            <fileset id="inputfiles" dir="${build.dir}/${nictiztest.dir}/ada_instance" includes="*.xml"/>
+            <echo/>
+            <echo>${echo.label} ${build.dir}/${usecase.bsaiv}/payload/${usecase.bsaiv}_2_fhir_resources.xsl</echo>
+            <xslt force="true" style="${build.dir}/${usecase.bsaiv}/payload/${usecase.bsaiv}_2_fhir_resources.xsl" destdir="${build.dir}/${nictiztest.dir}/fhir_instance" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputfiles"/>
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <echo/>
+            <echo>${echo.label} ${build.dir}/${usecase.bsaiv}/payload/${usecase.bsaiv}_2_fhir.xsl</echo>
+            <xslt force="true" style="${build.dir}/${usecase.bsaiv}/payload/${usecase.bsaiv}_2_fhir.xsl" destdir="${build.dir}/${nictiztest.dir}/fhir_instance" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputfiles"/>
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>           
+            
         </sequential>
     </target>
 

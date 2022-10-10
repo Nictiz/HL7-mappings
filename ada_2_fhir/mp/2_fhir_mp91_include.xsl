@@ -13,8 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <xsl:import href="../zibs2017/payload/all-zibs.xsl"/>
-    <!--    <xsl:import href="../../util/mp-functions.xsl"/>-->
+    <xsl:import href="../zibs2017/payload/package-1.3.10.xsl"/>
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
@@ -36,11 +35,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
                 <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
-                <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)" as="element(product_code)?"/>
+                <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)[@code][not(@codeSystem = $oidHL7NullFlavor)]" as="element(product_code)?"/>
+                <xsl:variable name="productCodeAsId" as="element()?">
+                    <product_code value="{$most-specific-product-code/@code}" root="{$most-specific-product-code/@codeSystem}"/>
+                </xsl:variable>
                 <xsl:variable name="entryFullUrl">
                     <xsl:choose>
                         <xsl:when test="not($uuid) and $most-specific-product-code">
-                            <xsl:value-of select="nf:getUriFromAdaCode($most-specific-product-code)"/>
+                            <xsl:value-of select="nf:getUriFromAdaId($productCodeAsId, 'Medication', false())"/>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:value-of select="nf:get-fhir-uuid(.)"/>
@@ -48,23 +50,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:choose>
                 </xsl:variable>
                 <xsl:variable name="fhirResourceId">
-                    <xsl:if test="$referById">
-                        <xsl:choose>
-                            <xsl:when test="$uuid">
-                                <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
-                            </xsl:when>
-                            <xsl:when test="$most-specific-product-code[@code][not(@codeSystem = $oidHL7NullFlavor)]">
-                                <xsl:value-of select="nf:removeSpecialCharacters(string-join($most-specific-product-code/(@code, @codeSystem), '-'))"/>
-                            </xsl:when>
-                            <xsl:when test="./product_specificatie/product_naam/@value">
-                                <xsl:value-of select="upper-case(nf:removeSpecialCharacters(./product_specificatie/product_naam/@value))"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <!-- should not happen, but let's fall back on the grouping-key() -->
-                                <xsl:value-of select="nf:removeSpecialCharacters(current-grouping-key())"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:if>
+                    <xsl:choose>
+                        <xsl:when test="$uuid">
+                            <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
+                        </xsl:when>
+                        <xsl:when test="$most-specific-product-code">
+                            <xsl:value-of select="nf:removeSpecialCharacters(concat($most-specific-product-code/@codeSystem, '-', $most-specific-product-code/@code))"/>
+                        </xsl:when>
+                        <xsl:when test="$referById and ./product_specificatie/product_naam/@value">
+                            <xsl:value-of select="upper-case(nf:removeSpecialCharacters(./product_specificatie/product_naam/@value))"/>
+                        </xsl:when>
+                        <xsl:when test="$referById">
+                            <!-- should not happen, but let's fall back on the grouping-key() -->
+                            <xsl:value-of select="nf:removeSpecialCharacters(current-grouping-key())"/>
+                        </xsl:when>
+                    </xsl:choose>
                 </xsl:variable>
                 <xsl:variable name="searchMode">include</xsl:variable>
                 <uniek-product xmlns="">
@@ -72,7 +72,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:value-of select="current-grouping-key()"/>
                     </group-key>
                     <reference-display>
-                        <xsl:value-of select="current-group()[1]/normalize-space(string-join(organisatie_naam[1]//@value | organization_name[1]//@value, ' '))"/>
+                        <xsl:choose>
+                            <xsl:when test="$most-specific-product-code[@displayName]">
+                                <xsl:value-of select="($most-specific-product-code/@displayName)[1]"/>
+                            </xsl:when>
+                            <xsl:when test="product_specificatie/product_naam/@value">
+                                <xsl:value-of select="product_specificatie/product_naam/@value"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <!-- should not happen, but let's fall back on the grouping-key() -->
+                                <xsl:value-of select="nf:removeSpecialCharacters(current-grouping-key())"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </reference-display>
 
                     <xsl:variable name="searchMode" as="xs:string">include</xsl:variable>
@@ -228,7 +239,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         nf:removeSpecialCharacters(identificatie/@value)
                                     else
                                         (if (string-length(nf:removeSpecialCharacters(../identificatie/@value)) gt 0) then
-                                            concat('ta-', nf:removeSpecialCharacters(../identificatie/@value))
+                                            nf:removeSpecialCharacters(../identificatie/@value)
                                         else
                                             uuid:get-uuid(.)))
                                 else
@@ -536,12 +547,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:for-each select="$verstrekkingsverzoek">
             <xsl:variable name="resource">
+                <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest</xsl:variable>
                 <MedicationRequest>
-                    <xsl:for-each select="$medicationrequest-id">
-                        <id value="{.}"/>
-                    </xsl:for-each>
+                    <xsl:if test="string-length($medicationrequest-id) gt 0">
+                        <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $medicationrequest-id)}"/>
+                    </xsl:if>
                     <meta>
-                        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest"/>
+                        <profile value="{$profileValue}"/>
                     </meta>
                     <!-- aanvullende_wensen in extensie -->
                     <xsl:for-each select="aanvullende_wensen[@code]">
@@ -845,12 +857,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="medicationdispense-id" as="xs:string?"/>
         <xsl:for-each select="$toedieningsafspraak">
             <xsl:variable name="resource">
+                <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-AdministrationAgreement</xsl:variable>
                 <MedicationDispense>
-                    <xsl:for-each select="$medicationdispense-id">
-                        <id value="{.}"/>
-                    </xsl:for-each>
+                    <xsl:if test="string-length($medicationdispense-id) gt 0">
+                        <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $medicationdispense-id)}"/>
+                    </xsl:if>
                     <meta>
-                        <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-AdministrationAgreement"/>
+                        <profile value="{$profileValue}"/>
                     </meta>
                     <!-- afspraakdatum -->
                     <xsl:apply-templates select="(afspraakdatum | afspraak_datum_tijd)[@value]" mode="TA-afspraakdatum"/>
@@ -928,12 +941,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:for-each select="$verstrekking">
             <xsl:variable name="resource">
+                <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-Dispense</xsl:variable>
                 <MedicationDispense>
-                    <xsl:for-each select="$medicationdispense-id">
-                        <id value="{.}"/>
-                    </xsl:for-each>
+                    <xsl:if test="string-length($medicationdispense-id) gt 0">
+                        <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $medicationdispense-id)}"/>
+                    </xsl:if>
                     <meta>
-                        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense"/>
+                        <profile value="{$profileValue}"/>
                     </meta>
                     <!-- distributievorm -->
                     <xsl:for-each select="distributievorm[@code]">
@@ -948,7 +962,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- aanschrijfdatum -->
                     <xsl:for-each select="aanschrijfdatum[@value]">
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-RequestDate">
-                            <valueDateTime value="{nf:add-Amsterdam-timezone-to-dateTimeString(./@value)}"/>
+                            <valueDateTime>
+                                <xsl:attribute name="value">
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                    </xsl:call-template>
+                                </xsl:attribute>
+                            </valueDateTime>
                         </extension>
                     </xsl:for-each>
                     <!-- aanvullende_informatie -->
@@ -1059,12 +1079,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:for-each select="$verstrekking">
             <xsl:variable name="resource">
+                <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Dispense</xsl:variable>
+
                 <MedicationDispense>
-                    <xsl:for-each select="$medicationdispense-id">
-                        <id value="{.}"/>
-                    </xsl:for-each>
+                    <xsl:if test="string-length($medicationdispense-id) gt 0">
+                        <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $medicationdispense-id)}"/>
+                    </xsl:if>
                     <meta>
-                        <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Dispense"/>
+                        <profile value="{$profileValue}"/>
                     </meta>
                     <!-- aanschrijfdatum -->
                     <xsl:for-each select="aanschrijfdatum[@value]">
@@ -1170,12 +1192,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="ada-locatie" as="element()?" select="."/>
         <xsl:param name="location-id" as="xs:string?"/>
         <xsl:for-each select="$ada-locatie">
+            <xsl:variable name="profileValue">http://fhir.nl/fhir/StructureDefinition/nl-core-location</xsl:variable>
             <Location>
-                <xsl:for-each select="$location-id">
-                    <id value="{.}"/>
-                </xsl:for-each>
+                <xsl:if test="string-length($location-id) gt 0">
+                    <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $location-id)}"/>
+                </xsl:if>
                 <meta>
-                    <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-location"/>
+                    <profile value="{$profileValue}"/>
                 </meta>
                 <name value="{./@value}"/>
             </Location>
@@ -1206,21 +1229,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
         <xd:param name="in">Node to process. Defaults to context node</xd:param>
-        <xd:param name="profile-uri">Resource.meta.profile. Defaults to http://nictiz.nl/fhir/StructureDefinition/zib-Product</xd:param>
+        <xd:param name="profile-uri">Resource.meta.profile. Defaults to http://nictiz.nl/fhir/StructureDefinition/zib-Product unless a parent beschikbaarstellen_verstrekkingenvertaling is encountered</xd:param>
         <xd:param name="medication-id">Resource.id. Resource.id is created when this parameter is populated. Default is empty</xd:param>
     </xd:doc>
     <xsl:template name="zib-Product" match="product" mode="doMedication">
         <xsl:param name="in" select="."/>
-        <xsl:param name="profile-uri" as="xs:string">http://nictiz.nl/fhir/StructureDefinition/zib-Product</xsl:param>
+        <xsl:param name="profile-uri" as="xs:string">
+            <xsl:choose>
+                <xsl:when test="ancestor::beschikbaarstellen_verstrekkingenvertaling">http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Product</xsl:when>
+                <xsl:otherwise>http://nictiz.nl/fhir/StructureDefinition/zib-Product</xsl:otherwise>
+            </xsl:choose>
+        </xsl:param>
         <xsl:param name="medication-id" as="xs:string?"/>
         <xsl:for-each select="$in">
             <xsl:variable name="resource">
                 <Medication xmlns="http://hl7.org/fhir">
                     <xsl:if test="string-length($medication-id) gt 0">
-                        <id value="{$medication-id}"/>
+                        <xsl:choose>
+                            <xsl:when test="$referById">
+                                <id value="{nf:make-fhir-logicalid(tokenize($profile-uri, './')[last()], $medication-id)}"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <id value="{nf:removeSpecialCharacters($medication-id)}"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:if>
                     <meta>
-                        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+                        <profile value="{$profile-uri}"/>
                     </meta>
                     <xsl:for-each select="product_specificatie/omschrijving[@value]">
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Product-Description">
@@ -1579,25 +1614,36 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
 
         <medicationReference>
-            <reference value="{nf:getFullUrlOrId('PRODUCT', nf:getGroupingKeyDefault(.), false())}"/>
+            <xsl:variable name="fullUrl" select="nf:getFullUrlOrId('PRODUCT', nf:getGroupingKeyDefault(.), false())"/>
+            <reference value="{$fullUrl}"/>
             <display>
+                <xsl:variable name="displayValue" as="element()">
+                    <reference>
+                        <xsl:attribute name="value">
+                            <xsl:choose>
+                                <xsl:when test="product_code[@codeSystem = $mainGstdLevel]/@displayName">
+                                    <xsl:value-of select="product_code[@codeSystem = $mainGstdLevel]/@displayName"/>
+                                </xsl:when>
+                                <xsl:when test="product_code[@codeSystem = $oidHL7NullFlavor][@code = 'OTH'][../product_specificatie/product_naam[@value]]">
+                                    <xsl:value-of select="product_specificatie/product_naam/@value"/>
+                                </xsl:when>
+                                <!-- assume the first product_code displayName if not match above -->
+                                <xsl:when test="product_code/@displayName">
+                                    <xsl:value-of select="product_code[@displayName][1]/@displayName"/>
+                                </xsl:when>
+                                <xsl:when test="product_specificatie/product_naam/@value">
+                                    <xsl:value-of select="product_specificatie/product_naam/@value"/>
+                                </xsl:when>
+                                <xsl:otherwise>ERROR: DISPLAYNAME NOT FOUND IN INPUT</xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:attribute>
+                    </reference>
+                </xsl:variable>
                 <xsl:attribute name="value">
-                    <xsl:choose>
-                        <xsl:when test="product_code[@codeSystem = $mainGstdLevel]/@displayName">
-                            <xsl:value-of select="product_code[@codeSystem = $mainGstdLevel]/@displayName"/>
-                        </xsl:when>
-                        <xsl:when test="product_code[@codeSystem = $oidHL7NullFlavor][@code = 'OTH'][../product_specificatie/product_naam[@value]]">
-                            <xsl:value-of select="product_specificatie/product_naam/@value"/>
-                        </xsl:when>
-                        <!-- assume the first product_code displayName if not match above -->
-                        <xsl:when test="product_code/@displayName">
-                            <xsl:value-of select="product_code[@displayName][1]/@displayName"/>
-                        </xsl:when>
-                        <xsl:when test="product_specificatie/product_naam/@value">
-                            <xsl:value-of select="product_specificatie/product_naam/@value"/>
-                        </xsl:when>
-                        <xsl:otherwise>ERROR: DISPLAYNAME NOT FOUND IN INPUT</xsl:otherwise>
-                    </xsl:choose>
+                    <!-- remove leading / trailing spaces to adhere to FHIR requirements for strings, MM-1781 -->
+                    <xsl:call-template name="string-to-string">
+                        <xsl:with-param name="in" select="$displayValue"/>                        
+                    </xsl:call-template>
                 </xsl:attribute>
             </display>
         </medicationReference>

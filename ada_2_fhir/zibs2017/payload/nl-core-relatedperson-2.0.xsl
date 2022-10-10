@@ -106,12 +106,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <xsl:variable name="resource">
+                <xsl:variable name="profileValue">http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson</xsl:variable>
                 <RelatedPerson>
                     <xsl:if test="string-length($logicalId) gt 0">
-                        <id value="{$logicalId}"/>
-                    </xsl:if>
+                        <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
+                     </xsl:if>
                     <meta>
-                        <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson"/>
+                        <profile value="{$profileValue}"/>
                     </meta>
                     <xsl:for-each select="(rol_of_functie | rol | role)[@code]">
                         <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role">
