@@ -107,10 +107,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:if>
                             </xsl:variable>
                             <text>
-                                <xsl:attribute name="value">
+                                <status value="generated"/>
+                                <div xmlns="http://www.w3.org/1999/xhtml">
                                     <xsl:value-of select="string-join($parts[. != ''], ' ')"/>
-                                </xsl:attribute>
-                            </text>                         
+                                </div>
+                            </text>
                         </xsl:for-each>
                         <xsl:call-template name="makeReference">
                             <xsl:with-param name="in" select="."/>
@@ -149,7 +150,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </code>
                 </xsl:for-each>
                 <xsl:for-each select="soepregel_tekst">
-                    <valueString value="{@value}"/>
+                    <valueString>
+                        <xsl:call-template name="string-to-string">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </valueString>
                 </xsl:for-each>
             </Observation>
         </xsl:for-each>
