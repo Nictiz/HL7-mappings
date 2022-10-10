@@ -28,17 +28,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada soepverslag to FHIR Composition conforming to profile nl-core-SOAPReport and FHIR Observation conforming to profile nl-core-SOAPReport-Observation</xd:desc>
+        <xd:desc>Converts ada soepverslag to FHIR Composition conforming to profile nl-core-SOAPReport and FHIR Observation conforming to profile nl-core-SOAPReport.SOAPLine</xd:desc>
     </xd:doc>
     
     <xd:doc>
         <xd:desc>Create a FHIR Composition instance conforming to profile nl-core-SOAPReport from ada soepverslag element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
+        <xd:param name="author">Optional ADA instance or ADA reference element for the author.</xd:param>
     </xd:doc>
     <xsl:template match="soepverslag" name="nl-core-SOAPReport" mode="nl-core-SOAPReport" as="element(f:Composition)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
+        <xsl:param name="author" select="auteur/*" as="element()?"/>
         
         <xsl:for-each select="$in">
             <Composition>
@@ -46,12 +48,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-SOAPReport"/>
                 </meta>
+                <!--Unless the status is explicitly recorded it is expected that only _final_ reports are exchanged.-->
                 <status value="final"/>
                 <type>
                     <coding>
-                        <system value="http://loinc.org"/>
-                        <code value="67781-5"/>
-                        <display value="Summarization of encounter note Narrative"/>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="11591000146107"/>
+                        <display value="patiëntcontactverslag"/>
                     </coding>
                 </type>
                 <xsl:for-each select="soepverslag_datum_tijd">
@@ -81,28 +84,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:value-of select="soepregel[soepregel_naam/@code = '129265001'][1]/soepregel_code/@displayName"/>
                             </xsl:when>
                             <xsl:otherwise>
-                                <xsl:text>SOEPverslag</xsl:text>
+                                <xsl:text>SOEP-verslag</xsl:text>
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:attribute>
                 </title>
                 <xsl:for-each select="soepregel">
                     <section>
-                        <xsl:for-each select="soepregel_code">
-                            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-SOAPReport.SOAPLineCode">
-                                <valueCodeableConcept>
-                                    <xsl:call-template name="code-to-CodeableConcept">
-                                        <xsl:with-param name="in" select="."/>
-                                    </xsl:call-template>
-                                </valueCodeableConcept>
-                            </extension>
-                        </xsl:for-each>
                         <xsl:for-each select="soepregel_naam">
                             <code>
                                 <xsl:call-template name="code-to-CodeableConcept">
                                     <xsl:with-param name="in" select="."/>
                                 </xsl:call-template>
                             </code>
+                        </xsl:for-each>
+                        <xsl:for-each select="soepregel_tekst">
+                            <xsl:variable name="parts" as="item()*">
+                                <xsl:text>SOAPLineText:</xsl:text>
+                                <xsl:value-of select="@value"/>
+                                <xsl:if test="preceding-sibling::soepregel_code[@displayName]">
+                                    <xsl:value-of select="concat('(SOAPLineCode: ', preceding-sibling::soepregel_code/@displayName, ')')"/>
+                                </xsl:if>
+                            </xsl:variable>
+                            <text>
+                                <xsl:attribute name="value">
+                                    <xsl:value-of select="string-join($parts[. != ''], ' ')"/>
+                                </xsl:attribute>
+                            </text>                         
                         </xsl:for-each>
                         <xsl:call-template name="makeReference">
                             <xsl:with-param name="in" select="."/>
@@ -114,18 +122,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     
-    <xd:doc>
-        <xd:desc>Create a FHIR Observation instance conforming to profile nl-core-SOAPReport-Observation from ada 'soepregel' element.</xd:desc>
-        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-    </xd:doc>
-    <xsl:template match="soepregel" name="nl-core-SOAPReport-Observation" mode="nl-core-SOAPReport-Observation" as="element(f:Observation)?">
+    <xsl:template match="soepregel" name="nl-core-SOAPReport.SOAPLine" mode="nl-core-SOAPReport.SOAPLine" as="element(f:Observation)?">
         <xsl:param name="in" select="." as="element()?"/>
         
         <xsl:for-each select="$in">
             <Observation>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-SOAPReport-Observation"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-SOAPReport.SOAPLine"/>
                 </meta>
                 <xsl:for-each select="soepregel_code">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-SOAPReport.SOAPLineCode">
@@ -144,7 +148,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </code>
                 </xsl:for-each>
-                <xsl:for-each select="soepverslag_tekst">
+                <xsl:for-each select="soepregel_tekst">
                     <valueString value="{@value}"/>
                 </xsl:for-each>
             </Observation>
