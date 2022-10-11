@@ -103,7 +103,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <performer>
                                 <xsl:call-template name="makeReference">
                                     <xsl:with-param name="in" select="zorgaanbieder"/>
-                                    <xsl:with-param name="profile" select="'nl-core-HealthcareProvider'"/>
+                                    <xsl:with-param name="profile" select="'nl-core-HealthcareProvider-Organization'"/>
                                 </xsl:call-template>
                             </performer>
                         </xsl:for-each>
