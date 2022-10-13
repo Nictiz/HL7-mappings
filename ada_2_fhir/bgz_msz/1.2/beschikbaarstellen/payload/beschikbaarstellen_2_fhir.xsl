@@ -484,7 +484,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:choose>
             <xsl:when test="$separateResources">
-                <!--<xsl:for-each select="$entries">
+                <xsl:for-each select="$entries">
+                    <!--<xsl:variable name="zib-name" select="tokenize(f:resource/f:*/f:meta/f:profile/@value, '/')[last()]"/>-->
+                    <xsl:result-document href="../fhir_instance_resources/{f:resource/f:*/f:id/@value}.xml">
+                        <!--<xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/<xsl:value-of select="lower-case(local-name())"/>.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>-->
+                        <xsl:copy-of select="f:resource/f:*"/>
+                        <!--<xsl:attribute name="xsi:schemaLocation">http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd</xsl:attribute>-->
+                        <!--<xsl:copy-of select="node()"/>-->
+                    </xsl:result-document>
+                </xsl:for-each>
+                
+                <!--<xsl:for-each select="$bouwstenen">
+                    <xsl:variable name="zib-name" select="tokenize(f:resource/f:*/f:meta/f:profile/@value, '/')[last()]"/>
+                    <xsl:result-document href="../fhir_instance_resources/{$usecase}-{$zib-name}-{f:fullUrl/tokenize(@value, '-')[last()]}.xml">
+                        <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/<xsl:value-of select="lower-case(local-name())"/>.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
+                        <xsl:copy-of select="f:resource/f:*"/>
+                        <!-\-<xsl:attribute name="xsi:schemaLocation">http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd</xsl:attribute>-\->
+                        <!-\-<xsl:copy-of select="node()"/>-\->
+                    </xsl:result-document>
+                </xsl:for-each>
+                <xsl:for-each select="$commonEntries">
                     <xsl:variable name="zib-name" select="tokenize(f:resource/f:*/f:meta/f:profile/@value, '/')[last()]"/>
                     <xsl:result-document href="../fhir_instance_resources/{$usecase}-{$zib-name}-{f:fullUrl/tokenize(@value, '[/:]')[last()]}.xml">
                         <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/<xsl:value-of select="lower-case(local-name())"/>.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
@@ -493,25 +512,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <!-\-<xsl:copy-of select="node()"/>-\->
                     </xsl:result-document>
                 </xsl:for-each>-->
-                
-                <xsl:for-each select="$bouwstenen">
-                    <xsl:variable name="zib-name" select="tokenize(f:resource/f:*/f:meta/f:profile/@value, '/')[last()]"/>
-                    <xsl:result-document href="../fhir_instance_resources/{$usecase}-{$zib-name}-{f:fullUrl/tokenize(@value, '-')[last()]}.xml">
-                        <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/<xsl:value-of select="lower-case(local-name())"/>.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
-                        <xsl:copy-of select="f:resource/f:*"/>
-                        <!--<xsl:attribute name="xsi:schemaLocation">http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd</xsl:attribute>-->
-                        <!--<xsl:copy-of select="node()"/>-->
-                    </xsl:result-document>
-                </xsl:for-each>
-                <xsl:for-each select="$commonEntries">
-                    <xsl:variable name="zib-name" select="tokenize(f:resource/f:*/f:meta/f:profile/@value, '/')[last()]"/>
-                    <xsl:result-document href="../fhir_instance_resources/{$usecase}-{$zib-name}-{f:fullUrl/tokenize(@value, '[/:]')[last()]}.xml">
-                        <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/<xsl:value-of select="lower-case(local-name())"/>.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
-                        <xsl:copy-of select="f:resource/f:*"/>
-                        <!--<xsl:attribute name="xsi:schemaLocation">http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd</xsl:attribute>-->
-                        <!--<xsl:copy-of select="node()"/>-->
-                    </xsl:result-document>
-                </xsl:for-each>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:result-document href="../fhir_instance_bundles/{tokenize(base-uri(.), '/')[last()]}">
