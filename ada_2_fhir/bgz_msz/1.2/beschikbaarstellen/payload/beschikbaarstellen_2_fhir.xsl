@@ -53,18 +53,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="bundle/*/local-name() = 'contact'">
                     <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
                 </xsl:when>
-                <xsl:when test="bundle/*/local-name() = 'health_professional'">
+                <!--<xsl:when test="bundle/*/local-name() = 'health_professional'">
                     <xsl:copy-of select="$patients/f:entry, $organizations/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
-                </xsl:when>
+                </xsl:when>-->
                 <xsl:when test="bundle/*/local-name() = 'laboratory_test_result'">
                     <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry"/>
                 </xsl:when>
                 <xsl:when test="bundle/*/local-name() = 'medical_device'">
                     <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
                 </xsl:when>
-                <xsl:when test="bundle/*/local-name() = 'patient'">
+                <!--<xsl:when test="bundle/*/local-name() = 'patient'">
                     <xsl:copy-of select="$practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
-                </xsl:when>
+                </xsl:when>-->
                 <xsl:when test="bundle/*/local-name() = 'problem'">
                     <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
                 </xsl:when>
@@ -230,7 +230,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:call-template>
                             </resource>
                         </xsl:if>
-                        <xsl:if test="local-name() = 'patient'">
+                        <!--<xsl:if test="local-name() = 'patient'">
                             <fullUrl value="{nf:getUriFromAdaId(., 'Patient', false())}"/>
                             <resource>
                                 <xsl:call-template name="nl-core-patient-2.1">
@@ -238,7 +238,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="logicalId" select="string(position())"/>
                                 </xsl:call-template>
                             </resource>
-                        </xsl:if>
+                        </xsl:if>-->
                         <xsl:if test="local-name() = 'payer'">
                             <!--<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Coverage', false())}"/>-->
                             <fullUrl value="{concat('zib-Payer-', $usecase, '-', position())}"/>
@@ -290,9 +290,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
                 
                 <!--Additional resources or resources with special conditions-->
-                <xsl:if test="local-name() = 'health_professional'">
+                <!--<xsl:if test="local-name() = 'health_professional'">
                     <entry>
-                        <!--<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Practitioner', false())}"/>-->
+                        <!-\-<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Practitioner', false())}"/>-\->
                         <fullUrl value="{concat('zib-Practitioner-', $usecase, '-', position())}"/>
                         <resource>
                             <xsl:call-template name="nl-core-practitioner-2.0">
@@ -306,7 +306,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </entry>
                     
                     <entry>
-                        <!--<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'PractitionerRole', false())}"/>-->
+                        <!-\-<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'PractitionerRole', false())}"/>-\->
                         <fullUrl value="{concat('zib-PractitionerRole-', $usecase, '-', position())}"/>
                         <resource>
                             <xsl:call-template name="nl-core-practitionerrole-2.0">
@@ -318,7 +318,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <mode value="match"/>
                         </search>
                     </entry>
-                </xsl:if>
+                </xsl:if>-->
                 
                 <xsl:if test="local-name() = 'laboratory_test_result'">
                     <xsl:if test="panel_or_battery[@code]">
@@ -485,12 +485,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:choose>
             <xsl:when test="$separateResources">
                 <xsl:for-each select="$entries">
-                    <!--<xsl:variable name="zib-name" select="tokenize(f:resource/f:*/f:meta/f:profile/@value, '/')[last()]"/>-->
                     <xsl:result-document href="../fhir_instance_resources/{f:resource/f:*/f:id/@value}.xml">
-                        <!--<xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/<xsl:value-of select="lower-case(local-name())"/>.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>-->
                         <xsl:copy-of select="f:resource/f:*"/>
-                        <!--<xsl:attribute name="xsi:schemaLocation">http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd</xsl:attribute>-->
-                        <!--<xsl:copy-of select="node()"/>-->
                     </xsl:result-document>
                 </xsl:for-each>
                 
