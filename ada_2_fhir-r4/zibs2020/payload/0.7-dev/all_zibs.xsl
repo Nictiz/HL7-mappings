@@ -31,6 +31,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-ContactInformation.xsl"/>
     <xsl:import href="nl-core-ContactPerson.xsl"/>
     <xsl:import href="nl-core-DrugUse.xsl"/>
+    <xsl:import href="nl-core-Education.xsl"/>
     <xsl:import href="nl-core-Encounter.xsl"/>
     <xsl:import href="nl-core-EpisodeOfcare.xsl"/>
     <xsl:import href="nl-core-FreedomRestrictingIntervention.xsl"/>
@@ -45,10 +46,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-MedicalDevice.xsl"/>
     <xsl:import href="nl-core-MedicationContraIndication.xsl"/>
     <xsl:import href="nl-core-Mobility.xsl"/>
+    <xsl:import href="nl-core-MUSTScore.xsl"/>
     <xsl:import href="nl-core-NameInformation.xsl"/>
     <xsl:import href="nl-core-NutritionAdvice.xsl"/>
     <xsl:import href="nl-core-O2Saturation.xsl"/>
     <xsl:import href="nl-core-Patient.xsl"/>
+    <xsl:import href="nl-core-Payer.xsl"/>
     <xsl:import href="nl-core-PharmaceuticalProduct.xsl"/>
     <xsl:import href="nl-core-Problem.xsl"/>
     <xsl:import href="nl-core-Procedure.xsl"/>
@@ -56,6 +59,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-SOAPReport.xsl"/>
     <xsl:import href="nl-core-TobaccoUse.xsl"/>
     <xsl:import href="nl-core-TextResult.xsl"/>
+    <xsl:import href="nl-core-TreatmentDirective2.xsl"/>
     <xsl:import href="nl-core-Vaccination.xsl"/>
     <xsl:import href="nl-core-VisualAcuity.xsl"/>
     <xsl:import href="nl-core-VisualFunction.xsl"/>
