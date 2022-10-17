@@ -79,12 +79,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </type>
                     </xsl:for-each>
                     <xsl:call-template name="util:logMessage">
-                        <xsl:with-param name="msg">The zib doesn't provide enough information to determine the right mapping of consistency, as it depends on the type of food (BITS ticket ZIB-1617). Therefore the mapping for fluids is used which may not be right for the information that is transformed.</xsl:with-param>
+                        <xsl:with-param name="msg">The zib doesn't provide enough information to determine the right mapping of consistency, as it depends on the type of food (BITS ticket ZIB-1617). Therefore the mapping for solid food is used which may not be right for the information that is transformed.</xsl:with-param>
                         <xsl:with-param name="level">WARN</xsl:with-param>
                         <xsl:with-param name="terminate">false</xsl:with-param>
                     </xsl:call-template>
                     <xsl:for-each select="consistentie">
-                        <!--<texture>
+                        <texture>
                             <modifier>
                                 <text>
                                     <xsl:call-template name="string-to-string">
@@ -92,14 +92,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:call-template>
                                 </text>
                             </modifier>
-                        </texture>-->
-                        <fluidConsistencyType>
+                        </texture>
+                        <!--<fluidConsistencyType>
                             <text>
                                 <xsl:call-template name="string-to-string">
                                     <xsl:with-param name="in" select="."/>
                                 </xsl:call-template>
                             </text>
-                        </fluidConsistencyType>
+                        </fluidConsistencyType>-->
                     </xsl:for-each>
                 </oralDiet>
                 <xsl:for-each select="toelichting">
