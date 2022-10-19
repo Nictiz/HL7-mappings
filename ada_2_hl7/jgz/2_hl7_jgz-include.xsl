@@ -1083,359 +1083,7 @@
             </component7>
         </xsl:for-each>
     </xsl:template>
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10018_20120801000000">
-        <xsl:for-each select="r018_activiteit">
-            <xsl:sort select="datum_activiteit/@value"/>
-            <xsl:variable name="activiteitId" select="activiteit_id/@value"/>
-            <xsl:variable name="activiteitType" select="soort_activiteit/@code"/>
-            <xsl:variable name="activiteitStatus" select="status_activiteit/@code"/>
-            <xsl:variable name="activiteitElement">
-                <xsl:choose>
-                    <xsl:when test="$activiteitType = ('29', '31', '32', '34')">nonEncounterCareActivity></xsl:when>
-                    <xsl:when test="$activiteitType = ('30', '33')">registrationEvent</xsl:when>
-                    <xsl:otherwise>encounter</xsl:otherwise>
-                </xsl:choose>
-            </xsl:variable>
-            <xsl:variable name="activiteitActies" select="//versturen_jgzdossieroverdrachtverzoek_v02/*[ends-with(@comment, concat('activiteit-', $activiteitId))]"/>
-            <component7 xmlns="urn:hl7-org:v3">
-                <xsl:element name="{$activiteitElement}">
-                    <xsl:choose>
-                        <xsl:when test="$activiteitElement = 'encounter' and (not($activiteitStatus = 'completed') or toelichting_niet_verschenen)">
-                            <xsl:attribute name="moodCode">INT</xsl:attribute>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:attribute name="moodCode">EVN</xsl:attribute>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                    <!-- Item(s) :: activiteit_id-->
-                    <xsl:for-each select="activiteit_id">
-                        <xsl:call-template name="makeIIValue">
-                            <xsl:with-param name="elemName">id</xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                    <!-- Item(s) :: soort_activiteit-->
-                    <xsl:for-each select="soort_activiteit">
-                        <xsl:call-template name="makeCVValue">
-                            <xsl:with-param name="elemName">code</xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                    <!-- Item(s) :: status_activiteit-->
-                    <xsl:choose>
-                        <xsl:when test="toelichting_niet_verschenen">
-                            <statusCode code="cancelled"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:for-each select="status_activiteit">
-                                <xsl:call-template name="makeCSValue">
-                                    <xsl:with-param name="xsiType" select="''"/>
-                                    <xsl:with-param name="elemName">statusCode</xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:for-each>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                    <!-- Item(s) :: datum_activiteit-->
-                    <xsl:for-each select="datum_activiteit">
-                        <xsl:call-template name="makeTSValue">
-                            <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                    <!-- Item(s) :: indicatie_activiteit-->
-                    <xsl:for-each select="indicatie_activiteit">
-                        <xsl:call-template name="makeCVValue">
-                            <xsl:with-param name="elemName">reasonCode</xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:for-each>
-                    <!-- Item(s) :: uitvoerende_activiteit -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10022_20120801000000"/>
-                    <xsl:for-each select="verzoeker_activiteit[not($activiteitStatus = 'completed')]">
-                        <author typeCode="AUT">
-                            <xsl:choose>
-                                <xsl:when test="@code = '03'">
-                                    <patient classCode="PAT"/>
-                                </xsl:when>
-                                <xsl:when test="@code = '02'">
-                                    <personalRelationship classCode="PRS">
-                                        <code code="02" codeSystem="2.16.840.1.113883.2.4.4.40.411"/>
-                                        <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
-                                    </personalRelationship>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <assignedEntity1 classCode="ASSIGNED">
-                                        <xsl:call-template name="makeCVValue">
-                                            <xsl:with-param name="xsiType" select="''"/>
-                                            <xsl:with-param name="elemName">code</xsl:with-param>
-                                        </xsl:call-template>
-                                    </assignedEntity1>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </author>
-                    </xsl:for-each>
-                    <!-- Item(s) :: contact_met-->
-                    <xsl:for-each select="contact_met">
-                        <consultant typeCode="CON">
-                            <assignedEntity classCode="ASSIGNED">
-                                <code nullFlavor="OTH">
-                                    <xsl:call-template name="makeSTValue">
-                                        <xsl:with-param name="elemName">originalText</xsl:with-param>
-                                    </xsl:call-template>
-                                </code>
-                            </assignedEntity>
-                        </consultant>
-                    </xsl:for-each>
-                    <!-- Item(s) :: begeleider-->
-                    <xsl:for-each select="begeleider">
-                        <escort typeCode="ESC">
-                            <responsibleParty classCode="ASSIGNED">
-                                <xsl:call-template name="makeCVValue">
-                                    <xsl:with-param name="elemName">code</xsl:with-param>
-                                </xsl:call-template>
-                                <agentPerson nullFlavor="NI"/>
-                            </responsibleParty>
-                        </escort>
-                    </xsl:for-each>
-                    <xsl:if test="verzoeker_activiteit[$activiteitStatus = 'completed']">
-                        <inFulfillmentOf typeCode="FLFS">
-                            <encounter classCode="ENC" moodCode="INT">
-                                <!-- Mag niet van template, maar zonder mag niet van schema. Schema gaat voor -->
-                                <id nullFlavor="NI"/>
-                                <!-- Item(s) :: soort_activiteit-->
-                                <xsl:for-each select="soort_activiteit">
-                                    <xsl:call-template name="makeCVValue">
-                                        <xsl:with-param name="xsiType" select="''"/>
-                                        <xsl:with-param name="elemName">code</xsl:with-param>
-                                    </xsl:call-template>
-                                </xsl:for-each>
-                                <!-- Item(s) :: status_activiteit-->
-                                <xsl:for-each select="status_activiteit">
-                                    <xsl:call-template name="makeCSValue">
-                                        <xsl:with-param name="xsiType" select="''"/>
-                                        <xsl:with-param name="elemName">statusCode</xsl:with-param>
-                                    </xsl:call-template>
-                                </xsl:for-each>
-                                <xsl:for-each select="verzoeker_activiteit">
-                                    <author typeCode="AUT">
-                                        <xsl:choose>
-                                            <xsl:when test="@code = '03'">
-                                                <patient classCode="PAT"/>
-                                            </xsl:when>
-                                            <xsl:when test="@code = '02'">
-                                                <personalRelationship classCode="PRS">
-                                                    <code code="02" codeSystem="2.16.840.1.113883.2.4.4.40.411"/>
-                                                    <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
-                                                </personalRelationship>
-                                            </xsl:when>
-                                            <xsl:otherwise>
-                                                <assignedEntity1 classCode="ASSIGNED">
-                                                    <xsl:call-template name="makeCVValue">
-                                                        <xsl:with-param name="xsiType" select="''"/>
-                                                        <xsl:with-param name="elemName">code</xsl:with-param>
-                                                    </xsl:call-template>
-                                                </assignedEntity1>
-                                            </xsl:otherwise>
-                                        </xsl:choose>
-                                    </author>
-                                </xsl:for-each>
-                            </encounter>
-                        </inFulfillmentOf>
-                    </xsl:if>
-                    <xsl:for-each select="$activiteitActies">
-                        <xsl:choose>
-                            <xsl:when test="self::r012_erfelijke_belasting_en_ouderkenmerken">
-                                <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                <pertinentInformation>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11012_20120801000000"/>
-                                </pertinentInformation>
-                            </xsl:when>
-                            <xsl:when test="self::r013_bedreigingen_uit_de_directe_omgeving">
-                                <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                <pertinentInformation>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11013_20120801000000"/>
-                                </pertinentInformation>
-                            </xsl:when>
-                            <xsl:when test="self::r052_meldingen">
-                                <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                <pertinentInformation>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11052_20120801000000"/>
-                                </pertinentInformation>
-                            </xsl:when>
-                            <xsl:when test="self::r019_terugkerende_anamnese">
-                                <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                <pertinentInformation>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11019_20120801000000"/>
-                                </pertinentInformation>
-                            </xsl:when>
-                            <xsl:when test="self::r020_algemene_indruk">
-                                <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                <pertinentInformation>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11020_20120801000000"/>
-                                </pertinentInformation>
-                            </xsl:when>
-                            <xsl:when test="self::r021_functioneren">
-                                <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                <pertinentInformation>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11021_20120801000000"/>
-                                </pertinentInformation>
-                            </xsl:when>
-                            <xsl:when test="self::r022_huidhaarnagels">
-                                <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                <pertinentInformation>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11022_20120801000000"/>
-                                </pertinentInformation>
-                            </xsl:when>
-                            <xsl:when test="self::r023_hoofdhals">
-                                <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                <pertinentInformation>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11023_20120801000000"/>
-                                </pertinentInformation>
-                            </xsl:when>
-                            <xsl:when test="self::r024_romp">
-                                <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                <pertinentInformation>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11024_20120801000000"/>
-                                </pertinentInformation>
-                            </xsl:when>
-                            <xsl:when test="self::r025_bewegingsapparaat">
-                                <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                <pertinentInformation>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11025_20120801000000"/>
-                                </pertinentInformation>
-                            </xsl:when>
-                            <xsl:when test="self::r026_genitaliapuberteitsontwikkeling">
-                                <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                <pertinentInformation>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11026_20120801000000"/>
-                                </pertinentInformation>
-                            </xsl:when>
-                            <xsl:when test="self::r027_groei">
-                                <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                <pertinentInformation>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11027_20120801000000"/>
-                                </pertinentInformation>
-                            </xsl:when>
-                            <xsl:when test="self::r030_psychosociaal_en_cognitief_functioneren">
-                                <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                <pertinentInformation>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11030_20120801000000"/>
-                                </pertinentInformation>
-                            </xsl:when>
-                            <xsl:when test="self::r031_motorisch_functioneren">
-                                <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                <pertinentInformation>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11031_20120801000000"/>
-                                </pertinentInformation>
-                            </xsl:when>
-                            <xsl:when test="self::r032_spraak_en_taalontwikkeling">
-                                <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                <pertinentInformation>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11032_20120801000000"/>
-                                </pertinentInformation>
-                            </xsl:when>
-                            <xsl:when test="self::r034_inschatten_verhouding_draaglastdraagkracht">
-                                <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                <pertinentInformation>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11034_20120801000000"/>
-                                </pertinentInformation>
-                            </xsl:when>
-                            <xsl:when test="self::r038_visus_en_oogonderzoek">
-                                <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                <pertinentInformation>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11038_20120801000000"/>
-                                </pertinentInformation>
-                            </xsl:when>
-                            <xsl:when test="self::r039_hartonderzoek">
-                                <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                <pertinentInformation>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11039_20120801000000"/>
-                                </pertinentInformation>
-                            </xsl:when>
-                            <xsl:when test="self::r040_gehooronderzoek">
-                                <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                <pertinentInformation>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11040_20120801000000"/>
-                                </pertinentInformation>
-                            </xsl:when>
-                            <xsl:when test="self::r042_van_wiechen_ontwikkelingsonderzoek">
-                                <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                <pertinentInformation>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11042_20120801000000"/>
-                                </pertinentInformation>
-                            </xsl:when>
-                            <xsl:when test="self::r043_bfmt">
-                                <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                <pertinentInformation>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11043_20120801000000"/>
-                                </pertinentInformation>
-                            </xsl:when>
-                            <xsl:when test="self::r054_screening_psychosociale_problemen">
-                                <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                <pertinentInformation>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11054_20120801000000"/>
-                                </pertinentInformation>
-                            </xsl:when>
-                            <xsl:when test="self::r045_sdq">
-                                <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                <pertinentInformation>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11045_20120801000000"/>
-                                </pertinentInformation>
-                            </xsl:when>
-                            <xsl:when test="self::r049_screening_logopedie">
-                                <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                                <pertinentInformation>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11049_20120801000000"/>
-                                </pertinentInformation>
-                            </xsl:when>
-                        </xsl:choose>
-                    </xsl:for-each>
-                    <!-- Element component3/A_Rijksvaccinatie -->
-                    <xsl:for-each select="$activiteitActies[self::r041_rijksvaccinatieprogramma_en_andere_vaccinaties]/groep_g076_vaccinatie">
-                        <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                        <component3>
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.116_20120801000000"/>
-                        </component3>
-                    </xsl:for-each>
-                    <!-- Element component4/A_HeelPrick -->
-                    <xsl:for-each select="$activiteitActies[self::r037_hielprik_pasgeborene]">
-                        <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                        <component4>
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.133_20120801000000"/>
-                        </component4>
-                    </xsl:for-each>
-                    <!-- Element component5/Advice -->
-                    <xsl:for-each select="$activiteitActies[self::r036_voorlichting_advies_instructie_en_begeleiding]/groep_g042_voorlichting">
-                        <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                        <component5>
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10032_20120801000000"/>
-                        </component5>
-                    </xsl:for-each>
-                    <!-- Element subjectOf/abortedEvent -->
-                    <xsl:if test="toelichting_niet_verschenen">
-                        <subjectOf typeCode="SUBJ" xmlns="urn:hl7-org:v3">
-                            <abortedEvent classCode="STC" moodCode="EVN">
-                                <code code="495" codeSystem="2.16.840.1.113883.2.4.4.40.267">
-                                    <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '495'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
-                                </code>
-                                <!-- Item(s) :: toelichting_niet_verschenen-->
-                                <xsl:for-each select="toelichting_niet_verschenen">
-                                    <xsl:call-template name="makeCVValue">
-                                        <xsl:with-param name="xsiType" select="''"/>
-                                        <xsl:with-param name="elemName">reasonCode</xsl:with-param>
-                                    </xsl:call-template>
-                                </xsl:for-each>
-                            </abortedEvent>
-                        </subjectOf>
-                    </xsl:if>
-                    <!-- Element subjectOf/conclusion -->
-                    <xsl:for-each select="self::r047_conclusies_en_vervolgstappen/groep_g042_voorlichting">
-                        <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
-                        <subjectOf1>
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10037_20120801000000"/>
-                        </subjectOf1>
-                    </xsl:for-each>
-                </xsl:element>
-            </component7>
-        </xsl:for-each>
-    </xsl:template>
-
+    
     <!-- Care Provision Event subjectOf CareStatus -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10019_20200527000000">
         <xsl:for-each select="groep_g093_status_in_zorg">
@@ -1598,6 +1246,7 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10020_20200527000000">
         <xsl:for-each select="r018_activiteit">
             <xsl:sort select="datum_activiteit/@value"/>
+            <xsl:variable name="activiteitId" select="activiteit_id/@value"/>
             <xsl:variable name="activiteitStatus" select="status_activiteit/@code"/>
             <xsl:variable name="activiteitActies" select="//versturen_jgzdossieroverdrachtverzoek_v03/*[ends-with(@comment, concat('activiteit-', $activiteitId))]"/>
             
@@ -1673,8 +1322,6 @@
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11018_20200527000000"/>
                     </pertinentInformation>
                 </xsl:if>
-                <!-- Rubrieken, subjectOf1, component3, component4 -->
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10033_20200527000000"/>
             </encounter>
         </xsl:for-each>
     </xsl:template>
@@ -1788,8 +1435,6 @@
                         </encounter>
                     </inFulfillmentOf>
                 </xsl:if>
-                <!-- Rubrieken, subjectOf1, component3, component4 -->
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10033_20120801000000"/>
             </encounter>
         </xsl:for-each>
     </xsl:template>
@@ -1798,7 +1443,7 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10021_20200527000000">
         <xsl:for-each select="r018_activiteit">
             <xsl:sort select="datum_activiteit/@value"/>
-            <xsl:variable name="activiteitStatus" select="status_activiteit/@code"/>
+            <xsl:variable name="activiteitId" select="activiteit_id/@value"/>
             <xsl:variable name="activiteitActies" select="//versturen_jgzdossieroverdrachtverzoek_v03/*[ends-with(@comment, concat('activiteit-', $activiteitId))]"/>
             
             <encounter xmlns="urn:hl7-org:v3" classCode="ENC" moodCode="INT">
@@ -1834,7 +1479,6 @@
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10022_20200527000000"/>
                 <!-- Template :: Activities encounterINT author (Verzoeker activiteit) -->
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10023_20200527000000"/>
-  
                 <xsl:for-each select="$activiteitActies">
                     <xsl:choose>
                         <xsl:when test="self::r013_bedreigingen_uit_de_directe_omgeving">
@@ -1852,8 +1496,6 @@
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11018_20200527000000"/>
                     </pertinentInformation>
                 </xsl:if>
-                <!-- Rubrieken, subjectOf1, component3, component4 -->
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10033_20200527000000"/>
             </encounter>
         </xsl:for-each>
     </xsl:template>
@@ -1967,8 +1609,6 @@
                         </encounter>
                     </inFulfillmentOf>
                 </xsl:if>
-                <!-- Rubrieken, subjectOf1, component3, component4 -->
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10033_20120801000000"/>
             </encounter>
         </xsl:for-each>
     </xsl:template>
