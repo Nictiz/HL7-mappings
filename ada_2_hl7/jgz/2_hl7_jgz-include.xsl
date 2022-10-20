@@ -1038,7 +1038,7 @@
                     <xsl:for-each select="$activiteitActies[self::r041_rijksvaccinatieprogramma_en_andere_vaccinaties]/groep_g076_vaccinatie">
                         <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
                         <component3>
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.116_20120801000000"/>
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.116_20200527000000"/>
                         </component3>
                     </xsl:for-each>
                     <!-- Element component4/A_HeelPrick -->
@@ -7142,6 +7142,201 @@
     </xsl:template>
 
     <!-- A_Rijksvaccinatie [universal] -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.116_20200527000000">
+        <substanceAdministration xmlns="urn:hl7-org:v3" classCode="SBADM" moodCode="EVN"
+            negationInd="{exists(bezwaar)}">
+            <templateId root="2.16.840.1.113883.2.4.6.10.100.116"/>
+            <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4" displayName="Immunization"/>
+            <!-- Item(s) :: datum_vaccinatie-->
+            <xsl:for-each select="datum_vaccinatie">
+                <xsl:call-template name="makeTSValue">
+                    <xsl:with-param name="xsiType" select="''"/>
+                    <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <consumable typeCode="CSM">
+                <medication classCode="ADMM">
+                    <administrableMedicine classCode="MMAT" determinerCode="KIND">
+                        <!-- Item(s) :: soort_vaccinatie-->
+                        <xsl:for-each select="soort_vaccinatie">
+                            <xsl:call-template name="makeCVValue">
+                                <xsl:with-param name="xsiType" select="''"/>
+                                <xsl:with-param name="elemName">code</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                        <!-- Item(s) :: partijnummer-->
+                        <xsl:for-each select="partijnummer">
+                            <xsl:call-template name="makeSTValue">
+                                <xsl:with-param name="xsiType" select="''"/>
+                                <xsl:with-param name="elemName">lotNumberText</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                    </administrableMedicine>
+                </medication>
+            </consumable>
+            <performer typeCode="PRF">
+                <!-- Template :: R_AssignedEntityNL [confirmable/location] -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.124_20120801000000"/>
+            </performer>
+            <!-- Item(s) :: reden_van_enting-->
+            <xsl:for-each select="reden_van_enting">
+                <reason typeCode="RSON">
+                    <vaccinationReason classCode="OBS" moodCode="EVN">
+                        <code code="686" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '686'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
+                        <xsl:call-template name="makeCVValue">
+                            <xsl:with-param name="elemName">value</xsl:with-param>
+                        </xsl:call-template>
+                    </vaccinationReason>
+                </reason>
+            </xsl:for-each>
+            <xsl:if test="verschijnselen">
+                <causeOf2 typeCode="CAUS">
+                    <adverseReaction classCode="OBS" moodCode="EVN">
+                        <code code="874" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '874'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
+                        <xsl:for-each select="groep_g111_periode_reactie">
+                            <effectiveTime xsi:type="IVL_TS">
+                                <xsl:if test="startdatum_reactie">
+                                    <!-- Item(s) :: startdatum_reactie-->
+                                    <xsl:for-each select="startdatum_reactie">
+                                        <xsl:call-template name="makeTSValue">
+                                            <xsl:with-param name="xsiType" select="''"/>
+                                            <xsl:with-param name="elemName">low</xsl:with-param>
+                                        </xsl:call-template>
+                                    </xsl:for-each>
+                                </xsl:if>
+                                <xsl:if test="einddatum_reactie">
+                                    <!-- Item(s) :: einddatum_reactie-->
+                                    <xsl:for-each select="einddatum_reactie">
+                                        <xsl:call-template name="makeTSValue">
+                                            <xsl:with-param name="xsiType" select="''"/>
+                                            <xsl:with-param name="elemName">high</xsl:with-param>
+                                        </xsl:call-template>
+                                    </xsl:for-each>
+                                </xsl:if>
+                            </effectiveTime>
+                        </xsl:for-each>
+                        <!-- Item(s) :: verschijnselen-->
+                        <xsl:for-each select="verschijnselen">
+                            <xsl:call-template name="makeSTValue">
+                                <xsl:with-param name="elemName">value</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                        <subjectOf typeCode="SUBJ">
+                            <informationControlActEvent classCode="INFO" moodCode="EVN">
+                                <code code="875" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                    <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '875'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                </code>
+                                <!-- Item(s) :: reactie_gemeld_aan_bevoegde_instantie_datum-->
+                                <xsl:for-each select="reactie_gemeld_aan_bevoegde_instantie_datum">
+                                    <xsl:call-template name="makeTSValue">
+                                        <xsl:with-param name="xsiType" select="''"/>
+                                        <xsl:with-param name="elemName" >effectiveTime</xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:for-each>
+                                <performer typeCode="PRF">
+                                    <assignedPerson classCode="ASSIGNED">
+                                        <!-- Item(s) :: reactie_gemeld_aan_bevoegde_instantie_door-->
+                                        <xsl:for-each select="reactie_gemeld_aan_bevoegde_instantie_door_uzi">
+                                            <xsl:call-template name="makeII.NL.UZIValue">
+                                                <xsl:with-param name="xsiType" select="''"/>
+                                                <xsl:with-param name="elemName">id</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:for-each>
+                                        <xsl:for-each select="reactie_gemeld_aan_bevoegde_instantie_door_big">
+                                            <xsl:call-template name="makeII.NL.BIGValue">
+                                                <xsl:with-param name="xsiType" select="''"/>
+                                                <xsl:with-param name="elemName">id</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:for-each>
+                                        <xsl:for-each select="reactie_gemeld_aan_bevoegde_instantie_door_agb">
+                                            <xsl:call-template name="makeII.NL.AGBValue">
+                                                <xsl:with-param name="xsiType" select="''"/>
+                                                <xsl:with-param name="elemName">id</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:for-each>
+                                        <xsl:if test="not(reactie_gemeld_aan_bevoegde_instantie_door_uzi | reactie_gemeld_aan_bevoegde_instantie_door_big | reactie_gemeld_aan_bevoegde_instantie_door_agb)">
+                                            <id nullFlavor="NI"/>
+                                        </xsl:if>
+                                        <!-- Item(s) :: reactie_gemeld_aan_bevoegde_instantie_door_naam-->
+                                        <xsl:for-each select="reactie_gemeld_aan_bevoegde_instantie_door_naam">
+                                            <assignedPerson classCode="PSN" determinerCode="INSTANCE">
+                                                <xsl:call-template name="makePNValue">
+                                                    <xsl:with-param name="xsiType" select="''"/>
+                                                    <xsl:with-param name="elemName" >name</xsl:with-param>
+                                                </xsl:call-template>
+                                            </assignedPerson>                                            
+                                        </xsl:for-each>
+                                    </assignedPerson>
+                                </performer>
+                            </informationControlActEvent>
+                        </subjectOf>
+                    </adverseReaction>
+                </causeOf2>
+            </xsl:if>
+            <!-- Item(s) :: bezwaar-->
+            <xsl:for-each select="bezwaar">
+                <authorization typeCode="AUTH">
+                    <consentEvent classCode="CONS" moodCode="EVN" negationInd="true">
+                        <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4"
+                            displayName="Immunization"/>
+                        <reasonOf typeCode="RSON">
+                            <observationEvent classCode="OBS" moodCode="EVN">
+                                <code code="683" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                    <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '683'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                </code>
+                                <xsl:call-template name="makeCVValue">
+                                    <xsl:with-param name="elemName">value</xsl:with-param>
+                                </xsl:call-template>
+                            </observationEvent>
+                        </reasonOf>
+                    </consentEvent>
+                </authorization>
+            </xsl:for-each>
+            <!-- Item(s) :: type_oproepkaart-->
+            <xsl:for-each select="type_oproepkaart">
+                <component typeCode="COMP">
+                    <vaccinationObservation classCode="OBS" moodCode="EVN">
+                        <code code="608" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '608'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
+                        <xsl:call-template name="makeCVValue">
+                            <xsl:with-param name="elemName">value</xsl:with-param>
+                        </xsl:call-template>
+                    </vaccinationObservation>
+                </component>
+            </xsl:for-each>
+            <!-- Item(s) :: toelichting_afwijkende_plaats_vaccinatie-->
+            <xsl:for-each select="toelichting_afwijkende_plaats_vaccinatie">
+                <component typeCode="COMP">
+                    <vaccinationObservation classCode="OBS" moodCode="EVN">
+                        <code code="872" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '872'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
+                        <xsl:call-template name="makeSTValue">
+                            <xsl:with-param name="elemName">value</xsl:with-param>
+                        </xsl:call-template>
+                    </vaccinationObservation>
+                </component>
+            </xsl:for-each>
+            <!-- Item(s) :: vaccinatie_door_rivm_afgekeurd-->
+            <xsl:for-each select="vaccinatie_door_rivm_afgekeurd">
+                <component typeCode="COMP">
+                    <vaccinationObservation classCode="OBS" moodCode="EVN">
+                        <code code="1589" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1589'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
+                        <xsl:call-template name="makeBLValue">
+                            <xsl:with-param name="elemName">value</xsl:with-param>
+                        </xsl:call-template>
+                    </vaccinationObservation>
+                </component>
+            </xsl:for-each>
+        </substanceAdministration>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.116_20120801000000">
         <substanceAdministrationEvent xmlns="urn:hl7-org:v3" classCode="SBADM" moodCode="EVN"
             negationInd="{exists(bezwaar)}">
@@ -7276,8 +7471,7 @@
             <xsl:for-each select="bezwaar">
                 <authorization typeCode="AUTH">
                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="true">
-                        <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4"
-                            displayName="Immunization"/>
+                        <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4" displayName="Immunization"/>
                         <reasonOf typeCode="RSON">
                             <observationEvent classCode="OBS" moodCode="EVN">
                                 <code code="683" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -25144,7 +25338,7 @@
     
     <!-- obs Er zijn (blijvende) zorgen dat de opvoed- en/of opgroeisituatie van de jeugdige een bedreiging voor de veiligheid van de jeugdige kunnen vormen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41569_20200527000000">
-        <observation  xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN">
+        <observation  xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41569"/>
             <code code="1569" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1569'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
@@ -25157,7 +25351,7 @@
     
     <!-- obs De (blijvende) zorgen zijn gedeeld met de jeugdige/ouder(s)/verzorger(s) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41570_20200527000000">
-        <observation  xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN">
+        <observation  xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41570"/>
             <code code="1570" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1570'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
@@ -25170,7 +25364,7 @@
     
     <!-- obs Reden om (blijvende) zorgen niet te delen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41571_20200527000000">
-        <observation  xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN">
+        <observation  xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41571"/>
             <code code="1571" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1571'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
@@ -25183,7 +25377,7 @@
     
     <!-- obs Afwegingsvraag 1: Is er een vermoeden van (dreiging van) huiselijk geweld en/of kindermishandeling? -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41572_20200527000000">
-        <observation  xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN">
+        <observation  xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41572"/>
             <code code="1572" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1572'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
@@ -25196,7 +25390,7 @@
     
     <!-- obs Afwegingsvraag 2: Is er sprake van acute onveiligheid en/of structurele onveiligheid? -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41573_20200527000000">
-        <observation  xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN">
+        <observation  xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41573"/>
             <code code="1573" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1573'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
@@ -25209,7 +25403,7 @@
     
     <!-- obs Afwegingsvraag 3: Ben ik, als JGZ-professional, in staat effectieve hulp te bieden of te organiseren? -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41574_20200527000000">
-        <observation  xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN">
+        <observation  xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41574"/>
             <code code="1574" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1574'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
@@ -25222,7 +25416,7 @@
     
     <!-- obs Afwegingsvraag 4: Aanvaarden de betrokkenen de hulp? Ben ik in staat de hulp te bieden of te organiseren? -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41575_20200527000000">
-        <observation  xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN">
+        <observation  xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41575"/>
             <code code="1575" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1575'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
@@ -25235,7 +25429,7 @@
     
     <!-- obs Afwegingsvraag 5: Leidt de hulp binnen de gewenste termijn tot duurzame veiligheid en/of het welzijn van alle betrokkenen? -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41576_20200527000000">
-        <observation  xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN">
+        <observation  xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41576"/>
             <code code="1576" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1576'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
