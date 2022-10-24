@@ -34,7 +34,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
-                <category>               
+                <category>
                     <coding> 
                         <system value="http://snomed.info/sct"/> 
                         <code value="245857005"/> 
@@ -45,7 +45,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="code-to-CodeableConcept">
                         <xsl:with-param name="in" select="stoma_type"/>
                     </xsl:call-template>
-                </xsl:if>                
+                </xsl:if>
                 <xsl:for-each select="aanleg_datum">
                     <onsetDateTime>
                         <xsl:call-template name="date-to-datetime">
