@@ -51,7 +51,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <coding>
                         <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="251718005"/>
-                        <display value="Refractive power (observable entity)"/>
+                        <display value="refractiesterkte"/>
                     </coding>
                 </code>
                 <xsl:call-template name="makeReference">
@@ -88,57 +88,57 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="cilindrische_refractie_waarde">
                         <xsl:call-template name="_refractionComponent">
                             <xsl:with-param name="snomedCode">251797004</xsl:with-param>
-                            <xsl:with-param name="snomedDisplay">Power of cylinder</xsl:with-param>
+                            <xsl:with-param name="snomedDisplay">sterkte van cilinder</xsl:with-param>
                             <xsl:with-param name="unit">[diop]</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
                     <xsl:for-each select="cilindrische_refractie_as">
                         <xsl:call-template name="_refractionComponent">
                             <xsl:with-param name="snomedCode">251799001</xsl:with-param>
-                            <xsl:with-param name="snomedDisplay">Axis of cylinder</xsl:with-param>
+                            <xsl:with-param name="snomedDisplay">as van cilinder</xsl:with-param>
                             <xsl:with-param name="unit">deg</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
                 </xsl:for-each>
-
+                
                 <xsl:for-each select="prisma">
                     <xsl:for-each select="prisma_waarde">
                         <xsl:call-template name="_refractionComponent">
                             <xsl:with-param name="snomedCode">251762001</xsl:with-param>
-                            <xsl:with-param name="snomedDisplay">Prism power</xsl:with-param>
+                            <xsl:with-param name="snomedDisplay">prismasterkte</xsl:with-param>
                             <xsl:with-param name="unit">[diop]</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
                     <xsl:for-each select="prisma_basis">
                         <xsl:call-template name="_refractionComponent">
                             <xsl:with-param name="snomedCode">246223004</xsl:with-param>
-                            <xsl:with-param name="snomedDisplay">Prism base direction</xsl:with-param>
+                            <xsl:with-param name="snomedDisplay">richting van basis van prisma</xsl:with-param>
                             <xsl:with-param name="unit">deg</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
                 </xsl:for-each>
-
+                
                 <xsl:for-each select="sferische_refractie">
                     <xsl:for-each select="sferische_refractie_waarde">
                         <xsl:call-template name="_refractionComponent">
                             <xsl:with-param name="snomedCode">251795007</xsl:with-param>
-                            <xsl:with-param name="snomedDisplay">Power of sphere</xsl:with-param>
+                            <xsl:with-param name="snomedDisplay">sferische sterkte</xsl:with-param>
                             <xsl:with-param name="unit">[diop]</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
                     <xsl:for-each select="sferisch_equivalent">
                         <xsl:call-template name="_refractionComponent">
                             <xsl:with-param name="snomedCode">112881000146107</xsl:with-param>
-                            <xsl:with-param name="snomedDisplay">Spherical equivalent (observable entity)</xsl:with-param>
+                            <xsl:with-param name="snomedDisplay">sferisch equivalent</xsl:with-param>
                             <xsl:with-param name="unit">[diop]</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
                 </xsl:for-each>
-
+                
                 <xsl:for-each select="lees_additie">
                     <xsl:call-template name="_refractionComponent">
                         <xsl:with-param name="snomedCode">251796008</xsl:with-param>
-                        <xsl:with-param name="snomedDisplay">leesadditie (waarneembare entiteit)</xsl:with-param>
+                        <xsl:with-param name="snomedDisplay">leesadditie</xsl:with-param>
                         <xsl:with-param name="unit">[diop]</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
