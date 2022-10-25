@@ -54,7 +54,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <coding>
                         <system value="http://snomed.info/sct"/>
                         <code value="108311000146106"/>
-                        <display value="SNAQRC"/>
+                        <display value="Short Nutritional Questionnaire for residential care"/>
                     </coding>
                 </code>
                 <xsl:call-template name="makeReference">
