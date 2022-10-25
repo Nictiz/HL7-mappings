@@ -117,23 +117,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </identifier>
                 </xsl:for-each>
 
+                <!-- AWE: MP-737 - no distinction between active/intended/completed needed -->
                 <status>
                     <xsl:attribute name="value">
-                        <xsl:variable name="period" as="element()*">
-                            <xsl:call-template name="ext-TimeInterval.Period">
-                                <xsl:with-param name="in" select="gebruiksperiode"/>
-                                <xsl:with-param name="wrapIn">temp</xsl:with-param>
-                            </xsl:call-template>
-                        </xsl:variable>
                         <xsl:choose>
+                            <xsl:when test="medicatie_gebruik_stop_type[@code = $stoptypeMap[@stoptype = 'tijdelijk']/@code]">on-hold</xsl:when>
+                            <xsl:when test="medicatie_gebruik_stop_type[@code = $stoptypeMap[@stoptype = 'definitief']/@code]">stopped</xsl:when>
                             <xsl:when test="gebruik_indicator/@value = 'false'">not-taken</xsl:when>
-                            <xsl:when test="not(medicatie_gebruik_stop_type[@code]) and gebruik_indicator/@value = 'true'">active</xsl:when>
-                            <xsl:when test="medicatie_gebruik_stop_type/@code = '113381000146106' and gebruik_indicator/@value = 'false'">on-hold</xsl:when>
-                            <xsl:when test="medicatie_gebruik_stop_type/@code = '113371000146109' and gebruik_indicator/@value = 'false'">stopped</xsl:when>
-                            <xsl:when test="$period/f:start[@value] and (nf:isFuture($period/f:start/@value) or not($period/f:end/@value))">active</xsl:when>
-                            <xsl:when test="$period/f:end[@value] and nf:isFuture($period/f:end/@value)">active</xsl:when>
-                            <xsl:when test="$period/f:end[@value] and nf:isPast($period/f:end/@value)">completed</xsl:when>
-                            <xsl:otherwise>unknown</xsl:otherwise>
+                            <xsl:otherwise>active</xsl:otherwise>
                         </xsl:choose>
                     </xsl:attribute>
                 </status>
