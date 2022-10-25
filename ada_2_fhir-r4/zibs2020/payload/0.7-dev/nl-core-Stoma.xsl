@@ -26,13 +26,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="stoma" name="nl-core-Stoma" mode="nl-core-Stoma" as="element(f:Condition)?">
         <xsl:param name="in" select="." as="element()?"/>
-        <xsl:param name="subject" select="patient" as="element()?"/>
+        <xsl:param name="subject" select="patient/*" as="element()?"/>
 
         <xsl:for-each select="$in">
             <Condition>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="'nl-core-Stoma'"/>
+                </xsl:call-template>
+                
                 <meta>
-                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Stoma"/>
                 </meta>
                 <category>
                     <coding> 
@@ -41,11 +44,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <display value="stoma"/> 
                     </coding> 
                 </category>  
-                <xsl:if test="stoma_type">
-                    <xsl:call-template name="code-to-CodeableConcept">
-                        <xsl:with-param name="in" select="stoma_type"/>
-                    </xsl:call-template>
-                </xsl:if>
+                <xsl:for-each select="stoma_type">
+                    <code>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </code>
+                </xsl:for-each>
+                <xsl:for-each select="anatomische_locatie">
+                    <bodySite>
+                        <xsl:call-template name="nl-core-AnatomicalLocation"/>
+                    </bodySite>
+                </xsl:for-each>
+                <xsl:call-template name="makeReference">
+                    <xsl:with-param name="in" select="$subject"/>
+                    <xsl:with-param name="wrapIn" select="'subject'"/>
+                </xsl:call-template>
                 <xsl:for-each select="aanleg_datum">
                     <onsetDateTime>
                         <xsl:call-template name="date-to-datetime">
@@ -53,39 +67,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </onsetDateTime>
                 </xsl:for-each>
-                    <xsl:for-each select="toelichting">
-                        <note>
-                            <text value="{normalize-space(@value)}"/>
-                        </note>
-                    </xsl:for-each>
+                <xsl:for-each select="toelichting">
+                    <note>
+                        <text>
+                            <xsl:call-template name="string-to-string">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </text>
+                    </note>
+                </xsl:for-each>
             </Condition>
         </xsl:for-each>
     </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
-    </xd:doc>
-    <xsl:template match="stoma" mode="_generateId">
-
-        <xsl:variable name="uniqueString" as="xs:string?">
-            <xsl:choose>
-                <xsl:when test="identificatie[@root][@value][string-length(concat(@root, @value)) le $maxLengthFHIRLogicalId - 2]">
-                    <xsl:for-each select="(identificatie[@root][@value])[1]">
-                        <xsl:value-of select="concat(@root, '-', @value)"/>
-                    </xsl:for-each>
-                </xsl:when>
-                <xsl:otherwise>
-                    <!-- we do not have anything to create a stable logicalId, lets return a UUID -->
-                    <xsl:value-of select="uuid:get-uuid(.)"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-
-        <xsl:call-template name="generateLogicalId">
-            <xsl:with-param name="uniqueString" select="$uniqueString"/>
-        </xsl:call-template>
-    </xsl:template>
-
 
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>

@@ -11,13 +11,36 @@
          <display value="stoma"/>
       </coding>
    </category>
-   <coding>
-      <system value="http://snomed.info/sct"/>
-      <code value="261030007"/>
-      <display value="eindstandig colostoma"/>
-   </coding>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="261030007"/>
+         <display value="eindstandig colostoma"/>
+      </coding>
+   </code>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="24028007"/>
+               <display value="rechts"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="27033000"/>
+         <display value="onderbuik"/>
+      </coding>
+   </bodySite>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
    <onsetDateTime value="2014"/>
    <note>
-      <text value="Patient heeft veel last van dit type stoma."/>
+      <text value="Patiënt heeft veel last van dit type stoma."/>
    </note>
 </Condition>
