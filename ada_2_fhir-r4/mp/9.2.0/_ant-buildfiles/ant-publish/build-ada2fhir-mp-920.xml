@@ -13,7 +13,7 @@
 <!--    <property name="date.T" value="2022-01-01"/>-->
     <!-- specify BSN oid for masking BSN identifiers -->
     <property name="mask.ids" value=""/>
-    <!--    <property name="mask.ids" value="2.16.840.1.113883.2.4.6.3"/>-->
+    <property name="mask.ids.mm" value="2.16.840.1.113883.2.4.6.3"/>
 
     <import file="../../../_ant-buildfiles/ant-publish/build-ada2fhir-mp-include.xml"/>
 
@@ -144,7 +144,6 @@
         </antcall>
     </target>
 
-
     <target name="convert_ada_2_fhir_920">
         
         <property name="xsl.output.dummy" value="dummy"/>
@@ -188,7 +187,31 @@
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.mg}"/>
         </antcall>
-
+        
+        <echo>beschikbaarstellen_medicatiegegevens_medmij</echo>
+        <property name="xsl.output.mg.mm" value="${build.dir}/${usecase.mg}/fhir_instance_medmij"/>
+        
+        <!-- make dir if it does not exist (anymore) -->
+        <mkdir dir="${xsl.output.mg.mm}"/>
+        <echo>Deleting previous results, if any</echo>
+        <delete>
+            <fileset dir="${xsl.output.mg.mm}" includes="*.*"/>
+        </delete>
+        <!-- resources for Touchstone for beschikbaarstellen_medicatiegegevens -->
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="usecase" value="${usecase.mg}"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.fhir.fixtures}/payload/${usecase.mg}_2_fhir_resources.xsl"/>
+            <param name="xsl.in" value="${xsl.input.mg}"/>
+            <param name="xsl.in.include" value="mg-mp-*.xml"/>
+            <!-- the xsl will write it's resources using the output.dir, but ant xslt still needs an output dir -->
+            <param name="xsl.out" value="${xsl.output.dummy}"/>
+            <param name="param.tdate" value="${date.T}" if:set="date.T"/>
+            <param name="param.maskids" value="${mask.ids.mm}"/>
+            <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
+            <param name="output.dir" value="../${xsl.output.mg.mm}"/>
+        </antcall>
+        
+        <echo>sturen_medicatiegegevens</echo>
         <!-- push bundles for Touchstone for sturen_medicatiegegevens -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="${usecase.mg.st}"/>
@@ -348,13 +371,13 @@
         </antcall>        
 
         <!-- copy the appropriate fhir instances for Touchstone to a separate folder, to ease upload to Touchstone -->
-        <echo>copy the appropriate fhir instances for Touchstone to a separate folder: 4TouchstoneMPServe</echo>
-        <mkdir dir="${build.dir}/4TouchstoneMPServe"/>
+        <echo>copy the appropriate fhir instances for Touchstone to a separate folder: 4TouchstoneMP</echo>
+        <mkdir dir="${build.dir}/4TouchstoneMP"/>
         <!-- clean previous results, if any -->
         <delete>
-            <fileset dir="${build.dir}/4TouchstoneMPServe" includes="*.xml"/>
+            <fileset dir="${build.dir}/4TouchstoneMP" includes="*.xml"/>
         </delete>
-        <copy todir="${build.dir}/4TouchstoneMPServe">
+        <copy todir="${build.dir}/4TouchstoneMP">
             <fileset dir="${build.dir}/${usecase.mg}/fhir_instance">
                 <include name="*.xml"/>
                 <!-- the resources and scenarioset bundles are needed on Touchstone / WildFHIR, exclude the ALL bundles -->
@@ -368,6 +391,21 @@
             <fileset dir="${build.dir}/${usecase.avma}/fhir_instance"/>
             <fileset dir="${build.dir}/${usecase.vvv}/fhir_instance"/>
             <fileset dir="${build.dir}/${usecase.avvv}/fhir_instance"/>
+        </copy>
+        
+        <!-- copy the appropriate fhir instances for Touchstone MedMij to a separate folder, to ease upload to Touchstone -->
+        <echo>copy the appropriate fhir instances for Touchstone MedMij to a separate folder: 4TouchstoneMPMedMij</echo>
+        <mkdir dir="${build.dir}/4TouchstoneMPMedMij"/>
+        <!-- clean previous results, if any -->
+        <delete>
+            <fileset dir="${build.dir}/4TouchstoneMPMedMij" includes="*.xml"/>
+        </delete>
+        <copy todir="${build.dir}/4TouchstoneMPMedMij">
+            <fileset dir="${build.dir}/${usecase.mg}/fhir_instance_medmij">
+                <include name="*.xml"/>
+                <!-- the resources and scenarioset bundles are needed on Touchstone / WildFHIR, exclude the ALL bundles -->
+                <exclude name="mg-*ALL.xml"/>
+            </fileset>              
         </copy>
 
         <!-- beschikbaarstellen_medicatieoverzicht not actively tested / used in kickstart, no test instances available yet -->

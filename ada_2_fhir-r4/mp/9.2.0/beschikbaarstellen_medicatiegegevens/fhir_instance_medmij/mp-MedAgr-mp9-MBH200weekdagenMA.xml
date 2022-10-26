@@ -1,0 +1,80 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="mp-MedAgr-mp9-MBH200weekdagenMA"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="Vanaf T, tot en met T + 70 dagen, op maandag, woensdag en vrijdag, voor de nacht, aanbrengen, cutaan"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+      <valuePeriod>
+         <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
+         <end value="${DATE, T, D, +70}T23:59:59+02:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_200_weekdagen"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      <value value="MBH_200_weekdagen_MA"/>
+   </identifier>
+   <status value="unknown"/>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="33633005"/>
+         <display value="voorschrijven van geneesmiddel"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/nl-core-PhPrd-mp9-216840111388324410-55050"/>
+      <type value="Medication"/>
+      <display value="IMIQUIMOD 50MG/G CREME"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-G-XXX-Hemsbergen"/>
+      <type value="Patient"/>
+      <display value="Patient, G. XXX_Hemsbergen"/>
+   </subject>
+   <authoredOn value="${DATE, T, D, +0}T08:25:00+02:00"/>
+   <requester>
+      <reference value="PractitionerRole/nl-core-HPrf-PracRol-mp9-000001111-0100-00001111"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
+   </requester>
+   <dosageInstruction>
+      <additionalInstruction>
+         <coding>
+            <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+            <code value="1128"/>
+            <display value="voor de nacht"/>
+         </coding>
+      </additionalInstruction>
+      <additionalInstruction>
+         <coding>
+            <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+            <code value="1018"/>
+            <display value="aanbrengen"/>
+         </coding>
+      </additionalInstruction>
+      <timing>
+         <repeat>
+            <dayOfWeek value="mon"/>
+            <dayOfWeek value="wed"/>
+            <dayOfWeek value="fri"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="53"/>
+            <display value="cutaan"/>
+         </coding>
+      </route>
+   </dosageInstruction>
+</MedicationRequest>
