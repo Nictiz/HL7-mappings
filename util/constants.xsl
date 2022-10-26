@@ -49,6 +49,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="ada-unit-pH" select="('pH', '[pH]')"/>
     <xsl:variable name="ada-unit-mmol-l" select="('mmol/L', 'mmol/l', 'mmol per liter')"/>
     <xsl:variable name="ada-unit-mmHg" select="('mmHg', 'mm[Hg]')"/>
+    <xsl:variable name="ada-unit-diopter" select="('dpt', '[diop]')"/>
+    <xsl:variable name="ada-unit-prism-diopter" select="('PD', '[p''diop]')"/>
 
     <xsl:variable name="oidAGB">2.16.840.1.113883.2.4.6.1</xsl:variable>
     <xsl:variable name="oidAGBSpecialismen">2.16.840.1.113883.2.4.6.7</xsl:variable>
