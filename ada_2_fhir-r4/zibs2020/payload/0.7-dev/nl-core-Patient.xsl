@@ -26,6 +26,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xd:ul>
                 <xd:li>zib Patient</xd:li>
                 <xd:li>zib Nationality</xd:li>
+                <xd:li>zib LifeStance</xd:li>
                 <xd:li>zib MaritalStatus</xd:li>
                 <xd:li>zib LanguageProficiency</xd:li>
                 <xd:li>zib ContactPerson</xd:li>
@@ -45,6 +46,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="patient" mode="nl-core-Patient" name="nl-core-Patient" as="element(f:Patient)">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="nationality" as="element(nationaliteit_rc)?" select="$in/nationaliteit_rc"/>
+        <xsl:param name="lifeStance" as="element(levensovertuiging_rc)?" select="$in/levensovertuiging_rc"/>
         <xsl:param name="maritalStatus" as="element(burgerlijke_staat_rc)?" select="$in/burgerlijke_staat_rc"/>
         <xsl:param name="languageProficiency" as="element(taalvaardigheid)*" select="$in/taalvaardigheid"/>
         <xsl:param name="contactPersons" as="element(contactpersoon)*" select="$in/contactpersoon"/>
@@ -66,6 +68,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:call-template>
                             </valueCodeableConcept>
                         </extension>
+                    </extension>
+                </xsl:for-each>
+                
+                <!-- LifeStance is a zib on its own, but the implementation is specific for the Patient resource. 
+                 Therefore, it is created inline. -->
+                <xsl:for-each select="$lifeStance/levensovertuiging">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Patient.LifeStance">                               
+                        <valueCodeableConcept>
+                            <xsl:for-each select="../toelichting">
+                                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">  
+                                    <valueString>
+                                        <xsl:call-template name="string-to-string">
+                                            <xsl:with-param name="in" select="."/>
+                                        </xsl:call-template>
+                                    </valueString>                               
+                                </extension>
+                            </xsl:for-each>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </valueCodeableConcept>                      
                     </extension>
                 </xsl:for-each>
 
