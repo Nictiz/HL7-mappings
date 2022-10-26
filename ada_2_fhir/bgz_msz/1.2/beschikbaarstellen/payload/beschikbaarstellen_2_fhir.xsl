@@ -83,150 +83,151 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="bouwstenen" as="element(f:entry)*">
             <xsl:for-each select="bundle/*">
                 <xsl:variable name="adaPatient" select="hcimroot/subject/patient/patient"/>
+                <xsl:variable name="patientIdentifier" select="$adaPatient/patient_identification_number/@value"/>
+                <xsl:variable name="patientName">
+                    <xsl:choose>
+                        <xsl:when test="$patientIdentifier = 999999151">
+                            <xsl:value-of select="'patA'"/>
+                        </xsl:when>
+                        <xsl:when test="$patientIdentifier = 999999072">
+                            <xsl:value-of select="'patB'"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="'patX'"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
                 
                 <!--Zibs that result in only a single resource, or  resources that have no special conditions-->
                 <xsl:if test="local-name() = ('advance_directive', 'alcohol_use', 'alert', 'allergy_intolerance', 'blood_pressure', 'body_height', 'body_weight', 'contact', 'drug_use', 'encounter', 'functional_or_mental_status', 'living_situation', 'nutrition_advice', 'patient', 'payer', 'problem', 'tobacco_use', 'treatment_directive')">
                     <entry xmlns="http://hl7.org/fhir">
                         <xsl:if test="local-name() = 'advance_directive'">
-                            <!--<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Consent', false())}"/>-->
-                            <fullUrl value="{concat('zib-AdvanceDirective-', $usecase, '-', position())}"/>
+                            <fullUrl value="{concat('zib-AdvanceDirective-', $usecase, '-', $patientName, '-', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-AdvanceDirective-2.1">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="string(position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
                                 </xsl:call-template>
                             </resource>
                         </xsl:if>
                         <xsl:if test="local-name() = 'alcohol_use'">
-                            <!--<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>-->
-                            <fullUrl value="{concat('zib-AlcoholUse-', $usecase, '-', position())}"/>
+                            <fullUrl value="{concat('zib-AlcoholUse-', $usecase, '-', $patientName, '-', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-AlcoholUse-2.1">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="string(position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
                                 </xsl:call-template>
                             </resource>
                         </xsl:if>
                         <xsl:if test="local-name() = 'alert'">
-                            <!--<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Flag', false())}"/>-->
-                            <fullUrl value="{concat('zib-Alert-', $usecase, '-', position())}"/>
+                            <fullUrl value="{concat('zib-Alert-', $usecase, '-', $patientName, '-', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-Alert-2.1">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="string(position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
                                 </xsl:call-template>
                             </resource>
                         </xsl:if>
                         <xsl:if test="local-name() = 'allergy_intolerance'">
-                            <!--<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'AllergyIntolerance', false())}"/>-->
-                            <fullUrl value="{concat('zib-AllergyIntolerance-', $usecase, '-', position())}"/>
+                            <fullUrl value="{concat('zib-AllergyIntolerance-', $usecase, '-', $patientName, '-', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-AllergyIntolerance-2.1">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="string(position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
                                 </xsl:call-template>
                             </resource>
                         </xsl:if>
                         <xsl:if test="local-name() = 'blood_pressure'">
-                            <!--<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>-->
-                            <fullUrl value="{concat('zib-BloodPressure-', $usecase, '-', position())}"/>
+                            <fullUrl value="{concat('zib-BloodPressure-', $usecase, '-', $patientName, '-', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-BloodPressure-3.0">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="string(position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
                                 </xsl:call-template>
                             </resource>
                         </xsl:if>
                         <xsl:if test="local-name() = 'body_height'">
-                            <!--<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>-->
-                            <fullUrl value="{concat('zib-BodyHeight-', $usecase, '-', position())}"/>
+                            <fullUrl value="{concat('zib-BodyHeight-', $usecase, '-', $patientName, '-', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-BodyHeight-2.x">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="string(position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
                                 </xsl:call-template>
                             </resource>
                         </xsl:if>
                         <xsl:if test="local-name() = 'body_weight'">
-                            <!--<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>-->
-                            <fullUrl value="{concat('zib-BodyWeight-', $usecase, '-', position())}"/>
+                            <fullUrl value="{concat('zib-BodyWeight-', $usecase, '-', $patientName, '-', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-BodyWeight-2.x">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="string(position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
                                 </xsl:call-template>
                             </resource>
                         </xsl:if>
                         <xsl:if test="local-name() = 'contact'">
-                            <!--<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'RelatedPerson', false())}"/>-->
-                            <fullUrl value="{concat('zib-ContactPerson-', $usecase, '-', position())}"/>
+                            <fullUrl value="{concat('zib-ContactPerson-', $usecase, '-', $patientName, '-', position())}"/>
                             <resource>
                                 <xsl:call-template name="nl-core-relatedperson-2.0">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="string(position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
                                 </xsl:call-template>
                             </resource>
                         </xsl:if>
                         <xsl:if test="local-name() = 'drug_use'">
-                            <!--<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>-->
-                            <fullUrl value="{concat('zib-DrugUse-', $usecase, '-', position())}"/>
+                            <fullUrl value="{concat('zib-DrugUse-', $usecase, '-', $patientName, '-', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-DrugUse-2.1">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="string(position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
                                 </xsl:call-template>
                             </resource>
                         </xsl:if>
                         <xsl:if test="local-name() = 'encounter'">
-                            <!--<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Encounter', false())}"/>-->
-                            <fullUrl value="{concat('zib-Encounter-', $usecase, '-', position())}"/>
+                            <fullUrl value="{concat('zib-Encounter-', $usecase, '-', $patientName, '-', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-Encounter-2.1">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="string(position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
                                 </xsl:call-template>
                             </resource>
                         </xsl:if>
                         <xsl:if test="local-name() = 'functional_or_mental_status'">
-                            <!--<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>-->
-                            <fullUrl value="{concat('zib-FunctionalOrMentalStatus-', $usecase, '-', position())}"/>
+                            <fullUrl value="{concat('zib-FunctionalOrMentalStatus-', $usecase, '-', $patientName, '-', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-FunctionalOrMentalStatus-2.1">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="string(position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
                                 </xsl:call-template>
                             </resource>
                         </xsl:if>
                         <xsl:if test="local-name() = 'living_situation'">
-                            <!--<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>-->
-                            <fullUrl value="{concat('zib-LivingSituation-', $usecase, '-', position())}"/>
+                            <fullUrl value="{concat('zib-LivingSituation-', $usecase, '-', $patientName, '-', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-LivingSituation-2.1">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="string(position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
                                 </xsl:call-template>
                             </resource>
                         </xsl:if>
                         <xsl:if test="local-name() = 'nutrition_advice'">
-                            <!--<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'NutritionOrder', false())}"/>-->
-                            <fullUrl value="{concat('zib-NutritionAdvice-', $usecase, '-', position())}"/>
+                            <fullUrl value="{concat('zib-NutritionAdvice-', $usecase, '-', $patientName, '-', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-NutritionAdvice-2.1">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="string(position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
                                 </xsl:call-template>
                             </resource>
                         </xsl:if>
@@ -235,51 +236,47 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <resource>
                                 <xsl:call-template name="nl-core-patient-2.1">
                                     <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="logicalId" select="string(position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
                                 </xsl:call-template>
                             </resource>
                         </xsl:if>-->
                         <xsl:if test="local-name() = 'payer'">
-                            <!--<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Coverage', false())}"/>-->
-                            <fullUrl value="{concat('zib-Payer-', $usecase, '-', position())}"/>
+                            <fullUrl value="{concat('zib-Payer-', $usecase, '-', $patientName, '-', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-Payer-2.0">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="string(position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
                                 </xsl:call-template>
                             </resource>
                         </xsl:if>
                         <xsl:if test="local-name() = 'problem'">
-                            <!--<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Condition', false())}"/>-->
-                            <fullUrl value="{concat('zib-Problem-', $usecase, '-', position())}"/>
+                            <fullUrl value="{concat('zib-Problem-', $usecase, '-', $patientName, '-', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-Problem-3.0">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="string(position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
                                 </xsl:call-template>
                             </resource>
                         </xsl:if>
                         <xsl:if test="local-name() = 'tobacco_use'">
-                            <!--<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>-->
-                            <fullUrl value="{concat('zib-TobaccoUse-', $usecase, '-', position())}"/>
+                            <fullUrl value="{concat('zib-TobaccoUse-', $usecase, '-', $patientName, '-', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-TobaccoUse-2.1">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="string(position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
                                 </xsl:call-template>
                             </resource>
                         </xsl:if>
                         <xsl:if test="local-name() = 'treatment_directive'">
-                            <!--<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Consent', false())}"/>-->
-                            <fullUrl value="{concat('zib-TreatmentDirective-', $usecase, '-', position())}"/>
+                            <fullUrl value="{concat('zib-TreatmentDirective-', $usecase, '-', $patientName, '-', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-TreatmentDirective-2.2">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="string(position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
                                 </xsl:call-template>
                             </resource>
                         </xsl:if>
@@ -293,11 +290,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!--<xsl:if test="local-name() = 'health_professional'">
                     <entry>
                         <!-\-<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Practitioner', false())}"/>-\->
-                        <fullUrl value="{concat('zib-Practitioner-', $usecase, '-', position())}"/>
+                        <fullUrl value="{concat('zib-Practitioner-', $usecase, '-', $patientName, '-', position())}"/>
                         <resource>
                             <xsl:call-template name="nl-core-practitioner-2.0">
                                 <xsl:with-param name="in" select="."/>
-                                <xsl:with-param name="logicalId" select="string(position())"/>
+                                <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
                             </xsl:call-template>
                         </resource>
                         <search>
@@ -307,11 +304,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <entry>
                         <!-\-<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'PractitionerRole', false())}"/>-\->
-                        <fullUrl value="{concat('zib-PractitionerRole-', $usecase, '-', position())}"/>
+                        <fullUrl value="{concat('zib-PractitionerRole-', $usecase, '-', $patientName, '-', position())}"/>
                         <resource>
                             <xsl:call-template name="nl-core-practitionerrole-2.0">
                                 <xsl:with-param name="in" select="."/>
-                                <xsl:with-param name="logicalId" select="string(position())"/>
+                                <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
                             </xsl:call-template>
                         </resource>
                         <search>
@@ -323,13 +320,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:if test="local-name() = 'laboratory_test_result'">
                     <xsl:if test="panel_or_battery[@code]">
                         <entry>
-                            <!--<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>-->
-                            <fullUrl value="{concat('zib-LaboratoryTestResult-PanelObservation-', $usecase, '-', position())}"/>
+                            <fullUrl value="{concat('zib-LaboratoryTestResult-PanelObservation-', $usecase, '-', $patientName, '-', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-LaboratoryTestResult-PanelObservation-2.1">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="string(position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
                                 </xsl:call-template>
                             </resource>
                             <search>
@@ -340,13 +336,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <xsl:for-each select="laboratory_test">
                         <entry>
-                            <!--<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Observation', false())}"/>-->
-                            <fullUrl value="{concat('zib-LaboratoryTestResult-Observation-', $usecase, '-', position())}"/>
+                            <fullUrl value="{concat('zib-LaboratoryTestResult-Observation-', $usecase, '-', $patientName, '-', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-LaboratoryTestResult-Observation-2.1">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="string(position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
                                 </xsl:call-template>
                             </resource>
                             <search>
@@ -357,13 +352,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <xsl:for-each select="specimen">
                         <entry>
-                            <!--<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Specimen', false())}"/>-->
-                            <fullUrl value="{concat('zib-LaboratoryTestResult-Specimen-', $usecase, '-', position())}"/>
+                            <fullUrl value="{concat('zib-LaboratoryTestResult-Specimen-', $usecase, '-', $patientName, '-', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-LaboratoryTestResult-Specimen-2.1">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="string(position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
                                 </xsl:call-template>
                             </resource>
                             <search>
@@ -375,13 +369,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 
                 <xsl:if test="local-name() = 'medical_device'">
                     <entry>
-                        <!--<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'DeviceUseStatement', false())}"/>-->
-                        <fullUrl value="{concat('zib-MedicalDevice-', $usecase, '-', position())}"/>
+                        <fullUrl value="{concat('zib-MedicalDevice-', $usecase, '-', $patientName, '-', position())}"/>
                         <resource>
                             <xsl:call-template name="zib-MedicalDevice-2.2">
                                 <xsl:with-param name="in" select="."/>
                                 <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                <xsl:with-param name="logicalId" select="string(position())"/>
+                                <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
                             </xsl:call-template>
                         </resource>
                         <search>
@@ -390,13 +383,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </entry>
                     
                     <entry>
-                        <!--<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Device', false())}"/>-->
-                        <fullUrl value="{concat('zib-MedicalDeviceProduct-', $usecase, '-', position())}"/>
+                        <fullUrl value="{concat('zib-MedicalDeviceProduct-', $usecase, '-', $patientName, '-', position())}"/>
                         <resource>
                             <xsl:call-template name="zib-MedicalDeviceProduct-2.2">
                                 <xsl:with-param name="in" select="."/>
                                 <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                <xsl:with-param name="logicalId" select="string(position())"/>
+                                <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
                             </xsl:call-template>
                         </resource>
                         <search>
@@ -408,13 +400,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:if test="local-name() = 'procedure'">
                     <xsl:if test="nf:isPast((verrichting_start_datum | procedure_start_date)/@value)">
                         <entry>
-                            <!--<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Procedure', false())}"/>-->
-                            <fullUrl value="{concat('zib-Procedure-', $usecase, '-', position())}"/>
+                            <fullUrl value="{concat('zib-Procedure-', $usecase, '-', $patientName, '-', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-Procedure-2.1">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="string(position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
                                 </xsl:call-template>
                             </resource>
                             <search>
@@ -424,13 +415,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:if>
                     <xsl:if test="nf:isFuture((verrichting_start_datum | procedure_start_date)/@value) or aanvrager | requester">
                         <entry>
-                            <!--<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'ProcedureRequest', false())}"/>-->
-                            <fullUrl value="{concat('zib-ProcedureRequest-', $usecase, '-', position())}"/>
+                            <fullUrl value="{concat('zib-ProcedureRequest-', $usecase, '-', $patientName, '-', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-ProcedureRequest-2.1">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="string(position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
                                 </xsl:call-template>
                             </resource>
                             <search>
@@ -442,13 +432,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 
                 <xsl:if test="local-name() = 'vaccination'">
                     <entry>
-                        <!--<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Immunization', false())}"/>-->
-                        <fullUrl value="{concat('zib-Vaccination-', $usecase, '-', position())}"/>
+                        <fullUrl value="{concat('zib-Vaccination-', $usecase, '-', $patientName, '-', position())}"/>
                         <resource>
                             <xsl:call-template name="zib-Vaccination-2.1">
                                 <xsl:with-param name="in" select="."/>
                                 <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                <xsl:with-param name="logicalId" select="string(position())"/>
+                                <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
                             </xsl:call-template>
                         </resource>
                         <search>
@@ -458,13 +447,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <xsl:if test="(gewenste_datum_hervaccinatie | prefered_date_for_revaccination)[@value]">
                         <entry>
-                            <!--<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'ImmunizationRecommendation', false())}"/>-->
-                            <fullUrl value="{concat('zib-VaccinationRecommendation-', $usecase, '-', position())}"/>
+                            <fullUrl value="{concat('zib-VaccinationRecommendation-', $usecase, '-', $patientName, '-', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-VaccinationRecommendation-2.0">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="string(position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
                                 </xsl:call-template>
                             </resource>
                             <search>
@@ -489,25 +477,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:copy-of select="f:resource/f:*"/>
                     </xsl:result-document>
                 </xsl:for-each>
-                
-                <!--<xsl:for-each select="$bouwstenen">
-                    <xsl:variable name="zib-name" select="tokenize(f:resource/f:*/f:meta/f:profile/@value, '/')[last()]"/>
-                    <xsl:result-document href="../fhir_instance_resources/{$usecase}-{$zib-name}-{f:fullUrl/tokenize(@value, '-')[last()]}.xml">
-                        <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/<xsl:value-of select="lower-case(local-name())"/>.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
-                        <xsl:copy-of select="f:resource/f:*"/>
-                        <!-\-<xsl:attribute name="xsi:schemaLocation">http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd</xsl:attribute>-\->
-                        <!-\-<xsl:copy-of select="node()"/>-\->
-                    </xsl:result-document>
-                </xsl:for-each>
-                <xsl:for-each select="$commonEntries">
-                    <xsl:variable name="zib-name" select="tokenize(f:resource/f:*/f:meta/f:profile/@value, '/')[last()]"/>
-                    <xsl:result-document href="../fhir_instance_resources/{$usecase}-{$zib-name}-{f:fullUrl/tokenize(@value, '[/:]')[last()]}.xml">
-                        <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/STU3/<xsl:value-of select="lower-case(local-name())"/>.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
-                        <xsl:copy-of select="f:resource/f:*"/>
-                        <!-\-<xsl:attribute name="xsi:schemaLocation">http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd</xsl:attribute>-\->
-                        <!-\-<xsl:copy-of select="node()"/>-\->
-                    </xsl:result-document>
-                </xsl:for-each>-->
             </xsl:when>
             <xsl:otherwise>
                 <xsl:result-document href="../fhir_instance_bundles/{tokenize(base-uri(.), '/')[last()]}">
