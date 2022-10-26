@@ -12,17 +12,24 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:f="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nm="http://www.nictiz.nl/mappings" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-
+<xsl:stylesheet exclude-result-prefixes="#all"
+    xmlns="http://hl7.org/fhir"
+    xmlns:util="urn:hl7:utilities"
+    xmlns:f="http://hl7.org/fhir"
+    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
+    xmlns:nf="http://www.nictiz.nl/functions"
+    xmlns:nm="http://www.nictiz.nl/mappings"
+    xmlns:uuid="http://www.uuid.org"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
-
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ada patient to FHIR resource conforming to profile nl-core-Patient</xd:desc>
     </xd:doc>
-
     <xd:doc>
         <xd:desc>Create an nl-core-Patient FHIR instance from the following ada parts:
+            
             <xd:ul>
                 <xd:li>zib Patient</xd:li>
                 <xd:li>zib Nationality</xd:li>
@@ -38,6 +45,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         
         The following components need to be passed as ada instances; although the zibs themselves are not related to a patient, the translation to FHIR is specific to the Patient resource:
+        
         <xd:param name="nationality">Optional ada instance of zib Nationality</xd:param>
         <xd:param name="maritalStatus">Optional ada instance of zib MaritalStatus</xd:param>
         <xd:param name="languageProficiency">Optional ada instances of zib LanguageProficiency</xd:param>
@@ -50,7 +58,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="maritalStatus" as="element(burgerlijke_staat_rc)?" select="$in/burgerlijke_staat_rc"/>
         <xsl:param name="languageProficiency" as="element(taalvaardigheid)*" select="$in/taalvaardigheid"/>
         <xsl:param name="contactPersons" as="element(contactpersoon)*" select="$in/contactpersoon"/>
-
         <xsl:for-each select="$in">
             <Patient>
                 <xsl:call-template name="insertLogicalId"/>
@@ -70,42 +77,37 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </extension>
                     </extension>
                 </xsl:for-each>
-                
                 <!-- LifeStance is a zib on its own, but the implementation is specific for the Patient resource. 
                  Therefore, it is created inline. -->
                 <xsl:for-each select="$lifeStance/levensovertuiging">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Patient.LifeStance">                               
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Patient.LifeStance">
                         <valueCodeableConcept>
                             <xsl:for-each select="../toelichting">
-                                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">  
+                                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
                                     <valueString>
                                         <xsl:call-template name="string-to-string">
                                             <xsl:with-param name="in" select="."/>
                                         </xsl:call-template>
-                                    </valueString>                               
+                                    </valueString>
                                 </extension>
                             </xsl:for-each>
                             <xsl:call-template name="code-to-CodeableConcept">
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
-                        </valueCodeableConcept>                      
+                        </valueCodeableConcept>
                     </extension>
                 </xsl:for-each>
-
                 <xsl:for-each select="identificatienummer">
                     <identifier>
                         <xsl:call-template name="id-to-Identifier"/>
                     </identifier>
                 </xsl:for-each>
-
                 <xsl:for-each select="naamgegevens">
                     <xsl:call-template name="nl-core-NameInformation"/>
                 </xsl:for-each>
-
                 <xsl:for-each select="contactgegevens">
                     <xsl:call-template name="nl-core-ContactInformation"/>
                 </xsl:for-each>
-
                 <xsl:for-each select="geslacht">
                     <gender>
                         <xsl:call-template name="code-to-code">
@@ -120,7 +122,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="ext-CodeSpecification"/>
                     </gender>
                 </xsl:for-each>
-
                 <xsl:for-each select="geboortedatum">
                     <birthDate>
                         <xsl:attribute name="value">
@@ -131,7 +132,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:attribute>
                     </birthDate>
                 </xsl:for-each>
-
                 <!-- The zib allows both a boolean indicator for the death of the patient and a date of death, whereas
                  FHIR allows just one of these concepts. Therefore, we first check is a date is present and translate
                  that. If not, we can continue with the boolean indicator. -->
@@ -153,11 +153,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:for-each>
                     </xsl:otherwise>
                 </xsl:choose>
-
                 <xsl:for-each select="adresgegevens">
                     <xsl:call-template name="nl-core-AddressInformation"/>
                 </xsl:for-each>
-
                 <!-- MaritalStatus is a zib on its own, but the implementation is specific for the Patient resource. 
                  Therefore, it is created inline. -->
                 <xsl:for-each select="$maritalStatus">
@@ -167,7 +165,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </maritalStatus>
                 </xsl:for-each>
-
                 <xsl:for-each select="meerling_indicator">
                     <multipleBirthBoolean>
                         <xsl:attribute name="value">
@@ -175,14 +172,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:attribute>
                     </multipleBirthBoolean>
                 </xsl:for-each>
-
                 <!-- Only "Eerste relatie/contactpersoon" and "Tweede relatie/contactpersoon" as Patient.contacts. Otherwise they should be entered as RelatedPerson-->
                 <xsl:for-each select="$contactPersons">
                     <xsl:if test="$contactPersons/rol[@value = '1'] | $contactPersons/rol[@value = '2']">
                         <xsl:call-template name="nl-core-ContactPerson-embedded"/>
                     </xsl:if>
                 </xsl:for-each>
-
                 <xsl:for-each select="$languageProficiency">
                     <communication>
                         <xsl:call-template name="_patientProficiency">
@@ -219,7 +214,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </Patient>
         </xsl:for-each>
     </xsl:template>
-
     <xd:doc>
         <xd:desc>
             Helper template to render the 'patient proficiency' extension for the types RSP, ESP en RWR, which repesent
@@ -265,12 +259,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </extension>
         </xsl:if>
     </xsl:template>
-
     <xd:doc>
         <xd:desc>Template to generate a unique id to identify a patient present in a (set of) ada-instance(s)</xd:desc>
     </xd:doc>
     <xsl:template match="patient" mode="_generateId">
-
         <xsl:variable name="uniqueString" as="xs:string?">
             <xsl:choose>
                 <!-- this when is only for Touchstone purposes, should be removed here -->
@@ -293,18 +285,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-
         <xsl:call-template name="generateLogicalId">
             <xsl:with-param name="uniqueString" select="$uniqueString"/>
         </xsl:call-template>
-
     </xsl:template>
-
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing a patient</xd:desc>
     </xd:doc>
     <xsl:template match="patient" mode="_generateDisplay">
         <xsl:value-of select="string-join(('Patient', nf:renderName(naamgegevens)), ', ')"/>
     </xsl:template>
-
 </xsl:stylesheet>
