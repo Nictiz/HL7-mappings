@@ -35,8 +35,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <!-- select="$oidBurgerservicenummer" zorgt voor maskeren BSN -->
     <xsl:param name="mask-ids" as="xs:string?" select="$oidBurgerservicenummer"/>
-    <!-- Replaces dots with hyphens in Resource.id -->
-    <xsl:param name="forTouchstone" as="xs:boolean" select="true()"/>
     
        <xsl:variable name="commonEntries" as="element(f:entry)*">
         <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $products/f:entry, $locations/f:entry"/>

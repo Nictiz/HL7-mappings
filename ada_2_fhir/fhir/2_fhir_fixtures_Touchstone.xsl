@@ -14,7 +14,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <!-- Purpose: do handling for FHIR fixtures for examples and/or Touchstone fixtures
 -->
-<xsl:stylesheet xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:util="urn:hl7:utilities" xmlns:uuid="http://www.uuid.org" version="2.0" exclude-result-prefixes="#all">
+<xsl:stylesheet xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:util="urn:hl7:utilities" xmlns:uuid="http://www.uuid.org" xmlns:nf="http://www.nictiz.nl/functions" version="2.0" exclude-result-prefixes="#all">
     <!--    <xsl:import href="../../util/utilities.xsl"/>-->
     
     <!-- parameter to determine whether to refer by resource/id -->
@@ -66,5 +66,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:copy-of select="."/>
         </xsl:result-document>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Override function to remove special characters to comply with certain rules for id's. Touchstone also does not like . (period) in fixture id.</xd:desc>
+        <xd:param name="in"/>
+    </xd:doc>
+    <xsl:function name="nf:removeSpecialCharacters" as="xs:string?">
+        <xsl:param name="in" as="xs:string?"/>
+        <xsl:value-of select="replace(translate(normalize-space($in),' ._àáãäåèéêëìíîïòóôõöùúûüýÿç€ßñ?','---aaaaaeeeeiiiiooooouuuuyycEsnq'), '[^A-Za-z0-9\.-]', '')"/>
+    </xsl:function>
     
 </xsl:stylesheet>
