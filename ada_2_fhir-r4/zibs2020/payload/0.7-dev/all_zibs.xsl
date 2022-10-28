@@ -17,6 +17,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>
     
     <xsl:import href="nl-core-AbilityToDrink.xsl"/>
+    <xsl:import href="nl-core-AbilityToDressOneself.xsl"/>
     <xsl:import href="nl-core-AbilityToWashOneself.xsl"/>
     <xsl:import href="nl-core-AddressInformation.xsl"/>
     <xsl:import href="nl-core-AdvanceDirective.xsl"/>
