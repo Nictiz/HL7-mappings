@@ -242,24 +242,36 @@
             <xsl:for-each select="r005_betrokken_jgzorganisaties/groep_g085_uitvoerende_jgzorganisatie">
                 <xsl:sort select="*/startdatum_geldigheid_uitvoerende_jgzorganisatie/@value" order="descending"/>
                 <author typeCode="AUT">
-                    <xsl:for-each select="groep_g098_periode_geldigheid_uitvoerende_jgzorganisatie">
-                        <time xsi:type="IVL_TS">
-                            <!-- Item(s) :: startdatum_geldigheid_uitvoerende_jgzorganisatie-->
-                            <xsl:for-each select="startdatum_geldigheid_uitvoerende_jgzorganisatie">
-                                <xsl:call-template name="makeTSValue">
-                                    <xsl:with-param name="xsiType" select="''"/>
-                                    <xsl:with-param name="elemName">low</xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:for-each>
-                            <!-- Item(s) :: einddatum_geldigheid_uitvoerende_jgzorganisatie-->
-                            <xsl:for-each select="einddatum_geldigheid_uitvoerende_jgzorganisatie">
-                                <xsl:call-template name="makeTSValue">
-                                    <xsl:with-param name="xsiType" select="''"/>
-                                    <xsl:with-param name="elemName">high</xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:for-each>
-                        </time>
-                    </xsl:for-each>
+                        
+                        <xsl:for-each select="groep_g098_periode_geldigheid_uitvoerende_jgzorganisatie">
+                            <xsl:if test="count(startdatum_geldigheid_uitvoerende_jgzorganisatie) > 0 or count(einddatum_geldigheid_uitvoerende_jgzorganisatie) > 0">
+                                <time xsi:type="IVL_TS">
+                                    <!-- Item(s) :: startdatum_geldigheid_uitvoerende_jgzorganisatie-->
+                                    <xsl:for-each select="startdatum_geldigheid_uitvoerende_jgzorganisatie">
+                                        <xsl:call-template name="makeTSValue">
+                                            <xsl:with-param name="xsiType" select="''"/>
+                                            <xsl:with-param name="elemName">low</xsl:with-param>
+                                        </xsl:call-template>
+                                    </xsl:for-each>
+                                    <xsl:if test="count(startdatum_geldigheid_uitvoerende_jgzorganisatie) = 0 and count(einddatum_geldigheid_uitvoerende_jgzorganisatie) > 0">
+                                        <low nullFlavor="UNK"></low>
+                                    </xsl:if>
+                                    <!-- Item(s) :: einddatum_geldigheid_uitvoerende_jgzorganisatie-->
+                                    <xsl:for-each select="einddatum_geldigheid_uitvoerende_jgzorganisatie">
+                                        <xsl:call-template name="makeTSValue">
+                                            <xsl:with-param name="xsiType" select="''"/>
+                                            <xsl:with-param name="elemName">high</xsl:with-param>
+                                        </xsl:call-template>
+                                    </xsl:for-each>
+                                    <xsl:if test="count(einddatum_geldigheid_uitvoerende_jgzorganisatie) = 0 and count(startdatum_geldigheid_uitvoerende_jgzorganisatie) > 0">
+                                        <high nullFlavor="UNK"></high>
+                                    </xsl:if>
+                                </time>
+                            </xsl:if>
+                        </xsl:for-each>
+                    <xsl:if test="count(groep_g098_periode_geldigheid_uitvoerende_jgzorganisatie) = 0 or count(groep_g098_periode_geldigheid_uitvoerende_jgzorganisatie/*) = 0">
+                            <time nullFlavor="UNK"/>
+                        </xsl:if>
                     <!-- R_AssignedEntityNL-->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.122_20120801000000"/>
                 </author>
