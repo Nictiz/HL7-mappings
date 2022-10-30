@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="../../../../../../../SVN/AORTA/branches/Onderhoud_JGZ_v612/XML/schematron_closed_warnings/jgz-versturenDossieroverdrachtbericht-03.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<?xml-model href="../../../../../../../SVN/ART_DECOR/trunk/ada-data/ada_2_test-xslt/jgz/7.0.0/dossieroverdracht/test_xslt_instance/DOB-3.0.0-qual-ontvangen-XXX_Musumeci.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <REPC_IN902120NL03 xmlns="urn:hl7-org:v3"
                    xmlns:hl7="urn:hl7-org:v3"
                    xmlns:xs="http://www.w3.org/2001/XMLSchema"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
                    xsi:schemaLocation="urn:hl7-org:v3 ../hl7v3_schemas/REPC_IN902120NL03.xsd">
-   <id extension="1243567" root="2.16.528.1.1007.3.3.12345678.1"/>
-   <creationTime value="20221031144619"/>
+   <id extension="{$messageId}" root="{$messageIdRoot}"/>
+   <creationTime value="{$gCREATIONDATETIME}"/>
    <versionCode code="NICTIZEd2005-Okt"/>
    <interactionId extension="REPC_IN902120NL03" root="2.16.840.1.113883.1.6"/>
    <profileId extension="810" root="2.16.840.1.113883.2.4.3.11.1"/>
@@ -32,13 +30,37 @@
       </device>
    </sender>
    <ControlActProcess classCode="CACT" moodCode="EVN">
-      <authorOrPerformer typeCode="AUT">
+        {
+        let $gCREATIONDATETIME-dt           := current-dateTime()
+        let $gPatientDOB-dt                 := $gCREATIONDATETIME-dt - xs:yearMonthDuration('P14Y')
+        
+        let $gCREATIONDATETIME              := format-dateTime($gCREATIONDATETIME-dt, '[Y0001][M01][D01][H01][m01][s01]')
+        let $gSENDDATE                      := format-dateTime($gCREATIONDATETIME-dt, '[Y0001][M01][D01]')
+        let $gPatientDOB                    := format-dateTime($gPatientDOB-dt,'[Y0001][M01][D01]')
+        let $gREQUESTDATE                   := $gSENDDATE
+        let $gRESPSTART                     := format-dateTime($gPatientDOB-dt + xs:dayTimeDuration('P2D'),'[Y0001][M01][D01]')
+        let $gRESPEND                       := $gREQUESTDATE
+        let $gPDFDATE                       := $gRESPEND
+        let $gRvpToestemmingClient          := format-dateTime($gPatientDOB-dt + xs:dayTimeDuration('P12Y'),'[Y0001][M01][D01]')
+        let $gRvpToestemmingGezaghebbende   := format-dateTime($gPatientDOB-dt + xs:dayTimeDuration('P3M'),'[Y0001][M01][D01]')
+        let $gContact2Wekentm6Maanden       := format-dateTime($gPatientDOB-dt + xs:dayTimeDuration('P5M'),'[Y0001][M01][D01]')
+        let $gContact12tm18Jaar             := format-dateTime($gCREATIONDATETIME-dt - xs:dayTimeDuration('P1Y'),'[Y0001][M01][D01]')
+        let $gDktpVaccinatie-1              := format-dateTime($gPatientDOB-dt + xs:dayTimeDuration('P3M'),'[Y0001][M01][D01]')
+        let $gDktpVaccinatieReactieStart-1  := format-dateTime($gPatientDOB-dt + xs:dayTimeDuration('P3M1D'),'[Y0001][M01][D01]')
+        let $gDktpVaccinatieReactieEind-1   := format-dateTime($gPatientDOB-dt + xs:dayTimeDuration('P3M5D'),'[Y0001][M01][D01]')
+        let $gDktpVaccinatieReactieGemeld-1 := format-dateTime($gPatientDOB-dt + xs:dayTimeDuration('P3M5D'),'[Y0001][M01][D01]')
+        let $gDktpVaccinatie-2              := format-dateTime($gPatientDOB-dt + xs:dayTimeDuration('P5M3D'),'[Y0001][M01][D01]')
+        let $gMenAcwyVaccinatie-1           := format-dateTime($gCREATIONDATETIME-dt - xs:dayTimeDuration('P2M'),'[Y0001][M01][D01]')
+        let $gATermeDatum                   := format-date($gPatientDOB-dt + xs:dayTimeDuration('P7D'),'[Y0001][M01][D01]')
+        
+        return (
+            <authorOrPerformer typeCode="AUT">
          <participant>
             <AssignedDevice>
                <id root="2.16.528.1.1007.3.2" extension="091287345"/>
                <Organization>
-                  <id extension="00001111" root="2.16.528.1.1007.3.3"/>
-                  <name>GGD Groningen</name>
+                  <id extension="{$organizationId}" root="2.16.528.1.1007.3.3"/>
+                  <name>{$organizationName}</name>
                </Organization>
             </AssignedDevice>
          </participant>
@@ -52,21 +74,22 @@
                   displayName="certified public health and general preventive medicine care"/>
             <statusCode code="active"/>
             <author>
-               <time value="20221031"/>
+               <time value="{$gREQUESTDATE}"/>
                <assignedEntity classCode="ASSIGNED">
                   <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
-                  <id root="2.16.528.1.1007.3.3" extension="00001111"/>
+                  <id root="2.16.528.1.1007.3.3" extension="{$organizationId}"/>
                </assignedEntity>
             </author>
             <sequelTo>
                <careProvisionEvent moodCode="EVN">
-                  <id extension="12345678" root="2.16.840.1.113883.2.4.3.11.999.100.​2.1"/>
+                  <id extension="12345678"
+                      root="2.16.528.1.1007.3.3.{if ($organizationId castable as xs:integer) then string(xs:integer($organizationId))"/>
                   <code codeSystem="2.16.840.1.113883.5.4"
                         code="CPHC"
                         displayName="certified public health and general preventive medicine care"/>
                   <statusCode code="completed"/>
                   <effectiveTime>
-                     <high value="20200607213533"/>
+                     <high value="{$gSENDDATE}"/>
                   </effectiveTime>
                   <subject typeCode="SBJ">
                      <patient classCode="PAT">
@@ -93,7 +116,7 @@
                                                      code="F"
                                                      codeSystem="2.16.840.1.113883.5.1"
                                                      displayName="Vrouwelijk"/>
-                           <birthTime value="20081031"/>
+                           <birthTime value="{$gPatientDOB}"/>
                         </patientPerson>
                      </patient>
                   </subject>
@@ -113,7 +136,7 @@
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Toestemming gegevensuitwisseling RVP"/>
                         <author typeCode="AUT">
-                           <time value="20341031"/>
+                           <time value="{$gRvpToestemmingClient}"/>
                            <responsibleParty classCode="CON">
                               <code xsi:type="CV"
                                     code="01"
@@ -154,7 +177,7 @@
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Toestemming gegevensuitwisseling RVP"/>
                         <author typeCode="AUT">
-                           <time value="20230131"/>
+                           <time value="{$gRvpToestemmingGezaghebbende}"/>
                            <responsibleParty classCode="CON">
                               <code xsi:type="CV"
                                     code="03"
@@ -196,7 +219,7 @@
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contact week 2 t/m 6 maanden"/>
                         <statusCode code="completed"/>
-                        <effectiveTime value="20230331"/>
+                        <effectiveTime value="{$gContact2Wekentm6Maanden}"/>
                         <reasonCode code="01"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.373"
                                     displayName="Vaccinaties"/>
@@ -686,7 +709,7 @@
                               <code code="IMMUNIZ"
                                     codeSystem="2.16.840.1.113883.5.4"
                                     displayName="Immunization"/>
-                              <effectiveTime value="20230131"/>
+                              <effectiveTime value="{$gDktpVaccinatie-1}"/>
                               <consumable typeCode="CSM">
                                  <medication classCode="ADMM">
                                     <administrableMedicine classCode="MMAT" determinerCode="KIND">
@@ -731,8 +754,8 @@
                                           codeSystem="2.16.840.1.113883.2.4.4.40.267"
                                           displayName="Verschijnselen"/>
                                     <effectiveTime xsi:type="IVL_TS">
-                                       <low value="20230201"/>
-                                       <high value="20230205"/>
+                                       <low value="{$gDktpVaccinatieReactieStart-1}"/>
+                                       <high value="{$gDktpVaccinatieReactieEind-1}"/>
                                     </effectiveTime>
                                     <value xsi:type="ST">koorts</value>
                                     <subjectOf typeCode="SUBJ">
@@ -740,7 +763,7 @@
                                           <code code="875"
                                                 codeSystem="2.16.840.1.113883.2.4.4.40.267"
                                                 displayName="Reactie gemeld aan bevoegde instantie datum"/>
-                                          <effectiveTime value="20230203"/>
+                                          <effectiveTime value="{$gDktpVaccinatieReactieGemeld-1}"/>
                                           <performer typeCode="PRF">
                                              <assignedPerson classCode="ASSIGNED">
                                                 <id extension="123456789" root="2.16.528.1.1007.3.1"/>
@@ -788,7 +811,7 @@
                               <code code="IMMUNIZ"
                                     codeSystem="2.16.840.1.113883.5.4"
                                     displayName="Immunization"/>
-                              <effectiveTime value="20230331"/>
+                              <effectiveTime value="{$gDktpVaccinatie-2}"/>
                               <consumable typeCode="CSM">
                                  <medication classCode="ADMM">
                                     <administrableMedicine classCode="MMAT" determinerCode="KIND">
@@ -865,7 +888,7 @@
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contact 12 tot 18 jaar"/>
                         <statusCode code="completed"/>
-                        <effectiveTime value="20211031"/>
+                        <effectiveTime value="{$gContact12tm18Jaar}"/>
                         <reasonCode code="47"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.373"
                                     displayName="Veiligheid kind"/>
@@ -1702,7 +1725,7 @@
                               <code code="IMMUNIZ"
                                     codeSystem="2.16.840.1.113883.5.4"
                                     displayName="Immunization"/>
-                              <effectiveTime value="20220831"/>
+                              <effectiveTime value="{$gMenAcwyVaccinatie-1}"/>
                               <consumable typeCode="CSM">
                                  <medication classCode="ADMM">
                                     <administrableMedicine classCode="MMAT" determinerCode="KIND">
@@ -1765,7 +1788,7 @@
                         <code code="1197"
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Status in zorg"/>
-                        <effectiveTime value="20221102"/>
+                        <effectiveTime value="{$gRESPSTART}"/>
                         <reasonCode code="01"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.376"
                                     displayName="Regulier"/>
@@ -1776,7 +1799,7 @@
                         <code code="487"
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Zorgbeëindiging"/>
-                        <effectiveTime value="20220930"/>
+                        <effectiveTime value="{$gRESPEND}"/>
                         <reasonCode code="01"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.82"
                                     displayName="Overdracht naar een andere JGZ-organisatie"/>
@@ -1786,5 +1809,7 @@
             </sequelTo>
          </CareProvisionRequest>
       </subject>
-   </ControlActProcess>
+        )
+        }
+        </ControlActProcess>
 </REPC_IN902120NL03>
