@@ -49,89 +49,35 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:when>
 
                     <xsl:otherwise>
-                        <!-- Convert input to xs datatypes -->
-                        <!-- this does not support T-dates -->
-                        <xsl:variable name="startDateTime" select="
-                                if (start_datum_tijd[@value]) then
-                                    nf:timestamp-to-dateTime(start_datum_tijd/@value)
-                                else
-                                    false()"/>
-                        <xsl:variable name="endDateTime" select="
-                                if (eind_datum_tijd[@value]) then
-                                    nf:timestamp-to-dateTime(eind_datum_tijd/@value)
-                                else
-                                    false()"/>
-                        <xsl:variable name="duration" select="
-                                if (tijds_duur[@value]) then
-                                    nf:quantity-to-xsDuration(tijds_duur)
-                                else
-                                    false()"/>
-
-                        <!-- Calculate the "picture" to format the date. Only handle two cases of precisions: dates (year,
-                             month, day) and dateTimes (with second precision. -->
-                        <xsl:variable name="picture">
-                            <xsl:choose>
-                                <xsl:when test="
-                                        start_datum_tijd/@value castable as xs:date or
-                                        concat(start_datum_tijd/@value, ':00') castable as xs:date or
-                                        eind_datum_tijd/@value castable as xs:date or
-                                        concat(eind_datum_tijd/@value, ':00') castable as xs:date">[Y0001]-[M01]-[D01]</xsl:when>
-                                <xsl:otherwise>[Y0001]-[M01]-[D01]T[H01]:[m01]:00[Z]</xsl:otherwise>
-                            </xsl:choose>
+                        <!-- Make fhir format of the ada input -->
+                        <xsl:variable name="start" as="xs:string?">
+                            <xsl:if test="start_datum_tijd[@value]">
+                                <xsl:variable name="startTmp">
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="start_datum_tijd/@value"/>
+                                    </xsl:call-template>
+                                </xsl:variable>
+                                <xsl:value-of select="string-join($startTmp, '')"/>
+                            </xsl:if>
                         </xsl:variable>
 
-                        <!-- Get start from input or calculate it from end and duration -->
-                        <xsl:variable name="start">
-                            <xsl:choose>
-                                <xsl:when test="start_datum_tijd[@value]">
-                                    <!-- commented out, does not support T-dates -->
-                                    <!--<xsl:value-of select="format-dateTime($startDateTime, $picture)"/>-->
-                                    <xsl:variable name="startTmp">
-                                        <xsl:call-template name="format2FHIRDate">
-                                            <xsl:with-param name="dateTime" select="start_datum_tijd/@value"/>
-                                        </xsl:call-template>
+                        <xsl:variable name="end" as="xs:string?">
+                            <xsl:if test="eind_datum_tijd[@value]">
+                                <xsl:variable name="startTmp">
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="eind_datum_tijd/@value"/>
+                                    </xsl:call-template>
                                     </xsl:variable>
-                                    <xsl:value-of select="string-join($startTmp, '')"/>
-                                </xsl:when>
-                                <!-- AWE do not calculate startdate if not given -->
-                                <!--<xsl:when test="eind_datum_tijd[@value] and tijds_duur[@value and @unit]">
-                                    <!-\- TODO FIXME: support for T-date  -\->
-                                    <xsl:value-of select="format-dateTime($endDateTime - $duration, $picture)"/>
-                                </xsl:when>-->
-                                <xsl:otherwise>
-                                    <xsl:value-of select="''"/>
-                                </xsl:otherwise>
-                            </xsl:choose>
+                                <xsl:value-of select="string-join($startTmp, '')"/>
+                                </xsl:if>
                         </xsl:variable>
 
-                        <!-- Get end from input or calculate it from start and duration -->
-                        <xsl:variable name="end" as="xs:string">
-                            <xsl:choose>
-                                <xsl:when test="eind_datum_tijd[@value]">
-                                    <!-- commented out, does not support T-dates -->
-                                    <!--                                    <xsl:value-of select="format-dateTime($endDateTime, $picture)"/>-->
-                                    <xsl:variable name="startTmp">
-                                        <xsl:call-template name="format2FHIRDate">
-                                            <xsl:with-param name="dateTime" select="eind_datum_tijd/@value"/>
-                                        </xsl:call-template>
-                                    </xsl:variable>
-                                    <xsl:value-of select="string-join($startTmp, '')"/>
-                                </xsl:when>
-                                <!-- AWE do not calculate enddate if not given -->
-                               <!-- <xsl:when test="start_datum_tijd[@value] and tijds_duur[@value and @unit]">
-                                    <xsl:value-of select="format-dateTime($startDateTime + $duration, $picture)"/>
-                                </xsl:when>-->
-                                <xsl:otherwise>
-                                    <xsl:value-of select="''"/>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:variable>
-                        
-                        <!-- Write out the element, if we have any input, or if only a duration is known -->
-                        <xsl:if test="string-join($start, '') or $end or $in/tijds_duur">
+                        <!-- Write out the element, if we have any input, or if only a duration or criterium is known -->
+                        <xsl:if test="$start or $end or tijds_duur[@value | @unit] or criterium[@value]">
                             <xsl:element name="{$wrapIn}">
+                                <!-- output the extension for tijds_duur -->
                                 <xsl:call-template name="ext-TimeInterval.Duration"/>
-                                <!-- Converts ADA Gebruiksinstructie/criterium to FHIR extension for MP9 2.0 -->
+                                <!-- Converts ADA gebruiksperiode/criterium to FHIR extension for MP9 2.0 -->
                                 <xsl:for-each select="criterium[@value]">
                                     <extension url="{$urlExtMedicationAgreementPeriodOfUseCondition}">
                                         <valueString>
@@ -139,7 +85,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </valueString>
                                     </extension>
                                 </xsl:for-each>
-                                <xsl:if test="string-join($start, '')">
+                                <xsl:if test="$start">
                                     <start value="{$start}"/>
                                 </xsl:if>
                                 <xsl:if test="$end">
