@@ -1,0 +1,292 @@
+<Bundle xmlns="http://hl7.org/fhir">
+   <id value="mg-mp-mg-tst-VV-Scenarioset9-v20-9-2"/>
+   <type value="transaction"/>
+   <entry>
+      <fullUrl value="urn:uuid:c33f24a4-6a95-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <id value="mp-DspReq-mp9-MBH200herhalingenVV"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-DispenseRequest"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_200_herhalingen"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <value value="MBH_200_herhalingen_VV"/>
+            </identifier>
+            <status value="unknown"/>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="52711000146108"/>
+                  <display value="verstrekkingsverzoek"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:c33f24c2-6a95-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="FUROSEMIDE 40MG TABLET"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:c33f2486-6a95-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, M. XXX_Nederveen"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -50}T11:05:00+02:00"/>
+            <requester>
+               <reference value="urn:uuid:c33f24e0-6a95-11ec-0000-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
+            </requester>
+            <performer>
+               <reference value="urn:uuid:c33f2558-6a95-11ec-0000-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
+            </performer>
+            <basedOn>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_200_herhalingen_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak  met identificatie: MBH_200_herhalingen_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </basedOn>
+            <dispenseRequest>
+               <numberOfRepeatsAllowed value="5"/>
+               <quantity>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                     <valueQuantity>
+                        <value value="30"/>
+                        <unit value="stuk"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="245"/>
+                     </valueQuantity>
+                  </extension>
+                  <value value="30"/>
+                  <unit value="stuk"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="1"/>
+               </quantity>
+            </dispenseRequest>
+         </MedicationRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c33f2486-6a95-11ec-0000-020000000000"/>
+      <resource>
+         <Patient>
+            <id value="nl-core-Patient-mp9-M-XXX-Nederveen"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value value="999900833"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <use value="official"/>
+               <text value="M. XXX_Nederveen"/>
+               <family value="XXX_Nederveen">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="XXX_Nederveen"/>
+                  </extension>
+               </family>
+               <given value="M.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="1985-10-28"/>
+         </Patient>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c33f24e0-6a95-11ec-0000-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <id value="nl-core-HPrf-PracRol-mp9-000001112-0100-00001111"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+            </meta>
+            <practitioner>
+               <reference value="urn:uuid:c33f24fe-6a95-11ec-0000-020000000000"/>
+               <type value="Practitioner"/>
+               <display value="Healthcare professional (person), Bertine van Doorn"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:uuid:c33f251c-6a95-11ec-0000-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2020-10-23T00:00:00"/>
+                  <code value="0100"/>
+                  <display value="Huisartsen, niet nader gespecificeerd"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c33f24fe-6a95-11ec-0000-020000000000"/>
+      <resource>
+         <Practitioner>
+            <id value="nl-core-HPrf-Prac-mp9-2165281100731-000001112"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+               <value value="000001112"/>
+            </identifier>
+            <name>
+               <use value="official"/>
+               <text value="Bertine van Doorn"/>
+               <family value="van Doorn">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Doorn"/>
+                  </extension>
+               </family>
+               <given value="Bertine">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Practitioner"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c33f251c-6a95-11ec-0000-020000000000"/>
+      <resource>
+         <Organization>
+            <id value="nl-core-HPrv-Org-mp9-2165281100733-00001111"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00001111"/>
+            </identifier>
+            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c33f2558-6a95-11ec-0000-020000000000"/>
+      <resource>
+         <Organization>
+            <id value="nl-core-HPrv-Org-mp9-2165281100733-01236578"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="01236578"/>
+            </identifier>
+            <name value="Apotheek De Gulle Gaper"/>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c33f24c2-6a95-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <id value="nl-core-PhPrd-mp9-216840111388324410-5967"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="5967"/>
+                  <display value="FUROSEMIDE 40MG TABLET"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="16810"/>
+                  <display value="FUROSEMIDE 40MG TABLET"/>
+               </coding>
+               <text value="FUROSEMIDE 40MG TABLET"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+</Bundle>

@@ -15,9 +15,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:hl7="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nf="http://www.nictiz.nl/functions" version="2.0">
     <xsl:import href="../zib1bbr/2_hl7_zib1bbr_include.xsl"/>
     
-    <!-- Do not import this xsl directly, it should be imported via payload/ada2hl7_all-zibs.xsl -->
-
-
     <xsl:output method="xml" indent="yes"/>
 
     <xd:doc>
@@ -605,7 +602,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Handles a Yes/No for a problem observation based on ada boolean element</xd:desc>
+        <xd:desc>Handles a Yes/No for a problem observation (which has observation/code for diagnosis) based on context ada boolean element. Uses the @value attribute from context for target observation/@negationInd or the @nullFlavor from context for target observation/@nullFlavor.</xd:desc>
+        <xd:param name="code">The code for code attribute in observation/value. Must have value in order to output valid HL7.</xd:param>
+        <xd:param name="codeSystem">The codeSystem for code attribute in observation/value. Must have value in order to output valid HL7.</xd:param>
+        <xd:param name="codeSystemName">The codeSystemName for code attribute in observation/value. Optional.</xd:param>
+        <xd:param name="displayName">The displayName for code attribute in observation/value. Optional but should be there.</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3.19_20180611000000_YN" match="element()" mode="HandleProblemObservationYN">
         <xsl:param name="code" as="xs:string?"/>
@@ -920,7 +921,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>CDA author. Context can be either zorgverlener or zorgaanbieder</xd:desc>
         <xd:param name="authorTime">ada element with author time</xd:param>
-        <xd:param name="authorTime">ada element with softwareName</xd:param>
+        <xd:param name="softwareName">ada element with softwareName</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.51_20181218141008_za" match="zorgaanbieder" mode="zorgaanbieder2CDAAuthor">
         <xsl:param name="authorTime" as="element()?"/>
