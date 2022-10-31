@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-m<!--
+<!--
 Copyright (c) Nictiz
 
 This program is free software; you can redistribute it and/or modify it under the terms of the
