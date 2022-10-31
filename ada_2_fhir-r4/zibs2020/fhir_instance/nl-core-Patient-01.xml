@@ -4,17 +4,6 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
    </meta>
-   <extension url="http://hl7.org/fhir/StructureDefinition/patient-nationality">
-      <extension url="code">
-         <valueCodeableConcept>
-            <coding>
-               <system value="urn:oid:2.16.840.1.113883.2.4.4.16.32"/>
-               <code value="0001"/>
-               <display value="Nederlandse"/>
-            </coding>
-         </valueCodeableConcept>
-      </extension>
-   </extension>
    <identifier>
       <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
       <value value="111222333"/>
@@ -124,13 +113,6 @@
          </extension>
       </country>
    </address>
-   <maritalStatus>
-      <coding>
-         <system value="http://terminology.hl7.org/CodeSystem/v3-MaritalStatus"/>
-         <code value="D"/>
-         <display value="Divorced"/>
-      </coding>
-   </maritalStatus>
    <multipleBirthBoolean value="true"/>
    <contact>
       <relationship>
@@ -236,64 +218,4 @@
          </country>
       </address>
    </contact>
-   <communication>
-      <extension url="http://hl7.org/fhir/StructureDefinition/patient-proficiency">
-         <extension url="level">
-            <valueCoding>
-               <system value="http://terminology.hl7.org/CodeSystem/v3-LanguageAbilityProficiency"/>
-               <code value="G"/>
-               <display value="Good"/>
-            </valueCoding>
-         </extension>
-         <extension url="type">
-            <valueCoding>
-               <system value="http://terminology.hl7.org/CodeSystem/v3-LanguageAbilityMode"/>
-               <code value="RSP"/>
-               <display value="Received spoken"/>
-            </valueCoding>
-         </extension>
-      </extension>
-      <extension url="http://hl7.org/fhir/StructureDefinition/patient-proficiency">
-         <extension url="level">
-            <valueCoding>
-               <system value="http://terminology.hl7.org/CodeSystem/v3-LanguageAbilityProficiency"/>
-               <code value="F"/>
-               <display value="Fair"/>
-            </valueCoding>
-         </extension>
-         <extension url="type">
-            <valueCoding>
-               <system value="http://terminology.hl7.org/CodeSystem/v3-LanguageAbilityMode"/>
-               <code value="ESP"/>
-               <display value="Expressed spoken"/>
-            </valueCoding>
-         </extension>
-      </extension>
-      <extension url="http://hl7.org/fhir/StructureDefinition/patient-proficiency">
-         <extension url="level">
-            <valueCoding>
-               <system value="http://terminology.hl7.org/CodeSystem/v3-LanguageAbilityProficiency"/>
-               <code value="G"/>
-               <display value="Good"/>
-            </valueCoding>
-         </extension>
-         <extension url="type">
-            <valueCoding>
-               <system value="http://terminology.hl7.org/CodeSystem/v3-LanguageAbilityMode"/>
-               <code value="RWR"/>
-               <display value="Received written"/>
-            </valueCoding>
-         </extension>
-      </extension>
-      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
-         <valueString value="Bij gesprek met arts zoon uitnodigen voor vertalen"/>
-      </extension>
-      <language>
-         <coding>
-            <system value="urn:oid:1.0.639.1"/>
-            <code value="nl"/>
-            <display value="Nederlands"/>
-         </coding>
-      </language>
-   </communication>
 </Patient>
