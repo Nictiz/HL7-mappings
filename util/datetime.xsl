@@ -148,10 +148,10 @@
         <xsl:param name="dateOrDt"/>
         <xsl:choose>
             <xsl:when test="$dateOrDt castable as xs:date">
-                <xsl:value-of select="$dateOrDt lt current-date()"/>
+                <xsl:value-of select="$dateOrDt &lt; current-date()"/>
             </xsl:when>
             <xsl:when test="$dateOrDt castable as xs:dateTime">
-                <xsl:value-of select="$dateOrDt lt current-dateTime()"/>
+                <xsl:value-of select="$dateOrDt &lt; current-dateTime()"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="false()"/>
