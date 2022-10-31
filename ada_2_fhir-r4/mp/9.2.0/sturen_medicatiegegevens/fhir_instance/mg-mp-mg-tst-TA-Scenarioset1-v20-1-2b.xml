@@ -2,18 +2,18 @@
    <id value="mg-mp-mg-tst-TA-Scenarioset1-v20-1-2b"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f2666-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f19c8-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
-            <id value="mp-AdmAgr--MBH200startduur2TA"/>
+            <id value="mp-AdmAgr-mp9-MBH200startduur2TA"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
-               <valueDateTime value="2021-11-02T12:30:00+01:00"/>
+               <valueDateTime value="${DATE, T, D, -60}T12:30:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 2 nov 2021, gedurende 28 dagen, 1 maal per dag 1 stuk, oraal"/>
+               <valueString value="Vanaf T - 60 dagen, gedurende 28 dagen, 1 maal per dag 1 stuk, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -25,7 +25,7 @@
                         <code value="d"/>
                      </valueDuration>
                   </extension>
-                  <start value="2021-11-02T00:00:00+01:00"/>
+                  <start value="${DATE, T, D, -60}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -47,18 +47,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f2684-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f19e6-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="PANTOZOL TABLET MSR 20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f2648-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f19aa-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:c33f26a2-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:c33f1a04-6a95-11ec-0000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -111,10 +111,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f2648-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f19aa-6a95-11ec-0000-020000000000"/>
       <resource>
          <Patient>
-            <id value="nl-core-Patient--C-XXX-Brugge"/>
+            <id value="nl-core-Patient-mp9-C-XXX-Brugge"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -159,10 +159,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f26a2-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f1a04-6a95-11ec-0000-020000000000"/>
       <resource>
          <Organization>
-            <id value="nl-core-HPrv-Org--2165281100733-01236578"/>
+            <id value="nl-core-HPrv-Org-mp9-2165281100733-01236578"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -179,10 +179,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f2684-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f19e6-6a95-11ec-0000-020000000000"/>
       <resource>
          <Medication>
-            <id value="nl-core-PhPrd--21684011138832447-1163094"/>
+            <id value="nl-core-PhPrd-mp9-21684011138832447-1163094"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct"/>
             </meta>

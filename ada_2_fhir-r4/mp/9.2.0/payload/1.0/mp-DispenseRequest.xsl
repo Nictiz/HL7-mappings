@@ -150,7 +150,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <xsl:variable name="requester" as="element()?">
                     <xsl:choose>
-                        <xsl:when test="voorschrijver/zorgverlener/@value">
+                        <xsl:when test="auteur/zorgverlener/@value">
                             <xsl:sequence select="(ancestor::adaxml/data/*/bouwstenen/zorgverlener[@id = current()/auteur/zorgverlener/@value])[1]"/>
                         </xsl:when>
                         <xsl:when test="auteur//zorgverlener[not(zorgverlener)][*]">
@@ -172,12 +172,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:choose>
                             </xsl:for-each>
                         </xsl:when>
-                        
-                        <xsl:otherwise>
-                            <!-- assume a normal MA -->
-                            <xsl:sequence select="(ancestor::adaxml/data/*/bouwstenen/zorgverlener[@id = current()/voorschrijver/zorgverlener/@value])[1]"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
+                        </xsl:choose>
                 </xsl:variable>
                 <xsl:for-each select="$requester">
                     <requester>
