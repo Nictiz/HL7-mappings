@@ -375,9 +375,25 @@
         <xd:desc> stoptype van MP9 2.0 naar 9.0.7 </xd:desc>
     </xd:doc>
     <xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatiegebruik | medicatie_gebruik)/*[contains(replace(local-name(), '_', ''), 'stoptype')]" mode="ada920_2_907">
+
+        <xsl:variable name="theStopType" select="$stoptypeMap[@code = current()/@code][@codeSystem = current()/@codeSystem]/@stoptype"/>
+        <xsl:variable name="theStopType907" select="$stoptypeMap[@stoptype = $theStopType][@version = '907']"/>
+        
         <stoptype>
-            <xsl:apply-templates select="@* | node()" mode="#current"/>
+            <xsl:choose>
+                <xsl:when test="$theStopType907">
+                    <xsl:apply-templates select="$theStopType907/(@code | @codeSystem | @codeSystemName | @displayName | @originalText)" mode="#current"/>
+                    <!-- but we do want to keep the original displayName, if present -->
+                    <xsl:if test="string-length(@displayName) gt 0">
+                        <xsl:copy-of select="@displayName"/>
+                    </xsl:if>                    
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="@* | node()" mode="#current"/>
+                </xsl:otherwise>
+            </xsl:choose>
         </stoptype>
+        
     </xsl:template>
 
     <xd:doc>

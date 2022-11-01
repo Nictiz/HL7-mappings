@@ -15,9 +15,9 @@
     <xsl:variable name="mtdCode" as="xs:string*" select="('18629005')"/>
 
     <xsl:variable name="stoptypeMap" as="element()+">
-        <map stoptype="tijdelijk" code="113381000146106" codeSystem="2.16.840.1.113883.6.96" displayName="tijdelijk gestopt" version="920"/>
-        <map stoptype="definitief" code="113371000146109" codeSystem="2.16.840.1.113883.6.96" displayName="definitief gestopt" version="920"/>
-        <!-- deprecated codes from pre MP 9.1 -->
+        <map stoptype="tijdelijk" code="113381000146106" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}" displayName="tijdelijk gestopt" version="920"/>
+        <map stoptype="definitief" code="113371000146109" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}" displayName="definitief gestopt" version="920"/>
+        <!-- codes MP 9.1 and before (deprecated from MP9 2.0 onwards) -->
         <map stoptype="tijdelijk" code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="tijdelijk gestopt" version="907"/>
         <map stoptype="definitief" code="2" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="definitief gestopt" version="907"/>
     </xsl:variable>

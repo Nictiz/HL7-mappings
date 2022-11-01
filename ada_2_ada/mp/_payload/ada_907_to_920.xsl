@@ -513,8 +513,23 @@
         <xd:desc> stoptype van 9.0.7 naar 9 2.0 </xd:desc>
     </xd:doc>
     <xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatie_gebruik)/stoptype" mode="ada907_2_920">
+
+        <xsl:variable name="theStopType" select="$stoptypeMap[@code = current()/@code][@codeSystem = current()/@codeSystem]/@stoptype"/>
+        <xsl:variable name="theStopType920" select="$stoptypeMap[@stoptype = $theStopType][@version = '920']"/>
+
         <xsl:element name="{concat(local-name(..), '_stop_type')}">
-            <xsl:apply-templates select="@* | node()" mode="#current"/>
+            <xsl:choose>
+                <xsl:when test="$theStopType920">
+                    <xsl:apply-templates select="$theStopType920/(@code | @codeSystem | @codeSystemName | @displayName | @originalText)" mode="#current"/>
+                    <!-- but we do want to keep the original displayName, if present -->
+                    <xsl:if test="string-length(@displayName) gt 0">
+                        <xsl:copy-of select="@displayName"/>
+                    </xsl:if>                    
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="@* | node()" mode="#current"/>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:element>
     </xsl:template>
 
