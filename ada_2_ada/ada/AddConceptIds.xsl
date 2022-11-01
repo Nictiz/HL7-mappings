@@ -45,7 +45,7 @@
     </xd:doc>
     <xsl:template match="@* | node()" mode="addConceptId">
         <xsl:copy>
-            <xsl:apply-templates select="@* | node()" mode="addConceptId"/>
+            <xsl:apply-templates select="@* | node()" mode="#current"/>
         </xsl:copy>
     </xsl:template>
 
