@@ -1,0 +1,1347 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../9.2.0/beschikbaarstellen_medicatiegegevens/ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="medicatieprocesada"
+         last-update-by="medicatieprocesada"
+         creation-date="2020-10-01T15:28:21.59+02:00"
+         last-update-date="2020-11-03T15:03:56.467+01:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp92"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.301"
+                                            transactionEffectiveDate="2022-02-07T00:00:00"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="TESTSUITE Medicatiegegevens Testset 2"
+                                            id="mg-Testset2">
+         <patient comment="">
+            <naamgegevens comment="">
+               <initialen value="D. "/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam comment="">
+                  <achternaam value="XXX-CSC-Smoketest-B"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999990032" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1950-02-04" datatype="datetime"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling comment="">
+            <identificatie value="tsMBH_907_aanvullendeinstructie"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak comment="">
+               <identificatie value="tsMBH_907_aanvullendeinstructie_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <medicatieafspraak_datum_tijd value="T-1M{08:00:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T-1M{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T+1M{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <voorschrijver>
+                  <zorgverlener datatype="reference" value="ada2ada_zorgverlener_1"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="ada2ada_product_1"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T-1M{00:00:00}&gt; t/m &lt;T+1M{23:59:59}&gt;, 1 maal per dag 1 stuk, rectaal, Niet in combinatie met alcohol gebruiken"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="12"
+                                  displayName="Rectaal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <aanvullende_instructie originalText="Niet in combinatie met alcohol gebruiken"
+                                          code="OTH"
+                                          codeSystem="2.16.840.1.113883.5.1008"
+                                          displayName="overig"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaardthesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid unit="dag" value="1"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <verstrekkingsverzoek comment="">
+               <identificatie value="tsMBH_907_aanvullendeinstructie_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <verstrekkingsverzoek_datum_tijd value="T-1M{08:00:00}" datatype="datetime"/>
+               <auteur>
+                  <zorgverlener datatype="reference" value="ada2ada_zorgverlener_2"/>
+               </auteur>
+               <te_verstrekken_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="ada2ada_product_2"/>
+               </te_verstrekken_geneesmiddel>
+               <te_verstrekken_hoeveelheid comment="">
+                  <aantal value="60"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <beoogd_verstrekker>
+                  <zorgaanbieder datatype="reference" value="ada2ada_zorgaanbieder_3"/>
+               </beoogd_verstrekker>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="tsMBH_907_aanvullendeinstructie_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak comment="">
+               <identificatie value="tsMBH_907_aanvullendeinstructie_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <toedieningsafspraak_datum_tijd value="T-1M{09:00:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T-1M{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T+1M{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference" value="ada2ada_zorgaanbieder_4"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product datatype="reference" value="ada2ada_product_3"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T-1M{00:00:00}&gt; t/m &lt;T+1M{23:59:59}&gt;, 1 maal per dag 1 stuk, rectaal, Niet in combinatie met alcohol gebruiken"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="12"
+                                  displayName="Rectaal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <aanvullende_instructie code="OTH"
+                                          codeSystem="2.16.840.1.113883.5.1008"
+                                          displayName="overig"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaardthesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid unit="dag" value="1"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="tsMBH_907_aanvullendeinstructie_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+            <medicatieverstrekking comment="">
+               <identificatie value="tsMBH_907_aanvullendeinstructie_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <medicatieverstrekkings_datum_tijd value="T-1M{09:00:00}" datatype="datetime"/>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference" value="ada2ada_zorgaanbieder_5"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="60"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="ada2ada_product_4"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek comment="">
+                  <identificatie value="tsMBH_907_aanvullendeinstructie_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling comment="">
+            <identificatie value="tsMBH_907_toelichting"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak comment="">
+               <identificatie value="tsMBH_907_toelichting_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <medicatieafspraak_datum_tijd value="T-3D{08:02:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T-3D{00:00:00}" datatype="datetime"/>
+               </gebruiksperiode>
+               <voorschrijver>
+                  <zorgverlener datatype="reference" value="ada2ada_zorgverlener_3"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="ada2ada_product_5"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T-3D{00:00:00}&gt;, 1 maal daags 1 stuk, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaardthesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <toelichting value="In overleg met specialist"/>
+            </medicatieafspraak>
+            <verstrekkingsverzoek comment="">
+               <identificatie value="tsMBH_907_toelichting_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <verstrekkingsverzoek_datum_tijd value="T-3D{08:02:00}" datatype="datetime"/>
+               <auteur>
+                  <zorgverlener datatype="reference" value="ada2ada_zorgverlener_4"/>
+               </auteur>
+               <te_verstrekken_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="ada2ada_product_6"/>
+               </te_verstrekken_geneesmiddel>
+               <te_verstrekken_hoeveelheid comment="">
+                  <aantal value="30"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <beoogd_verstrekker>
+                  <zorgaanbieder datatype="reference" value="ada2ada_zorgaanbieder_8"/>
+               </beoogd_verstrekker>
+               <toelichting value="Extra verstrekkingsverzoek omdat voorraad op vakantieadres is achtergebleven"/>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="tsMBH_907_toelichting_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak comment="">
+               <identificatie value="tsMBH_907_toelichting_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <toedieningsafspraak_datum_tijd value="T-3D{09:02:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T-3D{00:00:00}" datatype="datetime"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference" value="ada2ada_zorgaanbieder_9"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product datatype="reference" value="ada2ada_product_7"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T-3D{00:00:00}&gt;, 1 maal daags 1 stuk, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaardthesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <toelichting value="In overleg met specialist"/>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="tsMBH_907_toelichting_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+            <medicatieverstrekking comment="">
+               <identificatie value="tsMBH_907_toelichting_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <medicatieverstrekkings_datum_tijd value="T-3D{09:02:00}" datatype="datetime"/>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference" value="ada2ada_zorgaanbieder_10"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="30"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="ada2ada_product_8"/>
+               </verstrekt_geneesmiddel>
+               <toelichting value="Extra verstrekkingsverzoek omdat medicatie bij het verkeerde adres bezorgd is."/>
+               <relatie_verstrekkingsverzoek comment="">
+                  <identificatie value="tsMBH_907_toelichting_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling comment="">
+            <identificatie value="tsMBH_907_redenvanvoorschrijven"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak comment="">
+               <identificatie value="tsMBH_907_redenvanvoorschrijven_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <medicatieafspraak_datum_tijd value="T-7D{08:05:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T-7D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T+28D{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <voorschrijver>
+                  <zorgverlener datatype="reference" value="ada2ada_zorgverlener_5"/>
+               </voorschrijver>
+               <reden_van_voorschrijven comment="">
+                  <probleem comment="">
+                     <probleem_naam code="OTH"
+                                    codeSystem="2.16.840.1.113883.5.1008"
+                                    codeSystemName="NullFlavor"
+                                    displayName="overig"
+                                    originalText="Rosacea"/>
+                  </probleem>
+               </reden_van_voorschrijven>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="ada2ada_product_9"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T-7D{00:00:00}&gt; t/m &lt;T+28D{23:59:59}&gt;, 2 maal per dag 1 stuks, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaardthesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <verstrekkingsverzoek comment="">
+               <identificatie value="tsMBH_907_redenvanvoorschrijven_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <verstrekkingsverzoek_datum_tijd value="T-7D{08:05:00}" datatype="datetime"/>
+               <auteur>
+                  <zorgverlener datatype="reference" value="ada2ada_zorgverlener_6"/>
+               </auteur>
+               <te_verstrekken_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="ada2ada_product_10"/>
+               </te_verstrekken_geneesmiddel>
+               <te_verstrekken_hoeveelheid comment="">
+                  <aantal value="70"/>
+                  <eenheid codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           code="245"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <beoogd_verstrekker>
+                  <zorgaanbieder datatype="reference" value="ada2ada_zorgaanbieder_13"/>
+               </beoogd_verstrekker>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="tsMBH_907_redenvanvoorschrijven_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak comment="">
+               <identificatie value="tsMBH_907_redenvanvoorschrijven_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <toedieningsafspraak_datum_tijd value="T-7D{09:05:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T-7D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T+28D{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference" value="ada2ada_zorgaanbieder_14"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product datatype="reference" value="ada2ada_product_11"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T-7D{00:00:00}&gt; t/m &lt;T+28D{23:59:59}&gt;, 4 maal per week 1 stuks, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaardthesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="4"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="week"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="tsMBH_907_redenvanvoorschrijven_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+            <medicatieverstrekking comment="">
+               <identificatie value="tsMBH_907_redenvanvoorschrijven_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <medicatieverstrekkings_datum_tijd value="T-7D{09:05:00}" datatype="datetime"/>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference" value="ada2ada_zorgaanbieder_15"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="20"/>
+                  <eenheid codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           code="245"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="ada2ada_product_12"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek comment="">
+                  <identificatie value="tsMBH_907_redenvanvoorschrijven_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling comment="">
+            <identificatie value="tsMBH_907_aanvullendeinformatiewensen"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak comment="">
+               <identificatie value="tsMBH_907_aanvullendeinformatiewensen_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <medicatieafspraak_datum_tijd value="T-10D{08:06:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T-10D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T+10D{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <voorschrijver>
+                  <zorgverlener datatype="reference" value="ada2ada_zorgverlener_7"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="ada2ada_product_13"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T-10D{00:00:00}&gt; t/m &lt;T+10D{23:59:59}&gt;, 1 maal per dag 1 stuk, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaardthesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid unit="dag" value="1"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <aanvullende_informatie code="6"
+                                       codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050"
+                                       displayName="Wijziging in GDS per direct"/>
+            </medicatieafspraak>
+            <verstrekkingsverzoek comment="">
+               <identificatie value="tsMBH_907_aanvullendeinformatiewensen_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <verstrekkingsverzoek_datum_tijd value="T-10D{08:06:00}" datatype="datetime"/>
+               <auteur>
+                  <zorgverlener datatype="reference" value="ada2ada_zorgverlener_8"/>
+               </auteur>
+               <te_verstrekken_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="ada2ada_product_14"/>
+               </te_verstrekken_geneesmiddel>
+               <te_verstrekken_hoeveelheid comment="">
+                  <aantal value="20"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <beoogd_verstrekker>
+                  <zorgaanbieder datatype="reference" value="ada2ada_zorgaanbieder_18"/>
+               </beoogd_verstrekker>
+               <aanvullende_wensen code="1"
+                                   codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2051"
+                                   displayName="Spoed"/>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="tsMBH_907_aanvullendeinformatiewensen_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak comment="">
+               <identificatie value="tsMBH_907_aanvullendeinformatiewensen_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <toedieningsafspraak_datum_tijd value="T-10D{09:06:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T-10D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T+10D{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference" value="ada2ada_zorgaanbieder_19"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product datatype="reference" value="ada2ada_product_15"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T-10D{00:00:00}&gt; t/m &lt;T+10D{23:59:59}&gt;, 1 maal per dag 0.5 stuk, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="0.5"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaardthesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid unit="dag" value="1"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <toedieningsafspraak_aanvullende_informatie value="Bewust lage dosering"/>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="tsMBH_907_aanvullendeinformatiewensen_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+            <medicatieverstrekking comment="">
+               <identificatie value="tsMBH_907_aanvullendeinformatiewensen_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <medicatieverstrekkings_datum_tijd value="T-10D{09:06:00}" datatype="datetime"/>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference" value="ada2ada_zorgaanbieder_20"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="20"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="ada2ada_product_16"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek comment="">
+                  <identificatie value="tsMBH_907_aanvullendeinformatiewensen_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling comment="">
+            <identificatie value="tsMBH_907_Toedieningsweg"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak comment="">
+               <identificatie value="tsMBH_907_Toedieningsweg_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <medicatieafspraak_datum_tijd value="T-15D{08:15:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T-15D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T+12D{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <voorschrijver>
+                  <zorgverlener datatype="reference" value="ada2ada_zorgverlener_9"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="ada2ada_product_17"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T-15D{00:00:00}&gt; t/m &lt;T+12D{23:59:59}&gt;, 2 maal per dag 1 druppel, In het rechter oog, oculair"/>
+                  <toedieningsweg code="7"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="oculair"/>
+                  <aanvullende_instructie originalText="In het rechter oog"
+                                          code="OTH"
+                                          codeSystem="2.16.840.1.113883.5.1008"
+                                          displayName="overig"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="303"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="Druppel"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <aanvullende_informatie code="3"
+                                       codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050"
+                                       displayName="Bewust afwijkende toedieningsweg"/>
+            </medicatieafspraak>
+            <verstrekkingsverzoek comment="">
+               <identificatie value="tsMBH_907_Toedieningsweg_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <verstrekkingsverzoek_datum_tijd value="T-15D{08:15:00}" datatype="datetime"/>
+               <auteur>
+                  <zorgverlener datatype="reference" value="ada2ada_zorgverlener_10"/>
+               </auteur>
+               <te_verstrekken_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="ada2ada_product_18"/>
+               </te_verstrekken_geneesmiddel>
+               <te_verstrekken_hoeveelheid comment="">
+                  <aantal value="8"/>
+                  <eenheid code="233"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="Milliliter"/>
+               </te_verstrekken_hoeveelheid>
+               <beoogd_verstrekker>
+                  <zorgaanbieder datatype="reference" value="ada2ada_zorgaanbieder_23"/>
+               </beoogd_verstrekker>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="tsMBH_907_Toedieningsweg_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak comment="">
+               <identificatie value="tsMBH_907_Toedieningsweg_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <toedieningsafspraak_datum_tijd value="T-15D{09:15:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T-15D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T+12D{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference" value="ada2ada_zorgaanbieder_24"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product datatype="reference" value="ada2ada_product_19"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T-15D{00:00:00}&gt; t/m &lt;T+12D{23:59:59}&gt;, 2 maal per dag 1 druppel, In het rechter oog, oculair"/>
+                  <toedieningsweg code="7"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="oculair"/>
+                  <aanvullende_instructie originalText="In het rechter oog"
+                                          code="OTH"
+                                          codeSystem="2.16.840.1.113883.5.1008"
+                                          displayName="overig"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="303"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="Druppel"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <toedieningsafspraak_aanvullende_informatie value="Bewust afwijkende toedieningsweg"/>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="tsMBH_907_Toedieningsweg_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+            <medicatieverstrekking comment="">
+               <identificatie value="tsMBH_907_Toedieningsweg_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <medicatieverstrekkings_datum_tijd value="T-15D{09:15:00}" datatype="datetime"/>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference" value="ada2ada_zorgaanbieder_25"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="54"/>
+                  <eenheid code="303"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="druppel"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="ada2ada_product_20"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek comment="">
+                  <identificatie value="tsMBH_907_Toedieningsweg_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="ada2ada_product_1">
+               <product_code code="6939"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="Metoclopramide zetpil 20mg"
+                             codeSystemName="G-Standaard PRK"/>
+               <product_code code="63630"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="METOCLOPRAMIDE 20MG ZETPIL"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="ada2ada_product_2">
+               <product_code code="6939"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="Metoclopramide zetpil 20mg"/>
+               <product_code code="63630"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="METOCLOPRAMIDE 20MG ZETPIL"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="ada2ada_product_3">
+               <product_code code="49484"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="Acetylsalicylzuur tabletmsr 100mg"
+                             codeSystemName="Metoclopramide zetpil 20mg"/>
+               <product_code code="103039"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="METOCLOPRAMIDE 20MG ZETPIL"
+                             displayName="Acetylsalicylzuur tabletmsr 100mg"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="ada2ada_product_4">
+               <product_code code="6939"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="Metoclopramide zetpil 20mg"/>
+               <product_code code="63630"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="METOCLOPRAMIDE 20MG ZETPIL"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="ada2ada_product_5">
+               <product_code code="3891"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="APACOF 250/250/50MG TABLET"
+                             codeSystemName="G-Standaard PRK"/>
+               <product_code code="61433"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="APACOF 250/250/50MG TABLET"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="ada2ada_product_6">
+               <product_code code="3891"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="APACOF 250/250/50MG TABLET"
+                             codeSystemName="G-Standaard PRK"/>
+               <product_code code="61433"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="APACOF 250/250/50MG TABLET"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="ada2ada_product_7">
+               <product_code code="3891"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="APACOF 250/250/50MG TABLET"
+                             codeSystemName="G-Standaard PRK"/>
+               <product_code code="61433"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="APACOF 250/250/50MG TABLET"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="ada2ada_product_8">
+               <product_code code="3891"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="APACOF 250/250/50MG TABLET"
+                             codeSystemName="G-Standaard PRK"/>
+               <product_code code="61433"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="APACOF 250/250/50MG TABLET"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="ada2ada_product_9">
+               <product_code code="31607"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="MINOCYCLINE TABLET 100MG"
+                             codeSystemName="G-Standaard PRK"/>
+               <product_code code="81728"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="MINOCYCLINE TABLET 100MGMINOCYCLINE TABLET 100MG"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="ada2ada_product_10">
+               <product_code code="31607"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="MINOCYCLINE TABLET 100MG"/>
+               <product_code code="81728"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="MINOCYCLINE TABLET 100MG"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="ada2ada_product_11">
+               <product_code code="108286"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="BUMETANIDE TABLET 2,5MG"
+                             codeSystemName="G-Standaard PRK"/>
+               <product_code code="143847"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="BUMETANIDE TABLET 2,5MG"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="ada2ada_product_12">
+               <product_code code="108286 "
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="BUMETANIDE TABLET 2,5MG"/>
+               <product_code code="143847"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="BUMETANIDE TABLET 2,5MG"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="ada2ada_product_13">
+               <product_code displayName="PANTOPRAZOL TABLET MSR 20MG"
+                             code="52272"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"/>
+               <product_code code="106275"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="PANTOPRAZOL TABLET MSR 20MG"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="ada2ada_product_14">
+               <product_code displayName="PANTOPRAZOL TABLET MSR 20MG"
+                             code="52272"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"/>
+               <product_code code="106275"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="PANTOPRAZOL TABLET MSR 20MG"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="ada2ada_product_15">
+               <product_code displayName="PANTOPRAZOL TABLET MSR 20MG"
+                             code="52272"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"/>
+               <product_code code="106275"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="PANTOPRAZOL TABLET MSR 20MG"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="ada2ada_product_16">
+               <product_code displayName="PANTOPRAZOL TABLET MSR 20MG"
+                             code="52272"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"/>
+               <product_code code="106275"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="PANTOPRAZOL TABLET MSR 20MG"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="ada2ada_product_17">
+               <product_code code="80691"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
+               <product_code code="79804"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="ada2ada_product_18">
+               <product_code code="80691"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
+               <product_code code="79804"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="ada2ada_product_19">
+               <product_code code="80691"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
+               <product_code code="79804"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="ada2ada_product_20">
+               <product_code code="80691"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
+               <product_code code="79804"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
+            </farmaceutisch_product>
+            <zorgverlener id="ada2ada_zorgverlener_1">
+               <zorgverlener_identificatienummer value="000001117" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Bert"/>
+                  <geslachtsnaam comment="">
+                     <voorvoegsels value="van "/>
+                     <achternaam value="Dam"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                            codeSystemVersion="2017-12-14T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder datatype="reference" value="ada2ada_zorgaanbieder_1"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgverlener id="ada2ada_zorgverlener_2">
+               <zorgverlener_identificatienummer value="000001117" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Bert"/>
+                  <geslachtsnaam comment="">
+                     <voorvoegsels value="van"/>
+                     <achternaam value="Dam"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                            codeSystemVersion="2017-12-14T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder datatype="reference" value="ada2ada_zorgaanbieder_2"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgverlener id="ada2ada_zorgverlener_3">
+               <zorgverlener_identificatienummer value="000001117" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Bert"/>
+                  <geslachtsnaam comment="">
+                     <voorvoegsels value="van "/>
+                     <achternaam value="Dam"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                            codeSystemVersion="2017-12-14T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder datatype="reference" value="ada2ada_zorgaanbieder_6"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgverlener id="ada2ada_zorgverlener_4">
+               <zorgverlener_identificatienummer value="000001117" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Bert"/>
+                  <geslachtsnaam comment="">
+                     <voorvoegsels value="van "/>
+                     <achternaam value="Dam"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                            codeSystemVersion="2017-12-14T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder datatype="reference" value="ada2ada_zorgaanbieder_7"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgverlener id="ada2ada_zorgverlener_5">
+               <zorgverlener_identificatienummer value="000001117" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Bert"/>
+                  <geslachtsnaam comment="">
+                     <voorvoegsels value="van "/>
+                     <achternaam value="Dam"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                            codeSystemVersion="2017-12-14T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder datatype="reference" value="ada2ada_zorgaanbieder_11"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgverlener id="ada2ada_zorgverlener_6">
+               <zorgverlener_identificatienummer root="2.16.528.1.1007.3.1" value="000001117"/>
+               <naamgegevens>
+                  <voornamen value="Bert"/>
+                  <geslachtsnaam comment="">
+                     <voorvoegsels value="van"/>
+                     <achternaam value="Dam"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                            codeSystemVersion="2017-12-14T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder datatype="reference" value="ada2ada_zorgaanbieder_12"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgverlener id="ada2ada_zorgverlener_7">
+               <zorgverlener_identificatienummer value="000001117" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Bert"/>
+                  <geslachtsnaam comment="">
+                     <voorvoegsels value="van "/>
+                     <achternaam value="Dam"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                            codeSystemVersion="2017-12-14T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder datatype="reference" value="ada2ada_zorgaanbieder_16"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgverlener id="ada2ada_zorgverlener_8">
+               <zorgverlener_identificatienummer value="000001117" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Bert"/>
+                  <geslachtsnaam comment="">
+                     <voorvoegsels value="van "/>
+                     <achternaam value="Dam"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                            codeSystemVersion="2017-12-14T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder datatype="reference" value="ada2ada_zorgaanbieder_17"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgverlener id="ada2ada_zorgverlener_9">
+               <zorgverlener_identificatienummer value="000001117" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Bert"/>
+                  <geslachtsnaam comment="">
+                     <voorvoegsels value="van"/>
+                     <achternaam value="Dam"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder datatype="reference" value="ada2ada_zorgaanbieder_21"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgverlener id="ada2ada_zorgverlener_10">
+               <zorgverlener_identificatienummer value="000001117" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Bert"/>
+                  <geslachtsnaam comment="">
+                     <voorvoegsels value="van "/>
+                     <achternaam value="Dam"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                            codeSystemVersion="2017-12-14T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder datatype="reference" value="ada2ada_zorgaanbieder_22"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="ada2ada_zorgaanbieder_1">
+               <zorgaanbieder_identificatienummer value="00001117" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Van Dam"/>
+               <adresgegevens comment="">
+                  <straat value="Hazepad"/>
+                  <huisnummer value="2"/>
+                  <postcode value="1234BB"/>
+                  <woonplaats value="MIjn Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+            <zorgaanbieder id="ada2ada_zorgaanbieder_2">
+               <zorgaanbieder_identificatienummer value="00001117" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Van Dam"/>
+               <adresgegevens comment="">
+                  <straat value="Hazepad"/>
+                  <huisnummer value="2"/>
+                  <postcode value="1234BB"/>
+                  <woonplaats value="Mijn Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+            <zorgaanbieder id="ada2ada_zorgaanbieder_3">
+               <zorgaanbieder_identificatienummer value="01236579" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Sleutel"/>
+            </zorgaanbieder>
+            <zorgaanbieder id="ada2ada_zorgaanbieder_4">
+               <zorgaanbieder_identificatienummer value="01236579" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Sleutel"/>
+            </zorgaanbieder>
+            <zorgaanbieder id="ada2ada_zorgaanbieder_5">
+               <zorgaanbieder_identificatienummer value="01236579" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Sleutel"/>
+            </zorgaanbieder>
+            <zorgaanbieder id="ada2ada_zorgaanbieder_6">
+               <zorgaanbieder_identificatienummer value="00001117" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Van Dam"/>
+               <adresgegevens comment="">
+                  <straat value="Hazepad"/>
+                  <huisnummer value="2"/>
+                  <postcode value="1234BB"/>
+                  <woonplaats value="Mijn Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+            <zorgaanbieder id="ada2ada_zorgaanbieder_7">
+               <zorgaanbieder_identificatienummer value="00001117" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Van Dam"/>
+               <adresgegevens comment="">
+                  <straat value="Hazepad"/>
+                  <huisnummer value="2"/>
+                  <postcode value="1234BB"/>
+                  <woonplaats value="Mijn Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+            <zorgaanbieder id="ada2ada_zorgaanbieder_8">
+               <zorgaanbieder_identificatienummer value="01236579" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Sleutel"/>
+            </zorgaanbieder>
+            <zorgaanbieder id="ada2ada_zorgaanbieder_9">
+               <zorgaanbieder_identificatienummer value="01236579" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Sleutel"/>
+            </zorgaanbieder>
+            <zorgaanbieder id="ada2ada_zorgaanbieder_10">
+               <zorgaanbieder_identificatienummer value="01236579" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Sleutel"/>
+            </zorgaanbieder>
+            <zorgaanbieder id="ada2ada_zorgaanbieder_11">
+               <zorgaanbieder_identificatienummer value="00001117" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Van Dam"/>
+               <adresgegevens comment="">
+                  <straat value="Hazepad"/>
+                  <huisnummer value="2"/>
+                  <postcode value="1234BB"/>
+                  <woonplaats value="Mijn Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+            <zorgaanbieder id="ada2ada_zorgaanbieder_12">
+               <zorgaanbieder_identificatienummer root="2.16.528.1.1007.3.3" value="00001117"/>
+               <organisatie_naam value="Huisartsenpraktijk Van Dam"/>
+               <adresgegevens comment="">
+                  <straat value="Hazepad"/>
+                  <huisnummer value="2"/>
+                  <postcode value="1234BB"/>
+                  <woonplaats value="Mijn Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+            <zorgaanbieder id="ada2ada_zorgaanbieder_13">
+               <zorgaanbieder_identificatienummer root="2.16.528.1.1007.3.3" value="01236578"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+            </zorgaanbieder>
+            <zorgaanbieder id="ada2ada_zorgaanbieder_14">
+               <zorgaanbieder_identificatienummer root="2.16.528.1.1007.3.3" value="01236578"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+            </zorgaanbieder>
+            <zorgaanbieder id="ada2ada_zorgaanbieder_15">
+               <zorgaanbieder_identificatienummer root="2.16.528.1.1007.3.3" value="01236578"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+            </zorgaanbieder>
+            <zorgaanbieder id="ada2ada_zorgaanbieder_16">
+               <zorgaanbieder_identificatienummer value="00001117" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Van Dam"/>
+               <adresgegevens comment="">
+                  <straat value="Hazepad"/>
+                  <huisnummer value="2"/>
+                  <postcode value="1234BB"/>
+                  <woonplaats value="Mijn Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+            <zorgaanbieder id="ada2ada_zorgaanbieder_17">
+               <zorgaanbieder_identificatienummer value="00001117" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Van Dam"/>
+               <adresgegevens comment="">
+                  <straat value="Hazepad"/>
+                  <huisnummer value="2"/>
+                  <postcode value="1234BB"/>
+                  <woonplaats value="Mijn Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+            <zorgaanbieder id="ada2ada_zorgaanbieder_18">
+               <zorgaanbieder_identificatienummer value="01236579" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Sleutel"/>
+            </zorgaanbieder>
+            <zorgaanbieder id="ada2ada_zorgaanbieder_19">
+               <zorgaanbieder_identificatienummer value="01236579" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Sleutel"/>
+            </zorgaanbieder>
+            <zorgaanbieder id="ada2ada_zorgaanbieder_20">
+               <zorgaanbieder_identificatienummer value="01236579" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Sleutel"/>
+            </zorgaanbieder>
+            <zorgaanbieder id="ada2ada_zorgaanbieder_21">
+               <zorgaanbieder_identificatienummer value="00001117" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Van Dam"/>
+               <adresgegevens comment="">
+                  <straat value="Hazepad"/>
+                  <huisnummer value="2"/>
+                  <postcode value="1234BB"/>
+                  <woonplaats value="Mijn Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+            <zorgaanbieder id="ada2ada_zorgaanbieder_22">
+               <zorgaanbieder_identificatienummer value="00001117" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Van Dam"/>
+               <adresgegevens comment="">
+                  <straat value="Hazepad"/>
+                  <huisnummer value="2"/>
+                  <postcode value="1234BB"/>
+                  <woonplaats value="Mijn Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+            <zorgaanbieder id="ada2ada_zorgaanbieder_23">
+               <zorgaanbieder_identificatienummer value="01236579" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Sleutel"/>
+            </zorgaanbieder>
+            <zorgaanbieder id="ada2ada_zorgaanbieder_24">
+               <zorgaanbieder_identificatienummer value="01236579" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Sleutel"/>
+            </zorgaanbieder>
+            <zorgaanbieder id="ada2ada_zorgaanbieder_25">
+               <zorgaanbieder_identificatienummer value="01236579" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Sleutel"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>
