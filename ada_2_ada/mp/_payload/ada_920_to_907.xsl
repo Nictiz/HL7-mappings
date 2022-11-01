@@ -293,12 +293,24 @@
     </xd:doc>
     <xsl:template match="reden_wijzigen_of_staken | reden_wijzigen_of_stoppen_gebruik" mode="ada920_2_907">
         <xsl:copy>
-            <xsl:apply-templates select="@*" mode="#current"/>
-            <xsl:for-each select="$mapRedenwijzigenstaken[mp920[@code = current()/@code][@codeSystem = current()/@codeSystem]][mp907]">
-                <xsl:copy-of select="mp907/@*"/>
-                <!-- but we do want to keep the original displayName, if present -->
-                <xsl:if test="string-length(@displayName) gt 0"><xsl:copy-of select="@displayName"></xsl:copy-of></xsl:if>
-            </xsl:for-each>
+            <xsl:choose>
+                <xsl:when test="@code = ('182856006', '160131000146104', '160161000146108') and @codeSystem = $oidSNOMEDCT">
+                    <!-- not supported in 907, map to nullFlavor OTH -->
+                    <xsl:call-template name="code2NullFlavorOTH">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="@*" mode="#current"/>
+                    <xsl:for-each select="$mapRedenwijzigenstaken[mp920[@code = current()/@code][@codeSystem = current()/@codeSystem]][mp907[not(@status = 'deprecated')]]">
+                        <xsl:copy-of select="mp907/@*"/>
+                        <!-- but we do want to keep the original displayName, if present -->
+                        <xsl:if test="string-length(@displayName) gt 0">
+                            <xsl:copy-of select="@displayName"/>
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:copy>
     </xsl:template>
 
@@ -458,7 +470,9 @@
             <xsl:for-each select="$mapContactpersoonRol[mp907[@code = current()/@code][@codeSystem = current()/@codeSystem]][mp920]">
                 <xsl:copy-of select="mp920/@*"/>
                 <!-- but we do want to keep the original displayName, if present -->
-                <xsl:if test="string-length(@displayName) gt 0"><xsl:copy-of select="@displayName"></xsl:copy-of></xsl:if>                
+                <xsl:if test="string-length(@displayName) gt 0">
+                    <xsl:copy-of select="@displayName"/>
+                </xsl:if>
             </xsl:for-each>
         </rol>
     </xsl:template>
