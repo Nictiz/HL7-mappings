@@ -21,11 +21,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     exclude-result-prefixes="#all"
     version="2.0">
     
-    <xsl:import href="../../../util/constants.xsl"/>
+    <!--<xsl:import href="../../../util/constants.xsl"/>
     <xsl:import href="../../../util/datetime.xsl"/>
     <xsl:import href="../../../util/units.xsl"/>
-    <xsl:import href="../../../util/utilities.xsl"/>    
-    
+    <xsl:import href="../../../util/utilities.xsl"/>-->    
+    <!-- the imports above are imported in the stylesheet below -->
     <xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
     
     <!-- nl-core resources -->

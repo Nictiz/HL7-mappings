@@ -16,15 +16,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
-    <xsl:variable name="maCode" as="xs:string*" select="'33633005', '16076005'"/>
-    <xsl:variable name="templateId-medicatieafspraak" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9325', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9324', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9323', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9275', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9233', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9235', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9241', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9216'"/>
-
-    <xsl:variable name="template-id-rel-ma">2.16.840.1.113883.2.4.3.11.60.20.77.10.9086</xsl:variable>
-    <xsl:variable name="templateId-stoptype" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9372', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9067'"/>
-    <xsl:variable name="templateId-redenVanVoorschrijven" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9316', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9160'"/>
-    <xsl:variable name="templateId-redenWijzigenOfStaken" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9370', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9270'"/>
-
-
     <xd:doc>
         <xd:desc>Do not convert hl7:author/hl7:time into ada medicatieafspraak_datum_tijd, hl7:author in voorschrijver.
             Those elements will be converted into ada voorstelgegevens</xd:desc>
@@ -147,7 +138,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
 
             <!-- relatie_voorstel_gegevens -->
-            <xsl:for-each select="$inComponent/hl7:entryRelationship/hl7:organizer[hl7:code[@code = '104'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']]">
+            <xsl:for-each select="$inComponent/hl7:entryRelationship/hl7:organizer[hl7:code[@code = ('104','107')][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']]">
                 <relatie_voorstel_gegevens>
                     <xsl:call-template name="handleII">
                         <xsl:with-param name="in" select="hl7:id"/>
@@ -157,10 +148,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
 
             <!-- antwoord_verstrekkingsverzoek -->
-            <xsl:for-each select="$inComponent/hl7:entryRelationship/hl7:observation[hl7:code[@code = '17'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.2']]">
+            <xsl:for-each select="$inComponent[hl7:code[@code = '9'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.3']]/hl7:entryRelationship/hl7:observation[hl7:code[@code = '17'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.2']]">
                 <xsl:call-template name="handleCV">
                     <xsl:with-param name="in" select="hl7:value"/>
                     <xsl:with-param name="elemName">antwoord_verstrekkingsverzoek</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            
+            <!-- antwoord_medicatieafspraak -->
+            <xsl:for-each select="$inComponent[hl7:code[@code = '10'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.3']]/hl7:entryRelationship/hl7:observation[hl7:code[@code = '17'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.2']]">
+                <xsl:call-template name="handleCV">
+                    <xsl:with-param name="in" select="hl7:value"/>
+                    <xsl:with-param name="elemName">antwoord_medicatieafspraak</xsl:with-param>
                 </xsl:call-template>
             </xsl:for-each>
 

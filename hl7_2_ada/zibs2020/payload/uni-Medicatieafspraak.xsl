@@ -21,9 +21,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:variable name="template-id-rel-ma">2.16.840.1.113883.2.4.3.11.60.20.77.10.9086</xsl:variable>
     <xsl:variable name="templateId-stoptype" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9372', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9067'"/>
-    <xsl:variable name="templateId-redenVanVoorschrijven" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9316', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9160'"/>
+    <xsl:variable name="templateId-redenVanVoorschrijven" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.121.10.24', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9316', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9160'"/>
     <xsl:variable name="templateId-redenWijzigenOfStaken" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9370', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9270'"/>
-
 
     <xd:doc>
         <xd:desc>Creates ada attributes taking a hl7 code element as input</xd:desc>
@@ -71,17 +70,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9324_20201015132016">
         <xsl:param name="ma_hl7" select="."/>
         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9323_20201015131556">
-            <xsl:with-param name="ma_hl7" select="$ma_hl7"/>
+            <xsl:with-param name="in" select="$ma_hl7"/>
         </xsl:call-template>
     </xsl:template>
 
     <xd:doc>
         <xd:desc> Medicatieafspraak MP 9.2 Inhoud </xd:desc>
-        <xd:param name="ma_hl7">HL7 medicatieafspraak, defaults to context.</xd:param>
+        <xd:param name="in">HL7 medicatieafspraak, defaults to context.</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9323_20201015131556">
-        <xsl:param name="ma_hl7" select="."/>
-        <xsl:for-each select="$ma_hl7">
+        <xsl:param name="in" select="."/>
+        <xsl:for-each select="$in">
             <xsl:element name="medicatieafspraak">
 
                 <!-- identificatie -->
@@ -100,8 +99,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
 
                 <!-- geannuleerd_indicator -->
-                <xsl:for-each select="hl7:statusCode">
-                    <geannuleerd_indicator value="{@code='nullified'}"/>
+                <xsl:for-each select="hl7:statusCode[@code='nullified']">
+                    <geannuleerd_indicator value="true"/>
                 </xsl:for-each>
 
                 <!-- stoptype -->
@@ -155,18 +154,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <!-- reden van voorschrijven -->
                 <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = $templateId-redenVanVoorschrijven]/hl7:value">
-                    <xsl:variable name="ada-elemName">reden_van_voorschrijven</xsl:variable>
-                    <xsl:element name="{$ada-elemName}">
-                        <xsl:variable name="ada-elemName">probleem</xsl:variable>
-                        <xsl:element name="{$ada-elemName}">
+                    <reden_van_voorschrijven>
+                        <probleem>
                             <!-- probleem_naam -->
-                            <xsl:variable name="ada-elemName">probleem_naam</xsl:variable>
                             <xsl:call-template name="handleCV">
                                 <xsl:with-param name="in" select="."/>
-                                <xsl:with-param name="elemName" select="$ada-elemName"/>
+                                <xsl:with-param name="elemName">probleem_naam</xsl:with-param>
                             </xsl:call-template>
-                        </xsl:element>
-                    </xsl:element>
+                        </probleem>
+                    </reden_van_voorschrijven>
                 </xsl:for-each>
 
                 <!-- afgesproken_geneesmiddel -->
@@ -185,11 +181,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
 
                 <!-- aanvullende_informatie -->
-                <xsl:variable name="ada-elemName">aanvullende_informatie</xsl:variable>
+                <xsl:variable name="templateIdMAAanvullendeInformatie" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9177', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9401'"/>
                 <xsl:call-template name="handleCV">
-                    <xsl:with-param name="in" select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9177']/hl7:value"/>
-                    <xsl:with-param name="elemName" select="$ada-elemName"/>
-
+                    <xsl:with-param name="in" select="hl7:entryRelationship/*[hl7:templateId/@root = $templateIdMAAanvullendeInformatie]/hl7:value"/>
+                    <xsl:with-param name="elemName">aanvullende_informatie</xsl:with-param>
                 </xsl:call-template>
 
                 <!-- kopie_indicator -->
@@ -227,6 +222,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.32_20210701">
                 <xsl:with-param name="author-hl7" select="."/>
                 <xsl:with-param name="generateId" select="true()"/>
+                <!-- naamgebruik not in MP transactions -->
+                <xsl:with-param name="outputNaamgebruik" select="false()"/>
             </xsl:call-template>
         </voorschrijver>
     </xsl:template>

@@ -1,0 +1,90 @@
+<!--Generated from HL7v3 instance.-->
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_antwoord_voorstel_verstrekkingsverzoek.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2022-09-05T15:44:22.363705+02:00"
+         last-update-date="2022-09-05T15:44:22.363705+02:00"/>
+   <data>
+      <sturen_antwoord_voorstel_verstrekkingsverzoek app="mp-mp92"
+                                                     shortName="sturen_antwoord_voorstel_verstrekkingsverzoek"
+                                                     formName="sturen_antwoord_voorstel_verstrekkingsverzoek"
+                                                     transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.331"
+                                                     transactionEffectiveDate="2022-02-07T00:00:00"
+                                                     versionDate=""
+                                                     prefix="mp-"
+                                                     language="nl-NL"
+                                                     title="mp-av-tst-patient_is_aanvrager-v20"
+                                                     id="mp-av-tst-patient_is_aanvrager-v20">
+         <patient>
+            <naamgegevens>
+               <initialen value="C."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <voorvoegsels value="van de "/>
+                  <achternaam value="XXX_Brugge"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900419" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime" value="1963-10-16"/>
+            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+         </patient>
+         <bouwstenen>
+            <zorgverlener id="d43e26">
+               <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Peter"/>
+                  <naamgebruik code="NL1"
+                               codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                               displayName="Eigen geslachtsnaam"/>
+                  <geslachtsnaam>
+                     <voorvoegsels value="van "/>
+                     <achternaam value="Pulver"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder value="d43e37" datatype="reference"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="d43e37">
+               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="1"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+         </bouwstenen>
+         <voorstel_gegevens>
+            <antwoord>
+               <identificatie value="MBH_200_Voorstelgegevens_patient_is_auteur_AVVV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.3"/>
+               <antwoord_datum datatype="datetime" value="2022-01-01T16:25:00"/>
+               <auteur>
+                  <zorgverlener value="d43e26" datatype="reference"/>
+               </auteur>
+               <relatie_voorstel_gegevens>
+                  <identificatie value="MBH_200_Voorstelgegevens_patient_is_auteur_VVV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.2"/>
+               </relatie_voorstel_gegevens>
+               <antwoord_verstrekkingsverzoek code="5"
+                                              codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.17"
+                                              displayName="Eerst afspraak"/>
+            </antwoord>
+         </voorstel_gegevens>
+      </sturen_antwoord_voorstel_verstrekkingsverzoek>
+   </data>
+</adaxml>
