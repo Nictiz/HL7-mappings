@@ -1,0 +1,131 @@
+<RelatedPerson xmlns="http://hl7.org/fhir">
+   <id value="nl-core-relatedperson-bgz-msz-patB-contactperson1"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>Peter P. Verheul-van 't Hoen (Peer)</div>
+         <div>
+            <a href="tel:0611119999">0611119999</a> (Tel Mobiel), <a href="mailto:peer@verheul.org">peer@verheul.org</a> (E-mail Privé)</div>
+         <div>Steenstraat 143 A II, 6584YZ Molenhoek Mook en Middelaar, NL (officieel Privé (hoofd) Bezoek)</div>
+         <div>
+            <span title="Eerste relatie/contactpersoon (1 - RoleCodeLijst (COD472-VEKT))">Eerste relatie/contactpersoon</span>, <span title="Domestic partner (DOMPART - v3/RoleCode)">Domestic partner</span> van Maria Francisca M.F. Maria van 't Hoen Verheul</div>
+      </div>
+   </text>
+   <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.22.472"/>
+            <code value="1"/>
+            <display value="Eerste relatie/contactpersoon"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <patient>
+      <reference value="Patient/MARIA-FRANCISCA-M.F.-MARIA-VAN-T-HOEN-VERHEUL"/>
+      <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
+   </patient>
+   <relationship>
+      <coding>
+         <system value="http://hl7.org/fhir/v3/RoleCode"/>
+         <code value="DOMPART"/>
+         <display value="Domestic partner"/>
+      </coding>
+   </relationship>
+   <name>
+      <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+         <valueCode value="NL4"/>
+      </extension>
+      <family value="Verheul-van 't Hoen">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="Verheul"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix">
+            <valueString value="van 't"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+            <valueString value="Hoen"/>
+         </extension>
+      </family>
+      <given value="Peter">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+      <given value="P.">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="IN"/>
+         </extension>
+      </given>
+      <given value="Peer">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="CL"/>
+         </extension>
+      </given>
+   </name>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="MC"/>
+               <display value="Mobile Phone"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="0611119999"/>
+      <use value="mobile"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="peer@verheul.org"/>
+      <use value="home"/>
+   </telecom>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="HP"/>
+               <display value="Officieel adres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-address-official">
+         <valueBoolean value="true"/>
+      </extension>
+      <use value="home"/>
+      <type value="physical"/>
+      <line value="Steenstraat 143 A II">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Steenstraat"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="143"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+            <valueString value="A"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+            <valueString value="II"/>
+         </extension>
+      </line>
+      <city value="Molenhoek"/>
+      <district value="Mook en Middelaar"/>
+      <postalCode value="6584YZ"/>
+      <country value="NL">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:iso:std:iso:3166"/>
+                  <code value="NL"/>
+                  <display value="Nederland"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </country>
+   </address>
+</RelatedPerson>
