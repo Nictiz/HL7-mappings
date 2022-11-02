@@ -1,0 +1,83 @@
+<Specimen xmlns="http://hl7.org/fhir">
+   <id value="zib-LaboratoryTestResult-Specimen-bgz-msz-patA-labresult1-1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Specimen"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Specimen. Subject: Dennis D. Dennis Janse. Id: 9876</caption>
+            <tbody>
+               <tr>
+                  <th>Type</th>
+                  <td>
+                     <span title="Bloed (87612001 - SNOMED CT)">Bloed</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Inzameling</th>
+                  <td>${DATE, T, D, +1}T12:00:00+02:00<div>
+                        <span title="gehele regio cubiti (76248009 - SNOMED CT)">gehele regio cubiti</span>
+                        <span title="Left (7771000 - SNOMED CT)">Left</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Container</th>
+                  <td>
+                     <div>Id: 9876-2</div>
+                     <div>Type: <span title="Bloedbuis (700957004 - SNOMED CT)">Bloedbuis</span>
+                     </div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <value value="9876"/>
+   </identifier>
+   <type>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="87612001"/>
+         <display value="Bloed"/>
+      </coding>
+   </type>
+   <subject>
+      <reference value="Patient/DENNIS-D.-DENNIS-JANSE"/>
+      <display value="Dennis D. Dennis Janse"/>
+   </subject>
+   <collection>
+      <collectedDateTime value="${DATE, T, D, +1}T12:00:00+02:00"/>
+      <bodySite>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="7771000"/>
+                  <display value="Left"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="76248009"/>
+            <display value="gehele regio cubiti"/>
+         </coding>
+      </bodySite>
+   </collection>
+   <container>
+      <identifier>
+         <value value="9876-2"/>
+      </identifier>
+      <type>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="700957004"/>
+            <display value="Bloedbuis"/>
+         </coding>
+      </type>
+   </container>
+</Specimen>

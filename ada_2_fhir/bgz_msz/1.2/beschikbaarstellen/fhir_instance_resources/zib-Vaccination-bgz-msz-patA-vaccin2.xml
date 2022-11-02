@@ -1,0 +1,76 @@
+<Immunization xmlns="http://hl7.org/fhir">
+   <id value="zib-Vaccination-bgz-msz-patA-vaccin2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Vaccination"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Vaccinatie. Patiënt: Dennis D. Dennis Janse. Status: voltooid</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Reis door Indonesië</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>
+                     <span title="Hepatitis A+B-vaccin (J07BC20 - WHO ATC)">Hepatitis A+B-vaccin</span>
+                  </th>
+                  <td>
+                     <div>Toegediend: ja (2 maart 2015)</div>
+                     <div>Gemeld door uitvoerende: nee</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Zorgverlener</th>
+                  <td>Ria Alexandra R.A. Ria Slot || Huisarts || Huisartsenpraktijk Rotterdam</td>
+               </tr>
+               <tr>
+                  <th>Vaccine Details</th>
+                  <td>
+                     <div>Dosering: 1 ml</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <status value="completed"/>
+   <notGiven value="false"/>
+   <vaccineCode>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.6.73"/>
+         <code value="J07BC20"/>
+         <display value="Hepatitis A+B-vaccin"/>
+      </coding>
+   </vaccineCode>
+   <patient>
+      <reference value="Patient/DENNIS-D.-DENNIS-JANSE"/>
+      <display value="Dennis D. Dennis Janse"/>
+   </patient>
+   <date value="2015-03-02"/>
+   <primarySource value="false"/>
+   <doseQuantity>
+      <value value="1"/>
+      <unit value="ml"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="ml"/>
+   </doseQuantity>
+   <practitioner>
+      <actor>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-bgz-msz-8877665501.015123456A1"/>
+               <display value="Ria Alexandra R.A. Ria Slot || Huisarts || Huisartsenpraktijk Rotterdam"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-bgz-msz-2.16.840.1.113883.2.4.6.1-88776655"/>
+         <display value="Ria Alexandra R.A. Ria Slot"/>
+      </actor>
+   </practitioner>
+   <note>
+      <text value="Reis door Indonesië"/>
+   </note>
+</Immunization>
