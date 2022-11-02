@@ -202,11 +202,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </hospitalization>
                     </xsl:if>
                     
-                    <!--<xsl:for-each select="locatie/zorgaanbieder | location/healthcare_provider">
+                    <xsl:for-each select="locatie/zorgaanbieder | location/healthcare_provider">
                         <serviceProvider>
-                                                      
+                            <xsl:apply-templates select="." mode="doOrganizationReference-2.0"/>
                         </serviceProvider>
-                    </xsl:for-each>-->
+                    </xsl:for-each>
                     
                 </Encounter>
             </xsl:variable>

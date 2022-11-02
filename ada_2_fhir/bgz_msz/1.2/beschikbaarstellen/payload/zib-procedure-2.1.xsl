@@ -19,7 +19,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="procedures" as="element()*">
         <xsl:for-each-group select="//(verrichting[not(verrichting)] | procedure[not(procedure)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
             <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
-            <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
+            <!--<xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>-->
             <unique-procedure xmlns="">
                 <group-key>
                     <xsl:value-of select="current-grouping-key()"/>
@@ -28,7 +28,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:value-of select="(verrichting_type | procedure_type)/(@displayName | @originalText)"/>
                 </reference-display>
                 <xsl:apply-templates select="current-group()[1]" mode="doProcedureEntry-2.1">
-                    <xsl:with-param name="uuid" select="$uuid"/>
+                    <!--<xsl:with-param name="uuid" select="$uuid"/>-->
                 </xsl:apply-templates>
             </unique-procedure>
         </xsl:for-each-group>
@@ -37,7 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="procedureRequests" as="element()*">
         <xsl:for-each-group select="//(verrichting[not(verrichting)] | procedure[not(procedure)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
             <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
-            <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
+            <!--<xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>-->
             <unique-procedureRequest xmlns="">
                 <group-key>
                     <xsl:value-of select="current-grouping-key()"/>
@@ -46,7 +46,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:value-of select="(verrichting_type | procedure_type)/(@displayName | @originalText)"/>
                 </reference-display>
                 <xsl:apply-templates select="current-group()[1]" mode="doProcedureRequestEntry-2.1">
-                    <xsl:with-param name="uuid" select="$uuid"/>
+                    <!--<xsl:with-param name="uuid" select="$uuid"/>-->
                 </xsl:apply-templates>
             </unique-procedureRequest>
         </xsl:for-each-group>
@@ -298,13 +298,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </performedPeriod>
                     </xsl:if>
                     
-                    <!--<xsl:for-each select="locatie/zorgaanbieder | location/healthcare_provider">
+                    <xsl:for-each select="locatie/zorgaanbieder | location/healthcare_provider">
                         <performer>
                             <actor>
-                                <xsl:apply-templates select="$adaOrganization" mode="doOrganizationReference-2.0"/>
+                                <xsl:apply-templates select="." mode="doOrganizationReference-2.0"/>
                             </actor>
                         </performer>
-                    </xsl:for-each>-->
+                    </xsl:for-each>
                     
                     <xsl:for-each select="uitvoerder/zorgverlener | performer/health_professional">
                         <xsl:choose>
@@ -456,13 +456,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:choose>
                     </xsl:for-each>
                     
-                    <!--<xsl:for-each select="locatie/zorgaanbieder | location/healthcare_provider">
+                    <xsl:for-each select="locatie/zorgaanbieder | location/healthcare_provider">
                         <performer>
-                            <actor>
-                                <xsl:apply-templates select="$adaOrganization" mode="doOrganizationReference-2.0"/>
-                            </actor>
+                            <xsl:apply-templates select="." mode="doOrganizationReference-2.0"/>
                         </performer>
-                    </xsl:for-each>-->
+                    </xsl:for-each>
                     
                     <xsl:for-each select="uitvoerder/zorgverlener | performer/health_professional">
                         <xsl:choose>

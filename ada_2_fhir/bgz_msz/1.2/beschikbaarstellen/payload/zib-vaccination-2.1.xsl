@@ -19,7 +19,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="vaccinations" as="element()*">
         <xsl:for-each-group select="//(vaccinatie | vaccination)[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
             <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
-            <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
+            <!--<xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>-->
             <unique-vaccination xmlns="">
                 <group-key>
                     <xsl:value-of select="current-grouping-key()"/>
@@ -28,7 +28,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:value-of select="product_code/@displayName"/>
                 </reference-display>
                 <xsl:apply-templates select="current-group()[1]" mode="doVaccinationEntry-2.1">
-                    <xsl:with-param name="uuid" select="$uuid"/>
+                    <!--<xsl:with-param name="uuid" select="$uuid"/>-->
                 </xsl:apply-templates>
             </unique-vaccination>
         </xsl:for-each-group>

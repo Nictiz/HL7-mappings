@@ -19,7 +19,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="medicalDevices" as="element()*">
         <xsl:for-each-group select="//(medisch_hulpmiddel[not(medisch_hulpmiddel)] | medical_device[not(medical_device)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
             <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
-            <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
+            <!--<xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>-->
             <unique-medicalDevice xmlns="">
                 <group-key>
                     <xsl:value-of select="current-grouping-key()"/>
@@ -28,7 +28,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:value-of select="(product_omschrijving | product_description)/@value | product/product_type/@displayName"/>
                 </reference-display>
                 <xsl:apply-templates select="current-group()[1]" mode="doMedicalDeviceEntry-2.2">
-                    <xsl:with-param name="uuid" select="$uuid"/>
+                    <!--<xsl:with-param name="uuid" select="$uuid"/>-->
                 </xsl:apply-templates>
             </unique-medicalDevice>
         </xsl:for-each-group>
@@ -37,7 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="medicalDeviceProducts" as="element()*">
         <xsl:for-each-group select="//(medisch_hulpmiddel[not(medisch_hulpmiddel)] | medical_device[not(medical_device)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
             <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
-            <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
+            <!--<xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>-->
             <unique-medicalDeviceProduct xmlns="">
                 <group-key>
                     <xsl:value-of select="current-grouping-key()"/>
@@ -46,7 +46,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:value-of select="(product_omschrijving | product_description)/@value | product/product_type/@displayName"/>
                 </reference-display>
                 <xsl:apply-templates select="current-group()[1]" mode="doMedicalDeviceProductEntry-2.2">
-                    <xsl:with-param name="uuid" select="$uuid"/>
+                    <!--<xsl:with-param name="uuid" select="$uuid"/>-->
                 </xsl:apply-templates>
             </unique-medicalDeviceProduct>
         </xsl:for-each-group>
@@ -221,14 +221,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="{$profileValue}"/>
                     </meta>
                     
-                    <!-- TODO HealthcareProvider reference-->
-                    <!--<xsl:for-each select="locatie/zorgaanbieder | location/healthcare_provider">
+                    <xsl:for-each select="locatie/zorgaanbieder | location/healthcare_provider">
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Organization">
                             <valueReference>
-                                <xsl:apply-templates select="$adaOrganization" mode="doOrganizationReference-2.0"/>
+                                <xsl:apply-templates select="." mode="doOrganizationReference-2.0"/>
                             </valueReference>
                         </extension>
-                    </xsl:for-each>-->
+                    </xsl:for-each>
                     
                     <xsl:for-each select="zorgverlener/zorgverlener | health_professional/health_professional">
                         <xsl:choose>
@@ -352,26 +351,32 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="{$profileValue}"/>
                     </meta>
                     
-                    <xsl:for-each select="product_id[@code]">
+                    <xsl:for-each select="product/product_id[@code]">
                         <identifier>
                             <system>
-                                <xsl:value-of select="@codeSystem"/>
+                                <xsl:attribute name="value">
+                                    <xsl:value-of select="@codeSystem"/>
+                                </xsl:attribute>
                             </system>
                             <value>
-                                <xsl:value-of select="@code"/>
+                                <xsl:attribute name="value">
+                                    <xsl:value-of select="@code"/>
+                                </xsl:attribute>
                             </value>
                         </identifier>
                         
                         <udi>
                             <carrierHRF>
-                                <xsl:value-of select="@code"/>
+                                <xsl:attribute name="value">
+                                    <xsl:value-of select="@code"/>
+                                </xsl:attribute>
                             </carrierHRF>
                         </udi>
                     </xsl:for-each>
                     
                     <status value="active"/>
                     
-                    <xsl:for-each select="product_type[@code]">
+                    <xsl:for-each select="product/product_type[@code]">
                         <type>
                             <xsl:call-template name="code-to-CodeableConcept">
                                 <xsl:with-param name="in" select="."/>

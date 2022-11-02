@@ -296,6 +296,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </comment>
                     </xsl:for-each>
                     
+                    <!--NL-CM:13.1.2	Specimen	0..1	123038009 monster-->
+                    <xsl:for-each select="monster | specimen">
+                        <specimen>
+                            <xsl:apply-templates select="." mode="doLaboratoryResultSpecimenReference-2.1"/>
+                        </specimen>
+                    </xsl:for-each>
+                    
                     <!--NL-CM:13.1.3	LaboratoryTest	0..*	Container of the LaboratoryTest concept. This container contains all data elements of the LaboratoryTest concept. -->
                     <xsl:for-each select="laboratorium_test | laboratory_test">
                         <related>
@@ -523,6 +530,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
                         </method>
+                    </xsl:for-each>
+                    
+                    <!--NL-CM:13.1.2	Specimen	0..1	123038009 monster-->
+                    <xsl:for-each select="../(monster | specimen)">
+                        <specimen>
+                            <xsl:apply-templates select="." mode="doLaboratoryResultSpecimenReference-2.1"/>
+                        </specimen>
                     </xsl:for-each>
                     
                     <!--NL-CM:13.1.11	ReferenceRangeUpperLimit	0..1	The upper reference limit for the patient of the value measured in the test.-->

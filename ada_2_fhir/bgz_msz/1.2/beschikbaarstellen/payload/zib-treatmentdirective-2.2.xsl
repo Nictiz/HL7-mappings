@@ -189,7 +189,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </dateTime>
                     </xsl:for-each>
                     
-                    <!--<xsl:for-each select="hcimroot/author">
+                    <!--<xsl:for-each select="zibroot/auteur | hcimroot/author">
                         <consentingParty>
                             
                         </consentingParty>

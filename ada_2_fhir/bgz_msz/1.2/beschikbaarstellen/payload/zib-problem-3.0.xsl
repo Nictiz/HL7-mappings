@@ -19,7 +19,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="problems" as="element()*">
         <xsl:for-each-group select="//(probleem[not(probleem)] | problem[not(problem)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
             <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
-            <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
+            <!--<xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>-->
             <unique-problem xmlns="">
                 <group-key xmlns="">
                     <xsl:value-of select="current-grouping-key()"/>
@@ -28,7 +28,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:value-of select="(probleem_naam | problem_name)/(@displayName | @originalText)"/>
                 </reference-display>
                 <xsl:apply-templates select="current-group()[1]" mode="doProblemEntry-3.0">
-                    <xsl:with-param name="uuid" select="$uuid"/>
+                    <!--<xsl:with-param name="uuid" select="$uuid"/>-->
                 </xsl:apply-templates>
             </unique-problem>
         </xsl:for-each-group>
