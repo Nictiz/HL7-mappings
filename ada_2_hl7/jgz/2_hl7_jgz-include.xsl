@@ -2049,11 +2049,14 @@
         <consentEvent xmlns="urn:hl7-org:v3" classCode="CONS" moodCode="EVN">
             <!-- Item(s) :: toestemming_gegevensuitwisseling_rvp -->
             <!-- Als de toestemming 'ja' is dan is negationInd van ConsentEvent 'false'. -->
-            <xsl:attribute name="negationInd" select="
-                    if (toestemming_toestemming_gegevensuitwisseling_rvp/@value eq 'true') then
-                        'false'
-                    else
-                        'true'"/>
+            <xsl:variable name="negationIndicator">
+                <xsl:choose>
+                    <xsl:when test="toestemming_gegevensuitwisseling_rvp/@value = 'true'">false</xsl:when>
+                    <xsl:otherwise>true</xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            <xsl:message>test: <xsl:value-of select="$negationIndicator"/></xsl:message>
+            <xsl:attribute name="negationInd" select="$negationIndicator"/>
             <code code="1533" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1533'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
             </code>
