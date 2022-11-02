@@ -31,6 +31,10 @@
             <mp920 code="112251000146103" codeSystem="{$oidSNOMEDCT}" displayName="te sterk effect van medicatie" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
         </map>
         <map xmlns="">
+            <mp907 code="7" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2" displayName="(Mogelijke) bijwerking" codeSystemName="Reden Medicatieafspraak of -gebruik" status="deprecated"/>
+            <mp920 code="62014003" codeSystem="{$oidSNOMEDCT}" displayName="ongewenste reactie op medicatie en/of drugs" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
+        </map>
+        <map xmlns="">
             <mp907 code="8" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2" displayName="Toedieningsweg voldoet niet" codeSystemName="Reden Medicatieafspraak of -gebruik"/>
             <mp910 code="112191000146101" codeSystem="{$oidSNOMEDCT}" displayName="medicatietoedieningsweg voldoet niet" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
             <mp920 code="112191000146101" codeSystem="{$oidSNOMEDCT}" displayName="medicatietoedieningsweg voldoet niet" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
@@ -47,14 +51,14 @@
         </map>
         <map xmlns="">
             <mp907 code="12" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2" displayName="Wens patiënt" codeSystemName="Reden Medicatieafspraak of -gebruik"/>
-            <mp910 code="184003006" codeSystem="{$oidSNOMEDCT}" displayName="verzoek van zorgafnemer om behandeling te wijzige" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
-            <mp920 code="184003006" codeSystem="{$oidSNOMEDCT}" displayName="verzoek van zorgafnemer om behandeling te wijzige" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
+            <mp910 code="184003006" codeSystem="{$oidSNOMEDCT}" displayName="verzoek van zorgafnemer om behandeling" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
+            <mp920 code="159711000146106" codeSystem="{$oidSNOMEDCT}" displayName="verzoek van zorgafnemer om behandeling te wijzigen" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
         </map>
         <map xmlns="">
             <!-- dit is alleen bij andere bouwstenen dan TA/MA -->
             <mp907 code="13" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2" displayName="Volgens afspraak" codeSystemName="Reden Medicatieafspraak of -gebruik"/>
             <mp910 code="112211000146102" codeSystem="{$oidSNOMEDCT}" displayName="behandeling volgens afspraak met patiënt" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
-            <mp920 code="112211000146102" codeSystem="{$oidSNOMEDCT}" displayName="behandeling volgens afspraak met patiënt" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
+            <mp920 code="112221000146107" codeSystem="{$oidSNOMEDCT}" displayName="medicatiegebruik van patiënt volgens afspraak" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
         </map>
         <map xmlns="">
             <mp907 code="14" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2" displayName="Hervatten beleid vorige voorschrijver" codeSystemName="Reden Medicatieafspraak of -gebruik"/>
@@ -76,6 +80,10 @@
             <mp910 code="17" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2" displayName="Correctie" codeSystemName="Reden Medicatieafspraak of -gebruik"/>
             <mp920 code="159691000146109" codeSystem="{$oidSNOMEDCT}" displayName="foutieve registratie" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
         </map>
+        <map xmlns="">
+            <mp907 code="473010000" codeSystem="{$oidSNOMEDCT}" displayName="toestand van overgevoeligheid" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}" status="deprecated"/>
+            <mp920 code="62014003" codeSystem="{$oidSNOMEDCT}" displayName="ongewenste reactie op medicatie en/of drugs" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
+        </map>
     </xsl:variable>
 
     <xsl:variable name="mapTransaction" as="element()+">
@@ -92,6 +100,36 @@
             <mp920 transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.334" transactionEffectiveDate="2022-02-07T00:00:00" formName="afhandelen_medicatievoorschrift"/>
         </map>
     </xsl:variable>
+
+    <xd:doc>
+        <xd:desc>Helper template to output code element in nullFlavor OTH in cased the code is not supported in the target standard</xd:desc>
+        <xd:param name="in">The ada code element to be converted. Defaults to context.</xd:param>
+    </xd:doc>
+    <xsl:template name="code2NullFlavorOTH">
+        <xsl:param name="in" select="." as="element()?"/>
+
+        <xsl:for-each select="$in">
+            <xsl:choose>
+                <xsl:when test="@codeSystem = $oidHL7NullFlavor">
+                    <!-- simply output the input nullFlavor attributes -->
+                    <xsl:copy-of select="@*"/>
+                </xsl:when>
+                <xsl:when test="string-length(@originalText) gt 0">
+                    <!-- should not happen, but let's preserve whatever text was in the input -->
+                    <xsl:attribute name="code">OTH</xsl:attribute>
+                    <xsl:attribute name="codeSystem" select="$oidHL7NullFlavor"/>
+                    <xsl:attribute name="displayName" select="$hl7NullFlavorMap[@hl7NullFlavor = 'OTH']/@displayName"/>
+                    <xsl:attribute name="originalText" select="concat(@displayName, ' - ', @originalText)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:attribute name="code">OTH</xsl:attribute>
+                    <xsl:attribute name="codeSystem" select="$oidHL7NullFlavor"/>
+                    <xsl:attribute name="displayName" select="$hl7NullFlavorMap[@hl7NullFlavor = 'OTH']/@displayName"/>
+                    <xsl:attribute name="originalText" select="@displayName"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:for-each>
+    </xsl:template>
 
     <xd:doc>
         <xd:desc>helper function to make a string out of a code ada element</xd:desc>
