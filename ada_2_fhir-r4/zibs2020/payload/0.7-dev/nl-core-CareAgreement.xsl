@@ -46,15 +46,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <CarePlan>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-NursingIntervention"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-CareAgreement"/>
                 </meta>
+                <!-- Follows implicit zib mapping to StartDate and EndDate as described in the profile. -->
                 <status>
-                    <!-- TO BE DECIDED BY THE PROFILE -->
                     <xsl:attribute name="value" select="'active'"/>
                 </status>
-                <!-- TO BE DECIDED BY THE PROFILE -->
+                <!-- Normally 'plan' for zib CareAgreement, as described in the profile. -->
                 <intent value="plan"/>
-                <!-- TO BE DECIDED BY THE PROFILE -->
                 <category>
                     <coding>
                         <system value="http://snomed.info/sct"/>
@@ -115,19 +114,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <code>
                                 <text value="{@value}"/>
                             </code>
-                        </xsl:for-each>
+                            </xsl:for-each>
+                            <!-- Follows implicit zib mapping to StartDate and EndDate as described in the profile, 'in-progress' == 'active'. -->
+                            <status>
+                                <xsl:attribute name="value" select="'in-progress'"/>
+                            </status>
                         <xsl:call-template name="makeReference">
                             <xsl:with-param name="in" select="$performer"/>
                             <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
                             <xsl:with-param name="wrapIn" select="'performer'"/>
                         </xsl:call-template>
+                        <xsl:for-each select="toelichting">
+                            <description value="{normalize-space(@value)}"/>
+                        </xsl:for-each>
                     </detail>
                 </activity>
-                <xsl:for-each select="toelichting">
-                    <note>
-                        <text value="{@value}"/>
-                    </note>
-                </xsl:for-each>
             </CarePlan>
         </xsl:for-each>
     </xsl:template>
