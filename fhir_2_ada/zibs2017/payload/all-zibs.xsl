@@ -21,11 +21,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     exclude-result-prefixes="#all"
     version="2.0">
     
-    <xsl:import href="../../../util/constants.xsl"/>
+    <!--<xsl:import href="../../../util/constants.xsl"/>
     <xsl:import href="../../../util/datetime.xsl"/>
     <xsl:import href="../../../util/units.xsl"/>
-    <xsl:import href="../../../util/utilities.xsl"/>    
-    
+    <xsl:import href="../../../util/utilities.xsl"/>-->    
+    <!-- the imports above are imported in the stylesheet below -->
     <xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
     
     <!-- nl-core resources -->
@@ -41,10 +41,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-humanname-2.0.xsl"/>
     <!-- mp resources -->
     <xsl:import href="zib-medicationuse-2.2.xsl"/>
-    <xsl:import href="zib-administrationagreement-2.2.xsl"/>
+    <xsl:import href="zib-AdministrationAgreement-2.2.xsl"/>
     <xsl:import href="zib-medicationagreement-2.2.xsl"/>
     <xsl:import href="zib-dispense-2.2.xsl"/>
-    <xsl:import href="zib-dispenserequest-2.2.xsl"/>
+    <xsl:import href="zib-DispenseRequest-2.2.xsl"/>
     <!-- mp datatypes -->
     <xsl:import href="zib-pharmaceuticalproduct-2.0.xsl"/>
     <xsl:import href="zib-instructions-for-use-2.0.xsl"/>
