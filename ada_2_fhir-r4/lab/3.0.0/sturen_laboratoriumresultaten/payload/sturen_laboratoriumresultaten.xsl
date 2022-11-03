@@ -52,11 +52,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:with-param name="in" select="//(
                     sturen_laboratoriumresultaten/onderzoeksresultaat/laboratorium_uitslag |
                     sturen_laboratoriumresultaten/patientgegevens/patient | 
-                    sturen_laboratoriumresultaten/beschikbaarstellende_partij/zorgaanbieder |
                     sturen_laboratoriumresultaten/onderzoeksresultaat/laboratorium_uitslag/uitvoerder/zorgaanbieder |
                     beschikbaarstellen_laboratoriumresultaten/onderzoeksresultaat/laboratorium_uitslag |
                     beschikbaarstellen_laboratoriumresultaten/patientgegevens/patient | 
-                    beschikbaarstellen_laboratoriumresultaten/beschikbaarstellende_partij/zorgaanbieder |
                     beschikbaarstellen_laboratoriumresultaten/onderzoeksresultaat/laboratorium_uitslag/uitvoerder/zorgaanbieder
             )"/>
         </xsl:call-template>
@@ -104,7 +102,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each-group>
             </xsl:variable>
             <xsl:variable name="zorgaanbieders" as="element()*">
-                <xsl:for-each-group select="beschikbaarstellende_partij/zorgaanbieder | onderzoeksresultaat/laboratorium_uitslag/uitvoerder/zorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
+                <xsl:for-each-group select="onderzoeksresultaat/laboratorium_uitslag/uitvoerder/zorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
                     <!--<xsl:if test="afdeling_specialisme">
                         <xsl:call-template name="nl-core-HealthcareProvider">
                             <xsl:with-param name="in" select="current-group()[1]"/>
