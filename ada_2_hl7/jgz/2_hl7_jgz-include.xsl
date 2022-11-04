@@ -2458,10 +2458,10 @@
         <xsl:for-each select="groep_g001_adres_client">
             <addr xmlns="urn:hl7-org:v3">
                 <xsl:attribute name="use" select="
-                        concat(soort_adres/(@code, @value)[1], if (adres_is_geheim/@value = 'true') then
-                            ' CONF'
+                         if (adres_is_geheim/@value = 'true') then
+                            'CONF'
                         else
-                            '')"/>
+                            soort_adres/(@code, @value)[1]"/>
                 <!-- Item(s) :: straatnaam-->
                 <xsl:for-each select="straatnaam">
                     <xsl:call-template name="makeADXPValue">
