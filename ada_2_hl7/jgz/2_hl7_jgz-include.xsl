@@ -5410,6 +5410,12 @@
             <code code="R042" codeSystem="2.16.840.1.113883.2.4.4.40.391">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R042'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
             </code>
+            <xsl:for-each select="kolom_van_wiechen_onderzoek">
+                <component>
+                    <!-- Template :: obs 1531. kolom_van_wiechen_onderzoek -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41531_20200527000000"/>
+                </component>
+            </xsl:for-each>
             <xsl:for-each select="gedragstoestand_van_wiechen">
                 <component>
                     <!-- Template :: obs Gedragstoestand Van Wiechen -->
@@ -6416,12 +6422,6 @@
                 <component>
                     <!-- Template :: obs Bijzonderheden Van Wiechen onderzoek -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41004_20200527000000"/>
-                </component>
-            </xsl:for-each>
-            <xsl:for-each select="kolom_van_wiechen_onderzoek">
-                <component>
-                    <!-- Template :: obs 1531. kolom_van_wiechen_onderzoek -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41531_20180424000000"/>
                 </component>
             </xsl:for-each>
         </rubricCluster>
@@ -25144,7 +25144,7 @@
     </xsl:template>
 
     <!-- obs Van Wiechen kolom -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41531_20180424000000">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41531_20200527000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41531"/>
             <code code="1531" codeSystem="2.16.840.1.113883.2.4.4.40.267">
