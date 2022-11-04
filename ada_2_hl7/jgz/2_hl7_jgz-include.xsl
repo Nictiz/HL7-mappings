@@ -242,36 +242,36 @@
             <xsl:for-each select="r005_betrokken_jgzorganisaties/groep_g085_uitvoerende_jgzorganisatie">
                 <xsl:sort select="*/startdatum_geldigheid_uitvoerende_jgzorganisatie/@value" order="descending"/>
                 <author typeCode="AUT">
-                        
-                        <xsl:for-each select="groep_g098_periode_geldigheid_uitvoerende_jgzorganisatie">
-                            <xsl:if test="count(startdatum_geldigheid_uitvoerende_jgzorganisatie) > 0 or count(einddatum_geldigheid_uitvoerende_jgzorganisatie) > 0">
-                                <time xsi:type="IVL_TS">
-                                    <!-- Item(s) :: startdatum_geldigheid_uitvoerende_jgzorganisatie-->
-                                    <xsl:for-each select="startdatum_geldigheid_uitvoerende_jgzorganisatie">
-                                        <xsl:call-template name="makeTSValue">
-                                            <xsl:with-param name="xsiType" select="''"/>
-                                            <xsl:with-param name="elemName">low</xsl:with-param>
-                                        </xsl:call-template>
-                                    </xsl:for-each>
-                                    <xsl:if test="count(startdatum_geldigheid_uitvoerende_jgzorganisatie) = 0 and count(einddatum_geldigheid_uitvoerende_jgzorganisatie) > 0">
-                                        <low nullFlavor="UNK"></low>
-                                    </xsl:if>
-                                    <!-- Item(s) :: einddatum_geldigheid_uitvoerende_jgzorganisatie-->
-                                    <xsl:for-each select="einddatum_geldigheid_uitvoerende_jgzorganisatie">
-                                        <xsl:call-template name="makeTSValue">
-                                            <xsl:with-param name="xsiType" select="''"/>
-                                            <xsl:with-param name="elemName">high</xsl:with-param>
-                                        </xsl:call-template>
-                                    </xsl:for-each>
-                                    <xsl:if test="count(einddatum_geldigheid_uitvoerende_jgzorganisatie) = 0 and count(startdatum_geldigheid_uitvoerende_jgzorganisatie) > 0">
-                                        <high nullFlavor="UNK"></high>
-                                    </xsl:if>
-                                </time>
-                            </xsl:if>
-                        </xsl:for-each>
-                    <xsl:if test="count(groep_g098_periode_geldigheid_uitvoerende_jgzorganisatie) = 0 or count(groep_g098_periode_geldigheid_uitvoerende_jgzorganisatie/*) = 0">
-                            <time nullFlavor="UNK"/>
+
+                    <xsl:for-each select="groep_g098_periode_geldigheid_uitvoerende_jgzorganisatie">
+                        <xsl:if test="count(startdatum_geldigheid_uitvoerende_jgzorganisatie) > 0 or count(einddatum_geldigheid_uitvoerende_jgzorganisatie) > 0">
+                            <time xsi:type="IVL_TS">
+                                <!-- Item(s) :: startdatum_geldigheid_uitvoerende_jgzorganisatie-->
+                                <xsl:for-each select="startdatum_geldigheid_uitvoerende_jgzorganisatie">
+                                    <xsl:call-template name="makeTSValue">
+                                        <xsl:with-param name="xsiType" select="''"/>
+                                        <xsl:with-param name="elemName">low</xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:for-each>
+                                <xsl:if test="count(startdatum_geldigheid_uitvoerende_jgzorganisatie) = 0 and count(einddatum_geldigheid_uitvoerende_jgzorganisatie) > 0">
+                                    <low nullFlavor="UNK"/>
+                                </xsl:if>
+                                <!-- Item(s) :: einddatum_geldigheid_uitvoerende_jgzorganisatie-->
+                                <xsl:for-each select="einddatum_geldigheid_uitvoerende_jgzorganisatie">
+                                    <xsl:call-template name="makeTSValue">
+                                        <xsl:with-param name="xsiType" select="''"/>
+                                        <xsl:with-param name="elemName">high</xsl:with-param>
+                                    </xsl:call-template>
+                                </xsl:for-each>
+                                <xsl:if test="count(einddatum_geldigheid_uitvoerende_jgzorganisatie) = 0 and count(startdatum_geldigheid_uitvoerende_jgzorganisatie) > 0">
+                                    <high nullFlavor="UNK"/>
+                                </xsl:if>
+                            </time>
                         </xsl:if>
+                    </xsl:for-each>
+                    <xsl:if test="count(groep_g098_periode_geldigheid_uitvoerende_jgzorganisatie) = 0 or count(groep_g098_periode_geldigheid_uitvoerende_jgzorganisatie/*) = 0">
+                        <time nullFlavor="UNK"/>
+                    </xsl:if>
                     <!-- R_AssignedEntityNL-->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.122_20120801000000"/>
                 </author>
@@ -805,7 +805,7 @@
             <xsl:variable name="activiteitType" select="soort_activiteit/@code"/>
             <xsl:variable name="activiteitStatus" select="status_activiteit/@code"/>
             <xsl:variable name="activiteitActies" select="//versturen_jgzdossieroverdrachtverzoek_v03/*[ends-with(@comment, concat('activiteit-', $activiteitId))]"/>
-            
+
             <component7 xmlns="urn:hl7-org:v3" typeCode="COMP">
                 <encounter classCode="ENC">
                     <xsl:choose>
@@ -1095,7 +1095,7 @@
             </component7>
         </xsl:for-each>
     </xsl:template>
-    
+
     <!-- Care Provision Event subjectOf CareStatus -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10019_20200527000000">
         <xsl:for-each select="groep_g093_status_in_zorg">
@@ -1261,7 +1261,7 @@
             <xsl:variable name="activiteitId" select="activiteit_id/@value"/>
             <xsl:variable name="activiteitStatus" select="status_activiteit/@code"/>
             <xsl:variable name="activiteitActies" select="//versturen_jgzdossieroverdrachtverzoek_v03/*[ends-with(@comment, concat('activiteit-', $activiteitId))]"/>
-            
+
             <encounter xmlns="urn:hl7-org:v3" classCode="ENC" moodCode="EVN">
                 <!-- Item(s) :: activiteit_id -->
                 <xsl:for-each select="activiteit_id">
@@ -1457,7 +1457,7 @@
             <xsl:sort select="datum_activiteit/@value"/>
             <xsl:variable name="activiteitId" select="activiteit_id/@value"/>
             <xsl:variable name="activiteitActies" select="//versturen_jgzdossieroverdrachtverzoek_v03/*[ends-with(@comment, concat('activiteit-', $activiteitId))]"/>
-            
+
             <encounter xmlns="urn:hl7-org:v3" classCode="ENC" moodCode="INT">
                 <!-- Item(s) :: activiteit_id -->
                 <xsl:for-each select="activiteit_id">
@@ -1715,7 +1715,7 @@
             </performer>
         </xsl:if>
     </xsl:template>
-    
+
     <!-- Activities encounterINT author (Verzoeker activiteit) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10023_20200527000000">
         <!-- Item(s) :: verzoeker_activiteit -->
@@ -2088,7 +2088,7 @@
                             <agentPerson classCode="PSN" determinerCode="INSTANCE">
                                 <xsl:call-template name="makeTNValue">
                                     <xsl:with-param name="elemName">name</xsl:with-param>
-                                    <xsl:with-param name="xsiType"></xsl:with-param>
+                                    <xsl:with-param name="xsiType"/>
                                 </xsl:call-template>
                             </agentPerson>
                         </xsl:for-each>
@@ -2103,7 +2103,7 @@
                             <assignedPerson classCode="PSN" determinerCode="INSTANCE">
                                 <xsl:call-template name="makeTNValue">
                                     <xsl:with-param name="elemName">name</xsl:with-param>
-                                    <xsl:with-param name="xsiType"></xsl:with-param>
+                                    <xsl:with-param name="xsiType"/>
                                 </xsl:call-template>
                             </assignedPerson>
                         </xsl:for-each>
@@ -2124,7 +2124,7 @@
                             <xsl:for-each select="jgzorganisatie_naam_toestemming_gegevensuitwisseling_rvp">
                                 <xsl:call-template name="makeTNValue">
                                     <xsl:with-param name="elemName">name</xsl:with-param>
-                                    <xsl:with-param name="xsiType"></xsl:with-param>
+                                    <xsl:with-param name="xsiType"/>
                                 </xsl:call-template>
                             </xsl:for-each>
                         </representedOrganization>
@@ -3702,7 +3702,7 @@
             </xsl:for-each>
         </rubricCluster>
     </xsl:template>
-        
+
     <!-- Rubriek 19 Terugkerende anamnese -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11019_20200527000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
@@ -4920,20 +4920,20 @@
                         </code>
                         <xsl:for-each select="soort_visuskaart">
                             <component>
-                            <!-- Template :: obs Soort visuskaart -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41590_20200527000000"/>
+                                <!-- Template :: obs Soort visuskaart -->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41590_20200527000000"/>
                             </component>
                         </xsl:for-each>
                         <xsl:for-each select="uitslag_visus_rechts">
                             <component>
-                            <!-- Template :: obs Uitslag visus rechts -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41591_20200527000000"/>
+                                <!-- Template :: obs Uitslag visus rechts -->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41591_20200527000000"/>
                             </component>
                         </xsl:for-each>
                         <xsl:for-each select="uitslag_visus_links">
                             <component>
-                            <!-- Template :: obs Uitslag visus links -->
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41592_20200527000000"/>
+                                <!-- Template :: obs Uitslag visus links -->
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41592_20200527000000"/>
                             </component>
                         </xsl:for-each>
                     </groupCluster>
@@ -7113,8 +7113,7 @@
 
     <!-- A_Rijksvaccinatie [universal] -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.116_20200527000000">
-        <substanceAdministration xmlns="urn:hl7-org:v3" classCode="SBADM" moodCode="EVN"
-            negationInd="{exists(bezwaar)}">
+        <substanceAdministration xmlns="urn:hl7-org:v3" classCode="SBADM" moodCode="EVN" negationInd="{exists(bezwaar)}">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.116"/>
             <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4" displayName="Immunization"/>
             <!-- Item(s) :: datum_vaccinatie-->
@@ -7204,7 +7203,7 @@
                                 <xsl:for-each select="reactie_gemeld_aan_bevoegde_instantie_datum">
                                     <xsl:call-template name="makeTSValue">
                                         <xsl:with-param name="xsiType" select="''"/>
-                                        <xsl:with-param name="elemName" >effectiveTime</xsl:with-param>
+                                        <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
                                     </xsl:call-template>
                                 </xsl:for-each>
                                 <performer typeCode="PRF">
@@ -7236,9 +7235,9 @@
                                             <assignedPerson classCode="PSN" determinerCode="INSTANCE">
                                                 <xsl:call-template name="makePNValue">
                                                     <xsl:with-param name="xsiType" select="''"/>
-                                                    <xsl:with-param name="elemName" >name</xsl:with-param>
+                                                    <xsl:with-param name="elemName">name</xsl:with-param>
                                                 </xsl:call-template>
-                                            </assignedPerson>                                            
+                                            </assignedPerson>
                                         </xsl:for-each>
                                     </assignedPerson>
                                 </performer>
@@ -7251,8 +7250,7 @@
             <xsl:for-each select="bezwaar">
                 <authorization typeCode="AUTH">
                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="true">
-                        <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4"
-                            displayName="Immunization"/>
+                        <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4" displayName="Immunization"/>
                         <reasonOf typeCode="RSON">
                             <observationEvent classCode="OBS" moodCode="EVN">
                                 <code code="683" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -7308,8 +7306,7 @@
         </substanceAdministration>
     </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.116_20120801000000">
-        <substanceAdministrationEvent xmlns="urn:hl7-org:v3" classCode="SBADM" moodCode="EVN"
-            negationInd="{exists(bezwaar)}">
+        <substanceAdministrationEvent xmlns="urn:hl7-org:v3" classCode="SBADM" moodCode="EVN" negationInd="{exists(bezwaar)}">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.116"/>
             <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4" displayName="Immunization"/>
             <!-- Item(s) :: datum_vaccinatie-->
@@ -7412,7 +7409,7 @@
                                 <xsl:for-each select="reactie_gemeld_aan_bevoegde_instantie_datum">
                                     <xsl:call-template name="makeTSValue">
                                         <xsl:with-param name="xsiType" select="''"/>
-                                        <xsl:with-param name="elemName" >effectiveTime</xsl:with-param>
+                                        <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
                                     </xsl:call-template>
                                 </xsl:for-each>
                                 <performer typeCode="PRF">
@@ -7521,8 +7518,7 @@
 
     <!-- A_Rijksvaccinatie [informational/administered] -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.117_20120801000000">
-        <substanceAdministrationEvent xmlns="urn:hl7-org:v3" classCode="SBADM" moodCode="EVN"
-            negationInd="{exists(bezwaar)}">
+        <substanceAdministrationEvent xmlns="urn:hl7-org:v3" classCode="SBADM" moodCode="EVN" negationInd="{exists(bezwaar)}">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.117"/>
             <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4" displayName="Immunization"/>
             <!-- Item(s) :: datum_vaccinatie-->
@@ -7560,8 +7556,7 @@
             <xsl:for-each select="bezwaar">
                 <authorization typeCode="AUTH">
                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="true">
-                        <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4"
-                            displayName="Immunization"/>
+                        <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4" displayName="Immunization"/>
                         <reasonOf typeCode="RSON">
                             <observationEvent classCode="OBS" moodCode="EVN">
                                 <code code="683" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -7612,10 +7607,8 @@
                                 <serviceDeliveryLocation typeCode="SDLOC">
                                     <code code="PEDICU" codeSystem="2.16.840.1.113883.5.111"/>
                                     <locationOf typeCode="LOC">
-                                        <incubatorAccommodation classCode="ACCM" moodCode="EVN"
-                                            negationInd="">
-                                            <code code="144"
-                                                codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                        <incubatorAccommodation classCode="ACCM" moodCode="EVN" negationInd="">
+                                            <code code="144" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                                                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '144'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
                                             </code>
                                         </incubatorAccommodation>
@@ -7634,8 +7627,7 @@
             </xsl:variable>
             <xsl:for-each select="$elem137[@value]">
                 <component2 typeCode="COMP">
-                    <substanceAdministrationEvent classCode="SBADM" moodCode="EVN"
-                        negationInd="{@value = 'false'}">
+                    <substanceAdministrationEvent classCode="SBADM" moodCode="EVN" negationInd="{@value = 'false'}">
                         <consumable typeCode="CSM">
                             <administerableMaterial classCode="ADMM">
                                 <administrableMaterialKind classCode="MAT" determinerCode="KIND">
@@ -7656,8 +7648,7 @@
             </xsl:variable>
             <xsl:for-each select="$elem138[@value]">
                 <component2 typeCode="COMP">
-                    <substanceAdministrationEvent classCode="SBADM" moodCode="EVN"
-                        negationInd="{@value = 'false'}">
+                    <substanceAdministrationEvent classCode="SBADM" moodCode="EVN" negationInd="{@value = 'false'}">
                         <consumable typeCode="CSM">
                             <administerableMaterial classCode="ADMM">
                                 <administrableMaterialKind classCode="MAT" determinerCode="KIND">
@@ -7678,8 +7669,7 @@
             </xsl:variable>
             <xsl:for-each select="$elem629[@value]">
                 <component2 typeCode="COMP">
-                    <substanceAdministrationEvent classCode="SBADM" moodCode="EVN"
-                        negationInd="{@value = 'false'}">
+                    <substanceAdministrationEvent classCode="SBADM" moodCode="EVN" negationInd="{@value = 'false'}">
                         <consumable typeCode="CSM">
                             <administerableMaterial classCode="ADMM">
                                 <administrableMaterialKind classCode="MAT" determinerCode="KIND">
@@ -7802,8 +7792,7 @@
             <xsl:for-each select="apgar_score_na_1_min">
                 <component3 typeCode="COMP">
                     <neonateObservations classCode="OBS" moodCode="EVN">
-                        <code code="9272-6" codeSystem="2.16.840.1.113883.6.1"
-                            displayName="1 minute Apgar Score"/>
+                        <code code="9272-6" codeSystem="2.16.840.1.113883.6.1" displayName="1 minute Apgar Score"/>
                         <xsl:call-template name="makeINTValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -7814,8 +7803,7 @@
             <xsl:for-each select="apgar_score_na_5_min">
                 <component3 typeCode="COMP">
                     <neonateObservations classCode="OBS" moodCode="EVN">
-                        <code code="9274-2" codeSystem="2.16.840.1.113883.6.1"
-                            displayName="5 minute Apgar Score"/>
+                        <code code="9274-2" codeSystem="2.16.840.1.113883.6.1" displayName="5 minute Apgar Score"/>
                         <xsl:call-template name="makeINTValue">
                             <xsl:with-param name="elemName">value</xsl:with-param>
                         </xsl:call-template>
@@ -8052,8 +8040,7 @@
                                     <xsl:with-param name="elemName">code</xsl:with-param>
                                 </xsl:call-template>
                             </xsl:for-each>
-                            <relationshipHolder classCode="PSN" determinerCode="INSTANCE"
-                                nullFlavor="NI"/>
+                            <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
                         </personalRelationship>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -8213,8 +8200,7 @@
             </code>
             <subject typeCode="SBJ">
                 <personalRelationship classCode="PRS">
-                    <code code="NMTH" codeSystem="2.16.840.1.113883.5.111"
-                        displayName="natural mother"/>
+                    <code code="NMTH" codeSystem="2.16.840.1.113883.5.111" displayName="natural mother"/>
                     <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI"/>
                 </personalRelationship>
             </subject>
@@ -8269,8 +8255,7 @@
                         <xsl:for-each select="kleur_vruchtwater">
                             <component typeCode="COMP">
                                 <deliveryObservation classCode="OBS" moodCode="EVN">
-                                    <code code="38386-9" codeSystem="2.16.840.1.113883.6.1"
-                                        displayName="Color of Amniotic fluid"/>
+                                    <code code="38386-9" codeSystem="2.16.840.1.113883.6.1" displayName="Color of Amniotic fluid"/>
                                     <xsl:call-template name="makeCVValue">
                                         <xsl:with-param name="elemName">value</xsl:with-param>
                                     </xsl:call-template>
@@ -8537,8 +8522,7 @@
     <!-- A_Rijksvaccinatie [informational/all] -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.123_20121001000000">
         <xsl:for-each select="r041_rijksvaccinatieprogramma_en_andere_vaccinaties | groep_g076_vaccinatie | groep_g095_geplande_vaccinatie">
-            <substanceAdministration xmlns="urn:hl7-org:v3" classCode="SBADM" moodCode=""
-                negationInd="">
+            <substanceAdministration xmlns="urn:hl7-org:v3" classCode="SBADM" moodCode="" negationInd="">
                 <templateId root="2.16.840.1.113883.2.4.6.10.100.123"/>
                 <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4" displayName="Immunization"/>
                 <!-- Item(s) :: datum_vaccinatie-->
@@ -8574,8 +8558,7 @@
                 </performer>
                 <authorization typeCode="AUTH">
                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="true">
-                        <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4"
-                            displayName="Immunization"/>
+                        <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4" displayName="Immunization"/>
                         <reasonOf typeCode="RSON">
                             <observationEvent classCode="OBS" moodCode="EVN">
                                 <code code="683" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -9013,31 +8996,31 @@
                                         <effectiveTime xsi:type="SXPR_TS">
                                             <xsl:for-each select="groep_g104_periode_geldigheid_voor_of_buitenschoolse_voorzieningen">
                                                 <comp xsi:type="IVL_TS">
-                                                  <!-- Item(s) :: startdatum_geldigheid_voor_of_buitenschoolse_voorzieningen-->
-                                                  <xsl:for-each select="startdatum_geldigheid_voor_of_buitenschoolse_voorzieningen">
-                                                  <xsl:call-template name="makeTSValue">
-                                                  <xsl:with-param name="xsiType" select="''"/>
-                                                  <xsl:with-param name="elemName" >low</xsl:with-param>
-                                                  </xsl:call-template>
-                                                  </xsl:for-each>
-                                                  <!-- Item(s) :: einddatum_geldigheid_voor_of_buitenschoolse_voorzieningen-->
-                                                  <xsl:for-each select="einddatum_geldigheid_voor_of_buitenschoolse_voorzieningen">
-                                                  <xsl:call-template name="makeTSValue">
-                                                  <xsl:with-param name="elemName" >high</xsl:with-param>
-                                                  </xsl:call-template>
-                                                  </xsl:for-each>
+                                                    <!-- Item(s) :: startdatum_geldigheid_voor_of_buitenschoolse_voorzieningen-->
+                                                    <xsl:for-each select="startdatum_geldigheid_voor_of_buitenschoolse_voorzieningen">
+                                                        <xsl:call-template name="makeTSValue">
+                                                            <xsl:with-param name="xsiType" select="''"/>
+                                                            <xsl:with-param name="elemName">low</xsl:with-param>
+                                                        </xsl:call-template>
+                                                    </xsl:for-each>
+                                                    <!-- Item(s) :: einddatum_geldigheid_voor_of_buitenschoolse_voorzieningen-->
+                                                    <xsl:for-each select="einddatum_geldigheid_voor_of_buitenschoolse_voorzieningen">
+                                                        <xsl:call-template name="makeTSValue">
+                                                            <xsl:with-param name="elemName">high</xsl:with-param>
+                                                        </xsl:call-template>
+                                                    </xsl:for-each>
                                                 </comp>
                                             </xsl:for-each>
                                             <comp xsi:type="PIVL_TS">
                                                 <phase>
-                                                  <!-- Item(s) :: aantal_dagdelen_voor_of_buitenschoolse_voorziening-->
-                                                  <xsl:for-each select="aantal_dagdelen_voor_of_buitenschoolse_voorziening">
-                                                  <xsl:call-template name="makePQValue">
-                                                  <xsl:with-param name="xsiType" select="''"/>
-                                                  <xsl:with-param name="elemName" >width</xsl:with-param>
-                                                  <xsl:with-param name="unit">h</xsl:with-param>
-                                                  </xsl:call-template>
-                                                  </xsl:for-each>
+                                                    <!-- Item(s) :: aantal_dagdelen_voor_of_buitenschoolse_voorziening-->
+                                                    <xsl:for-each select="aantal_dagdelen_voor_of_buitenschoolse_voorziening">
+                                                        <xsl:call-template name="makePQValue">
+                                                            <xsl:with-param name="xsiType" select="''"/>
+                                                            <xsl:with-param name="elemName">width</xsl:with-param>
+                                                            <xsl:with-param name="unit">h</xsl:with-param>
+                                                        </xsl:call-template>
+                                                    </xsl:for-each>
                                                 </phase>
                                                 <period value="1"/>
                                             </comp>
@@ -9047,22 +9030,22 @@
                                         <xsl:for-each select="groep_g104_periode_geldigheid_voor_of_buitenschoolse_voorzieningen">
                                             <effectiveTime xsi:type="IVL_TS">
                                                 <xsl:if test="startdatum_geldigheid_voor_of_buitenschoolse_voorzieningen">
-                                                  <!-- Item(s) :: startdatum_geldigheid_voor_of_buitenschoolse_voorzieningen-->
-                                                  <xsl:for-each select="startdatum_geldigheid_voor_of_buitenschoolse_voorzieningen">
-                                                  <xsl:call-template name="makeTSValue">
-                                                  <xsl:with-param name="xsiType" select="''"/>
-                                                  <xsl:with-param name="elemName" >low</xsl:with-param>
-                                                  </xsl:call-template>
-                                                  </xsl:for-each>
+                                                    <!-- Item(s) :: startdatum_geldigheid_voor_of_buitenschoolse_voorzieningen-->
+                                                    <xsl:for-each select="startdatum_geldigheid_voor_of_buitenschoolse_voorzieningen">
+                                                        <xsl:call-template name="makeTSValue">
+                                                            <xsl:with-param name="xsiType" select="''"/>
+                                                            <xsl:with-param name="elemName">low</xsl:with-param>
+                                                        </xsl:call-template>
+                                                    </xsl:for-each>
                                                 </xsl:if>
                                                 <xsl:if test="einddatum_geldigheid_voor_of_buitenschoolse_voorzieningen">
-                                                  <!-- Item(s) :: einddatum_geldigheid_voor_of_buitenschoolse_voorzieningen-->
-                                                  <xsl:for-each select="einddatum_geldigheid_voor_of_buitenschoolse_voorzieningen">
-                                                  <xsl:call-template name="makeTSValue">
-                                                  <xsl:with-param name="xsiType" select="''"/>
-                                                  <xsl:with-param name="elemName" >high</xsl:with-param>
-                                                  </xsl:call-template>
-                                                  </xsl:for-each>
+                                                    <!-- Item(s) :: einddatum_geldigheid_voor_of_buitenschoolse_voorzieningen-->
+                                                    <xsl:for-each select="einddatum_geldigheid_voor_of_buitenschoolse_voorzieningen">
+                                                        <xsl:call-template name="makeTSValue">
+                                                            <xsl:with-param name="xsiType" select="''"/>
+                                                            <xsl:with-param name="elemName">high</xsl:with-param>
+                                                        </xsl:call-template>
+                                                    </xsl:for-each>
                                                 </xsl:if>
                                             </effectiveTime>
                                         </xsl:for-each>
@@ -9071,84 +9054,82 @@
                                 <performer typeCode="PRF">
                                     <assignedProvider classCode="ASSIGNED">
                                         <id nullFlavor="NI"/>
-                                        <representedOrganization classCode="ORG"
-                                            determinerCode="INSTANCE">
+                                        <representedOrganization classCode="ORG" determinerCode="INSTANCE">
                                             <id nullFlavor="NI"/>
                                             <!-- Item(s) :: voor_of_buitenschoolse_voorziening-->
                                             <xsl:for-each select="voor_of_buitenschoolse_voorziening">
                                                 <xsl:call-template name="makeONValue">
-                                                  <xsl:with-param name="elemName" >name</xsl:with-param>
+                                                    <xsl:with-param name="elemName">name</xsl:with-param>
                                                 </xsl:call-template>
                                             </xsl:for-each>
                                             <xsl:for-each select="groep_g007_contactpersoon_voor_of_buitenschoolse_voorziening">
                                                 <contactParty classCode="CON">
-                                                  <!-- Item(s) :: functie_contactpersoon_voor_of_buitenschoolse_voorziening functie_contactpersoon_organisatiehulpverlener-->
-                                                  <xsl:for-each select="functie_contactpersoon_voor_of_buitenschoolse_voorziening | functie_contactpersoon_organisatiehulpverlener">
-                                                  <xsl:call-template name="makeCVValue">
-                                                  <xsl:with-param name="elemName" >code</xsl:with-param>
-                                                  </xsl:call-template>
-                                                  </xsl:for-each>
-                                                  <!-- Item(s) :: telefoon_contactpersoon_voor_of_buitenschoolse_voorziening email_contactpersoon_voor_of_buitenschoolse_voorziening-->
-                                                  <xsl:for-each select="telefoon_contactpersoon_voor_of_buitenschoolse_voorziening">
-                                                  <telecom>
-                                                  <xsl:attribute name="value">
-                                                  <xsl:choose>
-                                                  <xsl:when test="starts-with(@value, 'tel:')">
-                                                  <xsl:value-of select="replace(@value, '\s', '')"/>
-                                                  </xsl:when>
-                                                  <xsl:otherwise>
-                                                  <xsl:value-of select="concat('tel:', replace(@value, '\s', ''))"/>
-                                                  </xsl:otherwise>
-                                                  </xsl:choose>
-                                                  </xsl:attribute>
-                                                  </telecom>
-                                                  </xsl:for-each>
-                                                  <xsl:for-each select="email_contactpersoon_voor_of_buitenschoolse_voorziening">
-                                                  <telecom>
-                                                  <xsl:attribute name="value">
-                                                  <xsl:choose>
-                                                  <xsl:when test="starts-with(@value, 'mailto:')">
-                                                  <xsl:value-of select="replace(@value, '\s', '')"/>
-                                                  </xsl:when>
-                                                  <xsl:otherwise>
-                                                  <xsl:value-of select="concat('mailto:', replace(@value, '\s', ''))"/>
-                                                  </xsl:otherwise>
-                                                  </xsl:choose>
-                                                  </xsl:attribute>
-                                                  </telecom>
-                                                  </xsl:for-each>
-                                                  <xsl:for-each select="groep_g105_periode_geldigheid_contactpersoon_voor_of_buitenschoolse_voorziening[startdatum_geldigheid_contactpersoon_voor_of_buitenschoolse_voorziening | einddatum_geldigheid_contactpersoon_voor_of_buitenschoolse_voorziening]">
-                                                  <effectiveTime xsi:type="IVL_TS">
-                                                  <xsl:if test="startdatum_geldigheid_contactpersoon_voor_of_buitenschoolse_voorziening">
-                                                  <!-- Item(s) :: startdatum_geldigheid_contactpersoon_voor_of_buitenschoolse_voorziening-->
-                                                  <xsl:for-each select="startdatum_geldigheid_contactpersoon_voor_of_buitenschoolse_voorziening">
-                                                  <xsl:call-template name="makeTSValue">
-                                                  <xsl:with-param name="xsiType" select="''"/>
-                                                  <xsl:with-param name="elemName" >low</xsl:with-param>
-                                                  </xsl:call-template>
-                                                  </xsl:for-each>
-                                                  </xsl:if>
-                                                  <xsl:if test="einddatum_geldigheid_contactpersoon_voor_of_buitenschoolse_voorziening">
-                                                  <!-- Item(s) :: einddatum_geldigheid_contactpersoon_voor_of_buitenschoolse_voorziening-->
-                                                  <xsl:for-each select="einddatum_geldigheid_contactpersoon_voor_of_buitenschoolse_voorziening">
-                                                  <xsl:call-template name="makeTSValue">
-                                                  <xsl:with-param name="xsiType" select="''"/>
-                                                  <xsl:with-param name="elemName" >high</xsl:with-param>
-                                                  </xsl:call-template>
-                                                  </xsl:for-each>
-                                                  </xsl:if>
-                                                  </effectiveTime>
-                                                  </xsl:for-each>
-                                                  <xsl:for-each select="naam_contactpersoon_voor_of_buitenschoolse_voorziening">
-                                                  <contactPerson classCode="PSN"
-                                                  determinerCode="INSTANCE">
-                                                  <!-- Item(s) :: naam_contactpersoon_voor_of_buitenschoolse_voorziening contactpersoon_organisatiehulpverlener-->
-                                                  <xsl:call-template name="makePNValue">
-                                                  <xsl:with-param name="xsiType" select="''"/>
-                                                  <xsl:with-param name="elemName" >name</xsl:with-param>
-                                                  </xsl:call-template>
-                                                  </contactPerson>
-                                                  </xsl:for-each>
+                                                    <!-- Item(s) :: functie_contactpersoon_voor_of_buitenschoolse_voorziening functie_contactpersoon_organisatiehulpverlener-->
+                                                    <xsl:for-each select="functie_contactpersoon_voor_of_buitenschoolse_voorziening | functie_contactpersoon_organisatiehulpverlener">
+                                                        <xsl:call-template name="makeCVValue">
+                                                            <xsl:with-param name="elemName">code</xsl:with-param>
+                                                        </xsl:call-template>
+                                                    </xsl:for-each>
+                                                    <!-- Item(s) :: telefoon_contactpersoon_voor_of_buitenschoolse_voorziening email_contactpersoon_voor_of_buitenschoolse_voorziening-->
+                                                    <xsl:for-each select="telefoon_contactpersoon_voor_of_buitenschoolse_voorziening">
+                                                        <telecom>
+                                                            <xsl:attribute name="value">
+                                                                <xsl:choose>
+                                                                    <xsl:when test="starts-with(@value, 'tel:')">
+                                                                        <xsl:value-of select="replace(@value, '\s', '')"/>
+                                                                    </xsl:when>
+                                                                    <xsl:otherwise>
+                                                                        <xsl:value-of select="concat('tel:', replace(@value, '\s', ''))"/>
+                                                                    </xsl:otherwise>
+                                                                </xsl:choose>
+                                                            </xsl:attribute>
+                                                        </telecom>
+                                                    </xsl:for-each>
+                                                    <xsl:for-each select="email_contactpersoon_voor_of_buitenschoolse_voorziening">
+                                                        <telecom>
+                                                            <xsl:attribute name="value">
+                                                                <xsl:choose>
+                                                                    <xsl:when test="starts-with(@value, 'mailto:')">
+                                                                        <xsl:value-of select="replace(@value, '\s', '')"/>
+                                                                    </xsl:when>
+                                                                    <xsl:otherwise>
+                                                                        <xsl:value-of select="concat('mailto:', replace(@value, '\s', ''))"/>
+                                                                    </xsl:otherwise>
+                                                                </xsl:choose>
+                                                            </xsl:attribute>
+                                                        </telecom>
+                                                    </xsl:for-each>
+                                                    <xsl:for-each select="groep_g105_periode_geldigheid_contactpersoon_voor_of_buitenschoolse_voorziening[startdatum_geldigheid_contactpersoon_voor_of_buitenschoolse_voorziening | einddatum_geldigheid_contactpersoon_voor_of_buitenschoolse_voorziening]">
+                                                        <effectiveTime xsi:type="IVL_TS">
+                                                            <xsl:if test="startdatum_geldigheid_contactpersoon_voor_of_buitenschoolse_voorziening">
+                                                                <!-- Item(s) :: startdatum_geldigheid_contactpersoon_voor_of_buitenschoolse_voorziening-->
+                                                                <xsl:for-each select="startdatum_geldigheid_contactpersoon_voor_of_buitenschoolse_voorziening">
+                                                                    <xsl:call-template name="makeTSValue">
+                                                                        <xsl:with-param name="xsiType" select="''"/>
+                                                                        <xsl:with-param name="elemName">low</xsl:with-param>
+                                                                    </xsl:call-template>
+                                                                </xsl:for-each>
+                                                            </xsl:if>
+                                                            <xsl:if test="einddatum_geldigheid_contactpersoon_voor_of_buitenschoolse_voorziening">
+                                                                <!-- Item(s) :: einddatum_geldigheid_contactpersoon_voor_of_buitenschoolse_voorziening-->
+                                                                <xsl:for-each select="einddatum_geldigheid_contactpersoon_voor_of_buitenschoolse_voorziening">
+                                                                    <xsl:call-template name="makeTSValue">
+                                                                        <xsl:with-param name="xsiType" select="''"/>
+                                                                        <xsl:with-param name="elemName">high</xsl:with-param>
+                                                                    </xsl:call-template>
+                                                                </xsl:for-each>
+                                                            </xsl:if>
+                                                        </effectiveTime>
+                                                    </xsl:for-each>
+                                                    <xsl:for-each select="naam_contactpersoon_voor_of_buitenschoolse_voorziening">
+                                                        <contactPerson classCode="PSN" determinerCode="INSTANCE">
+                                                            <!-- Item(s) :: naam_contactpersoon_voor_of_buitenschoolse_voorziening contactpersoon_organisatiehulpverlener-->
+                                                            <xsl:call-template name="makePNValue">
+                                                                <xsl:with-param name="xsiType" select="''"/>
+                                                                <xsl:with-param name="elemName">name</xsl:with-param>
+                                                            </xsl:call-template>
+                                                        </contactPerson>
+                                                    </xsl:for-each>
                                                 </contactParty>
                                             </xsl:for-each>
                                         </representedOrganization>
@@ -9169,8 +9150,8 @@
                                             <!-- Item(s) :: startdatum_geldigheid_huisarts-->
                                             <xsl:for-each select="startdatum_geldigheid_huisarts">
                                                 <xsl:call-template name="makeTSValue">
-                                                  <xsl:with-param name="xsiType" select="''"/>
-                                                  <xsl:with-param name="elemName" >low</xsl:with-param>
+                                                    <xsl:with-param name="xsiType" select="''"/>
+                                                    <xsl:with-param name="elemName">low</xsl:with-param>
                                                 </xsl:call-template>
                                             </xsl:for-each>
                                         </xsl:if>
@@ -9178,8 +9159,8 @@
                                             <!-- Item(s) :: einddatum_geldigheid_huisarts-->
                                             <xsl:for-each select="einddatum_geldigheid_huisarts">
                                                 <xsl:call-template name="makeTSValue">
-                                                  <xsl:with-param name="xsiType" select="''"/>
-                                                  <xsl:with-param name="elemName" >high</xsl:with-param>
+                                                    <xsl:with-param name="xsiType" select="''"/>
+                                                    <xsl:with-param name="elemName">high</xsl:with-param>
                                                 </xsl:call-template>
                                             </xsl:for-each>
                                         </xsl:if>
@@ -9209,31 +9190,29 @@
                                         <xsl:if test="not(huisarts_uzi | huisarts_big | huisarts_agb)">
                                             <id nullFlavor="NI"/>
                                         </xsl:if>
-                                        <representedOrganization classCode="ORG"
-                                            determinerCode="INSTANCE">
+                                        <representedOrganization classCode="ORG" determinerCode="INSTANCE">
                                             <!-- Item(s) :: huisartsenpraktijk_ura -->
                                             <xsl:for-each select="huisartsenpraktijk_ura">
                                                 <xsl:call-template name="makeII.NL.URAValue">
-                                                  <xsl:with-param name="xsiType" select="''"/>
-                                                  <xsl:with-param name="elemName" >id</xsl:with-param>
+                                                    <xsl:with-param name="xsiType" select="''"/>
+                                                    <xsl:with-param name="elemName">id</xsl:with-param>
                                                 </xsl:call-template>
                                             </xsl:for-each>
                                             <xsl:for-each select="huisartspraktijk_agb">
                                                 <xsl:call-template name="makeII.NL.AGBValue">
-                                                  <xsl:with-param name="xsiType" select="''"/>
-                                                  <xsl:with-param name="elemName" >id</xsl:with-param>
+                                                    <xsl:with-param name="xsiType" select="''"/>
+                                                    <xsl:with-param name="elemName">id</xsl:with-param>
                                                 </xsl:call-template>
                                             </xsl:for-each>
                                             <xsl:if test="not(huisartsenpraktijk_ura | huisartspraktijk_agb)">
                                                 <id nullFlavor="NI"/>
                                             </xsl:if>
-                                            <code code="Z3"
-                                                codeSystem="2.16.840.1.113883.2.4.15.1060"/>
+                                            <code code="Z3" codeSystem="2.16.840.1.113883.2.4.15.1060"/>
                                             <!-- Item(s) :: huisartshuisartsenpraktijk voor_of_buitenschoolse_voorziening andere_betrokken_organisatieshulpverleners-->
                                             <xsl:for-each select="huisartshuisartsenpraktijk_naam">
                                                 <xsl:call-template name="makeONValue">
-                                                  <xsl:with-param name="xsiType" select="''"/>
-                                                  <xsl:with-param name="elemName" >name</xsl:with-param>
+                                                    <xsl:with-param name="xsiType" select="''"/>
+                                                    <xsl:with-param name="elemName">name</xsl:with-param>
                                                 </xsl:call-template>
                                             </xsl:for-each>
                                         </representedOrganization>
@@ -9249,8 +9228,7 @@
                             <careProvision classCode="PCPR" moodCode="EVN" negationInd="false">
                                 <!-- Item(s) :: soort_voor_of_buitenschoolse_voorziening-->
                                 <code nullFlavor="OTH" codeSystem="2.16.840.1.113883.5.4">
-                                    <originalText>Andere betrokken
-                                        organisaties/hulpverleners</originalText>
+                                    <originalText>Andere betrokken organisaties/hulpverleners</originalText>
                                 </code>
                                 <xsl:for-each select="groep_g101_periode_geldigheid_andere_betrokken_organisatiehulpverlener[startdatum_geldigheid_andere_betrokken_organisatiehulpverlener | einddatum_geldigheid_andere_betrokken_organisatiehulpverlener]">
                                     <effectiveTime xsi:type="IVL_TS">
@@ -9265,7 +9243,7 @@
                                         <xsl:for-each select="einddatum_geldigheid_andere_betrokken_organisatiehulpverlener">
                                             <xsl:call-template name="makeTSValue">
                                                 <xsl:with-param name="xsiType" select="''"/>
-                                                <xsl:with-param name="elemName" >high</xsl:with-param>
+                                                <xsl:with-param name="elemName">high</xsl:with-param>
                                             </xsl:call-template>
                                         </xsl:for-each>
                                     </effectiveTime>
@@ -9294,19 +9272,18 @@
                                         <xsl:if test="not(andere_betrokken_hulpverlener_uzi | andere_betrokken_hulpverlener_big | andere_betrokken_hulpverlener_agb)">
                                             <id nullFlavor="NI"/>
                                         </xsl:if>
-                                        <representedOrganization classCode="ORG"
-                                            determinerCode="INSTANCE">
+                                        <representedOrganization classCode="ORG" determinerCode="INSTANCE">
                                             <!-- Item(s) :: andere_betrokken_organisaties_ura-->
                                             <xsl:for-each select="andere_betrokken_hulpverlenersorganisatie_ura">
                                                 <xsl:call-template name="makeII.NL.URAValue">
-                                                  <xsl:with-param name="xsiType" select="''"/>
-                                                  <xsl:with-param name="elemName" >id</xsl:with-param>
+                                                    <xsl:with-param name="xsiType" select="''"/>
+                                                    <xsl:with-param name="elemName">id</xsl:with-param>
                                                 </xsl:call-template>
                                             </xsl:for-each>
                                             <xsl:for-each select="andere_betrokken_hulpverlenersorganisatie_agb">
                                                 <xsl:call-template name="makeII.NL.AGBValue">
-                                                  <xsl:with-param name="xsiType" select="''"/>
-                                                  <xsl:with-param name="elemName" >id</xsl:with-param>
+                                                    <xsl:with-param name="xsiType" select="''"/>
+                                                    <xsl:with-param name="elemName">id</xsl:with-param>
                                                 </xsl:call-template>
                                             </xsl:for-each>
                                             <xsl:if test="not(andere_betrokken_hulpverlenersorganisatie_ura | andere_betrokken_hulpverlenersorganisatie_agb)">
@@ -9315,80 +9292,79 @@
                                             <!-- Item(s) :: huisartshuisartsenpraktijk voor_of_buitenschoolse_voorziening andere_betrokken_organisatieshulpverleners-->
                                             <xsl:for-each select="andere_betrokken_organisatiehulpverlener_naam">
                                                 <xsl:call-template name="makeONValue">
-                                                  <xsl:with-param name="xsiType" select="''"/>
-                                                  <xsl:with-param name="elemName" >name</xsl:with-param>
+                                                    <xsl:with-param name="xsiType" select="''"/>
+                                                    <xsl:with-param name="elemName">name</xsl:with-param>
                                                 </xsl:call-template>
                                             </xsl:for-each>
                                             <xsl:for-each select="groep_g005_contactpersonenhulpverleners">
                                                 <contactParty classCode="CON">
-                                                  <!-- Item(s) :: functie_contactpersoon_voor_of_buitenschoolse_voorziening functie_contactpersoon_organisatiehulpverlener-->
-                                                  <xsl:for-each select="functie_contactpersoonhulpverlener">
-                                                  <xsl:call-template name="makeCVValue">
-                                                  <xsl:with-param name="xsiType" select="''"/>
-                                                  <xsl:with-param name="elemName" >code</xsl:with-param>
-                                                  </xsl:call-template>
-                                                  </xsl:for-each>
-                                                  <!-- Item(s) :: telefoon_contactpersoon_voor_of_buitenschoolse_voorziening email_contactpersoon_voor_of_buitenschoolse_voorziening telefoon_contactpersoon_organisatiehulpverlener email_contactpersoon_organisatiehulpverlener-->
-                                                  <xsl:for-each select="telefoon_contactpersoonhulpverlener">
-                                                  <telecom>
-                                                  <xsl:attribute name="value">
-                                                  <xsl:choose>
-                                                  <xsl:when test="starts-with(@value, 'tel:')">
-                                                  <xsl:value-of select="replace(@value, '\s', '')"/>
-                                                  </xsl:when>
-                                                  <xsl:otherwise>
-                                                  <xsl:value-of select="concat('tel:', replace(@value, '\s', ''))"/>
-                                                  </xsl:otherwise>
-                                                  </xsl:choose>
-                                                  </xsl:attribute>
-                                                  </telecom>
-                                                  </xsl:for-each>
-                                                  <xsl:for-each select="email_contactpersoonhulpverlener">
-                                                  <telecom>
-                                                  <xsl:attribute name="value">
-                                                  <xsl:choose>
-                                                  <xsl:when test="starts-with(@value, 'mailto:')">
-                                                  <xsl:value-of select="replace(@value, '\s', '')"/>
-                                                  </xsl:when>
-                                                  <xsl:otherwise>
-                                                  <xsl:value-of select="concat('mailto:', replace(@value, '\s', ''))"/>
-                                                  </xsl:otherwise>
-                                                  </xsl:choose>
-                                                  </xsl:attribute>
-                                                  </telecom>
-                                                  </xsl:for-each>
-                                                  <xsl:for-each select="groep_g102_periode_geldigheid_contactpersoonhulpverlener[startdatum_geldigheid_contactpersoonhulpverlener | einddatum_geldigheid_contactpersoonhulpverlener]">
-                                                  <effectiveTime xsi:type="IVL_TS">
-                                                  <xsl:if test="startdatum_geldigheid_contactpersoonhulpverlener">
-                                                  <!-- Item(s) :: startdatum_geldigheid_contactpersoonhulpverlener-->
-                                                  <xsl:for-each select="startdatum_geldigheid_contactpersoonhulpverlener">
-                                                  <xsl:call-template name="makeTSValue">
-                                                  <xsl:with-param name="xsiType" select="''"/>
-                                                  <xsl:with-param name="elemName" >low</xsl:with-param>
-                                                  </xsl:call-template>
-                                                  </xsl:for-each>
-                                                  </xsl:if>
-                                                  <xsl:if test="einddatum_geldigheid_contactpersoonhulpverlener">
-                                                  <!-- Item(s) :: einddatum_geldigheid_contactpersoonhulpverlener-->
-                                                  <xsl:for-each select="einddatum_geldigheid_contactpersoonhulpverlener">
-                                                  <xsl:call-template name="makeTSValue">
-                                                  <xsl:with-param name="xsiType" select="''"/>
-                                                  <xsl:with-param name="elemName" >high</xsl:with-param>
-                                                  </xsl:call-template>
-                                                  </xsl:for-each>
-                                                  </xsl:if>
-                                                  </effectiveTime>
-                                                  </xsl:for-each>
-                                                  <!-- Item(s) :: contactpersoon_organisatiehulpverlener-->
-                                                  <xsl:for-each select="naam_contactpersoonhulpverlener">
-                                                  <contactPerson classCode="PSN"
-                                                  determinerCode="INSTANCE">
-                                                  <xsl:call-template name="makePNValue">
-                                                  <xsl:with-param name="xsiType" select="''"/>
-                                                  <xsl:with-param name="elemName" >name</xsl:with-param>
-                                                  </xsl:call-template>
-                                                  </contactPerson>
-                                                  </xsl:for-each>
+                                                    <!-- Item(s) :: functie_contactpersoon_voor_of_buitenschoolse_voorziening functie_contactpersoon_organisatiehulpverlener-->
+                                                    <xsl:for-each select="functie_contactpersoonhulpverlener">
+                                                        <xsl:call-template name="makeCVValue">
+                                                            <xsl:with-param name="xsiType" select="''"/>
+                                                            <xsl:with-param name="elemName">code</xsl:with-param>
+                                                        </xsl:call-template>
+                                                    </xsl:for-each>
+                                                    <!-- Item(s) :: telefoon_contactpersoon_voor_of_buitenschoolse_voorziening email_contactpersoon_voor_of_buitenschoolse_voorziening telefoon_contactpersoon_organisatiehulpverlener email_contactpersoon_organisatiehulpverlener-->
+                                                    <xsl:for-each select="telefoon_contactpersoonhulpverlener">
+                                                        <telecom>
+                                                            <xsl:attribute name="value">
+                                                                <xsl:choose>
+                                                                    <xsl:when test="starts-with(@value, 'tel:')">
+                                                                        <xsl:value-of select="replace(@value, '\s', '')"/>
+                                                                    </xsl:when>
+                                                                    <xsl:otherwise>
+                                                                        <xsl:value-of select="concat('tel:', replace(@value, '\s', ''))"/>
+                                                                    </xsl:otherwise>
+                                                                </xsl:choose>
+                                                            </xsl:attribute>
+                                                        </telecom>
+                                                    </xsl:for-each>
+                                                    <xsl:for-each select="email_contactpersoonhulpverlener">
+                                                        <telecom>
+                                                            <xsl:attribute name="value">
+                                                                <xsl:choose>
+                                                                    <xsl:when test="starts-with(@value, 'mailto:')">
+                                                                        <xsl:value-of select="replace(@value, '\s', '')"/>
+                                                                    </xsl:when>
+                                                                    <xsl:otherwise>
+                                                                        <xsl:value-of select="concat('mailto:', replace(@value, '\s', ''))"/>
+                                                                    </xsl:otherwise>
+                                                                </xsl:choose>
+                                                            </xsl:attribute>
+                                                        </telecom>
+                                                    </xsl:for-each>
+                                                    <xsl:for-each select="groep_g102_periode_geldigheid_contactpersoonhulpverlener[startdatum_geldigheid_contactpersoonhulpverlener | einddatum_geldigheid_contactpersoonhulpverlener]">
+                                                        <effectiveTime xsi:type="IVL_TS">
+                                                            <xsl:if test="startdatum_geldigheid_contactpersoonhulpverlener">
+                                                                <!-- Item(s) :: startdatum_geldigheid_contactpersoonhulpverlener-->
+                                                                <xsl:for-each select="startdatum_geldigheid_contactpersoonhulpverlener">
+                                                                    <xsl:call-template name="makeTSValue">
+                                                                        <xsl:with-param name="xsiType" select="''"/>
+                                                                        <xsl:with-param name="elemName">low</xsl:with-param>
+                                                                    </xsl:call-template>
+                                                                </xsl:for-each>
+                                                            </xsl:if>
+                                                            <xsl:if test="einddatum_geldigheid_contactpersoonhulpverlener">
+                                                                <!-- Item(s) :: einddatum_geldigheid_contactpersoonhulpverlener-->
+                                                                <xsl:for-each select="einddatum_geldigheid_contactpersoonhulpverlener">
+                                                                    <xsl:call-template name="makeTSValue">
+                                                                        <xsl:with-param name="xsiType" select="''"/>
+                                                                        <xsl:with-param name="elemName">high</xsl:with-param>
+                                                                    </xsl:call-template>
+                                                                </xsl:for-each>
+                                                            </xsl:if>
+                                                        </effectiveTime>
+                                                    </xsl:for-each>
+                                                    <!-- Item(s) :: contactpersoon_organisatiehulpverlener-->
+                                                    <xsl:for-each select="naam_contactpersoonhulpverlener">
+                                                        <contactPerson classCode="PSN" determinerCode="INSTANCE">
+                                                            <xsl:call-template name="makePNValue">
+                                                                <xsl:with-param name="xsiType" select="''"/>
+                                                                <xsl:with-param name="elemName">name</xsl:with-param>
+                                                            </xsl:call-template>
+                                                        </contactPerson>
+                                                    </xsl:for-each>
                                                 </contactParty>
                                             </xsl:for-each>
                                         </representedOrganization>
@@ -9401,8 +9377,7 @@
                 <!-- Item(s) :: asielzoekerkind nationaliteit-->
                 <xsl:for-each select="asielzoekerkind">
                     <asCitizen classCode="CIT">
-                        <code code="CAS" codeSystem="2.16.840.1.113883.5.111"
-                            displayName="asylum seeker"/>
+                        <code code="CAS" codeSystem="2.16.840.1.113883.5.111" displayName="asylum seeker"/>
                         <politicalNation classCode="NAT" determinerCode="INSTANCE">
                             <code nullFlavor="NA"/>
                         </politicalNation>
@@ -9475,12 +9450,12 @@
                                         <telecom>
                                             <xsl:attribute name="value">
                                                 <xsl:choose>
-                                                  <xsl:when test="starts-with(@value, 'tel:')">
-                                                  <xsl:value-of select="replace(@value, '\s', '')"/>
-                                                  </xsl:when>
-                                                  <xsl:otherwise>
-                                                  <xsl:value-of select="concat('tel:', replace(@value, '\s', ''))"/>
-                                                  </xsl:otherwise>
+                                                    <xsl:when test="starts-with(@value, 'tel:')">
+                                                        <xsl:value-of select="replace(@value, '\s', '')"/>
+                                                    </xsl:when>
+                                                    <xsl:otherwise>
+                                                        <xsl:value-of select="concat('tel:', replace(@value, '\s', ''))"/>
+                                                    </xsl:otherwise>
                                                 </xsl:choose>
                                             </xsl:attribute>
                                         </telecom>
@@ -9489,12 +9464,12 @@
                                         <telecom>
                                             <xsl:attribute name="value">
                                                 <xsl:choose>
-                                                  <xsl:when test="starts-with(@value, 'mailto:')">
-                                                  <xsl:value-of select="replace(@value, '\s', '')"/>
-                                                  </xsl:when>
-                                                  <xsl:otherwise>
-                                                  <xsl:value-of select="concat('mailto:', replace(@value, '\s', ''))"/>
-                                                  </xsl:otherwise>
+                                                    <xsl:when test="starts-with(@value, 'mailto:')">
+                                                        <xsl:value-of select="replace(@value, '\s', '')"/>
+                                                    </xsl:when>
+                                                    <xsl:otherwise>
+                                                        <xsl:value-of select="concat('mailto:', replace(@value, '\s', ''))"/>
+                                                    </xsl:otherwise>
                                                 </xsl:choose>
                                             </xsl:attribute>
                                         </telecom>
@@ -9504,19 +9479,19 @@
                                             <xsl:if test="startdatum_geldigheid_contactpersoon_school">
                                                 <!-- Item(s) :: startdatum_geldigheid_contactpersoon_school-->
                                                 <xsl:for-each select="startdatum_geldigheid_contactpersoon_school">
-                                                  <xsl:call-template name="makeTSValue">
-                                                  <xsl:with-param name="xsiType" select="''"/>
-                                                  <xsl:with-param name="elemName" >low</xsl:with-param>
-                                                  </xsl:call-template>
+                                                    <xsl:call-template name="makeTSValue">
+                                                        <xsl:with-param name="xsiType" select="''"/>
+                                                        <xsl:with-param name="elemName">low</xsl:with-param>
+                                                    </xsl:call-template>
                                                 </xsl:for-each>
                                             </xsl:if>
                                             <xsl:if test="einddatum_geldigheid_contactpersoon_school">
                                                 <!-- Item(s) :: einddatum_geldigheid_contactpersoon_school-->
                                                 <xsl:for-each select="einddatum_geldigheid_contactpersoon_school">
-                                                  <xsl:call-template name="makeTSValue">
-                                                  <xsl:with-param name="xsiType" select="''"/>
-                                                  <xsl:with-param name="elemName" >high</xsl:with-param>
-                                                  </xsl:call-template>
+                                                    <xsl:call-template name="makeTSValue">
+                                                        <xsl:with-param name="xsiType" select="''"/>
+                                                        <xsl:with-param name="elemName">high</xsl:with-param>
+                                                    </xsl:call-template>
                                                 </xsl:for-each>
                                             </xsl:if>
                                         </effectiveTime>
@@ -9525,7 +9500,7 @@
                                         <!-- Item(s) :: naam_contactpersoon_school-->
                                         <xsl:for-each select="naam_contactpersoon_school">
                                             <xsl:call-template name="makePNValue">
-                                                <xsl:with-param name="elemName" >name</xsl:with-param>
+                                                <xsl:with-param name="elemName">name</xsl:with-param>
                                             </xsl:call-template>
                                         </xsl:for-each>
                                     </contactPerson>
@@ -9655,8 +9630,7 @@
                     <personalRelationship classCode="PRS">
                         <!-- Item(s) :: relatie_tot_jeugdige_ouderverzorger relatie_tot_jeugdige_broerzus-->
                         <xsl:if test="self::groep_g078_zoondochter">
-                            <code code="CHILD" codeSystem="2.16.840.1.113883.5.111"
-                                displayName="Child"/>
+                            <code code="CHILD" codeSystem="2.16.840.1.113883.5.111" displayName="Child"/>
                         </xsl:if>
                         <xsl:for-each select="relatie_tot_jeugdige_ouderverzorger | relatie_tot_jeugdige_broerzus">
                             <xsl:call-template name="makeCVValue">
@@ -9695,7 +9669,7 @@
                                         <xsl:otherwise>
                                             <xsl:call-template name="makeADXPValue">
                                                 <xsl:with-param name="xsiType" select="''"/>
-                                                <xsl:with-param name="elemName" >additionalLocator</xsl:with-param>
+                                                <xsl:with-param name="elemName">additionalLocator</xsl:with-param>
                                             </xsl:call-template>
                                         </xsl:otherwise>
                                     </xsl:choose>
@@ -9716,7 +9690,7 @@
                                         <xsl:otherwise>
                                             <xsl:call-template name="makeSCValue">
                                                 <xsl:with-param name="xsiType" select="''"/>
-                                                <xsl:with-param name="elemName" >postalCode</xsl:with-param>
+                                                <xsl:with-param name="elemName">postalCode</xsl:with-param>
                                             </xsl:call-template>
                                         </xsl:otherwise>
                                     </xsl:choose>
@@ -9751,7 +9725,7 @@
                         <xsl:for-each select="telefoonnummer_ouderverzorger">
                             <telecom>
                                 <xsl:if test="../soort_telefoonnummer_ouderverzorger">
-                                    <xsl:attribute name="use"                                         select="../soort_telefoonnummer_ouderverzorger/(@code, @value)[1]"/>
+                                    <xsl:attribute name="use" select="../soort_telefoonnummer_ouderverzorger/(@code, @value)[1]"/>
                                 </xsl:if>
                                 <xsl:attribute name="value">
                                     <xsl:choose>
@@ -9811,7 +9785,7 @@
                             <!-- Item(s) :: geslacht_broerzus geslacht_zoondochter-->
                             <xsl:for-each select="geslacht_broerzus | geslacht_zoondochter">
                                 <xsl:call-template name="makeCVValue">
-                                    <xsl:with-param name="elemName" >administrativeGenderCode</xsl:with-param>
+                                    <xsl:with-param name="elemName">administrativeGenderCode</xsl:with-param>
                                 </xsl:call-template>
                             </xsl:for-each>
                             <!-- Item(s) :: geboortedatum_ouderverzorger geboortedatum_broerzus geboortedatum_zoondochter-->
@@ -9836,13 +9810,13 @@
                             <!-- Item(s) :: opleiding_ouderverzorger-->
                             <xsl:for-each select="opleiding_ouderverzorger">
                                 <xsl:call-template name="makeCVValue">
-                                    <xsl:with-param name="elemName" >educationLevelCode</xsl:with-param>
+                                    <xsl:with-param name="elemName">educationLevelCode</xsl:with-param>
                                 </xsl:call-template>
                             </xsl:for-each>
                             <!-- Item(s) :: levensovertuiging-->
                             <xsl:for-each select="levensovertuiging">
                                 <xsl:call-template name="makeCVValue">
-                                    <xsl:with-param name="elemName" >religiousAffiliationCode</xsl:with-param>
+                                    <xsl:with-param name="elemName">religiousAffiliationCode</xsl:with-param>
                                 </xsl:call-template>
                             </xsl:for-each>
                             <!-- Item(s) :: inhoud_beroep-->
@@ -9853,8 +9827,7 @@
                                             <xsl:value-of select="@value"/>
                                         </originalText>
                                     </occupationCode>
-                                    <employerOrganization classCode="ORG" determinerCode="INSTANCE"
-                                        nullFlavor="NI" xsi:nil="true"/>
+                                    <employerOrganization classCode="ORG" determinerCode="INSTANCE" nullFlavor="NI" xsi:nil="true"/>
                                 </asEmployee>
                             </xsl:for-each>
                             <!-- Item(s) :: woonverband_id_ouderverzorger woonverband_id_broerzus woonverband_id_zoondochter-->
@@ -9880,7 +9853,7 @@
                             <xsl:for-each select="spreektaal_ouder">
                                 <languageCommunication>
                                     <xsl:call-template name="makeCEValue">
-                                        <xsl:with-param name="elemName" >languageCode</xsl:with-param>
+                                        <xsl:with-param name="elemName">languageCode</xsl:with-param>
                                     </xsl:call-template>
                                 </languageCommunication>
                             </xsl:for-each>
@@ -10132,9 +10105,8 @@
 
     <!-- A_HeelPrick [universal] -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.133_20120801000000">
-        <xsl:variable name="negationInd"             select="exists(hielprik_afgenomen[@value = 'false'] | reden_niet_afgenomen_hielprik)" as="xs:boolean"/>
-        <heelPrick xmlns="urn:hl7-org:v3" classCode="SPECCOLLECT" moodCode="EVN"
-            negationInd="{$negationInd}">
+        <xsl:variable name="negationInd" select="exists(hielprik_afgenomen[@value = 'false'] | reden_niet_afgenomen_hielprik)" as="xs:boolean"/>
+        <heelPrick xmlns="urn:hl7-org:v3" classCode="SPECCOLLECT" moodCode="EVN" negationInd="{$negationInd}">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.133"/>
             <!-- Item(s) :: type_hielprik-->
             <xsl:for-each select="type_hielprik">
@@ -10427,8 +10399,7 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.140_20120801000000">
         <ProductList xmlns="urn:hl7-org:v3" classCode="LIST" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.140"/>
-            <code code="373873005" codeSystem="2.16.840.1.113883.6.96"
-                displayName="Pharmaceutical / biologic product"/>
+            <code code="373873005" codeSystem="2.16.840.1.113883.6.96" displayName="Pharmaceutical / biologic product"/>
             <effectiveTime>
                 <low/>
                 <high/>
@@ -10524,10 +10495,8 @@
                         </subject>
                     </xsl:for-each>
                     <component typeCode="COMP">
-                        <substanceAdministration classCode="SBADM" moodCode="INT"
-                            negationInd="false">
-                            <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4"
-                                displayName="Immunization"/>
+                        <substanceAdministration classCode="SBADM" moodCode="INT" negationInd="false">
+                            <code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4" displayName="Immunization"/>
                             <effectiveTime/>
                             <consumable typeCode="CSM">
                                 <medication classCode="ADMM">
@@ -10874,7 +10843,7 @@
                             <xsl:otherwise>
                                 <xsl:call-template name="makeADXPValue">
                                     <xsl:with-param name="xsiType" select="''"/>
-                                    <xsl:with-param name="elemName" >additionalLocator</xsl:with-param>
+                                    <xsl:with-param name="elemName">additionalLocator</xsl:with-param>
                                 </xsl:call-template>
                             </xsl:otherwise>
                         </xsl:choose>
@@ -16102,7 +16071,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Bijzonderheden inspectie oog -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40851_20200527000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -25025,8 +24994,7 @@
     <!-- obs Bloeddruk systolisch -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41486_20111206000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
-            <code code="271649006" codeSystem="2.16.840.1.113883.6.96"
-                displayName="systolische bloeddruk"/>
+            <code code="271649006" codeSystem="2.16.840.1.113883.6.96" displayName="systolische bloeddruk"/>
             <!-- Item(s) :: bloeddruk_systolisch-->
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -25050,8 +25018,7 @@
     <!-- obs Bloeddruk diastolisch -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41487_20111206000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
-            <code code="271650006" codeSystem="2.16.840.1.113883.6.96"
-                displayName="diastolische bloeddruk"/>
+            <code code="271650006" codeSystem="2.16.840.1.113883.6.96" displayName="diastolische bloeddruk"/>
             <!-- Item(s) :: bloeddruk_diastolisch-->
             <xsl:call-template name="makePQValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
@@ -25201,10 +25168,10 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Er zijn (blijvende) zorgen dat de opvoed- en/of opgroeisituatie van de jeugdige een bedreiging voor de veiligheid van de jeugdige kunnen vormen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41569_20200527000000">
-        <observation  xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
+        <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41569"/>
             <code code="1569" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1569'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
@@ -25214,10 +25181,10 @@
             </xsl:call-template>
         </observation>
     </xsl:template>
-    
+
     <!-- obs De (blijvende) zorgen zijn gedeeld met de jeugdige/ouder(s)/verzorger(s) -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41570_20200527000000">
-        <observation  xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
+        <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41570"/>
             <code code="1570" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1570'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
@@ -25227,10 +25194,10 @@
             </xsl:call-template>
         </observation>
     </xsl:template>
-    
+
     <!-- obs Reden om (blijvende) zorgen niet te delen -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41571_20200527000000">
-        <observation  xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
+        <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41571"/>
             <code code="1571" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1571'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
@@ -25240,10 +25207,10 @@
             </xsl:call-template>
         </observation>
     </xsl:template>
-    
+
     <!-- obs Afwegingsvraag 1: Is er een vermoeden van (dreiging van) huiselijk geweld en/of kindermishandeling? -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41572_20200527000000">
-        <observation  xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
+        <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41572"/>
             <code code="1572" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1572'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
@@ -25253,10 +25220,10 @@
             </xsl:call-template>
         </observation>
     </xsl:template>
-    
+
     <!-- obs Afwegingsvraag 2: Is er sprake van acute onveiligheid en/of structurele onveiligheid? -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41573_20200527000000">
-        <observation  xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
+        <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41573"/>
             <code code="1573" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1573'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
@@ -25266,10 +25233,10 @@
             </xsl:call-template>
         </observation>
     </xsl:template>
-    
+
     <!-- obs Afwegingsvraag 3: Ben ik, als JGZ-professional, in staat effectieve hulp te bieden of te organiseren? -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41574_20200527000000">
-        <observation  xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
+        <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41574"/>
             <code code="1574" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1574'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
@@ -25279,10 +25246,10 @@
             </xsl:call-template>
         </observation>
     </xsl:template>
-    
+
     <!-- obs Afwegingsvraag 4: Aanvaarden de betrokkenen de hulp? Ben ik in staat de hulp te bieden of te organiseren? -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41575_20200527000000">
-        <observation  xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
+        <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41575"/>
             <code code="1575" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1575'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
@@ -25292,10 +25259,10 @@
             </xsl:call-template>
         </observation>
     </xsl:template>
-    
+
     <!-- obs Afwegingsvraag 5: Leidt de hulp binnen de gewenste termijn tot duurzame veiligheid en/of het welzijn van alle betrokkenen? -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41576_20200527000000">
-        <observation  xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
+        <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41576"/>
             <code code="1576" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1576'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
@@ -25536,7 +25503,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Soort visuskaart -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41590_20200527000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -25562,7 +25529,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Uitslag visus rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41591_20200527000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -25588,7 +25555,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-    
+
     <!-- obs Uitslag visus links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41592_20200527000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
