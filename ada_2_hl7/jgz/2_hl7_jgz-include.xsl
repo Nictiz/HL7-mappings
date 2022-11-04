@@ -4912,6 +4912,33 @@
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40834_20200527000000"/>
                 </component>
             </xsl:for-each>
+            <xsl:for-each select="groep_g117_visus">
+                <component>
+                    <groupCluster>
+                        <code code="G117" codeSystem="2.16.840.1.113883.2.4.4.40.393">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'G117'][@codeSystem = '2.16.840.1.113883.2.4.4.40.393']/@displayName"/>
+                        </code>
+                        <xsl:for-each select="soort_visuskaart">
+                            <component>
+                            <!-- Template :: obs Soort visuskaart -->
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41590_20200527000000"/>
+                            </component>
+                        </xsl:for-each>
+                        <xsl:for-each select="uitslag_visus_rechts">
+                            <component>
+                            <!-- Template :: obs Uitslag visus rechts -->
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41591_20200527000000"/>
+                            </component>
+                        </xsl:for-each>
+                        <xsl:for-each select="uitslag_visus_links">
+                            <component>
+                            <!-- Template :: obs Uitslag visus links -->
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41592_20200527000000"/>
+                            </component>
+                        </xsl:for-each>
+                    </groupCluster>
+                </component>
+            </xsl:for-each>
             <xsl:for-each select="lhkaart_uitslag_rechts">
                 <component>
                     <!-- Template :: obs LH-kaart uitslag rechts -->
@@ -4948,27 +4975,27 @@
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40839_20200527000000"/>
                 </component>
             </xsl:for-each>
-            <xsl:for-each select="reflexbeeldje_rechts">
+            <xsl:for-each select="cornea_lichtreflex_rechts">
                 <component>
-                    <!-- Template :: obs Reflexbeeldjes rechts -->
+                    <!-- Template :: obs Cornea lichtreflex rechts -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40390_20200527000000"/>
                 </component>
             </xsl:for-each>
-            <xsl:for-each select="reflexbeeldje_links">
+            <xsl:for-each select="cornea_lichtreflex_links">
                 <component>
-                    <!-- Template :: obs Reflexbeeldjes links -->
+                    <!-- Template :: obs Cornea lichtreflex links -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40391_20200527000000"/>
                 </component>
             </xsl:for-each>
-            <xsl:for-each select="fundusreflex_rechts">
+            <xsl:for-each select="rode_fundusreflex_rechts">
                 <component>
-                    <!-- Template :: obs Fundusreflex rechts -->
+                    <!-- Template :: obs Rode fundusreflex rechts -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40840_20200527000000"/>
                 </component>
             </xsl:for-each>
-            <xsl:for-each select="fundusreflex_links">
+            <xsl:for-each select="rode_fundusreflex_links">
                 <component>
-                    <!-- Template :: obs Fundusreflex links -->
+                    <!-- Template :: obs Rode fundusreflex links -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40841_20200527000000"/>
                 </component>
             </xsl:for-each>
@@ -4982,18 +5009,6 @@
                 <component>
                     <!-- Template :: obs Afdektest: geen instel beweging links -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40393_20200527000000"/>
-                </component>
-            </xsl:for-each>
-            <xsl:for-each select="afdektest_geen_herstel_beweging_rechts">
-                <component>
-                    <!-- Template :: obs Afdektest: geen herstel beweging rechts -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40394_20200527000000"/>
-                </component>
-            </xsl:for-each>
-            <xsl:for-each select="afdektest_geen_herstel_beweging_links">
-                <component>
-                    <!-- Template :: obs Afdektest: geen herstel beweging links -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40395_20200527000000"/>
                 </component>
             </xsl:for-each>
             <xsl:for-each select="volgbeweging_binoculair_rechts">
@@ -5020,70 +5035,10 @@
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40399_20200527000000"/>
                 </component>
             </xsl:for-each>
-            <xsl:for-each select="pupil_zwart_rechts">
-                <component>
-                    <!-- Template :: obs Pupil zwart rechts -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40402_20200527000000"/>
-                </component>
-            </xsl:for-each>
-            <xsl:for-each select="pupil_zwart_links">
-                <component>
-                    <!-- Template :: obs Pupil zwart links -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40403_20200527000000"/>
-                </component>
-            </xsl:for-each>
-            <xsl:for-each select="pupil_rond_rechts">
-                <component>
-                    <!-- Template :: obs Pupil rond rechts -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40404_20200527000000"/>
-                </component>
-            </xsl:for-each>
-            <xsl:for-each select="pupil_rond_links">
-                <component>
-                    <!-- Template :: obs Pupil rond links -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40405_20200527000000"/>
-                </component>
-            </xsl:for-each>
-            <xsl:for-each select="pupilreactie_rechts">
-                <component>
-                    <!-- Template :: obs Pupilreactie rechts -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40406_20200527000000"/>
-                </component>
-            </xsl:for-each>
-            <xsl:for-each select="pupilreactie_links">
-                <component>
-                    <!-- Template :: obs Pupilreactie links -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40407_20200527000000"/>
-                </component>
-            </xsl:for-each>
-            <xsl:for-each select="bijzonderheden_vovonderzoek">
-                <component>
-                    <!-- Template :: obs Bijzonderheden VOV-onderzoek -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40842_20200527000000"/>
-                </component>
-            </xsl:for-each>
             <xsl:for-each select="bijzonderheden_inspectie_oog">
                 <component>
                     <!-- Template :: obs Bijzonderheden inspectie oog -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40851_20200527000000"/>
-                </component>
-            </xsl:for-each>
-            <xsl:for-each select="uitslag_oogartsorthoptist">
-                <component>
-                    <!-- Template :: obs Uitslag oogarts/orthoptist -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40854_20200527000000"/>
-                </component>
-            </xsl:for-each>
-            <xsl:for-each select="ishiharatest">
-                <component>
-                    <!-- Template :: obs Ishiharatest -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40852_20200527000000"/>
-                </component>
-            </xsl:for-each>
-            <xsl:for-each select="dieptezien">
-                <component>
-                    <!-- Template :: obs Dieptezien -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40853_20200527000000"/>
                 </component>
             </xsl:for-each>
         </rubricCluster>
@@ -13295,14 +13250,14 @@
         </observation>
     </xsl:template>
 
-    <!-- obs Reflexbeeldjes rechts -->
+    <!-- obs Cornea Lichtreflex rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40390_20200527000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40390"/>
             <code code="390" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '390'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
             </code>
-            <!-- Item(s) :: reflexbeeldjes_rechts-->
+            <!-- Item(s) :: cornea_lichtreflex_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
@@ -13321,14 +13276,14 @@
         </observation>
     </xsl:template>
 
-    <!-- obs Reflexbeeldjes links -->
+    <!-- obs Cornea Lichtreflex links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40391_20200527000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40391"/>
             <code code="391" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '391'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
             </code>
-            <!-- Item(s) :: reflexbeeldjes_links-->
+            <!-- Item(s) :: cornea_lichtreflex_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
@@ -16096,14 +16051,14 @@
         </observation>
     </xsl:template>
 
-    <!-- obs Fundusreflex rechts -->
+    <!-- obs Rode fundusreflex rechts -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40840_20200527000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40840"/>
             <code code="840" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '840'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
             </code>
-            <!-- Item(s) :: fundusreflex_rechts-->
+            <!-- Item(s) :: rode_fundusreflex_rechts-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
@@ -16122,14 +16077,14 @@
         </observation>
     </xsl:template>
 
-    <!-- obs Fundusreflex links -->
+    <!-- obs Rode fundusreflex links -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40841_20200527000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40841"/>
             <code code="841" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '841'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
             </code>
-            <!-- Item(s) :: fundusreflex_links-->
+            <!-- Item(s) :: rode_fundusreflex_links-->
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
@@ -16147,33 +16102,7 @@
             </xsl:for-each>-->
         </observation>
     </xsl:template>
-
-    <!-- obs Bijzonderheden VOV-onderzoek -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40842_20200527000000">
-        <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
-            <templateId root="2.16.840.1.113883.2.4.6.10.100.40842"/>
-            <code code="842" codeSystem="2.16.840.1.113883.2.4.4.40.267">
-                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '842'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
-            </code>
-            <!-- Item(s) :: bijzonderheden_vovonderzoek-->
-            <xsl:call-template name="makeSTValue">
-                <xsl:with-param name="elemName">value</xsl:with-param>
-            </xsl:call-template>
-            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
-                <component1>
-                    <!-\- Template :: Activities component1 NonBDSData -\->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20200527000000"/>
-                </component1>
-            </xsl:for-each>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
-                <component2>
-                    <!-\- Template :: Activities component2 MetaData -\->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20200527000000"/>
-                </component2>
-            </xsl:for-each>-->
-        </observation>
-    </xsl:template>
-
+    
     <!-- obs Bijzonderheden inspectie oog -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40851_20200527000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -16182,84 +16111,6 @@
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '851'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
             </code>
             <!-- Item(s) :: bijzonderheden_inspectie_oog-->
-            <xsl:call-template name="makeSTValue">
-                <xsl:with-param name="elemName">value</xsl:with-param>
-            </xsl:call-template>
-            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
-                <component1>
-                    <!-\- Template :: Activities component1 NonBDSData -\->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20200527000000"/>
-                </component1>
-            </xsl:for-each>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
-                <component2>
-                    <!-\- Template :: Activities component2 MetaData -\->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20200527000000"/>
-                </component2>
-            </xsl:for-each>-->
-        </observation>
-    </xsl:template>
-
-    <!-- obs Ishiharatest -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40852_20200527000000">
-        <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
-            <templateId root="2.16.840.1.113883.2.4.6.10.100.40852"/>
-            <code code="852" codeSystem="2.16.840.1.113883.2.4.4.40.267">
-                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '852'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
-            </code>
-            <!-- Item(s) :: ishiharatest-->
-            <xsl:call-template name="makeCVValue">
-                <xsl:with-param name="elemName">value</xsl:with-param>
-            </xsl:call-template>
-            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
-                <component1>
-                    <!-\- Template :: Activities component1 NonBDSData -\->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20200527000000"/>
-                </component1>
-            </xsl:for-each>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
-                <component2>
-                    <!-\- Template :: Activities component2 MetaData -\->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20200527000000"/>
-                </component2>
-            </xsl:for-each>-->
-        </observation>
-    </xsl:template>
-
-    <!-- obs Dieptezien -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40853_20200527000000">
-        <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
-            <templateId root="2.16.840.1.113883.2.4.6.10.100.40853"/>
-            <code code="853" codeSystem="2.16.840.1.113883.2.4.4.40.267">
-                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '853'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
-            </code>
-            <!-- Item(s) :: dieptezien-->
-            <xsl:call-template name="makeSTValue">
-                <xsl:with-param name="elemName">value</xsl:with-param>
-            </xsl:call-template>
-            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
-                <component1>
-                    <!-\- Template :: Activities component1 NonBDSData -\->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20200527000000"/>
-                </component1>
-            </xsl:for-each>
-            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
-                <component2>
-                    <!-\- Template :: Activities component2 MetaData -\->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20200527000000"/>
-                </component2>
-            </xsl:for-each>-->
-        </observation>
-    </xsl:template>
-
-    <!-- obs Uitslag oogarts/orthoptist -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40854_20200527000000">
-        <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
-            <templateId root="2.16.840.1.113883.2.4.6.10.100.40854"/>
-            <code code="854" codeSystem="2.16.840.1.113883.2.4.4.40.267">
-                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '854'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
-            </code>
-            <!-- Item(s) :: uitslag_oogartsorthoptist-->
             <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
@@ -25666,6 +25517,84 @@
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41588"/>
             <code code="1588" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1588'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
+            <xsl:call-template name="makeCVValue">
+                <xsl:with-param name="xsiType">CV</xsl:with-param>
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+                <component1>
+                    <!-\- Template :: Activities component1 NonBDSData -\->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20200527000000"/>
+                </component1>
+            </xsl:for-each>
+            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+                <component2>
+                    <!-\- Template :: Activities component2 MetaData -\->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20200527000000"/>
+                </component2>
+            </xsl:for-each>-->
+        </observation>
+    </xsl:template>
+    
+    <!-- obs Soort visuskaart -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41590_20200527000000">
+        <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
+            <templateId root="2.16.840.1.113883.2.4.6.10.100.41590"/>
+            <code code="1590" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1590'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
+            <xsl:call-template name="makeCVValue">
+                <xsl:with-param name="xsiType">CV</xsl:with-param>
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+                <component1>
+                    <!-\- Template :: Activities component1 NonBDSData -\->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20200527000000"/>
+                </component1>
+            </xsl:for-each>
+            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+                <component2>
+                    <!-\- Template :: Activities component2 MetaData -\->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20200527000000"/>
+                </component2>
+            </xsl:for-each>-->
+        </observation>
+    </xsl:template>
+    
+    <!-- obs Uitslag visus rechts -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41591_20200527000000">
+        <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
+            <templateId root="2.16.840.1.113883.2.4.6.10.100.41591"/>
+            <code code="1591" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1591'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
+            <xsl:call-template name="makeCVValue">
+                <xsl:with-param name="xsiType">CV</xsl:with-param>
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+                <component1>
+                    <!-\- Template :: Activities component1 NonBDSData -\->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20200527000000"/>
+                </component1>
+            </xsl:for-each>
+            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+                <component2>
+                    <!-\- Template :: Activities component2 MetaData -\->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20200527000000"/>
+                </component2>
+            </xsl:for-each>-->
+        </observation>
+    </xsl:template>
+    
+    <!-- obs Uitslag visus links -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41592_20200527000000">
+        <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
+            <templateId root="2.16.840.1.113883.2.4.6.10.100.41592"/>
+            <code code="1592" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1592'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
             </code>
             <xsl:call-template name="makeCVValue">
                 <xsl:with-param name="xsiType">CV</xsl:with-param>
