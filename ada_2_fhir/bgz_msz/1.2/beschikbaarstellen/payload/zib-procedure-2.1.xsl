@@ -456,12 +456,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:choose>
                     </xsl:for-each>
                     
-                    <xsl:for-each select="locatie/zorgaanbieder | location/healthcare_provider">
-                        <performer>
-                            <xsl:apply-templates select="." mode="doOrganizationReference-2.0"/>
-                        </performer>
-                    </xsl:for-each>
-                    
                     <xsl:for-each select="uitvoerder/zorgverlener | performer/health_professional">
                         <xsl:choose>
                             <xsl:when test="*">
@@ -476,6 +470,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:when>
                         </xsl:choose>
                     </xsl:for-each>
+                    
+                    <!-- The cardinality of .performer is 0..1, so the healthcare provider is only added if no health professional is present -->
+                    <xsl:if test="not(uitvoerder/zorgverlener | performer/health_professional)">
+                        <xsl:for-each select="locatie/zorgaanbieder | location/healthcare_provider">
+                            <performer>
+                                <xsl:apply-templates select="." mode="doOrganizationReference-2.0"/>
+                            </performer>
+                        </xsl:for-each>
+                    </xsl:if>
                     
                     <xsl:for-each select="indicatie/probleem | indication/problem">
                         <xsl:choose>
