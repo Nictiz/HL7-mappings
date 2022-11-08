@@ -89,7 +89,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:when test="$patientIdentifier = 999999151">
                             <xsl:value-of select="'patA'"/>
                         </xsl:when>
-                        <xsl:when test="$patientIdentifier = 999999072">
+                        <xsl:when test="$patientIdentifier = 999900092">
                             <xsl:value-of select="'patB'"/>
                         </xsl:when>
                         <xsl:otherwise>
