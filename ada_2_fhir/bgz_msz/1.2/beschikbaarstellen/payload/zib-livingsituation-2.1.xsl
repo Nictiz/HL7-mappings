@@ -56,6 +56,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
                     
+                    <xsl:for-each select="(zibroot/datum_tijd | hcimroot/date_time)[@value]">
+                        <effectiveDateTime>
+                            <xsl:attribute name="value">
+                                <xsl:call-template name="format2FHIRDate">
+                                    <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                    <xsl:with-param name="dateT" select="$dateT"/>
+                                </xsl:call-template>
+                            </xsl:attribute>
+                        </effectiveDateTime>
+                    </xsl:for-each>
+                    
                     <xsl:for-each select="(woning_type | house_type)[@code]">
                         <valueCodeableConcept>
                             <xsl:variable name="nullFlavorsInValueset" select="('OTH')"/>
