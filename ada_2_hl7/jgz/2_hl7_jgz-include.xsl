@@ -8833,18 +8833,18 @@
                         <xsl:with-param name="elemName">name</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
-                <organizationContains classCode="PART">
-                    <partOrganization classCode="ORG" determinerCode="INSTANCE">
-                        <id nullFlavor="NA"/>
-                        <!-- Item(s) :: locatie_uitvoerende_organisatie-->
-                        <xsl:for-each select="locatie_uitvoerende_organisatie">
-                            <xsl:call-template name="makeONValue">
-                                <xsl:with-param name="xsiType" select="''"/>
-                                <xsl:with-param name="elemName">name</xsl:with-param>
-                            </xsl:call-template>
-                        </xsl:for-each>
-                    </partOrganization>
-                </organizationContains>
+                <xsl:for-each select="locatie_uitvoerende_organisatie">
+                    <organizationContains classCode="PART">
+                        <partOrganization classCode="ORG" determinerCode="INSTANCE">
+                            <id nullFlavor="NA"/>
+                            <!-- Item(s) :: locatie_uitvoerende_organisatie-->
+                                <xsl:call-template name="makeONValue">
+                                    <xsl:with-param name="xsiType" select="''"/>
+                                    <xsl:with-param name="elemName">name</xsl:with-param>
+                                </xsl:call-template>
+                        </partOrganization>
+                    </organizationContains>
+                </xsl:for-each>
             </representedOrganization>
         </assignedEntity>
     </xsl:template>
