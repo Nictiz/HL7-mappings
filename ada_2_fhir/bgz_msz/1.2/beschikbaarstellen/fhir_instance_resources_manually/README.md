@@ -9,4 +9,4 @@
         * the Payer fixtures have been enriched by replacing the payor element by the payor-reference snippet (which can be found in the fhir_instance_resources_manually folder);
         * the references in the LaboratoryTestResult-Observation fixtures to underlying Observations (in the case of a panel) and the Specimen have been changed.
     * the insurance-company fixtures (which can be found in the fhir_instance_resources_manually folder).
-* Replace dots (.) in file names and ids by dashes (-) for the Patient, Organization, Practitioner, PractitionerRole and RelatedPerson fixtures. Also replace these in all files where these resources are referenced.
+* Replace dots (.) in file names and ids by dashes (-) for the Patient, Organization, Practitioner, PractitionerRole and RelatedPerson fixtures, as dots in ids lead to issues when trying to upload the test scripts to Touchstone. Also replace these in all files where these resources are referenced.
