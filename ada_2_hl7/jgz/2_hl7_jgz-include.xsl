@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<stylesheet xmlns="http://www.w3.org/1999/XSL/Transform" xmlns:hl7="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0">
+<stylesheet xmlns="http://www.w3.org/1999/XSL/Transform" xmlns:hl7="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"  version="2.0">
     <import href="../hl7/2_hl7_hl7_include.xsl"/>
+
     <xsl:variable name="ExportWithQualificationPlaceholder" select="false()"/>
+    <xsl:variable name="DOB" select="(.//geboortedatum[@id = 'DOB']/@value)[1]"/>
 
     <!-- TransmissionWrapper Initiating -->
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.102.10.100_20140715000000">
@@ -230,7 +232,7 @@
             <!-- Dossierstatus -->
             <statusCode code="{r002_dossierinformatie/dossier_status/@code}"/>
             <effectiveTime>
-                <low nullFlavor="UNK"/>
+                <high value="20200607213533"/>
             </effectiveTime>
             <!-- Kindgegevens -->
             <xsl:for-each select="r003_persoonsgegevens">
@@ -354,24 +356,48 @@
                         <xsl:with-param name="elemName">code</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
-                <!-- Item(s) :: bestand, bestand_mimetype and bestandsnaam-->
-                <xsl:for-each select="bestand">
-                    <xsl:call-template name="makeEDValue">
-                        <xsl:with-param name="xsiType" select="''"/>
-                        <xsl:with-param name="elemName">text</xsl:with-param>
-                        <xsl:with-param name="mediaType" select="../bestand_mimetype/@value"/>
-                        <xsl:with-param name="reference">
-                            <xsl:choose>
-                                <xsl:when test="matches(../bestandsnaam/@value, '^[^:]+:/')">
-                                    <xsl:value-of select="../bestandsnaam/@value"/>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:value-of select="concat('file:///', ../bestandsnaam/@value)"/>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:with-param>
-                    </xsl:call-template>
-                </xsl:for-each>
+                <xsl:choose>
+                    <xsl:when test="soort_toegevoegd_bestand/@code = '01'">
+                        <!-- Item(s) :: bestand, bestand_mimetype and bestandsnaam-->
+                        <xsl:for-each select="bestand">
+                            <xsl:call-template name="makeEDValue">
+                                <xsl:with-param name="xsiType" select="''"/>
+                                <xsl:with-param name="elemName">text</xsl:with-param>
+                                <xsl:with-param name="mediaType" select="../bestand_mimetype/@value"/>
+                                <xsl:with-param name="reference">
+                                    <xsl:choose>
+                                        <xsl:when test="matches(../bestandsnaam/@value, '^[^:]+:/')">
+                                            <xsl:value-of select="../bestandsnaam/@value"/>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:value-of select="concat('file:///', ../bestandsnaam/@value)"/>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                </xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                    </xsl:when>
+                    <xsl:when test="soort_toegevoegd_bestand/@code = '02'">
+                        <xsl:for-each select="//scan_van_oefeningenblad">
+                            <xsl:call-template name="makeEDValue">
+                                <xsl:with-param name="xsiType" select="''"/>
+                                <xsl:with-param name="elemName">text</xsl:with-param>
+                                <xsl:with-param name="mediaType" select="../bestand_mimetype/@value"/>
+                                <xsl:with-param name="reference">
+                                    <xsl:choose>
+                                        <xsl:when test="matches(../bestandsnaam/@value, '^[^:]+:/')">
+                                            <xsl:value-of select="../bestandsnaam/@value"/>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:value-of select="concat('file:///', ../bestandsnaam/@value)"/>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                </xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                    </xsl:when>
+                </xsl:choose>
+
                 <!-- Item(s) :: datum_bestand-->
                 <xsl:for-each select="datum_bestand">
                     <xsl:call-template name="makeTSValue">
@@ -1014,6 +1040,12 @@
                                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11040_20200527000000"/>
                                 </pertinentInformation>
                             </xsl:when>
+                            <xsl:when test="self::r041_rijksvaccinatieprogramma_en_andere_vaccinaties/*[not(@conceptId = '2.16.840.1.113883.2.4.3.11.60.100.2.2.76')]">
+                                <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
+                                <pertinentInformation>
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11041_20200527000000"/>
+                                </pertinentInformation>
+                            </xsl:when>
                             <xsl:when test="self::r042_van_wiechen_ontwikkelingsonderzoek">
                                 <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
                                 <pertinentInformation>
@@ -1085,10 +1117,10 @@
                         </subjectOf>
                     </xsl:if>
                     <!-- Element subjectOf/conclusion -->
-                    <xsl:for-each select="self::r047_conclusies_en_vervolgstappen/groep_g042_voorlichting">
+                    <xsl:for-each select="$activiteitActies[self::r047_conclusies_en_vervolgstappen]">
                         <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
                         <subjectOf1>
-                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10037_20120801000000"/>
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10037_20200527000000"/>
                         </subjectOf1>
                     </xsl:for-each>
                 </encounter>
@@ -2055,7 +2087,6 @@
                     <xsl:otherwise>true</xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
-            <xsl:message>test: <xsl:value-of select="$negationIndicator"/></xsl:message>
             <xsl:attribute name="negationInd" select="$negationIndicator"/>
             <code code="1533" codeSystem="2.16.840.1.113883.2.4.4.40.267">
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1533'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
@@ -2261,6 +2292,139 @@
     </xsl:template>
 
     <!-- Activities subjectOf1 Conclusie -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10037_20200527000000">
+        <conclusion xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN">
+            <code code="482" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '482'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
+            <!-- Item(s) :: conclusie-->
+            <xsl:for-each select="conclusie">
+                <xsl:call-template name="makeSTValue">
+                    <xsl:with-param name="xsiType" select="''"/>
+                    <xsl:with-param name="elemName">text</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <xsl:for-each select="groep_g058_indicatie_en_interventie">
+                <component typeCode="COMP">
+                    <indication classCode="OBS" moodCode="EVN">
+                        <code code="485" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '485'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
+                        <!-- Item(s) :: indicatie-->
+                        <xsl:for-each select="indicatie">
+                            <xsl:call-template name="makeCVValue">
+                                <xsl:with-param name="elemName">value</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:for-each>
+                        <!-- Item(s) :: interventie-->
+                        <xsl:for-each select="interventie">
+                            <reasonOf typeCode="RSON">
+                                <informIntent classCode="OBS" moodCode="EVN">
+                                    <xsl:call-template name="makeCVValue">
+                                        <xsl:with-param name="xsiType" select="''"/>
+                                        <xsl:with-param name="elemName">code</xsl:with-param>
+                                    </xsl:call-template>
+                                </informIntent>
+                            </reasonOf>
+                        </xsl:for-each>
+                        <!-- Item(s) :: interventie-->
+                        <xsl:for-each select="interventie">
+                            <reasonOf typeCode="RSON">
+                                <registrationIntent classCode="REG" moodCode="INT">
+                                    <xsl:call-template name="makeCVValue">
+                                        <xsl:with-param name="xsiType" select="''"/>
+                                        <xsl:with-param name="elemName">code</xsl:with-param>
+                                    </xsl:call-template>
+                                </registrationIntent>
+                            </reasonOf>
+                        </xsl:for-each>
+                        <!-- Item(s) :: interventie-->
+                        <xsl:for-each select="interventie">
+                            <reasonOf typeCode="RSON">
+                                <observationIntent classCode="OBS" moodCode="INT">
+                                    <xsl:call-template name="makeCVValue">
+                                        <xsl:with-param name="xsiType" select="''"/>
+                                        <xsl:with-param name="elemName">code</xsl:with-param>
+                                    </xsl:call-template>
+                                </observationIntent>
+                            </reasonOf>
+                        </xsl:for-each>
+                        <!-- Item(s) :: interventie-->
+                        <xsl:for-each select="interventie">
+                            <reasonOf typeCode="RSON">
+                                <referral classCode="PCPR" moodCode="RQO">
+                                    <xsl:call-template name="makeCVValue">
+                                        <xsl:with-param name="xsiType" select="''"/>
+                                        <xsl:with-param name="elemName">code</xsl:with-param>
+                                    </xsl:call-template>
+                                    <!-- Item(s) :: advies_en_verwijzing_naar-->
+                                    <xsl:for-each select="advies_en_verwijzing_naar">
+                                        <performer typeCode="PRF">
+                                            <assignedEntity classCode="ASSIGNED">
+                                                <xsl:call-template name="makeCVValue">
+                                                    <xsl:with-param name="xsiType" select="''"/>
+                                                    <xsl:with-param name="elemName">code</xsl:with-param>
+                                                </xsl:call-template>
+                                            </assignedEntity>
+                                        </performer>
+                                    </xsl:for-each>
+                                    <!-- Item(s) :: verwijsbrief-->
+                                    <xsl:for-each select="verwijsbrief">
+                                        <component typeCode="COMP">
+                                            <additionalObservation classCode="OBS" moodCode="OBS">
+                                                <code code="1494" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                                                    <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1494'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                                                </code>
+                                                <xsl:call-template name="makeBLValue">
+                                                    <xsl:with-param name="elemName">value</xsl:with-param>
+                                                </xsl:call-template>
+                                            </additionalObservation>
+                                        </component>
+                                    </xsl:for-each>
+                                </referral>
+                            </reasonOf>
+                        </xsl:for-each>
+                        <xsl:for-each select="interventie">
+                            <reasonOf typeCode="RSON">
+                                <actIntent classCode="ACT" moodCode="INT">
+                                    <code code="7" codeSystem="2.16.840.1.113883.2.4.4.40.9"/>
+                                </actIntent>
+                            </reasonOf>
+                        </xsl:for-each>
+                        <!-- Item(s) :: interventie-->
+                        <xsl:for-each select="interventie">
+                            <reasonOf typeCode="RSON">
+                                <actIntent classCode="ACT" moodCode="INT">
+                                    <code nullFlavor="OTH">
+                                        <xsl:call-template name="makeSTValue">
+                                            <xsl:with-param name="xsiType" select="''"/>
+                                            <xsl:with-param name="elemName">originalText</xsl:with-param>
+                                        </xsl:call-template>
+                                    </code>
+                                </actIntent>
+                            </reasonOf>
+                        </xsl:for-each>
+                    </indication>
+                </component>
+            </xsl:for-each>
+            <xsl:if test="extra_zorginterventie/@value = 'true'">
+            </xsl:if>
+            <!-- Item(s) :: notitieblad-->
+            <xsl:for-each select="notitieblad">
+                <subjectOf typeCode="SUBJ">
+                    <annotation classCode="ACT" moodCode="EVN">
+                        <code code="493" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '493'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+                        </code>
+                        <xsl:call-template name="makeSTValue">
+                            <xsl:with-param name="xsiType" select="''"/>
+                            <xsl:with-param name="elemName">text</xsl:with-param>
+                        </xsl:call-template>
+                    </annotation>
+                </subjectOf>
+            </xsl:for-each>
+        </conclusion>
+    </xsl:template>
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.10037_20120801000000">
         <conclusion xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN">
             <code code="482" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -2458,7 +2622,7 @@
         <xsl:for-each select="groep_g001_adres_client">
             <addr xmlns="urn:hl7-org:v3">
                 <xsl:attribute name="use" select="
-                         if (adres_is_geheim/@value = 'true') then
+                        if (adres_is_geheim/@value = 'true') then
                             'CONF'
                         else
                             soort_adres/(@code, @value)[1]"/>
@@ -5403,6 +5567,54 @@
         </rubricCluster>
     </xsl:template>
 
+    <!-- Rubriek 41 Rijksvaccinatieprogramma en andere vaccinaties -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11041_20200527000000">
+        <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.6.10.100.11041"/>
+            <code code="R041" codeSystem="2.16.840.1.113883.2.4.4.40.391">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = 'R041'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']/@displayName"/>
+            </code>
+            <xsl:for-each select="uitslag_serologisch_onderzoek_hepatitis_b">
+                <component>
+                    <!-- Template :: obs Uitslag serologisch onderzoek Hepatitis B -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40869_20200527000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="bcg_litteken">
+                <component>
+                    <!-- Template :: obs BCG-litteken -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.45063_20200527000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="vaccinatieschema_dktp">
+                <component>
+                    <observation negationInd="false">
+                        <!-- Template :: obs Vaccinatieschema DKTP -->
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41584_20200527000000"/>
+                    </observation>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="reden_afwijkend_schema">
+                <component>
+                    <!-- Template :: obs Reden afwijkend schema  -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40870_20200527000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="toelichting_afwijkend_schema">
+                <component>
+                    <!-- Template :: obs Toelichting afwijkend schema  -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40871_20200527000000"/>
+                </component>
+            </xsl:for-each>
+            <xsl:for-each select="datum_maternale_kinkhoestvaccinatie">
+                <component>
+                    <!-- Template :: obs Datum maternale kinkhoestvaccinatie -->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41587_20200527000000"/>
+                </component>
+            </xsl:for-each>
+        </rubricCluster>
+    </xsl:template>
+
     <!-- Rubriek 42 Van Wiechen ontwikkelingsonderzoek -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11042_20200527000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
@@ -6696,9 +6908,9 @@
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41080_20200527000000"/>
                 </component>
             </xsl:for-each>
-            <xsl:for-each select="_4_deelt_makkelijk_met_andere_kinderen">
+            <xsl:for-each select="_4_deelt_makkelijk_met_andere_jeugdigen">
                 <component>
-                    <!-- Template :: obs 4. Deelt makkelijk met andere kinderen -->
+                    <!-- Template :: obs 4. Deelt makkelijk met andere jeugdigen -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41081_20200527000000"/>
                 </component>
             </xsl:for-each>
@@ -6744,9 +6956,9 @@
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41088_20200527000000"/>
                 </component>
             </xsl:for-each>
-            <xsl:for-each select="_12_vecht_vaak_met_andere_kinderen_of_pest_ze">
+            <xsl:for-each select="_12_vecht_vaak_met_andere_jeugdigen_of_pest_ze">
                 <component>
-                    <!-- Template :: obs 12. Vecht vaak met andere kinderen of pest ze -->
+                    <!-- Template :: obs 12. Vecht vaak met andere jeugdigen of pest ze -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41089_20200527000000"/>
                 </component>
             </xsl:for-each>
@@ -6756,9 +6968,9 @@
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41090_20200527000000"/>
                 </component>
             </xsl:for-each>
-            <xsl:for-each select="_14_wordt_over_het_algemeen_aardig_gevonden_door_andere_kinderen">
+            <xsl:for-each select="_14_wordt_over_het_algemeen_aardig_gevonden_door_andere_jeugdigen">
                 <component>
-                    <!-- Template :: obs 14. Wordt over het algemeen aardig gevonden door andere kinderen -->
+                    <!-- Template :: obs 14. Wordt over het algemeen aardig gevonden door andere jeugdigen -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41091_20200527000000"/>
                 </component>
             </xsl:for-each>
@@ -6786,9 +6998,9 @@
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41095_20200527000000"/>
                 </component>
             </xsl:for-each>
-            <xsl:for-each select="_19_wordt_getreiterd_of_gepest_door_andere_kinderen">
+            <xsl:for-each select="_19_wordt_getreiterd_of_gepest_door_andere_jeugdigen">
                 <component>
-                    <!-- Template :: obs 19. Wordt getreiterd of gepest door andere kinderen -->
+                    <!-- Template :: obs 19. Wordt getreiterd of gepest door andere jeugdigen -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41096_20200527000000"/>
                 </component>
             </xsl:for-each>
@@ -6810,9 +7022,9 @@
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41099_20200527000000"/>
                 </component>
             </xsl:for-each>
-            <xsl:for-each select="_23_kan_beter_opschieten_met_volwassenen_dan_met_andere_kinderen">
+            <xsl:for-each select="_23_kan_beter_opschieten_met_volwassenen_dan_met_andere_jeugdigen">
                 <component>
-                    <!-- Template :: obs 23. Kan beter opschieten met volwassenen dan met andere kinderen -->
+                    <!-- Template :: obs 23. Kan beter opschieten met volwassenen dan met andere jeugdigen -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41100_20200527000000"/>
                 </component>
             </xsl:for-each>
@@ -6834,9 +7046,9 @@
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41103_20200527000000"/>
                 </component>
             </xsl:for-each>
-            <xsl:for-each select="denkt_u_over_het_geheel_genomen_dat_uw_kind_moeilijkheden_heeft_op_een_of_meer_van_de_volgende_gebieden_emoties_concentratie_gedrag_of_vermogen_om_niet_andere_mensen_op_te_schietenq">
+            <xsl:for-each select="denkt_u_over_het_geheel_genomen_dat_uw_kind_moeilijkheden_heeft_op_een_of_meer_van_de_volgende_gebieden_emoties_concentratie_gedrag_of_vermogen_om_met_andere_mensen_op_te_schietenq">
                 <component>
-                    <!-- Template :: obs Denkt u over het geheel genomen dat uw kind moeilijkheden heeft op één of meer van de volgende gebieden: emoties, concentratie, gedrag of vermogen om niet andere mensen op te schieten? -->
+                    <!-- Template :: obs Denkt u over het geheel genomen dat uw kind moeilijkheden heeft op één of meer van de volgende gebieden: emoties, concentratie, gedrag of vermogen om met andere mensen op te schieten? -->
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41104_20200527000000"/>
                 </component>
             </xsl:for-each>
@@ -8604,6 +8816,14 @@
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.124_20120801000000">
         <assignedEntity xmlns="urn:hl7-org:v3" classCode="ASSIGNED">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.124"/>
+            <xsl:for-each select="naam_uitvoerende_persoon">
+                <assignedPerson classCode="PSN" determinerCode="INSTANCE">
+                    <xsl:call-template name="makePNValue">
+                        <xsl:with-param name="xsiType" select="''"/>
+                        <xsl:with-param name="elemName">name</xsl:with-param>
+                    </xsl:call-template>
+                </assignedPerson>
+            </xsl:for-each>
             <representedOrganization classCode="ORG" determinerCode="INSTANCE">
                 <id nullFlavor="NI"/>
                 <!-- Item(s) :: uitvoerende_instantie_vaccinatie-->
@@ -16355,6 +16575,84 @@
             </code>
             <!-- Item(s) :: uitslag_gehoorscreening-->
             <xsl:call-template name="makeCVValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+                <component1>
+                    <!-\- Template :: Activities component1 NonBDSData -\->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20200527000000"/>
+                </component1>
+            </xsl:for-each>
+            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+                <component2>
+                    <!-\- Template :: Activities component2 MetaData -\->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20200527000000"/>
+                </component2>
+            </xsl:for-each>-->
+        </observation>
+    </xsl:template>
+
+    <!-- obs Uitslag serologisch onderzoek Hepatitis B -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40869_20200527000000">
+        <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
+            <templateId root="2.16.840.1.113883.2.4.6.10.100.40869"/>
+            <code code="869" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '869'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
+            <!-- Item(s) :: uitslag_serologisch_onderzoek_hepatitis_b-->
+            <xsl:call-template name="makeCVValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+                <component1>
+                    <!-\- Template :: Activities component1 NonBDSData -\->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20200527000000"/>
+                </component1>
+            </xsl:for-each>
+            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+                <component2>
+                    <!-\- Template :: Activities component2 MetaData -\->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20200527000000"/>
+                </component2>
+            </xsl:for-each>-->
+        </observation>
+    </xsl:template>
+
+    <!-- obs Toelichting afwijkend schema -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40870_20200527000000">
+        <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
+            <templateId root="2.16.840.1.113883.2.4.6.10.100.40870"/>
+            <code code="870" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '870'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
+            <!-- Item(s) :: reden_afwijkend_toelichting_afwijkend_schema-->
+            <xsl:call-template name="makeCVValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+                <component1>
+                    <!-\- Template :: Activities component1 NonBDSData -\->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20200527000000"/>
+                </component1>
+            </xsl:for-each>
+            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+                <component2>
+                    <!-\- Template :: Activities component2 MetaData -\->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20200527000000"/>
+                </component2>
+            </xsl:for-each>-->
+        </observation>
+    </xsl:template>
+
+    <!-- obs Toelichting afwijkend schema -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40871_20200527000000">
+        <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
+            <templateId root="2.16.840.1.113883.2.4.6.10.100.40871"/>
+            <code code="871" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '871'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
+            <!-- Item(s) :: toelichting_afwijkend_schema-->
+            <xsl:call-template name="makeSTValue">
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
             <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
@@ -25376,6 +25674,30 @@
         </observation>
     </xsl:template>
 
+    <!--obs Vaccinatieschema DKTP-->
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41584_20200527000000">
+        <templateId root="2.16.840.1.113883.2.4.6.10.100.41584" xmlns="urn:hl7-org:v3"/>
+        <code code="1584" codeSystem="2.16.840.1.113883.2.4.4.40.267" xmlns="urn:hl7-org:v3">
+            <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1584'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+        </code>
+        <xsl:call-template name="makeCVValue">
+            <xsl:with-param name="xsiType">CV</xsl:with-param>
+            <xsl:with-param name="elemName">value</xsl:with-param>
+        </xsl:call-template>
+        <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+                <component1>
+                    <!-\- Template :: Activities component1 NonBDSData -\->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20200527000000"/>
+                </component1>
+            </xsl:for-each>
+            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+                <component2>
+                    <!-\- Template :: Activities component2 MetaData -\->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20200527000000"/>
+                </component2>
+            </xsl:for-each>-->
+    </xsl:template>
+
     <!--obs_Stollingsstoornis-->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41585_20191128000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
@@ -25430,6 +25752,32 @@
 
     <!--obs_Datum_maternale_kinkhoestvaccinatie-->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41587_20191128000000">
+        <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
+            <templateId root="2.16.840.1.113883.2.4.6.10.100.41587"/>
+            <code code="1587" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1587'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
+            <xsl:call-template name="makeTSValue">
+                <xsl:with-param name="xsiType">TS</xsl:with-param>
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+                <component1>
+                    <!-\- Template :: Activities component1 NonBDSData -\->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20200527000000"/>
+                </component1>
+            </xsl:for-each>
+            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+                <component2>
+                    <!-\- Template :: Activities component2 MetaData -\->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20200527000000"/>
+                </component2>
+            </xsl:for-each>-->
+        </observation>
+    </xsl:template>
+
+    <!--obs_Datum_maternale_kinkhoestvaccinatie-->
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41587_20200527000000">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41587"/>
             <code code="1587" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -25694,6 +26042,32 @@
                 <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '1605'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
             </code>
             <xsl:call-template name="makeCVValue">
+                <xsl:with-param name="elemName">value</xsl:with-param>
+            </xsl:call-template>
+            <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+                <component1>
+                    <!-\- Template :: Activities component1 NonBDSData -\->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10028_20200527000000"/>
+                </component1>
+            </xsl:for-each>
+            <xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
+                <component2>
+                    <!-\- Template :: Activities component2 MetaData -\->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10029_20200527000000"/>
+                </component2>
+            </xsl:for-each>-->
+        </observation>
+    </xsl:template>
+
+    <!-- obs BCG-litteken -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.45063_20200527000000">
+        <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
+            <templateId root="2.16.840.1.113883.2.4.6.10.100.45063"/>
+            <code code="5063" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '5063'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
+            <xsl:call-template name="makeCVValue">
+                <xsl:with-param name="xsiType">CV</xsl:with-param>
                 <xsl:with-param name="elemName">value</xsl:with-param>
             </xsl:call-template>
             <!--<xsl:for-each select="r051_nietgespecificeerde_gegevens | groep_g083_niet_gespecificeerde_gegevens">
