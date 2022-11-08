@@ -29,6 +29,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xd:desc>
     </xd:doc>
 
+    <xsl:variable name="DOB" select="''"/>
+    
     <xd:doc>
         <xd:desc>Formats an ada xml date or an ada vague date or an ada relative Date string to a HL7 formatted date.</xd:desc>
         <xd:param name="dateTime">The dateTime string to be formatted. May be a relative or vague date(time)</xd:param>
@@ -57,7 +59,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:when>
                 <!-- relative Date when first character is 'DOB' -->
                 <xsl:when test="starts-with($inputDateTime, 'DOB')">
-                    <xsl:value-of select="nf:calculate-t-date($inputDateTime, $inputDateT)"/>
+                    <xsl:variable name="dobOutput" select="xs:date(nf:calculate-t-date($DOB, $inputDateT))"></xsl:variable>
+                    <xsl:value-of select="nf:calculate-t-date($inputDateTime, $dobOutput)"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="$inputDateTime"/>
