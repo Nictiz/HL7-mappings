@@ -152,12 +152,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="$in/monster">
                 <xsl:call-template name="makeReference">
                     <xsl:with-param name="wrapIn">specimen</xsl:with-param>
-                    <xsl:with-param name="profile">
-                        <xsl:choose>
-                            <xsl:when test="microorganisme">nl-core-LaboratoryTestResult.Specimen.asMicroorganism</xsl:when>
-                            <xsl:otherwise>nl-core-LaboratoryTestResult.Specimen</xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:with-param>
+                    <xsl:with-param name="profile" select="'nl-core-LaboratoryTestResult.Specimen'"/>
                 </xsl:call-template>
             </xsl:for-each>
             
@@ -339,12 +334,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="$parent/monster">
                 <xsl:call-template name="makeReference">
                     <xsl:with-param name="wrapIn">specimen</xsl:with-param>
-                    <xsl:with-param name="profile">
-                        <xsl:choose>
-                            <xsl:when test="count(microorganisme) &gt; 0">nl-core-LaboratoryTestResult.Specimen.asMicroorganism</xsl:when>
-                            <xsl:otherwise>nl-core-LaboratoryTestResult.Specimen</xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:with-param>
+                    <xsl:with-param name="profile" select="'nl-core-LaboratoryTestResult.Specimen'"/>
                 </xsl:call-template>
             </xsl:for-each>
             
@@ -430,12 +420,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <Specimen>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile">
-                        <xsl:choose>
-                            <xsl:when test="local-name($type) = 'microorganisme'">nl-core-LaboratoryTestResult.Specimen.asMicroorganism</xsl:when>
-                            <xsl:otherwise>nl-core-LaboratoryTestResult.Specimen</xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:with-param>
+                    <xsl:with-param name="profile" select="'nl-core-LaboratoryTestResult.Specimen'"/>
                 </xsl:call-template>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen"/>
@@ -473,12 +458,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="$in/monster">
                     <xsl:call-template name="makeReference">
                         <xsl:with-param name="wrapIn">specimen</xsl:with-param>
-                        <xsl:with-param name="profile">
-                            <xsl:choose>
-                                <xsl:when test="microorganisme">nl-core-LaboratoryTestResult.Specimen.asMicroorganism</xsl:when>
-                                <xsl:otherwise>nl-core-LaboratoryTestResult.Specimen</xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:with-param>
+                        <xsl:with-param name="profile" select="'nl-core-LaboratoryTestResult.Specimen'"/>
                     </xsl:call-template>
                 </xsl:for-each>
                 

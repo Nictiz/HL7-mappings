@@ -59,7 +59,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="alcohol_gebruik" resource="Observation" profile="nl-core-AlcoholUse"/>
         <nm:map ada="alert" resource="Flag" profile="nl-core-alert"/>
         <nm:map ada="allergie_intolerantie" resource="AllergyIntolerance" profile="nl-core-AllergyIntolerance"/>
-         <nm:map ada="behandel_aanwijzing" resource="Consent" profile="nl-core-TreatmentDirective2"/>
+        <nm:map ada="behandel_aanwijzing" resource="Consent" profile="nl-core-TreatmentDirective2"/>
         <nm:map ada="bloeddruk" resource="Observation" profile="nl-core-BloodPressure"/>
         <nm:map ada="betaler" resource="Coverage" profile="nl-core-Payer.InsuranceCompany"/>
         <nm:map ada="betaler" resource="Coverage" profile="nl-core-Payer.PayerPerson"/>
@@ -91,8 +91,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-VisualFunction.VisualAid"/>
         <nm:map ada="mobiliteit" resource="Observation" profile="nl-core-Mobility"/>
         <nm:map ada="monster" resource="Specimen" profile="nl-core-LaboratoryTestResult.Specimen"/>
-        <nm:map ada="monster/bron_monster" resource="Device" profile="nl-core-LaboratoryTestResult.Specimen.Source"/>
-        <nm:map ada="monster/microorganisme" resource="Specimen" profile="nl-core-LaboratoryTestResult.Specimen.asMicroorganism"/>
+        <nm:map ada="bron_monster" resource="Device" profile="nl-core-LaboratoryTestResult.Specimen.Source"/>
         <nm:map ada="mustscore" resource="Observation" profile="nl-core-MUSTScore"/>
         <nm:map ada="o2saturatie" resource="Observation" profile="nl-core-O2Saturation"/>
         <nm:map ada="opleiding" resource="Observation" profile="nl-core-Education"/>
@@ -218,7 +217,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
               $in//zien_hulpmiddel/medisch_hulpmiddel,
               $in//product[parent::medisch_hulpmiddel],
               $in//visueel_resultaat[parent::tekst_uitslag],
-              $in//soepregel[parent::soepverslag]
+              $in//soepregel[parent::soepverslag],
+              $in//bron_monster[parent::monster]
             )[.//(@value | @code | @nullFlavor)]" group-by="local-name()">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <xsl:call-template name="_buildFhirMetadataForAdaEntry">
@@ -242,15 +242,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="current-group()[1]"/>
         <xsl:param name="partNumber" as="xs:integer" select="0"/>
 
-        <xsl:variable name="adaElement" as="xs:string">
-            <xsl:value-of select="$in/local-name()"/>
-            <xsl:if test="$in[self::monster][microorganisme]">
-                <xsl:text>monster/microorganisme</xsl:text>
-            </xsl:if>
-            <xsl:if test="$in[self::monster][bron_monster]">
-                <xsl:text>monster/bron_monster</xsl:text>
-            </xsl:if>
-        </xsl:variable>
+        <xsl:variable name="adaElement" as="xs:string" select="$in/local-name()"/>
         <xsl:variable name="adaId" select="$in/@id"/>
         <xsl:variable name="groupKey" select="current-grouping-key()"/>
         <xsl:for-each select="$ada2resourceType/nm:map[@ada = $adaElement]">
@@ -270,14 +262,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </nm:ada-id>
                 </xsl:if>
                 <nm:group-key>
-                    <xsl:choose>
-                        <xsl:when test="@ada = 'monster/bron_monster'">
-                            <xsl:value-of select="nf:getGroupingKeyDefault($in/bron_monster)"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:value-of select="$groupKey"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
+                    <xsl:value-of select="$groupKey"/>
                 </nm:group-key>
                 <xsl:variable name="logicalId">
                     <xsl:choose>
@@ -295,11 +280,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:value-of select="$in/@logicalId"/>
                                 </xsl:otherwise>
                             </xsl:choose>
-                        </xsl:when>
-                        <xsl:when test="@ada = 'monster/bron_monster'">
-                            <xsl:apply-templates select="$in/bron_monster" mode="_generateId">
-                                <xsl:with-param name="profile" select="$profile"/>
-                            </xsl:apply-templates>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:apply-templates select="$in" mode="_generateId">

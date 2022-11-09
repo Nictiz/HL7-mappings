@@ -104,14 +104,14 @@
     <target name="convert_ada_2_fhir_300">
         
         <!-- convert beschikbaarstellen_laboratoriumresultaten -->
-        <antcall target="convert_ada_2_fhir_sub">
+        <!--<antcall target="convert_ada_2_fhir_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.labbr}"/>
             <param name="xsl.name" value="../${usecase.labbr}/payload/${usecase.labbr}.xsl"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="fhir_instance"/>
-            <!--<param name="param.tdate" value="${date.T}}"/>-->
+            <!-\-<param name="param.tdate" value="${date.T}}"/>-\->
             <param name="param.writeOutputToDisk" value="true"/>
-        </antcall>
+        </antcall>-->
 
         <!-- convert sturen_laboratoriumresultaten -->
         <antcall target="convert_ada_2_fhir_sub">
