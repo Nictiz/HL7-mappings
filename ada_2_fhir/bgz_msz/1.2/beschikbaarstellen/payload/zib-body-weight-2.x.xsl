@@ -196,7 +196,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <coding>
                                     <system value="http://loinc.org"/>
                                     <code value="8352-7"/>
-                                    <display value="Clothing worn during measure "/>
+                                    <display value="Clothing worn during measure"/>
                                 </coding>
                             </code>
                             <valueCodeableConcept>
