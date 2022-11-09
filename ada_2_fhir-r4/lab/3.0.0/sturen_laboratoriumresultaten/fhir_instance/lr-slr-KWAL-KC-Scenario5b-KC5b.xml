@@ -3,9 +3,10 @@
    <id value="lr-slr-KWAL-KC-Scenario5b-KC5b"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:5598292e-39bf-11ed-1040-020000000000"/>
+      <fullUrl value="http://example.nictiz.nl/fhir/Observation/labtest-KWAL-LAR-MinBericht-KC-LOINC-99991"/>
       <resource>
          <Observation>
+            <id value="labtest-KWAL-LAR-MinBericht-KC-LOINC-99991"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
             </meta>
@@ -31,18 +32,13 @@
                   <display value="Bilirubine [mol/volume] in serum of plasma"/>
                </coding>
             </code>
-            <subject>
-               <reference value="urn:uuid:559828f2-39bf-11ed-1040-020000000000"/>
-               <type value="Patient"/>
-               <display value="Patient, Patricia XXX_Sacht"/>
-            </subject>
             <performer>
-               <reference value="urn:uuid:559829a6-39bf-11ed-1040-020000000000"/>
+               <reference value="Organization/org-11112222"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Trombosedienst Ons Dorp"/>
             </performer>
             <specimen>
-               <reference value="urn:uuid:55982910-39bf-11ed-1040-020000000000"/>
+               <reference value="Specimen/monster-119297000"/>
                <type value="Specimen"/>
                <display value="monster"/>
             </specimen>
@@ -54,14 +50,15 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:55982910-39bf-11ed-1040-020000000000"/>
+      <fullUrl value="http://example.nictiz.nl/fhir/Specimen/monster-119297000"/>
       <resource>
          <Specimen>
+            <id value="monster-119297000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen"/>
             </meta>
             <subject>
-               <reference value="urn:uuid:559828f2-39bf-11ed-1040-020000000000"/>
+               <reference value="Patient/patient-XXX-Sacht"/>
                <type value="Patient"/>
                <display value="Patient, Patricia XXX_Sacht"/>
             </subject>
@@ -73,9 +70,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5598294c-39bf-11ed-1040-020000000000"/>
+      <fullUrl value="http://example.nictiz.nl/fhir/Organization/org-00001111"/>
       <resource>
          <Organization>
+            <id value="org-00001111"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -122,9 +120,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:559829a6-39bf-11ed-1040-020000000000"/>
+      <fullUrl value="http://example.nictiz.nl/fhir/Organization/org-11112222"/>
       <resource>
          <Organization>
+            <id value="org-11112222"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -178,9 +177,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:559828f2-39bf-11ed-1040-020000000000"/>
+      <fullUrl value="http://example.nictiz.nl/fhir/Patient/patient-XXX-Sacht"/>
       <resource>
          <Patient>
+            <id value="patient-XXX-Sacht"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>

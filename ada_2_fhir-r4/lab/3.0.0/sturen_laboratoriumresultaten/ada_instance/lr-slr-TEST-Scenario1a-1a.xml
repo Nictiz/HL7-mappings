@@ -4,7 +4,7 @@
          created-by="labuitwisselingada"
          last-update-by="labuitwisselingada"
          creation-date="2022-04-29T13:42:20.357+02:00"
-         last-update-date="2022-08-05T10:19:05.94+02:00"/>
+         last-update-date="2022-10-10T14:12:31.573+02:00"/>
    <data>
       <sturen_laboratoriumresultaten app="lab"
                                      shortName="sturen_laboratoriumresultaten"
@@ -13,11 +13,11 @@
                                      transactionEffectiveDate="2022-03-03T00:00:00"
                                      prefix="lab-"
                                      language="nl-NL"
-                                     title="TEST Scenario 1a_Panel_KC_NHG"
-                                     desc="In dit scenario wordt 1 panel van klinisch chemisch onderzoek getest. Dit is 1 onderzoek (nierfunctie) met meerdere laboratoriumtests, in dit geval zijn deze gecodeerd met NHG codes. "
+                                     title="TEST Sturen/ontvangen Scenario 1 Gebundelde resultaten Nierfunctie KlinischeChemie in NHG"
+                                     desc="In dit scenario worden twee gebundelde klinisch chemische resultaten gestuurd of ontvangen. Dit is 1 onderzoek (nierfunctie) met meerdere laboratoriumtests, in dit geval zijn deze gecodeerd met NHG codes. "
                                      id="lr-slr-TEST-Scenario1a-1a">
          <scenario-nr value="1a" conceptId="2.16.840.1.113883.2.4.3.11.999.25.2.2.4401.2.1.1"/>
-         <!--Patient found in instance with id: sl-TEST-Scenarioset1a-v30 and title: TEST REPO Scenarioset 1a (ResultatenKlinischChemie_NHG)-->
+         <!--Patient found in instance with id: sl-TEST-Scenarioset1b-v30 and title: TEST REPO Scenarioset 1b (ResultatenKlinischChemie_LOINC)-->
          <patientgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4302">
             <patient conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4303">
                <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4304">
@@ -86,7 +86,7 @@
                              codeSystemName="NHG Diagnostische bepalingen"
                              displayName="eGFR volgens CKD-EPI formule"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4256"/>
-                  <test_datum_tijd value="T-30D"
+                  <test_datum_tijd value="T-20D"
                                    datatype="datetime"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4258"/>
                   <test_uitslag value="97"
@@ -102,7 +102,7 @@
                                          datatype="quantity"
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4262"
                                          unit="mL/min/{1.73_m2}"/>
-                  <uitslag_interpretatie value="Waarde is goed."
+                  <uitslag_interpretatie value="Iets bovengemiddeld"
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4265"/>
                </laboratorium_test>
                <laboratorium_test conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4255">
@@ -119,25 +119,25 @@
                                codeSystemName="SNOMED Clinical Terms"
                                displayName="enzyme method"
                                conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4257"/>
-                  <test_datum_tijd value="T-30D"
+                  <test_datum_tijd value="T-20D"
                                    datatype="datetime"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4258"/>
                   <test_uitslag value="135"
                                 datatype="quantity"
-                                unit="micromol/l"
+                                unit="umol/l"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4259"/>
                   <test_uitslag_status conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4260"
                                        value="3"
                                        code="final"
                                        codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
                                        displayName="Definitief"/>
-                  <referentie_bovengrens value="134"
+                  <referentie_bovengrens value="110"
                                          datatype="quantity"
-                                         unit="micromol/l"
+                                         unit="umol/l"
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4261"/>
-                  <referentie_ondergrens value="62"
+                  <referentie_ondergrens value="60"
                                          datatype="quantity"
-                                         unit="micromol/l"
+                                         unit="umol/l"
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4262"/>
                   <interpretatie_vlaggen conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4264"
                                          value="1"
@@ -147,76 +147,19 @@
                   <uitslag_interpretatie value="Creatinine iets hoger dan normaal."
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4265"/>
                </laboratorium_test>
-               <laboratorium_test conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4255">
-                  <test_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4298.2"
-                                      value="33333"
-                                      conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4298"/>
-                  <test_code code="40"
-                             codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                             codeSystemName="NHG Diagnostische bepalingen"
-                             displayName="albumine/creatinine ratio urine (ACR)"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4256"/>
-                  <testmethode code="258026004"
-                               codeSystem="2.16.840.1.113883.6.96"
-                               codeSystemName="SNOMED Clinical Terms"
-                               displayName="enzyme method"
-                               conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4257"/>
-                  <test_datum_tijd value="T-30D"
-                                   datatype="datetime"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4258"/>
-                  <test_uitslag value="2"
-                                datatype="quantity"
-                                unit="mg/mmol"
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4259"/>
-                  <test_uitslag_status conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4260"
-                                       value="3"
-                                       code="final"
-                                       codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
-                                       displayName="Definitief"/>
-                  <referentie_bovengrens value="3"
-                                         datatype="quantity"
-                                         unit="mg/mmol"
-                                         conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4261"/>
-                  <uitslag_interpretatie value="Goede uitslag voor een patient van 75 jaar."
-                                         conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4265"/>
-               </laboratorium_test>
-               <laboratorium_test conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4255">
-                  <test_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4298.2"
-                                      value="44444"
-                                      conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4298"/>
-                  <test_code code="38"
-                             codeSystem="2.16.840.1.113883.2.4.4.30.45"
-                             codeSystemName="NHG Diagnostische bepalingen"
-                             displayName="albumine urine portie"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4256"/>
-                  <test_datum_tijd value="T-30D"
-                                   datatype="datetime"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4258"/>
-                  <test_uitslag value="0"
-                                datatype="quantity"
-                                unit="mg/L"
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4259"/>
-                  <test_uitslag_status conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4260"
-                                       value="3"
-                                       code="final"
-                                       codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
-                                       displayName="Definitief"/>
-                  <uitslag_interpretatie value="Zie ratio voor interpretatie."
-                                         conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4265"/>
-               </laboratorium_test>
                <monster conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4266">
                   <monsternummer root="2.16.840.1.113883.2.4.3.11.999.25.4267.2"
                                  value="1111"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4267"/>
-                  <monstermateriaal code="122575003"
+                  <monstermateriaal code="119364003"
                                     codeSystem="2.16.840.1.113883.6.96"
                                     codeSystemName="SNOMED Clinical Terms"
-                                    displayName="Urine"
+                                    displayName="Serum"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4270"/>
-                  <aanname_datum_tijd value="T-31D"
-                                      datatype="datetime"
-                                      conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4281"/>
-                  <toelichting value="Urine ingeleverd door patiënt."
+                  <afname_datum_tijd value="T-20D"
+                                     datatype="datetime"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4280"/>
+                  <toelichting value="Serum afgenomen bij patiënt."
                                conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4285"/>
                </monster>
                <resultaat_status conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4287"
@@ -257,7 +200,7 @@
                         <straat value="Hoofdstraat"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4386"/>
                         <huisnummer value="23" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4387"/>
-                        <postcode value="1234 AA" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4391"/>
+                        <postcode value="1234AA" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4391"/>
                         <woonplaats value="Zorgstad" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4392"/>
                         <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4396"
                                      value="5"

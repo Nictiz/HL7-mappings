@@ -87,9 +87,9 @@
                <value value="#1"/>
             </identifier>
             <subject>
-               <reference value="urn:uuid:553175b2-39bf-11ed-1853-020000000000"/>
+               <reference value="Patient/patient-XXX-Doppen"/>
                <type value="Patient"/>
-               <display value="Patient, M. XXX_Pherai"/>
+               <display value="Patient, Eduardo XXX_Doppen"/>
             </subject>
             <collection>
                <collectedDateTime value="${DATE, T, D, -11}"/>
@@ -216,42 +216,43 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:553175b2-39bf-11ed-1853-020000000000"/>
+      <fullUrl value="http://example.nictiz.nl/fhir/Patient/patient-XXX-Doppen"/>
       <resource>
          <Patient>
+            <id value="patient-XXX-Doppen"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-               <value value="999900870"/>
+               <value value="999900511"/>
             </identifier>
             <name>
                <use value="official"/>
-               <text value="M. XXX_Pherai"/>
-               <family value="XXX_Pherai">
+               <text value="Eduardo XXX_Doppen"/>
+               <family value="XXX_Doppen">
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                     <valueString value="XXX_Pherai"/>
+                     <valueString value="XXX_Doppen"/>
                   </extension>
                </family>
-               <given value="M.">
+               <given value="Eduardo">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                     <valueCode value="IN"/>
+                     <valueCode value="BR"/>
                   </extension>
                </given>
             </name>
-            <gender value="female">
+            <gender value="male">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
                   <valueCodeableConcept>
                      <coding>
                         <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
-                        <code value="F"/>
-                        <display value="Vrouw"/>
+                        <code value="M"/>
+                        <display value="Man"/>
                      </coding>
                   </valueCodeableConcept>
                </extension>
             </gender>
-            <birthDate value="1985-11-01"/>
+            <birthDate value="1963-10-24"/>
          </Patient>
       </resource>
       <request>

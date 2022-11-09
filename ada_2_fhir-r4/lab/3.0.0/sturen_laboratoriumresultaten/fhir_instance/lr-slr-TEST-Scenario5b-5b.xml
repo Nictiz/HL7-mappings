@@ -44,11 +44,12 @@
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Trombosedienst Ons Dorp"/>
             </performer>
-            <specimen>
-               <reference value="urn:uuid:56638eb6-39bf-11ed-4593-020000000000"/>
-               <type value="Specimen"/>
-               <display value="monster"/>
-            </specimen>
+            <valueQuantity>
+               <value value="5.4"/>
+               <unit value="umol/L"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="umol/L"/>
+            </valueQuantity>
          </Observation>
       </resource>
       <request>
@@ -57,26 +58,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:56638eb6-39bf-11ed-4593-020000000000"/>
-      <resource>
-         <Specimen>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen"/>
-            </meta>
-            <subject>
-               <reference value="urn:uuid:56638e98-39bf-11ed-4593-020000000000"/>
-               <type value="Patient"/>
-               <display value="Patient, Elise Erelies"/>
-            </subject>
-         </Specimen>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Specimen"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:56638ef2-39bf-11ed-4593-020000000000"/>
+      <fullUrl value="http://example.nictiz.nl/fhir/Organization/org-00005111"/>
       <resource>
          <Organization>
             <meta>
@@ -138,6 +120,7 @@
             <type>
                <coding>
                   <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+                  <version value="2022-07-07T00:00:00"/>
                   <code value="TD"/>
                   <display value="Trombosedienst"/>
                </coding>

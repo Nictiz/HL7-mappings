@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Generated from ada instance with title: "TEST Scenario 5b_MinimaalBericht_KC_LOINC" and id: "lr-slr-TEST-Scenario5b-5b".-->
+<!--Generated from ada instance with title: "TEST Sturen/ontvangen Scenario 5: Minimale vulling testresultaat Klinische Chemie in Loinc" and id: "lr-slr-TEST-Scenario5b-5b".-->
 <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xmlns="urn:hl7-org:v3"
            xmlns:cda="urn:hl7-org:v3"
@@ -66,7 +66,9 @@
                <id extension="11112222" root="2.16.528.1.1007.3.3"/>
                <code code="TD"
                      codeSystem="2.16.840.1.113883.2.4.15.1060"
-                     displayName="Trombosedienst"/>
+                     displayName="Trombosedienst"
+                     codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"
+                     codeSystemVersion="2022-07-07T00:00:00"/>
                <addr>
                   <streetName>Kerkstraat</streetName>
                   <houseNumber>28</houseNumber>
@@ -83,28 +85,6 @@
             </assignedEntity>
          </performer>
          <entryRelationship typeCode="COMP">
-            <procedure classCode="PROC" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.3"/>
-               <templateId root="1.3.6.1.4.1.19376.1.3.1.2"/>
-               <code code="33882-2"
-                     codeSystem="2.16.840.1.113883.6.1"
-                     codeSystemName="LOINC"
-                     displayName="Specimen Collection"/>
-               <participant typeCode="PRD">
-                  <participantRole classCode="SPEC">
-                     <id nullFlavor="NI"/>
-                     <playingEntity>
-                        <code xsi:type="CE"
-                              code="119297000"
-                              codeSystem="2.16.840.1.113883.6.96"
-                              displayName="Bloed"
-                              codeSystemName="SNOMED Clinical Terms"/>
-                     </playingEntity>
-                  </participantRole>
-               </participant>
-            </procedure>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP">
             <observation classCode="OBS" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.31"/>
                <templateId root="1.3.6.1.4.1.19376.1.3.1.6"/>
@@ -113,7 +93,8 @@
                      code="14631-6"
                      codeSystem="2.16.840.1.113883.6.1"
                      displayName="Bilirubine [mol/volume] in serum of plasma"/>
-               <statusCode code="active"/>
+               <statusCode code="completed"/>
+               <value xsi:type="PQ" value="5.4" unit="umol/L"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
