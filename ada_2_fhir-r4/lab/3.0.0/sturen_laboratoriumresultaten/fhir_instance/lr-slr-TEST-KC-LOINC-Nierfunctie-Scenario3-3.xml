@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="lr-slr-KWAL-MMB-Scenario5b-MMB5b"/>
+   <id value="lr-slr-TEST-KC-LOINC-Nierfunctie-Scenario3-3"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="http://example.nictiz.nl/fhir/Observation/labtest-KWAL-LAR-MinimaalResultaat2-MMB-LOINC-92224"/>
+      <fullUrl value="urn:uuid:46b55b04-602d-11ed-8792-020000000000"/>
       <resource>
          <Observation>
-            <id value="labtest-KWAL-LAR-MinimaalResultaat2-MMB-LOINC-92224"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+               <valueBoolean value="true"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
-               <valueString value="222555"/>
+               <valueString value="111222"/>
             </extension>
             <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.3"/>
-               <value value="92224"/>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
+               <value value="11111"/>
             </identifier>
-            <status value="unknown"/>
+            <status value="final"/>
             <category>
                <coding>
                   <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
@@ -28,22 +30,38 @@
             <code>
                <coding>
                   <system value="http://loinc.org"/>
-                  <code value="21613-5"/>
-                  <display value="Chlamydia trachomatis DNA [aanwezigheid] d.m.v. moleculaire techniek (PCR)"/>
+                  <code value="98979-8"/>
+                  <display value="Glomerulaire filtratiesnelheid/1,73 m2.voorspeld [filtratiesnelheid/oppervlakte] in serum of plasma of bloed d.m.v. formule gebaseerd op creatinine (CKD-EPI 2021)"/>
                </coding>
             </code>
+            <subject>
+               <reference value="urn:uuid:46b55ae6-602d-11ed-8792-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, Eduardo XXX_Doppen"/>
+            </subject>
+            <effectiveDateTime value="${DATE, T, D, -20}"/>
             <performer>
-               <reference value="Organization/org-00003333"/>
+               <reference value="urn:uuid:46b55b9a-602d-11ed-8792-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Klinisch chemisch Lab 't Proefje"/>
             </performer>
-            <valueCodeableConcept>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="260373001"/>
-                  <display value="aangetoond"/>
-               </coding>
-            </valueCodeableConcept>
+            <valueQuantity>
+               <value value="97"/>
+               <unit value="mL/min/{1.73_m2}"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="mL/min/{1.73_m2}"/>
+            </valueQuantity>
+            <interpretation>
+               <text value="Waarde is goed."/>
+            </interpretation>
+            <referenceRange>
+               <low>
+                  <value value="90"/>
+                  <unit value="mL/min/{1.73_m2}"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="mL/min/{1.73_m2}"/>
+               </low>
+            </referenceRange>
          </Observation>
       </resource>
       <request>
@@ -52,16 +70,107 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="http://example.nictiz.nl/fhir/Organization/org-00005111"/>
+      <fullUrl value="urn:uuid:46b55b22-602d-11ed-8792-020000000000"/>
+      <resource>
+         <Observation>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+               <valueBoolean value="true"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
+               <valueString value="111222"/>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
+               <value value="22222"/>
+            </identifier>
+            <status value="final"/>
+            <category>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+                  <code value="laboratory"/>
+                  <display value="Laboratory"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="45066-8"/>
+                  <display value="Creatinine [mol/volume] in urine"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:46b55ae6-602d-11ed-8792-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, Eduardo XXX_Doppen"/>
+            </subject>
+            <effectiveDateTime value="2022-03-01T09:10:00+01:00"/>
+            <performer>
+               <reference value="urn:uuid:46b55b9a-602d-11ed-8792-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Klinisch chemisch Lab 't Proefje"/>
+            </performer>
+            <valueQuantity>
+               <value value="135"/>
+               <unit value="umol/l"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="umol/l"/>
+            </valueQuantity>
+            <interpretation>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="281302008"/>
+                  <display value="boven referentiebereik"/>
+               </coding>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"/>
+                  <code value="H"/>
+                  <display value="High"/>
+               </coding>
+            </interpretation>
+            <interpretation>
+               <text value="Creatinine iets hoger dan normaal."/>
+            </interpretation>
+            <method>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="258026004"/>
+                  <display value="enzyme method"/>
+               </coding>
+            </method>
+            <referenceRange>
+               <low>
+                  <value value="62"/>
+                  <unit value="umol/l"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="umol/l"/>
+               </low>
+               <high>
+                  <value value="134"/>
+                  <unit value="umol/l"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="umol/l"/>
+               </high>
+            </referenceRange>
+         </Observation>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Observation"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:46b55b40-602d-11ed-8792-020000000000"/>
       <resource>
          <Organization>
-            <id value="org-00005111"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
-               <value value="00005111"/>
+               <value value="00001111"/>
             </identifier>
             <type>
                <coding>
@@ -71,7 +180,7 @@
                   <display value="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
                </coding>
             </type>
-            <name value="Huisartsenpraktijk Itis"/>
+            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
             <address>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
                   <valueCodeableConcept>
@@ -83,16 +192,16 @@
                   </valueCodeableConcept>
                </extension>
                <use value="work"/>
-               <line value="Langelaan 1">
+               <line value="Dorpsstraat 1">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
-                     <valueString value="Langelaan"/>
+                     <valueString value="Dorpsstraat"/>
                   </extension>
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
                      <valueString value="1"/>
                   </extension>
                </line>
-               <city value="Onze Stad"/>
-               <postalCode value="1234ZZ"/>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
             </address>
          </Organization>
       </resource>
@@ -102,10 +211,9 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="http://example.nictiz.nl/fhir/Organization/org-00003333"/>
+      <fullUrl value="urn:uuid:46b55b9a-602d-11ed-8792-020000000000"/>
       <resource>
          <Organization>
-            <id value="org-00003333"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -155,7 +263,7 @@
                   </extension>
                </line>
                <city value="Zorgstad"/>
-               <postalCode value="1234 AA"/>
+               <postalCode value="1234AA"/>
             </address>
          </Organization>
       </resource>
@@ -165,43 +273,42 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="http://example.nictiz.nl/fhir/Patient/patient-XXX-Sacht"/>
+      <fullUrl value="urn:uuid:46b55ae6-602d-11ed-8792-020000000000"/>
       <resource>
          <Patient>
-            <id value="patient-XXX-Sacht"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-               <value value="999901011"/>
+               <value value="999900511"/>
             </identifier>
             <name>
                <use value="official"/>
-               <text value="Patricia XXX_Sacht"/>
-               <family value="XXX_Sacht">
+               <text value="Eduardo XXX_Doppen"/>
+               <family value="XXX_Doppen">
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                     <valueString value="XXX_Sacht"/>
+                     <valueString value="XXX_Doppen"/>
                   </extension>
                </family>
-               <given value="Patricia">
+               <given value="Eduardo">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
                      <valueCode value="BR"/>
                   </extension>
                </given>
             </name>
-            <gender value="female">
+            <gender value="male">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
                   <valueCodeableConcept>
                      <coding>
                         <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
-                        <code value="F"/>
-                        <display value="Vrouw"/>
+                        <code value="M"/>
+                        <display value="Man"/>
                      </coding>
                   </valueCodeableConcept>
                </extension>
             </gender>
-            <birthDate value="2000-11-13"/>
+            <birthDate value="1963-10-24"/>
          </Patient>
       </resource>
       <request>
