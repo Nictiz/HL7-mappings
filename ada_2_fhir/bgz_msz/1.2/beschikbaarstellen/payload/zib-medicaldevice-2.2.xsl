@@ -355,7 +355,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <identifier>
                             <system>
                                 <xsl:attribute name="value">
-                                    <xsl:value-of select="@codeSystem"/>
+                                    <xsl:value-of select="local:getUri(@codeSystem)"/>
                                 </xsl:attribute>
                             </system>
                             <value>
