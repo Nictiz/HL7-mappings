@@ -281,12 +281,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="xsiType"/>
     </xd:doc>
     <xsl:template name="makeCDValue">
-        <xsl:param name="code" as="xs:string?" select="./@code"/>
-        <xsl:param name="codeSystem" as="xs:string?" select="./@codeSystem"/>
-        <xsl:param name="displayName" as="xs:string?" select="./@displayName"/>
+        <xsl:param name="code" as="xs:string?" select="@code"/>
+        <xsl:param name="codeSystem" as="xs:string?" select="@codeSystem"/>
+        <xsl:param name="displayName" as="xs:string?" select="@displayName"/>
         <xsl:param name="elemName" as="xs:string?">value</xsl:param>
         <xsl:param name="originalText"/>
-        <xsl:param name="strOriginalText" as="xs:string?"/>
+        <xsl:param name="strOriginalText" as="xs:string?" select="@originalText"/>
         <xsl:param name="translations" as="element(hl7:translation)*"/>
         <xsl:param name="qualifiers" as="element(hl7:qualifier)*"/>
         <xsl:param name="xsiType" as="xs:string?">CD</xsl:param>
@@ -536,8 +536,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="codeSystemName"/>
         <xd:param name="codeSystemVersion"/>
         <xd:param name="displayName"/>
-        <xd:param name="originalText"/>
-        <xd:param name="strOriginalText"/>
+        <xd:param name="originalText">originalText as element</xd:param>
+        <xd:param name="strOriginalText">originalText as string</xd:param>
         <xd:param name="value"/>
     </xd:doc>
     <xsl:template name="makeCodeAttribs">
@@ -547,7 +547,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="codeSystemVersion" as="xs:string?" select="@codeSystemVersion"/>
         <xsl:param name="displayName" as="xs:string?" select="@displayName"/>
         <xsl:param name="originalText"/>
-        <xsl:param name="strOriginalText" as="xs:string?"/>
+        <xsl:param name="strOriginalText" as="xs:string?" select="@originalText"/>
         <xsl:param name="value" select="@value"/>
         <xsl:choose>
             <xsl:when test="string-length($code) = 0 and (string-length($value) gt 0 or string-length($strOriginalText) gt 0)">

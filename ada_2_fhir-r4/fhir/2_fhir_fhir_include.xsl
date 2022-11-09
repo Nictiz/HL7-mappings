@@ -59,8 +59,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="alcohol_gebruik" resource="Observation" profile="nl-core-AlcoholUse"/>
         <nm:map ada="alert" resource="Flag" profile="nl-core-alert"/>
         <nm:map ada="allergie_intolerantie" resource="AllergyIntolerance" profile="nl-core-AllergyIntolerance"/>
-        <nm:map ada="monster/bron_monster" resource="Device" profile="nl-core-LaboratoryTestResult.Specimen.Source"/>
+         <nm:map ada="behandel_aanwijzing" resource="Consent" profile="nl-core-TreatmentDirective2"/>
         <nm:map ada="bloeddruk" resource="Observation" profile="nl-core-BloodPressure"/>
+        <nm:map ada="betaler" resource="Coverage" profile="nl-core-Payer.InsuranceCompany"/>
+        <nm:map ada="betaler" resource="Coverage" profile="nl-core-Payer.PayerPerson"/>
+        <nm:map ada="betaler" resource="Organization" profile="nl-core-Payer-Organization"/>
         <nm:map ada="contact" resource="Encounter" profile="nl-core-Encounter"/>
         <nm:map ada="contactpersoon" resource="RelatedPerson" profile="nl-core-ContactPerson"/>
         <nm:map ada="drugs_gebruik" resource="Observation" profile="nl-core-DrugUse"/>
@@ -88,8 +91,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-VisualFunction.VisualAid"/>
         <nm:map ada="mobiliteit" resource="Observation" profile="nl-core-Mobility"/>
         <nm:map ada="monster" resource="Specimen" profile="nl-core-LaboratoryTestResult.Specimen"/>
+        <nm:map ada="monster/bron_monster" resource="Device" profile="nl-core-LaboratoryTestResult.Specimen.Source"/>
         <nm:map ada="monster/microorganisme" resource="Specimen" profile="nl-core-LaboratoryTestResult.Specimen.asMicroorganism"/>
+        <nm:map ada="mustscore" resource="Observation" profile="nl-core-MUSTScore"/>
         <nm:map ada="o2saturatie" resource="Observation" profile="nl-core-O2Saturation"/>
+        <nm:map ada="opleiding" resource="Observation" profile="nl-core-Education"/>
         <nm:map ada="patient" resource="Patient" profile="nl-core-Patient"/>
         <nm:map ada="probleem" resource="Condition" profile="nl-core-Problem"/>
         <nm:map ada="product" resource="Device" profile="nl-core-MedicalDevice.Product"/>
@@ -117,10 +123,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="vaccinatie" resource="Immunization" profile="nl-core-Vaccination-event"/>
         <nm:map ada="vaccinatie" resource="ImmunizationRecommendation" profile="nl-core-Vaccination-request"/>
         <nm:map ada="vermogen_tot_drinken" resource="Observation" profile="nl-core-AbilityToDrink"/>
+        <nm:map ada="vermogen_tot_zich_kleden" resource="Observation" profile="nl-core-AbilityToDressOneself"/>
+        <nm:map ada="vermogen_tot_zich_wassen" resource="Observation" profile="nl-core-AbilityToWashOneself"/>
         <nm:map ada="verrichting" resource="Procedure" profile="nl-core-Procedure"/>
         <nm:map ada="verstrekkingsverzoek" resource="MedicationRequest" profile="mp-DispenseRequest"/>
         <nm:map ada="visueel_resultaat" resource="Media" profile="nl-core-TextResult-Media"/>
         <nm:map ada="visus" resource="Observation" profile="nl-core-VisualAcuity"/>
+        <nm:map ada="voedingsadvies" resource="NutritionOrder" profile="nl-core-NutritionAdvice"/>
         <nm:map ada="vrijheidsbeperkende_interventie" resource="Procedure" profile="nl-core-FreedomRestrictingIntervention"/>
         <nm:map ada="wilsverklaring" resource="Consent" profile="nl-core-AdvanceDirective"/>
         <nm:map ada="wisselend_doseerschema" resource="MedicationRequest" profile="mp-VariableDosingRegimen"/>
@@ -202,9 +211,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
         </xsl:for-each-group>
         
-        <!-- General rule for all zib root concepts -->
-        <xsl:for-each-group select="$in[not(self::patient or self::zorgverlener)][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
-            <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+        <!-- General rule for all zib root concepts that need to be converted into a FHIR resource -->
+        <xsl:for-each-group select="(
+              $in[not(self::patient or self::zorgverlener)],
+              $in//horen_hulpmiddel/medisch_hulpmiddel,
+              $in//zien_hulpmiddel/medisch_hulpmiddel,
+              $in//product[parent::medisch_hulpmiddel],
+              $in//visueel_resultaat[parent::tekst_uitslag],
+              $in//soepregel[parent::soepverslag]
+            )[.//(@value | @code | @nullFlavor)]" group-by="local-name()">
+            <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
+                <xsl:call-template name="_buildFhirMetadataForAdaEntry">
+                    <xsl:with-param name="partNumber" select="position()"/>
+                </xsl:call-template>
+            </xsl:for-each-group>
         </xsl:for-each-group>
 
         <xsl:for-each select="$in[not(.//(@value | @code | @nullFlavor))][not(ends-with(local-name(), '-start'))]">
@@ -216,11 +236,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Helper template to build the FHIR metadata for a singe ADA instance. See the documentation on <xd:ref name="buildFhirMetadata" type="template"/> for more information.</xd:desc>
         <xd:param name="in">The ADA instance to generate metadata for.</xd:param>
+        <xd:param name="partNumber">The sequence number of the ADA instance being passed in the total collection of ADA instances of this kind. This sequence number is needed for ids in resources that represent just a part of a zib.</xd:param>
     </xd:doc>
     <xsl:template name="_buildFhirMetadataForAdaEntry" as="element(nm:resource)*">
         <xsl:param name="in" select="current-group()[1]"/>
-        
-        <xsl:variable name="adaElement" as="xs:string+">
+        <xsl:param name="partNumber" as="xs:integer" select="0"/>
+
+        <xsl:variable name="adaElement" as="xs:string">
             <xsl:value-of select="$in/local-name()"/>
             <xsl:if test="$in[self::monster][microorganisme]">
                 <xsl:text>monster/microorganisme</xsl:text>
@@ -282,6 +304,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:otherwise>
                             <xsl:apply-templates select="$in" mode="_generateId">
                                 <xsl:with-param name="profile" select="$profile"/>
+                                <xsl:with-param name="partNumber" select="$partNumber"/>
                             </xsl:apply-templates>
                         </xsl:otherwise>
                     </xsl:choose>
@@ -341,51 +364,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </nm:reference-display>
             </nm:resource>
         </xsl:for-each>
-        
-        <!-- HearingFunction.HearingAid::MedicalDevice, VisualFunction.VisualAid::MedicalDevice, MedicalDevice::Product, SOAPReport::SOAPLine and TextResult::VisualResult are special cases, where a single concept leads to a separate resource, therefore we have to build separate entries for these concepts -->
-        <xsl:choose>
-            <xsl:when test="$in/self::functie_horen">
-                <xsl:for-each-group select="$in/horen_hulpmiddel/medisch_hulpmiddel" group-by="nf:getGroupingKeyDefault(.)">
-                    <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
-                </xsl:for-each-group>
-            </xsl:when>
-            <xsl:when test="$in/self::functie_zien">
-                <xsl:for-each-group select="$in/zien_hulpmiddel/medisch_hulpmiddel" group-by="nf:getGroupingKeyDefault(.)">
-                    <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
-                </xsl:for-each-group>
-            </xsl:when>
-            <xsl:when test="$in/self::medisch_hulpmiddel">
-                <xsl:for-each-group select="$in/product" group-by="nf:getGroupingKeyDefault(.)">
-                    <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
-                </xsl:for-each-group>
-            </xsl:when>
-            <xsl:when test="$in/self::soepverslag">
-                <xsl:for-each-group select="$in/soepregel" group-by="nf:getGroupingKeyDefault(.)">
-                    <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
-                </xsl:for-each-group>
-            </xsl:when>
-            <xsl:when test="$in/self::tekst_uitslag">
-                <xsl:for-each-group select="$in/visueel_resultaat" group-by="nf:getGroupingKeyDefault(.)">
-                    <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
-                </xsl:for-each-group>
-            </xsl:when>
-            <!--<xsl:when test="$in/self::laboratorium_uitslag">
-                <!-\- This will build two variants for each monster; one with the actual canonical 
-                     [...]/nl-core-LaboratoryTestResult.Specimen and one with a faux canonical of
-                     [...]/nl-core-LaboratoryTestResult.Specimen.asMicroorganism (see ada2resourceType). This is
-                     needed because a monster might end up as two instances of the same profile. Yes, it's a hack.
-                -\->
-                <xsl:for-each-group select="$in/monster" group-by="nf:getGroupingKeyDefault(.)">
-                    <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
-                </xsl:for-each-group>
-                <!-\- If and only if there is more than one laboratorium_test, there should be an instance for each
-                     distinct laboratorium_test (in addition the "grouping" instance already identified as part of the 
-                     main process. -\->
-                    <xsl:for-each-group select="$in/laboratorium_test" group-by="nf:getGroupingKeyDefault(.)">
-                        <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
-                    </xsl:for-each-group>
-            </xsl:when>-->
-        </xsl:choose>
     </xsl:template>
 
     <xd:doc>
@@ -409,9 +387,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Generate a FHIR reference. When there's no input or a reference can't otherwise be constructed, no output is generated.</xd:desc>
 
-        <xd:param name="in">The target of the reference as either an ADA instance an ADA reference element. May be omitted if it is the same as the context.</xd:param>
-        <xd:param name="profile">The id of the profile that is targeted. This is needed to specify which profile is targeted when a single ADA instance results is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
-        <xd:param name="wrapIn">Optional element name to wrap the output in. If no output is generated, this wrapper will not be generated either.</xd:param>
+        <xd:param name="in">The target of the reference as either an ADA instance or an ADA reference element. May be omitted if it is the same as the context.</xd:param>
+        <xd:param name="profile">The id of the profile that is targeted. This is needed to specify which profile is targeted when a single ADA instance is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
+        <xd:param name="wrapIn">Optional element name to wrap the output in. If no output is generated, this wrapper will not be generated as well.</xd:param>
     </xd:doc>
     <!-- Outputs reference if input is ADA, fhirMetadata or ADA reference element -->
     <xsl:template name="makeReference">
@@ -717,44 +695,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
 
         <xsl:value-of select="substring($logicalId, $startingLoc, $lengthLogicalId)"/>
-    </xsl:function>
-
-    <xd:doc>
-        <xd:desc>Returns true (boolean) if the date or dateTime is in the future. Defaults to false. Input should be a value that is castable to a date or dateTime. Input may be empty which results in the default false value.</xd:desc>
-        <xd:param name="dateOrDt">The ADA date or dateTime.</xd:param>
-    </xd:doc>
-    <xsl:function name="nf:isFuture" as="xs:boolean">
-        <xsl:param name="dateOrDt"/>
-        <xsl:choose>
-            <xsl:when test="$dateOrDt castable as xs:date">
-                <xsl:value-of select="$dateOrDt &gt; current-date()"/>
-            </xsl:when>
-            <xsl:when test="$dateOrDt castable as xs:dateTime">
-                <xsl:value-of select="$dateOrDt &gt; current-dateTime()"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="false()"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:function>
-
-    <xd:doc>
-        <xd:desc>Returns true (boolean) if the date or dateTime is in the past. Defaults to false. Input should be a value that is castable to a date or dateTime. Input may be empty which results in the default false value.</xd:desc>
-        <xd:param name="dateOrDt"/>
-    </xd:doc>
-    <xsl:function name="nf:isPast" as="xs:boolean">
-        <xsl:param name="dateOrDt"/>
-        <xsl:choose>
-            <xsl:when test="$dateOrDt castable as xs:date">
-                <xsl:value-of select="$dateOrDt &lt; current-date()"/>
-            </xsl:when>
-            <xsl:when test="$dateOrDt castable as xs:dateTime">
-                <xsl:value-of select="$dateOrDt &lt; current-dateTime()"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="false()"/>
-            </xsl:otherwise>
-        </xsl:choose>
     </xsl:function>
 
     <xd:doc>

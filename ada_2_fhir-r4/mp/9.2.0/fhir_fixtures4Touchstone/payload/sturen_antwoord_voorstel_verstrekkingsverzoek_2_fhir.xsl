@@ -55,6 +55,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="outputDir">.</xsl:param>
     <!-- whether or nog to output schema / schematron links -->
     <xsl:param name="schematronXsdLinkInOutput" as="xs:boolean?" select="false()"/>
+    
+    <xsl:param name="usecase">mp9</xsl:param>
+    
 
     <xd:doc>
         <xd:desc>Start conversion. Handle interaction specific stuff for "sturen_antwoord_voorstel_verstrekkingsverzoek".</xd:desc>
