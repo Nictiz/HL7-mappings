@@ -31,8 +31,6 @@
         let $gContact12tm18Jaar             := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P13Y') + xs:yearMonthDuration('8M'),'[Y0001][M01][D01]')
         let $gPneuVaccinatie-1              := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P3M'),'[Y0001][M01][D01]')
         let $gAfnameSPP                     := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P13Y'),'[Y0001][M01][D01]')
-
-        
         return (
             <xsl:apply-templates select="node()"/>
         )
