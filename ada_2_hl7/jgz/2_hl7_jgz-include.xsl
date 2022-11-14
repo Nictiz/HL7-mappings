@@ -8880,7 +8880,7 @@
                         </Organization>
                     </AssignedDevice>
                 </participant>
-            </authorOrPerformer>
+            </authorOrPerformer> | 
             <subject typeCode="SUBJ">
                 <!-- Template :: Bericht 3 Geldige partijnummers (payload) -->
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.140_20120801000000"/>
