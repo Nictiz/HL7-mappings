@@ -40,18 +40,18 @@
         let $gREQUESTDATE                   := $gSENDDATE
         let $gRESPSTART                     := format-dateTime($gPatientDOB-dt + xs:dayTimeDuration('P2D'),'[Y0001][M01][D01]')
         let $gRESPEND                       := $gREQUESTDATE
-        let $gPDFDATE                       := $gRESPEND
-        let $gRvpToestemmingClient          := format-dateTime($gPatientDOB-dt + xs:dayTimeDuration('P12Y'),'[Y0001][M01][D01]')
-        let $gRvpToestemmingGezaghebbende   := format-dateTime($gPatientDOB-dt + xs:dayTimeDuration('P3M'),'[Y0001][M01][D01]')
-        let $gContact2Wekentm6Maanden       := format-dateTime($gPatientDOB-dt + xs:dayTimeDuration('P5M'),'[Y0001][M01][D01]')
-        let $gContact12tm18Jaar             := format-dateTime($gCREATIONDATETIME-dt - xs:dayTimeDuration('P1Y'),'[Y0001][M01][D01]')
-        let $gDktpVaccinatie-1              := format-dateTime($gPatientDOB-dt + xs:dayTimeDuration('P3M'),'[Y0001][M01][D01]')
-        let $gDktpVaccinatieReactieStart-1  := format-dateTime($gPatientDOB-dt + xs:dayTimeDuration('P3M1D'),'[Y0001][M01][D01]')
-        let $gDktpVaccinatieReactieEind-1   := format-dateTime($gPatientDOB-dt + xs:dayTimeDuration('P3M5D'),'[Y0001][M01][D01]')
-        let $gDktpVaccinatieReactieGemeld-1 := format-dateTime($gPatientDOB-dt + xs:dayTimeDuration('P3M5D'),'[Y0001][M01][D01]')
-        let $gDktpVaccinatie-2              := format-dateTime($gPatientDOB-dt + xs:dayTimeDuration('P5M3D'),'[Y0001][M01][D01]')
-        let $gMenAcwyVaccinatie-1           := format-dateTime($gCREATIONDATETIME-dt - xs:dayTimeDuration('P2M'),'[Y0001][M01][D01]')
-        let $gATermeDatum                   := format-date($gPatientDOB-dt + xs:dayTimeDuration('P7D'),'[Y0001][M01][D01]')
+        let $gRvpToestemmingClient          := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P12Y'),'[Y0001][M01][D01]')
+        let $gRvpToestemmingGezaghebbende   := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P3M'),'[Y0001][M01][D01]')
+        let $gContact2Wekentm6Maanden       := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P5M'),'[Y0001][M01][D01]')
+        let $gContact12tm18Jaar             := format-dateTime($gCREATIONDATETIME-dt - xs:yearMonthDuration('P1Y'),'[Y0001][M01][D01]')
+        let $gDktpVaccinatie-1              := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P3M'),'[Y0001][M01][D01]')
+        let $gDktpVaccinatieReactieStart-1  := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P3M') + xs:dayTimeDuration('P1D'),'[Y0001][M01][D01]')
+        let $gDktpVaccinatieReactieEind-1   := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P3M') + xs:dayTimeDuration('P5D'),'[Y0001][M01][D01]')
+        let $gDktpVaccinatieReactieGemeld-1 := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P3M') + xs:dayTimeDuration('P3D'),'[Y0001][M01][D01]')
+        let $gDktpVaccinatie-2              := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P5M') + xs:dayTimeDuration('P5D'),'[Y0001][M01][D01]')
+        let $gMenAcwyVaccinatie-1           := format-dateTime($gCREATIONDATETIME-dt - xs:yearMonthDuration('P2M'),'[Y0001][M01][D01]')
+        let $gKinkhoestVaccinatie-1           := format-dateTime($gPatientDOB-dt - xs:yearMonthDuration('P5M'),'[Y0001][M01][D01]')
+        let $gATermeDatum                   := format-date($gPatientDOB-dt + xs:yearMonthDuration('P6M'),'[Y0001][M01][D01]')
         
         return (
             <authorOrPerformer typeCode="AUT">
@@ -68,7 +68,7 @@
       <subject>
          <CareProvisionRequest>
             <templateId root="2.16.840.1.113883.2.4.6.10.100.10000"/>
-            <id extension="12345678" root="2.16.840.1.113883.2.4.3.11.999.100.​2.1"/>
+            <id extension="12345678" root="2.16.528.1.1007.3.3.1111.999.2"/>
             <code code="CPHC"
                   codeSystem="2.16.840.1.113883.5.4"
                   displayName="certified public health and general preventive medicine care"/>
@@ -83,7 +83,7 @@
             <sequelTo>
                <careProvisionEvent moodCode="EVN">
                   <id extension="12345678"
-                      root="2.16.528.1.1007.3.3.{if ($organizationId castable as xs:integer) then string(xs:integer($organizationId))"/>
+                      root="2.16.528.1.1007.3.3.{if ($organizationId castable as xs:integer) then string(xs:integer($organizationId)) else '1111'}.999.2"/>
                   <code codeSystem="2.16.840.1.113883.5.4"
                         code="CPHC"
                         displayName="certified public health and general preventive medicine care"/>
@@ -124,14 +124,14 @@
                      <time nullFlavor="UNK"/>
                      <assignedEntity classCode="ASSIGNED">
                         <templateId root="2.16.840.1.113883.2.4.6.10.100.122"/>
-                        <id extension="{$orgId}" root="2.16.528.1.1007.3.3"/>
+                        <id extension="{$organizationId}" root="2.16.528.1.1007.3.3"/>
                         <assignedOrganization classCode="ORG" determinerCode="INSTANCE">
                            <name>GGD Groningen</name>
                         </assignedOrganization>
                      </assignedEntity>
                   </author>
                   <authorization typeCode="AUTH" contextConductionInd="false">
-                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="true">
+                     <consentEvent classCode="CONS" moodCode="EVN" negationInd="false">
                         <code code="1533"
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Toestemming gegevensuitwisseling RVP"/>
@@ -621,6 +621,54 @@
                               </component>
                               <component>
                                  <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40390"/>
+                                    <code code="390"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Cornea lichtreflex rechts"/>
+                                    <value xsi:type="CV"
+                                           code="1"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.153"
+                                           displayName="+"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40391"/>
+                                    <code code="391"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Cornea lichtreflex links"/>
+                                    <value xsi:type="CV"
+                                           code="1"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.153"
+                                           displayName="+"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40840"/>
+                                    <code code="840"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Rode fundusreflex rechts"/>
+                                    <value xsi:type="CV"
+                                           code="1"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.153"
+                                           displayName="+"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40841"/>
+                                    <code code="841"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Rode fundusreflex links"/>
+                                    <value xsi:type="CV"
+                                           code="1"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.153"
+                                           displayName="+"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS" moodCode="EVN" negationInd="false">
                                     <templateId root="2.16.840.1.113883.2.4.6.10.100.40392"/>
                                     <code code="392"
                                           codeSystem="2.16.840.1.113883.2.4.4.40.267"
@@ -702,6 +750,57 @@
                               </component>
                            </rubricCluster>
                         </pertinentInformation>
+                        <!-- r041_rijksvaccinatieprogramma_en_andere_vaccinaties -->
+                        <pertinentInformation>
+                           <rubricCluster classCode="CLUSTER" moodCode="EVN">
+                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11041"/>
+                              <code code="R041"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.391"
+                                    displayName="Rijksvaccinatieprogramma en andere vaccinaties"/>
+                              <component>
+                                 <observation negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41584"/>
+                                    <code code="1584"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Vaccinatieschema DKTP"/>
+                                    <value xsi:type="CV"
+                                           code="01"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.426"
+                                           displayName="DKTP: 3-5-11 maanden"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40870"/>
+                                    <code code="870"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Reden afwijkend schema"/>
+                                    <value xsi:type="CV"
+                                           code="02"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.340"
+                                           displayName="Verzoek ouders"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40871"/>
+                                    <code code="871"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Toelichting afwijkend schema"/>
+                                    <value xsi:type="ST">Op verzoek van de ouders</value>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41587"/>
+                                    <code code="1587"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Datum maternale kinkhoestvaccinatie"/>
+                                    <value xsi:type="TS" value="{$gKinkhoestVaccinatie-1}"/>
+                                 </observation>
+                              </component>
+                           </rubricCluster>
+                        </pertinentInformation>
                         <!-- groep_g076_vaccinatie -->
                         <component3>
                            <substanceAdministration classCode="SBADM" moodCode="EVN" negationInd="false">
@@ -725,6 +824,9 @@
                               <performer typeCode="PRF">
                                  <assignedEntity classCode="ASSIGNED">
                                     <templateId root="2.16.840.1.113883.2.4.6.10.100.124"/>
+                                    <assignedPerson classCode="PSN" determinerCode="INSTANCE">
+                                       <name>Groen</name>
+                                    </assignedPerson>
                                     <representedOrganization classCode="ORG" determinerCode="INSTANCE">
                                        <id nullFlavor="NI"/>
                                        <name>GGD Groningen</name>
@@ -827,6 +929,9 @@
                               <performer typeCode="PRF">
                                  <assignedEntity classCode="ASSIGNED">
                                     <templateId root="2.16.840.1.113883.2.4.6.10.100.124"/>
+                                    <assignedPerson classCode="PSN" determinerCode="INSTANCE">
+                                       <name>Roder</name>
+                                    </assignedPerson>
                                     <representedOrganization classCode="ORG" determinerCode="INSTANCE">
                                        <id nullFlavor="NI"/>
                                        <name>GGD Groningen</name>
@@ -879,6 +984,15 @@
                               </component>
                            </substanceAdministration>
                         </component3>
+                        <!-- r047_conclusies_en_vervolgstappen -->
+                        <subjectOf1>
+                           <conclusion classCode="OBS" moodCode="EVN">
+                              <code code="482"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                    displayName="Conclusie"/>
+                              <text>Gaat goed</text>
+                           </conclusion>
+                        </subjectOf1>
                      </encounter>
                   </component7>
                   <component7 typeCode="COMP">
@@ -1195,7 +1309,7 @@
                                           <code code="1412"
                                                 codeSystem="2.16.840.1.113883.2.4.4.40.267"
                                                 displayName="Datum opname ziekenhuis"/>
-                                          <value xsi:type="TS" value="20220430"/>
+                                          <value xsi:type="TS" value="20220514"/>
                                        </observation>
                                     </component>
                                     <component>
@@ -1281,7 +1395,7 @@
                                     <code code="1578"
                                           codeSystem="2.16.840.1.113883.2.4.4.40.267"
                                           displayName="A terme datum"/>
-                                    <value xsi:type="TS" value="20230430"/>
+                                    <value xsi:type="TS" value="{$gATermeDatum}"/>
                                  </observation>
                               </component>
                               <component>
@@ -1651,6 +1765,49 @@
                                  </observation>
                               </component>
                               <component>
+                                 <groupCluster>
+                                    <code code="G117"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.393"
+                                          displayName="Visus"/>
+                                    <component>
+                                       <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                          <templateId root="2.16.840.1.113883.2.4.6.10.100.41590"/>
+                                          <code code="1590"
+                                                codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                                displayName="Soort visuskaart"/>
+                                          <value xsi:type="CV"
+                                                 code="02"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.40.427"
+                                                 displayName="LEA 5 meter"/>
+                                       </observation>
+                                    </component>
+                                    <component>
+                                       <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                          <templateId root="2.16.840.1.113883.2.4.6.10.100.41591"/>
+                                          <code code="1591"
+                                                codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                                displayName="Uitslag visus rechts"/>
+                                          <value xsi:type="CV"
+                                                 code="01"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.40.428"
+                                                 displayName="0,1"/>
+                                       </observation>
+                                    </component>
+                                    <component>
+                                       <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                          <templateId root="2.16.840.1.113883.2.4.6.10.100.41592"/>
+                                          <code code="1592"
+                                                codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                                displayName="Uitslag visus links"/>
+                                          <value xsi:type="CV"
+                                                 code="02"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.40.428"
+                                                 displayName="0,12"/>
+                                       </observation>
+                                    </component>
+                                 </groupCluster>
+                              </component>
+                              <component>
                                  <observation classCode="OBS" moodCode="EVN" negationInd="false">
                                     <templateId root="2.16.840.1.113883.2.4.6.10.100.40835"/>
                                     <code code="835"
@@ -1718,6 +1875,39 @@
                               </component>
                            </rubricCluster>
                         </pertinentInformation>
+                        <!-- r041_rijksvaccinatieprogramma_en_andere_vaccinaties -->
+                        <pertinentInformation>
+                           <rubricCluster classCode="CLUSTER" moodCode="EVN">
+                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11041"/>
+                              <code code="R041"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.391"
+                                    displayName="Rijksvaccinatieprogramma en andere vaccinaties"/>
+                              <component>
+                                 <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40869"/>
+                                    <code code="869"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Uitslag serologisch onderzoek Hepatitis B"/>
+                                    <value xsi:type="CV"
+                                           code="1"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.325"
+                                           displayName="Voldoende"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.45063"/>
+                                    <code code="5063"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="BCG litteken"/>
+                                    <value xsi:type="CV"
+                                           code="02"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.402"
+                                           displayName="Afwezig"/>
+                                 </observation>
+                              </component>
+                           </rubricCluster>
+                        </pertinentInformation>
                         <!-- groep_g076_vaccinatie -->
                         <component3>
                            <substanceAdministration classCode="SBADM" moodCode="EVN" negationInd="true">
@@ -1781,6 +1971,15 @@
                               </component>
                            </substanceAdministration>
                         </component3>
+                        <!-- r047_conclusies_en_vervolgstappen -->
+                        <subjectOf1>
+                           <conclusion classCode="OBS" moodCode="EVN">
+                              <code code="482"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                    displayName="Conclusie"/>
+                              <text>Thuissituatie zorgwekkend</text>
+                           </conclusion>
+                        </subjectOf1>
                      </encounter>
                   </component7>
                   <subjectOf typeCode="SUBJ" contextConductionInd="false">
