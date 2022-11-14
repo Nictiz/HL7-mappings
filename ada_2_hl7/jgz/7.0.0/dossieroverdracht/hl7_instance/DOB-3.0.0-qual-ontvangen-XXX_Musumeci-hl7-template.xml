@@ -52,7 +52,7 @@
         let $gMenAcwyVaccinatie-1           := format-dateTime($gCREATIONDATETIME-dt - xs:yearMonthDuration('P2M'),'[Y0001][M01][D01]')
         let $gKinkhoestVaccinatie-1           := format-dateTime($gPatientDOB-dt - xs:yearMonthDuration('P5M'),'[Y0001][M01][D01]')
         let $gATermeDatum                   := format-date($gPatientDOB-dt + xs:yearMonthDuration('P6M'),'[Y0001][M01][D01]')
-        
+        let $gOpnameZiekenhuis              := format-dateTime($gPatientDOB-dt - xs:yearMonthDuration('P6M'),'[Y0001][M01][D01]')
         return (
             <authorOrPerformer typeCode="AUT">
          <participant>
@@ -1309,7 +1309,7 @@
                                           <code code="1412"
                                                 codeSystem="2.16.840.1.113883.2.4.4.40.267"
                                                 displayName="Datum opname ziekenhuis"/>
-                                          <value xsi:type="TS" value="20220514"/>
+                                          <value xsi:type="TS" value="{$gOpnameZiekenhuis}"/>
                                        </observation>
                                     </component>
                                     <component>
