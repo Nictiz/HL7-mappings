@@ -36,7 +36,7 @@
         let $gMenAcwyVaccinatie-1           := format-dateTime($gCREATIONDATETIME-dt - xs:yearMonthDuration('P2M'),'[Y0001][M01][D01]')
         let $gKinkhoestVaccinatie-1           := format-dateTime($gPatientDOB-dt - xs:yearMonthDuration('P5M'),'[Y0001][M01][D01]')
         let $gATermeDatum                   := format-date($gPatientDOB-dt + xs:yearMonthDuration('P6M'),'[Y0001][M01][D01]')
-        
+        let $gOpnameZiekenhuis              := format-dateTime($gPatientDOB-dt - xs:yearMonthDuration('P6M'),'[Y0001][M01][D01]')
         return (
             <xsl:apply-templates select="node()"/>
         )
@@ -215,6 +215,14 @@
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
             <xsl:attribute name="value">{$gKinkhoestVaccinatie-1}</xsl:attribute>
+            <xsl:apply-templates select="node()"/>
+        </xsl:copy>
+    </xsl:template>
+    <!-- datum opname ziekenhuis -->
+    <xsl:template match="//hl7:observation[hl7:code/@code = '1412']/hl7:value">
+        <xsl:copy>
+            <xsl:apply-templates select="@*"/>
+            <xsl:attribute name="value">{$gOpnameZiekenhuis}</xsl:attribute>
             <xsl:apply-templates select="node()"/>
         </xsl:copy>
     </xsl:template>
