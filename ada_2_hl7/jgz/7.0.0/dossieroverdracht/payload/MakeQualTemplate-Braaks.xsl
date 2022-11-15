@@ -28,7 +28,7 @@
         let $gRvpToestemmingClient          := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P14Y'),'[Y0001][M01][D01]')
         let $gContactNeo                    := format-dateTime($gPatientDOB-dt + xs:dayTimeDuration('P3D'),'[Y0001][M01][D01]')
         let $gContact2Wekentm6Maanden       := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P3M'),'[Y0001][M01][D01]')
-        let $gContact12tm18Jaar             := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P13Y') + xs:yearMonthDuration('8M'),'[Y0001][M01][D01]')
+        let $gContact12tm18Jaar             := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P13Y') + xs:yearMonthDuration('P8M'),'[Y0001][M01][D01]')
         let $gPneuVaccinatie-1              := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P3M'),'[Y0001][M01][D01]')
         let $gAfnameSPP                     := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P13Y'),'[Y0001][M01][D01]')
         return (
