@@ -1191,9 +1191,9 @@
         <xd:desc>Update interactionId from REPC_IN902120NL03 to REPC_IN902120NL</xd:desc>
     </xd:doc>
     <xsl:template match="hl7:REPC_IN902120NL03">
-        <REPC_IN902120NL xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 ../schemas/REPC_IN902120NL.xsd" xmlns="urn:hl7-org:v3">
+        <hl7:REPC_IN902120NL xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 ../schemas/REPC_IN902120NL.xsd" xmlns="urn:hl7-org:v3">
             <xsl:apply-templates select="node()" mode="dob400"/>
-        </REPC_IN902120NL>
+        </hl7:REPC_IN902120NL>
     </xsl:template>
     
     <xd:doc>
