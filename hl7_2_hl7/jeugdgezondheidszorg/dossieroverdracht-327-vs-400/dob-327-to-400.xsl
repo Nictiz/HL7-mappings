@@ -1160,9 +1160,9 @@
         <xd:desc>Update root element van REPC_IN902120NL naar REPC_IN902120NL03</xd:desc>
     </xd:doc>
     <xsl:template match="hl7:REPC_IN902120NL">
-        <hl7:REPC_IN902120NL03 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 ../schemas/REPC_IN902120NL03.xsd" xmlns="urn:hl7-org:v3">
+        <REPC_IN902120NL03 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 ../schemas/REPC_IN902120NL03.xsd" xmlns="urn:hl7-org:v3">
             <xsl:apply-templates select="node()" mode="dob327"/>
-        </hl7:REPC_IN902120NL03>
+        </REPC_IN902120NL03>
     </xsl:template>
     
     <xd:doc>
