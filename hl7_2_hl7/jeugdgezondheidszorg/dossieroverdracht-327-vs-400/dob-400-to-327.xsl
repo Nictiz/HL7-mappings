@@ -1398,6 +1398,13 @@
                                     <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI" xsi:nil="true"/>
                                 </personalRelationship>
                             </xsl:when>
+<!--                            <!-\- personalRelationship als W0691 03 (Gezaghebbende (Geen toestemming van andere gezaghebbende vereist)) 04 Gezaghebbende (Toestemming van andere gezaghebbende vereist) of 05 (Wettelijk vertegenwoordiger namens jeugdige) -\->
+                            <xsl:when test="hl7:code[@codeSystem='2.16.840.1.113883.2.4.4.40.435']">
+                                <personalRelationship classCode="PRS">
+                                    <xsl:apply-templates select="hl7:code" mode="dob400"/>
+                                    <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI" xsi:nil="true"/>
+                                </personalRelationship>
+                            </xsl:when>-->
                             <!-- assignedEntity1 als toestemming verpleegkundige vaccinaties -->
                             <xsl:when test="$isBDS469">
                                 <assignedEntity1 classCode="ASSIGNED" xmlns="urn:hl7-org:v3">
@@ -1608,6 +1615,33 @@
                 <xsl:when test="$theCode = '08'">
                     <xsl:attribute name="nullFlavor">OTH</xsl:attribute>
                     <originalText xmlns="urn:hl7-org:v3">Veilig Thuis / Raad voor de Kinderbescherming</originalText>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="@* | *" mode="dob400"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:copy>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Bron toestemming cliënt/jeugdige/gezaghebbende: 1535, 0..* (W0691, KL_AN | Bron cliënt/jeugdige/gezaghebbende) - waardelijst bijwerken</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:code[@codeSystem = '2.16.840.1.113883.2.4.4.40.435']" mode="dob400">
+        <xsl:variable name="theCode" select="@code"/>
+        <xsl:variable name="theNullFlavor" select="@nullFlavor"/>
+        <xsl:copy>
+            <xsl:choose>
+                <xsl:when test="$theCode = '03'">
+                    <xsl:attribute name="nullFlavor">OTH</xsl:attribute>
+                    <originalText xmlns="urn:hl7-org:v3">Gezaghebbende (Geen toestemming van andere gezaghebbende vereist)</originalText>
+                </xsl:when>
+                <xsl:when test="$theCode = '04'">
+                    <xsl:attribute name="nullFlavor">OTH</xsl:attribute>
+                    <originalText xmlns="urn:hl7-org:v3">Gezaghebbende (Toestemming van andere gezaghebbende vereist)</originalText>
+                </xsl:when>
+                <xsl:when test="$theCode = '05'">
+                    <xsl:attribute name="nullFlavor">OTH</xsl:attribute>
+                    <originalText xmlns="urn:hl7-org:v3">Wettelijk vertegenwoordiger namens jeugdige</originalText>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:apply-templates select="@* | *" mode="dob400"/>
