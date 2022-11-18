@@ -2577,15 +2577,15 @@
     </xsl:template>-->
     
     <xd:doc>
-        <xd:desc>Rubriek 13, elementen 1569-1576 bestonden niet in 3.2.6</xd:desc>
+        <xd:desc>Rubriek 13, elementen 1569-1576 en 1600 bestonden niet in 3.2.6</xd:desc>
     </xd:doc>
-    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1569' or @code = '1570' or @code = '1571' or @code = '1572' or @code = '1573' or @code = '1574' or @code = '1575' or @code = '1576'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob400">
+    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1569' or @code = '1570' or @code = '1571' or @code = '1572' or @code = '1573' or @code = '1574' or @code = '1575' or @code = '1576' or @code = '1600'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob400">
         <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
     </xsl:template>
     <xd:doc>
-        <xd:desc>Rubriek 18, elementen 1577, 1605, 1599, 1600 bestonden niet in 3.2.6</xd:desc>
+        <xd:desc>Rubriek 18, elementen 1577, 1605 en 1599 bestonden niet in 3.2.6</xd:desc>
     </xd:doc>
-    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1577' or @code = '1605' or @code = '1599' or @code = '1600'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob400">
+    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1577' or @code = '1605' or @code = '1599'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob400">
         <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
     </xsl:template>
     <xd:doc>
