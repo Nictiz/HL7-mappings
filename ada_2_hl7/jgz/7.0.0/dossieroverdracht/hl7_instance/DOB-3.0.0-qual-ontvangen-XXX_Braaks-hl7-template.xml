@@ -32,24 +32,24 @@
       </device>
    </sender>
    <ControlActProcess classCode="CACT" moodCode="EVN">
-        {
-        let $gCREATIONDATETIME-dt           := current-dateTime()
-        let $gPatientDOB-dt                 := $gCREATIONDATETIME-dt - xs:yearMonthDuration('P14Y') - xs:yearMonthDuration('P2M')
-        
-        let $gCREATIONDATETIME              := format-dateTime($gCREATIONDATETIME-dt, '[Y0001][M01][D01][H01][m01][s01]')
-        let $gSENDDATE                      := format-dateTime($gCREATIONDATETIME-dt, '[Y0001][M01][D01]')
-        let $gPatientDOB                    := format-dateTime($gPatientDOB-dt,'[Y0001][M01][D01]')
-        let $gREQUESTDATE                   := $gSENDDATE
-        let $gRESPSTART                     := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P3Y') + xs:yearMonthDuration('P9M'),'[Y0001][M01][D01]')
-        let $gRESPEND                       := $gREQUESTDATE
-        let $gPDFDATE                       := $gRESPEND
-        let $gRvpToestemmingClient          := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P14Y'),'[Y0001][M01][D01]')
-        let $gContactNeo                    := format-dateTime($gPatientDOB-dt + xs:dayTimeDuration('P3D'),'[Y0001][M01][D01]')
-        let $gContact2Wekentm6Maanden       := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P3M'),'[Y0001][M01][D01]')
-        let $gContact12tm18Jaar             := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P13Y') + xs:yearMonthDuration('8M'),'[Y0001][M01][D01]')
-        let $gPneuVaccinatie-1              := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P3M'),'[Y0001][M01][D01]')
-        let $gAfnameSPP                     := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P13Y'),'[Y0001][M01][D01]')
-        return (
+            {
+            let $gCREATIONDATETIME-dt           := current-dateTime()
+            let $gPatientDOB-dt                 := $gCREATIONDATETIME-dt - xs:yearMonthDuration('P14Y') - xs:yearMonthDuration('P2M')
+            
+            let $gCREATIONDATETIME              := format-dateTime($gCREATIONDATETIME-dt, '[Y0001][M01][D01][H01][m01][s01]')
+            let $gSENDDATE                      := format-dateTime($gCREATIONDATETIME-dt, '[Y0001][M01][D01]')
+            let $gPatientDOB                    := format-dateTime($gPatientDOB-dt,'[Y0001][M01][D01]')
+            let $gREQUESTDATE                   := $gSENDDATE
+            let $gRESPSTART                     := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P3Y') + xs:yearMonthDuration('P9M'),'[Y0001][M01][D01]')
+            let $gRESPEND                       := $gREQUESTDATE
+            let $gPDFDATE                       := $gRESPEND
+            let $gRvpToestemmingClient          := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P14Y'),'[Y0001][M01][D01]')
+            let $gContactNeo                    := format-dateTime($gPatientDOB-dt + xs:dayTimeDuration('P3D'),'[Y0001][M01][D01]')
+            let $gContact2Wekentm6Maanden       := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P3M'),'[Y0001][M01][D01]')
+            let $gContact12tm18Jaar             := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P13Y') + xs:yearMonthDuration('P8M'),'[Y0001][M01][D01]')
+            let $gPneuVaccinatie-1              := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P3M'),'[Y0001][M01][D01]')
+            let $gAfnameSPP                     := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P13Y'),'[Y0001][M01][D01]')
+            return (
             <authorOrPerformer typeCode="AUT">
          <participant>
             <AssignedDevice>
@@ -60,8 +60,8 @@
                </Organization>
             </AssignedDevice>
          </participant>
-      </authorOrPerformer>
-      <subject>
+      </authorOrPerformer> | 
+    <subject>
          <CareProvisionRequest>
             <templateId root="2.16.840.1.113883.2.4.6.10.100.10000"/>
             <id extension="123456789" root="2.16.528.1.1007.3.3.1111.999.2"/>
@@ -91,7 +91,7 @@
                      <patient classCode="PAT">
                         <templateId root="2.16.840.1.113883.2.4.6.10.100.131"/>
                         <id extension="999900213" root="2.16.840.1.113883.2.4.6.3"/>
-                        <addr use="PHYS">
+                        <addr use="HP">
                            <streetName>Knolweg</streetName>
                            <houseNumber>1000</houseNumber>
                            <postalCode>9999 XA</postalCode>
@@ -2130,7 +2130,7 @@
             </sequelTo>
          </CareProvisionRequest>
       </subject>
-        )
-        }
+            )
+            }
         </ControlActProcess>
 </REPC_IN902120NL03>
