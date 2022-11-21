@@ -1,4 +1,4 @@
-<adaxml>
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:/C:/dev/HL7-mappings/ada_2_hl7/jgz/7.0.0/dossieroverdracht/ada_schemas/ada_versturen_jgzdossieroverdrachtverzoek_v02.xsd">
     <meta status="new" created-by="ekykaelani" last-update-by="ekykaelani" creation-date="2022-08-04T14:31:31.692+02:00" last-update-date="2022-08-04T15:41:44.148+02:00"/>
     <data>
         <versturen_jgzdossieroverdrachtverzoek_v02 app="jgz-7.0.0" shortName="versturen_jgzdossieroverdrachtverzoek_v02" formName="versturen_jgzdossieroverdrachtverzoek_v02_bds_327" transactionRef="2.16.840.1.113883.2.4.3.11.60.100.4.20" transactionEffectiveDate="2013-07-09T12:00:00" versionDate="2022-03-13T18:33:14" prefix="jgz-7.0.0-" language="nl-NL" title="Dossieroverdracht Ontvangen DOB v02 (XXX_Veens, 17j)" desc="" id="DOB-3.0.0-qual-ontvangen-XXX_Veens">
@@ -11,8 +11,9 @@
                 <voornaam value="Ruth" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.6"/>
                 <geslachtsnaam value="XXX_Veens" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.4"/>
                 <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.19" value="8" code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouwelijk"/>
-                <geboortedatum value="T-15Y" datatype="datetime" id="DOB" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.20"/>
+                <geboortedatum value="T-17Y" datatype="datetime" id="DOB" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.20"/>
                 <groep_g001_adres_client conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.2.1" comment="">
+                    <soort_adres conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.8" code="HP" codeSystem="2.16.840.1.113883.5.1119" displayName="BRP/COA-adres"/>
                     <adres_is_geheim value="false" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.697"/>
                     <woonplaats value="Stitswerd" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.10"/>
                     <straatnaam value="Knolweg" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.11"/>
@@ -22,27 +23,20 @@
                 </groep_g001_adres_client>
                 <groep_g002_telefoonnummer_client conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.2.2" comment="">
                     <telefoonnummer value="0311234564" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.609"/>
+                <soort_telefoonnummer conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.610" value="6" code="HP" codeSystem="2.16.840.1.113883.5.1119" displayName="Huisnummer"/>
                 </groep_g002_telefoonnummer_client>
                 <email_client value="XXX_Veens@test.nl" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.698"/>
             </r003_persoonsgegevens>
             <r050_zorggegevens conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.1.50" comment="">
                 <groep_g093_status_in_zorg conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.2.93" comment="">
                     <status_in_zorg conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1197" value="6" code="01" codeSystem="2.16.840.1.113883.2.4.4.40.376" displayName="Regulier"/>
-                    <datum_start_zorg value="T+4D" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1330"/>
-                </groep_g093_status_in_zorg>
-                <groep_g093_status_in_zorg conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.2.93" comment="">
-                    <status_in_zorg conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1197" value="6" code="01" codeSystem="2.16.840.1.113883.2.4.4.40.376" displayName="Regulier"/>
                     <datum_start_zorg value="DOB+3Y9M" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1330"/>
                 </groep_g093_status_in_zorg>
                 <groep_g092_zorgbeeindiging conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.2.92" comment="">
                     <zorgbeeindiging conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.487" value="7" code="01" codeSystem="2.16.840.1.113883.2.4.4.40.82" displayName="Overdracht naar een andere JGZ-organisatie"/>
-                    <datum_zorgbeeindiging value="DOB+3Y9M" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.488"/>
-                </groep_g092_zorgbeeindiging>
-                <groep_g092_zorgbeeindiging conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.2.92" comment="">
-                    <zorgbeeindiging conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.487" value="7" code="01" codeSystem="2.16.840.1.113883.2.4.4.40.82" displayName="Overdracht naar een andere JGZ-organisatie"/>
                     <datum_zorgbeeindiging value="T" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.488"/>
                 </groep_g092_zorgbeeindiging>
-            </r050_zorggegevens>
+                </r050_zorggegevens>
             <r005_betrokken_jgzorganisaties conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.1.5" comment="">
                 <groep_g085_uitvoerende_jgzorganisatie conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.2.85" comment="">
                     <uitvoerende_jgzorganisatie_ura root="2.16.528.1.1007.3.3" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.603" value="{$orgId}"/>
@@ -215,7 +209,7 @@
             </r038_visus_en_oogonderzoek>
             <r047_conclusies_en_vervolgstappen conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.1.47" comment="activiteit-1" id="R047-1">
                 <conclusie value="gaat goed" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.482"/>
-                <extra_zorginterventie value="false" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1158"/>
+                <extra_zorginterventie conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1158" nullFlavor="UNK"/>
             </r047_conclusies_en_vervolgstappen>
         </versturen_jgzdossieroverdrachtverzoek_v02>
     </data>
