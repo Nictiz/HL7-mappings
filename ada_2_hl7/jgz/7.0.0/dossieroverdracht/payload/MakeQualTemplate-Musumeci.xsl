@@ -227,6 +227,14 @@
         </xsl:copy>
     </xsl:template>
     
+    <!-- Add pipesymbol required by the kwalificatie server. -->
+    <xsl:template match="//hl7:ControlActProcess/hl7:authorOrPerformer">
+        <authorOrPerformer>
+            <xsl:apply-templates select="@*"/>
+            <xsl:apply-templates select="./*"/>
+        </authorOrPerformer> | 
+    </xsl:template>
+    
     <xsl:template match="@* | node()">
                 <xsl:copy>
                     <xsl:apply-templates select="@* | node()"/>
