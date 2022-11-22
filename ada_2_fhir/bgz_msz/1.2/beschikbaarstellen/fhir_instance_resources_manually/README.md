@@ -1,4 +1,4 @@
-# Manual steps to 'finish' FHIR resources
+# Manual steps to make FHIR resources suitable for qualification
 
 * If the ada instances (in the ada_instance folder) have been changed, run /payload/ada_processing/bgz_msz-adarefs2ada.xsl to correctly generate all ada bundles in the ada_processed folder.
     * Changes in the ada instance of the zib Patient (bgz-patA.xml and bgz-patB.xml) need to be done manually in bgz-msz-patA-patient.xml and bgz-msz-patB-patient.xml (in the ada_processed folder) as well.
