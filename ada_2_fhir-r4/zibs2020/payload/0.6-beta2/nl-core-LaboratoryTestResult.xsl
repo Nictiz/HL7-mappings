@@ -381,11 +381,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">ADA patient element. Has no default</xd:param>
     </xd:doc>
-    <xsl:template name="nl-core-LaboratoryTestResult-asMicroorganism" match="monster" mode="nl-core-LaboratoryTestResult.Specimen" as="element(f:Specimen)*">
+    <xsl:template name="nl-core-LaboratoryTestResult-asMicroorganism" match="monster" mode="nl-core-LaboratoryTestResult.Specimen" as="element(f:Specimen)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="$in/../../../patientgegevens/patient" as="element()?"/>
-
-        <xsl:choose>
+        
+        <xsl:message terminate="yes">Template 'nl-core-LaboratoryTestResult-asMicroorganism' does not comply with mapping guidelines (one FHIR resource per template) and is not tested. If you see this message, please debug.</xsl:message>
+        <!--<xsl:choose>
             <xsl:when test="not(monstermateriaal or microorganisme)">
                 <xsl:call-template name="_nl-core-LaboratoryTestResult.Specimen">
                     <xsl:with-param name="subject" select="$subject" as="element()"/>
@@ -400,7 +401,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:for-each>
             </xsl:otherwise>
-        </xsl:choose>
+        </xsl:choose>-->
     </xsl:template>
     
     <xd:doc>
