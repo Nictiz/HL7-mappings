@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                        xmlns:saxon="http://saxon.sf.net/"
+                        xmlns:schold="http://www.ascc.net/xml/schematron"
+                        xmlns:iso="http://purl.oclc.org/dsdl/schematron"
+                        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+                        xmlns:hl7="urn:hl7-org:v3"
+                        xmlns:cda="urn:hl7-org:v3"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                        xmlns:hl7nl="urn:hl7-nl:v3"
+                        xmlns:sdtc="urn:hl7-org:sdtc"
+                        xmlns:f="http://hl7.org/fhir"
+                        xmlns:pharm="urn:ihe:pharm:medication"
+                        xmlns:nfu="urn:urn:nictiz-nl:v3/nfu"
+                        xmlns:lab="urn:oid:1.3.6.1.4.1.19376.1.3.2"
+                        title="Schematron file for transaction Sturen antwoord voorstel medicatieafspraak MP9 2.0.0 (2.16.840.1.113883.2.4.3.11.60.20.77.4.373 2022-03-02T00:00:00)"
+                        schemaVersion=""><!--   
+		   
+		   
+		 -->
+   <svrl:ns-prefix-in-attribute-values uri="urn:hl7-org:v3" prefix="hl7"/>
+   <svrl:ns-prefix-in-attribute-values uri="urn:hl7-org:v3" prefix="cda"/>
+   <svrl:ns-prefix-in-attribute-values uri="http://www.w3.org/2001/XMLSchema-instance" prefix="xsi"/>
+   <svrl:ns-prefix-in-attribute-values uri="http://www.w3.org/2001/XMLSchema" prefix="xs"/>
+   <svrl:ns-prefix-in-attribute-values uri="urn:hl7-nl:v3" prefix="hl7nl"/>
+   <svrl:ns-prefix-in-attribute-values uri="urn:hl7-org:sdtc" prefix="sdtc"/>
+   <svrl:ns-prefix-in-attribute-values uri="http://hl7.org/fhir" prefix="f"/>
+   <svrl:ns-prefix-in-attribute-values uri="urn:ihe:pharm:medication" prefix="pharm"/>
+   <svrl:ns-prefix-in-attribute-values uri="http://www.w3.org/XML/1998/namespace" prefix="xml"/>
+   <svrl:ns-prefix-in-attribute-values uri="urn:urn:nictiz-nl:v3/nfu" prefix="nfu"/>
+   <svrl:ns-prefix-in-attribute-values uri="urn:oid:1.3.6.1.4.1.19376.1.3.2" prefix="lab"/>
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/HL7-mappings-dev/ada_2_hl7/mp/9.2.0/xml-voorbeelden/cda_instance/avma-example-92-1.xml"/>
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/HL7-mappings-dev/ada_2_hl7/mp/9.2.0/xml-voorbeelden/cda_instance/avma-example-92-1.xml"
+                        name="MPBaseAntwVoorstelMA"/>
+   <svrl:fired-rule context="/" fpi="RUL-EXPEL"/>
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/HL7-mappings-dev/ada_2_hl7/mp/9.2.0/xml-voorbeelden/cda_instance/avma-example-92-1.xml"
+                        id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9400-2022-03-15T150730"
+                        name="Basis Antwoord Voorstel Medicatieafspraak"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]"
+                    id="d534018e39-false-d534103e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:realmCode[@code = 'NL']"
+                    id="d534018e41-false-d534389e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:typeId[@root = '2.16.840.1.113883.1.3'][@extension = 'POCD_HD000040']"
+                    id="d534018e54-false-d534405e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']"
+                    id="d534018e73-false-d534435e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:id[not(@nullFlavor)]"
+                    id="d534448e29-false-d534456e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:code[(@code = '52981000146104' and @codeSystem = '2.16.840.1.113883.6.96')]"
+                    id="d534448e41-false-d534469e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:title[not(@nullFlavor)]"
+                    id="d534448e64-false-d534491e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:effectiveTime[not(@nullFlavor)]"
+                    id="d534448e75-false-d534504e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:confidentialityCode[@codeSystem = '2.16.840.1.113883.5.25' or @code = 'N' or @code = 'R' or @code = 'V' or @nullFlavor]"
+                    id="d534448e86-false-d534521e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:languageCode[not(@nullFlavor)]"
+                    id="d534448e115-false-d534547e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:recordTarget[hl7:patientRole]"
+                    id="d534554e19-false-d534592e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole"
+                    id="d534554e21-false-d534676e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole/hl7:id"
+                    id="d534554e23-false-d534740e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole/hl7:patient"
+                    id="d534554e94-false-d535159e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole/hl7:patient/hl7:name"
+                    id="d534554e96-false-d535259e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole/hl7:patient/hl7:name/hl7:given[@qualifier='IN']"
+                    id="d535395e333-false-d535470e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole/hl7:patient/hl7:name/hl7:family[@qualifier='BR']"
+                    id="d535395e405-false-d535547e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole/hl7:patient/hl7:administrativeGenderCode[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.0.1.1-2017-12-31T000000.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.0.1.1-2017-12-31T000000.xml')//valueSet[1]/conceptList/exception/@code]"
+                    id="d534554e115-false-d535672e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole/hl7:patient/hl7:birthTime"
+                    id="d534554e139-false-d535705e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:author"
+                    id="d536782e18-false-d536826e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:author/hl7:time"
+                    id="d536782e29-false-d536927e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:author/hl7:assignedAuthor[not(hl7:code/@code = 'ONESELF')]"
+                    id="d536782e37-false-d536942e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:author/hl7:assignedAuthor[not(hl7:code/@code = 'ONESELF')]/hl7:id[@root = '2.16.528.1.1007.3.1']"
+                    id="d537089e11-false-d537100e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:author/hl7:assignedAuthor[not(hl7:code/@code = 'ONESELF')]/hl7:code[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.17.1.7-2017-12-31T000000.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.17.1.6-2017-12-31T000000.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor]"
+                    id="d536782e50-false-d537202e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:author/hl7:assignedAuthor[not(hl7:code/@code = 'ONESELF')]/hl7:assignedPerson"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:author/hl7:assignedAuthor[not(hl7:code/@code = 'ONESELF')]/hl7:assignedPerson/hl7:name"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:author/hl7:assignedAuthor[not(hl7:code/@code = 'ONESELF')]/hl7:assignedPerson/hl7:name/hl7:given[@qualifier='BR']"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:author/hl7:assignedAuthor[not(hl7:code/@code = 'ONESELF')]/hl7:assignedPerson/hl7:name/hl7:prefix[.[not(@qualifier)] | .[tokenize(@qualifier,'\s')='VV'][following-sibling::hl7:family]]"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:author/hl7:assignedAuthor[not(hl7:code/@code = 'ONESELF')]/hl7:assignedPerson/hl7:name/hl7:family[@qualifier='BR']"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:author/hl7:assignedAuthor[not(hl7:code/@code = 'ONESELF')]/hl7:representedOrganization"
+                    id="d538167e42-false-d538189e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:author/hl7:assignedAuthor[not(hl7:code/@code = 'ONESELF')]/hl7:representedOrganization/hl7:id[@root = '2.16.528.1.1007.3.3']"
+                    id="d538289e9-false-d538300e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:author/hl7:assignedAuthor[not(hl7:code/@code = 'ONESELF')]/hl7:representedOrganization/hl7:name"
+                    id="d538167e51-false-d538398e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:author/hl7:assignedAuthor[not(hl7:code/@code = 'ONESELF')]/hl7:representedOrganization/hl7:addr"
+                    id="d538167e84-false-d538516e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:author/hl7:assignedAuthor[not(hl7:code/@code = 'ONESELF')]/hl7:representedOrganization/hl7:addr/hl7:streetName"
+                    id="d538632e83-false-d538640e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:author/hl7:assignedAuthor[not(hl7:code/@code = 'ONESELF')]/hl7:representedOrganization/hl7:addr/hl7:houseNumber"
+                    id="d538632e97-false-d538653e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:author/hl7:assignedAuthor[not(hl7:code/@code = 'ONESELF')]/hl7:representedOrganization/hl7:addr/hl7:postalCode"
+                    id="d538632e195-false-d538700e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:author/hl7:assignedAuthor[not(hl7:code/@code = 'ONESELF')]/hl7:representedOrganization/hl7:addr/hl7:city"
+                    id="d538632e235-false-d538728e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:custodian[hl7:assignedCustodian]"
+                    id="d539035e17-false-d539043e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:custodian[hl7:assignedCustodian]/hl7:assignedCustodian[hl7:representedCustodianOrganization]"
+                    id="d539035e21-false-d539073e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:custodian[hl7:assignedCustodian]/hl7:assignedCustodian[hl7:representedCustodianOrganization]/hl7:representedCustodianOrganization"
+                    id="d539035e25-false-d539103e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:custodian[hl7:assignedCustodian]/hl7:assignedCustodian[hl7:representedCustodianOrganization]/hl7:representedCustodianOrganization/hl7:id[@root = '2.16.528.1.1007.3.3']"
+                    id="d539035e33-false-d539193e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:custodian[hl7:assignedCustodian]/hl7:assignedCustodian[hl7:representedCustodianOrganization]/hl7:representedCustodianOrganization/hl7:name"
+                    id="d539035e94-false-d539291e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:custodian[hl7:assignedCustodian]/hl7:assignedCustodian[hl7:representedCustodianOrganization]/hl7:representedCustodianOrganization/hl7:addr"
+                    id="d539035e112-false-d539317e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:component/hl7:structuredBody[hl7:component]"
+                    id="d534018e82-false-d539385e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:component/hl7:structuredBody[hl7:component]/hl7:component[hl7:section]"
+                    id="d534018e84-false-d539437e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="//hl7:ClinicalDocument[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9395']]/hl7:component/hl7:structuredBody[hl7:component]/hl7:component[hl7:section]/hl7:section[hl7:entry]"
+                    id="d534018e86-false-d539489e0"
+                    fpi="RULC-1"/>
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/HL7-mappings-dev/ada_2_hl7/mp/9.2.0/xml-voorbeelden/cda_instance/avma-example-92-1.xml"
+                        id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9400-2022-03-15T150730-closed"
+                        name="Basis Antwoord Voorstel Medicatieafspraak"/>
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/HL7-mappings-dev/ada_2_hl7/mp/9.2.0/xml-voorbeelden/cda_instance/avma-example-92-1.xml"
+                        id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9396-2022-03-15T000000"
+                        name="MP CDA Antwoord VMA"/>
+   <svrl:fired-rule context="*[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]]"
+                    id="d40e11873-false-d529217e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]]/hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]"
+                    id="d40e11921-false-d529294e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]]/hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]/hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']"
+                    id="d40e11927-false-d529411e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]]/hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]/hl7:code[(@code = '10' and @codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.3')]"
+                    id="d40e11932-false-d529430e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]]/hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]/cda:author[hl7:assignedAuthor]"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]]/hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]/cda:author[hl7:assignedAuthor]/hl7:time"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]]/hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]/cda:author[hl7:assignedAuthor]/hl7:assignedAuthor"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]]/hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]/cda:author[hl7:assignedAuthor]/hl7:assignedAuthor/hl7:id[@root = '2.16.528.1.1007.3.1']"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]]/hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]/cda:author[hl7:assignedAuthor]/hl7:assignedAuthor/hl7:code[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.17.1.7-2017-12-31T000000.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.17.1.6-2017-12-31T000000.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor]"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]]/hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]/cda:author[hl7:assignedAuthor]/hl7:assignedAuthor/hl7:representedOrganization"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]]/hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]/cda:author[hl7:assignedAuthor]/hl7:assignedAuthor/hl7:representedOrganization/hl7:id[@root = '2.16.528.1.1007.3.3']"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]]/hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]/cda:author[hl7:assignedAuthor]/hl7:assignedAuthor/hl7:representedOrganization/hl7:name"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]]/hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]/cda:author[hl7:assignedAuthor]/hl7:assignedAuthor/hl7:representedOrganization/hl7:addr"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]]/hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]/cda:author[hl7:assignedAuthor]/hl7:assignedAuthor/hl7:representedOrganization/hl7:addr/hl7:streetName"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]]/hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]/cda:author[hl7:assignedAuthor]/hl7:assignedAuthor/hl7:representedOrganization/hl7:addr/hl7:houseNumber"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]]/hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]/cda:author[hl7:assignedAuthor]/hl7:assignedAuthor/hl7:representedOrganization/hl7:addr/hl7:postalCode"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]]/hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]/cda:author[hl7:assignedAuthor]/hl7:assignedAuthor/hl7:representedOrganization/hl7:addr/hl7:city"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]]/hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]/cda:entryRelationship[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9397']]]"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]]/hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9396']]/cda:entryRelationship[hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9398']]]"
+                    fpi="RULC-1"/>
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/HL7-mappings-dev/ada_2_hl7/mp/9.2.0/xml-voorbeelden/cda_instance/avma-example-92-1.xml"
+                        id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9397-2022-03-15T000000"
+                        name="Antwoord voorstel medicatieafspraak"/>
+   <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9397']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9397']]"
+                    id="d40e11992-false-d531123e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9397']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9397']]/hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9397']"
+                    id="d40e11998-false-d531191e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9397']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9397']]/hl7:code[(@code = '17' and @codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.2')]"
+                    id="d40e12003-false-d531210e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9397']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9397']]/hl7:value[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.44-2022-03-02T105041.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.44-2022-03-02T105041.xml')//valueSet[1]/conceptList/exception/@code]"
+                    id="d40e12020-false-d531230e0"
+                    fpi="RULC-1"/>
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/HL7-mappings-dev/ada_2_hl7/mp/9.2.0/xml-voorbeelden/cda_instance/avma-example-92-1.xml"
+                        id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9398-2022-03-15T000000"
+                        name="MP Voorstel Medicatieafspraak identificatie"/>
+   <svrl:fired-rule context="*[hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9398']]]"
+                    id="d40e12027-false-d531269e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9398']]]/hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9398']]"
+                    id="d40e12039-false-d531292e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9398']]]/hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9398']]/hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9398']"
+                    id="d40e12045-false-d531368e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9398']]]/hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9398']]/hl7:id"
+                    id="d40e12050-false-d531387e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9398']]]/hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9398']]/hl7:code[(@code = '107' and @codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4')]"
+                    id="d40e12056-false-d531401e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9398']]]/hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9398']]/hl7:statusCode"
+                    id="d40e12076-false-d531424e0"
+                    fpi="RULC-1"/>
+</svrl:schematron-output>

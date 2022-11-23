@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Generated from ada instance with title: "testbericht conversie ADA - auteur patient" and id: "vvv-example-92-1".-->
+<ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:sdtc="urn:hl7-org:sdtc"
+                  xmlns="urn:hl7-org:v3"
+                  xmlns:hl7nl="urn:hl7-nl:v3"
+                  xmlns:pharm="urn:ihe:pharm:medication"
+                  xmlns:hl7="urn:hl7-org:v3"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <realmCode code="NL"/>
+   <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
+   <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9144"/>
+   <id extension="5da7bede-2d20-11ed-1375-020000000000"
+       root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9130.1.2.3.999"/>
+   <code code="52981000146104"
+         codeSystem="2.16.840.1.113883.6.96"
+         codeSystemName="SNOMED CT"
+         displayName="Medication section (record artifact)"/>
+   <title>Sturen voorstel verstrekkingsverzoek S. XXX_Jankie op 1 jan 2022</title>
+   <effectiveTime value="20220101115900"/>
+   <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="normal"/>
+   <languageCode code="nl-NL"/>
+   <recordTarget>
+      <patientRole>
+         <id extension="999910437" root="2.16.840.1.113883.2.4.6.3"/>
+         <patient>
+            <name>
+               <given qualifier="IN">S.</given>
+               <family qualifier="BR">XXX_Jankie</family>
+            </name>
+            <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            <birthTime value="19540508"/>
+         </patient>
+      </patientRole>
+   </recordTarget>
+   <author>
+      <time value="20220101115900"/>
+      <assignedAuthor>
+         <id extension="999910437" root="2.16.840.1.113883.2.4.6.3"/>
+         <code code="ONESELF"
+               displayName="Self"
+               codeSystem="2.16.840.1.113883.5.111"
+               codeSystemName="RoleCode"/>
+      </assignedAuthor>
+   </author>
+   <custodian>
+      <assignedCustodian>
+         <representedCustodianOrganization>
+            <id xmlns:cda="urn:hl7-org:v3"
+                extension="999910437"
+                root="2.16.840.1.113883.2.4.6.3"/>
+         </representedCustodianOrganization>
+      </assignedCustodian>
+   </custodian>
+   <component>
+      <structuredBody>
+         <component>
+            <section>
+               <text>Medicatiegegevens.</text>
+               <entry>
+                  <supply classCode="SPLY" moodCode="PRP">
+                     <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9131"/>
+                     <code code="52711000146108"
+                           displayName="Verstrekkingsverzoek"
+                           codeSystem="2.16.840.1.113883.6.96"
+                           codeSystemName="SNOMED CT"/>
+                     <quantity value="21" unit="1">
+                        <translation value="21"
+                                     code="245"
+                                     displayName="stuk"
+                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                     codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                     </quantity>
+                     <product>
+                        <manufacturedProduct>
+                           <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9363"/>
+                           <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                              <code code="2214350"
+                                    codeSystem="2.16.840.1.113883.2.4.4.7"
+                                    displayName="XARELTO TABLET FILMOMHULD 20MG"
+                                    codeSystemName="G-Standaard HPK">
+                                 <translation code="100153"
+                                              codeSystem="2.16.840.1.113883.2.4.4.10"
+                                              displayName="RIVAROXABAN TABLET 20MG"
+                                              codeSystemName="G-Standaard PRK"/>
+                                 <translation code="138363"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1"
+                                              displayName="RIVAROXABAN TABLET 20MG"
+                                              codeSystemName="G-Standaard GPK"/>
+                              </code>
+                           </manufacturedMaterial>
+                        </manufacturedProduct>
+                     </product>
+                     <performer>
+                        <assignedEntity>
+                           <id nullFlavor="NI"/>
+                           <representedOrganization>
+                              <id extension="01236578" root="2.16.528.1.1007.3.3"/>
+                              <name>Apotheek De Gulle Gaper</name>
+                           </representedOrganization>
+                        </assignedEntity>
+                     </performer>
+                     <author>
+                        <time value="20220101115900"/>
+                        <assignedAuthor>
+                           <id extension="999910437" root="2.16.840.1.113883.2.4.6.3"/>
+                           <code code="ONESELF"
+                                 displayName="Self"
+                                 codeSystem="2.16.840.1.113883.5.111"
+                                 codeSystemName="RoleCode"/>
+                        </assignedAuthor>
+                     </author>
+                     <entryRelationship typeCode="SUBJ" inversionInd="true">
+                        <act classCode="ACT" moodCode="EVN">
+                           <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
+                           <code code="48767-8"
+                                 codeSystem="2.16.840.1.113883.6.1"
+                                 codeSystemName="LOINC"
+                                 displayName="Annotation comment"/>
+                           <text mediaType="text/plain">toelichting bij verstrekkingsverzoek in vrije tekst</text>
+                        </act>
+                     </entryRelationship>
+                     <entryRelationship typeCode="REFR">
+                        <substanceAdministration classCode="SBADM" moodCode="RQO">
+                           <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
+                           <id extension="MBH_920_VVV_Test1_MA"
+                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                           <code code="33633005"
+                                 codeSystem="2.16.840.1.113883.6.96"
+                                 codeSystemName="SNOMED CT"
+                                 displayName="Medicatieafspraak"/>
+                           <consumable xsi:nil="true"/>
+                        </substanceAdministration>
+                     </entryRelationship>
+                  </supply>
+               </entry>
+               <entry>
+                  <act classCode="ACT" moodCode="EVN">
+                     <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
+                     <code code="48767-8"
+                           codeSystem="2.16.840.1.113883.6.1"
+                           codeSystemName="LOINC"
+                           displayName="Annotation comment"/>
+                     <text mediaType="text/plain">de hond heeft de pillen opgegeten</text>
+                  </act>
+               </entry>
+            </section>
+         </component>
+      </structuredBody>
+   </component>
+</ClinicalDocument>
