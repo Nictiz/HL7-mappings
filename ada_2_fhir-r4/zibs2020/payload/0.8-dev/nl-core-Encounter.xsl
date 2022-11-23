@@ -89,9 +89,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <text>
                             <xsl:call-template name="string-to-string">
                                 <xsl:with-param name="in" select="./afwijkende_uitslag"/>
-                                </xsl:call-template>
+                            </xsl:call-template>
                         </text>
-                        </reasonCode>
+                    </reasonCode>
                 </xsl:for-each>
                 <xsl:for-each select="reden_contact[probleem/@value or verrichting/@value]">
                     <reasonReference>
