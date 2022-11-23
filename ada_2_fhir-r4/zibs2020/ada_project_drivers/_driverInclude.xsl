@@ -323,9 +323,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="$in" mode="nl-core-LaboratoryTestResult">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
-                <xsl:apply-templates mode="nl-core-LaboratoryTestResult.Specimen" select="./monster">
-                    <xsl:with-param name="subject" select="$subject"/>
-                </xsl:apply-templates>
+                <xsl:for-each select="monster">
+                    <xsl:choose>
+                        <xsl:when test="not(monstermateriaal) and not(microorganisme)">
+                            <xsl:call-template name="nl-core-LaboratoryTestResult.Specimen">
+                                <xsl:with-param name="subject" select="$subject" as="element()"/>
+                            </xsl:call-template>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:for-each select="(monstermateriaal | microorganisme)">
+                                <xsl:call-template name="nl-core-LaboratoryTestResult.Specimen">
+                                    <xsl:with-param name="in" select="./parent::monster"/>
+                                    <xsl:with-param name="subject" select="$subject" as="element()"/>
+                                    <xsl:with-param name="type" select="."/>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:for-each>
             </xsl:when>
             <xsl:when test="$localName = 'lichaamslengte'">
                 <xsl:apply-templates select="$in" mode="nl-core-BodyHeight">

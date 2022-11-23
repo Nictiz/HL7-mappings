@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NutritionOrder xmlns="http://hl7.org/fhir">
+   <id value="nl-core-NutritionAdvice-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-NutritionAdvice"/>
+   </meta>
+   <extension url="http://hl7.org/fhir/StructureDefinition/workflow-reasonReference">
+      <valueReference>
+         <reference value="Condition/nl-core-NutritionAdvice-01-Condition-01"/>
+         <type value="Condition"/>
+         <display value="Problem"/>
+      </valueReference>
+   </extension>
+   <status value="active"/>
+   <intent value="order"/>
+   <patient>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </patient>
+   <dateTime value="2022-11-23T16:40:25.193+01:00"/>
+   <oralDiet>
+      <type>
+         <text value="Energie verrijkt"/>
+      </type>
+      <texture>
+         <modifier>
+            <text value="Dikvloeibaar"/>
+         </modifier>
+      </texture>
+   </oralDiet>
+   <note>
+      <text value="Sinds een week dieet veranderd in energieverrijkt."/>
+   </note>
+</NutritionOrder>

@@ -567,7 +567,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:text>-LaboratoryTest-</xsl:text>
                     <xsl:value-of select="format-number(count(preceding-sibling::*[local-name() = 'laboratorium_test'])+1, '00')"/>
                 </xsl:when>
-                </xsl:choose>
+            </xsl:choose>
         </xsl:variable>
         
         <!-- Failsafe, ids can get quite long -->

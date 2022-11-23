@@ -194,15 +194,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each-group>
         </xsl:for-each-group>
         
-        <!-- This will build two variants for each monster; one with the actual canonical 
-                 [...]/nl-core-LaboratoryTestResult.Specimen and one with a faux canonical of
-                 [...]/nl-core-LaboratoryTestResult.Specimen.asMicroorganism (see ada2resourceType). This is
-                 needed because a monster might end up as two instances of the same profile. Yes, it's a hack.
-            -->
-        <xsl:for-each-group select="$in[self::laboratorium_uitslag]/monster[.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
-            <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
-        </xsl:for-each-group>
-        
         <!-- If and only if there is more than one laboratorium_test, there should be an instance for each
                  distinct laboratorium_test (in addition the "grouping" instance already identified as part of the 
                  main process. -->
@@ -218,6 +209,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
               $in//product[parent::medisch_hulpmiddel],
               $in//visueel_resultaat[parent::tekst_uitslag],
               $in//soepregel[parent::soepverslag],
+              $in//monster[parent::laboratorium_uitslag],
               $in//bron_monster[parent::monster]
             )[.//(@value | @code | @nullFlavor)]" group-by="local-name()">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
