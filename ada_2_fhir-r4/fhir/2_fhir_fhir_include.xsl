@@ -59,7 +59,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="alcohol_gebruik" resource="Observation" profile="nl-core-AlcoholUse"/>
         <nm:map ada="alert" resource="Flag" profile="nl-core-alert"/>
         <nm:map ada="allergie_intolerantie" resource="AllergyIntolerance" profile="nl-core-AllergyIntolerance"/>
-         <nm:map ada="behandel_aanwijzing" resource="Consent" profile="nl-core-TreatmentDirective2"/>
+        <nm:map ada="behandel_aanwijzing" resource="Consent" profile="nl-core-TreatmentDirective2"/>
         <nm:map ada="bloeddruk" resource="Observation" profile="nl-core-BloodPressure"/>
         <nm:map ada="betaler" resource="Coverage" profile="nl-core-Payer.InsuranceCompany"/>
         <nm:map ada="betaler" resource="Coverage" profile="nl-core-Payer.PayerPerson"/>
@@ -74,6 +74,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="hartfrequentie" resource="Observation" profile="nl-core-HeartRate"/>
         <nm:map ada="juridische_situatie" resource="Condition" profile="nl-core-LegalSituation-LegalStatus"/>
         <nm:map ada="juridische_situatie" resource="Condition" profile="nl-core-LegalSituation-Representation"/>
+        <nm:map ada="laboratorium_uitslag" resource="Observation" profile="nl-core-LaboratoryTestResult"/>
+        <nm:map ada="laboratorium_test" resource="Observation" profile="nl-core-LaboratoryTestResult"/>
         <nm:map ada="lichaamslengte" resource="Observation" profile="nl-core-BodyHeight"/>
         <nm:map ada="lichaamstemperatuur" resource="Observation" profile="nl-core-BodyTemperature"/>
         <nm:map ada="lichaamsgewicht" resource="Observation" profile="nl-core-BodyWeight"/>
@@ -88,6 +90,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-HearingFunction.HearingAid"/>
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-VisualFunction.VisualAid"/>
         <nm:map ada="mobiliteit" resource="Observation" profile="nl-core-Mobility"/>
+        <nm:map ada="monster" resource="Specimen" profile="nl-core-LaboratoryTestResult.Specimen"/>
+        <nm:map ada="bron_monster" resource="Device" profile="nl-core-LaboratoryTestResult.Specimen.Source"/>
         <nm:map ada="mustscore" resource="Observation" profile="nl-core-MUSTScore"/>
         <nm:map ada="o2saturatie" resource="Observation" profile="nl-core-O2Saturation"/>
         <nm:map ada="opleiding" resource="Observation" profile="nl-core-Education"/>
@@ -181,13 +185,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
             </xsl:for-each-group>
         </xsl:for-each-group>
-
+        
         <xsl:for-each-group select="$in[self::zorgverlener[.//(@value | @code | @nullFlavor)]]" group-by="
             concat(nf:ada-zvl-id(zorgverlener_identificatienummer)/@root,
             nf:ada-zvl-id(zorgverlener_identificatienummer)/normalize-space(@value))">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
+                <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+            </xsl:for-each-group>
+        </xsl:for-each-group>
+        
+        <!-- This will build two variants for each monster; one with the actual canonical 
+                 [...]/nl-core-LaboratoryTestResult.Specimen and one with a faux canonical of
+                 [...]/nl-core-LaboratoryTestResult.Specimen.asMicroorganism (see ada2resourceType). This is
+                 needed because a monster might end up as two instances of the same profile. Yes, it's a hack.
+            -->
+        <xsl:for-each-group select="$in[self::laboratorium_uitslag]/monster[.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
             <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
         </xsl:for-each-group>
+        
+        <!-- If and only if there is more than one laboratorium_test, there should be an instance for each
+                 distinct laboratorium_test (in addition the "grouping" instance already identified as part of the 
+                 main process. -->
+        <xsl:for-each-group select="$in[self::laboratorium_uitslag]/laboratorium_test[.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyLaboratoryTest(.)">
+            <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
         </xsl:for-each-group>
         
         <!-- General rule for all zib root concepts that need to be converted into a FHIR resource -->
@@ -197,7 +217,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
               $in//zien_hulpmiddel/medisch_hulpmiddel,
               $in//product[parent::medisch_hulpmiddel],
               $in//visueel_resultaat[parent::tekst_uitslag],
-              $in//soepregel[parent::soepverslag]
+              $in//soepregel[parent::soepverslag],
+              $in//bron_monster[parent::monster]
             )[.//(@value | @code | @nullFlavor)]" group-by="local-name()">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <xsl:call-template name="_buildFhirMetadataForAdaEntry">
@@ -367,6 +388,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$in[@datatype = 'reference' and @value] and not(empty(nf:resolveAdaInstance($in, /)))">
                     <xsl:value-of select="nf:getGroupingKeyDefault(nf:resolveAdaInstance($in, /))"/>
                 </xsl:when>
+                <xsl:when test="$in[self::laboratorium_test]">
+                    <xsl:value-of select="nf:getGroupingKeyLaboratoryTest($in)"/>
+                </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="nf:getGroupingKeyDefault($in)"/>
                 </xsl:otherwise>
@@ -480,7 +504,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="."/>
         <xsl:param name="profile" as="xs:string" select="''"/>
 
-        <xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>
+        <!--<xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>-->
+
+        <xsl:variable name="groupKey">
+            <xsl:choose>
+                <xsl:when test="$in[self::laboratorium_test]">
+                    <xsl:value-of select="nf:getGroupingKeyLaboratoryTest($in)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="nf:getGroupingKeyDefault($in)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
 
         <xsl:if test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1 and string-length($profile) = 0">
             <xsl:message terminate="yes">insertId: Duplicate entry found in $fhirMetadata, while no $profile was supplied. $groupKey: <xsl:value-of select="$groupKey"/></xsl:message>
@@ -511,7 +546,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="."/>
         <xsl:param name="profile" as="xs:string" select="''"/>
 
-        <xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>
+        <!--<xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>-->
+
+        <xsl:variable name="groupKey">
+            <xsl:choose>
+                <xsl:when test="$in[self::laboratorium_test]">
+                    <xsl:value-of select="nf:getGroupingKeyLaboratoryTest($in)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="nf:getGroupingKeyDefault($in)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
 
         <xsl:if test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1 and string-length($profile) = 0">
             <xsl:message terminate="yes">insertFullUrl: Duplicate entry found in $fhirMetadata, while no $profile was supplied.</xsl:message>
