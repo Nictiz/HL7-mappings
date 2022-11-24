@@ -359,52 +359,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Create a nl-core-LaboratoryTestResult.Specimen instance as a Specimen FHIR instance from ADA laboratorium_uitslag/monster with microorganisme not populated. This results in a single instance of the profile where `Specimen.type` represents monstermateriaal (if present).</xd:desc>
-        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-    </xd:doc>
-<!--    <xsl:template name="nl-core-LaboratoryTestResult.SpecimenAsMaterial" match="monster[not(microorganisme/@code)]" mode="nl-core-LaboratoryTestResult.Specimen" as="element(f:Specimen)?">
-        <xsl:param name="in" as="element()?" select="."/>
-        <xsl:param name="subject" as="element()?"/>
-
-        <xsl:call-template name="_nl-core-LaboratoryTestResult.Specimen">
-            <xsl:with-param name="type" select="monstermateriaal"/>
-        </xsl:call-template>
-    </xsl:template>
--->    
-    <xd:doc>
-        <xd:desc>Create one or two nl-core-LaboratoryTestResult.Specimen instances as Specimen FHIR instances from ADA laboratorium_uitslag/monster. Normally, a specimen according to the zib is the source material, not a derivation. However, the zib specifies that the sample may contain a microorganism (isolate) instead of, or in addition to, a source material:
-        * When nothing is specified, an instance is created with `Speciment.type` empty.
-        * When monstermateriaal is populated, an instance is created where `Specimen.type` represents monstermateriaal.
-        * When only microorganisme is populated, an instance is created where `Specimen.type` represents microorganisme.
-        * If both are populated, two instances are created where the "microorganisme" instance refers the "monstermateriaal" instance.
-        </xd:desc>
-        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="subject">ADA patient element. Has no default</xd:param>
-    </xd:doc>
-    <xsl:template name="nl-core-LaboratoryTestResult-asMicroorganism" match="monster" mode="nl-core-LaboratoryTestResult.Specimen" as="element(f:Specimen)?">
-        <xsl:param name="in" as="element()?" select="."/>
-        <xsl:param name="subject" select="$in/../../../patientgegevens/patient" as="element()?"/>
-        
-        <xsl:message terminate="yes">Template 'nl-core-LaboratoryTestResult-asMicroorganism' does not comply with mapping guidelines (one FHIR resource per template) and is not tested. If you see this message, please debug.</xsl:message>
-        <!--<xsl:choose>
-            <xsl:when test="not(monstermateriaal or microorganisme)">
-                <xsl:call-template name="_nl-core-LaboratoryTestResult.Specimen">
-                    <xsl:with-param name="subject" select="$subject" as="element()"/>
-                </xsl:call-template>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:for-each select="(monstermateriaal | microorganisme)">
-                    <xsl:call-template name="_nl-core-LaboratoryTestResult.Specimen">
-                        <xsl:with-param name="in" select="./parent::monster"/>
-                        <xsl:with-param name="subject" select="$subject" as="element()"/>
-                        <xsl:with-param name="type" select="."/>
-                    </xsl:call-template>
-                </xsl:for-each>
-            </xsl:otherwise>
-        </xsl:choose>-->
-    </xsl:template>
-    
-    <xd:doc>
         <xd:desc>Helper template to create a nl-core-LaboratoryTestResult.Specimen instance as Specimen FHIR instance from ADA laboratorium_uitslag/monster. This template can result in two slightly different outputs based on the type parameter:
         * if type contains ADA element monstermateriaal, `Specimen.type` will contain that code.
         * if type contains ADA element microorgansime, `Specimen.type` will contain that code. If in contains monstermateriaal, that instance will be referred using `Specimen.parent`.
@@ -413,7 +367,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="type">Either the monstermateriaal or microorganisme ADA element.</xd:param>
         <xd:param name="subject">ADA patient element. Has no default</xd:param>
     </xd:doc>
-    <xsl:template name="_nl-core-LaboratoryTestResult.Specimen" match="monster" as="element(f:Specimen)?">
+    <xsl:template name="nl-core-LaboratoryTestResult.Specimen" mode="nl-core-LaboratoryTestResult.Specimen" match="monster" as="element(f:Specimen)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="$in/../../../patientgegevens/patient" as="element()?"/>
         <xsl:param name="type" as="element()?"/>
@@ -568,7 +522,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">ADA patient element. Has no default</xd:param>
     </xd:doc>
-    <xsl:template name="_nl-core-LaboratoryTestResult.Specimen.Source" match="bron_monster" as="element(f:Device)?">
+    <xsl:template name="nl-core-LaboratoryTestResult.Specimen.Source" match="bron_monster" as="element(f:Device)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="$in/../../../../patientgegevens/patient" as="element()?"/>
         
@@ -607,36 +561,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:variable name="logicalId">
             <xsl:choose>
-                <!--<xsl:when test="ancestor::*/local-name() = 'referenties'">
-                    <!-\- This is a contained ada instance, therefore does not have a valid base-uri() -\->
-                    <!-\- Moved position parameter here, because I do not expect it to function outside of 'referenties', but at the moment it does not have to -\->
-                    <xsl:variable name="position" as="xs:integer" select="count(preceding::*[local-name() = $localName][ancestor::*/local-name() = 'referenties'][starts-with(@conceptId, $zib2020Oid) and matches(@conceptId, '(\.1|9\.\d+\.\d+)$')]) + 1"/>
-                    <!-\- This leads to a contained zib AdministrationAgreement being referenced as 'nl-core-MedicationAdministration2-02-MedicationDispense-01'. Could be more clear. On the other hand, do we need to put more effort into contained ADA instances? -\->
-                    <xsl:value-of select="string-join(($id, $ada2resourceType/*[@profile = $profile]/@resource, format-number($position, '00')), '-')"/>
-                    <!-\- Proposal for better naming, but not activated yet because it has implications for the whole zib2020-r4 repo: -\->
-                    <!-\-<xsl:value-of select="string-join(($id, tokenize($profile, '-')[last()], format-number($position, '00')), '-')"/>-\->    
-                </xsl:when>
-                <xsl:when test="$localName = ('soepregel','visueel_resultaat','monster')">
-                    <xsl:value-of select="$baseId"/>
-                    <xsl:value-of select="substring-after($profile, $baseId)"/>
-                    <xsl:text>-</xsl:text>
-                    <xsl:value-of select="format-number(count(preceding-sibling::*[local-name() = $localName])+1, '00')"/>
-                </xsl:when>-->
                 <xsl:when test="$localName = 'laboratorium_test'">
                     <xsl:value-of select="$baseId"/>
                     <xsl:value-of select="substring-after($profile, $baseId)"/>
                     <xsl:text>-LaboratoryTest-</xsl:text>
                     <xsl:value-of select="format-number(count(preceding-sibling::*[local-name() = 'laboratorium_test'])+1, '00')"/>
                 </xsl:when>
-                <!--<xsl:when test="$profile = $baseId or not(starts-with($profile, $baseId))">
-                    <xsl:value-of select="$id"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="$baseId"/>
-                    <xsl:value-of select="substring-after($profile, $baseId)"/>
-                    <xsl:value-of select="substring-after($id, $baseId)"/>
-                </xsl:otherwise>-->
-            </xsl:choose>
+                </xsl:choose>
         </xsl:variable>
         
         <!-- Failsafe, ids can get quite long -->
