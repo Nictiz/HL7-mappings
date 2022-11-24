@@ -309,7 +309,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <fullUrl value="urn:uuid:{nf:get-uuid(.)}"/>
                 <resource>
                     <Communication xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir">
-                        <id value="{nf:get-uuid(*[1])}"/>
+                        <xsl:if test="$populateId = true() or $referencingStrategy = 'logicalId'">
+                            <id value="{nf:get-uuid(*[1])}"/>
+                        </xsl:if>
                         <meta>
                             <xsl:choose>
                                 <xsl:when test="antwoord_medicatieafspraak[@code]">
