@@ -75,27 +75,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:if>
                     </period>
                 </xsl:if>
-                <xsl:for-each select="reden_contact[afwijkende_uitslag/@value]">
-                    <reasonCode>
-                        <xsl:for-each select="toelichting_reden_contact">
-                            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
-                                <valueString>
-                                    <xsl:call-template name="string-to-string">
-                                        <xsl:with-param name="in" select="."/>
-                                    </xsl:call-template>
-                                </valueString>
-                            </extension>
-                        </xsl:for-each>
-                        <text>
-                            <xsl:call-template name="string-to-string">
-                                <xsl:with-param name="in" select="./afwijkende_uitslag"/>
-                                </xsl:call-template>
-                        </text>
-                        </reasonCode>
-                </xsl:for-each>
-                <xsl:for-each select="reden_contact[probleem/@value or verrichting/@value]">
+                <xsl:for-each select="reden_contact">
                     <reasonReference>
-                        <xsl:for-each select="./toelichting_reden_contact">
+                        <xsl:for-each select="toelichting_reden_contact">
                             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
                                 <valueString>
                                     <xsl:call-template name="string-to-string">
@@ -115,6 +97,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:with-param name="in" select="."/>
                                 <xsl:with-param name="profile" select="'nl-core-Procedure'"/>
                             </xsl:call-template>
+                        </xsl:for-each>
+                        <xsl:for-each select="afwijkende_uitslag">
+                            <xsl:comment>TODO: nl-core-LaboratoryTestResult, nl-core-Problem and nl-core-Procedure</xsl:comment>
+                            <!--<xsl:call-template name="makeReference">
+                            <xsl:with-param name="in" select="."/>
+                            <xsl:with-param name="profile" select="'nl-core-LaboratoryTestResult'"/>
+                        </xsl:call-template>-->
                         </xsl:for-each>
                     </reasonReference>
                 </xsl:for-each>
