@@ -78,7 +78,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="groupKey" select="current-grouping-key()"/>
                         </xsl:call-template>
                         <resource>
-                            <xsl:call-template name="_nl-core-LaboratoryTestResult.Specimen.Source">
+                            <xsl:call-template name="nl-core-LaboratoryTestResult.Specimen.Source">
                                 <xsl:with-param name="in" select="current-group()[1]"/>
                                 <xsl:with-param name="subject" select="../../../../patientgegevens/patient"/>
                             </xsl:call-template>
@@ -94,7 +94,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="resourceType" select="'Specimen'"/>
                         </xsl:call-template>
                         <resource>
-                            <xsl:call-template name="_nl-core-LaboratoryTestResult.Specimen">
+                            <xsl:call-template name="nl-core-LaboratoryTestResult.Specimen">
                                 <xsl:with-param name="in" select="current-group()[1]"/>
                                 <xsl:with-param name="subject" select="../../../patientgegevens/patient"/>
                                 <xsl:with-param name="type" select="microorganisme"/>
