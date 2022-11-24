@@ -63,7 +63,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </resource>
             </entry>
         </xsl:for-each-group>
-        <xsl:for-each-group select="/adaxml/data/*/bouwstenen/zorgverlener" group-by="nf:getGroupingKeyDefault(.)">
+        <!-- let's resolve the zorgaanbieder ín the zorgverlener, to make sure deduplication also works for duplicated zorgaanbieders -->
+        <xsl:variable name="zorgverlenerWithResolvedZorgaanbieder" as="element(zorgverlener)*">
+            <xsl:apply-templates select="/adaxml/data/*/bouwstenen/zorgverlener" mode="resolveAdaZorgaanbieder"/>                
+        </xsl:variable>
+        <xsl:for-each-group select="$zorgverlenerWithResolvedZorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
             <!-- entry for practitionerrole -->
             <xsl:variable name="zvlKey" select="current-grouping-key()"/>
             <entry>
@@ -71,12 +75,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <resource>
                     <xsl:call-template name="nl-core-HealthProfessional-PractitionerRole">
                         <xsl:with-param name="in" select="."/>
-                        <xsl:with-param name="organization" select="../zorgaanbieder[@id = current()//zorgaanbieder[not(zorgaanbieder)]/@value]"/>
+                        <xsl:with-param name="organization" select="zorgaanbieder"/>
                     </xsl:call-template>
                 </resource>
             </entry>
             <!-- also an entry for practitioner -->
-            <xsl:variable name="zvlKey" select="nf:getGroupingKeyDefault(.)"/>
             <entry>
                 <fullUrl value="{$fhirMetadata[nm:resource-type/text() = 'Practitioner'][nm:group-key/text() = $zvlKey]/nm:full-url/text()}"/>
                 <resource>

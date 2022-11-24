@@ -157,8 +157,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- we can only use zorgaanbieder_identificatienummer as logicalId when there is no other preceding zorgaanbieder with the same identificatienummer and a different grouping-key -->
         <xsl:variable name="currentZaId" select="nf:ada-healthprovider-id(zorgaanbieder_identificatienummer)"/>
         <xsl:variable name="precedingZaCurrentId" as="element()*" select="preceding::zorgaanbieder[zorgaanbieder_identificatienummer[@root = $currentZaId/@root][@value = $currentZaId/@value]]"/>
-        <xsl:variable name="precedingZaKey" select="nf:getGroupingKeyDefault($precedingZaCurrentId)" as="xs:string?"/>
-        <xsl:variable name="idAsLogicalIdAllowed" as="xs:boolean?" select="empty($precedingZaKey) or current-grouping-key() = $precedingZaKey"/>
+        <xsl:variable name="precedingZaKey" as="element()*">
+            <xsl:for-each select="$precedingZaCurrentId">
+                <precedingKey value="{nf:getGroupingKeyDefault(.)}"/>
+            </xsl:for-each>
+        </xsl:variable>
+        <xsl:variable name="idAsLogicalIdAllowed" as="xs:boolean?" select="count($precedingZaKey[@value ne current-grouping-key()]) gt 0"/>
 
         <xsl:variable name="uniqueString" as="xs:string?">
             <xsl:choose>

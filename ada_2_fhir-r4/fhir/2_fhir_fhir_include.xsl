@@ -189,7 +189,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each-group select="$in[self::zorgverlener[.//(@value | @code | @nullFlavor)]]" group-by="
             concat(nf:ada-zvl-id(zorgverlener_identificatienummer)/@root,
             nf:ada-zvl-id(zorgverlener_identificatienummer)/normalize-space(@value))">
-            <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
+            
+            <!-- let's resolve the zorgaanbieder ín the zorgverlener, to make sure deduplication also works for duplicated zorgaanbieders -->
+            <xsl:variable name="zorgverlenerWithResolvedZorgaanbieder" as="element(zorgverlener)*">
+                <xsl:apply-templates select="current-group()" mode="resolveAdaZorgaanbieder"/>                
+            </xsl:variable>
+            
+            <xsl:for-each-group select="$zorgverlenerWithResolvedZorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
                 <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
             </xsl:for-each-group>
         </xsl:for-each-group>
@@ -382,6 +388,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:when>
                 <xsl:when test="$in[self::laboratorium_test]">
                     <xsl:value-of select="nf:getGroupingKeyLaboratoryTest($in)"/>
+                </xsl:when>
+                <xsl:when test="$in[self::zorgverlener]">
+                    <!-- let's resolve the zorgaanbieder ín the zorgverlener, to make sure deduplication also works for duplicated zorgaanbieders -->
+                    <xsl:variable name="zorgverlenerWithResolvedZorgaanbieder" as="element(zorgverlener)*">
+                        <xsl:apply-templates select="$in" mode="resolveAdaZorgaanbieder"/>                
+                    </xsl:variable>
+                    <xsl:value-of select="nf:getGroupingKeyDefault($zorgverlenerWithResolvedZorgaanbieder)"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="nf:getGroupingKeyDefault($in)"/>

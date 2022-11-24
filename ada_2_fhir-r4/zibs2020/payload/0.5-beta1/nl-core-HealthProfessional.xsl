@@ -77,8 +77,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="." as="element()?"/>
 
         <xsl:for-each select="$in">
+            <!-- let's resolve the zorgaanbieder ín the zorgverlener, to make sure we can find appropriate data in fhirMetaData -->
+            <xsl:variable name="zorgverlenerWithResolvedZorgaanbieder" as="element(zorgverlener)*">
+                <xsl:apply-templates select="." mode="resolveAdaZorgaanbieder"/>                
+            </xsl:variable>
+            
             <Practitioner>
                 <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="in" select="$zorgverlenerWithResolvedZorgaanbieder"/>
                     <xsl:with-param name="profile" select="'nl-core-HealthProfessional-Practitioner'"/>
                 </xsl:call-template>
                 <meta>
@@ -184,12 +190,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="zorgverlener" mode="_generateId">
         <xsl:param name="profile" required="yes" as="xs:string"/>
         <xsl:param name="fullUrl" tunnel="yes"/>
-        
+
         <!-- we can only use zorgverlener_identificatienummer as logicalId when there is no other preceding zorgverlener with the same identificatienummer and a different grouping-key -->
         <xsl:variable name="currentZvlId" select="nf:ada-healthprofessional-id(zorgverlener_identificatienummer)"/>
         <xsl:variable name="precedingZvlCurrentId" as="element()*" select="preceding::zorgverlener[zorgverlener_identificatienummer[@root = $currentZvlId/@root][@value = $currentZvlId/@value]]"/>
-        <xsl:variable name="precedingZvlKey" select="nf:getGroupingKeyDefault($precedingZvlCurrentId)" as="xs:string?"/>
-        <xsl:variable name="idAsLogicalIdAllowed" as="xs:boolean?" select="empty($precedingZvlKey) or current-grouping-key() = $precedingZvlKey"/>
+        <xsl:variable name="precedingZvlKey" as="element()*">
+            <xsl:for-each select="$precedingZvlCurrentId">
+                <precedingKey value="{nf:getGroupingKeyDefault(.)}"/>
+            </xsl:for-each>
+        </xsl:variable>
+        <xsl:variable name="idAsLogicalIdAllowed" as="xs:boolean?" select="count($precedingZvlKey[@value ne current-grouping-key()]) gt 0"/>
 
         <xsl:variable name="uniqueString" as="xs:string?">
 
@@ -237,6 +247,46 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:with-param name="uniqueString" select="$uniqueString"/>
         </xsl:call-template>
 
+    </xsl:template>
+
+
+    <xd:doc>
+        <xd:desc>Do not copy the double nested zorgaanbieder</xd:desc>
+    </xd:doc>
+    <xsl:template match="zorgverlener//zorgaanbieder[zorgaanbieder]" mode="resolveAdaZorgaanbieder">
+        <xsl:apply-templates select="@* | node()" mode="#current"/>        
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Find the appropriate zorgaanbieder contents in this ada instance and copy those when found</xd:desc>
+    </xd:doc>
+    <xsl:template match="zorgverlener//zorgaanbieder[@value][not(*)]" mode="resolveAdaZorgaanbieder">
+        <xsl:choose>
+            <!-- assumption zorgaanbieder is found at same level as zorgverlener, which is a reasonable assumption -->
+            <xsl:when test="ancestor::zorgverlener/../zorgaanbieder[@id = current()/@value]">
+                <!-- should be max one found, but defence programming -->
+                <xsl:copy-of select="(ancestor::zorgverlener/../zorgaanbieder[@id = current()/@value])[1]"/>
+            </xsl:when>
+            <!-- okay, assumption did not work out, let's search anywhere in the ada instance -->
+            <xsl:when test="ancestor::adaxml/data/*//zorgaanbieder[@id = current()/@value]">
+                <!-- should be max one found, but defence programming -->
+                <xsl:copy-of select="(ancestor::adaxml/data/*//zorgaanbieder[@id = current()/@value])[1]"/>
+            </xsl:when>
+            <!-- even that did not work out, the ada instance really let us down. Now we'll have to fallback on whatever was in input -->
+            <xsl:otherwise>
+                <xsl:apply-templates select="@* | node()" mode="#current"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+
+    <xd:doc>
+        <xd:desc>Default copy template</xd:desc>
+    </xd:doc>
+    <xsl:template match="node() | @*" mode="resolveAdaZorgaanbieder">
+        <xsl:copy>
+            <xsl:apply-templates select="node() | @*" mode="#current"/>
+        </xsl:copy>
     </xsl:template>
 
     <xd:doc>
