@@ -1624,33 +1624,6 @@
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Bron toestemming cliënt/jeugdige/gezaghebbende: 1535, 0..* (W0691, KL_AN | Bron cliënt/jeugdige/gezaghebbende) - waardelijst bijwerken</xd:desc>
-    </xd:doc>
-    <xsl:template match="hl7:code[@codeSystem = '2.16.840.1.113883.2.4.4.40.435']" mode="dob400">
-        <xsl:variable name="theCode" select="@code"/>
-        <xsl:variable name="theNullFlavor" select="@nullFlavor"/>
-        <xsl:copy>
-            <xsl:choose>
-                <xsl:when test="$theCode = '03'">
-                    <xsl:attribute name="nullFlavor">OTH</xsl:attribute>
-                    <originalText xmlns="urn:hl7-org:v3">Gezaghebbende (Geen toestemming van andere gezaghebbende vereist)</originalText>
-                </xsl:when>
-                <xsl:when test="$theCode = '04'">
-                    <xsl:attribute name="nullFlavor">OTH</xsl:attribute>
-                    <originalText xmlns="urn:hl7-org:v3">Gezaghebbende (Toestemming van andere gezaghebbende vereist)</originalText>
-                </xsl:when>
-                <xsl:when test="$theCode = '05'">
-                    <xsl:attribute name="nullFlavor">OTH</xsl:attribute>
-                    <originalText xmlns="urn:hl7-org:v3">Wettelijk vertegenwoordiger namens jeugdige</originalText>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:apply-templates select="@* | *" mode="dob400"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:copy>
-    </xsl:template>
-    
-    <xd:doc>
         <xd:desc>Indicatie activiteit: 1424, 0..* (W0619, KL_AN, Indicatie) - waardelijst bijwerken</xd:desc>
     </xd:doc>
     <xsl:template match="hl7:reasonCode[@codeSystem = '2.16.840.1.113883.2.4.4.40.373']" mode="dob400">
