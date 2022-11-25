@@ -16,7 +16,7 @@
                 <xsl:when test="./@extension = '{$applicationId}'">
                     <xsl:attribute name="extension">90000249</xsl:attribute>
                 </xsl:when>
-                <xsl:when test="./@extension = '{$orgID}'">
+                <xsl:when test="./@extension = '{$orgId}'">
                     <xsl:attribute name="extension">00000509</xsl:attribute>
                 </xsl:when>
             </xsl:choose>
