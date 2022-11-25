@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="labtest-KWAL-LAR-LosResultaat-MMB-LOINC-92225"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
+      <valueString value="222444"/>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
+      <value value="92225"/>
+   </identifier>
+   <status value="final"/>
+   <category>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+         <code value="laboratory"/>
+         <display value="Laboratory"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="94309-2"/>
+         <display value="SARS-CoV-2 RNA [aanwezigheid] d.m.v. moleculaire techniek (PCR)"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/patient-XXX-Sacht"/>
+      <type value="Patient"/>
+      <display value="Patient, Patricia XXX_Sacht"/>
+   </subject>
+   <effectiveDateTime value="${DATE, T, D, -3}"/>
+   <performer>
+      <reference value="Organization/org-00003333"/>
+      <type value="Organization"/>
+      <display value="Healthcare provider (organization), Klinisch chemisch Lab 't Proefje"/>
+   </performer>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="260373001"/>
+         <display value="aangetoond"/>
+      </coding>
+   </valueCodeableConcept>
+   <interpretation>
+      <text value="COVID aanwezig"/>
+   </interpretation>
+   <specimen>
+      <reference value="Specimen/monster-13344-119389009"/>
+      <type value="Specimen"/>
+      <display value="monster"/>
+   </specimen>
+</Observation>

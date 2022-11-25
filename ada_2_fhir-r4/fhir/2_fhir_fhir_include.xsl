@@ -59,8 +59,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="alcohol_gebruik" resource="Observation" profile="nl-core-AlcoholUse"/>
         <nm:map ada="alert" resource="Flag" profile="nl-core-alert"/>
         <nm:map ada="allergie_intolerantie" resource="AllergyIntolerance" profile="nl-core-AllergyIntolerance"/>
-         <nm:map ada="behandel_aanwijzing" resource="Consent" profile="nl-core-TreatmentDirective2"/>
+        <nm:map ada="behandel_aanwijzing" resource="Consent" profile="nl-core-TreatmentDirective2"/>
         <nm:map ada="bloeddruk" resource="Observation" profile="nl-core-BloodPressure"/>
+        <nm:map ada="betaler" resource="Coverage" profile="nl-core-Payer.InsuranceCompany"/>
+        <nm:map ada="betaler" resource="Coverage" profile="nl-core-Payer.PayerPerson"/>
+        <nm:map ada="betaler" resource="Organization" profile="nl-core-Payer-Organization"/>
         <nm:map ada="contact" resource="Encounter" profile="nl-core-Encounter"/>
         <nm:map ada="contactpersoon" resource="RelatedPerson" profile="nl-core-ContactPerson"/>
         <nm:map ada="drugs_gebruik" resource="Observation" profile="nl-core-DrugUse"/>
@@ -71,6 +74,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="hartfrequentie" resource="Observation" profile="nl-core-HeartRate"/>
         <nm:map ada="juridische_situatie" resource="Condition" profile="nl-core-LegalSituation-LegalStatus"/>
         <nm:map ada="juridische_situatie" resource="Condition" profile="nl-core-LegalSituation-Representation"/>
+        <nm:map ada="laboratorium_uitslag" resource="Observation" profile="nl-core-LaboratoryTestResult"/>
+        <nm:map ada="laboratorium_test" resource="Observation" profile="nl-core-LaboratoryTestResult"/>
         <nm:map ada="lichaamslengte" resource="Observation" profile="nl-core-BodyHeight"/>
         <nm:map ada="lichaamstemperatuur" resource="Observation" profile="nl-core-BodyTemperature"/>
         <nm:map ada="lichaamsgewicht" resource="Observation" profile="nl-core-BodyWeight"/>
@@ -85,8 +90,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-HearingFunction.HearingAid"/>
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-VisualFunction.VisualAid"/>
         <nm:map ada="mobiliteit" resource="Observation" profile="nl-core-Mobility"/>
+        <nm:map ada="monster" resource="Specimen" profile="nl-core-LaboratoryTestResult.Specimen"/>
+        <nm:map ada="bron_monster" resource="Device" profile="nl-core-LaboratoryTestResult.Specimen.Source"/>
         <nm:map ada="mustscore" resource="Observation" profile="nl-core-MUSTScore"/>
         <nm:map ada="o2saturatie" resource="Observation" profile="nl-core-O2Saturation"/>
+        <nm:map ada="opleiding" resource="Observation" profile="nl-core-Education"/>
         <nm:map ada="patient" resource="Patient" profile="nl-core-Patient"/>
         <nm:map ada="probleem" resource="Condition" profile="nl-core-Problem"/>
         <nm:map ada="product" resource="Device" profile="nl-core-MedicalDevice.Product"/>
@@ -114,10 +122,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="vaccinatie" resource="Immunization" profile="nl-core-Vaccination-event"/>
         <nm:map ada="vaccinatie" resource="ImmunizationRecommendation" profile="nl-core-Vaccination-request"/>
         <nm:map ada="vermogen_tot_drinken" resource="Observation" profile="nl-core-AbilityToDrink"/>
+        <nm:map ada="vermogen_tot_zich_kleden" resource="Observation" profile="nl-core-AbilityToDressOneself"/>
+        <nm:map ada="vermogen_tot_zich_wassen" resource="Observation" profile="nl-core-AbilityToWashOneself"/>
         <nm:map ada="verrichting" resource="Procedure" profile="nl-core-Procedure"/>
         <nm:map ada="verstrekkingsverzoek" resource="MedicationRequest" profile="mp-DispenseRequest"/>
         <nm:map ada="visueel_resultaat" resource="Media" profile="nl-core-TextResult-Media"/>
         <nm:map ada="visus" resource="Observation" profile="nl-core-VisualAcuity"/>
+        <nm:map ada="voedingsadvies" resource="NutritionOrder" profile="nl-core-NutritionAdvice"/>
         <nm:map ada="vrijheidsbeperkende_interventie" resource="Procedure" profile="nl-core-FreedomRestrictingIntervention"/>
         <nm:map ada="wilsverklaring" resource="Consent" profile="nl-core-AdvanceDirective"/>
         <nm:map ada="wisselend_doseerschema" resource="MedicationRequest" profile="mp-VariableDosingRegimen"/>
@@ -174,13 +185,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
             </xsl:for-each-group>
         </xsl:for-each-group>
-
+        
         <xsl:for-each-group select="$in[self::zorgverlener[.//(@value | @code | @nullFlavor)]]" group-by="
             concat(nf:ada-zvl-id(zorgverlener_identificatienummer)/@root,
             nf:ada-zvl-id(zorgverlener_identificatienummer)/normalize-space(@value))">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
-            <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+                <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+            </xsl:for-each-group>
         </xsl:for-each-group>
+        
+        <!-- If and only if there is more than one laboratorium_test, there should be an instance for each
+                 distinct laboratorium_test (in addition the "grouping" instance already identified as part of the 
+                 main process. -->
+        <xsl:for-each-group select="$in[self::laboratorium_uitslag]/laboratorium_test[.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyLaboratoryTest(.)">
+            <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
         </xsl:for-each-group>
         
         <!-- General rule for all zib root concepts that need to be converted into a FHIR resource -->
@@ -190,7 +208,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
               $in//zien_hulpmiddel/medisch_hulpmiddel,
               $in//product[parent::medisch_hulpmiddel],
               $in//visueel_resultaat[parent::tekst_uitslag],
-              $in//soepregel[parent::soepverslag]
+              $in//soepregel[parent::soepverslag],
+              $in//monster[parent::laboratorium_uitslag],
+              $in//bron_monster[parent::monster]
             )[.//(@value | @code | @nullFlavor)]" group-by="local-name()">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <xsl:call-template name="_buildFhirMetadataForAdaEntry">
@@ -360,6 +380,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$in[@datatype = 'reference' and @value] and not(empty(nf:resolveAdaInstance($in, /)))">
                     <xsl:value-of select="nf:getGroupingKeyDefault(nf:resolveAdaInstance($in, /))"/>
                 </xsl:when>
+                <xsl:when test="$in[self::laboratorium_test]">
+                    <xsl:value-of select="nf:getGroupingKeyLaboratoryTest($in)"/>
+                </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="nf:getGroupingKeyDefault($in)"/>
                 </xsl:otherwise>
@@ -473,7 +496,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="."/>
         <xsl:param name="profile" as="xs:string" select="''"/>
 
-        <xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>
+        <!--<xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>-->
+
+        <xsl:variable name="groupKey">
+            <xsl:choose>
+                <xsl:when test="$in[self::laboratorium_test]">
+                    <xsl:value-of select="nf:getGroupingKeyLaboratoryTest($in)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="nf:getGroupingKeyDefault($in)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
 
         <xsl:if test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1 and string-length($profile) = 0">
             <xsl:message terminate="yes">insertId: Duplicate entry found in $fhirMetadata, while no $profile was supplied. $groupKey: <xsl:value-of select="$groupKey"/></xsl:message>
@@ -504,7 +538,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="."/>
         <xsl:param name="profile" as="xs:string" select="''"/>
 
-        <xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>
+        <!--<xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>-->
+
+        <xsl:variable name="groupKey">
+            <xsl:choose>
+                <xsl:when test="$in[self::laboratorium_test]">
+                    <xsl:value-of select="nf:getGroupingKeyLaboratoryTest($in)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="nf:getGroupingKeyDefault($in)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
 
         <xsl:if test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1 and string-length($profile) = 0">
             <xsl:message terminate="yes">insertFullUrl: Duplicate entry found in $fhirMetadata, while no $profile was supplied.</xsl:message>
@@ -622,43 +667,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
 
         <xsl:value-of select="substring($logicalId, $startingLoc, $lengthLogicalId)"/>
-    </xsl:function>
-
-    <xd:doc>
-        <xd:desc>Returns true (boolean) if the date or dateTime is in the future. Defaults to false. Input should be a value that is castable to a date or dateTime. Input may be empty which results in the default false value.</xd:desc>
-        <xd:param name="dateOrDt">The ADA date or dateTime.</xd:param>
-    </xd:doc>
-    <xsl:function name="nf:isFuture" as="xs:boolean">
-        <xsl:param name="dateOrDt"/>
-        <xsl:choose>
-            <xsl:when test="$dateOrDt castable as xs:date">
-                <xsl:value-of select="$dateOrDt &gt; current-date()"/>
-            </xsl:when>
-            <xsl:when test="$dateOrDt castable as xs:dateTime">
-                <xsl:value-of select="$dateOrDt &gt; current-dateTime()"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="false()"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:function>
-
-    <xd:doc>
-        <xd:desc>Returns true (boolean) if the date or dateTime is in the past. Defaults to false. Input should be a value that is castable to a date or dateTime. Input may be empty which results in the default false value.</xd:desc>
-    </xd:doc>
-    <xsl:function name="nf:isPast" as="xs:boolean">
-        <xsl:param name="dateOrDt"/>
-        <xsl:choose>
-            <xsl:when test="$dateOrDt castable as xs:date">
-                <xsl:value-of select="$dateOrDt &lt; current-date()"/>
-            </xsl:when>
-            <xsl:when test="$dateOrDt castable as xs:dateTime">
-                <xsl:value-of select="$dateOrDt &lt; current-dateTime()"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="false()"/>
-            </xsl:otherwise>
-        </xsl:choose>
     </xsl:function>
 
     <xd:doc>
