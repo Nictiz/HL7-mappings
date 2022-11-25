@@ -159,7 +159,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <coding>
                                     <system value="http://snomed.info/sct"/>
                                     <code value="228390007"/>
-                                    <display value="Frequency of drug misuse (observable entity)"/>
+                                    <display value="Frequency of drug misuse"/>
                                 </coding>
                             </code>
                             <valueString>
