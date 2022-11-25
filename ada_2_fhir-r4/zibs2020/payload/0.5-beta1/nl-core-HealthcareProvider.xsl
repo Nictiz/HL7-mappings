@@ -148,34 +148,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to generate a unique id to identify a HealthProfessional present in a (set of) ada-instance(s)</xd:desc>
         <xd:param name="profile">Parameter to indicate for which target profile an id is to be generated.</xd:param>
+        <xd:param name="partNumber">The sequence number of the ADA instance being passed in the total collection of ADA instances of this kind. This sequence number is needed for uniqueness of ids in resources.</xd:param>
+        <xd:param name="fullUrl">If the HealthProvider is identified by fullUrl, this optional parameter can be used as fallback for an id</xd:param>
     </xd:doc>
     <xsl:template match="zorgaanbieder" mode="_generateId">
         <xsl:param name="profile" required="yes" as="xs:string"/>
-
+        <xsl:param name="partNumber" as="xs:integer" select="0"/>
+        <xsl:param name="fullUrl" tunnel="yes"/>
+        
         <xsl:variable name="organizationLocation" select="(organisatie_locatie/locatie_naam/@value[not(. = '')], 'Location')[1]"/>
 
-        <!-- we can only use zorgaanbieder_identificatienummer as logicalId when there is no other preceding zorgaanbieder with the same identificatienummer and a different grouping-key -->
+        <!-- we can use zorgaanbieder_identificatienummer as logicalId, from partNumber 2 onwards, we append the partNumber for uniqueness purposes -->
         <xsl:variable name="currentZaId" select="nf:ada-healthprovider-id(zorgaanbieder_identificatienummer)"/>
-        <xsl:variable name="precedingZaCurrentId" as="element()*" select="preceding::zorgaanbieder[zorgaanbieder_identificatienummer[@root = $currentZaId/@root][@value = $currentZaId/@value]]"/>
-        <xsl:variable name="precedingZaKey" as="element()*">
-            <xsl:for-each select="$precedingZaCurrentId">
-                <precedingKey value="{nf:getGroupingKeyDefault(.)}"/>
-            </xsl:for-each>
-        </xsl:variable>
-        <xsl:variable name="idAsLogicalIdAllowed" as="xs:boolean?" select="count($precedingZaKey[@value ne current-grouping-key()]) gt 0"/>
 
-        <xsl:variable name="uniqueString" as="xs:string?">
+        <xsl:variable name="uniqueString" as="xs:string*">
             <xsl:choose>
-                <xsl:when test="not($idAsLogicalIdAllowed)">
-                    <xsl:next-match>
-                        <xsl:with-param name="profile" select="$profile"/>
-                    </xsl:next-match>
-                </xsl:when>
-                <xsl:when test="zorgaanbieder_identificatienummer[@value | @root]">
-                    <!-- we remove '.' in root oid and '_' in extension to enlarge the chance of staying in 64 chars -->
-                    <xsl:for-each select="(zorgaanbieder_identificatienummer[@value | @root])[1]">
-                        <xsl:value-of select="concat(replace(@root, '\.', ''), '-', replace(@value, '_', ''))"/>
-                    </xsl:for-each>
+                  <xsl:when test="$currentZaId[@value | @root]">
+                      <xsl:for-each select="($currentZaId[@value | @root])[1]">
+                          <!-- use append for Organization to also create stable id based on identifier, but make it unique cause Location uses the same -->
+                          <xsl:if test="$profile = $profilenameHealthcareProviderOrganization">Org-</xsl:if>
+                          <!-- we remove '.' in root oid and '_' in extension to enlarge the chance of staying in 64 chars -->
+                          <xsl:value-of select="concat(replace(@root, '\.', ''), '-', replace(@value, '_', ''))"/>
+                          <xsl:if test="$partNumber gt 1">
+                              <xsl:value-of select="concat('-', $partNumber)"/>
+                          </xsl:if>
+                      </xsl:for-each>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:next-match>
@@ -184,10 +181,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-
-        <xsl:call-template name="generateLogicalId">
-            <xsl:with-param name="uniqueString" select="$uniqueString"/>
-        </xsl:call-template>
+     
+        <xsl:apply-templates select="." mode="generateLogicalId">
+            <xsl:with-param name="uniqueString" select="string-join($uniqueString, '')"/>
+            <xsl:with-param name="profile" select="$profile"/>
+        </xsl:apply-templates>
     </xsl:template>
 
     <xd:doc>

@@ -407,6 +407,31 @@
                 <exclude name="mg-*ALL.xml"/>
             </fileset>              
         </copy>
+        
+        <!-- Finally some extra test files to challenge ourselves -->
+        <echo>nictiz_test</echo>
+        <property name="xsl.input.ntest" value="${build.dir}/nictiz_test/ada_instance"/>
+        <property name="xsl.output.ntest" value="${build.dir}/nictiz_test/fhir_instance"/>
+        
+        <!-- make dir if it does not exist (anymore) -->
+        <mkdir dir="${xsl.output.ntest}"/>
+        <echo>Deleting previous results, if any</echo>
+        <delete>
+            <fileset dir="${xsl.output.ntest}" includes="*.*"/>
+        </delete>
+        <!-- bundles -->
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="usecase" value="nictiz_test"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.fhir.fixtures}/payload/${usecase.mg}_2_fhir.xsl"/>
+            <param name="xsl.in" value="${xsl.input.ntest}"/>
+            <param name="xsl.in.include" value="*.xml"/>
+            <!-- the xsl will write it's resources, but ant xslt still needs output dir -->
+            <param name="xsl.out" value="${xsl.output.dummy}"/>
+            <param name="param.tdate" value="${date.T}" if:set="date.T"/>
+            <param name="param.maskids" value="${mask.ids}"/>
+            <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
+            <param name="output.dir" value="../${xsl.output.ntest}"/>
+        </antcall>        
 
         <!-- beschikbaarstellen_medicatieoverzicht not actively tested / used in kickstart, no test instances available yet -->
         <!--        <echo>beschikbaarstellen_medicatieoverzicht</echo>
@@ -476,7 +501,7 @@
         <antcall target="schemavalidate_sub_url">
             <param name="fileset.include" value="**/fhir_instance/*.xml"/>
             <param name="fileset.exclude" value="beschikbaarstellen_medicatiegegevens/**/*"/>
-            <param name="fileset.exclude2" value="nictiz_test/**/*"/>
+<!--            <param name="fileset.exclude2" value="nictiz_test/**/*"/>-->
             <param name="validate.schema" value="${schema.bundle}"/>
         </antcall>
 
@@ -545,7 +570,16 @@
             <param name="xsl.input" value="fhir_instance"/>
             <param name="xsl.output" value="validate_fhir_instance"/>
             <param name="xsl.mp" value="${validate.dir}/bundle.xsl"/>
-        </antcall>        
+        </antcall>      
+        
+        <!-- nictiz_test -->
+        <antcall target="validate_fhir_sub">
+            <param name="sub.build.dir" value="${build.dir}/nictiz_test"/>
+            <param name="include" value="*.xml"/>
+            <param name="xsl.input" value="fhir_instance"/>
+            <param name="xsl.output" value="validate_fhir_instance"/>
+            <param name="xsl.mp" value="${validate.dir}/bundle.xsl"/>
+        </antcall>      
         
 
     </target>
