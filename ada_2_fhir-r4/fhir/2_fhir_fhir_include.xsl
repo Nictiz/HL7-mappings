@@ -330,9 +330,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:choose>
 
                 <nm:reference-display>
-                    <xsl:apply-templates select="$in" mode="_generateDisplay">
-                        <xsl:with-param name="profile" select="$profile"/>
-                    </xsl:apply-templates>
+                    <xsl:variable name="generatedDisplay" as="xs:string*">
+                        <xsl:apply-templates select="$in" mode="_generateDisplay">
+                            <xsl:with-param name="profile" select="$profile"/>
+                        </xsl:apply-templates>
+                    </xsl:variable>
+                    <xsl:value-of select="normalize-space(string-join($generatedDisplay))"/>
                 </nm:reference-display>
             </nm:resource>
         </xsl:for-each>
