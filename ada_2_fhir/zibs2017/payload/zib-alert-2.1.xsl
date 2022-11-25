@@ -136,12 +136,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:choose>
                     </xsl:for-each>
                     
-                    <!-- status does not exist in zib but is 1..1 in FHIR profile -->
-                    <status>
-                        <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                            <valueCode value="unknown"/>
-                        </extension>
-                    </status>
+                    <xsl:for-each select="zibroot/identificatienummer | hcimroot/identification_number">
+                        <identifier>
+                            <xsl:call-template name="id-to-Identifier">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </identifier>
+                    </xsl:for-each>
+                    
+                    <!-- status does not exist in zib but is 1..1 in FHIR profile (not possible to add data-absent-reason due to required binding) -->
+                    <status value="active"/>
                     
                     <xsl:for-each select="alert_type[@code]">
                         <category>

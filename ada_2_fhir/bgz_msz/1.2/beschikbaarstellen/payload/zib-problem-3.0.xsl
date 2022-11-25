@@ -150,6 +150,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="{$profileValue}"/>
                     </meta>
                     
+                    <xsl:for-each select="zibroot/identificatienummer | hcimroot/identification_number">
+                        <identifier>
+                            <xsl:call-template name="id-to-Identifier">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </identifier>
+                    </xsl:for-each>
+                    
                     <!-- clinicalStatus is required in the FHIR profile, so always output clinicalStatus, data-absent-reason if no actual value -->
                     <clinicalStatus>
                         <xsl:attribute name="value">

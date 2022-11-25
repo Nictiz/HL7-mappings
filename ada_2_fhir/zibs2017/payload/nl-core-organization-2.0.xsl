@@ -168,7 +168,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:when test="ancestor::beschikbaarstellen_verstrekkingenvertaling">http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Organization</xsl:when>
                         <xsl:otherwise>http://fhir.nl/fhir/StructureDefinition/nl-core-organization</xsl:otherwise>
                     </xsl:choose>
-                </xsl:variable>
+                </xsl:variable>                
                 <Organization>
                     <xsl:if test="string-length($logicalId) gt 0">
                         <xsl:choose>
@@ -180,9 +180,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:if>
+                    
                     <meta>
                         <profile value="{$profileValue}"/>
                     </meta>
+                    
                     <xsl:for-each select="(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)[@value]">
                         <identifier>
                             <xsl:call-template name="id-to-Identifier">
@@ -190,6 +192,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </identifier>
                     </xsl:for-each>
+                    
+                    <xsl:for-each select="zibroot/identificatienummer | hcimroot/identification_number">
+                        <identifier>
+                            <xsl:call-template name="id-to-Identifier">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </identifier>
+                    </xsl:for-each>
+                    
                     <!-- type -->
                     <xsl:for-each select="organization_type | organisatie_type | department_specialty | afdeling_specialisme">
                         <xsl:variable name="display" select="@displayName[not(. = '')]"/>
@@ -211,6 +222,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </type>
                     </xsl:for-each>
+                    
                     <!-- name -->
                     <xsl:variable name="organizationName" select="(organisatie_naam | organization_name)/@value"/>
                     <xsl:variable name="organizationLocation" select="(organisatie_locatie | organization_location)/@value"/>
@@ -218,12 +230,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <!-- Cardinality of ADA allows organizationLocation to be present without organizationName. This allows Organization.name to be the value of organizationLocation. This conforms to mapping of HCIM HealthcareProvider -->
                         <name value="{string-join(($organizationName, $organizationLocation)[not(. = '')],' - ')}"/>
                     </xsl:if>
+                    
                     <!-- contactgegevens -->
                     <!-- MM-2693 Filter private contact details -->
                     <xsl:call-template name="nl-core-contactpoint-1.0">
                         <xsl:with-param name="in" select="contactgegevens | contact_information"/>
                         <xsl:with-param name="filterprivate" select="true()" as="xs:boolean"/>
                     </xsl:call-template>
+                    
                     <!-- address -->
                     <!-- MM-2693 Filter private addresses -->
                     <xsl:call-template name="nl-core-address-2.0">

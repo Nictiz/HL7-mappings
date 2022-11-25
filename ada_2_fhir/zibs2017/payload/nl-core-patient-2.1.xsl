@@ -129,6 +129,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </identifier>
                     </xsl:for-each>
                     
+                    <xsl:for-each select="zibroot/identificatienummer | hcimroot/identification_number">
+                        <identifier>
+                            <xsl:call-template name="id-to-Identifier">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </identifier>
+                    </xsl:for-each>
+                    
                     <!-- in some data sets the name_information is unfortunately unnecessarily nested in an extra group, hence the extra predicate -->
                     <xsl:for-each select=".//(naamgegevens[not(naamgegevens)] | name_information[not(name_information)])">
                         <xsl:call-template name="nl-core-humanname-2.0">

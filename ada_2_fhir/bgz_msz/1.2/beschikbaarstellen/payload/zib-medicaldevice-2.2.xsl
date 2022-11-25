@@ -241,6 +241,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:choose>
                     </xsl:for-each>
                     
+                    <xsl:for-each select="zibroot/identificatienummer | hcimroot/identification_number">
+                        <identifier>
+                            <xsl:call-template name="id-to-Identifier">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </identifier>
+                    </xsl:for-each>
+                    
                     <status value="active"/>
                     
                     <!-- Patient reference -->
@@ -350,6 +358,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <meta>
                         <profile value="{$profileValue}"/>
                     </meta>
+                    
+                    <xsl:for-each select="zibroot/identificatienummer | hcimroot/identification_number">
+                        <identifier>
+                            <xsl:call-template name="id-to-Identifier">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </identifier>
+                    </xsl:for-each>
                     
                     <xsl:for-each select="product/product_id[@code]">
                         <identifier>

@@ -41,6 +41,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="{$profileValue}"/>
                     </meta>
                     
+                    <xsl:for-each select="zibroot/identificatienummer | hcimroot/identification_number">
+                        <identifier>
+                            <xsl:call-template name="id-to-Identifier">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </identifier>
+                    </xsl:for-each>
+                    
                     <xsl:variable name="startDate" select="(begin_datum_tijd | start_date_time)/@value"/>
                     <xsl:variable name="endDate" select="(eind_datum_tijd | end_date_time)/@value"/>
                     
