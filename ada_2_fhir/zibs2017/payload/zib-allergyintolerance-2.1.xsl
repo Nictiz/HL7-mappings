@@ -256,8 +256,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:when>
                                     <!--Propensity to adverse reactions to drug    419511003    SNOMED CT    2.16.840.1.113883.6.96    Medicijn-->
                                     <xsl:when test="@code = '419511003' and @codeSystem = $oidSNOMEDCT">
-                                        <xsl:attribute name="displayName">neiging tot ongewenste reactie op geneesmiddel</xsl:attribute>
-                                        <!--<xsl:if test="not(@originalText) and not(@displayName = 'neiging tot ongewenste reactie op geneesmiddel')">
+                                        <xsl:attribute name="displayName">neiging tot ongewenste reactie op medicatie en/of drug</xsl:attribute>
+                                        <!--<xsl:if test="not(@originalText) and not(@displayName = 'neiging tot ongewenste reactie op medicatie en/of drug')">
                                             <xsl:attribute name="originalText" select="@displayName"/>
                                         </xsl:if>-->
                                     </xsl:when>
