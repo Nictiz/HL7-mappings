@@ -286,37 +286,37 @@
             <!-- authorization Toestemming overdracht dossier binnen JGZ -->
             <xsl:for-each select="r010_informatie_over_werkwijze_jgz/groep_g011_toestemming_overdracht_dossier_binnen_jgz">
                 <authorization xmlns="urn:hl7-org:v3" typeCode="AUTH" contextConductionInd="false">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.50011_20200527000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.50011_20200527000000"/>
                 </authorization>
             </xsl:for-each>
             <!-- Bezwaar overdracht dossier binnen JGZ -->
             <xsl:for-each select="r010_informatie_over_werkwijze_jgz/groep_g010_bezwaar_overdracht_dossier_binnen_jgz">
                 <authorization xmlns="urn:hl7-org:v3" typeCode="AUTH" contextConductionInd="false">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.50010_20200527000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.50010_20200527000000"/>
                 </authorization>
             </xsl:for-each>
             <!-- authorization Toestemming aanmelding LSP -->
             <xsl:for-each select="r010_informatie_over_werkwijze_jgz/groep_g071_toestemming_aanmelding_lsp">
                 <authorization xmlns="urn:hl7-org:v3" typeCode="AUTH" contextConductionInd="false">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.50071_20200527000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.50071_20200527000000"/>
                 </authorization>
             </xsl:for-each>
             <!-- authorization Toestemming verstrekking informatie aan derden -->
             <xsl:for-each select="r010_informatie_over_werkwijze_jgz/groep_g012_toestemming_info_aan_derden">
                 <authorization xmlns="urn:hl7-org:v3" typeCode="AUTH" contextConductionInd="false">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.50012_20200527000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.50012_20200527000000"/>
                 </authorization>
             </xsl:for-each>
             <!-- Bezwaar wetenschappelijk onderzoek -->
             <xsl:for-each select="r010_informatie_over_werkwijze_jgz/groep_g089_bezwaar_wetenschappelijk_onderzoek">
                 <authorization xmlns="urn:hl7-org:v3" typeCode="AUTH" contextConductionInd="false">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.50089_20200527000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.50089_20200527000000"/>
                 </authorization>
             </xsl:for-each>
             <!-- authorization Toestemming gegevensuitwisseling RVP -->
             <xsl:for-each select="r010_informatie_over_werkwijze_jgz/groep_g115_toestemming_gegevensuitwisseling_rvp">
                 <authorization xmlns="urn:hl7-org:v3" typeCode="AUTH" contextConductionInd="false">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.50115_20200527000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.50115_20200527000000"/>
                 </authorization>
             </xsl:for-each>
             <!-- Informatie verstrekt over werkwijze -->
@@ -1980,7 +1980,7 @@
     </xsl:template>
 
     <!-- authorization Bezwaar overdracht dossier binnen JGZ -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.50010_20200527000000">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.50010_20200527000000">
         <consentEvent xmlns="urn:hl7-org:v3" classCode="CONS" moodCode="EVN">
             <!-- Item(s) :: bezwaar_overdracht_dossier_binnen_JGZ -->
             <!-- Als de bezwaar 'ja' is dan is negationInd van ConsentEvent 'true'. -->
@@ -2011,7 +2011,7 @@
     </xsl:template>
 
     <!-- authorization Bezwaar wetenschappelijk onderzoek -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.50089_20200527000000">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.50089_20200527000000">
         <consentEvent xmlns="urn:hl7-org:v3" classCode="CONS" moodCode="EVN">
             <!-- Item(s) :: bezwaar_wetenschappelijk_onderzoek -->
             <!-- Als de bezwaar 'ja' is dan is negationInd van ConsentEvent 'true'. -->
@@ -2042,7 +2042,7 @@
     </xsl:template>
 
     <!-- authorization Toestemming aanmelding LSP -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.50071_20200527000000">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.50071_20200527000000">
         <consentEvent xmlns="urn:hl7-org:v3" classCode="CONS" moodCode="EVN">
             <!-- Item(s) :: toestemming_aanmelding_LSP -->
             <!-- Als de toestemming 'ja' is dan is negationInd van ConsentEvent 'false'. -->
@@ -2077,7 +2077,7 @@
     </xsl:template>
 
     <!-- authorization Toestemming gegevensuitwisseling RVP -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.50115_20200527000000">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.50115_20200527000000">
         <consentEvent xmlns="urn:hl7-org:v3" classCode="CONS" moodCode="EVN">
             <!-- Item(s) :: toestemming_gegevensuitwisseling_rvp -->
             <!-- Als de toestemming 'ja' is dan is negationInd van ConsentEvent 'false'. -->
@@ -2179,7 +2179,7 @@
     </xsl:template>
 
     <!-- authorization Toestemming overdracht dossier binnen JGZ -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.50011_20200527000000">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.50011_20200527000000">
         <consentEvent xmlns="urn:hl7-org:v3" classCode="CONS" moodCode="EVN">
             <!-- Item(s) :: toestemming_overdracht_dossier_binnen_JGZ -->
             <!-- Als de toestemming 'ja' is dan is negationInd van ConsentEvent 'false'. -->
@@ -2214,7 +2214,7 @@
     </xsl:template>
 
     <!-- authorization Toestemming verstrekking informatie aan derden -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.50012_20200527000000">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.50012_20200527000000">
         <consentEvent xmlns="urn:hl7-org:v3" classCode="CONS" moodCode="EVN">
             <!-- Item(s) :: toestemming_verstrekking_informatie_aan_derden -->
             <!-- Als de toestemming 'ja' is dan is negationInd van ConsentEvent 'false'. -->
