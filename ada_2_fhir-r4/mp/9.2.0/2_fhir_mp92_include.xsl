@@ -131,6 +131,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <resource>
                     <Location>
                         <xsl:call-template name="insertLogicalId"/>
+                        <meta>
+                            <!-- J.D.: Add this to conform to our 'all resources SHALL contain meta.profile' requirement, although we do not have a specific profile to conform to in this case -->
+                            <profile value="http://hl7.org/fhir/StructureDefinition/Location"/>
+                        </meta>
                         <name value="{@value}"/>
                     </Location>
                 </resource>
