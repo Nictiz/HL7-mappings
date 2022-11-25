@@ -283,6 +283,12 @@
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.10008_20120801000000"/>
             </xsl:for-each>
             <!-- Toestemmingen -->
+            <!-- Toestemming aan verpleegkundige om te vaccineren -->
+            <xsl:for-each select="r050_zorggegevens[toestemming_aan_verpleegkundige_om_te_vaccineren | datum_toestemming_aan_verpleegkundige_om_te_vaccineren | arts_uzi_toestemming_aan_verpleegkundige_om_te_vaccineren | arts_big_toestemming_aan_verpleegkundige_om_te_vaccineren | arts_agb_toestemming_aan_verpleegkundige_om_te_vaccineren | arts_naam_toestemming_aan_verpleegkundige_om_te_vaccineren]">
+                <authorization xmlns="urn:hl7-org:v3" typeCode="AUTH" contextConductionInd="false">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.40469_20200527000000"/>
+                </authorization>
+            </xsl:for-each>
             <!-- authorization Toestemming overdracht dossier binnen JGZ -->
             <xsl:for-each select="r010_informatie_over_werkwijze_jgz/groep_g011_toestemming_overdracht_dossier_binnen_jgz">
                 <authorization xmlns="urn:hl7-org:v3" typeCode="AUTH" contextConductionInd="false">
@@ -14113,6 +14119,66 @@
                 </component2>
             </xsl:for-each>-->
         </observation>
+    </xsl:template>
+    
+    <!-- authorization Toestemming aan verpleegkundige om te vaccineren -->
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40469_20200527000000">
+        <consentEvent xmlns="urn:hl7-org:v3" classCode="CONS" moodCode="EVN">
+            <!-- Item(s) :: toestemming_aan_verpleegkundige_om_te_vaccineren -->
+            <!-- Als de toestemming 'ja' is dan is negationInd van ConsentEvent 'false'. -->
+            <xsl:variable name="negationIndicator">
+                <xsl:choose>
+                    <xsl:when test="toestemming_aan_verpleegkundige_om_te_vaccineren/@value = 'true'">false</xsl:when>
+                    <xsl:otherwise>true</xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            <xsl:attribute name="negationInd" select="$negationIndicator"/>
+            <code code="469" codeSystem="2.16.840.1.113883.2.4.4.40.267">
+                <xsl:copy-of select="$W0639_HL7_W0646_HL7_W0647_HL7/conceptList/concept[@code = '469'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']/@displayName"/>
+            </code>
+<!--            <!-\- Maak een author aan als de datum aanwezig is. De author is in de HL7 template namelijk optioneel en de datum eronder is verplicht. -\->
+            <xsl:if test="datum_toestemming_aan_verpleegkundige_om_te_vaccineren">-->
+                <author typeCode="AUT">
+                    <!-- Item(s) :: datum_toestemming_aan_verpleegkundige_om_te_vaccineren -->
+                    <xsl:for-each select="datum_toestemming_aan_verpleegkundige_om_te_vaccineren">
+                        <xsl:call-template name="makeTSValue">
+                            <xsl:with-param name="elemName">time</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    <xsl:if test="arts_uzi_toestemming_aan_verpleegkundige_om_te_vaccineren | arts_big_toestemming_aan_verpleegkundige_om_te_vaccineren | arts_agb_toestemming_aan_verpleegkundige_om_te_vaccineren | arts_naam_toestemming_aan_verpleegkundige_om_te_vaccineren">
+                        <responsibleParty classCode="ASSIGNED">
+                            <!-- Item(s) :: arts_uzi_toestemming_aan_verpleegkundige_om_te_vaccineren -->
+                            <xsl:for-each select="arts_uzi_toestemming_aan_verpleegkundige_om_te_vaccineren">
+                                <xsl:call-template name="makeII.NL.UZIValue">
+                                    <xsl:with-param name="elemName">id</xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                            <!-- Item(s) :: arts_big_toestemming_aan_verpleegkundige_om_te_vaccineren -->
+                            <xsl:for-each select="arts_big_toestemming_aan_verpleegkundige_om_te_vaccineren">
+                                <xsl:call-template name="makeII.NL.BIGValue">
+                                    <xsl:with-param name="elemName">id</xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                            <!-- Item(s) :: arts_agb_toestemming_aan_verpleegkundige_om_te_vaccineren -->
+                            <xsl:for-each select="arts_agb_toestemming_aan_verpleegkundige_om_te_vaccineren">
+                                <xsl:call-template name="makeII.NL.AGBValue">
+                                    <xsl:with-param name="elemName">id</xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                            <!-- Item(s) :: naam_bron_toestemming_gegevensuitwisseling_rvp -->
+                            <xsl:for-each select="arts_naam_toestemming_aan_verpleegkundige_om_te_vaccineren">
+                                <agentPerson classCode="PSN" determinerCode="INSTANCE">
+                                    <xsl:call-template name="makeTNValue">
+                                        <xsl:with-param name="elemName">name</xsl:with-param>
+                                        <xsl:with-param name="xsiType"/>
+                                    </xsl:call-template>
+                                </agentPerson>
+                            </xsl:for-each>
+                        </responsibleParty>
+                    </xsl:if>
+                </author>
+<!--            </xsl:if>-->
+        </consentEvent>
     </xsl:template>
 
     <!-- obs Bedreiging sociaal milieu -->
