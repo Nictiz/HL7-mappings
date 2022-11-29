@@ -99,14 +99,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- Proposal for better naming, but not activated yet because it has implications for the whole zib2020-r4 repo: -->
                     <!--<xsl:value-of select="string-join(($id, tokenize($profile, '-')[last()], format-number($position, '00')), '-')"/>-->    
                 </xsl:when>
-                <xsl:when test="$profile = $baseId or not(starts-with($profile, $baseId))">
-                    <xsl:value-of select="$id"/>
-                </xsl:when>
-                <xsl:when test="$localName = ('soepregel','visueel_resultaat')">
+                <xsl:when test="$localName = ('soepregel','visueel_resultaat','monster')">
                     <xsl:value-of select="$baseId"/>
                     <xsl:value-of select="substring-after($profile, $baseId)"/>
                     <xsl:text>-</xsl:text>
                     <xsl:value-of select="format-number($partNumber, '00')"/>
+                </xsl:when>
+                <xsl:when test="$localName = 'laboratorium_test'">
+                    <xsl:value-of select="$baseId"/>
+                    <xsl:value-of select="substring-after($profile, $baseId)"/>
+                    <xsl:text>-LaboratoryTest-</xsl:text>
+                    <xsl:value-of select="format-number(count(preceding-sibling::*[local-name() = 'laboratorium_test'])+1, '00')"/>
+                </xsl:when>
+                <xsl:when test="$profile = $baseId or not(starts-with($profile, $baseId))">
+                    <xsl:value-of select="$id"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="$baseId"/>
@@ -312,6 +318,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="$in" mode="nl-core-LegalSituation-Representation">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
+            </xsl:when>
+            <xsl:when test="$localName = 'laboratorium_uitslag'">
+                <xsl:apply-templates select="$in" mode="nl-core-LaboratoryTestResult">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+                <xsl:for-each select="monster">
+                    <xsl:choose>
+                        <xsl:when test="not(monstermateriaal) and not(microorganisme)">
+                            <xsl:call-template name="nl-core-LaboratoryTestResult.Specimen">
+                                <xsl:with-param name="subject" select="$subject" as="element()"/>
+                            </xsl:call-template>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:for-each select="(monstermateriaal | microorganisme)">
+                                <xsl:call-template name="nl-core-LaboratoryTestResult.Specimen">
+                                    <xsl:with-param name="in" select="./parent::monster"/>
+                                    <xsl:with-param name="subject" select="$subject" as="element()"/>
+                                    <xsl:with-param name="type" select="."/>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:for-each>
             </xsl:when>
             <xsl:when test="$localName = 'lichaamslengte'">
                 <xsl:apply-templates select="$in" mode="nl-core-BodyHeight">
