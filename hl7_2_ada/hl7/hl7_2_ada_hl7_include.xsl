@@ -1099,7 +1099,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:element name="{$elmTelecomType}">
                                             <xsl:attribute name="code">PG</xsl:attribute>
                                             <xsl:attribute name="codeSystem" select="$oidHL7AddressUse"/>
-                                            <xsl:attribute name="displayName">Pager</xsl:attribute>
+                                            <xsl:attribute name="displayName">Pieper</xsl:attribute>
                                         </xsl:element>
                                     </xsl:when>
                                     <!-- @value starts with fax: is a fax (note that this RFC is obsolete so in practice this scheme should not occur) -->
