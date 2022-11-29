@@ -318,6 +318,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:choose>
                             <xsl:when test="*">
                                 <performer>
+                                    <!--The following only works if the referred HealthProfessional is contained explicitly within the ada file-->
+                                    <xsl:for-each select="zorgverleners_rol | health_professional_role">
+                                        <role>
+                                            <xsl:variable name="nullFlavorsInValueset" select="('OTH')"/>
+                                            <xsl:call-template name="code-to-CodeableConcept">
+                                                <xsl:with-param name="in" select="."/>
+                                                <xsl:with-param name="treatNullFlavorAsCoding" select="@code = $nullFlavorsInValueset and @codeSystem = $oidHL7NullFlavor"/>
+                                            </xsl:call-template>
+                                        </role>
+                                    </xsl:for-each>
+                                    
                                     <actor>
                                         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                                             <valueReference>
@@ -475,6 +486,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="uitvoerder/zorgverlener | performer/health_professional">
                         <xsl:choose>
                             <xsl:when test="*">
+                                <!--The following only works if the referred HealthProfessional is contained explicitly within the ada file-->
+                                <xsl:for-each select="zorgverleners_rol | health_professional_role">
+                                    <performerType>
+                                        <xsl:variable name="nullFlavorsInValueset" select="('OTH')"/>
+                                        <xsl:call-template name="code-to-CodeableConcept">
+                                            <xsl:with-param name="in" select="."/>
+                                            <xsl:with-param name="treatNullFlavorAsCoding" select="@code = $nullFlavorsInValueset and @codeSystem = $oidHL7NullFlavor"/>
+                                        </xsl:call-template>
+                                    </performerType>
+                                </xsl:for-each>
+                                
                                 <performer>
                                     <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                                         <valueReference>
