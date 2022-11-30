@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="39703fd6-5992-11eb-9367-020000000000"/>
+   <id value="c1f3b05a-4d3d-11ec-7152-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:397026ac-5992-11eb-9367-020000000000"/>
+      <fullUrl value="urn:uuid:c1f3a3c4-4d3d-11ec-7152-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -84,7 +84,7 @@
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-InstructionsForUseDescription">
-               <valueString value="Vanaf T-5D{00:00:00}, tot en met T+2D{23:59:59}, 2 maal per dag 1 druppel, In het rechter oog, oculair"/>
+               <valueString value="Vanaf T - 5 dagen, tot en met T + 2 dagen, 2 maal per dag 1 druppel, In het rechter oog, oculair"/>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -104,7 +104,7 @@
                <display value="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:39703fdc-5992-11eb-9367-020000000000"/>
+               <reference value="urn:uuid:c1f3b060-4d3d-11ec-7152-020000000000"/>
                <display value="C. XXX_Vonker"/>
             </subject>
             <authoredOn value="${DATE, T, D, -5}T08:15:00+02:00"/>
@@ -112,7 +112,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:397026b2-5992-11eb-9367-020000000000"/>
+                        <reference value="urn:uuid:c1f3a3ca-4d3d-11ec-7152-020000000000"/>
                         <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -157,7 +157,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:39703fdc-5992-11eb-9367-020000000000"/>
+      <fullUrl value="urn:uuid:c1f3b060-4d3d-11ec-7152-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -192,7 +192,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="male"/>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1954-02-08"/>
          </Patient>
       </resource>
@@ -297,7 +307,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:397026b2-5992-11eb-9367-020000000000"/>
+      <fullUrl value="urn:uuid:c1f3a3ca-4d3d-11ec-7152-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -351,6 +361,7 @@
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.80691"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.10-80691"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>

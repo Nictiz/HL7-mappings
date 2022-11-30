@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="4e414b30-5992-11eb-1250-020000000000"/>
+   <id value="c33f0642-6a95-11ec-0000-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:4e415241-5992-11eb-1250-020000000000"/>
+      <fullUrl value="urn:uuid:c33f17a4-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -42,7 +42,7 @@
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: Vanaf T-130D{00:00:00}, tot en met T-101D{23:59:59}, 2 maal per dag 1 dosis, inhalatie</div>
+                              <div>Tekst: Vanaf T - 130 dagen, tot en met T - 101 dagen, 2 maal per dag 1 dosis, inhalatie</div>
                               <div>Timing: <div>2 maal per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="inhalatie (62 - G-Standaard thesaurus subtabel 0007)">inhalatie</span>
@@ -84,7 +84,7 @@
                <display value="FLUTICASON INHALATIEPOEDER 100UG/DO 60DO DISKUS"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:4e414b36-5992-11eb-1250-020000000000"/>
+               <reference value="urn:uuid:c33f1780-6a95-11ec-0000-020000000000"/>
                <display value="A. van de XXX_Boschman"/>
             </subject>
             <authoredOn value="${DATE, T, D, -130}T11:35:00+02:00"/>
@@ -92,7 +92,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:4e415247-5992-11eb-1250-020000000000"/>
+                        <reference value="urn:uuid:c33f17aa-6a95-11ec-0000-020000000000"/>
                         <display value="Peter van Pulver || Huisarts, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -101,7 +101,7 @@
                </agent>
             </requester>
             <dosageInstruction>
-               <text value="Vanaf T-130D{00:00:00}, tot en met T-101D{23:59:59}, 2 maal per dag 1 dosis, inhalatie"/>
+               <text value="Vanaf T - 130 dagen, tot en met T - 101 dagen, 2 maal per dag 1 dosis, inhalatie"/>
                <timing>
                   <repeat>
                      <frequency value="2"/>
@@ -130,7 +130,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4e414b36-5992-11eb-1250-020000000000"/>
+      <fullUrl value="urn:uuid:c33f1780-6a95-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -168,7 +168,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="male"/>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1964-01-08"/>
          </Patient>
       </resource>
@@ -273,7 +283,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4e415247-5992-11eb-1250-020000000000"/>
+      <fullUrl value="urn:uuid:c33f17aa-6a95-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>

@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="MO-vandeXXX-Stijl"/>
+   <id value="MO-van-de-XXX-Stijl"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/Bundle-MedicationOverview"/>
    </meta>
@@ -12,7 +12,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:52b86ef5-5992-11eb-1007-020000000000"/>
+      <fullUrl value="urn:uuid:c33f1d72-6a95-11ec-0000-020000000000"/>
       <resource>
          <List>
             <meta>
@@ -37,7 +37,7 @@
                <text value="Medicatieoverzicht"/>
             </code>
             <subject>
-               <reference value="urn:uuid:52b86dc9-5992-11eb-1007-020000000000"/>
+               <reference value="urn:uuid:c33f1d5b-6a95-11ec-0000-020000000000"/>
                <display value="F. van de XXX_Stijl"/>
             </subject>
             <date value="${DATE, T, D, +0}"/>
@@ -57,7 +57,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:52b86dc9-5992-11eb-1007-020000000000"/>
+      <fullUrl value="urn:uuid:c33f1d5b-6a95-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -95,7 +95,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="female"/>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1954-08-10"/>
          </Patient>
       </resource>

@@ -1,0 +1,104 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="zib-DispenseRequest-mp9-MBH-213-1-VV-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Toedieningsverzoek. Subject: R. XXX_Gobee. Id: MBH_213_1_VV_2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1), Categorie: <span title="Request to dispense medication to patient (situation) (52711000146108 - SNOMED CT)">Request to dispense medication to patient (situation)</span>, <span style="display: block;">Intentie: aanvraag</span>
+               <span style="display: block;">Aangevraagd door: John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Medicamenteuze behandel-id</th>
+                  <td>MBH_213_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+               </tr>
+               <tr>
+                  <th>Gebaseerd op</th>
+                  <td>Relatie naar medicatieafspraak, id = MBH_213_1_MA_3 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_213_1_MA_3 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+               </tr>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>MIZOLASTINE TABLET MGA  10MG</td>
+               </tr>
+               <tr>
+                  <th>Gemaakt</th>
+                  <td>${DATE, T, D, -40}T09:13:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Toedieningsverzoek</th>
+                  <td>
+                     <div>Max Repeats: 1</div>
+                     <div>Hoeveelheid: </div>
+                     <div>Uitvoerende: Apotheek De Gulle Gaper</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-DispenseRequest-RelatedMedicationAgreement">
+      <valueReference>
+         <identifier>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <value value="MBH_213_1_MA_3"/>
+         </identifier>
+         <display value="Relatie naar medicatieafspraak, id = MBH_213_1_MA_3 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_213_1"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+      <value value="MBH_213_1_VV_2"/>
+   </identifier>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="52711000146108"/>
+         <display value="Request to dispense medication to patient (situation)"/>
+      </coding>
+      <text value="Verstrekkingsverzoek"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/zib-Product-mp9-2-16-840-1-113883-2-4-4-10-48291"/>
+      <display value="MIZOLASTINE TABLET MGA  10MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/XXX-GOBEE"/>
+      <display value="R. XXX_Gobee"/>
+   </subject>
+   <authoredOn value="${DATE, T, D, -40}T09:13:00+02:00"/>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/l-core-practitionerrole-mp9-c33f21fb-6a95-11ec-0000-020000000000"/>
+               <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-mp9-c33f0de8-6a95-11ec-0000-020000000000"/>
+         <display value="John de Vries"/>
+      </agent>
+   </requester>
+   <dispenseRequest>
+      <numberOfRepeatsAllowed value="1"/>
+      <quantity>
+         <value value="60"/>
+         <unit value="stuk"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="245"/>
+      </quantity>
+      <performer>
+         <reference value="Organization/nl-core-organization-mp9-2-16-528-1-1007-3-3-01236578"/>
+         <display value="Apotheek De Gulle Gaper"/>
+      </performer>
+   </dispenseRequest>
+</MedicationRequest>

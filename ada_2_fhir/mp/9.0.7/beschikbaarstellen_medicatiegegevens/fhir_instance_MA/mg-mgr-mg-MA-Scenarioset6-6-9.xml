@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="4e919248-5992-11eb-1710-020000000000"/>
+   <id value="c33f0606-6a95-11ec-0000-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:4e919841-5992-11eb-1710-020000000000"/>
+      <fullUrl value="urn:uuid:c33f154a-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -42,7 +42,7 @@
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: Vanaf T+0D{00:00:00}, 1 stuk 's avonds, oraal</div>
+                              <div>Tekst: Vanaf T, 1 stuk 's avonds, oraal</div>
                               <div>Timing: <div>EVE</div>
                               </div>
                               <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
@@ -83,7 +83,7 @@
                <display value="EZETIMIB/SIMVASTATINE 10/20"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:4e91924f-5992-11eb-1710-020000000000"/>
+               <reference value="urn:uuid:c33f152a-6a95-11ec-0000-020000000000"/>
                <display value="N. XXX_Maasz"/>
             </subject>
             <authoredOn value="${DATE, T, D, +0}T08:27:00+02:00"/>
@@ -91,7 +91,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:4e919846-5992-11eb-1710-020000000000"/>
+                        <reference value="urn:uuid:c33f1550-6a95-11ec-0000-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -100,7 +100,7 @@
                </agent>
             </requester>
             <dosageInstruction>
-               <text value="Vanaf T+0D{00:00:00}, 1 stuk 's avonds, oraal"/>
+               <text value="Vanaf T, 1 stuk 's avonds, oraal"/>
                <timing>
                   <repeat>
                      <when value="EVE"/>
@@ -127,7 +127,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4e91924f-5992-11eb-1710-020000000000"/>
+      <fullUrl value="urn:uuid:c33f152a-6a95-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -162,7 +162,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="female"/>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1954-08-10"/>
          </Patient>
       </resource>
@@ -267,7 +277,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4e919846-5992-11eb-1710-020000000000"/>
+      <fullUrl value="urn:uuid:c33f1550-6a95-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>

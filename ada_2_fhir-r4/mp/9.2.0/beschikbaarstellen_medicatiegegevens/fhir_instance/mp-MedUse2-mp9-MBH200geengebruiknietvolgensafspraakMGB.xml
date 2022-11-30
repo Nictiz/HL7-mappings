@@ -1,0 +1,89 @@
+<MedicationStatement xmlns="http://hl7.org/fhir">
+   <id value="mp-MedUse2-mp9-MBH200geengebruiknietvolgensafspraakMGB"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="Vanaf T - 6 dagen, tot en met T - 5 dagen, geneesmiddel niet in gebruik, tijdelijk gestopt"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
+      <valueReference>
+         <reference value="PractitionerRole/nl-core-HPrf-PracRol-mp9-000001111-0100-00001111"/>
+         <type value="PractitionerRole"/>
+         <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator">
+      <valueBoolean value="false"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_200_geen_gebruik_niet_volgens_afspraak"/>
+      </valueIdentifier>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
+      <valueReference>
+         <reference value="PractitionerRole/nl-core-HPrf-PracRol-mp9-000001111-0100-00001111"/>
+         <type value="PractitionerRole"/>
+         <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd"/>
+      </valueReference>
+   </extension>
+   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="113381000146106"/>
+            <display value="tijdelijk gestopt met medicatie"/>
+         </coding>
+      </valueCodeableConcept>
+   </modifierExtension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+      <value value="MBH_200_geen_gebruik_niet_volgens_afspraak_MGB"/>
+   </identifier>
+   <status value="on-hold"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422979000"/>
+         <display value="bevinding betreffende gedrag met betrekking tot medicatieregime"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/nl-core-PhPrd-mp9-21684011138832447-2530104"/>
+      <type value="Medication"/>
+      <display value="HYDROCHLOORTHIAZIDE APOTEX TABLET 12,5MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-M-XXX-Raamsdonk"/>
+      <type value="Patient"/>
+      <display value="Patient, M. XXX_Raamsdonk"/>
+   </subject>
+   <effectivePeriod>
+      <start value="${DATE, T, D, -6}T00:00:00+02:00"/>
+      <end value="${DATE, T, D, -5}T23:59:50+02:00"/>
+   </effectivePeriod>
+   <dateAsserted value="${DATE, T, D, -4}T08:00:00+02:00"/>
+   <informationSource>
+      <reference value="Patient/nl-core-Patient-mp9-M-XXX-Raamsdonk"/>
+      <type value="Patient"/>
+      <display value="Patient, M. XXX_Raamsdonk"/>
+   </informationSource>
+   <derivedFrom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="422037009"/>
+               <display value="toedieningsafspraak"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+         <value value="MBH_200_geen_gebruik_niet_volgens_afspraak_TA"/>
+      </identifier>
+      <display value="relatie naar toedieningsafspraak"/>
+   </derivedFrom>
+</MedicationStatement>

@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="0cdd0eda-5a6a-11eb-1956-020000000000"/>
+   <id value="f85c0b2c-5da2-11ec-1079-020000000000"/>
    <type value="searchset"/>
    <total value="19"/>
    <link>
@@ -9,9 +9,10 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:0cdd0c63-5a6a-11eb-1956-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Encounter/2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment13"/>
       <resource>
          <Encounter>
+            <id value="2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment13"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-Encounter"/>
             </meta>
@@ -19,7 +20,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG_contactmoment13 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
+                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG-contactmoment13 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
                      <tbody>
                         <tr>
                            <th>Type contact</th>
@@ -32,7 +33,7 @@
                         </tr>
                         <tr>
                            <th>Periode</th>
-                           <td>13:56:45 - 14:26:45 op 23 juni 2020</td>
+                           <td>23 juni 2020</td>
                         </tr>
                         <tr>
                            <th>Participant</th>
@@ -43,7 +44,9 @@
                         </tr>
                         <tr>
                            <th>Zorgaanbieder</th>
-                           <td>Gezondheidscentrum Aesculaap</td>
+                           <td>
+                              <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727">Gezondheidscentrum Aesculaap</a>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
@@ -51,7 +54,7 @@
             </text>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-               <value value="MedMijHG_contactmoment13"/>
+               <value value="MedMijHG-contactmoment13"/>
             </identifier>
             <status value="finished"/>
             <class>
@@ -78,15 +81,15 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:0cdd0c52-5a6a-11eb-1956-020000000000"/>
+               <reference value="urn:uuid:f85c1e0c-5da2-11ec-1079-020000000000"/>
                <display value="J. XXX_Cevat"/>
             </subject>
             <episodeOfCare>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_concern_R21.01"/>
+                  <value value="MedMijHG-concern-R21.01"/>
                </identifier>
-               <display value="Episode: MedMijHG_concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Episode: MedMijHG-concern-R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
             </episodeOfCare>
             <participant>
                <type>
@@ -99,20 +102,20 @@
                <individual>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:0cdd0c66-5a6a-11eb-1956-020000000000"/>
+                        <reference value="urn:uuid:f85c1e20-5da2-11ec-1079-020000000000"/>
                         <display value="Huisarts 1 || Gezondheidscentrum Aesculaap"/>
                      </valueReference>
                   </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+                  <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431"/>
                   <display value="Huisarts 1"/>
                </individual>
             </participant>
             <period>
-               <start value="2020-06-23T13:56:45+02:00"/>
-               <end value="2020-06-23T14:26:45+02:00"/>
+               <start value="2020-06-23"/>
+               <end value="2020-06-23"/>
             </period>
             <serviceProvider>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.2727"/>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
                <display value="Gezondheidscentrum Aesculaap"/>
             </serviceProvider>
          </Encounter>
@@ -122,9 +125,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0cdd0c77-5a6a-11eb-1956-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Encounter/2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment17"/>
       <resource>
          <Encounter>
+            <id value="2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment17"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-Encounter"/>
             </meta>
@@ -132,7 +136,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG_contactmoment17 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
+                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG-contactmoment17 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
                      <tbody>
                         <tr>
                            <th>Type contact</th>
@@ -156,7 +160,9 @@
                         </tr>
                         <tr>
                            <th>Zorgaanbieder</th>
-                           <td>Gezondheidscentrum Aesculaap</td>
+                           <td>
+                              <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727">Gezondheidscentrum Aesculaap</a>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
@@ -164,7 +170,7 @@
             </text>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-               <value value="MedMijHG_contactmoment17"/>
+               <value value="MedMijHG-contactmoment17"/>
             </identifier>
             <status value="finished"/>
             <class>
@@ -191,15 +197,15 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:0cdd0c52-5a6a-11eb-1956-020000000000"/>
+               <reference value="urn:uuid:f85c1e0c-5da2-11ec-1079-020000000000"/>
                <display value="J. XXX_Cevat"/>
             </subject>
             <episodeOfCare>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_concern_L86.01"/>
+                  <value value="MedMijHG-concern-L86.01"/>
                </identifier>
-               <display value="Episode: MedMijHG_concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Episode: MedMijHG-concern-L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
             </episodeOfCare>
             <participant>
                <type>
@@ -212,11 +218,11 @@
                <individual>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:0cdd0c66-5a6a-11eb-1956-020000000000"/>
+                        <reference value="urn:uuid:f85c1e20-5da2-11ec-1079-020000000000"/>
                         <display value="Huisarts 1 || Gezondheidscentrum Aesculaap"/>
                      </valueReference>
                   </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+                  <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431"/>
                   <display value="Huisarts 1"/>
                </individual>
             </participant>
@@ -225,7 +231,7 @@
                <end value="2020-06-18T14:26:45+02:00"/>
             </period>
             <serviceProvider>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.2727"/>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
                <display value="Gezondheidscentrum Aesculaap"/>
             </serviceProvider>
          </Encounter>
@@ -235,9 +241,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0cdd0c8b-5a6a-11eb-1956-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Encounter/2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment12"/>
       <resource>
          <Encounter>
+            <id value="2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment12"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-Encounter"/>
             </meta>
@@ -245,7 +252,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG_contactmoment12 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
+                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG-contactmoment12 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
                      <tbody>
                         <tr>
                            <th>Type contact</th>
@@ -269,7 +276,9 @@
                         </tr>
                         <tr>
                            <th>Zorgaanbieder</th>
-                           <td>Gezondheidscentrum Aesculaap</td>
+                           <td>
+                              <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727">Gezondheidscentrum Aesculaap</a>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
@@ -277,7 +286,7 @@
             </text>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-               <value value="MedMijHG_contactmoment12"/>
+               <value value="MedMijHG-contactmoment12"/>
             </identifier>
             <status value="finished"/>
             <class>
@@ -304,15 +313,15 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:0cdd0c52-5a6a-11eb-1956-020000000000"/>
+               <reference value="urn:uuid:f85c1e0c-5da2-11ec-1079-020000000000"/>
                <display value="J. XXX_Cevat"/>
             </subject>
             <episodeOfCare>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_concern_R21.01"/>
+                  <value value="MedMijHG-concern-R21.01"/>
                </identifier>
-               <display value="Episode: MedMijHG_concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Episode: MedMijHG-concern-R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
             </episodeOfCare>
             <participant>
                <type>
@@ -325,11 +334,11 @@
                <individual>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:0cdd0c66-5a6a-11eb-1956-020000000000"/>
+                        <reference value="urn:uuid:f85c1e20-5da2-11ec-1079-020000000000"/>
                         <display value="Huisarts 1 || Gezondheidscentrum Aesculaap"/>
                      </valueReference>
                   </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+                  <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431"/>
                   <display value="Huisarts 1"/>
                </individual>
             </participant>
@@ -338,7 +347,7 @@
                <end value="2020-05-14T14:26:45+02:00"/>
             </period>
             <serviceProvider>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.2727"/>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
                <display value="Gezondheidscentrum Aesculaap"/>
             </serviceProvider>
          </Encounter>
@@ -348,9 +357,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0cdd0c9f-5a6a-11eb-1956-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Encounter/2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment16"/>
       <resource>
          <Encounter>
+            <id value="2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment16"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-Encounter"/>
             </meta>
@@ -358,7 +368,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG_contactmoment16 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
+                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG-contactmoment16 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
                      <tbody>
                         <tr>
                            <th>Type contact</th>
@@ -382,7 +392,9 @@
                         </tr>
                         <tr>
                            <th>Zorgaanbieder</th>
-                           <td>Gezondheidscentrum Aesculaap</td>
+                           <td>
+                              <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727">Gezondheidscentrum Aesculaap</a>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
@@ -390,7 +402,7 @@
             </text>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-               <value value="MedMijHG_contactmoment16"/>
+               <value value="MedMijHG-contactmoment16"/>
             </identifier>
             <status value="finished"/>
             <class>
@@ -417,15 +429,15 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:0cdd0c52-5a6a-11eb-1956-020000000000"/>
+               <reference value="urn:uuid:f85c1e0c-5da2-11ec-1079-020000000000"/>
                <display value="J. XXX_Cevat"/>
             </subject>
             <episodeOfCare>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_concern_L86.01"/>
+                  <value value="MedMijHG-concern-L86.01"/>
                </identifier>
-               <display value="Episode: MedMijHG_concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Episode: MedMijHG-concern-L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
             </episodeOfCare>
             <participant>
                <type>
@@ -438,11 +450,11 @@
                <individual>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:0cdd0c66-5a6a-11eb-1956-020000000000"/>
+                        <reference value="urn:uuid:f85c1e20-5da2-11ec-1079-020000000000"/>
                         <display value="Huisarts 1 || Gezondheidscentrum Aesculaap"/>
                      </valueReference>
                   </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+                  <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431"/>
                   <display value="Huisarts 1"/>
                </individual>
             </participant>
@@ -451,7 +463,7 @@
                <end value="2020-05-09T14:26:45+02:00"/>
             </period>
             <serviceProvider>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.2727"/>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
                <display value="Gezondheidscentrum Aesculaap"/>
             </serviceProvider>
          </Encounter>
@@ -461,9 +473,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0cdd19fb-5a6a-11eb-1956-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Encounter/2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment15"/>
       <resource>
          <Encounter>
+            <id value="2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment15"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-Encounter"/>
             </meta>
@@ -471,7 +484,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG_contactmoment15 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
+                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG-contactmoment15 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
                      <tbody>
                         <tr>
                            <th>Type contact</th>
@@ -495,7 +508,9 @@
                         </tr>
                         <tr>
                            <th>Zorgaanbieder</th>
-                           <td>Gezondheidscentrum Aesculaap</td>
+                           <td>
+                              <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727">Gezondheidscentrum Aesculaap</a>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
@@ -503,7 +518,7 @@
             </text>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-               <value value="MedMijHG_contactmoment15"/>
+               <value value="MedMijHG-contactmoment15"/>
             </identifier>
             <status value="finished"/>
             <class>
@@ -530,15 +545,15 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:0cdd0c52-5a6a-11eb-1956-020000000000"/>
+               <reference value="urn:uuid:f85c1e0c-5da2-11ec-1079-020000000000"/>
                <display value="J. XXX_Cevat"/>
             </subject>
             <episodeOfCare>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_concern_L86.01"/>
+                  <value value="MedMijHG-concern-L86.01"/>
                </identifier>
-               <display value="Episode: MedMijHG_concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Episode: MedMijHG-concern-L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
             </episodeOfCare>
             <participant>
                <type>
@@ -551,11 +566,11 @@
                <individual>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:0cdd0c66-5a6a-11eb-1956-020000000000"/>
+                        <reference value="urn:uuid:f85c1e20-5da2-11ec-1079-020000000000"/>
                         <display value="Huisarts 1 || Gezondheidscentrum Aesculaap"/>
                      </valueReference>
                   </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+                  <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431"/>
                   <display value="Huisarts 1"/>
                </individual>
             </participant>
@@ -564,7 +579,7 @@
                <end value="2020-05-04T14:26:45+02:00"/>
             </period>
             <serviceProvider>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.2727"/>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
                <display value="Gezondheidscentrum Aesculaap"/>
             </serviceProvider>
          </Encounter>
@@ -574,9 +589,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0cdd1a0f-5a6a-11eb-1956-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Encounter/2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment14"/>
       <resource>
          <Encounter>
+            <id value="2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment14"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-Encounter"/>
             </meta>
@@ -584,7 +600,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG_contactmoment14 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
+                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG-contactmoment14 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
                      <tbody>
                         <tr>
                            <th>Type contact</th>
@@ -608,7 +624,9 @@
                         </tr>
                         <tr>
                            <th>Zorgaanbieder</th>
-                           <td>Gezondheidscentrum Aesculaap</td>
+                           <td>
+                              <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727">Gezondheidscentrum Aesculaap</a>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
@@ -616,7 +634,7 @@
             </text>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-               <value value="MedMijHG_contactmoment14"/>
+               <value value="MedMijHG-contactmoment14"/>
             </identifier>
             <status value="finished"/>
             <class>
@@ -643,15 +661,15 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:0cdd0c52-5a6a-11eb-1956-020000000000"/>
+               <reference value="urn:uuid:f85c1e0c-5da2-11ec-1079-020000000000"/>
                <display value="J. XXX_Cevat"/>
             </subject>
             <episodeOfCare>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_concern_L86.01"/>
+                  <value value="MedMijHG-concern-L86.01"/>
                </identifier>
-               <display value="Episode: MedMijHG_concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Episode: MedMijHG-concern-L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
             </episodeOfCare>
             <participant>
                <type>
@@ -664,11 +682,11 @@
                <individual>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:0cdd0c66-5a6a-11eb-1956-020000000000"/>
+                        <reference value="urn:uuid:f85c1e20-5da2-11ec-1079-020000000000"/>
                         <display value="Huisarts 1 || Gezondheidscentrum Aesculaap"/>
                      </valueReference>
                   </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+                  <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431"/>
                   <display value="Huisarts 1"/>
                </individual>
             </participant>
@@ -677,7 +695,7 @@
                <end value="2020-04-14T14:26:45+02:00"/>
             </period>
             <serviceProvider>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.2727"/>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
                <display value="Gezondheidscentrum Aesculaap"/>
             </serviceProvider>
          </Encounter>
@@ -687,9 +705,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0cdd1a23-5a6a-11eb-1956-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Encounter/2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment11"/>
       <resource>
          <Encounter>
+            <id value="2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment11"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-Encounter"/>
             </meta>
@@ -697,7 +716,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG_contactmoment11 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
+                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG-contactmoment11 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
                      <tbody>
                         <tr>
                            <th>Type contact</th>
@@ -721,7 +740,9 @@
                         </tr>
                         <tr>
                            <th>Zorgaanbieder</th>
-                           <td>Gezondheidscentrum Aesculaap</td>
+                           <td>
+                              <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727">Gezondheidscentrum Aesculaap</a>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
@@ -729,7 +750,7 @@
             </text>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-               <value value="MedMijHG_contactmoment11"/>
+               <value value="MedMijHG-contactmoment11"/>
             </identifier>
             <status value="finished"/>
             <class>
@@ -756,15 +777,15 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:0cdd0c52-5a6a-11eb-1956-020000000000"/>
+               <reference value="urn:uuid:f85c1e0c-5da2-11ec-1079-020000000000"/>
                <display value="J. XXX_Cevat"/>
             </subject>
             <episodeOfCare>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_concern_R21.01"/>
+                  <value value="MedMijHG-concern-R21.01"/>
                </identifier>
-               <display value="Episode: MedMijHG_concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Episode: MedMijHG-concern-R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
             </episodeOfCare>
             <participant>
                <type>
@@ -777,11 +798,11 @@
                <individual>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:0cdd0c66-5a6a-11eb-1956-020000000000"/>
+                        <reference value="urn:uuid:f85c1e20-5da2-11ec-1079-020000000000"/>
                         <display value="Huisarts 1 || Gezondheidscentrum Aesculaap"/>
                      </valueReference>
                   </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+                  <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431"/>
                   <display value="Huisarts 1"/>
                </individual>
             </participant>
@@ -790,7 +811,7 @@
                <end value="2020-04-04T14:26:45+02:00"/>
             </period>
             <serviceProvider>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.2727"/>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
                <display value="Gezondheidscentrum Aesculaap"/>
             </serviceProvider>
          </Encounter>
@@ -800,9 +821,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0cdd1a37-5a6a-11eb-1956-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Encounter/2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment07"/>
       <resource>
          <Encounter>
+            <id value="2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment07"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-Encounter"/>
             </meta>
@@ -810,7 +832,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG_contactmoment07 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
+                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG-contactmoment07 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
                      <tbody>
                         <tr>
                            <th>Type contact</th>
@@ -834,7 +856,9 @@
                         </tr>
                         <tr>
                            <th>Zorgaanbieder</th>
-                           <td>Gezondheidscentrum Aesculaap</td>
+                           <td>
+                              <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727">Gezondheidscentrum Aesculaap</a>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
@@ -842,7 +866,7 @@
             </text>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-               <value value="MedMijHG_contactmoment07"/>
+               <value value="MedMijHG-contactmoment07"/>
             </identifier>
             <status value="finished"/>
             <class>
@@ -869,15 +893,15 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:0cdd0c52-5a6a-11eb-1956-020000000000"/>
+               <reference value="urn:uuid:f85c1e0c-5da2-11ec-1079-020000000000"/>
                <display value="J. XXX_Cevat"/>
             </subject>
             <episodeOfCare>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_concern_D02"/>
+                  <value value="MedMijHG-concern-D02"/>
                </identifier>
-               <display value="Episode: MedMijHG_concern_D02 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Episode: MedMijHG-concern-D02 2.16.840.1.113883.2.4.3.111.19.1"/>
             </episodeOfCare>
             <participant>
                <type>
@@ -890,11 +914,11 @@
                <individual>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:0cdd0c66-5a6a-11eb-1956-020000000000"/>
+                        <reference value="urn:uuid:f85c1e20-5da2-11ec-1079-020000000000"/>
                         <display value="Huisarts 1 || Gezondheidscentrum Aesculaap"/>
                      </valueReference>
                   </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+                  <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431"/>
                   <display value="Huisarts 1"/>
                </individual>
             </participant>
@@ -903,7 +927,7 @@
                <end value="2020-03-30T14:26:45+02:00"/>
             </period>
             <serviceProvider>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.2727"/>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
                <display value="Gezondheidscentrum Aesculaap"/>
             </serviceProvider>
          </Encounter>
@@ -913,9 +937,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0cdd1a4b-5a6a-11eb-1956-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Encounter/2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment05"/>
       <resource>
          <Encounter>
+            <id value="2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment05"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-Encounter"/>
             </meta>
@@ -923,7 +948,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG_contactmoment05 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
+                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG-contactmoment05 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
                      <tbody>
                         <tr>
                            <th>Type contact</th>
@@ -947,7 +972,9 @@
                         </tr>
                         <tr>
                            <th>Zorgaanbieder</th>
-                           <td>Gezondheidscentrum Aesculaap</td>
+                           <td>
+                              <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727">Gezondheidscentrum Aesculaap</a>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
@@ -955,7 +982,7 @@
             </text>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-               <value value="MedMijHG_contactmoment05"/>
+               <value value="MedMijHG-contactmoment05"/>
             </identifier>
             <status value="finished"/>
             <class>
@@ -982,15 +1009,15 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:0cdd0c52-5a6a-11eb-1956-020000000000"/>
+               <reference value="urn:uuid:f85c1e0c-5da2-11ec-1079-020000000000"/>
                <display value="J. XXX_Cevat"/>
             </subject>
             <episodeOfCare>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_concern_L86.01"/>
+                  <value value="MedMijHG-concern-L86.01"/>
                </identifier>
-               <display value="Episode: MedMijHG_concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Episode: MedMijHG-concern-L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
             </episodeOfCare>
             <participant>
                <type>
@@ -1003,11 +1030,11 @@
                <individual>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:0cdd0c66-5a6a-11eb-1956-020000000000"/>
+                        <reference value="urn:uuid:f85c1e20-5da2-11ec-1079-020000000000"/>
                         <display value="Huisarts 1 || Gezondheidscentrum Aesculaap"/>
                      </valueReference>
                   </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+                  <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431"/>
                   <display value="Huisarts 1"/>
                </individual>
             </participant>
@@ -1016,7 +1043,7 @@
                <end value="2020-03-25T13:26:45+01:00"/>
             </period>
             <serviceProvider>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.2727"/>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
                <display value="Gezondheidscentrum Aesculaap"/>
             </serviceProvider>
          </Encounter>
@@ -1026,9 +1053,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0cdd1a5f-5a6a-11eb-1956-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Encounter/2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment10"/>
       <resource>
          <Encounter>
+            <id value="2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment10"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-Encounter"/>
             </meta>
@@ -1036,7 +1064,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG_contactmoment10 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
+                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG-contactmoment10 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
                      <tbody>
                         <tr>
                            <th>Type contact</th>
@@ -1060,7 +1088,9 @@
                         </tr>
                         <tr>
                            <th>Zorgaanbieder</th>
-                           <td>Gezondheidscentrum Aesculaap</td>
+                           <td>
+                              <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727">Gezondheidscentrum Aesculaap</a>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
@@ -1068,7 +1098,7 @@
             </text>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-               <value value="MedMijHG_contactmoment10"/>
+               <value value="MedMijHG-contactmoment10"/>
             </identifier>
             <status value="finished"/>
             <class>
@@ -1095,15 +1125,15 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:0cdd0c52-5a6a-11eb-1956-020000000000"/>
+               <reference value="urn:uuid:f85c1e0c-5da2-11ec-1079-020000000000"/>
                <display value="J. XXX_Cevat"/>
             </subject>
             <episodeOfCare>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_concern_R21.01"/>
+                  <value value="MedMijHG-concern-R21.01"/>
                </identifier>
-               <display value="Episode: MedMijHG_concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Episode: MedMijHG-concern-R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
             </episodeOfCare>
             <participant>
                <type>
@@ -1116,11 +1146,11 @@
                <individual>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:0cdd0c66-5a6a-11eb-1956-020000000000"/>
+                        <reference value="urn:uuid:f85c1e20-5da2-11ec-1079-020000000000"/>
                         <display value="Huisarts 1 || Gezondheidscentrum Aesculaap"/>
                      </valueReference>
                   </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+                  <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431"/>
                   <display value="Huisarts 1"/>
                </individual>
             </participant>
@@ -1129,7 +1159,7 @@
                <end value="2020-03-10T13:26:45+01:00"/>
             </period>
             <serviceProvider>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.2727"/>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
                <display value="Gezondheidscentrum Aesculaap"/>
             </serviceProvider>
          </Encounter>
@@ -1139,9 +1169,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0cdd1a74-5a6a-11eb-1956-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Encounter/2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment04"/>
       <resource>
          <Encounter>
+            <id value="2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment04"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-Encounter"/>
             </meta>
@@ -1149,7 +1180,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG_contactmoment04 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
+                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG-contactmoment04 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
                      <tbody>
                         <tr>
                            <th>Type contact</th>
@@ -1173,7 +1204,9 @@
                         </tr>
                         <tr>
                            <th>Zorgaanbieder</th>
-                           <td>Gezondheidscentrum Aesculaap</td>
+                           <td>
+                              <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727">Gezondheidscentrum Aesculaap</a>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
@@ -1181,7 +1214,7 @@
             </text>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-               <value value="MedMijHG_contactmoment04"/>
+               <value value="MedMijHG-contactmoment04"/>
             </identifier>
             <status value="finished"/>
             <class>
@@ -1208,15 +1241,15 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:0cdd0c52-5a6a-11eb-1956-020000000000"/>
+               <reference value="urn:uuid:f85c1e0c-5da2-11ec-1079-020000000000"/>
                <display value="J. XXX_Cevat"/>
             </subject>
             <episodeOfCare>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_concern_L86.01"/>
+                  <value value="MedMijHG-concern-L86.01"/>
                </identifier>
-               <display value="Episode: MedMijHG_concern_L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Episode: MedMijHG-concern-L86.01 2.16.840.1.113883.2.4.3.111.19.1"/>
             </episodeOfCare>
             <participant>
                <type>
@@ -1229,11 +1262,11 @@
                <individual>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:0cdd0c66-5a6a-11eb-1956-020000000000"/>
+                        <reference value="urn:uuid:f85c1e20-5da2-11ec-1079-020000000000"/>
                         <display value="Huisarts 1 || Gezondheidscentrum Aesculaap"/>
                      </valueReference>
                   </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+                  <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431"/>
                   <display value="Huisarts 1"/>
                </individual>
             </participant>
@@ -1242,7 +1275,7 @@
                <end value="2020-03-05T13:26:45+01:00"/>
             </period>
             <serviceProvider>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.2727"/>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
                <display value="Gezondheidscentrum Aesculaap"/>
             </serviceProvider>
          </Encounter>
@@ -1252,9 +1285,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0cdd1a88-5a6a-11eb-1956-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Encounter/2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment06"/>
       <resource>
          <Encounter>
+            <id value="2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment06"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-Encounter"/>
             </meta>
@@ -1262,7 +1296,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG_contactmoment06 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
+                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG-contactmoment06 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
                      <tbody>
                         <tr>
                            <th>Type contact</th>
@@ -1286,7 +1320,9 @@
                         </tr>
                         <tr>
                            <th>Zorgaanbieder</th>
-                           <td>Gezondheidscentrum Aesculaap</td>
+                           <td>
+                              <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727">Gezondheidscentrum Aesculaap</a>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
@@ -1294,7 +1330,7 @@
             </text>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-               <value value="MedMijHG_contactmoment06"/>
+               <value value="MedMijHG-contactmoment06"/>
             </identifier>
             <status value="finished"/>
             <class>
@@ -1321,15 +1357,15 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:0cdd0c52-5a6a-11eb-1956-020000000000"/>
+               <reference value="urn:uuid:f85c1e0c-5da2-11ec-1079-020000000000"/>
                <display value="J. XXX_Cevat"/>
             </subject>
             <episodeOfCare>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_concern_R21.01"/>
+                  <value value="MedMijHG-concern-R21.01"/>
                </identifier>
-               <display value="Episode: MedMijHG_concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Episode: MedMijHG-concern-R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
             </episodeOfCare>
             <participant>
                <type>
@@ -1342,11 +1378,11 @@
                <individual>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:0cdd0c66-5a6a-11eb-1956-020000000000"/>
+                        <reference value="urn:uuid:f85c1e20-5da2-11ec-1079-020000000000"/>
                         <display value="Huisarts 1 || Gezondheidscentrum Aesculaap"/>
                      </valueReference>
                   </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+                  <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431"/>
                   <display value="Huisarts 1"/>
                </individual>
             </participant>
@@ -1355,7 +1391,7 @@
                <end value="2020-02-04T13:26:45+01:00"/>
             </period>
             <serviceProvider>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.2727"/>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
                <display value="Gezondheidscentrum Aesculaap"/>
             </serviceProvider>
          </Encounter>
@@ -1365,9 +1401,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0cdd1a9c-5a6a-11eb-1956-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Encounter/2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmomentMMK"/>
       <resource>
          <Encounter>
+            <id value="2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmomentMMK"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-Encounter"/>
             </meta>
@@ -1375,7 +1412,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG_contactmomentMMK (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
+                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG-contactmomentMMK (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
                      <tbody>
                         <tr>
                            <th>Type contact</th>
@@ -1399,7 +1436,9 @@
                         </tr>
                         <tr>
                            <th>Zorgaanbieder</th>
-                           <td>Gezondheidscentrum Aesculaap</td>
+                           <td>
+                              <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727">Gezondheidscentrum Aesculaap</a>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
@@ -1407,7 +1446,7 @@
             </text>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-               <value value="MedMijHG_contactmomentMMK"/>
+               <value value="MedMijHG-contactmomentMMK"/>
             </identifier>
             <status value="finished"/>
             <class>
@@ -1434,15 +1473,15 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:0cdd0c52-5a6a-11eb-1956-020000000000"/>
+               <reference value="urn:uuid:f85c1e0c-5da2-11ec-1079-020000000000"/>
                <display value="J. XXX_Cevat"/>
             </subject>
             <episodeOfCare>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_concern_R96"/>
+                  <value value="MedMijHG-concern-R96"/>
                </identifier>
-               <display value="Episode: MedMijHG_concern_R96 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Episode: MedMijHG-concern-R96 2.16.840.1.113883.2.4.3.111.19.1"/>
             </episodeOfCare>
             <participant>
                <type>
@@ -1455,11 +1494,11 @@
                <individual>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:0cdd0c66-5a6a-11eb-1956-020000000000"/>
+                        <reference value="urn:uuid:f85c1e20-5da2-11ec-1079-020000000000"/>
                         <display value="Huisarts 1 || Gezondheidscentrum Aesculaap"/>
                      </valueReference>
                   </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+                  <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431"/>
                   <display value="Huisarts 1"/>
                </individual>
             </participant>
@@ -1468,7 +1507,7 @@
                <end value="2020-01-25T13:26:45+01:00"/>
             </period>
             <serviceProvider>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.2727"/>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
                <display value="Gezondheidscentrum Aesculaap"/>
             </serviceProvider>
          </Encounter>
@@ -1478,9 +1517,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0cdd1ab0-5a6a-11eb-1956-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Encounter/2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment09"/>
       <resource>
          <Encounter>
+            <id value="2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment09"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-Encounter"/>
             </meta>
@@ -1488,7 +1528,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG_contactmoment09 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
+                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG-contactmoment09 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
                      <tbody>
                         <tr>
                            <th>Type contact</th>
@@ -1512,7 +1552,9 @@
                         </tr>
                         <tr>
                            <th>Zorgaanbieder</th>
-                           <td>Gezondheidscentrum Aesculaap</td>
+                           <td>
+                              <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727">Gezondheidscentrum Aesculaap</a>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
@@ -1520,7 +1562,7 @@
             </text>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-               <value value="MedMijHG_contactmoment09"/>
+               <value value="MedMijHG-contactmoment09"/>
             </identifier>
             <status value="finished"/>
             <class>
@@ -1547,15 +1589,15 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:0cdd0c52-5a6a-11eb-1956-020000000000"/>
+               <reference value="urn:uuid:f85c1e0c-5da2-11ec-1079-020000000000"/>
                <display value="J. XXX_Cevat"/>
             </subject>
             <episodeOfCare>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_concern_S74.01"/>
+                  <value value="MedMijHG-concern-S74.01"/>
                </identifier>
-               <display value="Episode: MedMijHG_concern_S74.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Episode: MedMijHG-concern-S74.01 2.16.840.1.113883.2.4.3.111.19.1"/>
             </episodeOfCare>
             <participant>
                <type>
@@ -1568,11 +1610,11 @@
                <individual>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:0cdd0c66-5a6a-11eb-1956-020000000000"/>
+                        <reference value="urn:uuid:f85c1e20-5da2-11ec-1079-020000000000"/>
                         <display value="Huisarts 1 || Gezondheidscentrum Aesculaap"/>
                      </valueReference>
                   </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+                  <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431"/>
                   <display value="Huisarts 1"/>
                </individual>
             </participant>
@@ -1581,7 +1623,7 @@
                <end value="2020-01-15T13:26:45+01:00"/>
             </period>
             <serviceProvider>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.2727"/>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
                <display value="Gezondheidscentrum Aesculaap"/>
             </serviceProvider>
          </Encounter>
@@ -1591,9 +1633,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0cdd1ac4-5a6a-11eb-1956-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Encounter/2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment08"/>
       <resource>
          <Encounter>
+            <id value="2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment08"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-Encounter"/>
             </meta>
@@ -1601,7 +1644,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG_contactmoment08 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
+                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG-contactmoment08 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
                      <tbody>
                         <tr>
                            <th>Type contact</th>
@@ -1625,7 +1668,9 @@
                         </tr>
                         <tr>
                            <th>Zorgaanbieder</th>
-                           <td>Gezondheidscentrum Aesculaap</td>
+                           <td>
+                              <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727">Gezondheidscentrum Aesculaap</a>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
@@ -1633,7 +1678,7 @@
             </text>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-               <value value="MedMijHG_contactmoment08"/>
+               <value value="MedMijHG-contactmoment08"/>
             </identifier>
             <status value="finished"/>
             <class>
@@ -1660,15 +1705,15 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:0cdd0c52-5a6a-11eb-1956-020000000000"/>
+               <reference value="urn:uuid:f85c1e0c-5da2-11ec-1079-020000000000"/>
                <display value="J. XXX_Cevat"/>
             </subject>
             <episodeOfCare>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_concern_S04"/>
+                  <value value="MedMijHG-concern-S04"/>
                </identifier>
-               <display value="Episode: MedMijHG_concern_S04 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Episode: MedMijHG-concern-S04 2.16.840.1.113883.2.4.3.111.19.1"/>
             </episodeOfCare>
             <participant>
                <type>
@@ -1681,11 +1726,11 @@
                <individual>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:0cdd0c66-5a6a-11eb-1956-020000000000"/>
+                        <reference value="urn:uuid:f85c1e20-5da2-11ec-1079-020000000000"/>
                         <display value="Huisarts 1 || Gezondheidscentrum Aesculaap"/>
                      </valueReference>
                   </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+                  <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431"/>
                   <display value="Huisarts 1"/>
                </individual>
             </participant>
@@ -1694,7 +1739,7 @@
                <end value="2020-01-10T13:26:45+01:00"/>
             </period>
             <serviceProvider>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.2727"/>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
                <display value="Gezondheidscentrum Aesculaap"/>
             </serviceProvider>
          </Encounter>
@@ -1704,9 +1749,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0cdd1ad8-5a6a-11eb-1956-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Encounter/2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment03"/>
       <resource>
          <Encounter>
+            <id value="2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment03"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-Encounter"/>
             </meta>
@@ -1714,7 +1760,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG_contactmoment03 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
+                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG-contactmoment03 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
                      <tbody>
                         <tr>
                            <th>Type contact</th>
@@ -1738,7 +1784,9 @@
                         </tr>
                         <tr>
                            <th>Zorgaanbieder</th>
-                           <td>Gezondheidscentrum Aesculaap</td>
+                           <td>
+                              <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727">Gezondheidscentrum Aesculaap</a>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
@@ -1746,7 +1794,7 @@
             </text>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-               <value value="MedMijHG_contactmoment03"/>
+               <value value="MedMijHG-contactmoment03"/>
             </identifier>
             <status value="finished"/>
             <class>
@@ -1773,7 +1821,7 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:0cdd0c52-5a6a-11eb-1956-020000000000"/>
+               <reference value="urn:uuid:f85c1e0c-5da2-11ec-1079-020000000000"/>
                <display value="J. XXX_Cevat"/>
             </subject>
             <participant>
@@ -1787,11 +1835,11 @@
                <individual>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:0cdd0c66-5a6a-11eb-1956-020000000000"/>
+                        <reference value="urn:uuid:f85c1e20-5da2-11ec-1079-020000000000"/>
                         <display value="Huisarts 1 || Gezondheidscentrum Aesculaap"/>
                      </valueReference>
                   </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+                  <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431"/>
                   <display value="Huisarts 1"/>
                </individual>
             </participant>
@@ -1800,7 +1848,7 @@
                <end value="2019-07-09T14:26:45+02:00"/>
             </period>
             <serviceProvider>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.2727"/>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
                <display value="Gezondheidscentrum Aesculaap"/>
             </serviceProvider>
          </Encounter>
@@ -1810,9 +1858,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0cdd1aea-5a6a-11eb-1956-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Encounter/2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment02"/>
       <resource>
          <Encounter>
+            <id value="2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment02"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-Encounter"/>
             </meta>
@@ -1820,7 +1869,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG_contactmoment02 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
+                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG-contactmoment02 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
                      <tbody>
                         <tr>
                            <th>Type contact</th>
@@ -1844,7 +1893,9 @@
                         </tr>
                         <tr>
                            <th>Zorgaanbieder</th>
-                           <td>Gezondheidscentrum Aesculaap</td>
+                           <td>
+                              <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727">Gezondheidscentrum Aesculaap</a>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
@@ -1852,7 +1903,7 @@
             </text>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-               <value value="MedMijHG_contactmoment02"/>
+               <value value="MedMijHG-contactmoment02"/>
             </identifier>
             <status value="finished"/>
             <class>
@@ -1879,7 +1930,7 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:0cdd0c52-5a6a-11eb-1956-020000000000"/>
+               <reference value="urn:uuid:f85c1e0c-5da2-11ec-1079-020000000000"/>
                <display value="J. XXX_Cevat"/>
             </subject>
             <participant>
@@ -1893,11 +1944,11 @@
                <individual>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:0cdd0c66-5a6a-11eb-1956-020000000000"/>
+                        <reference value="urn:uuid:f85c1e20-5da2-11ec-1079-020000000000"/>
                         <display value="Huisarts 1 || Gezondheidscentrum Aesculaap"/>
                      </valueReference>
                   </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+                  <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431"/>
                   <display value="Huisarts 1"/>
                </individual>
             </participant>
@@ -1906,7 +1957,7 @@
                <end value="2019-06-19T14:26:45+02:00"/>
             </period>
             <serviceProvider>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.2727"/>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
                <display value="Gezondheidscentrum Aesculaap"/>
             </serviceProvider>
          </Encounter>
@@ -1916,9 +1967,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0cdd1afc-5a6a-11eb-1956-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Encounter/2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment01"/>
       <resource>
          <Encounter>
+            <id value="2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-contactmoment01"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-Encounter"/>
             </meta>
@@ -1926,7 +1978,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG_contactmoment01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
+                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG-contactmoment01 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
                      <tbody>
                         <tr>
                            <th>Type contact</th>
@@ -1950,7 +2002,9 @@
                         </tr>
                         <tr>
                            <th>Zorgaanbieder</th>
-                           <td>Gezondheidscentrum Aesculaap</td>
+                           <td>
+                              <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727">Gezondheidscentrum Aesculaap</a>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
@@ -1958,7 +2012,7 @@
             </text>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-               <value value="MedMijHG_contactmoment01"/>
+               <value value="MedMijHG-contactmoment01"/>
             </identifier>
             <status value="finished"/>
             <class>
@@ -1985,15 +2039,15 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:0cdd0c52-5a6a-11eb-1956-020000000000"/>
+               <reference value="urn:uuid:f85c1e0c-5da2-11ec-1079-020000000000"/>
                <display value="J. XXX_Cevat"/>
             </subject>
             <episodeOfCare>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_concern_K78"/>
+                  <value value="MedMijHG-concern-K78"/>
                </identifier>
-               <display value="Episode: MedMijHG_concern_K78 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Episode: MedMijHG-concern-K78 2.16.840.1.113883.2.4.3.111.19.1"/>
             </episodeOfCare>
             <participant>
                <type>
@@ -2006,11 +2060,11 @@
                <individual>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:0cdd0c66-5a6a-11eb-1956-020000000000"/>
+                        <reference value="urn:uuid:f85c1e20-5da2-11ec-1079-020000000000"/>
                         <display value="Huisarts 1 || Gezondheidscentrum Aesculaap"/>
                      </valueReference>
                   </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+                  <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431"/>
                   <display value="Huisarts 1"/>
                </individual>
             </participant>
@@ -2019,7 +2073,7 @@
                <end value="2019-05-30T14:26:45+02:00"/>
             </period>
             <serviceProvider>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.2727"/>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
                <display value="Gezondheidscentrum Aesculaap"/>
             </serviceProvider>
          </Encounter>
@@ -2029,7 +2083,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0cdd1b10-5a6a-11eb-1956-020000000000"/>
+      <fullUrl value="urn:uuid:f85c1879-5da2-11ec-1079-020000000000"/>
       <resource>
          <Encounter>
             <meta>
@@ -2039,7 +2093,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG_contactmomentherhaalrecept (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
+                     <caption>Contact. Subject: J. XXX_Cevat. Id: MedMijHG-contactmomentherhaalrecept (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Status: voltooid</caption>
                      <tbody>
                         <tr>
                            <th>Type contact</th>
@@ -2061,7 +2115,9 @@
                         </tr>
                         <tr>
                            <th>Zorgaanbieder</th>
-                           <td>Gezondheidscentrum Aesculaap</td>
+                           <td>
+                              <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727">Gezondheidscentrum Aesculaap</a>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
@@ -2069,7 +2125,7 @@
             </text>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-               <value value="MedMijHG_contactmomentherhaalrecept"/>
+               <value value="MedMijHG-contactmomentherhaalrecept"/>
             </identifier>
             <status value="finished"/>
             <class>
@@ -2096,15 +2152,15 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:0cdd0c52-5a6a-11eb-1956-020000000000"/>
+               <reference value="urn:uuid:f85c1e0c-5da2-11ec-1079-020000000000"/>
                <display value="J. XXX_Cevat"/>
             </subject>
             <episodeOfCare>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
-                  <value value="MedMijHG_concern_R21.01"/>
+                  <value value="MedMijHG-concern-R21.01"/>
                </identifier>
-               <display value="Episode: MedMijHG_concern_R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
+               <display value="Episode: MedMijHG-concern-R21.01 2.16.840.1.113883.2.4.3.111.19.1"/>
             </episodeOfCare>
             <participant>
                <type>
@@ -2117,11 +2173,11 @@
                <individual>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:0cdd0c66-5a6a-11eb-1956-020000000000"/>
+                        <reference value="urn:uuid:f85c1e20-5da2-11ec-1079-020000000000"/>
                         <display value="Huisarts 1 || Gezondheidscentrum Aesculaap"/>
                      </valueReference>
                   </extension>
-                  <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+                  <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431"/>
                   <display value="Huisarts 1"/>
                </individual>
             </participant>
@@ -2130,7 +2186,7 @@
                <end value="2020-06-23T14:26:45+02:00"/>
             </period>
             <serviceProvider>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.2727"/>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
                <display value="Gezondheidscentrum Aesculaap"/>
             </serviceProvider>
          </Encounter>
@@ -2140,7 +2196,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0cdd0c52-5a6a-11eb-1956-020000000000"/>
+      <fullUrl value="urn:uuid:f85c1e0c-5da2-11ec-1079-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -2176,7 +2232,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="male"/>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1985-12-30"/>
             <address>
                <line value="Knolweg 1003">
@@ -2198,9 +2264,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+      <fullUrl value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431"/>
       <resource>
          <Practitioner>
+            <id value="2.16.528.1.1007.3.1-900016431"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
             </meta>
@@ -2231,9 +2298,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.2727"/>
+      <fullUrl value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
       <resource>
          <Organization>
+            <id value="2.16.528.1.1007.3.3-00002727"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
@@ -2263,7 +2331,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0cdd0c66-5a6a-11eb-1956-020000000000"/>
+      <fullUrl value="urn:uuid:f85c1e20-5da2-11ec-1079-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -2278,30 +2346,37 @@
                         <tr>
                            <th>Zorgverlener</th>
                            <td>
-                              <div>Huisarts 1</div>
-                              <div>Gezondheidscentrum Aesculaap</div>
+                              <div>
+                                 <a href="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431">Huisarts 1</a>
+                              </div>
+                              <div>
+                                 <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727">Gezondheidscentrum Aesculaap</a>
+                              </div>
                            </td>
                         </tr>
                         <tr>
                            <th>Specialisme</th>
-                           <td>01.015 (http://fhir.nl/fhir/NamingSystem/uzi-rolcode)</td>
+                           <td>
+                              <span title="Huisarts (01.015 - http://fhir.nl/fhir/NamingSystem/uzi-rolcode)">Huisarts</span>
+                           </td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
             <practitioner>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900016431"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431"/>
                <display value="Huisarts 1"/>
             </practitioner>
             <organization>
-               <reference value="urn:oid:2.16.528.1.1007.3.3.2727"/>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
                <display value="Gezondheidscentrum Aesculaap"/>
             </organization>
             <specialty>
                <coding>
                   <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
                   <code value="01.015"/>
+                  <display value="Huisarts"/>
                </coding>
             </specialty>
          </PractitionerRole>
