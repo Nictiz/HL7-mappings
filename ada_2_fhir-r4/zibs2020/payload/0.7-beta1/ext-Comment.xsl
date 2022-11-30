@@ -12,36 +12,15 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-
-<xsl:stylesheet exclude-result-prefixes="#all"
-    xmlns="http://hl7.org/fhir"
-    xmlns:util="urn:hl7:utilities" 
-    xmlns:f="http://hl7.org/fhir" 
-    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-    xmlns:nf="http://www.nictiz.nl/functions" 
-    xmlns:uuid="http://www.uuid.org"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-    version="2.0">
-   
-    <xsl:output method="xml" indent="yes"/>
-    <xsl:strip-space elements="*"/>
-    
-    <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada string to FHIR extension conforming to profile ext-Comment</xd:desc>
-    </xd:doc>
-    
-    <xd:doc>
-        <xd:desc>Template for shared extension http://nictiz.nl/fhir/StructureDefinition/ext-Comment</xd:desc>
-        <xd:param name="in">Optional. Ada element containing a string</xd:param>
-    </xd:doc>
-    <xsl:template match="*" name="ext-Comment" mode="ext-Comment" as="element()?">
-        <xsl:param name="in" as="element()?" select="."/>
-        <xsl:for-each select="$in[string-length(@value) gt 0]">
-            <extension url="{$urlExtComment}">
-                <valueString value="{@value}"/>
-            </extension>
-        </xsl:for-each>
-    </xsl:template>
-    
+<xsl:stylesheet xmlns="http://hl7.org/fhir"
+                xmlns:util="urn:hl7:utilities"
+                xmlns:f="http://hl7.org/fhir"
+                xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
+                xmlns:nf="http://www.nictiz.nl/functions"
+                xmlns:uuid="http://www.uuid.org"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                exclude-result-prefixes="#all"
+                version="2.0">
+   <xsl:import href="../0.6-beta2/ext-Comment.xsl"/>
 </xsl:stylesheet>
