@@ -440,6 +440,9 @@
             <param name="param.maskids" value="${mask.ids}"/>
         </antcall>-->
         
+        <!-- also do the examples -->
+        <antcall target="convert_ada_2_fhir_examples"/>
+        
         <!-- delete dummy dir -->
         <delete dir="${xsl.output.dummy}"/>
 
