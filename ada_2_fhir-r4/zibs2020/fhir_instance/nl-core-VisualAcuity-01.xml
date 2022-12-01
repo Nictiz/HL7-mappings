@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="nl-core-VisualAcuity-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-VisualAcuity"/>
+   </meta>
+   <extension url="http://hl7.org/fhir/StructureDefinition/observation-deviceCode">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="419475002"/>
+            <display value="Pinhole visual acuity"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16830007"/>
+         <display value="onderzoek van visus"/>
+      </coding>
+   </code>
+   <effectiveDateTime value="2020-02-08"/>
+   <valueQuantity>
+      <value value="0.8"/>
+      <unit value="decimal"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="{decimal}"/>
+   </valueQuantity>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="Links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="81745001"/>
+         <display value="structuur van bulbus oculi (lichaamsstructuur)"/>
+      </coding>
+   </bodySite>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="16830007"/>
+            <display value="onderzoek van visus (verrichting)"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="419775003"/>
+            <display value="Best-gecorrigeerde visus"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="363691001"/>
+            <display value="verrichting ingedeeld naar hulpmiddel (verrichting)"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="420050001"/>
+            <display value="Ongecorrigeerde visus"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="152731000146106"/>
+            <display value="distance to visual acuity chart (observable entity)"/>
+         </coding>
+      </code>
+      <valueQuantity>
+         <value value="5"/>
+         <unit value="m"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="m"/>
+      </valueQuantity>
+   </component>
+</Observation>

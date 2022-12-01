@@ -413,7 +413,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$localName = 'soepverslag'">
                 <xsl:apply-templates select="$in" mode="nl-core-SOAPReport"/>
                 <xsl:for-each select="soepregel">
-                    <xsl:apply-templates select="." mode="nl-core-SOAPReport-Observation"/>
+                    <xsl:call-template name="nl-core-SOAPReport.SOAPLine"/>
                 </xsl:for-each>
             </xsl:when>
             <xsl:when test="$localName = 'tabak_gebruik'">
@@ -458,6 +458,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:when test="$localName = 'vermogen_tot_drinken'">
                 <xsl:apply-templates select="$in" mode="nl-core-AbilityToDrink">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
+            <xsl:when test="$localName = 'vermogen_tot_eten'">
+                <xsl:apply-templates select="$in" mode="nl-core-AbilityToEat">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
             </xsl:when>
