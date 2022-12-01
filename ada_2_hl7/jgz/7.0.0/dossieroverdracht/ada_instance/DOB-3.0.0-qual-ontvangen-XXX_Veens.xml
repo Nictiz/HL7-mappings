@@ -1,7 +1,9 @@
 <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:/C:/dev/HL7-mappings/ada_2_hl7/jgz/7.0.0/dossieroverdracht/ada_schemas/ada_versturen_jgzdossieroverdrachtverzoek_v02.xsd">
-    <meta status="new" created-by="ekykaelani" last-update-by="ekykaelani" creation-date="2022-08-04T14:31:31.692+02:00" last-update-date="2022-08-04T15:41:44.148+02:00"/>
+    <meta status="new" created-by="ekykaelani" last-update-by="ekykaelani" creation-date="2022-08-04T14:31:31.692+02:00" last-update-date="2022-12-01T14:16:05.241+01:00"/>
     <data>
-        <versturen_jgzdossieroverdrachtverzoek_v02 app="jgz-7.0.0" shortName="versturen_jgzdossieroverdrachtverzoek_v02" formName="versturen_jgzdossieroverdrachtverzoek_v02_bds_327" transactionRef="2.16.840.1.113883.2.4.3.11.60.100.4.20" transactionEffectiveDate="2013-07-09T12:00:00" versionDate="2022-03-13T18:33:14" prefix="jgz-7.0.0-" language="nl-NL" title="Dossieroverdracht Ontvangen DOB v02 (XXX_Veens, 17j)" desc="" id="DOB-3.0.0-qual-ontvangen-XXX_Veens">
+
+        
+    <versturen_jgzdossieroverdrachtverzoek_v02 app="jgz-7.0.0" shortName="versturen_jgzdossieroverdrachtverzoek_v02" formName="versturen_jgzdossieroverdrachtverzoek_v02_bds_327" transactionRef="2.16.840.1.113883.2.4.3.11.60.100.4.20" transactionEffectiveDate="2013-07-09T12:00:00" versionDate="2022-03-13T18:33:14" prefix="jgz-7.0.0-" language="nl-NL" title="Dossieroverdracht Ontvangen DOB v02 (XXX_Veens, 17j)" desc="" id="DOB-3.0.0-qual-ontvangen-XXX_Veens">
             <r002_dossierinformatie conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.1.2" comment="">
                 <dossiernummer value="121212" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.695"/>
                 <dossier_status conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.696" value="6" code="completed" codeSystem="2.16.840.1.113883.5.14" displayName="Gesloten"/>
@@ -13,7 +15,7 @@
                 <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.19" value="8" code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouwelijk"/>
                 <geboortedatum value="T-17Y" datatype="datetime" id="DOB" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.20"/>
                 <groep_g001_adres_client conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.2.1" comment="">
-                    <soort_adres conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.8" code="HP" codeSystem="2.16.840.1.113883.5.1119" displayName="BRP/COA-adres"/>
+                    <soort_adres conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.8" value="8" code="HP" codeSystem="2.16.840.1.113883.5.1119" displayName="BRP/COA-adres"/>
                     <adres_is_geheim value="false" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.697"/>
                     <woonplaats value="Stitswerd" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.10"/>
                     <straatnaam value="Knolweg" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.11"/>
@@ -52,7 +54,7 @@
                     <datum_bestand value="T" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1172"/>
                 </groep_g072_toegevoegd_bestand>
             </r009_externe_documenten>
-            <r013_bedreigingen_uit_de_directe_omgeving conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.1.13" comment="">
+            <r013_bedreigingen_uit_de_directe_omgeving conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.1.13" comment="activiteit-1" id="R013-1">
                 <bedreigingen_nagevraagd value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1384"/>
                 <bedreiging_sociaal_milieu conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.481" value="12" code="02" codeSystem="2.16.840.1.113883.2.4.4.40.81" displayName="Vermoeden overmatige zorg"/>
                 <bedreiging_fysiek_milieu conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.827" value="8" code="01" codeSystem="2.16.840.1.113883.2.4.4.40.305" displayName="Geen"/>
@@ -66,25 +68,19 @@
                 <soort_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.494" value="44" code="05" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Contactmoment 3 maanden"/>
                 <datum_activiteit value="DOB+3M" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.724"/>
                 <status_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.725" value="5" code="completed" codeSystem="2.16.840.1.113883.5.14" displayName="Uitgevoerd/Verschenen op afspraak"/>
-                <verzoeker_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1423" value="13" code="05" codeSystem="2.16.840.1.113883.2.4.4.40.411" displayName="zorgstructuren"/>
-                <indicatie_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1424" value="36" code="01" codeSystem="2.16.840.1.113883.2.4.4.40.373" displayName="Vaccinaties"/>
                 <uitvoerende_activiteit_agb value="06590457" root="2.16.840.1.113883.2.4.6.1" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1523"/>
                 <uitvoerende_activiteit_naam value="Winnie" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1501"/>
-                <begeleider conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.731" value="16" code="01" codeSystem="2.16.840.1.113883.2.4.4.40.421" displayName="(Biologische of adoptief) Moeder"/>
-                <begeleider conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.731" value="19" code="04" codeSystem="2.16.840.1.113883.2.4.4.40.421" displayName="Stiefvader"/>
-                <contact_met value="huisarts " conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1351"/>
                 <gekoppeldeActiviteit value="R019-1" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.999.60.11.1.19798.1"/>
                 <gekoppeldeActiviteit value="R021-1" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.999.60.11.1.19798.1"/>
                 <gekoppeldeActiviteit value="R038-1" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.999.60.11.1.19798.1"/>
                 <gekoppeldeActiviteit value="R047-1" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.999.60.11.1.19798.1"/>
+                <gekoppeldeActiviteit value="R013-1" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.999.60.11.1.19798.1"/>
             </r018_activiteit>
             <r018_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.1.18" comment="">
                 <activiteit_id value="2" root="2.16.840.1.113883.2.4.3.11.999.100.2.2" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1377"/>
                 <soort_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.494" value="61" code="22" codeSystem="2.16.840.1.113883.2.4.4.40.308" displayName="Contactmoment op indicatie"/>
                 <datum_activiteit value="DOB+16Y" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.724"/>
                 <status_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.725" value="5" code="completed" codeSystem="2.16.840.1.113883.5.14" displayName="Uitgevoerd/Verschenen op afspraak"/>
-                <verzoeker_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1423" value="12" code="04" codeSystem="2.16.840.1.113883.2.4.4.40.411" displayName="huisarts/specialist"/>
-                <indicatie_activiteit conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1424" value="45" code="10" codeSystem="2.16.840.1.113883.2.4.4.40.373" displayName="Psychosociale/emotionele ontwikkeling"/>
                 <uitvoerende_activiteit_agb value="06590457" root="2.16.840.1.113883.2.4.6.1" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1523"/>
                 <uitvoerende_activiteit_naam value="Ariël" conceptId="2.16.840.1.113883.2.4.3.11.60.100.2.3.1501"/>
                 <gekoppeldeActiviteit value="R019-2" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.999.60.11.1.19798.1"/>
