@@ -74,12 +74,13 @@
         
         <sequential>
             <fileset id="in.files" dir="@{in.dir.absolute}">
-                <include name="**/*.xml"/>
+                <include name="*.xml"/>
             </fileset>
             
             <tempfile property="temp.dir"/>
+            <mkdir dir="${temp.dir}"/>
             
-            <xslt force="true" style="${narrativegenerator.dir}/addNarratives.xsl" destdir="${temp.dir}" useImplicitFileset="false">
+            <xslt force="true" style="${narrativegenerator.dir}/addNarratives.xsl" destdir="${temp.dir}" useImplicitFileset="false" failOnNoResources="false">
                 <factory name="net.sf.saxon.TransformerFactoryImpl"/>
                 <classpath location="${Saxon-HE.jar}"/>
                 <param name="override" expression="true"/>
