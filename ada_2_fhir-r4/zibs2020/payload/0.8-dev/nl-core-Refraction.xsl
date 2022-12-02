@@ -89,14 +89,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="_refractionComponent">
                             <xsl:with-param name="snomedCode">251797004</xsl:with-param>
                             <xsl:with-param name="snomedDisplay">cillindersterkte</xsl:with-param>
-                            <xsl:with-param name="unit">[diop]</xsl:with-param>
+                            <xsl:with-param name="unit">dioptrie</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
                     <xsl:for-each select="cilindrische_refractie_as">
                         <xsl:call-template name="_refractionComponent">
                             <xsl:with-param name="snomedCode">251799001</xsl:with-param>
                             <xsl:with-param name="snomedDisplay">as van cilinder</xsl:with-param>
-                            <xsl:with-param name="unit">deg</xsl:with-param>
+                            <xsl:with-param name="unit">graden</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
                 </xsl:for-each>
@@ -106,14 +106,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="_refractionComponent">
                             <xsl:with-param name="snomedCode">251762001</xsl:with-param>
                             <xsl:with-param name="snomedDisplay">prismasterkte</xsl:with-param>
-                            <xsl:with-param name="unit">[p'diop]</xsl:with-param>
+                            <xsl:with-param name="unit">prisma dioptrie</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
                     <xsl:for-each select="prisma_basis">
                         <xsl:call-template name="_refractionComponent">
                             <xsl:with-param name="snomedCode">246223004</xsl:with-param>
                             <xsl:with-param name="snomedDisplay">richting van basis van prisma</xsl:with-param>
-                            <xsl:with-param name="unit">deg</xsl:with-param>
+                            <xsl:with-param name="unit">graden</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
                 </xsl:for-each>
@@ -123,14 +123,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="_refractionComponent">
                             <xsl:with-param name="snomedCode">251795007</xsl:with-param>
                             <xsl:with-param name="snomedDisplay">sferische sterkte</xsl:with-param>
-                            <xsl:with-param name="unit">[diop]</xsl:with-param>
+                            <xsl:with-param name="unit">dioptrie</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
                     <xsl:for-each select="sferisch_equivalent">
                         <xsl:call-template name="_refractionComponent">
                             <xsl:with-param name="snomedCode">112881000146107</xsl:with-param>
                             <xsl:with-param name="snomedDisplay">sferisch equivalent</xsl:with-param>
-                            <xsl:with-param name="unit">[diop]</xsl:with-param>
+                            <xsl:with-param name="unit">dioptrie</xsl:with-param>
                         </xsl:call-template>
                     </xsl:for-each>
                 </xsl:for-each>
@@ -139,7 +139,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="_refractionComponent">
                         <xsl:with-param name="snomedCode">251718005</xsl:with-param>
                         <xsl:with-param name="snomedDisplay">refractiesterkte</xsl:with-param>
-                        <xsl:with-param name="unit">[diop]</xsl:with-param>
+                        <xsl:with-param name="unit">dioptrie</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
             </Observation>
