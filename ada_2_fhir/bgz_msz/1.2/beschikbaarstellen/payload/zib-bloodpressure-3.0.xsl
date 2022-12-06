@@ -121,7 +121,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <coding>
                                 <system value="http://loinc.org"/>
                                 <code value="8480-6"/>
-                                <display value="Intravasculaire systolische bloeddruk"/>
+                                <display value="Intravasculaire systolische bloeddruk [druk] in arterieel vaatstelsel"/>
                             </coding>
                         </code>
                         <valueQuantity>
@@ -146,7 +146,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <coding>
                                 <system value="http://loinc.org"/>
                                 <code value="8462-4"/>
-                                <display value="Intravasculaire diastolische bloeddruk"/>
+                                <display value="Intravasculaire diastolische bloeddruk [druk] in arterieel vaatstelsel"/>
                             </coding>
                         </code>
                         <valueQuantity>

@@ -155,7 +155,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <coding>
                             <system value="http://loinc.org"/>
                             <code value="29463-7"/>
-                            <display value="lichaamsgewicht"/>
+                            <display value="Lichaamsgewicht [massa] in ^patiënt"/>
                         </coding>
                     </code>
                     

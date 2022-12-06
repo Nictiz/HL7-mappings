@@ -155,7 +155,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <coding>
                             <system value="http://loinc.org"/>
                             <code value="8302-2"/>
-                            <display value="lichaamslengte"/>
+                            <display value="Lichaamslengte [lengte] in ^patiënt"/>
                         </coding>
                         
                         <xsl:for-each select="(positie | position)[@code]">
@@ -164,14 +164,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <coding>
                                         <system value="http://loinc.org"/>
                                         <code value="8308-9"/>
-                                        <display value="Body height --standing"/>
+                                        <display value="Lichaamslengte^staand [lengte] in ^patiënt"/>
                                     </coding>
                                 </xsl:when>
                                 <xsl:when test="@code = '102538003' and @codeSystem = '2.16.840.1.113883.6.96'">
                                     <coding>
                                         <system value="http://loinc.org"/>
                                         <code value="8306-3"/>
-                                        <display value="Body height --lying"/>
+                                        <display value="Lichaamslengte^liggend [lengte] in ^patiënt"/>
                                     </coding>
                                 </xsl:when>
                             </xsl:choose>
