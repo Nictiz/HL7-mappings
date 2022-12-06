@@ -1,5 +1,5 @@
 <Observation xmlns="http://hl7.org/fhir">
-   <id value="zib-BloodPressure-bgz-msz-patA-bloodpressure2"/>
+   <id value="zib-BloodPressure-bgz-msz-patA-bloodpressure3"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-BloodPressure"/>
    </meta>
@@ -7,11 +7,11 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Observatie/bepaling. Subject: Dennis D. Dennis Janse. Id: patA-bloodpressure2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief</caption>
+            <caption>Observatie/bepaling. Subject: Dennis D. Dennis Janse. Id: patA-bloodpressure3 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief</caption>
             <tbody>
                <tr>
                   <th>Bepalingdatum/tijd</th>
-                  <td>${DATE, T, D, +2}T09:00:00+02:00</td>
+                  <td>${DATE, T, D, +3}T10:00:00+02:00</td>
                </tr>
                <tr>
                   <th>Methode</th>
@@ -39,28 +39,36 @@
                   <td>
                      <span title="Intravasculaire systolische bloeddruk [druk] in arterieel vaatstelsel (8480-6 - LOINC)">Intravasculaire systolische bloeddruk [druk] in arterieel vaatstelsel</span>
                   </td>
-                  <td>120 mm[Hg]</td>
+                  <td>130 mm[Hg]</td>
                </tr>
                <tr>
                   <td>
                      <span title="Intravasculaire diastolische bloeddruk [druk] in arterieel vaatstelsel (8462-4 - LOINC)">Intravasculaire diastolische bloeddruk [druk] in arterieel vaatstelsel</span>
                   </td>
-                  <td>71 mm[Hg]</td>
+                  <td>79 mm[Hg]</td>
                </tr>
                <tr>
                   <td>
-                     <span title="lichaamspositie voor bepalen van bloeddruk (424724000 - SNOMED CT)">lichaamspositie voor bepalen van bloeddruk</span>
+                     <span title="Korotkofftonen (85549003 - SNOMED CT)">Korotkofftonen</span>
                   </td>
                   <td>
-                     <span title="zittende positie (33586001 - SNOMED CT)">zittende positie</span>
+                     <span title="fase 4 (255271000 - SNOMED CT)">fase 4</span>
                   </td>
                </tr>
                <tr>
                   <td>
-                     <span title="Body position with respect to gravity (8361-8 - LOINC)">Body position with respect to gravity</span>
+                     <span title="Blood pressure device Cuff size (8358-4 - LOINC)">Blood pressure device Cuff size</span>
                   </td>
                   <td>
-                     <span title="zittende positie (33586001 - SNOMED CT)">zittende positie</span>
+                     <span title="Standaard (STD - 2.16.840.1.113883.2.4.3.11.60.40.4.15.1)">Standaard</span>
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="bloeddrukmanchet (70665002 - SNOMED CT)">bloeddrukmanchet</span>
+                  </td>
+                  <td>
+                     <span title="Standaard (STD - 2.16.840.1.113883.2.4.3.11.60.40.4.15.1)">Standaard</span>
                   </td>
                </tr>
             </tbody>
@@ -69,7 +77,7 @@
    </text>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
-      <value value="patA-bloodpressure2"/>
+      <value value="patA-bloodpressure3"/>
    </identifier>
    <status value="final"/>
    <category>
@@ -90,7 +98,7 @@
       <reference value="Patient/DENNIS-D.-DENNIS-JANSE"/>
       <display value="Dennis D. Dennis Janse"/>
    </subject>
-   <effectiveDateTime value="${DATE, T, D, +2}T09:00:00+02:00"/>
+   <effectiveDateTime value="${DATE, T, D, +3}T10:00:00+02:00"/>
    <bodySite>
       <coding>
          <system value="http://snomed.info/sct"/>
@@ -114,7 +122,7 @@
          </coding>
       </code>
       <valueQuantity>
-         <value value="120"/>
+         <value value="130"/>
          <unit value="mm[Hg]"/>
          <system value="http://unitsofmeasure.org"/>
          <code value="mm[Hg]"/>
@@ -129,7 +137,7 @@
          </coding>
       </code>
       <valueQuantity>
-         <value value="71"/>
+         <value value="79"/>
          <unit value="mm[Hg]"/>
          <system value="http://unitsofmeasure.org"/>
          <code value="mm[Hg]"/>
@@ -139,15 +147,15 @@
       <code>
          <coding>
             <system value="http://snomed.info/sct"/>
-            <code value="424724000"/>
-            <display value="lichaamspositie voor bepalen van bloeddruk"/>
+            <code value="85549003"/>
+            <display value="Korotkofftonen"/>
          </coding>
       </code>
       <valueCodeableConcept>
          <coding>
             <system value="http://snomed.info/sct"/>
-            <code value="33586001"/>
-            <display value="zittende positie"/>
+            <code value="255271000"/>
+            <display value="fase 4"/>
          </coding>
       </valueCodeableConcept>
    </component>
@@ -155,15 +163,31 @@
       <code>
          <coding>
             <system value="http://loinc.org"/>
-            <code value="8361-8"/>
-            <display value="Body position with respect to gravity"/>
+            <code value="8358-4"/>
+            <display value="Blood pressure device Cuff size"/>
          </coding>
       </code>
       <valueCodeableConcept>
          <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.15.1"/>
+            <code value="STD"/>
+            <display value="Standaard"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <coding>
             <system value="http://snomed.info/sct"/>
-            <code value="33586001"/>
-            <display value="zittende positie"/>
+            <code value="70665002"/>
+            <display value="bloeddrukmanchet"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.15.1"/>
+            <code value="STD"/>
+            <display value="Standaard"/>
          </coding>
       </valueCodeableConcept>
    </component>
