@@ -28,7 +28,71 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
     <xsl:output method="xml" indent="yes"/>
 
-
+    <xd:doc>
+        <xd:desc>Helper template for doseerinstructie</xd:desc>
+        <xd:param name="in">ada element doseerinstructie, defaults to context</xd:param>
+    </xd:doc>
+    <xsl:template name="_handleDoseerinstructie">
+        <xsl:param name="in" as="element()?" select="."/>
+        
+        <xsl:for-each select="$in">
+            <!-- make the HL7 stuff -->
+            <xsl:choose>
+                <!-- geen dosering: pauze periode of 'gebruik bekend' of iets dergelijks -->
+                <xsl:when test="not(dosering[.//(@value | @code | @nullFlavor)])">
+                    <entryRelationship typeCode="COMP">
+                        <xsl:for-each select="volgnummer[.//(@value | @code)]">
+                            <sequenceNumber>
+                                <xsl:attribute name="value" select="@value"/>
+                            </sequenceNumber>
+                        </xsl:for-each>
+                        <!-- Als helemaal geen volgnummer opgegeven: zelf 1 invullen -->
+                        <xsl:if test="not(volgnummer[.//(@value | @code)])">
+                            <sequenceNumber>
+                                <xsl:attribute name="value" select="1"/>
+                            </sequenceNumber>
+                        </xsl:if>
+                        
+                        <!-- pauze periode -->
+                        <xsl:if test="doseerduur[.//(@value | @unit)]">
+                            <substanceAdministration classCode="SBADM" moodCode="RQO">
+                                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+                                <effectiveTime xsi:type="Timing" xmlns="http://hl7.org/fhir">
+                                    <xsl:call-template name="adaDoseerinstructie2FhirTimingContents">
+                                        <xsl:with-param name="in" select="."/>
+                                        <xsl:with-param name="inHerhaalperiodeCyclischschema" select="../herhaalperiode_cyclisch_schema"/>
+                                    </xsl:call-template>
+                                </effectiveTime>
+                                <consumable xsi:nil="true"/>
+                            </substanceAdministration>
+                        </xsl:if>
+                    </entryRelationship>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:for-each select="dosering[.//(@value | @code | @nullFlavor)]">
+                        <entryRelationship typeCode="COMP">
+                            <xsl:for-each select="../volgnummer[.//(@value | @code)]">
+                                <sequenceNumber>
+                                    <xsl:attribute name="value" select="./@value"/>
+                                </sequenceNumber>
+                            </xsl:for-each>
+                            <!-- Als helemaal geen volgnummer opgegeven: zelf 1 invullen -->
+                            <xsl:if test="not(../volgnummer[.//(@value | @code)])">
+                                <sequenceNumber>
+                                    <xsl:attribute name="value" select="1"/>
+                                </sequenceNumber>
+                            </xsl:if>
+                            <xsl:for-each select=".">
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9359_20210517141255"/>
+                            </xsl:for-each>
+                        </entryRelationship>
+                    </xsl:for-each>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:for-each>
+        
+    </xsl:template>
+    
     <xd:doc>
         <xd:desc>Handle ada gebruiksperiode for datasets 907, 9.1.0 and from 9 2.0 onwards</xd:desc>
         <xd:param name="in">The parent of the gebruiksperiode elements, for example: medicatieafspraak, toedieningsafspraak, medicatiegebruik. Defaults to context.</xd:param>
@@ -3001,7 +3065,64 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:call-template>
         </observation>
     </xsl:template>
-
+    <xd:doc>
+        <xd:desc>Create an MP CDA administration schedule based on ada toedieningsschema. Version FHIR. Override of version in 2_hl7_mp_include_9x.xsl</xd:desc>
+        <xd:param name="in">The ada input element: toedieningsschema. Defaults to context.</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9358_20210517124213" match="toedieningsschema" mode="HandleFHIRinCDAAdministrationSchedule9x">
+        <xsl:param name="in" as="element()*" select="."/>
+        <xsl:for-each select="$in">
+            <effectiveTime xsi:type="Timing" xmlns="http://hl7.org/fhir">
+                <xsl:call-template name="adaToedieningsschema2FhirTimingContents">
+                    <xsl:with-param name="in" select="."/>
+                    <xsl:with-param name="inHerhaalperiodeCyclischschema" select="../../../herhaalperiode_cyclisch_schema"/>
+                </xsl:call-template>
+            </effectiveTime>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Template for dosage from MP 9 2.0</xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9359_20210517141255" match="dosering" mode="HandleDosering920">
+        <!-- MP CDA Dosering -->
+        <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+            
+            <xsl:for-each select=".">
+                <xsl:for-each select="toedieningsschema[.//(@value | @code)]">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9358_20210517124213"/>
+                </xsl:for-each>
+                
+                <xsl:for-each select="keerdosis[.//(@value | @code)]">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9048_20160614145840"/>
+                </xsl:for-each>
+                <xsl:for-each select="toedieningssnelheid[.//(@value | @code)]">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9150_20160726150449"/>
+                </xsl:for-each>
+                <xsl:for-each select="zo_nodig/maximale_dosering[.//(@value | @code)]">
+                    <maxDoseQuantity>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9064_20160601000000"/>
+                    </maxDoseQuantity>
+                </xsl:for-each>
+            </xsl:for-each>
+            <!-- Altijd verplicht op deze manier aanwezig in de HL7 substanceAdministration -->
+            <consumable xsi:nil="true"/>
+            
+            <xsl:for-each select="zo_nodig/criterium[.//(@value | @code)]">
+                <precondition>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9182_20170601000000">
+                        <xsl:with-param name="inCode" select="(code | criterium)/@code"/>
+                        <xsl:with-param name="inCodeSystem" select="(code | criterium)/@codeSystem"/>
+                        <xsl:with-param name="inDisplayName" select="(code | criterium)/@displayName"/>
+                        <xsl:with-param name="strOriginalText" select="(code | criterium)/@originalText"/>
+                    </xsl:call-template>
+                </precondition>
+            </xsl:for-each>
+        </substanceAdministration>
+    </xsl:template>
+    
+    
     <xd:doc>
         <xd:desc> MP CDA Medication Code vanaf 9.2 </xd:desc>
         <xd:param name="productCode">ada elements containing product_code</xd:param>
@@ -3084,7 +3205,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </manufacturedMaterial>
 
     </xsl:template>
-
+    <xd:doc>
+        <xd:desc>MP CDA Medication Information vanaf 9.2</xd:desc>
+        <xd:param name="product"/>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9362_20210602154632">
+        <xsl:param name="product"/>
+        <xsl:if test="$product[1] instance of element()">
+            <xsl:for-each select="$product">
+                <manufacturedProduct>
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9361_20210602154629"/>
+                </manufacturedProduct>
+            </xsl:for-each>
+        </xsl:if>
+    </xsl:template>
+    
     <xd:doc>
         <xd:desc>MP CDA Medication Information for proposal or medication use vanaf 9.2</xd:desc>
         <xd:param name="product">input ada product</xd:param>
@@ -3248,7 +3384,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <consumable xsi:nil="true"/>
         </substanceAdministration>
     </xsl:template>
-
+    <xd:doc>
+        <xd:desc> MP CDA MA Aanvullende informatie </xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9401_20220315000000">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9401"/>
+            <code code="11" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" displayName="Aanvullende informatie Medicatieafspraak"/>
+            <xsl:choose>
+                <xsl:when test="@code">
+                    <xsl:call-template name="makeCEValue"/>
+                </xsl:when>
+                <!-- this should not happen in MP9 2.0.0, but let's output whatever was in @value when there is no @code -->
+                <xsl:when test="not(@code) and @value">
+                    <xsl:call-template name="makeSTValue">
+                        <xsl:with-param name="elemName">text</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:when>
+            </xsl:choose>
+        </observation>
+    </xsl:template>
+    
     <xd:doc>
         <xd:desc/>
         <xd:param name="ADAunit"/>
