@@ -20,6 +20,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     exclude-result-prefixes="#all"
     version="2.0">
     
-    <xsl:import href="../zibs2017/payload/all-zibs.xsl"/>
+<!--    <xsl:import href="../zibs2017/payload/all-zibs.xsl"/> -->
     
 </xsl:stylesheet>

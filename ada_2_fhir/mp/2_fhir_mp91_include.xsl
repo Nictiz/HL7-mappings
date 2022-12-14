@@ -35,11 +35,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
                 <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
-                <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)" as="element(product_code)?"/>
+                <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)[@code][not(@codeSystem = $oidHL7NullFlavor)]" as="element(product_code)?"/>
+                <xsl:variable name="productCodeAsId" as="element()?">
+                    <product_code value="{$most-specific-product-code/@code}" root="{$most-specific-product-code/@codeSystem}"/>
+                </xsl:variable>
                 <xsl:variable name="entryFullUrl">
                     <xsl:choose>
                         <xsl:when test="not($uuid) and $most-specific-product-code">
-                            <xsl:value-of select="nf:getUriFromAdaCode($most-specific-product-code)"/>
+                            <xsl:value-of select="nf:getUriFromAdaId($productCodeAsId, 'Medication', false())"/>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:value-of select="nf:get-fhir-uuid(.)"/>
@@ -47,25 +50,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:choose>
                 </xsl:variable>
                 <xsl:variable name="fhirResourceId">
-                    <xsl:if test="$referById">
-                        <xsl:choose>
-                            <xsl:when test="$uuid">
-                                <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
-                            </xsl:when>
-                            <xsl:when test="$most-specific-product-code[@code][not(@codeSystem = $oidHL7NullFlavor)]">
-                                <!-- <xsl:value-of select="nf:removeSpecialCharacters(string-join($most-specific-product-code/(@codeSystem, @code), '-'))"/>-->
-                                <!-- string-join follows order of @code / @codeSystem in XML, but we want a predictable order -->
-                                <xsl:value-of select="nf:removeSpecialCharacters(concat($most-specific-product-code/@codeSystem, '-', $most-specific-product-code/@code))"/>
-                            </xsl:when>
-                            <xsl:when test="./product_specificatie/product_naam/@value">
-                                <xsl:value-of select="upper-case(nf:removeSpecialCharacters(./product_specificatie/product_naam/@value))"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <!-- should not happen, but let's fall back on the grouping-key() -->
-                                <xsl:value-of select="nf:removeSpecialCharacters(current-grouping-key())"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:if>
+                    <xsl:choose>
+                        <xsl:when test="$uuid">
+                            <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
+                        </xsl:when>
+                        <xsl:when test="$referById and $most-specific-product-code">
+                            <xsl:value-of select="nf:removeSpecialCharacters(concat($most-specific-product-code/@codeSystem, '-', $most-specific-product-code/@code))"/>
+                        </xsl:when>
+                        <xsl:when test="$referById and ./product_specificatie/product_naam/@value">
+                            <xsl:value-of select="upper-case(nf:removeSpecialCharacters(./product_specificatie/product_naam/@value))"/>
+                        </xsl:when>
+                        <xsl:when test="$referById">
+                            <!-- should not happen, but let's fall back on the grouping-key() -->
+                            <xsl:value-of select="nf:removeSpecialCharacters(current-grouping-key())"/>
+                        </xsl:when>
+                    </xsl:choose>
                 </xsl:variable>
                 <xsl:variable name="searchMode">include</xsl:variable>
                 <uniek-product xmlns="">
@@ -73,7 +72,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:value-of select="current-grouping-key()"/>
                     </group-key>
                     <reference-display>
-                        <xsl:value-of select="current-group()[1]/normalize-space(string-join(organisatie_naam[1]//@value | organization_name[1]//@value, ' '))"/>
+                        <xsl:choose>
+                            <xsl:when test="$most-specific-product-code[@displayName]">
+                                <xsl:value-of select="($most-specific-product-code/@displayName)[1]"/>
+                            </xsl:when>
+                            <xsl:when test="product_specificatie/product_naam/@value">
+                                <xsl:value-of select="product_specificatie/product_naam/@value"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <!-- should not happen, but let's fall back on the grouping-key() -->
+                                <xsl:value-of select="nf:removeSpecialCharacters(current-grouping-key())"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </reference-display>
 
                     <xsl:variable name="searchMode" as="xs:string">include</xsl:variable>
@@ -1233,13 +1243,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="medication-id" as="xs:string?"/>
         <xsl:for-each select="$in">
             <xsl:variable name="resource">
-                <xsl:variable name="profileValue" select="$profile-uri"/>
                 <Medication xmlns="http://hl7.org/fhir">
                     <xsl:if test="string-length($medication-id) gt 0">
-                        <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $medication-id)}"/>
+                        <xsl:choose>
+                            <xsl:when test="$referById">
+                                <id value="{nf:make-fhir-logicalid(tokenize($profile-uri, './')[last()], $medication-id)}"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <id value="{nf:removeSpecialCharacters($medication-id)}"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:if>
                     <meta>
-                        <profile value="{$profileValue}"/>
+                        <profile value="{$profile-uri}"/>
                     </meta>
                     <xsl:for-each select="product_specificatie/omschrijving[@value]">
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Product-Description">
@@ -1598,7 +1614,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
 
         <medicationReference>
-            <reference value="{nf:getFullUrlOrId('PRODUCT', nf:getGroupingKeyDefault(.), false())}"/>
+            <xsl:variable name="fullUrl" select="nf:getFullUrlOrId('PRODUCT', nf:getGroupingKeyDefault(.), false())"/>
+            <reference value="{$fullUrl}"/>
             <display>
                 <xsl:variable name="displayValue" as="element()">
                     <reference>
