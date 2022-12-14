@@ -220,6 +220,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
             </xsl:when>
+            <xsl:when test="$localName = 'apgar_score'">
+                <xsl:apply-templates select="$in" mode="nl-core-ApgarScore">
+                    <xsl:with-param name="subject" select="$subject"/>
+                    <xsl:with-param name="profile" select="'nl-core-ApgarScore-1Minute'"/>
+                </xsl:apply-templates>
+                <xsl:apply-templates select="$in" mode="nl-core-ApgarScore">
+                    <xsl:with-param name="subject" select="$subject"/>
+                    <xsl:with-param name="profile" select="'nl-core-ApgarScore-5Minute'"/>
+                </xsl:apply-templates>
+                <xsl:apply-templates select="$in" mode="nl-core-ApgarScore">
+                    <xsl:with-param name="subject" select="$subject"/>
+                    <xsl:with-param name="profile" select="'nl-core-ApgarScore-10Minute'"/>
+                </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'behandel_aanwijzing'">
                 <xsl:apply-templates select="$in" mode="nl-core-TreatmentDirective2">
                     <xsl:with-param name="subject" select="$subject"/>

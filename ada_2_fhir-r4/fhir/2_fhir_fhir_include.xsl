@@ -59,6 +59,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="alcohol_gebruik" resource="Observation" profile="nl-core-AlcoholUse"/>
         <nm:map ada="alert" resource="Flag" profile="nl-core-alert"/>
         <nm:map ada="allergie_intolerantie" resource="AllergyIntolerance" profile="nl-core-AllergyIntolerance"/>
+        <nm:map ada="apgar_score" resource="Observation" profile="nl-core-ApgarScore-1Minute"/>
+        <nm:map ada="apgar_score" resource="Observation" profile="nl-core-ApgarScore-5Minute"/>
+        <nm:map ada="apgar_score" resource="Observation" profile="nl-core-ApgarScore-10Minute"/>
         <nm:map ada="behandel_aanwijzing" resource="Consent" profile="nl-core-TreatmentDirective2"/>
         <nm:map ada="bloeddruk" resource="Observation" profile="nl-core-BloodPressure"/>
         <nm:map ada="betaler" resource="Coverage" profile="nl-core-Payer.InsuranceCompany"/>
