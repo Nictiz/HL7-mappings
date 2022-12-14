@@ -209,6 +209,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/{$profile}"/>
                 </meta>
                 
+                <status value="final"/>
+                
                 <code>
                     <coding>
                         <system value="http://loinc.org"/>
