@@ -7,16 +7,15 @@
     If you just run ant, it expects a build.xml in the working dir and runs the default target.
 -->
 <project basedir="." name="build-ada2hl7-include" xmlns:if="ant:if" xmlns:unless="ant:unless">
-    <!-- this include build xml (build-ada2hl7-include.xml is included from an ant build file with basedir two dirs up, 
-        for convenience we place the dependency here 
-        so it does not resolve directly from here, but it will resolve fine when run (included) from a build xml with basedir for example: mp/9.0.7 -->
-    <ant antfile="../../../../../_ant-buildfiles/ant-include/ant.ivy.xml" inheritall="true" usenativebasedir="true"/>
+    <!-- Skip ivy with ant -Drun-ivy=false -->
+    <property name="run-ivy" value="true"/>
+    
     <property name="xsl.saxon" value="${saxon.path}"/>
     <property name="xsl.saxon.class" value="net.sf.saxon.TransformerFactoryImpl"/>
 
     <property name="echo.label.in" value="ADA"/>
     <property name="echo.label.out" value="HL7"/>
-    
+
     <property name="echo.label" value="${echo.label.in} to ${echo.label.out}"/>
     <property name="project.author" value="Nictiz"/>
     <property name="project.website" value="http://www.nictiz.nl/"/>
@@ -25,10 +24,13 @@
     <property name="project.copyright" value="true"/>
     <property name="project.description" value="Contains all relevant materials to convert valid ${echo.label.in} instances for ${is.name} to  ${echo.label.out}"/>
     <property name="project.prefix" value="${is.abbreviation}_${is.version}"/>
+
     <property name="dummy.output.dir" value="../../dummy"/>
     
+    <target name="run-ivy" if="${run-ivy}">
+        <ant antfile="${basedir}/../../../../../_ant-buildfiles/ant-include/ant.ivy.xml" inheritall="true" usenativebasedir="true"/>
+    </target>
     
-
     <target name="setup_sub" description="Setup ${build.dir}/${usecase} containing the new/schemas folder from the original ADA project and refreshed ada instances from test_xslt">
 
         <antcall target="setup_sub_schemas">
@@ -44,10 +46,10 @@
 
     </target>
 
-    <target name="setup_sub_schemas" description="Setup ${build.dir}/${usecase} containing the new/schemas folder from the original ADA project">
+    <target name="setup_sub_schemas" description="Setup ${build.dir}/${usecase} containing the new/schemas folder from the original ADA project: ${ada.project.source.dir}/schemas">
         <echo/>
-        <echo>Setup ${build.dir}/${usecase} containing refreshed ada schemas (${schema.string})</echo>
-        
+        <echo>Setup ${build.dir}/${usecase} containing refreshed ada schemas (${schema.string}) containing the new/schemas folder from the original ADA project: ${ada.project.source.dir}/schemas</echo>
+
         <mkdir dir="${build.dir}/${usecase}/ada_schemas"/>
         <delete>
             <fileset dir="${build.dir}/${usecase}/ada_schemas" includes="*.xsd"/>
@@ -77,6 +79,54 @@
             </fileset>
         </copy>
 
+    </target>
+    
+    <!-- validates xml using xsd -->
+    <target name="schemavalidate_hl7_sub">
+        
+        <fileset id="inputfiles.validate" dir="${build.dir}">
+            <include name="${fileset.include}"/>
+            <exclude name="${fileset.exclude}"/>
+        </fileset>
+        
+        <echo/>
+        <echo>${echo.label} validate schema with input files ${fileset.include} but excluding ${fileset.exclude}  and schema ${validate.schema}</echo>
+        <schemavalidate warn="true" failonerror="false">
+            <fileset refid="inputfiles.validate"/>
+            <schema namespace="urn:hl7-org:v3" file="${validate.schema}"/>
+        </schemavalidate>
+        
+    </target>
+    
+    <target name="schematronresults_sub">
+        
+        <echo/>
+        <echo>${echo.label} ${xsl.validate.svrl} make recap of validation in ${result.xml}</echo>
+        <xslt force="true" style="${xsl.validate.svrl}" in="${build.dir}/../../validate/default_input.xml" out="${result.xml}">
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+            <param name="inputDir" expression="${input.dir}"/>
+            <param name="inputFileSet" expression="${input.fileset}"/>
+        </xslt>
+        
+    </target>
+    
+    <target name="validate_hl7_sub">
+        <echo>Deleting previous results, if any</echo>
+        <mkdir dir="${sub.build.dir}/${xsl.output}"/>
+        <delete>
+            <fileset dir="${sub.build.dir}/${xsl.output}" includes="*.xml"/>
+        </delete>
+        
+        <fileset id="inputfilesMP" dir="${sub.build.dir}/${xsl.input}" includes="*.xml"/>
+        
+        <echo/>
+        <echo>${echo.label} ${xsl.mp} input dir ${sub.build.dir}/${xsl.input}</echo>
+        <xslt force="true" style="${xsl.mp}" destdir="${sub.build.dir}/${xsl.output}" extension=".xml" useImplicitFileset="false">
+            <fileset refid="inputfilesMP"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+        </xslt>
     </target>
 
 </project>

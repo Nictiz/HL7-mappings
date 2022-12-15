@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Generated from HL7v3 verstrekkingenlijst 6.12 xml with message id (QURX_IN990113NL/id) root:  and extension: .-->
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_verstrekkingenvertaling.xsd">
+   <meta status="new" created-by="generated" last-update-by="generated" creation-date="2022-10-04T13:40:47.071849+02:00" last-update-date="2022-10-04T13:40:47.071849+02:00"/>
+   <data>
+      <beschikbaarstellen_verstrekkingenvertaling app="mp-mp907" shortName="beschikbaarstellen_verstrekkingenvertaling" formName="uitwisselen_verstrekkingenvertaling" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.102" transactionEffectiveDate="2016-03-23T16:32:43" prefix="mp-" language="nl-NL" title="Generated from HL7v3 verstrekkingenlijst 6.12 xml" id="convert_999901291(XXX_Kruk)%20QURX_Response.xml">
+         <patient>
+            <naamgegevens>
+               <naamgebruik value="1" code="NL1" codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4" displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <voorvoegsels value="van de "/>
+                  <achternaam value="XXX Kruk"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer root="2.16.840.1.113883.2.4.6.3" value="999901291"/>
+            <geboortedatum value="1985-12-09"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" codeSystemName="AdministrativeGender" displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <!--MBH id copied from 6.12 dispense identifier-->
+            <identificatie value="00041507004" root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.3"/>
+            <toedieningsafspraak>
+               <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <afspraakdatum value="2021-04-16"/>
+               <verstrekker>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="00057947" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Klatter Apo"/>
+                  </zorgaanbieder>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <product>
+                     <product_code code="15375641" codeSystem="2.16.840.1.113883.2.4.4.8" displayName="PARACETAMOL TEVA TABLET 500MG"/>
+                     <product_code code="768901" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                     <product_code code="67903" codeSystem="2.16.840.1.113883.2.4.4.10"/>
+                     <product_code code="2194" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+                  </product>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-2-->
+               <gebruiksinstructie>
+                  <omschrijving value="1-3 maal per week 1-2 tabletten zo nodig"/>
+                  <toedieningsweg code="NI" codeSystem="2.16.840.1.113883.5.1008" displayName="geen informatie"/>
+                  <!--variabele frequentie in effectiveTime of comp, 2 mars, minimaal een precondition (indien 1 is die anders dan de 1137, want anders eerder gematcht), parallel-->
+                  <!--mp9-doseerinstructie-from-mp612-freq-->
+                  <doseerinstructie>
+                     <dosering>
+                        <!--mp9-keerdosis-->
+                        <keerdosis>
+                           <aantal>
+                              <min value="1"/>
+                              <max value="2"/>
+                           </aantal>
+                           <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="ST"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <!--mp9-vaste-frequentie-from-mp-612-->
+                           <frequentie>
+                              <aantal>
+                                 <vaste_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="week"/>
+                           </frequentie>
+                        </toedieningsschema>
+                        <zo_nodig>
+                           <criterium>
+                              <code code="1137" codeSystem="2.16.840.1.113883.2.4.4.5" displayName="zo nodig"/>
+                           </criterium>
+                        </zo_nodig>
+                     </dosering>
+                  </doseerinstructie>
+                  <!--mp9-doseerinstructie-from-mp612-freq-->
+                  <doseerinstructie>
+                     <dosering>
+                        <!--mp9-keerdosis-->
+                        <keerdosis>
+                           <aantal>
+                              <min value="1"/>
+                              <max value="2"/>
+                           </aantal>
+                           <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="ST"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <!--mp9-vaste-frequentie-from-mp-612-->
+                           <frequentie>
+                              <aantal>
+                                 <vaste_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="week"/>
+                           </frequentie>
+                        </toedieningsschema>
+                        <zo_nodig>
+                           <criterium>
+                              <code code="OTH" codeSystem="2.16.840.1.113883.5.1008" displayName="" originalText="zo nodig"/>
+                           </criterium>
+                        </zo_nodig>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </toedieningsafspraak>
+            <verstrekking>
+               <identificatie root="2.16.840.1.113883.2.4.3.39.6101.57947.10005159.3" value="00041507004"/>
+               <datum nullFlavor="NI"/>
+               <aanschrijfdatum value="2021-04-16"/>
+               <verstrekker>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="00057947" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Klatter Apo"/>
+                  </zorgaanbieder>
+               </verstrekker>
+               <verstrekte_hoeveelheid>
+                  <aantal value="30.0000"/>
+                  <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="ST"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <product>
+                     <product_code code="15375641" codeSystem="2.16.840.1.113883.2.4.4.8" displayName="PARACETAMOL TEVA TABLET 500MG"/>
+                     <product_code code="768901" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                     <product_code code="67903" codeSystem="2.16.840.1.113883.2.4.4.10"/>
+                     <product_code code="2194" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+                  </product>
+               </verstrekt_geneesmiddel>
+               <verbruiksduur value="69" unit="dag"/>
+            </verstrekking>
+         </medicamenteuze_behandeling>
+      </beschikbaarstellen_verstrekkingenvertaling>
+   </data>
+</adaxml>

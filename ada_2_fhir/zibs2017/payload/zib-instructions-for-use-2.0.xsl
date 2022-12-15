@@ -260,10 +260,16 @@
                         <coding>
                             <system value="{local:getUri($in/@codeSystem)}"/>
                             <code value="{$in/@code}"/>
-                            <xsl:if test="$in/@displayName">
-                                <display value="{$in/@displayName}"/>
-                            </xsl:if>
-                            <!--<userSelected value="true"/>-->
+                            <!-- MP-754, only output display if string-lenght greater than 0 and fallback on default display of nullFlavor if no display is given -->
+                            <xsl:choose>
+                                <xsl:when test="string-length($in/@displayName) gt 0">
+                                    <display value="{$in/@displayName}"/>
+                                </xsl:when>
+                                <xsl:when test="string-length($hl7NullFlavorMap[@hl7NullFlavor = $in/@code]/@displayName) gt 0">
+                                    <!-- we can fallback on a default display -->
+                                    <display value="{$hl7NullFlavorMap[@hl7NullFlavor = $in/@code]/@displayName}"/>                                    
+                                </xsl:when>
+                            </xsl:choose>                           
                         </coding>
                         <!-- ADA heeft geen ondersteuning voor vertalingen, dus onderstaande is theoretisch -->
                         <xsl:for-each select="$in/translation">
@@ -278,14 +284,19 @@
                     </xsl:when>
                 </xsl:choose>
                 <xsl:choose>
-                    <xsl:when test="./../omschrijving[@value]">
+                    <xsl:when test="../omschrijving[string-length(@value) gt 0]">
                         <text>
-                            <xsl:call-template name="string-to-string"/>
+                            <xsl:call-template name="string-to-string">
+                                <xsl:with-param name="in" select="../omschrijving"/>
+                            </xsl:call-template>
                         </text>
                     </xsl:when>
-                    <xsl:when test="$in[@originalText]">
+                    <xsl:when test="$in[string-length(@originalText) gt 0]">
                         <text>
-                            <xsl:call-template name="string-to-string"/>
+                            <!-- MP-754 add attribute name to get the actual originalText -->
+                            <xsl:call-template name="string-to-string">
+                                <xsl:with-param name="inAttributeName">originalText</xsl:with-param>
+                            </xsl:call-template>
                         </text>
                     </xsl:when>
                 </xsl:choose>
