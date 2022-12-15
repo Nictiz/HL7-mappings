@@ -15,12 +15,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:hl7="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
-    
+
     <xsl:variable name="mgbCode" as="xs:string*" select="'6', '422979000'"/>
     <xsl:variable name="templateId-medicatiegebruik" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9322', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9279', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9250', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9246', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9208'"/>
     <xsl:variable name="template-id-rel-gb">2.16.840.1.113883.2.4.3.11.60.20.77.10.9176</xsl:variable>
-    
-    
+
     <xd:doc>
         <xd:desc> Medicatiegebruik MP 9 2.0</xd:desc>
         <xd:param name="in">HL7 medication use</xd:param>
@@ -30,14 +29,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- medicatie_gebruik -->
         <xsl:for-each select="$in">
             <medicatiegebruik>
-                
+
                 <!-- identificatie -->
                 <xsl:for-each select="hl7:id">
                     <xsl:call-template name="handleII">
                         <xsl:with-param name="elemName">identificatie</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
-                
+
                 <!-- registratie_datum -->
                 <xsl:for-each select="hl7:author/hl7:time[@value | @nullFlavor]">
                     <xsl:call-template name="handleTS">
@@ -45,34 +44,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="datatype">datetime</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
-                
+
                 <!-- gebruik_indicator -->
                 <xsl:for-each select="hl7:entryRelationship/hl7:observation[hl7:code[@code = '15'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.2']]/hl7:value">
                     <xsl:call-template name="handleBL">
                         <xsl:with-param name="elemName">gebruik_indicator</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
-                
+
                 <!-- volgens_afspraak_indicator -->
                 <xsl:for-each select="hl7:entryRelationship/hl7:observation[hl7:code[@code = '8'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.2'] or hl7:code[@code = '112221000146107'][@codeSystem = $oidSNOMEDCT]]/hl7:value">
                     <xsl:call-template name="handleBL">
                         <xsl:with-param name="elemName">volgens_afspraak_indicator</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
-                
+
                 <!-- stoptype -->
                 <xsl:for-each select="hl7:entryRelationship/*[hl7:templateId/@root = $templateId-stoptype or hl7:code[@code = '274512008'][@codeSystem = $oidSNOMEDCT]]/hl7:value[@code | @nullFlavor]">
                     <xsl:call-template name="handleCV">
                         <xsl:with-param name="elemName">medicatie_gebruik_stop_type</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
-                
+
                 <!-- gebruiksperiode -->
                 <xsl:variable name="IVL_TS" select="hl7:effectiveTime[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-org:v3', 'IVL_TS')]"/>
                 <xsl:call-template name="mp92-gebruiksperiode">
                     <xsl:with-param name="IVL_TS" select="($IVL_TS[hl7:low | hl7:width | hl7:high])[1]"/>
                 </xsl:call-template>
-                
+
                 <!-- gebruiks_product -->
                 <xsl:for-each select="hl7:consumable/hl7:manufacturedProduct/hl7:manufacturedMaterial">
                     <gebruiksproduct>
@@ -82,42 +81,43 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </gebruiksproduct>
                 </xsl:for-each>
-                
+
                 <!-- gebruiksinstructie -->
                 <xsl:call-template name="mp92-gebruiksinstructie-from-mp9">
                     <xsl:with-param name="in" select="."/>
                 </xsl:call-template>
-                
+
                 <!-- relatie_medicatieafspraak -->
                 <xsl:call-template name="uni-relatieMedicatieafspraak"/>
-                
+
                 <!-- relatie_toedieningsafspraak -->
                 <xsl:call-template name="uni-relatieToedieningsafspraak"/>
-                
+
                 <!-- gerelateerde_verstrekking -->
                 <xsl:call-template name="uni-relatieMedicatieverstrekking"/>
-                
+
                 <!-- relatie contact -->
                 <xsl:call-template name="uni-relatieContact"/>
-                
+
                 <!-- relatie zorgepisode -->
                 <xsl:call-template name="uni-relatieZorgepisode"/>
-                
+
                 <!-- voorschrijver -->
                 <xsl:for-each select="hl7:entryRelationship/hl7:substanceAdministration[hl7:code[@code = $maCode][@codeSystem = $oidSNOMEDCT]]/hl7:author">
                     <voorschrijver>
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.32_20210701">
                             <xsl:with-param name="author-hl7" select="."/>
                             <xsl:with-param name="generateId" select="true()"/>
+                            <!-- naamgebruik is not part of the MP transactions for bouwstenen/zorgverlener -->
+                            <xsl:with-param name="outputNaamgebruik" select="false()"/>
                         </xsl:call-template>
                     </voorschrijver>
                 </xsl:for-each>
-                
+
                 <!-- informant -->
                 <xsl:for-each select="hl7:informant">
-                    <xsl:variable name="elemName">informant</xsl:variable>
-                    <xsl:element name="{$elemName}">
-                        
+                    <informant>
+
                         <!-- persoon -->
                         <xsl:for-each select="hl7:relatedEntity">
                             <persoon>
@@ -129,29 +129,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:for-each>
                         <!-- informant_is_patient -->
                         <xsl:for-each select="hl7:assignedEntity[hl7:code/@code = 'ONESELF']">
-                            <xsl:variable name="elemName">informant_is_patient</xsl:variable>
-                            <xsl:element name="{$elemName}">
+                            <xsl:element name="informant_is_patient">
                                 <xsl:attribute name="value">true</xsl:attribute>
-                                
                             </xsl:element>
                         </xsl:for-each>
                         <!-- informant_is_zorgverlener -->
                         <xsl:for-each select="hl7:assignedEntity[hl7:assignedPerson]">
-                            <xsl:variable name="elemName">informant_is_zorgverlener</xsl:variable>
-                            <xsl:element name="{$elemName}">
-                                
+                            <xsl:element name="informant_is_zorgverlener">
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9167_20170516000000">
                                     <xsl:with-param name="in" select="."/>
                                 </xsl:call-template>
                             </xsl:element>
                         </xsl:for-each>
-                    </xsl:element>
+
+                    </informant>
                 </xsl:for-each>
-                
+
                 <!-- auteur -->
                 <xsl:for-each select="hl7:author">
                     <auteur>
-                        
+
                         <!-- auteur_is_zorgaanbieder -->
                         <xsl:for-each select="hl7:assignedAuthor[not(hl7:assignedPerson)][not(hl7:code/@code = 'ONESELF')]/hl7:representedOrganization">
                             <auteur_is_zorgaanbieder>
@@ -161,33 +158,35 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:call-template>
                             </auteur_is_zorgaanbieder>
                         </xsl:for-each>
-                        
+
                         <!-- auteur_is_patient -->
                         <xsl:for-each select="hl7:assignedAuthor[hl7:code/@code = 'ONESELF']">
                             <auteur_is_patient>
                                 <xsl:attribute name="value">true</xsl:attribute>
                             </auteur_is_patient>
                         </xsl:for-each>
-                        
+
                         <!-- auteur_is_zorgverlener -->
                         <xsl:for-each select=".[hl7:assignedAuthor[hl7:assignedPerson]]">
                             <auteur_is_zorgverlener>
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.32_20210701">
                                     <xsl:with-param name="author-hl7" select="."/>
                                     <xsl:with-param name="generateId" select="true()"/>
+                                    <!-- naamgebruik is not part of the MP transactions for bouwstenen/zorgverlener -->
+                                    <xsl:with-param name="outputNaamgebruik" select="false()"/>
                                 </xsl:call-template>
                             </auteur_is_zorgverlener>
                         </xsl:for-each>
                     </auteur>
                 </xsl:for-each>
-                
+
                 <!-- reden_gebruik -->
                 <xsl:for-each select="hl7:entryRelationship/hl7:observation[hl7:code[@code = '6'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.2']]/hl7:text">
                     <reden_gebruik>
                         <xsl:attribute name="value" select="./text()"/>
                     </reden_gebruik>
                 </xsl:for-each>
-                
+
                 <!-- reden_wijzigen_of_stoppen_gebruik -->
                 <xsl:for-each select="hl7:entryRelationship/hl7:observation[hl7:code[(@code = '7' and @codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.2') or (@code = '153861000146102' and @codeSystem = $oidSNOMEDCT)]]/hl7:value">
                     <xsl:variable name="elemName">reden_wijzigen_of_stoppen_gebruik</xsl:variable>
@@ -195,14 +194,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="elemName" select="$elemName"/>
                     </xsl:call-template>
                 </xsl:for-each>
-                
+
                 <!-- kopie_indicator -->
                 <xsl:variable name="elemName">kopie_indicator</xsl:variable>
                 <xsl:call-template name="handleBL">
                     <xsl:with-param name="in" select="hl7:entryRelationship/*[hl7:templateId/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9200']/hl7:value"/>
                     <xsl:with-param name="elemName" select="$elemName"/>
                 </xsl:call-template>
-                
+
                 <!-- toelichting -->
                 <xsl:for-each select="hl7:entryRelationship/hl7:act[hl7:code[@code = '48767-8'][@codeSystem = $oidLOINC]]/hl7:text">
                     <xsl:variable name="elemName">toelichting</xsl:variable>
@@ -212,39 +211,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </medicatiegebruik>
         </xsl:for-each>
-        
+
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc> MP 9.0.8 CDA Author Participation </xd:desc>
         <xd:param name="in">input hl7 author</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9167_20170516000000">
         <xsl:param name="in" select="."/>
-        
+
         <xsl:for-each select="$in">
-            <xsl:variable name="elemName">zorgverlener</xsl:variable>
-            <xsl:element name="{$elemName}">
-                
+            <zorgverlener id="{generate-id()}">
                 <xsl:for-each select="hl7:id">
-                    <xsl:variable name="elemName">zorgverlener_identificatienummer</xsl:variable>
                     <xsl:call-template name="handleII">
-                        <xsl:with-param name="elemName" select="$elemName"/>
+                        <xsl:with-param name="elemName">zorgverlener_identificatienummer</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
                 <xsl:for-each select="hl7:assignedPerson/hl7:name">
-                    <xsl:variable name="elemName">naamgegevens</xsl:variable>
-                    <xsl:element name="{$elemName}">
-                        <xsl:variable name="elemName">naamgegevens</xsl:variable>
-                        
-                        <!-- naamgegevens -->
-                        <xsl:call-template name="handleENtoNameInformation">
-                            <xsl:with-param name="in" select="."/>
-                            <xsl:with-param name="language" select="$language"/>
-                            <!-- naamgebruik is not part of the MP transactions for voorschrijver -->
-                            <xsl:with-param name="outputNaamgebruik" select="false()"/>
-                        </xsl:call-template>
-                    </xsl:element>
+                    <!-- naamgegevens -->
+                    <xsl:call-template name="handleENtoNameInformation">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="language" select="$language"/>
+                        <!-- naamgebruik is not part of the MP transactions for bouwstenen/zorgverlener -->
+                        <xsl:with-param name="outputNaamgebruik" select="false()"/>
+                    </xsl:call-template>
                 </xsl:for-each>
                 <!-- specialisme -->
                 <xsl:for-each select="hl7:code">
@@ -266,47 +257,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:element>
                 </xsl:for-each>
                 <xsl:for-each select="hl7:representedOrganization">
-                    <xsl:variable name="elemName">zorgaanbieder</xsl:variable>
-                    <xsl:element name="{$elemName}">
-                        <xsl:call-template name="mp910-zorgaanbieder">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </xsl:element>
-                </xsl:for-each>
-            </xsl:element>
-        </xsl:for-each>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>9.1.0 MP zorgaanbieder</xd:desc>
-        <xd:param name="in">input hl7 organization</xd:param>
-        <xd:param name="nestedZorgaanbieder">Parameter to control whether the ada xsd contains a nested zorgaanbieder. Defaults to false.</xd:param>
-    </xd:doc>
-    <xsl:template name="mp910-zorgaanbieder">
-        <xsl:param name="in"/>
-        <xsl:param name="nestedZorgaanbieder" as="xs:boolean?" select="false()"/>
-        
-        <xsl:for-each select="$in">
-            <xsl:variable name="elemName">zorgaanbieder</xsl:variable>
-            <xsl:element name="{$elemName}">
-                <!-- is er een geneste extra zorgaanbieder groep in ada? -->
-                <xsl:choose>
-                    <xsl:when test="$nestedZorgaanbieder">
-                        <!-- maak een geneste zorgaanbieder groep -->
-                        <xsl:element name="{$elemName}">
-                            <xsl:call-template name="_zorgaanbieder-contents"/>
-                        </xsl:element>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <!-- geen geneste groep -->
+                    <zorgaanbieder id="{generate-id()}">
                         <xsl:call-template name="_zorgaanbieder-contents"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:element>
-            
+                    </zorgaanbieder>
+                </xsl:for-each>
+            </zorgverlener>
         </xsl:for-each>
     </xsl:template>
-    
+
+
     <xd:doc>
         <xd:desc> Outputs the contents of zorgaanbieder </xd:desc>
     </xd:doc>
@@ -329,16 +288,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:attribute name="nullFlavor">NI</xsl:attribute>
                 </xsl:otherwise>
             </xsl:choose>
-            
+
         </xsl:element>
-        
+
         <!-- contactgegevens -->
         <xsl:call-template name="handleTELtoContactInformation">
             <xsl:with-param name="in" select="hl7:telecom"/>
             <xsl:with-param name="language" select="$language"/>
-            <xsl:with-param name="outputTelecomType" select="false()"/>  
+            <xsl:with-param name="outputTelecomType" select="false()"/>
         </xsl:call-template>
-        
+
         <!-- adresgegevens -->
         <!-- address information -->
         <xsl:call-template name="handleADtoAddressInformation">
@@ -346,8 +305,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:with-param name="language" select="$language"/>
         </xsl:call-template>
     </xsl:template>
-    
-    
-    
-    
-   </xsl:stylesheet>
+
+
+
+
+</xsl:stylesheet>

@@ -63,7 +63,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">The ADA instance to extract the rendered dosage instruction from</xd:param>
         <xd:param name="wrapIn">Calling this template will not always result in output. If output is generated and this parameter is supplied, the result will be wrapped in an element with this name. Optional.</xd:param>
     </xd:doc>
-    <xsl:template name="mp-InstructionsForUse.DosageInstruction" mode="mp-InstructionsForUse.DosageInstruction" match="gebruiks_instructie" as="element()*">
+    <xsl:template name="mp-InstructionsForUse.DosageInstruction" mode="mp-InstructionsForUse.DosageInstruction" match="gebruiks_instructie | gebruiksinstructie" as="element()*">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="wrapIn" as="xs:string" select="''"/>
 
@@ -76,25 +76,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:choose>
                     <xsl:when test="doseerinstructie">
                         <xsl:for-each select="doseerinstructie">
-                            <!-- temp 'content' in this variable, we need to have a content element for each doseerinstructie, otherwise we cannot properly output it in dosageInstructions -->
-                            <content>
-                                <!-- Although placed on the same level as Dosage, SequenceNumber and DoseDuration are placed within timing and so they are duplicated in each Dosage instance. So lets store them for re-use. -->
-                                <xsl:variable name="sequence" as="element(f:sequence)*">
-                                    <xsl:for-each select="volgnummer">
-                                        <sequence value="{@value}"/>
-                                    </xsl:for-each>
-                                </xsl:variable>
-                                <xsl:variable name="boundsDuration" as="element(f:boundsDuration)?">
-                                    <xsl:for-each select="doseerduur">
-                                        <boundsDuration>
-                                            <xsl:call-template name="hoeveelheid-to-Duration"/>
-                                        </boundsDuration>
-                                    </xsl:for-each>
-                                </xsl:variable>
-
+                            <!-- Although placed on the same level as Dosage, SequenceNumber and DoseDuration are placed within timing and so they are duplicated in each Dosage instance. So lets store them for re-use. -->
+                            <xsl:variable name="sequence" as="element(f:sequence)*">
                                 <xsl:choose>
-                                    <xsl:when test="dosering">
-                                        <xsl:for-each select="dosering">
+                                    <xsl:when test="volgnummer[@value]">
+                                        <sequence value="{volgnummer/@value}"/>
+                                    </xsl:when>
+                                    <xsl:when test="count(dosering) gt 1">
+                                        <!-- more than one dosering, but volgnummer not present in ada, we put in 1 to make output more clear about parallel intention -->
+                                        <sequence value="1"/>                                        
+                                    </xsl:when>
+                                </xsl:choose>
+                            </xsl:variable>
+                            <xsl:variable name="boundsDuration" as="element(f:boundsDuration)?">
+                                <xsl:for-each select="doseerduur">
+                                    <boundsDuration>
+                                        <xsl:call-template name="hoeveelheid-to-Duration"/>
+                                    </boundsDuration>
+                                </xsl:for-each>
+                            </xsl:variable>
+
+                            <xsl:choose>
+                                <xsl:when test="dosering">
+                                    <xsl:for-each select="dosering">
+                                        <!-- temp 'content' in this variable, we need to have a content element for each doseerinstructie, otherwise we cannot properly output it in dosageInstructions -->
+                                        <content>
                                             <xsl:copy-of select="$sequence"/>
                                             <xsl:for-each select="$additionalInstruction[@code | @value]">
                                                 <additionalInstruction>
@@ -322,11 +328,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                 </maxDosePerPeriod>
 
                                             </xsl:for-each>
-                                        </xsl:for-each>
-                                    </xsl:when>
+                                        </content>
+                                    </xsl:for-each>
+                                </xsl:when>
 
-                                    <!-- Fallback for when no dosering is defined but a volgnummer or doseerduur is present -->
-                                    <xsl:when test="$sequence or $boundsDuration">
+                                <!-- Fallback for when no dosering is defined but a volgnummer or doseerduur is present -->
+                                <xsl:when test="$sequence or $boundsDuration">
+                                    <!-- temp 'content' in this variable, we need to have a content element for each doseerinstructie, otherwise we cannot properly output it in dosageInstructions -->
+                                    <content>
                                         <xsl:if test="$sequence">
                                             <xsl:copy-of select="$sequence"/>
                                         </xsl:if>
@@ -337,9 +346,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                 </repeat>
                                             </timing>
                                         </xsl:if>
-                                    </xsl:when>
-                                </xsl:choose>
-                            </content>
+                                    </content>
+                                </xsl:when>
+                            </xsl:choose>
                         </xsl:for-each>
                     </xsl:when>
                     <xsl:otherwise>

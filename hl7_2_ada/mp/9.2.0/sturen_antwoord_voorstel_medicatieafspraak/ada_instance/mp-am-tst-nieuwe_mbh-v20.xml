@@ -1,0 +1,89 @@
+<!--Generated from HL7v3 instance.-->
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_antwoord_voorstel_medicatieafspraak.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2022-09-05T15:44:19.605143+02:00"
+         last-update-date="2022-09-05T15:44:19.605143+02:00"/>
+   <data>
+      <sturen_antwoord_voorstel_medicatieafspraak app="mp-mp92"
+                                                  shortName="sturen_antwoord_voorstel_medicatieafspraak"
+                                                  formName="sturen_antwoord_voorstel_medicatieafspraak"
+                                                  transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.373"
+                                                  transactionEffectiveDate="2022-03-02T00:00:00"
+                                                  versionDate=""
+                                                  prefix="mp-"
+                                                  language="nl-NL"
+                                                  title="mp-am-tst-nieuwe_mbh-v20"
+                                                  id="mp-am-tst-nieuwe_mbh-v20">
+         <patient>
+            <naamgegevens>
+               <initialen value="C."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Brugge"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900419" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime" value="1963-10-16"/>
+            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+         </patient>
+         <bouwstenen>
+            <zorgverlener id="d65e24">
+               <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Peter"/>
+                  <naamgebruik code="NL1"
+                               codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                               displayName="Eigen geslachtsnaam"/>
+                  <geslachtsnaam>
+                     <voorvoegsels value="van "/>
+                     <achternaam value="Pulver"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder value="d65e35" datatype="reference"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="d65e35">
+               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="1"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+         </bouwstenen>
+         <voorstel_gegevens>
+            <antwoord>
+               <identificatie value="Nieuw_voorstel_AVMA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.3"/>
+               <antwoord_datum datatype="datetime" value="2022-01-01T09:45:00"/>
+               <auteur>
+                  <zorgverlener value="d65e24" datatype="reference"/>
+               </auteur>
+               <relatie_voorstel_gegevens>
+                  <identificatie value="Nieuw_voorstel_VMA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.2"/>
+               </relatie_voorstel_gegevens>
+               <antwoord_medicatieafspraak code="102"
+                                           codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.17"
+                                           displayName="Nee, niet akkoord met voorstel"/>
+            </antwoord>
+         </voorstel_gegevens>
+      </sturen_antwoord_voorstel_medicatieafspraak>
+   </data>
+</adaxml>
