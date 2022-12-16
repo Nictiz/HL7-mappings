@@ -3347,7 +3347,56 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </observation>
         </xsl:for-each>
     </xsl:template>
-
+    <xd:doc>
+        <xd:desc> Reden van afwijken medicatietoediening</xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9375_20210616173557" match="medicatie_toediening_reden_van_afwijken" mode="HandleMtdRedenVanAfwijken92">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9375"/>
+            <code code="153631000146105" displayName="reden voor afwijken in toedienen van medicatie (waarneembare entiteit)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
+            <xsl:call-template name="makeCEValue"/>
+        </observation>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Afgesproken datum tijd en/of keerdosis</xd:desc>
+        <xd:param name="datumTijdElement">The ada datumtijd element. Defaults to context.</xd:param>
+        <xd:param name="keerdosisElement">The ada keerdosis element. Defaults to context.</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9376_20210617000000">
+        <xsl:param name="datumTijdElement" as="element()?" select="."/>
+        <xsl:param name="keerdosisElement" as="element()?" select="../afgesproken_hoeveelheid"/>
+        <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9376"/>
+            <xsl:for-each select="$datumTijdElement">
+                <effectiveTime>
+                    <xsl:call-template name="makeTSValueAttr"/>
+                </effectiveTime>
+            </xsl:for-each>
+            <xsl:for-each select="$keerdosisElement">
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9048_20160614145840"/>
+            </xsl:for-each>
+            <consumable xsi:nil="true"/>
+        </substanceAdministration>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Relatie wisselend_doseerschema</xd:desc>
+        <xd:param name="identificatieElement">The ada identificatie element. Defaults to context.</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9381_20210617181505">
+        <xsl:param name="identificatieElement" select="." as="element()*"/>
+        <!-- MP wisselend_doseerschema identificatie -->
+        <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9381"/>
+            <xsl:for-each select="$identificatieElement">
+                <xsl:call-template name="makeIIid"/>
+            </xsl:for-each>
+            <code code="395067002" displayName="optimaliseren van dosering van medicatie (verrichting)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
+            <consumable xsi:nil="true"/>
+        </substanceAdministration>
+    </xsl:template>
+    
     <xd:doc>
         <xd:desc>Relatie medicatieafspraak</xd:desc>
         <xd:param name="identificatieElement">The ada identificatie element. Defaults to context.</xd:param>
@@ -3404,6 +3453,120 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </observation>
     </xsl:template>
+ 
+    <xd:doc>
+        <xd:desc> MP CDA TA Aanvullende informatie </xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9402_20220315000000">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9402"/>
+            <code code="12" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" displayName="Aanvullende informatie Toedieningsafspraak"/>
+            <xsl:choose>
+                <xsl:when test="not(@code) and @value">
+                    <xsl:call-template name="makeSTValue">
+                        <xsl:with-param name="elemName">text</xsl:with-param>
+                    </xsl:call-template>
+                </xsl:when>
+                <!-- for backward compatibility reasons let's output a code if it's there, should not happen in MP9 2.0.0 -->
+                <xsl:when test="@code">
+                    <xsl:call-template name="makeCEValue"/>
+                </xsl:when>
+            </xsl:choose>
+        </observation>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>MP CDA author zorgverlener of patient vanaf 9.0.7. Also compatible with 9 2.0 dataset structure. Used in medicatiegebruik </xd:desc>
+        <xd:param name="adaAuteur">Input ada auteur element to be handled</xd:param>
+        <xd:param name="authorTime">The registration date/time</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9387_20210701000000">
+        <xsl:param name="adaAuteur" as="element()?" select="."/>
+        <xsl:param name="authorTime" as="element()?"/>
+        
+        <xsl:choose>
+            <xsl:when test="$adaAuteur/auteur_is_zorgaanbieder">
+                <author>
+                    <xsl:call-template name="makeTSValue">
+                        <xsl:with-param name="elemName">time</xsl:with-param>
+                        <xsl:with-param name="inputValue" select="$authorTime/@value"/>
+                    </xsl:call-template>
+                    <assignedAuthor>
+                        <id nullFlavor="NI"/>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.33_20210701000000">
+                            <xsl:with-param name="in" select="$adaAuteur/ancestor::adaxml/data/*/bouwstenen/zorgaanbieder[@id = $adaAuteur/auteur_is_zorgaanbieder/zorgaanbieder/@value]"/>
+                        </xsl:call-template>
+                    </assignedAuthor>
+                </author>
+            </xsl:when>
+            <xsl:when test="$adaAuteur/auteur_is_patient[@value = 'true']">
+                <author>
+                    <xsl:call-template name="makeTSValue">
+                        <xsl:with-param name="elemName">time</xsl:with-param>
+                        <xsl:with-param name="inputValue" select="$authorTime/@value"/>
+                    </xsl:call-template>
+                    <assignedAuthor>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.52_20170825000000">
+                            <xsl:with-param name="ada_patient_identificatienummer" select="ancestor::adaxml/data/*/patient/(patient_identificatienummer | identificatienummer)"/>
+                        </xsl:call-template>
+                    </assignedAuthor>
+                </author>
+            </xsl:when>
+            <xsl:when test="$adaAuteur/auteur_is_zorgverlener">
+                <author>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.32_20210701000000">
+                        <xsl:with-param name="in" select="$adaAuteur/ancestor::adaxml/data/*/bouwstenen/zorgverlener[@id = $adaAuteur/auteur_is_zorgverlener/zorgverlener/@value]"/>
+                        <xsl:with-param name="theTime" select="$authorTime"/>
+                    </xsl:call-template>
+                </author>
+            </xsl:when>
+            <xsl:when test="$authorTime">
+                <author>
+                    <xsl:call-template name="makeTSValue">
+                        <xsl:with-param name="elemName">time</xsl:with-param>
+                        <xsl:with-param name="inputValue" select="$authorTime/@value"/>
+                    </xsl:call-template>
+                    <assignedAuthor>
+                        <id nullFlavor="NI"/>
+                    </assignedAuthor>
+                </author>
+            </xsl:when>
+        </xsl:choose>
+        
+        
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Reden voor medicatiegebruik</xd:desc>
+        <xd:param name="in">ada element containing text for reason medication use, defaults to context</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9390_20210816074229">
+        <xsl:param name="in" select="." as="element()?"/>
+        <xsl:for-each select="$in">
+            <observation classCode="OBS" moodCode="EVN">
+                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9390"/>
+                <code code="11611000146100" displayName="Reden medicatiegebruik" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
+                <xsl:call-template name="makeText"/>
+            </observation>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>MP MA Voorschrijver</xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9388_20210709160923" match="zorgverlener" mode="HandleRel2MAVoorschrijver">
+        
+        <substanceAdministration classCode="SBADM" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9388"/>
+            <code code="33633005" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}" displayName="Medicatieafspraak"/>
+            <consumable xsi:nil="true"/>
+            <author>
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.32_20210701000000"/>
+            </author>
+        </substanceAdministration>
+        
+    </xsl:template>
+    
     
     <xd:doc>
         <xd:desc/>

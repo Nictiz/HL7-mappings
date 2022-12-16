@@ -99,54 +99,54 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </component>
                 </xsl:for-each>
-           <!--     <!-\- wisselend_doseerschema -\->
+                <!-- wisselend_doseerschema -->
                 <xsl:for-each select="wisselend_doseerschema">
                     <component typeCode="COMP">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9380_202106171758546">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9412_20221118130922">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
                     </component>
                 </xsl:for-each>
-                <!-\- Verstrekkingsverzoek -\->
+                <!--                <!-\- Verstrekkingsverzoek -\->
                 <xsl:for-each select="verstrekkingsverzoek">
                     <component typeCode="COMP">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9356_20210402132627">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
                     </component>
-                </xsl:for-each>
-                <!-\- Toedieningsafspraak -\->
+                </xsl:for-each> -->
+                <!-- Toedieningsafspraak -->
                 <xsl:for-each select="toedieningsafspraak">
                     <component typeCode="COMP">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9332_20201015134926">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9416_20221121074758">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
                     </component>
                 </xsl:for-each>
-                <!-\- Verstrekking -\->
+                <!--                               <!-\- Verstrekking -\->
                 <xsl:for-each select="medicatieverstrekking | verstrekking">
                     <component typeCode="COMP">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9364_20210602161935">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
                     </component>
-                </xsl:for-each>
-                <!-\- Medicatiegebruik -\->
+                </xsl:for-each>-->
+                <!-- Medicatiegebruik -->
                 <xsl:for-each select="medicatie_gebruik | medicatiegebruik">
                     <component typeCode="COMP">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9322_20201015131242">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9444_20221124154710">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
                     </component>
                 </xsl:for-each>
-                <!-\- Medicatietoediening -\->
+                <!-- Medicatietoediening -->
                 <xsl:for-each select="medicatietoediening">
                     <component typeCode="COMP">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9373_20210616162231">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9406_20221101091730">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
                     </component>
-                </xsl:for-each>-->
+                </xsl:for-each>
                
             </xsl:for-each>
         </organizer>
