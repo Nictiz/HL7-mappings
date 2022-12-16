@@ -10,10 +10,10 @@
     <property name="is.version" value="9.2.0"/>
     <property name="is.version.short" value="92"/>
     <!-- date.T, currently only used for the examples -->
-    <property name="date.T" value="2022-01-01"/>
+<!--    <property name="date.T" value="2022-01-01"/>-->
     <!-- specify BSN oid for masking BSN identifiers -->
     <property name="mask.ids" value=""/>
-    <!--    <property name="mask.ids" value="2.16.840.1.113883.2.4.6.3"/>-->
+    <property name="mask.ids.mm" value="2.16.840.1.113883.2.4.6.3"/>
 
     <import file="../../../_ant-buildfiles/ant-publish/build-ada2fhir-mp-include.xml"/>
 
@@ -144,7 +144,6 @@
         </antcall>
     </target>
 
-
     <target name="convert_ada_2_fhir_920">
         
         <property name="xsl.output.dummy" value="dummy"/>
@@ -166,10 +165,10 @@
             <param name="usecase" value="${usecase.mg}"/>
             <param name="xsl.convert" value="${build.dir}/${usecase.fhir.fixtures}/payload/${usecase.mg}_2_fhir_resources.xsl"/>
             <param name="xsl.in" value="${xsl.input.mg}"/>
-            <param name="xsl.in.include" value="*.xml"/>
+            <param name="xsl.in.include" value="mg-mp-*.xml"/>
             <!-- the xsl will write it's resources using the output.dir, but ant xslt still needs an output dir -->
             <param name="xsl.out" value="${xsl.output.dummy}"/>
-            <param name="param.tdate" value="${date.T}"/>
+            <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.mg}"/>
@@ -183,12 +182,36 @@
             <param name="xsl.in.include" value="*.xml"/>
             <!-- the xsl will write it's resources using the output.dir, but ant xslt still needs an output dir -->
             <param name="xsl.out" value="${xsl.output.dummy}"/>
-            <param name="param.tdate" value="${date.T}"/>
+            <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.mg}"/>
         </antcall>
-
+        
+        <echo>beschikbaarstellen_medicatiegegevens_medmij</echo>
+        <property name="xsl.output.mg.mm" value="${build.dir}/${usecase.mg}/fhir_instance_medmij"/>
+        
+        <!-- make dir if it does not exist (anymore) -->
+        <mkdir dir="${xsl.output.mg.mm}"/>
+        <echo>Deleting previous results, if any</echo>
+        <delete>
+            <fileset dir="${xsl.output.mg.mm}" includes="*.*"/>
+        </delete>
+        <!-- resources for Touchstone for beschikbaarstellen_medicatiegegevens -->
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="usecase" value="${usecase.mg}"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.fhir.fixtures}/payload/${usecase.mg}_2_fhir_resources.xsl"/>
+            <param name="xsl.in" value="${xsl.input.mg}"/>
+            <param name="xsl.in.include" value="mg-mp-*.xml"/>
+            <!-- the xsl will write it's resources using the output.dir, but ant xslt still needs an output dir -->
+            <param name="xsl.out" value="${xsl.output.dummy}"/>
+            <param name="param.tdate" value="${date.T}" if:set="date.T"/>
+            <param name="param.maskids" value="${mask.ids.mm}"/>
+            <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
+            <param name="output.dir" value="../${xsl.output.mg.mm}"/>
+        </antcall>
+        
+        <echo>sturen_medicatiegegevens</echo>
         <!-- push bundles for Touchstone for sturen_medicatiegegevens -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="${usecase.mg.st}"/>
@@ -197,7 +220,7 @@
             <param name="xsl.in.include" value="*.xml"/>
             <!-- the xsl will write it's resources using the output.dir, but ant xslt still needs an output dir -->
             <param name="xsl.out" value="${xsl.output.dummy}"/>
-            <param name="param.tdate" value="${date.T}"/>
+            <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${build.dir}/${usecase.mg.st}/fhir_instance"/>
@@ -221,7 +244,7 @@
             <param name="xsl.in.include" value="*.xml"/>
             <!-- the xsl will write it's resources, but ant xslt still needs output dir -->
             <param name="xsl.out" value="${xsl.output.dummy}"/>
-            <param name="param.tdate" value="${date.T}"/>
+            <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.mv}"/>
@@ -245,7 +268,7 @@
             <param name="xsl.in.include" value="*.xml"/>
             <!-- the xsl will write it's resources, but ant xslt still needs output dir -->
             <param name="xsl.out" value="${xsl.output.dummy}"/>
-            <param name="param.tdate" value="${date.T}"/>
+            <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.amv}"/>
@@ -269,7 +292,7 @@
             <param name="xsl.in.include" value="*.xml"/>
             <!-- the xsl will write it's resources, but ant xslt still needs output dir -->
             <param name="xsl.out" value="${xsl.output.dummy}"/>
-            <param name="param.tdate" value="${date.T}"/>
+            <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.vma}"/>
@@ -293,7 +316,7 @@
             <param name="xsl.in.include" value="*.xml"/>
             <!-- the xsl will write it's resources, but ant xslt still needs output dir -->
             <param name="xsl.out" value="${xsl.output.dummy}"/>
-            <param name="param.tdate" value="${date.T}"/>
+            <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.avma}"/>
@@ -317,7 +340,7 @@
             <param name="xsl.in.include" value="*.xml"/>
             <!-- the xsl will write it's resources, but ant xslt still needs output dir -->
             <param name="xsl.out" value="${xsl.output.dummy}"/>
-            <param name="param.tdate" value="${date.T}"/>
+            <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.vvv}"/>
@@ -341,32 +364,48 @@
             <param name="xsl.in.include" value="*.xml"/>
             <!-- the xsl will write it's resources, but ant xslt still needs output dir -->
             <param name="xsl.out" value="${xsl.output.dummy}"/>
-            <param name="param.tdate" value="${date.T}"/>
+            <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.avvv}"/>
         </antcall>        
 
         <!-- copy the appropriate fhir instances for Touchstone to a separate folder, to ease upload to Touchstone -->
-        <echo>copy the appropriate fhir instances for Touchstone to a separate folder: 4TouchstoneMPServe</echo>
-        <mkdir dir="${build.dir}/4TouchstoneMPServe"/>
+        <echo>copy the appropriate fhir instances for Touchstone to a separate folder: 4TouchstoneMP</echo>
+        <mkdir dir="${build.dir}/4TouchstoneMP"/>
         <!-- clean previous results, if any -->
         <delete>
-            <fileset dir="${build.dir}/4TouchstoneMPServe" includes="*.xml"/>
+            <fileset dir="${build.dir}/4TouchstoneMP" includes="*.xml"/>
         </delete>
-        <copy todir="${build.dir}/4TouchstoneMPServe">
+        <copy todir="${build.dir}/4TouchstoneMP">
             <fileset dir="${build.dir}/${usecase.mg}/fhir_instance">
                 <include name="*.xml"/>
-                <!-- only the resources are needed on Touchstone / WildFHIR, exclude the bundles -->
-                <exclude name="mg-*.xml"/>
+                <!-- the resources and scenarioset bundles are needed on Touchstone / WildFHIR, exclude the ALL bundles -->
+                <exclude name="mg-*ALL.xml"/>
             </fileset>              
-            <fileset dir="${build.dir}/${usecase.mg.st}/fhir_instance"/>              
+            <!-- no longer needed, we use the beschikbaarstellen set for push as well -->
+<!--            <fileset dir="${build.dir}/${usecase.mg.st}/fhir_instance"/>-->
             <fileset dir="${build.dir}/${usecase.mv}/fhir_instance"/>
             <fileset dir="${build.dir}/${usecase.amv}/fhir_instance"/>
             <fileset dir="${build.dir}/${usecase.vma}/fhir_instance"/>
             <fileset dir="${build.dir}/${usecase.avma}/fhir_instance"/>
             <fileset dir="${build.dir}/${usecase.vvv}/fhir_instance"/>
             <fileset dir="${build.dir}/${usecase.avvv}/fhir_instance"/>
+        </copy>
+        
+        <!-- copy the appropriate fhir instances for Touchstone MedMij to a separate folder, to ease upload to Touchstone -->
+        <echo>copy the appropriate fhir instances for Touchstone MedMij to a separate folder: 4TouchstoneMPMedMij</echo>
+        <mkdir dir="${build.dir}/4TouchstoneMPMedMij"/>
+        <!-- clean previous results, if any -->
+        <delete>
+            <fileset dir="${build.dir}/4TouchstoneMPMedMij" includes="*.xml"/>
+        </delete>
+        <copy todir="${build.dir}/4TouchstoneMPMedMij">
+            <fileset dir="${build.dir}/${usecase.mg}/fhir_instance_medmij">
+                <include name="*.xml"/>
+                <!-- the resources and scenarioset bundles are needed on Touchstone / WildFHIR, exclude the ALL bundles -->
+                <exclude name="mg-*ALL.xml"/>
+            </fileset>              
         </copy>
 
         <!-- beschikbaarstellen_medicatieoverzicht not actively tested / used in kickstart, no test instances available yet -->
@@ -397,7 +436,7 @@
             <param name="xsl.in" value="${xsl.input.mo}"/>
             <param name="xsl.in.include" value="*.xml"/>
             <param name="xsl.out" value="${xsl.output.mo}"/>
-            <param name="param.tdate" value="${date.T}"/>
+            <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
         </antcall>-->
         
@@ -599,10 +638,10 @@
         </fileset>
 
         <echo/>
-        <echo>${echo.label} validate schema with input files ${fileset.include} but excluding ${fileset.exclude}  and schema ${validate.schema}</echo>
+        <echo>${echo.label} validate schema with input files ${fileset.include} but excluding ${fileset.exclude} and ${fileset.exclude2}  and schema ${validate.schema}</echo>
         <schemavalidate warn="true" failonerror="false">
             <fileset refid="inputfiles.validate"/>
-            <schema namespace="urn:hl7-org:v3" url="${validate.schema}"/>
+            <schema namespace="http://hl7.org/fhir" url="${validate.schema}"/>
         </schemavalidate>
 
     </target>

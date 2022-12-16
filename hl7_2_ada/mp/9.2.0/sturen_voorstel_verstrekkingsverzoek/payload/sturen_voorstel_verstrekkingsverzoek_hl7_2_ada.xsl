@@ -74,7 +74,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:attribute name="last-update-date" select="current-dateTime()"/>
                 </meta>
                 <data>
-                    <sturen_voorstel_verstrekkingsverzoek app="mp-mp920" shortName="sturen_voorstel_verstrekkingsverzoek" formName="sturen_voorstel_verstrekkingsverzoek" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.274" transactionEffectiveDate="2021-05-05T13:11:50" versionDate="" prefix="mp-" language="nl-NL" title="{$theId}" id="{$theId}">
+                    <sturen_voorstel_verstrekkingsverzoek app="mp-mp92" shortName="sturen_voorstel_verstrekkingsverzoek" formName="sturen_voorstel_verstrekkingsverzoek" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.328" transactionEffectiveDate="2022-02-07T00:00:00" versionDate="" prefix="mp-" language="nl-NL" title="{$theId}" id="{$theId}">
                         <xsl:for-each select="$patient">
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1_20210701">
                                 <xsl:with-param name="in" select="."/>

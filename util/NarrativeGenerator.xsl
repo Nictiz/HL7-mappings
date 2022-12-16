@@ -25,13 +25,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:util="urn:hl7:utilities" version="2.0" exclude-result-prefixes="#all">
     <xsl:import href="utilities.xsl"/>
+    <!-- override = true will override any existing Resource.text with status generated or extensions. We can't override other statuses -->
     <xsl:param name="override" select="'true'"/>
     <xsl:param name="util:textlangDefault" select="'nl-nl'"/>
     
     <!-- Main entry template to call -->
     <xsl:template name="addNarrative" match="*" mode="addNarrative">
         <xsl:choose>
-            <!-- Don't generate text on anything contained and assume it was not done before us, soo just copy as-is
+            <!-- Don't generate text on anything contained and assume it was not done before us, so just copy as-is
                 https://www.hl7.org/fhir/STU3/domainresource-definitions.html#DomainResource.text
                 dom-1: If the resource is contained in another resource, it SHALL NOT contain any narrative (expression : contained.text.empty(), xpath: not(parent::f:contained and f:text))
             -->
