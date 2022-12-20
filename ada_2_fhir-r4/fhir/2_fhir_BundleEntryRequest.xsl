@@ -4,6 +4,11 @@
     <xd:doc>
         <xd:desc>Template for Bundle.entry.request</xd:desc>
    </xd:doc>
+    
+    <xd:doc>
+        <xd:desc>populateId 'false' means Resource.id is absent, for transaction Bundles. Not forbidden per se, but prevents some validation warnings.</xd:desc>
+    </xd:doc>
+    <xsl:param name="populateId" select="false()" as="xs:boolean"/>
 
     <xd:doc>
         <xd:desc>Add Bundle.entry.request</xd:desc>

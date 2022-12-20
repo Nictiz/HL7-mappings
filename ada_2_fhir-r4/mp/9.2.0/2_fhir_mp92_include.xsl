@@ -148,6 +148,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <resource>
                     <Location>
                         <xsl:call-template name="insertLogicalId"/>
+                        <meta>
+                            <!-- J.D.: Add this to conform to our 'all resources SHALL contain meta.profile' requirement, although we do not have a specific profile to conform to in this case -->
+                            <profile value="http://hl7.org/fhir/StructureDefinition/Location"/>
+                        </meta>
                         <name value="{@value}"/>
                     </Location>
                 </resource>
@@ -330,7 +334,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <fullUrl value="urn:uuid:{nf:get-uuid(.)}"/>
                 <resource>
                     <Communication xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir">
-                        <id value="{nf:get-uuid(*[1])}"/>
+                        <xsl:if test="$populateId = true() or $referencingStrategy = 'logicalId'">
+                            <id value="{nf:get-uuid(*[1])}"/>
+                        </xsl:if>
                         <meta>
                             <xsl:choose>
                                 <xsl:when test="antwoord_medicatieafspraak[@code]">

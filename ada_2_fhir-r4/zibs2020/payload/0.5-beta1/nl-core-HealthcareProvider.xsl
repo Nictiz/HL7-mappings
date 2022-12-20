@@ -42,11 +42,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </meta>
 
                 <xsl:for-each select="organisatie_locatie/locatie_naam">
-                    <name value="{@value}"/>
+                    <name>
+                        <xsl:attribute name="value">
+                            <xsl:call-template name="string-to-string"/>
+                        </xsl:attribute>
+                    </name>
                 </xsl:for-each>
 
                 <xsl:for-each select="organisatie_locatie/locatie_nummer">
-                    <alias value="{@value}"/>
+                    <name>
+                        <xsl:attribute name="value">
+                            <xsl:call-template name="string-to-string"/>
+                        </xsl:attribute>
+                    </name>
                 </xsl:for-each>
 
                 <xsl:call-template name="nl-core-ContactInformation">
@@ -98,7 +106,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <xsl:for-each select="organisatie_naam">
-                    <name value="{@value}"/>
+                    <name>
+                        <xsl:attribute name="value">
+                            <xsl:call-template name="string-to-string"/>
+                        </xsl:attribute>
+                    </name>
                 </xsl:for-each>
 
                 <xsl:call-template name="nl-core-ContactInformation">
