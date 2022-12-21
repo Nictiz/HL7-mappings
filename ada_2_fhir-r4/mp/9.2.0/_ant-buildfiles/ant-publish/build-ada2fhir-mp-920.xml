@@ -10,7 +10,7 @@
     <property name="is.version" value="9.2.0"/>
     <property name="is.version.short" value="92"/>
     <!-- date.T, currently only used for the examples -->
-<!--    <property name="date.T" value="2022-01-01"/>-->
+    <!--    <property name="date.T" value="2022-01-01"/>-->
     <!-- specify BSN oid for masking BSN identifiers -->
     <property name="mask.ids" value=""/>
     <property name="mask.ids.mm" value="2.16.840.1.113883.2.4.6.3"/>
@@ -25,12 +25,12 @@
 
     <target name="setup_920">
         <!-- beschikbaarstellen_medicatiegegevens -->
-        <mkdir dir="${build.dir}/${usecase.mg}"/>        
+        <mkdir dir="${build.dir}/${usecase.mg}"/>
         <antcall target="setup_sub_schemas">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
             <param name="schema.string" value="*${usecase.mg}.xsd"/>
         </antcall>
-        
+
         <echo>Copying ADA instances from ${refs.dir}/ada_instance to ${sub.build.dir}/${fileset.dir}</echo>
         <!-- make dir if it does not exist (anymore) -->
         <mkdir dir="${build.dir}/${usecase.mg}/ada_instance"/>
@@ -43,7 +43,7 @@
             <fileset dir="${refs.dir}/${usecase.mg.rp}/ada_instance_response">
                 <include name="*.xml"/>
             </fileset>
-        </copy>     
+        </copy>
 
         <!-- preprocess for Touchstone beschikbaarstellen_medicatiegegevens (update use period to use end date for querying purposes -->
         <mkdir dir="${build.dir}/${usecase.mg}/ada_instance_4_TS"/>
@@ -68,7 +68,7 @@
         </move>
         <!-- let's cleanup our temp stuff -->
         <delete dir="${build.dir}/${usecase.mg}/ada_instance_4_TS"/>
-        
+
         <!-- sturen_medicatiegegevens  -->
         <echo>sturen_medicatiegegevens</echo>
         <antcall target="setup_sub">
@@ -77,10 +77,10 @@
             <param name="fileset.dir" value="ada_instance"/>
             <param name="fileset.include" value="*.xml"/>
             <param name="refs.dir" value="${refs.dir}/${usecase.mg.st}"/>
-        </antcall>        
-        
+        </antcall>
+
         <!-- beschikbaarstellen_medicatieoverzicht -->
-      <!--  <antcall target="setup_sub">
+        <!--  <antcall target="setup_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mo}"/>
             <param name="schema.string" value="*${usecase.mo}.xsd"/>
             <param name="fileset.dir" value="ada_instance"/>
@@ -142,10 +142,19 @@
             <param name="fileset.include" value="*.xml"/>
             <param name="refs.dir" value="${refs.dir}/${usecase.avvv}"/>
         </antcall>
+
+        <!-- xml voorbeelden -->
+        <antcall target="setup_sub_instances">
+            <param name="sub.build.dir" value="${build.dir}/xml-voorbeelden"/>
+            <param name="fileset.dir" value="ada_instance"/>
+            <param name="fileset.include" value="*.xml"/>
+            <param name="refs.dir" value="${refs.dir}/xml-voorbeelden"/>
+        </antcall>
+
     </target>
 
     <target name="convert_ada_2_fhir_920">
-        
+
         <property name="xsl.output.dummy" value="dummy"/>
 
         <echo>the MP stuff for version 9.2.0</echo>
@@ -173,7 +182,7 @@
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.mg}"/>
         </antcall>
-        
+
         <!--  bundles for beschikbaarstellen_medicatiegegevens -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="${usecase.mg}"/>
@@ -187,10 +196,10 @@
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.mg}"/>
         </antcall>
-        
+
         <echo>beschikbaarstellen_medicatiegegevens_medmij</echo>
         <property name="xsl.output.mg.mm" value="${build.dir}/${usecase.mg}/fhir_instance_medmij"/>
-        
+
         <!-- make dir if it does not exist (anymore) -->
         <mkdir dir="${xsl.output.mg.mm}"/>
         <echo>Deleting previous results, if any</echo>
@@ -210,7 +219,7 @@
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.mg.mm}"/>
         </antcall>
-        
+
         <echo>sturen_medicatiegegevens</echo>
         <!-- push bundles for Touchstone for sturen_medicatiegegevens -->
         <antcall target="convert_ada_2_fhir_sub">
@@ -225,7 +234,7 @@
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${build.dir}/${usecase.mg.st}/fhir_instance"/>
         </antcall>
-        
+
         <echo>sturen_medicatievoorschrift</echo>
         <property name="xsl.input.mv" value="${build.dir}/${usecase.mv}/ada_instance"/>
         <property name="xsl.output.mv" value="${build.dir}/${usecase.mv}/fhir_instance"/>
@@ -297,11 +306,11 @@
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.vma}"/>
         </antcall>
-        
+
         <echo>sturen_antwoord_voorstel_medicatieafspraak</echo>
         <property name="xsl.input.avma" value="${build.dir}/${usecase.avma}/ada_instance"/>
         <property name="xsl.output.avma" value="${build.dir}/${usecase.avma}/fhir_instance"/>
-        
+
         <!-- make dir if it does not exist (anymore) -->
         <mkdir dir="${xsl.output.avma}"/>
         <echo>Deleting previous results, if any</echo>
@@ -320,7 +329,7 @@
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.avma}"/>
-        </antcall>        
+        </antcall>
 
         <echo>sturen_voorstel_verstrekkingsverzoek</echo>
         <property name="xsl.input.vvv" value="${build.dir}/${usecase.vvv}/ada_instance"/>
@@ -345,11 +354,11 @@
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.vvv}"/>
         </antcall>
-        
+
         <echo>sturen_antwoord_voorstel_verstrekkingsverzoek</echo>
         <property name="xsl.input.avvv" value="${build.dir}/${usecase.avvv}/ada_instance"/>
         <property name="xsl.output.avvv" value="${build.dir}/${usecase.avvv}/fhir_instance"/>
-        
+
         <!-- make dir if it does not exist (anymore) -->
         <mkdir dir="${xsl.output.avvv}"/>
         <echo>Deleting previous results, if any</echo>
@@ -368,7 +377,7 @@
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${xsl.output.avvv}"/>
-        </antcall>        
+        </antcall>
 
         <!-- copy the appropriate fhir instances for Touchstone to a separate folder, to ease upload to Touchstone -->
         <echo>copy the appropriate fhir instances for Touchstone to a separate folder: 4TouchstoneMP</echo>
@@ -382,9 +391,9 @@
                 <include name="*.xml"/>
                 <!-- the resources and scenarioset bundles are needed on Touchstone / WildFHIR, exclude the ALL bundles -->
                 <exclude name="mg-*ALL.xml"/>
-            </fileset>              
+            </fileset>
             <!-- no longer needed, we use the beschikbaarstellen set for push as well -->
-<!--            <fileset dir="${build.dir}/${usecase.mg.st}/fhir_instance"/>-->
+            <!--            <fileset dir="${build.dir}/${usecase.mg.st}/fhir_instance"/>-->
             <fileset dir="${build.dir}/${usecase.mv}/fhir_instance"/>
             <fileset dir="${build.dir}/${usecase.amv}/fhir_instance"/>
             <fileset dir="${build.dir}/${usecase.vma}/fhir_instance"/>
@@ -392,7 +401,7 @@
             <fileset dir="${build.dir}/${usecase.vvv}/fhir_instance"/>
             <fileset dir="${build.dir}/${usecase.avvv}/fhir_instance"/>
         </copy>
-        
+
         <!-- copy the appropriate fhir instances for Touchstone MedMij to a separate folder, to ease upload to Touchstone -->
         <echo>copy the appropriate fhir instances for Touchstone MedMij to a separate folder: 4TouchstoneMPMedMij</echo>
         <mkdir dir="${build.dir}/4TouchstoneMPMedMij"/>
@@ -405,7 +414,7 @@
                 <include name="*.xml"/>
                 <!-- the resources and scenarioset bundles are needed on Touchstone / WildFHIR, exclude the ALL bundles -->
                 <exclude name="mg-*ALL.xml"/>
-            </fileset>              
+            </fileset>
         </copy>
 
         <!-- beschikbaarstellen_medicatieoverzicht not actively tested / used in kickstart, no test instances available yet -->
@@ -439,7 +448,7 @@
             <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
         </antcall>-->
-        
+
         <!-- delete dummy dir -->
         <delete dir="${xsl.output.dummy}"/>
 
@@ -519,7 +528,7 @@
             <param name="xsl.output" value="validate_fhir_instance"/>
             <param name="xsl.mp" value="${validate.dir}/bundle.xsl"/>
         </antcall>
-        
+
         <!-- sturen_antwoord_voorstel_medicatieafspraak -->
         <antcall target="validate_fhir_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.avma}"/>
@@ -527,7 +536,7 @@
             <param name="xsl.input" value="fhir_instance"/>
             <param name="xsl.output" value="validate_fhir_instance"/>
             <param name="xsl.mp" value="${validate.dir}/bundle.xsl"/>
-        </antcall>        
+        </antcall>
 
         <!-- sturen_voorstel_verstrekkingsverzoek -->
         <antcall target="validate_fhir_sub">
@@ -537,7 +546,7 @@
             <param name="xsl.output" value="validate_fhir_instance"/>
             <param name="xsl.mp" value="${validate.dir}/bundle.xsl"/>
         </antcall>
-        
+
         <!-- sturen_antwoord_voorstel_verstrekkingsverzoek -->
         <antcall target="validate_fhir_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.avvv}"/>
@@ -545,8 +554,8 @@
             <param name="xsl.input" value="fhir_instance"/>
             <param name="xsl.output" value="validate_fhir_instance"/>
             <param name="xsl.mp" value="${validate.dir}/bundle.xsl"/>
-        </antcall>        
-        
+        </antcall>
+
 
     </target>
 
