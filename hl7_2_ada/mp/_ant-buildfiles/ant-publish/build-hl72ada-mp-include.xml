@@ -7,12 +7,13 @@
     If you just run ant, it expects a build.xml in the working dir and runs the default target.
 -->
 <project basedir="." default="convert_hl7_2_ada" name="build-hl72ada-mp-include" xmlns:if="ant:if" xmlns:unless="ant:unless">
+    <property file="../../../../_ant-buildfiles/ant-include/global.properties"/>
     <property name="is.name" value="Medicatieproces"/>
     <property name="is.abbreviation" value="mp"/>
     <property name="project.version" value="1.0.0"/>
     <property name="build.dir" value="../.."/>
-    <property name="ada.project.source.dir" value="C:\SVN\art_decor\trunk\ada-data\projects\${is.abbreviation}-${is.abbreviation}${is.version.short}"/>
-    <property name="refs.dir" value="C:\SVN\art_decor\trunk\ada-data\adarefs2ada\${is.abbreviation}\${is.version}"/>
+    <property name="ada.project.source.dir" value="${ada.project.root.dir}/projects/${is.abbreviation}-${is.abbreviation}${is.version.short}"/>
+    <property name="refs.dir" value="${ada.project.root.dir}/adarefs2ada/${is.abbreviation}/${is.version}"/>
     
     <!-- place import exactly here, otherwise it can't resolve the properties above, or we can't resolve some properties below, such as ${echo.label.in} -->
     <import file="../../../_ant-buildfiles/ant-publish/build-hl72ada-include.xml"/>

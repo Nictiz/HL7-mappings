@@ -8,6 +8,7 @@
 -->
 <project basedir="." default="convert_fhir_2_ada" name="ada2fhir_${project.prefix}" xmlns:if="ant:if" xmlns:unless="ant:unless">
     <ant antfile="../../../../../_ant-buildfiles/ant-include/ant.ivy.xml" inheritall="true" usenativebasedir="true"/>
+    <property file="../../../../../_ant-buildfiles/ant-include/global.properties"/>
     <property name="xsl.saxon" value="${saxon.path}"/>
     <property name="xsl.saxon.class" value="net.sf.saxon.TransformerFactoryImpl"/>
 
@@ -33,7 +34,7 @@
     <property name="is.version" value="9.2.0"/>
     <property name="is.version.short" value="92"/>
 
-    <property name="ada.project.source.dir" value="C:\SVN\art_decor\trunk\ada-data\projects\${is.abbreviation}-${is.abbreviation}${is.version.short}"/>
+    <property name="ada.project.source.dir" value="${ada.project.root.dir}/projects/${is.abbreviation}-${is.abbreviation}${is.version.short}"/>
     <property name="refs.dir" value="${build.dir}/../../../ada_2_fhir-r4/${is.abbreviation}/${is.version}"/>
 
     <property name="usecase.fhir.fixtures" value="fhir_fixtures4Touchstone"/>
