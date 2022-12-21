@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Apache ANT build file that sets up (target = setup) or by default converts transaction with references to full ada xml (target = resolve-refs)
+    Apache ANT is based on Java and may be found here: https://ant.apache.org/
+    run on command line or from a batch file: 
+        ant [-f build.xml] [target]
+        
+    If you just run ant, it expects a build.xml in the working dir and runs the default target.
+-->
+<project basedir="." default="roundtrip_fhir_2_ada_2_fhir" name="ada2fhir_${project.prefix}" xmlns:if="ant:if" xmlns:unless="ant:unless">
+    <ant antfile="../_ant-buildfiles/ant-include/ant.ivy.xml" inheritall="true" usenativebasedir="true"/>
+    <property file="../_ant-buildfiles/ant-include/global.properties"/>
+    <property name="xsl.saxon" value="${saxon.path}"/>
+    <property name="xsl.saxon.class" value="net.sf.saxon.TransformerFactoryImpl"/>
+
+    <property name="echo.label.in" value="FHIR"/>
+    <property name="echo.label.out" value="ADA"/>
+    <property name="echo.label" value="${echo.label.in} to ${echo.label.out}"/>
+
+    <property name="project.title" value="${echo.label} for Medicatieproces 9.2.0"/>
+    <property name="project.version" value="1.0.0"/>
+    <property name="project.prefix" value="mp_9.2.0"/>
+    <property name="project.description" value="Contains all relevant materials to convert valid ${echo.label.in} instances for Medicatieproces building blocks to valid ${echo.label.out} instances"/>
+
+
+    <property name="build.dir" value="."/>
+    <property name="dummy.output.dir" value="dummy"/>
+
+    <property name="is.name" value="Medicatieproces"/>
+    <property name="is.abbreviation" value="mp"/>
+    <property name="is.version" value="9.2.0"/>
+    <property name="is.version.short" value="92"/>
+
+    <!-- date.T, currently only used for roundtrip testing -->
+    <property name="date.T" value="2022-01-01"/>
+ 
+    <!-- prepare for diff of original and roundtrip files -->
+
+    <target name="prepare-for-diff">
+        <property name="diff.xsl" value="${xsl.diff}"/>
+        <property name="diff.build.dir" value="${diff.builddir}"/>
+        <property name="xsl.input" value="${diff.build.dir}/${xsl.in}"/>
+        <property name="xsl.output" value="${diff.build.dir}/${xsl.out}"/>
+
+        <echo>build dir: ${diff.build.dir}</echo>
+        <echo>input: ${xsl.input}</echo>
+        <echo>output: ${xsl.output}</echo>
+        <echo>${echo.label.in} 2 ${echo.label.out} 2 ${echo.label.in} </echo>
+        
+        <mkdir dir="${xsl.output}"/>
+        <echo>Deleting previous results, if any</echo>
+        <delete>
+            <fileset dir="${xsl.output}" includes="*.*"/>
+        </delete>
+        
+        <fileset id="inputfiles_fordiff" dir="${xsl.input}" includes="*.xml"/>
+        
+        <xslt force="true" style="${diff.xsl}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+            <fileset refid="inputfiles_fordiff"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+        </xslt>   
+    </target>
+    
+    <target name="perform_diff">
+        <property name="diff.build.dir" value="${diff.builddir}"/>
+        <property name="original" value="${diff.build.dir}/${diff.in}"/>
+        <property name="roundtrip" value="${diff.build.dir}/${diff.out}"/>
+        <property name="result" value="${diff.build.dir}/${diff.result}"/>
+        <property name="python-path" value="${python_full_path}"/>
+        <property name="python-diff-script" value="${python_diff_script"/>
+        
+        <exec executable="${python-path}">
+            <arg value="${python-diff-script}"/>
+            <arg value="--indent"/>
+            <arg value="${original}"/>
+            <arg value="${roundtrip}"/>
+            <arg value=">${result}"/>
+        </exec>   
+    </target>
+
+    <target name="roundtrip_fhir_2_ada_2_fhir">
+        <property name="fhir.diff.xsl" value="${build.dir}/prepare-for-diff-fhir.xsl"/>
+        <property name="roundtrip.build.dir" value="${build.dir}/roundtrip-diff/fhir_2_ada-r4/${is.abbreviation}/${is.version}"/>
+        
+        <!-- prepare for diff originals -->
+        <echo>Preparing originals for diff</echo>
+        <antcall target="prepare-for-diff">
+            <param name="xsl.diff" value="${fhir.diff.xsl}"/>
+            <param name="diff.builddir" value="${roundtrip.build.dir}/${usecase.mg}"/>
+            <param name="xsl.in" value="original"/>
+            <param name="xsl.out" value="original-diff"/>
+        </antcall>
+
+        <!-- prepare for diff roundtrip results -->
+        <echo>Preparing roundtrip results for diff</echo>
+        <antcall target="prepare-for-diff">
+            <param name="xsl.diff" value="${fhir.diff.xsl}"/>
+            <param name="diff.builddir" value="${roundtrip.build.dir}/${usecase.mg}"/>
+            <param name="xsl.in" value="roundtrip"/>
+            <param name="xsl.out" value="roundtrip-diff"/>
+        </antcall>
+        
+        <!--  -->
+    </target>
+
+</project>
