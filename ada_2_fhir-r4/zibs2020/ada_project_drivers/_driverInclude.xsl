@@ -99,6 +99,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- Proposal for better naming, but not activated yet because it has implications for the whole zib2020-r4 repo: -->
                     <!--<xsl:value-of select="string-join(($id, tokenize($profile, '-')[last()], format-number($position, '00')), '-')"/>-->    
                 </xsl:when>
+                <!-- Zorgverleners that are referenced do not have an ancestor called 'referenties' anymore because of MP-834, so we fix that here, based on base-uri not containing 'HealthcareProfessional', which is kind of hacky but works. -->
+                <xsl:when test="$localName = 'zorgverlener' and not(contains(base-uri(), 'HealthProfessional'))">
+                    <xsl:value-of select="string-join(($id, $ada2resourceType/*[@profile = $profile]/@resource, format-number($partNumber, '00')), '-')"/>
+                </xsl:when>
                 <xsl:when test="$localName = ('soepregel','visueel_resultaat','monster')">
                     <xsl:value-of select="$baseId"/>
                     <xsl:value-of select="substring-after($profile, $baseId)"/>
