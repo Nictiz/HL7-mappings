@@ -182,15 +182,36 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:for-each-group select="$in[self::patient[.//(@value | @code | @nullFlavor)]]" group-by="concat((identificatienummer[@root = $oidBurgerservicenummer], identificatienummer[not(@root = $oidBurgerservicenummer)])[1]/@root, (identificatienummer[@root = $oidBurgerservicenummer], identificatienummer[not(@root = $oidBurgerservicenummer)])[1]/normalize-space(@value))">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
-                <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+                <xsl:call-template name="_buildFhirMetadataForAdaEntry">
+                    <xsl:with-param name="partNumber" select="position()"/>                    
+                </xsl:call-template>
             </xsl:for-each-group>
         </xsl:for-each-group>
         
         <xsl:for-each-group select="$in[self::zorgverlener[.//(@value | @code | @nullFlavor)]]" group-by="
-            concat(nf:ada-zvl-id(zorgverlener_identificatienummer)/@root,
-            nf:ada-zvl-id(zorgverlener_identificatienummer)/normalize-space(@value))">
+            concat(nf:ada-healthprofessional-id(zorgverlener_identificatienummer)/@root,
+            nf:ada-healthprofessional-id(zorgverlener_identificatienummer)/normalize-space(@value))">
+            
+            <!-- let's resolve the zorgaanbieder ín the zorgverlener, to make sure deduplication also works for duplicated zorgaanbieders -->
+            <xsl:variable name="zorgverlenerWithResolvedZorgaanbieder" as="element(zorgverlener)*">
+                <xsl:apply-templates select="current-group()" mode="resolveAdaZorgaanbieder"/>                
+            </xsl:variable>
+            
+            <xsl:for-each-group select="$zorgverlenerWithResolvedZorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
+                <xsl:call-template name="_buildFhirMetadataForAdaEntry">
+                    <xsl:with-param name="partNumber" select="position()"/>
+                </xsl:call-template>
+            </xsl:for-each-group>
+        </xsl:for-each-group>
+        
+        <xsl:for-each-group select="$in[self::zorgaanbieder[.//(@value | @code | @nullFlavor)]]" group-by="
+            concat(nf:ada-healthprovider-id(zorgaanbieder_identificatienummer)/@root,
+            nf:ada-healthprovider-id(zorgaanbieder_identificatienummer)/normalize-space(@value))">
+             
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
-                <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+                <xsl:call-template name="_buildFhirMetadataForAdaEntry">
+                    <xsl:with-param name="partNumber" select="position()"/>
+                </xsl:call-template>
             </xsl:for-each-group>
         </xsl:for-each-group>
         
@@ -203,7 +224,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <!-- General rule for all zib root concepts that need to be converted into a FHIR resource -->
         <xsl:for-each-group select="(
-              $in[not(self::patient or self::zorgverlener)],
+              $in[not(self::patient or self::zorgverlener or self::zorgaanbieder)],
               $in//horen_hulpmiddel/medisch_hulpmiddel,
               $in//zien_hulpmiddel/medisch_hulpmiddel,
               $in//product[parent::medisch_hulpmiddel],
@@ -345,7 +366,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Helper template for creating logicalId</xd:desc>
         <xd:param name="uniqueString">The unique string with which to create a logical id. Optional. If not given a uuid will be generated.</xd:param>
     </xd:doc>
-    <xsl:template name="generateLogicalId">
+    <xsl:template name="generateLogicalId" match="*" mode="generateLogicalId">
         <xsl:param name="uniqueString" as="xs:string?"/>
 
         <xsl:choose>
@@ -361,7 +382,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc>Generate a FHIR reference. When there's no input or a reference can't otherwise be constructed, no output is generated.</xd:desc>
-
         <xd:param name="in">The target of the reference as either an ADA instance or an ADA reference element. May be omitted if it is the same as the context.</xd:param>
         <xd:param name="profile">The id of the profile that is targeted. This is needed to specify which profile is targeted when a single ADA instance is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
         <xd:param name="wrapIn">Optional element name to wrap the output in. If no output is generated, this wrapper will not be generated as well.</xd:param>
@@ -377,17 +397,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:if test="count($fhirMetadata) = 0">
             <xsl:message terminate="yes">Cannot create reference because $fhirMetadata is empty or unknown.</xsl:message>
         </xsl:if>
-
-        <xsl:variable name="groupKey">
+        
+        <xsl:variable name="resolvedAdaElement" as="element()*">
             <xsl:choose>
                 <xsl:when test="$in[@datatype = 'reference' and @value] and not(empty(nf:resolveAdaInstance($in, /)))">
-                    <xsl:value-of select="nf:getGroupingKeyDefault(nf:resolveAdaInstance($in, /))"/>
-                </xsl:when>
-                <xsl:when test="$in[self::laboratorium_test]">
-                    <xsl:value-of select="nf:getGroupingKeyLaboratoryTest($in)"/>
+                    <!-- use xsl:sequence instead of copy-of to preserve the context of the adaXml -->
+                    <xsl:sequence select="nf:resolveAdaInstance($in, /)"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:value-of select="nf:getGroupingKeyDefault($in)"/>
+                    <!-- use xsl:sequence instead of copy-of to preserve the context of the adaXml -->
+                    <xsl:sequence select="$in"/>                    
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+
+        <xsl:variable name="groupKey" as="xs:string?">
+            <xsl:choose>               
+                <xsl:when test="$resolvedAdaElement[self::laboratorium_test]">
+                    <xsl:value-of select="nf:getGroupingKeyLaboratoryTest($resolvedAdaElement)"/>
+                </xsl:when>
+                <xsl:when test="$resolvedAdaElement[self::zorgverlener]">
+                    <!-- let's resolve the zorgaanbieder ín the zorgverlener, to make sure deduplication also works for duplicated zorgaanbieders -->
+                    <xsl:variable name="zorgverlenerWithResolvedZorgaanbieder" as="element(zorgverlener)*">
+                        <xsl:apply-templates select="$resolvedAdaElement" mode="resolveAdaZorgaanbieder"/>                
+                    </xsl:variable>
+                    <xsl:value-of select="nf:getGroupingKeyDefault($zorgverlenerWithResolvedZorgaanbieder)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="nf:getGroupingKeyDefault($resolvedAdaElement)"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
@@ -499,8 +536,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="."/>
         <xsl:param name="profile" as="xs:string" select="''"/>
 
-        <!--<xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>-->
-
         <xsl:variable name="groupKey">
             <xsl:choose>
                 <xsl:when test="$in[self::laboratorium_test]">
@@ -541,14 +576,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="."/>
         <xsl:param name="profile" as="xs:string" select="''"/>
 
-        <!--<xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>-->
-
         <xsl:variable name="groupKey">
             <xsl:choose>
                 <xsl:when test="$in[self::laboratorium_test]">
                     <xsl:value-of select="nf:getGroupingKeyLaboratoryTest($in)"/>
                 </xsl:when>
-                <xsl:otherwise>
+                   <xsl:otherwise>
                     <xsl:value-of select="nf:getGroupingKeyDefault($in)"/>
                 </xsl:otherwise>
             </xsl:choose>
@@ -625,10 +658,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:choose>
             <xsl:when test="$in[@datatype = 'reference' and @value]">
                 <xsl:variable name="adaId" select="$in/@value"/>
-                <xsl:copy-of select="$context//*[@id = $adaId][1]"/>
+                <!-- use xsl:sequence instead of copy-of to preserve the context of the adaXml -->
+                <xsl:sequence select="$context//*[@id = $adaId][1]"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:copy-of select="$in"/>
+                <!-- use xsl:sequence instead of copy-of to preserve the context of the adaXml -->
+                <xsl:sequence select="$in"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
