@@ -316,12 +316,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'juridische_situatie'">
-                <xsl:apply-templates select="$in" mode="nl-core-LegalSituation-LegalStatus">
-                    <xsl:with-param name="subject" select="$subject"/>
-                </xsl:apply-templates>
-                <xsl:apply-templates select="$in" mode="nl-core-LegalSituation-Representation">
-                    <xsl:with-param name="subject" select="$subject"/>
-                </xsl:apply-templates>
+                <xsl:choose>
+                    <xsl:when test="juridische_status">
+                        <xsl:apply-templates select="$in" mode="nl-core-LegalSituation-LegalStatus">
+                            <xsl:with-param name="subject" select="$subject"/>
+                        </xsl:apply-templates>
+                    </xsl:when>
+                    <xsl:when test="vertegenwoordiging">
+                        <xsl:apply-templates select="$in" mode="nl-core-LegalSituation-Representation">
+                            <xsl:with-param name="subject" select="$subject"/>
+                        </xsl:apply-templates>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:call-template name="util:logMessage">
+                            <xsl:with-param name="msg">The zib requires either a LegalStatus or a Representation to be present.</xsl:with-param>
+                            <xsl:with-param name="level">WARN</xsl:with-param>
+                            <xsl:with-param name="terminate">false</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:when>
             <xsl:when test="$localName = 'laboratorium_uitslag'">
                 <xsl:apply-templates select="$in" mode="nl-core-LaboratoryTestResult">
