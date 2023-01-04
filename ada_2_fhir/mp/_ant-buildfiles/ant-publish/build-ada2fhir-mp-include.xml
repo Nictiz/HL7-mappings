@@ -260,6 +260,44 @@
         
     </target>
     
-    
+    <target name="convert_ada_2_fhir_sub_mp_Touchstone">
+        
+        <property name="xsl.ada2fhir" value="${build.dir}/fhir_fixtures4Touchstone/payload/${usecase}_2_fhir.xsl"/>
+        <property name="xsl.ada2fhir.resources" value="${build.dir}/fhir_fixtures4Touchstone/payload/${usecase}_2_fhir_resources.xsl"/>
+        
+        <property name="xsl.input" value="${build.dir}/${usecase}/${xsl.in}"/>
+        <property name="xsl.output" value="${build.dir}/${usecase}/${xsl.out}"/>
+        
+        <!-- make dir if it does not exist (anymore) -->
+        <mkdir dir="${xsl.output}"/>
+        <echo>Deleting previous results, if any</echo>
+        <delete>
+            <fileset dir="${xsl.output}" includes="*.*"/>
+        </delete>
+        
+        <sequential>
+            <fileset id="inputFiles" dir="${xsl.input}" includes="*.xml"/>
+            
+            <echo/>
+            <echo>${echo.label} input files ${xsl.input}, to be converted with: ${xsl.ada2fhir.resources}</echo>
+            <xslt force="true" style="${xsl.ada2fhir.resources}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputFiles"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <echo/>
+            <echo>${echo.label} input files ${xsl.input}, to be converted with: ${xsl.ada2fhir}</echo>
+            <xslt force="true" style="${xsl.ada2fhir}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputFiles"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+    </target>
 
 </project>

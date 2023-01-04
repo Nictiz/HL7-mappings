@@ -18,7 +18,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:variable name="wdsCode" as="xs:string*" select="'395067002'"/>
     <xsl:variable name="templateId-wisselend_doseerschema" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9380'"/>
-
+    <xsl:variable name="templateId-redenWijzigenOfStakenWDS" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9404'"/>
+    
 
     <xd:doc>
         <xd:desc> Wisselend doseerschema MP 9.2 Inhoud </xd:desc>
@@ -49,7 +50,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="IVL_TS" select="($IVL_TS[hl7:low | hl7:width | hl7:high])[1]"/>
                 </xsl:call-template>
 
-                <!-- geannuleerd_indicator -->
+                <!-- geannuleerd_indicator, phased out in 9.2 -->
                 <xsl:for-each select="hl7:statusCode">
                     <geannuleerd_indicator value="{@code='nullified'}"/>
                 </xsl:for-each>
@@ -62,9 +63,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- reden wijzigen of staken -->
                 <xsl:variable name="ada-elemName">reden_wijzigen_of_staken</xsl:variable>
                 <xsl:call-template name="handleCV">
-                    <xsl:with-param name="in" select="hl7:entryRelationship/*[hl7:templateId/@root = $templateId-redenWijzigenOfStaken]/hl7:value"/>
+                    <xsl:with-param name="in" select="hl7:entryRelationship/*[hl7:templateId/@root = ($templateId-redenWijzigenOfStaken, $templateId-redenWijzigenOfStakenWDS)]/hl7:value"/>
                     <xsl:with-param name="elemName" select="$ada-elemName"/>
                 </xsl:call-template>
+                
+                <!-- afgesproken_geneesmiddel -->
+                <xsl:for-each select="hl7:consumable/hl7:manufacturedProduct/hl7:manufacturedMaterial">
+                    <afgesproken_geneesmiddel>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9362_20210602154632">
+                            <xsl:with-param name="product-hl7" select="."/>
+                            <xsl:with-param name="generateId" select="true()"/>
+                        </xsl:call-template>
+                    </afgesproken_geneesmiddel>
+                </xsl:for-each>
 
                 <!-- relatie_medicatieafspraak -->
                 <xsl:call-template name="uni-relatieMedicatieafspraak"/>

@@ -2,21 +2,21 @@
    <id value="mg-mp-mg-tst-MGB-Scenarioset7-v20-7-2"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f1f04-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f2350-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
-            <id value="mp-MedUse2--MBH200redenvanvoorschrijvenMGB"/>
+            <id value="9-2168401113883243119997761-MBH200magistraalactieveingredientMGB"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 27 dec 2021, tot en met 30 dec 2021, geneesmiddel niet in gebruik, tijdelijk gestopt"/>
+               <valueString value="Vanaf T, tot en met T, 3 maal per dag, cutaan"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
                <valueReference>
-                  <reference value="urn:uuid:c33f1f40-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:c33f22c4-6a95-11ec-0000-020000000000"/>
                   <type value="PractitionerRole"/>
-                  <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
+                  <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator">
@@ -25,37 +25,21 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_200_redenvanvoorschrijven"/>
+                  <value value="MBH_200_magistraalactieveingredient"/>
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
                <valueReference>
-                  <reference value="urn:uuid:c33f1f40-6a95-11ec-0000-020000000000"/>
-                  <type value="PractitionerRole"/>
-                  <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd"/>
+                  <reference value="urn:uuid:c33f229c-6a95-11ec-0000-020000000000"/>
+                  <type value="Patient"/>
+                  <display value="Patient, G. XXX_Hess"/>
                </valueReference>
             </extension>
-            <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
-               <valueCodeableConcept>
-                  <coding>
-                     <system value="http://snomed.info/sct"/>
-                     <code value="113381000146106"/>
-                     <display value="tijdelijk gestopt met medicatie"/>
-                  </coding>
-               </valueCodeableConcept>
-            </modifierExtension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-               <value value="MBH_200_redenvanvoorschrijven_MGB"/>
+               <value value="MBH_200_magistraalactieveingredient_MGB"/>
             </identifier>
-            <status value="not-taken"/>
-            <statusReason>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="405613005"/>
-                  <display value="verrichting gepland"/>
-               </coding>
-            </statusReason>
+            <status value="active"/>
             <category>
                <coding>
                   <system value="http://snomed.info/sct"/>
@@ -64,41 +48,52 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f1f22-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f236e-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="Methotrexaat tablet 2,5mg"/>
+               <display value="overig"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f1ee6-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f229c-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hess"/>
             </subject>
             <effectivePeriod>
-               <start value="2021-12-27T00:00:00+01:00"/>
-               <end value="2021-12-30T23:59:59+01:00"/>
+               <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
+               <end value="${DATE, T, D, +0}T23:59:59+02:00"/>
             </effectivePeriod>
-            <dateAsserted value="2022-01-01T15:05:00+01:00"/>
-            <informationSource>
-               <reference value="urn:uuid:c33f1ee6-6a95-11ec-0000-020000000000"/>
-               <type value="Patient"/>
-               <display value="Patient, G. XXX_Hess"/>
-            </informationSource>
+            <dateAsserted value="${DATE, T, D, +0}T22:08:00+02:00"/>
             <derivedFrom>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
                   <valueCodeableConcept>
                      <coding>
                         <system value="http://snomed.info/sct"/>
-                        <code value="33633005"/>
-                        <display value="voorschrijven"/>
+                        <code value="422037009"/>
+                        <display value="toedieningsafspraak"/>
                      </coding>
                   </valueCodeableConcept>
                </extension>
                <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_200_redenvanvoorschrijven_MA"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                  <value value="MBH_200_magistraalactieveingredient_TA"/>
                </identifier>
-               <display value="relatie naar medicatieafspraak"/>
+               <display value="relatie naar toedieningsafspraak"/>
             </derivedFrom>
+            <dosage>
+               <timing>
+                  <repeat>
+                     <frequency value="3"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="53"/>
+                     <display value="cutaan"/>
+                  </coding>
+               </route>
+            </dosage>
          </MedicationStatement>
       </resource>
       <request>
@@ -107,10 +102,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1ee6-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f229c-6a95-11ec-0000-020000000000"/>
       <resource>
          <Patient>
-            <id value="nl-core-Patient--G-XXX-Hess"/>
+            <id value="nl-core-Patient-mp9-G-XXX-Hess"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
             </meta>
@@ -155,20 +150,20 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1f40-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f22c4-6a95-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
-            <id value="nl-core-HPrf-PracRol--000001112-0100-00001111"/>
+            <id value="nl-core-HPrf-PracRol-mp9-PrcRol-2165281100731-000001111"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:c33f1f5e-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f22ec-6a95-11ec-0000-020000000000"/>
                <type value="Practitioner"/>
-               <display value="Healthcare professional (person), Bertine van Doorn"/>
+               <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:c33f1f7c-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f2314-6a95-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -188,29 +183,29 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1f5e-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f22ec-6a95-11ec-0000-020000000000"/>
       <resource>
          <Practitioner>
-            <id value="nl-core-HPrf-Prac--2165281100731-000001112"/>
+            <id value="nl-core-HPrf-Prac-mp9-2165281100731-000001111"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
             </meta>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
-               <value value="000001112"/>
+               <value value="000001111"/>
             </identifier>
             <name>
                <use value="official"/>
-               <text value="Bertine van Doorn"/>
-               <family value="van Doorn">
+               <text value="Peter van Pulver"/>
+               <family value="van Pulver">
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
                      <valueString value="van"/>
                   </extension>
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                     <valueString value="Doorn"/>
+                     <valueString value="Pulver"/>
                   </extension>
                </family>
-               <given value="Bertine">
+               <given value="Peter">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
                      <valueCode value="BR"/>
                   </extension>
@@ -224,10 +219,10 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1f7c-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f2314-6a95-11ec-0000-020000000000"/>
       <resource>
          <Organization>
-            <id value="nl-core-HPrv-Org--2165281100733-00001111"/>
+            <id value="nl-core-HPrv-Org-mp9-Org-2165281100733-00001111"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
             </meta>
@@ -266,27 +261,63 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1f22-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f236e-6a95-11ec-0000-020000000000"/>
       <resource>
          <Medication>
-            <id value="nl-core-PhPrd--216840111388324410-141631"/>
+            <id value="nl-core-PhPrd-mp9-c33f1cb4-6a95-11ec-0000-020000000000"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct"/>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalProduct.Description">
+               <valueString value="Titel: Vaseline 20% in cetomacrogolcrème FNA Regel 1: cetomacrogolcreme 80 gr"/>
+            </extension>
             <code>
                <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="141631"/>
-                  <display value="Methotrexaat tablet 2,5mg"/>
-                  <userSelected value="true"/>
+                  <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+                  <code value="OTH"/>
+                  <display value="overig"/>
                </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="16918"/>
-                  <display value="Methotrexaat tablet 2,5mg"/>
-               </coding>
-               <text value="Methotrexaat tablet 2,5mg"/>
+               <text value="Vaseline 20% in cetomacrogolcrème FNA"/>
             </code>
+            <ingredient>
+               <itemCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                     <code value="457590"/>
+                     <display value="CETOMACROGOLCREME FNA"/>
+                  </coding>
+               </itemCodeableConcept>
+               <strength>
+                  <numerator>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="80"/>
+                           <unit value="gram"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="215"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="80"/>
+                     <unit value="gram"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="g"/>
+                  </numerator>
+                  <denominator>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="100"/>
+                           <unit value="gram"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="215"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="100"/>
+                     <unit value="gram"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="g"/>
+                  </denominator>
+               </strength>
+            </ingredient>
          </Medication>
       </resource>
       <request>

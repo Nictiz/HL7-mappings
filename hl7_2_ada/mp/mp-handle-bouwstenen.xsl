@@ -214,9 +214,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Find the correct reference in the deduplication mode in step 2 </xd:desc>
     </xd:doc>
-    <xsl:template match="medicamenteuze_behandeling//farmaceutisch_product | medicamenteuze_behandeling//contactpersoon | medicamenteuze_behandeling//zorgaanbieder | (medicamenteuze_behandeling | voorstel_gegevens)//zorgverlener[not(zorgverlener)]" mode="deduplicateBouwstenenStep2">
+    <xsl:template match="medicamenteuze_behandeling//farmaceutisch_product | medicamenteuze_behandeling//contactpersoon | medicamenteuze_behandeling//zorgaanbieder | voorstel_gegevens//zorgaanbieder | medicamenteuze_behandeling//zorgverlener[not(zorgverlener)] | voorstel_gegevens//zorgverlener[not(zorgverlener)] |voorstel_gegevens/medicamenteuze_behandeling" mode="deduplicateBouwstenenStep2">
         <xsl:copy>
-            <xsl:apply-templates select="@conceptId" mode="deduplicateBouwstenenStep2"/>
+            <xsl:apply-templates select="@conceptId" mode="#current"/>
             <xsl:attribute name="value">
                 <xsl:value-of select="ancestor::data/*/bouwstenen/*[key/text() = nf:getGroupingKeyDefaulthl72ada(current())]/@id"/>
             </xsl:attribute>
@@ -331,7 +331,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Do not output bouwstenen and voorstel_gegevens (again) in handleBouwstenen, those are completely handled in the template that handles medicamenteuze_behandeling</xd:desc>
     </xd:doc>
-    <xsl:template match="bouwstenen | voorstel_gegevens[preceding-sibling::medicamenteuze_behandeling]" mode="handleBouwstenen"/>
+    <xsl:template match="bouwstenen" mode="handleBouwstenen"/>
 
     <xd:doc>
         <xd:desc>Default copy template for adding the bouwstenen stuff in the 9.2 dataset</xd:desc>

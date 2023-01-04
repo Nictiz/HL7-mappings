@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:f="http://hl7.org/fhir" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nwf="http://www.nictiz.nl/wiki-functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-    <!-- this import should be commented out here, as the import must be chosen in the calling xslt -->
-    <!-- uncomment only for development purposes -->
-    <!--        <xsl:import href="../ada_2_fhir/zibs2017/payload/package-2.0.5.xsl"/>-->
-
     <!-- give dateT a value when you need conversion of relative T dates, typically only needed for test instances -->
     <!--    <xsl:param name="dateT" as="xs:date?" select="current-date()"/>-->
     <xsl:param name="dateT" as="xs:date?"/>
@@ -19,11 +15,11 @@
     <xsl:variable name="mtdCode" as="xs:string*" select="('18629005')"/>
 
     <xsl:variable name="stoptypeMap" as="element()+">
-        <map code="113381000146106" codeSystem="2.16.840.1.113883.6.96" displayName="tijdelijk gestopt"/>
-        <map code="113371000146109" codeSystem="2.16.840.1.113883.6.96" displayName="definitief gestopt"/>
-        <!-- deprecated codes from pre MP 9.2 -->
-        <map code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="tijdelijk gestopt"/>
-        <map code="2" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="definitief gestopt"/>
+        <map stoptype="tijdelijk" code="113381000146106" codeSystem="2.16.840.1.113883.6.96" displayName="tijdelijk gestopt" version="920"/>
+        <map stoptype="definitief" code="113371000146109" codeSystem="2.16.840.1.113883.6.96" displayName="definitief gestopt" version="920"/>
+        <!-- deprecated codes from pre MP 9.1 -->
+        <map stoptype="tijdelijk" code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="tijdelijk gestopt" version="907"/>
+        <map stoptype="definitief" code="2" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="definitief gestopt" version="907"/>
     </xsl:variable>
 
     <xd:doc>
