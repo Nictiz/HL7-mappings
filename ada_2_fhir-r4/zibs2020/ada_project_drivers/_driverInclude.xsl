@@ -327,6 +327,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="subject" select="$subject"/>
                         </xsl:apply-templates>
                     </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:call-template name="util:logMessage">
+                            <xsl:with-param name="msg">The zib requires either a LegalStatus or a Representation to be present.</xsl:with-param>
+                            <xsl:with-param name="level">WARN</xsl:with-param>
+                            <xsl:with-param name="terminate">false</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
             <xsl:when test="$localName = 'laboratorium_uitslag'">
