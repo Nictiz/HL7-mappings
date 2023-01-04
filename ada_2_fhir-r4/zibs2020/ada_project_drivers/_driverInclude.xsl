@@ -383,7 +383,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="$in" mode="nl-core-MedicalDevice">
                     <xsl:with-param name="subject" select="$subject"/>
                     <!-- ADA instances for this project start with $zib2020Oid and end in .1, or in 9.*.* in the case of the medication related zibs -->
-                    <xsl:with-param name="reasonReference" select="if (ancestor::functionele_of_mentale_status or ancestor::mobiliteit) then ancestor::*[starts-with(@conceptId, $zib2020Oid) and matches(@conceptId, '(\.1|9\.\d+\.\d+)$')] else ()"/>
+                    <xsl:with-param name="reasonReference" select="if (ancestor::functionele_of_mentale_status or ancestor::mobiliteit or ancestor::stoma) then ancestor::*[starts-with(@conceptId, $zib2020Oid) and matches(@conceptId, '(\.1|9\.\d+\.\d+)$')] else ()"/>
                 </xsl:apply-templates>  
                 <xsl:for-each select="product">
                     <xsl:call-template name="nl-core-MedicalDevice.Product">
@@ -432,6 +432,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="soepregel">
                     <xsl:call-template name="nl-core-SOAPReport.SOAPLine"/>
                 </xsl:for-each>
+            </xsl:when>
+            <xsl:when test="$localName = 'stoma'">
+                <xsl:apply-templates select="$in" mode="nl-core-Stoma">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'tabak_gebruik'">
                 <xsl:apply-templates select="$in" mode="nl-core-TobaccoUse">
