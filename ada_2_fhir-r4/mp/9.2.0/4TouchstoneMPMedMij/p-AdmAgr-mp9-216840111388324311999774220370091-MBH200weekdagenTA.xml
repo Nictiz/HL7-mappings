@@ -1,0 +1,91 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="p-AdmAgr-mp9-216840111388324311999774220370091-MBH200weekdagenTA"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
+      <valueDateTime value="${DATE, T, D, +0}T09:25:00+02:00"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="Vanaf T, tot en met T + 70 dagen, op maandag, woensdag en vrijdag, voor de nacht, aanbrengen, cutaan"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+      <valuePeriod>
+         <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
+         <end value="${DATE, T, D, +70}T23:59:59+02:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_200_weekdagen"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+      <value value="MBH_200_weekdagen_TA"/>
+   </identifier>
+   <status value="unknown"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422037009"/>
+         <display value="toedieningsafspraak"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/nl-core-PhPrd-mp9-21684011138832447-1198521"/>
+      <type value="Medication"/>
+      <display value="ALDARA CREME 50MG/G IN SACHET"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-MXXX-Rambaldo"/>
+      <type value="Patient"/>
+      <display value="Patient, M. XXX_Rambaldo"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/nl-core-HPrv-Org-mp9-Org-2165281100733-01236578"/>
+         <type value="Organization"/>
+         <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
+      </actor>
+   </performer>
+   <authorizingPrescription>
+      <type value="MedicationRequest"/>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <value value="MBH_200_weekdagen_MA"/>
+      </identifier>
+      <display value="relatie naar medicatieafspraak met identificatie: MBH_200_weekdagen_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+   </authorizingPrescription>
+   <dosageInstruction>
+      <additionalInstruction>
+         <coding>
+            <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+            <code value="1128"/>
+            <display value="voor de nacht"/>
+         </coding>
+      </additionalInstruction>
+      <additionalInstruction>
+         <coding>
+            <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+            <code value="1018"/>
+            <display value="aanbrengen"/>
+         </coding>
+      </additionalInstruction>
+      <timing>
+         <repeat>
+            <dayOfWeek value="mon"/>
+            <dayOfWeek value="wed"/>
+            <dayOfWeek value="fri"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="53"/>
+            <display value="cutaan"/>
+         </coding>
+      </route>
+   </dosageInstruction>
+</MedicationDispense>
