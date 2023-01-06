@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="../../" default="build">
+    <!-- Build a release file for the FHIR narrative generator -->
+    <property name="narrativegenerator.version" value="0.11.0"/>
+    
+    <target name="build">
+        <sequential>
+            <zip destfile="fhir-narrativegenerator-${narrativegenerator.version}.zip">
+                <zipfileset dir="fhir-narrativegenerator" prefix="fhir-narrativegenerator">
+                    <include name="README.md"/>
+                </zipfileset>
+                <zipfileset dir="fhir-narrativegenerator" prefix="fhir-narrativegenerator/build">
+                    <exclude name="README.md"/>
+                </zipfileset>
+                <zipfileset dir="util" prefix="fhir-narrativegenerator/util">
+                    <include name="NarrativeGenerator.xsl"/>
+                    <include name="formatXML.xsl"/>
+                    <include name="utilities.xsl"/>
+                    <include name="utilities-l10n.xml"/>
+                </zipfileset>
+            </zip>
+            
+            <echo message="Zip file generated. To publish:"/>
+            <echo message="* create a git tag called 'fhir-narrativegenerator-${narrativegenerator.version} and push it to Github"/>
+            <echo message="* create a Github release based on this tag"/>
+            <echo message="* attach the zip file to the release"/>
+        </sequential>
+    </target>
+</project>

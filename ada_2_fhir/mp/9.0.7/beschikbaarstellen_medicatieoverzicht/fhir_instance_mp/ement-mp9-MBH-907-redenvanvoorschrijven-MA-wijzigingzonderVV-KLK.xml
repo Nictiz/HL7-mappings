@@ -16,6 +16,10 @@
                   <td>MBH_907_redenvanvoorschrijven-KLK (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
                </tr>
                <tr>
+                  <th>Gebaseerd op</th>
+                  <td>relatie naar medicatieafspraak: MBH_907_redenvanvoorschrijven_MA-KLK || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1 (Id: MBH_907_redenvanvoorschrijven_MA-KLK (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1))</td>
+               </tr>
+               <tr>
                   <th>Medicatie</th>
                   <td>Methotrexaat tablet 2,5mg</td>
                </tr>
@@ -65,6 +69,15 @@
          <value value="MBH_907_redenvanvoorschrijven-KLK"/>
       </valueIdentifier>
    </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement-BasedOnAgreementOrUse">
+      <valueReference>
+         <identifier>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <value value="MBH_907_redenvanvoorschrijven_MA-KLK"/>
+         </identifier>
+         <display value="relatie naar medicatieafspraak: MBH_907_redenvanvoorschrijven_MA-KLK || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      </valueReference>
+   </extension>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
       <value value="MBH_907_redenvanvoorschrijven_MA_wijzigingzonderVV-KLK"/>
@@ -107,7 +120,7 @@
       </coding>
    </reasonCode>
    <reasonReference>
-      <reference value="Condition/zib-Problem-mp9-bfbe2a72-e3c1-11eb-1307-020000000000"/>
+      <reference value="Condition/zib-Problem-mp9-c33f2480-6a95-11ec-0000-020000000000"/>
       <display value="Reumatoide artritis overig"/>
    </reasonReference>
    <dosageInstruction>

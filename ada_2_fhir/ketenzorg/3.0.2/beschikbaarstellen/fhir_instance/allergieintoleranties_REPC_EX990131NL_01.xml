@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="8cb0864e-42fb-11ec-1246-020000000000"/>
+   <id value="f1a262e0-5da2-11ec-1934-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -72,7 +72,7 @@
                <text value="Amoxicilline"/>
             </code>
             <patient>
-               <reference value="urn:uuid:8cb095d2-42fb-11ec-1246-020000000000"/>
+               <reference value="urn:uuid:f1a27265-5da2-11ec-1934-020000000000"/>
                <display value="Joris Hansman"/>
             </patient>
             <onsetDateTime value="2015-03-04"/>
@@ -86,7 +86,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:8cb095d2-42fb-11ec-1246-020000000000"/>
+      <fullUrl value="urn:uuid:f1a27265-5da2-11ec-1934-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -139,9 +139,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.2234567"/>
+      <fullUrl value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-02234567"/>
       <resource>
          <Organization>
+            <id value="2.16.528.1.1007.3.3-02234567"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
@@ -149,7 +150,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>Organisatie. Id: 02234567 (URA)</caption>
+                     <caption>Organisatie. Id: 01001234 (AGB-Z), 02234567 (URA)</caption>
                      <tbody>
                         <tr>
                            <th>Naam</th>
@@ -159,6 +160,10 @@
                   </table>
                </div>
             </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+               <value value="01001234"/>
+            </identifier>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
                <value value="02234567"/>
