@@ -7,7 +7,9 @@
     If you just run ant, it expects a build.xml in the working dir and runs the default target.
 -->
 <project basedir="." name="build-ada2fhir-include" xmlns:if="ant:if" xmlns:unless="ant:unless">
-    <ant antfile="../../../../../_ant-buildfiles/ant-include/ant.ivy.xml" inheritall="true" usenativebasedir="true"/>
+    <!-- Skip ivy with ant -Drun-ivy=false -->
+    <property name="run-ivy" value="true"/>
+    
     <property name="xsl.saxon" value="${saxon.path}"/>
     <property name="xsl.saxon.class" value="net.sf.saxon.TransformerFactoryImpl"/>
 
@@ -24,6 +26,9 @@
     <property name="project.prefix" value="${is.abbreviation}_${is.version}"/>
     <property name="dummy.output.dir" value="../../dummy"/>
 
+    <target name="run-ivy" if="${run-ivy}">
+        <ant antfile="${basedir}/../../../../../_ant-buildfiles/ant-include/ant.ivy.xml" inheritall="true" usenativebasedir="true"/>
+    </target>
     <target name="setup_sub" description="Setup ${sub.build.dir} containing the new/schemas folder from the original ADA project and refreshed ada production instances">
         <mkdir dir="${sub.build.dir}"/>
 
@@ -90,6 +95,11 @@
         <echo>${echo.label} input files ${xsl.in}/${xsl.in.include}, to be converted with: ${xsl.convert}</echo>
         <xslt force="true" style="${xsl.convert}" destdir="${xsl.out}" extension=".xml" useImplicitFileset="false">
             <fileset refid="inputFiles"/>
+            <param name="dateT" expression="${param.tdate}" if="param.tdate"/>
+            <param name="writeOutputToDisk" expression="${param.writeOutputToDisk}" if="param.writeOutputToDisk"/>
+            <!-- whether to generate the textual instruction for use based on structured data, 
+                    typically true for test/example instances 
+                    typically false for production -->
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
             <param name="generateInstructionText" expression="true"/>
@@ -109,10 +119,10 @@
         </fileset>
 
         <echo/>
-        <echo>${echo.label} validate schema with input files ${fileset.include} but excluding ${fileset.exclude}  and schema ${validate.schema}</echo>
+        <echo>${echo.label} validate schema with input files ${fileset.include} but excluding ${fileset.exclude} and schema ${validate.schema}</echo>
         <schemavalidate warn="true" failonerror="false">
             <fileset refid="inputfiles.validate"/>
-            <schema namespace="urn:hl7-org:v3" file="${validate.schema}"/>
+            <schema namespace="http://hl7.org/fhir" file="${validate.schema}"/>
         </schemavalidate>
 
     </target>

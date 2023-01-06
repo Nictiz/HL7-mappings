@@ -59,7 +59,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="alcohol_gebruik" resource="Observation" profile="nl-core-AlcoholUse"/>
         <nm:map ada="alert" resource="Flag" profile="nl-core-alert"/>
         <nm:map ada="allergie_intolerantie" resource="AllergyIntolerance" profile="nl-core-AllergyIntolerance"/>
-         <nm:map ada="behandel_aanwijzing" resource="Consent" profile="nl-core-TreatmentDirective2"/>
+        <nm:map ada="behandel_aanwijzing" resource="Consent" profile="nl-core-TreatmentDirective2"/>
         <nm:map ada="bloeddruk" resource="Observation" profile="nl-core-BloodPressure"/>
         <nm:map ada="betaler" resource="Coverage" profile="nl-core-Payer.InsuranceCompany"/>
         <nm:map ada="betaler" resource="Coverage" profile="nl-core-Payer.PayerPerson"/>
@@ -74,6 +74,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="hartfrequentie" resource="Observation" profile="nl-core-HeartRate"/>
         <nm:map ada="juridische_situatie" resource="Condition" profile="nl-core-LegalSituation-LegalStatus"/>
         <nm:map ada="juridische_situatie" resource="Condition" profile="nl-core-LegalSituation-Representation"/>
+        <nm:map ada="laboratorium_uitslag" resource="Observation" profile="nl-core-LaboratoryTestResult"/>
+        <nm:map ada="laboratorium_test" resource="Observation" profile="nl-core-LaboratoryTestResult"/>
         <nm:map ada="lichaamslengte" resource="Observation" profile="nl-core-BodyHeight"/>
         <nm:map ada="lichaamstemperatuur" resource="Observation" profile="nl-core-BodyTemperature"/>
         <nm:map ada="lichaamsgewicht" resource="Observation" profile="nl-core-BodyWeight"/>
@@ -88,6 +90,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-HearingFunction.HearingAid"/>
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-VisualFunction.VisualAid"/>
         <nm:map ada="mobiliteit" resource="Observation" profile="nl-core-Mobility"/>
+        <nm:map ada="monster" resource="Specimen" profile="nl-core-LaboratoryTestResult.Specimen"/>
+        <nm:map ada="bron_monster" resource="Device" profile="nl-core-LaboratoryTestResult.Specimen.Source"/>
         <nm:map ada="mustscore" resource="Observation" profile="nl-core-MUSTScore"/>
         <nm:map ada="o2saturatie" resource="Observation" profile="nl-core-O2Saturation"/>
         <nm:map ada="opleiding" resource="Observation" profile="nl-core-Education"/>
@@ -99,7 +103,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="refractie" resource="Observation" profile="nl-core-Refraction"/>
         <nm:map ada="schedelomvang" resource="Observation" profile="nl-core-HeadCircumference"/>
         <nm:map ada="soepverslag" resource="Composition" profile="nl-core-SOAPReport"/>
-        <nm:map ada="soepregel" resource="Observation" profile="nl-core-SOAPReport-Observation"/>
+        <nm:map ada="soepregel" resource="Observation" profile="nl-core-SOAPReport.SOAPLine"/>
+        <nm:map ada="stoma" resource="Condition" profile="nl-core-Stoma"/>
         <nm:map ada="sturen_medicatievoorschrift" resource="Bundle" profile="mp-MedicationPrescription-Bundle"/>
         <nm:map ada="sturen_afhandeling_medicatievoorschrift" resource="Bundle" profile="mp-MedicationPrescriptionProcessing-Bundle"/>
         <nm:map ada="sturen_antwoord_voorstel_medicatieafspraak" resource="Bundle" profile="mp-ReplyProposalMedicationAgreement-Bundle"/>
@@ -118,6 +123,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="vaccinatie" resource="Immunization" profile="nl-core-Vaccination-event"/>
         <nm:map ada="vaccinatie" resource="ImmunizationRecommendation" profile="nl-core-Vaccination-request"/>
         <nm:map ada="vermogen_tot_drinken" resource="Observation" profile="nl-core-AbilityToDrink"/>
+        <nm:map ada="vermogen_tot_eten" resource="Observation" profile="nl-core-AbilityToEat"/>
+        <nm:map ada="vermogen_tot_toiletgang" resource="Observation" profile="nl-core-AbilityToUseToilet"/>
+        <nm:map ada="vermogen_tot_uiterlijke_verzorging" resource="Observation" profile="nl-core-AbilityToGroom"/>
+        <nm:map ada="vermogen_tot_zich_kleden" resource="Observation" profile="nl-core-AbilityToDressOneself"/>
+        <nm:map ada="vermogen_tot_zich_wassen" resource="Observation" profile="nl-core-AbilityToWashOneself"/>
         <nm:map ada="verrichting" resource="Procedure" profile="nl-core-Procedure"/>
         <nm:map ada="verstrekkingsverzoek" resource="MedicationRequest" profile="mp-DispenseRequest"/>
         <nm:map ada="visueel_resultaat" resource="Media" profile="nl-core-TextResult-Media"/>
@@ -176,26 +186,56 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:for-each-group select="$in[self::patient[.//(@value | @code | @nullFlavor)]]" group-by="concat((identificatienummer[@root = $oidBurgerservicenummer], identificatienummer[not(@root = $oidBurgerservicenummer)])[1]/@root, (identificatienummer[@root = $oidBurgerservicenummer], identificatienummer[not(@root = $oidBurgerservicenummer)])[1]/normalize-space(@value))">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
-                <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+                <xsl:call-template name="_buildFhirMetadataForAdaEntry">
+                    <xsl:with-param name="partNumber" select="position()"/>                    
+                </xsl:call-template>
             </xsl:for-each-group>
         </xsl:for-each-group>
-
+        
         <xsl:for-each-group select="$in[self::zorgverlener[.//(@value | @code | @nullFlavor)]]" group-by="
-            concat(nf:ada-zvl-id(zorgverlener_identificatienummer)/@root,
-            nf:ada-zvl-id(zorgverlener_identificatienummer)/normalize-space(@value))">
-            <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
-            <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
+            concat(nf:ada-healthprofessional-id(zorgverlener_identificatienummer)/@root,
+            nf:ada-healthprofessional-id(zorgverlener_identificatienummer)/normalize-space(@value))">
+            
+            <!-- let's resolve the zorgaanbieder ín the zorgverlener, to make sure deduplication also works for duplicated zorgaanbieders -->
+            <xsl:variable name="zorgverlenerWithResolvedZorgaanbieder" as="element(zorgverlener)*">
+                <xsl:apply-templates select="current-group()" mode="resolveAdaZorgaanbieder"/>                
+            </xsl:variable>
+            
+            <xsl:for-each-group select="$zorgverlenerWithResolvedZorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
+                <xsl:call-template name="_buildFhirMetadataForAdaEntry">
+                    <xsl:with-param name="partNumber" select="position()"/>
+                </xsl:call-template>
+            </xsl:for-each-group>
         </xsl:for-each-group>
+        
+        <xsl:for-each-group select="$in[self::zorgaanbieder[.//(@value | @code | @nullFlavor)]]" group-by="
+            concat(nf:ada-healthprovider-id(zorgaanbieder_identificatienummer)/@root,
+            nf:ada-healthprovider-id(zorgaanbieder_identificatienummer)/normalize-space(@value))">
+             
+            <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
+                <xsl:call-template name="_buildFhirMetadataForAdaEntry">
+                    <xsl:with-param name="partNumber" select="position()"/>
+                </xsl:call-template>
+            </xsl:for-each-group>
+        </xsl:for-each-group>
+        
+        <!-- If and only if there is more than one laboratorium_test, there should be an instance for each
+                 distinct laboratorium_test (in addition the "grouping" instance already identified as part of the 
+                 main process. -->
+        <xsl:for-each-group select="$in[self::laboratorium_uitslag]/laboratorium_test[.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyLaboratoryTest(.)">
+            <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
         </xsl:for-each-group>
         
         <!-- General rule for all zib root concepts that need to be converted into a FHIR resource -->
         <xsl:for-each-group select="(
-              $in[not(self::patient or self::zorgverlener)],
+              $in[not(self::patient or self::zorgverlener or self::zorgaanbieder)],
               $in//horen_hulpmiddel/medisch_hulpmiddel,
               $in//zien_hulpmiddel/medisch_hulpmiddel,
               $in//product[parent::medisch_hulpmiddel],
               $in//visueel_resultaat[parent::tekst_uitslag],
-              $in//soepregel[parent::soepverslag]
+              $in//soepregel[parent::soepverslag],
+              $in//monster[parent::laboratorium_uitslag],
+              $in//bron_monster[parent::monster]
             )[.//(@value | @code | @nullFlavor)]" group-by="local-name()">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <xsl:call-template name="_buildFhirMetadataForAdaEntry">
@@ -315,9 +355,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:choose>
 
                 <nm:reference-display>
-                    <xsl:apply-templates select="$in" mode="_generateDisplay">
-                        <xsl:with-param name="profile" select="$profile"/>
-                    </xsl:apply-templates>
+                    <xsl:variable name="generatedDisplay" as="xs:string*">
+                        <xsl:apply-templates select="$in" mode="_generateDisplay">
+                            <xsl:with-param name="profile" select="$profile"/>
+                        </xsl:apply-templates>
+                    </xsl:variable>
+                    <xsl:value-of select="normalize-space(string-join($generatedDisplay))"/>
                 </nm:reference-display>
             </nm:resource>
         </xsl:for-each>
@@ -327,7 +370,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Helper template for creating logicalId</xd:desc>
         <xd:param name="uniqueString">The unique string with which to create a logical id. Optional. If not given a uuid will be generated.</xd:param>
     </xd:doc>
-    <xsl:template name="generateLogicalId">
+    <xsl:template name="generateLogicalId" match="*" mode="generateLogicalId">
         <xsl:param name="uniqueString" as="xs:string?"/>
 
         <xsl:choose>
@@ -343,7 +386,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc>Generate a FHIR reference. When there's no input or a reference can't otherwise be constructed, no output is generated.</xd:desc>
-
         <xd:param name="in">The target of the reference as either an ADA instance or an ADA reference element. May be omitted if it is the same as the context.</xd:param>
         <xd:param name="profile">The id of the profile that is targeted. This is needed to specify which profile is targeted when a single ADA instance is mapped onto multiple FHIR profiles. It may be omitted otherwise.</xd:param>
         <xd:param name="wrapIn">Optional element name to wrap the output in. If no output is generated, this wrapper will not be generated as well.</xd:param>
@@ -359,14 +401,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:if test="count($fhirMetadata) = 0">
             <xsl:message terminate="yes">Cannot create reference because $fhirMetadata is empty or unknown.</xsl:message>
         </xsl:if>
-
-        <xsl:variable name="groupKey">
+        
+        <xsl:variable name="resolvedAdaElement" as="element()*">
             <xsl:choose>
                 <xsl:when test="$in[@datatype = 'reference' and @value] and not(empty(nf:resolveAdaInstance($in, /)))">
-                    <xsl:value-of select="nf:getGroupingKeyDefault(nf:resolveAdaInstance($in, /))"/>
+                    <!-- use xsl:sequence instead of copy-of to preserve the context of the adaXml -->
+                    <xsl:sequence select="nf:resolveAdaInstance($in, /)"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:value-of select="nf:getGroupingKeyDefault($in)"/>
+                    <!-- use xsl:sequence instead of copy-of to preserve the context of the adaXml -->
+                    <xsl:sequence select="$in"/>                    
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+
+        <xsl:variable name="groupKey" as="xs:string?">
+            <xsl:choose>               
+                <xsl:when test="$resolvedAdaElement[self::laboratorium_test]">
+                    <xsl:value-of select="nf:getGroupingKeyLaboratoryTest($resolvedAdaElement)"/>
+                </xsl:when>
+                <xsl:when test="$resolvedAdaElement[self::zorgverlener]">
+                    <!-- let's resolve the zorgaanbieder ín the zorgverlener, to make sure deduplication also works for duplicated zorgaanbieders -->
+                    <xsl:variable name="zorgverlenerWithResolvedZorgaanbieder" as="element(zorgverlener)*">
+                        <xsl:apply-templates select="$resolvedAdaElement" mode="resolveAdaZorgaanbieder"/>                
+                    </xsl:variable>
+                    <xsl:value-of select="nf:getGroupingKeyDefault($zorgverlenerWithResolvedZorgaanbieder)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="nf:getGroupingKeyDefault($resolvedAdaElement)"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
@@ -478,7 +540,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="."/>
         <xsl:param name="profile" as="xs:string" select="''"/>
 
-        <xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>
+        <xsl:variable name="groupKey">
+            <xsl:choose>
+                <xsl:when test="$in[self::laboratorium_test]">
+                    <xsl:value-of select="nf:getGroupingKeyLaboratoryTest($in)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="nf:getGroupingKeyDefault($in)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
 
         <xsl:if test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1 and string-length($profile) = 0">
             <xsl:message terminate="yes">insertId: Duplicate entry found in $fhirMetadata, while no $profile was supplied. $groupKey: <xsl:value-of select="$groupKey"/></xsl:message>
@@ -509,7 +580,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="."/>
         <xsl:param name="profile" as="xs:string" select="''"/>
 
-        <xsl:variable name="groupKey" select="nf:getGroupingKeyDefault($in)"/>
+        <xsl:variable name="groupKey">
+            <xsl:choose>
+                <xsl:when test="$in[self::laboratorium_test]">
+                    <xsl:value-of select="nf:getGroupingKeyLaboratoryTest($in)"/>
+                </xsl:when>
+                   <xsl:otherwise>
+                    <xsl:value-of select="nf:getGroupingKeyDefault($in)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
 
         <xsl:if test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1 and string-length($profile) = 0">
             <xsl:message terminate="yes">insertFullUrl: Duplicate entry found in $fhirMetadata, while no $profile was supplied.</xsl:message>
@@ -582,10 +662,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:choose>
             <xsl:when test="$in[@datatype = 'reference' and @value]">
                 <xsl:variable name="adaId" select="$in/@value"/>
-                <xsl:copy-of select="$context//*[@id = $adaId][1]"/>
+                <!-- use xsl:sequence instead of copy-of to preserve the context of the adaXml -->
+                <xsl:sequence select="$context//*[@id = $adaId][1]"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:copy-of select="$in"/>
+                <!-- use xsl:sequence instead of copy-of to preserve the context of the adaXml -->
+                <xsl:sequence select="$in"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
@@ -627,43 +709,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
 
         <xsl:value-of select="substring($logicalId, $startingLoc, $lengthLogicalId)"/>
-    </xsl:function>
-
-    <xd:doc>
-        <xd:desc>Returns true (boolean) if the date or dateTime is in the future. Defaults to false. Input should be a value that is castable to a date or dateTime. Input may be empty which results in the default false value.</xd:desc>
-        <xd:param name="dateOrDt">The ADA date or dateTime.</xd:param>
-    </xd:doc>
-    <xsl:function name="nf:isFuture" as="xs:boolean">
-        <xsl:param name="dateOrDt"/>
-        <xsl:choose>
-            <xsl:when test="$dateOrDt castable as xs:date">
-                <xsl:value-of select="$dateOrDt &gt; current-date()"/>
-            </xsl:when>
-            <xsl:when test="$dateOrDt castable as xs:dateTime">
-                <xsl:value-of select="$dateOrDt &gt; current-dateTime()"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="false()"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:function>
-
-    <xd:doc>
-        <xd:desc>Returns true (boolean) if the date or dateTime is in the past. Defaults to false. Input should be a value that is castable to a date or dateTime. Input may be empty which results in the default false value.</xd:desc>
-    </xd:doc>
-    <xsl:function name="nf:isPast" as="xs:boolean">
-        <xsl:param name="dateOrDt"/>
-        <xsl:choose>
-            <xsl:when test="$dateOrDt castable as xs:date">
-                <xsl:value-of select="$dateOrDt &lt; current-date()"/>
-            </xsl:when>
-            <xsl:when test="$dateOrDt castable as xs:dateTime">
-                <xsl:value-of select="$dateOrDt &lt; current-dateTime()"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="false()"/>
-            </xsl:otherwise>
-        </xsl:choose>
     </xsl:function>
 
     <xd:doc>

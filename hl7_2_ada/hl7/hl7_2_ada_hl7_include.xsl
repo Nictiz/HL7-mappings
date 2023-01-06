@@ -15,9 +15,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <!-- Templates of the form 'make<datatype/flavor>Value' correspond to ART-DECOR supported datatypes / HL7 V3 Datatypes R1 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:util="urn:hl7:utilities" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../util/constants.xsl"/>
+    <xsl:import href="../../util/datetime.xsl"/>
     <xsl:import href="../../util/units.xsl"/>
-    <xsl:import href="../../util/uuid.xsl"/>
     <xsl:import href="../../util/utilities.xsl"/>
+    <xsl:import href="../../util/uuid.xsl"/>
 
     <!-- ada output language -->
     <xsl:param name="language">nl-NL</xsl:param>
@@ -1601,10 +1602,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc> auteur - zib2020 </xd:desc>
         <xd:param name="in-hl7">hl7 element assigned Contents, typically an assignedAuthor or assignedEntity</xd:param>
         <xd:param name="generateId">whether or not to output an ada id on the root element of zorgverlener and zorgaanbieder, optional, default to false()</xd:param>
+        <xd:param name="outputNaamgebruik">whether or not to output naamgebruik, default to true()</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.37_20210701">
         <xsl:param name="in-hl7" select="."/>
         <xsl:param name="generateId" as="xs:boolean?" select="false()"/>
+        <xsl:param name="outputNaamgebruik" as="xs:boolean?" select="true()"/>
 
         <xsl:for-each select="$in-hl7">
             <zorgverlener>
@@ -1623,6 +1626,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="in" select="hl7:assignedPerson/hl7:name"/>
                     <xsl:with-param name="language">nl-NL</xsl:with-param>
                     <xsl:with-param name="unstructurednameElement">ongestructureerde_naam</xsl:with-param>
+                    <xsl:with-param name="outputNaamgebruik" select="$outputNaamgebruik"/>
                 </xsl:call-template>
 
                 <!-- specialisme -->
@@ -1946,14 +1950,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc> auteur - zib2020 </xd:desc>
         <xd:param name="author-hl7">hl7 element author</xd:param>
         <xd:param name="generateId">whether or not to output an ada id on the root element of zorgverlener and zorgaanbieder, optional, default to false()</xd:param>
+        <xd:param name="outputNaamgebruik">whether or not to output naamgebruik, default to true()</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.32_20210701">
         <xsl:param name="author-hl7" select="."/>
         <xsl:param name="generateId" as="xs:boolean?" select="false()"/>
+        <xsl:param name="outputNaamgebruik" as="xs:boolean?" select="true()"/>
+        
 
         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.37_20210701">
             <xsl:with-param name="in-hl7" select="$author-hl7/hl7:assignedAuthor"/>
             <xsl:with-param name="generateId" select="$generateId"/>
+            <xsl:with-param name="outputNaamgebruik" select="$outputNaamgebruik"/>
+            
         </xsl:call-template>
     </xsl:template>
 

@@ -48,8 +48,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- parameter to determine whether to refer by resource/id -->
     <!-- should be false when there is no FHIR server available to retrieve the resources -->
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
-    <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
-    <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>
     <!--    <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>-->
     <!-- whether or nog to output schema / schematron links -->
     <xsl:param name="schematronXsdLinkInOutput" as="xs:boolean?" select="false()"/>
@@ -95,7 +93,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
             <xsl:apply-templates select="$bouwstenen-920" mode="addBundleEntrySearchOrRequest"/>
             <!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations -->
-            <xsl:apply-templates select="$commonEntries" mode="addBundleEntrySearchOrRequest"/>
+            <xsl:apply-templates select="$commonEntries" mode="addBundleEntrySearchOrRequest">
+                <xsl:with-param name="entrySearchMode">include</xsl:with-param>
+            </xsl:apply-templates>
         </Bundle>
     </xsl:template>
 </xsl:stylesheet>

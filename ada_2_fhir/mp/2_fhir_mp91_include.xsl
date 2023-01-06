@@ -54,7 +54,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:when test="$uuid">
                             <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
                         </xsl:when>
-                        <xsl:when test="$most-specific-product-code">
+                        <xsl:when test="$referById and $most-specific-product-code">
                             <xsl:value-of select="nf:removeSpecialCharacters(concat($most-specific-product-code/@codeSystem, '-', $most-specific-product-code/@code))"/>
                         </xsl:when>
                         <xsl:when test="$referById and ./product_specificatie/product_naam/@value">
