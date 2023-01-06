@@ -99,6 +99,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- Proposal for better naming, but not activated yet because it has implications for the whole zib2020-r4 repo: -->
                     <!--<xsl:value-of select="string-join(($id, tokenize($profile, '-')[last()], format-number($position, '00')), '-')"/>-->    
                 </xsl:when>
+                <!-- Zorgverleners that are referenced do not have an ancestor called 'referenties' anymore because of MP-834, so we fix that here, based on base-uri not containing 'HealthcareProfessional', which is kind of hacky but works. -->
+                <xsl:when test="$localName = 'zorgverlener' and not(contains(base-uri(), 'HealthProfessional'))">
+                    <xsl:value-of select="string-join(($id, $ada2resourceType/*[@profile = $profile]/@resource, format-number($partNumber, '00')), '-')"/>
+                </xsl:when>
                 <xsl:when test="$localName = ('soepregel','visueel_resultaat','monster')">
                     <xsl:value-of select="$baseId"/>
                     <xsl:value-of select="substring-after($profile, $baseId)"/>
@@ -317,12 +321,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'juridische_situatie'">
-                <xsl:apply-templates select="$in" mode="nl-core-LegalSituation-LegalStatus">
-                    <xsl:with-param name="subject" select="$subject"/>
-                </xsl:apply-templates>
-                <xsl:apply-templates select="$in" mode="nl-core-LegalSituation-Representation">
-                    <xsl:with-param name="subject" select="$subject"/>
-                </xsl:apply-templates>
+                <xsl:choose>
+                    <xsl:when test="juridische_status">
+                        <xsl:apply-templates select="$in" mode="nl-core-LegalSituation-LegalStatus">
+                            <xsl:with-param name="subject" select="$subject"/>
+                        </xsl:apply-templates>
+                    </xsl:when>
+                    <xsl:when test="vertegenwoordiging">
+                        <xsl:apply-templates select="$in" mode="nl-core-LegalSituation-Representation">
+                            <xsl:with-param name="subject" select="$subject"/>
+                        </xsl:apply-templates>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:call-template name="util:logMessage">
+                            <xsl:with-param name="msg">The zib requires either a LegalStatus or a Representation to be present.</xsl:with-param>
+                            <xsl:with-param name="level">WARN</xsl:with-param>
+                            <xsl:with-param name="terminate">false</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:when>
             <xsl:when test="$localName = 'laboratorium_uitslag'">
                 <xsl:apply-templates select="$in" mode="nl-core-LaboratoryTestResult">
@@ -371,7 +388,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="$in" mode="nl-core-MedicalDevice">
                     <xsl:with-param name="subject" select="$subject"/>
                     <!-- ADA instances for this project start with $zib2020Oid and end in .1, or in 9.*.* in the case of the medication related zibs -->
-                    <xsl:with-param name="reasonReference" select="if (ancestor::functionele_of_mentale_status or ancestor::mobiliteit) then ancestor::*[starts-with(@conceptId, $zib2020Oid) and matches(@conceptId, '(\.1|9\.\d+\.\d+)$')] else ()"/>
+                    <xsl:with-param name="reasonReference" select="if (ancestor::functionele_of_mentale_status or ancestor::mobiliteit or ancestor::stoma) then ancestor::*[starts-with(@conceptId, $zib2020Oid) and matches(@conceptId, '(\.1|9\.\d+\.\d+)$')] else ()"/>
                 </xsl:apply-templates>  
                 <xsl:for-each select="product">
                     <xsl:call-template name="nl-core-MedicalDevice.Product">
@@ -420,6 +437,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="soepregel">
                     <xsl:call-template name="nl-core-SOAPReport.SOAPLine"/>
                 </xsl:for-each>
+            </xsl:when>
+            <xsl:when test="$localName = 'stoma'">
+                <xsl:apply-templates select="$in" mode="nl-core-Stoma">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'tabak_gebruik'">
                 <xsl:apply-templates select="$in" mode="nl-core-TobaccoUse">
@@ -473,6 +495,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:when test="$localName = 'vermogen_tot_zich_kleden'">
                 <xsl:apply-templates select="$in" mode="nl-core-AbilityToDressOneself">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
+            <xsl:when test="$localName = 'vermogen_tot_toiletgang'">
+                <xsl:apply-templates select="$in" mode="nl-core-AbilityToUseToilet">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
             </xsl:when>
