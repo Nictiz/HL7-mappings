@@ -88,14 +88,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         url="http://nictiz.nl/fhir/StructureDefinition/ext-Patient.LifeStance">
                         <valueCodeableConcept>
                             <xsl:for-each select="../toelichting">
-                                <extension
-                                    url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
-                                    <valueString>
-                                        <xsl:call-template name="string-to-string">
-                                            <xsl:with-param name="in" select="."/>
-                                        </xsl:call-template>
-                                    </valueString>
-                                </extension>
+                                <xsl:call-template name="ext-Comment">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
                             </xsl:for-each>
                             <xsl:call-template name="code-to-CodeableConcept">
                                 <xsl:with-param name="in" select="."/>
