@@ -46,7 +46,9 @@
             let $gRvpToestemmingClient          := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P14Y'),'[Y0001][M01][D01]')
             let $gContactNeo                    := format-dateTime($gPatientDOB-dt + xs:dayTimeDuration('P3D'),'[Y0001][M01][D01]')
             let $gContact2Wekentm6Maanden       := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P3M'),'[Y0001][M01][D01]')
-            let $gContact12tm18Jaar             := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P13Y') + xs:yearMonthDuration('P8M'),'[Y0001][M01][D01]')
+            let $gContact12tm18JaarInloop       := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P13Y') + xs:yearMonthDuration('P8M'),'[Y0001][M01][D01]')
+            let $gContact12tm18JaarTelefonisch  := $gCREATIONDATETIME-dt - xs:yearMonthDuration('P3M')
+            let $gContact12tm18JaarFaceToFace   := $gCREATIONDATETIME-dt - xs:yearMonthDuration('P2M')
             let $gPneuVaccinatie-1              := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P3M'),'[Y0001][M01][D01]')
             let $gAfnameSPP                     := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P13Y'),'[Y0001][M01][D01]')
             return (
@@ -186,7 +188,7 @@
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contact 12 tot 18 jaar"/>
                         <statusCode code="completed"/>
-                        <effectiveTime value="{$gContact12tm18Jaar}"/>
+                        <effectiveTime value="{$gContact12tm18JaarInloop}"/>
                         <!-- r018_activiteit -->
                         <pertinentInformation typeCode="PERT">
                            <rubricCluster classCode="CLUSTER" moodCode="EVN">
@@ -1366,14 +1368,38 @@
                               </component>
                               <component>
                                  <observation classCode="OBS" moodCode="EVN" negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40878"/>
-                                    <code code="878"
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40879"/>
+                                    <code code="879"
                                           codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Interactie Van Wiechen"/>
+                                          displayName="1. Ogen fixeren"/>
                                     <value xsi:type="CV"
-                                           code="01"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.342"
-                                           displayName="Kind is coöperatief"/>
+                                           code="1"
+                                           codeSystem="2.16.840.1.113883.2.4.3.11.60.100.12.175"
+                                           displayName="+"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40881"/>
+                                    <code code="881"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="2. Volgt met ogen èn hoofd 30º-0º-30º rechts"/>
+                                    <value xsi:type="CV"
+                                           code="1"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.153"
+                                           displayName="+"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40883"/>
+                                    <code code="883"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="2. Volgt met ogen èn hoofd 30º-0º-30º links"/>
+                                    <value xsi:type="CV"
+                                           code="1"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.153"
+                                           displayName="+"/>
                                  </observation>
                               </component>
                               <component>
@@ -1410,6 +1436,30 @@
                                            code="2"
                                            codeSystem="2.16.840.1.113883.2.4.4.40.343"
                                            displayName="-"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40927"/>
+                                    <code code="927"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="29. Reageert op toespreken"/>
+                                    <value xsi:type="CV"
+                                           code="1"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.343"
+                                           displayName="+"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40928"/>
+                                    <code code="928"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="30. Lacht terug"/>
+                                    <value xsi:type="CV"
+                                           code="1"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.343"
+                                           displayName="+"/>
                                  </observation>
                               </component>
                               <component>
@@ -1490,6 +1540,18 @@
                                     <code code="962"
                                           codeSystem="2.16.840.1.113883.2.4.4.40.267"
                                           displayName="55. Reacties bij optrekken tot zit"/>
+                                    <value xsi:type="CV"
+                                           code="1"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.153"
+                                           displayName="+"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40964"/>
+                                    <code code="964"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="56. Heft kin even van onderlaag"/>
                                     <value xsi:type="CV"
                                            code="1"
                                            codeSystem="2.16.840.1.113883.2.4.4.40.153"
@@ -2102,6 +2164,92 @@
                               <text>eet goed</text>
                            </conclusion>
                         </subjectOf1>
+                     </encounter>
+                  </component7>
+                  <component7 typeCode="COMP">
+                     <encounter classCode="ENC" moodCode="INT">
+                        <id extension="5" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
+                        <code code="41"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.308"
+                              displayName="Contact 12 tot 18 jaar"/>
+                        <statusCode code="cancelled"/>
+                        <effectiveTime value="{$gContact12tm18JaarFaceToFace}"/>
+                        <!-- r018_activiteit -->
+                        <pertinentInformation typeCode="PERT">
+                           <rubricCluster classCode="CLUSTER" moodCode="EVN">
+                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11018"/>
+                              <code code="R018"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.391"
+                                    displayName="Activiteit"/>
+                              <component>
+                                 <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41577"/>
+                                    <code code="1577"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Vorm activiteit"/>
+                                    <value xsi:type="CV"
+                                           code="03"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.424"
+                                           displayName="Face-to-face, anders dan huisbezoek of inloopspreekuur"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41605"/>
+                                    <code code="1605"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Status activiteit"/>
+                                    <value xsi:type="CV"
+                                           code="07"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.434"
+                                           displayName="Afgezegd door JGZ"/>
+                                 </observation>
+                              </component>
+                           </rubricCluster>
+                        </pertinentInformation>
+                     </encounter>
+                  </component7>
+                  <component7 typeCode="COMP">
+                     <encounter classCode="ENC" moodCode="INT">
+                        <id extension="4" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
+                        <code code="41"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.308"
+                              displayName="Contact 12 tot 18 jaar"/>
+                        <statusCode code="cancelled"/>
+                        <effectiveTime value="{$gContact12tm18JaarTelefonisch}"/>
+                        <!-- r018_activiteit -->
+                        <pertinentInformation typeCode="PERT">
+                           <rubricCluster classCode="CLUSTER" moodCode="EVN">
+                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11018"/>
+                              <code code="R018"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.391"
+                                    displayName="Activiteit"/>
+                              <component>
+                                 <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41577"/>
+                                    <code code="1577"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Vorm activiteit"/>
+                                    <value xsi:type="CV"
+                                           code="09"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.424"
+                                           displayName="Telefonisch"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41605"/>
+                                    <code code="1605"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Status activiteit"/>
+                                    <value xsi:type="CV"
+                                           code="05"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.434"
+                                           displayName="Niet gerealiseerd, geen interesse"/>
+                                 </observation>
+                              </component>
+                           </rubricCluster>
+                        </pertinentInformation>
                      </encounter>
                   </component7>
                   <subjectOf typeCode="SUBJ" contextConductionInd="false">

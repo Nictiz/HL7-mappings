@@ -45,7 +45,9 @@
         let $gRvpToestemmingClient          := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P12Y'),'[Y0001][M01][D01]')
         let $gRvpToestemmingGezaghebbende   := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P3M'),'[Y0001][M01][D01]')
         let $gContact2Wekentm6Maanden       := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P5M'),'[Y0001][M01][D01]')
-        let $gContact12tm18Jaar             := format-dateTime($gCREATIONDATETIME-dt - xs:yearMonthDuration('P1Y'),'[Y0001][M01][D01]')
+        let $gContact12tm18JaarFaceToFace   := format-dateTime($gCREATIONDATETIME-dt - xs:yearMonthDuration('P1Y'),'[Y0001][M01][D01]')
+        let $gContact12tm18JaarBeeldbellen  := format-dateTime($gCREATIONDATETIME-dt - xs:yearMonthDuration('P7M'),'[Y0001][M01][D01]')
+        let $gContact12tm18JaarInloop       := format-dateTime($gCREATIONDATETIME-dt - xs:yearMonthDuration('P6M'),'[Y0001][M01][D01]')
         let $gDktpVaccinatie-1              := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P3M'),'[Y0001][M01][D01]')
         let $gDktpVaccinatieReactieStart-1  := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P3M') + xs:dayTimeDuration('P1D'),'[Y0001][M01][D01]')
         let $gDktpVaccinatieReactieEind-1   := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P3M') + xs:dayTimeDuration('P5D'),'[Y0001][M01][D01]')
@@ -1014,7 +1016,7 @@
                               codeSystem="2.16.840.1.113883.2.4.4.40.308"
                               displayName="Contact 12 tot 18 jaar"/>
                         <statusCode code="completed"/>
-                        <effectiveTime value="{$gContact12tm18Jaar}"/>
+                        <effectiveTime value="{$gContact12tm18JaarFaceToFace}"/>
                         <reasonCode code="47"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.373"
                                     displayName="Veiligheid kind"/>
@@ -1992,6 +1994,115 @@
                               <text>Thuissituatie zorgwekkend</text>
                            </conclusion>
                         </subjectOf1>
+                     </encounter>
+                  </component7>
+                  <component7 typeCode="COMP">
+                     <encounter classCode="ENC" moodCode="INT">
+                        <id extension="4" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
+                        <code code="41"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.308"
+                              displayName="Contact 12 tot 18 jaar"/>
+                        <statusCode code="cancelled"/>
+                        <effectiveTime value="{$gContact12tm18JaarInloop}"/>
+                        <author typeCode="AUT">
+                           <assignedEntity1 classCode="ASSIGNED">
+                              <code code="08"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.411"
+                                    displayName="Veilig Thuis / Raad voor de Kinderbescherming"/>
+                           </assignedEntity1>
+                        </author>
+                        <!-- r018_activiteit -->
+                        <pertinentInformation typeCode="PERT">
+                           <rubricCluster classCode="CLUSTER" moodCode="EVN">
+                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11018"/>
+                              <code code="R018"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.391"
+                                    displayName="Activiteit"/>
+                              <component>
+                                 <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41577"/>
+                                    <code code="1577"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Vorm activiteit"/>
+                                    <value xsi:type="CV"
+                                           code="07"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.424"
+                                           displayName="Inloopspreekuur"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41605"/>
+                                    <code code="1605"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Status activiteit"/>
+                                    <value xsi:type="CV"
+                                           code="03"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.434"
+                                           displayName="Niet gerealiseerd met bericht"/>
+                                 </observation>
+                              </component>
+                           </rubricCluster>
+                        </pertinentInformation>
+                     </encounter>
+                  </component7>
+                  <component7 typeCode="COMP">
+                     <encounter classCode="ENC" moodCode="EVN">
+                        <id extension="3" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
+                        <code code="41"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.308"
+                              displayName="Contact 12 tot 18 jaar"/>
+                        <statusCode code="aborted"/>
+                        <effectiveTime value="{$gContact12tm18JaarBeeldbellen}"/>
+                        <inFulfillmentOf typeCode="FLFS">
+                           <encounter classCode="ENC" moodCode="INT">
+                              <id nullFlavor="NI"/>
+                              <code code="41"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.308"
+                                    displayName="Contact 12 tot 18 jaar"/>
+                              <statusCode code="completed"/>
+                              <author typeCode="AUT">
+                                 <assignedEntity1 classCode="ASSIGNED">
+                                    <code code="07"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.411"
+                                          displayName="JGZ"/>
+                                 </assignedEntity1>
+                              </author>
+                           </encounter>
+                        </inFulfillmentOf>
+                        <!-- r018_activiteit -->
+                        <pertinentInformation typeCode="PERT">
+                           <rubricCluster classCode="CLUSTER" moodCode="EVN">
+                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11018"/>
+                              <code code="R018"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.391"
+                                    displayName="Activiteit"/>
+                              <component>
+                                 <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41577"/>
+                                    <code code="1577"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Vorm activiteit"/>
+                                    <value xsi:type="CV"
+                                           code="01"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.424"
+                                           displayName="Beeldbellen"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41605"/>
+                                    <code code="1605"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Status activiteit"/>
+                                    <value xsi:type="CV"
+                                           code="02"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.434"
+                                           displayName="Niet gerealiseerd zonder bericht"/>
+                                 </observation>
+                              </component>
+                           </rubricCluster>
+                        </pertinentInformation>
                      </encounter>
                   </component7>
                   <subjectOf typeCode="SUBJ" contextConductionInd="false">
