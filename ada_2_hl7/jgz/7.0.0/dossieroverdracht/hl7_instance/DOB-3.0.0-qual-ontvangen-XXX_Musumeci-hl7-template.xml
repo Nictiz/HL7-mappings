@@ -54,7 +54,7 @@
         let $gDktpVaccinatieReactieGemeld-1 := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P3M') + xs:dayTimeDuration('P3D'),'[Y0001][M01][D01]')
         let $gDktpVaccinatie-2              := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P5M') + xs:dayTimeDuration('P5D'),'[Y0001][M01][D01]')
         let $gMenAcwyVaccinatie-1           := format-dateTime($gCREATIONDATETIME-dt - xs:yearMonthDuration('P2M'),'[Y0001][M01][D01]')
-        let $gKinkhoestVaccinatie-1           := format-dateTime($gPatientDOB-dt - xs:yearMonthDuration('P5M'),'[Y0001][M01][D01]')
+        let $gKinkhoestVaccinatie-1         := format-dateTime($gPatientDOB-dt - xs:yearMonthDuration('P5M'),'[Y0001][M01][D01]')
         let $gATermeDatum                   := format-date($gPatientDOB-dt + xs:yearMonthDuration('P6M'),'[Y0001][M01][D01]')
         let $gOpnameZiekenhuis              := format-dateTime($gPatientDOB-dt - xs:yearMonthDuration('P6M'),'[Y0001][M01][D01]')
         return (
