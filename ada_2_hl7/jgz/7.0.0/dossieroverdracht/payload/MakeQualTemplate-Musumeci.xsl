@@ -27,14 +27,16 @@
         let $gRvpToestemmingClient          := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P12Y'),'[Y0001][M01][D01]')
         let $gRvpToestemmingGezaghebbende   := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P3M'),'[Y0001][M01][D01]')
         let $gContact2Wekentm6Maanden       := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P5M'),'[Y0001][M01][D01]')
-        let $gContact12tm18Jaar             := format-dateTime($gCREATIONDATETIME-dt - xs:yearMonthDuration('P1Y'),'[Y0001][M01][D01]')
+        let $gContact12tm18JaarFaceToFace   := format-dateTime($gCREATIONDATETIME-dt - xs:yearMonthDuration('P1Y'),'[Y0001][M01][D01]')
+        let $gContact12tm18JaarBeeldbellen  := format-dateTime($gCREATIONDATETIME-dt - xs:yearMonthDuration('P7M'),'[Y0001][M01][D01]')
+        let $gContact12tm18JaarInloop       := format-dateTime($gCREATIONDATETIME-dt - xs:yearMonthDuration('P6M'),'[Y0001][M01][D01]')
         let $gDktpVaccinatie-1              := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P3M'),'[Y0001][M01][D01]')
         let $gDktpVaccinatieReactieStart-1  := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P3M') + xs:dayTimeDuration('P1D'),'[Y0001][M01][D01]')
         let $gDktpVaccinatieReactieEind-1   := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P3M') + xs:dayTimeDuration('P5D'),'[Y0001][M01][D01]')
         let $gDktpVaccinatieReactieGemeld-1 := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P3M') + xs:dayTimeDuration('P3D'),'[Y0001][M01][D01]')
         let $gDktpVaccinatie-2              := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P5M') + xs:dayTimeDuration('P5D'),'[Y0001][M01][D01]')
         let $gMenAcwyVaccinatie-1           := format-dateTime($gCREATIONDATETIME-dt - xs:yearMonthDuration('P2M'),'[Y0001][M01][D01]')
-        let $gKinkhoestVaccinatie-1           := format-dateTime($gPatientDOB-dt - xs:yearMonthDuration('P5M'),'[Y0001][M01][D01]')
+        let $gKinkhoestVaccinatie-1         := format-dateTime($gPatientDOB-dt - xs:yearMonthDuration('P5M'),'[Y0001][M01][D01]')
         let $gATermeDatum                   := format-date($gPatientDOB-dt + xs:yearMonthDuration('P6M'),'[Y0001][M01][D01]')
         let $gOpnameZiekenhuis              := format-dateTime($gPatientDOB-dt - xs:yearMonthDuration('P6M'),'[Y0001][M01][D01]')
         return (
@@ -137,11 +139,27 @@
             <xsl:apply-templates select="node()"/>
         </xsl:copy>
     </xsl:template>
-    <!-- tijdstip contactmoment 12 t/m 18 jaar -->
-    <xsl:template match="//hl7:encounter[hl7:code/@code='41']/hl7:effectiveTime">
+    <!-- tijdstip contactmoment 12 t/m 18 jaar, FaceToFace-->
+    <xsl:template match="//hl7:encounter[hl7:id/@extension = '2'][hl7:code/@code='41']/hl7:effectiveTime">
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
-            <xsl:attribute name="value">{$gContact12tm18Jaar}</xsl:attribute>
+            <xsl:attribute name="value">{$gContact12tm18JaarFaceToFace}</xsl:attribute>
+            <xsl:apply-templates select="node()"/>
+        </xsl:copy>
+    </xsl:template>
+    <!-- tijdstip contactmoment 12 t/m 18 jaar, beeldbellen -->
+    <xsl:template match="//hl7:encounter[hl7:id/@extension = '3'][hl7:code/@code='41']/hl7:effectiveTime">
+        <xsl:copy>
+            <xsl:apply-templates select="@*"/>
+            <xsl:attribute name="value">{$gContact12tm18JaarBeeldbellen}</xsl:attribute>
+            <xsl:apply-templates select="node()"/>
+        </xsl:copy>
+    </xsl:template>
+    <!-- tijdstip contactmoment 12 t/m 18 jaar, inloop -->
+    <xsl:template match="//hl7:encounter[hl7:id/@extension = '4'][hl7:code/@code='41']/hl7:effectiveTime">
+        <xsl:copy>
+            <xsl:apply-templates select="@*"/>
+            <xsl:attribute name="value">{$gContact12tm18JaarInloop}</xsl:attribute>
             <xsl:apply-templates select="node()"/>
         </xsl:copy>
     </xsl:template>

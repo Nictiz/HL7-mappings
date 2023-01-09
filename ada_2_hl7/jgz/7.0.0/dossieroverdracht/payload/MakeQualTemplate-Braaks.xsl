@@ -28,7 +28,9 @@
             let $gRvpToestemmingClient          := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P14Y'),'[Y0001][M01][D01]')
             let $gContactNeo                    := format-dateTime($gPatientDOB-dt + xs:dayTimeDuration('P3D'),'[Y0001][M01][D01]')
             let $gContact2Wekentm6Maanden       := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P3M'),'[Y0001][M01][D01]')
-            let $gContact12tm18Jaar             := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P13Y') + xs:yearMonthDuration('P8M'),'[Y0001][M01][D01]')
+            let $gContact12tm18JaarInloop       := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P13Y') + xs:yearMonthDuration('P8M'),'[Y0001][M01][D01]')
+            let $gContact12tm18JaarTelefonisch  := $gCREATIONDATETIME-dt - xs:yearMonthDuration('P3M')
+            let $gContact12tm18JaarFaceToFace   := $gCREATIONDATETIME-dt - xs:yearMonthDuration('P2M')
             let $gPneuVaccinatie-1              := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P3M'),'[Y0001][M01][D01]')
             let $gAfnameSPP                     := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P13Y'),'[Y0001][M01][D01]')
             return (
@@ -139,11 +141,27 @@
             <xsl:apply-templates select="node()"/>
         </xsl:copy>
     </xsl:template>
-    <!-- tijdstip contactmoment 12 t/m 18 jaar -->
-    <xsl:template match="//hl7:encounter[hl7:code/@code = '41']/hl7:effectiveTime">
+    <!-- tijdstip contactmoment 12 t/m 18 jaar, inloopspreekuur -->
+    <xsl:template match="//hl7:encounter[hl7:id/@extension = '3'][hl7:code/@code = '41']/hl7:effectiveTime">
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
-            <xsl:attribute name="value">{$gContact12tm18Jaar}</xsl:attribute>
+            <xsl:attribute name="value">{$gContact12tm18JaarInloop}</xsl:attribute>
+            <xsl:apply-templates select="node()"/>
+        </xsl:copy>
+    </xsl:template>
+    <!-- tijdstip contactmoment 12 t/m 18 jaar, telefonisch -->
+    <xsl:template match="//hl7:encounter[hl7:id/@extension = '4'][hl7:code/@code = '41']/hl7:effectiveTime">
+        <xsl:copy>
+            <xsl:apply-templates select="@*"/>
+            <xsl:attribute name="value">{$gContact12tm18JaarTelefonisch}</xsl:attribute>
+            <xsl:apply-templates select="node()"/>
+        </xsl:copy>
+    </xsl:template>
+    <!-- tijdstip contactmoment 12 t/m 18 jaar, face-to-face -->
+    <xsl:template match="//hl7:encounter[hl7:id/@extension = '5'][hl7:code/@code = '41']/hl7:effectiveTime">
+        <xsl:copy>
+            <xsl:apply-templates select="@*"/>
+            <xsl:attribute name="value">{$gContact12tm18JaarFaceToFace}</xsl:attribute>
             <xsl:apply-templates select="node()"/>
         </xsl:copy>
     </xsl:template>
