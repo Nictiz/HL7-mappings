@@ -102,11 +102,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <display value="frequentie van defecatie"/>
                             </coding>
                         </code>
-                        <valueCodeableConcept>
+                        <valueQuantity>
                             <xsl:call-template name="hoeveelheid-to-Quantity">
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
-                        </valueCodeableConcept>
+                        </valueQuantity>
                     </component>
                 </xsl:for-each>
                 
