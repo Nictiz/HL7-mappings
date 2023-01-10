@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="nl-core-BowelFunction-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BowelFunction"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-StomaReference">
+      <valueReference>
+         <reference value="Condition/nl-core-BowelFunction-01-Condition-01"/>
+         <type value="Condition"/>
+         <display value="Stoma, type: dubbelloops colostoma"/>
+      </valueReference>
+   </extension>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="111989001"/>
+         <display value="defecatie"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="162098000"/>
+            <display value="frequentie van defecatie"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <value value="3"/>
+         <unit value="/d"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="/d"/>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="443172007"/>
+            <display value="score op Bristol Stoelgangschaal"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.3.1"/>
+            <code value="Type 4"/>
+            <display value="Als een worst of slang, glad en zacht"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://loinc.org"/>
+            <code value="9397-1"/>
+            <display value="Color of Stool"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="167605001"/>
+            <display value="kleur van feces normaal"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+</Observation>
