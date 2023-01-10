@@ -50,7 +50,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LegalSituation-LegalStatus"/>
                 </meta>
                 <xsl:if test="datum_einde">
-                    <!-- Needed to satisfy constraint con-3 -->
                     <clinicalStatus>
                         <coding>
                             <system value="http://terminology.hl7.org/CodeSystem/condition-clinical"/>
@@ -117,7 +116,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LegalSituation-Representation"/>
                 </meta>
                 <xsl:if test="datum_einde">
-                    <!-- Needed to satisfy constraint con-3 -->
                     <clinicalStatus>
                         <coding>
                             <system value="http://terminology.hl7.org/CodeSystem/condition-clinical"/>
@@ -130,7 +128,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <coding>
                         <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="151701000146105"/>
-                        <display value="Type of guardian"/>
+                        <display value="type voogd"/>
                     </coding>
                 </category>
                 <xsl:for-each select="vertegenwoordiging">
