@@ -24,6 +24,7 @@
         let $gREQUESTDATE                   := $gSENDDATE
         let $gRESPSTART                     := format-dateTime($gPatientDOB-dt + xs:dayTimeDuration('P2D'),'[Y0001][M01][D01]')
         let $gRESPEND                       := $gREQUESTDATE
+        let $gPDFDATE                       := $gRESPEND
         let $gRvpToestemmingClient          := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P12Y'),'[Y0001][M01][D01]')
         let $gRvpToestemmingGezaghebbende   := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P3M'),'[Y0001][M01][D01]')
         let $gContact2Wekentm6Maanden       := format-dateTime($gPatientDOB-dt + xs:yearMonthDuration('P5M'),'[Y0001][M01][D01]')
@@ -112,6 +113,14 @@
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
             <xsl:attribute name="value">{$gPatientDOB}</xsl:attribute>
+            <xsl:apply-templates select="node()"/>
+        </xsl:copy>
+    </xsl:template>
+    <!-- Datum bestand -->
+    <xsl:template match="//hl7:appendage/hl7:document/hl7:effectiveTime">
+        <xsl:copy>
+            <xsl:apply-templates select="@*"/>
+            <xsl:attribute name="value">{$gPDFDATE}</xsl:attribute>
             <xsl:apply-templates select="node()"/>
         </xsl:copy>
     </xsl:template>
