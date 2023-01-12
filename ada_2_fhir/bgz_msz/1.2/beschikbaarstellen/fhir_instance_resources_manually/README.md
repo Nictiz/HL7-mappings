@@ -4,7 +4,7 @@
     * Changes in the ada instance of the zib Patient (bgz-patA.xml and bgz-patB.xml) need to be done manually in bgz-msz-patA-patient.xml and bgz-msz-patB-patient.xml (in the ada_processed folder) as well.
 * If the ada bundles have changed, run buildResources.bat in the ada_project_drivers folder in order to correctly generate all FHIR resources (which are present in the fhir_instance_resources folder).
 * The complete set of FHIR fixtures necessary for qualification consists of:
-    * all resources in the fhir_instance_resources folder (with the exception of .xml), where
+    * all resources in the fhir_instance_resources folder (with the exception of three RelatedPerson resources; of these only the one with id 'nl-core-relatedperson-bgz-msz-DIRKD.DIRKJANSE' needs to be included), where
         * the Patient fixtures have been enriched by adding the contact and general-practitioner-reference snippets (which can be found in the fhir_instance_resources_manually folder);
         * the Payer fixtures have been enriched by replacing the payor element by the payor-reference snippet (which can be found in the fhir_instance_resources_manually folder);
         * the references in the LaboratoryTestResult-Observation fixtures to underlying Observations (in the case of a panel) and the Specimen have been changed, and the display values of all CodeableConcept elements with code 49581000146104 have been changed from _Laboratory test finding_ to _bevinding betreffende laboratoriumonderzoek_.
