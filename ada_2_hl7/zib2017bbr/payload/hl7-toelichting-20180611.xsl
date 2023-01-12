@@ -13,7 +13,6 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-<!--    <xsl:import href="../2_hl7_zib2017bbr_include.xsl"/>-->
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
@@ -29,7 +28,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <act classCode="ACT" moodCode="EVN">
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
                 <code code="48767-8" codeSystem="{$oidLOINC}" codeSystemName="LOINC" displayName="Annotation comment"/>
-                <text>
+                <text mediaType="text/plain">
                     <xsl:value-of select="@value"/>
                 </text>
             </act>

@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="5452715b-5992-11eb-4771-020000000000"/>
+   <id value="5e14e13b-7085-11ed-1861-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:54526365-5992-11eb-4771-020000000000"/>
+      <fullUrl value="urn:uuid:5e14ea77-7085-11ed-1861-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -19,8 +19,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>MedicationStatement. Subject: Joris Hansman. Id: MBH_907_mgEx_3_MGB1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1), Categorie: <span title="Medicatiegebruik (6 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.3)">Medicatiegebruik</span>, Status: <i>onbekend (ontbrekend gegeven)</i>
-                        <span style="display: block;">Auteur: Dr Jansen || Internist || Ziekenhuis zus en zo</span>
+                     <caption>MedicationStatement. Subject: Joris Hansman. Id: MBH_907_mgEx_3_MGB1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1), Categorie: <span title="Medicatiegebruik (6 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.3)">Medicatiegebruik</span>, Status: actief<span style="display: block;">Auteur: Dr Jansen || Internist || Ziekenhuis zus en zo</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -47,7 +46,7 @@
                            <th>Dosering</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 8 jun 2020, gedurende 30 dagen, zo nodig maal per dag 1 à 2 stuks , maximaal 6 stuks per dag, ORAAL</div>
+                              <div>Tekst: Vanaf 8 jun 2020, gedurende 30 dagen, zo nodig maximaal 4 maal per dag 1 à 2 stuks , maximaal 6 stuks per dag, ORAAL</div>
                               <div>Timing: <div>max frequentie 4 maal per dag</div>
                               </div>
                               <div>Zo nodig: <span title="zo nodig (1137 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">zo nodig</span>
@@ -71,7 +70,7 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:5452638b-5992-11eb-4771-020000000000"/>
+                  <reference value="urn:uuid:5e14f7b6-7085-11ed-1861-020000000000"/>
                   <display value="Dr Jansen || Internist || Ziekenhuis zus en zo"/>
                </valueReference>
             </extension>
@@ -85,11 +84,7 @@
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
                <value value="MBH_907_mgEx_3_MGB1"/>
             </identifier>
-            <status>
-               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                  <valueCode value="unknown"/>
-               </extension>
-            </status>
+            <status value="active"/>
             <category>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -115,7 +110,7 @@
             </effectivePeriod>
             <dateAsserted value="2020-06-08T12:15:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:54527160-5992-11eb-4771-020000000000"/>
+               <reference value="urn:uuid:5e14ea5e-7085-11ed-1861-020000000000"/>
                <display value="Joris Hansman"/>
             </subject>
             <derivedFrom>
@@ -128,7 +123,7 @@
             <taken value="y"/>
             <dosage>
                <sequence value="1"/>
-               <text value="Vanaf 8 jun 2020, gedurende 30 dagen, zo nodig maal per dag 1 à 2 stuks , maximaal 6 stuks per dag, ORAAL"/>
+               <text value="Vanaf 8 jun 2020, gedurende 30 dagen, zo nodig maximaal 4 maal per dag 1 à 2 stuks , maximaal 6 stuks per dag, ORAAL"/>
                <timing>
                   <repeat>
                      <frequencyMax value="4"/>
@@ -186,7 +181,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:54527160-5992-11eb-4771-020000000000"/>
+      <fullUrl value="urn:uuid:5e14ea5e-7085-11ed-1861-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -221,7 +216,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="male"/>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1984-05-12"/>
          </Patient>
       </resource>
@@ -256,7 +261,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:54526395-5992-11eb-4771-020000000000"/>
+      <fullUrl value="urn:uuid:5e14f7cd-7085-11ed-1861-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -288,7 +293,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5452638b-5992-11eb-4771-020000000000"/>
+      <fullUrl value="urn:uuid:5e14f7b6-7085-11ed-1861-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -322,7 +327,7 @@
                <display value="Dr Jansen"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:54526395-5992-11eb-4771-020000000000"/>
+               <reference value="urn:uuid:5e14f7cd-7085-11ed-1861-020000000000"/>
                <display value="Ziekenhuis zus en zo"/>
             </organization>
             <specialty>

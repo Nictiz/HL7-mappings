@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="588fdadd-5992-11eb-2061-020000000000"/>
+   <id value="c33f085d-6a95-11ec-0000-020000000000"/>
    <type value="searchset"/>
    <total value="2"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:588fd539-5992-11eb-2061-020000000000"/>
+      <fullUrl value="urn:uuid:c33f05a2-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -41,17 +41,17 @@
                         </tr>
                         <tr>
                            <th>Gemaakt</th>
-                           <td>15:34:00, 29 augustus 2018</td>
+                           <td>${DATE, T, D, -5}T15:34:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Gebruiksduur</th>
-                           <td>14 augustus 2018 00:00:00 - 28 augustus 2018 23:59:00</td>
+                           <td>${DATE, T, D, -20}T00:00:00+02:00 - ${DATE, T, D, -6}T23:59:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 14 aug 2018 tot en met 28 aug 2018, 3x per dag 1 tablet</div>
+                              <div>Tekst: Vanaf T - 20 dagen, tot en met T - 6 dagen, 3 maal per dag 1 stuk, oraal, definitief gestopt</div>
                               <div>Timing: <div>3 maal per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
@@ -65,8 +65,8 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
                <valuePeriod>
-                  <start value="2018-08-14T00:00:00+02:00"/>
-                  <end value="2018-08-28T23:59:00+02:00"/>
+                  <start value="${DATE, T, D, -20}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, -6}T23:59:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
@@ -111,25 +111,25 @@
                <display value="ADVIL BRUIS BRUISTABLET 400MG CITRUSSMAAK"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:588fdae1-5992-11eb-2061-020000000000"/>
+               <reference value="urn:uuid:c33f0865-6a95-11ec-0000-020000000000"/>
                <display value="J. XXX_Kilkenny"/>
             </subject>
-            <authoredOn value="2018-08-29T15:34:00+02:00"/>
+            <authoredOn value="${DATE, T, D, -5}T15:34:00+02:00"/>
             <requester>
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:588fd542-5992-11eb-2061-020000000000"/>
+                        <reference value="urn:uuid:c33f05b0-6a95-11ec-0000-020000000000"/>
                         <display value="John de Vries || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
-                  <reference value="urn:uuid:588fde92-5992-11eb-2061-020000000000"/>
+                  <reference value="urn:uuid:c33f0ca8-6a95-11ec-0000-020000000000"/>
                   <display value="John de Vries"/>
                </agent>
             </requester>
             <dosageInstruction>
                <sequence value="1"/>
-               <text value="Vanaf 14 aug 2018 tot en met 28 aug 2018, 3x per dag 1 tablet"/>
+               <text value="Vanaf T - 20 dagen, tot en met T - 6 dagen, 3 maal per dag 1 stuk, oraal, definitief gestopt"/>
                <timing>
                   <repeat>
                      <frequency value="3"/>
@@ -158,7 +158,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:588fd567-5992-11eb-2061-020000000000"/>
+      <fullUrl value="urn:uuid:c33f1034-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -168,8 +168,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <table>
-                     <caption>MedicationStatement. Subject: J. XXX_Kilkenny. Id: MBH_323_1_MGB_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1), Categorie: <span title="Medicatiegebruik (6 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.3)">Medicatiegebruik</span>, Status: <i>onbekend (ontbrekend gegeven)</i>
-                        <span style="display: block;">Auteur: J. XXX_Kilkenny</span>
+                     <caption>MedicationStatement. Subject: J. XXX_Kilkenny. Id: MBH_323_1_MGB_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1), Categorie: <span title="Medicatiegebruik (6 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.3)">Medicatiegebruik</span>, Status: actief<span style="display: block;">Auteur: J. XXX_Kilkenny</span>
                      </caption>
                      <tbody>
                         <tr>
@@ -182,17 +181,17 @@
                         </tr>
                         <tr>
                            <th>Datum/tijd</th>
-                           <td>Vanaf 00:00:00, 14 augustus 2018</td>
+                           <td>Vanaf ${DATE, T, D, -20}T00:00:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Informant</th>
-                           <td>11:25:00, 24 augustus 2018</td>
+                           <td>${DATE, T, D, -10}T11:25:00+02:00</td>
                         </tr>
                         <tr>
                            <th>Dosering</th>
                            <td>
                               <div>Volgnummer: 1</div>
-                              <div>Tekst: Vanaf 14 aug 2018, 3x per dag 1 tablet, oraal</div>
+                              <div>Tekst: Vanaf T - 20 dagen, 3 maal per dag 1 stuk, oraal</div>
                               <div>Timing: <div>3 maal per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
@@ -210,7 +209,7 @@
             </text>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
                <valueReference>
-                  <reference value="urn:uuid:588fdae1-5992-11eb-2061-020000000000"/>
+                  <reference value="urn:uuid:c33f0865-6a95-11ec-0000-020000000000"/>
                   <display value="J. XXX_Kilkenny"/>
                </valueReference>
             </extension>
@@ -224,11 +223,7 @@
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
                <value value="MBH_323_1_MGB_1"/>
             </identifier>
-            <status>
-               <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-                  <valueCode value="unknown"/>
-               </extension>
-            </status>
+            <status value="active"/>
             <category>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -242,17 +237,17 @@
                <display value="ADVIL BRUIS BRUISTABLET 400MG CITRUSSMAAK"/>
             </medicationReference>
             <effectivePeriod>
-               <start value="2018-08-14T00:00:00+02:00"/>
+               <start value="${DATE, T, D, -20}T00:00:00+02:00"/>
             </effectivePeriod>
-            <dateAsserted value="2018-08-24T11:25:00+02:00"/>
+            <dateAsserted value="${DATE, T, D, -10}T11:25:00+02:00"/>
             <subject>
-               <reference value="urn:uuid:588fdae1-5992-11eb-2061-020000000000"/>
+               <reference value="urn:uuid:c33f0865-6a95-11ec-0000-020000000000"/>
                <display value="J. XXX_Kilkenny"/>
             </subject>
             <taken value="y"/>
             <dosage>
                <sequence value="1"/>
-               <text value="Vanaf 14 aug 2018, 3x per dag 1 tablet, oraal"/>
+               <text value="Vanaf T - 20 dagen, 3 maal per dag 1 stuk, oraal"/>
                <timing>
                   <repeat>
                      <frequency value="3"/>
@@ -281,7 +276,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:588fdae1-5992-11eb-2061-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0865-6a95-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -320,7 +315,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="female"/>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1964-08-05"/>
          </Patient>
       </resource>
@@ -329,7 +334,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:588fde92-5992-11eb-2061-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0ca8-6a95-11ec-0000-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -421,7 +426,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:588fd542-5992-11eb-2061-020000000000"/>
+      <fullUrl value="urn:uuid:c33f05b0-6a95-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -451,7 +456,7 @@
                </div>
             </text>
             <practitioner>
-               <reference value="urn:uuid:588fde92-5992-11eb-2061-020000000000"/>
+               <reference value="urn:uuid:c33f0ca8-6a95-11ec-0000-020000000000"/>
                <display value="John de Vries"/>
             </practitioner>
             <organization>

@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="0be3d1a8-5a6a-11eb-3908-020000000000"/>
+   <id value="f6a395a2-5da2-11ec-1239-020000000000"/>
    <type value="searchset"/>
    <total value="24"/>
    <link>
@@ -9,9 +9,10 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7.21103"/>
+      <fullUrl value="https://example.org/fhir/Observation/2.16.840.1.113883.2.4.6.6.90000258.4.7-21103"/>
       <resource>
          <Observation>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.7-21103"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-DiagnosticResult"/>
             </meta>
@@ -23,8 +24,17 @@
                      </caption>
                      <tbody>
                         <tr>
+                           <th>Context</th>
+                           <td colspan="3">
+                              <ul>
+                                 <li>Episode ID: hc657498ft562.9895 2.16.528.1.1007.3.3.765332.1.12 (Id: hc657498ft562.9895 (urn:oid:2.16.528.1.1007.3.3.765332.1.12))</li>
+                                 <li>Contact ID: 996624 2.16.840.1.113883.2.4.6.6.90000258.4.1 (Id: 996624 (urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.1))</li>
+                              </ul>
+                           </td>
+                        </tr>
+                        <tr>
                            <th>Bepalingdatum/tijd</th>
-                           <td colspan="3">2017-07-09</td>
+                           <td colspan="3">9 juli 2017</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -41,13 +51,23 @@
                               <span title="High (H - v2/0078)">High</span>
                            </td>
                            <td>
-                              <div>normal (referencerange-meaning)  - 140 mm[Hg]</div>
+                              <div>
+                                 <span title="Normal Range (normal - referencerange-meaning)">Normal Range</span>  - 140 mm[Hg]</div>
                            </td>
                         </tr>
                      </tbody>
                   </table>
                </div>
             </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/extension-context-nl-core-episodeofcare">
+               <valueReference>
+                  <identifier>
+                     <system value="urn:oid:2.16.528.1.1007.3.3.765332.1.12"/>
+                     <value value="hc657498ft562.9895"/>
+                  </identifier>
+                  <display value="Episode ID: hc657498ft562.9895 2.16.528.1.1007.3.3.765332.1.12"/>
+               </valueReference>
+            </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7"/>
                <value value="21103"/>
@@ -62,18 +82,25 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0be3e0d2-5a6a-11eb-3908-020000000000"/>
+               <reference value="urn:uuid:f6a3a526-5da2-11ec-1239-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
+            <context>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+                  <value value="996624"/>
+               </identifier>
+               <display value="Contact ID: 996624 2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
+            </context>
             <effectiveDateTime value="2017-07-09"/>
             <performer>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:0be3e0e7-5a6a-11eb-3908-020000000000"/>
+                     <reference value="urn:uuid:f6a3a53d-5da2-11ec-1239-020000000000"/>
                      <display value="Responsible Party"/>
                   </valueReference>
                </extension>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
                <display value="Responsible Party"/>
             </performer>
             <valueQuantity>
@@ -105,6 +132,7 @@
                   <coding>
                      <system value="http://hl7.org/fhir/referencerange-meaning"/>
                      <code value="normal"/>
+                     <display value="Normal Range"/>
                   </coding>
                </type>
             </referenceRange>
@@ -115,9 +143,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7.21104"/>
+      <fullUrl value="https://example.org/fhir/Observation/2.16.840.1.113883.2.4.6.6.90000258.4.7-21104"/>
       <resource>
          <Observation>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.7-21104"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-DiagnosticResult"/>
             </meta>
@@ -130,7 +159,7 @@
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
-                           <td colspan="3">2017-07-09</td>
+                           <td colspan="3">9 juli 2017</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -147,7 +176,8 @@
                               <span title="High (H - v2/0078)">High</span>
                            </td>
                            <td>
-                              <div>normal (referencerange-meaning)  - 89 mm[Hg]</div>
+                              <div>
+                                 <span title="Normal Range (normal - referencerange-meaning)">Normal Range</span>  - 89 mm[Hg]</div>
                            </td>
                         </tr>
                      </tbody>
@@ -168,18 +198,18 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0be3e0d2-5a6a-11eb-3908-020000000000"/>
+               <reference value="urn:uuid:f6a3a526-5da2-11ec-1239-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <effectiveDateTime value="2017-07-09"/>
             <performer>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:0be3e0e7-5a6a-11eb-3908-020000000000"/>
+                     <reference value="urn:uuid:f6a3a53d-5da2-11ec-1239-020000000000"/>
                      <display value="Responsible Party"/>
                   </valueReference>
                </extension>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
                <display value="Responsible Party"/>
             </performer>
             <valueQuantity>
@@ -211,6 +241,7 @@
                   <coding>
                      <system value="http://hl7.org/fhir/referencerange-meaning"/>
                      <code value="normal"/>
+                     <display value="Normal Range"/>
                   </coding>
                </type>
             </referenceRange>
@@ -221,9 +252,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7.21105"/>
+      <fullUrl value="https://example.org/fhir/Observation/2.16.840.1.113883.2.4.6.6.90000258.4.7-21105"/>
       <resource>
          <Observation>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.7-21105"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-DiagnosticResult"/>
             </meta>
@@ -236,7 +268,7 @@
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
-                           <td colspan="3">2017-07-09</td>
+                           <td colspan="3">9 juli 2017</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -253,7 +285,8 @@
                               <span title="High (H - v2/0078)">High</span>
                            </td>
                            <td>
-                              <div>normal (referencerange-meaning) 60 /min - 100 /min</div>
+                              <div>
+                                 <span title="Normal Range (normal - referencerange-meaning)">Normal Range</span> 60 /min - 100 /min</div>
                            </td>
                         </tr>
                      </tbody>
@@ -274,18 +307,18 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0be3e0d2-5a6a-11eb-3908-020000000000"/>
+               <reference value="urn:uuid:f6a3a526-5da2-11ec-1239-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <effectiveDateTime value="2017-07-09"/>
             <performer>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:0be3e0e7-5a6a-11eb-3908-020000000000"/>
+                     <reference value="urn:uuid:f6a3a53d-5da2-11ec-1239-020000000000"/>
                      <display value="Responsible Party"/>
                   </valueReference>
                </extension>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
                <display value="Responsible Party"/>
             </performer>
             <valueQuantity>
@@ -318,6 +351,7 @@
                   <coding>
                      <system value="http://hl7.org/fhir/referencerange-meaning"/>
                      <code value="normal"/>
+                     <display value="Normal Range"/>
                   </coding>
                </type>
             </referenceRange>
@@ -328,9 +362,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7.21106"/>
+      <fullUrl value="https://example.org/fhir/Observation/2.16.840.1.113883.2.4.6.6.90000258.4.7-21106"/>
       <resource>
          <Observation>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.7-21106"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-DiagnosticResult"/>
             </meta>
@@ -343,7 +378,7 @@
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
-                           <td>2017-07-09</td>
+                           <td>9 juli 2017</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -375,18 +410,18 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0be3e0d2-5a6a-11eb-3908-020000000000"/>
+               <reference value="urn:uuid:f6a3a526-5da2-11ec-1239-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <effectiveDateTime value="2017-07-09"/>
             <performer>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:0be3e0e7-5a6a-11eb-3908-020000000000"/>
+                     <reference value="urn:uuid:f6a3a53d-5da2-11ec-1239-020000000000"/>
                      <display value="Responsible Party"/>
                   </valueReference>
                </extension>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
                <display value="Responsible Party"/>
             </performer>
             <valueCodeableConcept>
@@ -403,9 +438,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7.21107"/>
+      <fullUrl value="https://example.org/fhir/Observation/2.16.840.1.113883.2.4.6.6.90000258.4.7-21107"/>
       <resource>
          <Observation>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.7-21107"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-DiagnosticResult"/>
             </meta>
@@ -418,7 +454,7 @@
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
-                           <td>2017-07-09</td>
+                           <td>9 juli 2017</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -448,18 +484,18 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0be3e0d2-5a6a-11eb-3908-020000000000"/>
+               <reference value="urn:uuid:f6a3a526-5da2-11ec-1239-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <effectiveDateTime value="2017-07-09"/>
             <performer>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:0be3e0e7-5a6a-11eb-3908-020000000000"/>
+                     <reference value="urn:uuid:f6a3a53d-5da2-11ec-1239-020000000000"/>
                      <display value="Responsible Party"/>
                   </valueReference>
                </extension>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
                <display value="Responsible Party"/>
             </performer>
             <valueString value="linker pols C01@ST-600@"/>
@@ -470,9 +506,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7.21108"/>
+      <fullUrl value="https://example.org/fhir/Observation/2.16.840.1.113883.2.4.6.6.90000258.4.7-21108"/>
       <resource>
          <Observation>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.7-21108"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-DiagnosticResult"/>
             </meta>
@@ -485,7 +522,7 @@
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
-                           <td colspan="3">2019-01-30</td>
+                           <td colspan="3">30 januari 2019</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -502,7 +539,8 @@
                               <span title="High (H - v2/0078)">High</span>
                            </td>
                            <td>
-                              <div>normal (referencerange-meaning)  - 140 mm[Hg]</div>
+                              <div>
+                                 <span title="Normal Range (normal - referencerange-meaning)">Normal Range</span>  - 140 mm[Hg]</div>
                            </td>
                         </tr>
                      </tbody>
@@ -523,18 +561,18 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0be3e0d2-5a6a-11eb-3908-020000000000"/>
+               <reference value="urn:uuid:f6a3a526-5da2-11ec-1239-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <effectiveDateTime value="2019-01-30"/>
             <performer>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:0be3e0e7-5a6a-11eb-3908-020000000000"/>
+                     <reference value="urn:uuid:f6a3a53d-5da2-11ec-1239-020000000000"/>
                      <display value="Responsible Party"/>
                   </valueReference>
                </extension>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
                <display value="Responsible Party"/>
             </performer>
             <valueQuantity>
@@ -566,6 +604,7 @@
                   <coding>
                      <system value="http://hl7.org/fhir/referencerange-meaning"/>
                      <code value="normal"/>
+                     <display value="Normal Range"/>
                   </coding>
                </type>
             </referenceRange>
@@ -576,9 +615,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7.21109"/>
+      <fullUrl value="https://example.org/fhir/Observation/2.16.840.1.113883.2.4.6.6.90000258.4.7-21109"/>
       <resource>
          <Observation>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.7-21109"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-DiagnosticResult"/>
             </meta>
@@ -591,7 +631,7 @@
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
-                           <td colspan="2">2019-01-30</td>
+                           <td colspan="2">30 januari 2019</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -604,7 +644,8 @@
                            </td>
                            <td>89 mm[Hg]</td>
                            <td>
-                              <div>normal (referencerange-meaning)  - 89 mm[Hg]</div>
+                              <div>
+                                 <span title="Normal Range (normal - referencerange-meaning)">Normal Range</span>  - 89 mm[Hg]</div>
                            </td>
                         </tr>
                      </tbody>
@@ -625,18 +666,18 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0be3e0d2-5a6a-11eb-3908-020000000000"/>
+               <reference value="urn:uuid:f6a3a526-5da2-11ec-1239-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <effectiveDateTime value="2019-01-30"/>
             <performer>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:0be3e0e7-5a6a-11eb-3908-020000000000"/>
+                     <reference value="urn:uuid:f6a3a53d-5da2-11ec-1239-020000000000"/>
                      <display value="Responsible Party"/>
                   </valueReference>
                </extension>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
                <display value="Responsible Party"/>
             </performer>
             <valueQuantity>
@@ -661,6 +702,7 @@
                   <coding>
                      <system value="http://hl7.org/fhir/referencerange-meaning"/>
                      <code value="normal"/>
+                     <display value="Normal Range"/>
                   </coding>
                </type>
             </referenceRange>
@@ -671,9 +713,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7.21110"/>
+      <fullUrl value="https://example.org/fhir/Observation/2.16.840.1.113883.2.4.6.6.90000258.4.7-21110"/>
       <resource>
          <Observation>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.7-21110"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-DiagnosticResult"/>
             </meta>
@@ -686,7 +729,7 @@
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
-                           <td>2019-01-30</td>
+                           <td>30 januari 2019</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -718,18 +761,18 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0be3e0d2-5a6a-11eb-3908-020000000000"/>
+               <reference value="urn:uuid:f6a3a526-5da2-11ec-1239-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <effectiveDateTime value="2019-01-30"/>
             <performer>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:0be3e0e7-5a6a-11eb-3908-020000000000"/>
+                     <reference value="urn:uuid:f6a3a53d-5da2-11ec-1239-020000000000"/>
                      <display value="Responsible Party"/>
                   </valueReference>
                </extension>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
                <display value="Responsible Party"/>
             </performer>
             <valueCodeableConcept>
@@ -746,9 +789,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7.21111"/>
+      <fullUrl value="https://example.org/fhir/Observation/2.16.840.1.113883.2.4.6.6.90000258.4.7-21111"/>
       <resource>
          <Observation>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.7-21111"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-DiagnosticResult"/>
             </meta>
@@ -761,7 +805,7 @@
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
-                           <td>2019-01-30</td>
+                           <td>30 januari 2019</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -791,18 +835,18 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0be3e0d2-5a6a-11eb-3908-020000000000"/>
+               <reference value="urn:uuid:f6a3a526-5da2-11ec-1239-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <effectiveDateTime value="2019-01-30"/>
             <performer>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:0be3e0e7-5a6a-11eb-3908-020000000000"/>
+                     <reference value="urn:uuid:f6a3a53d-5da2-11ec-1239-020000000000"/>
                      <display value="Responsible Party"/>
                   </valueReference>
                </extension>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
                <display value="Responsible Party"/>
             </performer>
             <valueQuantity>
@@ -818,9 +862,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7.21112"/>
+      <fullUrl value="https://example.org/fhir/Observation/2.16.840.1.113883.2.4.6.6.90000258.4.7-21112"/>
       <resource>
          <Observation>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.7-21112"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-DiagnosticResult"/>
             </meta>
@@ -833,7 +878,7 @@
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
-                           <td>2019-01-30</td>
+                           <td>30 januari 2019</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -863,18 +908,18 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0be3e0d2-5a6a-11eb-3908-020000000000"/>
+               <reference value="urn:uuid:f6a3a526-5da2-11ec-1239-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <effectiveDateTime value="2019-01-30"/>
             <performer>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:0be3e0e7-5a6a-11eb-3908-020000000000"/>
+                     <reference value="urn:uuid:f6a3a53d-5da2-11ec-1239-020000000000"/>
                      <display value="Responsible Party"/>
                   </valueReference>
                </extension>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
                <display value="Responsible Party"/>
             </performer>
             <valueQuantity>
@@ -890,9 +935,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7.21113"/>
+      <fullUrl value="https://example.org/fhir/Observation/2.16.840.1.113883.2.4.6.6.90000258.4.7-21113"/>
       <resource>
          <Observation>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.7-21113"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-DiagnosticResult"/>
             </meta>
@@ -905,7 +951,7 @@
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
-                           <td colspan="2">2019-01-30</td>
+                           <td colspan="2">30 januari 2019</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -918,7 +964,8 @@
                            </td>
                            <td>19 /min</td>
                            <td>
-                              <div>normal (referencerange-meaning)  - 20 /min</div>
+                              <div>
+                                 <span title="Normal Range (normal - referencerange-meaning)">Normal Range</span>  - 20 /min</div>
                            </td>
                         </tr>
                      </tbody>
@@ -939,18 +986,18 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0be3e0d2-5a6a-11eb-3908-020000000000"/>
+               <reference value="urn:uuid:f6a3a526-5da2-11ec-1239-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <effectiveDateTime value="2019-01-30"/>
             <performer>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:0be3e0e7-5a6a-11eb-3908-020000000000"/>
+                     <reference value="urn:uuid:f6a3a53d-5da2-11ec-1239-020000000000"/>
                      <display value="Responsible Party"/>
                   </valueReference>
                </extension>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
                <display value="Responsible Party"/>
             </performer>
             <valueQuantity>
@@ -975,6 +1022,7 @@
                   <coding>
                      <system value="http://hl7.org/fhir/referencerange-meaning"/>
                      <code value="normal"/>
+                     <display value="Normal Range"/>
                   </coding>
                </type>
             </referenceRange>
@@ -985,9 +1033,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7.21114"/>
+      <fullUrl value="https://example.org/fhir/Observation/2.16.840.1.113883.2.4.6.6.90000258.4.7-21114"/>
       <resource>
          <Observation>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.7-21114"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-DiagnosticResult"/>
             </meta>
@@ -1000,7 +1049,7 @@
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
-                           <td colspan="3">2019-01-30</td>
+                           <td colspan="3">30 januari 2019</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -1017,7 +1066,8 @@
                               <span title="Low (L - v2/0078)">Low</span>
                            </td>
                            <td>
-                              <div>normal (referencerange-meaning) 70 % - </div>
+                              <div>
+                                 <span title="Normal Range (normal - referencerange-meaning)">Normal Range</span> 70 % - </div>
                            </td>
                         </tr>
                      </tbody>
@@ -1038,18 +1088,18 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0be3e0d2-5a6a-11eb-3908-020000000000"/>
+               <reference value="urn:uuid:f6a3a526-5da2-11ec-1239-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <effectiveDateTime value="2019-01-30"/>
             <performer>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:0be3e0e7-5a6a-11eb-3908-020000000000"/>
+                     <reference value="urn:uuid:f6a3a53d-5da2-11ec-1239-020000000000"/>
                      <display value="Responsible Party"/>
                   </valueReference>
                </extension>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
                <display value="Responsible Party"/>
             </performer>
             <valueQuantity>
@@ -1081,6 +1131,7 @@
                   <coding>
                      <system value="http://hl7.org/fhir/referencerange-meaning"/>
                      <code value="normal"/>
+                     <display value="Normal Range"/>
                   </coding>
                </type>
             </referenceRange>
@@ -1091,9 +1142,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7.21115"/>
+      <fullUrl value="https://example.org/fhir/Observation/2.16.840.1.113883.2.4.6.6.90000258.4.7-21115"/>
       <resource>
          <Observation>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.7-21115"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-DiagnosticResult"/>
             </meta>
@@ -1106,7 +1158,7 @@
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
-                           <td>2019-01-30</td>
+                           <td>30 januari 2019</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -1136,18 +1188,18 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0be3e0d2-5a6a-11eb-3908-020000000000"/>
+               <reference value="urn:uuid:f6a3a526-5da2-11ec-1239-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <effectiveDateTime value="2019-01-30"/>
             <performer>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:0be3e0e7-5a6a-11eb-3908-020000000000"/>
+                     <reference value="urn:uuid:f6a3a53d-5da2-11ec-1239-020000000000"/>
                      <display value="Responsible Party"/>
                   </valueReference>
                </extension>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
                <display value="Responsible Party"/>
             </performer>
             <valueString value="CPOD C03@ST-30@"/>
@@ -1158,9 +1210,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7.21116"/>
+      <fullUrl value="https://example.org/fhir/Observation/2.16.840.1.113883.2.4.6.6.90000258.4.7-21116"/>
       <resource>
          <Observation>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.7-21116"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-DiagnosticResult"/>
             </meta>
@@ -1173,7 +1226,7 @@
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
-                           <td>2019-01-30</td>
+                           <td>30 januari 2019</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -1205,18 +1258,18 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0be3e0d2-5a6a-11eb-3908-020000000000"/>
+               <reference value="urn:uuid:f6a3a526-5da2-11ec-1239-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <effectiveDateTime value="2019-01-30"/>
             <performer>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:0be3e0e7-5a6a-11eb-3908-020000000000"/>
+                     <reference value="urn:uuid:f6a3a53d-5da2-11ec-1239-020000000000"/>
                      <display value="Responsible Party"/>
                   </valueReference>
                </extension>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
                <display value="Responsible Party"/>
             </performer>
             <valueCodeableConcept>
@@ -1233,9 +1286,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7.21117"/>
+      <fullUrl value="https://example.org/fhir/Observation/2.16.840.1.113883.2.4.6.6.90000258.4.7-21117"/>
       <resource>
          <Observation>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.7-21117"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-DiagnosticResult"/>
             </meta>
@@ -1248,7 +1302,7 @@
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
-                           <td>2019-01-30</td>
+                           <td>30 januari 2019</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -1278,18 +1332,18 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0be3e0d2-5a6a-11eb-3908-020000000000"/>
+               <reference value="urn:uuid:f6a3a526-5da2-11ec-1239-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <effectiveDateTime value="2019-01-30"/>
             <performer>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:0be3e0e7-5a6a-11eb-3908-020000000000"/>
+                     <reference value="urn:uuid:f6a3a53d-5da2-11ec-1239-020000000000"/>
                      <display value="Responsible Party"/>
                   </valueReference>
                </extension>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
                <display value="Responsible Party"/>
             </performer>
             <valueQuantity>
@@ -1305,9 +1359,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0be3dc8a-5a6a-11eb-3908-020000000000"/>
+      <fullUrl value="https://example.org/fhir/Observation/2.16.840.1.113883.2.4.6.6.90000258.4.7-21118.0.97"/>
       <resource>
          <Observation>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.7-21118.0.97"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-DiagnosticResult"/>
             </meta>
@@ -1320,7 +1375,7 @@
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
-                           <td>2019-01-30</td>
+                           <td>30 januari 2019</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -1352,18 +1407,18 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0be3e0d2-5a6a-11eb-3908-020000000000"/>
+               <reference value="urn:uuid:f6a3a526-5da2-11ec-1239-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <effectiveDateTime value="2019-01-30"/>
             <performer>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:0be3e0e7-5a6a-11eb-3908-020000000000"/>
+                     <reference value="urn:uuid:f6a3a53d-5da2-11ec-1239-020000000000"/>
                      <display value="Responsible Party"/>
                   </valueReference>
                </extension>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
                <display value="Responsible Party"/>
             </performer>
             <valueCodeableConcept>
@@ -1380,9 +1435,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7.21122"/>
+      <fullUrl value="https://example.org/fhir/Observation/2.16.840.1.113883.2.4.6.6.90000258.4.7-21122"/>
       <resource>
          <Observation>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.7-21122"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-DiagnosticResult"/>
             </meta>
@@ -1395,7 +1451,7 @@
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
-                           <td colspan="2">2019-02-03</td>
+                           <td colspan="2">3 februari 2019</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -1408,7 +1464,8 @@
                            </td>
                            <td>27 kg/m2</td>
                            <td>
-                              <div>normal (referencerange-meaning)  - 27 kg/m2</div>
+                              <div>
+                                 <span title="Normal Range (normal - referencerange-meaning)">Normal Range</span>  - 27 kg/m2</div>
                            </td>
                         </tr>
                      </tbody>
@@ -1429,18 +1486,18 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0be3e0d2-5a6a-11eb-3908-020000000000"/>
+               <reference value="urn:uuid:f6a3a526-5da2-11ec-1239-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <effectiveDateTime value="2019-02-03"/>
             <performer>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:0be3e0e7-5a6a-11eb-3908-020000000000"/>
+                     <reference value="urn:uuid:f6a3a53d-5da2-11ec-1239-020000000000"/>
                      <display value="Responsible Party"/>
                   </valueReference>
                </extension>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
                <display value="Responsible Party"/>
             </performer>
             <valueQuantity>
@@ -1465,6 +1522,7 @@
                   <coding>
                      <system value="http://hl7.org/fhir/referencerange-meaning"/>
                      <code value="normal"/>
+                     <display value="Normal Range"/>
                   </coding>
                </type>
             </referenceRange>
@@ -1475,9 +1533,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7.21125"/>
+      <fullUrl value="https://example.org/fhir/Observation/2.16.840.1.113883.2.4.6.6.90000258.4.7-21125"/>
       <resource>
          <Observation>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.7-21125"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-DiagnosticResult"/>
             </meta>
@@ -1490,7 +1549,7 @@
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
-                           <td colspan="3">2019-02-02</td>
+                           <td colspan="3">2 februari 2019</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -1507,7 +1566,8 @@
                               <span title="High (H - v2/0078)">High</span>
                            </td>
                            <td>
-                              <div>normal (referencerange-meaning)  - 140 mm[Hg]</div>
+                              <div>
+                                 <span title="Normal Range (normal - referencerange-meaning)">Normal Range</span>  - 140 mm[Hg]</div>
                            </td>
                         </tr>
                      </tbody>
@@ -1528,18 +1588,18 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0be3e0d2-5a6a-11eb-3908-020000000000"/>
+               <reference value="urn:uuid:f6a3a526-5da2-11ec-1239-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <effectiveDateTime value="2019-02-02"/>
             <performer>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:0be3e0e7-5a6a-11eb-3908-020000000000"/>
+                     <reference value="urn:uuid:f6a3a53d-5da2-11ec-1239-020000000000"/>
                      <display value="Responsible Party"/>
                   </valueReference>
                </extension>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
                <display value="Responsible Party"/>
             </performer>
             <valueQuantity>
@@ -1571,6 +1631,7 @@
                   <coding>
                      <system value="http://hl7.org/fhir/referencerange-meaning"/>
                      <code value="normal"/>
+                     <display value="Normal Range"/>
                   </coding>
                </type>
             </referenceRange>
@@ -1581,9 +1642,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7.21126"/>
+      <fullUrl value="https://example.org/fhir/Observation/2.16.840.1.113883.2.4.6.6.90000258.4.7-21126"/>
       <resource>
          <Observation>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.7-21126"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-DiagnosticResult"/>
             </meta>
@@ -1596,7 +1658,7 @@
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
-                           <td colspan="2">2019-02-02</td>
+                           <td colspan="2">2 februari 2019</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -1609,7 +1671,8 @@
                            </td>
                            <td>80 mm[Hg]</td>
                            <td>
-                              <div>normal (referencerange-meaning)  - 89 mm[Hg]</div>
+                              <div>
+                                 <span title="Normal Range (normal - referencerange-meaning)">Normal Range</span>  - 89 mm[Hg]</div>
                            </td>
                         </tr>
                      </tbody>
@@ -1630,18 +1693,18 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0be3e0d2-5a6a-11eb-3908-020000000000"/>
+               <reference value="urn:uuid:f6a3a526-5da2-11ec-1239-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <effectiveDateTime value="2019-02-02"/>
             <performer>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:0be3e0e7-5a6a-11eb-3908-020000000000"/>
+                     <reference value="urn:uuid:f6a3a53d-5da2-11ec-1239-020000000000"/>
                      <display value="Responsible Party"/>
                   </valueReference>
                </extension>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
                <display value="Responsible Party"/>
             </performer>
             <valueQuantity>
@@ -1666,6 +1729,7 @@
                   <coding>
                      <system value="http://hl7.org/fhir/referencerange-meaning"/>
                      <code value="normal"/>
+                     <display value="Normal Range"/>
                   </coding>
                </type>
             </referenceRange>
@@ -1676,9 +1740,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7.21127"/>
+      <fullUrl value="https://example.org/fhir/Observation/2.16.840.1.113883.2.4.6.6.90000258.4.7-21127"/>
       <resource>
          <Observation>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.7-21127"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-DiagnosticResult"/>
             </meta>
@@ -1691,7 +1756,7 @@
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
-                           <td colspan="2">2019-02-02</td>
+                           <td colspan="2">2 februari 2019</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -1704,7 +1769,8 @@
                            </td>
                            <td>72 /min</td>
                            <td>
-                              <div>normal (referencerange-meaning) 60 /min - 100 /min</div>
+                              <div>
+                                 <span title="Normal Range (normal - referencerange-meaning)">Normal Range</span> 60 /min - 100 /min</div>
                            </td>
                         </tr>
                      </tbody>
@@ -1725,18 +1791,18 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0be3e0d2-5a6a-11eb-3908-020000000000"/>
+               <reference value="urn:uuid:f6a3a526-5da2-11ec-1239-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <effectiveDateTime value="2019-02-02"/>
             <performer>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:0be3e0e7-5a6a-11eb-3908-020000000000"/>
+                     <reference value="urn:uuid:f6a3a53d-5da2-11ec-1239-020000000000"/>
                      <display value="Responsible Party"/>
                   </valueReference>
                </extension>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
                <display value="Responsible Party"/>
             </performer>
             <valueQuantity>
@@ -1762,6 +1828,7 @@
                   <coding>
                      <system value="http://hl7.org/fhir/referencerange-meaning"/>
                      <code value="normal"/>
+                     <display value="Normal Range"/>
                   </coding>
                </type>
             </referenceRange>
@@ -1772,9 +1839,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7.21128"/>
+      <fullUrl value="https://example.org/fhir/Observation/2.16.840.1.113883.2.4.6.6.90000258.4.7-21128"/>
       <resource>
          <Observation>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.7-21128"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-DiagnosticResult"/>
             </meta>
@@ -1787,7 +1855,7 @@
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
-                           <td>2019-02-02</td>
+                           <td>2 februari 2019</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -1819,18 +1887,18 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0be3e0d2-5a6a-11eb-3908-020000000000"/>
+               <reference value="urn:uuid:f6a3a526-5da2-11ec-1239-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <effectiveDateTime value="2019-02-02"/>
             <performer>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:0be3e0e7-5a6a-11eb-3908-020000000000"/>
+                     <reference value="urn:uuid:f6a3a53d-5da2-11ec-1239-020000000000"/>
                      <display value="Responsible Party"/>
                   </valueReference>
                </extension>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
                <display value="Responsible Party"/>
             </performer>
             <valueCodeableConcept>
@@ -1847,9 +1915,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7.21129"/>
+      <fullUrl value="https://example.org/fhir/Observation/2.16.840.1.113883.2.4.6.6.90000258.4.7-21129"/>
       <resource>
          <Observation>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.7-21129"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-DiagnosticResult"/>
             </meta>
@@ -1862,7 +1931,7 @@
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
-                           <td>2019-02-02</td>
+                           <td>2 februari 2019</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -1892,18 +1961,18 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0be3e0d2-5a6a-11eb-3908-020000000000"/>
+               <reference value="urn:uuid:f6a3a526-5da2-11ec-1239-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <effectiveDateTime value="2019-02-02"/>
             <performer>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:0be3e0e7-5a6a-11eb-3908-020000000000"/>
+                     <reference value="urn:uuid:f6a3a53d-5da2-11ec-1239-020000000000"/>
                      <display value="Responsible Party"/>
                   </valueReference>
                </extension>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
                <display value="Responsible Party"/>
             </performer>
             <valueQuantity>
@@ -1919,9 +1988,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7.21130"/>
+      <fullUrl value="https://example.org/fhir/Observation/2.16.840.1.113883.2.4.6.6.90000258.4.7-21130"/>
       <resource>
          <Observation>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.7-21130"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-DiagnosticResult"/>
             </meta>
@@ -1934,7 +2004,7 @@
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
-                           <td>2019-02-02</td>
+                           <td>2 februari 2019</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -1966,18 +2036,18 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0be3e0d2-5a6a-11eb-3908-020000000000"/>
+               <reference value="urn:uuid:f6a3a526-5da2-11ec-1239-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <effectiveDateTime value="2019-02-02"/>
             <performer>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:0be3e0e7-5a6a-11eb-3908-020000000000"/>
+                     <reference value="urn:uuid:f6a3a53d-5da2-11ec-1239-020000000000"/>
                      <display value="Responsible Party"/>
                   </valueReference>
                </extension>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
                <display value="Responsible Party"/>
             </performer>
             <valueCodeableConcept>
@@ -1994,9 +2064,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.840.1.113883.2.4.6.6.90000258.4.7.21131"/>
+      <fullUrl value="https://example.org/fhir/Observation/2.16.840.1.113883.2.4.6.6.90000258.4.7-21131"/>
       <resource>
          <Observation>
+            <id value="2.16.840.1.113883.2.4.6.6.90000258.4.7-21131"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/gp-DiagnosticResult"/>
             </meta>
@@ -2009,7 +2080,7 @@
                      <tbody>
                         <tr>
                            <th>Bepalingdatum/tijd</th>
-                           <td>2019-02-02</td>
+                           <td>2 februari 2019</td>
                         </tr>
                         <tr>
                            <th>Code</th>
@@ -2041,18 +2112,18 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:0be3e0d2-5a6a-11eb-3908-020000000000"/>
+               <reference value="urn:uuid:f6a3a526-5da2-11ec-1239-020000000000"/>
                <display value="E. XXX_Zegers"/>
             </subject>
             <effectiveDateTime value="2019-02-02"/>
             <performer>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                   <valueReference>
-                     <reference value="urn:uuid:0be3e0e7-5a6a-11eb-3908-020000000000"/>
+                     <reference value="urn:uuid:f6a3a53d-5da2-11ec-1239-020000000000"/>
                      <display value="Responsible Party"/>
                   </valueReference>
                </extension>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
                <display value="Responsible Party"/>
             </performer>
             <valueCodeableConcept>
@@ -2069,7 +2140,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0be3e0d2-5a6a-11eb-3908-020000000000"/>
+      <fullUrl value="urn:uuid:f6a3a526-5da2-11ec-1239-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -2105,7 +2176,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="female"/>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1964-08-02"/>
             <address>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
@@ -2144,9 +2225,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+      <fullUrl value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
       <resource>
          <Practitioner>
+            <id value="2.16.528.1.1007.3.1-900014718"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
             </meta>
@@ -2167,9 +2249,10 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:oid:2.16.528.1.1007.3.3.90000381"/>
+      <fullUrl value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-90000381"/>
       <resource>
          <Organization>
+            <id value="2.16.528.1.1007.3.3-90000381"/>
             <meta>
                <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
             </meta>
@@ -2199,7 +2282,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0be3e0e7-5a6a-11eb-3908-020000000000"/>
+      <fullUrl value="urn:uuid:f6a3a53d-5da2-11ec-1239-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -2214,7 +2297,9 @@
                         <tr>
                            <th>Zorgverlener</th>
                            <td>
-                              <div>Responsible Party</div>
+                              <div>
+                                 <a href="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718">Responsible Party</a>
+                              </div>
                            </td>
                         </tr>
                      </tbody>
@@ -2222,7 +2307,7 @@
                </div>
             </text>
             <practitioner>
-               <reference value="urn:oid:2.16.528.1.1007.3.1.900014718"/>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900014718"/>
                <display value="Responsible Party"/>
             </practitioner>
          </PractitionerRole>
