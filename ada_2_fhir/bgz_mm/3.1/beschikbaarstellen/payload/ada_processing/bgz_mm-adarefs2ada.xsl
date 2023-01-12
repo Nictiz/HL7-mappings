@@ -21,8 +21,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- output directory for full ada instances -->
     <xsl:param name="outputDir" as="xs:string?">../../ada_processed</xsl:param>
 
-    <xsl:variable name="concat2id">msz-</xsl:variable>
-
     <xd:doc>
         <xd:desc>Template to start conversion. Input are the ada instances of transaction 'beschikbaarstellen BgZ'. Outputs ada instance bundle in the given output directory </xd:desc>
     </xd:doc>
@@ -31,10 +29,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="patientIdentifier" select="current-grouping-key()"/>
             <xsl:variable name="patientName">
                 <xsl:choose>
-                    <xsl:when test="$patientIdentifier = 999999151">
+                    <xsl:when test="$patientIdentifier = 999901382">
                         <xsl:value-of select="'patA'"/>
                     </xsl:when>
-                    <xsl:when test="$patientIdentifier = 999900092">
+                    <xsl:when test="$patientIdentifier = 999901394">
                         <xsl:value-of select="'patB'"/>
                     </xsl:when>
                     <xsl:otherwise>
@@ -48,7 +46,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:apply-templates select="current-group()" mode="copy-for-resolve"/>
                 </xsl:variable>
                 
-                <xsl:result-document href="{$outputDir}/{concat('bgz-msz-', $patientName, '-', current-grouping-key(), '.xml')}" format="ada-xml">
+                <xsl:result-document href="{$outputDir}/{concat('bgz-mm-', $patientName, '-', current-grouping-key(), '.xml')}" format="ada-xml">
                     <bundle>
                         <xsl:copy-of select="$resolved-ada-input"/>
                     </bundle>
@@ -61,9 +59,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:apply-templates select="($ada-input/adaxml/data/*/patient[patient_identification_number[@value = current()/@value][@root = current()/@root]])[1]" mode="#current"/>
     </xsl:template>
     
+    <!-- Remove hcimroot from resolved patient -->
+    <xsl:template match="adaxml/data/*/patient/hcimroot" mode="copy-for-resolve"/>
+    
     <!-- Matching on @value and @root, and excluding local-name containing 'identification' but should be on @datatype = 'reference' -->
-    <xsl:template match="*[@value and @root = '2.16.840.1.113883.2.4.3.11.999.7'][not(*)][not(contains(local-name(), 'identification'))]" mode="copy-for-resolve">
-        <xsl:apply-templates select="($ada-input/adaxml/data/*/*[hcimroot/identification_number[@value = current()/@value][@root = current()/@root]])[1]" mode="#current"/>
+    <xsl:template match="*[@value and @root = '999'][not(*)][not(contains(local-name(), 'identification'))]" mode="copy-for-resolve">
+        <xsl:variable name="resolved" select="($ada-input/adaxml/data/*[@title = current()/@value]/*)[1]"/>
+        <xsl:if test="count($resolved) ne 1">
+            <xsl:message>Could not resolve reference to <xsl:value-of select="current()/local-name()"/> '<xsl:value-of select="current()/@value"/>' in <xsl:value-of select="ancestor::*[ends-with(local-name(), '_registration')]/@title"/></xsl:message>
+        </xsl:if>
+        <xsl:apply-templates select="$resolved" mode="#current"/>
     </xsl:template>
     
     <xd:doc>

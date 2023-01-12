@@ -5,9 +5,9 @@ setlocal enabledelayedexpansion
 if "%saxonPath%"=="" (
   SET saxonPath=C:\SaxonHE9-9-1-7J\saxon9he.jar
 )
-SET inputDir=..\ada_processed
-SET xsltDir=..\payload
-SET outputDir=..\fhir_instance_resources
+SET inputDir=ada_processed
+SET xsltDir=payload
+SET outputDir=fhir_instance_resources
 
 
 if not exist "%saxonPath%" (
@@ -36,7 +36,6 @@ exit /b
 set input=%1
 
 echo Converting !input!
-set noDriverId=!input:-bundled=!
 set baseId=!noDriverId:~0, -3!
 
-java -jar "%saxonPath%" -s:"%inputDir%/!input!.xml" -xsl:"%xsltDir%/beschikbaarstellen_2_fhir.xsl" -o:"%outputDir%/!noDriverId!.xml
+java -jar "%saxonPath%" -s:"%inputDir%/!input!.xml" -xsl:"%xsltDir%/beschikbaarstellen_2_fhir.xsl" -o:"%outputDir%/dummy.xml

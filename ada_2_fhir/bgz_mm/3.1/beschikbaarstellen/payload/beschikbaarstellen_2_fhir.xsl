@@ -37,7 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="separateResources" as="xs:boolean" select="$referById"/>
     
     <!-- OID separated list of oids like 2.16.840.1.113883.2.4.6.3 (bsn) to mask in output -->
-    <xsl:param name="mask-ids" select="(:$oidBurgerservicenummer:)''" as="xs:string"/>
+    <xsl:param name="mask-ids" select="$oidBurgerservicenummer" as="xs:string"/>
     
     <xsl:variable name="usecase">bgz-msz</xsl:variable>
     
@@ -86,10 +86,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="patientIdentifier" select="$adaPatient/patient_identification_number/@value"/>
                 <xsl:variable name="patientName">
                     <xsl:choose>
-                        <xsl:when test="$patientIdentifier = 999999151">
+                        <xsl:when test="$patientIdentifier = '999901382'">
                             <xsl:value-of select="'patA'"/>
                         </xsl:when>
-                        <xsl:when test="$patientIdentifier = 999900092">
+                        <xsl:when test="$patientIdentifier = '999901394'">
                             <xsl:value-of select="'patB'"/>
                         </xsl:when>
                         <xsl:otherwise>
@@ -99,7 +99,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:variable>
                 
                 <!--Zibs that result in only a single resource, or  resources that have no special conditions-->
-                <xsl:if test="local-name() = ('advance_directive', 'alcohol_use', 'alert', 'allergy_intolerance', 'blood_pressure', 'body_height', 'body_weight', 'contact', 'drug_use', 'encounter', 'functional_or_mental_status', 'living_situation', 'nutrition_advice', 'patient', 'payer', 'problem', 'tobacco_use', 'treatment_directive')">
+                <xsl:if test="local-name() = ('advance_directive', 'alcohol_use', 'alert', 'allergy_intolerance', 'blood_pressure', 'body_height', 'body_weight', 'drug_use', 'encounter', 'functional_or_mental_status', 'living_situation', 'nutrition_advice', 'patient', 'payer', 'problem', 'tobacco_use', 'treatment_directive')">
                     <entry xmlns="http://hl7.org/fhir">
                         <xsl:if test="local-name() = 'advance_directive'">
                             <fullUrl value="{concat('zib-AdvanceDirective-', $usecase, '-', $patientName, '-advdir', position())}"/>
