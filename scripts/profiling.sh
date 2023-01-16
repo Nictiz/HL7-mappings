@@ -92,11 +92,11 @@ function profile_xsl {
 
     cat $TMPFILE1 
 
-    grep -E 'WARNING|WARN|ERROR' $TMPFILE > /dev/null
+    grep -E 'WARNING|WARN|ERROR|Error' $TMPFILE > /dev/null
     if [[ "$?" -eq 0 ]] ; then
         cp $TMPFILE ${output_warning}.in.txt
     fi
-    grep -E 'WARNING|WARN|ERROR' $TMPFILE2 > /dev/null
+    grep -E 'WARNING|WARN|ERROR|Error' $TMPFILE2 > /dev/null
     if [[ "$?" -eq 0 ]] ; then
         cp $TMPFILE2 ${output_warning}.out.txt
     fi
