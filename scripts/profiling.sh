@@ -6,8 +6,8 @@
 # Location of the script
 ME_DIR="$( cd "$( dirname "${0}" )" && pwd )"
 
-# assume we are in scripts
-ROOT_DIR="$( dirname "$ME_DIR" )"
+# assume we are in HL7-mappings/scripts
+ROOT_DIR="$( dirname $( dirname "$ME_DIR" ) )"
 
 # Timestamp  
 STAMP_FORMAT="%Y-%m-%d_%H-%M-%S"
@@ -117,6 +117,8 @@ function profile_xsl {
 # parse_profile_results
 #
 # extract data and convert to CSV
+
+# 2023-01-16 wordt momenteel niet gebruikt
 # ---------------------
 function parse_profile_results {
     profile_in="$1"
@@ -130,6 +132,8 @@ function parse_profile_results {
 #
 # extract the 'total time' line
 # and add to separate CSV
+
+# 2023-01-16 wordt momenteel niet gebruikt
 # ---------------------
 
 function get_total_time {
@@ -204,6 +208,9 @@ function run_transformation {
 # ---------------------
 
 function 920_profiling {
+    # voorlopig even 1 usecase
+    # usecase="${usecase_mg}"
+
     # for usecase in ${usecase_mg} ${usecase_av} ${usecase_mv}; do
     for usecase in ${usecase_mg}; do
 
@@ -235,38 +242,51 @@ function 920_profiling {
 }
 
 # ---------------------
+# 6.12 to 9.2.0 v3 profiling
+# ---------------------
+function 612_profiling {
+    # voorlopig even 1 usecase
+    # usecase="${usecase_mg}"
+
+    # for usecase in ${usecase_mg} ${usecase_av} ${usecase_mv}; do
+    for usecase in ${usecase_mg}; do
+
+        # versie 6.12 -> MP9 v3
+        in_version='6.12'
+        out_version='9.2.0'
+        hl7_input="${INPUT_DIR}/hl7_2_ada"
+        hl7_output="${INPUT_DIR}/ada_2_hl7"
+
+        usecase_dir="mp/${out_version}/${usecase}"
+
+        hl7v3_612_in_dir="$hl7_input/mp/9.2.0/6.12_2_${usecase}"
+        hl7_out_dir="$hl7_output/${usecase_dir}"
+
+        # for s in ${saxon_9_7_0_18} ${saxon_9_8_0_15} ${saxon_9_9_1_8} ${saxon_11_4}; do
+        for s in ${saxon_9_7_0_18}; do
+
+            # Current Saxon version
+            saxon_version=$( echo ${s} | rev | cut -d'/' -f1 | cut -d'.' -f 2- | cut -d'-' -f1 | rev )
+            echo working with ${saxon_version}
+
+            # run_transformation "${usecase}" 'fhir' "${version}" 'hl7' "${version}" "${fhir_in_dir}" "${hl7_out_dir}"
+            run_transformation "${usecase}" 'hl7' "${in_version}" 'hl7' "${out_version}" "${hl7v3_612_in_dir}" "${hl7_out_dir}"
+        done
+    done
+
+}
+
+# ---------------------
 # start main script
 # ---------------------
 
-# voorlopig even 1 usecase
-# usecase="${usecase_mg}"
+# 920_profiling 
 
-# for usecase in ${usecase_mg} ${usecase_av} ${usecase_mv}; do
-for usecase in ${usecase_mg}; do
+612_profiling
 
-    # versie 6.12 -> MP9 v3
-    in_version='6.12'
-    out_version='9.2.0'
-    hl7_input="${INPUT_DIR}/hl7_2_ada"
-    hl7_output="${INPUT_DIR}/ada_2_hl7"
+# parsen van het profiling bestand
 
-    usecase_dir="mp/${out_version}/${usecase}"
-
-    hl7v3_612_in_dir="$hl7_input/mp/9.2.0/6.12_2_${usecase}"
-    hl7_out_dir="$hl7_output/${usecase_dir}"
-
-    # for s in ${saxon_9_7_0_18} ${saxon_9_8_0_15} ${saxon_9_9_1_8} ${saxon_11_4}; do
-    for s in ${saxon_9_7_0_18}; do
-
-        # Current Saxon version
-        saxon_version=$( echo ${s} | rev | cut -d'/' -f1 | cut -d'.' -f 2- | cut -d'-' -f1 | rev )
-        echo working with ${saxon_version}
-
-        # run_transformation "${usecase}" 'fhir' "${version}" 'hl7' "${version}" "${fhir_in_dir}" "${hl7_out_dir}"
-        run_transformation "${usecase}" 'hl7' "${in_version}" 'hl7' "${out_version}" "${hl7v3_612_in_dir}" "${hl7_out_dir}"
-    done
-done
-
+# 2023-01-16 wordt momenteel niet gebruikt
 # average=$( profile_xsl "${file_in}" "${xsl_in}" "${usecase_mg}_2_ada.html" "ada")
 # prefix="${usecase_mg};${average}"
 # # get_total_time "${usecase_mg}_2_ada.html" "${usecase_mg}_profiletotal.csv" "${prefix}"
