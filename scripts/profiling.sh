@@ -85,12 +85,10 @@ function profile_xsl {
     java -cp "$SAXON_PATH" net.sf.saxon.Transform \
         -s:"${source}" -xsl:"${xslt_2_ada}" -o:"${output_ada}" \
         -repeat:10 searchURL="${searchURL}" 2> $TMPFILE
+
     java -cp "$SAXON_PATH" net.sf.saxon.Transform \
         -s:"${output_ada}" -xsl:"${xslt_2_out}" -o:"${output}" \
         -repeat:10 searchURL="${searchURL}" 2> $TMPFILE2
-
-
-    cat $TMPFILE1 
 
     grep -E 'WARNING|WARN|ERROR|Error' $TMPFILE > /dev/null
     if [[ "$?" -eq 0 ]] ; then
@@ -100,8 +98,6 @@ function profile_xsl {
     if [[ "$?" -eq 0 ]] ; then
         cp $TMPFILE2 ${output_warning}.out.txt
     fi
-
-        # -TP:"${profile}" \
     
     # get the average results of the last 6 transformations
     in_result=$( grep 'Average execution time' "$TMPFILE" | cut -d':' -f2 | cut -d'm' -f1 | awk '$1=$1' | tr '.' ',')
@@ -197,6 +193,8 @@ function run_transformation {
     echo
 
     for f in $(ls -1 *.xml); do
+        echo Processing $f
+        
         result=$( profile_xsl $f ${xslt_2_ada} ${xslt_2_out} ${base_dir} )
 
         echo "${saxon_version};${result};${usecase};${in_out_version}" >> "${profile_result}/${saxon_version}_result.csv"
@@ -269,7 +267,6 @@ function 612_profiling {
             saxon_version=$( echo ${s} | rev | cut -d'/' -f1 | cut -d'.' -f 2- | cut -d'-' -f1 | rev )
             echo working with ${saxon_version}
 
-            # run_transformation "${usecase}" 'fhir' "${version}" 'hl7' "${version}" "${fhir_in_dir}" "${hl7_out_dir}"
             run_transformation "${usecase}" 'hl7' "${in_version}" 'hl7' "${out_version}" "${hl7v3_612_in_dir}" "${hl7_out_dir}"
         done
     done
