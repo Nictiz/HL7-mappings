@@ -2329,18 +2329,6 @@
                               </component>
                               <component>
                                  <observation classCode="OBS" moodCode="EVN" negationInd="false">
-                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40878"/>
-                                    <code code="878"
-                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
-                                          displayName="Interactie Van Wiechen"/>
-                                    <value xsi:type="CV"
-                                           code="01"
-                                           codeSystem="2.16.840.1.113883.2.4.4.40.342"
-                                           displayName="Kind is coöperatief"/>
-                                 </observation>
-                              </component>
-                              <component>
-                                 <observation classCode="OBS" moodCode="EVN" negationInd="false">
                                     <templateId root="2.16.840.1.113883.2.4.6.10.100.40879"/>
                                     <code code="879"
                                           codeSystem="2.16.840.1.113883.2.4.4.40.267"
@@ -2405,6 +2393,30 @@
                                     <code code="886"
                                           codeSystem="2.16.840.1.113883.2.4.4.40.267"
                                           displayName="4. Kijkt naar eigen handen"/>
+                                    <value xsi:type="CV"
+                                           code="1"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.343"
+                                           displayName="+"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40927"/>
+                                    <code code="927"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="29. Reageert op toespreken"/>
+                                    <value xsi:type="CV"
+                                           code="1"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.343"
+                                           displayName="+"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40928"/>
+                                    <code code="928"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="30. Lacht terug"/>
                                     <value xsi:type="CV"
                                            code="1"
                                            codeSystem="2.16.840.1.113883.2.4.4.40.343"
@@ -2489,6 +2501,18 @@
                                     <code code="962"
                                           codeSystem="2.16.840.1.113883.2.4.4.40.267"
                                           displayName="55. Reacties bij optrekken tot zit"/>
+                                    <value xsi:type="CV"
+                                           code="1"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.153"
+                                           displayName="+"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40964"/>
+                                    <code code="964"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="56. Heft kin even van onderlaag"/>
                                     <value xsi:type="CV"
                                            code="1"
                                            codeSystem="2.16.840.1.113883.2.4.4.40.153"
@@ -2590,12 +2614,98 @@
                         </subjectOf1>
                      </encounter>
                   </component7>
+                  <component7 typeCode="COMP">
+                     <encounter classCode="ENC" moodCode="INT">
+                        <id extension="5" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
+                        <code code="41"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.308"
+                              displayName="Contact 12 tot 18 jaar"/>
+                        <statusCode code="cancelled"/>
+                        <effectiveTime value="20221215"/>
+                        <!-- r018_activiteit -->
+                        <pertinentInformation typeCode="PERT">
+                           <rubricCluster classCode="CLUSTER" moodCode="EVN">
+                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11018"/>
+                              <code code="R018"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.391"
+                                    displayName="Activiteit"/>
+                              <component>
+                                 <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41577"/>
+                                    <code code="1577"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Vorm activiteit"/>
+                                    <value xsi:type="CV"
+                                           code="06"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.424"
+                                           displayName="Huisbezoek"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41605"/>
+                                    <code code="1605"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Status activiteit"/>
+                                    <value xsi:type="CV"
+                                           code="06"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.434"
+                                           displayName="Niet gerealiseerd in overleg"/>
+                                 </observation>
+                              </component>
+                           </rubricCluster>
+                        </pertinentInformation>
+                     </encounter>
+                  </component7>
+                  <component7 typeCode="COMP">
+                     <encounter classCode="ENC" moodCode="INT">
+                        <id extension="4" root="2.16.840.1.113883.2.4.3.11.999.100.2.2"/>
+                        <code code="41"
+                              codeSystem="2.16.840.1.113883.2.4.4.40.308"
+                              displayName="Contact 12 tot 18 jaar"/>
+                        <statusCode code="cancelled"/>
+                        <effectiveTime value="20221129"/>
+                        <!-- r018_activiteit -->
+                        <pertinentInformation typeCode="PERT">
+                           <rubricCluster classCode="CLUSTER" moodCode="EVN">
+                              <templateId root="2.16.840.1.113883.2.4.6.10.100.11018"/>
+                              <code code="R018"
+                                    codeSystem="2.16.840.1.113883.2.4.4.40.391"
+                                    displayName="Activiteit"/>
+                              <component>
+                                 <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41577"/>
+                                    <code code="1577"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Vorm activiteit"/>
+                                    <value xsi:type="CV"
+                                           code="01"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.424"
+                                           displayName="Beeldbellen"/>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.41605"/>
+                                    <code code="1605"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Status activiteit"/>
+                                    <value xsi:type="CV"
+                                           code="05"
+                                           codeSystem="2.16.840.1.113883.2.4.4.40.434"
+                                           displayName="Niet gerealiseerd, geen interesse"/>
+                                 </observation>
+                              </component>
+                           </rubricCluster>
+                        </pertinentInformation>
+                     </encounter>
+                  </component7>
                   <subjectOf typeCode="SUBJ" contextConductionInd="false">
                      <careStatus classCode="STC" moodCode="EVN">
                         <code code="1197"
                               codeSystem="2.16.840.1.113883.2.4.4.40.267"
                               displayName="Status in zorg"/>
-                        <effectiveTime value="20130624"/>
+                        <effectiveTime value="20130729"/>
                         <reasonCode code="01"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.376"
                                     displayName="Regulier"/>
