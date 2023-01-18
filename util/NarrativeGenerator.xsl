@@ -69,9 +69,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:apply-templates select="node() except (f:id | f:meta | f:implicitRules | f:language | f:text | f:id/preceding-sibling::node() | f:meta/preceding-sibling::node() | f:implicitRules/preceding-sibling::node() | f:language/preceding-sibling::node() | f:text/preceding-sibling::node())" mode="addNarrative"/>
                 </xsl:copy>
             </xsl:when>
-            <!-- This is any other element. It might be a resource or a child of one that potentially leads to a supported resource like in a Bundle or List -->
+            <!-- This is any other element. It might be a resource or a child of one that potentially leads to a supported resource like in a Bundle or List. Must be a FHIR resource or element to throw a warning. -->
             <xsl:otherwise>
-                <xsl:if test="matches(local-name(), '^[A-Z]') and not(local-name() = ('Bundle', 'Binary'))">
+                <xsl:if test="matches(local-name(), '^[A-Z]') and not(local-name() = ('Bundle', 'Binary')) and namespace-uri() = 'http://hl7.org/fhir'">
                     <xsl:call-template name="util:logMessage">
                         <xsl:with-param name="level" select="$logWARN"/>
                         <xsl:with-param name="msg">
@@ -13225,6 +13225,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:when>
                     <xsl:when test="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference']">
                         <!-- Don't warn when only the extension for PractitionerRole is present -->
+                    </xsl:when>
+                    <xsl:when test="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/extension-medicaldevice']">
+                        <!-- Don't warn when only the extension for DeviceUseStatement is present -->
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:call-template name="util:logMessage">
