@@ -75,7 +75,14 @@
             <param name="sub.build.dir" value="${build.dir}/${usecase.mg.st}"/>
             <param name="schema.string" value="*${usecase.mg.st}.xsd"/>
             <param name="fileset.dir" value="ada_instance"/>
-            <param name="fileset.include" value="*.xml"/>
+            <param name="fileset.include" value="mg-*.xml"/>
+            <param name="refs.dir" value="${refs.dir}/${usecase.mg.st}"/>
+        </antcall>
+        <antcall target="setup_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mg.st}"/>
+            <param name="schema.string" value="*${usecase.mg.st}.xsd"/>
+            <param name="fileset.dir" value="ada_instance_sets"/>
+            <param name="fileset.include" value="mgsets-*.xml"/>
             <param name="refs.dir" value="${refs.dir}/${usecase.mg.st}"/>
         </antcall>
 
