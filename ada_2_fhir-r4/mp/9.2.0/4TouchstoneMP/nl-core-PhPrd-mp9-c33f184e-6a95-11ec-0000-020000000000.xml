@@ -1,0 +1,56 @@
+<Medication xmlns="http://hl7.org/fhir">
+   <id value="nl-core-PhPrd-mp9-c33f184e-6a95-11ec-0000-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalProduct.Description">
+      <valueString value="Titel: Vaseline 20% in cetomacrogolcrème FNA Regel 1: cetomacrogolcreme 80 gr"/>
+   </extension>
+   <code>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+         <code value="OTH"/>
+         <display value="overig"/>
+      </coding>
+      <text value="Vaseline 20% in cetomacrogolcrème FNA"/>
+   </code>
+   <ingredient>
+      <itemCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+            <code value="457590"/>
+            <display value="CETOMACROGOLCREME FNA"/>
+         </coding>
+      </itemCodeableConcept>
+      <strength>
+         <numerator>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+               <valueQuantity>
+                  <value value="80"/>
+                  <unit value="gram"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="215"/>
+               </valueQuantity>
+            </extension>
+            <value value="80"/>
+            <unit value="gram"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="g"/>
+         </numerator>
+         <denominator>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+               <valueQuantity>
+                  <value value="100"/>
+                  <unit value="gram"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="215"/>
+               </valueQuantity>
+            </extension>
+            <value value="100"/>
+            <unit value="gram"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="g"/>
+         </denominator>
+      </strength>
+   </ingredient>
+</Medication>

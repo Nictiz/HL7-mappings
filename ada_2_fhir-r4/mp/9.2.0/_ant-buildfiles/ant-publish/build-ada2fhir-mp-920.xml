@@ -241,6 +241,19 @@
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${build.dir}/${usecase.mg.st}/fhir_instance"/>
         </antcall>
+        <!-- Also do sets -->
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="usecase" value="${usecase.mg.st}"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.fhir.fixtures}/payload/${usecase.mg.st}_2_fhir.xsl"/>
+            <param name="xsl.in" value="${build.dir}/${usecase.mg.st}/ada_instance_sets"/>
+            <param name="xsl.in.include" value="*.xml"/>
+            <!-- the xsl will write it's resources using the output.dir, but ant xslt still needs an output dir -->
+            <param name="xsl.out" value="${xsl.output.dummy}"/>
+            <param name="param.tdate" value="${date.T}" if:set="date.T"/>
+            <param name="param.maskids" value="${mask.ids}"/>
+            <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
+            <param name="output.dir" value="../${build.dir}/${usecase.mg.st}/fhir_instance_sets"/>
+        </antcall>
 
         <echo>sturen_medicatievoorschrift</echo>
         <property name="xsl.input.mv" value="${build.dir}/${usecase.mv}/ada_instance"/>
@@ -399,8 +412,7 @@
                 <!-- the resources and scenarioset bundles are needed on Touchstone / WildFHIR, exclude the ALL bundles -->
                 <exclude name="mg-*ALL.xml"/>
             </fileset>
-            <!-- no longer needed, we use the beschikbaarstellen set for push as well -->
-            <!--            <fileset dir="${build.dir}/${usecase.mg.st}/fhir_instance"/>-->
+            <fileset dir="${build.dir}/${usecase.mg.st}/fhir_instance_sets"/>
             <fileset dir="${build.dir}/${usecase.mv}/fhir_instance"/>
             <fileset dir="${build.dir}/${usecase.amv}/fhir_instance"/>
             <fileset dir="${build.dir}/${usecase.vma}/fhir_instance"/>
