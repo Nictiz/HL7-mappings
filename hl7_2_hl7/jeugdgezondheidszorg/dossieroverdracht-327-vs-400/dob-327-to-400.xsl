@@ -1850,29 +1850,19 @@
     </xd:doc>
     <xsl:template match="hl7:careProvisionEvent/hl7:subjectOf/hl7:careStatus/hl7:author" mode="dob327"/>
     
-    <!--<xd:doc>
+    <xd:doc>
         <xd:desc>
-            <xd:p>Rubriek 19, element 148 'Anamnese nagevraagd' is verplicht vanaf BDS 4.0.0. Toevoegen indien nodig</xd:p>
-            <xd:p>Rubriek 19, element 748 'Anamnese' is verplicht vanaf BDS 4.0.0 in de transactie. In DOB template was de verplichting al aanwezig en je kunt hier geen anamnese 'verzinnen'.</xd:p>
+            <xd:p>Rubriek 19, element 148 'Anamnese nagevraagd' is verwijderd in BDS 4.0.0</xd:p>
         </xd:desc>
     </xd:doc>
     <xsl:template match="hl7:rubricCluster[hl7:code[@code = 'R019'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']]" mode="dob327">
         <xsl:copy>
             <xsl:apply-templates select="@*" mode="dob327"/>
+            <xsl:apply-templates select="hl7:templateId" mode="dob327"/>
             <xsl:apply-templates select="hl7:code" mode="dob327"/>
-            <!-\- 2020-06-12 Redactieraad besluit dit element juist te verwijderen in plaats van verplicht erin te laten -\->
-            <!-\-<xsl:if test="not(hl7:component[hl7:observation[hl7:code[@code = '148'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]])">
-                <component xmlns="urn:hl7-org:v3">
-                    <observation negationInd="false">
-                        <templateId root="2.16.840.1.113883.2.4.6.10.100.40148"/>
-                        <code code="148" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Anamnese nagevraagd"/>
-                        <value xsi:type="BL" value="true"/>
-                    </observation>
-                </component>
-            </xsl:if>-\->
-            <xsl:apply-templates select="hl7:*[not(local-name() = 'code' or local-name() = 'templateId')]" mode="dob327"/>
+            <xsl:apply-templates select="hl7:*[not(local-name() = 'code' or local-name() = 'templateId' or (local-name() = 'component' and child::hl7:observation[hl7:code[@code = '148'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]))]" mode="dob327"/>
         </xsl:copy>
-    </xsl:template>-->
+    </xsl:template>
     
     <!--<xd:doc>
         <xd:desc>
