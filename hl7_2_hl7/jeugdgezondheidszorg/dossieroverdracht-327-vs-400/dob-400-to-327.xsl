@@ -1687,6 +1687,13 @@
     </xsl:template>
     
     <xd:doc>
+        <xd:desc>effectiveTime is niet toegestaan in 3.2.7, dus overslaan</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:inFulfillmentOf/hl7:encounter/hl7:effectiveTime" mode="dob400">
+        <!--Do nothing-->
+    </xsl:template>
+    
+    <xd:doc>
         <xd:desc>
             <xd:p>Rubriek 13. BDS-element 1384 Bedreigingen nagevraagd is vervallen van 326 naar 400. Herstellen met true indien afwezig, anders was de rubriek er niet.</xd:p> 
             <xd:p>Rubriek 13 heeft nieuwe elementen in BDS 4.0.0. Deze hier overslaan richting 3.2.6. Potentieel nonBDSdata herstellen van elementen die wel in 3.2.6 horen</xd:p>
