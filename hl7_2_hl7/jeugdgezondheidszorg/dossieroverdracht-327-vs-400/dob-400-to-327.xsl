@@ -2575,10 +2575,19 @@
         <xsl:comment><xsl:text> element 1599 met code '</xsl:text><xsl:value-of select="./@code"/><xsl:text>' </xsl:text><xsl:value-of select="./@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
     </xsl:template>
     <xd:doc>
-        <xd:desc>Rubriek 21, elementen 1601-1604 bestonden niet in 3.2.6</xd:desc>
+        <xd:desc>Rubriek 21, elementen 1601, 1603, 1604 bestonden niet in 3.2.6.</xd:desc>
     </xd:doc>
-    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1601' or @code = '1602' or @code = '1603' or @code = '1604'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob400">
+    <xsl:template match="hl7:component[hl7:observation[hl7:code[@code = '1601' or @code = '1603' or @code = '1604'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob400">
         <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:observation/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
+    </xsl:template>
+    <xd:doc>
+        <xd:desc>Rubriek 21, template voor element 1602 komt van element 792.</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:templateId[@root='2.16.840.1.113883.2.4.6.10.100.41602']" mode="dob400">
+        <xsl:copy>
+            <xsl:attribute name="root">2.16.840.1.113883.2.4.6.10.100.40792</xsl:attribute>
+            <xsl:apply-templates select="node()" mode="dob400"/>
+        </xsl:copy>
     </xsl:template>
     <xd:doc>
         <xd:desc>Rubriek 38, groep G117 bestond niet in 3.2.6</xd:desc>
@@ -2648,6 +2657,7 @@
         <xsl:variable name="theCode">
             <xsl:choose>
                 <xsl:when test="@code = 'G088' and ancestor::hl7:informationControlActEvent">476</xsl:when>
+                <xsl:when test="@code = '1602'">792</xsl:when>
                 <xsl:otherwise><xsl:value-of select="@code"/></xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
