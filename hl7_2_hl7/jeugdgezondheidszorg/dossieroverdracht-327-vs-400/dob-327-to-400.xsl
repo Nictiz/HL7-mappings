@@ -2375,13 +2375,24 @@
     </xsl:template>-->
     
     <xd:doc>
-        <xd:desc>BDS-rubrieknamen, BDS-groepnamen en BDS-elementnamen bijwerken. Element code 1537-1541 wordt element 1541. Element 476 wordt groep G088</xd:desc>
+        <xd:desc>Rubriek 21. De Template obs Bijzonderheden schoolverzuim wordt Template obs Toelichting schoolverzuim in BDS 400.</xd:desc>
     </xd:doc>
-    <xsl:template match="hl7:code[@codeSystem = '2.16.840.1.113883.2.4.4.40.391'] | hl7:code[@codeSystem = '2.16.840.1.113883.2.4.4.40.393'] | hl7:code[@codeSystem = '2.16.840.1.113883.2.4.4.40.267']" mode="dob327">
+    <xsl:template match="hl7:templateId[@root='2.16.840.1.113883.2.4.6.10.100.40792']" mode="dob327">
+        <xsl:copy>
+            <xsl:attribute name="root">2.16.840.1.113883.2.4.6.10.100.41602</xsl:attribute>
+            <xsl:apply-templates select="node()" mode="dob327"/>
+        </xsl:copy>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>BDS-rubrieknamen, BDS-groepnamen en BDS-elementnamen bijwerken. Element code 1537-1541 wordt element 1541. Element 476 wordt groep G088. Element 792 wordt element 1602 met een verkleining van 4000 naar 500 karakters.</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:code[@codeSystem = '2.16.840.1.113883.2.4.4.40.391'] | hl7:code[@codeSystem = '2.16.840.1.113883.2.4.4.40.393'] | hl7:code[@codeSystem = '2.16.840.1.113883.2.4.4.40.267']"  mode="dob327">
         <xsl:variable name="theCode">
             <xsl:choose>
                 <xsl:when test="@code = '1537-1541'">1541</xsl:when>
                 <xsl:when test="@code = '476' and ancestor::hl7:informationControlActEvent">G088</xsl:when>
+                <xsl:when test="@code = '792'">1602</xsl:when>
                 <xsl:otherwise><xsl:value-of select="@code"/></xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
@@ -2423,6 +2434,23 @@
         <xsl:copy>
             <xsl:attribute name="classCode">ASSIGNED</xsl:attribute>
             <xsl:apply-templates select="@* | *" mode="dob327"/>
+        </xsl:copy>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Remove characters that exceed the 500 characters string limit- for 'schoolverzuim'</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:value" mode="dob327">
+        <xsl:copy>
+            <xsl:choose>
+                <xsl:when test="preceding-sibling::hl7:code[@code = '792']">
+                    <xsl:attribute name="xsi:type">ST</xsl:attribute>
+                    <xsl:value-of select=" substring(node(),0,501)" />
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="@* | node()"  mode="dob327"/>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:copy>
     </xsl:template>
     
