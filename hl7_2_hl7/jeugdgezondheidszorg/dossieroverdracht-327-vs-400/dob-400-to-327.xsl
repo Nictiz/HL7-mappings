@@ -1687,6 +1687,13 @@
     </xsl:template>
     
     <xd:doc>
+        <xd:desc>effectiveTime is niet toegestaan in 3.2.7, dus overslaan</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:inFulfillmentOf/hl7:encounter/hl7:effectiveTime" mode="dob400">
+        <!--Do nothing-->
+    </xsl:template>
+    
+    <xd:doc>
         <xd:desc>
             <xd:p>Rubriek 13. BDS-element 1384 Bedreigingen nagevraagd is vervallen van 326 naar 400. Herstellen met true indien afwezig, anders was de rubriek er niet.</xd:p> 
             <xd:p>Rubriek 13 heeft nieuwe elementen in BDS 4.0.0. Deze hier overslaan richting 3.2.6. Potentieel nonBDSdata herstellen van elementen die wel in 3.2.6 horen</xd:p>
@@ -2607,9 +2614,29 @@
         <xsl:copy>
             <xsl:attribute name="typeCode">PRF</xsl:attribute>
             <xsl:for-each select="hl7:assignedPerson">
-                <xsl:copy>
-                    <xsl:apply-templates select="hl7:id" mode="dob400"/>
-                </xsl:copy>
+                <!--In 3.2.7 is slechts één id toegestaan; bij conversie van 4.0.0 naar 3.2.7 wordt de prioritering BIG -> AGB -> UZI gehanteerd-->
+                <xsl:choose>
+                    <xsl:when test="hl7:id[@root='2.16.528.1.1007.5.1']">
+                        <xsl:copy>
+                            <xsl:apply-templates select="hl7:id[@root='2.16.528.1.1007.5.1']" mode="dob400"/>
+                        </xsl:copy>
+                    </xsl:when>
+                    <xsl:when test="not(hl7:id[@root='2.16.528.1.1007.5.1']) and hl7:id[@root='2.16.840.1.113883.2.4.6.1']">
+                        <xsl:copy>
+                            <xsl:apply-templates select="hl7:id[@root='2.16.840.1.113883.2.4.6.1']" mode="dob400"/>
+                        </xsl:copy>
+                    </xsl:when>
+                    <xsl:when test="not(hl7:id[@root='2.16.528.1.1007.5.1']) and not(hl7:id[@root='2.16.840.1.113883.2.4.6.1']) and hl7:id[@root='2.16.528.1.1007.3.1']">
+                        <xsl:copy>
+                            <xsl:apply-templates select="hl7:id[@root='2.16.528.1.1007.3.1']" mode="dob400"/>
+                        </xsl:copy>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:copy>
+                            <xsl:apply-templates select="hl7:id" mode="dob400"/>
+                        </xsl:copy>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:for-each>
         </xsl:copy>
     </xsl:template>
