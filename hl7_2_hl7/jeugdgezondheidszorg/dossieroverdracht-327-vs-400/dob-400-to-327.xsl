@@ -2729,7 +2729,7 @@
         <xsl:apply-templates select="hl7:id" mode="dob400"/>
         <xsl:apply-templates select="hl7:code" mode="dob400"/>
         <xsl:choose>
-            <xsl:when test="@moodCode = 'INT' and hl7:statusCode[@code = 'aborted']">
+            <xsl:when test="@moodCode = 'EVN' and hl7:statusCode[@code = 'aborted']">
                 <statusCode code="cancelled" xmlns="urn:hl7-org:v3"/>
             </xsl:when>
             <xsl:otherwise>
