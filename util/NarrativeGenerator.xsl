@@ -4226,6 +4226,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </tfoot>
                     </xsl:if>
                     <tbody>
+                        <xsl:if test="f:category">
+                            <tr>
+                                <th>
+                                    <xsl:call-template name="util:getLocalizedString">
+                                        <xsl:with-param name="key">Category</xsl:with-param>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </th>
+                                <td>
+                                    <xsl:call-template name="doDT_CodeableConcept">
+                                        <xsl:with-param name="in" select="f:category"/>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </xsl:if>
                         <tr>
                             <th>
                                 <xsl:call-template name="util:getLocalizedString">
