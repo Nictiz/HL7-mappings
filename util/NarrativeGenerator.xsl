@@ -2613,6 +2613,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </td>
                             </tr>
                         </xsl:if>
+                        <xsl:if test="f:subscriberId">
+                            <tr>
+                                <th>
+                                    <xsl:call-template name="util:getLocalizedString">
+                                        <xsl:with-param name="key">SubscriberId</xsl:with-param>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </th>
+                                <td>
+                                    <xsl:call-template name="doDT_String">
+                                        <xsl:with-param name="in" select="f:subscriberId"/>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </xsl:if>
                         <xsl:for-each select="f:payor">
                             <tr>
                                 <th>
@@ -12318,7 +12334,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <xsl:sort select="f:rank/@value"/>
             <xsl:variable name="system">
-                <xsl:if test="f:system/@value">
+                <xsl:if test="empty(f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType']) and f:system/@value">
                     <xsl:call-template name="getLocalizedContactPointSystem">
                         <xsl:with-param name="in" select="f:system"/>
                         <xsl:with-param name="textLang" select="$textLang"/>
@@ -12326,9 +12342,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
             </xsl:variable>
             <xsl:variable name="use">
-                <xsl:if test="f:use/@value">
+                <xsl:if test="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType'] | f:use/@value">
                     <xsl:call-template name="getLocalizedContactPointUse">
-                        <xsl:with-param name="in" select="f:use"/>
+                        <xsl:with-param name="in" select="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType'] | f:use"/>
                         <xsl:with-param name="textLang" select="$textLang"/>
                     </xsl:call-template>
                 </xsl:if>
@@ -12348,7 +12364,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:otherwise>
                         <xsl:variable name="uri">
                             <xsl:choose>
-                                <xsl:when test="matches(f:value/@value, '^[a-z-]:')">
+                                <xsl:when test="matches(f:value/@value, '^[a-z-]+:')">
                                     <xsl:value-of select="f:value/@value"/>
                                 </xsl:when>
                                 <xsl:when test="f:system/@value = ('email')">
@@ -14427,10 +14443,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     <!-- https://www.hl7.org/fhir/STU3/valueset-contact-point-use.html -->
     <xsl:template name="getLocalizedContactPointUse">
-        <xsl:param name="in" as="element()?"/>
+        <xsl:param name="in" as="element()*"/>
         <xsl:param name="textLang" as="xs:string" required="yes"/>
         <xsl:choose>
-            <xsl:when test="$in/@value = 'pager'">
+            <xsl:when test="$in/f:valueCodeableConcept/f:coding/f:code/@value = 'LL'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">2.16.840.1.113883.2.4.3.11.60.40.4.22.1-LL</xsl:with-param>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in/f:valueCodeableConcept/f:coding/f:code/@value = 'FAX'">
+                <!--<xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">2.16.840.1.113883.2.4.3.11.60.40.4.22.1-FAX</xsl:with-param>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>-->
+            </xsl:when>
+            <xsl:when test="$in/f:valueCodeableConcept/f:coding/f:code/@value = 'PG' or $in/@value = 'pager'">
                 <xsl:call-template name="util:getLocalizedString">
                     <xsl:with-param name="key">addressUse_PG</xsl:with-param>
                     <xsl:with-param name="textLang" select="$textLang"/>
@@ -14460,7 +14488,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="textLang" select="$textLang"/>
                 </xsl:call-template>
             </xsl:when>
-            <xsl:when test="$in/@value = 'mobile'">
+            <xsl:when test="$in/f:valueCodeableConcept/f:coding/f:code/@value = 'MC' or $in/@value = 'mobile'">
                 <xsl:call-template name="util:getLocalizedString">
                     <xsl:with-param name="key">addressUse_MC</xsl:with-param>
                     <xsl:with-param name="textLang" select="$textLang"/>
