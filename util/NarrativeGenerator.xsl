@@ -8340,9 +8340,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <tbody>
                         <xsl:call-template name="doResourceContext">
                             <xsl:with-param name="in" select="f:context | f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/extension-context-nl-core-episodeofcare']/f:valueReference"/>
-                                        <xsl:with-param name="textLang" select="$textLang"/>
+                            <xsl:with-param name="textLang" select="$textLang"/>
                             <xsl:with-param name="colspan" select="$colspan - 1"/>
-                                    </xsl:call-template>
+                        </xsl:call-template>
                         <xsl:if test="f:*[starts-with(local-name(), 'effective')]">
                             <tr>
                                 <th>
@@ -8534,6 +8534,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </th>
                             </xsl:if>
                         </tr>
+                        <xsl:for-each select="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-FunctionalOrMentalStatus-MedicalDevice']">
+                            <tr>
+                                <th>
+                                    <xsl:call-template name="util:getLocalizedString">
+                                        <xsl:with-param name="key">Medical Device</xsl:with-param>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </th>
+                                <td>
+                                    <xsl:call-template name="doDT">
+                                        <xsl:with-param name="in" select="f:*[starts-with(local-name(), 'value')]"/>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                        <xsl:with-param name="allowDiv" select="true()"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </xsl:for-each>
                         <xsl:for-each select=". | f:component">
                             <tr>
                                 <td>
