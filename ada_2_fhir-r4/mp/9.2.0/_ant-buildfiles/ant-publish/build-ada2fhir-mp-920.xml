@@ -228,6 +228,11 @@
         </antcall>
 
         <echo>sturen_medicatiegegevens</echo>
+        <mkdir dir="${build.dir}/${usecase.mg.st}/fhir_instance"/>
+        <echo>Deleting previous results, if any</echo>
+        <delete>
+            <fileset dir="${build.dir}/${usecase.mg.st}/fhir_instance" includes="*.*"/>
+        </delete>
         <!-- push bundles for Touchstone for sturen_medicatiegegevens -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="${usecase.mg.st}"/>
@@ -242,6 +247,11 @@
             <param name="output.dir" value="../${build.dir}/${usecase.mg.st}/fhir_instance"/>
         </antcall>
         <!-- Also do sets -->
+        <mkdir dir="${build.dir}/${usecase.mg.st}/fhir_instance"/>
+        <echo>Deleting previous results, if any</echo>
+        <delete>
+            <fileset dir="${build.dir}/${usecase.mg.st}/fhir_instance_sets" includes="*.*"/>
+        </delete>
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="${usecase.mg.st}"/>
             <param name="xsl.convert" value="${build.dir}/${usecase.fhir.fixtures}/payload/${usecase.mg.st}_2_fhir.xsl"/>
