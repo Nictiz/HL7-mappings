@@ -2783,7 +2783,8 @@
         <xsl:apply-templates select="hl7:pertinentInformation[not(hl7:rubricCluster/hl7:code[@code = 'R018'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391'])]" mode="dob400"/>
         <xsl:apply-templates select="hl7:component1" mode="dob400"/>
         <xsl:apply-templates select="hl7:component2" mode="dob400"/>
-        <xsl:apply-templates select="hl7:component3" mode="dob400"/>
+        <!-- Zonder 'uitvoerende' wordt de groep G076 overgeslagen -->
+        <xsl:apply-templates select="hl7:component3[hl7:component3/hl7:substanceAdministration/hl7:performer]" mode="dob400"/>
         <xsl:apply-templates select="hl7:component4" mode="dob400"/>
         <xsl:apply-templates select="hl7:component5" mode="dob400"/>
         <xsl:apply-templates select="hl7:subjectOf" mode="dob400"/>
