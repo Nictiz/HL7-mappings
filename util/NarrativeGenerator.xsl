@@ -4154,6 +4154,48 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </td>
                             </tr>
                         </xsl:if>
+                        <xsl:for-each select="f:hospitalization">
+                            <tr>
+                                <th>
+                                    <xsl:call-template name="util:getLocalizedString">
+                                        <xsl:with-param name="key">Hospitalization</xsl:with-param>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </th>
+                                <td>
+                                    <ul>
+                                        <xsl:if test="f:admitSource">
+                                            <li>
+                                                <xsl:call-template name="util:getLocalizedString">
+                                                    <xsl:with-param name="key">AdmitSource</xsl:with-param>
+                                                    <xsl:with-param name="textLang" select="$textLang"/>
+                                                </xsl:call-template>
+                                                <xsl:text>: </xsl:text>
+                                                <xsl:call-template name="doDT_CodeableConcept">
+                                                    <xsl:with-param name="in" select="f:admitSource"/>
+                                                    <xsl:with-param name="textLang" select="$textLang"/>
+                                                    <xsl:with-param name="sep">div</xsl:with-param>
+                                                </xsl:call-template>
+                                            </li>
+                                        </xsl:if>
+                                        <xsl:if test="f:dischargeDisposition">
+                                            <li>
+                                                <xsl:call-template name="util:getLocalizedString">
+                                                    <xsl:with-param name="key">DischargeDisposition</xsl:with-param>
+                                                    <xsl:with-param name="textLang" select="$textLang"/>
+                                                </xsl:call-template>
+                                                <xsl:text>: </xsl:text>
+                                                <xsl:call-template name="doDT_CodeableConcept">
+                                                    <xsl:with-param name="in" select="f:dischargeDisposition"/>
+                                                    <xsl:with-param name="textLang" select="$textLang"/>
+                                                    <xsl:with-param name="sep">div</xsl:with-param>
+                                                </xsl:call-template>
+                                            </li>
+                                        </xsl:if>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </xsl:for-each>
                     </tbody>
                 </table>
             </div>
