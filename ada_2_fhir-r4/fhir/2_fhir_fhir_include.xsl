@@ -67,6 +67,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="betaler" resource="Organization" profile="nl-core-Payer-Organization"/>
         <nm:map ada="contact" resource="Encounter" profile="nl-core-Encounter"/>
         <nm:map ada="contactpersoon" resource="RelatedPerson" profile="nl-core-ContactPerson"/>
+        <nm:map ada="dosscore" resource="Observation" profile="nl-core-DOSScore"/>
         <nm:map ada="drugs_gebruik" resource="Observation" profile="nl-core-DrugUse"/>
         <nm:map ada="farmaceutisch_product" resource="Medication" profile="nl-core-PharmaceuticalProduct"/>
         <nm:map ada="flaccpijn_score" resource="Observation" profile="nl-core-FLACCpainScale"/>
