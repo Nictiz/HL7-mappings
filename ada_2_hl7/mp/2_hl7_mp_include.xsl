@@ -2699,6 +2699,119 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
+        <xd:desc> Verstrekking vanaf 9.1.0</xd:desc>
+        <xd:param name="in">ada verstrekking</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9364_20210602161935" match="verstrekking" mode="handleMVE910">
+        <xsl:param name="in" as="element()*" select="."/>
+        
+        <xsl:for-each select="$in">
+            <supply classCode="SPLY" moodCode="EVN">
+                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9364"/>
+                
+                <!-- identificatie -->
+                <xsl:for-each select="identificatie[@value | @nullFlavor]">
+                    <xsl:call-template name="makeIIid"/>
+                </xsl:for-each>
+                
+                <code displayName="Verstrekking" code="373784005" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
+                
+                <!-- (uitreik-)datum   (Aanschrijfdatum zit in EntityRelation) -->
+                <xsl:for-each select="(datum | medicatieverstrekkings_datum_tijd)[@value | @nullFlavor]">
+                    <effectiveTime>
+                        <xsl:call-template name="makeTSValueAttr"/>
+                    </effectiveTime>
+                </xsl:for-each>
+                
+                <!-- verstrekte_hoeveelheid -->
+                <xsl:for-each select="verstrekte_hoeveelheid[.//(@value | @unit | @nullFlavor)]">
+                    <quantity>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9165_20170118000000"/>
+                    </quantity>
+                </xsl:for-each>
+                
+                <!-- verbruiks_duur  -->
+                <xsl:for-each select="(verbruiks_duur | verbruiksduur)[@value]">
+                    <expectedUseTime>
+                        <!-- Tijdseenheid is verplicht in dagen -->
+                        <width value="{nf:calculate_Duur_In_Dagen(./@value,nf:convertTime_ADA_unit2UCUM(./@unit))}" unit="d"/>
+                    </expectedUseTime>
+                </xsl:for-each>
+                
+                <!-- verstrekt_geneesmiddel -->
+                <xsl:for-each select="../../bouwstenen/farmaceutisch_product[@id = current()/verstrekt_geneesmiddel/farmaceutisch_product/@value]">
+                    <product>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9362_20210602154632">
+                            <xsl:with-param name="product" select="."/>
+                        </xsl:call-template>
+                    </product>
+                </xsl:for-each>
+                
+                <!-- verstrekker/zorgaanbieder -->
+                <xsl:for-each select="../../bouwstenen/zorgaanbieder[@id = current()/verstrekker/zorgaanbieder/@value]">
+                    <performer>
+                        <assignedEntity>
+                            <id nullFlavor="NI"/>
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.33_20210701000000"/>
+                        </assignedEntity>
+                    </performer>
+                </xsl:for-each>
+                
+                <!-- afleverlocatie -->
+                <xsl:for-each select="afleverlocatie[.//(@value | @code | @nullFlavor)]">
+                    <participant typeCode="DST">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9091_20160621153127"/>
+                    </participant>
+                </xsl:for-each>
+                
+                <!-- aanschrijfdatum -->
+                <xsl:for-each select="(aanschrijfdatum | aanschrijf_datum)[.//(@value | @code | @nullFlavor)]">
+                    <entryRelationship typeCode="COMP">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9095_20160623195047"/>
+                    </entryRelationship>
+                </xsl:for-each>
+                
+                <!-- Distributievorm -->
+                <xsl:for-each select="distributievorm[.//(@value | @code | @nullFlavor)]">
+                    <entryRelationship typeCode="COMP">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9097_20160623203415"/>
+                    </entryRelationship>
+                </xsl:for-each>
+                
+                <!-- Aanvullende informatie bij verstrekking. -->
+                <xsl:for-each select="(aanvullende_informatie | medicatieverstrekking_aanvullende_informatie)[.//(@value | @code | @nullFlavor)]">
+                    <entryRelationship typeCode="COMP">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9178_20170523091005"/>
+                    </entryRelationship>
+                </xsl:for-each>
+                
+                <!-- Toelichting -->
+                <xsl:for-each select="toelichting[.//(@value | @code | @nullFlavor)]">
+                    <entryRelationship typeCode="SUBJ" inversionInd="true">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.32_20180611000000"/>
+                    </entryRelationship>
+                </xsl:for-each>
+                
+                <!-- relatie naar Verstrekkingsverzoek -->
+                <xsl:for-each select="(relatie_naar_verstrekkingsverzoek | relatie_verstrekkingsverzoek)[.//(@value | @code | @nullFlavor)]">
+                    <entryRelationship typeCode="REFR">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9312_20191223150301"/>
+                    </entryRelationship>
+                </xsl:for-each>
+                
+                <!--Relatie naar medicamenteuze behandeling -->
+                <entryRelationship typeCode="COMP" inversionInd="true">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9084_20160621103838">
+                        <xsl:with-param name="MBHroot" select=".."/>
+                    </xsl:call-template>
+                </entryRelationship>
+                
+            </supply>
+        </xsl:for-each>
+    </xsl:template>
+    
+
+    <xd:doc>
         <xd:desc>MP organizer verifier zorgverlener, used in medication overview</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9180_20170523115753">

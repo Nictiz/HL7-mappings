@@ -107,14 +107,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </component>
                 </xsl:for-each>
-                <!--                <!-\- Verstrekkingsverzoek -\->
+                <!-- Verstrekkingsverzoek -->
                 <xsl:for-each select="verstrekkingsverzoek">
                     <component typeCode="COMP">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9356_20210402132627">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9449_20230106093041">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
                     </component>
-                </xsl:for-each> -->
+                </xsl:for-each> 
                 <!-- Toedieningsafspraak -->
                 <xsl:for-each select="toedieningsafspraak">
                     <component typeCode="COMP">
@@ -123,14 +123,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </component>
                 </xsl:for-each>
-                <!--                               <!-\- Verstrekking -\->
+                <!-- Verstrekking -->
                 <xsl:for-each select="medicatieverstrekking | verstrekking">
                     <component typeCode="COMP">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9364_20210602161935">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
                     </component>
-                </xsl:for-each>-->
+                </xsl:for-each>
                 <!-- Medicatiegebruik -->
                 <xsl:for-each select="medicatie_gebruik | medicatiegebruik">
                     <component typeCode="COMP">
