@@ -540,6 +540,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$localName = 'vochtbalans'">
                 <xsl:apply-templates select="$in" mode="nl-core-FluidBalance">
                     <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'voedingsadvies'">
                 <xsl:apply-templates select="$in" mode="nl-core-NutritionAdvice">
                     <xsl:with-param name="patient" select="$subject"/>
