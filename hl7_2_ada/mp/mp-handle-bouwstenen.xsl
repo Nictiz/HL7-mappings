@@ -214,7 +214,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Find the correct reference in the deduplication mode in step 2 </xd:desc>
     </xd:doc>
-    <xsl:template match="medicamenteuze_behandeling//farmaceutisch_product | medicamenteuze_behandeling//contactpersoon | (medicamenteuze_behandeling | voorstel_gegevens)//zorgaanbieder | (medicamenteuze_behandeling | voorstel_gegevens)//zorgverlener[not(zorgverlener)] | voorstel_gegevens/medicamenteuze_behandeling" mode="deduplicateBouwstenenStep2">
+    <xsl:template match="medicamenteuze_behandeling//farmaceutisch_product | medicamenteuze_behandeling//contactpersoon | medicamenteuze_behandeling//zorgaanbieder | voorstel_gegevens//zorgaanbieder | medicamenteuze_behandeling//zorgverlener[not(zorgverlener)] | voorstel_gegevens//zorgverlener[not(zorgverlener)] |voorstel_gegevens/medicamenteuze_behandeling" mode="deduplicateBouwstenenStep2">
         <xsl:copy>
             <xsl:apply-templates select="@conceptId" mode="#current"/>
             <xsl:attribute name="value">
