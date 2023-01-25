@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="labtest-KWAL-LAR-LosResultaatK-KC-NHG-97777"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
+      <valueString value="999555"/>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.4"/>
+      <value value="97777"/>
+   </identifier>
+   <status value="final"/>
+   <category>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+         <code value="laboratory"/>
+         <display value="Laboratory"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-45-diagnostische-bepalingen"/>
+         <code value="513"/>
+         <display value="Kalium"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/patient-XXX-Pherai"/>
+      <type value="Patient"/>
+      <display value="Patient, M. XXX_Pherai"/>
+   </subject>
+   <effectiveDateTime value="${DATE, T, M, -1}"/>
+   <performer>
+      <reference value="Organization/org-00003335"/>
+      <type value="Organization"/>
+      <display value="Healthcare provider (organization), Klinisch chemisch Lab de Erlenmeyer"/>
+   </performer>
+   <valueQuantity>
+      <value value="5.5"/>
+      <unit value="mmol/l"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="mmol/l"/>
+   </valueQuantity>
+   <interpretation>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="281302008"/>
+         <display value="boven referentiebereik"/>
+      </coding>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"/>
+         <code value="H"/>
+         <display value="High"/>
+      </coding>
+   </interpretation>
+   <interpretation>
+      <text value="Boven referentiebereik. "/>
+   </interpretation>
+   <specimen>
+      <reference value="Specimen/monster-334-2-119297000"/>
+      <type value="Specimen"/>
+      <display value="monster"/>
+   </specimen>
+   <referenceRange>
+      <low>
+         <value value="3.5"/>
+         <unit value="mmol/l"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mmol/l"/>
+      </low>
+      <high>
+         <value value="5.0"/>
+         <unit value="mmol/l"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mmol/l"/>
+      </high>
+   </referenceRange>
+</Observation>

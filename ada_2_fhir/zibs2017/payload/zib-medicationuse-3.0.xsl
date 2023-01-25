@@ -93,12 +93,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:for-each select="$in">
             <xsl:variable name="resource">
+                <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse</xsl:variable>
                 <MedicationStatement>
-                    <xsl:for-each select="$logicalId[string-length(.) gt 0]">
-                        <id value="{.}"/>
-                    </xsl:for-each>
+                    <xsl:if test="string-length($logicalId) gt 0">
+                        <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
+                    </xsl:if>
                     <meta>
-                        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
+                        <profile value="{$profileValue}"/>
                     </meta>
                     
                     <!-- volgens_afspraak_indicator -->
@@ -192,20 +193,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:when test="stoptype/@code = ('2', '112161000146106')">
                             <status value="stopped"/>
                         </xsl:when>
-                        <xsl:when test="stoptype[@codeSystem = $oidHL7NullFlavor]">
-                            <extension url="{$urlExtHL7NullFlavor}">
-                                <valueCode value="{$in/@code}"/>
-                            </extension>
-                        </xsl:when>
-                        <xsl:when test="stoptype/@code">
+                        <xsl:when test="stoptype/@code or stoptype[@codeSystem = $oidHL7NullFlavor]">
                             <xsl:message terminate="yes">An unknown stoptype has been encountered, @code: <xsl:value-of select="stoptype/@code"/>, @codeSystem: <xsl:value-of select="stoptype/@codeSystem"/></xsl:message>
                         </xsl:when>
                         <xsl:otherwise>
-                            <status>
-                                <extension url="{$urlExtHL7DataAbsentReason}">
-                                    <valueCode value="unknown"/>
-                                </extension>
-                            </status>
+                            <!-- MP-133 / MM-3618 -->
+                            <status value="active"/>
                         </xsl:otherwise>
                     </xsl:choose>
                     

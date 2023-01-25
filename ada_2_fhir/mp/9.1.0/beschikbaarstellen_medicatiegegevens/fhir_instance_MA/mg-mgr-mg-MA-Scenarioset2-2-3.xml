@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="39624a70-5992-11eb-1099-020000000000"/>
+   <id value="c1eed4cc-4d3d-11ec-9454-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:39624c31-5992-11eb-1099-020000000000"/>
+      <fullUrl value="urn:uuid:c1eedb29-4d3d-11ec-9454-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -66,7 +66,7 @@
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-InstructionsForUseDescription">
-               <valueString value="Vanaf T-13D{00:00:00}, tot en met T+14D{23:59:59}, 1 maal per week 5 stuks, Oraal"/>
+               <valueString value="Vanaf T - 13 dagen, tot en met T + 14 dagen, 1 maal per week 5 stuks, Oraal"/>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -86,7 +86,7 @@
                <display value="Methotrexaat tablet 2,5mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:39624a77-5992-11eb-1099-020000000000"/>
+               <reference value="urn:uuid:c1eed4d3-4d3d-11ec-9454-020000000000"/>
                <display value="C. XXX_Vonker"/>
             </subject>
             <authoredOn value="${DATE, T, D, -13}T08:05:00+02:00"/>
@@ -94,7 +94,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:39624c37-5992-11eb-1099-020000000000"/>
+                        <reference value="urn:uuid:c1eedb2f-4d3d-11ec-9454-020000000000"/>
                         <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -131,7 +131,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:39624a77-5992-11eb-1099-020000000000"/>
+      <fullUrl value="urn:uuid:c1eed4d3-4d3d-11ec-9454-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -166,7 +166,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="male"/>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1954-02-08"/>
          </Patient>
       </resource>
@@ -271,7 +281,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:39624c37-5992-11eb-1099-020000000000"/>
+      <fullUrl value="urn:uuid:c1eedb2f-4d3d-11ec-9454-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -326,6 +336,7 @@
       <fullUrl value="urn:oid:2.16.840.1.113883.2.4.4.10.141631"/>
       <resource>
          <Medication>
+            <id value="2.16.840.1.113883.2.4.4.10-141631"/>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
             </meta>

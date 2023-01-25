@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="4e787b46-5992-11eb-1126-020000000000"/>
+   <id value="c33f2532-6a95-11ec-0000-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:4e785f9c-5992-11eb-1126-020000000000"/>
+      <fullUrl value="urn:uuid:c33f1480-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -42,7 +42,7 @@
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: Vanaf T+0D{00:00:00}, 1 maal per dag 1 stuk gedurende 16 uur, transdermaal</div>
+                              <div>Tekst: Vanaf T, 1 maal per dag 1 stuk gedurende 16 uur, transdermaal</div>
                               <div>Timing: <div>16 uren, eenmalig per dag</div>
                               </div>
                               <div>Toedieningsweg: <span title="transdermaal (58 - G-Standaard thesaurus subtabel 0007)">transdermaal</span>
@@ -83,7 +83,7 @@
                <display value="NITROGLYCERINE PLEISTER 5MG/24UUR (DEPONIT T)"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:4e787b4c-5992-11eb-1126-020000000000"/>
+               <reference value="urn:uuid:c33f1460-6a95-11ec-0000-020000000000"/>
                <display value="N. XXX_Maasz"/>
             </subject>
             <authoredOn value="${DATE, T, D, +0}T08:49:00+02:00"/>
@@ -91,7 +91,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:4e785fa1-5992-11eb-1126-020000000000"/>
+                        <reference value="urn:uuid:c33f1486-6a95-11ec-0000-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -100,7 +100,7 @@
                </agent>
             </requester>
             <dosageInstruction>
-               <text value="Vanaf T+0D{00:00:00}, 1 maal per dag 1 stuk gedurende 16 uur, transdermaal"/>
+               <text value="Vanaf T, 1 maal per dag 1 stuk gedurende 16 uur, transdermaal"/>
                <timing>
                   <repeat>
                      <duration value="16"/>
@@ -131,7 +131,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4e787b4c-5992-11eb-1126-020000000000"/>
+      <fullUrl value="urn:uuid:c33f1460-6a95-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -166,7 +166,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="female"/>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1954-08-10"/>
          </Patient>
       </resource>
@@ -271,7 +281,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4e785fa1-5992-11eb-1126-020000000000"/>
+      <fullUrl value="urn:uuid:c33f1486-6a95-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>

@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="4e85c9e0-5992-11eb-1283-020000000000"/>
+   <id value="c33f02aa-6a95-11ec-0000-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:4e85d0a0-5992-11eb-1283-020000000000"/>
+      <fullUrl value="urn:uuid:c33f1ac2-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -42,7 +42,7 @@
                         <tr>
                            <th>Doseerinstructie</th>
                            <td>
-                              <div>Tekst: Vanaf T+0D{00:00:00}, tot en met T+28D{23:59:59}, 3 maal per dag, aanbrengen, cutaan</div>
+                              <div>Tekst: Vanaf T, tot en met T + 28 dagen, 3 maal per dag, aanbrengen, cutaan</div>
                               <div>Instructie: <span title="aanbrengen (1018 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">aanbrengen</span>
                               </div>
                               <div>Timing: <div>3 maal per dag</div>
@@ -85,7 +85,7 @@
                <display value="Cetomacrogolcreme met vaseline 10%"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:4e85c9e6-5992-11eb-1283-020000000000"/>
+               <reference value="urn:uuid:c33f1aa0-6a95-11ec-0000-020000000000"/>
                <display value="N. XXX_Maasz"/>
             </subject>
             <authoredOn value="${DATE, T, D, +0}T08:12:00+02:00"/>
@@ -93,7 +93,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:4e85d0a6-5992-11eb-1283-020000000000"/>
+                        <reference value="urn:uuid:c33f1ac8-6a95-11ec-0000-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -102,7 +102,7 @@
                </agent>
             </requester>
             <dosageInstruction>
-               <text value="Vanaf T+0D{00:00:00}, tot en met T+28D{23:59:59}, 3 maal per dag, aanbrengen, cutaan"/>
+               <text value="Vanaf T, tot en met T + 28 dagen, 3 maal per dag, aanbrengen, cutaan"/>
                <additionalInstruction>
                   <coding>
                      <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
@@ -132,7 +132,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4e85c9e6-5992-11eb-1283-020000000000"/>
+      <fullUrl value="urn:uuid:c33f1aa0-6a95-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -167,7 +167,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="female"/>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1954-08-10"/>
          </Patient>
       </resource>
@@ -272,7 +282,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4e85d0a6-5992-11eb-1283-020000000000"/>
+      <fullUrl value="urn:uuid:c33f1ac8-6a95-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>

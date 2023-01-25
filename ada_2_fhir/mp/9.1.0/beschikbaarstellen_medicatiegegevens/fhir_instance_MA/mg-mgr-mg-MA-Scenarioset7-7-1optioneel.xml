@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="39cec240-5992-11eb-4535-020000000000"/>
+   <id value="c23fd9e4-4d3d-11ec-1899-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:39cedf81-5992-11eb-4535-020000000000"/>
+      <fullUrl value="urn:uuid:c23fd669-4d3d-11ec-1899-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -65,7 +65,7 @@
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-InstructionsForUseDescription">
-               <valueString value="Vanaf T+0D{00:00:00}, tot en met T+31D{23:59:59}, zo nodig, cutaan"/>
+               <valueString value="Vanaf T, tot en met T + 31 dagen, zo nodig, cutaan"/>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -81,11 +81,11 @@
                <text value="Medicatieafspraak"/>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:39cedf9b-5992-11eb-4535-020000000000"/>
+               <reference value="urn:uuid:c23fd682-4d3d-11ec-1899-020000000000"/>
                <display value="Ureum 10% in eucerine cum aqua 100gr"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:39cec247-5992-11eb-4535-020000000000"/>
+               <reference value="urn:uuid:c23fd9eb-4d3d-11ec-1899-020000000000"/>
                <display value="R. XXX-TEST-E"/>
             </subject>
             <authoredOn value="${DATE, T, D, +0}T12:00:00+02:00"/>
@@ -93,7 +93,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:39cedf87-5992-11eb-4535-020000000000"/>
+                        <reference value="urn:uuid:c23fd66f-4d3d-11ec-1899-020000000000"/>
                         <display value="Peter van Pulver || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -124,7 +124,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:39cec247-5992-11eb-4535-020000000000"/>
+      <fullUrl value="urn:uuid:c23fd9eb-4d3d-11ec-1899-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -159,7 +159,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="male"/>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1970-05-05"/>
          </Patient>
       </resource>
@@ -264,7 +274,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:39cedf87-5992-11eb-4535-020000000000"/>
+      <fullUrl value="urn:uuid:c23fd66f-4d3d-11ec-1899-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
@@ -316,7 +326,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:39cedf9b-5992-11eb-4535-020000000000"/>
+      <fullUrl value="urn:uuid:c23fd682-4d3d-11ec-1899-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -334,10 +344,10 @@
                            <td>
                               <ul>
                                  <li>
-                                    <span title="UREUM (15219127 - G-Standaard HPK)">UREUM</span> 
+                                    <span title="UREUM (15219127 - G-Standaard HPK)">UREUM</span>
                                  </li>
                                  <li>
-                                    <span title="EUCERINE MET WATER FAGRON (14740877 - G-Standaard HPK)">EUCERINE MET WATER FAGRON</span> 
+                                    <span title="EUCERINE MET WATER FAGRON (14740877 - G-Standaard HPK)">EUCERINE MET WATER FAGRON</span>
                                  </li>
                               </ul>
                            </td>

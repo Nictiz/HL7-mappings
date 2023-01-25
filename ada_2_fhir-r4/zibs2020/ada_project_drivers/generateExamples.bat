@@ -2,34 +2,54 @@
 setlocal enabledelayedexpansion
 
 :: CHECK BEFORE RUNNING ####
-SET jarPath=C:\SaxonHE9-9-1-7J\saxon9he.jar
+if "%saxonPath%"=="" (
+  SET saxonPath=C:\SaxonHE9-9-1-7J\saxon9he.jar
+)
 SET inputDir=..\ada_instance
 SET outputDir=..\fhir_instance
 
-if not exist "%jarPath%" (
+if not exist "%saxonPath%" (
     echo.
-    echo.Did not find Saxon JAR here '%jarPath%'. Either add it here, or change the script to supply a different path...
+    echo.Did not find Saxon JAR here '%saxonPath%'. Either add it here or set the 'saxonPath' environment variable to supply a different path...
     echo.http://saxon.sourceforge.net
     pause
 )
 
-if exist "%outputDir%" (
-    echo.
-    echo Removing output dir
-    rmdir "%outputDir%" /s /q
+if "%1"=="" (
+	for /f %%f in ('dir /b "%inputDir%"') do (
+		set id=%%~nf
+		if "!id:~0,8!" == "nl-core-" (
+			if not exist "%inputDir%\!id!-bundled.xml" (			
+				call :doTransformation !id!
+			)
+		)
+	)
+) else (
+		set input=%1
+		call :doTransformation !input!
 )
 
-for /f %%f in ('dir /b "%inputDir%"') do (
- set id=%%~nf
- if "!id:~0,8!" == "nl-core-" (
-  if not exist "%inputDir%\!id!-bundled.xml" (
-   echo Converting !id!
-   set noDriverId=!id:-bundled=!
-   set baseId=!noDriverId:~0, -3!
+exit /b
 
-   java -jar "%jarPath%" -s:"%inputDir%/!id!.xml" -xsl:!baseId!-driver.xsl -o:"%outputDir%/!noDriverId!.xml
-  )
- )
+:doTransformation
+set input=%1
+if exist "%inputDir%/!input!-bundled.xml" (
+	set input=!input!-bundled
 )
 
-pause
+echo Converting !input!
+set noDriverId=!input:-bundled=!
+set baseId=!noDriverId:~0, -3!
+
+echo Removing previous output
+if exist "%outputDir%\!noDriverId!*.xml" (
+	del "%outputDir%\!noDriverId!*.xml" /Q
+)
+
+if exist "!baseId!-driver.xsl" (
+	set xslPath=!baseId!-driver.xsl
+) else (
+	set xslPath=nl-core-driver.xsl
+)
+
+java -jar "%saxonPath%" -s:"%inputDir%/!input!.xml" -xsl:!xslPath! -o:"%outputDir%/!noDriverId!.xml

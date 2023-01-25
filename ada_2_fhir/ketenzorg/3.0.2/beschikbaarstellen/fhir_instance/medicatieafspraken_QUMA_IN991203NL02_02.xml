@@ -1,0 +1,450 @@
+<?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
+   <id value="f91f1586-5da2-11ec-4411-020000000000"/>
+   <type value="searchset"/>
+   <total value="1"/>
+   <link>
+      <relation value="self"/>
+      <url value="http://dummy.nictiz.nl/dummyquery"/>
+   </link>
+   <entry>
+      <fullUrl value="https://example.org/fhir/MedicationAgreement/2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-Medicatieafspraak1.2.1"/>
+      <resource>
+         <MedicationRequest>
+            <id value="2.16.840.1.113883.2.4.3.111.19.1-MedMijHG-Medicatieafspraak1.2.1"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Medicatieafspraak. Subject: H. XXX_Mulders. Id: MedMijHG-Medicatieafspraak1.2.1 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+                        <span style="display: block;">Aangevraagd door: Huisarts 1 || Huisarts || Gezondheidscentrum Aesculaap</span>
+                     </caption>
+                     <tbody>
+                        <tr>
+                           <th>Context</th>
+                           <td>
+                              <ul>
+                                 <li>Episode ID: MedMijHG-concern-DM 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-concern-DM (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</li>
+                                 <li>Contact ID: MedMijHG-contactmoment1.2 2.16.840.1.113883.2.4.3.111.19.1 (Id: MedMijHG-contactmoment1.2 (urn:oid:2.16.840.1.113883.2.4.3.111.19.1))</li>
+                              </ul>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Medicatie</th>
+                           <td>
+                              <a href="https://example.org/fhir/Medication/2.16.840.1.113883.2.4.4.10-60674">METFORMINE TABLET 1000MG</a>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Gemaakt</th>
+                           <td>08:58:25, 25 juli 2019</td>
+                        </tr>
+                        <tr>
+                           <th>Reden</th>
+                           <td>Diabetes Mellitus type 2</td>
+                        </tr>
+                        <tr>
+                           <th>Gebruiksduur</th>
+                           <td>Vanaf 08:58:25, 25 juli 2019</td>
+                        </tr>
+                        <tr>
+                           <th>Doseerinstructie</th>
+                           <td>
+                              <div>Volgnummer: 1</div>
+                              <div>Tekst: 3 maal daags 1 tablet</div>
+                              <div>Timing: <div>3 maal per dag</div>
+                              </div>
+                              <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
+                              </div>
+                              <div>Dosering: 1 Eenheid</div>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+               <valuePeriod>
+                  <start value="2019-07-25T08:58:25+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/extension-context-nl-core-episodeofcare">
+               <valueReference>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
+                     <value value="MedMijHG-concern-DM"/>
+                  </identifier>
+                  <display value="Episode ID: MedMijHG-concern-DM 2.16.840.1.113883.2.4.3.111.19.1"/>
+               </valueReference>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
+               <value value="MedMijHG-Medicatieafspraak1.2.1"/>
+            </identifier>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="16076005"/>
+                  <display value="Prescription (procedure)"/>
+               </coding>
+               <text value="Medicatieafspraak"/>
+            </category>
+            <medicationReference>
+               <reference value="https://example.org/fhir/Medication/2.16.840.1.113883.2.4.4.10-60674"/>
+               <display value="METFORMINE TABLET 1000MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:f91f158a-5da2-11ec-4411-020000000000"/>
+               <display value="H. XXX_Mulders"/>
+            </subject>
+            <context>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.111.19.1"/>
+                  <value value="MedMijHG-contactmoment1.2"/>
+               </identifier>
+               <display value="Contact ID: MedMijHG-contactmoment1.2 2.16.840.1.113883.2.4.3.111.19.1"/>
+            </context>
+            <authoredOn value="2019-07-25T08:58:25+02:00"/>
+            <requester>
+               <agent>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+                     <valueReference>
+                        <reference value="urn:uuid:f91f0b71-5da2-11ec-4411-020000000000"/>
+                        <display value="Huisarts 1 || Huisarts || Gezondheidscentrum Aesculaap"/>
+                     </valueReference>
+                  </extension>
+                  <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431"/>
+                  <display value="Huisarts 1"/>
+               </agent>
+            </requester>
+            <reasonReference>
+               <reference value="urn:uuid:f91f0b80-5da2-11ec-4411-020000000000"/>
+               <display value="Diabetes Mellitus type 2"/>
+            </reasonReference>
+            <dosageInstruction>
+               <sequence value="1"/>
+               <text value="3 maal daags 1 tablet"/>
+               <timing>
+                  <repeat>
+                     <frequency value="3"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <doseQuantity>
+                  <value value="1"/>
+                  <unit value="Eenheid"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="211"/>
+               </doseQuantity>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <search>
+         <mode value="match"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:f91f158a-5da2-11ec-4411-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), H. XXX_Mulders, Man, 30 december 1985</div>
+                  <div>Knolweg 1003, 9999ZA STITSWERD, Nederland</div>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                     <valueCode value="masked"/>
+                  </extension>
+               </value>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <family value="XXX_Mulders">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="XXX_Mulders"/>
+                  </extension>
+               </family>
+               <given value="H.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="1985-12-30"/>
+            <address>
+               <line value="Knolweg 1003">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Knolweg"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1003"/>
+                  </extension>
+               </line>
+               <city value="STITSWERD"/>
+               <postalCode value="9999ZA"/>
+               <country value="Nederland"/>
+            </address>
+         </Patient>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431"/>
+      <resource>
+         <Practitioner>
+            <id value="2.16.528.1.1007.3.1-900016431"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <div>Id 900016431 (UZI-NR-PERS), Huisarts 1</div>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+               <value value="900016431"/>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="UNK"/>
+               </extension>
+               <family value="Huisarts 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Huisarts 1"/>
+                  </extension>
+               </family>
+            </name>
+         </Practitioner>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
+      <resource>
+         <Organization>
+            <id value="2.16.528.1.1007.3.3-00002727"/>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Organisatie. Id: 00002727 (URA)</caption>
+                     <tbody>
+                        <tr>
+                           <th>Naam</th>
+                           <td>Gezondheidscentrum Aesculaap</td>
+                        </tr>
+                        <tr>
+                           <th>Adres</th>
+                           <td>Maastricht (WP)</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00002727"/>
+            </identifier>
+            <name value="Gezondheidscentrum Aesculaap"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <city value="Maastricht"/>
+            </address>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:f91f0b71-5da2-11ec-4411-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Zorgverlenerrol. </caption>
+                     <tbody>
+                        <tr>
+                           <th>Zorgverlener</th>
+                           <td>
+                              <div>
+                                 <a href="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431">Huisarts 1</a>
+                              </div>
+                              <div>
+                                 <a href="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727">Gezondheidscentrum Aesculaap</a>
+                              </div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <th>Specialisme</th>
+                           <td>
+                              <span title="Huisarts (01.015 - http://fhir.nl/fhir/NamingSystem/uzi-rolcode)">Huisarts</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <practitioner>
+               <reference value="https://example.org/fhir/Practitioner/2.16.528.1.1007.3.1-900016431"/>
+               <display value="Huisarts 1"/>
+            </practitioner>
+            <organization>
+               <reference value="https://example.org/fhir/Organization/2.16.528.1.1007.3.3-00002727"/>
+               <display value="Gezondheidscentrum Aesculaap"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+                  <code value="01.015"/>
+                  <display value="Huisarts"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="https://example.org/fhir/Medication/2.16.840.1.113883.2.4.4.10-60674"/>
+      <resource>
+         <Medication>
+            <id value="2.16.840.1.113883.2.4.4.10-60674"/>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Product"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <tbody>
+                        <tr>
+                           <th>Code</th>
+                           <td>
+                              <span title="METFORMINE TABLET 1000MG (60674 - G-Standaard PRK)">METFORMINE TABLET 1000MG</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="60674"/>
+                  <display value="METFORMINE TABLET 1000MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="114421"/>
+                  <display value="METFORMINE 1000MG TABLET"/>
+               </coding>
+               <text value="METFORMINE TABLET 1000MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:f91f0b80-5da2-11ec-4411-020000000000"/>
+      <resource>
+         <Condition>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+            </meta>
+            <text>
+               <status value="extensions"/>
+               <div xmlns="http://www.w3.org/1999/xhtml">
+                  <table>
+                     <caption>Aandoening. Subject: H. XXX_Mulders. Status: actief</caption>
+                     <tbody>
+                        <tr>
+                           <th>Code</th>
+                           <td>
+                              <span title="Diabetes Mellitus type 2 (T90.02 - sid/icpc-1-nl)">Diabetes Mellitus type 2</span>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </text>
+            <clinicalStatus value="active"/>
+            <code>
+               <coding>
+                  <system value="http://hl7.org/fhir/sid/icpc-1-nl"/>
+                  <code value="T90.02"/>
+                  <display value="Diabetes Mellitus type 2"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:f91f158a-5da2-11ec-4411-020000000000"/>
+               <display value="H. XXX_Mulders"/>
+            </subject>
+         </Condition>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+</Bundle>

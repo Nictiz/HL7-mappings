@@ -17,14 +17,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
-    
+
     <!-- ============================================================================================== -->
     <!-- FIXME/TODO? We plakken hier het monsternummer en het monstervolgnummer aan elkaar met een '-'. Dit betekent dat we hier buiten het lab om een identificatie maken. Dat kan niet goed goan.
         Verder weten we uit de praktijk dat labs monsternummer en monstervolgnummer en container-id door elkaar gooien, dus misschien is de input al vervuild.
     -->
     <!-- FIXME/TODO? Isolaat parent en Catethertip worden contained resources. Dit wordt oook zo gedaan in de FHIR STU3 core voorbeelden. Juist/onjuist in ons geval? -->
     <!-- ============================================================================================== -->
-    
+
     <xsl:variable name="labSpecimens" as="element()*">
         <xsl:for-each-group select="//laboratory_test_result/specimen[.//(@value | @code | @nullFlavor)] | //laboratorium_uitslag/monster[.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
             <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
@@ -34,7 +34,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:value-of select="current-grouping-key()"/>
                 </group-key>
                 <reference-display xmlns="">
-                    <xsl:value-of select="(specimen_material | monstermateriaal)/(@displayName|@originalText)"/>
+                    <xsl:value-of select="(specimen_material | monstermateriaal)/(@displayName | @originalText)"/>
                 </reference-display>
                 <xsl:apply-templates select="current-group()[1]" mode="doLaboratoryResultSpecimenEntry-2.1">
                     <xsl:with-param name="uuid" select="$uuid"/>
@@ -43,7 +43,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </uniek-materiaal>
         </xsl:for-each-group>
     </xsl:variable>
-    
+
     <xd:doc>
         <xd:desc/>
     </xd:doc>
@@ -63,12 +63,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </identifier>
             </xsl:when>
         </xsl:choose>
-        
+
         <xsl:if test="string-length($theGroupElement/reference-display) gt 0">
             <display value="{$theGroupElement/reference-display}"/>
         </xsl:if>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Produces a FHIR entry element with an Specimen resource</xd:desc>
         <xd:param name="uuid">If true generate uuid from scratch. Defaults to false(). Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
@@ -96,7 +96,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
         </xsl:param>
         <xsl:param name="searchMode">include</xsl:param>
-        
+
         <entry>
             <fullUrl value="{$entryFullUrl}"/>
             <resource>
@@ -114,7 +114,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
         </entry>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Mapping of nl.zorg.LaboratoriumUitslag concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Specimen">zib-LaboratoryTestResult-Specimen</xd:a>.</xd:desc>
         <xd:param name="logicalId">Optional FHIR logical id for the record.</xd:param>
@@ -127,13 +127,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
-        
+
         <xsl:variable name="patientRef" as="element()*">
             <xsl:for-each select="$adaPatient">
                 <xsl:call-template name="patientReference"/>
             </xsl:for-each>
         </xsl:variable>
-        
+
         <xsl:for-each select="$in">
             <xsl:variable name="currentAdaTransaction" select="./ancestor::*[ancestor::data]"/>
             <xsl:variable name="containedSpecimenId" select="generate-id(microorganism | microorganisme)"/>
@@ -142,10 +142,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:choose>
                     <!--ST	NL-CM:13.1.29			BronMonster	0..1	Indien het materiaal niet rechtstreeks bij de patiënt afgenomen, maar afkomstig is van een aan de patiënt gerelateerd voorwerp, zoals b.v een cathetertip, kan deze bron van het materiaal hier vastgelegd worden.	118170007 Specimen source identity-->
                     <xsl:when test="specimen_source | bron_monster">
+                        <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDeviceProduct</xsl:variable>
                         <Device>
-                            <id value="{$containedDeviceId}"/>
+                            <xsl:if test="string-length($containedDeviceId) gt 0">
+                                <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $containedDeviceId)}"/>
+                            </xsl:if>
                             <meta>
-                                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDeviceProduct"/>
+                                <profile value="{$profileValue}"/>
                             </meta>
                             <type>
                                 <text value="{(specimen_source | bron_monster)/@value}"/>
@@ -168,20 +171,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:variable>
             <xsl:variable name="receivedDateTime" as="element()?">
                 <!--TS	NL-CM:13.1.25			AannameDatumTijd	0..1	Datum en tijdstip waarop het materiaal bij het laboratorium of prikpunt is afgegeven. Het gaat hierbij om materiaal dat door de patiënt zelf verzameld is.		-->
-                <xsl:if test="received_date_time| aanname_datum_tijd">
+                <xsl:if test="received_date_time | aanname_datum_tijd">
                     <receivedTime>
                         <xsl:call-template name="date-to-datetime">
-                            <xsl:with-param name="in" select="received_date_time| aanname_datum_tijd"/>
+                            <xsl:with-param name="in" select="received_date_time | aanname_datum_tijd"/>
                             <xsl:with-param name="inputDateT" select="$dateT"/>
                         </xsl:call-template>
                     </receivedTime>
                 </xsl:if>
             </xsl:variable>
             <xsl:variable name="collectionDetails" as="element()?">
-                <xsl:if test="  collection_period | verzamelperiode | 
-                                collected_volume | verzamelvolume | 
-                                collection_method | afname_procedure | 
-                                anatomical_location | anatomische_locatie">
+                <xsl:if test="
+                        collection_period | verzamelperiode |
+                        collected_volume | verzamelvolume |
+                        collection_method | afname_procedure |
+                        anatomical_location | anatomische_locatie">
                     <collection>
                         <!-- Pre-adopt 2019 where datatype has changed for NL-CM:13.1.24 CollectionPeriod from TS to TimeInterval -->
                         <!-- https://bits.nictiz.nl/browse/MM-767 -->
@@ -220,8 +224,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </collectedDateTime>
                             </xsl:when>
                         </xsl:choose>
-                        
-                        <!--PQ	NL-CM:13.1.23			Verzamelvolume	0..1	Totale volume van het verzamelde materiaal. Indien het noodzakelijk is om de absolute hoeveelheid van een bepaalde stof in het afgenomen of verzamelde materiaal te bepalen, dient het volume hiervan opgegeven te worden.-->		
+
+                        <!--PQ	NL-CM:13.1.23			Verzamelvolume	0..1	Totale volume van het verzamelde materiaal. Indien het noodzakelijk is om de absolute hoeveelheid van een bepaalde stof in het afgenomen of verzamelde materiaal te bepalen, dient het volume hiervan opgegeven te worden.-->
                         <xsl:if test="collected_volume | verzamelvolume">
                             <quantity>
                                 <xsl:call-template name="hoeveelheid-to-Quantity">
@@ -229,7 +233,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:call-template>
                             </quantity>
                         </xsl:if>
-                        
+
                         <!--CD	NL-CM:13.1.18			Afnameprocedure	0..1	Indien relevant voor de uitslag kan de wijze van verkrijgen van het monster opgegeven worden.	118171006 Specimen procedure	AfnameprocedureCodelijst-->
                         <xsl:if test="collection_method | afname_procedure">
                             <method>
@@ -238,7 +242,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:call-template>
                             </method>
                         </xsl:if>
-                        
+
                         <!--CD	NL-CM:13.1.26			AnatomischeLocatie	0..1	Anatomische locatie waar het materiaal verzameld is, bijvoorbeeld elleboog.	118169006 Specimen source topography	MonsterAnatomischeLocatieCodelijst-->
                         <xsl:if test="anatomical_location | anatomische_locatie">
                             <bodySite>
@@ -270,35 +274,39 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </collection>
                 </xsl:if>
             </xsl:variable>
-            
+
             <!--NL-CM:13.1.2		Monster	0..1	Container van het concept Monster. Deze container bevat alle gegevenselementen van het concept Monster.	123038009 monster-->
             <xsl:variable name="resource">
+                <xsl:variable name="profileValue">
+                    <xsl:choose>
+                        <xsl:when test="microorganism | microorganisme">http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Specimen-Isolate</xsl:when>
+                        <xsl:otherwise>http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Specimen</xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+
                 <Specimen>
                     <xsl:if test="$referById">
-                        <id value="{$logicalId}"/>
+                        <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
                     </xsl:if>
                     <meta>
-                        <xsl:choose>
-                            <xsl:when test="microorganism | microorganisme">
-                                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Specimen-Isolate"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Specimen"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
+                        <profile value="{$profileValue}"/>
                     </meta>
-                    
+
                     <!--CD	NL-CM:13.1.22			Microorganisme	0..1	Bij met name microbiologische bepalingen is soms geen sprake materiaal maar van een isolaat met daarop een bepaald micro-organisme. Dit concept biedt de mogelijkheid informatie omtrent dit micro-organisme vast te leggen.		MicroorganismeCodelijst-->
                     <!--Assumptions when there is a micro-organism:
                         - collection info is about original specimen, not about the derived specimen (micro-organism)
                         - specimen_id and coontainer info are about the derived specimen
                     -->
                     <xsl:if test="microorganism | microorganisme">
+                        <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Specimen</xsl:variable>
+
                         <contained>
                             <Specimen>
-                                <id value="{$containedSpecimenId}"/>
+                                <xsl:if test="string-length($containedSpecimenId) gt 0">
+                                    <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $containedSpecimenId)}"/>
+                                </xsl:if>
                                 <meta>
-                                    <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Specimen"/>
+                                    <profile value="{$profileValue}"/>
                                 </meta>
                                 <xsl:if test="specimen_material | monstermateriaal">
                                     <type>
@@ -319,7 +327,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:copy-of select="$specimenSubject/self::f:Device"/>
                         </contained>
                     </xsl:if>
-                    
+
                     <!--NL-CM:0.0.6   Identificatienummer-->
                     <!--II	NL-CM:13.1.15			Monsternummer	0..*	Identificerend nummer van het afgenomen materiaal, ter referentie voor navraag bij bronorganisatie. In de transmurale setting bestaat dit nummer uit een monsternummer inclusief de identificatie van de uitgevende organisatie, om uniek te zijn buiten de grenzen van een organisatie.-->
                     <!-- https://bits.nictiz.nl/browse/ZIB-1016 -->
@@ -330,7 +338,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </identifier>
                     </xsl:for-each>
-                    
+
                     <!--CD	NL-CM:13.1.16			Monstermateriaal	0..1	Monstermateriaal beschrijft het afgenomen materiaal. Indien de LOINC testcode impliciet ook een materiaal beschrijft, mag dit element daar niet mee in strijd zijn. Indien gewenst kan dit gegeven wel een meer gedetailleerde beschrijving van het materiaal geven: LOINC codes bevatten de materialen alleen op hoofdniveau.
                     Dit is in lijn met de afspraken die gemaakt zijn in het IHE/Nictiz programma e-Lab. Indien de test uitgevoerd is op een afgeleid materiaal (bijv. plasma) bevat dit element toch het afgenomen materiaal (in dit geval bloed). De LOINC code zal in het algemeen in dit geval wel naar plasma wijzen.
                     370133003 Specimen substance	MonstermateriaalCodelijst-->
@@ -350,9 +358,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </type>
                         </xsl:otherwise>
                     </xsl:choose>
-                    
+
                     <xsl:copy-of select="$specimenSubject/self::f:subject"/>
-                    
+
                     <xsl:if test="not(microorganism | microorganisme)">
                         <xsl:copy-of select="$receivedDateTime"/>
                     </xsl:if>
@@ -367,7 +375,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:if test="not(microorganism | microorganisme)">
                         <xsl:copy-of select="$collectionDetails"/>
                     </xsl:if>
-                    
+
                     <xsl:if test="specimen_number_extension | monstervolgnummer | container_type | containertype">
                         <container>
                             <!--INT	NL-CM:13.1.20			Monstervolgnummer	0..1	Het monstervolgnummer wordt toegepast, als het verzamelde materiaal uit de oorspronkelijke buis of container verdeeld wordt over meerdere buizen. In combinatie met het monsternummer biedt het volgnummer de mogelijkheid de buis of container uniek te identificeren.		-->
@@ -387,7 +395,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:call-template>
                                 </identifier>
                             </xsl:for-each>
-                            
+
                             <!--CD	NL-CM:13.1.21			Containertype	0..1	Containertype beschrijft het omhulsel waarin het materiaal verzameld of verstuurd is. Voorbeelden zijn bloedbuizen, transportcontainer evt incl. kweekmedium.		ContainerTypeCodelijst-->
                             <xsl:if test="container_type | containertype">
                                 <type>
@@ -398,7 +406,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:if>
                         </container>
                     </xsl:if>
-                    
+
                     <!--ST	NL-CM:13.1.19			Toelichting	0..1	Opmerking over de afname, bijv. afname na (glucose)stimulus of medicijn inname.	48767-8 Annotation comment-->
                     <xsl:for-each select="(comment | toelichting)[@value]">
                         <note>
@@ -411,10 +419,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
                 </Specimen>
             </xsl:variable>
-            
+
             <!-- Add resource.text -->
             <xsl:apply-templates select="$resource" mode="addNarrative"/>
         </xsl:for-each>
     </xsl:template>
-    
+
 </xsl:stylesheet>

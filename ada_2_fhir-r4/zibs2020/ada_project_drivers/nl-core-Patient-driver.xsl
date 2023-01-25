@@ -19,6 +19,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:f="http://hl7.org/fhir" 
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
     xmlns:nf="http://www.nictiz.nl/functions" 
+    xmlns:nm="http://www.nictiz.nl/mappings"
     xmlns:uuid="http://www.uuid.org"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
@@ -32,20 +33,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xd:ul>
                 <xd:li>zib Patient</xd:li>
                 <xd:li>zib Nationality</xd:li>
+                <xd:li>zib LifeStance</xd:li>
                 <xd:li>zib MaritalStatus</xd:li>
                 <xd:li>zib LanguageProfiency</xd:li>
                 <xd:li>zib ContactPerson</xd:li>
             </xd:ul>
         </xd:desc>
     </xd:doc>
-    <xsl:template match="/">
+    <xsl:template match="/nm:bundle">
         <xsl:for-each select="$bundle/patient">
             <xsl:call-template name="nl-core-Patient">
                 <xsl:with-param name="nationality" select="$bundle/nationaliteit_rc"/>
+                <xsl:with-param name="lifeStance" select="$bundle/levensovertuiging_rc"/>
                 <xsl:with-param name="maritalStatus" select="$bundle/burgerlijke_staat_rc"/>
                 <xsl:with-param name="languageProficiency" select="$bundle/taalvaardigheid"/>
                 <xsl:with-param name="contactPersons" select="$bundle/contactpersoon"/>
             </xsl:call-template>
         </xsl:for-each>
     </xsl:template>
+    
+    <xsl:template match="//patient_registratie/patient">
+        <xsl:apply-templates mode="_doTransform" select="."/>
+    </xsl:template>
+    
 </xsl:stylesheet>

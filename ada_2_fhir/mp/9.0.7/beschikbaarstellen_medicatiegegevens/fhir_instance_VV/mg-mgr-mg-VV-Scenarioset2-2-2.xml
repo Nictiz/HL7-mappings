@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/bundle.xsd">
-   <id value="50df0e72-5992-11eb-5567-020000000000"/>
+   <id value="c33f260e-6a95-11ec-0000-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -9,7 +9,7 @@
       <url value="http://dummy.nictiz.nl/dummyquery"/>
    </link>
    <entry>
-      <fullUrl value="urn:uuid:50df1dd6-5992-11eb-5567-020000000000"/>
+      <fullUrl value="urn:uuid:c33f1d18-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -100,7 +100,7 @@
                <display value="FENETICILLINE CAPSULE 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:50df0e79-5992-11eb-5567-020000000000"/>
+               <reference value="urn:uuid:c33f1cfa-6a95-11ec-0000-020000000000"/>
                <display value="C. XXX_Vonker"/>
             </subject>
             <authoredOn value="${DATE, T, D, -5}T08:06:00+02:00"/>
@@ -108,7 +108,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:50df1dd9-5992-11eb-5567-020000000000"/>
+                        <reference value="urn:uuid:c33f1d1e-6a95-11ec-0000-020000000000"/>
                         <display value="Bertine van Doorn || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Pulver &amp; Partners"/>
                      </valueReference>
                   </extension>
@@ -135,7 +135,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:50df0e79-5992-11eb-5567-020000000000"/>
+      <fullUrl value="urn:uuid:c33f1cfa-6a95-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -170,7 +170,17 @@
                   </extension>
                </given>
             </name>
-            <gender value="male"/>
+            <gender value="male">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+                        <code value="M"/>
+                        <display value="Man"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
             <birthDate value="1954-02-08"/>
          </Patient>
       </resource>
@@ -307,7 +317,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:50df1dd9-5992-11eb-5567-020000000000"/>
+      <fullUrl value="urn:uuid:c33f1d1e-6a95-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>

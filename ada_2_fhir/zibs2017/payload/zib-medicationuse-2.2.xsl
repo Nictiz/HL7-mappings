@@ -23,7 +23,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="ext-zib-medication-use-duration-2.0.xsl"/>
     <xsl:import href="nl-core-practitioner-2.0.xsl"/>
     <xsl:import href="nl-core-practitionerrole-2.0.xsl"/>-->
-   
+
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
@@ -91,12 +91,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:for-each select="$in">
             <xsl:variable name="resource">
+                <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse</xsl:variable>
                 <MedicationStatement>
-                    <xsl:for-each select="$logicalId[string-length(.) gt 0]">
-                        <id value="{.}"/>
-                    </xsl:for-each>
+                    <xsl:if test="string-length($logicalId) gt 0">
+                        <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
+                    </xsl:if>
                     <meta>
-                        <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
+                        <profile value="{$profileValue}"/>
                     </meta>
                     <!-- volgens_afspraak_indicator -->
                     <xsl:for-each select="volgens_afspraak_indicator[@value]">
@@ -180,11 +181,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <status value="unknown-stoptype"/>
                         </xsl:when>
                         <xsl:otherwise>
-                            <status>
-                                <extension url="{$urlExtHL7DataAbsentReason}">
-                                    <valueCode value="unknown"/>
-                                </extension>
-                            </status>
+                            <!-- MP-133 / MM-3618 -->
+                            <status value="active"/>
                         </xsl:otherwise>
                     </xsl:choose>
                     <!-- type bouwsteen, hier medicatiegebruik -->
@@ -315,7 +313,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:apply-templates select="gebruiksinstructie" mode="handleGebruiksinstructie"/>
                 </MedicationStatement>
             </xsl:variable>
-            
+
             <!-- Add resource.text -->
             <xsl:apply-templates select="$resource" mode="addNarrative"/>
         </xsl:for-each>

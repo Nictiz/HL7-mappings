@@ -13,10 +13,12 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <!-- Templates of the form 'make<datatype/flavor>Value' correspond to ART-DECOR supported datatypes / HL7 V3 Datatypes R1 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns:util="urn:hl7:utilities" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns:util="urn:hl7:utilities" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../util/constants.xsl"/>
     <xsl:import href="../../util/datetime.xsl"/>
     <xsl:import href="../../util/utilities.xsl"/>
+    <xsl:import href="../../util/units.xsl"/>
+    
     <!-- only give dateT a value if you want conversion of relative T dates -->
     <xsl:param name="dateT" as="xs:date?"/>
     <xd:doc scope="stylesheet">
@@ -41,6 +43,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:choose>
                 <xsl:when test="upper-case($precision) = ('MINUTE', 'MINUUT', 'MINUTES', 'MINUTEN', 'MIN', 'M')">[Y0001][M01][D01][H01][m01]</xsl:when>
                 <xsl:when test="upper-case($precision) = ('HOUR', 'UUR', 'HOURS', 'UREN', 'HR', 'HH', 'H', 'U')">[Y0001][M01][D01][H01]</xsl:when>
+                <xsl:when test="upper-case($precision) = ('SECOND', 'SECONDE', 'SECONDES', 'SECONDEN', 'SEC', 'S')">[Y0001][M01][D01][H01][m01][s01]</xsl:when>
+                <xsl:when test="upper-case($precision) = ('MILLISECOND', 'MILLISECONDE', 'MILLISECONDES', 'MILLISECONDEN', 'MILLISEC', 'MS', 'MSEC')">[Y0001][M01][D01][H01][m01][s01].[f001]</xsl:when>
                 <xsl:otherwise>[Y0001][M01][D01][H01][m01][s01]</xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
@@ -169,11 +173,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="makePQValue">
                         <xsl:with-param name="elemName" select="$elemName"/>
                         <!-- AWE: fix for xsiType, entering empty in parameter overrides the default with an empty value -->
-                        <xsl:with-param name="xsiType" select="
-                                if ($outputXsiType) then
-                                    ('PQ')
-                                else
-                                    ''"/>
+                        <xsl:with-param name="xsiType" select="if ($outputXsiType) then ('PQ') else ''"/>
                     </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$dataType = 'reference'">
@@ -276,13 +276,51 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="elemName"/>
         <xd:param name="originalText"/>
         <xd:param name="strOriginalText"/>
+        <xd:param name="qualifiers"/>
         <xd:param name="translations"/>
         <xd:param name="xsiType"/>
     </xd:doc>
     <xsl:template name="makeCDValue">
-        <xsl:param name="code" as="xs:string?" select="./@code"/>
-        <xsl:param name="codeSystem" as="xs:string?" select="./@codeSystem"/>
-        <xsl:param name="displayName" as="xs:string?" select="./@displayName"/>
+        <xsl:param name="code" as="xs:string?" select="@code"/>
+        <xsl:param name="codeSystem" as="xs:string?" select="@codeSystem"/>
+        <xsl:param name="displayName" as="xs:string?" select="@displayName"/>
+        <xsl:param name="elemName" as="xs:string?">value</xsl:param>
+        <xsl:param name="originalText"/>
+        <xsl:param name="strOriginalText" as="xs:string?" select="@originalText"/>
+        <xsl:param name="translations" as="element(hl7:translation)*"/>
+        <xsl:param name="qualifiers" as="element(hl7:qualifier)*"/>
+        <xsl:param name="xsiType" as="xs:string?">CD</xsl:param>
+        <xsl:element name="{$elemName}">
+            <xsl:if test="string-length($xsiType) gt 0">
+                <xsl:attribute name="xsi:type" select="$xsiType"/>
+            </xsl:if>
+            <xsl:call-template name="makeCodeAttribs">
+                <xsl:with-param name="code" select="$code"/>
+                <xsl:with-param name="codeSystem" select="$codeSystem"/>
+                <xsl:with-param name="displayName" select="$displayName"/>
+                <xsl:with-param name="originalText" select="$originalText"/>
+                <xsl:with-param name="strOriginalText" select="$strOriginalText"/>
+            </xsl:call-template>
+            <xsl:copy-of select="$qualifiers"/>
+            <xsl:copy-of select="$translations"/>
+        </xsl:element>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc/>
+        <xd:param name="code"/>
+        <xd:param name="codeSystem"/>
+        <xd:param name="displayName"/>
+        <xd:param name="elemName"/>
+        <xd:param name="originalText"/>
+        <xd:param name="strOriginalText"/>
+        <xd:param name="translations"/>
+        <xd:param name="xsiType"/>
+    </xd:doc>
+    <xsl:template name="makeCDValue_From_AnatomicalLocation">
+        <xsl:param name="code" as="xs:string?" select="locatie/@code | location/@code"/>
+        <xsl:param name="codeSystem" as="xs:string?" select="locatie/@codeSystem | location/@codeSystem"/>
+        <xsl:param name="displayName" as="xs:string?" select="locatie/@displayName | location/@displayName"/>
         <xsl:param name="elemName" as="xs:string?">value</xsl:param>
         <xsl:param name="originalText"/>
         <xsl:param name="strOriginalText" as="xs:string?"/>
@@ -299,6 +337,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="originalText" select="$originalText"/>
                 <xsl:with-param name="strOriginalText" select="$strOriginalText"/>
             </xsl:call-template>
+            <xsl:for-each select="lateraliteit | laterality">
+                <qualifier>
+                    <name code="272741003" codeSystem="{$oidSNOMEDCT}" displayName="lateraliteit"/>
+                    <value>
+                        <xsl:call-template name="makeCodeAttribs">
+                            <xsl:with-param name="code" select="@code"/>
+                            <xsl:with-param name="codeSystem" select="@codeSystem"/>
+                            <xsl:with-param name="displayName" select="@displayName"/>
+                            <xsl:with-param name="originalText" select="@originalText"/>
+                            <xsl:with-param name="strOriginalText" select="@strOriginalText"/>
+                        </xsl:call-template>
+                    </value>
+                </qualifier>
+            </xsl:for-each>
+            <xsl:for-each select="../morfologie | ../morphology">
+                <qualifier>
+                    <name code="118168003" codeSystem="{$oidSNOMEDCT}" displayName="morfologische bron van monster"/>
+                    <value>
+                        <xsl:call-template name="makeCodeAttribs">
+                            <xsl:with-param name="code" select="@code"/>
+                            <xsl:with-param name="codeSystem" select="@codeSystem"/>
+                            <xsl:with-param name="displayName" select="@displayName"/>
+                            <xsl:with-param name="originalText" select="@originalText"/>
+                            <xsl:with-param name="strOriginalText" select="@strOriginalText"/>
+                        </xsl:call-template>
+                    </value>
+                </qualifier>
+            </xsl:for-each>
             <xsl:copy-of select="$translations"/>
         </xsl:element>
     </xsl:template>
@@ -470,8 +536,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="codeSystemName"/>
         <xd:param name="codeSystemVersion"/>
         <xd:param name="displayName"/>
-        <xd:param name="originalText"/>
-        <xd:param name="strOriginalText"/>
+        <xd:param name="originalText">originalText as element</xd:param>
+        <xd:param name="strOriginalText">originalText as string</xd:param>
         <xd:param name="value"/>
     </xd:doc>
     <xsl:template name="makeCodeAttribs">
@@ -481,7 +547,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="codeSystemVersion" as="xs:string?" select="@codeSystemVersion"/>
         <xsl:param name="displayName" as="xs:string?" select="@displayName"/>
         <xsl:param name="originalText"/>
-        <xsl:param name="strOriginalText" as="xs:string?"/>
+        <xsl:param name="strOriginalText" as="xs:string?" select="@originalText"/>
         <xsl:param name="value" select="@value"/>
         <xsl:choose>
             <xsl:when test="string-length($code) = 0 and (string-length($value) gt 0 or string-length($strOriginalText) gt 0)">
@@ -842,6 +908,46 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
+        <xd:desc>makeIVL_TS. Makes an HL7 IVL_TS element based on ada TimeInterval construct</xd:desc>
+        <xd:param name="xsiType">Optional. The @xsi:type to be outputted. No default.</xd:param>
+        <xd:param name="elemName">The HL7 element name to be outputted, defaults to 'value'</xd:param>
+        <xd:param name="nullFlavor">The @nullFlavor attribute to be outputted, defaults to NI</xd:param>
+    </xd:doc>
+    <xsl:template name="makeIVL_TS_From_TimeInterval">
+        <xsl:param name="xsiType"/>
+        <xsl:param name="elemName">value</xsl:param>
+        <xsl:param name="nullFlavor" select="(@nullFlavor, 'NI')[1]"/>
+        <xsl:element name="{$elemName}">
+            <xsl:if test="string-length($xsiType) gt 0">
+                <xsl:attribute name="xsi:type" select="$xsiType"/>
+            </xsl:if>
+            <xsl:choose>
+                <xsl:when test="start_datum_tijd | tijds_duur| eind_datum_tijd">
+                    <xsl:for-each select="start_datum_tijd">
+                        <xsl:call-template name="makeTSValue">
+                            <xsl:with-param name="elemName">low</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    <xsl:for-each select="tijds_duur">
+                        <xsl:call-template name="makePQValue">
+                            <xsl:with-param name="elemName">width</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    <xsl:for-each select="eind_datum_tijd">
+                        <xsl:call-template name="makeTSValue">
+                            <xsl:with-param name="elemName">high</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- assume nullFlavor -->
+                    <xsl:attribute name="nullFlavor" select="$nullFlavor"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:element>
+    </xsl:template>
+
+    <xd:doc>
         <xd:desc/>
         <xd:param name="inputValue"/>
     </xd:doc>
@@ -889,7 +995,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:if test="string-length($xsiType) gt 0">
                 <xsl:attribute name="xsi:type" select="$xsiType"/>
             </xsl:if>
-            <xsl:value-of select="@value"/>
+            <xsl:choose>
+                <xsl:when test="@value">
+                    <xsl:value-of select="@value"/>
+                </xsl:when>
+                <xsl:when test="@nullFlavor">
+                    <xsl:copy-of select="@nullFlavor"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:attribute name="nullFlavor">NI</xsl:attribute>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:element>
     </xsl:template>
 
@@ -905,7 +1021,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:if test="string-length($xsiType) gt 0">
                 <xsl:attribute name="xsi:type" select="$xsiType"/>
             </xsl:if>
-            <xsl:value-of select="@value"/>
+            <xsl:choose>
+                <xsl:when test="@value">
+                    <xsl:value-of select="@value"/>
+                </xsl:when>
+                <xsl:when test="@nullFlavor">
+                    <xsl:copy-of select="@nullFlavor"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:attribute name="nullFlavor">NI</xsl:attribute>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:element>
     </xsl:template>
 
@@ -923,14 +1049,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="elemName" as="xs:string?">value</xsl:param>
         <xsl:param name="unit" as="xs:string?" select="@unit"/>
         <xsl:param name="nullFlavor" as="xs:string?" select="@nullFlavor"/>
+        <xsl:variable name="cleanInputValue" select="replace(normalize-space($inputValue), '^(&lt;|&gt;)=?', '')"/>
         <xsl:element name="{$elemName}">
             <xsl:if test="string-length($xsiType) gt 0">
                 <xsl:attribute name="xsi:type" select="$xsiType"/>
             </xsl:if>
-            <xsl:call-template name="makePQValueAttribs">
-                <xsl:with-param name="value" select="$inputValue"/>
-                <xsl:with-param name="unit" select="$unit"/>
-            </xsl:call-template>
+            <xsl:choose>
+                <xsl:when test="string-length($cleanInputValue) gt 0">
+                    <xsl:call-template name="makePQValueAttribs">
+                        <xsl:with-param name="value" select="$cleanInputValue"/>
+                        <xsl:with-param name="unit" select="$unit"/>
+                    </xsl:call-template>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:call-template name="makePQValueAttribs">
+                        <xsl:with-param name="unit" select="$unit"/>
+                        <xsl:with-param name="nullFlavor" select="($nullFlavor, 'UNK')[1]"/>
+                    </xsl:call-template>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:element>
     </xsl:template>
 
@@ -941,9 +1078,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="nullFlavor"/>
     </xd:doc>
     <xsl:template name="makePQValueAttribs">
-        <xsl:param name="value" select="@value"/>
-        <xsl:param name="unit" select="@unit"/>
-        <xsl:param name="nullFlavor" select="@nullFlavor"/>
+        <xsl:param name="value" select="@value" as="xs:string?"/>
+        <xsl:param name="unit" select="@unit" as="xs:string?"/>
+        <xsl:param name="nullFlavor" select="@nullFlavor" as="xs:string?"/>
         <xsl:if test="$value">
             <xsl:attribute name="value" select="$value"/>
         </xsl:if>
@@ -1133,15 +1270,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="xsiType">The xsi type to be included. Defaults to BL.</xd:param>
         <xd:param name="elemName">The hl7 element name to be outputted. Defaults to value.</xd:param>
         <xd:param name="elemNamespace">The namespace this element is in. Defaults to the hl7 namespace.</xd:param>
+        <xd:param name="inputNullFlavor">nullFlavor string if applicable</xd:param>
     </xd:doc>
-    <xsl:template name="makeTSValue" match="element()" mode="MakeBLValue">
+    <xsl:template name="makeTSValue" match="element()" mode="MakeTSValue">
         <xsl:param name="inputValue" as="xs:string?" select="@value"/>
         <!-- Do not supply default for xsiType. Due to the datatypes.xsd schema, you cannot always use xsi:type TS, 
             unless the base type is TS, QTY or ANY -->
         <xsl:param name="xsiType"/>
         <xsl:param name="elemName">value</xsl:param>
         <xsl:param name="elemNamespace">urn:hl7-org:v3</xsl:param>
-        <xsl:variable name="inputNullFlavor" select="@nullFlavor" as="xs:string?"/>
+        <xsl:param name="inputNullFlavor" select="@nullFlavor" as="xs:string?"/>
         <xsl:element name="{$elemName}" namespace="{$elemNamespace}">
             <xsl:if test="string-length($xsiType) gt 0">
                 <xsl:attribute name="xsi:type" select="$xsiType"/>
@@ -1156,16 +1294,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Makes HL7 TS value attribute, based on input ada possible vague date/time string</xd:desc>
         <xd:param name="inputValue">The input ada value string</xd:param>
-        <xd:param name="inputNullFlavor"/>
+        <xd:param name="inputNullFlavor">The input ada nullFlavor</xd:param>
+        <xd:param name="precision">Determines the picture of the date(time) format. Seconds is the default.</xd:param>
+        <xd:param name="inputDateT">The input variable date T as xs:date. Optional, default to global param $dateT</xd:param>
     </xd:doc>
     <xsl:template name="makeTSValueAttr" match="element()" mode="MakeTSValueAttr">
+        <xsl:param name="inputDateT" as="xs:date?" select="$dateT"/>
         <xsl:param name="inputValue" as="xs:string?" select="@value"/>
         <xsl:param name="inputNullFlavor" as="xs:string?" select="@nullFlavor"/>
+        <xsl:param name="precision" as="xs:string?">second</xsl:param>
         <xsl:choose>
             <xsl:when test="$inputValue">
                 <xsl:attribute name="value">
                     <xsl:call-template name="format2HL7Date">
                         <xsl:with-param name="dateTime" select="$inputValue"/>
+                        <xsl:with-param name="inputDateT" select="$inputDateT"/>
+                        <xsl:with-param name="precision" select="$precision"/>
                     </xsl:call-template>
                 </xsl:attribute>
             </xsl:when>
@@ -1217,62 +1361,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:value-of select="concat($baseString, $endString)"/>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:function>
-
-    <xd:doc>
-        <xd:desc>Converts ADA time unit 2 UCUM</xd:desc>
-        <xd:param name="ADAtime"/>
-    </xd:doc>
-    <xsl:function name="nf:convertTime_ADA_unit2UCUM" as="xs:string?">
-        <xsl:param name="ADAtime" as="xs:string?"/>
-        <xsl:if test="$ADAtime">
-            <xsl:choose>
-                <xsl:when test="$ADAtime = $ada-unit-second">s</xsl:when>
-                <xsl:when test="$ADAtime = $ada-unit-minute">min</xsl:when>
-                <xsl:when test="$ADAtime = $ada-unit-hour">h</xsl:when>
-                <xsl:when test="$ADAtime = $ada-unit-day">d</xsl:when>
-                <xsl:when test="$ADAtime = $ada-unit-week">wk</xsl:when>
-                <xsl:when test="$ADAtime = $ada-unit-month">mo</xsl:when>
-                <xsl:when test="$ADAtime = $ada-unit-year">a</xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="concat('onbekende tijdseenheid: ', $ADAtime)"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:if>
-    </xsl:function>
-
-    <xd:doc>
-        <xd:desc>Converts ADA unit 2 UCUM</xd:desc>
-        <xd:param name="ADAunit"/>
-    </xd:doc>
-    <xsl:function name="nf:convert_ADA_unit2UCUM" as="xs:string?">
-        <xsl:param name="ADAunit" as="xs:string?"/>
-        <xsl:if test="$ADAunit">
-            <xsl:choose>
-                <xsl:when test="$ADAunit = $ada-unit-kilo">kg</xsl:when>
-                <xsl:when test="$ADAunit = $ada-unit-gram">g</xsl:when>
-                <xsl:when test="$ADAunit = $ada-unit-cm">cm</xsl:when>
-                <xsl:when test="$ADAunit = $ada-unit-m">m</xsl:when>
-                <xsl:when test="$ADAunit = $ada-unit-liter">l</xsl:when>
-                <xsl:when test="$ADAunit = $ada-unit-dl">dl</xsl:when>
-                <xsl:when test="$ADAunit = $ada-unit-cl">cl</xsl:when>
-                <xsl:when test="$ADAunit = $ada-unit-ml">ml</xsl:when>
-                <xsl:when test="$ADAunit = $ada-unit-ul">ul</xsl:when>
-
-                <xsl:when test="$ADAunit = $ada-unit-druppel">[drp]</xsl:when>
-                <xsl:when test="$ADAunit = $ada-unit-degrees-celsius">Cel</xsl:when>
-                <xsl:when test="$ADAunit = $ada-unit-pH">[pH]</xsl:when>
-                <xsl:when test="$ADAunit = $ada-unit-mmol-l">mmol/L</xsl:when>
-
-                <xsl:when test="not(contains(nf:convertTime_ADA_unit2UCUM($ADAunit), 'onbekend'))">
-                    <xsl:value-of select="nf:convertTime_ADA_unit2UCUM($ADAunit)"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <!-- let's assume it is a valid UCUM code -->
-                    <xsl:value-of select="$ADAunit"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:if>
     </xsl:function>
 
 </xsl:stylesheet>

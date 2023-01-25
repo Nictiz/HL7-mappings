@@ -15,12 +15,58 @@
          </valueCodeableConcept>
       </extension>
    </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Patient.LifeStance">
+      <valueCodeableConcept>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
+            <valueString value="Hecht veel waarde aan Kerst."/>
+         </extension>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="309885004"/>
+            <display value="protestant"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
    <identifier>
       <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
       <value value="111222333"/>
    </identifier>
-   <name><!--Processing zib-NameInformation is paused until https://github.com/Nictiz/Nictiz-R4-zib2020/issues/82 is resolved.-->
-      <text value="TODO"/>
+   <name>
+      <use value="official"/>
+      <text value="Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+      <family value="van Putten-van der Giessen">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+            <valueString value="van"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="Putten"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix">
+            <valueString value="van der"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+            <valueString value="Giessen"/>
+         </extension>
+      </family>
+      <given value="Johanna">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+      <given value="Petronella">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+      <given value="Maria">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+   </name>
+   <name>
+      <use value="usual"/>
+      <given value="Jo"/>
    </name>
    <telecom>
       <system value="phone">
@@ -113,8 +159,38 @@
             <display value="Hulpverlener"/>
          </coding>
       </relationship>
-      <name><!--Processing zib-NameInformation is paused until https://github.com/Nictiz/Nictiz-R4-zib2020/issues/82 is resolved.-->
-         <text value="TODO"/>
+      <name>
+         <use value="official"/>
+         <text value="J.P.M. van Putten-van der Giessen"/>
+         <family value="van Putten-van der Giessen">
+            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+               <valueString value="van"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+               <valueString value="Putten"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix">
+               <valueString value="van der"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+               <valueString value="Giessen"/>
+            </extension>
+         </family>
+         <given value="J.">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+               <valueCode value="IN"/>
+            </extension>
+         </given>
+         <given value="P.">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+               <valueCode value="IN"/>
+            </extension>
+         </given>
+         <given value="M.">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+               <valueCode value="IN"/>
+            </extension>
+         </given>
       </name>
       <telecom>
          <system value="phone">
