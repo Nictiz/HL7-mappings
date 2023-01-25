@@ -2762,15 +2762,17 @@
     <xsl:template name="rubricCluster18">
         <xsl:param name="parentElement"/>
         
+        <xsl:variable name="statusActiviteitCode" select="hl7:pertinentInformation/hl7:rubricCluster[hl7:code[@code = 'R018'][@codeSystem = '2.16.840.1.113883.2.4.4.40.391']]/hl7:component/hl7:observation[hl7:code[@code = '1605'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]/hl7:value/@code"/>
+        
         <xsl:apply-templates select="hl7:templateId" mode="dob400"/>
         <xsl:apply-templates select="hl7:id" mode="dob400"/>
         <xsl:apply-templates select="hl7:code" mode="dob400"/>
         <xsl:choose>
-            <xsl:when test="@moodCode = 'EVN' and hl7:statusCode[@code = 'aborted']">
+            <xsl:when test="not($statusActiviteitCode = '01')">
                 <statusCode code="cancelled" xmlns="urn:hl7-org:v3"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:apply-templates select="hl7:statusCode" mode="dob400"/>
+                <statusCode code="completed" xmlns="urn:hl7-org:v3"/>
             </xsl:otherwise>
         </xsl:choose>
         <xsl:apply-templates select="hl7:effectiveTime" mode="dob400"/>
@@ -2787,7 +2789,34 @@
         <xsl:apply-templates select="hl7:component3[hl7:component3/hl7:substanceAdministration/hl7:performer]" mode="dob400"/>
         <xsl:apply-templates select="hl7:component4" mode="dob400"/>
         <xsl:apply-templates select="hl7:component5" mode="dob400"/>
-        <xsl:apply-templates select="hl7:subjectOf" mode="dob400"/>
+        
+        <xsl:if test="not($statusActiviteitCode = '01' or $statusActiviteitCode = '08')">
+            <xsl:variable name="toelichtingNietVerschenenCode">
+                <xsl:choose>
+                    <xsl:when test="$statusActiviteitCode = '02'">02</xsl:when>
+                    <xsl:when test="$statusActiviteitCode = '07'">03</xsl:when>
+                    <xsl:otherwise>01</xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            <xsl:variable name="toelichtingNietVerschenenDisplayName">
+                <xsl:choose>
+                    <xsl:when test="$statusActiviteitCode = '02'">Niet verschenen zonder bericht</xsl:when>
+                    <xsl:when test="$statusActiviteitCode = '07'">Afgezegd door JGZ</xsl:when>
+                    <xsl:otherwise>Niet verschenen zonder bericht</xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+                <hl7:subjectOf typeCode="SUBJ">
+                    <hl7:abortedEvent classCode="STC" moodCode="EVN">
+                        <hl7:code code="495" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Toelichting niet verschenen"/>
+                        <hl7:reasonCode>
+                            <xsl:attribute name="code"><xsl:value-of select="$toelichtingNietVerschenenCode"/></xsl:attribute>
+                            <xsl:attribute name="codeSystem">2.16.840.1.113883.2.4.4.40.309</xsl:attribute>
+                            <xsl:attribute name="displayName"><xsl:value-of select="$toelichtingNietVerschenenDisplayName"/></xsl:attribute>
+                        </hl7:reasonCode>
+                    </hl7:abortedEvent>
+                </hl7:subjectOf>
+            </xsl:if>
+
         <xsl:apply-templates select="hl7:subjectOf1" mode="dob400"/>
         <xsl:apply-templates select="hl7:subjectOf2" mode="dob400"/>
     </xsl:template>
