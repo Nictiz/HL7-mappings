@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Immunization xmlns="http://hl7.org/fhir">
+   <id value="nl-core-Vaccination-event-02"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Vaccination-event"/>
+   </meta>
+   <status value="completed"/>
+   <vaccineCode>
+      <coding>
+         <system value="http://www.whocc.no/atc"/>
+         <code value="J07BC02"/>
+         <display value="Hepatitis A-vaccin"/>
+      </coding>
+   </vaccineCode>
+   <patient>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </patient>
+   <occurrenceDateTime value="2012-06-03"/>
+   <performer>
+      <function>
+         <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/v2-0443"/>
+            <code value="AP"/>
+         </coding>
+      </function>
+      <actor>
+         <reference value="PractitionerRole/nl-core-Vaccination-02-PractitionerRole-10"/>
+         <type value="PractitionerRole"/>
+         <display value="Healthcare professional (role), GG&amp;GD Nijmegen"/>
+      </actor>
+   </performer>
+   <note>
+      <text value="Bezoek aan Guatemala."/>
+   </note>
+</Immunization>

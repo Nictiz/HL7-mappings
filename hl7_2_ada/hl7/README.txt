@@ -3,8 +3,13 @@
 This contains resources for generic conversions of HL7v3 messages/CDA to a relatively simple dataset xml format in response type transactions. 
 
 ===Release Notes===
+2021-11-30
+* Fixed a bug in handling phone numbers marked TMP. The numberType code was written as HP instead of TMP
+* Change the order of handling ContactInformation marked with multiple use codes. Now prefers WP over HP. This was the other way around.
 2021-11-28
 * Handle datatype IVL_TS with @value or @nullFlavor the same as TS
+2021-09-17
+* Fixed a bug: Address type WP (work) was mapped to HP (private).
 2021-09-09
 * When there is no phone/email: don't create empty contact_information element
 2021-08-04

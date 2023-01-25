@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   
+   
+      <Bundle xmlns="http://hl7.org/fhir">
+   <id value="lr-slr-TEST-Scenario3b-3b1"/>
+   <type value="transaction"/>
+   <entry>
+      <fullUrl value="urn:uuid:78d2f5c0-6040-11ed-2815-020000000000"/>
+      <resource>
+         <Observation>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+               <valueBoolean value="true"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
+               <valueString value="111444"/>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
+               <value value="66666"/>
+            </identifier>
+            <status value="final"/>
+            <category>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+                  <code value="laboratory"/>
+                  <display value="Laboratory"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="2947-0"/>
+                  <display value="Natrium [mol/volume] in bloed"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:78d2f548-6040-11ed-2815-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, Elise Erelies"/>
+            </subject>
+            <effectiveDateTime value="${DATE, T, D, -64}"/>
+            <performer>
+               <reference value="urn:uuid:78d2f656-6040-11ed-2815-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Klinisch chemisch Lab 't Proefje"/>
+            </performer>
+            <valueQuantity>
+               <value value="165"/>
+               <unit value="mmol/l"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="mmol/l"/>
+            </valueQuantity>
+            <interpretation>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="281302008"/>
+                  <display value="boven referentiebereik"/>
+               </coding>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"/>
+                  <code value="H"/>
+                  <display value="High"/>
+               </coding>
+            </interpretation>
+            <interpretation>
+               <text value="Te hoog Natriumgehalte"/>
+            </interpretation>
+            <specimen>
+               <reference value="urn:uuid:78d2f566-6040-11ed-2815-020000000000"/>
+               <type value="Specimen"/>
+               <display value="monster"/>
+            </specimen>
+            <referenceRange>
+               <low>
+                  <value value="135"/>
+                  <unit value="mmol/l"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="mmol/l"/>
+               </low>
+               <high>
+                  <value value="145"/>
+                  <unit value="mmol/l"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="mmol/l"/>
+               </high>
+            </referenceRange>
+         </Observation>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Observation"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:78d2f5de-6040-11ed-2815-020000000000"/>
+      <resource>
+         <Observation>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+               <valueBoolean value="true"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
+               <valueString value="111333"/>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.1"/>
+               <value value="55555"/>
+            </identifier>
+            <status value="final"/>
+            <category>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+                  <code value="laboratory"/>
+                  <display value="Laboratory"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="6301-6"/>
+                  <display value="PT-INR [relatieve tijd] in plaatjesarm plasma d.m.v. stollingsmethode"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:78d2f548-6040-11ed-2815-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, Elise Erelies"/>
+            </subject>
+            <effectiveDateTime value="${DATE, T, D, -10}"/>
+            <performer>
+               <reference value="urn:uuid:78d2f692-6040-11ed-2815-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Trombosedienst Ons Dorp"/>
+            </performer>
+            <valueQuantity>
+               <value value="2.9"/>
+            </valueQuantity>
+            <interpretation>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="281302008"/>
+                  <display value="boven referentiebereik"/>
+               </coding>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"/>
+                  <code value="H"/>
+                  <display value="High"/>
+               </coding>
+            </interpretation>
+            <interpretation>
+               <text value="Te hoog let op."/>
+            </interpretation>
+            <specimen>
+               <reference value="urn:uuid:78d2f584-6040-11ed-2815-020000000000"/>
+               <type value="Specimen"/>
+               <display value="monster"/>
+            </specimen>
+         </Observation>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Observation"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:78d2f5fc-6040-11ed-2815-020000000000"/>
+      <resource>
+         <Observation>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+               <valueBoolean value="true"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
+               <valueString value="111555"/>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.4"/>
+               <value value="77777"/>
+            </identifier>
+            <status value="final"/>
+            <category>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+                  <code value="laboratory"/>
+                  <display value="Laboratory"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="6298-4"/>
+                  <display value="Kalium [mol/volume] in bloed"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:78d2f548-6040-11ed-2815-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, Elise Erelies"/>
+            </subject>
+            <effectiveDateTime value="${DATE, T, M, -1}"/>
+            <valueQuantity>
+               <value value="4.0"/>
+               <unit value="mmol/l"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="mmol/l"/>
+            </valueQuantity>
+            <specimen>
+               <reference value="urn:uuid:78d2f5a2-6040-11ed-2815-020000000000"/>
+               <type value="Specimen"/>
+               <display value="monster"/>
+            </specimen>
+            <referenceRange>
+               <low>
+                  <value value="3.5"/>
+                  <unit value="mmol/l"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="mmol/l"/>
+               </low>
+               <high>
+                  <value value="5.0"/>
+                  <unit value="mmol/l"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="mmol/l"/>
+               </high>
+            </referenceRange>
+         </Observation>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Observation"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:78d2f566-6040-11ed-2815-020000000000"/>
+      <resource>
+         <Specimen>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4267.2"/>
+               <value value="334"/>
+            </identifier>
+            <subject>
+               <reference value="urn:uuid:78d2f548-6040-11ed-2815-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, Elise Erelies"/>
+            </subject>
+            <collection>
+               <collectedDateTime value="${DATE, T, D, -65}"/>
+               <method>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="713143008"/>
+                     <display value="afname van arterieel bloed"/>
+                  </coding>
+               </method>
+            </collection>
+            <container>
+               <extension url="http://hl7.org/fhir/StructureDefinition/specimen-sequenceNumber">
+                  <valueInteger value="1"/>
+               </extension>
+            </container>
+         </Specimen>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Specimen"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:78d2f584-6040-11ed-2815-020000000000"/>
+      <resource>
+         <Specimen>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4267.1"/>
+               <value value="#1"/>
+            </identifier>
+            <subject>
+               <reference value="urn:uuid:78d2f548-6040-11ed-2815-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, Elise Erelies"/>
+            </subject>
+            <collection>
+               <collectedDateTime value="${DATE, T, D, -11}"/>
+            </collection>
+            <container>
+               <type>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="767387006"/>
+                     <display value="vacuümbuis voor bloedafname met citraat, theofylline, adenosine en dipyramidol (fysiek object)"/>
+                  </coding>
+               </type>
+            </container>
+         </Specimen>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Specimen"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:78d2f5a2-6040-11ed-2815-020000000000"/>
+      <resource>
+         <Specimen>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4267.4"/>
+               <value value="334"/>
+            </identifier>
+            <subject>
+               <reference value="urn:uuid:78d2f548-6040-11ed-2815-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, Elise Erelies"/>
+            </subject>
+            <collection>
+               <collectedDateTime value="${DATE, T, M, -1}"/>
+               <method>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="713143008"/>
+                     <display value="afname van arterieel bloed"/>
+                  </coding>
+               </method>
+            </collection>
+            <container>
+               <extension url="http://hl7.org/fhir/StructureDefinition/specimen-sequenceNumber">
+                  <valueInteger value="2"/>
+               </extension>
+            </container>
+         </Specimen>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Specimen"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:78d2f61a-6040-11ed-2815-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00005111"/>
+            </identifier>
+            <type>
+               <coding>
+                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+                  <version value="2022-07-07T00:00:00"/>
+                  <code value="Z3"/>
+                  <display value="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
+               </coding>
+            </type>
+            <name value="Huisartsenpraktijk Itis"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Langelaan 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Langelaan"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Onze Stad"/>
+               <postalCode value="1234ZZ"/>
+            </address>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:78d2f656-6040-11ed-2815-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00003333"/>
+            </identifier>
+            <type>
+               <coding>
+                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+                  <version value="2022-07-07T00:00:00"/>
+                  <code value="L1"/>
+                  <display value="Laboratorium"/>
+               </coding>
+            </type>
+            <name value="Klinisch chemisch Lab 't Proefje"/>
+            <telecom>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
+                  <valueString value="Bel met vragen"/>
+               </extension>
+               <system value="phone"/>
+               <value value="06-11122233"/>
+               <use value="work"/>
+            </telecom>
+            <telecom>
+               <system value="email"/>
+               <value value="tproefje@lab.nl"/>
+               <use value="work"/>
+            </telecom>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Hoofdstraat 23">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Hoofdstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="23"/>
+                  </extension>
+               </line>
+               <city value="Zorgstad"/>
+               <postalCode value="1234 AA"/>
+            </address>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:78d2f692-6040-11ed-2815-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="11112222"/>
+            </identifier>
+            <type>
+               <coding>
+                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+                  <code value="TD"/>
+                  <display value="Trombosedienst"/>
+               </coding>
+            </type>
+            <name value="Trombosedienst Ons Dorp"/>
+            <telecom>
+               <system value="phone">
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                     <valueCodeableConcept>
+                        <coding>
+                           <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                           <code value="MC"/>
+                           <display value="Mobiel telefoonnummer"/>
+                        </coding>
+                     </valueCodeableConcept>
+                  </extension>
+               </system>
+               <value value="06-11122266"/>
+            </telecom>
+            <address>
+               <line value="Kerkstraat 28 d">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Kerkstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="28"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="d"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1332GH"/>
+            </address>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:78d2f548-6040-11ed-2815-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value value="999999114"/>
+            </identifier>
+            <name>
+               <use value="official"/>
+               <text value="Elise Erelies"/>
+               <family value="Erelies">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Erelies"/>
+                  </extension>
+               </family>
+               <given value="Elise">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="1950-11-01"/>
+         </Patient>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
+   </entry>
+</Bundle>
+   
