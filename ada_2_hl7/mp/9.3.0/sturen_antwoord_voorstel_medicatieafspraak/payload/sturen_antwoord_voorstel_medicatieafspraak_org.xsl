@@ -19,7 +19,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <!-- give dateT a value when you need conversion of relative T dates, typically only needed for test instances -->
     <!--    <xsl:param name="dateT" as="xs:date?" select="current-date()"/>-->
-    <xsl:param name="dateT" as="xs:date?" select="xs:date('2021-03-24')"/>
+    <xsl:param name="dateT" as="xs:date?" select="xs:date('2022-01-01')"/>
     <!--    <xsl:param name="dateT" as="xs:date?"/>-->
     <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
@@ -27,61 +27,39 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="schematronRef" as="xs:boolean" select="false()"/>
 
     <xsl:template match="/">
-        <xsl:call-template name="Voorschrift_9x">
-            <xsl:with-param name="in" select="adaxml/data/sturen_medicatievoorschrift"/>
+        <xsl:call-template name="SturenAntwVoorstelMA-920">
+            <xsl:with-param name="in" select="adaxml/data/sturen_antwoord_voorstel_medicatieafspraak"/>
         </xsl:call-template>
     </xsl:template>
 
-    <xsl:template name="Voorschrift_9x">
-        <xsl:param name="in" select="adaxml/data/sturen_medicatievoorschrift"/>
+    <xsl:template name="SturenAntwVoorstelMA-920">
+        <xsl:param name="in" select="adaxml/data/sturen_antwoord_voorstel_medicatieafspraak"/>
 
         <xsl:variable name="patient" select="$in/patient"/>
         <xsl:variable name="mbh" select="$in/medicamenteuze_behandeling"/>
 
         <xsl:if test="$schematronRef">
             <xsl:processing-instruction name="nictiz">status="example"</xsl:processing-instruction>
-            <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../schematron_closed_warnings/mp-mp93_vos.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
+            <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../schematron_closed_warnings/mp-mp93_avma.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
         </xsl:if>
         <xsl:comment>Generated from ada instance with title: "<xsl:value-of select="$mbh/../@title"/>" and id: "<xsl:value-of select="$mbh/../@id"/>".</xsl:comment>
         <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd" classCode="CLUSTER" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9433"/>
-            <code code="95" displayName="Voorschrift" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9399"/>
+            <xsl:for-each select="$in/voorstel_gegevens/antwoord/identificatie[@value | @root]">
+                <xsl:call-template name="makeIIValue">
+                    <xsl:with-param name="elemName">id</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <code code="373" displayName="Sturen antwoord voorstel medicatieafspraak" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>
             <statusCode nullFlavor="NI"/>
             <!-- Patient -->
             <xsl:for-each select="$patient">
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1_20180611000000"/>
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1_20210701000000"/>
             </xsl:for-each>
-            <!-- Medicamenteuze behandeling -->
-            <xsl:for-each select="$mbh">
-                <!-- Medicatieafspraak -->
-                <xsl:for-each select="medicatieafspraak[not(kopie_indicator/@value = 'true')]">
-                    <component typeCode="COMP">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9430_20221122132432"/>
-                    </component>
-                </xsl:for-each>
-                <!-- Medicatieafspraak -->
-                <xsl:for-each select="medicatieafspraak[kopie_indicator/@value = 'true']">
-                    <component typeCode="COMP">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9431_20221122133531"/>
-                    </component>
-                </xsl:for-each>
-                <!-- Verstrekkingsverzoek -->
-                <xsl:for-each select="verstrekkingsverzoek">
-                    <component typeCode="COMP">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9449_20230106093041"/>
-                    </component>
-                </xsl:for-each>
-            </xsl:for-each>
-            <!-- Lichaamslengte -->
-            <xsl:for-each select="$in/bouwstenen/lichaamslengte[.//(@value | @code)]">
+            <!-- antwoord -->
+            <xsl:for-each select="$in/voorstel_gegevens/antwoord[.//(@value | @code | @nullFlavor)]">
                 <component typeCode="COMP">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.30_20210701000000"/>
-                </component>
-            </xsl:for-each>
-            <!-- Lichaamsgewicht -->
-            <xsl:for-each select="$in/bouwstenen/lichaamsgewicht[.//(@value | @code)]">
-                <component typeCode="COMP">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.19_20210701000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9396_20220315000000"/>
                 </component>
             </xsl:for-each>
         </organizer>
