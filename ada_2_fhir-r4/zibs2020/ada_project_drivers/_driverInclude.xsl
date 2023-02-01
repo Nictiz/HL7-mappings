@@ -440,6 +440,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
             </xsl:when>
+            <xsl:when test="$localName = 'ontwikkeling_kind'">
+                <xsl:apply-templates select="$in" mode="nl-core-DevelopmentChild">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'opleiding'">
                 <xsl:apply-templates select="$in" mode="nl-core-Education">
                     <xsl:with-param name="subject" select="$subject"/>
