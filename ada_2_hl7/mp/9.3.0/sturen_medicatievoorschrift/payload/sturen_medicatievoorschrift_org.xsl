@@ -75,7 +75,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- Lichaamslengte -->
             <xsl:for-each select="$in/bouwstenen/lichaamslengte[.//(@value | @code)]">
                 <component typeCode="COMP">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.30_20210701000000"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.30_20171025000000"/>
                 </component>
             </xsl:for-each>
             <!-- Lichaamsgewicht -->
