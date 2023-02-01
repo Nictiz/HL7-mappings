@@ -1843,45 +1843,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>MP CDA author medicatieoverzicht - vanaf versie 9 2.0 </xd:desc>
-        <xd:param name="auteur"/>
-    </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9389_20210701000000" match="auteur" mode="HandleDocGegAuteur920">
-        <xsl:param name="auteur" select="."/>
-        <xsl:for-each select="$auteur">
-            <author>
-                <xsl:choose>
-                    <!-- use the document date if available -->
-                    <xsl:when test="../document_datum[@value | @nullFlavor]">
-                        <xsl:for-each select="../document_datum[@value | @nullFlavor]">
-                            <xsl:call-template name="makeTSValue">
-                                <xsl:with-param name="elemName">time</xsl:with-param>
-                            </xsl:call-template>
-                        </xsl:for-each>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <time nullFlavor="NI"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-                <assignedAuthor>
-                    <xsl:for-each select="auteur_is_zorgaanbieder/zorgaanbieder">
-                        <!--identificatie-->
-                        <id nullFlavor="NI"/>
-                        <!--Zorgaanbieder-->
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.33_20210701000000"/>
-                    </xsl:for-each>
-                    <!--Patient-->
-                    <xsl:if test="auteur_is_patient">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.52_20170825000000">
-                            <xsl:with-param name="ada_patient_identificatienummer" select="ancestor::adaxml/data/*/patient/(patient_identificatienummer | identificatienummer)"/>
-                        </xsl:call-template>
-                    </xsl:if>
-                </assignedAuthor>
-            </author>
-        </xsl:for-each>
-    </xsl:template>
-
-    <xd:doc>
         <xd:desc>Toediener in medicatietoediening</xd:desc>
         <xd:param name="in">the ada element for toediener, defaults to context</xd:param>
     </xd:doc>

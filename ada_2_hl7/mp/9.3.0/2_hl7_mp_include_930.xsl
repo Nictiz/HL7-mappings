@@ -1080,6 +1080,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
         </xsl:for-each>
     </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Medicatiegebruik - vanaf MP 9 2.0 - Kopie </xd:desc>
+        <xd:param name="in">ada element voor medicatiegebruik</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9443_20221124135001" match="medicatie_gebruik | medicatiegebruik" mode="HandleMGBKopie920">
+        <xsl:param name="in" select="."/>
+        
+        <xsl:for-each select="$in">
+            <substanceAdministration classCode="SBADM" moodCode="EVN" negationInd="false">
+                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9331"/>
+                <!-- inhoud medicatiegebruik -->
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9442_20221124134142">
+                    <xsl:with-param name="in" select="."/>
+                </xsl:call-template>
+            </substanceAdministration>
+        </xsl:for-each>
+    </xsl:template>
     
     <xd:doc>
         <xd:desc>Medicatiegebruik - vanaf MP 9 2.0 </xd:desc>
