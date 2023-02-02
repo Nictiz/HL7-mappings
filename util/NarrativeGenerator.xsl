@@ -12269,6 +12269,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="textLang" select="$textLang"/>
                         </xsl:call-template>
                     </xsl:when>
+                    <xsl:when test="f:coding[f:userSelected/string(@value) = 'true'][f:display]">
+                        <xsl:call-template name="doDT_Coding">
+                            <xsl:with-param name="in" select="f:coding[f:userSelected/string(@value) = 'true'][f:display][1]"/>
+                            <xsl:with-param name="textLang" select="$textLang"/>
+                        </xsl:call-template>
+                    </xsl:when>
                     <!-- 8308-9 bodyHeightCodeStanding, 8306-3 bodyHeightCodeLying -->
                     <xsl:when test="f:coding[f:code/@value = ('8308-9', '8306-3')][f:display]">
                         <xsl:call-template name="doDT_Coding">
@@ -12285,6 +12291,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:when test="f:text">
                         <xsl:call-template name="doDT_String">
                             <xsl:with-param name="in" select="f:text"/>
+                            <xsl:with-param name="textLang" select="$textLang"/>
+                        </xsl:call-template>
+                    </xsl:when>
+                    <xsl:when test="f:coding[f:userSelected/string(@value) = 'true']">
+                        <xsl:call-template name="doDT_Coding">
+                            <xsl:with-param name="in" select="f:coding[f:userSelected/string(@value) = 'true'][f:display][1]"/>
                             <xsl:with-param name="textLang" select="$textLang"/>
                         </xsl:call-template>
                     </xsl:when>
