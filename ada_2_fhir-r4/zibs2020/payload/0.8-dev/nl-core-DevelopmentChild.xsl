@@ -118,7 +118,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <coding>
                                 <system value="{$oidMap[@oid=$oidLOINC]/@uri}"/>
                                 <code value="42798-9"/>
-                                <display value="Age at menarche"/>
+                                <display value="leeftijd bij eerste menstruatie"/>
                             </coding>
                         </code>
                         <valueQuantity>
