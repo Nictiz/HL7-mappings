@@ -2461,38 +2461,26 @@
         <xsl:apply-templates select="hl7:templateId" mode="dob327"/>
         <xsl:apply-templates select="hl7:id" mode="dob327"/>
         <xsl:apply-templates select="hl7:code" mode="dob327"/>
-        <xsl:choose>
-            <xsl:when test="hl7:statusCode">
-                <xsl:apply-templates select="hl7:statusCode" mode="dob327"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <statusCode xmlns="urn:hl7-org:v3">
-                    <xsl:attribute name="code">
+
+        <statusCode xmlns="urn:hl7-org:v3">
+            <xsl:attribute name="code">
+                <xsl:choose>
+                    <xsl:when test="@moodCode = 'INT'">
                         <xsl:choose>
-                            <!--<concept code="01" codeSystem="2.16.840.1.113883.2.4.4.40.309" displayName="Niet verschenen met bericht" level="0" type="L"/>-->
-                            <xsl:when test=".//hl7:reasonCode[@code = '01'][@codeSystem = '2.16.840.1.113883.2.4.4.40.309']">
-                                <xsl:text>cancelled</xsl:text>
-                            </xsl:when>
-                            <!--<concept code="02" codeSystem="2.16.840.1.113883.2.4.4.40.309" displayName="Niet verschenen zonder bericht" level="0" type="L"/>-->
-                            <xsl:when test=".//hl7:reasonCode[@code = '02'][@codeSystem = '2.16.840.1.113883.2.4.4.40.309']">
-                                <xsl:text>aborted</xsl:text>
-                            </xsl:when>
-                            <!--<concept code="03" codeSystem="2.16.840.1.113883.2.4.4.40.309" displayName="Afgezegd door JGZ" level="0" type="L"/>-->
-                            <xsl:when test=".//hl7:reasonCode[@code = '03'][@codeSystem = '2.16.840.1.113883.2.4.4.40.309']">
-                                <xsl:text>cancelled</xsl:text>
-                            </xsl:when>
-                            <!-- Open afspraak -->
-                            <xsl:when test="@moodCode = 'INT'">
-                                <xsl:text>active</xsl:text>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:text>completed</xsl:text>
-                            </xsl:otherwise>
+                            <xsl:when test="hl7:statusCode/@code = 'completed'">active</xsl:when>
+                            <xsl:when test="hl7:statusCode/@code = 'active'">active</xsl:when>
+                            <xsl:otherwise>cancelled</xsl:otherwise>
                         </xsl:choose>
-                    </xsl:attribute>
-                </statusCode>
-            </xsl:otherwise>
-        </xsl:choose>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:choose>
+                            <xsl:when test="hl7:statusCode/@code = 'cancelled'">aborted</xsl:when>
+                            <xsl:otherwise>completed</xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:attribute>
+        </statusCode>
         <xsl:apply-templates select="hl7:effectiveTime" mode="dob327"/>
         <xsl:apply-templates select="hl7:reasonCode" mode="dob327"/>
         <xsl:apply-templates select="hl7:performer" mode="dob327"/>

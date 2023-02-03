@@ -2758,11 +2758,11 @@
         <xsl:apply-templates select="hl7:id" mode="dob400"/>
         <xsl:apply-templates select="hl7:code" mode="dob400"/>
         <xsl:choose>
-            <xsl:when test="not($statusActiviteitCode = '01')">
-                <statusCode code="cancelled" xmlns="urn:hl7-org:v3"/>
+            <xsl:when test="$statusActiviteitCode = '01'">
+                <statusCode code="completed" xmlns="urn:hl7-org:v3"/>
             </xsl:when>
             <xsl:otherwise>
-                <statusCode code="completed" xmlns="urn:hl7-org:v3"/>
+                <statusCode code="cancelled" xmlns="urn:hl7-org:v3"/>
             </xsl:otherwise>
         </xsl:choose>
         <xsl:apply-templates select="hl7:effectiveTime" mode="dob400"/>
@@ -2792,7 +2792,7 @@
                 <xsl:choose>
                     <xsl:when test="$statusActiviteitCode = '02'">Niet verschenen zonder bericht</xsl:when>
                     <xsl:when test="$statusActiviteitCode = '07'">Afgezegd door JGZ</xsl:when>
-                    <xsl:otherwise>Niet verschenen zonder bericht</xsl:otherwise>
+                    <xsl:otherwise>Niet verschenen met bericht</xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
                 <hl7:subjectOf typeCode="SUBJ">
