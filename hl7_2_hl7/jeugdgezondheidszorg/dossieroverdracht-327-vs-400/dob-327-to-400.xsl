@@ -1551,6 +1551,13 @@
             </agentPerson>
         </responsibleParty>
     </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Annotation was ACT, maar is nu OBS. Act.text (ST) is nu Act.value (ANY). Bij element 1407: value[@xsi:type=ST].</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:authorization/hl7:consentEvent/hl7:subjectOf/hl7:annotation[hl7:code[@code = '1407']]/hl7:text" mode="dob327">
+        <value xsi:type="ST" xmlns="urn:hl7-org:v3"><xsl:value-of select="."/></value>
+    </xsl:template>
     
     <xd:doc>
         <xd:desc>Annotation was ACT, maar is nu OBS. Act.text (ST) is nu Act.value (ANY). Bij element 1541: value[@xsi:type=CV]. Alles wat niet expliciet hetzelfde is, wordt 03 Gezaghebbende (Geen toestemming van andere gezaghebbende vereist)</xd:desc>

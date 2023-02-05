@@ -1457,9 +1457,9 @@
                 <xsl:when test="hl7:subjectOf/hl7:annotation/hl7:code[@code='1407'][@codeSystem='2.16.840.1.113883.2.4.4.40.267']">
                     <subjectOf xmlns="urn:hl7-org:v3">
                         <annotation>
-                            <xsl:apply-templates select="hl7:code" mode="dob400"/>
+                            <xsl:apply-templates select="hl7:subjectOf/hl7:annotation/hl7:code" mode="dob400"/>
                             <text>
-                                <xsl:value-of select="hl7:value"/>
+                                <xsl:value-of select="hl7:subjectOf/hl7:annotation/hl7:value"/>
                             </text>
                         </annotation>
                     </subjectOf>
