@@ -2579,6 +2579,12 @@
     <xsl:template match="hl7:component[hl7:groupCluster[hl7:code[@code = 'G117'][@codeSystem = '2.16.840.1.113883.2.4.4.40.393']]]" mode="dob400">
         <xsl:comment><xsl:text> element </xsl:text><xsl:value-of select="hl7:groupCluster/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:groupCluster/hl7:code/@displayName"/><xsl:text> is overgeslagen </xsl:text></xsl:comment>
     </xsl:template>
+    <xd:doc>
+        <xd:desc>Rubriek 10, element 476 Informatie verstrekt over werkwijze heeft geen waarde in het DOB bericht bij BDS 3.2.7</xd:desc>
+    </xd:doc>
+    <xsl:template match="hl7:pertinentInformation[hl7:annotationObsEvent[hl7:code[@code = '476'][@codeSystem = '2.16.840.1.113883.2.4.4.40.267']]]" mode="dob400">
+        <xsl:comment><xsl:text> De boolean waarde van het element </xsl:text><xsl:value-of select="hl7:annotationObsEvent/hl7:code/@code"/><xsl:text> </xsl:text><xsl:value-of select="hl7:annotationObsEvent/hl7:code/@displayName"/><xsl:text> is overgeslagen.</xsl:text></xsl:comment>
+    </xsl:template>
     
     <xd:doc>
         <xd:desc>Downgrade van CMET Rijksvaccinatie COCT_RM900916NL04 naar COCT_MT900916NL02. In versie 02 werd geen @moodCode='RMD' ondersteund, geen location, geen limitation en geen gegevens in causeOf2/adverseReaction/subjectOf/informationControlActEvent/performer/assignedPerson behalve id
