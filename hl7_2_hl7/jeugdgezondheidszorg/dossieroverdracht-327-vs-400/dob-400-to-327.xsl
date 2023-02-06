@@ -1398,13 +1398,6 @@
                                     <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI" xsi:nil="true"/>
                                 </personalRelationship>
                             </xsl:when>
-<!--                            <!-\- personalRelationship als W0691 03 (Gezaghebbende (Geen toestemming van andere gezaghebbende vereist)) 04 Gezaghebbende (Toestemming van andere gezaghebbende vereist) of 05 (Wettelijk vertegenwoordiger namens jeugdige) -\->
-                            <xsl:when test="hl7:code[@codeSystem='2.16.840.1.113883.2.4.4.40.435']">
-                                <personalRelationship classCode="PRS">
-                                    <xsl:apply-templates select="hl7:code" mode="dob400"/>
-                                    <relationshipHolder classCode="PSN" determinerCode="INSTANCE" nullFlavor="NI" xsi:nil="true"/>
-                                </personalRelationship>
-                            </xsl:when>-->
                             <!-- assignedEntity1 als toestemming verpleegkundige vaccinaties -->
                             <xsl:when test="$isBDS469">
                                 <assignedEntity1 classCode="ASSIGNED" xmlns="urn:hl7-org:v3">
