@@ -6664,12 +6664,6 @@
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41005_20200527000000"/>
                 </component>
             </xsl:for-each>
-            <xsl:for-each select="scan_van_oefeningenblad">
-                <component>
-                    <!-- Template :: obs Scan van oefeningenblad -->
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.41006_20200527000000"/>
-                </component>
-            </xsl:for-each>
             <xsl:for-each select="_1_figuren_natekenen__kwantiteit">
                 <component>
                     <!-- Template :: obs 1. Figuren natekenen - kwantiteit -->
