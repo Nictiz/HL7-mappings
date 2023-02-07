@@ -27,12 +27,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="schematronRef" as="xs:boolean" select="false()"/>
 
     <xsl:template match="/">
-        <xsl:call-template name="SturenAntwVoorstelMA-920">
+        <xsl:call-template name="SturenAntwVoorstelMA-930">
             <xsl:with-param name="in" select="adaxml/data/sturen_antwoord_voorstel_medicatieafspraak"/>
         </xsl:call-template>
     </xsl:template>
 
-    <xsl:template name="SturenAntwVoorstelMA-920">
+    <xsl:template name="SturenAntwVoorstelMA-930">
         <xsl:param name="in" select="adaxml/data/sturen_antwoord_voorstel_medicatieafspraak"/>
 
         <xsl:variable name="patient" select="$in/patient"/>

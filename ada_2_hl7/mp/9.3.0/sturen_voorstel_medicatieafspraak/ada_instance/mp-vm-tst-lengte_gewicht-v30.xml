@@ -1,0 +1,98 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_voorstel_medicatieafspraak.xsd">
+   <meta status="new" created-by="medicatieprocesada" last-update-by="medicatieprocesada" creation-date="2023-01-09T17:43:42.106+01:00" last-update-date="2023-01-09T17:43:42.106+01:00"/>
+   <data>
+      <sturen_voorstel_medicatieafspraak app="mp-mp93" shortName="sturen_voorstel_medicatieafspraak" formName="sturen_voorstel_medicatieafspraak" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.398" transactionEffectiveDate="2022-06-30T00:00:00" versionDate="" prefix="mp-" language="nl-NL" title="TEST VMA met lengte gewicht" id="mp-vm-tst-lengte_gewicht-v30">
+         <patient comment="">
+            <naamgegevens comment="">
+               <initialen value="C. "/>
+               <naamgebruik value="1" code="NL1" codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4" displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam comment="">
+                  <achternaam value="XXX_Brugge"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900419" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1963-10-16" datatype="datetime"/>
+            <geslacht value="2" code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+         </patient>
+         <medicamenteuze_behandeling id="MBH_200_start_eind" comment="">
+            <identificatie value="MBH_300_start_eind" root="2.16.840.1.113883.2.4.3.11.999.77.1.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
+            <medicatieafspraak comment="">
+               <gebruiksperiode comment="">
+                  <start_datum_tijd value="T+2D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T+5D{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <afgesproken_geneesmiddel comment="">
+                  <farmaceutisch_product datatype="reference" value="PRK_metoclopramide_6947"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="wordt gegenereerd"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9" code="9" displayName="Oraal" codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie comment="">
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid unit="dag" value="2"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+         </medicamenteuze_behandeling>
+         <bouwstenen comment="">
+            <farmaceutisch_product comment="" id="PRK_metoclopramide_6947">
+               <product_code code="6947" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="G-Standaard PRK" displayName="METOCLOPRAMIDE TABLET 10MG"/>
+               <product_code code="19429" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="G-Standaard GPK" displayName="METOCLOPRAMIDE TABLET 10MG"/>
+            </farmaceutisch_product>
+            <zorgverlener comment="" id="Marcha_van_Partners">
+               <zorgverlener_identificatienummer value="000001115" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens comment="">
+                  <voornamen value="Marcha"/>
+                  <geslachtsnaam comment="">
+                     <voorvoegsels value="van"/>
+                     <achternaam value="Partners"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100" codeSystem="2.16.840.1.113883.2.4.6.7" codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)" codeSystemVersion="2020-10-23T00:00:00" displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder comment="">
+                  <zorgaanbieder value="Huisartsenpraktijk_Itis" datatype="reference"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder comment="" id="Huisartsenpraktijk_Itis">
+               <zorgaanbieder_identificatienummer value="00005111" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Itis"/>
+            </zorgaanbieder>
+            <lichaamslengte comment="">
+               <lengte_waarde value="165" unit="cm"/>
+               <lengte_datum_tijd value="T{07:05:00}" datatype="datetime"/>
+            </lichaamslengte>
+            <lichaamsgewicht comment="">
+               <gewicht_waarde value="75" unit="kg"/>
+               <gewicht_datum_tijd value="T{07:05:00}" datatype="datetime"/>
+            </lichaamsgewicht>
+         </bouwstenen>
+         <voorstel_gegevens comment="">
+            <voorstel comment="">
+               <identificatie value="MBH_300_start_eind_VMA" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.2" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.528"/>
+               <voorstel_datum value="T+0D{07:10:00}" datatype="datetime"/>
+               <auteur comment="">
+                  <auteur_is_zorgverlener comment="">
+                     <zorgverlener value="Marcha_van_Partners" datatype="reference"/>
+                  </auteur_is_zorgverlener>
+               </auteur>
+               <medicamenteuze_behandeling value="MBH_300_start_eind" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.534" datatype="reference"/>
+               <toelichting value="verhoging dosis"/>
+            </voorstel>
+         </voorstel_gegevens>
+      </sturen_voorstel_medicatieafspraak>
+   </data>
+</adaxml>

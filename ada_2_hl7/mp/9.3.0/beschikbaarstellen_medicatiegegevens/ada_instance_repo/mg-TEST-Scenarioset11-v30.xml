@@ -1,0 +1,635 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../9.3.0/beschikbaarstellen_medicatiegegevens/ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new" created-by="medicatieprocesada" last-update-by="medicatieprocesada" creation-date="2023-01-09T17:55:45.61+01:00" last-update-date="2023-01-09T17:55:45.61+01:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp93" shortName="beschikbaarstellen_medicatiegegevens" formName="medicatiegegevens" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.374" transactionEffectiveDate="2022-06-30T00:00:00" prefix="mp-" language="nl-NL" title="TEST REPO Scenarioset 11 (WDS MTD)" id="mg-TEST-Scenarioset11-v30">
+         <patient comment="">
+            <naamgegevens comment="">
+               <initialen value="M."/>
+               <naamgebruik value="1" code="NL1" codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4" displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam comment="">
+                  <achternaam value="XXX_Pherai"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900870" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1985-11-01" datatype="datetime"/>
+            <geslacht value="3" code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling comment="">
+            <identificatie value="MBH_300_wdsmtd1" root="2.16.840.1.113883.2.4.3.11.999.77.1.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
+            <medicatieafspraak comment="">
+               <identificatie value="MBH_300_wdsmtd1_MA" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.194"/>
+               <medicatieafspraak_datum_tijd value="T-20D{08:00:00}" datatype="datetime"/>
+               <gebruiksperiode comment="">
+                  <start_datum_tijd value="T-20D{00:00:00}" datatype="datetime"/>
+               </gebruiksperiode>
+               <voorschrijver comment="">
+                  <zorgverlener datatype="reference" value="Peter_van_Pulver"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel comment="">
+                  <farmaceutisch_product datatype="reference" value="PRK_ACENOCOUMAROL_7323"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Wordt gegenereerd"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9" code="9" displayName="Oraal" codeSystemName="G-Standaard Toedieningswegen"/>
+                  <aanvullende_instructie originalText="Volgens schema trombosedienst" value="1" code="OTH" codeSystem="2.16.840.1.113883.5.1008" displayName="overig"/>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <wisselend_doseerschema comment="">
+               <identificatie value="MBH_300_wdsmtd1_WDS_opstartschema" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.633" root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+               <wisselend_doseerschema_datum_tijd value="T-20D{08:00:00}" datatype="datetime"/>
+               <gebruiksperiode comment="">
+                  <start_datum_tijd value="T-20D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T-15D{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <afgesproken_geneesmiddel comment="">
+                  <farmaceutisch_product value="PRK_ACENOCOUMAROL_7323" datatype="reference"/>
+               </afgesproken_geneesmiddel>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="MBH_300_wdsmtd1_MA" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.641"/>
+               </relatie_medicatieafspraak>
+               <auteur comment="">
+                  <zorgverlener value="Peter_van_Pulver" datatype="reference"/>
+               </auteur>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="wordt gegenereerd"/>
+                  <toedieningsweg code="9" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard Toedieningswegen (tabel 7)" displayName="Oraal"/>
+                  <doseerinstructie comment="">
+                     <doseerduur value="3" unit="dag"/>
+                     <volgnummer value="1"/>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                           <toedientijd value="20:00:00" datatype="time"/>
+                           <is_flexibel value="true"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie comment="">
+                     <doseerduur value="3" unit="dag"/>
+                     <volgnummer value="2"/>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                           <toedientijd value="20:00:00" datatype="time"/>
+                           <is_flexibel value="true"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </wisselend_doseerschema>
+            <wisselend_doseerschema comment="">
+               <identificatie value="MBH_300_wdsmtd1_WDS_trombosedienst" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.633" root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+               <wisselend_doseerschema_datum_tijd value="T-15D{14:30:00}" datatype="datetime"/>
+               <gebruiksperiode comment="">
+                  <start_datum_tijd value="T-14D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T-5D{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <afgesproken_geneesmiddel comment="">
+                  <farmaceutisch_product value="PRK_ACENOCOUMAROL_7323" datatype="reference"/>
+               </afgesproken_geneesmiddel>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="MBH_300_wdsmtd1_MA" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.641" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+               <relatie_wisselend_doseerschema comment="">
+                  <identificatie value="MBH_300_wdsmtd1_WDS_opstartschema" root="2.16.840.1.113883.2.4.3.11.999.77.632.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.696"/>
+               </relatie_wisselend_doseerschema>
+               <auteur comment="">
+                  <zorgverlener value="Tanja_de_Bakker" datatype="reference"/>
+               </auteur>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="wordt gegenereerd"/>
+                  <toedieningsweg code="9" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard Toedieningswegen (tabel 7)" displayName="Oraal"/>
+                  <herhaalperiode_cyclisch_schema value="5" unit="dag"/>
+                  <doseerinstructie comment="">
+                     <doseerduur value="2" unit="dag"/>
+                     <volgnummer value="1"/>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                           <dagdeel value="3" code="3157002" codeSystem="2.16.840.1.113883.6.96" displayName="'s avonds"/>
+                           <is_flexibel value="true"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie comment="">
+                     <doseerduur value="2" unit="dag"/>
+                     <volgnummer value="2"/>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                           <dagdeel value="3" code="3157002" codeSystem="2.16.840.1.113883.6.96" displayName="'s avonds"/>
+                           <is_flexibel value="true"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie comment="">
+                     <doseerduur value="1" unit="dag"/>
+                     <volgnummer value="3"/>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="0"/>
+                           </aantal>
+                           <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                           <dagdeel value="3" code="3157002" codeSystem="2.16.840.1.113883.6.96" displayName="'s avonds"/>
+                           <is_flexibel value="true"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </wisselend_doseerschema>
+            <wisselend_doseerschema comment="">
+               <identificatie value="MBH_300_wdsmtd1_WDS_technischestop" root="2.16.840.1.113883.2.4.3.11.999.77.632.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.633"/>
+               <wisselend_doseerschema_datum_tijd value="T-7D{10:30:00}" datatype="datetime"/>
+               <gebruiksperiode comment="">
+                  <start_datum_tijd value="T-14D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T-7D{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <wisselend_doseerschema_stop_type value="1" code="113371000146109" codeSystem="2.16.840.1.113883.6.96" displayName="definitief gestopt met medicatie"/>
+               <reden_wijzigen_of_staken value="2" code="58848006" codeSystem="2.16.840.1.113883.6.96" displayName="gebrek aan geneesmiddeleffect"/>
+               <afgesproken_geneesmiddel comment="">
+                  <farmaceutisch_product value="PRK_ACENOCOUMAROL_7323" datatype="reference"/>
+               </afgesproken_geneesmiddel>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="MBH_300_wdsmtd1_MA" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.641"/>
+               </relatie_medicatieafspraak>
+               <relatie_wisselend_doseerschema comment="">
+                  <identificatie value="MBH_300_wdsmtd1_WDS_trombosedienst" root="2.16.840.1.113883.2.4.3.11.999.77.632.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.696"/>
+               </relatie_wisselend_doseerschema>
+               <auteur comment="">
+                  <zorgverlener value="Tanja_de_Bakker" datatype="reference"/>
+               </auteur>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="wordt gegenereerd"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard Toedieningswegen (tabel 7)" code="9" displayName="Oraal"/>
+                  <herhaalperiode_cyclisch_schema value="5" unit="dag"/>
+                  <doseerinstructie comment="">
+                     <doseerduur value="2" unit="dag"/>
+                     <volgnummer value="1"/>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                           <dagdeel value="3" code="3157002" codeSystem="2.16.840.1.113883.6.96" displayName="'s avonds"/>
+                           <is_flexibel value="true"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie comment="">
+                     <doseerduur value="2" unit="dag"/>
+                     <volgnummer value="2"/>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                           <dagdeel value="3" code="3157002" codeSystem="2.16.840.1.113883.6.96" displayName="'s avonds"/>
+                           <is_flexibel value="true"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie comment="">
+                     <doseerduur value="1" unit="dag"/>
+                     <volgnummer value="3"/>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="0"/>
+                           </aantal>
+                           <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuks"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                           <dagdeel value="3" code="3157002" codeSystem="2.16.840.1.113883.6.96" displayName="'s avonds"/>
+                           <is_flexibel value="true"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <toelichting value="Dosering aangepast i.v.m. te lage INR waarde."/>
+            </wisselend_doseerschema>
+            <wisselend_doseerschema comment="">
+               <identificatie value="MBH_300_wdsmtd1_WDS_verhoging" root="2.16.840.1.113883.2.4.3.11.999.77.632.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.633"/>
+               <wisselend_doseerschema_datum_tijd value="T-7D{10:30:00}" datatype="datetime"/>
+               <gebruiksperiode comment="">
+                  <start_datum_tijd value="T-6D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T+6D{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <afgesproken_geneesmiddel comment="">
+                  <farmaceutisch_product value="PRK_ACENOCOUMAROL_7323" datatype="reference"/>
+               </afgesproken_geneesmiddel>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="MBH_300_wdsmtd1_MA" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.641"/>
+               </relatie_medicatieafspraak>
+               <relatie_wisselend_doseerschema comment="">
+                  <identificatie value="MBH_300_wdsmtd1_WDS_trombosedienst" root="2.16.840.1.113883.2.4.3.11.999.77.632.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.696"/>
+               </relatie_wisselend_doseerschema>
+               <auteur comment="">
+                  <zorgverlener value="Tanja_de_Bakker" datatype="reference"/>
+               </auteur>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="wordt gegenereerd"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard Toedieningswegen (tabel 7)" code="9" displayName="oraal"/>
+                  <herhaalperiode_cyclisch_schema value="5" unit="dag"/>
+                  <doseerinstructie comment="">
+                     <doseerduur value="3" unit="dag"/>
+                     <volgnummer value="1"/>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuks"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                           <toedientijd value="19:00:00" datatype="time"/>
+                           <is_flexibel value="true"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie comment="">
+                     <doseerduur value="2" unit="dag"/>
+                     <volgnummer value="2"/>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                           <toedientijd value="19:00:00" datatype="time"/>
+                           <is_flexibel value="true"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </wisselend_doseerschema>
+            <verstrekkingsverzoek comment="">
+               <identificatie value="MBH_300_wdsmtd1_VV" root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.289"/>
+               <verstrekkingsverzoek_datum_tijd value="T-20D{08:00:00}" datatype="datetime"/>
+               <auteur comment="">
+                  <zorgverlener datatype="reference" value="Peter_van_Pulver"/>
+               </auteur>
+               <te_verstrekken_geneesmiddel comment="">
+                  <farmaceutisch_product datatype="reference" value="PRK_ACENOCOUMAROL_7323"/>
+               </te_verstrekken_geneesmiddel>
+               <te_verstrekken_hoeveelheid comment="">
+                  <aantal value="60"/>
+                  <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <beoogd_verstrekker comment="">
+                  <zorgaanbieder datatype="reference" value="Apotheek_De_Gulle_Gaper"/>
+               </beoogd_verstrekker>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="MBH_300_wdsmtd1_MA" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.293"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak comment="">
+               <identificatie value="MBH_300_wdsmtd1_TA" root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
+               <toedieningsafspraak_datum_tijd value="T-20D{09:00:00}" datatype="datetime"/>
+               <gebruiksperiode comment="">
+                  <start_datum_tijd value="T-20D{00:00:00}" datatype="datetime"/>
+               </gebruiksperiode>
+               <verstrekker comment="">
+                  <zorgaanbieder datatype="reference" value="Apotheek_De_Gulle_Gaper"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak comment="">
+                  <farmaceutisch_product datatype="reference" value="HPK_ACENOCOUMAROL_856126"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Wordt gegenereerd"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9" code="9" displayName="Oraal" codeSystemName="G-Standaard Toedieningswegen"/>
+                  <aanvullende_instructie originalText="Volgens schema trombosedienst" value="1" code="OTH" codeSystem="2.16.840.1.113883.5.1008" displayName="overig"/>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="MBH_300_wdsmtd1_MA" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.565"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+            <medicatieverstrekking comment="">
+               <identificatie value="MBH_300_wdsmtd1_MVE" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.361"/>
+               <medicatieverstrekkings_datum_tijd value="T-20D{09:00:00}" datatype="datetime"/>
+               <verstrekker comment="">
+                  <zorgaanbieder datatype="reference" value="Apotheek_De_Gulle_Gaper"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="60"/>
+                  <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel comment="">
+                  <farmaceutisch_product datatype="reference" value="HPK_ACENOCOUMAROL_856126"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek comment="">
+                  <identificatie value="MBH_300_wdsmtd1_VV" root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.564"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+            <medicatietoediening comment="">
+               <identificatie value="MBH_300_wdsmtd1_MTD1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.447" root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+               <toedienings_product comment="">
+                  <farmaceutisch_product value="PRK_ACENOCOUMAROL_7323" datatype="reference"/>
+               </toedienings_product>
+               <toedienings_datum_tijd value="T-20D{20:30:00}" datatype="datetime"/>
+               <afgesproken_datum_tijd value="T-20D{20:00:00}" datatype="datetime"/>
+               <toegediende_hoeveelheid comment="">
+                  <aantal value="1"/>
+                  <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+               </toegediende_hoeveelheid>
+               <afgesproken_hoeveelheid comment="">
+                  <aantal value="2"/>
+                  <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+               </afgesproken_hoeveelheid>
+               <volgens_afspraak_indicator value="true"/>
+               <toedieningsweg code="9" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard Toedieningswegen (tabel 7)" displayName="ORAAL"/>
+               <relatie_wisselend_doseerschema comment="">
+                  <identificatie value="MBH_300_wdsmtd1_WDS_opstartschema" root="2.16.840.1.113883.2.4.3.11.999.77.632.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1326"/>
+               </relatie_wisselend_doseerschema>
+               <toediener comment="">
+                  <mantelzorger comment="">
+                     <contactpersoon value="Toos_de_Bakker" datatype="reference"/>
+                  </mantelzorger>
+               </toediener>
+            </medicatietoediening>
+            <medicatietoediening comment="">
+               <identificatie value="MBH_300_wdsmtd1_MTD2" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.447" root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+               <toedienings_product comment="">
+                  <farmaceutisch_product value="PRK_ACENOCOUMAROL_7323" datatype="reference"/>
+               </toedienings_product>
+               <toedienings_datum_tijd value="T-19D{20:00:00}" datatype="datetime"/>
+               <afgesproken_datum_tijd value="T-19D{20:00:00}" datatype="datetime"/>
+               <toegediende_hoeveelheid comment="">
+                  <aantal value="1"/>
+                  <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+               </toegediende_hoeveelheid>
+               <afgesproken_hoeveelheid comment="">
+                  <aantal value="2"/>
+                  <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+               </afgesproken_hoeveelheid>
+               <volgens_afspraak_indicator value="false"/>
+               <toedieningsweg code="9" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard Toedieningswegen (tabel 7)" displayName="Oraal"/>
+               <relatie_wisselend_doseerschema comment="">
+                  <identificatie value="MBH_300_wdsmtd1_WDS_opstartschema" root="2.16.840.1.113883.2.4.3.11.999.77.632.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1326"/>
+               </relatie_wisselend_doseerschema>
+               <toediener comment=""/>
+               <medicatietoediening_reden_van_afwijken value="7" code="406149000" codeSystem="2.16.840.1.113883.6.96" displayName="toediening van medicatie geweigerd"/>
+            </medicatietoediening>
+            <medicatietoediening comment="">
+               <identificatie value="MBH_300_wdsmtd1_MTD3" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.447" root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+               <toedienings_product comment="">
+                  <farmaceutisch_product value="PRK_ACENOCOUMAROL_7323" datatype="reference"/>
+               </toedienings_product>
+               <toedienings_datum_tijd value="T-17D{20:00:00}" datatype="datetime"/>
+               <afgesproken_datum_tijd value="T-17D{20:00:00}" datatype="datetime"/>
+               <toegediende_hoeveelheid comment="">
+                  <aantal value="1"/>
+                  <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+               </toegediende_hoeveelheid>
+               <afgesproken_hoeveelheid comment="">
+                  <aantal value="1"/>
+                  <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+               </afgesproken_hoeveelheid>
+               <volgens_afspraak_indicator value="false"/>
+               <toedieningsweg code="9" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard Toedieningswegen (tabel 7)" displayName="Oraal"/>
+               <relatie_wisselend_doseerschema comment="">
+                  <identificatie value="MBH_300_wdsmtd1_WDS_opstartschema" root="2.16.840.1.113883.2.4.3.11.999.77.632.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1326"/>
+               </relatie_wisselend_doseerschema>
+               <toediener comment=""/>
+               <medicatietoediening_reden_van_afwijken value="6" code="408366001" codeSystem="2.16.840.1.113883.6.96" displayName="niet in staat om medicatie te gebruiken"/>
+               <toelichting value="Geprobeerd, maar niet gelukt met de tablet"/>
+            </medicatietoediening>
+            <medicatietoediening comment="">
+               <identificatie value="MBH_300_wdsmtd1_MTD4" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.447" root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+               <toedienings_product comment="">
+                  <farmaceutisch_product value="PRK_ACENOCOUMAROL_7323" datatype="reference"/>
+               </toedienings_product>
+               <toedienings_datum_tijd value="T-16D{20:05:00}" datatype="datetime"/>
+               <afgesproken_datum_tijd value="T-16D{20:00:00}" datatype="datetime"/>
+               <toegediende_hoeveelheid comment="">
+                  <aantal value="0"/>
+                  <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+               </toegediende_hoeveelheid>
+               <afgesproken_hoeveelheid comment="">
+                  <aantal value="1"/>
+                  <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+               </afgesproken_hoeveelheid>
+               <volgens_afspraak_indicator value="false"/>
+               <toedieningsweg code="9" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard Toedieningswegen (tabel 7)" displayName="Oraal"/>
+               <relatie_wisselend_doseerschema comment="">
+                  <identificatie value="MBH_300_wdsmtd1_WDS_opstartschema" root="2.16.840.1.113883.2.4.3.11.999.77.632.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1326"/>
+               </relatie_wisselend_doseerschema>
+               <toediener comment=""/>
+               <medicatietoediening_reden_van_afwijken value="8" code="153241000146104" codeSystem="2.16.840.1.113883.6.96" displayName="zorgafnemer niet beschikbaar om medicatie in ontvangst te nemen"/>
+            </medicatietoediening>
+         </medicamenteuze_behandeling>
+         <bouwstenen comment="">
+            <contactpersoon comment="" id="Toos_de_Bakker">
+               <naamgegevens comment="">
+                  <voornamen value="Toos"/>
+                  <geslachtsnaam comment="">
+                     <voorvoegsels value="de"/>
+                     <achternaam value="Bakker"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <rol value="17" code="100001" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.23.1" displayName="Mantelzorger"/>
+            </contactpersoon>
+            <farmaceutisch_product id="PRK_ACENOCOUMAROL_7323" comment="">
+               <product_code code="7323" codeSystem="2.16.840.1.113883.2.4.4.10" displayName="ACENOCOUMAROL TABLET 1MG" codeSystemName="G-Standaard PRK"/>
+               <product_code code="20303" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="G-Standaard GPK" displayName="ACENOCOUMAROL TABLET 1MG"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="HPK_ACENOCOUMAROL_856126" comment="">
+               <product_code code="856126" codeSystem="2.16.840.1.113883.2.4.4.7" codeSystemName="G-Standaard HPK" displayName="ACENOCOUMAROL CF TABLET 1MG"/>
+               <product_code code="7323" codeSystem="2.16.840.1.113883.2.4.4.10" displayName="ACENOCOUMAROL TABLET 1MG" codeSystemName="G-Standaard PRK"/>
+               <product_code code="20303" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="G-Standaard GPK" displayName="ACENOCOUMAROL TABLET 1MG"/>
+            </farmaceutisch_product>
+            <zorgverlener comment="" id="Peter_van_Pulver">
+               <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens comment="">
+                  <voornamen value="Peter"/>
+                  <geslachtsnaam comment="">
+                     <voorvoegsels value="van"/>
+                     <achternaam value="Pulver"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme value="2" code="0100" codeSystem="2.16.840.1.113883.2.4.6.7" codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)" codeSystemVersion="2020-10-23T00:00:00" displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder comment="">
+                  <zorgaanbieder value="Huisartsenpraktijk_Pulver_en_Partners" datatype="reference"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgverlener comment="" id="Tanja_de_Bakker">
+               <zorgverlener_identificatienummer value="222221111" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens comment="">
+                  <voornamen value="Tanja"/>
+                  <geslachtsnaam comment="">
+                     <voorvoegsels value="de"/>
+                     <achternaam value="Bakker"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme value="241" code="3400" codeSystem="2.16.840.1.113883.2.4.6.7" codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)" codeSystemVersion="2020-10-23T00:00:00" displayName="Trombosediensten"/>
+               <zorgaanbieder comment="">
+                  <zorgaanbieder value="Trombosedienst_Ons_Dorp" datatype="reference"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgverlener comment="" id="Jantien_Toedien">
+               <zorgverlener_identificatienummer value="222220000" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens comment="">
+                  <voornamen value="Jantien"/>
+                  <geslachtsnaam comment="">
+                     <achternaam value="Toedien"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme value="478" code="9100" codeSystem="2.16.840.1.113883.2.4.6.7" codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)" codeSystemVersion="2020-10-23T00:00:00" displayName="Verpleegkundigen, niet nader gespecificeerd"/>
+               <zorgaanbieder comment="">
+                  <zorgaanbieder value="Thuiszorg_Om_en_Bij" datatype="reference"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgverlener comment="" id="Marleen_van_der_Brand">
+               <zorgverlener_identificatienummer value="111110000" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens comment="">
+                  <voornamen value="Marleen"/>
+                  <geslachtsnaam comment="">
+                     <voorvoegsels value="van der"/>
+                     <achternaam value="Brand"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme value="478" code="9100" codeSystem="2.16.840.1.113883.2.4.6.7" codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)" codeSystemVersion="2020-10-23T00:00:00" displayName="Verpleegkundigen, niet nader gespecificeerd"/>
+               <zorgaanbieder comment="">
+                  <zorgaanbieder value="Thuiszorg_Om_en_Bij" datatype="reference"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="Huisartsenpraktijk_Pulver_en_Partners" comment="">
+               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+               <adresgegevens comment="">
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="1"/>
+                  <postcode value="1234AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort value="5" code="WP" codeSystem="2.16.840.1.113883.5.1119" displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+            <zorgaanbieder comment="" id="Trombosedienst_Ons_Dorp">
+               <zorgaanbieder_identificatienummer value="11112222" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Trombosedienst Ons Dorp"/>
+               <afdeling_specialisme value="240" code="3400" codeSystem="2.16.840.1.113883.2.4.6.7" codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)" codeSystemVersion="2020-10-23T00:00:00" displayName="Trombosediensten"/>
+               <adresgegevens comment="">
+                  <straat value="Kerkstraat "/>
+                  <huisnummer value="28"/>
+                  <huisnummerletter value="d"/>
+                  <postcode value="1332GH"/>
+                  <woonplaats value="Ons Dorp"/>
+               </adresgegevens>
+            </zorgaanbieder>
+            <zorgaanbieder id="Apotheek_De_Gulle_Gaper" comment="">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens comment="">
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort value="5" code="WP" codeSystem="2.16.840.1.113883.5.1119" displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+            <zorgaanbieder comment="" id="Thuiszorg_Om_en_Bij">
+               <zorgaanbieder_identificatienummer value="11110000" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Thuiszorg Om en Bij"/>
+               <adresgegevens comment="">
+                  <straat value="Voorstraat"/>
+                  <huisnummer value="1"/>
+                  <postcode value="1223BA"/>
+                  <woonplaats value="Ons Dorp"/>
+               </adresgegevens>
+               <organisatie_type value="24" code="T2" codeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Thuiszorg"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

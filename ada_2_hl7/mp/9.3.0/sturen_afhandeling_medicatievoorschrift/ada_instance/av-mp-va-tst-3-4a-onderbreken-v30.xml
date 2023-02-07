@@ -1,0 +1,172 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../9.3.0/sturen_afhandeling_medicatievoorschrift/ada_schemas/ada_sturen_afhandeling_medicatievoorschrift.xsd">
+   <meta status="new"
+         created-by="medicatieprocesada"
+         last-update-by="medicatieprocesada"
+         creation-date="2023-01-09T16:56:18.223+01:00"
+         last-update-date="2023-01-09T16:56:18.223+01:00"/>
+   <data>
+      <sturen_afhandeling_medicatievoorschrift app="mp-mp93"
+                                               shortName="sturen_afhandeling_medicatievoorschrift"
+                                               formName="afhandelen_medicatievoorschrift"
+                                               transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.334"
+                                               transactionEffectiveDate="2022-02-07T00:00:00"
+                                               versionDate=""
+                                               prefix="mp-"
+                                               language="nl-NL"
+                                               title="TEST Scenarioset 3 (initieren scenario) Onderbreken "
+                                               desc="&lt;div&gt;&lt;span style=&#34;font-family: sans-serif;&#34;&gt;&lt;span style=&#34;font-size: 14px; background-color: #ffffff;&#34;&gt;Benodigd voor scenario 3.4b&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;"
+                                               id="av-mp-va-tst-3-4a-onderbreken-v30">
+         <scenario-nr value="3.4a"/>
+         <screenshot value="Maak screenshot(s) waarin de samenhang en actualiteit van de bouwstenen/de medicamenteuze behandeling inzichtelijk wordt"
+                     datatype="text"/>
+         <!--Patient found in instance with id: mg-TEST-Scenarioset3-v30 and title: id: TEST REPO Scenarioset 3 (Staken Wijzigen)-->
+         <patient comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1">
+            <naamgegevens comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.2">
+               <initialen value="J. " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.4"/>
+               <naamgebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.6"
+                            value="1"
+                            code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.7">
+                  <voorvoegsels value="de " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.8"/>
+                  <achternaam value="XXX_Luzac" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.9"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900778"
+                                 root="2.16.840.1.113883.2.4.6.3"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.35"/>
+            <geboortedatum value="1985-10-24"
+                           datatype="datetime"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.36"/>
+            <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.37"
+                      value="3"
+                      code="F"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Vrouw"/>
+         </patient>
+         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_300_onderbreken-->
+         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
+            <identificatie value="MBH_300_onderbreken"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
+            <toedieningsafspraak comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.294">
+               <identificatie value="MBH_300_onderbreken_TA_start"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
+               <toedieningsafspraak_datum_tijd value="T{09:06:00}"
+                                               datatype="datetime"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.332"/>
+               <gebruiksperiode comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334">
+                  <start_datum_tijd value="T+0D{00:00:00}"
+                                    datatype="datetime"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.335"/>
+                  <eind_datum_tijd value="T+10D{15:00:00}"
+                                   datatype="datetime"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.336"/>
+               </gebruiksperiode>
+               <verstrekker comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.295">
+                  <zorgaanbieder datatype="reference"
+                                 value="Apotheek_De_Gulle_Gaper"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.296"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.297">
+                  <farmaceutisch_product datatype="reference"
+                                         value="HPK_FENETICILLINE_425087"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.298"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.299">
+                  <omschrijving value="Vanaf &lt;T-4D{00:00:00}&gt; t/m &lt;T+5D{23:59:59}&gt;, 3 maal per dag 1 stuk, oraal"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.301"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.303"/>
+                  <doseerinstructie comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.304">
+                     <dosering comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.307">
+                        <keerdosis comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.316">
+                           <aantal comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.575">
+                              <nominale_waarde value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.319"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaardthesaurus basiseenheden"
+                                    displayName="stuk"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.576"/>
+                        </keerdosis>
+                        <toedieningsschema comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.323">
+                           <frequentie comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.324">
+                              <aantal comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.578">
+                                 <nominale_waarde value="3" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.327"/>
+                              </aantal>
+                              <tijdseenheid unit="dag"
+                                            value="1"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.579"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.338">
+                  <identificatie value="MBH_300_onderbreken_MA_start"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.565"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+            <medicatieverstrekking comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.346">
+               <identificatie value="MBH_300_onderbreken_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.361"/>
+               <medicatieverstrekkings_datum_tijd value="T{09:06:00}"
+                                                  datatype="datetime"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.353"/>
+               <verstrekker comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.347">
+                  <zorgaanbieder datatype="reference"
+                                 value="Apotheek_De_Gulle_Gaper"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.348"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.358">
+                  <aantal value="30" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.700"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.701"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.351">
+                  <farmaceutisch_product datatype="reference"
+                                         value="HPK_FENETICILLINE_425087"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.352"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.349">
+                  <identificatie value="MBH_300_onderbreken_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.564"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+         </medicamenteuze_behandeling>
+         <bouwstenen comment="">
+            <farmaceutisch_product id="HPK_FENETICILLINE_425087" comment="">
+               <product_code code="425087"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="BROXIL CAPSULE 500MG"/>
+               <product_code displayName="FENETICILLINE CAPSULE 500MG"
+                             code="17205"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"/>
+               <product_code code="41092"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="FENETICILLINE 500MG CAPSULE"/>
+            </farmaceutisch_product>
+            <zorgaanbieder id="Apotheek_De_Gulle_Gaper" comment="">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </sturen_afhandeling_medicatievoorschrift>
+   </data>
+</adaxml>

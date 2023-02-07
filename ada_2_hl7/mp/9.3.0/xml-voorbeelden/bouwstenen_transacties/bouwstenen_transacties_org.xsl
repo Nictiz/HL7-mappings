@@ -13,7 +13,7 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="nf xd xs xsl" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:pharm="urn:ihe:pharm:medication" xmlns:nf="http://www.nictiz.nl/functions" xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <xsl:import href="../../2_hl7_mp_include_920.xsl"/>
+    <xsl:import href="../../2_hl7_mp_include_930.xsl"/>
     <xsl:output method="xml" indent="yes"/>
     <!-- Generates a HL7 message based on ADA input -->
 
@@ -35,7 +35,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="/">
 
         <!-- MA's -->
-        <xsl:result-document href="{$outputDir}/bsma-example-920-1.xml">
+        <xsl:result-document href="{$outputDir}/bsma-example-930-1.xml">
 
             <xsl:variable name="mbh" select="$inputAdaFiles/adaxml/data/*[not(self::sturen_voorstel_medicatieafspraak)]/medicamenteuze_behandeling[medicatieafspraak]"/>
             <xsl:variable name="patient" select="($mbh/../patient)[1]"/>
@@ -72,7 +72,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         </xsl:result-document>
         <!-- WDS'en -->
-        <xsl:result-document href="{$outputDir}/bswds-example-920-1.xml">
+        <xsl:result-document href="{$outputDir}/bswds-example-930-1.xml">
 
             <xsl:variable name="mbh" select="$inputAdaFiles/adaxml/data/*/medicamenteuze_behandeling[wisselend_doseerschema]"/>
             <xsl:variable name="patient" select="($mbh/../patient)[1]"/>
@@ -103,7 +103,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         </xsl:result-document>
         <!-- VV's -->
-        <xsl:result-document href="{$outputDir}/bsvv-example-920-1.xml">
+        <xsl:result-document href="{$outputDir}/bsvv-example-930-1.xml">
 
             <xsl:variable name="mbh" select="$inputAdaFiles/adaxml/data/*[not(self::sturen_voorstel_verstrekkingsverzoek)]/medicamenteuze_behandeling[verstrekkingsverzoek]"/>
             <xsl:variable name="patient" select="($mbh/../patient)[1]"/>
@@ -134,7 +134,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         </xsl:result-document>
         <!-- TA's -->
-        <xsl:result-document href="{$outputDir}/bsta-example-920-1.xml">
+        <xsl:result-document href="{$outputDir}/bsta-example-930-1.xml">
             
             <xsl:variable name="mbh" select="$inputAdaFiles/adaxml/data/*/medicamenteuze_behandeling[toedieningsafspraak]"/>
             <xsl:variable name="patient" select="($mbh/../patient)[1]"/>
@@ -169,7 +169,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
         </xsl:result-document>
         <!-- MVE's -->
-        <xsl:result-document href="{$outputDir}/bsmve-example-920-1.xml">
+        <xsl:result-document href="{$outputDir}/bsmve-example-930-1.xml">
             
             <xsl:variable name="mbh" select="$inputAdaFiles/adaxml/data/*/medicamenteuze_behandeling[medicatieverstrekking]"/>
             <xsl:variable name="patient" select="($mbh/../patient)[1]"/>
@@ -199,7 +199,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
         </xsl:result-document>
         <!-- MGB's -->
-        <xsl:result-document href="{$outputDir}/bsmgb-example-920-1.xml">
+        <xsl:result-document href="{$outputDir}/bsmgb-example-930-1.xml">
             
             <xsl:variable name="mbh" select="$inputAdaFiles/adaxml/data/*/medicamenteuze_behandeling[medicatiegebruik]"/>
             <xsl:variable name="patient" select="($mbh/../patient)[1]"/>
@@ -234,7 +234,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
         </xsl:result-document>
         <!-- MTD's -->
-        <xsl:result-document href="{$outputDir}/bsmtd-example-920-1.xml">
+        <xsl:result-document href="{$outputDir}/bsmtd-example-930-1.xml">
             
             <xsl:variable name="mbh" select="$inputAdaFiles/adaxml/data/*/medicamenteuze_behandeling[medicatietoediening]"/>
             <xsl:variable name="patient" select="($mbh/../patient)[1]"/>
