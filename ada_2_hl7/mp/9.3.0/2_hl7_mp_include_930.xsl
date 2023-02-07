@@ -191,36 +191,40 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">the ada element for toediener, defaults to context</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9407_20221101101151" match="toediener" mode="HandleToediener92">
-        <xsl:param name="in" as="element()*" select="."/>
-        
-        <xsl:for-each select="$in">
-            <!-- patient -->
-            <xsl:for-each select="patient[not(toediener_is_patient/@value = 'false')][.//@value]">
-                <performer>
-                    <!-- time is verplicht in xsd, maar medicatietoediening heeft er geen dataset concept voor -->
-                    <time nullFlavor="NI"/>
-                    <assignedEntity>
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.52_20170825000000">
-                            <xsl:with-param name="ada_patient_identificatienummer" select="../../../../patient/identificatienummer"/>
-                        </xsl:call-template>
-                    </assignedEntity>
-                </performer>
-            </xsl:for-each>
+        <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9407_20221101101151" match="toediener" mode="HandleToediener92">
+            <xsl:param name="in" as="element()*" select="."/>
             
-            <!-- LET OP: Aanpassing gedaan MTD waarbij niet zorgverlener maar zorgaanbieder de toediener is. Hieronder/in mg-example werkt iets nog niet goed wat validatiefoutmelding oplevert-->
-            <xsl:for-each select="../../../bouwstenen/zorgaanbieder[@id = current()//zorgaanbieder[not(zorgaanbieder)]/@value]">
-                <performer>
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.33_20210701000000"/>
-                </performer>
+            <xsl:for-each select="$in">
+                <!-- patient -->
+                <xsl:for-each select="patient[not(toediener_is_patient/@value = 'false')][.//@value]">
+                    <performer>
+                        <assignedEntity>
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.52_20170825000000">
+                                <xsl:with-param name="ada_patient_identificatienummer" select="../../../../patient/identificatienummer"/>
+                            </xsl:call-template>
+                        </assignedEntity>
+                    </performer>
+                </xsl:for-each>
+                
+                <!-- LET OP: Aanpassing gedaan MTD waarbij niet zorgverlener maar zorgaanbieder de toediener is. Hieronder/in mg-example werkt iets nog niet goed wat validatiefoutmelding oplevert-->
+                <xsl:for-each select="../../../bouwstenen/zorgaanbieder[@id = current()//zorgaanbieder[not(zorgaanbieder)]/@value]">
+                    <performer>
+                        <assignedEntity>
+                            <!-- id is required in xsd, but no use for it when only communicating zorgaanbieder -->
+                            <id nullFlavor="NI"/>                          
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.33_20210701000000"/>
+                        </assignedEntity>
+                    </performer>
+                </xsl:for-each>
+                
+                <!-- mantelzorger -->
+                <xsl:for-each select="../../../bouwstenen/contactpersoon[@id = current()/mantelzorger/contactpersoon/@value]">
+                    <performer>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.44_20210701000000"/>
+                    </performer>
+                </xsl:for-each>
             </xsl:for-each>
-            
-            <!-- mantelzorger -->
-            <xsl:for-each select="../../../bouwstenen/contactpersoon[@id = current()/mantelzorger/contactpersoon/@value]">
-                <performer>
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.44_20210701000000"/>
-                </performer>
-            </xsl:for-each>
-        </xsl:for-each>
+        </xsl:template>
     </xsl:template>
     
     <xd:doc>
