@@ -282,7 +282,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 
                 <xsl:for-each select="wisselend_doseerschema_stop_type[.//(@value | @code)]">
                     <entryRelationship typeCode="COMP">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9372_20210616133243"/>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9414_20221118141506"/>
                     </entryRelationship>
                 </xsl:for-each>
                 
@@ -348,6 +348,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 
             </substanceAdministration>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Stoptype</xd:desc>
+        <xd:param name="in">Optional. Input ada element, defaults to context.</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9414_20221118141506">
+        <xsl:param name="in" select="."/>
+        <xsl:for-each select="$in">
+            <observation classCode="OBS" moodCode="EVN">
+                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9414"/>
+                <code code="410684002" displayName="status van medicamenteuze behandeling" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
+                <xsl:call-template name="makeCEValue"/>
+            </observation>
         </xsl:for-each>
     </xsl:template>
 
@@ -422,7 +437,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- stoptype -->
             <xsl:for-each select="(toedieningsafspraak_stop_type | stoptype)[@code]">
                 <entryRelationship typeCode="COMP">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9372_20210616133243"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9414_20221118141506"/>
                 </entryRelationship>
             </xsl:for-each>
             
@@ -585,7 +600,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <xsl:for-each select="(stoptype | medicatieafspraak_stop_type)[.//(@value | @code)]">
                 <entryRelationship typeCode="COMP">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9372_20210616133243"/>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9414_20221118141506"/>
                 </entryRelationship>
             </xsl:for-each>
             <xsl:for-each select="(reden_afspraak | reden_wijzigen_of_staken)[.//(@value | @code)]">
@@ -754,7 +769,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9431"/>
                 <!-- inhoud medicatieafspraak -->
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9431_20221122133531">
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9429_20221122130054">
                     <xsl:with-param name="in" select="."/>
                 </xsl:call-template>
             </substanceAdministration>
@@ -1092,7 +1107,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <substanceAdministration classCode="SBADM" moodCode="EVN" negationInd="false">
-                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9331"/>
+                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9443"/>
                 <!-- inhoud medicatiegebruik -->
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9442_20221124134142">
                     <xsl:with-param name="in" select="."/>
@@ -1110,7 +1125,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <substanceAdministration classCode="SBADM" moodCode="EVN" negationInd="false">
-                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9322"/>
+                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9444"/>
                 <!-- inhoud medicatiegebruik -->
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9442_20221124134142">
                     <xsl:with-param name="in" select="."/>

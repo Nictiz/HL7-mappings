@@ -23,7 +23,7 @@
     <property name="schema.organizer" value="${build.dir}/../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210921/mp-xml-20210921T194523/schemas_codeGen_flat/organizer.xsd"/>
     <property name="schema.cda" value="${build.dir}/../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210921/mp-xml-20210921T194523/schemas_codeGen_flat/CDANL_extended.xsd"/>
 
-    <property name="xsl.validate.svrl" value="${build.dir}/validate/validate-svrl-output.xsl"/>
+    <property name="xsl.validate.svrl" value="${build.dir}/../../validate/validate-svrl-output.xsl"/>
 
     <target name="setup_mp930" description="Setup subdirectories, schemas, ada instance xml's in ${build.dir} for ${is.name} ${is.version}">
 
@@ -510,13 +510,7 @@
             <param name="input.dir" value="../mp/${is.version}/${usecase.mv}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
-        <!-- sturen_medicatievoorschrift cda -->
-        <antcall target="schematronresults_hl7_930_sub">
-            <param name="result.xml" value="${build.dir}/validate/cda_${usecase.mv}.xml"/>
-            <param name="input.dir" value="../mp/${is.version}/${usecase.mv}/validate_cda_instance"/>
-            <param name="input.fileset" value="*.xml"/>
-        </antcall>
-        <!-- sturen_voorstel_medicatieafspraak -->
+         <!-- sturen_voorstel_medicatieafspraak -->
         <antcall target="schematronresults_hl7_930_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.vma}.xml"/>
             <param name="input.dir" value="../mp/${is.version}/${usecase.vma}/validate_hl7_instance"/>
