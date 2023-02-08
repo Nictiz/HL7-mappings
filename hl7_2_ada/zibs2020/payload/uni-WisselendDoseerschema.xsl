@@ -17,8 +17,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
 
     <xsl:variable name="wdsCode" as="xs:string*" select="'395067002'"/>
-    <xsl:variable name="templateId-wisselend_doseerschema" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9380'"/>
-    <xsl:variable name="templateId-redenWijzigenOfStakenWDS" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9404'"/>
+    <xsl:variable name="templateId-wisselend_doseerschema" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9412', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9380'"/>
+    <xsl:variable name="templateId-redenWijzigenOfStakenWDS" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9439', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9404'"/>
     
 
     <xd:doc>
