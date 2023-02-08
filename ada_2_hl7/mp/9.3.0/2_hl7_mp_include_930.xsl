@@ -509,6 +509,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </entryRelationship>
             </xsl:for-each>
             
+            <!-- relatie naar TA -->
+            <xsl:for-each select="(relatie_toedieningsafspraak)[identificatie[@value | @nullFlavor]]">
+                <!-- kunnen er 0 of meer zijn -->
+                <entryRelationship typeCode="REFR">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9101_20160624130316">
+                        <xsl:with-param name="identificatieElement" select="identificatie"/>
+                    </xsl:call-template>
+                </entryRelationship>
+            </xsl:for-each>
+            
             <!--Relatie naar medicamenteuze behandeling-->
             <entryRelationship typeCode="COMP" inversionInd="true">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9084_20160621103838">
