@@ -191,7 +191,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">the ada element for toediener, defaults to context</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9407_20221101101151" match="toediener" mode="HandleToediener92">
-        <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9407_20221101101151" match="toediener" mode="HandleToediener92">
             <xsl:param name="in" as="element()*" select="."/>
             
             <xsl:for-each select="$in">
@@ -224,7 +223,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </performer>
                 </xsl:for-each>
             </xsl:for-each>
-        </xsl:template>
     </xsl:template>
     
     <xd:doc>
