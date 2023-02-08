@@ -1,0 +1,131 @@
+<!--Generated from HL7v3 instance.-->
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_afhandeling_medicatievoorschrift.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2023-02-08T18:39:43.903432+01:00"
+         last-update-date="2023-02-08T18:39:43.903432+01:00"/>
+   <data>
+      <sturen_afhandeling_medicatievoorschrift app="mp-mp93"
+                                               shortName="sturen_afhandeling_medicatievoorschrift"
+                                               formName="afhandelen_medicatievoorschrift"
+                                               transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.407"
+                                               transactionEffectiveDate="2022-06-30T00:00:00"
+                                               versionDate=""
+                                               prefix="mp-"
+                                               language="nl-NL"
+                                               title="av-mp-va-tst-6-5-bijzondere-keerdosis-v30"
+                                               id="av-mp-va-tst-6-5-bijzondere-keerdosis-v30">
+         <patient>
+            <naamgegevens>
+               <initialen value="G."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Hemsbergen"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900602" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime" value="1963-11-02"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_300_bijzonderekeerdosis"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <toedieningsafspraak>
+               <identificatie value="MBH_300_bijzonderekeerdosis_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <toedieningsafspraak_datum_tijd datatype="datetime" value="2023-01-01T09:15:00"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2023-01-29T23:59:59"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder value="d319e40" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d319e32" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf 1 jan 2023, tot en met 29 jan 2023, 2 maal per dag 0.5 stuk, oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen"
+                                  displayName="oraal"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="0.5"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_bijzonderekeerdosis_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+            <medicatieverstrekking>
+               <identificatie value="MBH_300_bijzonderekeerdosis_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-01-01T09:15:00"/>
+               <verstrekker>
+                  <zorgaanbieder value="d319e40" datatype="reference"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid>
+                  <aantal value="30"/>
+                  <eenheid value="30"
+                           code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product value="d319e32" datatype="reference"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek>
+                  <identificatie value="MBH_300_bijzonderekeerdosis_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="d319e32">
+               <product_code code="1137778"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="NAPROXEN APOTEX TABLET 500MG"/>
+               <product_code code="20850"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="NAPROXEN 500MG TABLET"/>
+               <product_code code="51233"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="NAPROXEN 500MG TABLET"/>
+            </farmaceutisch_product>
+            <zorgaanbieder id="d319e40">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek de Gulle Gaper"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </sturen_afhandeling_medicatievoorschrift>
+   </data>
+</adaxml>
