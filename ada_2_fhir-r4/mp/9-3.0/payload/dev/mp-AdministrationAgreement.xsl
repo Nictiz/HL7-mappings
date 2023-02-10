@@ -128,6 +128,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueCodeableConcept>
                     </extension>
                 </xsl:for-each>
+                
+                <!-- MP-449: add relatie_toedieningsafspraak -->
+                <xsl:for-each select="relatie_toedieningsafspraak/identificatie[@value]">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RelationAdministrationAgreement">
+                        <valueReference>
+                            <type value="MedicationDispense"/>
+                            <identifier>
+                                <xsl:call-template name="id-to-Identifier"/>
+                            </identifier>
+                            <display value="relatie naar toedieningsafspraak met identificatie: {string-join((@value, @root), ' || ')}"/>
+                        </valueReference>
+                    </extension>
+                </xsl:for-each>
 
                 <xsl:for-each select="toedieningsafspraak_stop_type">
                     <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">

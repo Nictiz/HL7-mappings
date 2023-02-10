@@ -188,7 +188,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <xsl:for-each select="relatie_toedieningsafspraak/identificatie[@value]">
                     <basedOn>
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelationAdministrationAgreement">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RelationAdministrationAgreement">
                             <valueReference>
                                 <type value="MedicationDispense"/>
                                 <identifier>
