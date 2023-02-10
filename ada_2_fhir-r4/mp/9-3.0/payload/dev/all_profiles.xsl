@@ -18,11 +18,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:import href="../../../../../util/mp-functions.xsl"/>
 
-    <xsl:import href="../../../9.2.0/payload/1.0/mp-AdministrationAgreement.xsl"/>
+    <xsl:import href="mp-AdministrationAgreement.xsl"/>
     <xsl:import href="../../../9.2.0/payload/1.0/mp-DispenseRequest.xsl"/>
     <xsl:import href="../../../9.2.0/payload/1.0/mp-InstructionsForUse.xsl"/>
     <xsl:import href="../../../9.2.0/payload/1.0/mp-MedicationAdministration2.xsl"/>
-    <xsl:import href="../../../9.2.0/payload/1.0/mp-MedicationAgreement.xsl"/>
+    <xsl:import href="mp-MedicationAgreement.xsl"/>
     <xsl:import href="../../../9.2.0/payload/1.0/mp-MedicationDispense.xsl"/>
     <xsl:import href="../../../9.2.0/payload/1.0/mp-MedicationUse2.xsl"/>
     <xsl:import href="../../../9.2.0/payload/1.0/mp-VariableDosingRegimen.xsl"/>
