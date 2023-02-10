@@ -37,6 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         <xsl:param name="medicationReference" select="$in/ancestor::*[@app]//farmaceutisch_product[@id = $in/(afgesprokengeneesmiddel | afgesproken_geneesmiddel)/farmaceutisch_product/@value]" as="element()?"/>
         <xsl:param name="requester" select="$in//zorgverlener[@id = $in/voorschrijver/zorgverlener/@value] | $in/voorschrijver/zorgverlener[*]" as="element()?"/>
+        <xsl:param name="nextPractitioner" select="$in//zorgverlener[@id = $in/volgende_behandelaar/zorgverlener/@value] | $in/volgende_behandelaar/zorgverlener[*]" as="element()?"/>
         <!-- in the zib there is a reference to problem, in MP9 dataset problem has been inherited directly in reden_van_voorschrijven -->
         <xsl:param name="reasonReference" select="$in//probleem[@id = $in/reden_van_voorschrijven/probleem/@value] | $in/reden_van_voorschrijven/probleem[*]" as="element()?"/>
 
@@ -83,8 +84,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- voorstel toelichting -->
                 <xsl:for-each select="ancestor::*[voorstel_gegevens]/voorstel_gegevens/voorstel/toelichting">
                     <xsl:call-template name="ext-Comment"/>
-                </xsl:for-each>                
-
+                </xsl:for-each>
+                
+                <!-- MP-629: Add nextPractitioner extension -->
+                <xsl:for-each select="$nextPractitioner">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.NextPractitioner">
+                        <valueReference>
+                            <xsl:call-template name="makeReference">
+                                <xsl:with-param name="profile">nl-core-HealthProfessional-PractitionerRole</xsl:with-param>
+                            </xsl:call-template>
+                        </valueReference>
+                    </extension>
+                </xsl:for-each>
+                
                 <!--herhaalperiode_cyclisch_schema-->
                 <xsl:for-each select="gebruiksinstructie">
                     <xsl:call-template name="ext-InstructionsForUse.RepeatPeriodCyclicalSchedule"/>
