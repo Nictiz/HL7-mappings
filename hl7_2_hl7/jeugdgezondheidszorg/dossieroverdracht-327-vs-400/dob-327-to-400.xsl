@@ -25,7 +25,7 @@
     <xsl:variable name="dob400date" select="'2020-05-27T00:00:00'"/>
 
     <xsl:variable name="W0639_HL7_W0646_HL7_W0647_HL7">
-        <valueSet id="2.16.840.1.113883.2.4.3.11.60.100.11.2.639" name="W0639_HL7" displayName="W0639 RubriekID (HL7) alle" effectiveDate="2020-05-27T00:00:00" statusCode="draft" versionLabel="400">
+        <valueSet id="2.16.840.1.113883.2.4.3.11.60.100.11.2.639" name="W0639_HL7" displayName="W0639 RubriekID (HL7) alle" effectiveDate="2020-05-27T00:00:00" statusCode="final" versionLabel="401">
             <desc language="nl-NL">RubriekID voor alle rubrieken</desc>
             <conceptList>
                 <concept code="R002" codeSystem="2.16.840.1.113883.2.4.4.40.391" displayName="Dossierinformatie" level="0" type="L"/>
@@ -75,7 +75,7 @@
                 <concept code="R054" codeSystem="2.16.840.1.113883.2.4.4.40.391" displayName="Screening psychosociale problemen" level="0" type="L"/>
             </conceptList>
         </valueSet>
-        <valueSet id="2.16.840.1.113883.2.4.3.11.60.100.11.2.646" name="W0646_HL7" displayName="W0646 GroepID" effectiveDate="2020-05-27T00:00:00" statusCode="draft" versionLabel="400">
+        <valueSet id="2.16.840.1.113883.2.4.3.11.60.100.11.2.646" name="W0646_HL7" displayName="W0646 GroepID" effectiveDate="2020-05-27T00:00:00" statusCode="final" versionLabel="401">
             <desc language="nl-NL">GroepID</desc>
             <conceptList>
                 <concept code="G001" codeSystem="2.16.840.1.113883.2.4.4.40.393" displayName="Adres cliënt" level="0" type="L"/>
@@ -152,12 +152,10 @@
                 <concept code="G113" codeSystem="2.16.840.1.113883.2.4.4.40.393" displayName="Afkapwaarden bloeddruk systolisch" level="0" type="D"/>
                 <concept code="G114" codeSystem="2.16.840.1.113883.2.4.4.40.393" displayName="Afkapwaarden bloeddruk diastolisch" level="0" type="D"/>
                 <concept code="G115" codeSystem="2.16.840.1.113883.2.4.4.40.393" displayName="Toestemming gegevensuitwisseling RVP" level="0" type="L"/>
-                <!--<concept code="G116" codeSystem="2.16.840.1.113883.2.4.4.40.393" displayName="Gezagstatus ouder/verzorger" level="0" type="L"/>-->
                 <concept code="G117" codeSystem="2.16.840.1.113883.2.4.4.40.393" displayName="Visus" level="0" type="L"/>
-                <!--<concept code="G118" codeSystem="2.16.840.1.113883.2.4.4.40.393" displayName="Rota-vaccinatie" level="0" type="L"/>-->
             </conceptList>
         </valueSet>
-        <valueSet id="2.16.840.1.113883.2.4.3.11.60.100.11.2.647" name="W0647_HL7" displayName="W0647 BDS Elementen" effectiveDate="2020-05-27T00:00:00" statusCode="draft" versionLabel="400">
+        <valueSet id="2.16.840.1.113883.2.4.3.11.60.100.11.2.647" name="W0647_HL7" displayName="W0647 BDS Elementen" effectiveDate="2020-05-27T00:00:00" statusCode="final" versionLabel="401">
             <desc language="nl-NL">BDS Elementen</desc>
             <conceptList>
                 <concept code="1" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Voorvoegsel achternaam" level="0" type="L"/>
@@ -1077,29 +1075,6 @@
                 <concept code="1540" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="JGZ-organisatie naam toestemming gegevensuitwisseling RVP" level="0" type="L"/>
                 <concept code="1541" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Toestemmingswijze gegevensuitwisseling RVP" level="0" type="L"/>
                 <concept code="1542" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Berekende toestemming gegevensuitwisseling RVP" level="0" type="L"/>
-                <!--<concept code="1543" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Naam bron overdracht dossier binnen JGZ" level="0" type="L"/>
-                <concept code="1547" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Naam JGZ-medewerker registratie toestemming overdracht dossier binnen JGZ" level="0" type="L"/>
-                <concept code="1548" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="JGZ-organisatie URA registratie toestemming overdracht dossier binnen JGZ" level="0" type="L"/>
-                <concept code="1549" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="JGZ-organisatie AGB registratie toestemming overdracht dossier binnen JGZ" level="0" type="L"/>
-                <concept code="1550" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="JGZ-organisatie naam registratie toestemming overdracht dossier binnen JGZ" level="0" type="L"/>
-                <concept code="1551" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Datum registratie toestemming overdracht dossier binnen JGZ" level="0" type="L"/>
-                <concept code="1552" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Naam bron toestemming aanmelding LSP" level="0" type="L"/>
-                <concept code="1553" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Naam JGZ-medewerker registratie toestemming aanmelding LSP" level="0" type="L"/>
-                <concept code="1554" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="JGZ-organisatie URA registratie toestemming aanmelding LSP" level="0" type="L"/>
-                <concept code="1555" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="JGZ-organisatie AGB registratie toestemming aanmelding LSP" level="0" type="L"/>
-                <concept code="1556" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="JGZ-organisatie naam registratie toestemming aanmelding LSP" level="0" type="L"/>
-                <concept code="1557" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Datum registratie toestemming aanmelding LSP" level="0" type="L"/>
-                <concept code="1558" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Naam bron toestemming verstrekking informatie aan derden" level="0" type="L"/>
-                <concept code="1559" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Naam JGZ-medewerker registratie verstrekking informatie aan derden" level="0" type="L"/>
-                <concept code="1560" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="JGZ-organisatie URA registratie toestemming verstrekking informatie aan derden" level="0" type="L"/>
-                <concept code="1561" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="JGZ-organisatie AGB registratie toestemming verstrekking informatie aan derden" level="0" type="L"/>
-                <concept code="1562" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="JGZ-organisatie naam registratie toestemming verstrekking informatie aan derden" level="0" type="L"/>
-                <concept code="1563" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Datum registratie toestemming verstrekking informatie aan derden" level="0" type="L"/>
-                <concept code="1564" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Naam bron bezwaar tegen hergebruik van geanonimiseerde dossiergegevens" level="0" type="L"/>
-                <concept code="1565" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Gezag ouder/verzorger" level="0" type="L"/>
-                <concept code="1566" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Startdatum geldigheid gezag ouder/verzorger" level="0" type="L"/>
-                <concept code="1567" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Einddatum geldigheid gezag ouder/verzorger" level="0" type="L"/>
-                <concept code="1568" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Bijzonderheden sociale/fysieke milieu" level="0" type="L"/>-->
                 <concept code="1569" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Er zijn (blijvende) zorgen dat de opvoed- en/of opgroeisituatie van de jeugdige een bedreiging voor de veiligheid van de jeugdige kunnen vormen" level="0" type="L"/>
                 <concept code="1570" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="De (blijvende) zorgen zijn gedeeld met de jeugdige/ouder(s)/verzorger(s)" level="0" type="L"/>
                 <concept code="1571" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Reden om (blijvende) zorgen niet te delen" level="0" type="L"/>
@@ -1124,12 +1099,6 @@
                 <concept code="1590" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Soort visuskaart" level="0" type="L"/>
                 <concept code="1591" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Uitslag visus rechts" level="0" type="L"/>
                 <concept code="1592" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Uitslag visus links" level="0" type="L"/>
-                <!--<concept code="1593" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Is er een absolute contra-indicatie voor rota-vaccinatie afgegeven?" level="0" type="L"/>
-                <concept code="1594" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Absolute contra-indicatie rota-vaccinatie" level="0" type="L"/>
-                <concept code="1595" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Is er een relatieve contra-indicatie voor rota-vaccinatie afgegeven?" level="0" type="L"/>
-                <concept code="1596" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Relatieve contra-indicatie rota-vaccinatie" level="0" type="L"/>
-                <concept code="1597" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Heeft de moeder tijdens de zwangerschap een biological gebruikt?" level="0" type="L"/>
-                <concept code="1598" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Is er een detecteerbare bloedspiegel bij het kind met betrekking tot biological?" level="0" type="L"/>-->
                 <concept code="1599" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Uitvoerende activiteit discipline" level="0" type="L"/>
                 <concept code="1600" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Contact ivm meldcode met functie" level="0" type="L"/>
                 <concept code="1601" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Schoolverzuim" level="0" type="L"/>
@@ -1138,7 +1107,7 @@
                 <concept code="1604" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Toelichting advies met betrekking tot deelname lesprogramma" level="0" type="L"/>
                 <concept code="1605" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Status activiteit" level="0" type="L"/>
                 <concept code="1606" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Contact ivm meldcode met naam" level="0" type="L"/>
-                <concept code="1607" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Toestemming einddatum gegevensuitwisseling RVP" level="0" type="L"/>
+                <concept code="1607" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Einddatum toestemming gegevensuitwisseling RVP" level="0" type="L"/>
                 <concept code="5063" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="BCG litteken" level="0" type="L"/>
             </conceptList>
         </valueSet>
