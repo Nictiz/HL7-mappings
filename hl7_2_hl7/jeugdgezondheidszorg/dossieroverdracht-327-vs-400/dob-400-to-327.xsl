@@ -10,12 +10,14 @@
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Alexander Henket, Nictiz</xd:p>
-            <xd:p><xd:b>Purpose:</xd:b> Conversie van een valide Dossieroverdrachtbericht op basis van BDS 4.0.0 (REPC_IN902120NL03) naar een valide versie op basis van BDS 3.2.6 (REPC_IN902120NL). Regelt zelf het bijwerken van de weergavenamen bij rubrieken, groepen en elementen. Laat de weergavenamen van waarden ongemoeid.</xd:p>
+            <xd:p><xd:b>Author:</xd:b> Onno Gieling, Nictiz</xd:p>
+            <xd:p><xd:b>Purpose:</xd:b> Conversie van een valide Dossieroverdrachtbericht op basis van BDS 4.0.1 (REPC_IN902120NL03) naar een valide versie op basis van BDS 3.2.7 (REPC_IN902120NL). Regelt zelf het bijwerken van de weergavenamen bij rubrieken, groepen en elementen. Laat de weergavenamen van waarden ongemoeid.</xd:p>
             <xd:p>
                 <xd:b>History:</xd:b>
             </xd:p>
             <xd:ul>
                 <xd:li>07-06-2020 - Eerste versie</xd:li>
+                <xd:li>10-02-2022 - 1.0.0</xd:li>
             </xd:ul>
             <xd:p><xd:b>License:</xd:b> Copyright © Nictiz</xd:p>
             <xd:p>This program is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2.1 of the License, or (at your option) any later version.</xd:p>
