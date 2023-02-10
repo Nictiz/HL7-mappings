@@ -92,12 +92,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <display value="optimaliseren van dosering van medicatie"/>
                     </coding>
                 </category>
-                
-                <xsl:for-each select="kopie_indicator[@value | @nullFlavor]">
-                    <reportedBoolean>
-                        <xsl:call-template name="boolean-to-boolean"/>
-                    </reportedBoolean>
-                </xsl:for-each>
 
                 <xsl:choose>
                     <xsl:when test="$medicationReference">
