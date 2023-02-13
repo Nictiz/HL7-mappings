@@ -1,0 +1,87 @@
+<MedicationStatement xmlns="http://hl7.org/fhir">
+   <id value="mp-MedUse2-mp9-MBH300redenvanvoorschrijvenMGB"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="Vanaf T - 5 dagen, tot en met T - 2 dagen, geneesmiddel niet in gebruik, "/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
+      <valueReference>
+         <reference value="PractitionerRole/nl-core-HPrf-PracRol-mp9-PrcRol-2165281100731-000001112"/>
+         <type value="PractitionerRole"/>
+         <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator">
+      <valueBoolean value="false"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_300_redenvanvoorschrijven"/>
+      </valueIdentifier>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
+      <valueReference>
+         <reference value="PractitionerRole/nl-core-HPrf-PracRol-mp9-PrcRol-2165281100731-000001112"/>
+         <type value="PractitionerRole"/>
+         <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+      <value value="MBH_300_redenvanvoorschrijven_MGB"/>
+   </identifier>
+   <status value="not-taken"/>
+   <statusReason>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="405613005"/>
+         <display value="verrichting gepland"/>
+      </coding>
+   </statusReason>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422979000"/>
+         <display value="bevinding betreffende gedrag met betrekking tot medicatieregime"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/nl-core-PhPrd-mp9-216840111388324410-141631"/>
+      <type value="Medication"/>
+      <display value="Methotrexaat tablet 2,5mg"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-D-XXX-Dixhoorn"/>
+      <type value="Patient"/>
+      <display value="Patient, D. XXX_Dixhoorn"/>
+   </subject>
+   <effectivePeriod>
+      <start value="${DATE, T, D, -5}T00:00:00+02:00"/>
+      <end value="${DATE, T, D, -2}T23:59:59+02:00"/>
+   </effectivePeriod>
+   <dateAsserted value="${DATE, T, D, +0}T15:05:00+02:00"/>
+   <informationSource>
+      <reference value="Patient/nl-core-Patient-mp9-D-XXX-Dixhoorn"/>
+      <type value="Patient"/>
+      <display value="Patient, D. XXX_Dixhoorn"/>
+   </informationSource>
+   <derivedFrom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="33633005"/>
+               <display value="voorschrijven"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <value value="MBH_300_redenvanvoorschrijven_MA"/>
+      </identifier>
+      <display value="relatie naar medicatieafspraak"/>
+   </derivedFrom>
+</MedicationStatement>
