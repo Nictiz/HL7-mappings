@@ -224,6 +224,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
             </xsl:when>
+            <xsl:when test="$localName = 'apgar_score'">
+                <xsl:apply-templates select="$in" mode="nl-core-ApgarScore">
+                    <xsl:with-param name="subject" select="$subject"/>
+                    <xsl:with-param name="profile" select="'nl-core-ApgarScore-1Minute'"/>
+                </xsl:apply-templates>
+                <xsl:apply-templates select="$in" mode="nl-core-ApgarScore">
+                    <xsl:with-param name="subject" select="$subject"/>
+                    <xsl:with-param name="profile" select="'nl-core-ApgarScore-5Minute'"/>
+                </xsl:apply-templates>
+                <xsl:apply-templates select="$in" mode="nl-core-ApgarScore">
+                    <xsl:with-param name="subject" select="$subject"/>
+                    <xsl:with-param name="profile" select="'nl-core-ApgarScore-10Minute'"/>
+                </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'behandel_aanwijzing'">
                 <xsl:apply-templates select="$in" mode="nl-core-TreatmentDirective2">
                     <xsl:with-param name="subject" select="$subject"/>
@@ -272,6 +286,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:when test="$localName = 'darmfunctie'">
                 <xsl:apply-templates select="$in" mode="nl-core-BowelFunction">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
+            <xsl:when test="$localName = 'dosscore'">
+                <xsl:apply-templates select="$in" mode="nl-core-DOSScore">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
             </xsl:when>
@@ -327,6 +346,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:when test="$localName = 'hartfrequentie'">
                 <xsl:apply-templates select="$in" mode="nl-core-HeartRate">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
+            <xsl:when test="$localName = 'hulp_van_anderen'">
+                <xsl:apply-templates select="$in" mode="nl-core-HelpFromOthers">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
             </xsl:when>
@@ -423,6 +447,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:when test="$localName = 'opleiding'">
                 <xsl:apply-templates select="$in" mode="nl-core-Education">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
+            <xsl:when test="$localName = 'participatie_in_maatschappij'">
+                <xsl:apply-templates select="$in" mode="nl-core-ParticipationInSociety">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
             </xsl:when>
@@ -531,6 +560,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:when test="$localName = 'visus'">
                 <xsl:apply-templates select="$in" mode="nl-core-VisualAcuity"/>
+            </xsl:when>
+            <xsl:when test="$localName = 'vochtbalans'">
+                <xsl:apply-templates select="$in" mode="nl-core-FluidBalance">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'voedingsadvies'">
                 <xsl:apply-templates select="$in" mode="nl-core-NutritionAdvice">

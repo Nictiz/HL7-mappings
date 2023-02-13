@@ -27,32 +27,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:import href="_driverInclude.xsl"/>
     
-    <xd:doc>
-        <xd:desc>
-            Process a bundle containing ADA instances for zibs that are mapped onto/into the nl-core-Patient profile:
-            <xd:ul>
-                <xd:li>zib Patient</xd:li>
-                <xd:li>zib Nationality</xd:li>
-                <xd:li>zib LifeStance</xd:li>
-                <xd:li>zib MaritalStatus</xd:li>
-                <xd:li>zib LanguageProfiency</xd:li>
-                <xd:li>zib ContactPerson</xd:li>
-            </xd:ul>
-        </xd:desc>
-    </xd:doc>
     <xsl:template match="/nm:bundle">
-        <xsl:for-each select="$bundle/patient">
-            <xsl:call-template name="nl-core-Patient">
-                <xsl:with-param name="nationality" select="$bundle/nationaliteit_rc"/>
-                <xsl:with-param name="lifeStance" select="$bundle/levensovertuiging_rc"/>
-                <xsl:with-param name="maritalStatus" select="$bundle/burgerlijke_staat_rc"/>
-                <xsl:with-param name="languageProficiency" select="$bundle/taalvaardigheid"/>
-                <xsl:with-param name="contactPersons" select="$bundle/contactpersoon"/>
-            </xsl:call-template>
-        </xsl:for-each>
+        <xsl:apply-templates mode="_doTransform" select="$bundle/participatie_in_maatschappij"/>
     </xsl:template>
     
-    <xsl:template match="//patient_registratie/patient">
+    <xsl:template match="//participatie_in_maatschappij_registratie/participatie_in_maatschappij">
         <xsl:apply-templates mode="_doTransform" select="."/>
     </xsl:template>
     

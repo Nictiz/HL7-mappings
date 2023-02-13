@@ -31,6 +31,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../0.5-beta1/nl-core-Alert.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-AllergyIntolerance.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-AnatomicalLocation.xsl"/>
+    <xsl:import href="nl-core-ApgarScore.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-BloodPressure.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-BodyHeight.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-BodyWeight.xsl"/>
@@ -40,11 +41,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-ComfortScale.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-ContactInformation.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-ContactPerson.xsl"/>
+    <xsl:import href="nl-core-DOSScore.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-DrugUse.xsl"/>
     <xsl:import href="../0.7-beta1/nl-core-Education.xsl"/>
     <xsl:import href="../0.7-beta1/nl-core-Encounter.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-EpisodeOfcare.xsl"/>
     <xsl:import href="nl-core-FLACCpainScale.xsl"/>
+    <xsl:import href="nl-core-FluidBalance.xsl"/>
     <xsl:import href="nl-core-FreedomRestrictingIntervention.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-FunctionalOrMentalStatus.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-HeadCircumference.xsl"/>
@@ -52,6 +55,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../0.5-beta1/nl-core-HealthcareProvider.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-HearingFunction.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-HeartRate.xsl"/>
+    <xsl:import href="nl-core-HelpFromOthers.xsl"/>
     <xsl:import href="../0.6-beta2/nl-core-LaboratoryTestResult.xsl"/>
     <xsl:import href="nl-core-LegalSituation.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-LivingSituation.xsl"/>
@@ -62,7 +66,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../0.5-beta1/nl-core-NameInformation.xsl"/>
     <xsl:import href="../0.7-beta1/nl-core-NutritionAdvice.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-O2Saturation.xsl"/>
-    <xsl:import href="../0.5-beta1/nl-core-Patient.xsl"/>
+    <xsl:import href="nl-core-ParticipationInSociety.xsl"/>
+    <xsl:import href="nl-core-Patient.xsl"/>
     <xsl:import href="../0.7-beta1/nl-core-Payer.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-PharmaceuticalProduct.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-Problem.xsl"/>
