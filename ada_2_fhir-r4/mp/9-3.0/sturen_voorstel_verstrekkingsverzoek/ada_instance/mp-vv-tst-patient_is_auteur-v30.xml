@@ -1,0 +1,58 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_voorstel_verstrekkingsverzoek.xsd">
+   <meta status="new" created-by="medicatieprocesada" last-update-by="medicatieprocesada" creation-date="2023-01-09T17:46:11.516+01:00" last-update-date="2023-01-09T17:46:11.516+01:00"/>
+   <data>
+      <sturen_voorstel_verstrekkingsverzoek app="mp-mp93" shortName="sturen_voorstel_verstrekkingsverzoek" formName="sturen_voorstel_verstrekkingsverzoek" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.401" transactionEffectiveDate="2022-06-30T00:00:00" versionDate="" prefix="mp-" language="nl-NL" title="TEST VVV Patiënt is auteur" desc="" id="mp-vv-tst-patient_is_auteur-v30">
+         <patient comment="">
+            <naamgegevens comment="">
+               <initialen value="C."/>
+               <naamgebruik value="1" code="NL1" codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4" displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam comment="">
+                  <voorvoegsels value="van de "/>
+                  <achternaam value="XXX_Brugge"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900419" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1963-10-16" datatype="datetime"/>
+            <geslacht value="2" code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+         </patient>
+         <medicamenteuze_behandeling comment="" id="MBH_200_start_eind">
+            <verstrekkingsverzoek comment="">
+               <te_verstrekken_geneesmiddel comment="">
+                  <farmaceutisch_product value="PRK_metoclopramide_6947" datatype="reference"/>
+               </te_verstrekken_geneesmiddel>
+               <te_verstrekken_hoeveelheid comment="">
+                  <aantal value="10"/>
+                  <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <beoogd_verstrekker comment="">
+                  <zorgaanbieder value="Apotheek_De_Gulle_Gaper" datatype="reference"/>
+               </beoogd_verstrekker>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="MBH_300_start_eind_MA" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.293"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
+         </medicamenteuze_behandeling>
+         <bouwstenen comment="">
+            <farmaceutisch_product comment="" id="PRK_metoclopramide_6947">
+               <product_code code="6947" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="G-Standaard PRK" displayName="METOCLOPRAMIDE TABLET 10MG"/>
+               <product_code code="19429" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="G-Standaard GPK" displayName="METOCLOPRAMIDE TABLET 10MG"/>
+            </farmaceutisch_product>
+            <zorgaanbieder comment="" id="Apotheek_De_Gulle_Gaper">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+            </zorgaanbieder>
+         </bouwstenen>
+         <voorstel_gegevens comment="">
+            <voorstel comment="">
+               <identificatie root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.2" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.528" value="MBH_300_Voorstelgegevens_patient_is_auteur_VVV"/>
+               <voorstel_datum value="T+0D{13:24:00}" datatype="datetime"/>
+               <auteur comment="">
+                  <auteur_is_patient value="true"/>
+               </auteur>
+               <medicamenteuze_behandeling value="MBH_300_start_eind" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.534"/>
+               <toelichting value="Veel last van misselijkheid en ik heb onvoldoende voorraad"/>
+            </voorstel>
+         </voorstel_gegevens>
+      </sturen_voorstel_verstrekkingsverzoek>
+   </data>
+</adaxml>
