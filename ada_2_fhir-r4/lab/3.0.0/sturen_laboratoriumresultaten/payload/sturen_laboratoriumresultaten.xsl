@@ -24,7 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
     
-    <xsl:import href="../../../../zibs2020/payload/0.6-beta2/all_zibs.xsl"/>
+    <xsl:import href="../../../../zibs2020/payload/0.8.0-beta.1/all_zibs.xsl"/>
     <xsl:import href="../../../../fhir/2_fhir_BundleEntryRequest.xsl"/>
     
     <xd:doc>
@@ -78,7 +78,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="groupKey" select="current-grouping-key()"/>
                         </xsl:call-template>
                         <resource>
-                            <xsl:call-template name="nl-core-LaboratoryTestResult.Specimen.Source">
+                            <xsl:call-template name="nl-core-LaboratoryTestResult.SpecimenSource">
                                 <xsl:with-param name="in" select="current-group()[1]"/>
                                 <xsl:with-param name="subject" select="../../../../patientgegevens/patient"/>
                             </xsl:call-template>
@@ -242,7 +242,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$localName = 'monster' and $profile = 'nl-core-LaboratoryTestResult.Specimen'">
                     <xsl:value-of select="'monster-' || string-join((monsternummer/@value, monstervolgnummer/@value, monstermateriaal/@code), '-')"/>
                 </xsl:when>
-                <xsl:when test="$localName = 'bron_monster' and $profile = 'nl-core-LaboratoryTestResult.Specimen.Source'">
+                <xsl:when test="$localName = 'bron_monster' and $profile = 'nl-core-LaboratoryTestResult.SpecimenSource'">
                     <xsl:value-of select="'bron-' || @value"/>
                 </xsl:when>
                 <xsl:when test="$localName = 'patient'">
