@@ -15,6 +15,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nm="http://www.nictiz.nl/mappings" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 
     <xsl:import href="../../../../zibs2020/payload/0.7-beta1/all_zibs.xsl"/>
+    <xsl:import href="_ada2resourceType.xsl"/> <!-- Overrride the generic ada2resourceType variable with a version that used mp-PharmaceuticalProduct -->
 
     <xsl:import href="../../../../../util/mp-functions.xsl"/>
 
@@ -26,6 +27,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../../../9.2.0/payload/1.0/mp-MedicationDispense.xsl"/>
     <xsl:import href="../../../9.2.0/payload/1.0/mp-MedicationUse2.xsl"/>
     <xsl:import href="mp-VariableDosingRegimen.xsl"/>
+    
+    <xsl:import href="mp-PharmaceuticalProduct.xsl"/>
 
     <xsl:import href="../../../9.2.0/payload/1.0/ext-AsAgreedIndicator.xsl"/>
     <xsl:import href="../../../9.2.0/payload/1.0/ext-PharmaceuticalTreatmentIdentifier.xsl"/>

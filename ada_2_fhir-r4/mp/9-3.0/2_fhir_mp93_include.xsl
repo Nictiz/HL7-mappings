@@ -28,5 +28,158 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="searchModeParam" as="xs:string?">match</xsl:param>
     <!-- The meta tag to be added. Optional. Typical use case is 'actionable' for prescriptions or proposals. Empty for informational purposes. -->
     <xsl:param name="metaTag" as="xs:string?"/>
+    
+    
+    <!-- Override variable in 2_fhir_mp92_include to account for mp-PharmaceuticalProduct (MP-639) -->
+    <xsl:variable name="commonEntries" as="element(f:entry)*">
+        <xsl:for-each-group select="/adaxml/data/*/patient" group-by="nf:getGroupingKeyDefault(.)">
+            <!-- entry for patient -->
+            <xsl:variable name="patientKey" select="current-grouping-key()"/>
+            <entry>
+                <xsl:call-template name="insertFullUrl">
+                    <xsl:with-param name="in" select="."/>
+                </xsl:call-template>
+                <resource>
+                    <xsl:call-template name="nl-core-Patient">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
+                </resource>
+            </entry>
+        </xsl:for-each-group>
+        <xsl:for-each-group select="/adaxml/data/*/bouwstenen/contactpersoon" group-by="nf:getGroupingKeyDefault(.)">
+            <!-- entry for Contact -->
+            <xsl:variable name="contactKey" select="current-grouping-key()"/>
+            <entry>
+                <xsl:call-template name="insertFullUrl">
+                    <xsl:with-param name="in" select="."/>
+                </xsl:call-template>
+                <resource>
+                    <xsl:call-template name="nl-core-ContactPerson">
+                        <xsl:with-param name="patient" select="../../patient"/>
+                    </xsl:call-template>
+                </resource>
+            </entry>
+        </xsl:for-each-group>
+        <!-- let's resolve the zorgaanbieder ín the zorgverlener, to make sure deduplication also works for duplicated zorgaanbieders -->
+        <xsl:variable name="zorgverlenerWithResolvedZorgaanbieder" as="element(zorgverlener)*">
+            <xsl:apply-templates select="/adaxml/data/*/bouwstenen/zorgverlener" mode="resolveAdaZorgaanbieder"/>                
+        </xsl:variable>
+        <xsl:for-each-group select="$zorgverlenerWithResolvedZorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
+            <!-- entry for practitionerrole -->
+            <entry>
+                <xsl:call-template name="insertFullUrl">
+                    <xsl:with-param name="in" select="."/>
+                    <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
+                </xsl:call-template>                
+                <resource>
+                    <xsl:call-template name="nl-core-HealthProfessional-PractitionerRole">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
+                </resource>
+            </entry>
+            <!-- also an entry for practitioner -->
+            <entry>
+                <xsl:call-template name="insertFullUrl">
+                    <xsl:with-param name="in" select="."/>
+                    <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitioner"/>
+                </xsl:call-template>
+                <resource>
+                    <xsl:call-template name="nl-core-HealthProfessional-Practitioner">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
+                </resource>
+            </entry>
+        </xsl:for-each-group>
+        <xsl:for-each-group select="/adaxml/data/*/(bouwstenen | documentgegevens/auteur/auteur_is_zorgaanbieder)/zorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
+            <!-- entry for organization -->
+            <xsl:variable name="zabKey" select="current-grouping-key()"/>
+            <entry>
+                <fullUrl value="{$fhirMetadata[nm:resource-type/text() = 'Organization'][nm:group-key/text() = $zabKey]/nm:full-url/text()}"/>
+                <resource>
+                    <xsl:call-template name="nl-core-HealthcareProvider-Organization">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
+                </resource>
+            </entry>
+        </xsl:for-each-group>
+        <xsl:for-each-group select="/adaxml/data/*/bouwstenen/farmaceutisch_product" group-by="nf:getGroupingKeyDefault(.)">
+            <!-- entry for product -->
+            <xsl:variable name="prdKey" select="current-grouping-key()"/>
+            <entry>
+                <xsl:call-template name="insertFullUrl">
+                    <xsl:with-param name="in" select="."/>
+                </xsl:call-template>
+                <resource>
+                    <xsl:call-template name="mp-PharmaceuticalProduct">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
+                </resource>
+            </entry>
+        </xsl:for-each-group>
+        <xsl:for-each-group select="/adaxml/data/*//reden_van_voorschrijven/probleem" group-by="nf:getGroupingKeyDefault(.)">
+            <!-- entry for problem -->
+            <xsl:variable name="prbKey" select="current-grouping-key()"/>
+            <entry>
+                <xsl:call-template name="insertFullUrl">
+                    <xsl:with-param name="in" select="."/>
+                </xsl:call-template>
+                <resource>
+                    <xsl:call-template name="nl-core-Problem">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="subject" select="/adaxml/data/*/patient"/>
+                    </xsl:call-template>
+                </resource>
+            </entry>
+        </xsl:for-each-group>
+        <xsl:for-each-group select="/adaxml/data/*//afleverlocatie[@value]" group-by="nf:getGroupingKeyDefault(.)">
+            <!-- entry for problem -->
+            <xsl:variable name="locKey" select="current-grouping-key()"/>
+            <entry>
+                <xsl:call-template name="insertFullUrl">
+                    <xsl:with-param name="in" select="."/>
+                </xsl:call-template>
+                <resource>
+                    <Location>
+                        <xsl:call-template name="insertLogicalId"/>
+                        <meta>
+                            <!-- J.D.: Add this to conform to our 'all resources SHALL contain meta.profile' requirement, although we do not have a specific profile to conform to in this case -->
+                            <profile value="http://hl7.org/fhir/StructureDefinition/Location"/>
+                        </meta>
+                        <name value="{@value}"/>
+                    </Location>
+                </resource>
+            </entry>
+        </xsl:for-each-group>
+        <xsl:for-each-group select="/adaxml/data/*/bouwstenen/lichaamslengte" group-by="nf:getGroupingKeyDefault(.)">
+            <!-- entry for Observation -->
+            <xsl:variable name="obsKey" select="current-grouping-key()"/>
+            <entry>
+                <xsl:call-template name="insertFullUrl">
+                    <xsl:with-param name="in" select="."/>
+                </xsl:call-template>
+                <resource>
+                    <xsl:call-template name="nl-core-BodyHeight">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="subject" select="/adaxml/data/*/patient"/>
+                    </xsl:call-template>
+                </resource>
+            </entry>
+        </xsl:for-each-group>
+        <xsl:for-each-group select="/adaxml/data/*/bouwstenen/lichaamsgewicht" group-by="nf:getGroupingKeyDefault(.)">
+            <!-- entry for Observation -->
+            <xsl:variable name="obsKey" select="current-grouping-key()"/>
+            <entry>
+                <xsl:call-template name="insertFullUrl">
+                    <xsl:with-param name="in" select="."/>
+                </xsl:call-template>
+                <resource>
+                    <xsl:call-template name="nl-core-BodyWeight">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="subject" select="/adaxml/data/*/patient"/>
+                    </xsl:call-template>
+                </resource>
+            </entry>
+        </xsl:for-each-group>
+    </xsl:variable>
 
 </xsl:stylesheet>
