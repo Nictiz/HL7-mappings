@@ -108,7 +108,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </xsl:otherwise>
                 </xsl:choose>
-                <xsl:apply-templates select="$bouwstenen-920" mode="addBundleEntrySearchOrRequest"/>
+                <xsl:apply-templates select="$bouwstenen-930" mode="addBundleEntrySearchOrRequest"/>
                 <!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations -->
                 <xsl:apply-templates select="$commonEntries" mode="addBundleEntrySearchOrRequest"/>
             </Bundle>

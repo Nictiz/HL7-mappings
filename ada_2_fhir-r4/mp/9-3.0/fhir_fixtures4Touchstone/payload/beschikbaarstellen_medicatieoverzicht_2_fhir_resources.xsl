@@ -66,7 +66,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="adaTransaction" as="element()*"/>
 
         <xsl:variable name="entries" as="element(f:entry)*">
-            <xsl:for-each select="$bouwstenen-920, $commonEntries">
+            <xsl:for-each select="$bouwstenen-930, $commonEntries">
                 <xsl:apply-templates select="." mode="doSearchModeInclude"/>
             </xsl:for-each>
         </xsl:variable>
