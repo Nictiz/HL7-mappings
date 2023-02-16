@@ -5,7 +5,7 @@
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f00b4-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f25c8-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -33,6 +33,16 @@
                   <value value="MBH_300_stoppen"/>
                </valueIdentifier>
             </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RelationAdministrationAgreement">
+               <valueReference>
+                  <type value="MedicationDispense"/>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                     <value value="MBH_300_stoppen_TA_start"/>
+                  </identifier>
+                  <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_stoppen_TA_start || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               </valueReference>
+            </extension>
             <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
                <valueCodeableConcept>
                   <coding>
@@ -55,18 +65,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f00d2-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f1263-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f005a-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f1955-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:c33f0078-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:c33f0adf-6a95-11ec-0000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek Jansen en Co"/>
                </actor>
@@ -119,7 +129,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f005a-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f1955-6a95-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -169,7 +179,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0078-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0adf-6a95-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -188,11 +198,11 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f00d2-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f1263-6a95-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PharmaceuticalProduct"/>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
             <code>
                <coding>
