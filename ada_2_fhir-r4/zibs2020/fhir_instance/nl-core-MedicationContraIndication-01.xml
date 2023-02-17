@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flag xmlns="http://hl7.org/fhir">
+   <id value="nl-core-MedicationContraIndication-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationContraIndication"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationContraIndication.ReasonClosure">
+      <valueString value="Beindigd"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
+      <valueString value="Alles is goed gegaan"/>
+   </extension>
+   <status value="inactive"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="140401000146105"/>
+         <display value="contra-indicatie met betrekking op medicatiebewaking"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.902.40"/>
+         <code value="1320"/>
+         <display value="Zwangerschap"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <period>
+      <start value="2020-06-08"/>
+      <end value="2021-03-18"/>
+   </period>
+   <author>
+      <reference value="PractitionerRole/nl-core-MedicationContraIndication-01-PractitionerRole-02"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), J.H.R. Peters"/>
+   </author>
+</Flag>
