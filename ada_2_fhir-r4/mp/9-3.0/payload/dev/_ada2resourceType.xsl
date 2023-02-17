@@ -11,6 +11,9 @@
         here is used. -->
     <xsl:variable name="ada2resourceType">
         <nm:map ada="afleverlocatie" resource="Location" profile="nl-core-Dummy"/>
+        <!-- MTD zorgaanbieder is performer -->
+        <nm:map ada="zorgaanbieder" resource="PractitionerRole" profile="nl-core-HealthProfessional-PractitionerRole"/>
+        
         <nm:map ada="alcohol_gebruik" resource="Observation" profile="nl-core-AlcoholUse"/>
         <nm:map ada="alert" resource="Flag" profile="nl-core-alert"/>
         <nm:map ada="allergie_intolerantie" resource="AllergyIntolerance" profile="nl-core-AllergyIntolerance"/>

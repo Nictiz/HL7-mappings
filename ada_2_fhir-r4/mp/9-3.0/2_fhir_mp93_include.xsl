@@ -109,6 +109,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </resource>
             </entry>
         </xsl:for-each-group>
+        <xsl:for-each-group select="/adaxml/data/*/medicamenteuze_behandeling/medicatietoediening/toediener/zorgaanbieder/zorgaanbieder/nf:resolveAdaInstance(., /)" group-by="nf:getGroupingKeyDefault(.)">
+            <!-- entry for PractitionerRole -->
+            <xsl:variable name="zabKey" select="current-grouping-key()"/>
+            <entry>
+                <fullUrl value="{$fhirMetadata[nm:resource-type/text() = 'PractitionerRole'][nm:group-key/text() = $zabKey]/nm:full-url/text()}"/>
+                <resource>
+                    <xsl:call-template name="_nl-core-HealthProfessional-PractionerRole_toOrganization">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
+                </resource>
+            </entry>
+        </xsl:for-each-group>
         <xsl:for-each-group select="/adaxml/data/*/bouwstenen/farmaceutisch_product" group-by="nf:getGroupingKeyDefault(.)">
             <!-- entry for product -->
             <xsl:variable name="prdKey" select="current-grouping-key()"/>

@@ -37,7 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="medicationReference" select="toedienings_product/farmaceutisch_product" as="element()?"/>
         <xsl:param name="administrationAgreement" select="gerelateerde_afspraak/toedieningsafspraak/*" as="element()?"/>
         <xsl:param name="request" select="gerelateerde_afspraak/medicatieafspraak/*" as="element()?"/>
-        <xsl:param name="performer" select="toediener/*[self::patient or self::zorgverlener or self::mantelzorger]/*" as="element()?"/>
+        <xsl:param name="performer" select="toediener/*[self::patient or self::zorgaanbieder or self::mantelzorger]/*" as="element()?"/>
 
         <xsl:for-each select="$in">
             <MedicationAdministration>
@@ -146,9 +146,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="in" select="$subject"/>
                     <xsl:with-param name="wrapIn">subject</xsl:with-param>
                 </xsl:call-template>
-
-         
-
+                
                 <!-- relatie_contact relatie_zorgepisode in context -->
                 <xsl:for-each select="relatie_contact/(identificatie | identificatienummer)[@value]">
                     <context>
@@ -218,7 +216,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <!-- There's at most 1 perfomer, so we can write both elements here -->
                         <actor>
                             <xsl:choose>
-                                <xsl:when test="self::zorgverlener">
+                                <xsl:when test="self::zorgaanbieder">
                                     <xsl:call-template name="makeReference">
                                         <xsl:with-param name="profile" select="$ada2resourceType/nm:map[@ada = current()/local-name()][@resource = 'PractitionerRole']/@profile"/>
                                     </xsl:call-template>
