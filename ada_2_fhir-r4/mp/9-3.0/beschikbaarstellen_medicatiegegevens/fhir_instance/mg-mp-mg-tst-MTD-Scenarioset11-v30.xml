@@ -2,7 +2,7 @@
    <id value="mg-mp-mg-tst-MTD-Scenarioset11-v30"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f098b-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0264-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationAdministration>
             <meta>
@@ -45,9 +45,9 @@
             <effectiveDateTime value="${DATE, T, D, -20}T20:30:00+02:00"/>
             <performer>
                <actor>
-                  <reference value="urn:uuid:c33f05db-6a95-11ec-0000-020000000000"/>
-                  <type value="PractitionerRole"/>
-                  <display value="Healthcare provider (organization via PractitionerRole), Huisartsenpraktijk Pulver &amp; Partners"/>
+                  <reference value="urn:uuid:c33f14ab-6a95-11ec-0000-020000000000"/>
+                  <type value="RelatedPerson"/>
+                  <display value="Contact person, Toos de Bakker"/>
                </actor>
             </performer>
             <request>
@@ -114,7 +114,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f04b7-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0aa7-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationAdministration>
             <meta>
@@ -155,6 +155,13 @@
                <display value="Patient, M. van de XXX_Roelofs"/>
             </subject>
             <effectiveDateTime value="${DATE, T, D, -19}T20:00:00+02:00"/>
+            <performer>
+               <actor>
+                  <reference value="urn:uuid:c33f21ca-6a95-11ec-0000-020000000000"/>
+                  <type value="PractitionerRole"/>
+                  <display value="Healthcare provider (organization via PractitionerRole), Thuiszorg Om en Bij"/>
+               </actor>
+            </performer>
             <request>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
                   <valueCodeableConcept>
@@ -219,7 +226,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0fc9-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f15b9-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationAdministration>
             <meta>
@@ -260,6 +267,13 @@
                <display value="Patient, M. van de XXX_Roelofs"/>
             </subject>
             <effectiveDateTime value="${DATE, T, D, -17}T20:00:00+02:00"/>
+            <performer>
+               <actor>
+                  <reference value="urn:uuid:c33f21ca-6a95-11ec-0000-020000000000"/>
+                  <type value="PractitionerRole"/>
+                  <display value="Healthcare provider (organization via PractitionerRole), Thuiszorg Om en Bij"/>
+               </actor>
+            </performer>
             <request>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
                   <valueCodeableConcept>
@@ -327,7 +341,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f05df-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0bcf-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationAdministration>
             <meta>
@@ -368,6 +382,13 @@
                <display value="Patient, M. van de XXX_Roelofs"/>
             </subject>
             <effectiveDateTime value="${DATE, T, D, -16}T20:05:00+02:00"/>
+            <performer>
+               <actor>
+                  <reference value="urn:uuid:c33f21ca-6a95-11ec-0000-020000000000"/>
+                  <type value="PractitionerRole"/>
+                  <display value="Healthcare provider (organization via PractitionerRole), Thuiszorg Om en Bij"/>
+               </actor>
+            </performer>
             <request>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
                   <valueCodeableConcept>
@@ -482,7 +503,50 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f043b-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f14ab-6a95-11ec-0000-020000000000"/>
+      <resource>
+         <RelatedPerson>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson"/>
+            </meta>
+            <patient>
+               <reference value="urn:uuid:c33f20a9-6a95-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, M. van de XXX_Roelofs"/>
+            </patient>
+            <relationship>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.23.1"/>
+                  <code value="100001"/>
+                  <display value="Mantelzorger"/>
+               </coding>
+            </relationship>
+            <name>
+               <use value="official"/>
+               <text value="Toos de Bakker"/>
+               <family value="de Bakker">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="de"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Bakker"/>
+                  </extension>
+               </family>
+               <given value="Toos">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+         </RelatedPerson>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="RelatedPerson"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c33f202a-6a95-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -490,31 +554,16 @@
             </meta>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
-               <value value="00001111"/>
+               <value value="11110000"/>
             </identifier>
-            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
-            <address>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
-                  <valueCodeableConcept>
-                     <coding>
-                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
-                        <code value="WP"/>
-                        <display value="Werkadres"/>
-                     </coding>
-                  </valueCodeableConcept>
-               </extension>
-               <use value="work"/>
-               <line value="Dorpsstraat 1">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
-                     <valueString value="Dorpsstraat"/>
-                  </extension>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
-                     <valueString value="1"/>
-                  </extension>
-               </line>
-               <city value="Ons Dorp"/>
-               <postalCode value="1234AA"/>
-            </address>
+            <type>
+               <coding>
+                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+                  <code value="T2"/>
+                  <display value="Thuiszorg"/>
+               </coding>
+            </type>
+            <name value="Thuiszorg Om en Bij"/>
          </Organization>
       </resource>
       <request>
@@ -523,16 +572,16 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f05db-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f21ca-6a95-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <organization>
-               <reference value="urn:uuid:c33f043b-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f202a-6a95-11ec-0000-020000000000"/>
                <type value="Organization"/>
-               <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
+               <display value="Healthcare provider (organization), Thuiszorg Om en Bij"/>
             </organization>
          </PractitionerRole>
       </resource>

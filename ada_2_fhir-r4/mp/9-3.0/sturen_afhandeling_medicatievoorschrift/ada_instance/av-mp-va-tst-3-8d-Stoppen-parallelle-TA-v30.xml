@@ -1,0 +1,168 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../9.3.0/sturen_afhandeling_medicatievoorschrift/ada_schemas/ada_sturen_afhandeling_medicatievoorschrift.xsd">
+   <meta status="new"
+         created-by="medicatieprocesada"
+         last-update-by="medicatieprocesada"
+         creation-date="2023-02-16T16:43:30.502+01:00"
+         last-update-date="2023-02-16T16:43:30.502+01:00"/>
+   <data>
+      <sturen_afhandeling_medicatievoorschrift app="mp-mp93"
+                                               shortName="sturen_afhandeling_medicatievoorschrift"
+                                               formName="afhandelen_medicatievoorschrift"
+                                               transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.407"
+                                               transactionEffectiveDate="2022-06-30T00:00:00"
+                                               versionDate=""
+                                               prefix="mp-"
+                                               language="nl-NL"
+                                               title="TEST Scenarioset 3 (starten nieuw zonodig scenario) Stoppen parallelle TA"
+                                               desc="&lt;div&gt;&lt;span style=&#34;font-family: sans-serif; font-size: 14px; background-color: #ffffff;&#34;&gt;starten van een nieuwe zonodig TA&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp;&lt;/div&gt;"
+                                               id="av-mp-va-tst-3-8d-Stoppen-parallelle-TA-v30">
+         <scenario-nr value="3.8d" conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.2"/>
+         <!--Patient found in instance with id: mg-TEST-Scenarioset3-v30 and title: id: TEST REPO Scenarioset 3 (Staken Wijzigen)-->
+         <patient comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1">
+            <naamgegevens comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.2">
+               <initialen value="J. " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.4"/>
+               <naamgebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.6"
+                            value="1"
+                            code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.7">
+                  <voorvoegsels value="de " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.8"/>
+                  <achternaam value="XXX_Luzac" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.9"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900778"
+                                 root="2.16.840.1.113883.2.4.6.3"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.35"/>
+            <geboortedatum value="1985-10-24"
+                           datatype="datetime"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.36"/>
+            <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.37"
+                      value="3"
+                      code="F"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Vrouw"/>
+         </patient>
+         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_300_stoppen_parallele_TA-->
+         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
+            <identificatie value="MBH_300_stoppen_parallele_TA"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
+            <toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.294" comment="">
+               <identificatie value="MBH_300_stoppen_parallele_TA_TA_start2_zonodig"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
+               <toedieningsafspraak_datum_tijd value="T-10D{10:05:00}"
+                                               datatype="datetime"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.332"/>
+               <gebruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334" comment="">
+                  <start_datum_tijd value="T-10D{00:00:00}"
+                                    datatype="datetime"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.335"/>
+                  <tijds_duur value="23"
+                              unit="dag"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.337"/>
+               </gebruiksperiode>
+               <verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.295" comment="">
+                  <zorgaanbieder value="Apotheek_De_Gulle_Gaper"
+                                 datatype="reference"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.296"/>
+               </verstrekker>
+               <toedieningsafspraak_reden_wijzigen_of_staken conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.333"
+                                                             value="14"
+                                                             code="182856006"
+                                                             codeSystem="2.16.840.1.113883.6.96"
+                                                             displayName="geneesmiddel niet voorradig"/>
+               <geneesmiddel_bij_toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.297" comment="">
+                  <farmaceutisch_product value="HPK_PANTOPRAZOL20_1163094"
+                                         datatype="reference"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.298"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.299" comment="">
+                  <omschrijving value="wordt automatisch gevuld"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.301"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="Oraal"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.303"/>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.304" comment="">
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.307" comment="">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.316" comment="">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.575" comment="">
+                              <nominale_waarde value="2" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.319"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.576"/>
+                        </keerdosis>
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.323" comment="">
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.324" comment="">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.578" comment="">
+                                 <nominale_waarde value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.327"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.579"/>
+                           </frequentie>
+                           <dagdeel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.329"
+                                    value="3"
+                                    code="3157002"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    displayName="'s avonds"/>
+                        </toedieningsschema>
+                        <zo_nodig conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.320" comment="">
+                           <criterium conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.581" comment="">
+                              <criterium conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.321"
+                                         value="4"
+                                         code="1028"
+                                         codeSystem="2.16.840.1.113883.2.4.4.5"
+                                         displayName="Bij pijn"/>
+                           </criterium>
+                        </zo_nodig>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.338" comment="">
+                  <identificatie value="MBH_300_stoppen_parallele_TA_MA_start"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.565"/>
+               </relatie_medicatieafspraak>
+               <relatie_toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1380" comment="">
+                  <identificatie value="MBH_300_stoppen_parallele_TA_TA_start_zonodig"
+                                 root="2.16.840.1.113883.2.4.3.11.999"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1381"/>
+               </relatie_toedieningsafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <bouwstenen comment="">
+            <farmaceutisch_product id="HPK_PANTOPRAZOL20_1163094"
+                                   comment=""
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+               <product_code code="1163094"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="PANTOZOL TABLET MSR 20MG"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="PANTOPRAZOL TABLET MSR 20MG"
+                             code="52272"
+                             codeSystemName="G-Standaard PRK"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code codeSystem="2.16.840.1.113883.2.4.4.1"
+                             displayName="PANTOPRAZOL TABLET MSR 20MG"
+                             code="106275"
+                             codeSystemName="G-Standaard GPK"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
+            <zorgaanbieder id="Apotheek_De_Gulle_Gaper" comment="">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </sturen_afhandeling_medicatievoorschrift>
+   </data>
+</adaxml>

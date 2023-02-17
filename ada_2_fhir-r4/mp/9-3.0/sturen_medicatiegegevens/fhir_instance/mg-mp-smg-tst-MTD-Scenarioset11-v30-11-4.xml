@@ -2,7 +2,7 @@
    <id value="mg-mp-smg-tst-MTD-Scenarioset11-v30-11-4"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f21f0-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0bcf-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationAdministration>
             <meta>
@@ -33,16 +33,23 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f0ba9-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f1537-6a95-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="ACENOCOUMAROL TABLET 1MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f18fe-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:c33f1eb0-6a95-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Pherai"/>
             </subject>
             <effectiveDateTime value="${DATE, T, D, -16}T20:05:00+02:00"/>
+            <performer>
+               <actor>
+                  <reference value="urn:uuid:c33f21ca-6a95-11ec-0000-020000000000"/>
+                  <type value="PractitionerRole"/>
+                  <display value="Healthcare provider (organization via PractitionerRole), Thuiszorg Om en Bij"/>
+               </actor>
+            </performer>
             <request>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
                   <valueCodeableConcept>
@@ -107,7 +114,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f18fe-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f1eb0-6a95-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -154,7 +161,52 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f0ba9-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f202a-6a95-11ec-0000-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="11110000"/>
+            </identifier>
+            <type>
+               <coding>
+                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+                  <code value="T2"/>
+                  <display value="Thuiszorg"/>
+               </coding>
+            </type>
+            <name value="Thuiszorg Om en Bij"/>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c33f21ca-6a95-11ec-0000-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+            </meta>
+            <organization>
+               <reference value="urn:uuid:c33f202a-6a95-11ec-0000-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Thuiszorg Om en Bij"/>
+            </organization>
+         </PractitionerRole>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c33f1537-6a95-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <meta>
