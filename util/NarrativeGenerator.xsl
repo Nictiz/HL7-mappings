@@ -99,6 +99,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -286,6 +287,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -652,6 +654,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <xsl:if test="f:title">
                     <b>
                         <xsl:call-template name="doDT_String">
@@ -1345,6 +1348,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -1512,6 +1516,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <xsl:if test="f:title">
                     <b>
                         <xsl:call-template name="doDT_String">
@@ -1711,6 +1716,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -1975,6 +1981,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -2540,6 +2547,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -2714,6 +2722,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -2831,6 +2840,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -3103,6 +3113,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -3291,6 +3302,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -3498,6 +3510,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -3641,6 +3654,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -3958,6 +3972,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -4222,6 +4237,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -4333,6 +4349,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -4478,6 +4495,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -4593,6 +4611,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -5050,6 +5069,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -5288,6 +5308,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <xsl:if test="f:title">
                     <b>
                         <xsl:call-template name="doDT_String">
@@ -5420,6 +5441,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -5556,6 +5578,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <tbody>
                         <tr>
@@ -5632,6 +5655,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -6107,6 +6131,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -6808,6 +6833,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -7394,6 +7420,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -7837,6 +7864,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -8319,6 +8347,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -8675,6 +8704,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -8828,6 +8858,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <xsl:if test="f:active[@value = 'false']">
                     <div>
                         <b>
@@ -9140,6 +9171,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -9465,6 +9497,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -9880,6 +9913,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -10078,6 +10112,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -10336,6 +10371,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <div class="questionnaireResponseHeader">
                     <b>
                         <xsl:call-template name="util:getLocalizedString">
@@ -10492,6 +10528,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -10738,6 +10775,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <text xmlns="http://hl7.org/fhir">
             <status value="extensions"/>
             <div xmlns="http://www.w3.org/1999/xhtml">
+                <xsl:call-template name="doDivLanguage"/>
                 <table>
                     <xsl:call-template name="doTableCaption">
                         <xsl:with-param name="in" select="."/>
@@ -11625,6 +11663,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </caption>
         </xsl:for-each>
+    </xsl:template>
+    <xsl:template name="doDivLanguage">
+        <xsl:if test=".[f:language]">
+            <xsl:attribute name="lang" select="./f:language/@value"/>
+            <xsl:attribute name="xml:lang" select="./f:language/@value"/>
+        </xsl:if>
     </xsl:template>
     <xsl:template name="doBodySite">
         <xsl:param name="in" select="f:bodySite" as="element()*"/>
