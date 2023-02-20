@@ -123,6 +123,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:function name="uuid:generate-clock-id" as="xs:string">
         <xsl:sequence select="'0000'"/>
     </xsl:function>
+    
+    <xd:doc>
+        <xd:desc>Override this function to avoid the use of generate-id which generates a new id every execution. Instead use string-to-codepoints of a combination of profile and groupingkey</xd:desc>
+        <xd:param name="node"/>
+    </xd:doc>
+    <xsl:function name="uuid:next-nr" as="xs:integer">
+        <xsl:param name="node"/>
+        <xsl:sequence select="xs:integer(sum(string-to-codepoints(concat($node/@profile,nf:getGroupingKeyDefault($node)))))"/>
+    </xsl:function>
 
     <xd:doc>
         <xd:desc>Creates xml document for a FHIR resource</xd:desc>
