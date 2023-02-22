@@ -9,7 +9,7 @@
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T + 7 dagen om 14:10 uur, tot en met T + 7 dagen om 14:10 uur, 1 maal per week 1 stuk, Oraal, "/>
+               <valueString value="Vanaf T + 7 dagen om 14:10 uur, tot en met T + 7 dagen om 14:10 uur, 1 maal per week 1 stuk, Oraal, geannuleerd"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -62,9 +62,11 @@
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
             <reasonCode>
-               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
-                  <valueCode value="OTH"/>
-               </extension>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+                  <code value="OTH"/>
+                  <display value="Overig"/>
+               </coding>
             </reasonCode>
             <dosageInstruction>
                <timing>
