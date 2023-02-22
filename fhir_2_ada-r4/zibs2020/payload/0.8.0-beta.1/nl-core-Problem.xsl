@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 Copyright © Nictiz
 
@@ -16,27 +17,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:f="http://hl7.org/fhir"
     xmlns:local="urn:fhir:stu3:functions"
+    xmlns:nf="http://www.nictiz.nl/functions" 
     exclude-result-prefixes="#all"
     version="2.0">
     
-    <xsl:variable name="urlExtCopyIndicator">http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator</xsl:variable>
+    <!--Uncomment imports for standalone use and testing.-->
+    <!--<xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>-->
     
     <xd:doc>
-        <xd:desc>Template to convert f:extension zib-Medication-CopyIndicator to kopie_indicator element.</xd:desc>
+        <xd:desc>Template to convert f:Condition to ADA probleem.</xd:desc>
     </xd:doc>
-    <xsl:template match="f:extension[@url = $urlExtCopyIndicator]" mode="ext-CopyIndicator">
-        <kopie_indicator>
-            <xsl:attribute name="value" select="f:valueBoolean/@value"/>
-        </kopie_indicator>
+    <xsl:template match="f:Condition" mode="nl-core-Problem">
+        <probleem>
+            <!-- Voor MedicationAgreement alleen probleem_naam -->
+            <xsl:apply-templates select="f:code" mode="#current"/>
+        </probleem>
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Template to convert f:extension zib-Medication-CopyIndicator to kopie_indicator element.</xd:desc>
+        <xd:desc>Template to convert f:code to probleem_naam</xd:desc>
     </xd:doc>
-    <xsl:template match="f:reportedBoolean" mode="ext-CopyIndicator">
-        <kopie_indicator>
-            <xsl:attribute name="value" select="@value"/>
-        </kopie_indicator>
+    <xsl:template match="f:code" mode="nl-core-Problem">
+        <xsl:call-template name="CodeableConcept-to-code">
+            <xsl:with-param name="adaElementName">probleem_naam</xsl:with-param>
+            <xsl:with-param name="originalText" select="f:text/@value"/>
+        </xsl:call-template>
     </xsl:template>
     
 </xsl:stylesheet>

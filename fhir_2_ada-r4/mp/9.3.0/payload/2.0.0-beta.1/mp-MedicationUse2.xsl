@@ -14,14 +14,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" exclude-result-prefixes="#all" version="2.0">
 
-    <xsl:variable name="extStoptype">http://nictiz.nl/fhir/StructureDefinition/ext-StopType</xsl:variable>
-    <xsl:variable name="extMedicationUse2Prescriber" select="'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber'"/>
-    <xsl:variable name="extMedicationUseAuthor" select="'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author'"/>
+    <xsl:variable name="extMedicationUse2Prescriber">http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber</xsl:variable>
+    <xsl:variable name="extMedicationUseAuthor">http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author</xsl:variable>
 
     <xd:doc>
         <xd:desc>Template to convert f:MedicationStatement to ADA medicatie_gebruik</xd:desc>
     </xd:doc>
-    <xsl:template match="f:MedicationStatement" mode="nl-core-MedicationUse2">
+    <xsl:template match="f:MedicationStatement" mode="mp-MedicationUse2">
         <medicatiegebruik>
             <!--ext-StopType-->
             <!-- identificatie  -->
@@ -33,7 +32,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- volgens_afspraak_indicator -->
             <xsl:apply-templates select="f:extension[@url = $urlExtAsAgreedIndicator]" mode="#current"/>
             <!-- stoptype -->
-            <xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="nl-core-ext-StopType"/>
+            <!-- do not use the nl-core stoptype, outputs a wrongly named ada element, since the IA's chose to update the dataset name in MP9 3.0 -->
+            <xsl:apply-templates select="f:modifierExtension[@url = $urlExtStoptype]/f:valueCodeableConcept" mode="#current"/>
             <!-- gebruiksperiode -->
             <xsl:apply-templates select="f:effectivePeriod" mode="#current"/>
             <!-- gebruiks_product -->
@@ -68,25 +68,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to convert f:identifier to identificatie</xd:desc>
     </xd:doc>
-    <xsl:template match="f:identifier" mode="nl-core-MedicationUse2">
+    <xsl:template match="f:identifier" mode="mp-MedicationUse2">
         <xsl:call-template name="Identifier-to-identificatie"/>
     </xsl:template>
 
     <xd:doc>
         <xd:desc>Template to convert f:effectivePeriod to gebruiksperiode</xd:desc>
     </xd:doc>
-    <xsl:template match="f:effectivePeriod" mode="nl-core-MedicationUse2">
+    <xsl:template match="f:effectivePeriod" mode="mp-MedicationUse2">
         <gebruiksperiode>
             <xsl:apply-templates select="f:start" mode="#current"/>
             <xsl:apply-templates select="f:end" mode="#current"/>
-            <xsl:apply-templates select="(. | parent::f:MedicationStatement)/f:extension[@url eq $urlExtTimeIntervalDuration]" mode="nl-core-MedicationUse2"/>
+            <xsl:apply-templates select="(. | parent::f:MedicationStatement)/f:extension[@url eq $urlExtTimeIntervalDuration]" mode="mp-MedicationUse2"/>
         </gebruiksperiode>
     </xsl:template>
 
     <xd:doc>
         <xd:desc>Template to convert urlExtTimeInterval-Duration to tijds_duur</xd:desc>
     </xd:doc>
-    <xsl:template match="f:extension[@url eq $urlExtTimeIntervalDuration]" mode="nl-core-MedicationUse2">
+    <xsl:template match="f:extension[@url eq $urlExtTimeIntervalDuration]" mode="mp-MedicationUse2">
         <xsl:variable name="code-value" select="f:valueDuration/f:code/@value"/>
         <tijds_duur value="{f:valueDuration/f:value/@value}" unit="{nf:convertTime_UCUM_FHIR2ADA_unit($code-value)}"/>
     </xsl:template>
@@ -95,7 +95,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to convert f:start to gebruiksperiode_start</xd:desc>
     </xd:doc>
-    <xsl:template match="f:start" mode="nl-core-MedicationUse2">
+    <xsl:template match="f:start" mode="mp-MedicationUse2">
         <xsl:call-template name="datetime-to-datetime">
             <xsl:with-param name="adaElementName">start_datum_tijd</xsl:with-param>
             <xsl:with-param name="adaDatatype">datetime</xsl:with-param>
@@ -105,7 +105,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to convert f:end to gebruiksperiode_eind</xd:desc>
     </xd:doc>
-    <xsl:template match="f:end" mode="nl-core-MedicationUse2">
+    <xsl:template match="f:end" mode="mp-MedicationUse2">
         <xsl:call-template name="datetime-to-datetime">
             <xsl:with-param name="adaElementName">eind_datum_tijd</xsl:with-param>
             <xsl:with-param name="adaDatatype">datetime</xsl:with-param>
@@ -115,7 +115,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!--xxxwim        <xd:doc>
         <xd:desc>Template to convert f:start to gebruiksperiode_start</xd:desc>
     </xd:doc>
-    <xsl:template match="f:start" mode="nl-core-MedicationUse2">
+    <xsl:template match="f:start" mode="mp-MedicationUse2">
         <gebruiksperiode_start>
             <xsl:attribute name="value">
                 <xsl:call-template name="format2ADADate">
@@ -129,7 +129,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to convert f:end to gebruiksperiode_eind</xd:desc>
     </xd:doc>
-    <xsl:template match="f:end" mode="nl-core-MedicationUse2">
+    <xsl:template match="f:end" mode="mp-MedicationUse2">
         <gebruiksperiode_eind>
             <xsl:attribute name="value">
                 <xsl:call-template name="format2ADADate">
@@ -143,7 +143,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to convert f:dateAsserted to registratiedatum</xd:desc>
     </xd:doc>
-    <xsl:template match="f:dateAsserted" mode="nl-core-MedicationUse2">
+    <xsl:template match="f:dateAsserted" mode="mp-MedicationUse2">
         <xsl:call-template name="datetime-to-datetime">
             <xsl:with-param name="adaElementName">medicatiegebruik_datum_tijd</xsl:with-param>
             <xsl:with-param name="adaDatatype">datetime</xsl:with-param>
@@ -164,7 +164,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             unknown > unknown (invalid ADA)
         </xd:desc>
     </xd:doc>
-    <xsl:template match="f:status" mode="nl-core-MedicationUse2">
+    <xsl:template match="f:status" mode="mp-MedicationUse2">
         <xsl:choose>
             <xsl:when test="@value eq 'on-hold'">
                 <gebruik_indicator>
@@ -210,15 +210,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             Template to convert f:statusReason to reden_wijzigen_of_stoppen_gebruik.
         </xd:desc>
     </xd:doc>
-    <xsl:template match="f:statusReason" mode="nl-core-MedicationUse2">
+    <xsl:template match="f:statusReason" mode="mp-MedicationUse2">
         <reden_wijzigen_of_stoppen_gebruik code="{f:coding/f:code/@value}" codeSystem="2.16.840.1.113883.6.96" displayName="{f:coding/f:display/@value}"/>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc>Template to convert f:valueCodeableConcept to stoptype.</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:valueCodeableConcept" mode="mp-MedicationUse2">
+        <xsl:call-template name="CodeableConcept-to-code">
+            <xsl:with-param name="in" select="."/>
+            <xsl:with-param name="adaElementName">medicatiegebruik_stop_type</xsl:with-param>
+        </xsl:call-template>
+    </xsl:template>
 
     <xd:doc>
         <xd:desc>Template to convert f:medicationReference to gebruiks_product</xd:desc>
     </xd:doc>
-    <xsl:template match="f:medicationReference" mode="nl-core-MedicationUse2">
+    <xsl:template match="f:medicationReference" mode="mp-MedicationUse2">
         <gebruiksproduct>
             <farmaceutisch_product value="{nf:convert2NCName(./f:reference/@value)}" datatype="reference"/>
         </gebruiksproduct>
@@ -227,7 +236,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to convert f:informationSource to informant</xd:desc>
     </xd:doc>
-    <xsl:template match="f:informationSource" mode="nl-core-MedicationUse2">
+    <xsl:template match="f:informationSource" mode="mp-MedicationUse2">
         <xsl:variable name="referenceValue" select="f:reference/@value"/>
         <xsl:variable name="referenceValuePractitionerRole" select="f:extension/f:valueReference/f:reference/@value"/>
         <xsl:variable name="resource" select="(ancestor::f:Bundle/f:entry[f:fullUrl/@value = $referenceValue]/f:resource/f:*)[1]"/>
@@ -275,7 +284,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to convert f:derivedFrom to gerelateerde_afspraak and gerelateerde_verstrekking</xd:desc>
         <xd:desc>First try to revolve reference.reference within Bundle, then try to use the reference.identifier based on identifier.type and lastly try to resolve based on identifier within the Bundle.</xd:desc>
     </xd:doc>
-    <xsl:template match="f:derivedFrom" mode="nl-core-MedicationUse2">
+    <xsl:template match="f:derivedFrom" mode="mp-MedicationUse2">
         <xsl:variable name="resource" select="nf:resolveRefInBundle(.)"/>
         <xsl:choose>
             <xsl:when test="f:identifier">
@@ -370,7 +379,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to convert f:extension with extension url ext-MedicationUse.Author to auteur</xd:desc>
     </xd:doc>
-    <xsl:template match="f:extension[@url = $extMedicationUseAuthor]" mode="nl-core-MedicationUse2">
+    <xsl:template match="f:extension[@url = $extMedicationUseAuthor]" mode="mp-MedicationUse2">
         <xsl:variable name="referenceValue" select="f:valueReference/f:reference/@value"/>
         <xsl:variable name="resource" select="(ancestor::f:Bundle/f:entry[f:fullUrl/@value = $referenceValue]/f:resource/f:*)[1]"/>
         <auteur>
@@ -406,7 +415,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to convert f:extension with f:extension ext-MedicationUse2.Prescriber to voorschrijver</xd:desc>
     </xd:doc>
-    <xsl:template match="f:extension[@url = $extMedicationUse2Prescriber]" mode="nl-core-MedicationUse2">
+    <xsl:template match="f:extension[@url = $extMedicationUse2Prescriber]" mode="mp-MedicationUse2">
         <voorschrijver>
             <zorgverlener value="{nf:convert2NCName(f:valueReference/f:reference/@value)}" datatype="reference"/>
         </voorschrijver>
@@ -415,7 +424,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to convert f:extension with extension url "$asAgreedIndicator-url" to volgens_afspraak_indicator</xd:desc>
     </xd:doc>
-    <xsl:template match="f:extension[@url = $urlExtAsAgreedIndicator]" mode="nl-core-MedicationUse2">
+    <xsl:template match="f:extension[@url = $urlExtAsAgreedIndicator]" mode="mp-MedicationUse2">
         <volgens_afspraak_indicator>
             <xsl:attribute name="value" select="f:valueBoolean/@value"/>
         </volgens_afspraak_indicator>
@@ -424,24 +433,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to convert f:reasonCode to reden_gebruik</xd:desc>
     </xd:doc>
-    <xsl:template match="f:reasonCode" mode="nl-core-MedicationUse2">
+    <xsl:template match="f:reasonCode" mode="mp-MedicationUse2">
         <reden_gebruik value="{f:text/@value}"/>
     </xsl:template>
-
-    <!--    <xd:doc>
-        <xd:desc>Template to convert f:extension with extension url "$reasonForChangeOrDiscontinuationOfUse-url" to reden_wijzigen_of_stoppen_gebruik</xd:desc>
-    </xd:doc>
-    <xsl:template match="f:extension[@url = $zib-MedicationUse-ReasonForChangeOrDiscontinuationOfUse]" mode="nl-core-MedicationUse2">
-        <xsl:call-template name="CodeableConcept-to-code">
-            <xsl:with-param name="in" select="f:valueCodeableConcept"/>
-            <xsl:with-param name="adaElementName" select="'reden_wijzigen_of_stoppen_gebruik'"/>
-        </xsl:call-template>
-    </xsl:template>-->
-
+ 
     <xd:doc>
         <xd:desc>Template to convert f:note to toelichting.</xd:desc>
     </xd:doc>
-    <xsl:template match="f:note" mode="nl-core-MedicationUse2">
+    <xsl:template match="f:note" mode="mp-MedicationUse2">
         <toelichting value="{f:text/@value}"/>
     </xsl:template>
 

@@ -19,8 +19,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     exclude-result-prefixes="#all"
     version="2.0">
     
-    <xsl:variable name="urlExtCopyIndicator">http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator</xsl:variable>
-    
     <xd:doc>
         <xd:desc>Template to convert f:extension zib-Medication-CopyIndicator to kopie_indicator element.</xd:desc>
     </xd:doc>
