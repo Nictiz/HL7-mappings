@@ -30,14 +30,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="medicationReference">The MedicationRequest.medicationReference as ADA element or reference.</xd:param>
         <xd:param name="requester">The MedicationRequest.requester as ADA element or reference.</xd:param>
         <xd:param name="reasonReference">The MedicationRequest.reasonReference as ADA element or reference.</xd:param>
+        <xd:param name="nextPractitioner">The practitioner who should follow up on the treatment, usually a general practitioner after discharge from hospital.</xd:param>
     </xd:doc>
     <xsl:template name="mp-MedicationAgreement" mode="mp-MedicationAgreement" match="medicatieafspraak" as="element(f:MedicationRequest)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="metaTag" as="xs:string?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         <xsl:param name="medicationReference" select="$in/ancestor::*[@app]//farmaceutisch_product[@id = $in/(afgesprokengeneesmiddel | afgesproken_geneesmiddel)/farmaceutisch_product/@value]" as="element()?"/>
-        <xsl:param name="requester" select="$in//zorgverlener[@id = $in/voorschrijver/zorgverlener/@value] | $in/voorschrijver/zorgverlener[*]" as="element()?"/>
-        <xsl:param name="nextPractitioner" select="$in//zorgverlener[@id = $in/volgende_behandelaar/zorgverlener/@value] | $in/volgende_behandelaar/zorgverlener[*]" as="element()?"/>
+        <xsl:param name="requester" select="$in/ancestor::*[@app]//zorgverlener[@id = $in/voorschrijver/zorgverlener/@value] | $in/voorschrijver/zorgverlener[*]" as="element()?"/>
+        <xsl:param name="nextPractitioner" select="$in/ancestor::*[@app]//zorgverlener[@id = $in/volgende_behandelaar/zorgverlener/@value] | $in/volgende_behandelaar/zorgverlener[*]" as="element()?"/>
         <!-- in the zib there is a reference to problem, in MP9 dataset problem has been inherited directly in reden_van_voorschrijven -->
         <xsl:param name="reasonReference" select="$in//probleem[@id = $in/reden_van_voorschrijven/probleem/@value] | $in/reden_van_voorschrijven/probleem[*]" as="element()?"/>
 

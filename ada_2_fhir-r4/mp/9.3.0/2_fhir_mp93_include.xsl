@@ -244,6 +244,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:otherwise>
                             </xsl:choose>
                         </xsl:with-param>
+                        <xsl:with-param name="nextPractitioner" as="element()?" select="(ancestor::adaxml/data/*/bouwstenen/zorgverlener[@id = current()/volgende_behandelaar/zorgverlener/@value])[1]"/>                            
                     </xsl:call-template>
                 </resource>
             </entry>
