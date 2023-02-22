@@ -148,9 +148,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <xsl:for-each select="reden_wijzigen_of_staken">
-                    <xsl:call-template name="code-to-CodeableConcept">
-                        <xsl:with-param name="treatNullFlavorAsCoding" select="true()"/>
-                    </xsl:call-template>
+                    <reasonCode>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="treatNullFlavorAsCoding" select="true()"/>
+                        </xsl:call-template>
+                    </reasonCode>
                 </xsl:for-each>
 
                 <xsl:for-each select="relatie_medicatieafspraak/identificatie[@value]">
