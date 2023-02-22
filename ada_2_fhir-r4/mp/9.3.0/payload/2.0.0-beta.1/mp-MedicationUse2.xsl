@@ -131,7 +131,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <xsl:for-each select="reden_wijzigen_of_stoppen_gebruik">
                     <statusReason>
-                        <xsl:call-template name="code-to-CodeableConcept"/>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="treatNullFlavorAsCoding" select="true()"/>
+                        </xsl:call-template>
                     </statusReason>
                 </xsl:for-each>
 
