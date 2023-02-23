@@ -35,11 +35,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:Observation[f:code/f:coding/f:code/@value = $bodyWeightLOINCcode]" mode="nl-core-BodyWeight"/>
 		</xsl:variable>
 
-		<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatievoorschrift.xsd">
+		<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_afhandeling_medicatievoorschrift.xsd">
 			<meta status="new" created-by="generated" last-update-by="generated"/>
 			<data>
-				<sturen_medicatievoorschrift app="mp-mp93" shortName="sturen_medicatievoorschrift" formName="sturen_medicatievoorschrift" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.395" transactionEffectiveDate="2022-06-30T00:00:00" versionDate="" prefix="mp-" language="nl-NL">
-					<xsl:attribute name="title">Generated from HL7 FHIR sturen_medicatievoorschrift</xsl:attribute>
+				<sturen_afhandeling_medicatievoorschrift app="mp-mp93" shortName="sturen_afhandeling_medicatievoorschrift" formName="afhandelen_medicatievoorschrift" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.407" transactionEffectiveDate="2022-06-30T00:00:00" versionDate="" prefix="mp-" language="nl-NL">
+					<xsl:attribute name="title">Generated from HL7 FHIR sturen_afhandeling_medicatievoorschrift</xsl:attribute>
 					<xsl:attribute name="id">
 						<xsl:choose>
 							<xsl:when test="string-length(//f:Bundle[1]/f:id/@value) gt 0">
@@ -63,12 +63,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 								<xsl:attribute name="value" select="f:extension[@url = $urlExtPharmaceuticalTreatmentIdentifier]/f:valueIdentifier/f:value/@value"/>
 								<xsl:attribute name="root" select="local:getOid(f:extension[@url = $urlExtPharmaceuticalTreatmentIdentifier]/f:valueIdentifier/f:system/@value)"/>
 							</identificatie>
-							<!-- medicatieafspraak -->
-							<xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value = $maCode]" mode="mp-MedicationAgreement"/>
-							<!--WisselendDoseerschema in f:MedicationRequest-->
-							<xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value = $wdsCode]" mode="nl-core-VariableDosingRegimen"/>
-							<!-- verstrekkingsverzoek -->
-							<xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value = $vvCode]" mode="nl-core-DispenseRequest"/>
+							<!-- toedieningsafspraak -->
+							<xsl:apply-templates select="current-group()[self::f:MedicationDispense/f:category/f:coding/f:code/@value = $taCode]" mode="mp-AdministrationAgreement"/>
+							<!-- verstrekking -->
+							<xsl:apply-templates select="current-group()[self::f:MedicationDispense/f:category/f:coding/f:code/@value = $mveCode]" mode="nl-core-MedicationDispense"/>
 						</medicamenteuze_behandeling>
 					</xsl:for-each-group>
 					<xsl:if test="$bouwstenen/*">
@@ -77,7 +75,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 						</bouwstenen>
 					</xsl:if>
 
-				</sturen_medicatievoorschrift>
+				</sturen_afhandeling_medicatievoorschrift>
 			</data>
 		</adaxml>
 	</xsl:template>

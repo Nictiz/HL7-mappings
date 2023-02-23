@@ -35,10 +35,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:Observation[f:code/f:coding/f:code/@value = $bodyWeightLOINCcode]" mode="nl-core-BodyWeight"/>
 		</xsl:variable>
 
-		<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatievoorschrift.xsd">
+		<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_voorstel_medicatieafspraak.xsd">
 			<meta status="new" created-by="generated" last-update-by="generated"/>
 			<data>
-				<sturen_medicatievoorschrift app="mp-mp93" shortName="sturen_medicatievoorschrift" formName="sturen_medicatievoorschrift" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.395" transactionEffectiveDate="2022-06-30T00:00:00" versionDate="" prefix="mp-" language="nl-NL">
+				<sturen_voorstel_medicatieafspraak app="mp-mp93" shortName="sturen_voorstel_medicatieafspraak" formName="sturen_voorstel_medicatieafspraak" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.398" transactionEffectiveDate="2022-06-30T00:00:00" versionDate="" prefix="mp-" language="nl-NL">
 					<xsl:attribute name="title">Generated from HL7 FHIR sturen_medicatievoorschrift</xsl:attribute>
 					<xsl:attribute name="id">
 						<xsl:choose>
@@ -57,27 +57,36 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 							<xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:Patient" mode="nl-core-Patient"/>
 						</xsl:otherwise>
 					</xsl:choose>
-					<xsl:for-each-group select="f:Bundle/f:entry/f:resource/(f:MedicationRequest | f:MedicationDispense | f:MedicationStatement | f:MedicationAdministration)" group-by="f:extension[@url = $urlExtPharmaceuticalTreatmentIdentifier]/f:valueIdentifier/concat(f:system/@value, f:value/@value)">
-						<medicamenteuze_behandeling>
+					<xsl:for-each-group select="f:Bundle/f:entry/f:resource/f:MedicationRequest" group-by="f:extension[@url = $urlExtPharmaceuticalTreatmentIdentifier]/f:valueIdentifier/concat(f:system/@value, f:value/@value)">
+						<medicamenteuze_behandeling id="{f:extension[@url = $urlExtPharmaceuticalTreatmentIdentifier]/f:valueIdentifier/f:value/@value}">
 							<identificatie>
 								<xsl:attribute name="value" select="f:extension[@url = $urlExtPharmaceuticalTreatmentIdentifier]/f:valueIdentifier/f:value/@value"/>
 								<xsl:attribute name="root" select="local:getOid(f:extension[@url = $urlExtPharmaceuticalTreatmentIdentifier]/f:valueIdentifier/f:system/@value)"/>
 							</identificatie>
 							<!-- medicatieafspraak -->
 							<xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value = $maCode]" mode="mp-MedicationAgreement"/>
-							<!--WisselendDoseerschema in f:MedicationRequest-->
-							<xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value = $wdsCode]" mode="nl-core-VariableDosingRegimen"/>
-							<!-- verstrekkingsverzoek -->
-							<xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value = $vvCode]" mode="nl-core-DispenseRequest"/>
 						</medicamenteuze_behandeling>
 					</xsl:for-each-group>
+					<xsl:if test="f:Bundle/f:entry/f:resource/f:MedicationRequest[not(f:extension[@url = $urlExtPharmaceuticalTreatmentIdentifier])]">
+						<medicamenteuze_behandeling id="NIEUW">
+							<!-- medicatieafspraak -->
+							<xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:MedicationRequest[not(f:extension[@url = $urlExtPharmaceuticalTreatmentIdentifier])]" mode="mp-MedicationAgreement"/>
+						</medicamenteuze_behandeling>
+					</xsl:if>
+
 					<xsl:if test="$bouwstenen/*">
 						<bouwstenen>
 							<xsl:copy-of select="$bouwstenen"/>
 						</bouwstenen>
 					</xsl:if>
+					<xsl:if test="f:Bundle/f:entry/f:resource/f:MedicationRequest[f:intent/@value = 'plan']">
+						<voorstel_gegevens>
+							<!-- should be only one proposal MedicationRequest -->
+							<xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:MedicationRequest[f:intent/@value = 'plan']" mode="mp-voorstel"/>
+						</voorstel_gegevens>
+					</xsl:if>
 
-				</sturen_medicatievoorschrift>
+				</sturen_voorstel_medicatieafspraak>
 			</data>
 		</adaxml>
 	</xsl:template>

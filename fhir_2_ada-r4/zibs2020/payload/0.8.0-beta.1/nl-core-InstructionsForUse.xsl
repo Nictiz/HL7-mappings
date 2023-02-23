@@ -20,7 +20,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="extTimingExact">http://hl7.org/fhir/StructureDefinition/timing-exact</xsl:variable>
 
     <xd:doc>
-        <xd:desc>Helper template to output ada gebruiksinstructie based on either f:dosage | f:dosageInstruction or just the f:extension[@url = <xd:ref name="ext-RenderedDosageInstruction" type="variable"></xd:ref>]</xd:desc>
+        <xd:desc>Helper template to output ada gebruiksinstructie based on either f:dosage | f:dosageInstruction or just the f:extension[@url = <xd:ref name="ext-RenderedDosageInstruction" type="variable"/>]</xd:desc>
         <xd:param name="in">The FHIR element containing dosage information. Defaults to context item.</xd:param>
     </xd:doc>
     <xsl:template name="nl-core-InstructionsForUse">
@@ -235,6 +235,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </interval>
             </xsl:when>
         </xsl:choose>
+        <!-- weekdag -->
+        <xsl:apply-templates select="f:dayOfWeek" mode="#current"/>
+        <!-- dagdeel -->
+        <xsl:apply-templates select="f:when" mode="#current"/>
         <!-- toedientijd -->
         <xsl:apply-templates select="f:timeOfDay" mode="#current"/>
         <!-- is_flexibel -->
@@ -251,10 +255,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:choose>
             </is_flexibel>
         </xsl:for-each>
-        <!-- weekdag -->
-        <xsl:apply-templates select="f:dayOfWeek" mode="#current"/>
-        <!-- dagdeel -->
-        <xsl:apply-templates select="f:when" mode="#current"/>
     </xsl:template>
 
     <xd:doc>

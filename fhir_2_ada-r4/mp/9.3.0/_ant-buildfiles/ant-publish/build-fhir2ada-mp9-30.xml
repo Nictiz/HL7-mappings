@@ -87,14 +87,14 @@
         </antcall>
 
         <!-- sturen_afhandeling_medicatievoorschrift -->
-        <!--   <antcall target="convert_fhir_2_ada_sub">
+           <antcall target="convert_fhir_2_ada_sub">
             <param name="usecase" value="${usecase.av}"/>
             <param name="build.dir" value="${build.dir}"/>
             <param name="xsl.in" value="fhir_instance"/>
             <param name="xsl.out" value="ada_instance"/>
         </antcall>
 
-        <!-\- sturen_voorstel_medicatieafspraak -\->
+        <!-- sturen_voorstel_medicatieafspraak -->
         <antcall target="convert_fhir_2_ada_sub">
             <param name="usecase" value="${usecase.vma}"/>
             <param name="build.dir" value="${build.dir}"/>
@@ -102,7 +102,7 @@
             <param name="xsl.out" value="ada_instance"/>
         </antcall>
 
-        <!-\- sturen_antwoord_voorstel_medicatieafspraak -\->
+        <!-- sturen_antwoord_voorstel_medicatieafspraak -->
         <antcall target="convert_fhir_2_ada_sub">
             <param name="usecase" value="${usecase.avma}"/>
             <param name="build.dir" value="${build.dir}"/>
@@ -110,7 +110,7 @@
             <param name="xsl.out" value="ada_instance"/>
         </antcall>
 
-        <!-\- sturen_voorstel_verstrekkingsverzoek -\->
+        <!-- sturen_voorstel_verstrekkingsverzoek -->
         <antcall target="convert_fhir_2_ada_sub">
             <param name="usecase" value="${usecase.vvv}"/>
             <param name="build.dir" value="${build.dir}"/>
@@ -118,14 +118,14 @@
             <param name="xsl.out" value="ada_instance"/>
         </antcall>
 
-        <!-\- sturen_antwoord_voorstel_verstrekkingsverzoek -\->
+        <!-- sturen_antwoord_voorstel_verstrekkingsverzoek -->
         <antcall target="convert_fhir_2_ada_sub">
             <param name="usecase" value="${usecase.avvv}"/>
             <param name="build.dir" value="${build.dir}"/>
             <param name="xsl.in" value="fhir_instance"/>
             <param name="xsl.out" value="ada_instance"/>
         </antcall>
--->
+
     </target>
 
     <target name="convert_fhir_2_ada_sub">
@@ -167,6 +167,7 @@
     <target name="roundtrip_ada_2_fhir">
 
         <!-- bundles -->
+        <!-- beschikbaarstellen_medicatiegegegevens -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="${usecase.mv}"/>
             <param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.3.0/${usecase.fhir.fixtures}/payload/${usecase.mg}_2_fhir.xsl"/>
@@ -175,6 +176,7 @@
             <param name="xsl.out" value="${build.dir}/${usecase.mg}/roundtrip_fhir_instance"/>
             <param name="param.maskids" value="${mask.ids}"/>
         </antcall>
+        <!-- sturen_medicatievoorschrift -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="${usecase.mv}"/>
             <param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.3.0/${usecase.fhir.fixtures}/payload/${usecase.mv}_2_fhir.xsl"/>
@@ -183,6 +185,49 @@
             <param name="xsl.out" value="${build.dir}/${usecase.mv}/roundtrip_fhir_instance"/>
             <param name="param.maskids" value="${mask.ids}"/>
         </antcall>
+        <!-- sturen_afhandeling_medicatievoorschrift -->
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="usecase" value="${usecase.mv}"/>
+            <param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.3.0/${usecase.fhir.fixtures}/payload/${usecase.av}_2_fhir.xsl"/>
+            <param name="xsl.in" value="${build.dir}/${usecase.av}/ada_instance"/>
+            <param name="xsl.in.include" value="*.xml"/>
+            <param name="xsl.out" value="${build.dir}/${usecase.av}/roundtrip_fhir_instance"/>
+            <param name="param.maskids" value="${mask.ids}"/>
+        </antcall>
+        <!-- voorsteltransacties -->
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="usecase" value="${usecase.mv}"/>
+            <param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.3.0/${usecase.fhir.fixtures}/payload/${usecase.vma}_2_fhir.xsl"/>
+            <param name="xsl.in" value="${build.dir}/${usecase.vma}/ada_instance"/>
+            <param name="xsl.in.include" value="*.xml"/>
+            <param name="xsl.out" value="${build.dir}/${usecase.vma}/roundtrip_fhir_instance"/>
+            <param name="param.maskids" value="${mask.ids}"/>
+        </antcall>
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="usecase" value="${usecase.mv}"/>
+            <param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.3.0/${usecase.fhir.fixtures}/payload/${usecase.avma}_2_fhir.xsl"/>
+            <param name="xsl.in" value="${build.dir}/${usecase.avma}/ada_instance"/>
+            <param name="xsl.in.include" value="*.xml"/>
+            <param name="xsl.out" value="${build.dir}/${usecase.avma}/roundtrip_fhir_instance"/>
+            <param name="param.maskids" value="${mask.ids}"/>
+        </antcall>
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="usecase" value="${usecase.mv}"/>
+            <param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.3.0/${usecase.fhir.fixtures}/payload/${usecase.vvv}_2_fhir.xsl"/>
+            <param name="xsl.in" value="${build.dir}/${usecase.vvv}/ada_instance"/>
+            <param name="xsl.in.include" value="*.xml"/>
+            <param name="xsl.out" value="${build.dir}/${usecase.vvv}/roundtrip_fhir_instance"/>
+            <param name="param.maskids" value="${mask.ids}"/>
+        </antcall>
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="usecase" value="${usecase.mv}"/>
+            <param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.3.0/${usecase.fhir.fixtures}/payload/${usecase.avvv}_2_fhir.xsl"/>
+            <param name="xsl.in" value="${build.dir}/${usecase.avvv}/ada_instance"/>
+            <param name="xsl.in.include" value="*.xml"/>
+            <param name="xsl.out" value="${build.dir}/${usecase.avvv}/roundtrip_fhir_instance"/>
+            <param name="param.maskids" value="${mask.ids}"/>
+        </antcall>
+        
     </target>
 
     <target name="setup" description="Setup subdirectories in ${build.dir}">
