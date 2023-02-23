@@ -14,7 +14,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" exclude-result-prefixes="#all" version="2.0">
 	
-	<xsl:variable name="medication-AdditionalInformation" select="'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.MedicationAgreementAdditionalInformation'"/>
 	
 	<xd:doc>
 		<xd:desc>Template to convert f:MedicationRequest to ADA medicatieafspraak</xd:desc>
@@ -62,7 +61,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<!-- volgende behandelaar -->
 			<xsl:apply-templates select="f:extension[@url = $urlExtMedicationAgreementNextPractitioner]" mode="#current"/>
 			<!-- aanvullende_informatie -->
-			<xsl:apply-templates select="f:extension[@url = $medication-AdditionalInformation]" mode="#current"/>
+			<xsl:apply-templates select="f:extension[@url = $urlExtMedicationAgreementAdditionalInformation]" mode="#current"/>
 			<!-- kopie indicator -->
 			<xsl:apply-templates select="f:extension[@url = $urlExtCopyIndicator] | f:reportedBoolean" mode="ext-CopyIndicator"/>
 			<!-- toelichting -->
@@ -74,7 +73,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xd:desc>Template to convert f:extension medication-AdditionalInformation to aanvullende_informatie element.</xd:desc>
 		<xd:param name="adaElementName">Optional alternative ADA element name.</xd:param>
 	</xd:doc>
-	<xsl:template match="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.MedicationAgreementAdditionalInformation']" mode="mp-MedicationAgreement">
+	<xsl:template match="f:extension[@url = $urlExtMedicationAgreementAdditionalInformation]" mode="mp-MedicationAgreement">
 		<xsl:param name="adaElementName" tunnel="yes" select="'aanvullende_informatie'"/>
 		<xsl:call-template name="CodeableConcept-to-code">
 			<xsl:with-param name="in" select="f:valueCodeableConcept"/>

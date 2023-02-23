@@ -14,10 +14,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" exclude-result-prefixes="#all" version="2.0">
 
-    <xsl:variable name="mpAdministrationAgreement" select="'http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement'"/>
-    <xsl:variable name="extAdministrationAgreementDateTime">http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime</xsl:variable>
-    <xsl:variable name="extAdministrationAgreementAgreementReason">http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AgreementReason</xsl:variable>
-    <xsl:variable name="extAdministrationAgreementModificationDiscontinuationReason">http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.ReasonModificationOrDiscontinuation</xsl:variable>
+    <xsl:variable name="mpAdministrationAgreement"><xsl:value-of select="$urlBaseNictizProfile"/>mp-AdministrationAgreement</xsl:variable>
+    <xsl:variable name="extAdministrationAgreementDateTime"><xsl:value-of select="$urlBaseNictizProfile"/>ext-AdministrationAgreement.AdministrationAgreementDateTime</xsl:variable>
+    <xsl:variable name="extAdministrationAgreementAgreementReason"><xsl:value-of select="$urlBaseNictizProfile"/>ext-AdministrationAgreement.AgreementReason</xsl:variable>
+    <xsl:variable name="extAdministrationAgreementModificationDiscontinuationReason"><xsl:value-of select="$urlBaseNictizProfile"/>ext-AdministrationAgreement.ReasonModificationOrDiscontinuation</xsl:variable>
 
     <xd:doc>
         <xd:desc>Template to convert f:MedicationRequest to ADA toedieningsafspraak</xd:desc>

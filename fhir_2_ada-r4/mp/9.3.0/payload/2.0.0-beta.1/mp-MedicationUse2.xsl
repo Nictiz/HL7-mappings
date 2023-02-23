@@ -14,8 +14,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" exclude-result-prefixes="#all" version="2.0">
 
-    <xsl:variable name="extMedicationUse2Prescriber">http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber</xsl:variable>
-    <xsl:variable name="extMedicationUseAuthor">http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author</xsl:variable>
 
     <xd:doc>
         <xd:desc>Template to convert f:MedicationStatement to ADA medicatie_gebruik</xd:desc>
@@ -45,11 +43,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- relatie_contact en zorgepisode -->
             <xsl:apply-templates select="f:context" mode="contextContactEpisodeOfCare"/>
             <!-- voorschrijver -->
-            <xsl:apply-templates select="f:extension[@url = $extMedicationUse2Prescriber]" mode="#current"/>
+            <xsl:apply-templates select="f:extension[@url = $urlExtMedicationUse2Prescriber]" mode="#current"/>
             <!-- informant -->
             <xsl:apply-templates select="f:informationSource" mode="#current"/>
             <!-- auteur -->
-            <xsl:apply-templates select="f:extension[@url = $extMedicationUseAuthor]" mode="#current"/>
+            <xsl:apply-templates select="f:extension[@url = $urlExtMedicationUseAuthor]" mode="#current"/>
             <!-- reden_gebruik -->
             <xsl:apply-templates select="f:reasonCode" mode="#current"/>
             <!-- reden_wijzigen_of_stoppen_gebruik -->
@@ -379,7 +377,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to convert f:extension with extension url ext-MedicationUse.Author to auteur</xd:desc>
     </xd:doc>
-    <xsl:template match="f:extension[@url = $extMedicationUseAuthor]" mode="mp-MedicationUse2">
+    <xsl:template match="f:extension[@url = $urlExtMedicationUseAuthor]" mode="mp-MedicationUse2">
         <xsl:variable name="referenceValue" select="f:valueReference/f:reference/@value"/>
         <xsl:variable name="resource" select="(ancestor::f:Bundle/f:entry[f:fullUrl/@value = $referenceValue]/f:resource/f:*)[1]"/>
         <auteur>
@@ -415,7 +413,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to convert f:extension with f:extension ext-MedicationUse2.Prescriber to voorschrijver</xd:desc>
     </xd:doc>
-    <xsl:template match="f:extension[@url = $extMedicationUse2Prescriber]" mode="mp-MedicationUse2">
+    <xsl:template match="f:extension[@url = $urlExtMedicationUse2Prescriber]" mode="mp-MedicationUse2">
         <voorschrijver>
             <zorgverlener value="{nf:convert2NCName(f:valueReference/f:reference/@value)}" datatype="reference"/>
         </voorschrijver>

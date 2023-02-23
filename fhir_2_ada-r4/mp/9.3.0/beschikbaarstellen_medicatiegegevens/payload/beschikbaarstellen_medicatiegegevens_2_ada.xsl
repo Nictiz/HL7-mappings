@@ -65,7 +65,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 							<!-- medicatie_gebruik -->
 							<xsl:apply-templates select="current-group()[self::f:MedicationStatement/f:category/f:coding/f:code/@value = $mgbCode]" mode="mp-MedicationUse2"/>
 							<!-- medicatietoediening -->
-							<xsl:apply-templates select="current-group()[self::f:MedicationAdministration]" mode="nl-core-MedicationAdministration"/>
+							<xsl:apply-templates select="current-group()[self::f:MedicationAdministration]" mode="mp-MedicationAdministration"/>
 
 						</medicamenteuze_behandeling>
 					</xsl:for-each-group>

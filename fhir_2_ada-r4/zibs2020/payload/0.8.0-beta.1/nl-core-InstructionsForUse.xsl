@@ -164,7 +164,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to convert FHIR element of type G-standaard (Simple)Quantity to ada aantal (with nominale_waarde child) and eenheid element.</xd:desc>
     </xd:doc>
-    <xsl:template match="f:doseQuantity | f:extension[@url = $extMedicationAdministrationAgreedAmount]/f:valueQuantity" mode="nl-core-InstructionsForUse">
+    <xsl:template match="f:doseQuantity | f:extension[@url = $urlExtMedicationAdministration2AgreedAmount]/f:valueQuantity" mode="nl-core-InstructionsForUse">
         <xsl:for-each select="f:extension[@url = $ext-iso21090-PQ-translation]/f:valueQuantity[contains(f:system/@value, $oidGStandaardBST902THES2)]">
             <aantal>
                 <nominale_waarde value="{f:value/@value}"/>
