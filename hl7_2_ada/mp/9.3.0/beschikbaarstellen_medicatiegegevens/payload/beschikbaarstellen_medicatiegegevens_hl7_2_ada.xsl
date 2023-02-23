@@ -17,18 +17,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../../../mp-handle-bouwstenen.xsl"/>
 
     <xd:doc>
-        <xd:desc>Dit is een conversie voor MP 9 2.0 van HL7v3 naar ADA beschikbaarstellen medicatiegegevens</xd:desc>
+        <xd:desc>Dit is een conversie voor MP 9 3.0 van HL7v3 naar ADA beschikbaarstellen medicatiegegevens</xd:desc>
     </xd:doc>
 
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all" omit-xml-declaration="yes"/>
     <!-- parameter to control whether or not the result should contain a reference to the ada xsd -->
     <xsl:param name="outputSchemaRef" as="xs:boolean" select="true()"/>
-    <xsl:param name="schemaFileString" as="xs:string?">../../hl7_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_schemas/beschikbaarstellen_medicatiegegevens.xsd</xsl:param>
+    <xsl:param name="schemaFileString" as="xs:string?">../../hl7_2_ada/mp/9.3.0/beschikbaarstellen_medicatiegegevens/ada_schemas/beschikbaarstellen_medicatiegegevens.xsd</xsl:param>
     <!-- whether or not this hl7_2_ada conversion should deduplicate bouwstenen, such as products, health providers, health professionals, contact persons -->
     <!--    <xsl:param name="deduplicateAdaBouwstenen" as="xs:boolean?" select="false()"/>-->
     <xsl:param name="deduplicateAdaBouwstenen" as="xs:boolean?" select="true()"/>
 
-    <xsl:variable name="medicatiegegevens-lijst-92" select="//hl7:organizer[hl7:code[@code = '102'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']] | //hl7:organizer[hl7:code[@code = '419891008'][@codeSystem = '2.16.840.1.113883.6.96']] | hl7:ClinicalDocument[hl7:code[@code = '52981000146104'][@codeSystem = '2.16.840.1.113883.6.96']]"/>
+    <xsl:variable name="medicatiegegevens-lijst-93" select="//hl7:organizer[hl7:code[@code = '102'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']] | //hl7:organizer[hl7:code[@code = '419891008'][@codeSystem = '2.16.840.1.113883.6.96']] | hl7:ClinicalDocument[hl7:code[@code = '52981000146104'][@codeSystem = '2.16.840.1.113883.6.96']]"/>
 
     <xsl:variable name="filename" select="tokenize(document-uri(/), '/')[last()]"/>
     <xsl:variable name="extension" select="tokenize($filename, '\.')[last()]"/>
@@ -38,9 +38,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="string-length($idBasedOnFilename) gt 0">
                 <xsl:value-of select="$idBasedOnFilename"/>
             </xsl:when>
-            <xsl:when test="string-length($medicatiegegevens-lijst-92/../../../hl7:id/@extension) gt 0">
+            <xsl:when test="string-length($medicatiegegevens-lijst-93/../../../hl7:id/@extension) gt 0">
                 <!-- let's use the extension of the message id -->
-                <xsl:value-of select="$medicatiegegevens-lijst-92/../../../hl7:id/@extension"/>
+                <xsl:value-of select="$medicatiegegevens-lijst-93/../../../hl7:id/@extension"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="generate-id(.)"/>
@@ -52,17 +52,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc> if this xslt is used stand alone the template below could be used. </xd:desc>
     </xd:doc>
     <xsl:template match="/">
-        <xsl:call-template name="Medicatiegegevens-92-ADA">
-            <xsl:with-param name="medicatiegegevens-lijst" select="$medicatiegegevens-lijst-92"/>
+        <xsl:call-template name="Medicatiegegevens-93-ADA">
+            <xsl:with-param name="medicatiegegevens-lijst" select="$medicatiegegevens-lijst-93"/>
         </xsl:call-template>
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Handles HL7 9 2.0 medication information, transforms it to ada.</xd:desc>
-        <xd:param name="medicatiegegevens-lijst">HL7 9 2.0 organizer/CDA with medication information.</xd:param>
+        <xd:desc>Handles HL7 9 3.0 medication information, transforms it to ada.</xd:desc>
+        <xd:param name="medicatiegegevens-lijst">HL7 9 3.0 organizer/CDA with medication information.</xd:param>
     </xd:doc>
-    <xsl:template name="Medicatiegegevens-92-ADA">
-        <xsl:param name="medicatiegegevens-lijst" select="$medicatiegegevens-lijst-92"/>
+    <xsl:template name="Medicatiegegevens-93-ADA">
+        <xsl:param name="medicatiegegevens-lijst" select="$medicatiegegevens-lijst-93"/>
         <xsl:call-template name="doGeneratedComment">
             <xsl:with-param name="in" select="$medicatiegegevens-lijst/ancestor::*[hl7:ControlActProcess]"/>
         </xsl:call-template>
@@ -104,13 +104,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:for-each>
                                     <!-- wisselend_doseerschema -->
                                     <xsl:for-each select="current-group()[hl7:templateId/@root = $templateId-wisselend_doseerschema]">
-                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9380_20210617175854">
+                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9412_20221118130922">
                                             <xsl:with-param name="in_hl7" select="."/>
                                         </xsl:call-template>
                                     </xsl:for-each>
                                     <!-- verstrekkingsverzoek -->
                                     <xsl:for-each select="current-group()[hl7:templateId/@root = $templateId-verstrekkingsverzoek]">
-                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9356_20210402132627">
+                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9449_20230106093041">
                                             <xsl:with-param name="in" select="."/>
                                         </xsl:call-template>
                                     </xsl:for-each>
@@ -134,7 +134,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:for-each>
                                     <!-- medicatietoediening -->
                                     <xsl:for-each select="current-group()[hl7:templateId/@root = $templateId-medicatietoediening]">
-                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9373_20210616162231">
+                                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9406_20221101091730">
                                             <xsl:with-param name="in" select="."/>
                                         </xsl:call-template>
                                     </xsl:for-each>

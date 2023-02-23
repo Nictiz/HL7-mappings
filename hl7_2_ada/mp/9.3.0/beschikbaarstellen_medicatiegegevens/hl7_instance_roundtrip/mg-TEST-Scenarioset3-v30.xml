@@ -3769,8 +3769,7 @@
                         codeSystemName="G-Standaard PRK">
                      <translation code="66478"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="LARIAM TABLET 250MG"
-                                  codeSystemName="G-Standaard GPK"/>
+                                  displayName="MEFLOQUINE TABLET 250MG"/>
                   </code>
                </manufacturedMaterial>
             </manufacturedProduct>
@@ -3842,7 +3841,7 @@
       <substanceAdministration classCode="SBADM" moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9430"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9429"/>
-         <id extension="MBG_300_annuleren_MA_geannuleerd"
+         <id extension="MBH_300_annuleren_MA_geannuleerd"
              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="33633005"
                displayName="voorschrijven van geneesmiddel (verrichting)"
@@ -3864,8 +3863,7 @@
                         codeSystemName="G-Standaard PRK">
                      <translation code="66478"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="LARIAM TABLET 250MG"
-                                  codeSystemName="G-Standaard GPK"/>
+                                  displayName="MEFLOQUINE TABLET 250MG"/>
                   </code>
                </manufacturedMaterial>
             </manufacturedProduct>
@@ -4333,7 +4331,7 @@
                </assignedPerson>
                <representedOrganization>
                   <id extension="00004444" root="2.16.528.1.1007.3.3"/>
-                  <name>Ziekenhuis het Groene Hart</name>
+                  <name>Ziekenhuis het Gele Hart</name>
                   <addr use="WP">
                      <streetName>Groenestraat</streetName>
                      <houseNumber>1</houseNumber>
@@ -4358,9 +4356,9 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
                <value xsi:type="CE"
-                      code="410546004"
+                      code="385655000"
                       codeSystem="2.16.840.1.113883.6.96"
-                      displayName="stopgezet"/>
+                      displayName="onderbroken"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="RSON">
@@ -4476,7 +4474,7 @@
                </assignedPerson>
                <representedOrganization>
                   <id extension="00004444" root="2.16.528.1.1007.3.3"/>
-                  <name>Ziekenhuis het Groene Hart</name>
+                  <name>Ziekenhuis het Gele Hart</name>
                   <addr use="WP">
                      <streetName>Groenestraat</streetName>
                      <houseNumber>1</houseNumber>
@@ -4550,11 +4548,640 @@
                <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
+         <entryRelationship typeCode="REFR">
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
+               <id extension="MBH_300_VolgendeBehandelaar_MA_Start1"
+                   root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <code code="33633005"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"
+                     displayName="Medicatieafspraak"/>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">
             <procedure classCode="PROC" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                    extension="MBH_300_VolgendeBehandelaar"/>
+               <code code="1"
+                     displayName="Medicamenteuze behandeling"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+            </procedure>
+         </entryRelationship>
+      </substanceAdministration>
+   </component>
+   <component typeCode="COMP">
+      <substanceAdministration classCode="SBADM" moodCode="RQO">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9430"/>
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9429"/>
+         <id extension="MBH_300_stoppen_parallele_TA_MA_start"
+             root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <code code="33633005"
+               displayName="voorschrijven van geneesmiddel (verrichting)"
+               codeSystem="2.16.840.1.113883.6.96"
+               codeSystemName="SNOMED CT"/>
+         <text mediaType="text/plain">Vanaf 18 dec 2022, gedurende 28 dagen, 1 maal per dag 1 stuk 's ochtends en Bij pijn 1 maal per dag 1 stuk 's avonds, Oraal</text>
+         <effectiveTime xsi:type="IVL_TS">
+            <low value="20221218000000"/>
+            <width value="28" unit="d"/>
+         </effectiveTime>
+         <routeCode code="9"
+                    codeSystem="2.16.840.1.113883.2.4.4.9"
+                    displayName="Oraal"
+                    codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+         <consumable>
+            <manufacturedProduct>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
+               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                  <code code="43044"
+                        codeSystem="2.16.840.1.113883.2.4.4.10"
+                        displayName="PANTOPRAZOL 40MG TABLET MSR"
+                        codeSystemName="G-Standaard PRK">
+                     <translation code="96938"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1"
+                                  displayName="PANTOPRAZOL 40MG TABLET MSR"
+                                  codeSystemName="G-Standaard GPK"/>
+                  </code>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </consumable>
+         <author>
+            <time value="20221217090500"/>
+            <assignedAuthor>
+               <id extension="000002222" root="2.16.528.1.1007.3.1"/>
+               <code code="0303"
+                     codeSystem="2.16.840.1.113883.2.4.6.7"
+                     displayName="Medisch specialisten, chirurgie"
+                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <assignedPerson>
+                  <name>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">van </prefix>
+                     <family qualifier="BR">Harten</family>
+                  </name>
+               </assignedPerson>
+               <representedOrganization>
+                  <id extension="00004444" root="2.16.528.1.1007.3.3"/>
+                  <name>Ziekenhuis het Gele Hart</name>
+                  <addr use="WP">
+                     <streetName>Groenestraat</streetName>
+                     <houseNumber>1</houseNumber>
+                     <postalCode>1200 AA</postalCode>
+                     <city>Hartstad</city>
+                  </addr>
+                  <asOrganizationPartOf>
+                     <code code="0601"
+                           codeSystem="2.16.840.1.113883.2.4.6.7"
+                           displayName="Ziekenhuizen, algemene ziekenhuizen"
+                           codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                           codeSystemVersion="2020-10-23T00:00:00"/>
+                  </asOrganizationPartOf>
+               </representedOrganization>
+            </assignedAuthor>
+         </author>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="1"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                     <when value="MORN"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="1" unit="1">
+                     <translation value="1"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="1"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                     <when value="EVE"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="1" unit="1">
+                     <translation value="1"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+               <precondition>
+                  <criterion>
+                     <code code="1028"
+                           codeSystem="2.16.840.1.113883.2.4.4.5"
+                           displayName="Bij pijn"/>
+                  </criterion>
+               </precondition>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP" inversionInd="true">
+            <procedure classCode="PROC" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                   extension="MBH_300_stoppen_parallele_TA"/>
+               <code code="1"
+                     displayName="Medicamenteuze behandeling"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+            </procedure>
+         </entryRelationship>
+      </substanceAdministration>
+   </component>
+   <component typeCode="COMP">
+      <substanceAdministration classCode="SBADM" moodCode="RQO">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9416"/>
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9415"/>
+         <id extension="MBH_300_stoppen_parallele_TA_TA_start_GDS"
+             root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+         <code code="422037009"
+               displayName="Toedieningsafspraak"
+               codeSystem="2.16.840.1.113883.6.96"
+               codeSystemName="SNOMED CT"/>
+         <text mediaType="text/plain">Vanaf 18 dec 2022, gedurende 28 dagen, 1 maal per dag 1 stuk 's ochtends, Oraal</text>
+         <effectiveTime xsi:type="IVL_TS">
+            <low value="20221218000000"/>
+            <width value="28" unit="d"/>
+         </effectiveTime>
+         <routeCode code="9"
+                    codeSystem="2.16.840.1.113883.2.4.4.9"
+                    displayName="Oraal"
+                    codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+         <consumable>
+            <manufacturedProduct>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
+               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                  <code code="878421"
+                        codeSystem="2.16.840.1.113883.2.4.4.7"
+                        displayName="PANTOZOL TABLET MSR 40MG"
+                        codeSystemName="G-Standaard HPK">
+                     <translation code="43044"
+                                  codeSystem="2.16.840.1.113883.2.4.4.10"
+                                  displayName="PANTOPRAZOL 40MG TABLET MSR"
+                                  codeSystemName="G-Standaard PRK"/>
+                     <translation code="96938"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1"
+                                  displayName="PANTOPRAZOL 40MG TABLET MSR"
+                                  codeSystemName="G-Standaard GPK"/>
+                  </code>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </consumable>
+         <author>
+            <time value="20221217101500"/>
+            <assignedAuthor>
+               <id nullFlavor="NI"/>
+               <representedOrganization>
+                  <id extension="01236578" root="2.16.528.1.1007.3.3"/>
+                  <name>Apotheek De Gulle Gaper</name>
+               </representedOrganization>
+            </assignedAuthor>
+         </author>
+         <entryRelationship typeCode="COMP">
+            <act classCode="ACT" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9097"/>
+               <code code="1"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8"
+                     displayName="GDS"/>
+            </act>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="1"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                     <when value="MORN"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="1" unit="1">
+                     <translation value="1"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="REFR">
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
+               <id extension="MBH_300_stoppen_parallele_TA_MA_start"
+                   root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <code code="33633005"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"
+                     displayName="Medicatieafspraak"/>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP" inversionInd="true">
+            <procedure classCode="PROC" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                   extension="MBH_300_stoppen_parallele_TA"/>
+               <code code="1"
+                     displayName="Medicamenteuze behandeling"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+            </procedure>
+         </entryRelationship>
+      </substanceAdministration>
+   </component>
+   <component typeCode="COMP">
+      <substanceAdministration classCode="SBADM" moodCode="RQO">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9416"/>
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9415"/>
+         <id extension="MBH_300_stoppen_parallele_TA_TA_start_zonodig"
+             root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+         <code code="422037009"
+               displayName="Toedieningsafspraak"
+               codeSystem="2.16.840.1.113883.6.96"
+               codeSystemName="SNOMED CT"/>
+         <text mediaType="text/plain">Vanaf 18 dec 2022, gedurende 28 dagen, Bij pijn 1 maal per dag 1 stuk 's avonds, oraal</text>
+         <effectiveTime xsi:type="IVL_TS">
+            <low value="20221218000000"/>
+            <width value="28" unit="d"/>
+         </effectiveTime>
+         <routeCode code="9"
+                    codeSystem="2.16.840.1.113883.2.4.4.9"
+                    displayName="oraal"
+                    codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+         <consumable>
+            <manufacturedProduct>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
+               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                  <code code="878421"
+                        codeSystem="2.16.840.1.113883.2.4.4.7"
+                        displayName="PANTOZOL TABLET MSR 40MG"
+                        codeSystemName="G-Standaard HPK">
+                     <translation code="43044"
+                                  codeSystem="2.16.840.1.113883.2.4.4.10"
+                                  displayName="PANTOPRAZOL 40MG TABLET MSR"
+                                  codeSystemName="G-Standaard PRK"/>
+                     <translation code="96938"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1"
+                                  displayName="PANTOPRAZOL 40MG TABLET MSR"
+                                  codeSystemName="G-Standaard GPK"/>
+                  </code>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </consumable>
+         <author>
+            <time value="20221217101500"/>
+            <assignedAuthor>
+               <id nullFlavor="NI"/>
+               <representedOrganization>
+                  <id extension="01236578" root="2.16.528.1.1007.3.3"/>
+                  <name>Apotheek De Gulle Gaper</name>
+               </representedOrganization>
+            </assignedAuthor>
+         </author>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="1"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                     <when value="EVE"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="1" unit="1">
+                     <translation value="1"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+               <precondition>
+                  <criterion>
+                     <code code="1028"
+                           codeSystem="2.16.840.1.113883.2.4.4.5"
+                           displayName="Bij pijn"/>
+                  </criterion>
+               </precondition>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="REFR">
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
+               <id extension="MBH_300_stoppen_parallele_TA_MA_start"
+                   root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <code code="33633005"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"
+                     displayName="Medicatieafspraak"/>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP" inversionInd="true">
+            <procedure classCode="PROC" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                   extension="MBH_300_stoppen_parallele_TA"/>
+               <code code="1"
+                     displayName="Medicamenteuze behandeling"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+            </procedure>
+         </entryRelationship>
+      </substanceAdministration>
+   </component>
+   <component typeCode="COMP">
+      <substanceAdministration classCode="SBADM" moodCode="RQO">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9416"/>
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9415"/>
+         <id extension="MBH_300_stoppen_parallele_TA_TA_stop_zonodig"
+             root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+         <code code="422037009"
+               displayName="Toedieningsafspraak"
+               codeSystem="2.16.840.1.113883.6.96"
+               codeSystemName="SNOMED CT"/>
+         <text mediaType="text/plain">Vanaf 18 dec 2022, tot en met 22 dec 2022, Bij pijn 1 maal per dag 1 stuk 's avonds, Oraal, </text>
+         <effectiveTime xsi:type="IVL_TS">
+            <low value="20221218000000"/>
+            <high value="20221222235959"/>
+         </effectiveTime>
+         <routeCode code="9"
+                    codeSystem="2.16.840.1.113883.2.4.4.9"
+                    displayName="Oraal"
+                    codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+         <consumable>
+            <manufacturedProduct>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
+               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                  <code code="878421"
+                        codeSystem="2.16.840.1.113883.2.4.4.7"
+                        displayName="PANTOZOL TABLET MSR 40MG"
+                        codeSystemName="G-Standaard HPK">
+                     <translation code="43044"
+                                  codeSystem="2.16.840.1.113883.2.4.4.10"
+                                  displayName="PANTOPRAZOL 40MG TABLET MSR"
+                                  codeSystemName="G-Standaard PRK"/>
+                     <translation code="96938"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1"
+                                  displayName="PANTOPRAZOL 40MG TABLET MSR"
+                                  codeSystemName="G-Standaard GPK"/>
+                  </code>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </consumable>
+         <author>
+            <time value="20221222100500"/>
+            <assignedAuthor>
+               <id nullFlavor="NI"/>
+               <representedOrganization>
+                  <id extension="01236578" root="2.16.528.1.1007.3.3"/>
+                  <name>Apotheek De Gulle Gaper</name>
+               </representedOrganization>
+            </assignedAuthor>
+         </author>
+         <entryRelationship typeCode="COMP">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9414"/>
+               <code code="410684002"
+                     displayName="status van medicamenteuze behandeling"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+               <value xsi:type="CE"
+                      code="410546004"
+                      codeSystem="2.16.840.1.113883.6.96"
+                      displayName="stopgezet"/>
+            </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="RSON">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9440"/>
+               <code code="160121000146101"
+                     displayName="reden voor wijzigen van toedieningsinstructies"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+               <value xsi:type="CE"
+                      code="112751000146109"
+                      codeSystem="2.16.840.1.113883.6.96"
+                      displayName="medicatiebeleid veranderd"/>
+            </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="1"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                     <when value="EVE"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="1" unit="1">
+                     <translation value="1"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+               <precondition>
+                  <criterion>
+                     <code code="1028"
+                           codeSystem="2.16.840.1.113883.2.4.4.5"
+                           displayName="Bij pijn"/>
+                  </criterion>
+               </precondition>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="REFR">
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
+               <id extension="MBH_300_stoppen_parallele_TA_MA_start"
+                   root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <code code="33633005"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"
+                     displayName="Medicatieafspraak"/>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="REFR">
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9101"/>
+               <id extension="MBH_300_stoppen_parallele_TA_TA_start_zonodig"
+                   root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <code displayName="Toedieningsafspraak"
+                     code="422037009"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP" inversionInd="true">
+            <procedure classCode="PROC" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                   extension="MBH_300_stoppen_parallele_TA"/>
+               <code code="1"
+                     displayName="Medicamenteuze behandeling"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+            </procedure>
+         </entryRelationship>
+      </substanceAdministration>
+   </component>
+   <component typeCode="COMP">
+      <substanceAdministration classCode="SBADM" moodCode="RQO">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9416"/>
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9415"/>
+         <id extension="MBH_300_stoppen_parallele_TA_TA_start2_zonodig"
+             root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+         <code code="422037009"
+               displayName="Toedieningsafspraak"
+               codeSystem="2.16.840.1.113883.6.96"
+               codeSystemName="SNOMED CT"/>
+         <text mediaType="text/plain">Vanaf 22 dec 2022, gedurende 23 dagen, Bij pijn 1 maal per dag 2 stuks 's avonds, Oraal</text>
+         <effectiveTime xsi:type="IVL_TS">
+            <low value="20221222000000"/>
+            <width value="23" unit="d"/>
+         </effectiveTime>
+         <routeCode code="9"
+                    codeSystem="2.16.840.1.113883.2.4.4.9"
+                    displayName="Oraal"
+                    codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+         <consumable>
+            <manufacturedProduct>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
+               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                  <code code="1163094"
+                        codeSystem="2.16.840.1.113883.2.4.4.7"
+                        displayName="PANTOZOL TABLET MSR 20MG"
+                        codeSystemName="G-Standaard HPK">
+                     <translation code="52272"
+                                  codeSystem="2.16.840.1.113883.2.4.4.10"
+                                  displayName="PANTOPRAZOL TABLET MSR 20MG"
+                                  codeSystemName="G-Standaard PRK"/>
+                     <translation code="106275"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1"
+                                  displayName="PANTOPRAZOL TABLET MSR 20MG"
+                                  codeSystemName="G-Standaard GPK"/>
+                  </code>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </consumable>
+         <author>
+            <time value="20221222100500"/>
+            <assignedAuthor>
+               <id nullFlavor="NI"/>
+               <representedOrganization>
+                  <id extension="01236578" root="2.16.528.1.1007.3.3"/>
+                  <name>Apotheek De Gulle Gaper</name>
+               </representedOrganization>
+            </assignedAuthor>
+         </author>
+         <entryRelationship typeCode="RSON">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9440"/>
+               <code code="160121000146101"
+                     displayName="reden voor wijzigen van toedieningsinstructies"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+               <value xsi:type="CE"
+                      code="182856006"
+                      codeSystem="2.16.840.1.113883.6.96"
+                      displayName="geneesmiddel niet voorradig"/>
+            </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="1"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                     <when value="EVE"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="2" unit="1">
+                     <translation value="2"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+               <precondition>
+                  <criterion>
+                     <code code="1028"
+                           codeSystem="2.16.840.1.113883.2.4.4.5"
+                           displayName="Bij pijn"/>
+                  </criterion>
+               </precondition>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="REFR">
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
+               <id extension="MBH_300_stoppen_parallele_TA_MA_start"
+                   root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <code code="33633005"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"
+                     displayName="Medicatieafspraak"/>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="REFR">
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9101"/>
+               <id extension="MBH_300_stoppen_parallele_TA_TA_start_zonodig"
+                   root="2.16.840.1.113883.2.4.3.11.999"/>
+               <code displayName="Toedieningsafspraak"
+                     code="422037009"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP" inversionInd="true">
+            <procedure classCode="PROC" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                   extension="MBH_300_stoppen_parallele_TA"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>

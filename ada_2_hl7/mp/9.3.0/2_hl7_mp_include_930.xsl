@@ -205,7 +205,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </performer>
             </xsl:for-each>
 
-            <!-- LET OP: Aanpassing gedaan MTD waarbij niet zorgverlener maar zorgaanbieder de toediener is. Hieronder/in mg-example werkt iets nog niet goed wat validatiefoutmelding oplevert-->
+            <!-- zorgaanbieder is toediener -->
             <xsl:for-each select="../../../bouwstenen/zorgaanbieder[@id = current()//zorgaanbieder[not(zorgaanbieder)]/@value]">
                 <performer>
                     <assignedEntity>
@@ -804,7 +804,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:for-each select="$in">
             <substanceAdministration classCode="SBADM" moodCode="PRP">
-                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9153"/>
+                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9434"/>
                 <!-- Geen id bij voorstel MA: dit is een vluchtig ding waar toch niet naar verwezen mag worden. -->
                 <code code="33633005" displayName="voorschrijven van geneesmiddel (verrichting)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                 <!-- gebruiksinstructie/omschrijving -->
