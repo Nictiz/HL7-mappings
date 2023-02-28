@@ -1,0 +1,63 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../sturen_antwoord_voorstel_verstrekkingsverzoek/ada_schemas/ada_sturen_antwoord_voorstel_verstrekkingsverzoek.xsd">
+   <meta status="new" created-by="arianne" last-update-by="arianne" creation-date="2023-01-30T15:53:58.837+01:00" last-update-date="2023-01-30T15:53:58.837+01:00"/>
+   <data>
+      <sturen_antwoord_voorstel_verstrekkingsverzoek app="mp-mp93" shortName="sturen_antwoord_voorstel_verstrekkingsverzoek" formName="sturen_antwoord_voorstel_verstrekkingsverzoek" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.404" transactionEffectiveDate="2022-06-30T00:00:00" versionDate="" prefix="mp-" language="nl-NL" title="Example instance" id="avvv-example-93-1-v30">
+         <patient comment="">
+            <naamgegevens comment="">
+               <initialen value="S. "/>
+               <naamgebruik value="1" code="NL1" codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4" displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam comment="">
+                  <achternaam value="XXX_Jankie"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999910437" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1954-05-08" datatype="datetime"/>
+            <geslacht value="3" code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+         </patient>
+         <bouwstenen>
+            <zorgverlener id="UZI-000001111-PeterVanPulver">
+               <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens comment="">
+                  <voornamen value="Peter"/>
+                  <geslachtsnaam comment="">
+                     <voorvoegsels value="van "/>
+                     <achternaam value="Pulver"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100" codeSystem="2.16.840.1.113883.2.4.6.7" codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))" codeSystemVersion="2017-12-14T00:00:00" displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder datatype="reference" value="URA-00001111-PulverPartners"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="URA-00001111-PulverPartners">
+               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+               <adresgegevens comment="">
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="1"/>
+                  <postcode value="1234AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort value="5" code="WP" codeSystem="2.16.840.1.113883.5.1119" displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+            <zorgaanbieder id="URA-01236578-GulleGaper">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+            </zorgaanbieder>
+         </bouwstenen>
+         <voorstel_gegevens>
+            <antwoord>
+               <identificatie value="#Antwoord_id_123343" root="2.16.840.1.113883.2.4.3.11.999.777.540.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.540"/>
+               <antwoord_datum value="T{12:30}"/>
+               <auteur>
+                  <zorgverlener value="UZI-000001111-PeterVanPulver"/>
+               </auteur>
+               <relatie_voorstel_gegevens>
+                  <identificatie value="#Voorstel_id_123345" root="2.16.840.1.113883.2.4.3.11.999.77.545.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.545"/>
+               </relatie_voorstel_gegevens>
+               <antwoord_verstrekkingsverzoek code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.17" displayName="Ja, verstrekkingsverzoek volgt"/>
+            </antwoord>
+         </voorstel_gegevens>
+      </sturen_antwoord_voorstel_verstrekkingsverzoek>
+   </data>
+</adaxml>

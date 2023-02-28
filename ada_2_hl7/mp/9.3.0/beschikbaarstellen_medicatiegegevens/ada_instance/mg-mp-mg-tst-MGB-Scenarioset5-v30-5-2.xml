@@ -1,0 +1,167 @@
+<!--ada full xml for subscenario nr: 5-2--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../9.2.0/beschikbaarstellen_medicatiegegevens/ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="medicatieprocesada"
+         last-update-by="medicatieprocesada"
+         creation-date="2023-01-09T17:16:09.121+01:00"
+         last-update-date="2023-01-09T17:16:09.121+01:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp93"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.374"
+                                            transactionEffectiveDate="2022-06-30T00:00:00"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="TEST Medicatiegegevens MGB Scenarioset 5"
+                                            desc="Afwijkend gebruik"
+                                            id="mg-mp-mg-tst-MGB-Scenarioset5-v30-5-2">
+         <scenario-nr value="5.2"/>
+         <systeemrol value="1"
+                     code="1"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.6.1.20201207000000"
+                     displayName="Beide"/>
+         <!--Patient found in instance with id: mg-TEST-Scenarioset5Patient-v30 and title: id: TEST REPO Scenarioset 5 ALLEEN PATIENT-->
+         <patient comment="">
+            <naamgegevens comment="">
+               <initialen value="N."/>
+               <naamgebruik value="1"
+                            code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam comment="">
+                  <achternaam value="XXX_Rozendal"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900985" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1985-11-11" datatype="datetime"/>
+            <geslacht value="3"
+                      code="F"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Vrouw"/>
+         </patient>
+         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_300_niet_volgens_afspraak-->
+         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
+            <identificatie value="MBH_300_niet_volgens_afspraak"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
+            <medicatiegebruik comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.362">
+               <identificatie value="MBH_300_niet_volgens_afspraak_MGB"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.411"/>
+               <medicatiegebruik_datum_tijd value="T-19D{10:00:00}"
+                                            datatype="datetime"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.400"/>
+               <gebruik_indicator value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.406"/>
+               <volgens_afspraak_indicator value="false" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.405"/>
+               <gebruiksperiode comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.401">
+                  <start_datum_tijd value="T-30D{00:00:00}"
+                                    datatype="datetime"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.402"/>
+                  <eind_datum_tijd value="T-20D{23:59:59}"
+                                   datatype="datetime"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.403"/>
+               </gebruiksperiode>
+               <gebruiksproduct comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.365">
+                  <farmaceutisch_product value="PRK_simvastatine_67814"
+                                         datatype="reference"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.366"/>
+               </gebruiksproduct>
+               <gebruiksinstructie comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.367">
+                  <omschrijving value="xxx" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.369"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="oraal"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.371"/>
+                  <doseerinstructie comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.372">
+                     <dosering comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.375">
+                        <keerdosis comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.384">
+                           <aantal comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.566">
+                              <nominale_waarde value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.387"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.567"/>
+                        </keerdosis>
+                        <toedieningsschema comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.391">
+                           <frequentie comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.392">
+                              <aantal comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.569">
+                                 <nominale_waarde value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.395"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.570"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.413">
+                  <identificatie value="MBH_300_niet_volgens_afspraak_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.414"/>
+               </relatie_medicatieafspraak>
+               <voorschrijver comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.363">
+                  <zorgverlener value="Peter_van_Pulver"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.364"/>
+               </voorschrijver>
+               <auteur comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.623">
+                  <auteur_is_patient value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.626"/>
+               </auteur>
+            </medicatiegebruik>
+         </medicamenteuze_behandeling>
+         <bouwstenen comment="">
+            <farmaceutisch_product comment=""
+                                   id="PRK_simvastatine_67814"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+               <product_code code="67814"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="SIMVASTATINE TABLET FO 20MG"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="116580"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="SIMVASTATINE TABLET FO 20MG"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
+            <zorgverlener id="Peter_van_Pulver" comment="">
+               <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens comment="">
+                  <voornamen value="Peter"/>
+                  <geslachtsnaam comment="">
+                     <voorvoegsels value="van "/>
+                     <achternaam value="Pulver"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder comment="">
+                  <zorgaanbieder datatype="reference" value="Huisartsenpraktijk_Pulver_en_Partners"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="Huisartsenpraktijk_Pulver_en_Partners" comment="">
+               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+               <adresgegevens comment="">
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="1"/>
+                  <postcode value="1234AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort value="5"
+                               code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

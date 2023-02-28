@@ -1,0 +1,139 @@
+<!--ada full xml for subscenario nr: 7-1--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../9.2.0/beschikbaarstellen_medicatiegegevens/ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="medicatieprocesada"
+         last-update-by="medicatieprocesada"
+         creation-date="2023-01-09T17:16:11.189+01:00"
+         last-update-date="2023-01-09T17:16:11.189+01:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp93"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.374"
+                                            transactionEffectiveDate="2022-06-30T00:00:00"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="TEST Medicatiegegevens MVE Scenarioset 7 (Magistraal)"
+                                            desc="Alle ingrediënten"
+                                            id="mg-mp-mg-tst-MVE-Scenarioset7-v30-7-1">
+         <scenario-nr value="7.1"/>
+         <systeemrol value="1"
+                     code="1"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.6.1.20201207000000"
+                     displayName="Beide"/>
+         <screenshot value="Maak screenshot(s) waarop zichtbaar is dat er ingrediënten ingevoerd/gekozen kunnen worden"
+                     datatype="text"/>
+         <!--Patient found in instance with id: mg-TEST-Scenarioset7Patient-v30 and title: id: TEST REPO Scenarioset 7 ALLEEN PATIENT-->
+         <patient comment="">
+            <naamgegevens comment="">
+               <initialen value="M."/>
+               <naamgebruik value="1"
+                            code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam comment="">
+                  <voorvoegsels value="van de"/>
+                  <achternaam value="XXX_Rambaran Mishre"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900948" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1985-11-08" datatype="datetime"/>
+            <geslacht value="2"
+                      code="M"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Man"/>
+         </patient>
+         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_300_magistraalalleingredienten-->
+         <medicamenteuze_behandeling conceptId="">
+            <identificatie value="MBH_300_magistraalalleingredienten"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
+            <medicatieverstrekking comment="">
+               <identificatie value="MBH_300_magistraalalleingredienten_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.361"/>
+               <medicatieverstrekkings_datum_tijd value="T+0D{13:00:00}" datatype="datetime"/>
+               <verstrekker comment="">
+                  <zorgaanbieder datatype="reference" value="Apotheek_De_Gulle_Gaper"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="100"/>
+                  <eenheid code="233"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="milliliter"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel comment="">
+                  <farmaceutisch_product datatype="reference"
+                                         value="Magistraal_Ureum_Eucerine_15219127_14740877"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek comment="">
+                  <identificatie value="MBH_300_magistraalalleingredienten_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.564"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+         </medicamenteuze_behandeling>
+         <bouwstenen comment="">
+            <farmaceutisch_product id="Magistraal_Ureum_Eucerine_15219127_14740877" comment="">
+               <product_code code="OTH"
+                             codeSystem="2.16.840.1.113883.5.1008"
+                             displayName="overig"
+                             codeSystemName="v3 Code System NullFlavor"/>
+               <product_specificatie comment="">
+                  <product_naam value="Ureum 10% in eucerine cum aqua 100gr"/>
+                  <omschrijving value="Titel: Ureum 10% in eucerine cum aqua 100gr           Regel: UREUM 10gr           Regel: EUCERINE MET WATER FAGRON ad 100gr"/>
+                  <ingredient comment="">
+                     <ingredient_code code="1042467"
+                                      codeSystem="2.16.840.1.113883.2.4.4.7"
+                                      codeSystemName="G-Standaard HPK"
+                                      displayName="UREUM ZALF 10% FAGRON"/>
+                     <sterkte comment="">
+                        <ingredient_hoeveelheid comment="">
+                           <waarde value="10"/>
+                           <eenheid codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    code="215"
+                                    displayName="gram"/>
+                        </ingredient_hoeveelheid>
+                        <product_hoeveelheid comment="">
+                           <waarde value="100"/>
+                           <eenheid codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    code="215"
+                                    displayName="gram"/>
+                        </product_hoeveelheid>
+                     </sterkte>
+                  </ingredient>
+                  <ingredient comment="">
+                     <ingredient_code code="1516981"
+                                      codeSystem="2.16.840.1.113883.2.4.4.7"
+                                      codeSystemName="G-Standaard HPK"
+                                      displayName="EUCERINE MET WATER FAGRON"/>
+                     <sterkte comment="">
+                        <ingredient_hoeveelheid comment="">
+                           <waarde value="90"/>
+                           <eenheid code="215"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="gram"/>
+                        </ingredient_hoeveelheid>
+                        <product_hoeveelheid comment="">
+                           <waarde value="100"/>
+                           <eenheid code="215"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="gram"/>
+                        </product_hoeveelheid>
+                     </sterkte>
+                  </ingredient>
+               </product_specificatie>
+            </farmaceutisch_product>
+            <zorgaanbieder id="Apotheek_De_Gulle_Gaper" comment="">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

@@ -1,0 +1,122 @@
+<!--ada full xml for subscenario nr: 6-14--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../9.2.0/beschikbaarstellen_medicatiegegevens/ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="medicatieprocesada"
+         last-update-by="medicatieprocesada"
+         creation-date="2023-01-09T17:16:12.706+01:00"
+         last-update-date="2023-01-09T17:16:12.706+01:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp93"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.374"
+                                            transactionEffectiveDate="2022-06-30T00:00:00"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="TEST Medicatiegegevens TA Scenarioset 6 (Doseerschemas)"
+                                            desc="Toedieningsduur"
+                                            id="mg-mp-mg-tst-TA-Scenarioset6-v30-6-14">
+         <scenario-nr value="6.14"/>
+         <systeemrol value="1"
+                     code="1"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.6.1.20201207000000"
+                     displayName="Beide"/>
+         <!--Patient found in instance with id: mg-TEST-Scenarioset6Patient-v30 and title: id: TEST REPO Scenarioset 6 ALLEEN PATIENT-->
+         <patient comment="">
+            <naamgegevens comment="">
+               <initialen value="M"/>
+               <naamgebruik value="1"
+                            code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam comment="">
+                  <achternaam value="XXX_Rambaldo"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900936" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1985-11-07" datatype="datetime"/>
+            <geslacht value="3"
+                      code="F"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Vrouw"/>
+         </patient>
+         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_300_toedieningsduur-->
+         <medicamenteuze_behandeling conceptId="">
+            <identificatie value="MBH_300_toedieningsduur"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
+            <toedieningsafspraak comment="">
+               <identificatie value="MBH_300_toedieningsduur_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
+               <toedieningsafspraak_datum_tijd value="T+0D{09:49:00}" datatype="datetime"/>
+               <gebruiksperiode comment="">
+                  <start_datum_tijd value="T+0D{00:00:00}" datatype="datetime"/>
+               </gebruiksperiode>
+               <verstrekker comment="">
+                  <zorgaanbieder datatype="reference" value="Apotheek_de_Gulle_Gaper"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak comment="">
+                  <farmaceutisch_product datatype="reference" value="HPK_NITROGLYCERINE_1013602"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt;, eenmaal daags 1 pleister aanbrengen gedurende 16 uur, transdermaal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="58"
+                                  displayName="transdermaal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie comment="">
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                        <toedieningsduur comment="">
+                           <tijds_duur value="16" unit="uur"/>
+                        </toedieningsduur>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="MBH_300_toedieningsduur_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.565"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <bouwstenen comment="">
+            <farmaceutisch_product id="HPK_NITROGLYCERINE_1013602" comment="">
+               <product_code code="1013602"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="DEPONIT T 5 PLEISTER TRANSDERMAAL 18,7MG"/>
+               <product_code code="44520"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="NITROGLYCERINE PLEISTER 5MG/24UUR (DEPONIT T)"
+                             codeSystemName="G-Standaard PRK"/>
+               <product_code code="98477"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="NITROGLYCERINE PLEISTER 5MG/24UUR (DEPONIT T)"/>
+            </farmaceutisch_product>
+            <zorgaanbieder id="Apotheek_de_Gulle_Gaper" comment="">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek de Gulle Gaper"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>
