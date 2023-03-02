@@ -301,7 +301,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <zorgaanbieder>
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.33_20210701">
                                     <xsl:with-param name="generateId" select="true()"/>
-                                    <xsl:with-param name="hl7-current-organization" select="."/>
+                                    <xsl:with-param name="hl7-current-organization" select="hl7:assignedEntity/hl7:representedOrganization"/>
                                 </xsl:call-template>
                             </zorgaanbieder>
                         </xsl:for-each>
