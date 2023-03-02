@@ -7,9 +7,6 @@
          <pass/>
       </file>
       <file name="file:/C:/SourceTree/GitHub/HL7-mappings-gz/ada_2_fhir-r4/mp/9.3.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mgrp-999900493-ALL.xml">
-         <pass/>
-      </file>
-      <file name="file:/C:/SourceTree/GitHub/HL7-mappings-gz/ada_2_fhir-r4/mp/9.3.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mgrp-999900936-ALL.xml">
          <fail>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -25,6 +22,9 @@
                <svrl:text>bdl-7: FullUrl must be unique in a bundle, or else entries with the same fullUrl must have different meta.versionId (except in history bundles)</svrl:text>
             </svrl:failed-assert>
          </fail>
+      </file>
+      <file name="file:/C:/SourceTree/GitHub/HL7-mappings-gz/ada_2_fhir-r4/mp/9.3.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mgrp-999900936-ALL.xml">
+         <pass/>
       </file>
       <file name="file:/C:/SourceTree/GitHub/HL7-mappings-gz/ada_2_fhir-r4/mp/9.3.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mgrp-999900948-ALL.xml">
          <pass/>
@@ -72,7 +72,21 @@
          <pass/>
       </file>
       <file name="file:/C:/SourceTree/GitHub/HL7-mappings-gz/ada_2_fhir-r4/mp/9.3.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset1-v30.xml">
-         <pass/>
+         <fail>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                                xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                                xmlns:saxon="http://saxon.sf.net/"
+                                xmlns:schold="http://www.ascc.net/xml/schematron"
+                                xmlns:iso="http://purl.oclc.org/dsdl/schematron"
+                                xmlns:xhtml="http://www.w3.org/1999/xhtml"
+                                xmlns:f="http://hl7.org/fhir"
+                                xmlns:h="http://www.w3.org/1999/xhtml"
+                                test="(f:type/@value = 'history') or (count(for $entry in f:entry[f:resource] return $entry[count(parent::f:Bundle/f:entry[f:fullUrl/@value=$entry/f:fullUrl/@value and ((not(f:resource/*/f:meta/f:versionId/@value) and not($entry/f:resource/*/f:meta/f:versionId/@value)) or f:resource/*/f:meta/f:versionId/@value=$entry/f:resource/*/f:meta/f:versionId/@value)])!=1])=0)"
+                                location="/*:Bundle[namespace-uri()='http://hl7.org/fhir'][1]">
+               <svrl:text>bdl-7: FullUrl must be unique in a bundle, or else entries with the same fullUrl must have different meta.versionId (except in history bundles)</svrl:text>
+            </svrl:failed-assert>
+         </fail>
       </file>
       <file name="file:/C:/SourceTree/GitHub/HL7-mappings-gz/ada_2_fhir-r4/mp/9.3.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-MGB-Scenarioset10-v30.xml">
          <pass/>
@@ -129,9 +143,6 @@
          <pass/>
       </file>
       <file name="file:/C:/SourceTree/GitHub/HL7-mappings-gz/ada_2_fhir-r4/mp/9.3.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-TA-Scenarioset3-v30.xml">
-         <pass/>
-      </file>
-      <file name="file:/C:/SourceTree/GitHub/HL7-mappings-gz/ada_2_fhir-r4/mp/9.3.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-TA-Scenarioset6-v30.xml">
          <fail>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -147,6 +158,9 @@
                <svrl:text>bdl-7: FullUrl must be unique in a bundle, or else entries with the same fullUrl must have different meta.versionId (except in history bundles)</svrl:text>
             </svrl:failed-assert>
          </fail>
+      </file>
+      <file name="file:/C:/SourceTree/GitHub/HL7-mappings-gz/ada_2_fhir-r4/mp/9.3.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-TA-Scenarioset6-v30.xml">
+         <pass/>
       </file>
       <file name="file:/C:/SourceTree/GitHub/HL7-mappings-gz/ada_2_fhir-r4/mp/9.3.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-TA-Scenarioset7-v30.xml">
          <pass/>

@@ -1815,10 +1815,6 @@
    <svrl:active-pattern document="file:/C:/SourceTree/GitHub/HL7-mappings-gz/ada_2_fhir-r4/mp/9.3.0/beschikbaarstellen_medicatiegegevens/fhir_instance/mg-mp-mg-tst-TA-Scenarioset6-v30.xml"
                         name="Bundle"/>
    <svrl:fired-rule context="f:Bundle"/>
-   <svrl:failed-assert test="(f:type/@value = 'history') or (count(for $entry in f:entry[f:resource] return $entry[count(parent::f:Bundle/f:entry[f:fullUrl/@value=$entry/f:fullUrl/@value and ((not(f:resource/*/f:meta/f:versionId/@value) and not($entry/f:resource/*/f:meta/f:versionId/@value)) or f:resource/*/f:meta/f:versionId/@value=$entry/f:resource/*/f:meta/f:versionId/@value)])!=1])=0)"
-                       location="/*:Bundle[namespace-uri()='http://hl7.org/fhir'][1]">
-      <svrl:text>bdl-7: FullUrl must be unique in a bundle, or else entries with the same fullUrl must have different meta.versionId (except in history bundles)</svrl:text>
-   </svrl:failed-assert>
    <svrl:fired-rule context="f:Bundle/f:entry"/>
    <svrl:fired-rule context="f:Bundle/f:entry"/>
    <svrl:fired-rule context="f:Bundle/f:entry"/>
