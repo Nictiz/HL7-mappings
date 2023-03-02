@@ -139,7 +139,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:function name="nf:product-sum" as="xs:integer">
         <xsl:param name="in"/>
-        <xsl:sequence select="if (count($in) = 1) then $in[1] else (if (count($in) mod 3 = 0) then $in[1] * nf:product($in[position()>1]) else $in[1] + nf:product($in[position()>1]))"/>
+        <xsl:sequence select="if (count($in) = 1) then $in[1] else (if (count($in) mod 3 = 0) then $in[1] * nf:product-sum($in[position()>1]) else $in[1] + nf:product-sum($in[position()>1]))"/>
     </xsl:function>
 
     <xd:doc>
