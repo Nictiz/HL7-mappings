@@ -5,7 +5,7 @@
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f089f-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f07f0-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -16,15 +16,15 @@
                </tag>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
-               <valueDateTime value="${DATE, T, D, -2}T14:10:00+02:00"/>
+               <valueDateTime value="${DATE, T, D, +0}T14:10:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T + 7 dagen om 14:10 uur, tot en met T + 49 dagen om 14:10 uur, 1 maal per week 1 stuk, Oraal"/>
+               <valueString value="Vanaf T + 7 dagen, tot en met T + 49 dagen, 1 maal per week 1 stuk, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="${DATE, T, D, +7}T14:10:00+02:00"/>
-                  <end value="${DATE, T, D, +49}T14:10:00+02:00"/>
+                  <start value="${DATE, T, D, +7}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, +49}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">

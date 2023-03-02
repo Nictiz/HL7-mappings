@@ -5,7 +5,7 @@
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f0f86-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c33f0ed2-6a95-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -16,12 +16,12 @@
                </tag>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T + 7 dagen om 14:10 uur, tot en met T + 7 dagen om 14:10 uur, 1 maal per week 1 stuk, Oraal, geannuleerd"/>
+               <valueString value="Vanaf T + 4 dagen, tot en met T + 4 dagen, 1 maal per week 1 stuk, Oraal, geannuleerd"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="${DATE, T, D, +7}T14:10:00+02:00"/>
-                  <end value="${DATE, T, D, +7}T14:10:00+02:00"/>
+                  <start value="${DATE, T, D, +4}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, +4}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -62,7 +62,7 @@
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
-            <authoredOn value="${DATE, T, D, -1}T14:10:00+02:00"/>
+            <authoredOn value="${DATE, T, D, +0}T14:10:00+02:00"/>
             <requester>
                <reference value="urn:uuid:c33f1cd1-6a95-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
