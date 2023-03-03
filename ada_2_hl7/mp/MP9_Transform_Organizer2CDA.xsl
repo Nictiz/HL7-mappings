@@ -157,11 +157,11 @@
             <id extension="{uuid:get-uuid(.)}" root="{concat(hl7:templateId[1]/@root, '.1.2.3.999')}"/>
             <xsl:choose>
                 <!-- 9.2.0 voorschrift, CDA, more specific code -->
-                <xsl:when test="hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9328'">
-                    <code code="440545006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Prescription record (record artifact)"/>
+                <xsl:when test="hl7:templateId[last()]/@root = ('2.16.840.1.113883.2.4.3.11.60.20.77.10.9328', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9433') or hl7:code[@code = ('95')]">
+                    <code code="440545006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="voorschrift (gegevensobject)"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <code code="52981000146104" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Medication section (record artifact)"/>
+                    <code code="52981000146104" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="gedeelte betreffende medicatie in status (gegevensobject)"/>
                 </xsl:otherwise>
             </xsl:choose>
             <!-- parameterize the title based on input, this is not perfect -->
