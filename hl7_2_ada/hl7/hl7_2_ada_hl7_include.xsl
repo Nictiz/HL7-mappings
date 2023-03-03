@@ -1253,7 +1253,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="codeMap">Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. For codeMap expect one or more elements like this: <xd:p><xd:pre>&lt;map inCode="xx" inCodeSystem="yy" value=".." code=".." codeSystem=".." codeSystemName=".." codeSystemVersion=".." displayName=".." originalText=".."/&gt;</xd:pre></xd:p>
             <xd:p>If input @code | @codeSystem matches, copy the other attributes from this element. Expected are usually @code, @codeSystem, @displayName, others optional. In some cases the @value is required in ADA. The $codeMap may then to be used to supply that @value based on @inCode / @inCodeSystem. If the @code / @codeSystem are omitted, the mapping assumes you meant to copy the @inCode / @inCodeSystem.</xd:p>
             <xd:p>For @inCode and @inCodeSystem, first the input @code/@codeSystem is checked, with fallback onto @nullFlavor.</xd:p></xd:param>
-        <xd:param name="nullIfMissing">Optional. If there is no element, and this has a value, create element anyway with given nullFlavor as code/coodeSystem/displayName</xd:param>
+        <xd:param name="nullIfMissing">Optional. If there is no element, and this has a value, create element anyway with given nullFlavor as code/codeSystem/displayName</xd:param>
     </xd:doc>
     <xsl:template name="handleCV">
         <xsl:param name="in" select="." as="element()*"/>

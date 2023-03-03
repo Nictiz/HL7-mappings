@@ -99,6 +99,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="oidNHGTabel45DiagnBepal">2.16.840.1.113883.2.4.4.30.45</xsl:variable>
     <xsl:variable name="oidNHGTabel45DiagnBepalResultaat">2.16.840.1.113883.2.4.4.30.1045</xsl:variable>
     <xsl:variable name="oidNHGTabel56Profylaxe">2.16.840.1.113883.2.4.4.30.56</xsl:variable>
+    <xsl:variable name="oidNHGTabe361Gebruikseenheid">2.16.840.1.113883.2.4.4.1.361</xsl:variable>
     <xsl:variable name="oidQuestionnaireItemUIControlCodes">2.16.840.1.113883.4.642.1.849</xsl:variable>
     <xsl:variable name="oidQuestionnaireItemType">2.16.840.1.113883.4.642.1.438</xsl:variable>
     <xsl:variable name="oidQuestionnaireItemUsageMode">2.16.840.1.113883.4.642.1.855</xsl:variable>

@@ -18,7 +18,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../../util/datetime.xsl"/>
     <xsl:import href="../../util/utilities.xsl"/>
     <xsl:import href="../../util/units.xsl"/>
-    
+
     <!-- only give dateT a value if you want conversion of relative T dates -->
     <xsl:param name="dateT" as="xs:date?"/>
     <xd:doc scope="stylesheet">
@@ -809,6 +809,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:attribute name="xsi:type" select="$xsiType"/>
             </xsl:if>
             <xsl:choose>
+                <xsl:when test="$root = $oidHL7NullFlavor">
+                    <xsl:attribute name="nullFlavor">
+                        <xsl:value-of select="@value"/>
+                    </xsl:attribute>
+                </xsl:when>
                 <!-- extension + root ... the regular case -->
                 <xsl:when test="string-length($root) gt 0 and string-length(@value) gt 0">
                     <xsl:attribute name="extension">
@@ -1034,8 +1039,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="elemName" as="xs:string">value</xsl:param>
         <xsl:param name="urlSchemeCode" as="xs:string?"/>
         <xsl:param name="use" as="xs:string*"/>
-        <xsl:param name="xsiType" as="xs:string?">TEL</xsl:param>        
-      
+        <xsl:param name="xsiType" as="xs:string?">TEL</xsl:param>
+
         <xsl:for-each select="$in">
             <!-- spaces are not allowed in URL scheme -->
             <xsl:variable name="theValue" select="translate(@value, ' ', '')"/>
@@ -1053,7 +1058,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:value-of select="$theValue"/>
                         </xsl:when>
                         <xsl:when test="string-length($urlSchemeCode) gt 0">
-                            <xsl:value-of select="concat($urlSchemeCode, ':', $theValue)"/>                            
+                            <xsl:value-of select="concat($urlSchemeCode, ':', $theValue)"/>
                         </xsl:when>
                         <xsl:when test="matches($theValue, '.+@[^\.]+\.')">
                             <!-- email -->
@@ -1062,7 +1067,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:when test="matches($theValue, '^[\d\s\(\)+-]+$')">
                             <!-- fax or tel number, but without $urlSchemeCode we have no way of knowing, 
                                 so we default to tel, since fax really is also a telephone number technically -->
-                            <xsl:value-of select="concat('tel:', $theValue)"/>                            
+                            <xsl:value-of select="concat('tel:', $theValue)"/>
                         </xsl:when>
                         <xsl:otherwise>
                             <!-- hmmm, should not happen, so log a message, but let's still output the input -->

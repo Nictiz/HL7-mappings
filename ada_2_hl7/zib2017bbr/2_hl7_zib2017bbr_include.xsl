@@ -14,7 +14,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:hl7="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nf="http://www.nictiz.nl/functions" version="2.0">
     <xsl:import href="../zib1bbr/2_hl7_zib1bbr_include.xsl"/>
-    
+
     <xsl:output method="xml" indent="yes"/>
 
     <xd:doc>
@@ -308,53 +308,60 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="."/>
 
         <xsl:for-each select="$in">
-            <xsl:if test="./adres_soort[1]/@code">
+            <xsl:if test="adres_soort[1]/@code">
                 <xsl:attribute name="use" select="./adres_soort[1]/@code"/>
             </xsl:if>
-            <xsl:for-each select="./straat">
-                <streetName>
-                    <xsl:value-of select="./@value"/>
-                </streetName>
+            <xsl:for-each select="straat[@value | @nullFlavor]">
+                <xsl:call-template name="makeText">
+                    <xsl:with-param name="elemName">streetName</xsl:with-param>
+                </xsl:call-template>
             </xsl:for-each>
-            <xsl:for-each select="./huisnummer">
-                <houseNumber>
-                    <xsl:value-of select="./@value"/>
-                </houseNumber>
+            <xsl:for-each select="huisnummer[@value | @nullFlavor]">
+                <xsl:call-template name="makeText">
+                    <xsl:with-param name="elemName">houseNumber</xsl:with-param>
+                </xsl:call-template>
             </xsl:for-each>
-            <xsl:if test="./huisnummerletter or ./huisnummertoevoeging">
+            <xsl:if test="(huisnummerletter | huisnummertoevoeging)[@value]">
                 <buildingNumberSuffix>
-                    <xsl:value-of select="./huisnummerletter/@value"/>
+                    <xsl:value-of select="huisnummerletter/@value"/>
                     <!-- voeg scheidende spatie toe als beide aanwezig -->
-                    <xsl:if test="./huisnummerletter and ./huisnummertoevoeging">
+                    <xsl:if test="huisnummerletter/@value and huisnummertoevoeging/@value">
                         <xsl:text> </xsl:text>
                     </xsl:if>
                     <xsl:value-of select="./huisnummertoevoeging/@value"/>
                 </buildingNumberSuffix>
             </xsl:if>
-            <xsl:for-each select="./aanduiding_bij_nummer">
-                <additionalLocator>
-                    <xsl:value-of select="./@code"/>
-                </additionalLocator>
+            <xsl:for-each select="aanduiding_bij_nummer[@value | @nullFlavor]">
+                <xsl:call-template name="makeText">
+                    <xsl:with-param name="elemName">additionalLocator</xsl:with-param>
+                </xsl:call-template>
             </xsl:for-each>
-            <xsl:for-each select="./postcode">
+            <xsl:for-each select="postcode[@value | @nullFlavor]">
                 <postalCode>
-                    <xsl:value-of select="nf:convertAdaNlPostcode(./@value)"/>
+                    <xsl:choose>
+                        <xsl:when test="string-length(@value) gt 0">
+                            <xsl:value-of select="nf:convertAdaNlPostcode(@value)"/>
+                        </xsl:when>
+                        <xsl:when test="@nullFlavor">
+                            <xsl:copy-of select="@nullFlavor"/>
+                        </xsl:when>
+                    </xsl:choose>
                 </postalCode>
             </xsl:for-each>
-            <xsl:for-each select="./gemeente">
-                <county>
-                    <xsl:value-of select="./@value"/>
-                </county>
+            <xsl:for-each select="gemeente[@value | @nullFlavor]">
+                <xsl:call-template name="makeText">
+                    <xsl:with-param name="elemName">county</xsl:with-param>
+                </xsl:call-template>
             </xsl:for-each>
-            <xsl:for-each select="./woonplaats">
-                <city>
-                    <xsl:value-of select="./@value"/>
-                </city>
+            <xsl:for-each select="woonplaats[@value | @nullFlavor]">
+                <xsl:call-template name="makeText">
+                    <xsl:with-param name="elemName">city</xsl:with-param>
+                </xsl:call-template>
             </xsl:for-each>
-            <xsl:for-each select="./land">
-                <country>
-                    <xsl:value-of select="./@value"/>
-                </country>
+            <xsl:for-each select="land[@value | @nullFlavor]">
+                <xsl:call-template name="makeText">
+                    <xsl:with-param name="elemName">country</xsl:with-param>
+                </xsl:call-template>
             </xsl:for-each>
             <!-- Additionele informatie niet gemapt op het template... -->
             <!--<xsl:for-each select="./additionele_informatie">
@@ -555,7 +562,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <observation classCode="OBS" moodCode="EVN">
                         <templateId root="2.16.840.1.113883.2.4.6.10.90.901222"/>
                         <!-- GZ-754  deprecated code vervangen -->
-<!--                        <code code="264395009" displayName="Microorganism (organism)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>-->
+                        <!--                        <code code="264395009" displayName="Microorganism (organism)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>-->
                         <code code="410607006" displayName="organisme (organisme)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
                         <xsl:call-template name="makeCDValue"/>
                     </observation>
@@ -613,7 +620,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="codeSystem" as="xs:string?"/>
         <xsl:param name="codeSystemName" as="xs:string?"/>
         <xsl:param name="displayName" as="xs:string?"/>
-        
+
         <observation classCode="OBS" moodCode="EVN">
             <xsl:choose>
                 <xsl:when test="@value = 'false'">
@@ -634,9 +641,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
             </value>
         </observation>
-        
+
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>problem observation active diagnose based on ada element probleem, defaults to problem type diagnosis</xd:desc>
     </xd:doc>

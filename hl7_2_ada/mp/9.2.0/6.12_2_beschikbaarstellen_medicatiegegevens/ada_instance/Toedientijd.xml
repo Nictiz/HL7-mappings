@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Generated from HL7v3 verstrekkingenlijst 6.12 xml with message id (QURX_IN990113NL/id) root: 2.16.840.1.113883.2.4.6.6.1.1 and extension: 0123456789.-->
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../beschikbaarstellen_medicatiegegevens/ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2022-12-27T15:06:03.977+01:00"
+         last-update-date="2022-12-27T15:06:03.977+01:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp92"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.301"
+                                            transactionEffectiveDate="2022-02-07T00:00:00"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="Generated from HL7v3 verstrekkingenlijst 6.12 xml"
+                                            id="Toedientijd.xml">
+         <patient>
+            <naamgegevens>
+               <initialen value="J.J."/>
+               <naamgebruik code="NL4"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam gevolgd door geslachtsnaam partner"/>
+               <geslachtsnaam>
+                  <voorvoegsels value="le "/>
+                  <achternaam value="Noble"/>
+               </geslachtsnaam>
+               <geslachtsnaam_partner>
+                  <voorvoegsels_partner value="van "/>
+                  <achternaam_partner value="Son"/>
+               </geslachtsnaam_partner>
+            </naamgegevens>
+            <adresgegevens>
+               <straat value="Boerhaavelaan"/>
+               <huisnummer value="24"/>
+               <postcode value="2035 RC"/>
+               <woonplaats value="HAARLEM"/>
+               <adres_soort code="HP"
+                            codeSystem="2.16.840.1.113883.5.1119"
+                            displayName="Officieel adres"/>
+            </adresgegevens>
+            <identificatienummer value="012345672" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1972-12-18"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie nullFlavor="NI"/>
+            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+               <identificatie root="1.3.6.1.4.1.58606.1.2.16.840.1.113883.2.4.3.39.6101.23639.10000972.3"
+                              value="00240703301"/>
+               <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <toedieningsafspraak_datum_tijd value="2019-06-28"/>
+               <verstrekker>
+                  <zorgaanbieder value="d11e112" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d11e82" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-->
+               <gebruiksinstructie>
+                  <omschrijving value="1 maal per dag 1 tablet 's avonds"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  displayName="geen informatie"/>
+                  <!--mp9-doseerinstructie-from-mp612-tijden-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis-->
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    displayName="ST">
+                              <adaextension>
+                                 <translation code="100"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                              displayName="tablet"/>
+                              </adaextension>
+                           </eenheid>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <toedientijd value="21:00:00"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="UNK" root="2.16.840.1.113883.5.1008"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="d11e82">
+               <product_code code="14899337"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             displayName="TRAMADOL HCL SANDOZ RETARD TABLET MGA 100MG"/>
+               <product_code code="1632108" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+               <product_code code="50431" codeSystem="2.16.840.1.113883.2.4.4.10"/>
+               <product_code code="104213" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <zorgaanbieder id="d11e112">
+               <zorgaanbieder_identificatienummer value="00023639" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Kringapotheek Asten"/>
+               <adresgegevens>
+                  <straat nullFlavor="NI"/>
+                  <huisnummer nullFlavor="NI"/>
+                  <postcode nullFlavor="NI"/>
+                  <woonplaats value="Asten"/>
+                  <adres_soort code="WP" codeSystem="2.16.840.1.113883.5.1119"/>
+               </adresgegevens>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

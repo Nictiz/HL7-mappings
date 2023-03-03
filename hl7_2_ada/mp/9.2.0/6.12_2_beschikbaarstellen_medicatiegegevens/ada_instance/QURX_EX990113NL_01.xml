@@ -1,0 +1,1520 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Generated from HL7v3 verstrekkingenlijst 6.12 xml with message id (QURX_IN990113NL/id) root: 2.16.840.1.113883.2.4.6.6.1.1 and extension: 0123456789.-->
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../beschikbaarstellen_medicatiegegevens/ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2022-12-27T16:34:29.715+01:00"
+         last-update-date="2022-12-27T16:34:29.715+01:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp92"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.301"
+                                            transactionEffectiveDate="2022-02-07T00:00:00"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="Generated from HL7v3 verstrekkingenlijst 6.12 xml"
+                                            id="QURX_EX990113NL_01.xml">
+         <patient>
+            <naamgegevens>
+               <initialen value="J.J."/>
+               <naamgebruik code="NL4"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam gevolgd door geslachtsnaam partner"/>
+               <geslachtsnaam>
+                  <voorvoegsels value="le "/>
+                  <achternaam value="Noble"/>
+               </geslachtsnaam>
+               <geslachtsnaam_partner>
+                  <voorvoegsels_partner value="van "/>
+                  <achternaam_partner value="Son"/>
+               </geslachtsnaam_partner>
+            </naamgegevens>
+            <adresgegevens>
+               <straat value="Boerhaavelaan"/>
+               <huisnummer value="24"/>
+               <postcode value="2035 RC"/>
+               <woonplaats value="HAARLEM"/>
+               <adres_soort code="HP"
+                            codeSystem="2.16.840.1.113883.5.1119"
+                            displayName="Officieel adres"/>
+            </adresgegevens>
+            <identificatienummer value="012345672" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1972-12-18"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie nullFlavor="NI"/>
+            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+               <identificatie root="1.3.6.1.4.1.58606.1.2.16.528.1.1007.3.3.1234567.3" value="mag01"/>
+               <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <toedieningsafspraak_datum_tijd value="2016-03-03"/>
+               <verstrekker>
+                  <zorgaanbieder value="d11e107" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d11e73" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-->
+               <gebruiksinstructie>
+                  <omschrijving value="gebruik volgens schema"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  displayName="geen informatie"/>
+                  <aanvullende_instructie code="1131"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          displayName="gebruik volgens schema"/>
+                  <!--mp9-doseerinstructie-from-mp612-freq-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis--><!--geen keerdosis in input-->
+                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612--><!--geen frequentie in input--></toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="UNK" root="2.16.840.1.113883.5.1008"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling>
+            <identificatie nullFlavor="NI"/>
+            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+               <identificatie root="1.3.6.1.4.1.58606.1.2.16.528.1.1007.3.3.1234567.3"
+                              value="0123456702"/>
+               <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <toedieningsafspraak_datum_tijd value="2005-01-28"/>
+               <gebruiksperiode>
+                  <tijds_duur value="21" unit="dag"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder value="d11e107" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d11e123" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-->
+               <gebruiksinstructie>
+                  <omschrijving value="gedurende 21 dagen, 3 maal per dag 1 zakje"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  displayName="geen informatie"/>
+                  <!--mp9-doseerinstructie-from-mp612-freq-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis-->
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    displayName="Stuk">
+                              <adaextension>
+                                 <translation code="121"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                              displayName="zakje"/>
+                              </adaextension>
+                           </eenheid>
+                        </keerdosis>
+                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="3"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="UNK" root="2.16.840.1.113883.5.1008"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling>
+            <identificatie nullFlavor="NI"/>
+            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+               <identificatie root="1.3.6.1.4.1.58606.1.2.16.528.1.1007.3.3.1234567.3"
+                              value="0123456703"/>
+               <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <toedieningsafspraak_datum_tijd value="2005-01-28"/>
+               <gebruiksperiode>
+                  <tijds_duur value="14" unit="dag"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder value="d11e107" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d11e168" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-->
+               <gebruiksinstructie>
+                  <omschrijving value="2 maal per dag 1 tot 2 tabletten"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  displayName="geen informatie"/>
+                  <!--mp9-doseerinstructie-from-mp612-freq-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis-->
+                        <keerdosis>
+                           <aantal>
+                              <minimum_waarde value="1"/>
+                              <maximum_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    displayName="Stuk">
+                              <adaextension>
+                                 <translation code="100"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                              displayName="tablet"/>
+                              </adaextension>
+                           </eenheid>
+                        </keerdosis>
+                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="UNK" root="2.16.840.1.113883.5.1008"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling>
+            <identificatie nullFlavor="NI"/>
+            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+               <identificatie root="1.3.6.1.4.1.58606.1.2.16.528.1.1007.3.3.1234567.3"
+                              value="0123456704"/>
+               <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <toedieningsafspraak_datum_tijd value="2005-01-28"/>
+               <verstrekker>
+                  <zorgaanbieder value="d11e107" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d11e217" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-->
+               <gebruiksinstructie>
+                  <omschrijving value="1 tot 2 maal per dag 1 tablet"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  displayName="geen informatie"/>
+                  <!--variabele frequentie in effectiveTime of comp, 2 mars, 1 vast, 1 zo nodig, parallel, zelfde keerdosis-->
+                  <!--mp9-doseerinstructie-from-mp612-var-freq-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis-->
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    displayName="Stuk">
+                              <adaextension>
+                                 <translation code="100"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                              displayName="tablet"/>
+                              </adaextension>
+                           </eenheid>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <minimum_waarde value="1"/>
+                                 <maximum_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="UNK" root="2.16.840.1.113883.5.1008"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling>
+            <identificatie nullFlavor="NI"/>
+            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+               <identificatie root="1.3.6.1.4.1.58606.1.2.16.528.1.1007.3.3.1234567.3"
+                              value="0123456705"/>
+               <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <toedieningsafspraak_datum_tijd value="2005-01-28"/>
+               <verstrekker>
+                  <zorgaanbieder value="d11e107" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d11e274" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-->
+               <gebruiksinstructie>
+                  <omschrijving value="1 maal per jaar 2 tabletten"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  displayName="geen informatie"/>
+                  <!--mp9-doseerinstructie-from-mp612-freq-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis-->
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    displayName="Stuk">
+                              <adaextension>
+                                 <translation code="100"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                              displayName="tablet"/>
+                              </adaextension>
+                           </eenheid>
+                        </keerdosis>
+                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="jaar"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="UNK" root="2.16.840.1.113883.5.1008"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling>
+            <identificatie nullFlavor="NI"/>
+            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+               <identificatie root="1.3.6.1.4.1.58606.1.2.16.528.1.1007.3.3.1234567.3"
+                              value="0123456706"/>
+               <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <toedieningsafspraak_datum_tijd value="2005-01-28"/>
+               <verstrekker>
+                  <zorgaanbieder value="d11e107" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d11e315" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-->
+               <gebruiksinstructie>
+                  <omschrijving value="1 tot 2 maal per week zonodig"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  displayName="geen informatie"/>
+                  <!--variabele frequentie in effectiveTime of comp, 2 mars, minimaal een precondition (indien 1 is die anders dan de 1137, want anders eerder gematcht), parallel-->
+                  <!--mp9-doseerinstructie-from-mp612-freq-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis--><!--geen keerdosis in input-->
+                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="week"/>
+                           </frequentie>
+                        </toedieningsschema>
+                        <zo_nodig>
+                           <criterium>
+                              <criterium code="1137"
+                                         codeSystem="2.16.840.1.113883.2.4.4.5"
+                                         displayName="zo nodig"/>
+                           </criterium>
+                        </zo_nodig>
+                     </dosering>
+                  </doseerinstructie>
+                  <!--mp9-doseerinstructie-from-mp612-freq-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis--><!--geen keerdosis in input-->
+                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="week"/>
+                           </frequentie>
+                        </toedieningsschema>
+                        <zo_nodig>
+                           <criterium>
+                              <criterium code="1137"
+                                         codeSystem="2.16.840.1.113883.2.4.4.5"
+                                         displayName="zo nodig"/>
+                           </criterium>
+                        </zo_nodig>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="UNK" root="2.16.840.1.113883.5.1008"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling>
+            <identificatie nullFlavor="NI"/>
+            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+               <identificatie root="1.3.6.1.4.1.58606.1.2.16.528.1.1007.3.3.1234567.3"
+                              value="0123456707"/>
+               <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <toedieningsafspraak_datum_tijd value="2005-01-28"/>
+               <verstrekker>
+                  <zorgaanbieder value="d11e107" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d11e366" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-->
+               <gebruiksinstructie>
+                  <omschrijving value="1 maal per dag een kwart tablet"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  displayName="geen informatie"/>
+                  <!--mp9-doseerinstructie-from-mp612-freq-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis-->
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="0.25"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    displayName="Stuk">
+                              <adaextension>
+                                 <translation code="100"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                              displayName="tablet"/>
+                              </adaextension>
+                           </eenheid>
+                        </keerdosis>
+                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="UNK" root="2.16.840.1.113883.5.1008"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling>
+            <identificatie nullFlavor="NI"/>
+            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+               <identificatie root="1.3.6.1.4.1.58606.1.2.16.528.1.1007.3.3.1234567.3"
+                              value="0123456708"/>
+               <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <toedieningsafspraak_datum_tijd value="2005-01-28"/>
+               <verstrekker>
+                  <zorgaanbieder value="d11e107" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d11e407" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-->
+               <gebruiksinstructie>
+                  <omschrijving value="per week 15 milliliter"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  displayName="geen informatie"/>
+                  <!--mp9-doseerinstructie-from-mp612-freq-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis-->
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="15"/>
+                           </aantal>
+                           <eenheid code="233"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    displayName="Milliliter">
+                              <adaextension>
+                                 <translation code="56"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                              displayName="milliliter"/>
+                              </adaextension>
+                           </eenheid>
+                        </keerdosis>
+                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="week"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="UNK" root="2.16.840.1.113883.5.1008"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling>
+            <identificatie nullFlavor="NI"/>
+            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+               <identificatie root="1.3.6.1.4.1.58606.1.2.16.528.1.1007.3.3.1234567.3"
+                              value="0123456709"/>
+               <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <toedieningsafspraak_datum_tijd value="2005-01-28"/>
+               <verstrekker>
+                  <zorgaanbieder value="d11e107" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d11e450" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-->
+               <gebruiksinstructie>
+                  <omschrijving value="1 tot 3 maal per week 2 tabletten"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  displayName="geen informatie"/>
+                  <!--variabele frequentie in effectiveTime of comp, 2 mars, 1 vast, 1 zo nodig, parallel, zelfde keerdosis-->
+                  <!--mp9-doseerinstructie-from-mp612-var-freq-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis-->
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    displayName="Stuk">
+                              <adaextension>
+                                 <translation code="100"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                              displayName="tablet"/>
+                              </adaextension>
+                           </eenheid>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <minimum_waarde value="1"/>
+                                 <maximum_waarde value="3"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="week"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="UNK" root="2.16.840.1.113883.5.1008"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling>
+            <identificatie nullFlavor="NI"/>
+            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+               <identificatie root="1.3.6.1.4.1.58606.1.2.16.528.1.1007.3.3.1234567.3"
+                              value="0123456710"/>
+               <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <toedieningsafspraak_datum_tijd value="2005-01-28"/>
+               <verstrekker>
+                  <zorgaanbieder value="d11e107" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d11e506" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-->
+               <gebruiksinstructie>
+                  <omschrijving value="1 maal per week 6 tabletten"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  displayName="geen informatie"/>
+                  <!--mp9-doseerinstructie-from-mp612-freq-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis-->
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="6"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    displayName="Stuk">
+                              <adaextension>
+                                 <translation code="100"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                              displayName="tablet"/>
+                              </adaextension>
+                           </eenheid>
+                        </keerdosis>
+                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="week"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="UNK" root="2.16.840.1.113883.5.1008"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling>
+            <identificatie nullFlavor="NI"/>
+            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+               <identificatie root="1.3.6.1.4.1.58606.1.2.16.528.1.1007.3.3.1234567.3"
+                              value="0123456711"/>
+               <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <toedieningsafspraak_datum_tijd value="2005-01-28"/>
+               <verstrekker>
+                  <zorgaanbieder value="d11e107" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d11e549" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-->
+               <gebruiksinstructie>
+                  <omschrijving value="1 maal per dag 10 milliliter"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  displayName="geen informatie"/>
+                  <!--mp9-doseerinstructie-from-mp612-freq-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis-->
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="10"/>
+                           </aantal>
+                           <eenheid code="233"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    displayName="Milliliter">
+                              <adaextension>
+                                 <translation code="56"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                              displayName="milliliter"/>
+                              </adaextension>
+                           </eenheid>
+                        </keerdosis>
+                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="UNK" root="2.16.840.1.113883.5.1008"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling>
+            <identificatie nullFlavor="NI"/>
+            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+               <identificatie root="1.3.6.1.4.1.58606.1.2.16.528.1.1007.3.3.1234567.3"
+                              value="0123456712"/>
+               <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <toedieningsafspraak_datum_tijd value="2005-01-28"/>
+               <verstrekker>
+                  <zorgaanbieder value="d11e107" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d11e590" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-->
+               <gebruiksinstructie>
+                  <omschrijving value="2 maal per dag 1 druppel"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  displayName="geen informatie"/>
+                  <!--mp9-doseerinstructie-from-mp612-freq-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis-->
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="303"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    displayName="Druppel">
+                              <adaextension>
+                                 <translation code="20"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                              displayName="druppel"/>
+                              </adaextension>
+                           </eenheid>
+                        </keerdosis>
+                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="UNK" root="2.16.840.1.113883.5.1008"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling>
+            <identificatie nullFlavor="NI"/>
+            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+               <identificatie root="1.3.6.1.4.1.58606.1.2.16.528.1.1007.3.3.1234567.3"
+                              value="0123456713"/>
+               <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <toedieningsafspraak_datum_tijd value="2005-01-28"/>
+               <gebruiksperiode>
+                  <tijds_duur value="21" unit="dag"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder value="d11e107" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d11e631" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-->
+               <gebruiksinstructie>
+                  <omschrijving value="gedurende 21 dagen, elke 2 dagen 1 inhalatie"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  displayName="geen informatie"/>
+                  <!--mp9-doseerinstructie-from-mp612-freq-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis-->
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="208"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    displayName="Dosis">
+                              <adaextension>
+                                 <translation code="36"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                              displayName="inhalatie"/>
+                              </adaextension>
+                           </eenheid>
+                        </keerdosis>
+                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="2" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="UNK" root="2.16.840.1.113883.5.1008"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling>
+            <identificatie nullFlavor="NI"/>
+            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+               <identificatie root="1.3.6.1.4.1.58606.1.2.16.528.1.1007.3.3.1234567.3"
+                              value="0123456715"/>
+               <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <toedieningsafspraak_datum_tijd value="2005-01-28"/>
+               <verstrekker>
+                  <zorgaanbieder value="d11e107" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d11e675" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-->
+               <gebruiksinstructie>
+                  <omschrijving value="1 tot 3 maal per dag 1 tot 2 tabletten"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  displayName="geen informatie"/>
+                  <!--variabele frequentie in effectiveTime of comp, 2 mars, 1 vast, 1 zo nodig, parallel, zelfde keerdosis-->
+                  <!--mp9-doseerinstructie-from-mp612-var-freq-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis-->
+                        <keerdosis>
+                           <aantal>
+                              <minimum_waarde value="1"/>
+                              <maximum_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    displayName="Stuk">
+                              <adaextension>
+                                 <translation code="100"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                              displayName="tablet"/>
+                              </adaextension>
+                           </eenheid>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <minimum_waarde value="1"/>
+                                 <maximum_waarde value="3"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="UNK" root="2.16.840.1.113883.5.1008"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling>
+            <identificatie nullFlavor="NI"/>
+            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+               <identificatie root="1.3.6.1.4.1.58606.1.2.16.528.1.1007.3.3.1234567.3"
+                              value="0123456716"/>
+               <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <toedieningsafspraak_datum_tijd value="2005-01-28"/>
+               <verstrekker>
+                  <zorgaanbieder value="d11e107" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d11e732" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-->
+               <gebruiksinstructie>
+                  <omschrijving value="3 maal per dag 1 eetlepel (= 15ml)"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  displayName="geen informatie"/>
+                  <!--mp9-doseerinstructie-from-mp612-freq-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis-->
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="15"/>
+                           </aantal>
+                           <eenheid code="233"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    displayName="Milliliter">
+                              <adaextension>
+                                 <translation code="10"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                              displayName="eetlepel (= 15ml)"/>
+                              </adaextension>
+                           </eenheid>
+                        </keerdosis>
+                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="3"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="UNK" root="2.16.840.1.113883.5.1008"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling>
+            <identificatie nullFlavor="NI"/>
+            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+               <identificatie root="1.3.6.1.4.1.58606.1.2.16.528.1.1007.3.3.1234567.3"
+                              value="0123456717"/>
+               <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <toedieningsafspraak_datum_tijd value="2005-01-28"/>
+               <verstrekker>
+                  <zorgaanbieder value="d11e107" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d11e772" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-->
+               <gebruiksinstructie>
+                  <omschrijving value="2 maal per dag 5 gram"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  displayName="geen informatie"/>
+                  <!--mp9-doseerinstructie-from-mp612-freq-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis-->
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="5"/>
+                           </aantal>
+                           <eenheid code="215"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    displayName="Gram">
+                              <adaextension>
+                                 <translation code="34"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                              displayName="gram"/>
+                              </adaextension>
+                           </eenheid>
+                        </keerdosis>
+                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="UNK" root="2.16.840.1.113883.5.1008"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling>
+            <identificatie nullFlavor="NI"/>
+            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+               <identificatie root="1.3.6.1.4.1.58606.1.2.16.528.1.1007.3.3.1234567.3"
+                              value="0123456718"/>
+               <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <toedieningsafspraak_datum_tijd value="2005-01-28"/>
+               <verstrekker>
+                  <zorgaanbieder value="d11e107" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d11e813" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-->
+               <gebruiksinstructie>
+                  <omschrijving value="2 maal per dag 1 inhalatie"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  displayName="geen informatie"/>
+                  <!--mp9-doseerinstructie-from-mp612-freq-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis-->
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="208"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    displayName="Dosis">
+                              <adaextension>
+                                 <translation code="36"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                              displayName="inhalatie"/>
+                              </adaextension>
+                           </eenheid>
+                        </keerdosis>
+                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="UNK" root="2.16.840.1.113883.5.1008"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling>
+            <identificatie nullFlavor="NI"/>
+            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+               <identificatie root="1.3.6.1.4.1.58606.1.2.16.528.1.1007.3.3.1234567.3"
+                              value="0123456719"/>
+               <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <toedieningsafspraak_datum_tijd value="2005-06-29"/>
+               <verstrekker>
+                  <zorgaanbieder value="d11e107" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d11e857" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-->
+               <gebruiksinstructie>
+                  <omschrijving value="1 maal per 3 dagen 1 pleister"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  displayName="geen informatie"/>
+                  <!--mp9-doseerinstructie-from-mp612-freq-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis-->
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    displayName="Stuk">
+                              <adaextension>
+                                 <translation code="77"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                              displayName="pleister"/>
+                              </adaextension>
+                           </eenheid>
+                        </keerdosis>
+                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="3" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="UNK" root="2.16.840.1.113883.5.1008"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling>
+            <identificatie nullFlavor="NI"/>
+            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+               <identificatie root="1.3.6.1.4.1.58606.1.2.16.528.1.1007.3.3.1234567.3"
+                              value="0123456720"/>
+               <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <toedieningsafspraak_datum_tijd value="2005-01-28"/>
+               <verstrekker>
+                  <zorgaanbieder value="d11e107" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d11e898" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-->
+               <gebruiksinstructie>
+                  <omschrijving value="zonodig"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  displayName="geen informatie"/>
+                  <!--mp9-doseerinstructie-from-mp612-freq-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis--><!--geen keerdosis in input-->
+                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612--><!--geen frequentie in input--></toedieningsschema>
+                        <zo_nodig>
+                           <criterium>
+                              <criterium code="1137"
+                                         codeSystem="2.16.840.1.113883.2.4.4.5"
+                                         displayName="zo nodig"/>
+                           </criterium>
+                        </zo_nodig>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="UNK" root="2.16.840.1.113883.5.1008"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling>
+            <identificatie nullFlavor="NI"/>
+            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+               <identificatie root="1.3.6.1.4.1.58606.1.2.16.528.1.1007.3.3.1234567.3"
+                              value="0123456721"/>
+               <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <toedieningsafspraak_datum_tijd value="2005-06-16"/>
+               <verstrekker>
+                  <zorgaanbieder value="d11e107" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d11e937" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-->
+               <gebruiksinstructie>
+                  <omschrijving value="1 maal per 3 dagen 1 pleister"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  displayName="geen informatie"/>
+                  <!--mp9-doseerinstructie-from-mp612-freq-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis-->
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    displayName="Stuk">
+                              <adaextension>
+                                 <translation code="77"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                              displayName="pleister"/>
+                              </adaextension>
+                           </eenheid>
+                        </keerdosis>
+                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="3" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="UNK" root="2.16.840.1.113883.5.1008"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling>
+            <identificatie nullFlavor="NI"/>
+            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+               <identificatie root="1.3.6.1.4.1.58606.1.2.16.528.1.1007.3.3.1234567.3"
+                              value="0123456724"/>
+               <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <toedieningsafspraak_datum_tijd value="2005-06-16"/>
+               <verstrekker>
+                  <zorgaanbieder value="d11e107" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d11e979" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-->
+               <gebruiksinstructie>
+                  <omschrijving value="3 maal per dag 16 IE"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  displayName="geen informatie"/>
+                  <!--mp9-doseerinstructie-from-mp612-freq-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis-->
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="16"/>
+                           </aantal>
+                           <eenheid code="217"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    displayName="Internat.eenh."/>
+                        </keerdosis>
+                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="3"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="UNK" root="2.16.840.1.113883.5.1008"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling>
+            <identificatie nullFlavor="NI"/>
+            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+               <identificatie root="1.3.6.1.4.1.58606.1.2.16.528.1.1007.3.3.1234567.3"
+                              value="0123456725"/>
+               <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <toedieningsafspraak_datum_tijd value="2005-06-16"/>
+               <verstrekker>
+                  <zorgaanbieder value="d11e107" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d11e1019" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-->
+               <gebruiksinstructie>
+                  <omschrijving value="4 maal per dag 2 milliliter"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  displayName="geen informatie"/>
+                  <!--mp9-doseerinstructie-from-mp612-freq-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis-->
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="233"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    displayName="Milliliter">
+                              <adaextension>
+                                 <translation code="56"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                              displayName="milliliter"/>
+                              </adaextension>
+                           </eenheid>
+                        </keerdosis>
+                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="4"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="UNK" root="2.16.840.1.113883.5.1008"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling>
+            <identificatie nullFlavor="NI"/>
+            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+               <identificatie root="1.3.6.1.4.1.58606.1.2.16.840.1.113883.2.4.3.39.6101.23639.10000972.3"
+                              value="00244159705"/>
+               <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <toedieningsafspraak_datum_tijd value="2019-09-27"/>
+               <gebruiksperiode>
+                  <tijds_duur value="80" unit="dag"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder value="d11e107" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d11e1064" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-->
+               <gebruiksinstructie>
+                  <omschrijving value="1-4 maal per dag 1 inhalatie zo nodig"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  displayName="geen informatie"/>
+                  <!--variabele frequentie in effectiveTime of comp, 2 mars, minimaal een precondition (indien 1 is die anders dan de 1137, want anders eerder gematcht), parallel-->
+                  <!--mp9-doseerinstructie-from-mp612-freq-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis-->
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="208"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    displayName="DO">
+                              <adaextension>
+                                 <translation code="36"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                              displayName="inhalatie"/>
+                              </adaextension>
+                           </eenheid>
+                        </keerdosis>
+                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                        <zo_nodig>
+                           <criterium>
+                              <criterium code="1137"
+                                         codeSystem="2.16.840.1.113883.2.4.4.5"
+                                         displayName="zo nodig"/>
+                           </criterium>
+                        </zo_nodig>
+                     </dosering>
+                  </doseerinstructie>
+                  <!--mp9-doseerinstructie-from-mp612-freq-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis-->
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="208"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    displayName="DO">
+                              <adaextension>
+                                 <translation code="36"
+                                              codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                              displayName="inhalatie"/>
+                              </adaextension>
+                           </eenheid>
+                        </keerdosis>
+                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612-->
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="3"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                        <zo_nodig>
+                           <criterium>
+                              <criterium code="OTH"
+                                         codeSystem="2.16.840.1.113883.5.1008"
+                                         displayName=""
+                                         originalText="zo nodig"/>
+                           </criterium>
+                        </zo_nodig>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="UNK" root="2.16.840.1.113883.5.1008"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="d11e73">
+               <product_code code="OTH"
+                             codeSystem="2.16.840.1.113883.5.1008"
+                             displayName=""
+                             originalText="Hydrocortison zetpil 100 mg"/>
+               <product_specificatie>
+                  <product_naam value="Hydrocortison zetpil 100 mg"/>
+                  <omschrijving value=" Titel: Hydrocortison zetpil 100 mg Regel: Hydrocort micronisatum 100 mg Regel: Witepsol H15 past 1,99 gr "/>
+                  <ingredient>
+                     <ingredient_code code="252247"
+                                      codeSystem="2.16.840.1.113883.2.4.4.7"
+                                      displayName="HYDROCORTISONUM MICRONISAT"/>
+                     <ingredient_code code="28126"
+                                      codeSystem="2.16.840.1.113883.2.4.4.1"
+                                      displayName="HYDROCORTISON"/>
+                     <sterkte>
+                        <ingredient_hoeveelheid>
+                           <waarde value="10"/>
+                           <eenheid code="229"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="milligram"/>
+                        </ingredient_hoeveelheid>
+                        <product_hoeveelheid>
+                           <waarde value="1"/>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </product_hoeveelheid>
+                     </sterkte>
+                  </ingredient>
+                  <ingredient>
+                     <ingredient_code code="265144"
+                                      codeSystem="2.16.840.1.113883.2.4.4.7"
+                                      displayName="WITEPSOL H15 PAST"/>
+                     <ingredient_code code="79707"
+                                      codeSystem="2.16.840.1.113883.2.4.4.1"
+                                      displayName="VET VAST"/>
+                     <sterkte>
+                        <ingredient_hoeveelheid>
+                           <waarde value="1.99"/>
+                           <eenheid code="215"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="gram"/>
+                        </ingredient_hoeveelheid>
+                        <product_hoeveelheid>
+                           <waarde value="1"/>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </product_hoeveelheid>
+                     </sterkte>
+                  </ingredient>
+               </product_specificatie>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d11e123">
+               <product_code code="14565277"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="ORS POEDER SACHET 5,4G SAN"/>
+               <product_code code="1417762" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d11e168">
+               <product_code code="14294060"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="ALPRAZOLAM CF TABLET 0,25MG"/>
+               <product_code code="1167871" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+               <product_code code="82309" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d11e217">
+               <product_code code="14165635"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+               <product_code code="1110837" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+               <product_code code="103039" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d11e274">
+               <product_code code="14760371"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="CLARITINE TABLET 10MG"/>
+               <product_code code="619094" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+               <product_code code="73563" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d11e315">
+               <product_code code="14145480"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="LUMINEUSE CLAIRE NH"/>
+               <product_code code="1099280" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d11e366">
+               <product_code code="14765233"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="IBUPROFEN PCH TABLET 200MG CLICKER"/>
+               <product_code code="719374" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+               <product_code code="50997" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d11e407">
+               <product_code code="12128198"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="KENACORT A 40 INJECTIESUSPENSIE 40MG/ML FLACON 5ML"/>
+               <product_code code="219584" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+               <product_code code="120219" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d11e450">
+               <product_code code="14311836"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="METFORMINE HCL CF TABLET  850MG"/>
+               <product_code code="1037137" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+               <product_code code="15865" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d11e506">
+               <product_code code="14571013"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="METHOTREXAAT PCH TABLET  2,5MG"/>
+               <product_code code="1421778" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+               <product_code code="42609" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d11e549">
+               <product_code code="13244728"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="XPRAEP SIROOP 2MG/ML"/>
+               <product_code code="101079" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+               <product_code code="10960" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d11e590">
+               <product_code code="13906550"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="TRUSOPT OOGDRUPPELS 20MG/ML FLACON 5ML"/>
+               <product_code code="850144" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+               <product_code code="95575" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d11e631">
+               <product_code code="14750406"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="SPIRIVA INHALPDR 18MCG"/>
+               <product_code code="1476866" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+               <product_code code="115371" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d11e675">
+               <product_code code="14910667"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="SEVREDOL TABLET OMHULD 10MG"/>
+               <product_code code="1010964" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+               <product_code code="98221" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d11e732">
+               <product_code code="13659847"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="NUTRIDRINK AARDBEI NR16642"/>
+               <product_code code="710695" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d11e772">
+               <product_code code="13650203"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="RESONIUM A POEDER"/>
+               <product_code code="15261" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+               <product_code code="121363" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d11e813">
+               <product_code code="14039303"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="SEREVENT DISKUS INHPDR 50MCG 60DO"/>
+               <product_code code="1029746" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+               <product_code code="87424" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d11e857">
+               <product_code code="13878948"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="DUROGESIC 75 MATRIXPLEISTER 12,6MG"/>
+               <product_code code="836974" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+               <product_code code="122041" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d11e898">
+               <product_code code="13715119"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="ABSORIN ONDERLEGGER 60X90CM 120G FLUFF 60920"/>
+               <product_code code="753696" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d11e937">
+               <product_code code="13878956"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="DUROGESIC 100 MATRIXPLEISTER 16,8MG"/>
+               <product_code code="836982" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+               <product_code code="122033" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d11e979">
+               <product_code code="14815982"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="INSULATARD PENFILL INJ 100IE/ML PATR 3ML"/>
+               <product_code code="709085" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+               <product_code code="111325" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d11e1019">
+               <product_code code="13966383"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard Artikel"
+                             displayName="FLUIMUCIL INHVLST 100MG/ML AMPUL 4ML"/>
+               <product_code code="888567" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+               <product_code code="38539" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d11e1064">
+               <product_code code="15572056"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             displayName="SALBUTAMOL 100 REDIHALER 100MCG/DO SPB 200D+INH"/>
+               <product_code code="2095246" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+               <product_code code="121061" codeSystem="2.16.840.1.113883.2.4.4.10"/>
+               <product_code code="83704" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+            </farmaceutisch_product>
+            <zorgaanbieder id="d11e107">
+               <zorgaanbieder_identificatienummer value="01234567" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam nullFlavor="NI"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>
