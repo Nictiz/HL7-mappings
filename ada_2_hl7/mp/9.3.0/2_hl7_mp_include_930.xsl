@@ -127,7 +127,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- medicatietoediening_reden_van_afwijken -->
-                <xsl:for-each select="medicatie_toediening_reden_van_afwijken[.//(@value | @code)]">
+                <xsl:for-each select="(medicatie_toediening_reden_van_afwijken | medicatietoediening_reden_van_afwijken)[.//(@value | @code)]">
                     <entryRelationship typeCode="RSON">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9375_20210616173557"/>
                     </entryRelationship>
