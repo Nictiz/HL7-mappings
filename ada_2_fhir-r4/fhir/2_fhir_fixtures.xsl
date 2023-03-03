@@ -111,7 +111,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:sequence select="xs:dateTime('2022-01-01T00:00:00.000Z') - xs:dateTime('1582-10-15T00:00:00.000Z')"/>
         </xsl:variable>
         <xsl:variable name="random-offset" as="xs:integer">
-            <xsl:sequence select="uuid:next-nr($node) mod 1000000000"/>
+            <xsl:sequence select="uuid:next-nr($node) mod 1000000000000"/>
         </xsl:variable>
         <!-- do the math to get the 100 nano second intervals -->
         <xsl:sequence select="(days-from-duration($duration-from-1582) * 24 * 60 * 60 + hours-from-duration($duration-from-1582) * 60 * 60 + minutes-from-duration($duration-from-1582) * 60 + seconds-from-duration($duration-from-1582)) * 1000 * 10000 + $random-offset"/>
