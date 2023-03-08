@@ -417,6 +417,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="$in" mode="nl-core-MedicalDevice">
                     <xsl:with-param name="subject" select="$subject"/>
                     <!-- ADA instances for this project start with $zib2020Oid and end in .1, or in 9.*.* in the case of the medication related zibs -->
+                    <xsl:with-param name="derivedFrom" select="if (ancestor::verrichting) then ancestor::*[starts-with(@conceptId, $zib2020Oid) and matches(@conceptId, '(\.1|9\.\d+\.\d+)$')] else ()"/>
+                    <xsl:with-param name="derivedFromProfile" select="if (ancestor::verrichting) then if (nf:isFuture(ancestor::verrichting/verrichting_start_datum/@value) or ancestor::verrichting/aanvrager) then 'nl-core-Procedure-request' else ('nl-core-Procedure-event') else ()"/>
                     <xsl:with-param name="reasonReference" select="if (ancestor::functionele_of_mentale_status or ancestor::mobiliteit or ancestor::stoma) then ancestor::*[starts-with(@conceptId, $zib2020Oid) and matches(@conceptId, '(\.1|9\.\d+\.\d+)$')] else ()"/>
                 </xsl:apply-templates>  
                 <xsl:for-each select="product">
@@ -548,10 +550,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'verrichting'">
-                <xsl:apply-templates select="$in" mode="nl-core-Procedure">
-                    <xsl:with-param name="subject" select="$subject"/>
-                    <xsl:with-param name="report" select="if (ancestor::tekst_uitslag) then ancestor::tekst_uitslag else ()"/>
-                </xsl:apply-templates>
+                <xsl:choose>
+                    <xsl:when test="verrichting_start_datum/@value">
+                        <xsl:if test="nf:isPast(verrichting_start_datum/@value)">
+                            <xsl:apply-templates select="$in" mode="nl-core-Procedure-event">
+                                <xsl:with-param name="subject" select="$subject"/>
+                                <xsl:with-param name="report" select="if (ancestor::tekst_uitslag) then ancestor::tekst_uitslag else ()"/>
+                            </xsl:apply-templates>
+                        </xsl:if>
+                        <xsl:if test="nf:isFuture(verrichting_start_datum/@value) or aanvrager">
+                            <xsl:apply-templates select="$in" mode="nl-core-Procedure-request">
+                                <xsl:with-param name="subject" select="$subject"/>
+                            </xsl:apply-templates>
+                        </xsl:if>
+                    </xsl:when>
+                    <xsl:when test="not(verrichting_start_datum/@value) and verrichting_eind_datum/@value">
+                        <xsl:message terminate="yes">Not implemented</xsl:message>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <!-- Fallback. 'event' instead of 'request' because there is a possibility that zib TextResult refers to zib Procedure, which by definition is a FHIR Procedure -->
+                        <xsl:apply-templates select="$in" mode="nl-core-Procedure-event">
+                            <xsl:with-param name="subject" select="$subject"/>
+                            <xsl:with-param name="report" select="if (ancestor::tekst_uitslag) then ancestor::tekst_uitslag else ()"/>
+                        </xsl:apply-templates>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:when>
             <xsl:when test="$localName = 'visus'">
                 <xsl:apply-templates select="$in" mode="nl-core-VisualAcuity"/>
