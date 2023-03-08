@@ -5964,7 +5964,7 @@
          <xs:element name="prik_plak_locatie"
                      type="prik_plak_locatie_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_702"
                      minOccurs="0"
-                     maxOccurs="unbounded"/>
+                     maxOccurs="1"/>
          <xs:element name="relatie_medicatieafspraak-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.432"/>
@@ -6233,16 +6233,6 @@
          <xs:documentation>Type for concept group: Waarde</xs:documentation>
       </xs:annotation>
       <xs:sequence>
-         <xs:element name="minimum_waarde-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1335"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="minimum_waarde"
-                     type="minimum_waarde_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_1335"
-                     minOccurs="0"
-                     maxOccurs="1"/>
          <xs:element name="nominale_waarde-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
                <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1336"/>
@@ -6251,16 +6241,6 @@
          </xs:element>
          <xs:element name="nominale_waarde"
                      type="nominale_waarde_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_1336"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-         <xs:element name="maximum_waarde-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1337"/>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="maximum_waarde"
-                     type="maximum_waarde_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_1337"
                      minOccurs="0"
                      maxOccurs="1"/>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
@@ -6274,6 +6254,72 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1334"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="prik_plak_locatie_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_702">
+      <xs:annotation>
+         <xs:documentation>Type for concept group: PrikPlakLocatie</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="anatomische_locatie-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1374"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="anatomische_locatie"
+                     type="anatomische_locatie_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_1374"
+                     minOccurs="1"
+                     maxOccurs="1"/>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.702"/>
+      <xs:attribute name="comment" type="xs:string" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="anatomische_locatie_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_1374">
+      <xs:annotation>
+         <xs:documentation>Type for concept group: AnatomischeLocatie</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="locatie-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1375"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="locatie"
+                     type="locatie_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_1375"
+                     minOccurs="1"
+                     maxOccurs="1"/>
+         <xs:element name="lateraliteit-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1376"/>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="lateraliteit"
+                     type="lateraliteit_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_1376"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1374"/>
       <xs:attribute name="comment" type="xs:string" use="optional"/>
    </xs:complexType>
    <xs:complexType name="relatie_medicatieafspraak_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_432">
@@ -19460,26 +19506,6 @@
       <xs:attribute name="originalText" type="xs:string"/>
    </xs:complexType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: minimumWaarde - 0..1 R</xs:documentation>
-   </xs:annotation>
-   <xs:complexType name="minimum_waarde_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_1335">
-      <xs:sequence>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1335"/>
-      <xs:attribute name="value" type="xs:string"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="decimal"/>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
-   </xs:complexType>
-   <xs:annotation>
       <xs:documentation>Type for concept item: nominaleWaarde - 0..1 R</xs:documentation>
    </xs:annotation>
    <xs:complexType name="nominale_waarde_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_1336">
@@ -19495,26 +19521,6 @@
                      maxOccurs="1"/>
       </xs:sequence>
       <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1336"/>
-      <xs:attribute name="value" type="xs:string"/>
-      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="decimal"/>
-      <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
-   </xs:complexType>
-   <xs:annotation>
-      <xs:documentation>Type for concept item: maximumWaarde - 0..1 R</xs:documentation>
-   </xs:annotation>
-   <xs:complexType name="maximum_waarde_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_1337">
-      <xs:sequence>
-         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
-            <xs:complexType>
-               <xs:attribute name="hidden" fixed="true"/>
-            </xs:complexType>
-         </xs:element>
-         <xs:element name="adaextension"
-                     type="adaextension_type"
-                     minOccurs="0"
-                     maxOccurs="1"/>
-      </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1337"/>
       <xs:attribute name="value" type="xs:string"/>
       <xs:attribute name="datatype" type="ComplexDatatypes" fixed="decimal"/>
       <xs:attribute name="nullFlavor" type="NullFlavorNoInformation"/>
@@ -19625,9 +19631,9 @@
       <xs:restriction base="xs:decimal"/>
    </xs:simpleType>
    <xs:annotation>
-      <xs:documentation>Type for concept item: PrikPlakLocatie - 0..* R</xs:documentation>
+      <xs:documentation>Type for concept item: Locatie - 1..1 R</xs:documentation>
    </xs:annotation>
-   <xs:complexType name="prik_plak_locatie_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_702">
+   <xs:complexType name="locatie_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_1375">
       <xs:sequence>
          <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
             <xs:complexType>
@@ -19639,8 +19645,230 @@
                      minOccurs="0"
                      maxOccurs="1"/>
       </xs:sequence>
-      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.702"/>
-      <xs:attribute name="value" type="xs:string"/>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1375"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:annotation>
+                  <xs:documentation>valueSet/conceptList/concept</xs:documentation>
+               </xs:annotation>
+               <xs:enumeration value="">
+                  <xs:annotation>
+                     <xs:documentation>Empty</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="1">
+                  <xs:annotation>
+                     <xs:documentation>structuur van bovenste gedeelte van lumbale regio van wand van abdomen</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="2">
+                  <xs:annotation>
+                     <xs:documentation>structuur van onderste gedeelte van lumbale regio van wand van abdomen</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="3">
+                  <xs:annotation>
+                     <xs:documentation>structuur van rechter gedeelte van supra-umbilicale regio</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="4">
+                  <xs:annotation>
+                     <xs:documentation>structuur van linker gedeelte van infra-umbilicale regio</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="5">
+                  <xs:annotation>
+                     <xs:documentation>structuur van linker gedeelte van supra-umbilicale regio</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="6">
+                  <xs:annotation>
+                     <xs:documentation>structuur van rechter gedeelte van infra-umbilicale regio</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="7">
+                  <xs:annotation>
+                     <xs:documentation>structuur van weke delen van laterale bovenkwadrant van anterieur oppervlak van bovenbeen</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="8">
+                  <xs:annotation>
+                     <xs:documentation>structuur van weke delen van mediale bovenkwadrant van anterieur oppervlak van bovenbeen </xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="9">
+                  <xs:annotation>
+                     <xs:documentation>structuur van weke delen van laterale onderkwadrant van anterieur oppervlak van bovenbeen </xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="10">
+                  <xs:annotation>
+                     <xs:documentation>structuur van weke delen van mediale onderkwadrant van anterieur oppervlak van bovenbeen</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="11">
+                  <xs:annotation>
+                     <xs:documentation>structuur van laterale bovenkwadrant van regio glutealis</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="12">
+                  <xs:annotation>
+                     <xs:documentation>structuur van mediale bovenkwadrant van regio glutealis</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="13">
+                  <xs:annotation>
+                     <xs:documentation>structuur van laterale onderkwadrant van regio glutealis</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="14">
+                  <xs:annotation>
+                     <xs:documentation>structuur van mediale onderkwadrant van regio glutealis</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="15">
+                  <xs:annotation>
+                     <xs:documentation>structuur van huid van regio clavicularis</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="16">
+                  <xs:annotation>
+                     <xs:documentation>structuur van huid van linker gedeelte van achterzijde van bovenste gedeelte van thoracale regio </xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="17">
+                  <xs:annotation>
+                     <xs:documentation>structuur van huid van rechter gedeelte van achterzijde van bovenste gedeelte van thoracale regio</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="18">
+                  <xs:annotation>
+                     <xs:documentation>structuur van huid van linker gedeelte van achterzijde van onderste gedeelte van thoracale regio</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="19">
+                  <xs:annotation>
+                     <xs:documentation>structuur van huid van rechter gedeelte van achterzijde van onderste gedeelte van thoracale regio</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="20">
+                  <xs:annotation>
+                     <xs:documentation>structuur van huid van linker gedeelte van lumbosacrale regio</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="21">
+                  <xs:annotation>
+                     <xs:documentation>structuur van huid van rechter gedeelte van lumbosacrale regio</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="22">
+                  <xs:annotation>
+                     <xs:documentation>structuur van huid van anterieur oppervlak van bovenarm</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="23">
+                  <xs:annotation>
+                     <xs:documentation> structuur van posterieur oppervlak van bovenarm</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="24">
+                  <xs:annotation>
+                     <xs:documentation>structuur van musculus deltoideus</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="25">
+                  <xs:annotation>
+                     <xs:documentation>structuur van huid van rechter bovenkwadrant van voorzijde van thorax</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="26">
+                  <xs:annotation>
+                     <xs:documentation>structuur van huid van linker bovenkwadrant van voorzijde van thorax</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="27">
+                  <xs:annotation>
+                     <xs:documentation>structuur van huid van rechter onderkwadrant van voorzijde van thorax</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="28">
+                  <xs:annotation>
+                     <xs:documentation>structuur van huid van linker onderkwadrant van voorzijde van thorax</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="29">
+                  <xs:annotation>
+                     <xs:documentation>structuur van huid van regio scapularis</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="30">
+                  <xs:annotation>
+                     <xs:documentation> structuur van huid van postauriculaire regio</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="31">
+                  <xs:annotation>
+                     <xs:documentation>Overig</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="datatype" type="ComplexDatatypes" fixed="code"/>
+      <xs:attribute name="code" type="xs:string"/>
+      <xs:attribute name="codeSystem" type="xs:string"/>
+      <xs:attribute name="codeSystemName" type="xs:string"/>
+      <xs:attribute name="codeSystemVersion" type="xs:string"/>
+      <xs:attribute name="displayName" type="xs:string"/>
+      <xs:attribute name="preferred" type="BooleanOrEmpty"/>
+      <xs:attribute name="originalText" type="xs:string"/>
+   </xs:complexType>
+   <xs:annotation>
+      <xs:documentation>Type for concept item: Lateraliteit - 0..1 C</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="lateraliteit_type_2_16_840_1_113883_2_4_3_11_60_20_77_2_4_1376">
+      <xs:sequence>
+         <xs:element name="adaextension-start" minOccurs="0" maxOccurs="1">
+            <xs:complexType>
+               <xs:attribute name="hidden" fixed="true"/>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="adaextension"
+                     type="adaextension_type"
+                     minOccurs="0"
+                     maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="conceptId" fixed="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1376"/>
+      <xs:attribute name="value">
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:annotation>
+                  <xs:documentation>valueSet/conceptList/concept</xs:documentation>
+               </xs:annotation>
+               <xs:enumeration value="">
+                  <xs:annotation>
+                     <xs:documentation>Empty</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="1">
+                  <xs:annotation>
+                     <xs:documentation>links</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="2">
+                  <xs:annotation>
+                     <xs:documentation>rechts</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="3">
+                  <xs:annotation>
+                     <xs:documentation>bilateraal</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:attribute>
       <xs:attribute name="datatype" type="ComplexDatatypes" fixed="code"/>
       <xs:attribute name="code" type="xs:string"/>
       <xs:attribute name="codeSystem" type="xs:string"/>
@@ -23920,110 +24148,115 @@
                </xs:enumeration>
                <xs:enumeration value="671">
                   <xs:annotation>
-                     <xs:documentation>Orthopedagoog-generalist</xs:documentation>
+                     <xs:documentation>Verpl. spec. algemene gezondheidszorg</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="672">
                   <xs:annotation>
-                     <xs:documentation>Geregistreerd-mondhygiënist</xs:documentation>
+                     <xs:documentation>Orthopedagoog-generalist</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="673">
                   <xs:annotation>
-                     <xs:documentation>Bachelor medisch hulpverlener</xs:documentation>
+                     <xs:documentation>Geregistreerd-mondhygiënist</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="674">
                   <xs:annotation>
-                     <xs:documentation>Physician assistant</xs:documentation>
+                     <xs:documentation>Bachelor medisch hulpverlener</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="675">
                   <xs:annotation>
-                     <xs:documentation>Klinisch technoloog</xs:documentation>
+                     <xs:documentation>Physician assistant</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="676">
                   <xs:annotation>
-                     <xs:documentation>Apothekersassistent</xs:documentation>
+                     <xs:documentation>Klinisch technoloog</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="677">
                   <xs:annotation>
-                     <xs:documentation>Klinisch fysicus</xs:documentation>
+                     <xs:documentation>Apothekersassistent</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="678">
                   <xs:annotation>
-                     <xs:documentation>Tandprotheticus</xs:documentation>
+                     <xs:documentation>Klinisch fysicus</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="679">
                   <xs:annotation>
-                     <xs:documentation>VIG-er</xs:documentation>
+                     <xs:documentation>Tandprotheticus</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="680">
                   <xs:annotation>
-                     <xs:documentation>Optometrist</xs:documentation>
+                     <xs:documentation>VIG-er</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="681">
                   <xs:annotation>
-                     <xs:documentation>Huidtherapeut</xs:documentation>
+                     <xs:documentation>Optometrist</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="682">
                   <xs:annotation>
-                     <xs:documentation>Diëtist</xs:documentation>
+                     <xs:documentation>Huidtherapeut</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="683">
                   <xs:annotation>
-                     <xs:documentation>Ergotherapeut</xs:documentation>
+                     <xs:documentation>Diëtist</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="684">
                   <xs:annotation>
-                     <xs:documentation>Logopedist</xs:documentation>
+                     <xs:documentation>Ergotherapeut</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="685">
                   <xs:annotation>
-                     <xs:documentation>Mondhygiënist</xs:documentation>
+                     <xs:documentation>Logopedist</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="686">
                   <xs:annotation>
-                     <xs:documentation>Oefentherapeut Mensendieck</xs:documentation>
+                     <xs:documentation>Mondhygiënist</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="687">
                   <xs:annotation>
-                     <xs:documentation>Oefentherapeut Cesar</xs:documentation>
+                     <xs:documentation>Oefentherapeut Mensendieck</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="688">
                   <xs:annotation>
-                     <xs:documentation>Orthoptist</xs:documentation>
+                     <xs:documentation>Oefentherapeut Cesar</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="689">
                   <xs:annotation>
-                     <xs:documentation>Podotherapeut</xs:documentation>
+                     <xs:documentation>Orthoptist</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="690">
                   <xs:annotation>
-                     <xs:documentation>Radiodiagnostisch laborant</xs:documentation>
+                     <xs:documentation>Podotherapeut</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="691">
                   <xs:annotation>
-                     <xs:documentation>Radiotherapeutisch laborant</xs:documentation>
+                     <xs:documentation>Radiodiagnostisch laborant</xs:documentation>
                   </xs:annotation>
                </xs:enumeration>
                <xs:enumeration value="692">
+                  <xs:annotation>
+                     <xs:documentation>Radiotherapeutisch laborant</xs:documentation>
+                  </xs:annotation>
+               </xs:enumeration>
+               <xs:enumeration value="693">
                   <xs:annotation>
                      <xs:documentation>Zorgverlener andere zorg</xs:documentation>
                   </xs:annotation>

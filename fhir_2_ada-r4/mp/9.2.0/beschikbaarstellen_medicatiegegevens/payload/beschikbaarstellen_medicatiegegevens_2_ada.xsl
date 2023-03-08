@@ -36,7 +36,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<data>
 				<beschikbaarstellen_medicatiegegevens app="mp-mp92" shortName="beschikbaarstellen_medicatiegegevens" formName="medicatiegegevens" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.301" transactionEffectiveDate="2022-02-07T00:00:00" prefix="mp-" language="nl-NL">
 					<xsl:attribute name="title">Generated from HL7 FHIR medicatiegegevens</xsl:attribute>
-					<xsl:attribute name="id">DUMMY</xsl:attribute>
+					<xsl:attribute name="id"><xsl:value-of select="f:Bundle/f:id/@value"/></xsl:attribute>
 
 					<xsl:choose>
 						<xsl:when test="count(f:Bundle/f:entry/f:resource/f:Patient) ge 2 or count(distinct-values(f:Bundle/f:entry/f:resource/(f:MedicationRequest | f:MedicationDispense | f:MedicationStatement)/f:subject/f:reference/@value)) ge 2">
