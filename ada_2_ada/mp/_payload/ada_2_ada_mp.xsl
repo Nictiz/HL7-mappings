@@ -89,6 +89,19 @@
         </map>
     </xsl:variable>
 
+    <xsl:variable name="mapStoptype" as="element()+">
+        <map xmlns="">
+            <mp907 code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2" displayName="Tijdelijk" codeSystemName="Stoptype Medicatieafspraak, Toedieningsafspraak of -gebruik"/>
+            <mp920 code="113381000146106" codeSystem="{$oidSNOMEDCT}" displayName="tijdelijk gestopt met medicatie" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
+            <mp930 code="385655000" codeSystem="{$oidSNOMEDCT}" displayName="onderbroken" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
+        </map>
+        <map xmlns="">
+            <mp907 code="2" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2" displayName="Definitief" codeSystemName="Stoptype Medicatieafspraak, Toedieningsafspraak of -gebruik"/>
+            <mp920 code="113371000146109" codeSystem="{$oidSNOMEDCT}" displayName="definitief gestopt met medicatie" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
+            <mp930 code="410546004" codeSystem="{$oidSNOMEDCT}" displayName="stopgezet" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
+        </map>
+    </xsl:variable>        
+
     <xsl:variable name="mapTransaction" as="element()+">
         <map xmlns="" usecase="beschikbaarstellen_medicatiegegevens">
             <mp907 transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.102" transactionEffectiveDate="2016-03-23T16:32:43" formName="uitwisselen_medicatiegegevens"/>
