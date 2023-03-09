@@ -40,7 +40,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-ComfortScale.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-ContactInformation.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-ContactPerson.xsl"/>
-    <xsl:import href="nl-core-DevelopmentChild.xsl"/>
     <xsl:import href="nl-core-DOSScore.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-DrugUse.xsl"/>
     <xsl:import href="../0.7-beta1/nl-core-Education.xsl"/>
