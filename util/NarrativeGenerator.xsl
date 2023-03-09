@@ -8930,17 +8930,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:if>
                         </i>
                     </xsl:if>
-                    <xsl:if test="f:multipleBirthBoolean[@value = 'true'] | f:multipleBirthInteger[@value != 0]">
+                    <xsl:if test="f:multipleBirthBoolean[@value] | f:multipleBirthInteger[@value]">
                         <xsl:if test="f:identifier | f:name | f:gender | f:birthDate | f:deceasedBoolean[@value = 'true'] | f:deceasedDateTime[@value]">
                             <xsl:text>, </xsl:text>
                         </xsl:if>
-                        <xsl:call-template name="util:getLocalizedString">
-                            <xsl:with-param name="key">partOfMultipleBirth</xsl:with-param>
-                            <xsl:with-param name="textLang" select="$textLang"/>
-                        </xsl:call-template>
+                        <xsl:choose>
+                            <xsl:when test="f:multipleBirthBoolean[@value = 'true'] | f:multipleBirthInteger[@value != 0]">
+                                <xsl:call-template name="util:getLocalizedString">
+                                    <xsl:with-param name="key">partOfMultipleBirth</xsl:with-param>
+                                    <xsl:with-param name="textLang" select="$textLang"/>
+                                </xsl:call-template>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:call-template name="util:getLocalizedString">
+                                    <xsl:with-param name="key">notPartOfMultipleBirth</xsl:with-param>
+                                    <xsl:with-param name="textLang" select="$textLang"/>
+                                </xsl:call-template>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:if>
                     <xsl:if test="f:maritalStatus">
-                        <xsl:if test="f:identifier | f:name | f:gender | f:birthDate | f:deceasedBoolean[@value = 'true'] | f:deceasedDateTime[@value] | f:multipleBirthBoolean[@value = 'true'] | f:multipleBirthInteger[@value != 0]">
+                        <xsl:if test="f:identifier | f:name | f:gender | f:birthDate | f:deceasedBoolean[@value = 'true'] | f:deceasedDateTime[@value] | f:multipleBirthBoolean[@value] | f:multipleBirthInteger[@value]">
                             <xsl:text>, </xsl:text>
                         </xsl:if>
                         <xsl:call-template name="doDT_CodeableConcept">
