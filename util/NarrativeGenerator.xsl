@@ -14598,6 +14598,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="key">2.16.840.1.113883.2.4.3.11.60.40.4.22.1-LL</xsl:with-param>
                     <xsl:with-param name="textLang" select="$textLang"/>
                 </xsl:call-template>
+                <xsl:text> </xsl:text>
             </xsl:when>
             <xsl:when test="$in/f:valueCodeableConcept/f:coding/f:code/@value = 'FAX'">
                 <!--<xsl:call-template name="util:getLocalizedString">
@@ -14605,12 +14606,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="textLang" select="$textLang"/>
                 </xsl:call-template>-->
             </xsl:when>
-            <xsl:when test="$in/f:valueCodeableConcept/f:coding/f:code/@value = 'PG' or $in/@value = 'pager'">
+            <xsl:when test="$in/f:valueCodeableConcept/f:coding/f:code/@value = 'PG' and $in/@value != 'pager'">
                 <xsl:call-template name="util:getLocalizedString">
                     <xsl:with-param name="key">addressUse_PG</xsl:with-param>
                     <xsl:with-param name="textLang" select="$textLang"/>
                 </xsl:call-template>
+                <xsl:text> </xsl:text>
             </xsl:when>
+            <xsl:when test="$in/f:valueCodeableConcept/f:coding/f:code/@value = 'MC' and $in/@value != 'mobile'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">addressUse_MC</xsl:with-param>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+                <xsl:text> </xsl:text>
+            </xsl:when>
+        </xsl:choose>
+        <xsl:choose>
             <xsl:when test="$in/@value = 'home'">
                 <xsl:call-template name="util:getLocalizedString">
                     <xsl:with-param name="key">addressUse_H</xsl:with-param>
@@ -14632,12 +14643,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$in/@value = 'old'">
                 <xsl:call-template name="util:getLocalizedString">
                     <xsl:with-param name="key">addressUse_BAD</xsl:with-param>
-                    <xsl:with-param name="textLang" select="$textLang"/>
-                </xsl:call-template>
-            </xsl:when>
-            <xsl:when test="$in/f:valueCodeableConcept/f:coding/f:code/@value = 'MC' or $in/@value = 'mobile'">
-                <xsl:call-template name="util:getLocalizedString">
-                    <xsl:with-param name="key">addressUse_MC</xsl:with-param>
                     <xsl:with-param name="textLang" select="$textLang"/>
                 </xsl:call-template>
             </xsl:when>
