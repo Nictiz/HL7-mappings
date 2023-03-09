@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+F<?xml version="1.0" encoding="UTF-8"?>
 <!--
 Copyright (c) Nictiz
 
@@ -71,7 +71,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../0.5-beta1/nl-core-PharmaceuticalProduct.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-Problem.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-Procedure.xsl"/>
-    <xsl:import href="nl-core-PulseRate.xsl"/>
     <xsl:import href="nl-core-Refraction.xsl"/>
     <xsl:import href="nl-core-SOAPReport.xsl"/>
     <xsl:import href="nl-core-Stoma.xsl"/>

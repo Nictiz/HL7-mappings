@@ -71,6 +71,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../0.5-beta1/nl-core-PharmaceuticalProduct.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-Problem.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-Procedure.xsl"/>
+    <xsl:import href="nl-core-PulseRate.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-Refraction.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-SOAPReport.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-Stoma.xsl"/>
@@ -80,7 +81,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../0.5-beta1/nl-core-Vaccination.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-VisualAcuity.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-VisualFunction.xsl"/>
-    
     <xsl:import href="../0.5-beta1/ext-CodeSpecification.xsl"/>
     <xsl:import href="../0.5-beta1/ext-Comment.xsl"/>
     <xsl:import href="../0.5-beta1/ext-CopyIndicator.xsl"/>
