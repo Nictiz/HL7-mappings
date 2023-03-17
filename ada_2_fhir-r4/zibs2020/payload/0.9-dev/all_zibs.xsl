@@ -32,6 +32,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../0.5-beta1/nl-core-AllergyIntolerance.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-AnatomicalLocation.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-ApgarScore.xsl"/>
+    <xsl:import href="nl-core-BarthelADLIndex.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-BloodPressure.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-BodyHeight.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-BodyWeight.xsl"/>
