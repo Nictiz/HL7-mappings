@@ -112,7 +112,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <performedDateTime>
                             <xsl:attribute name="value">
                                 <xsl:call-template name="format2FHIRDate">
-                                    <xsl:with-param name="dateTime" select="xs:string(./@value)"/>
+                                    <xsl:with-param name="dateTime" select="xs:string($startDate/@value)"/>
                                 </xsl:call-template>
                             </xsl:attribute>
                         </performedDateTime>
