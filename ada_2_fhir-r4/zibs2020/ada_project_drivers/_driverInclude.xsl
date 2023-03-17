@@ -349,6 +349,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
             </xsl:when>
+            <xsl:when test="$localName = 'huidaandoening'">
+                <xsl:apply-templates select="$in" mode="nl-core-SkinDisorder">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'juridische_situatie'">
                 <xsl:choose>
                     <xsl:when test="juridische_status">
