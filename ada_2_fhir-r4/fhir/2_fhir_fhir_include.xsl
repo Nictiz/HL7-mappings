@@ -99,12 +99,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-VisualFunction.VisualAid"/>
         <nm:map ada="mobiliteit" resource="Observation" profile="nl-core-Mobility"/>
         <nm:map ada="monster" resource="Specimen" profile="nl-core-LaboratoryTestResult.Specimen"/>
-        <nm:map ada="bron_monster" resource="Device" profile="nl-core-LaboratoryTestResult.Specimen.Source"/>
+        <nm:map ada="bron_monster" resource="Device" profile="nl-core-LaboratoryTestResult.SpecimenSource"/>
         <nm:map ada="mustscore" resource="Observation" profile="nl-core-MUSTScore"/>
         <nm:map ada="o2saturatie" resource="Observation" profile="nl-core-O2Saturation"/>
+        <nm:map ada="ontwikkeling_kind" resource="Observation" profile="nl-core-DevelopmentChild"/>
         <nm:map ada="opleiding" resource="Observation" profile="nl-core-Education"/>
         <nm:map ada="participatie_in_maatschappij" resource="Observation" profile="nl-core-ParticipationInSociety"/>
         <nm:map ada="patient" resource="Patient" profile="nl-core-Patient"/>
+        <nm:map ada="polsfrequentie" resource="Observation" profile="nl-core-PulseRate"/>
         <nm:map ada="probleem" resource="Condition" profile="nl-core-Problem"/>
         <nm:map ada="product" resource="Device" profile="nl-core-MedicalDevice.Product"/>
         <nm:map ada="product" resource="Device" profile="nl-core-HearingFunction.HearingAid.Product"/>
