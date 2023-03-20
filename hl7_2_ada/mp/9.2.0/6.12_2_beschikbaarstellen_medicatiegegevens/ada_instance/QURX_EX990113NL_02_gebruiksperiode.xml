@@ -5,8 +5,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2022-12-27T15:05:49.256+01:00"
-         last-update-date="2022-12-27T15:05:49.256+01:00"/>
+         creation-date="2023-03-17T15:21:36.794997+01:00"
+         last-update-date="2023-03-17T15:21:36.794997+01:00"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp92"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -56,10 +56,10 @@
                   <tijds_duur value="100" unit="dag"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d11e144" datatype="reference"/>
+                  <zorgaanbieder value="d184e144" datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d11e80" datatype="reference"/>
+                  <farmaceutisch_product value="d184e80" datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <!--mp9-gebruiksinstructie-from-mp612-->
                <gebruiksinstructie>
@@ -75,18 +75,26 @@
                      <dosering><!--mp9-keerdosis-->
                         <keerdosis>
                            <aantal>
-                              <minimum_waarde value="1"/>
-                              <maximum_waarde value="61"/>
+                              <minimum_waarde value="1">
+                                 <adaextension>
+                                    <translation value="1"
+                                                 code="121"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="zakje"/>
+                                 </adaextension>
+                              </minimum_waarde>
+                              <maximum_waarde value="61">
+                                 <adaextension>
+                                    <translation value="61"
+                                                 code="121"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="zakje"/>
+                                 </adaextension>
+                              </maximum_waarde>
                            </aantal>
                            <eenheid code="245"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    displayName="Stuk">
-                              <adaextension>
-                                 <translation code="121"
-                                              codeSystem="2.16.840.1.113883.2.4.4.1.361"
-                                              displayName="zakje"/>
-                              </adaextension>
-                           </eenheid>
+                                    displayName="Stuk"/>
                         </keerdosis>
                         <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612--><!--geen frequentie in input--></toedieningsschema>
                         <zo_nodig><!--maximale dosering-->
@@ -107,7 +115,7 @@
             </toedieningsafspraak>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d11e80">
+            <farmaceutisch_product id="d184e80">
                <product_code code="OTH"
                              codeSystem="2.16.840.1.113883.5.1008"
                              displayName=""
@@ -210,7 +218,7 @@
                   </ingredient>
                </product_specificatie>
             </farmaceutisch_product>
-            <zorgaanbieder id="d11e144">
+            <zorgaanbieder id="d184e144">
                <zorgaanbieder_identificatienummer value="01234567" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam nullFlavor="NI"/>
             </zorgaanbieder>

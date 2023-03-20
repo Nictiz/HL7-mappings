@@ -5,8 +5,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2022-12-27T15:06:03.977+01:00"
-         last-update-date="2022-12-27T15:06:03.977+01:00"/>
+         creation-date="2023-03-17T15:21:37.000447+01:00"
+         last-update-date="2023-03-17T15:21:37.000447+01:00"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp92"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -53,10 +53,10 @@
                <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
                <toedieningsafspraak_datum_tijd value="2019-06-28"/>
                <verstrekker>
-                  <zorgaanbieder value="d11e112" datatype="reference"/>
+                  <zorgaanbieder value="d436e112" datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d11e82" datatype="reference"/>
+                  <farmaceutisch_product value="d436e82" datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <!--mp9-gebruiksinstructie-from-mp612-->
                <gebruiksinstructie>
@@ -69,17 +69,18 @@
                      <dosering><!--mp9-keerdosis-->
                         <keerdosis>
                            <aantal>
-                              <nominale_waarde value="1"/>
+                              <nominale_waarde value="1">
+                                 <adaextension>
+                                    <translation value="1"
+                                                 code="100"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="tablet"/>
+                                 </adaextension>
+                              </nominale_waarde>
                            </aantal>
                            <eenheid code="245"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    displayName="ST">
-                              <adaextension>
-                                 <translation code="100"
-                                              codeSystem="2.16.840.1.113883.2.4.4.1.361"
-                                              displayName="tablet"/>
-                              </adaextension>
-                           </eenheid>
+                                    displayName="ST"/>
                         </keerdosis>
                         <toedieningsschema>
                            <toedientijd value="21:00:00"/>
@@ -93,7 +94,7 @@
             </toedieningsafspraak>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d11e82">
+            <farmaceutisch_product id="d436e82">
                <product_code code="14899337"
                              codeSystem="2.16.840.1.113883.2.4.4.8"
                              displayName="TRAMADOL HCL SANDOZ RETARD TABLET MGA 100MG"/>
@@ -101,7 +102,7 @@
                <product_code code="50431" codeSystem="2.16.840.1.113883.2.4.4.10"/>
                <product_code code="104213" codeSystem="2.16.840.1.113883.2.4.4.1"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="d11e112">
+            <zorgaanbieder id="d436e112">
                <zorgaanbieder_identificatienummer value="00023639" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Kringapotheek Asten"/>
                <adresgegevens>
