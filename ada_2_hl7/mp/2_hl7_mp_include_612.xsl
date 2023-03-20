@@ -89,6 +89,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="gebruiksperiode-start" select="$adaBouwsteen/(gebruiksperiode_start | gebruiksperiode/start_datum_tijd)"/>
         <!-- een niet-cyclisch schema met meerdere doseerinstructies zonder startdatum gebruiksperiode kan niet
                  gestructureerd in 6.12 omdat de volgorde dan niet overgebracht kan worden -->
+        <!-- TODO: tenzij er geen verschillende doseerduur én geen verschillend sequencenummer in zit, dan zijn ze gewoon parallel naast elkaar, dat kan in 6.12 ook -->
         <xsl:variable name="niet-cyclisch-zonder-start" select="not($herhaalperiode/@value) and count($adaBouwsteen//doseerinstructie) gt 1 and not($gebruiksperiode-start/@value)"/>
         <!-- een niet-cyclisch schema met meerdere doseerinstructies mét startdatum gebruiksperiode kan wel
            gestructureerd in 6.12 omdat de volgorde dan dus wel overgebracht kan worden in meerdere MAR's
@@ -1271,6 +1272,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
                 <xsl:with-param name="inputValue" select="$begindatum"/>
                 <xsl:with-param name="xsiType" select="''"/>
                 <xsl:with-param name="elemName">low</xsl:with-param>
+                <xsl:with-param name="precision">minute</xsl:with-param>
             </xsl:call-template>
         </xsl:for-each>
         <!-- Item(s) :: gebruiksduur -->
@@ -1288,6 +1290,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
                 <xsl:with-param name="inputValue" select="$einddatum"/>
                 <xsl:with-param name="xsiType" select="''"/>
                 <xsl:with-param name="elemName">high</xsl:with-param>
+                <xsl:with-param name="precision">minute</xsl:with-param>
             </xsl:call-template>
         </xsl:for-each>
     </xsl:template>

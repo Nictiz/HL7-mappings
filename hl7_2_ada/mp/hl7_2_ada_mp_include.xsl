@@ -610,8 +610,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- variabele frequentie in effectiveTime of comp, 2 mars, 1 vast, 1 zo nodig, parallel -->
                 <!-- fix for MP-176 : extra check on only one precondition in one of the MAR's -->
                 <!-- AWE: also allowed: both have a NHG zonodig 1 à 2 maal zo nodig -->
-                <xsl:when test="$parallel and count($mar-sorted) = 2
-                        and count($mar-sorted/hl7:precondition) = 1 
+                <xsl:when test="
+                        $parallel and count($mar-sorted) = 2
+                        and count($mar-sorted/hl7:precondition) = 1
                         and count($mar-sorted/hl7:precondition[hl7:observationEventCriterion/hl7:code[@code = $NHGZoNodigNumeriek and @codeSystem = $oidNHGTabel25BCodesNumeriek]]) = 1">
                     <xsl:choose>
                         <xsl:when test="deep-equal($mar-sorted[1]/hl7:doseQuantity, $mar-sorted[2]/hl7:doseQuantity)">
@@ -1957,30 +1958,51 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <keerdosis>
                     <aantal>
                         <xsl:for-each select="hl7:low/hl7:translation[@codeSystem = $oidGStandaardBST902THES2]">
-                            <min value="{@value}"/>
+                            <min value="{@value}">
+                                <xsl:for-each select="../hl7:translation[@codeSystem = $oidNHGTabe361Gebruikseenheid]">
+                                    <adaextension>
+                                        <translation value="{@value}">
+                                            <xsl:call-template name="mp9-code-attribs">
+                                                <xsl:with-param name="current-hl7-code" select="."/>
+                                            </xsl:call-template>
+                                        </translation>
+                                    </adaextension>
+                                </xsl:for-each>
+                            </min>
                         </xsl:for-each>
                         <xsl:for-each select="hl7:center/hl7:translation[@codeSystem = $oidGStandaardBST902THES2] | ./hl7:translation[@codeSystem = $oidGStandaardBST902THES2]">
-                            <vaste_waarde value="{@value}"/>
+                            <vaste_waarde value="{@value}">
+                                <xsl:for-each select="../hl7:translation[@codeSystem = $oidNHGTabe361Gebruikseenheid]">
+                                    <adaextension>
+                                        <translation value="{@value}">
+                                            <xsl:call-template name="mp9-code-attribs">
+                                                <xsl:with-param name="current-hl7-code" select="."/>
+                                            </xsl:call-template>
+                                        </translation>
+                                    </adaextension>
+                                </xsl:for-each>
+                            </vaste_waarde>
                         </xsl:for-each>
                         <xsl:for-each select="hl7:high/hl7:translation[@codeSystem = $oidGStandaardBST902THES2]">
-                            <max value="{@value}"/>
+                            <max value="{@value}">
+                                <xsl:for-each select="../hl7:translation[@codeSystem = $oidNHGTabe361Gebruikseenheid]">
+                                    <adaextension>
+                                        <translation value="{@value}">
+                                            <xsl:call-template name="mp9-code-attribs">
+                                                <xsl:with-param name="current-hl7-code" select="."/>
+                                            </xsl:call-template>
+                                        </translation>
+                                    </adaextension>
+                                </xsl:for-each>
+                            </max>
                         </xsl:for-each>
                     </aantal>
+                    <!-- requirement is same Gstd unit in one dosage -->
                     <xsl:for-each select="(.//hl7:translation[@codeSystem = $oidGStandaardBST902THES2])[1]">
                         <eenheid>
                             <xsl:call-template name="mp9-code-attribs">
                                 <xsl:with-param name="current-hl7-code" select="."/>
                             </xsl:call-template>
-                            <xsl:for-each select="../hl7:translation[@codeSystem = $oidNHGTabe361Gebruikseenheid]">
-                                <adaextension>
-                                    <translation>
-                                        <xsl:call-template name="mp9-code-attribs">
-                                            <xsl:with-param name="current-hl7-code" select="."/>
-                                        </xsl:call-template>
-                                    </translation>
-                                    <!--                                    <xsl:copy-of select="." exclude-result-prefixes="hl7"/>-->
-                                </adaextension>
-                            </xsl:for-each>
                         </eenheid>
                     </xsl:for-each>
                 </keerdosis>
@@ -2624,7 +2646,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </gebruiksperiode>
                 </xsl:variable>
                 <xsl:if test="$inhoudGebruiksperiode[@* | *]">
-                    <xsl:copy-of select="$inhoudGebruiksperiode"/>
+                    <xsl:choose>
+                        <xsl:when test="$inhoudGebruiksperiode[tijds_duur][gebruiksperiode_eind]">
+                            <gebruiksperiode>
+                                <xsl:copy-of select="$inhoudGebruiksperiode/(gebruiksperiode_start | gebruiksperiode_eind)"/>
+                            </gebruiksperiode>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:copy-of select="$inhoudGebruiksperiode"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </xsl:if>
 
                 <!-- geannuleerd indicator en stoptype wordt niet ondersteund in 6.12, geen output hiervoor-->

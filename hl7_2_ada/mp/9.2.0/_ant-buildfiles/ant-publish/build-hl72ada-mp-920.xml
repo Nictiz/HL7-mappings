@@ -352,8 +352,15 @@
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="hl7_instance_roundtrip"/>
         </antcall>
+    
+        <!-- let's start the roundtrip for 6.12_2_beschikbaarstellen_medicatiegegevens, so ada 2 hl7, use hl7_2_ada sub, but with an ada_2_hl7 xsl! -->
+        <antcall target="convert_hl7_2_ada_sub">
+            <param name="sub.build.dir" value="${build.dir}/6.12_2_beschikbaarstellen_medicatiegegevens"/>
+            <param name="xsl.name" value="../../../../ada_2_hl7/mp/6.12/opleveren_verstrekkingenlijst/payload/opleveren_verstrekkingenlijst_2_612.xsl"/>
+            <param name="xsl.in" value="ada_instance"/>
+            <param name="xsl.out" value="hl7_instance_roundtrip"/>
+        </antcall>
         
-
     </target>
 
 

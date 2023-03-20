@@ -377,10 +377,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc>Quantity unit and translation(s) based on Gstd input</xd:desc>
+        <xd:param name="GstdValueElem">The ada element containing the Gstd value. Defaults to context.</xd:param>
         <xd:param name="Gstd_value">The value converted to Gstd for dose quantity</xd:param>
         <xd:param name="Gstd_unit">The ada element (typically eenheid) that contains the Gstd unit, but may have additional translation elements in adaextension</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9021_20150305000000_2">
+        <xsl:param name="GstdValueElem" as="element()?" select="."/>
         <xsl:param name="Gstd_value" as="xs:string?"/>
         <xsl:param name="Gstd_unit" as="element()?"/>
 
@@ -407,10 +409,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:attribute name="codeSystemName" select="$Gstd_unit/@codeSystemName"/>
                 </xsl:if>
             </translation>
-            <xsl:for-each select="$Gstd_unit/adaextension/translation">
+            <xsl:for-each select="($GstdValueElem | $Gstd_unit)/adaextension/translation">
                 <translation>
-                    <xsl:copy-of select="@*"/>
+                    <!-- default to Gstd value, but ... -->
                     <xsl:attribute name="value" select="$Gstd_value"/>
+                    <!-- ... take the @value from the adaextension if it is there -->
+                    <xsl:copy-of select="@*"/>
                 </translation>
             </xsl:for-each>
         </xsl:if>

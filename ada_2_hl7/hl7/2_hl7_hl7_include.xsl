@@ -1276,6 +1276,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="elemName">The hl7 element name to be outputted. Defaults to value.</xd:param>
         <xd:param name="elemNamespace">The namespace this element is in. Defaults to the hl7 namespace.</xd:param>
         <xd:param name="inputNullFlavor">nullFlavor string if applicable</xd:param>
+        <xd:param name="precision">Determines the picture of the date(time) format. Second is the default.</xd:param>
     </xd:doc>
     <xsl:template name="makeTSValue" match="element()" mode="MakeTSValue">
         <xsl:param name="inputValue" as="xs:string?" select="@value"/>
@@ -1285,6 +1286,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="elemName">value</xsl:param>
         <xsl:param name="elemNamespace">urn:hl7-org:v3</xsl:param>
         <xsl:param name="inputNullFlavor" select="@nullFlavor" as="xs:string?"/>
+        <xsl:param name="precision" as="xs:string?">second</xsl:param>
+        
         <xsl:element name="{$elemName}" namespace="{$elemNamespace}">
             <xsl:if test="string-length($xsiType) gt 0">
                 <xsl:attribute name="xsi:type" select="$xsiType"/>
@@ -1292,6 +1295,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:call-template name="makeTSValueAttr">
                 <xsl:with-param name="inputValue" select="$inputValue"/>
                 <xsl:with-param name="inputNullFlavor" select="$inputNullFlavor"/>
+                <xsl:with-param name="precision" select="$precision"/>
             </xsl:call-template>
         </xsl:element>
     </xsl:template>
