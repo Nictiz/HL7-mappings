@@ -13030,7 +13030,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="sep" select="', '" as="xs:string?"/>
         <xsl:param name="allowDiv" as="xs:boolean" required="yes"/>
         <xsl:for-each select="$in">
-            <xsl:variable name="str">
+            <xsl:variable name="theName">
                 <xsl:choose>
                     <xsl:when test="f:text">
                         <xsl:call-template name="doDT_String">
@@ -13040,6 +13040,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="normalize-space(string-join((f:prefix/@value, f:given[not(f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier']/f:valueCode/@value = 'CL')]/@value, f:family/@value, f:suffix/@value), ' '))"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            <xsl:variable name="str">
+                <xsl:choose>
+                    <xsl:when test="f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/humanname-assembly-order']/f:valueCode[@value]">
+                        <span xmlns="http://www.w3.org/1999/xhtml">
+                            <xsl:attribute name="title">
+                                <xsl:for-each select="f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/humanname-assembly-order']">
+                                    <xsl:call-template name="util:getLocalizedString">
+                                        <xsl:with-param name="key">Name assembly order</xsl:with-param>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                        <xsl:with-param name="post" select="': '"/>
+                                    </xsl:call-template>
+                                    <xsl:call-template name="util:getLocalizedString">
+                                        <xsl:with-param name="key" select="'HumanNameAssemblyOrder-' || f:valueCode/@value"/>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </xsl:for-each>
+                            </xsl:attribute>
+                            <xsl:copy-of select="$theName"/>
+                        </span>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:copy-of select="$theName"/>
                     </xsl:otherwise>
                 </xsl:choose>
                 <xsl:if test="f:given[f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier']/f:valueCode/@value = 'CL']">
