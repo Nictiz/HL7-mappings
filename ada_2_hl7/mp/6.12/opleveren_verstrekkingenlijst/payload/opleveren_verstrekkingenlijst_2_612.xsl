@@ -17,18 +17,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all"/>
 
     <xsl:param name="logLevel" select="$logDEBUG"/>
-    
+
 
 
     <!-- Dit is een conversie van ADA MP9 2.0 beschikbaarstellen_medicatiegegevens naar MP 6.12 verstrekkingen bericht -->
     <xsl:template match="/">
         <xsl:variable name="transaction" select="//beschikbaarstellen_medicatiegegevens"/>
-        <xsl:if test="$transaction/medicamenteuze_behandeling[toedieningsafspraak | medicatieverstrekking | verstrekking]">
-            <xsl:call-template name="verstrekkingenlijst612">
-                <xsl:with-param name="patient" select="$transaction/patient"/>
-                <xsl:with-param name="mbh" select="$transaction/medicamenteuze_behandeling[toedieningsafspraak | medicatieverstrekking | verstrekking]"/>
-            </xsl:call-template>
-        </xsl:if>
+
+        <xsl:choose>
+            <xsl:when test="count($transaction) gt 1">
+                <MCCI_IN200101 xsl:exclude-result-prefixes="nf">
+                    <xsl:for-each select="$transaction[patient | medicamenteuze_behandeling[toedieningsafspraak | medicatieverstrekking | verstrekking]]">
+                        <xsl:call-template name="verstrekkingenlijst612">
+                            <xsl:with-param name="patient" select="patient"/>
+                            <xsl:with-param name="mbh" select="medicamenteuze_behandeling[toedieningsafspraak | medicatieverstrekking | verstrekking]"/>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                </MCCI_IN200101>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:if test="$transaction/patient | medicamenteuze_behandeling[toedieningsafspraak | medicatieverstrekking | verstrekking]">
+                    <xsl:call-template name="verstrekkingenlijst612">
+                        <xsl:with-param name="patient" select="$transaction/patient"/>
+                        <xsl:with-param name="mbh" select="$transaction/medicamenteuze_behandeling[toedieningsafspraak | medicatieverstrekking | verstrekking]"/>
+                    </xsl:call-template>
+                </xsl:if>
+            </xsl:otherwise>
+        </xsl:choose>
+
     </xsl:template>
 
     <xsl:template name="verstrekkingenlijst612">
@@ -43,8 +59,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:if test="$logLevel = $logDEBUG">
                 <xsl:attribute name="xsi:schemaLocation">urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20200122/mp-xml-20200122T161947/schemas/QURX_IN990113NL.xsd</xsl:attribute>
             </xsl:if>
-            <id extension="0123456789" root="2.16.840.1.113883.2.4.6.6.1.1"/>
-            <creationTime value="20080701090549"/>
+            <id extension="TOBEGENERATED" root="2.16.840.1.113883.2.4.6.6.1.1"/>
+            <creationTime value="20080701090549">
+                <xsl:call-template name="makeTSValueAttr">
+                    <xsl:with-param name="inputValue" select="xs:string(current-dateTime())"/>
+                </xsl:call-template>
+            </creationTime>
             <versionCode code="NICTIZEd2005-Okt"/>
             <interactionId extension="QURX_IN990113NL" root="2.16.840.1.113883.1.6"/>
             <profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
@@ -92,7 +112,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </subject>
                 <!-- TODO, move this to separate wrapper functionality -->
                 <queryAck>
-                    <queryId extension="default-value" root="1.2.3.999"/>
+                    <queryId extension="TOBEGENERATED" root="1.2.3.999"/>
                     <queryResponseCode code="OK"/>
                     <resultTotalQuantity value="1"/>
                     <resultCurrentQuantity value="1"/>
