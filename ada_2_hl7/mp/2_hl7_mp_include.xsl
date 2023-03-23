@@ -391,11 +391,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <translation>
                 <xsl:attribute name="value" select="$Gstd_value"/>
                 <xsl:attribute name="code" select="$Gstd_unit/@code"/>
-                <xsl:if test="string-length($Gstd_unit/@displayName) gt 1">
+                <xsl:if test="string-length($Gstd_unit/@displayName) gt 0">
                     <xsl:attribute name="displayName" select="$Gstd_unit/@displayName"/>
                 </xsl:if>
                 <xsl:choose>
-                    <xsl:when test="string-length($Gstd_unit/@codeSystem) gt 1">
+                    <xsl:when test="string-length($Gstd_unit/@codeSystem) gt 0">
                         <xsl:attribute name="codeSystem" select="$Gstd_unit/@codeSystem"/>
                     </xsl:when>
                     <xsl:otherwise>
@@ -405,7 +405,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:attribute>
                     </xsl:otherwise>
                 </xsl:choose>
-                <xsl:if test="string-length($Gstd_unit/@codeSystemName) gt 1">
+                <xsl:if test="string-length($Gstd_unit/@codeSystemName) gt 0">
                     <xsl:attribute name="codeSystemName" select="$Gstd_unit/@codeSystemName"/>
                 </xsl:if>
             </translation>

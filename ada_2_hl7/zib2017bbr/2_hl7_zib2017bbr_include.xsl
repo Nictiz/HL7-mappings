@@ -348,20 +348,47 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:choose>
                 </postalCode>
             </xsl:for-each>
-            <xsl:for-each select="gemeente[@value | @nullFlavor]">
-                <xsl:call-template name="makeText">
-                    <xsl:with-param name="elemName">county</xsl:with-param>
-                </xsl:call-template>
+            <xsl:for-each select="gemeente[@value | @code | @nullFlavor]">
+                <xsl:choose>
+                    <xsl:when test="@code">
+                        <county>
+                            <xsl:call-template name="makeCodeAttribs"/>
+                        </county>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:call-template name="makeText">
+                            <xsl:with-param name="elemName">county</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:for-each>
-            <xsl:for-each select="woonplaats[@value | @nullFlavor]">
-                <xsl:call-template name="makeText">
-                    <xsl:with-param name="elemName">city</xsl:with-param>
-                </xsl:call-template>
+            <xsl:for-each select="woonplaats[@value | @code | @nullFlavor]">
+                <xsl:choose>
+                    <xsl:when test="@code">
+                        <city>
+                            <xsl:call-template name="makeCodeAttribs"/>
+                        </city>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:call-template name="makeText">
+                            <xsl:with-param name="elemName">city</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:for-each>
-            <xsl:for-each select="land[@value | @nullFlavor]">
-                <xsl:call-template name="makeText">
-                    <xsl:with-param name="elemName">country</xsl:with-param>
-                </xsl:call-template>
+            <xsl:for-each select="land[@value | @code | @nullFlavor]">
+                <xsl:choose>
+                    <xsl:when test="@code">
+                        <country>
+                            <xsl:call-template name="makeCodeAttribs"/>
+                        </country>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:call-template name="makeText">
+                            <xsl:with-param name="elemName">country</xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:for-each>
             <!-- Additionele informatie niet gemapt op het template... -->
             <!--<xsl:for-each select="./additionele_informatie">

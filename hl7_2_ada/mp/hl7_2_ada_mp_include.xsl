@@ -440,13 +440,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:otherwise>
                             </xsl:choose>
                         </toedieningsschema>
-                        <!-- eventueel een zo nodig en/of maximale dosering -->
-
+                        <!-- eventueel een maximale dosering -->
                         <xsl:choose>
-                            <xsl:when test="count($hl7-mar/hl7:maxDoseQuantity) = 1 or deep-equal($hl7-mar[1]/hl7:maxDoseQuantity, $hl7-mar[2]/hl7:maxDoseQuantity)">
-                                <xsl:apply-templates select="($hl7-mar/hl7:maxDoseQuantity)[1]">
+                              <xsl:when test="count($hl7-mar/hl7:maxDoseQuantity) = 1 or deep-equal($hl7-mar[1]/hl7:maxDoseQuantity, $hl7-mar[2]/hl7:maxDoseQuantity)">
+                                <xsl:call-template name="mp9-zonodig">
                                     <xsl:with-param name="max-dose" select="($hl7-mar/hl7:maxDoseQuantity)[1]"/>
-                                </xsl:apply-templates>
+                                </xsl:call-template>
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:call-template name="util:logMessage">
@@ -609,9 +608,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:when>
                 <!-- variabele frequentie in effectiveTime of comp, 2 mars, 1 vast, 1 zo nodig, parallel -->
                 <!-- fix for MP-176 : extra check on only one precondition in one of the MAR's -->
-                <!-- AWE: also allowed: both have a NHG zonodig 1 à 2 maal zo nodig -->
-                <xsl:when test="
-                        $parallel and count($mar-sorted) = 2
+                <xsl:when test="$parallel and count($mar-sorted) = 2
                         and count($mar-sorted/hl7:precondition) = 1
                         and count($mar-sorted/hl7:precondition[hl7:observationEventCriterion/hl7:code[@code = $NHGZoNodigNumeriek and @codeSystem = $oidNHGTabel25BCodesNumeriek]]) = 1">
                     <xsl:choose>
@@ -635,8 +632,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:when>
-                <!-- variabele frequentie in effectiveTime of comp, 2 mars, minimaal een precondition (indien 1 is die anders dan de 1137, want anders eerder gematcht), parallel -->
-                <xsl:when test="count($mar-sorted) = 2 and (count($mar-sorted[hl7:precondition]) gt 0 or $mar-sorted[hl7:precondition/hl7:observationEventCriterion/hl7:code[not(@code = $NHGZoNodigNumeriek and @codeSystem = $oidNHGTabel25BCodesNumeriek)]]) and $parallel">
+                <!-- variabele frequentie in effectiveTime of comp, 2 mars, minimaal een precondition, parallel -->
+                <xsl:when test="count($mar-sorted) = 2 and count($mar-sorted[hl7:precondition]) gt 0 and $parallel">
                     <xsl:comment>variabele frequentie in effectiveTime of comp, 2 mars, minimaal een precondition (indien 1 is die anders dan de 1137, want anders eerder gematcht), parallel</xsl:comment>
                     <xsl:for-each select="$mar-sorted">
                         <xsl:variable name="hl7-pivl" select=".//*[replace(xs:string(@xsi:type), '(.*:)?(.+)', '$2') = 'PIVL_TS']"/>
@@ -646,6 +643,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </xsl:for-each>
                 </xsl:when>
+                <!-- parallelle doseringen -->
+                <xsl:when test="count($mar-sorted) gt 1 and $parallel">
+                    <xsl:comment>parallelle dosering, meer dan 1 mar, parallel</xsl:comment>
+                    <xsl:for-each select="$mar-sorted">
+                        <xsl:variable name="hl7-pivl" select=".//*[replace(xs:string(@xsi:type), '(.*:)?(.+)', '$2') = 'PIVL_TS']"/>
+                        <xsl:call-template name="mp9-doseerinstructie-from-mp612-freq">
+                            <xsl:with-param name="current-hl7-mar" select="."/>
+                            <xsl:with-param name="hl7-pivl" select="$hl7-pivl"/>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                </xsl:when>
+
                 <!-- cyclisch schema (pil) in 1 mar -->
                 <xsl:when test="$hl7-pivl[hl7:phase/hl7:width][hl7:period] and count($mar-sorted) = 1">
                     <xsl:call-template name="mp9-doseerinstructie-from-mp612-cyclisch">
@@ -1943,71 +1952,135 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     <xd:doc>
         <xd:desc>Creates an ada keerdosis element based on a HL7 input.</xd:desc>
-        <xd:param name="hl7-doseQuantity"/>
+        <xd:param name="hl7-doseQuantity">the HL7 doseQuantity element</xd:param>
     </xd:doc>
     <xsl:template name="mp9-keerdosis">
         <xsl:param name="hl7-doseQuantity"/>
         <xsl:comment>mp9-keerdosis</xsl:comment>
-        <!-- keerdosis -->
         <!-- only output if all units are the same -->
-        <xsl:if test="not($hl7-doseQuantity)">
-            <xsl:comment>geen keerdosis in input</xsl:comment>
-        </xsl:if>
-        <xsl:if test="count(distinct-values($hl7-doseQuantity//hl7:translation[@codeSystem = $oidGStandaardBST902THES2]/@code)) = 1">
-            <xsl:for-each select="$hl7-doseQuantity">
-                <keerdosis>
-                    <aantal>
-                        <xsl:for-each select="hl7:low/hl7:translation[@codeSystem = $oidGStandaardBST902THES2]">
-                            <min value="{@value}">
-                                <xsl:for-each select="../hl7:translation[@codeSystem = $oidNHGTabe361Gebruikseenheid]">
-                                    <adaextension>
-                                        <translation value="{@value}">
-                                            <xsl:call-template name="mp9-code-attribs">
-                                                <xsl:with-param name="current-hl7-code" select="."/>
-                                            </xsl:call-template>
-                                        </translation>
-                                    </adaextension>
-                                </xsl:for-each>
-                            </min>
+        <xsl:variable name="doseUCUMUnits" select="$hl7-doseQuantity/@unit | $hl7-doseQuantity//hl7:*/@unit" as="xs:string*"/>
+        <xsl:choose>
+            <xsl:when test="not($hl7-doseQuantity)">
+                <xsl:comment>geen keerdosis in input</xsl:comment>
+            </xsl:when>
+            <!-- typical case, Gstd translation should be there and should be unique -->
+            <xsl:when test="count(distinct-values($hl7-doseQuantity//hl7:translation[@codeSystem = $oidGStandaardBST902THES2]/@code)) = 1">
+                <xsl:for-each select="$hl7-doseQuantity">
+                    <keerdosis>
+                        <aantal>
+                            <xsl:for-each select="hl7:low/hl7:translation[@codeSystem = $oidGStandaardBST902THES2]">
+                                <min value="{@value}">
+                                    <xsl:for-each select="../hl7:translation[@codeSystem = $oidNHGTabe361Gebruikseenheid]">
+                                        <adaextension>
+                                            <translation value="{@value}">
+                                                <xsl:call-template name="mp9-code-attribs">
+                                                    <xsl:with-param name="current-hl7-code" select="."/>
+                                                </xsl:call-template>
+                                            </translation>
+                                        </adaextension>
+                                    </xsl:for-each>
+                                </min>
+                            </xsl:for-each>
+                            <xsl:for-each select="hl7:center/hl7:translation[@codeSystem = $oidGStandaardBST902THES2] | ./hl7:translation[@codeSystem = $oidGStandaardBST902THES2]">
+                                <vaste_waarde value="{@value}">
+                                    <xsl:for-each select="../hl7:translation[@codeSystem = $oidNHGTabe361Gebruikseenheid]">
+                                        <adaextension>
+                                            <translation value="{@value}">
+                                                <xsl:call-template name="mp9-code-attribs">
+                                                    <xsl:with-param name="current-hl7-code" select="."/>
+                                                </xsl:call-template>
+                                            </translation>
+                                        </adaextension>
+                                    </xsl:for-each>
+                                </vaste_waarde>
+                            </xsl:for-each>
+                            <xsl:for-each select="hl7:high/hl7:translation[@codeSystem = $oidGStandaardBST902THES2]">
+                                <max value="{@value}">
+                                    <xsl:for-each select="../hl7:translation[@codeSystem = $oidNHGTabe361Gebruikseenheid]">
+                                        <adaextension>
+                                            <translation value="{@value}">
+                                                <xsl:call-template name="mp9-code-attribs">
+                                                    <xsl:with-param name="current-hl7-code" select="."/>
+                                                </xsl:call-template>
+                                            </translation>
+                                        </adaextension>
+                                    </xsl:for-each>
+                                </max>
+                            </xsl:for-each>
+                        </aantal>
+                        <!-- requirement is same Gstd unit in one dosage -->
+                        <xsl:for-each select="(.//hl7:translation[@codeSystem = $oidGStandaardBST902THES2])[1]">
+                            <eenheid>
+                                <xsl:call-template name="mp9-code-attribs">
+                                    <xsl:with-param name="current-hl7-code" select="."/>
+                                </xsl:call-template>
+                            </eenheid>
                         </xsl:for-each>
-                        <xsl:for-each select="hl7:center/hl7:translation[@codeSystem = $oidGStandaardBST902THES2] | ./hl7:translation[@codeSystem = $oidGStandaardBST902THES2]">
-                            <vaste_waarde value="{@value}">
-                                <xsl:for-each select="../hl7:translation[@codeSystem = $oidNHGTabe361Gebruikseenheid]">
-                                    <adaextension>
-                                        <translation value="{@value}">
-                                            <xsl:call-template name="mp9-code-attribs">
-                                                <xsl:with-param name="current-hl7-code" select="."/>
-                                            </xsl:call-template>
-                                        </translation>
-                                    </adaextension>
-                                </xsl:for-each>
-                            </vaste_waarde>
-                        </xsl:for-each>
-                        <xsl:for-each select="hl7:high/hl7:translation[@codeSystem = $oidGStandaardBST902THES2]">
-                            <max value="{@value}">
-                                <xsl:for-each select="../hl7:translation[@codeSystem = $oidNHGTabe361Gebruikseenheid]">
-                                    <adaextension>
-                                        <translation value="{@value}">
-                                            <xsl:call-template name="mp9-code-attribs">
-                                                <xsl:with-param name="current-hl7-code" select="."/>
-                                            </xsl:call-template>
-                                        </translation>
-                                    </adaextension>
-                                </xsl:for-each>
-                            </max>
-                        </xsl:for-each>
-                    </aantal>
-                    <!-- requirement is same Gstd unit in one dosage -->
-                    <xsl:for-each select="(.//hl7:translation[@codeSystem = $oidGStandaardBST902THES2])[1]">
+                    </keerdosis>
+                </xsl:for-each>
+            </xsl:when>
+            <!-- when G-std translation is not there (or not unique), we may be able to find it using UCUM, we still need only one unique unit in the input -->
+            <xsl:when test="count(distinct-values($doseUCUMUnits)) = 1 and string-length($UCUM2GstdMap[@UCUMCode = normalize-space($doseUCUMUnits[1])]/@GstdCode) gt 0">
+                <xsl:for-each select="$hl7-doseQuantity">
+                    <keerdosis>
+                        <aantal>
+                            <xsl:for-each select="hl7:low">
+                                <min value="{@value}">
+                                    <xsl:for-each select="hl7:translation[@codeSystem = $oidNHGTabe361Gebruikseenheid]">
+                                        <adaextension>
+                                            <translation value="{@value}">
+                                                <xsl:call-template name="mp9-code-attribs">
+                                                    <xsl:with-param name="current-hl7-code" select="."/>
+                                                </xsl:call-template>
+                                            </translation>
+                                        </adaextension>
+                                    </xsl:for-each>
+                                </min>
+                            </xsl:for-each>
+                            <xsl:for-each select="hl7:center | .[@value and @unit]">
+                                <vaste_waarde value="{@value}">
+                                    <xsl:for-each select="hl7:translation[@codeSystem = $oidNHGTabe361Gebruikseenheid]">
+                                        <adaextension>
+                                            <translation value="{@value}">
+                                                <xsl:call-template name="mp9-code-attribs">
+                                                    <xsl:with-param name="current-hl7-code" select="."/>
+                                                </xsl:call-template>
+                                            </translation>
+                                        </adaextension>
+                                    </xsl:for-each>
+                                </vaste_waarde>
+                            </xsl:for-each>
+                            <xsl:for-each select="hl7:high">
+                                <max value="{@value}">
+                                    <xsl:for-each select="hl7:translation[@codeSystem = $oidNHGTabe361Gebruikseenheid]">
+                                        <adaextension>
+                                            <translation value="{@value}">
+                                                <xsl:call-template name="mp9-code-attribs">
+                                                    <xsl:with-param name="current-hl7-code" select="."/>
+                                                </xsl:call-template>
+                                            </translation>
+                                        </adaextension>
+                                    </xsl:for-each>
+                                </max>
+                            </xsl:for-each>
+                        </aantal>
                         <eenheid>
-                            <xsl:call-template name="mp9-code-attribs">
-                                <xsl:with-param name="current-hl7-code" select="."/>
+                            <xsl:call-template name="UCUM2GstdBasiseenheid">
+                                <xsl:with-param name="UCUM" select="$doseUCUMUnits[1]"/>
                             </xsl:call-template>
                         </eenheid>
-                    </xsl:for-each>
-                </keerdosis>
-            </xsl:for-each>
-        </xsl:if>
+                    </keerdosis>
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:comment>Found keerdosis in input, but not able to convert it. Please check the hl7 doseQuantity in dispense event with id <xsl:value-of select="$hl7-doseQuantity/../hl7:id/@extension"/></xsl:comment>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logERROR"/>
+                    <xsl:with-param name="msg">Found keerdosis in input, but not able to convert it. Please check the hl7 doseQuantity in dispense event with id <xsl:value-of select="$hl7-doseQuantity/../hl7:id/@extension"/></xsl:with-param>
+                </xsl:call-template>
+            </xsl:otherwise>
+
+        </xsl:choose>
     </xsl:template>
 
     <xd:doc>
@@ -2518,12 +2591,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:copy-of select="."/>
             </xsl:for-each>
         </xsl:variable>
+        <!--issue MP-371 copy-of (in $mar-sorted) causes namespace-uri-from-QName to fail, use a regex instead -->
         <!-- gebruiksperiode-start bij eenmalig gebruik-->
-        <xsl:variable name="effectiveTimes-eenmalig" select="$mar-sorted/hl7:effectiveTime[not(@xsi:type) or resolve-QName(xs:string(@xsi:type), .) = (QName('', 'TS'), QName('urn:hl7-org:v3', 'TS'))]"/>
+        <xsl:variable name="effectiveTimes-eenmalig" select="$mar-sorted/hl7:effectiveTime[not(@xsi:type) or replace(xs:string(@xsi:type), '(.*:)?(.+)', '$2') = 'TS']"/>
 
-        <!--issue MP-371 cannot use $mar-sorted because copy-of causes namespace-uri-from-QName to fail -->
         <!-- variable that contains all IVL_TS in all of the medicationAdministrationRequest's -->
-        <xsl:variable name="IVL_TS" as="element()*" select="$current-dispense-event/hl7:product/hl7:dispensedMedication/hl7:therapeuticAgentOf/hl7:medicationAdministrationRequest//(hl7:effectiveTime | hl7:comp)[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-org:v3', 'IVL_TS')]"/>
+        <xsl:variable name="IVL_TS" as="element()*" select="$mar-sorted//(hl7:effectiveTime | hl7:comp)[replace(xs:string(@xsi:type), '(.*:)?(.+)', '$2') = 'IVL_TS']"/>
 
         <!-- toedieningsafspraak -->
         <xsl:for-each select="$current-dispense-event">
@@ -2554,7 +2627,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <!-- in 6.12 kun je alleen een conclusie trekken over gebruiksperiode-start, als álle MARs een IVL_TS/low/@value hebben, dus hier checken we of er géén mar is zonder IVL_TS/low -->
                         <!-- extra possibility to allow for empty namespace because the copy-of in $mar-sorted has a bug in Saxon 9.9.1.7: namespace is somehow not resolved properly in a copied-of variable -->
                         <xsl:if test="not($mar-sorted[not((.//hl7:effectiveTime | .//hl7:comp)[replace(xs:string(@xsi:type), '(.*:)?(.+)', '$2') = 'IVL_TS']/hl7:low/@value)])">
-                            <!-- okay, alle mar's hebben een IVL_TS, pfieuw -->
+                            <!-- okay, alle mar's hebben een IVL_TS/low, pfieuw -->
                             <!-- er kunnen er meer dan 1 zijn in 6.12 - neem de laagste low als gebruiksperiode startdatum -->
                             <!-- omdat $mar gesorteerd is, is dat de eerste $IVL_TS -->
                             <xsl:call-template name="mp9-gebruiksperiode-start">
@@ -2576,25 +2649,38 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:when>
                             <xsl:when test="count($effectiveTimes-eenmalig) = 0"><!-- do nothing --></xsl:when>
                             <xsl:otherwise>
-                                <xsl:comment>Found more then one instruction for eenmalig gebruik. Not supported to convert this into structured information for gebruiksperiode-start</xsl:comment>
+                                <xsl:call-template name="util:logMessage">
+                                    <xsl:with-param name="level" select="$logWARN"/>
+                                    <xsl:with-param name="msg">Found more then one instruction for eenmalig gebruik. Not supported to convert this into structured information for gebruiksperiode-start</xsl:with-param>
+                                </xsl:call-template>
+                                <xsl:comment>Found more then one instruction for eenmalig gebruik in dispense event with id <xsl:value-of select="$current-dispense-event/hl7:id/@extension"/>. Not supported to convert this into structured information for gebruiksperiode-start</xsl:comment>
                             </xsl:otherwise>
                         </xsl:choose>
 
-                        <!-- alleen tijds_duur output bij 1 MAR die een width heeft, of als alle MAR's dezelfde width én alleen een width hebben. Bij meerdere MAR's berekenen we indien mogelijk de einddatum -->
+                        <!-- alleen tijds_duur output bij 1 MAR die een width heeft, 
+                            of als alle MAR's dezelfde width én dezelfde startdatum (of absentie daarvan) hebben. 
+                            Bij meerdere MAR's met verschillende startdatum berekenen we indien mogelijk de einddatum -->
+                        <xsl:variable name="AllIVL_TSHaveWidth" as="xs:boolean" select="count($IVL_TS) = count($IVL_TS[hl7:width])"/>
+                        <xsl:variable name="comparedWidth" as="element()*">
+                            <xsl:for-each-group select="$IVL_TS" group-by="concat(hl7:width/@value, hl7:width/@unit)">
+                                <xsl:sequence select="hl7:width"/>
+                            </xsl:for-each-group>
+                        </xsl:variable>
+                        <xsl:variable name="AllorNoneIVL_TSHaveStartDate" as="xs:boolean" select="count($IVL_TS/hl7:low) = 0 or count($IVL_TS) = count($IVL_TS[hl7:low])"/>
+                        <xsl:variable name="comparedStartDate" as="element()*">
+                            <xsl:for-each-group select="$IVL_TS" group-by="hl7:low/@value">
+                                <xsl:sequence select="hl7:low"/>
+                            </xsl:for-each-group>
+                        </xsl:variable>
                         <xsl:choose>
                             <xsl:when test="$current-dispense-event[count(.//hl7:medicationAdministrationRequest) = 1]">
                                 <xsl:for-each select="$IVL_TS/hl7:width[@value]">
                                     <tijds_duur value="{@value}" unit="{nf:convertTime_UCUM2ADA_unit(@unit)}"/>
                                 </xsl:for-each>
                             </xsl:when>
-                            <xsl:when test="count($IVL_TS[(*[self::hl7:width])]) gt 0">
-                                <!-- only width in IVL_TS : are they all the same? -->
-                                <xsl:variable name="comparedWidth" as="element()*">
-                                    <xsl:for-each-group select="$IVL_TS" group-by="concat(hl7:width/@value, hl7:width/@unit)">
-                                        <xsl:sequence select="hl7:width"/>
-                                    </xsl:for-each-group>
-                                </xsl:variable>
-                                <xsl:if test="count($comparedWidth) = 1">
+                            <xsl:when test="count($IVL_TS[hl7:width]) gt 0">
+                                <!-- width in IVL_TS : do they all have width/(absence of) startdate and if so, are they all the same? -->
+                                <xsl:if test="$AllIVL_TSHaveWidth and $AllorNoneIVL_TSHaveStartDate and count($comparedWidth) = 1 and count($comparedStartDate) lt 2">
                                     <tijds_duur value="{$comparedWidth/@value}" unit="{nf:convertTime_UCUM2ADA_unit($comparedWidth/@unit)}"/>
                                 </xsl:if>
                             </xsl:when>
@@ -2605,6 +2691,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <!--  zonder startdatum 'zweven' de periodes en kun je geen uitspraak doen over totale gebruiksduur-->
                         <!--  zonder width is de gebruiksperiode tot nader order en wordt er geen gebruiksperiode-eind opgenomen-->
                         <xsl:choose>
+                            <xsl:when test="$AllIVL_TSHaveWidth and $AllorNoneIVL_TSHaveStartDate and count($comparedWidth) = 1 and count($comparedStartDate) lt 2">
+                                <!-- we already have tijds_duur, no need to calculate eind, so do nothing here -->
+                            </xsl:when>
                             <!-- alle MARs IVL_TS/high/@value-->
                             <xsl:when test="not($mar-sorted[not((.//hl7:effectiveTime | .//hl7:comp)[replace(xs:string(@xsi:type), '(.*:)?(.+)', '$2') = 'IVL_TS']/hl7:high/@value)])">
                                 <!-- er kunnen er meer dan 1 zijn in 6.12 - neem de hoogste high als gebruiksperiode einddatum -->
@@ -2678,7 +2767,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </geneesmiddel_bij_toedieningsafspraak>
                 </xsl:for-each>
 
-                <xsl:apply-templates select="$current-dispense-event/hl7:product" mode="#current">
+                <xsl:apply-templates select="$current-dispense-event/hl7:product" mode="MP92">
                     <xsl:with-param name="effectiveTimes-eenmalig" select="$effectiveTimes-eenmalig"/>
                     <xsl:with-param name="hl7-current-comp" select="."/>
                     <xsl:with-param name="mar-sorted" select="$mar-sorted"/>
@@ -3435,14 +3524,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <medicamenteuze_behandeling>
             <!-- mbh id is not known in 6.12. We nullFlavor it -->
             <identificatie nullFlavor="NI"/>
-            <xsl:apply-templates select="$current-dispense-event" mode="MP92">
+            <xsl:call-template name="mp9-toedieningsafspraak-from-mp612-MP920">
                 <xsl:with-param name="current-dispense-event" select="$current-dispense-event"/>
                 <xsl:with-param name="transaction" select="$transaction"/>
-            </xsl:apply-templates>
-            <!--<xsl:call-template name="mp9-toedieningsafspraak-from-mp612-MP920">
-                <xsl:with-param name="current-dispense-event" select="$current-dispense-event"/>
-                <xsl:with-param name="transaction" select="$transaction"/>
-            </xsl:call-template>-->
+            </xsl:call-template>
         </medicamenteuze_behandeling>
     </xsl:template>
 
@@ -6749,7 +6834,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:copy>
             <xsl:apply-templates select="@conceptId" mode="deduplicateBouwstenenStep2"/>
             <xsl:attribute name="value">
-                <xsl:value-of select="ancestor::data/*/bouwstenen/*[key/text() = nf:getGroupingKeyDefaulthl72ada(current())]/@id"/>
+                <xsl:value-of select="ancestor::*[parent::data]/bouwstenen/*[key/text() = nf:getGroupingKeyDefaulthl72ada(current())]/@id"/>
             </xsl:attribute>
             <xsl:attribute name="datatype">reference</xsl:attribute>
         </xsl:copy>
