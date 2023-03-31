@@ -1,0 +1,975 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../9.2.0/beschikbaarstellen_medicatiegegevens/ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="medicatieprocesada"
+         last-update-by="medicatieprocesada"
+         creation-date="2022-02-18T09:10:04.912+01:00"
+         last-update-date="2022-03-29T08:54:59.564+02:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp92"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.301"
+                                            transactionEffectiveDate="2022-02-07T00:00:00"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="TEST REPO Scenarioset 9 (diversen VV/MVE)"
+                                            id="mg-TEST-Scenarioset9-v20">
+         <patient comment="">
+            <naamgegevens comment="">
+               <initialen value="M. "/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam comment="">
+                  <achternaam value="XXX_Nederveen"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900833" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1985-10-28" datatype="datetime"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling comment="">
+            <identificatie value="MBH_200_logistiekeverbruiksperiode_start_eind"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak comment="">
+               <identificatie value="MBH_200_logistiekeverbruiksperiode_start_eind_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <medicatieafspraak_datum_tijd value="T+0D{11:00:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T+0D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T+12M{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <voorschrijver>
+                  <zorgverlener datatype="reference" value="Bertine_van_Doorn"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="PRK_Acetylsalicylzuur_49484"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+10D{00:00:00}&gt; t/m &lt;T+12M{23:59:59}&gt;, 1 maal per dag 1 stuk, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaardthesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid unit="dag" value="1"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <verstrekkingsverzoek comment="">
+               <identificatie value="MBH_200_logistiekeverbruiksperiode_start_eind_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <verstrekkingsverzoek_datum_tijd value="T+0D{11:00:00}" datatype="datetime"/>
+               <auteur>
+                  <zorgverlener datatype="reference" value="Bertine_van_Doorn"/>
+               </auteur>
+               <te_verstrekken_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="PRK_Acetylsalicylzuur_49484"/>
+               </te_verstrekken_geneesmiddel>
+               <verbruiksperiode comment="">
+                  <start_datum_tijd value="T+0D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T+12M{23:59:59}" datatype="datetime"/>
+               </verbruiksperiode>
+               <beoogd_verstrekker>
+                  <zorgaanbieder datatype="reference" value="Apotheek_De_Gulle_Gaper"/>
+               </beoogd_verstrekker>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="MBH_200_logistiekeverbruiksperiode_start_eind_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak comment="">
+               <identificatie value="MBH_200_logistiekeverbruiksperiode_start_eind_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <toedieningsafspraak_datum_tijd value="T+0D{12:00:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T+0D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T+12M{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference" value="Apotheek_De_Gulle_Gaper"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product datatype="reference" value="HPK_Acetylsalicylzuur_1110837"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+10D{00:00:00}&gt; t/m &lt;T+12M{23:59:59}&gt;, 1 maal per dag 1 stuk, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaardthesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid unit="dag" value="1"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="MBH_200_logistiekeverbruiksperiode_start_eind_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+            <medicatieverstrekking comment="">
+               <identificatie value="MBH_200_logistiekeverbruiksperiode_start_eind_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <medicatieverstrekkings_datum_tijd value="T+0D{12:00:00}" datatype="datetime"/>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference" value="Apotheek_De_Gulle_Gaper"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="100"/>
+                  <eenheid code="245"
+                           displayName="stuk"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="HPK_Acetylsalicylzuur_1110837"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek comment="">
+                  <identificatie value="MBH_200_logistiekeverbruiksperiode_start_eind_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling comment="">
+            <identificatie value="MBH_200_herhalingen"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak comment="">
+               <identificatie value="MBH_200_herhalingen_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <medicatieafspraak_datum_tijd value="T-50D{11:05:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T-50D{00:00:00}" datatype="datetime"/>
+               </gebruiksperiode>
+               <voorschrijver>
+                  <zorgverlener datatype="reference" value="Bertine_van_Doorn"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="PRK_FUROSEMIDE_5967"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T-50D{00:00:00}&gt;, 1 maal daags 1 stuk, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaardthesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <verstrekkingsverzoek comment="">
+               <identificatie value="MBH_200_herhalingen_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <verstrekkingsverzoek_datum_tijd value="T-50D{11:05:00}" datatype="datetime"/>
+               <auteur>
+                  <zorgverlener datatype="reference" value="Bertine_van_Doorn"/>
+               </auteur>
+               <te_verstrekken_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="PRK_FUROSEMIDE_5967"/>
+               </te_verstrekken_geneesmiddel>
+               <te_verstrekken_hoeveelheid comment="">
+                  <aantal value="30"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <aantal_herhalingen value="5"/>
+               <beoogd_verstrekker>
+                  <zorgaanbieder datatype="reference" value="Apotheek_De_Gulle_Gaper"/>
+               </beoogd_verstrekker>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="MBH_200_herhalingen_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak comment="">
+               <identificatie value="MBH_200_herhalingen_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <toedieningsafspraak_datum_tijd value="T-50D{12:05:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T-50D{00:00:00}" datatype="datetime"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference" value="Apotheek_De_Gulle_Gaper"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product datatype="reference" value="HPK_FUROSEMIDE_1127047"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T-50D{00:00:00}&gt;, 1 maal daags 1 stuk, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaardthesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="MBH_200_herhalingen_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+            <medicatieverstrekking comment="">
+               <identificatie value="MBH_200_herhalingen_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <medicatieverstrekkings_datum_tijd value="T-50D{12:05:00}" datatype="datetime"/>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference" value="Apotheek_De_Gulle_Gaper"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="30"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="HPK_FUROSEMIDE_1127047"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek comment="">
+                  <identificatie value="MBH_200_herhalingen_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling comment="">
+            <identificatie value="MBH_200_afleverlocatie"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak comment="">
+               <identificatie value="MBH_200_afleverlocatie_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <medicatieafspraak_datum_tijd value="T+0D{11:07:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T+1D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T+10D{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <voorschrijver>
+                  <zorgverlener datatype="reference" value="Bertine_van_Doorn"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="PRK_FENETICILLINE_17205"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+1D{00:00:00}&gt; t/m &lt;T+10D{23:59:59}&gt;, 3 maal per dag 1 stuk, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaardthesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="3"/>
+                              </aantal>
+                              <tijdseenheid unit="dag" value="1"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <verstrekkingsverzoek comment="">
+               <identificatie value="MBH_200_afleverlocatie_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <verstrekkingsverzoek_datum_tijd value="T+0D{11:07:00}" datatype="datetime"/>
+               <auteur>
+                  <zorgverlener datatype="reference" value="Bertine_van_Doorn"/>
+               </auteur>
+               <te_verstrekken_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="PRK_FENETICILLINE_17205"/>
+               </te_verstrekken_geneesmiddel>
+               <te_verstrekken_hoeveelheid comment="">
+                  <aantal value="30"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <beoogd_verstrekker>
+                  <zorgaanbieder datatype="reference" value="Apotheek_De_Gulle_Gaper"/>
+               </beoogd_verstrekker>
+               <afleverlocatie value="Dorpsrand 200,1256ZZ Ons Dorp"/>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="MBH_200_afleverlocatie_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak comment="">
+               <identificatie value="MBH_200_afleverlocatie_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <toedieningsafspraak_datum_tijd value="T+0D{12:07:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T+1D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T+10D{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference" value="Apotheek_De_Gulle_Gaper"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product datatype="reference" value="HPK_FENETICILLINE_425087"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+1D{00:00:00}&gt; t/m &lt;T+10D{23:59:59}&gt;, 3 maal per dag 1 stuk, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaardthesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="3"/>
+                              </aantal>
+                              <tijdseenheid unit="dag" value="1"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="MBH_200_afleverlocatie_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+            <medicatieverstrekking comment="">
+               <identificatie value="MBH_200_afleverlocatie_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <medicatieverstrekkings_datum_tijd value="T+0D{12:07:00}" datatype="datetime"/>
+               <aanschrijf_datum value="T+0D{11:07:00}" datatype="datetime"/>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference" value="Apotheek_De_Gulle_Gaper"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="30"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="HPK_FENETICILLINE_425087"/>
+               </verstrekt_geneesmiddel>
+               <afleverlocatie value="Dorpsrand 200,1256ZZ Ons Dorp"/>
+               <relatie_verstrekkingsverzoek comment="">
+                  <identificatie value="MBH_200_afleverlocatie_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling comment="">
+            <identificatie value="MBH_200_logistiekeverbruiksperiode_eind"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak comment="">
+               <identificatie value="MBH_200_logistiekeverbruiksperiode_eind_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <medicatieafspraak_datum_tijd value="T-9D{11:01:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T-9D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T+200D{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <voorschrijver>
+                  <zorgverlener datatype="reference" value="Bertine_van_Doorn"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="PRK_MIZOLASTINE_48291"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T-9D{00:00:00}&gt; t/m &lt;T+200D{23:59:59}&gt;, 1 maal per dag 1 stuk, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  code="9"
+                                  displayName="Oraal"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    code="245"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid unit="dag" value="1"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <verstrekkingsverzoek comment="">
+               <identificatie value="MBH_200_logistiekeverbruiksperiode_eind_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <verstrekkingsverzoek_datum_tijd value="T-9D{11:01:00}" datatype="datetime"/>
+               <auteur>
+                  <zorgverlener datatype="reference" value="Bertine_van_Doorn"/>
+               </auteur>
+               <te_verstrekken_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="PRK_MIZOLASTINE_48291"/>
+               </te_verstrekken_geneesmiddel>
+               <verbruiksperiode comment="">
+                  <eind_datum_tijd value="T+200D{23:59:59}" datatype="datetime"/>
+               </verbruiksperiode>
+               <beoogd_verstrekker>
+                  <zorgaanbieder datatype="reference" value="Apotheek_De_Gulle_Gaper"/>
+               </beoogd_verstrekker>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="MBH_200_logistiekeverbruiksperiode_eind_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak comment="">
+               <identificatie value="MBH_200_logistiekeverbruiksperiode_eind_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <toedieningsafspraak_datum_tijd value="T-9D{12:01:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T-9D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T+200D{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference" value="Apotheek_De_Gulle_Gaper"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product datatype="reference" value="HPK_MIZOLASTINE_1101099"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T-9D{00:00:00}&gt; t/m &lt;T+200D{23:59:59}&gt;, 1 maal per dag 1 stuk, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  code="9"
+                                  displayName="Oraal"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    code="245"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid unit="dag" value="1"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <toelichting value="Distributievorm: GDS"/>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="MBH_200_logistiekeverbruiksperiode_eind_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+            <medicatieverstrekking comment="">
+               <identificatie value="MBH_200_logistiekeverbruiksperiode_eind_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <medicatieverstrekkings_datum_tijd value="T-9D{12:01:00}" datatype="datetime"/>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference" value="Apotheek_De_Gulle_Gaper"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="100"/>
+                  <eenheid code="245"
+                           displayName="stuk"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="HPK_MIZOLASTINE_1101099"/>
+               </verstrekt_geneesmiddel>
+               <distributievorm code="1"
+                                codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8"
+                                displayName="GDS"/>
+               <relatie_verstrekkingsverzoek comment="">
+                  <identificatie value="MBH_200_logistiekeverbruiksperiode_eind_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling comment="">
+            <identificatie value="MBH_200_logistiekeverbruiksperiode_duur_dagen"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak comment="">
+               <identificatie value="MBH_200_logistiekeverbruiksperiode_duur_dagen_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <medicatieafspraak_datum_tijd value="T+0D{11:02:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T+0D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T+150D{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <voorschrijver>
+                  <zorgverlener datatype="reference" value="Bertine_van_Doorn"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="PRK_PARACETAMOL_67903"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+150D{23:59:59}&gt;, 1 maal per dag 1 stuk, oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="Oraal"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <verstrekkingsverzoek comment="">
+               <identificatie value="MBH_200_logistiekeverbruiksperiode_duur_dagen_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <verstrekkingsverzoek_datum_tijd value="T+0D{11:02:00}" datatype="datetime"/>
+               <auteur>
+                  <zorgverlener datatype="reference" value="Bertine_van_Doorn"/>
+               </auteur>
+               <te_verstrekken_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="PRK_PARACETAMOL_67903"/>
+               </te_verstrekken_geneesmiddel>
+               <verbruiksperiode comment="">
+                  <tijds_duur value="50" unit="dag"/>
+               </verbruiksperiode>
+               <beoogd_verstrekker>
+                  <zorgaanbieder datatype="reference" value="Apotheek_De_Gulle_Gaper"/>
+               </beoogd_verstrekker>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="MBH_200_logistiekeverbruiksperiode_duur_dagen_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak comment="">
+               <identificatie value="MBH_200_logistiekeverbruiksperiode_duur_dagen_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <toedieningsafspraak_datum_tijd value="T+0D{12:02:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T+0D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T+150D{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference" value="Apotheek_De_Gulle_Gaper"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product datatype="reference" value="HPK_PARACETAMOL_768901"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+150D{23:59:59}&gt;, 1 maal per dag 1 stuk, oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="Oraal"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="MBH_200_logistiekeverbruiksperiode_duur_dagen_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+            <medicatieverstrekking comment="">
+               <identificatie value="MBH_200_logistiekeverbruiksperiode_duur_dagen_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <medicatieverstrekkings_datum_tijd value="T+0D{12:02:00}" datatype="datetime"/>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference" value="Apotheek_De_Gulle_Gaper"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="100"/>
+                  <eenheid code="245"
+                           displayName="stuk"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="HPK_PARACETAMOL_768901"/>
+               </verstrekt_geneesmiddel>
+               <verbruiksduur value="50" unit="dag"/>
+               <relatie_verstrekkingsverzoek comment="">
+                  <identificatie value="MBH_200_logistiekeverbruiksperiode_duur_dagen_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling comment="">
+            <identificatie value="MBH_200_financiele_indicatiecode"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak comment="">
+               <identificatie value="MBH_200_financiele_indicatiecode_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <medicatieafspraak_datum_tijd value="T+0D{11:35:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T+0D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T+13D{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <voorschrijver>
+                  <zorgverlener datatype="reference" value="Bertine_van_Doorn"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="PRK_OXAZEPAM_353"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="wordt gegenereerd"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  code="9"
+                                  displayName="oraal"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="4"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <verstrekkingsverzoek comment="">
+               <identificatie value="MBH_200_financiele_indicatiecode_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <verstrekkingsverzoek_datum_tijd value="T+0D{11:35:00}" datatype="datetime"/>
+               <auteur>
+                  <zorgverlener datatype="reference" value="Bertine_van_Doorn"/>
+               </auteur>
+               <te_verstrekken_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="PRK_OXAZEPAM_353"/>
+               </te_verstrekken_geneesmiddel>
+               <te_verstrekken_hoeveelheid comment="">
+                  <aantal value="56"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <beoogd_verstrekker>
+                  <zorgaanbieder datatype="reference" value="Apotheek_De_Gulle_Gaper"/>
+               </beoogd_verstrekker>
+               <toelichting value="Financiële indicatiecode: B2"/>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="MBH_200_financiele_indicatiecode_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="PRK_Acetylsalicylzuur_49484">
+               <product_code code="49484"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="Acetylsalicylzuur tabletmsr 100mg"
+                             codeSystemName="G-Standaard PRK"/>
+               <product_code code="103039"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="Acetylsalicylzuur tabletmsr 100mg"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="HPK_Acetylsalicylzuur_1110837">
+               <product_code code="1110837"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+               <product_code code="49484"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="Acetylsalicylzuur tabletmsr 100mg"
+                             codeSystemName="G-Standaard PRK"/>
+               <product_code code="103039"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="Acetylsalicylzuur tabletmsr 100mg"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="PRK_FUROSEMIDE_5967">
+               <product_code code="5967"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="FUROSEMIDE 40MG TABLET"
+                             codeSystemName="G-Standaard PRK"/>
+               <product_code code="16810"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="FUROSEMIDE 40MG TABLET"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="HPK_FUROSEMIDE_1127047">
+               <product_code code="1127047"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="FUROSEMIDE APOTEX TABLET 40MG"/>
+               <product_code code="5967"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="FUROSEMIDE 40MG TABLET"
+                             codeSystemName="G-Standaard PRK"/>
+               <product_code code="16810"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="FUROSEMIDE 40MG TABLET"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="PRK_FENETICILLINE_17205">
+               <product_code displayName="FENETICILLINE CAPSULE 500MG"
+                             code="17205"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"/>
+               <product_code code="41092"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="FENETICILLINE 500MG CAPSULE"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="HPK_FENETICILLINE_425087">
+               <product_code code="425087"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="BROXIL CAPSULE 500MG"/>
+               <product_code displayName="FENETICILLINE CAPSULE 500MG"
+                             code="17205"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"/>
+               <product_code code="41092"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="FENETICILLINE 500MG CAPSULE"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="PRK_MIZOLASTINE_48291">
+               <product_code code="48291"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="MIZOLASTINE TABLET MGA  10MG"/>
+               <product_code code="102164"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="MIZOLASTINE TABLET MGA  10MG"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="HPK_MIZOLASTINE_1101099">
+               <product_code code="1101099"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="MIZOLLEN TABLET MGA 10MG"/>
+               <product_code code="48291"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="MIZOLASTINE TABLET MGA  10MG"/>
+               <product_code code="102164"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="MIZOLASTINE TABLET MGA  10MG"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="PRK_PARACETAMOL_67903">
+               <product_code code="67903"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="PARACETAMOL 500MG TABLET"/>
+               <product_code code="2194"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="PARACETAMOL 500MG TABLET"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="HPK_PARACETAMOL_768901">
+               <product_code code="768901"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="PARACETAMOL PCH TABLET 500MG"/>
+               <product_code code="67903"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="PARACETAMOL 500MG TABLET"/>
+               <product_code code="2194"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="PARACETAMOL 500MG TABLET"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="PRK_OXAZEPAM_353">
+               <product_code code="353"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="OXAZEPAM 10MG TABLET"/>
+               <product_code code="1023"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="OXAZEPAM TABLET  10MG "/>
+            </farmaceutisch_product>
+            <zorgverlener id="Bertine_van_Doorn">
+               <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Bertine"/>
+                  <geslachtsnaam comment="">
+                     <voorvoegsels value="van "/>
+                     <achternaam value="Doorn"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder datatype="reference" value="Huisartsenpraktijk_Pulver_en_Partners"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="Huisartsenpraktijk_Pulver_en_Partners">
+               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+               <adresgegevens comment="">
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="1"/>
+                  <postcode value="1234AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+            <zorgaanbieder id="Apotheek_De_Gulle_Gaper">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

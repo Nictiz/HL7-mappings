@@ -181,11 +181,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <status value="unknown-stoptype"/>
                         </xsl:when>
                         <xsl:otherwise>
-                            <status>
-                                <extension url="{$urlExtHL7DataAbsentReason}">
-                                    <valueCode value="unknown"/>
-                                </extension>
-                            </status>
+                            <!-- MP-133 / MM-3618 -->
+                            <status value="active"/>
                         </xsl:otherwise>
                     </xsl:choose>
                     <!-- type bouwsteen, hier medicatiegebruik -->
