@@ -38,19 +38,41 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         <xsl:param name="agreementParties" select="(afspraak_partijen/zorgverlener/*, afspraak_partijen/patient/*, afspraak_partijen/contactpersoon/*)[1]" as="element()?"/>
-        <xsl:param name="careCoordinator" select="coordinator/zorgverlener/*" as="element()?"/>
+        <xsl:param name="careCoordinator" select="coordinator/*" as="element()?"/>
         <xsl:param name="performer" select="(uitvoerder/zorgverlener/*, uitvoerder/contactpersoon/*, uitvoerder/patient/*)[1]" as="element()?"/>
         <xsl:param name="problem" select="probleem/*" as="element()?"/>
         
         <xsl:for-each select="$in">
             <CarePlan>
+                <xsl:variable name="startDate" select="begin_datum/@value"/>
+                <xsl:variable name="endDate" select="eind_datum/@value"/>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-CareAgreement"/>
                 </meta>
                 <!-- Follows implicit zib mapping to StartDate and EndDate as described in the profile. -->
                 <status>
-                    <xsl:attribute name="value" select="'active'"/>
+                    <xsl:choose>
+                        <!-- When StartDate is present and StartDate in the future: _active_  -->
+                        <xsl:when test="nf:isFuture($startDate)">
+                            <xsl:attribute name="value" select="'active'"/>
+                        </xsl:when>
+                        
+                        <!--When StartDate is in the past and EndDate in the future or absent: _active_  -->
+                        <xsl:when test="nf:isPast($startDate) and (nf:isFuture($endDate) or not($endDate))">
+                            <xsl:attribute name="value" select="'active'"/>
+                        </xsl:when>
+                        
+                        <!-- When EndDate is in the past: _completed_  -->
+                        <xsl:when test="nf:isPast($endDate)">
+                            <xsl:attribute name="value" select="'completed'"/>
+                        </xsl:when>
+                        
+                        <!-- If no status can be derived from the start and enddate, the CarePlan status is assumed to be _unknown_.-->
+                        <xsl:otherwise>
+                            <xsl:attribute name="value" select="'unknown'"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </status>
                 <!-- Normally 'plan' for zib CareAgreement, as described in the profile. -->
                 <intent value="plan"/>
@@ -77,30 +99,32 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <author>
                         <xsl:if test="zorgverlener">
                             <xsl:call-template name="makeReference">
-                                <xsl:with-param name="in" select="$careCoordinator"/>
+                                <xsl:with-param name="in" select="."/>
                                 <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
-                            </xsl:call-template>
-                        </xsl:if>
-                        <xsl:if test="contactpersoon">
-                            <xsl:call-template name="makeReference">
-                                <xsl:with-param name="in" select="$careCoordinator"/>
-                                <xsl:with-param name="profile" select="'nl-core-ContactPerson'"/>
-                            </xsl:call-template>
-                        </xsl:if>
-                        <xsl:if test="patient">
-                            <xsl:call-template name="makeReference">
-                                <xsl:with-param name="in" select="$careCoordinator"/>
-                                <xsl:with-param name="profile" select="'nl-core-Patient'"/>
                             </xsl:call-template>
                         </xsl:if>
                     </author>
                 </xsl:for-each>
                 <xsl:for-each select="$agreementParties">
                     <contributor>
-                        <xsl:call-template name="makeReference">
-                            <xsl:with-param name="in" select="$agreementParties"/>
-                            <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
-                        </xsl:call-template>
+                        <xsl:if test="zorgverlener">
+                            <xsl:call-template name="makeReference">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
+                            </xsl:call-template>
+                        </xsl:if>
+                        <xsl:if test="contactpersoon">
+                            <xsl:call-template name="makeReference">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="profile" select="'nl-core-ContactPerson'"/>
+                            </xsl:call-template>
+                        </xsl:if>
+                        <xsl:if test="patient">
+                            <xsl:call-template name="makeReference">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="profile" select="'nl-core-Patient'"/>
+                            </xsl:call-template>
+                        </xsl:if>
                     </contributor>
                 </xsl:for-each>
                 <xsl:call-template name="makeReference">
@@ -114,16 +138,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <code>
                                 <text value="{@value}"/>
                             </code>
-                            </xsl:for-each>
-                            <!-- Follows implicit zib mapping to StartDate and EndDate as described in the profile, 'in-progress' == 'active'. -->
-                            <status>
-                                <xsl:attribute name="value" select="'in-progress'"/>
-                            </status>
-                        <xsl:call-template name="makeReference">
-                            <xsl:with-param name="in" select="$performer"/>
-                            <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
-                            <xsl:with-param name="wrapIn" select="'performer'"/>
-                        </xsl:call-template>
+                        </xsl:for-each>
+                        <!-- Follows implicit zib mapping to StartDate and EndDate as described in the profile, 'in-progress' == 'active'. -->
+                        <status>
+                            <xsl:attribute name="value" select="'in-progress'"/>
+                        </status>
+                        <xsl:for-each select="$performer">
+                            <performer>
+                                <xsl:if test="zorgverlener">
+                                    <xsl:call-template name="makeReference">
+                                        <xsl:with-param name="in" select="."/>
+                                        <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
+                                    </xsl:call-template>
+                                </xsl:if>
+                                <xsl:if test="contactpersoon">
+                                    <xsl:call-template name="makeReference">
+                                        <xsl:with-param name="in" select="."/>
+                                        <xsl:with-param name="profile" select="'nl-core-ContactPerson'"/>
+                                    </xsl:call-template>
+                                </xsl:if>
+                                <xsl:if test="patient">
+                                    <xsl:call-template name="makeReference">
+                                        <xsl:with-param name="in" select="."/>
+                                        <xsl:with-param name="profile" select="'nl-core-Patient'"/>
+                                    </xsl:call-template>
+                                </xsl:if>
+                            </performer>
+                        </xsl:for-each>
                         <xsl:for-each select="toelichting">
                             <description value="{normalize-space(@value)}"/>
                         </xsl:for-each>

@@ -593,10 +593,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$localName = 'zorg_afspraak'">
                 <xsl:apply-templates select="$in" mode="nl-core-CareAgreement">
                     <xsl:with-param name="subject" select="$subject"/>
-                    <xsl:with-param name="agreementParties" select="(afspraak_partijen/zorgverlener/*, afspraak_partijen/patient/*, afspraak_partijen/contactpersoon/*)[1]" as="element()?"/>
-                    <xsl:with-param name="careCoordinator" select="coordinator/zorgverlener/*" as="element()?"/>
-                    <xsl:with-param name="performer" select="(uitvoerder/zorgverlener/*, uitvoerder/contactpersoon/*, uitvoerder/patient/*)[1]" as="element()?"/>
-                    <xsl:with-param name="problem" select="probleem/*" as="element()?"/>
                 </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'zorg_episode'">
