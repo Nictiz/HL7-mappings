@@ -494,6 +494,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
             </xsl:when>
+            <xsl:when test="$localName = 'strong_kids_score'">
+                <xsl:apply-templates select="$in" mode="nl-core-StrongKidsScore">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'tabak_gebruik'">
                 <xsl:apply-templates select="$in" mode="nl-core-TobaccoUse">
                     <xsl:with-param name="subject" select="$subject"/>

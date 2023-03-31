@@ -116,6 +116,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="soepverslag" resource="Composition" profile="nl-core-SOAPReport"/>
         <nm:map ada="soepregel" resource="Observation" profile="nl-core-SOAPReport.SOAPLine"/>
         <nm:map ada="stoma" resource="Condition" profile="nl-core-Stoma"/>
+        <nm:map ada="strong_kids_score" resource="Observation" profile="nl-core-StrongKidsScore"/>
         <nm:map ada="sturen_medicatievoorschrift" resource="Bundle" profile="mp-MedicationPrescription-Bundle"/>
         <nm:map ada="sturen_afhandeling_medicatievoorschrift" resource="Bundle" profile="mp-MedicationPrescriptionProcessing-Bundle"/>
         <nm:map ada="sturen_antwoord_voorstel_medicatieafspraak" resource="Bundle" profile="mp-ReplyProposalMedicationAgreement-Bundle"/>
