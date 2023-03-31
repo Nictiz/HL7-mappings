@@ -54,7 +54,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <coding>
                         <system value="http://snomed.info/sct"/>
                         <code value="108341000146107"/>
-                        <display value="StrongKids-screeningsinstrument"/>
+                        <display value="STRONGkids-screeningsinstrument"/>
                     </coding>
                 </code>
                 <xsl:call-template name="makeReference">
