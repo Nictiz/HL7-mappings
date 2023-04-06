@@ -6,9 +6,10 @@
 2. Fill in the template documentation string as appropriate.
 3. Create at least the following three templates:
     1. A "main" template with a name _and_ mode of the resulting profile id.
-    2. A helper template with mode `_generateId` and a match on the ADA instance element, to generate a resource id for the resulting instance.
-    3. A helper template with mode `_generateDisplay` and a match on the ADA instance element, to generate a display for references to the resulting instance.
-4. Open the file `../fhir/2_fhir_fhir_include.xsl` and in the variable `ada2resourceType`, add the appropriate line(s) for the new mapping.
+    2. A helper template with mode `_generateDisplay` and a match on the ADA instance element, to generate a display for references to the resulting instance.
+4. Open the file `all_zibs.xsl` in the `payload/[version]` directory and add import of the new template.
+5. Open the file `../fhir/2_fhir_fhir_include.xsl` and in the variable `ada2resourceType`, add the appropriate line(s) for the new mapping.
+6. Open the file `ada_project_drivers/_driverInclude.xsl` and in the template `_applyNlCoreTemplate`, add the appropriate line(s) for the new mapping (note: whereas the previous step is required for all transformations, this part is needed specifically for ada instances from the zib2020 ADA project, it is not relevant for inclusions from other projects).
 
 ## Mapping the ADA instance to FHIR (aka the "main" template)
 
