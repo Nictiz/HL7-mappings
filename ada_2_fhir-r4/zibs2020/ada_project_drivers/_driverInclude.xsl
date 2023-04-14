@@ -649,6 +649,36 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:apply-templates select="$in" mode="nl-core-HealthProfessional-Practitioner"/>
                 </xsl:if>
             </xsl:when>
+            <xsl:when test="$localName = 'zwangerschap'">
+                <xsl:apply-templates select="$in" mode="nl-core-Pregnancy">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+                <xsl:for-each select="zwangerschapsduur">
+                    <xsl:call-template name="nl-core-Pregnancy.PregnancyDuration">
+                        <xsl:with-param name="subject" select="$subject"/>
+                    </xsl:call-template>    
+                </xsl:for-each>
+                <xsl:for-each select="pariteit">
+                    <xsl:call-template name="nl-core-Pregnancy.Parity">
+                        <xsl:with-param name="subject" select="$subject"/>
+                    </xsl:call-template>    
+                </xsl:for-each>
+                <xsl:for-each select="graviditeit">
+                    <xsl:call-template name="nl-core-Pregnancy.Gravidity">
+                        <xsl:with-param name="subject" select="$subject"/>
+                    </xsl:call-template>    
+                </xsl:for-each>
+                <xsl:for-each select="aterme_datum_items[aterme_datum | bepalings_methode | datum_bepaling]">
+                    <xsl:call-template name="nl-core-Pregnancy.EstimatedDateOfDelivery">
+                        <xsl:with-param name="subject" select="$subject"/>
+                    </xsl:call-template>    
+                </xsl:for-each>
+                <xsl:for-each select="aterme_datum_items/datum_laatste_menstruatie">
+                    <xsl:call-template name="nl-core-Pregnancy.DateLastMenstruation">
+                        <xsl:with-param name="subject" select="$subject"/>
+                    </xsl:call-template>    
+                </xsl:for-each>
+            </xsl:when>
             <xsl:otherwise>
                 <xsl:message>Unknown ada localName: '<xsl:value-of select="$localName"/>'</xsl:message>
             </xsl:otherwise>
