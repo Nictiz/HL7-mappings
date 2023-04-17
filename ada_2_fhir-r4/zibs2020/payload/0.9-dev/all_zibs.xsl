@@ -23,6 +23,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../0.8.0-beta.1/nl-core-AbilityToDrink.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-AbilityToEat.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-AbilityToGroom.xsl"/>
+    <xsl:import href="nl-core-AbilityToPerformNursingActivities.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-AbilityToUseToilet.xsl"/>
     <xsl:import href="../0.7-beta1/nl-core-AbilityToWashOneself.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-AddressInformation.xsl"/>

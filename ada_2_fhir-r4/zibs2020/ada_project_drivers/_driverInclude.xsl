@@ -559,6 +559,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
             </xsl:when>
+            <xsl:when test="$localName = 'vermogen_tot_verpleegtechnische_handelingen'">
+                <xsl:apply-templates select="$in" mode="nl-core-AbilityToPerformNursingActivities">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'vermogen_tot_zich_wassen'">
                 <xsl:apply-templates select="$in" mode="nl-core-AbilityToWashOneself">
                     <xsl:with-param name="subject" select="$subject"/>
