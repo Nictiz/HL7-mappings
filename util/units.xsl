@@ -1,16 +1,27 @@
-<xsl:stylesheet xmlns:ucum="http://unitsofmeasure.org/ucum-essence" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="#all" version="2.0">
-    <!-- uncomment for development purposes -->
-<!--        <xsl:import href="constants.xsl"/>-->
+<xsl:stylesheet xmlns:ucum="http://unitsofmeasure.org/ucum-essence" xmlns:util="urn:hl7:utilities" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="#all" version="2.0">
+
     <xd:doc>
         <xd:desc>Functions for <xd:a href="http://unitsofmeasure.org/ucum.html">UCUM</xd:a> units based on the <xd:a href="http://www.unitsofmeasure.org/ucum-essence.xml">UCUM essence</xd:a> file. This is not a complete file but little is missing.</xd:desc>
     </xd:doc>
 
     <xsl:variable name="strUcumEssence">ucum-essence.xml</xsl:variable>
-    <xsl:variable name="docUcumEssence" select="
-            if (doc-available($strUcumEssence)) then
-                doc($strUcumEssence)/ucum:root
-            else
-                ()" as="element(ucum:root)?"/>
+    <xsl:variable name="docUcumEssence" select="doc($strUcumEssence)/ucum:root" as="element(ucum:root)?"/>
+    
+    <xsl:variable name="UCUM2GstdMap" as="element()+">
+        <map UCUMCode="cm" GstdCode="205" GstdDisplayName="centimeter"/>
+        <map UCUMCode="g" GstdCode="215" GstdDisplayName="gram"/>
+        <map UCUMCode="[iU]" GstdCode="217" GstdDisplayName="internationale eenheid"/>
+        <map UCUMCode="kg" GstdCode="219" GstdDisplayName="kilogram"/>
+        <map UCUMCode="l" GstdCode="222" GstdDisplayName="liter"/>
+        <map UCUMCode="mg" GstdCode="229" GstdDisplayName="milligram"/>
+        <map UCUMCode="ml" GstdCode="233" GstdDisplayName="milliliter"/>
+        <map UCUMCode="mm" GstdCode="234" GstdDisplayName="millimeter"/>
+        <map UCUMCode="1" GstdCode="245" GstdDisplayName="stuk"/>
+        <map UCUMCode="ug" GstdCode="252" GstdDisplayName="microgram"/>
+        <map UCUMCode="ul" GstdCode="254" GstdDisplayName="microliter"/>
+        <map UCUMCode="[drp]" GstdCode="303" GstdDisplayName="druppel"/>
+    </xsl:variable>
+    
     <!--
     <base-unit Code="m" CODE="M" dim="L">
       <name>meter</name>
@@ -34,6 +45,56 @@
     </prefix>
     -->
     <xsl:key name="prefixcode" match="ucum:prefix" use="@Code"/>
+
+    <xd:doc>
+        <xd:desc>converts UCUM time to ada unit</xd:desc>
+        <xd:param name="UCUM-time"/>
+    </xd:doc>
+    <xsl:function name="nf:convertTime_UCUM2ADA_unit" as="xs:string?">
+        <xsl:param name="UCUM-time" as="xs:string?"/>
+        <xsl:if test="$UCUM-time">
+            <xsl:choose>
+                <xsl:when test="$UCUM-time = 's'">
+                    <xsl:value-of select="$ada-unit-second[1]"/>
+                </xsl:when>
+                <xsl:when test="$UCUM-time = 'min'">
+                    <xsl:value-of select="$ada-unit-minute[1]"/>
+                </xsl:when>
+                <xsl:when test="$UCUM-time = 'h'">
+                    <xsl:value-of select="$ada-unit-hour[1]"/>
+                </xsl:when>
+                <xsl:when test="$UCUM-time = 'd'">
+                    <xsl:value-of select="$ada-unit-day[1]"/>
+                </xsl:when>
+                <xsl:when test="$UCUM-time = 'wk'">
+                    <xsl:value-of select="$ada-unit-week[1]"/>
+                </xsl:when>
+                <xsl:when test="$UCUM-time = 'mo'">
+                    <xsl:value-of select="$ada-unit-month[1]"/>
+                </xsl:when>
+                <xsl:when test="$UCUM-time = 'a'">
+                    <xsl:value-of select="$ada-unit-year[1]"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- If all else fails: log message but return the input value -->
+                    <xsl:call-template name="util:logMessage">
+                        <xsl:with-param name="level" select="$logERROR"/>
+                        <xsl:with-param name="msg">Onbekende ucum tijdseenheid ('<xsl:value-of select="$UCUM-time"/>') gevonden. Kan niet converteren naar ada eenheid: input = output.</xsl:with-param>
+                    </xsl:call-template>
+                    <xsl:value-of select="$UCUM-time"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:if>
+    </xsl:function>
+
+    <xd:doc>
+        <xd:desc>Converts an UCUM unit as used in FHIR to ada time unit</xd:desc>
+        <xd:param name="UCUMFHIR">The UCUM unit string</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:convertTime_UCUM_FHIR2ADA_unit" as="xs:string?">
+        <xsl:param name="UCUMFHIR" as="xs:string?"/>
+        <xsl:value-of select="nf:convertTime_UCUM2ADA_unit($UCUMFHIR)"/>
+    </xsl:function>
 
     <xd:doc>
         <xd:desc>Return boolean true() or false() on whether or not a UCUM expression is valid expression.</xd:desc>
@@ -301,6 +362,8 @@
         </xsl:choose>
     </xsl:function>
 
+
+
     <xd:doc>
         <xd:desc>Converts ADA unit 2 UCUM</xd:desc>
         <xd:param name="ADAunit"/>
@@ -318,12 +381,12 @@
                 <xsl:when test="$ADAunit = $ada-unit-cl">cl</xsl:when>
                 <xsl:when test="$ADAunit = $ada-unit-ml">ml</xsl:when>
                 <xsl:when test="$ADAunit = $ada-unit-ul">ul</xsl:when>
-                
+
                 <xsl:when test="$ADAunit = $ada-unit-druppel">[drp]</xsl:when>
                 <xsl:when test="$ADAunit = $ada-unit-degrees-celsius">Cel</xsl:when>
                 <xsl:when test="$ADAunit = $ada-unit-pH">[pH]</xsl:when>
                 <xsl:when test="$ADAunit = $ada-unit-mmol-l">mmol/L</xsl:when>
-                
+
                 <xsl:when test="not(contains(nf:convertTime_ADA_unit2UCUM($ADAunit), 'onbekend'))">
                     <xsl:value-of select="nf:convertTime_ADA_unit2UCUM($ADAunit)"/>
                 </xsl:when>
@@ -334,7 +397,34 @@
             </xsl:choose>
         </xsl:if>
     </xsl:function>
-    
+
+    <xd:doc>
+        <xd:desc>Converts an ada unit to the UCUM unit as used in FHIR</xd:desc>
+        <xd:param name="ADAunit">The ada unit string</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:convert_ADA_unit2UCUM_FHIR" as="xs:string?">
+        <xsl:param name="ADAunit" as="xs:string?"/>
+        <xsl:if test="$ADAunit">
+            <xsl:choose>
+                <xsl:when test="$ADAunit = $ada-unit-gram">g</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-kilo">kg</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-cm">cm</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-m">m</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-mmHg">mm[Hg]</xsl:when>
+                <xsl:when test="nf:isValidUCUMUnit($ADAunit)">
+                    <xsl:value-of select="$ADAunit"/>
+                </xsl:when>
+                <xsl:when test="not(contains(nf:convertTime_ADA_unit2UCUM_FHIR($ADAunit), 'onbekend'))">
+                    <xsl:value-of select="nf:convertTime_ADA_unit2UCUM_FHIR($ADAunit)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- If all else fails: wrap in {} to make it an annotation -->
+                    <xsl:value-of select="concat('{', $ADAunit, '}')"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:if>
+    </xsl:function>
+
     <xd:doc>
         <xd:desc>Converts ADA time unit 2 UCUM</xd:desc>
         <xd:param name="ADAtime"/>
@@ -356,7 +446,7 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:if>
-    </xsl:function>    
+    </xsl:function>
 
     <xd:doc>
         <xd:desc>Converts an ada time unit to the UCUM unit as used in FHIR</xd:desc>
@@ -383,63 +473,40 @@
 
 
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="UCUM"/>
+        <xd:desc>Creates code attributes for Gstd eenheid based on UCUM input</xd:desc>
+        <xd:param name="UCUM">UCUM string</xd:param>
     </xd:doc>
     <xsl:template name="UCUM2GstdBasiseenheid">
-        <xsl:param name="UCUM"/>
-
-        <xsl:variable name="gstd-code">
-            <xsl:choose>
-                <xsl:when test="string-length($UCUM) > 0">
-                    <xsl:choose>
-                        <xsl:when test="$UCUM = 'cm'">205</xsl:when>
-                        <xsl:when test="$UCUM = 'g'">215</xsl:when>
-                        <xsl:when test="$UCUM = '[iU]'">217</xsl:when>
-                        <xsl:when test="$UCUM = 'kg'">219</xsl:when>
-                        <xsl:when test="$UCUM = 'l'">222</xsl:when>
-                        <xsl:when test="$UCUM = 'mg'">229</xsl:when>
-                        <xsl:when test="$UCUM = 'ml'">233</xsl:when>
-                        <xsl:when test="$UCUM = 'mm'">234</xsl:when>
-                        <xsl:when test="$UCUM = '1'">245</xsl:when>
-                        <xsl:when test="$UCUM = 'ug'">252</xsl:when>
-                        <xsl:when test="$UCUM = 'ul'">254</xsl:when>
-                        <xsl:when test="$UCUM = '[drp]'">303</xsl:when>
-                        <xsl:otherwise>Not supported UCUM eenheid, cannot convert to G-standaard basiseenheid: <xsl:value-of select="$UCUM"/></xsl:otherwise>
-                    </xsl:choose>
-                </xsl:when>
-                <xsl:otherwise>
-                    <!-- geen waarde meegekregen --> UCUM is an empty string. Not supported to convert to G-standaard basiseenheid. </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="gstd-displayname">
-            <xsl:choose>
-                <xsl:when test="string-length($UCUM) > 0">
-                    <xsl:choose>
-                        <xsl:when test="$UCUM = 'cm'">centimeter</xsl:when>
-                        <xsl:when test="$UCUM = 'g'">gram</xsl:when>
-                        <xsl:when test="$UCUM = '[iU]'">internationale eenheid</xsl:when>
-                        <xsl:when test="$UCUM = 'kg'">kilogram</xsl:when>
-                        <xsl:when test="$UCUM = 'l'">liter</xsl:when>
-                        <xsl:when test="$UCUM = 'mg'">milligram</xsl:when>
-                        <xsl:when test="$UCUM = 'ml'">milliliter</xsl:when>
-                        <xsl:when test="$UCUM = 'mm'">millimeter</xsl:when>
-                        <xsl:when test="$UCUM = '1'">stuk</xsl:when>
-                        <xsl:when test="$UCUM = 'ug'">microgram</xsl:when>
-                        <xsl:when test="$UCUM = 'ul'">microliter</xsl:when>
-                        <xsl:when test="$UCUM = '[drp]'">druppel</xsl:when>
-                        <xsl:otherwise>Not supported UCUM eenheid, cannot convert to G-standaard basiseenheid: <xsl:value-of select="$UCUM"/></xsl:otherwise>
-                    </xsl:choose>
-                </xsl:when>
-                <xsl:otherwise>
-                    <!-- geen waarde meegekregen --> UCUM is an empty string. Not supported to convert to G-standaard basiseenheid. </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:attribute name="code" select="$gstd-code"/>
-        <xsl:attribute name="codeSystem" select="$oidGStandaardBST902THES2"/>
-        <xsl:attribute name="codeSystemName">G-Standaard thesaurus basiseenheden</xsl:attribute>
-        <xsl:attribute name="displayName" select="$gstd-displayname"/>
-    </xsl:template>
+        <xsl:param name="UCUM" as="xs:string?"/>
+        
+        <xsl:choose>
+            <xsl:when test="string-length($UCUM) > 0">
+                <xsl:choose>
+                    <xsl:when test="string-length($UCUM2GstdMap[@UCUMCode = normalize-space($UCUM)]/@GstdCode) gt 0">
+                        <xsl:attribute name="code" select="$UCUM2GstdMap[@UCUMCode = normalize-space($UCUM)]/@GstdCode"/>
+                        <xsl:attribute name="codeSystem" select="$oidGStandaardBST902THES2"/>
+                        <xsl:attribute name="codeSystemName">G-Standaard thesaurus basiseenheden</xsl:attribute>
+                        <xsl:attribute name="displayName" select="$UCUM2GstdMap[@UCUMCode = normalize-space($UCUM)]/@GstdDisplayName"/>                        
+                    </xsl:when>
+                    <!-- unsupported input value, log message and do nothing -->
+                    <xsl:otherwise>
+                        <xsl:call-template name="util:logMessage">
+                            <xsl:with-param name="level" select="$logWARN"/>
+                            <xsl:with-param name="msg">Not supported UCUM eenheid, cannot convert to G-standaard basiseenheid: <xsl:value-of select="$UCUM"/></xsl:with-param>
+                        </xsl:call-template>                        
+                    </xsl:otherwise>                    
+                </xsl:choose>                  
+            </xsl:when>
+            <!-- empty input value, log message and do nothing -->
+            <xsl:otherwise>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logWARN"/>
+                    <xsl:with-param name="msg">UCUM is an empty string. Not supported to convert to G-standaard basiseenheid.</xsl:with-param>
+                </xsl:call-template>   
+            </xsl:otherwise>
+        </xsl:choose>
+        
+     </xsl:template>
 
     <!--<xsl:output omit-xml-declaration="yes" indent="yes"/>
     <xsl:template match="/">

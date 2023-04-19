@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composition xmlns="http://hl7.org/fhir">
+   <id value="nl-core-SOAPReport-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-SOAPReport"/>
+   </meta>
+   <status value="final"/>
+   <type>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="11591000146107"/>
+         <display value="patiëntcontactverslag"/>
+      </coding>
+   </type>
+   <date value="2019-07-21"/>
+   <author>
+      <reference value="PractitionerRole/nl-core-SOAPReport-01-PractitionerRole-01"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), H.A. Janszens"/>
+   </author>
+   <title value="Geneesmiddelbijwerking"/>
+   <section>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="255362007"/>
+            <display value="Subjective"/>
+         </coding>
+      </code>
+      <text>
+         <status value="generated"/>
+         <div xmlns="http://www.w3.org/1999/xhtml">SOAPLineText: Sinds 2 maanden hoesten. Begonnen na start enalapril. Een weekje gestopt, klachten toen weg. Na hervatten klachten weer terug gekomen. (SOAPLineCode: Hoesten)</div>
+      </text>
+      <entry>
+         <reference value="Observation/nl-core-SOAPReport.SOAPLine-01"/>
+         <type value="Observation"/>
+         <display value="SOAP line observation, Subjective, code Hoesten"/>
+      </entry>
+   </section>
+   <section>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="260224007"/>
+            <display value="Objective"/>
+         </coding>
+      </code>
+      <text>
+         <status value="generated"/>
+         <div xmlns="http://www.w3.org/1999/xhtml">SOAPLineText: Keelinspectie geen bijzonderheden, pulmonaal vesiculair ademgeruis (VAG)</div>
+      </text>
+      <entry>
+         <reference value="Observation/nl-core-SOAPReport.SOAPLine-02"/>
+         <type value="Observation"/>
+         <display value="SOAP line observation, Objective"/>
+      </entry>
+   </section>
+   <section>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="129265001"/>
+            <display value="Evaluatie"/>
+         </coding>
+      </code>
+      <text>
+         <status value="generated"/>
+         <div xmlns="http://www.w3.org/1999/xhtml">SOAPLineText: bijwerking ACE-remmer (SOAPLineCode: Geneesmiddelbijwerking)</div>
+      </text>
+      <entry>
+         <reference value="Observation/nl-core-SOAPReport.SOAPLine-03"/>
+         <type value="Observation"/>
+         <display value="SOAP line observation, Evaluatie, code Geneesmiddelbijwerking"/>
+      </entry>
+   </section>
+   <section>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="129271007"/>
+            <display value="Beleid"/>
+         </coding>
+      </code>
+      <text>
+         <status value="generated"/>
+         <div xmlns="http://www.w3.org/1999/xhtml">SOAPLineText: Overzetten van enalapril naar telmisartan. Evaluatie over 2 weken.</div>
+      </text>
+      <entry>
+         <reference value="Observation/nl-core-SOAPReport.SOAPLine-04"/>
+         <type value="Observation"/>
+         <display value="SOAP line observation, Beleid"/>
+      </entry>
+   </section>
+</Composition>

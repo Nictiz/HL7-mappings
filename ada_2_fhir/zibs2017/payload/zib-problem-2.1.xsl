@@ -45,7 +45,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </reference-display>
                 <xsl:apply-templates select="current-group()[1]" mode="doProblemEntry-2.1">
                     <xsl:with-param name="uuid" select="$uuid"/>
-                    <xsl:with-param name="searchMode">match</xsl:with-param>
+                    <xsl:with-param name="searchMode">include</xsl:with-param>
                 </xsl:apply-templates>
             </unieke-problem>
         </xsl:for-each-group>
@@ -60,7 +60,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="theGroupElement" select="$problems[group-key = $theGroupKey]" as="element()?"/>
         <xsl:choose>
             <xsl:when test="$theGroupElement">
-                <reference value="{nf:getFullUrlOrId($theGroupElement/f:entry)}"/>
+                <xsl:variable name="fullUrl" select="nf:getFullUrlOrId(($theGroupElement/f:entry)[1])"/>
+                <reference value="{$fullUrl}"/>
             </xsl:when>
             <xsl:when test="$theIdentifier">
                 <identifier>
@@ -89,23 +90,38 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
-        <xsl:param name="entryFullUrl" select="nf:get-fhir-uuid(.)"/>
+        <xsl:param name="entryFullUrl">
+            <xsl:choose>
+                <xsl:when test="$uuid or empty((zibroot/identificatienummer | hcimroot/identification_number)/@value)">
+                    <xsl:value-of select="nf:get-fhir-uuid(.)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="nf:getUriFromAdaId(zibroot/identificatienummer | hcimroot/identification_number, 'Condition', false())"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:param>
+        <!--<xsl:param name="entryFullUrl" select="nf:get-fhir-uuid(.)"/>-->
         <xsl:param name="fhirResourceId">
-            <xsl:if test="$referById">
-                <xsl:choose>
-                    <xsl:when test="not($uuid) and string-length(nf:removeSpecialCharacters((zibroot/identificatienummer | hcimroot/identification_number)/@value)) gt 0">
-                        <xsl:value-of select="nf:removeSpecialCharacters(string-join((zibroot/identificatienummer | hcimroot/identification_number)/@value, ''))"/>
-                    </xsl:when>
-                    <!-- specific handling for MP prescribe reasons for more stable id -->
-                    <xsl:when test="./ancestor::reden_van_voorschrijven[probleem/probleem_naam[@code][not(@codeSystem = $oidHL7NullFlavor)]]">
-                        <xsl:variable name="patientRef" select="$patients[group-key = nf:getGroupingKeyPatient($adaPatient)]/f:entry/f:resource/f:Patient/f:id/@value" as="xs:string?"/>
-                        <xsl:value-of select="concat('redenvoorschrijven', $patientRef, (upper-case(nf:removeSpecialCharacters(string-join(.//(@value | @code), '')))))"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:if>
+            <xsl:choose>
+                <xsl:when test="$referById">
+                    <xsl:choose>
+                        <xsl:when test="not($uuid) and string-length(nf:removeSpecialCharacters((zibroot/identificatienummer | hcimroot/identification_number)/@value)) gt 0">
+                            <xsl:value-of select="nf:removeSpecialCharacters(string-join((zibroot/identificatienummer | hcimroot/identification_number)/@value, ''))"/>
+                        </xsl:when>
+                        <!-- specific handling for MP prescribe reasons for more stable id -->
+                        <xsl:when test="./ancestor::reden_van_voorschrijven[probleem/probleem_naam[@code][not(@codeSystem = $oidHL7NullFlavor)]]">
+                            <xsl:variable name="patientRef" select="$patients[group-key = nf:getGroupingKeyPatient($adaPatient)]/f:entry/f:resource/f:Patient/f:id/@value" as="xs:string?"/>
+                            <xsl:value-of select="concat('redenvoorschrijven', $patientRef, (upper-case(nf:removeSpecialCharacters(string-join(.//(@value | @code), '')))))"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+                <xsl:when test="matches($entryFullUrl, '^https?:')">
+                    <xsl:value-of select="tokenize($entryFullUrl, '/')[last()]"/>
+                </xsl:when>
+            </xsl:choose>
         </xsl:param>
         <xsl:param name="searchMode">include</xsl:param>
 
@@ -148,16 +164,32 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:for-each select="$in">
             <xsl:variable name="currentAdaTransaction" select="./ancestor::*[ancestor::data]"/>
+            <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-Problem</xsl:variable>
             <xsl:variable name="resource">
                 <Condition>
-                    <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-Problem</xsl:variable>
                     <xsl:if test="string-length($logicalId) gt 0">
-                        <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
+                        <xsl:choose>
+                            <xsl:when test="$referById">
+                                <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <id value="{$logicalId}"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:if>
+                    
                     <meta>
                         <profile value="{$profileValue}"/>
                     </meta>
 
+                    <xsl:for-each select="zibroot/identificatienummer[@value] | hcimroot/identification_number[@value]">
+                        <identifier>
+                            <xsl:call-template name="id-to-Identifier">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </identifier>
+                    </xsl:for-each>
+                    
                     <!-- Clinical Status, mapping https://simplifier.net/NictizSTU3-Zib2017/ProbleemStatusCodelijst-to-Condition-Clinical-Status-Codes-->
                     <!-- probleem status -->
                     <clinicalStatus>
@@ -168,10 +200,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:when test="(problem_status | probleem_status)/@code = '55561003'">
                                 <xsl:attribute name="value">active</xsl:attribute>
                             </xsl:when>
-                            <xsl:otherwise>
+                            <!--<xsl:otherwise>
                                 <extension url="{$urlExtHL7DataAbsentReason}">
                                     <valueCode value="unknown"/>
                                 </extension>
+                            </xsl:otherwise>-->
+                            <xsl:otherwise>
+                                <xsl:attribute name="value">active</xsl:attribute>
                             </xsl:otherwise>
                         </xsl:choose>
                         <!-- MM-1036 add code.specification extension -->
@@ -185,7 +220,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <verificationStatus>
                             <xsl:attribute name="value">
                                 <xsl:choose>
-                                    <xsl:when test=". = '415684004'">provisional"</xsl:when>
+                                    <xsl:when test=". = '415684004'">provisional</xsl:when>
                                     <xsl:when test=". = '410590009'">differential</xsl:when>
                                     <xsl:when test=". = '410605003'">confirmed</xsl:when>
                                     <xsl:when test=". = '410516002'">refuted</xsl:when>
