@@ -11,7 +11,7 @@
             Typically not all resources in a Bundle have the same searchMode. Defaults to global param $searchMode</xd:param>
     </xd:doc>
     <xsl:template match="f:resource" mode="addBundleEntrySearchOrRequest">
-        <!-- AWE: need to distinguish between match and include, which can only be done when invoking this template, so add param here -->
+        <!-- AWE: need to distinguish between match and include, which can only be done when invoking this template, so set this param here if needed -->
         <xsl:param name="entrySearchMode" select="$searchMode"/>
         <xsl:copy>
             <xsl:apply-templates select="@* | node()" mode="#current"/>

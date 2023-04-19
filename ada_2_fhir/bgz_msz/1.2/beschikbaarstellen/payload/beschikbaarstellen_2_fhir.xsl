@@ -50,21 +50,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="bundle/*/local-name() = 'advance_directive'">
                     <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
                 </xsl:when>
-                <!--<xsl:when test="bundle/*/local-name() = 'contact'">
-                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
-                </xsl:when>-->
-                <!--<xsl:when test="bundle/*/local-name() = 'health_professional'">
-                    <xsl:copy-of select="$patients/f:entry, $organizations/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
-                </xsl:when>-->
                 <xsl:when test="bundle/*/local-name() = 'laboratory_test_result'">
                     <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry"/>
                 </xsl:when>
                 <xsl:when test="bundle/*/local-name() = 'medical_device'">
                     <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
                 </xsl:when>
-                <!--<xsl:when test="bundle/*/local-name() = 'patient'">
-                    <xsl:copy-of select="$practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
-                </xsl:when>-->
                 <xsl:when test="bundle/*/local-name() = 'problem'">
                     <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
                 </xsl:when>
@@ -99,7 +90,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:variable>
                 
                 <!--Zibs that result in only a single resource, or  resources that have no special conditions-->
-                <xsl:if test="local-name() = ('advance_directive', 'alcohol_use', 'alert', 'allergy_intolerance', 'blood_pressure', 'body_height', 'body_weight', 'contact', 'drug_use', 'encounter', 'functional_or_mental_status', 'living_situation', 'nutrition_advice', 'patient', 'payer', 'problem', 'tobacco_use', 'treatment_directive')">
+                <xsl:if test="local-name() = ('advance_directive', 'alcohol_use', 'alert', 'allergy_intolerance', 'blood_pressure', 'body_height', 'body_weight', 'drug_use', 'encounter', 'functional_or_mental_status', 'living_situation', 'nutrition_advice', 'payer', 'problem', 'tobacco_use', 'treatment_directive')">
                     <entry xmlns="http://hl7.org/fhir">
                         <xsl:if test="local-name() = 'advance_directive'">
                             <fullUrl value="{concat('zib-AdvanceDirective-', $usecase, '-', $patientName, '-advdir', position())}"/>
@@ -171,16 +162,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:call-template>
                             </resource>
                         </xsl:if>
-                        <!--<xsl:if test="local-name() = 'contact'">
-                            <fullUrl value="{concat('zib-ContactPerson-', $usecase, '-', $patientName, '-contactperson', position())}"/>
-                            <resource>
-                                <xsl:call-template name="nl-core-relatedperson-2.0">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-contactperson', position())"/>
-                                </xsl:call-template>
-                            </resource>
-                        </xsl:if>-->
                         <xsl:if test="local-name() = 'drug_use'">
                             <fullUrl value="{concat('zib-DrugUse-', $usecase, '-', $patientName, '-druguse', position())}"/>
                             <resource>
@@ -211,15 +192,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:call-template>
                             </resource>
                         </xsl:if>
-                        <!--<xsl:if test="local-name() = 'healthcare_provider'">
-                            <fullUrl value="{concat('zib-HealthcareProvider-', $usecase, '-', $patientName, '-healthcareProv', position())}"/>
-                            <resource>
-                                <xsl:call-template name="nl-core-organization-2.0">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-healthcareProv', position())"/>
-                                </xsl:call-template>
-                            </resource>
-                        </xsl:if>-->
                         <xsl:if test="local-name() = 'living_situation'">
                             <fullUrl value="{concat('zib-LivingSituation-', $usecase, '-', $patientName, '-living', position())}"/>
                             <resource>
@@ -240,15 +212,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:call-template>
                             </resource>
                         </xsl:if>
-                        <!--<xsl:if test="local-name() = 'patient'">
-                            <fullUrl value="{nf:getUriFromAdaId(., 'Patient', false())}"/>
-                            <resource>
-                                <xsl:call-template name="nl-core-patient-2.1">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
-                                </xsl:call-template>
-                            </resource>
-                        </xsl:if>-->
                         <xsl:if test="local-name() = 'payer'">
                             <fullUrl value="{concat('zib-Payer-', $usecase, '-', $patientName, '-payer', position())}"/>
                             <resource>
@@ -295,37 +258,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </entry>
                 </xsl:if>
                 
-                <!--Additional resources or resources with special conditions-->
-                <!--<xsl:if test="local-name() = 'health_professional'">
-                    <entry>
-                        <!-\-<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Practitioner', false())}"/>-\->
-                        <fullUrl value="{concat('zib-Practitioner-', $usecase, '-', $patientName, '-', position())}"/>
-                        <resource>
-                            <xsl:call-template name="nl-core-practitioner-2.0">
-                                <xsl:with-param name="in" select="."/>
-                                <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
-                            </xsl:call-template>
-                        </resource>
-                        <search>
-                            <mode value="match"/>
-                        </search>
-                    </entry>
-                    
-                    <entry>
-                        <!-\-<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'PractitionerRole', false())}"/>-\->
-                        <fullUrl value="{concat('zib-PractitionerRole-', $usecase, '-', $patientName, '-', position())}"/>
-                        <resource>
-                            <xsl:call-template name="nl-core-practitionerrole-2.0">
-                                <xsl:with-param name="in" select="."/>
-                                <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
-                            </xsl:call-template>
-                        </resource>
-                        <search>
-                            <mode value="match"/>
-                        </search>
-                    </entry>
-                </xsl:if>-->
-                
+                <!--Additional resources or resources with special conditions-->                
                 <xsl:if test="local-name() = 'laboratory_test_result'">
                     <xsl:if test="panel_or_battery[@code]">
                         <entry>
