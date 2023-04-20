@@ -1,0 +1,103 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_contraindicatie.xsd">
+    <meta status="new" created-by="medicatieprocesada" last-update-by="medicatieprocesada" creation-date="2023-04-14T16:28:41.711+02:00" last-update-date="2023-04-18T19:05:21.181+02:00"/>
+    <data>
+        <beschikbaarstellen_contraindicatie app="cio" shortName="beschikbaarstellen_contraindicatie" formName="beschikbaarstellen_contraindicaties" transactionRef="2.16.840.1.113883.2.4.3.11.60.26.4.18" transactionEffectiveDate="2020-06-22T10:18:30" versionDate="" prefix="cio-" language="nl-NL" title="0.2 Meerdere medicatie contra-indicaties" desc="" id="bci-tst-0.2-meerdere">
+            <patient conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.302">
+                <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.670">
+                    <voornamen value="N" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.742"/>
+                    <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.746">
+                        <achternaam value="XXX_Roelfsema" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.748"/>
+                    </geslachtsnaam>
+                </naamgegevens>
+                <identificatienummer value="999900146" root="2.16.840.1.113883.2.4.3.11.999.26.1.5" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.703"/>
+                <geboortedatum value="1963-09-21" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.704"/>
+                <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.705" value="3" code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            </patient>
+            <medicatie_contra_indicatie conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.2">
+                <identificatie value="MCI-epilepsie" root="2.16.840.1.113883.2.4.3.11.999.26.1.2" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.288"/>
+                <medicatie_contra_indicatie_naam code="42" codeSystem="2.16.840.1.113883.2.4.4.1.902.40" codeSystemName="G-standaard Contra Indicaties (Thesaurus 40)" displayName="Epilepsie" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.283"/>
+                <medicatie_contra_indicatie_status conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.715" value="1" code="15240007" codeSystem="2.16.840.1.113883.6.96" displayName="Actief"/>
+                <registratie_datum_tijd value="T-20Y{13:20:48}" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.753"/>
+                <start_bewaking_datum_tijd value="T-20Y{13:20:48}" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.284"/>
+                <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.289">
+                    <zorgverlener value="N-van-Erven" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.292"/>
+                </auteur>
+            </medicatie_contra_indicatie>
+            <medicatie_contra_indicatie conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.2">
+                <identificatie value="MCI-zwangerschap-2" root="2.16.840.1.113883.2.4.3.11.999.26.1.2" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.288"/>
+                <medicatie_contra_indicatie_naam code="1320" codeSystem="2.16.840.1.113883.2.4.4.1.902.40" codeSystemName="G-standaard Contra Indicaties (Thesaurus 40)" displayName="Zwangerschap" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.283"/>
+                <medicatie_contra_indicatie_status conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.715" value="2" code="410513005" codeSystem="2.16.840.1.113883.6.96" displayName="Inactief"/>
+                <registratie_datum_tijd value="T-29Y{10:11:42}" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.753"/>
+                <start_bewaking_datum_tijd value="T-30Y{08:54:38}" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.284"/>
+                <datum_tijd_afsluiten value="T-29Y{10:11:42}" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.287"/>
+                <relatie_medicatie_contra_indicatie conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.741">
+                    <identificatie value="MCI-zwangerschap-1" root="2.16.840.1.113883.2.4.3.11.999.26.1.2" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.732"/>
+                </relatie_medicatie_contra_indicatie>
+                <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.289">
+                    <zorgverlener value="Peter-van-Pulver" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.292"/>
+                </auteur>
+            </medicatie_contra_indicatie>
+            <medicatie_contra_indicatie conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.2">
+                <identificatie value="MCI-zwangerschap-1" root="2.16.840.1.113883.2.4.3.11.999.26.1.2" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.288"/>
+                <medicatie_contra_indicatie_naam code="1320" codeSystem="2.16.840.1.113883.2.4.4.1.902.40" codeSystemName="G-standaard Contra Indicaties (Thesaurus 40)" displayName="Zwangerschap" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.283"/>
+                <medicatie_contra_indicatie_status conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.715" value="1" code="15240007" codeSystem="2.16.840.1.113883.6.96" displayName="Actief"/>
+                <registratie_datum_tijd value="T-30Y{08:54:38}" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.753"/>
+                <start_bewaking_datum_tijd value="T-30Y{08:54:38}" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.284"/>
+                <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.289">
+<!--                    <zorgverlener value="Peter-van-Pulver" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.292"/>-->
+                    <zorgaanbieder value="Huisartsenpraktijk-Pulver-en-Partners" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.736"/>
+                </auteur>
+            </medicatie_contra_indicatie>
+            <bouwstenen conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.294">
+                <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.591" id="N-van-Erven">
+                    <zorgverlener_identificatienummer value="000003332" root="2.16.840.1.113883.2.4.3.11.999.26.1.139" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.592"/>
+                    <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.593">
+                        <voornamen value="N" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.594"/>
+                        <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.598">
+                            <voorvoegsels value="van" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.599"/>
+                            <achternaam value="Erven" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.600"/>
+                        </geslachtsnaam>
+                    </naamgegevens>
+                    <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.605" value="32" code="0330" codeSystem="2.16.840.1.113883.2.4.6.7" codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)" codeSystemVersion="2020-10-23T00:00:00" displayName="Medisch specialisten, neurologie"/>
+                    <zorgaanbieder value="Algemeen-Stadsziekenhuis" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.631"/>
+                </zorgverlener>
+                <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.591" id="Peter-van-Pulver">
+                    <zorgverlener_identificatienummer value="000001111" root="2.16.840.1.113883.2.4.3.11.999.26.1.139" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.592"/>
+                    <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.593">
+                        <voornamen value="Peter" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.594"/>
+                        <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.598">
+                            <voorvoegsels value="van" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.599"/>
+                            <achternaam value="Pulver" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.600"/>
+                        </geslachtsnaam>
+                    </naamgegevens>
+                    <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.605" value="2" code="0100" codeSystem="2.16.840.1.113883.2.4.6.7" codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)" codeSystemVersion="2020-10-23T00:00:00" displayName="Huisartsen, niet nader gespecificeerd"/>
+                    <zorgaanbieder value="Huisartsenpraktijk-Pulver-en-Partners" datatype="reference" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.631"/>
+                </zorgverlener>
+                <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.632" id="Algemeen-Stadsziekenhuis">
+                    <zorgaanbieder_identificatienummer value="00002222" root="2.16.840.1.113883.2.4.3.11.999.26.1.205" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.633"/>
+                    <organisatie_naam value="Algemeen Stadsziekenhuis" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.634"/>
+                    <afdeling_specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.635" value="31" code="0330" codeSystem="2.16.840.1.113883.2.4.6.7" codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)" codeSystemVersion="2020-10-23T00:00:00" displayName="Medisch specialisten, neurologie"/>
+                    <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.645">
+                        <straat value="Hoofdstraat" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.646"/>
+                        <huisnummer value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.647"/>
+                        <postcode value="2143AA " conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.651"/>
+                        <woonplaats value="Zorgstad" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.652"/>
+                        <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.656" value="5" code="WP" codeSystem="2.16.840.1.113883.5.1119" displayName="Werkadres"/>
+                    </adresgegevens>
+                </zorgaanbieder>
+                <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.632" id="Huisartsenpraktijk-Pulver-en-Partners">
+                    <zorgaanbieder_identificatienummer value="00001111" root="2.16.840.1.113883.2.4.3.11.999.26.1.205" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.633"/>
+                    <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.634"/>
+                    <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.645">
+                        <straat value="Dorpstraat" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.646"/>
+                        <huisnummer value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.647"/>
+                        <postcode value="1234AA" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.651"/>
+                        <woonplaats value="Ons Dorp" conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.652"/>
+                        <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.26.2.2.656" value="5" code="WP" codeSystem="2.16.840.1.113883.5.1119" displayName="Werkadres"/>
+                    </adresgegevens>
+                </zorgaanbieder>
+            </bouwstenen>
+        </beschikbaarstellen_contraindicatie>
+    </data>
+</adaxml>
