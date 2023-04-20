@@ -27,13 +27,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <recordTarget>
                 <patientRole>
-                    <xsl:for-each select="(patient_identificatienummer | identificatienummer)">
-                        <xsl:call-template name="makeIIValue">
-                            <xsl:with-param name="root" select="./@root"/>
-                            <xsl:with-param name="elemName">id</xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:for-each>
+                    <!-- hl7 id required in xsd -->
+                    <xsl:choose>
+                        <xsl:when test="(patient_identificatienummer | identificatienummer)[@value|@root]">
+                            <xsl:for-each select="(patient_identificatienummer | identificatienummer)[@value|@root]">
+                                <xsl:call-template name="makeIIValue">
+                                    <xsl:with-param name="root" select="./@root"/>
+                                    <xsl:with-param name="elemName">id</xsl:with-param>
+                                    <xsl:with-param name="nullFlavor"></xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:for-each>                            
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <id nullFlavor="NI"/>
+                        </xsl:otherwise>                        
+                    </xsl:choose>
                     
+                       
                     <!-- Adres -->
                     <xsl:for-each select=".//adresgegevens[not(adresgegevens)][.//(@value | @code | @nullFlavor)]">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.101_20170602000000">

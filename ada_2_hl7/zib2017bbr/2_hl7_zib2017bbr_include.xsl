@@ -508,6 +508,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
+        <xd:desc>severity observation</xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3.18_20180611000000" match="ernst" mode="HandleErnst">
+        <observation classCode="OBS" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.18"/>
+            <code code="SEV" displayName="Severity Observation" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode"/>
+            <xsl:call-template name="makeCDValue"/>
+        </observation>
+    </xsl:template>
+
+
+    <xd:doc>
         <xd:desc>problem observation diagnose based on ada element probleem, defaults to problem type diagnosis</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.3.19_20180611000000" match="probleem" mode="HandleProblemObservationDiagnose">
