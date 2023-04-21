@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AllergyIntolerance xmlns="http://hl7.org/fhir">
+   <id value="2eca0276-e04b-11ed-1959-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-HypersensitivityDispositionReaction"/>
+   </meta>
+   <extension url="http://hl7.org/fhir/StructureDefinition/allergyintolerance-assertedDate">
+      <valueDateTime value="${DATE, T, D, -20}T14:30:54+02:00"/>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.3"/>
+      <value value="Ov_SSK CHLOORAMFENICOL OCULAIR"/>
+   </identifier>
+   <clinicalStatus>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical"/>
+         <code value="active"/>
+         <display value="Active"/>
+      </coding>
+   </clinicalStatus>
+   <category value="medication">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="419511003"/>
+               <display value="geneesmiddelen"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </category>
+   <code>
+      <coding>
+         <code value="3875"/>
+         <display value="CHLOORAMFENICOL OCULAIR"/>
+      </coding>
+   </code>
+   <patient>
+      <reference value="Patient/NicolaasvanXXX-Verbeek"/>
+      <type value="Patient"/>
+      <display value="Patient, Nicolaas van XXX_Verbeek"/>
+   </patient>
+   <recordedDate value="${DATE, T, D, -20}T14:30:54+02:00"/>
+   <recorder>
+      <reference value="PractitionerRole/PrcRol-216840111388324311999261139-000001111"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+   </recorder>
+   <asserter>
+      <reference value="PractitionerRole/PrcRol-216840111388324311999261139-000001111"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+   </asserter>
+   <reaction>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Reaction.Identification">
+         <valueIdentifier>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.4"/>
+            <value value="Re-HPK DEXAMETHAS/CHLOORAMFENI/POLYM-B OOGDR"/>
+         </valueIdentifier>
+      </extension>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Reaction.RegistrationDateTime">
+         <valueDateTime value="${DATE, T, D, -20}T14:30:54+02:00"/>
+      </extension>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Reaction.Author">
+         <valueReference>
+            <reference value="PractitionerRole/PrcRol-216840111388324311999261139-000001111"/>
+            <type value="PractitionerRole"/>
+            <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+         </valueReference>
+      </extension>
+      <substance>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+            <code value="462241"/>
+            <display value="DEXAMETHAS/CHLOORAMFENI/POLYM-B OOGDR FL10ML FNAMR"/>
+         </coding>
+      </substance>
+      <description value="jeuk, zwelling en roodheid van het ooglid en slijmvlies"/>
+      <onset value="${DATE, T, D, -21}"/>
+      <severity value="moderate"/>
+   </reaction>
+</AllergyIntolerance>

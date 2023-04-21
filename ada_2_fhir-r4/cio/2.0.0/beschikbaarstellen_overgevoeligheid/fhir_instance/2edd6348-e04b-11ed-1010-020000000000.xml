@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="2edd6348-e04b-11ed-1010-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-Reaction"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+      <valueBoolean value="true"/>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.4"/>
+      <value value="Re2-SNK AMOXICILLINE"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="281647001"/>
+         <display value="ongewenste reactie"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/NicolaasvanXXX-Verbeek"/>
+      <type value="Patient"/>
+      <display value="Patient, Nicolaas van XXX_Verbeek"/>
+   </subject>
+   <effectivePeriod>
+      <start value="${DATE, T, D, -1403}"/>
+   </effectivePeriod>
+   <issued value="${DATE, T, D, -1402}T14:05:32+02:00"/>
+   <performer>
+      <reference value="PractitionerRole/PrcRol-216840111388324311999261139-000001111"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+   </performer>
+   <note>
+      <text value="rode vlekken op huid"/>
+   </note>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="246112005"/>
+            <display value="ernst"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="6736007"/>
+            <display value="matig"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="284009009"/>
+            <display value="route van toediening"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="ORAAL"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+</Observation>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="2ee8debc-e04b-11ed-6013-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-Reaction"/>
+   </meta>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.4"/>
+      <value value="Re-SNK-LEVETIRACETAM"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="281647001"/>
+         <display value="ongewenste reactie"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/N.XXX-Roelfsema"/>
+      <type value="Patient"/>
+      <display value="Patient, N. XXX_Roelfsema"/>
+   </subject>
+   <effectivePeriod>
+      <start value="${DATE, T, D, -64}"/>
+   </effectivePeriod>
+   <issued value="${DATE, T, D, -64}T15:20:17+02:00"/>
+   <performer>
+      <reference value="PractitionerRole/PrcRol-216840111388324311999261139-000003335"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), N. van Erven, Overige artsen, basisarts, Algemeen Stadsziekenhuis"/>
+   </performer>
+   <note>
+      <text value="verergering insulten"/>
+   </note>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="246112005"/>
+            <display value="ernst"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="24484000"/>
+            <display value="ernstig"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="284009009"/>
+            <display value="route van toediening"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="ORAAL"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+</Observation>

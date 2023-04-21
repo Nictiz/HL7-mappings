@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="2eee1a76-e04b-11ed-1644-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-Reaction"/>
+   </meta>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.4"/>
+      <value value="Re-HPK FRAGMIN"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="281647001"/>
+         <display value="ongewenste reactie"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/O.XXX-Gerrits"/>
+      <type value="Patient"/>
+      <display value="Patient, O. XXX_Gerrits"/>
+   </subject>
+   <effectivePeriod>
+      <start value="${DATE, T, D, -274}T00:00:00+02:00"/>
+      <end value="${DATE, T, D, -271}T23:59:59+02:00"/>
+   </effectivePeriod>
+   <issued value="${DATE, T, D, -271}T10:23:05+02:00"/>
+   <performer>
+      <reference value="PractitionerRole/PrcRol-216840111388324311999261139-000003336"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), B. van Harten, Overige artsen, basisarts, Algemeen Stadsziekenhuis"/>
+   </performer>
+   <note>
+      <text value="trombocytopenie"/>
+   </note>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="246075003"/>
+            <display value="veroorzaker"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+            <code value="634107"/>
+            <display value="FRAGMIN 10000 INJVLST 10.000IE/ML AMPUL 1ML"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="157481000146103"/>
+            <display value="symptomen van ongewenste reactie"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+            <valueCode value="OTH"/>
+         </extension>
+         <text value="trombocytopenie"/>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="246112005"/>
+            <display value="ernst"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="24484000"/>
+            <display value="ernstig"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+</Observation>

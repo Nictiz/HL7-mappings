@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flag xmlns="http://hl7.org/fhir">
+   <id value="2d8dea44-e04b-11ed-1691-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-MedicationContraIndication"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationContraIndication.RegistrationDateTime">
+      <valueDateTime value="${DATE, T, Y, -16}T15:33:56+02:00"/>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.2"/>
+      <value value="MCI-bariatrische chirurgie"/>
+   </identifier>
+   <status value="active"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="140401000146105"/>
+         <display value="contra-indicatie met betrekking op medicatiebewaking"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.902.40"/>
+         <code value="1355"/>
+         <display value="Bariatrische chirurgie"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/N.XXX-Habiboellah"/>
+      <type value="Patient"/>
+      <display value="Patient, N. XXX_Habiboellah"/>
+   </subject>
+   <period>
+      <start value="${DATE, T, Y, -16}T15:33:56+02:00"/>
+   </period>
+   <author>
+      <reference value="PractitionerRole/PrcRol-216840111388324311999261139-000003338"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), C. Dokter, Medisch specialisten, chirurgie, Algemeen Stadsziekenhuis"/>
+   </author>
+</Flag>
