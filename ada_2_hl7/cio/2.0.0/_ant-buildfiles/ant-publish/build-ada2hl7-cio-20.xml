@@ -51,6 +51,33 @@
             <param name="instances.ada.dir" value="data"/>
         </antcall>
     
+        <!-- xml voorbeelden -->
+        <!-- schemas -->
+        <mkdir dir="${build.dir}/xml-voorbeelden/ada_schemas"/>
+        <delete>
+            <fileset dir="${build.dir}/xml-voorbeelden/ada_schemas" includes="*.xsd"/>
+        </delete>
+        <copy todir="${build.dir}/xml-voorbeelden/ada_schemas" failonerror="true">
+            <fileset dir="${ada.project.source.dir}/schemas">
+                <include name="*${usecase.bci}.xsd"/>
+                <include name="*${usecase.bov}.xsd"/>
+                <include name="ada_meta.xsd"/>
+            </fileset>
+        </copy>
+        <!-- instances -->
+        <echo/>
+        <echo>Setup ${build.dir}/xml-voorbeelden containing refreshed ada production instances (${instances.dir}/xml-voorbeelden/ada_instance/*example*.xml)</echo>
+        
+        <mkdir dir="${build.dir}/xml-voorbeelden/ada_instance"/>
+        <delete>
+            <fileset dir="${build.dir}/xml-voorbeelden/ada_instance" includes="*example*.xml"/>
+        </delete>
+        <copy todir="${build.dir}/xml-voorbeelden/ada_instance" failonerror="true">
+            <fileset dir="${instances.dir}/data">
+                <include name="*example*cio2.xml"/>
+            </fileset>
+        </copy>        
+    
     </target>
     
     
@@ -72,8 +99,50 @@
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="hl7_instance"/>
         </antcall>
+        
+        <!-- examples -->
+        <antcall target="convert_ada_2_hl7_examples_cio2"/>
   
     </target>
+    
+    <target name="convert_ada_2_hl7_examples_cio2">
+        <!-- examples -->
+        <echo>Deleting previous results, if any</echo>
+        <mkdir dir="${build.dir}/xml-voorbeelden/hl7_instance"/>
+        <delete>
+            <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="*.xml"/>
+        </delete>
+        
+        <!-- beschikbaarstellen_contraindicatie -->
+        <sequential>
+            <fileset id="inputfilescio" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="*bci-*.xml"/>
+            
+            <echo/>
+            <echo>${echo.label} ${build.dir}/${usecase.bci}/payload/${usecase.bci}_org.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
+            <xslt force="true" style="${build.dir}/${usecase.bci}/payload/${usecase.bci}_org.xsl" destdir="${build.dir}/xml-voorbeelden/hl7_instance" extension=".xml" useimplicitfileset="false">
+                <fileset refid="inputfilescio"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+        
+        <!-- beschikbaarstellen_overgevoeligheid -->
+        <sequential>
+            <fileset id="inputfilescio" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="*bov-*.xml"/>
+            
+            <echo/>
+            <echo>${echo.label} ${build.dir}/${usecase.bov}/payload/${usecase.bov}_org.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
+            <xslt force="true" style="${build.dir}/${usecase.bov}/payload/${usecase.bov}_org.xsl" destdir="${build.dir}/xml-voorbeelden/hl7_instance" extension=".xml" useimplicitfileset="false">
+                <fileset refid="inputfilescio"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+        
+    </target>
+    
     
     <target name="convert_ada_2_hl7_sub">
         
@@ -88,12 +157,12 @@
             <fileset dir="${xsl.output}" includes="*.xml"/>
         </delete>
         
-        <fileset id="inputfilesMP" dir="${xsl.input}" includes="*.xml"/>
+        <fileset id="inputfilescio" dir="${xsl.input}" includes="*.xml"/>
         
         <echo/>
         <echo>${echo.label} ${xsl.mp} input dir ${xsl.input}</echo>
         <xslt force="true" style="${xsl.mp}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
-            <fileset refid="inputfilesMP"/>
+            <fileset refid="inputfilescio"/>
             <param name="dateT" expression="${date.T}" if="date.T"/>
             <!-- whether to generate the textual instruction for use based on structured data, 
                     typically true for test/example instances 
