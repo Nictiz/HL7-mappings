@@ -15,7 +15,7 @@
         <map xmlns="" rol="thuiszorg">
             <mp907 code="2" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.4" displayName="Thuiszorg" codeSystemName="Medicatieproces rollen"/>
             <mp910 code="768730001" codeSystem="{$oidSNOMEDCT}" displayName="Verzorgingshulp (beroep)" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
-            <!-- There is no role code for thuiszorg in MP 920 it is regarded to be a healthcare professional, 
+            <!-- There is no role code for thuiszorg from MP 920 onward, it is regarded to be a healthcare professional, 
                  see issue https://bits.nictiz.nl/browse/ZIB-1075, custom handling must be done -->
         </map>
     </xsl:variable>
@@ -91,12 +91,12 @@
 
     <xsl:variable name="mapStoptype" as="element()+">
         <map xmlns="">
-            <mp907 code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2" displayName="Tijdelijk" codeSystemName="Stoptype Medicatieafspraak, Toedieningsafspraak of -gebruik"/>
+            <mp907 code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="Tijdelijk" codeSystemName="Stoptype Medicatieafspraak, Toedieningsafspraak of -gebruik"/>
             <mp920 code="113381000146106" codeSystem="{$oidSNOMEDCT}" displayName="tijdelijk gestopt met medicatie" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
             <mp930 code="385655000" codeSystem="{$oidSNOMEDCT}" displayName="onderbroken" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
         </map>
         <map xmlns="">
-            <mp907 code="2" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2" displayName="Definitief" codeSystemName="Stoptype Medicatieafspraak, Toedieningsafspraak of -gebruik"/>
+            <mp907 code="2" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="Definitief" codeSystemName="Stoptype Medicatieafspraak, Toedieningsafspraak of -gebruik"/>
             <mp920 code="113371000146109" codeSystem="{$oidSNOMEDCT}" displayName="definitief gestopt met medicatie" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
             <mp930 code="410546004" codeSystem="{$oidSNOMEDCT}" displayName="stopgezet" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
         </map>
