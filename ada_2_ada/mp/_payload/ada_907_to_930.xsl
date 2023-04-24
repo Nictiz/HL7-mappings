@@ -510,20 +510,6 @@
         </xsl:element>
     </xsl:template>
 
-<!--TEST OM SAMEN TE VOEGEN    <xd:doc>
-        <xd:desc>geannuleerd indicator MA van 9.0.7 naar stoptype geannuleerd 9 3.0</xd:desc>
-    </xd:doc>
-    <xsl:template match="(medicatieafspraak | toedieningsafspraak)/geannuleerd_indicator" mode="ada907_2_930">
-        <xsl:choose>
-            <xsl:when test="@value = 'true'">
-                <xsl:element name="{concat(local-name(..), '_stop_type')}" code="89925002" codeSystem="2.16.840.1.113883.6.96" displayName="geannuleerd"/>
-            </xsl:when>
-            <xsl:otherwise>
-                TESTTEKST: De boolean true is niet herkend.
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>-->
-
     <xd:doc>
         <xd:desc>geannuleerd indicator MA van 9.0.7 naar stoptype geannuleerd 9 3.0</xd:desc>
     </xd:doc>
@@ -536,7 +522,7 @@
     </xsl:template>
    
     <xd:doc>
-        <xd:desc>geannuleerd indicator MA van 9.0.7 naar stoptype geannuleerd 9 3.0</xd:desc>
+        <xd:desc>geannuleerd indicator TA van 9.0.7 naar stoptype geannuleerd 9 3.0</xd:desc>
     </xd:doc>
     <xsl:template match="toedieningsafspraak/geannuleerd_indicator" mode="ada907_2_930">
         <xsl:choose>

@@ -96,9 +96,7 @@
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Gebruiksinstructie/HerhaalperiodeCyclischSchema/@unit=dag (920)
-            Gebruiksinstructie/HerhaalperiodeCyclischSchema/@unit=d (907)
-        </xd:desc>
+        <xd:desc>Gebruiksinstructie/HerhaalperiodeCyclischSchema/@unit=dag (920) Gebruiksinstructie/HerhaalperiodeCyclischSchema/@unit=d (907) </xd:desc>
     </xd:doc>
     <xsl:template match="herhaalperiode_cyclisch_schema" mode="ada930_2_907">
         <xsl:copy>
@@ -119,8 +117,15 @@
             <xsl:apply-templates select="te_verstrekken_hoeveelheid" mode="#current"/>
             <xsl:apply-templates select="aantal_herhalingen" mode="#current"/>
             <xsl:apply-templates select="te_verstrekken_geneesmiddel" mode="#current"/>
-            <!-- the rest, except what was already done and the elements not supported in 907, such as relatie_contact/relatie_zorgepisode and financiele_indicatiecode -->
-            <xsl:apply-templates select="*[not(self::identificatie | self::verstrekkingsverzoek_datum_tijd | self::verstrekkingsverzoek_datum | self::auteur | self::te_verstrekken_hoeveelheid | self::aantal_herhalingen | self::te_verstrekken_geneesmiddel | self::financiele_indicatiecode | self::toelichting | self::relatie_medicatieafspraak | self::relatie_contact | self::relatie_zorgepisode)]" mode="#current"/>
+                        <!-- the rest, except what was already done and the elements not supported in 907, such as relatie_contact/relatie_zorgepisode and financiele_indicatiecode -->
+            <xsl:apply-templates select="*[not(self::identificatie | self::verstrekkingsverzoek_datum_tijd | self::verstrekkingsverzoek_datum | self::auteur | self::te_verstrekken_hoeveelheid | self::aantal_herhalingen | self::te_verstrekken_geneesmiddel | self::financiele_indicatiecode | self::toelichting | self::relatie_medicatieafspraak | self::relatie_contact | self::relatie_zorgepisode | self::aanvullende_wensen)]" mode="#current"/>
+            <!-- extra waarde in waardelijst: Als de code 4 is, dan tekstuele weergave in toelichting element toevoegen.-->
+            <xsl:choose>
+                <xsl:when test="aanvullende_wensen[@code = ('1', '2', '3')]">
+                    <xsl:apply-templates select="aanvullende_wensen" mode="#current"/>
+                </xsl:when>
+                <xsl:otherwise/>
+            </xsl:choose>
             <!-- output toelichting including non supported fields in 907 -->
             <xsl:call-template name="_toelichting"/>
             <xsl:apply-templates select="relatie_medicatieafspraak" mode="#current"/>
@@ -297,7 +302,9 @@
             <xsl:for-each select="$mapRedenwijzigenstaken[mp930[@code = current()/@code][@codeSystem = current()/@codeSystem]][mp907]">
                 <xsl:copy-of select="mp907/@*"/>
                 <!-- but we do want to keep the original displayName, if present -->
-                <xsl:if test="string-length(@displayName) gt 0"><xsl:copy-of select="@displayName"></xsl:copy-of></xsl:if>
+                <xsl:if test="string-length(@displayName) gt 0">
+                    <xsl:copy-of select="@displayName"/>
+                </xsl:if>
             </xsl:for-each>
         </xsl:copy>
     </xsl:template>
@@ -359,7 +366,7 @@
         </registratiedatum>
     </xsl:template>
 
-<!--    <xd:doc>
+    <!--    <xd:doc>
         <xd:desc> stoptype van MP9 2.0 naar 9.0.7 </xd:desc>
     </xd:doc>
     <xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatiegebruik | medicatie_gebruik)/*[contains(replace(local-name(), '_', ''), 'stoptype')]" mode="ada930_2_907">
@@ -367,7 +374,7 @@
             <xsl:apply-templates select="@* | node()" mode="#current"/>
         </stoptype>
     </xsl:template>-->
-    
+
     <xd:doc>
         <xd:desc> stoptype van MP9 3.0 naar 9.0.7 </xd:desc>
     </xd:doc>
@@ -405,6 +412,14 @@
             <!-- vv/financiele_indicatiecode -->
             <xsl:if test="financiele_indicatiecode[@code | @value | @displayName | @originalText]">
                 <xsl:value-of select="concat('Financiële indicatiecode: ', nfa2a:code-2-string(financiele_indicatiecode))"/>
+            </xsl:if>
+            <!-- ma/extra waardes aanvullende_informatie -->
+            <xsl:if test="aanvullende_informatie[@code = ('8', '9', '10')]">
+                <xsl:value-of select="concat('Aanvullende informatie: ', aanvullende_informatie/@displayName)"/>
+            </xsl:if>
+            <!-- vv/extra waardes aanvullende_wensen -->
+            <xsl:if test="aanvullende_wensen[@code = ('4')]">
+                <xsl:value-of select="concat('Aanvullende wensen: ', aanvullende_wensen/@displayName)"/>
             </xsl:if>
         </xsl:variable>
 
@@ -469,7 +484,9 @@
             <xsl:for-each select="$mapContactpersoonRol[mp907[@code = current()/@code][@codeSystem = current()/@codeSystem]][mp930]">
                 <xsl:copy-of select="mp930/@*"/>
                 <!-- but we do want to keep the original displayName, if present -->
-                <xsl:if test="string-length(@displayName) gt 0"><xsl:copy-of select="@displayName"></xsl:copy-of></xsl:if>                
+                <xsl:if test="string-length(@displayName) gt 0">
+                    <xsl:copy-of select="@displayName"/>
+                </xsl:if>
             </xsl:for-each>
         </rol>
     </xsl:template>
@@ -485,7 +502,7 @@
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>  some more brilliant name changes in zibs 2020 </xd:desc>
+        <xd:desc> some more brilliant name changes in zibs 2020 </xd:desc>
     </xd:doc>
     <xsl:template match="ingredient_hoeveelheid" mode="ada930_2_907">
         <hoeveelheid_ingredient>
@@ -493,7 +510,7 @@
         </hoeveelheid_ingredient>
     </xsl:template>
     <xd:doc>
-        <xd:desc>  some more brilliant name changes in zibs 2020 </xd:desc>
+        <xd:desc> some more brilliant name changes in zibs 2020 </xd:desc>
     </xd:doc>
     <xsl:template match="product_hoeveelheid" mode="ada930_2_907">
         <hoeveelheid_product>
@@ -586,19 +603,18 @@
                     <xsl:apply-templates select="@* | node()" mode="#current"/>
                 </xsl:copy>
             </xsl:for-each>
-<!-- OORSPRONKELIJK           <xsl:apply-templates select="aanvullende_informatie | kopie_indicator" mode="#current"/>-->
+            <!-- drie extra waardes in waardelijst: Als de code 8, 9, 10 is, dan tekstuele weergave in toelichting element toevoegen.-->
             <xsl:choose>
-                <xsl:when test="aanvullende_informatie code">
-Als de code 8, 9, 10 is, dan displayname in variable. Deze variable in toelichting element toevoegen bij de bestaande toelichting tekst(en).
+                <xsl:when test="aanvullende_informatie[@code = ('1', '2', '3', '4', '5', '6', '7')]">
+                    <xsl:apply-templates select="aanvullende_informatie" mode="#current"/>
                 </xsl:when>
+                <xsl:otherwise/>
             </xsl:choose>
-            <xsl:apply-templates select="aanvullende_informatie" mode="#current"/>
             <xsl:apply-templates select="kopie_indicator" mode="#current"/>
             <!-- still output toelichting for non supported fields in 907 -->
             <xsl:call-template name="_toelichting"/>
         </xsl:copy>
     </xsl:template>
-     
 
     <xd:doc>
         <xd:desc>Wisselend doseerschema, bestaat niet in 907. Medicatietoediening wordt in geen enkele transactie gebruikt in 907</xd:desc>
