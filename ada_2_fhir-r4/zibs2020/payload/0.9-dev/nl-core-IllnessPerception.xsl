@@ -59,11 +59,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="wrapIn" select="'subject'"/>
                 </xsl:call-template>
                 <xsl:for-each select="ziekte_inzicht_van_patient">
-                    <valueString>
-                        <xsl:call-template name="string-to-string">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </valueString>
+                    <component>
+                        <code>
+                            <coding>
+                                <system value="http://snomed.info/sct"/>
+                                <code value="27026000"/>
+                                <display value="inzicht"/>
+                            </coding>
+                        </code>
+                        <valueString>
+                            <xsl:call-template name="string-to-string">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </valueString>
+                    </component>
                 </xsl:for-each>
                 <xsl:for-each select="omgaan_met_ziekteproces_door_patient">
                     <component>
