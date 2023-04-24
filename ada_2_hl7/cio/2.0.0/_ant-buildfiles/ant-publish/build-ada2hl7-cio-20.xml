@@ -6,13 +6,23 @@
         
     If you just run ant, it expects a build.xml in the working dir and runs the default target.
 -->
-<project basedir="." default="convert_ada_2_hl7_20" name="build-ada2hl7-mp-920" xmlns:if="ant:if" xmlns:unless="ant:unless">
-    <property name="is.version" value="9.2.0beta"/>
-    <property name="is.version.short" value="920"/>
-    <property name="date.T" value="2021-01-01"/>
+<project basedir="." default="convert_ada_2_hl7_cio2" name="build-ada2hl7-mp-920" xmlns:if="ant:if" xmlns:unless="ant:unless">
+    <!-- Skip ivy with ant -Drun-ivy=false -->
+    <property name="run-ivy" value="true"/>
+    
+    <property name="xsl.saxon" value="${saxon.path}"/>
+    <property name="xsl.saxon.class" value="net.sf.saxon.TransformerFactoryImpl"/>
+    
+    
+    <property name="is.version" value="2.0.0"/>
+    <property name="is.version.short" value="200"/>
+    <property name="is.abbreviation" value="cio"/>
+    
+    <property name="date.T" value="2023-01-01"/>
+    <property name="build.dir" value="../.."/>
+    
 
-    <!-- place import after properties above, otherwise it can't resolve these properties  -->
-    <import file="../../../_ant-buildfiles/ant-publish/build-ada2hl7-mp-include.xml"/>
+    <property name="instances.dir" value="${build.dir}/../../../../art_decor/production-ada-instances/${is.abbreviation}/${is.version}"/>
     
     <property name="usecase.bci" value="beschikbaarstellen_contraindicatie"/>
     <property name="usecase.bov" value="beschikbaarstellen_overgevoeligheid"/>
@@ -21,184 +31,48 @@
     <property name="gen.schematron.ref" value="false"/>
     <property name="usecase.nt" value="nictiz_test"/>
     
-    <property name="ada.project.source.dir" value="${build.dir}/../../../../../../SVN/art_decor/trunk/ada-data/projects/mp-mp920"/>
-    <property name="validate.dir" value="${build.dir}/../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210921/mp-xml-20210921T194523/schematron_closed_warnings"/>
-    <property name="schema.organizer" value="${build.dir}/../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210921/mp-xml-20210921T194523/schemas_codeGen_flat/organizer.xsd"/>
-    <property name="schema.cda" value="${build.dir}/../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210921/mp-xml-20210921T194523/schemas_codeGen_flat/CDANL_extended.xsd"/>
+    <property name="ada.project.source.dir" value="${build.dir}/../../../../art_decor/projects/cio"/>
     
-    <property name="xsl.validate.svrl" value="${build.dir}/validate/validate-svrl-output.xsl"/>
+    <target name="setup_cio2" description="Setup subdirectories, schemas, ada instance xml's in ${build.dir} for ${is.name} ${is.version}">
 
-    <target name="setup_mp920" description="Setup subdirectories, schemas, ada instance xml's in ${build.dir} for ${is.name} ${is.version}">
-
-        <!-- nictiz_test copies appropriate ada instances from refs.dir -->
-        <!-- not yet implemented there is no ada project for 9 2.0 yet -->
-        <!--<antcall target="setup_sub_instances">
-            <param name="fileset.dir" value="ada_instance"/>
-            <param name="refs.ada.dir" value="ada_instance"/>
-            <param name="usecase" value="${usecase.nt}"/>
-        </antcall>-->
-        <!-- at the moment only schemas for nictiz test -->
-        <antcall target="setup_sub_schemas">
-            <param name="usecase" value="${usecase.nt}"/>
-            <param name="schema.string" value="*${usecase.mv}.xsd"/>
-        </antcall>
-
-        <!-- beschikbaarstellen_medicatiegegevens copies schemas for project dir and appropriate ada instances from refs.dir for MA-->
+        <!-- beschikbaarstellen_contraindicatie copies schemas for project dir and appropriate ada instances -->
         <antcall target="setup_sub">
-            <param name="usecase" value="${usecase.mg}"/>
-            <param name="fileset.dir" value="ada_instance_MA"/>
-            <param name="fileset.include" value="mg-*MA*.xml"/>
-            <param name="refs.ada.dir" value="ada_instance"/>
-        </antcall>
-        <!-- beschikbaarstellen_medicatiegegevens appropriate ada instances from refs.dir for VV -->
-        <antcall target="setup_sub_instances">
-            <param name="usecase" value="${usecase.mg}"/>
-            <param name="fileset.dir" value="ada_instance_VV"/>
-            <param name="fileset.include" value="mg-*VV*.xml"/>
-            <param name="refs.ada.dir" value="ada_instance"/>
-        </antcall>
-        <!-- beschikbaarstellen_medicatiegegevens appropriate ada instances from refs.dir for TA -->
-        <antcall target="setup_sub_instances">
-            <param name="usecase" value="${usecase.mg}"/>
-            <param name="fileset.dir" value="ada_instance_TA"/>
-            <param name="fileset.include" value="mg-*TA*.xml"/>
-            <param name="refs.ada.dir" value="ada_instance"/>
-        </antcall>
-        <!-- beschikbaarstellen_medicatiegegevens appropriate ada instances from refs.dir for MVE -->
-        <antcall target="setup_sub_instances">
-            <param name="usecase" value="${usecase.mg}"/>
-            <param name="fileset.dir" value="ada_instance_MVE"/>
-            <param name="fileset.include" value="mg-*MVE*.xml"/>
-            <param name="refs.ada.dir" value="ada_instance"/>
-        </antcall>
-        <!-- beschikbaarstellen_medicatiegegevens appropriate ada instances from refs.dir for MGB -->
-        <antcall target="setup_sub_instances">
-            <param name="usecase" value="${usecase.mg}"/>
-            <param name="fileset.dir" value="ada_instance_MGB"/>
-            <param name="fileset.include" value="mg-*MGB*.xml"/>
-            <param name="refs.ada.dir" value="ada_instance"/>
-        </antcall>
-        <!-- beschikbaarstellen_medicatiegegevens appropriate ada instances from refs.dir for MTD -->
-        <antcall target="setup_sub_instances">
-            <param name="usecase" value="${usecase.mg}"/>
-            <param name="fileset.dir" value="ada_instance_MTD"/>
-            <param name="fileset.include" value="mg-*MTD*.xml"/>
-            <param name="refs.ada.dir" value="ada_instance"/>
-        </antcall>
-        <!-- beschikbaarstellen_medicatiegegevens appropriate ada instances from refs.dir for WDS -->
-        <antcall target="setup_sub_instances">
-            <param name="usecase" value="${usecase.mg}"/>
-            <param name="fileset.dir" value="ada_instance_WDS"/>
-            <param name="fileset.include" value="mg-*WDS*.xml"/>
-            <param name="refs.ada.dir" value="ada_instance"/>
-        </antcall>
-        <!-- beschikbaarstellen_medicatiegegevens appropriate ada instances from refs.dir for regression the old MedMij stuff -->
-        <antcall target="setup_sub_instances">
-            <param name="usecase" value="${usecase.mg}"/>
+            <param name="usecase" value="${usecase.bci}"/>
             <param name="fileset.dir" value="ada_instance"/>
-            <param name="fileset.include" value="*.xml"/>
-            <param name="refs.ada.dir" value="ada_instance"/>
+            <param name="fileset.include" value="*bci-tst-*.xml"/>
+            <param name="instances.ada.dir" value="data"/>
         </antcall>
-        <!-- beschikbaarstellen_medicatiegegevens the repo stuff for testing purposes -->
-        <antcall target="setup_sub_instances">
-            <param name="usecase" value="${usecase.mg}"/>
-            <param name="fileset.dir" value="ada_instance_repo"/>
-            <param name="fileset.include" value="*.xml"/>
-            <param name="refs.ada.dir" value="ada_instance_repo"/>
-        </antcall>
-
-        <!-- medicatievoorschrift-->
+        
+        <!-- beschikbaarstellen_overgevoeligheid copies schemas for project dir and appropriate ada instances -->
         <antcall target="setup_sub">
-            <param name="usecase" value="${usecase.mv}"/>
+            <param name="usecase" value="${usecase.bov}"/>
             <param name="fileset.dir" value="ada_instance"/>
-            <param name="fileset.include" value="*.xml"/>
-            <param name="refs.ada.dir" value="ada_instance"/>
+            <param name="fileset.include" value="*bov-tst-*.xml"/>
+            <param name="instances.ada.dir" value="data"/>
+        </antcall>
+    
+    </target>
+    
+    
+
+    <target name="convert_ada_2_hl7_cio2">
+
+        <!-- convert beschikbaarstellen_contraindicatie -->
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.bci}"/>
+            <param name="xsl.name" value="../${usecase.bci}/payload/${usecase.bci}_org.xsl"/>
+            <param name="xsl.in" value="ada_instance"/>
+            <param name="xsl.out" value="hl7_instance"/>
         </antcall>
 
-        <!-- sturen_afhandeling_medicatievoorschrift copies schemas for project dir and appropriate ada instances from refs.dir -->
-        <antcall target="setup_sub">
-            <param name="usecase" value="${usecase.av}"/>
-            <param name="fileset.dir" value="ada_instance"/>
-            <param name="fileset.include" value="*.xml"/>
-            <param name="refs.ada.dir" value="ada_instance"/>
+        <!-- beschikbaarstellen_overgevoeligheid-->
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.bov}"/>
+            <param name="xsl.name" value="../${usecase.bov}/payload/${usecase.bov}_org.xsl"/>
+            <param name="xsl.in" value="ada_instance"/>
+            <param name="xsl.out" value="hl7_instance"/>
         </antcall>
-
-        <!-- sturen_medicatiegebruik copies schemas for project dir and appropriate ada instances from refs.dir -->
-        <antcall target="setup_sub">
-            <param name="usecase" value="${usecase.mgb}"/>
-            <param name="fileset.dir" value="ada_instance"/>
-            <param name="fileset.include" value="*.xml"/>
-            <param name="refs.ada.dir" value="ada_instance"/>
-        </antcall>
-
-        <!-- sturen_voorstel_medicatieafspraak copies schemas for project dir and appropriate ada instances from refs.dir -->
-        <antcall target="setup_sub">
-            <param name="usecase" value="${usecase.vma}"/>
-            <param name="fileset.dir" value="ada_instance"/>
-            <param name="fileset.include" value="*.xml"/>
-            <param name="refs.ada.dir" value="ada_instance"/>
-        </antcall>
-        <!-- sturen_voorstel_verstrekkingsverzoek copies schemas for project dir and appropriate ada instances from refs.dir -->
-        <antcall target="setup_sub">
-            <param name="usecase" value="${usecase.vvv}"/>
-            <param name="fileset.dir" value="ada_instance"/>
-            <param name="fileset.include" value="*.xml"/>
-            <param name="refs.ada.dir" value="ada_instance"/>
-        </antcall>
-        <!-- sturen_antwoord_voorstel_verstrekkingsverzoek copies schemas for project dir and appropriate ada instances from refs.dir -->
-        <antcall target="setup_sub">
-            <param name="usecase" value="${usecase.avvv}"/>
-            <param name="fileset.dir" value="ada_instance"/>
-            <param name="fileset.include" value="*.xml"/>
-            <param name="refs.ada.dir" value="ada_instance"/>
-        </antcall>
-
-        <!-- medicatieoverzicht-->
-        <antcall target="setup_sub">
-            <param name="usecase" value="${usecase.mo}"/>
-            <param name="fileset.dir" value="ada_instance"/>
-            <param name="fileset.include" value="*.xml"/>
-            <param name="refs.ada.dir" value="ada_instance"/>
-        </antcall>
-
-        <!-- xml voorbeelden -->
-        <!-- schemas -->
-        <mkdir dir="${build.dir}/xml-voorbeelden/ada_schemas"/>
-        <delete>
-            <fileset dir="${build.dir}/xml-voorbeelden/ada_schemas" includes="*.xsd"/>
-        </delete>
-        <copy todir="${build.dir}/xml-voorbeelden/ada_schemas" failonerror="true">
-            <fileset dir="${ada.project.source.dir}/schemas">
-                <include name="*${usecase.mv}.xsd"/>
-                <include name="*${usecase.mg}.xsd"/>
-                <include name="*${usecase.mo}.xsd"/>
-                <include name="*${usecase.mgb}.xsd"/>
-                <include name="*${usecase.av}.xsd"/>
-                <include name="*${usecase.vma}.xsd"/>
-                <include name="*${usecase.vvv}.xsd"/>
-                <include name="*${usecase.avvv}.xsd"/>
-                <include name="ada_meta.xsd"/>
-            </fileset>
-        </copy>
-        <!-- instances -->
-        <echo/>
-        <echo>Setup ${build.dir}/xml-voorbeelden containing refreshed ada production instances (${refs.dir}/xml-voorbeelden/ada_instance/*example*.xml)</echo>
-
-        <mkdir dir="${build.dir}/xml-voorbeelden/ada_instance"/>
-        <delete>
-            <fileset dir="${build.dir}/xml-voorbeelden/ada_instance" includes="*example*.xml"/>
-        </delete>
-        <copy todir="${build.dir}/xml-voorbeelden/ada_instance" failonerror="true">
-            <fileset dir="${refs.dir}/xml-voorbeelden/ada_instance">
-                <include name="*example*.xml"/>
-            </fileset>
-        </copy>
-
-
-        <!-- let's convert to hl7 too while we're at it -->
-        <!-- generic stuff for all mp versions -->
-        <antcall target="convert_ada_2_hl7_20"/>
-
+  
     </target>
     
     <target name="convert_ada_2_hl7_sub">
@@ -231,24 +105,55 @@
         </xslt>
     </target>
     
-
-    <target name="convert_ada_2_hl7_20">
-
-        <!-- convert beschikbaarstellen_contraindicatie -->
-        <antcall target="convert_ada_2_hl7_sub">
-            <param name="sub.build.dir" value="${build.dir}/${usecase.bci}"/>
-            <param name="xsl.name" value="../${usecase.mg}/payload/${usecase.bci}_org.xsl"/>
-            <param name="xsl.in" value="ada_instance"/>
-            <param name="xsl.out" value="hl7_instance"/>
+    
+    <target name="setup_sub" description="Setup ${build.dir}/${usecase} containing the new/schemas folder from the original ADA project and refreshed ada instances from test_xslt">
+        
+        <antcall target="setup_sub_schemas">
+            <param name="schema.string" value="*${usecase}.xsd"/>
         </antcall>
-
-        <!-- beschikbaarstellen_overgevoeligheid-->
-        <antcall target="convert_ada_2_hl7_sub">
-            <param name="sub.build.dir" value="${build.dir}/${usecase.bov}"/>
-            <param name="xsl.name" value="../${usecase.mg}/payload/${usecase.bov}_org.xsl"/>
-            <param name="xsl.in" value="ada_instance"/>
-            <param name="xsl.out" value="hl7_instance"/>
+        
+        <antcall target="setup_sub_instances">
+            <param name="fileset.dir" value="${fileset.dir}"/>
+            <param name="fileset.include" value="${fileset.include}"/>
+            <param name="instances.ada.dir" value="${instances.ada.dir}"/>
+            <param name="usecase" value="${usecase}"/>
         </antcall>
-  
+        
     </target>
+    
+    <target name="setup_sub_schemas" description="Setup ${build.dir}/${usecase} containing the new/schemas folder from the original ADA project: ${ada.project.source.dir}/schemas">
+        <echo/>
+        <echo>Setup ${build.dir}/${usecase} containing refreshed ada schemas (${schema.string}) containing the new/schemas folder from the original ADA project: ${ada.project.source.dir}/schemas</echo>
+        
+        <mkdir dir="${build.dir}/${usecase}/ada_schemas"/>
+        <delete>
+            <fileset dir="${build.dir}/${usecase}/ada_schemas" includes="*.xsd"/>
+        </delete>
+        
+        <copy todir="${build.dir}/${usecase}/ada_schemas" failonerror="true">
+            <fileset dir="${ada.project.source.dir}/schemas">
+                <include name="${schema.string}"/>
+                <include name="ada_meta.xsd"/>
+            </fileset>
+        </copy>
+        
+    </target>
+    
+    <target name="setup_sub_instances" description="Setup ${build.dir}/${usecase} containing refreshed ada production instances (${fileset.dir}/${fileset.include})">
+        
+        <echo/>
+        <echo>Setup ${build.dir}/${usecase} containing refreshed ada production instances (${fileset.include})</echo>
+        
+        <mkdir dir="${build.dir}/${usecase}/${fileset.dir}"/>
+        <delete>
+            <fileset dir="${build.dir}/${usecase}/${fileset.dir}" includes="${fileset.include}"/>
+        </delete>
+        <copy todir="${build.dir}/${usecase}/${fileset.dir}" failonerror="true">
+            <fileset dir="${instances.dir}/${instances.ada.dir}">
+                <include name="${fileset.include}"/>
+            </fileset>
+        </copy>
+        
+    </target>
+    
 </project>
