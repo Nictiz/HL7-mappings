@@ -320,16 +320,19 @@
         </xsl:copy>
     </xsl:template>
 
-    <xd:doc>
-        <xd:desc/>
+  <xd:doc>
+        <xd:desc>Zonodig criterium</xd:desc> 
     </xd:doc>
     <xsl:template match="criterium[parent::criterium]" mode="ada930_2_907">
         <xsl:copy>
             <code>
-                <xsl:apply-templates select="@*" mode="#current"/>
+                <xsl:for-each select="$mapZonodig[mp930[@code = current()/@code][@codeSystem = current()/@codeSystem]][mp907]">
+                    <xsl:copy-of select="mp907/@*"/>
+                </xsl:for-each>
             </code>
         </xsl:copy>
     </xsl:template>
+
 
     <xd:doc>
         <xd:desc>handling for toedieningsafspraak reden_afspraak</xd:desc>

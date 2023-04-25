@@ -31,7 +31,8 @@
             <mp907 code="6" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2" displayName="Te sterk effect" codeSystemName="Reden Medicatieafspraak of -gebruik"/>
             <mp910 code="112251000146103" codeSystem="{$oidSNOMEDCT}" displayName="te sterk effect van medicatie" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
             <mp920 code="112251000146103" codeSystem="{$oidSNOMEDCT}" displayName="te sterk effect van medicatie" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
-            <mp930 code="112251000146103" codeSystem="{$oidSNOMEDCT}" displayName="te sterk effect van medicatie" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>        </map>
+            <mp930 code="112251000146103" codeSystem="{$oidSNOMEDCT}" displayName="te sterk effect van medicatie" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
+        </map>
         <map xmlns="">
             <mp907 code="8" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2" displayName="Toedieningsweg voldoet niet" codeSystemName="Reden Medicatieafspraak of -gebruik"/>
             <mp910 code="112191000146101" codeSystem="{$oidSNOMEDCT}" displayName="medicatietoedieningsweg voldoet niet" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
@@ -55,6 +56,21 @@
             <mp910 code="184003006" codeSystem="{$oidSNOMEDCT}" displayName="verzoek van zorgafnemer om behandeling te wijzigen" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
             <mp920 code="184003006" codeSystem="{$oidSNOMEDCT}" displayName="verzoek van zorgafnemer om behandeling te wijzigen" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
             <mp930 code="159711000146106" codeSystem="{$oidSNOMEDCT}" displayName="verzoek van zorgafnemer om behandeling te wijzigen" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
+        </map> 
+        <map xmlns="">
+            <!-- dit is alleen van toepassing bij mapping 930 náár 907 -->
+            <mp907 code="OTH" codeSystem="{$oidHL7NullFlavor}" displayName="overig" originalText="geneesmiddel niet voorradig" codeSystemName="{$oidMap[@oid = $oidHL7NullFlavor]/@displayName}"/>
+            <mp930 code="182856006" codeSystem="{$oidSNOMEDCT}" displayName="geneesmiddel niet voorradig" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
+        </map>
+        <map xmlns="">
+            <!-- dit is alleen van toepassing bij mapping 930 náár 907 -->
+            <mp907 code="OTH" codeSystem="{$oidHL7NullFlavor}" displayName="overig" originalText="verandering in labwaarde" codeSystemName="{$oidMap[@oid = $oidHL7NullFlavor]/@displayName}"/>
+            <mp930 code="160131000146104" codeSystem="{$oidSNOMEDCT}" displayName="verandering in labwaarde" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
+        </map>
+        <map xmlns="">
+            <!-- dit is alleen van toepassing bij mapping 930 náár 907 -->
+            <mp907 code="OTH" codeSystem="{$oidHL7NullFlavor}" displayName="overig" originalText="dubbele registratie van medicamenteuze behandeling" codeSystemName="{$oidMap[@oid = $oidHL7NullFlavor]/@displayName}"/>
+            <mp930 code="180011000146107" codeSystem="{$oidSNOMEDCT}" displayName="dubbele registratie van medicamenteuze behandeling" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
         </map>
         <map xmlns="">
             <!-- dit is alleen bij andere bouwstenen dan TA/MA -->
@@ -100,7 +116,15 @@
             <mp920 code="113371000146109" codeSystem="{$oidSNOMEDCT}" displayName="definitief gestopt met medicatie" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
             <mp930 code="410546004" codeSystem="{$oidSNOMEDCT}" displayName="stopgezet" codeSystemName="{$oidMap[@oid = $oidSNOMEDCT]/@displayName}"/>
         </map>
-    </xsl:variable>        
+    </xsl:variable>
+    
+    <xsl:variable name="mapZonodig" as="element()+">
+        <map xmlns="">
+            <!-- dit is alleen van toepassing bij mapping 930 náár 907 -->
+            <mp907 code="OTH" codeSystem="{$oidHL7NullFlavor}" displayName="overig" originalText="Bij menstruatiepijnen" codeSystemName="{$oidMap[@oid = $oidHL7NullFlavor]/@displayName}"/>
+            <mp930 code="1540" codeSystem="{$oidNHGTabel25BCodesNumeriek}" displayName="Bij menstruatiepijnen" codeSystemName="{$oidMap[@oid = $oidNHGTabel25BCodesNumeriek]/@displayName}"/>
+        </map>
+    </xsl:variable>
 
     <xsl:variable name="mapTransaction" as="element()+">
         <map xmlns="" usecase="beschikbaarstellen_medicatiegegevens">

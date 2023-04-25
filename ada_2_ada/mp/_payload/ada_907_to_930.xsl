@@ -430,14 +430,20 @@
     <xsl:template match="reden_wijzigen_of_staken | reden_wijzigen_of_stoppen_gebruik" mode="ada907_2_930">
         <xsl:copy>
             <xsl:apply-templates select="@*" mode="#current"/>
-            <xsl:for-each select="$mapRedenwijzigenstaken[mp907[@code = current()/@code][@codeSystem = current()/@codeSystem]][mp930]">
-                <xsl:copy-of select="mp930/@*"/>
-                <!-- but we do want to keep the original displayName, if present -->
-                <xsl:if test="string-length(@displayName) gt 0">
-                    <xsl:copy-of select="@displayName"/>
-                </xsl:if>
-            </xsl:for-each>
-        </xsl:copy>
+            <xsl:choose>
+                <xsl:when test="@code= 'OTH'">
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:for-each select="$mapRedenwijzigenstaken[mp907[@code = current()/@code][@codeSystem = current()/@codeSystem]][mp930]">
+                        <xsl:copy-of select="mp930/@*"/>
+                        <!-- but we do want to keep the original displayName, if present -->
+                        <xsl:if test="string-length(@displayName) gt 0">
+                            <xsl:copy-of select="@displayName"/>
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:otherwise>
+            </xsl:choose>
+           </xsl:copy>
     </xsl:template>
 
     <xd:doc>
