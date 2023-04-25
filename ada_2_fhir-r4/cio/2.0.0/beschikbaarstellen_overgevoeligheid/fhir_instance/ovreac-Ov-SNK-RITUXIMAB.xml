@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AllergyIntolerance xmlns="http://hl7.org/fhir">
+   <id value="ovreac-Ov-SNK-RITUXIMAB"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-HypersensitivityDispositionReaction"/>
+   </meta>
+   <extension url="http://hl7.org/fhir/StructureDefinition/allergyintolerance-assertedDate">
+      <valueDateTime value="${DATE, T, D, -961}T11:12:42+02:00"/>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.3"/>
+      <value value="Ov-SNK RITUXIMAB"/>
+   </identifier>
+   <clinicalStatus>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical"/>
+         <code value="active"/>
+         <display value="Active"/>
+      </coding>
+   </clinicalStatus>
+   <category value="medication">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="419511003"/>
+               <display value="geneesmiddelen"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </category>
+   <code>
+      <coding>
+         <code value="75191"/>
+         <display value="RITUXIMAB"/>
+      </coding>
+   </code>
+   <patient>
+      <reference value="Patient/patient-van-de-XXX-Broekmeulen"/>
+      <type value="Patient"/>
+      <display value="Patient, N. van de XXX_Broekmeulen"/>
+   </patient>
+   <recordedDate value="${DATE, T, D, -961}T11:12:42+02:00"/>
+   <recorder>
+      <reference value="PractitionerRole/pracrole-000003332"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), N. van Erven, Medisch specialisten, neurologie, Algemeen Stadsziekenhuis"/>
+   </recorder>
+   <asserter>
+      <reference value="PractitionerRole/pracrole-000003332"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), N. van Erven, Medisch specialisten, neurologie, Algemeen Stadsziekenhuis"/>
+   </asserter>
+   <reaction>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Reaction.Identification">
+         <valueIdentifier>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.4"/>
+            <value value="Re1-SNK RITUXIMAB"/>
+         </valueIdentifier>
+      </extension>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Reaction.RegistrationDateTime">
+         <valueDateTime value="${DATE, T, D, -961}T09:10:22+02:00"/>
+      </extension>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Reaction.Author">
+         <valueReference>
+            <reference value="PractitionerRole/pracrole-000003335"/>
+            <type value="PractitionerRole"/>
+            <display value="Healthcare professional (role), Z. Banen, Overige artsen, basisarts, Algemeen Stadsziekenhuis"/>
+         </valueReference>
+      </extension>
+      <substance>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.750"/>
+            <code value="75191"/>
+            <display value="RITUXIMAB"/>
+         </coding>
+      </substance>
+      <description value="dyspneu en roodheid van gezicht, ong. 15 min na verhoging van pompstand naar 5 ml/uur"/>
+      <onset value="${DATE, T, D, -961}T08:50:00+02:00"/>
+      <severity value="severe"/>
+      <exposureRoute>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="5"/>
+            <display value="INTRAVENEUS"/>
+         </coding>
+      </exposureRoute>
+   </reaction>
+   <reaction>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Reaction.Identification">
+         <valueIdentifier>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.4"/>
+            <value value="Re2-SNK RITUXIMAB"/>
+         </valueIdentifier>
+      </extension>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Reaction.RegistrationDateTime">
+         <valueDateTime value="${DATE, T, D, -240}T09:30:10+02:00"/>
+      </extension>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Reaction.Author">
+         <valueReference>
+            <reference value="PractitionerRole/pracrole-000003335"/>
+            <type value="PractitionerRole"/>
+            <display value="Healthcare professional (role), Z. Banen, Overige artsen, basisarts, Algemeen Stadsziekenhuis"/>
+         </valueReference>
+      </extension>
+      <substance>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.750"/>
+            <code value="75191"/>
+            <display value="RITUXIMAB"/>
+         </coding>
+      </substance>
+      <description value="anafylactoïde reactie met dyspneu, verlaagde saturatie, hypotensie en koorts, ong. 2 uur na start en 20 min na ophogen loopsnelheid tot 6 ml/uur"/>
+      <onset value="${DATE, T, D, -230}T09:05:00+02:00"/>
+      <severity value="severe"/>
+      <exposureRoute>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="5"/>
+            <display value="INTRAVENEUS"/>
+         </coding>
+      </exposureRoute>
+   </reaction>
+</AllergyIntolerance>

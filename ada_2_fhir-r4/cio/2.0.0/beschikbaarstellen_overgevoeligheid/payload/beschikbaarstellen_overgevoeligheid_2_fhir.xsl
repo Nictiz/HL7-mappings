@@ -907,7 +907,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </Observation>
     </xsl:template>
     
-    <!--<xd:doc>
+    <xd:doc>
         <xd:desc/>
     </xd:doc>
     <xsl:template match="*" mode="_generateId" priority="2">
@@ -917,19 +917,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="localName" select="local-name()"/>
         <xsl:variable name="logicalId">
             <xsl:choose>
-                <xsl:when test="$localName = 'overgevoeligheid'">
+                <xsl:when test="$localName = 'overgevoeligheid' and $profile = 'cio-HypersensitivityDispositionReaction'">
+                    <xsl:value-of select="'ovreac-' || identificatie/@value"/>
+                </xsl:when>
+                <xsl:when test="$localName = 'overgevoeligheid' and $profile = 'cio-HypersensitivityDisposition'">
                     <xsl:value-of select="'ov-' || identificatie/@value"/>
                 </xsl:when>
-                <xsl:when test="$localName = 'reactie'">
+                <xsl:when test="$localName = 'reactie' and $profile = 'cio-Reaction'">
                     <xsl:value-of select="'reac-' || identificatie/@value"/>
                 </xsl:when>
                 <xsl:when test="$localName = 'patient'">
                     <xsl:value-of select="'patient-' || string-join((naamgegevens[1]/geslachtsnaam/(voorvoegsels, achternaam)/@value, naamgegevens[1]/geslachtsnaam_partner/(voorvoegsels_partner, achternaam_partner)/@value), '-')"/>
                 </xsl:when>
-                <xsl:when test="$localName = 'zorgverlener'">
+                <xsl:when test="$localName = 'zorgverlener' and $profile = 'nl-core-HealthProfessional-PractitionerRole'">
+                    <xsl:value-of select="'pracrole-' || (zorgverlener_identificatienummer/@value, specialisme/(@displayName, @code))[1]"/>
+                </xsl:when>
+                <xsl:when test="$localName = 'zorgverlener' and $profile = 'nl-core-HealthProfessional-Practitioner'">
                     <xsl:value-of select="'prac-' || (zorgverlener_identificatienummer/@value, specialisme/(@displayName, @code))[1]"/>
                 </xsl:when>
-                <xsl:when test="$localName = 'zorgaanbieder'">
+                <xsl:when test="$localName = 'zorgaanbieder' and $profile = 'nl-core-HealthcareProvider-Organization'">
                     <xsl:value-of select="'org-' || ((zorgaanbieder_identificatienummer, organisatie_naam)/@value, organisatie_type/(@displayName, @code))[1]"/>
                 </xsl:when>
                 <xsl:otherwise>
@@ -937,9 +943,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <!-\- Failsafe, ids can get quite long -\->
+        <!-- Failsafe, ids can get quite long -->
         <xsl:value-of select="nf:assure-logicalid-length(nf:removeSpecialCharacters($logicalId))"/>
-    </xsl:template>-->
+    </xsl:template>
     
     <xd:doc>
         <xd:desc/>
