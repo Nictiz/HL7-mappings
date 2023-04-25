@@ -6,33 +6,31 @@
         
     If you just run ant, it expects a build.xml in the working dir and runs the default target.
 -->
-<project basedir="." default="convert_ada_2_hl7_cio2" name="build-ada2hl7-mp-920" xmlns:if="ant:if" xmlns:unless="ant:unless">
-    <!-- Skip ivy with ant -Drun-ivy=false -->
-    <property name="run-ivy" value="true"/>
-    
-    <property name="xsl.saxon" value="${saxon.path}"/>
-    <property name="xsl.saxon.class" value="net.sf.saxon.TransformerFactoryImpl"/>
-    
-    
+<project basedir="." default="convert_ada_2_hl7_cio2" name="build-ada2hl7-cio-20" xmlns:if="ant:if" xmlns:unless="ant:unless">
     <property name="is.version" value="2.0.0"/>
     <property name="is.version.short" value="200"/>
     <property name="is.abbreviation" value="cio"/>
-    
+
     <property name="date.T" value="2023-01-01"/>
     <property name="build.dir" value="../.."/>
-    
 
     <property name="instances.dir" value="${build.dir}/../../../../art_decor/production-ada-instances/${is.abbreviation}/${is.version}"/>
+    <property name="validate.dir" value="${build.dir}/../../../../../../SVN/art_decor/branches/cio-qual-20230424T150542/schematron_svrl"/>
+    <!--    <property name="validate.dir" value="${build.dir}/../../../../../../SVN/AORTA/trunk/Zorgtoepassing/ContraindicatiesOvergevoeligheden/DECOR/cio-runtime-develop"/>-->
+    <property name="xsl.validate.svrl" value="${build.dir}/../../validate/validate-svrl-output.xsl"/>
+    <property name="schema.organizer" value="${build.dir}/../../../../../../SVN/art_decor/branches/cio-qual-20230424T150542/schemas_codeGen_flat/organizer.xsd"/>
     
+    <import file="../../../../_ant-buildfiles/ant-publish/build-ada2hl7-include.xml"/>
+
     <property name="usecase.bci" value="beschikbaarstellen_contraindicatie"/>
     <property name="usecase.bov" value="beschikbaarstellen_overgevoeligheid"/>
-    
+
 
     <property name="gen.schematron.ref" value="false"/>
     <property name="usecase.nt" value="nictiz_test"/>
-    
+
     <property name="ada.project.source.dir" value="${build.dir}/../../../../art_decor/projects/cio"/>
-    
+
     <target name="setup_cio2" description="Setup subdirectories, schemas, ada instance xml's in ${build.dir} for ${is.name} ${is.version}">
 
         <!-- beschikbaarstellen_contraindicatie copies schemas for project dir and appropriate ada instances -->
@@ -42,7 +40,7 @@
             <param name="fileset.include" value="*bci-tst-*.xml"/>
             <param name="instances.ada.dir" value="data"/>
         </antcall>
-        
+
         <!-- beschikbaarstellen_overgevoeligheid copies schemas for project dir and appropriate ada instances -->
         <antcall target="setup_sub">
             <param name="usecase" value="${usecase.bov}"/>
@@ -50,7 +48,7 @@
             <param name="fileset.include" value="*bov-tst-*.xml"/>
             <param name="instances.ada.dir" value="data"/>
         </antcall>
-    
+
         <!-- xml voorbeelden -->
         <!-- schemas -->
         <mkdir dir="${build.dir}/xml-voorbeelden/ada_schemas"/>
@@ -67,7 +65,7 @@
         <!-- instances -->
         <echo/>
         <echo>Setup ${build.dir}/xml-voorbeelden containing refreshed ada production instances (${instances.dir}/xml-voorbeelden/ada_instance/*example*.xml)</echo>
-        
+
         <mkdir dir="${build.dir}/xml-voorbeelden/ada_instance"/>
         <delete>
             <fileset dir="${build.dir}/xml-voorbeelden/ada_instance" includes="*example*.xml"/>
@@ -76,11 +74,11 @@
             <fileset dir="${instances.dir}/data">
                 <include name="*example*cio2.xml"/>
             </fileset>
-        </copy>        
-    
+        </copy>
+
     </target>
-    
-    
+
+
 
     <target name="convert_ada_2_hl7_cio2">
 
@@ -99,12 +97,12 @@
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="hl7_instance"/>
         </antcall>
-        
+
         <!-- examples -->
         <antcall target="convert_ada_2_hl7_examples_cio2"/>
-  
+
     </target>
-    
+
     <target name="convert_ada_2_hl7_examples_cio2">
         <!-- examples -->
         <echo>Deleting previous results, if any</echo>
@@ -112,11 +110,11 @@
         <delete>
             <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="*.xml"/>
         </delete>
-        
+
         <!-- beschikbaarstellen_contraindicatie -->
         <sequential>
             <fileset id="inputfilescio" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="*bci-*.xml"/>
-            
+
             <echo/>
             <echo>${echo.label} ${build.dir}/${usecase.bci}/payload/${usecase.bci}_org.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
             <xslt force="true" style="${build.dir}/${usecase.bci}/payload/${usecase.bci}_org.xsl" destdir="${build.dir}/xml-voorbeelden/hl7_instance" extension=".xml" useimplicitfileset="false">
@@ -126,11 +124,11 @@
                 <classpath location="${xsl.saxon}"/>
             </xslt>
         </sequential>
-        
+
         <!-- beschikbaarstellen_overgevoeligheid -->
         <sequential>
             <fileset id="inputfilescio" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="*bov-*.xml"/>
-            
+
             <echo/>
             <echo>${echo.label} ${build.dir}/${usecase.bov}/payload/${usecase.bov}_org.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
             <xslt force="true" style="${build.dir}/${usecase.bov}/payload/${usecase.bov}_org.xsl" destdir="${build.dir}/xml-voorbeelden/hl7_instance" extension=".xml" useimplicitfileset="false">
@@ -140,25 +138,25 @@
                 <classpath location="${xsl.saxon}"/>
             </xslt>
         </sequential>
-        
+
     </target>
-    
-    
+
+
     <target name="convert_ada_2_hl7_sub">
-        
+
         <property name="xsl.mp" value="${sub.build.dir}/${xsl.name}"/>
-        
+
         <property name="xsl.input" value="${sub.build.dir}/${xsl.in}"/>
         <property name="xsl.output" value="${sub.build.dir}/${xsl.out}"/>
-        
+
         <echo>Deleting previous results, if any</echo>
         <mkdir dir="${xsl.output}"/>
         <delete>
             <fileset dir="${xsl.output}" includes="*.xml"/>
         </delete>
-        
+
         <fileset id="inputfilescio" dir="${xsl.input}" includes="*.xml"/>
-        
+
         <echo/>
         <echo>${echo.label} ${xsl.mp} input dir ${xsl.input}</echo>
         <xslt force="true" style="${xsl.mp}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
@@ -173,46 +171,138 @@
             <classpath location="${xsl.saxon}"/>
         </xslt>
     </target>
-    
-    
-    <target name="setup_sub" description="Setup ${build.dir}/${usecase} containing the new/schemas folder from the original ADA project and refreshed ada instances from test_xslt">
+
+    <target name="schematronvalidate_cio2">
         
+        <!-- first the schematrons per instance -->
+        <antcall target="validate_hl7_cio2"/>
+        <!-- then summarize the results per use case -->
+        <antcall target="schematronresults_hl7_930"/>
+        
+    </target>
+    
+    <target name="schematronresults_hl7_930">
+        
+        <!-- look at the results from target schematronvalidate_hl7_930 for conclusions -->
+        <!-- beschikbaarstellen_contraindicatie -->
+        <antcall target="schematronresults_cio2_sub">
+            <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.bci}.xml"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.bci}/validate_hl7_instance"/>
+            <param name="input.fileset" value="*.xml"/>
+        </antcall>
+        <!-- beschikbaarstellen_overgevoeligheid -->
+        <antcall target="schematronresults_cio2_sub">
+            <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.bov}.xml"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.bov}/validate_hl7_instance"/>
+            <param name="input.fileset" value="*.xml"/>
+        </antcall>
+        
+          <!-- xml voorbeelden organizer -->
+        <antcall target="schematronresults_cio2_sub">
+            <param name="result.xml" value="${build.dir}/validate/hl7_xml_voorbeelden.xml"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/xml-voorbeelden/validate_hl7_instance"/>
+            <param name="input.fileset" value="*.xml"/>
+        </antcall>
+            
+    </target>
+    
+    <target name="schematronresults_cio2_sub">
+        
+        <echo/>
+        <echo>${echo.label} ${xsl.validate.svrl} make recap of validation in ${result.xml}</echo>
+        <xslt force="true" style="${xsl.validate.svrl}" in="${build.dir}/validate/default_input.xml" out="${result.xml}">
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+            <param name="inputDir" expression="${input.dir}"/>
+            <param name="inputFileSet" expression="${input.fileset}"/>
+        </xslt>
+        
+    </target>
+    
+    <target name="schemavalidate_cio2">
+        
+        <!-- all use cases hl7_instance-->
+        <antcall target="schemavalidate_hl7_sub">
+            <param name="fileset.include" value="**/hl7_instance/*.xml"/>
+            <param name="validate.schema" value="${schema.organizer}"/>
+        </antcall>       
+             
+    </target>
+    
+
+    <target name="validate_hl7_cio2">
+
+        <!-- beschikbaarstellen_contraindicatie -->
+        <antcall target="validate_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.bci}"/>
+            <param name="xsl.input" value="hl7_instance"/>
+            <param name="xsl.output" value="validate_hl7_instance"/>
+            <param name="xsl.mp" value="${validate.dir}/cio-bci.xsl"/>
+        </antcall>
+
+        <!-- beschikbaarstellen_overgevoeligheid -->
+        <antcall target="validate_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.bov}"/>
+            <param name="xsl.input" value="hl7_instance"/>
+            <param name="xsl.output" value="validate_hl7_instance"/>
+            <param name="xsl.mp" value="${validate.dir}/cio-bov.xsl"/>
+        </antcall>
+
+        <!-- xml-voorbeelden -->
+        <echo/>
+        <echo>${echo.label} xml-voorbeelden hl7_instance</echo>
+        <xslt force="true" style="${validate.dir}/cio-bci.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
+            <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="bci-*.xml"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+        </xslt>
+        <xslt force="true" style="${validate.dir}/cio-bov.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
+            <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="bov-*.xml"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+        </xslt>        
+
+    </target>
+
+
+    <target name="setup_sub" description="Setup ${build.dir}/${usecase} containing the new/schemas folder from the original ADA project and refreshed ada instances from test_xslt">
+
         <antcall target="setup_sub_schemas">
             <param name="schema.string" value="*${usecase}.xsd"/>
         </antcall>
-        
+
         <antcall target="setup_sub_instances">
             <param name="fileset.dir" value="${fileset.dir}"/>
             <param name="fileset.include" value="${fileset.include}"/>
             <param name="instances.ada.dir" value="${instances.ada.dir}"/>
             <param name="usecase" value="${usecase}"/>
         </antcall>
-        
+
     </target>
-    
+
     <target name="setup_sub_schemas" description="Setup ${build.dir}/${usecase} containing the new/schemas folder from the original ADA project: ${ada.project.source.dir}/schemas">
         <echo/>
         <echo>Setup ${build.dir}/${usecase} containing refreshed ada schemas (${schema.string}) containing the new/schemas folder from the original ADA project: ${ada.project.source.dir}/schemas</echo>
-        
+
         <mkdir dir="${build.dir}/${usecase}/ada_schemas"/>
         <delete>
             <fileset dir="${build.dir}/${usecase}/ada_schemas" includes="*.xsd"/>
         </delete>
-        
+
         <copy todir="${build.dir}/${usecase}/ada_schemas" failonerror="true">
             <fileset dir="${ada.project.source.dir}/schemas">
                 <include name="${schema.string}"/>
                 <include name="ada_meta.xsd"/>
             </fileset>
         </copy>
-        
+
     </target>
-    
+
     <target name="setup_sub_instances" description="Setup ${build.dir}/${usecase} containing refreshed ada production instances (${fileset.dir}/${fileset.include})">
-        
+
         <echo/>
         <echo>Setup ${build.dir}/${usecase} containing refreshed ada production instances (${fileset.include})</echo>
-        
+
         <mkdir dir="${build.dir}/${usecase}/${fileset.dir}"/>
         <delete>
             <fileset dir="${build.dir}/${usecase}/${fileset.dir}" includes="${fileset.include}"/>
@@ -222,7 +312,25 @@
                 <include name="${fileset.include}"/>
             </fileset>
         </copy>
-        
+
     </target>
-    
+
+    <target name="validate_hl7_sub">
+        <echo>Deleting previous results, if any</echo>
+        <mkdir dir="${sub.build.dir}/${xsl.output}"/>
+        <delete>
+            <fileset dir="${sub.build.dir}/${xsl.output}" includes="*.xml"/>
+        </delete>
+        
+        <fileset id="inputfilesMP" dir="${sub.build.dir}/${xsl.input}" includes="*.xml"/>
+        
+        <echo/>
+        <echo>${echo.label} ${xsl.mp} input dir ${sub.build.dir}/${xsl.input}</echo>
+        <xslt force="true" style="${xsl.mp}" destdir="${sub.build.dir}/${xsl.output}" extension=".xml" useImplicitFileset="false">
+            <fileset refid="inputfilesMP"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+        </xslt>
+    </target>
+
 </project>
