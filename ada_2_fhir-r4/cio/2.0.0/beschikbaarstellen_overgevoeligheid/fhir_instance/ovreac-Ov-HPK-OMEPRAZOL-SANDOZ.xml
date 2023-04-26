@@ -52,5 +52,29 @@
       <type value="PractitionerRole"/>
       <display value="Healthcare professional (role), Victor de Verstrekker, Apothekers, Apotheek De Gulle Gaper"/>
    </asserter>
-   <reaction/>
+   <reaction>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Reaction.Identification">
+         <valueIdentifier>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.4"/>
+            <value value="Re-HPK-OMEPRAZOL SANDOZ"/>
+         </valueIdentifier>
+      </extension>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Reaction.RegistrationDateTime">
+         <valueDateTime value="${DATE, T, D, -98}T11:33:12+02:00"/>
+      </extension>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Reaction.Author">
+         <valueReference>
+            <reference value="PractitionerRole/pracrole-000001116"/>
+            <type value="PractitionerRole"/>
+            <display value="Healthcare professional (role), Victor de Verstrekker, Apothekers, Apotheek De Gulle Gaper"/>
+         </valueReference>
+      </extension>
+      <manifestation>
+         <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+            <valueCode value="unknown"/>
+         </extension>
+      </manifestation>
+      <description value="darmkrampen en jeuk"/>
+      <severity value="moderate"/>
+   </reaction>
 </AllergyIntolerance>

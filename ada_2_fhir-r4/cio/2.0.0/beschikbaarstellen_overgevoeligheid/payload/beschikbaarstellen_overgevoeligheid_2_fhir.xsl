@@ -446,13 +446,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </substance>
                         </xsl:for-each>
                         
-                        <xsl:for-each select="$overgevoeligheidReactie/reactie_verschijnsel[@code]">
-                            <manifestation>
-                                <xsl:call-template name="code-to-CodeableConcept">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
-                            </manifestation>
-                        </xsl:for-each>
+                        <xsl:choose>
+                            <xsl:when test="$overgevoeligheidReactie/reactie_verschijnsel[@code]">
+                                <xsl:for-each select="$overgevoeligheidReactie/reactie_verschijnsel[@code]">
+                                    <manifestation>
+                                        <xsl:call-template name="code-to-CodeableConcept">
+                                            <xsl:with-param name="in" select="."/>
+                                        </xsl:call-template>
+                                    </manifestation>
+                                </xsl:for-each>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <manifestation>
+                                    <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                                        <valueCode value="unknown"/>
+                                    </extension>
+                                </manifestation>
+                            </xsl:otherwise>
+                        </xsl:choose>
                         
                         <xsl:for-each select="$overgevoeligheidReactie/reactie_beschrijving[@value]">
                             <description>
