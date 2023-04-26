@@ -936,7 +936,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:value-of select="'prac-' || (zorgverlener_identificatienummer/@value, specialisme/(@displayName, @code))[1]"/>
                 </xsl:when>
                 <xsl:when test="$localName = 'zorgaanbieder' and $profile = 'nl-core-HealthcareProvider-Organization'">
-                    <xsl:value-of select="'org-' || ((zorgaanbieder_identificatienummer, organisatie_naam)/@value, organisatie_type/(@displayName, @code))[1]"/>
+                    <xsl:value-of select="'org-' || string-join((zorgaanbieder_identificatienummer/@value, afdeling_specialisme/@code)[. != ''], '-')"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="$localName"/>
