@@ -1590,7 +1590,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>Template voor relatie TA</xd:desc>
         <xd:param name="identificatieElement"/>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9101_20160624130316">
@@ -3257,6 +3257,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <consumable xsi:nil="true"/>
         </substanceAdministration>
     </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Template voor relatie MTD</xd:desc>
+        <xd:param name="identificatieElement">ada identificatie element</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9393_20210701">
+        <xsl:param name="identificatieElement" select="."/>
+        <xsl:for-each select="$identificatieElement">
+        <substanceAdministration classCode="SBADM" moodCode="EVN">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9393"/>
+            <xsl:if test=".[1] instance of element()">
+                <xsl:for-each select=".">
+                    <xsl:call-template name="makeIIid"/>
+                </xsl:for-each>
+            </xsl:if>
+            <code displayName="toediening van medicatie (verrichting)" code="18629005" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>
+            <consumable xsi:nil="true"/>
+        </substanceAdministration></xsl:for-each>
+    </xsl:template>
+    
 
     <xd:doc>
         <xd:desc/>

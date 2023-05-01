@@ -86,6 +86,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="lichaamslengte" resource="Observation" profile="nl-core-BodyHeight"/>
         <nm:map ada="lichaamstemperatuur" resource="Observation" profile="nl-core-BodyTemperature"/>
         <nm:map ada="lichaamsgewicht" resource="Observation" profile="nl-core-BodyWeight"/>
+        <nm:map ada="medicatie_contra_indicatie" resource="Flag" profile="cio-MedicationContraIndication"/>
         <nm:map ada="medicatie_contra_indicatie" resource="Flag" profile="nl-core-MedicationContraIndication"/>
         <nm:map ada="medicatiegebruik" resource="MedicationStatement" profile="mp-MedicationUse2"/>
         <nm:map ada="medicatie_gebruik" resource="MedicationStatement" profile="mp-MedicationUse2"/>
@@ -102,12 +103,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="mustscore" resource="Observation" profile="nl-core-MUSTScore"/>
         <nm:map ada="o2saturatie" resource="Observation" profile="nl-core-O2Saturation"/>
         <nm:map ada="opleiding" resource="Observation" profile="nl-core-Education"/>
+        <nm:map ada="overgevoeligheid" resource="AllergyIntolerance" profile="cio-HypersensitivityDispositionReaction"/>
+        <nm:map ada="overgevoeligheid" resource="Condition" profile="cio-HypersensitivityDisposition"/>
         <nm:map ada="participatie_in_maatschappij" resource="Observation" profile="nl-core-ParticipationInSociety"/>
         <nm:map ada="patient" resource="Patient" profile="nl-core-Patient"/>
         <nm:map ada="probleem" resource="Condition" profile="nl-core-Problem"/>
         <nm:map ada="product" resource="Device" profile="nl-core-MedicalDevice.Product"/>
         <nm:map ada="product" resource="Device" profile="nl-core-HearingFunction.HearingAid.Product"/>
         <nm:map ada="product" resource="Device" profile="nl-core-VisualFunction.VisualAid.Product"/>
+        <nm:map ada="reactie" resource="Observation" profile="cio-Reaction"/>
         <nm:map ada="refractie" resource="Observation" profile="nl-core-Refraction"/>
         <nm:map ada="schedelomvang" resource="Observation" profile="nl-core-HeadCircumference"/>
         <nm:map ada="soepverslag" resource="Composition" profile="nl-core-SOAPReport"/>
@@ -260,7 +264,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Helper template to build the FHIR metadata for a singe ADA instance. See the documentation on <xd:ref name="buildFhirMetadata" type="template"/> for more information.</xd:desc>
+        <xd:desc>Helper template to build the FHIR metadata for a single ADA instance. See the documentation on <xd:ref name="buildFhirMetadata" type="template"/> for more information.</xd:desc>
         <xd:param name="in">The ADA instance to generate metadata for.</xd:param>
         <xd:param name="partNumber">The sequence number of the ADA instance being passed in the total collection of ADA instances of this kind. This sequence number is needed for ids in resources that represent just a part of a zib.</xd:param>
     </xd:doc>
