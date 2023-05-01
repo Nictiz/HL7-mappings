@@ -259,7 +259,7 @@
         </antcall>
 
         <!-- convert sturen_afhandeling_medicatievoorschrift -->
-               <antcall target="convert_ada_2_hl7_sub">
+        <antcall target="convert_ada_2_hl7_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.av}"/>
             <param name="xsl.name" value="../${usecase.av}/payload/${usecase.av}_org.xsl"/>
             <param name="xsl.in" value="ada_instance"/>
@@ -493,56 +493,56 @@
         <!-- beschikbaarstellen_medicatiegegevens -->
         <antcall target="schematronresults_hl7_930_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.mg}.xml"/>
-            <param name="input.dir" value="../mp/${is.version}/${usecase.mg}/validate_hl7_instance_repo"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.mg}/validate_hl7_instance_repo"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
 
         <!-- sturen_afhandeling_medicatievoorschrift -->
         <antcall target="schematronresults_hl7_930_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.av}.xml"/>
-            <param name="input.dir" value="../mp/${is.version}/${usecase.av}/validate_hl7_instance"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.av}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- sturen_medicatievoorschrift hl7 organizer -->
         <antcall target="schematronresults_hl7_930_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.mv}.xml"/>
-            <param name="input.dir" value="../mp/${is.version}/${usecase.mv}/validate_hl7_instance"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.mv}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
-         <!-- sturen_voorstel_medicatieafspraak -->
+        <!-- sturen_voorstel_medicatieafspraak -->
         <antcall target="schematronresults_hl7_930_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.vma}.xml"/>
-            <param name="input.dir" value="../mp/${is.version}/${usecase.vma}/validate_hl7_instance"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.vma}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- sturen_antwoord_voorstel_medicatieafspraak -->
         <antcall target="schematronresults_hl7_930_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.avma}.xml"/>
-            <param name="input.dir" value="../mp/${is.version}/${usecase.avma}/validate_hl7_instance"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.avma}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- sturen_voorstel_verstrekkingsverzoek -->
         <antcall target="schematronresults_hl7_930_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.vvv}.xml"/>
-            <param name="input.dir" value="../mp/${is.version}/${usecase.vvv}/validate_hl7_instance"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.vvv}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- sturen_antwoord_voorstel_verstrekkingsverzoek -->
         <antcall target="schematronresults_hl7_930_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.avvv}.xml"/>
-            <param name="input.dir" value="../mp/${is.version}/${usecase.avvv}/validate_hl7_instance"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.avvv}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- xml voorbeelden organizer -->
         <antcall target="schematronresults_hl7_930_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_xml_voorbeelden.xml"/>
-            <param name="input.dir" value="../mp/${is.version}/xml-voorbeelden/validate_hl7_instance"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/xml-voorbeelden/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- xml voorbeelden cda -->
         <antcall target="schematronresults_hl7_930_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_xml_voorbeelden.xml"/>
-            <param name="input.dir" value="../mp/${is.version}/xml-voorbeelden/validate_cda_instance"/>
+            <param name="input.dir" value="../${is.abbreviation}/${is.version}/xml-voorbeelden/validate_cda_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
 
@@ -594,7 +594,7 @@
             <param name="xsl.output" value="validate_hl7_instance"/>
             <param name="xsl.mp" value="${validate.dir}/mp-mp93_vos.xsl"/>
         </antcall>
-    
+
         <!-- sturen_voorstel_medicatieafspraak -->
         <antcall target="validate_hl7_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.vma}"/>
@@ -698,7 +698,7 @@
 
         <echo/>
         <echo>${echo.label} xml-voorbeelden bouwstenen hl7_instance</echo>
-<!--        <xslt force="true" style="${validate.dir}/mp-mp93_mg_ma.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
+        <!--        <xslt force="true" style="${validate.dir}/mp-mp93_mg_ma.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
             <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="bsma-*.xml"/>
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
@@ -736,24 +736,5 @@
 -->
 
     </target>
-
-    <!-- validates xml using xsd -->
-    <target name="schemavalidate_hl7_sub">
-
-        <fileset id="inputfiles.validate" dir="${build.dir}">
-            <include name="${fileset.include}"/>
-            <exclude name="${fileset.exclude}"/>
-        </fileset>
-
-        <echo/>
-        <echo>${echo.label} validate schema with input files ${fileset.include} but excluding ${fileset.exclude}  and schema ${validate.schema}</echo>
-        <schemavalidate warn="true" failonerror="false">
-            <fileset refid="inputfiles.validate"/>
-            <schema namespace="urn:hl7-org:v3" file="${validate.schema}"/>
-        </schemavalidate>
-
-    </target>
-
-
-
+ 
 </project>
