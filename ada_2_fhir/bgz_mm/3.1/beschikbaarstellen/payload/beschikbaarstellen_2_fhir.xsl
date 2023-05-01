@@ -39,7 +39,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- OID separated list of oids like 2.16.840.1.113883.2.4.6.3 (bsn) to mask in output -->
     <xsl:param name="mask-ids" select="$oidBurgerservicenummer" as="xs:string"/>
     
-    <xsl:variable name="usecase">bgz-msz</xsl:variable>
+    <xsl:variable name="usecase">medmij-bgz-test</xsl:variable>
     
     <xd:doc>
         <xd:desc>Start conversion. This conversion tries to account for all zibs in BgZ MSZ "beschikbaarstellen" in one go. Either build a FHIR Bundle of type searchset per zib, or build individual files.</xd:desc>

@@ -1,0 +1,74 @@
+<ProcedureRequest xmlns="http://hl7.org/fhir">
+   <id value="zib-ProcedureRequest-medmij-bgz-test-patA-procedure1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ProcedureRequest"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichtingaanvraag. Subject: Anouk A. Anouk van XXX_Rijn de XXX_Vries. Id: <i>geen informatie (ontbrekend gegeven)</i>, Status: actief<span style="display: block;">Intentie: plan</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="Implantatie van gewrichtsprothese in knie (392238003 - SNOMED CT)">Implantatie van gewrichtsprothese in knie</span>
+                  </td>
+                  <td>
+                     <div>Wanneer: 28 november 2022</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td/>
+               </tr>
+               <tr>
+                  <td>Deel van lichaam</td>
+                  <td>
+                     <span title="Knie (49076000 - SNOMED CT)">Knie</span>
+                     <span title="Right (24028007 - SNOMED CT)">Right</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+         <valueCode value="NI"/>
+      </extension>
+   </identifier>
+   <status value="active"/>
+   <intent value="plan"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="392238003"/>
+         <display value="Implantatie van gewrichtsprothese in knie"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/medmij-bgz-test-patA"/>
+      <display value="Anouk A. Anouk van XXX_Rijn de XXX_Vries"/>
+   </subject>
+   <occurrencePeriod>
+      <start value="2022-11-28"/>
+      <end value="2022-11-28"/>
+   </occurrencePeriod>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="24028007"/>
+               <display value="Right"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="49076000"/>
+         <display value="Knie"/>
+      </coding>
+   </bodySite>
+</ProcedureRequest>

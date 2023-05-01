@@ -1,89 +1,173 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<adaxml>
-   <meta status="new"
-         created-by="ivarjansen"
-         last-update-by="ivarjansen"
-         creation-date="2023-01-09T12:42:46.029+01:00"
-         last-update-date="2023-01-09T16:27:41.846+01:00"/>
-   <data>
-      <laboratory_test_result_registration app="zib2017"
-                                           shortName="laboratory_test_result_registration"
-                                           formName="laboratory_test_result"
-                                           transactionRef="2.16.840.1.113883.2.4.3.11.60.7.4.2.13.1"
-                                           transactionEffectiveDate="2017-12-31T00:00:00"
-                                           versionDate=""
-                                           prefix="zib2017-"
-                                           language="en-US"
-                                           title="mm-bgz-patA-labResult1"
-                                           id="5a1f8b4e-a1bf-4a84-9f8b-4ea1bfaa84ed">
-         <laboratory_test_result conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.1">
-            <hcimroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1">
-               <identification_number conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6" nullFlavor="NI"/>
-               <subject conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11">
-                  <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12">
-                     <patient value="999901382"
-                              root="2.16.840.1.113883.2.4.6.3"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146"/>
-                  </patient>
-               </subject>
-            </hcimroot>
-            <laboratory_test conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.3">
-               <test_code conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.8"
-                          codeSystem="2.16.840.1.113883.6.1"
-                          codeSystemName="LOINC"
-                          code="10346-5"
-                          displayName="Hemoglobine [mmol/volume] in bloed"/>
-               <test_date_time value="12-05-2019"
-                               conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.13"/>
-               <test_result value="8.2 mmol/L"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.10"/>
-               <test_result_status conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.31"
-                                   value="3"
-                                   code="final"
-                                   codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
-                                   displayName="Final"/>
-               <reference_range_upper_limit value="9.9 mmol/L"
-                                            conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.11"/>
-               <reference_range_lower_limit value="7.4 mmol/L"
-                                            conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.12"/>
-               <result_flags conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.14"
-                             value="3"
-                             code="11896004"
-                             codeSystem="2.16.840.1.113883.6.96"
-                             displayName="Intermediate"/>
-            </laboratory_test>
-            <specimen conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.2">
-               <specimen_material conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.16"
-                                  code="87612001"
-                                  codeSystem="2.16.840.1.113883.6.96"
-                                  codeSystemName="SNOMED CT"
-                                  displayName="Bloed"/>
-               <collection_date_time value="11-05-2019"
-                                     conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.17"/>
-               <received_date_time value="12-05-2019"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.25"/>
-               <anatomical_location conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.26"
-                                    code="76248009"
-                                    codeSystem="2.16.840.1.113883.6.96"
-                                    codeSystemName="SNOMED CT"
-                                    displayName="Gehele regio cubiti"/>
-               <laterality conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.27"
-                           value="2"
-                           code="24028007"
-                           codeSystem="2.16.840.1.113883.6.96"
-                           displayName="Right"/>
-            </specimen>
-            <result_status conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.6"
-                           value="3"
-                           code="final"
-                           codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
-                           displayName="Final"/>
-            <result_type conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.7"
-                         value="2"
-                         code="275711006"
+<resource>
+   <laboratory_test_result_registration app="zib2017"
+                                        shortName="laboratory_test_result_registration"
+                                        formName="laboratory_test_result"
+                                        transactionRef="2.16.840.1.113883.2.4.3.11.60.7.4.2.13.1"
+                                        transactionEffectiveDate="2017-12-31T00:00:00"
+                                        versionDate=""
+                                        prefix="zib2017-"
+                                        language="en-US"
+                                        title="mm-bgz-patA-labResult1"
+                                        id="5a1f8b4e-a1bf-4a84-9f8b-4ea1bfaa84ed">
+      <laboratory_test_result conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.1">
+         <hcimroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1">
+            <identification_number conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6" nullFlavor="NI"/>
+            <subject conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11">
+               <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12">
+                  <patient value="999901382"
+                           root="2.16.840.1.113883.2.4.6.3"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146"/>
+               </patient>
+            </subject>
+         </hcimroot>
+         <laboratory_test conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.3">
+            <test_code conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.8"
+                       codeSystem="2.16.840.1.113883.6.1"
+                       codeSystemName="LOINC"
+                       code="10346-5"
+                       displayName="Hemoglobine [mol/volume] in bloed"/>
+            <test_method conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.9"
+                         code="272390001"
                          codeSystem="2.16.840.1.113883.6.96"
-                         displayName="Chemistry"/>
-         </laboratory_test_result>
-      </laboratory_test_result_registration>
-   </data>
-</adaxml>
+                         codeSystemName="SNOMED CT"
+                         displayName="Dillution"/>
+            <test_date_time value="2019-05-12 08:50"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.13"/>
+            <test_result value="7.2 mmol/L"
+                         conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.10"/>
+            <test_result_status conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.31"
+                                value="3"
+                                code="final"
+                                codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
+                                displayName="Final"/>
+            <reference_range_upper_limit value="9.9 mmol/L"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.11"/>
+            <reference_range_lower_limit value="7.4 mmol/L"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.12"/>
+            <interpretation_method conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.30"
+                                   value="1"
+                                   code="tbd"
+                                   codeSystem="2.16.840.1.113883.6.96"
+                                   displayName="EUCAST"/>
+            <result_flags conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.14"
+                          value="2"
+                          code="281300000"
+                          codeSystem="2.16.840.1.113883.6.96"
+                          displayName="Below reference range"/>
+            <result_interpretation value="Onder referentiewaarden"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.32"/>
+         </laboratory_test>
+         <laboratory_test conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.3">
+            <test_code conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.8"
+                       code="24373-3"
+                       codeSystem="2.16.840.1.113883.6.1"
+                       codeSystemName="LOINC"
+                       displayName="Ferritine [massa/volume] in bloed"/>
+            <test_method conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.9"
+                         code="83611000052104"
+                         codeSystem="2.16.840.1.113883.6.96"
+                         codeSystemName="SNOMED CT"
+                         displayName="Turbidimetrie"/>
+            <test_date_time value="2019-05-12 8:45"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.13"/>
+            <test_result value="73 ng/ml" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.10"/>
+            <test_result_status conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.31"
+                                value="3"
+                                code="final"
+                                codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
+                                displayName="Final"/>
+            <reference_range_upper_limit value="100 ng/ml"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.11"/>
+            <reference_range_lower_limit value="20 ng/ml" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.12"/>
+            <interpretation_method conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.30"
+                                   value="1"
+                                   code="tbd"
+                                   codeSystem="2.16.840.1.113883.6.96"
+                                   displayName="EUCAST"/>
+            <result_flags conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.14"
+                          value="3"
+                          code="11896004"
+                          codeSystem="2.16.840.1.113883.6.96"
+                          displayName="Intermediate"/>
+            <result_interpretation value="Binnen referentiewaarden"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.32"/>
+         </laboratory_test>
+         <specimen conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.2">
+            <specimen_id value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.15"/>
+            <specimen_number_extension value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.20"/>
+            <container_type conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.21"
+                            code="700957004"
+                            codeSystem="2.16.840.1.113883.6.96"
+                            codeSystemName="SNOMED CT"
+                            displayName="Container voor bloed- of weefselopslag of -kweek"/>
+            <specimen_material conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.16"
+                               code="87612001"
+                               codeSystem="2.16.840.1.113883.6.96"
+                               codeSystemName="SNOMED CT"
+                               displayName="Bloed"/>
+            <microorganism conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.22"
+                           code="3092008"
+                           codeSystem="2.16.840.1.113883.6.96"
+                           codeSystemName="SNOMED CT"
+                           displayName="Staphylococcus aureus"/>
+            <collected_volume value="20"
+                              unit="ml"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.23"/>
+            <collection_period value="12 uur tussen de twee buisjes"
+                               conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.24"/>
+            <collection_date_time value="2019-05-12 08:15"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.17"/>
+            <received_date_time value="2019-05-12 08:30"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.25"/>
+            <collection_method conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.18"
+                               code="22778000"
+                               codeSystem="2.16.840.1.113883.6.96"
+                               codeSystemName="SNOMED CT"
+                               displayName="Venapunctie"/>
+            <anatomical_location conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.26"
+                                 code="76248009"
+                                 codeSystem="2.16.840.1.113883.6.96"
+                                 codeSystemName="SNOMED CT"
+                                 displayName="Gehele regio cubiti"/>
+            <laterality conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.27"
+                        value="2"
+                        code="24028007"
+                        codeSystem="2.16.840.1.113883.6.96"
+                        displayName="Right"/>
+            <morphology conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.28"
+                        code="399881009"
+                        codeSystem="2.16.840.1.113883.6.96"
+                        codeSystemName="SNOMED CT"
+                        displayName="Afwijkende vasculaire verbinding (afwijkende morfologie)"/>
+            <comment value="Twee buisjes van 10ml. één nuchter en één 's avonds"
+                     conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.19"/>
+         </specimen>
+         <panel_or_battery conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.4"
+                           code="30350-3"
+                           codeSystem="2.16.840.1.113883.6.1"
+                           codeSystemName="LOINC"
+                           displayName="Hemoglobin [Mass/volume] in Venous blood"/>
+         <result_status conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.6"
+                        value="3"
+                        code="final"
+                        codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
+                        displayName="Final"/>
+         <comment value="Staphylococcus aureus aangetroffen"
+                  conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.5"/>
+         <result_type conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.7"
+                      value="1"
+                      code="252275004"
+                      codeSystem="2.16.840.1.113883.6.96"
+                      displayName="Hematology"/>
+         <related_result conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.33">
+            <laboratory_test_result value="mm-bgz-patA-labResult2"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.107"/>
+         </related_result>
+         <requester conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.34">
+            <health_professional value="mm-bgz-PatA-HealtcareProf1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.108"/>
+         </requester>
+      </laboratory_test_result>
+   </laboratory_test_result_registration>
+</resource>

@@ -1,0 +1,92 @@
+<Coverage xmlns="http://hl7.org/fhir">
+   <id value="zib-Payer-medmij-bgz-test-patA-payer1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Payer"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verzekering/garantstelling. Id: <i>geen informatie (ontbrekend gegeven)</i>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Type</th>
+                  <td>
+                     <span title="Aanvullend verzekerd (A - 2.16.840.1.113883.2.4.3.11.60.101.5.1)">Aanvullend verzekerd</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>1 januari 2022 - 31 december 2022</td>
+               </tr>
+               <tr>
+                  <th>abonnee</th>
+                  <td>Anouk A. Anouk van XXX_Rijn de XXX_Vries</td>
+               </tr>
+               <tr>
+                  <th>Betaler</th>
+                  <td>A. van XXX_Rijn<div>
+                        <div>Bank naam: ABN Bank</div>
+                        <div>Rekeningnummer: NL64ABNC0417164300</div>Bank code: ABNANL2A</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Betaler</th>
+                  <td>VGZ Zorgverzekeraar N.V. (Id: 7095 (UZOVI))</td>
+               </tr>
+               <tr>
+                  <th>begunstigde</th>
+                  <td>Anouk A. Anouk van XXX_Rijn de XXX_Vries</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+         <valueCode value="NI"/>
+      </extension>
+   </identifier>
+   <type>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.101.5.1"/>
+         <code value="A"/>
+         <display value="Aanvullend verzekerd"/>
+      </coding>
+   </type>
+   <subscriber>
+      <reference value="Patient/medmij-bgz-test-patA"/>
+      <display value="Anouk A. Anouk van XXX_Rijn de XXX_Vries"/>
+   </subscriber>
+   <subscriberId value="12345678"/>
+   <beneficiary>
+      <reference value="Patient/medmij-bgz-test-patA"/>
+      <display value="Anouk A. Anouk van XXX_Rijn de XXX_Vries"/>
+   </beneficiary>
+   <period>
+      <start value="2022-01-01"/>
+      <end value="2022-12-31"/>
+   </period>
+   <payor>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Payer-BankInformation">
+         <extension url="BankName">
+            <valueString value="ABN Bank"/>
+         </extension>
+         <extension url="AccountNumber">
+            <valueString value="NL64ABNC0417164300"/>
+         </extension>
+         <extension url="Bankcode">
+            <valueString value="ABNANL2A"/>
+         </extension>
+      </extension>
+      <display value="A. van XXX_Rijn"/>
+   </payor>
+   <payor>
+      <identifier>
+         <system value="http://fhir.nl/fhir/NamingSystem/uzovi"/>
+         <value value="7095"/>
+      </identifier>
+      <display value="VGZ Zorgverzekeraar N.V."/>
+   </payor>
+</Coverage>

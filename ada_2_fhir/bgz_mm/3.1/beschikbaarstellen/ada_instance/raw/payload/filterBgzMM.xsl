@@ -10,11 +10,12 @@
     <xsl:output indent="yes"/>
     
     <xsl:template match="/">
-        <xsl:for-each select="collection(concat($inputdir, '?select=*.xml;recurse=yes'))/adaxml[data/*[ends-with(local-name(),'_registration')]/@title/starts-with(., 'mm-bgz')]">
+        <!--<xsl:for-each select="collection(concat($inputdir, '?select=*.xml;recurse=yes'))/adaxml[data/*[ends-with(local-name(),'_registration')]/@title/starts-with(., 'mm-bgz')]">-->
+        <xsl:for-each select="collection(concat($inputdir, '?select=*.xml;recurse=yes'))//resource[*[ends-with(local-name(),'_registration')]/@title/starts-with(., 'mm-bgz')]">
             <xsl:variable name="title" select="data/*[ends-with(local-name(),'_registration')]/@title"/>
-            <xsl:result-document href="{concat($outputdir,$title,'.xml')}">
+            <!--<xsl:result-document href="{concat($outputdir,$title,'.xml')}">-->
                 <xsl:copy-of select="."></xsl:copy-of>
-            </xsl:result-document>
+            <!--</xsl:result-document>-->
         </xsl:for-each>
     </xsl:template>
     
