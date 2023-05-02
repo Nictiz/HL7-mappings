@@ -22,7 +22,6 @@ if exist "%outputDir%" (
 	del "%outputDir%" /Q
 )
 
-
 for /f %%f in ('dir /b "%inputDir%"') do (
 	set id=%%~nf
 	call :doTransformation !id!
