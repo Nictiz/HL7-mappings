@@ -633,6 +633,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:apply-templates select="$in" mode="nl-core-HealthcareProvider-Organization"/>
                 <!--</xsl:if>-->
             </xsl:when>
+            <xsl:when test="$localName = 'zorg_afspraak'">
+                <xsl:apply-templates select="$in" mode="nl-core-CareAgreement">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'zorg_episode'">
                 <xsl:apply-templates select="$in" mode="nl-core-EpisodeOfCare">
                     <xsl:with-param name="subject" select="$subject"/>
