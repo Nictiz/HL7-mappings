@@ -134,5 +134,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:copy-of select="."/>
         </xsl:result-document>
     </xsl:template>
-
+    
+    <xd:doc>
+        <xd:desc>Template to generate a unique id to identify this instance. Override the logicalId generation for our Touchstone resources with the goal to remove oids from filenames.</xd:desc>
+    </xd:doc>
+    <xsl:template match="medicatieafspraak | wisselend_doseerschema | verstrekkingsverzoek | toedieningsafspraak | medicatieverstrekking | medicatiegebruik | medicatietoediening" mode="_generateId">
+        <xsl:variable name="uniqueString" as="xs:string?">
+            <xsl:choose>
+                <xsl:when test="identificatie[@root][@value]">
+                    <xsl:for-each select="(identificatie[@root][@value])[1]">
+                        <!-- we remove '.' in root oid and '_' in extension to enlarge the chance of staying in 64 chars -->
+                        <xsl:value-of select="replace(@value, '_', '')"/>
+                    </xsl:for-each>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- we do not have anything to create a stable logicalId, lets return a UUID -->
+                    <xsl:value-of select="nf:get-uuid(.)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        
+        <xsl:call-template name="generateLogicalId">
+            <xsl:with-param name="uniqueString" select="$uniqueString"/>
+        </xsl:call-template>
+    </xsl:template>
+    
 </xsl:stylesheet>

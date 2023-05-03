@@ -45,7 +45,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </reference-display>
                 <xsl:apply-templates select="current-group()[1]" mode="doProblemEntry-2.1">
                     <xsl:with-param name="uuid" select="$uuid"/>
-                    <xsl:with-param name="searchMode">match</xsl:with-param>
+                    <xsl:with-param name="searchMode">include</xsl:with-param>
                 </xsl:apply-templates>
             </unieke-problem>
         </xsl:for-each-group>

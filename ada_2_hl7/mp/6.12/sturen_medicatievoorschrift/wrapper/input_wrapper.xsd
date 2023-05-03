@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="transmission_wrapper">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="schematron_href" minOccurs="0"/>
+        <xs:element ref="schema_location" minOccurs="0"/>
+        <xs:element ref="root_xml_element" minOccurs="0"/>
+        <xs:element ref="id" minOccurs="0"/>
+        <xs:element ref="creation_time" minOccurs="0"/>
+        <xs:element ref="interaction_id" minOccurs="0"/>
+        <xs:element ref="accept_ack_code" minOccurs="0"/>
+        <xs:element ref="attention_line_bsn" minOccurs="0"/>
+        <xs:element ref="receiver" minOccurs="0"/>
+        <xs:element ref="sender" minOccurs="0"/>
+        <xs:element ref="controlact_wrapper" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="schematron_href">
+    <xs:complexType>
+      <xs:attribute name="value" use="optional" type="xs:anyURI"/>
+      <xs:attribute name="type" use="optional" type="xs:anyURI"/>
+      <xs:attribute name="schematypens" use="optional" type="xs:anyURI"/>
+      <xs:attribute name="phase" use="optional" type="xs:anyURI"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="attention_line_bsn">
+    <xs:complexType>
+      <xs:attribute name="value" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="schema_location">
+    <xs:complexType>
+      <xs:attribute name="value" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="root_xml_element">
+    <xs:complexType>
+      <xs:attribute name="value" use="optional" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="creation_time">
+    <xs:complexType>
+      <xs:attribute name="value" use="optional" type="xs:dateTime"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="interaction_id">
+    <xs:complexType>
+      <xs:attribute name="value" use="optional" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="accept_ack_code">
+    <xs:complexType>
+      <xs:attribute name="value" use="optional" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="receiver">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id" minOccurs="0"/>
+        <xs:element ref="name" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sender">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:element ref="name"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="controlact_wrapper">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="author_or_performer" minOccurs="0"/>
+        <xs:element ref="overseer" minOccurs="0"/>
+        <xs:element ref="registration_wrapper" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="author_or_performer" >
+    <xs:complexType>
+      <xs:choice>
+        <xs:element ref="assigned_device" minOccurs="0"/>
+        <xs:element ref="assigned_person" minOccurs="0"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="overseer" type="assigned_person"/>
+  <xs:element name="registration_wrapper">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="code" minOccurs="0"/>
+        <xs:element ref="effective_time" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="effective_time">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="low" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="low">
+    <xs:complexType>
+      <xs:attribute name="value" use="optional" type="xs:dateTime"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="id">
+    <xs:complexType>
+      <xs:attribute name="root" use="optional" type="xs:NMTOKEN"/>
+      <xs:attribute name="value" use="optional" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="name">
+    <xs:complexType>
+      <xs:attribute name="value" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="assigned_person">
+    <xs:sequence>
+      <xs:element ref="assigned_person" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="assigned_device">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="id"/>
+        <xs:element ref="organization" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="assigned_person">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="id"/>
+        <xs:element ref="code" minOccurs="0"/>
+        <xs:element ref="name" minOccurs="0"/>
+        <xs:element ref="organization" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="organization">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="id"/>
+        <xs:element ref="code" minOccurs="0"/>
+        <xs:element ref="name" minOccurs="0"/>
+        <xs:element ref="address" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="address">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="city" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="city">
+    <xs:complexType>
+      <xs:attribute name="value" use="optional" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="code">
+    <xs:complexType>
+      <xs:attribute name="code" use="optional" type="xs:NMTOKEN"/>
+      <xs:attribute name="codeSystem" use="optional" type="xs:NMTOKEN"/>
+      <xs:attribute name="displayName" use="optional"/>
+      <xs:attribute name="value" use="optional" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -909,9 +909,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:variable>
                             <xsl:variable name="houseNumberIndication" select="hl7:additionalLocator[not(. = '')]"/>
                             <xsl:variable name="postcode" select="hl7:postalCode[not(. = '')]"/>
-                            <xsl:variable name="placeOfResidence" select="hl7:city[not(. = '')]"/>
-                            <xsl:variable name="municipality" select="hl7:county[not(. = '')]"/>
-                            <xsl:variable name="country" select="hl7:country[not(. = '')]"/>
+                            <xsl:variable name="placeOfResidence" select="hl7:city[@* or not(. = '')]"/>
+                            <xsl:variable name="municipality" select="hl7:county[@* or not(. = '')]"/>
+                            <xsl:variable name="country" select="hl7:country[@* or not(. = '')]"/>
                             <xsl:variable name="additionalInformation" select="hl7:desc[not(. = '')]"/>
                             <xsl:element name="{$elmAddressInformation}">
 
@@ -949,33 +949,60 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <!-- Codes? -->
                                 <xsl:if test="$placeOfResidence">
                                     <xsl:element name="{$elmPlaceOfResidence}">
-                                        <xsl:attribute name="value" select="$placeOfResidence"/>
-                                        <xsl:if test="@code">
-                                            <xsl:copy-of select="@code"/>
-                                            <xsl:copy-of select="@codeSystem"/>
-                                            <xsl:attribute name="displayName" select="$placeOfResidence"/>
+                                        <xsl:if test="$placeOfResidence/text()">
+                                            <xsl:attribute name="value" select="$placeOfResidence/text()"/>
+                                        </xsl:if>
+                                        <xsl:if test="$placeOfResidence/@code">
+                                            <xsl:copy-of select="$placeOfResidence/@code"/>
+                                            <xsl:copy-of select="$placeOfResidence/@codeSystem"/>
+                                            <xsl:choose>
+                                                <xsl:when test="$placeOfResidence/@displayName">
+                                                    <xsl:attribute name="displayName" select="$placeOfResidence"/>
+                                                </xsl:when>
+                                                <xsl:when test="$placeOfResidence/text()">
+                                                    <xsl:attribute name="displayName" select="$placeOfResidence/text()"/>
+                                                </xsl:when>
+                                            </xsl:choose>
                                         </xsl:if>
                                     </xsl:element>
                                 </xsl:if>
                                 <!-- Codes? -->
                                 <xsl:if test="$municipality">
                                     <xsl:element name="{$elmMunicipality}">
-                                        <xsl:attribute name="value" select="$municipality"/>
-                                        <xsl:if test="@code">
-                                            <xsl:copy-of select="@code"/>
-                                            <xsl:copy-of select="@codeSystem"/>
-                                            <xsl:attribute name="displayName" select="$municipality"/>
+                                        <xsl:if test="$municipality/text()">
+                                            <xsl:attribute name="value" select="$municipality/text()"/>
+                                        </xsl:if>
+                                        <xsl:if test="$municipality/@code">
+                                            <xsl:copy-of select="$municipality/@code"/>
+                                            <xsl:copy-of select="$municipality/@codeSystem"/>
+                                            <xsl:choose>
+                                                <xsl:when test="$municipality/@displayName">
+                                                    <xsl:attribute name="displayName" select="$municipality"/>
+                                                </xsl:when>
+                                                <xsl:when test="$municipality/text()">
+                                                    <xsl:attribute name="displayName" select="$municipality/text()"/>
+                                                </xsl:when>
+                                            </xsl:choose>
                                         </xsl:if>
                                     </xsl:element>
                                 </xsl:if>
                                 <!-- Codes? -->
                                 <xsl:if test="$country">
                                     <xsl:element name="{$elmCountry}">
-                                        <xsl:attribute name="value" select="$country"/>
-                                        <xsl:if test="@code">
-                                            <xsl:copy-of select="@code"/>
-                                            <xsl:copy-of select="@codeSystem"/>
-                                            <xsl:attribute name="displayName" select="$country"/>
+                                        <xsl:if test="$country/text()">
+                                            <xsl:attribute name="value" select="$country/text()"/>
+                                        </xsl:if>
+                                        <xsl:if test="$country/@code">
+                                            <xsl:copy-of select="$country/@code"/>
+                                            <xsl:copy-of select="$country/@codeSystem"/>
+                                            <xsl:choose>
+                                                <xsl:when test="$country/@displayName">
+                                                    <xsl:attribute name="displayName" select="$country"/>
+                                                </xsl:when>
+                                                <xsl:when test="$country/text()">
+                                                    <xsl:attribute name="displayName" select="$country/text()"/>
+                                                </xsl:when>
+                                            </xsl:choose>
                                         </xsl:if>
                                     </xsl:element>
                                 </xsl:if>
@@ -1253,7 +1280,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="codeMap">Array of map elements to be used to map input HL7v3 codes to output ADA codes if those differ. For codeMap expect one or more elements like this: <xd:p><xd:pre>&lt;map inCode="xx" inCodeSystem="yy" value=".." code=".." codeSystem=".." codeSystemName=".." codeSystemVersion=".." displayName=".." originalText=".."/&gt;</xd:pre></xd:p>
             <xd:p>If input @code | @codeSystem matches, copy the other attributes from this element. Expected are usually @code, @codeSystem, @displayName, others optional. In some cases the @value is required in ADA. The $codeMap may then to be used to supply that @value based on @inCode / @inCodeSystem. If the @code / @codeSystem are omitted, the mapping assumes you meant to copy the @inCode / @inCodeSystem.</xd:p>
             <xd:p>For @inCode and @inCodeSystem, first the input @code/@codeSystem is checked, with fallback onto @nullFlavor.</xd:p></xd:param>
-        <xd:param name="nullIfMissing">Optional. If there is no element, and this has a value, create element anyway with given nullFlavor as code/coodeSystem/displayName</xd:param>
+        <xd:param name="nullIfMissing">Optional. If there is no element, and this has a value, create element anyway with given nullFlavor as code/codeSystem/displayName</xd:param>
     </xd:doc>
     <xsl:template name="handleCV">
         <xsl:param name="in" select="." as="element()*"/>
@@ -1666,7 +1693,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </zorgverlener>
         </xsl:for-each>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc> uitvoerende - zib2020 </xd:desc>
         <xd:param name="in-hl7">hl7 element performer</xd:param>
@@ -1675,13 +1702,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.43_20210701">
         <xsl:param name="in-hl7" select="."/>
         <xsl:param name="generateId" as="xs:boolean?" select="false()"/>
-        
+
         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.37_20210701">
             <xsl:with-param name="in-hl7" select="$in-hl7/hl7:assignedEntity"/>
             <xsl:with-param name="generateId" select="$generateId"/>
         </xsl:call-template>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>CDArecordTargetSDTC</xd:desc>
         <xd:param name="in">hl7 patient to be converted</xd:param>
@@ -1956,13 +1983,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="author-hl7" select="."/>
         <xsl:param name="generateId" as="xs:boolean?" select="false()"/>
         <xsl:param name="outputNaamgebruik" as="xs:boolean?" select="true()"/>
-        
+
 
         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.37_20210701">
             <xsl:with-param name="in-hl7" select="$author-hl7/hl7:assignedAuthor"/>
             <xsl:with-param name="generateId" select="$generateId"/>
             <xsl:with-param name="outputNaamgebruik" select="$outputNaamgebruik"/>
-            
+
         </xsl:call-template>
     </xsl:template>
 
