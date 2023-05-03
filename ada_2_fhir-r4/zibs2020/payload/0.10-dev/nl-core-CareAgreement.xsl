@@ -10,11 +10,15 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir"
-    xmlns:util="urn:hl7:utilities" xmlns:f="http://hl7.org/fhir"
-    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions"
-    xmlns:nm="http://www.nictiz.nl/mapping" xmlns:uuid="http://www.uuid.org"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+<xsl:stylesheet exclude-result-prefixes="#all"
+    xmlns="http://hl7.org/fhir"
+    xmlns:util="urn:hl7:utilities" 
+    xmlns:f="http://hl7.org/fhir" 
+    xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
+    xmlns:nf="http://www.nictiz.nl/functions" 
+    xmlns:uuid="http://www.uuid.org"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
 
     <xsl:output method="xml" indent="yes"/>
@@ -28,7 +32,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Create a nl-core-CareAgreement instance as a CarePlan FHIR instance from ADA zorg_afspraak.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
-        <xd:param name="agreementParties">Optional ADA instance or ADA reference element for the agreement parties.</xd:param>
+        <xd:param name="agreementParty">Optional ADA instance or ADA reference element for the agreement parties.</xd:param>
         <xd:param name="careCoordinator">Optional ADA instance or ADA reference element for the care coordinator.</xd:param>
         <xd:param name="performer">Optional ADA instance or ADA reference element for the performer.</xd:param>
         <xd:param name="problem">Optional ADA instance or ADA reference element for the problem.</xd:param>
@@ -36,9 +40,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="zorg_afspraak" name="nl-core-CareAgreement" mode="nl-core-CareAgreement" as="element(f:CarePlan)">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        <xsl:param name="agreementParties" select="(afspraak_partijen/zorgverlener/*, afspraak_partijen/patient/*, afspraak_partijen/contactpersoon/*)[1]" as="element()?"/>
+        <xsl:param name="agreementParty" select="afspraak_partijen/*[self::patient or self::contactpersoon or self::zorgverlener]/*"/>
         <xsl:param name="careCoordinator" select="coordinator/*" as="element()?"/>
-        <xsl:param name="performer" select="(uitvoerder/zorgverlener/*, uitvoerder/contactpersoon/*, uitvoerder/patient/*)[1]" as="element()?"/>
+        <xsl:param name="performer" select="uitvoerder/*[self::patient or self::contactpersoon or self::zorgverlener]/*"/>
         <xsl:param name="problem" select="probleem/*" as="element()?"/>
         
         <xsl:for-each select="$in">
@@ -112,21 +116,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </author>
                 </xsl:for-each>
                 
-                <xsl:for-each select="$agreementParties">
+                <xsl:for-each select="$agreementParty">
                     <contributor>
-                        <xsl:if test="zorgverlener">
+                        <xsl:if test=".[self::zorgverlener]">
                             <xsl:call-template name="makeReference">
                                 <xsl:with-param name="in" select="."/>
                                 <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
                             </xsl:call-template>
                         </xsl:if>
-                        <xsl:if test="contactpersoon">
+                        <xsl:if test=".[self::contactpersoon]">
                             <xsl:call-template name="makeReference">
                                 <xsl:with-param name="in" select="."/>
                                 <xsl:with-param name="profile" select="'nl-core-ContactPerson'"/>
                             </xsl:call-template>
                         </xsl:if>
-                        <xsl:if test="patient">
+                        <xsl:if test=".[self::patient]">
                             <xsl:call-template name="makeReference">
                                 <xsl:with-param name="in" select="."/>
                                 <xsl:with-param name="profile" select="'nl-core-Patient'"/>
@@ -161,19 +165,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             
                             <xsl:for-each select="$performer">
                                 <performer>
-                                    <xsl:if test="zorgverlener">
+                                    <xsl:if test=".[self::zorgverlener]">
                                         <xsl:call-template name="makeReference">
                                             <xsl:with-param name="in" select="."/>
                                             <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
                                         </xsl:call-template>
                                     </xsl:if>
-                                    <xsl:if test="contactpersoon">
+                                    <xsl:if test=".[self::contactpersoon]">
                                         <xsl:call-template name="makeReference">
                                             <xsl:with-param name="in" select="."/>
                                             <xsl:with-param name="profile" select="'nl-core-ContactPerson'"/>
                                         </xsl:call-template>
                                     </xsl:if>
-                                    <xsl:if test="patient">
+                                    <xsl:if test=".[self::patient]">
                                         <xsl:call-template name="makeReference">
                                             <xsl:with-param name="in" select="."/>
                                             <xsl:with-param name="profile" select="'nl-core-Patient'"/>
