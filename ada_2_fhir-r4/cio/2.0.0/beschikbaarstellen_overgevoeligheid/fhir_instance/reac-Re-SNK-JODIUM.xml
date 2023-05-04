@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="reac-Re-SNK-JODIUM"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-Reaction"/>
+   </meta>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.4"/>
+      <value value="Re-SNK-JODIUM"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="281647001"/>
+         <display value="ongewenste reactie"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/patient-XXX-Habiboellah"/>
+      <type value="Patient"/>
+      <display value="Patient, N. XXX_Habiboellah"/>
+   </subject>
+   <effectivePeriod>
+      <start value="${DATE, T, D, -87}"/>
+   </effectivePeriod>
+   <issued value="${DATE, T, D, -87}T08:55:20+02:00"/>
+   <performer>
+      <reference value="PractitionerRole/pracrole-000001111"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+   </performer>
+   <note>
+      <text value="lokale roodheid, blaasjes en jeuk van de huid"/>
+   </note>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="246112005"/>
+            <display value="ernst"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="6736007"/>
+            <display value="matig"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="284009009"/>
+            <display value="route van toediening"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="53"/>
+            <display value="CUTAAN"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+</Observation>
