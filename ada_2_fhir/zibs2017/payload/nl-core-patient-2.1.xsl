@@ -121,15 +121,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="{$profileValue}"/>
                     </meta>
                     
-                    <xsl:for-each select="(identificatienummer | patient_identificatienummer | patient_identification_number)[@value | @nullFlavor]">
-                        <identifier>
-                            <xsl:call-template name="id-to-Identifier">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </identifier>
-                    </xsl:for-each>
-                    
-                    <xsl:for-each select="zibroot/identificatienummer | hcimroot/identification_number">
+                    <xsl:for-each select="(identificatienummer | patient_identificatienummer | patient_identification_number | zibroot/identificatienummer | hcimroot/identification_number)[@value | @nullFlavor]">
                         <identifier>
                             <xsl:call-template name="id-to-Identifier">
                                 <xsl:with-param name="in" select="."/>
