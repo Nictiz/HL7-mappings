@@ -118,7 +118,7 @@
             <xsl:apply-templates select="aantal_herhalingen" mode="#current"/>
             <xsl:apply-templates select="te_verstrekken_geneesmiddel" mode="#current"/>
                         <!-- the rest, except what was already done and the elements not supported in 907, such as relatie_contact/relatie_zorgepisode and financiele_indicatiecode -->
-            <xsl:apply-templates select="*[not(self::identificatie | self::verstrekkingsverzoek_datum_tijd | self::verstrekkingsverzoek_datum | self::auteur | self::te_verstrekken_hoeveelheid | self::aantal_herhalingen | self::te_verstrekken_geneesmiddel | self::financiele_indicatiecode | self::toelichting | self::relatie_medicatieafspraak | self::relatie_contact | self::relatie_zorgepisode | self::aanvullende_wensen)]" mode="#current"/>
+            <xsl:apply-templates select="*[not(self::identificatie | self::verstrekkingsverzoek_datum_tijd | self::verstrekkingsverzoek_datum | self::auteur | self::te_verstrekken_hoeveelheid | self::aantal_herhalingen | self::te_verstrekken_geneesmiddel | self::financiele_indicatiecode | self::toelichting | self::relatie_medicatieafspraak | self::relatie_contact | self::relatie_zorgepisode | self::aanvullende_wensen | self::geannuleerd_indicator)]" mode="#current"/>
             <!-- extra waarde in waardelijst: Als de code 4 is, dan tekstuele weergave in toelichting element toevoegen.-->
             <xsl:choose>
                 <xsl:when test="aanvullende_wensen[@code = ('1', '2', '3')]">
@@ -392,12 +392,12 @@
     <xd:doc>
         <xd:desc>Handle toelichting, needs to be enriched with non supported stuff in 907</xd:desc>
     </xd:doc>
-    <xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatiegebruik | medicatie_gebruik)/toelichting" mode="ada930_2_907">
+    <xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatiegebruik | medicatie_gebruik | verstrekkingsverzoek)/toelichting" mode="ada930_2_907">
         <xsl:call-template name="_toelichting"/>
     </xsl:template>
 
     <xd:doc>
-        <xd:desc> toelichting en niet ondersteuende velden in toelichting van MP9 3.0 naar 9.0.7 </xd:desc>
+        <xd:desc> toelichting en niet ondersteunde velden in toelichting van MP9 3.0 naar 9.0.7 </xd:desc>
     </xd:doc>
     <xsl:template name="_toelichting">
         <xsl:variable name="newValue" as="xs:string*">
@@ -424,9 +424,60 @@
             <xsl:if test="aanvullende_wensen[@code = ('4')]">
                 <xsl:value-of select="concat('Aanvullende wensen: ', aanvullende_wensen/@displayName)"/>
             </xsl:if>
+            <!-- vv/geannuleerd indicator -->
+            <xsl:if test="geannuleerd_indicator[@value = 'true']">
+                <xsl:value-of select="'VERSTREKKINGSVERZOEK GEANNULEERD'"/>
+            </xsl:if>
+            <!-- ma volgende behandelaar -->
+            <xsl:if test="volgende_behandelaar/zorgverlener[@value]">
+                <xsl:variable name="VolgendeBehandelaarZorgverlener" select="//bouwstenen/zorgverlener[@id = current()/volgende_behandelaar/zorgverlener/@value]"/>
+                <xsl:variable name="VolgendeBehandelaarZorgaanbieder" select="//bouwstenen//zorgaanbieder[@id = $VolgendeBehandelaarZorgverlener//zorgaanbieder[not(zorgaanbieder)]/@value]"/>
+                <xsl:variable name="VolgendeBehandelaarValue" as="xs:string*">
+                    <xsl:if test="$VolgendeBehandelaarZorgverlener/naamgegevens/initialen[@value]">
+                        <xsl:value-of select="$VolgendeBehandelaarZorgverlener/naamgegevens/initialen/@value"/>
+                    </xsl:if>
+                    <xsl:if test="$VolgendeBehandelaarZorgverlener/naamgegevens/voornamen[@value]">
+                        <xsl:value-of select="$VolgendeBehandelaarZorgverlener/naamgegevens/voornamen/@value"/>
+                    </xsl:if>
+                    <xsl:if test="$VolgendeBehandelaarZorgverlener/naamgegevens/geslachtsnaam/voorvoegsels[@value]">
+                        <xsl:value-of select="$VolgendeBehandelaarZorgverlener/naamgegevens/geslachtsnaam/voorvoegsels/@value"/>
+                    </xsl:if>
+                    <xsl:if test="$VolgendeBehandelaarZorgverlener/naamgegevens/geslachtsnaam/achternaam[@value]">
+                        <xsl:value-of select="$VolgendeBehandelaarZorgverlener/naamgegevens/geslachtsnaam/achternaam/@value"/>
+                    </xsl:if>
+                    <xsl:if test="$VolgendeBehandelaarZorgverlener/zorgverlener_identificatienummer[@root='2.16.528.1.1007.3.1']">
+                        <xsl:value-of select="concat('Zorgverlener identificatie (UZI): ', $VolgendeBehandelaarZorgverlener/zorgverlener_identificatienummer/@value)"/>
+                    </xsl:if>
+                    <xsl:if test="$VolgendeBehandelaarZorgverlener/zorgverlener_identificatienummer[@root='2.16.528.1.1007.5.1']">
+                        <xsl:value-of select="concat('Zorgverlener identificatie (BIG): ', $VolgendeBehandelaarZorgverlener/zorgverlener_identificatienummer/@value)"/>
+                    </xsl:if>
+                    <xsl:if test="$VolgendeBehandelaarZorgverlener/zorgverlener_identificatienummer[@root='2.16.840.1.113883.2.4.6.1']">
+                        <xsl:value-of select="concat('Zorgverlener identificatie (AGB): ', $VolgendeBehandelaarZorgverlener/zorgverlener_identificatienummer/@value)"/>
+                    </xsl:if>
+                    <xsl:if test="$VolgendeBehandelaarZorgverlener/specialisme[@displayName]">
+                        <xsl:value-of select="concat('Specialisme: ', $VolgendeBehandelaarZorgverlener/specialisme/@displayName)"/>
+                    </xsl:if>
+                    <xsl:if test="$VolgendeBehandelaarZorgaanbieder/organisatie_naam[@value]">
+                        <xsl:value-of select="concat('Organisatienaam: ', $VolgendeBehandelaarZorgaanbieder/organisatie_naam/@value)"/>
+                    </xsl:if>
+                    <xsl:if test="$VolgendeBehandelaarZorgaanbieder/zorgaanbieder_identificatienummer[@root='2.16.528.1.1007.3.3']">
+                        <xsl:value-of select="concat('Zorgaanbieder identificatie (URA): ', $VolgendeBehandelaarZorgaanbieder/zorgaanbieder_identificatienummer/@value)"/>
+                    </xsl:if>
+                    <xsl:if test="$VolgendeBehandelaarZorgaanbieder/zorgaanbieder_identificatienummer[@root='2.16.840.1.113883.2.4.6.1']">
+                        <xsl:value-of select="concat('Zorgaanbieder identificatie (AGB): ', $VolgendeBehandelaarZorgaanbieder/zorgaanbieder_identificatienummer/@value)"/>
+                    </xsl:if>
+                    <xsl:if test="$VolgendeBehandelaarZorgaanbieder/organisatie_type[@displayName]">
+                        <xsl:value-of select="concat('Organisatietype: ', $VolgendeBehandelaarZorgaanbieder/organisatie_type/@displayName)"/>
+                    </xsl:if>
+                </xsl:variable>
+                    <xsl:if test="string-length(string-join($VolgendeBehandelaarValue, ' ')) gt 0">
+                        <xsl:variable name="SetVolgendeBehandelaarZorgverlener" select="string-join($VolgendeBehandelaarValue,', ')"/>
+                        <xsl:value-of select="concat('Volgende behandelaar: ',$SetVolgendeBehandelaarZorgverlener)"/>
+                    </xsl:if>
+                </xsl:if>
         </xsl:variable>
-
-        <xsl:if test="string-length($newValue) gt 0">
+        
+        <xsl:if test="string-length(string-join($newValue, ' | ')) gt 0">
             <toelichting>
                 <xsl:apply-templates select="toelichting/@*" mode="#current"/>
                 <xsl:attribute name="value">
