@@ -57,6 +57,50 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:function>
     
     <xd:doc>
+        <xd:desc>Override this function to avoid the use of generate-id which generates a new id every execution. Instead use string-to-codepoints of a combination of profile and groupingkey</xd:desc>
+        <xd:param name="node"/>
+    </xd:doc>
+    <xsl:function name="uuid:next-nr" as="xs:integer">
+        <xsl:param name="node"/>
+        <xsl:variable name="filter" as="element()">
+            <xsl:apply-templates select="$node" mode="filter"/>
+        </xsl:variable>
+        <!--<xsl:message select="concat(count(string-to-codepoints(nf:getGroupingKeyDefault($filter))), ' - ',nf:getGroupingKeyDefault($filter))"></xsl:message>-->
+        <xsl:sequence select="xs:integer(nf:product-sum(string-to-codepoints(nf:getGroupingKeyDefault($filter))))"/>
+    </xsl:function>
+    
+    <xsl:template match="@* | node()" mode="filter">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" mode="#current"/>
+        </xsl:copy>
+    </xsl:template>
+    <xsl:template match="hcimroot" mode="filter"/>
+    <xsl:template match="*[ends-with(@conceptId, '.1') and @value]" mode="filter">
+        <xsl:param name="root" select="true()" tunnel="yes"/>
+        <xsl:choose>
+            <xsl:when test="$root = true()">
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="#current">
+                        <xsl:with-param name="root" select="false()" tunnel="yes"/>
+                    </xsl:apply-templates>
+                </xsl:copy>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:copy/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Using a combination of addition and multiplication to generate a 'large' integer that is as unique as possible. For example: for a basic Medication resource, this leads to a 40+ character long integer. Others will usually be longer.</xd:desc>
+        <xd:param name="in"/>
+    </xd:doc>
+    <xsl:function name="nf:product-sum" as="xs:integer">
+        <xsl:param name="in"/>
+        <xsl:sequence select="if (count($in) = 1) then $in[1] else (if (count($in) mod 3 = 0) then $in[1] * nf:product-sum($in[position()>1]) else $in[1] + nf:product-sum($in[position()>1]))"/>
+    </xsl:function>
+    
+    <xd:doc>
         <xd:desc>Creates xml document for a FHIR resource</xd:desc>
         <xd:param name="outputDir">The outputDir for the resource, defaults to 'current dir'.</xd:param>
     </xd:doc>

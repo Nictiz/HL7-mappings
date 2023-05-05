@@ -79,7 +79,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:if test="count($resolved) ne 1">
                     <xsl:message>Could not resolve reference to <xsl:value-of select="current()/local-name()"/> '<xsl:value-of select="current()/@value"/>' in <xsl:value-of select="ancestor::*[ends-with(local-name(), '_registration')]/@title"/></xsl:message>
                 </xsl:if>
-                <xsl:apply-templates select="$resolved" mode="#current"/>
+                <xsl:element name="{$resolved/local-name()}">
+                    <xsl:copy-of select="@*"/>
+                    <xsl:copy-of select="$resolved/@*"/>
+                    <xsl:apply-templates select="$resolved/*" mode="#current"/>
+                </xsl:element>
+                
             </xsl:when>
             <xsl:otherwise>
                 <xsl:next-match/>

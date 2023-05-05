@@ -1,5 +1,5 @@
 <Condition xmlns="http://hl7.org/fhir">
-   <id value="zib-Problem-medmij-bgz-test-c33fe324-6a95-11ec-0000-020000000000"/>
+   <id value="zib-Problem-medmij-bgz-test-bdc3ed6d-6b7d-11ec-0000-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
    </meta>
@@ -7,26 +7,22 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Aandoening. Subject: Anouk A. Anouk van XXX_Rijn de XXX_Vries. Categorie: <span title="Diagnosis (282291009 - SNOMED CT)">Diagnosis</span>, Status: actief / differentiaal</caption>
+            <caption>Aandoening. Subject: Anouk A. Anouk van XXX_Rijn de XXX_Vries. Categorie: <span title="Diagnosis (282291009 - SNOMED CT)">Diagnosis</span>, Status: actief / bevestigd</caption>
             <tfoot>
                <tr>
-                  <td colspan="2">Pijn bij normale belasting</td>
+                  <td colspan="2">Heeft geen klachten</td>
                </tr>
             </tfoot>
             <tbody>
                <tr>
                   <th>Code</th>
                   <td>
-                     <span title="Artrose van rechter kniegewricht (323321000119100 - SNOMED CT)">Artrose van rechter kniegewricht</span>
+                     <span title="Besmetting met MRSA (432415000 - SNOMED CT)">Besmetting met MRSA</span>
                   </td>
                </tr>
                <tr>
                   <th>Eerste symptomen</th>
-                  <td>5 augustus 2018</td>
-               </tr>
-               <tr>
-                  <th>Oplossing/remissie</th>
-                  <td>12 december 2022</td>
+                  <td>16 april 2007</td>
                </tr>
             </tbody>
          </table>
@@ -43,13 +39,13 @@
          </valueCodeableConcept>
       </extension>
    </clinicalStatus>
-   <verificationStatus value="differential">
+   <verificationStatus value="confirmed">
       <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
          <valueCodeableConcept>
             <coding>
                <system value="http://snomed.info/sct"/>
-               <code value="410590009"/>
-               <display value="Known possible"/>
+               <code value="410605003"/>
+               <display value="Confirmed present"/>
             </coding>
          </valueCodeableConcept>
       </extension>
@@ -64,28 +60,16 @@
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="323321000119100"/>
-         <display value="Artrose van rechter kniegewricht"/>
+         <code value="432415000"/>
+         <display value="Besmetting met MRSA"/>
       </coding>
    </code>
-   <bodySite>
-      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
-         <valueCodeableConcept>
-            <coding>
-               <system value="http://snomed.info/sct"/>
-               <code value="24028007"/>
-               <display value="Right"/>
-            </coding>
-         </valueCodeableConcept>
-      </extension>
-   </bodySite>
    <subject>
       <reference value="Patient/medmij-bgz-test-patA"/>
       <display value="Anouk A. Anouk van XXX_Rijn de XXX_Vries"/>
    </subject>
-   <onsetDateTime value="2018-08-05"/>
-   <abatementDateTime value="2022-12-12"/>
+   <onsetDateTime value="2007-04-16"/>
    <note>
-      <text value="Pijn bij normale belasting"/>
+      <text value="Heeft geen klachten"/>
    </note>
 </Condition>
