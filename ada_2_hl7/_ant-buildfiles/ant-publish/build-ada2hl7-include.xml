@@ -86,7 +86,7 @@
         
         <fileset id="inputfiles.validate" dir="${build.dir}">
             <include name="${fileset.include}"/>
-            <exclude name="${fileset.exclude}"/>
+            <exclude name="${fileset.exclude}" if="fileset.exclude"/>
         </fileset>
         
         <echo/>

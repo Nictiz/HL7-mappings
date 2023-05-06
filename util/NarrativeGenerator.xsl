@@ -8930,17 +8930,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:if>
                         </i>
                     </xsl:if>
-                    <xsl:if test="f:multipleBirthBoolean[@value = 'true'] | f:multipleBirthInteger[@value != 0]">
+                    <xsl:if test="f:multipleBirthBoolean[@value] | f:multipleBirthInteger[@value]">
                         <xsl:if test="f:identifier | f:name | f:gender | f:birthDate | f:deceasedBoolean[@value = 'true'] | f:deceasedDateTime[@value]">
                             <xsl:text>, </xsl:text>
                         </xsl:if>
-                        <xsl:call-template name="util:getLocalizedString">
-                            <xsl:with-param name="key">partOfMultipleBirth</xsl:with-param>
-                            <xsl:with-param name="textLang" select="$textLang"/>
-                        </xsl:call-template>
+                        <xsl:choose>
+                            <xsl:when test="f:multipleBirthBoolean[@value = 'true'] | f:multipleBirthInteger[@value != 0]">
+                                <xsl:call-template name="util:getLocalizedString">
+                                    <xsl:with-param name="key">partOfMultipleBirth</xsl:with-param>
+                                    <xsl:with-param name="textLang" select="$textLang"/>
+                                </xsl:call-template>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:call-template name="util:getLocalizedString">
+                                    <xsl:with-param name="key">notPartOfMultipleBirth</xsl:with-param>
+                                    <xsl:with-param name="textLang" select="$textLang"/>
+                                </xsl:call-template>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:if>
                     <xsl:if test="f:maritalStatus">
-                        <xsl:if test="f:identifier | f:name | f:gender | f:birthDate | f:deceasedBoolean[@value = 'true'] | f:deceasedDateTime[@value] | f:multipleBirthBoolean[@value = 'true'] | f:multipleBirthInteger[@value != 0]">
+                        <xsl:if test="f:identifier | f:name | f:gender | f:birthDate | f:deceasedBoolean[@value = 'true'] | f:deceasedDateTime[@value] | f:multipleBirthBoolean[@value] | f:multipleBirthInteger[@value]">
                             <xsl:text>, </xsl:text>
                         </xsl:if>
                         <xsl:call-template name="doDT_CodeableConcept">
@@ -12470,7 +12480,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="allowDiv" as="xs:boolean" required="yes"/>
         <xsl:for-each select="$in">
             <xsl:sort select="f:rank/@value"/>
-            <xsl:variable name="system">
+            <xsl:variable name="system" as="xs:string?">
                 <xsl:if test="empty(f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType']) and f:system/@value">
                     <xsl:call-template name="getLocalizedContactPointSystem">
                         <xsl:with-param name="in" select="f:system"/>
@@ -12478,7 +12488,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:if>
             </xsl:variable>
-            <xsl:variable name="use">
+            <xsl:variable name="use" as="xs:string*">
                 <xsl:if test="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType'] | f:use/@value">
                     <xsl:call-template name="getLocalizedContactPointUse">
                         <xsl:with-param name="in" select="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType'] | f:use"/>
@@ -12523,7 +12533,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:otherwise>
                         </xsl:choose>
                         <xsl:text> (</xsl:text>
-                        <xsl:value-of select="string-join(($system[not(. = '')], $use[not(. = '')], $period[not(. = '')]), ' ')"/>
+                        <xsl:value-of select="string-join(($system[not(normalize-space() = '')], $use[not(normalize-space() = '')], $period[not(normalize-space() = '')]), ' ')"/>
                         <xsl:text>)</xsl:text>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -13020,7 +13030,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="sep" select="', '" as="xs:string?"/>
         <xsl:param name="allowDiv" as="xs:boolean" required="yes"/>
         <xsl:for-each select="$in">
-            <xsl:variable name="str">
+            <xsl:variable name="theName">
                 <xsl:choose>
                     <xsl:when test="f:text">
                         <xsl:call-template name="doDT_String">
@@ -13030,6 +13040,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="normalize-space(string-join((f:prefix/@value, f:given[not(f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier']/f:valueCode/@value = 'CL')]/@value, f:family/@value, f:suffix/@value), ' '))"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            <xsl:variable name="str">
+                <xsl:choose>
+                    <xsl:when test="f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/humanname-assembly-order']/f:valueCode[@value]">
+                        <span xmlns="http://www.w3.org/1999/xhtml">
+                            <xsl:attribute name="title">
+                                <xsl:for-each select="f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/humanname-assembly-order']">
+                                    <xsl:call-template name="util:getLocalizedString">
+                                        <xsl:with-param name="key">Name assembly order</xsl:with-param>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                        <xsl:with-param name="post" select="': '"/>
+                                    </xsl:call-template>
+                                    <xsl:call-template name="util:getLocalizedString">
+                                        <xsl:with-param name="key" select="'HumanNameAssemblyOrder-' || f:valueCode/@value"/>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </xsl:for-each>
+                            </xsl:attribute>
+                            <xsl:copy-of select="$theName"/>
+                        </span>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:copy-of select="$theName"/>
                     </xsl:otherwise>
                 </xsl:choose>
                 <xsl:if test="f:given[f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier']/f:valueCode/@value = 'CL']">
@@ -14578,7 +14613,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    <!-- https://www.hl7.org/fhir/STU3/valueset-contact-point-use.html -->
+    <!-- https://www.hl7.org/fhir/STU3/valueset-contact-point-use.html 
+    use   : home | work | temp | old | mobile - purpose of this contact point
+    system: phone | fax | email | pager | url | sms | other
+    -->
     <xsl:template name="getLocalizedContactPointUse">
         <xsl:param name="in" as="element()*"/>
         <xsl:param name="textLang" as="xs:string" required="yes"/>
@@ -14588,19 +14626,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="key">2.16.840.1.113883.2.4.3.11.60.40.4.22.1-LL</xsl:with-param>
                     <xsl:with-param name="textLang" select="$textLang"/>
                 </xsl:call-template>
+                <xsl:text> </xsl:text>
             </xsl:when>
             <xsl:when test="$in/f:valueCodeableConcept/f:coding/f:code/@value = 'FAX'">
-                <!--<xsl:call-template name="util:getLocalizedString">
+                <xsl:call-template name="util:getLocalizedString">
                     <xsl:with-param name="key">2.16.840.1.113883.2.4.3.11.60.40.4.22.1-FAX</xsl:with-param>
                     <xsl:with-param name="textLang" select="$textLang"/>
-                </xsl:call-template>-->
+                </xsl:call-template>
             </xsl:when>
-            <xsl:when test="$in/f:valueCodeableConcept/f:coding/f:code/@value = 'PG' or $in/@value = 'pager'">
+            <xsl:when test="$in/f:valueCodeableConcept/f:coding/f:code/@value = 'PG'">
                 <xsl:call-template name="util:getLocalizedString">
                     <xsl:with-param name="key">addressUse_PG</xsl:with-param>
                     <xsl:with-param name="textLang" select="$textLang"/>
                 </xsl:call-template>
+                <xsl:text> </xsl:text>
             </xsl:when>
+            <xsl:when test="$in/f:valueCodeableConcept/f:coding/f:code/@value = 'MC' and $in/@value != 'mobile'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">addressUse_MC</xsl:with-param>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+                <xsl:text> </xsl:text>
+            </xsl:when>
+        </xsl:choose>
+        <xsl:choose>
             <xsl:when test="$in/@value = 'home'">
                 <xsl:call-template name="util:getLocalizedString">
                     <xsl:with-param name="key">addressUse_H</xsl:with-param>
@@ -14625,18 +14674,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="textLang" select="$textLang"/>
                 </xsl:call-template>
             </xsl:when>
-            <xsl:when test="$in/f:valueCodeableConcept/f:coding/f:code/@value = 'MC' or $in/@value = 'mobile'">
-                <xsl:call-template name="util:getLocalizedString">
-                    <xsl:with-param name="key">addressUse_MC</xsl:with-param>
-                    <xsl:with-param name="textLang" select="$textLang"/>
-                </xsl:call-template>
-            </xsl:when>
-            <xsl:otherwise>
+            <xsl:when test="$in/@value">
                 <xsl:call-template name="doDT_Code">
                     <xsl:with-param name="in" select="$in"/>
                     <xsl:with-param name="textLang" select="$textLang"/>
                 </xsl:call-template>
-            </xsl:otherwise>
+            </xsl:when>
         </xsl:choose>
     </xsl:template>
     <!-- http://hl7.org/fhir/STU3/valueset-address-use.html -->

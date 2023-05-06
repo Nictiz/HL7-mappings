@@ -13,6 +13,8 @@
     <xsl:variable name="mveCode" as="xs:string*" select="('373784005')"/>
     <xsl:variable name="mgbCode" as="xs:string*" select="('422979000')"/>
     <xsl:variable name="mtdCode" as="xs:string*" select="('18629005')"/>
+    <xsl:variable name="concatOidTA">1.3.6.1.4.1.58606.1.</xsl:variable>
+    
 
     <xsl:variable name="stoptypeMap" as="element()+">
         <map stoptype="tijdelijk" code="113381000146106" codeSystem="2.16.840.1.113883.6.96" displayName="tijdelijk gestopt" version="920"/>
