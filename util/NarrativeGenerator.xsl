@@ -253,7 +253,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                             </xsl:call-template>
                                                             <xsl:text> </xsl:text>
                                                         </xsl:if>
-                                                        <xsl:call-template name="doDT_Code">
+                                                        <xsl:call-template name="getLocalizedSeverity">
                                                             <xsl:with-param name="in" select="f:severity"/>
                                                             <xsl:with-param name="textLang" select="$textLang"/>
                                                         </xsl:call-template>
@@ -4328,7 +4328,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <tr>
                                 <th>
                                     <xsl:call-template name="util:getLocalizedString">
-                                        <xsl:with-param name="key">encompassingEncounter</xsl:with-param>
+                                        <xsl:with-param name="key">Encounter</xsl:with-param>
                                         <xsl:with-param name="textLang" select="$textLang"/>
                                     </xsl:call-template>
                                 </th>
@@ -11508,6 +11508,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="post" select="': '"/>
                         </xsl:call-template>
                         <xsl:choose>
+                            <xsl:when test="self::f:AllergyIntolerance/f:category">
+                                <xsl:call-template name="getLocalizedAllergyIntoleranceCategory">
+                                    <xsl:with-param name="in" select="f:category"/>
+                                    <xsl:with-param name="textLang" select="$textLang"/>
+                                </xsl:call-template>
+                            </xsl:when>
                             <xsl:when test="f:category[@value]">
                                 <xsl:call-template name="doDT_Code">
                                     <xsl:with-param name="in" select="f:category"/>
@@ -14377,6 +14383,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     'planned',
                     'preliminary',
                     'preparation',
+                    'presumed',
                     'proposed',
                     'provisional',
                     'ready',
@@ -14401,6 +14408,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     )">
                 <xsl:call-template name="util:getLocalizedString">
                     <xsl:with-param name="key" select="concat('status-', $in/@value)"/>
+                </xsl:call-template>
+            </xsl:when>
+            <!-- AllergyIntolerance.clinicalStatus and AllergyIntolerance.verificationStatus are examples of CodeableConcept as of R4 -->
+            <xsl:when test="$in[f:coding | f:text]">
+                <xsl:call-template name="doDT_CodeableConcept">
+                    <xsl:with-param name="in" select="$in"/>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:when>
+            <!-- If a status were to be a Coding, it would have a system, code or display -->
+            <xsl:when test="$in[f:system | f:code | f:display]">
+                <xsl:call-template name="doDT_Coding">
+                    <xsl:with-param name="in" select="$in"/>
+                    <xsl:with-param name="textLang" select="$textLang"/>
                 </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
@@ -14836,6 +14857,43 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+    <!-- https://www.hl7.org/fhir/STU3/valueset-allergy-intolerance-category.html -->
+    <xsl:template name="getLocalizedAllergyIntoleranceCategory">
+        <xsl:param name="in" as="element()?"/>
+        <xsl:param name="textLang" as="xs:string" required="yes"/>
+        <xsl:choose>
+            <xsl:when test="$in/@value = 'food'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">AllergyIntoleranceCategory-food</xsl:with-param>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in/@value = 'medication'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">AllergyIntoleranceCategory-medication</xsl:with-param>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in/@value = 'environment'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">AllergyIntoleranceCategory-environment</xsl:with-param>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in/@value = 'biologic'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">AllergyIntoleranceCategory-biologic</xsl:with-param>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:call-template name="doDT_Code">
+                    <xsl:with-param name="in" select="$in"/>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
     <!-- https://www.hl7.org/fhir/STU3/valueset-request-priority.html -->
     <xsl:template name="getLocalizedRequestPriority">
         <xsl:param name="in" as="element()?"/>
@@ -14912,6 +14970,68 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:otherwise>
                 <xsl:call-template name="doDT_CodeableConcept">
+                    <xsl:with-param name="in" select="$in"/>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    <!-- https://www.hl7.org/fhir/STU3/valueset-allergy-intolerance-criticality.html -->
+    <xsl:template name="getLocalizedCriticality">
+        <xsl:param name="in" as="element()?"/>
+        <xsl:param name="textLang" as="xs:string" required="yes"/>
+        <xsl:choose>
+            <xsl:when test="$in/@value = 'low'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">criticalitylow</xsl:with-param>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in/@value = 'high'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">criticalityhigh</xsl:with-param>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in/@value = 'unable-to-assess'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">criticalityunable-to-assess</xsl:with-param>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:call-template name="doDT_Code">
+                    <xsl:with-param name="in" select="$in"/>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    <!-- https://www.hl7.org/fhir/STU3/valueset-reaction-event-severity.html -->
+    <xsl:template name="getLocalizedSeverity">
+        <xsl:param name="in" as="element()?"/>
+        <xsl:param name="textLang" as="xs:string" required="yes"/>
+        <xsl:choose>
+            <xsl:when test="$in/@value = 'mild'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">severity-mild</xsl:with-param>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in/@value = 'moderate'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">severity-moderate</xsl:with-param>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in/@value = 'severe'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">severity-severe</xsl:with-param>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:call-template name="doDT_Code">
                     <xsl:with-param name="in" select="$in"/>
                     <xsl:with-param name="textLang" select="$textLang"/>
                 </xsl:call-template>
