@@ -41,6 +41,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <display value="observatie betreffende zwangerschap"/>
                     </coding>
                 </code>
+                <xsl:for-each select="$subject">
+                    <xsl:call-template name="makeReference">
+                        <xsl:with-param name="in" select="$subject"/>
+                        <xsl:with-param name="wrapIn" select="'subject'"/>
+                    </xsl:call-template>
+                </xsl:for-each>
                 <xsl:for-each select="toelichting">
                     <note>
                         <text>
@@ -52,31 +58,221 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     
-    <!--<xsl:for-each select="zwangerschapsduur">
-        <xsl:call-template name="nl-core-Pregnancy.PregnancyDuration">
-            <xsl:with-param name="subject" select="$subject"/>
-        </xsl:call-template>    
-    </xsl:for-each>
-    <xsl:for-each select="pariteit">
-        <xsl:call-template name="nl-core-Pregnancy.Parity">
-            <xsl:with-param name="subject" select="$subject"/>
-        </xsl:call-template>    
-    </xsl:for-each>
-    <xsl:for-each select="graviditeit">
-        <xsl:call-template name="nl-core-Pregnancy.Gravidity">
-            <xsl:with-param name="subject" select="$subject"/>
-        </xsl:call-template>    
-    </xsl:for-each>
-    <xsl:for-each select="aterme_datum_items[aterme_datum | bepalings_methode | datum_bepaling]">
-        <xsl:call-template name="nl-core-Pregnancy.EstimatedDateOfDelivery">
-            <xsl:with-param name="subject" select="$subject"/>
-        </xsl:call-template>    
-    </xsl:for-each>
-    <xsl:for-each select="aterme_datum_items/datum_laatste_menstruatie">
-        <xsl:call-template name="nl-core-Pregnancy.DateLastMenstruation">
-            <xsl:with-param name="subject" select="$subject"/>
-        </xsl:call-temp-->late>    
-    </xsl:for-each>
+    <xsl:template match="zwangerschapsduur" name="nl-core-Pregnancy.PregnancyDuration" mode="nl-core-Pregnancy.PregnancyDuration" as="element(f:Observation)">
+        <xsl:param name="in" as="element()?" select="."/>
+        <xsl:param name="subject" select="patient/*" as="element()?"/>
+        <xsl:param name="focus" select="parent::zwangerschap" as="element()?"/>
+        
+        <xsl:for-each select="$in">
+            <Observation>
+                <xsl:call-template name="insertLogicalId"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.PregnancyDuration"/>
+                </meta>
+                <status value="final"/>
+                <code>
+                    <coding>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
+                        <code value="57036006"/>
+                        <display value="zwangerschapsduur"/>
+                    </coding>
+                </code>
+                <xsl:for-each select="$subject">
+                    <xsl:call-template name="makeReference">
+                        <xsl:with-param name="in" select="$subject"/>
+                        <xsl:with-param name="wrapIn" select="'subject'"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="$focus">
+                    <xsl:call-template name="makeReference">
+                        <xsl:with-param name="in" select="$focus"/>
+                        <xsl:with-param name="wrapIn" select="'focus'"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <valueQuantity>
+                    <xsl:call-template name="hoeveelheid-to-Quantity">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
+                </valueQuantity>
+            </Observation>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xsl:template match="pariteit" name="nl-core-Pregnancy.Parity" mode="nl-core-Pregnancy.Parity" as="element(f:Observation)">
+        <xsl:param name="in" as="element()?" select="."/>
+        <xsl:param name="subject" select="patient/*" as="element()?"/>
+        <xsl:param name="focus" select="parent::zwangerschap" as="element()?"/>
+        
+        <xsl:for-each select="$in">
+            <Observation>
+                <xsl:call-template name="insertLogicalId"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.Parity"/>
+                </meta>
+                <status value="final"/>
+                <code>
+                    <coding>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
+                        <code value="364325004"/>
+                        <display value="pariteit"/>
+                    </coding>
+                </code>
+                <xsl:for-each select="$subject">
+                    <xsl:call-template name="makeReference">
+                        <xsl:with-param name="in" select="$subject"/>
+                        <xsl:with-param name="wrapIn" select="'subject'"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="$focus">
+                    <xsl:call-template name="makeReference">
+                        <xsl:with-param name="in" select="$focus"/>
+                        <xsl:with-param name="wrapIn" select="'focus'"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <valueInteger>
+                    <xsl:attribute name="value">
+                        <xsl:value-of select="@value"/>
+                    </xsl:attribute>
+                </valueInteger>
+            </Observation>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xsl:template match="graviditeit" name="nl-core-Pregnancy.Gravidity" mode="nl-core-Pregnancy.Gravidity" as="element(f:Observation)">
+        <xsl:param name="in" as="element()?" select="."/>
+        <xsl:param name="subject" select="patient/*" as="element()?"/>
+        <xsl:param name="focus" select="parent::zwangerschap" as="element()?"/>
+        
+        <xsl:for-each select="$in">
+            <Observation>
+                <xsl:call-template name="insertLogicalId"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.Gravidity"/>
+                </meta>
+                <status value="final"/>
+                <code>
+                    <coding>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
+                        <code value="364325004"/>
+                        <display value="aantal zwangerschappen"/>
+                    </coding>
+                </code>
+                <xsl:for-each select="$subject">
+                    <xsl:call-template name="makeReference">
+                        <xsl:with-param name="in" select="$subject"/>
+                        <xsl:with-param name="wrapIn" select="'subject'"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="$focus">
+                    <xsl:call-template name="makeReference">
+                        <xsl:with-param name="in" select="$focus"/>
+                        <xsl:with-param name="wrapIn" select="'focus'"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <valueInteger>
+                    <xsl:attribute name="value">
+                        <xsl:value-of select="@value"/>
+                    </xsl:attribute>
+                </valueInteger>
+            </Observation>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xsl:template match="aterme_datum_items[aterme_datum | bepalings_methode | datum_bepaling]" name="nl-core-Pregnancy.EstimatedDateOfDelivery" mode="nl-core-Pregnancy.EstimatedDateOfDelivery" as="element(f:Observation)">
+        <xsl:param name="in" as="element()?" select="."/>
+        <xsl:param name="subject" select="patient/*" as="element()?"/>
+        <xsl:param name="focus" select="parent::zwangerschap" as="element()?"/>
+        
+        <xsl:for-each select="$in">
+            <Observation>
+                <xsl:call-template name="insertLogicalId"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.EstimatedDateOfDelivery"/>
+                </meta>
+                <status value="final"/>
+                <code>
+                    <coding>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
+                        <code value="161714006"/>
+                        <display value="geschatte bevallingsdatum"/>
+                    </coding>
+                </code>
+                <xsl:for-each select="$subject">
+                    <xsl:call-template name="makeReference">
+                        <xsl:with-param name="in" select="$subject"/>
+                        <xsl:with-param name="wrapIn" select="'subject'"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="$focus">
+                    <xsl:call-template name="makeReference">
+                        <xsl:with-param name="in" select="$focus"/>
+                        <xsl:with-param name="wrapIn" select="'focus'"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="datum_bepaling">
+                    <effectiveDateTime>
+                        <xsl:call-template name="date-to-datetime">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </effectiveDateTime>
+                </xsl:for-each>
+                '<xsl:for-each select="aterme_datum">
+                    <valueDateTime>
+                        <xsl:call-template name="date-to-datetime">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </valueDateTime>
+                </xsl:for-each>
+                <xsl:for-each select="bepalings_methode">
+                    <method>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </method>
+                </xsl:for-each>
+            </Observation>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xsl:template match="aterme_datum_items/datum_laatste_menstruatie" name="nl-core-Pregnancy.DateLastMenstruation" mode="nl-core-Pregnancy.DateLastMenstruation" as="element(f:Observation)">
+        <xsl:param name="in" as="element()?" select="."/>
+        <xsl:param name="subject" select="patient/*" as="element()?"/>
+        <xsl:param name="focus" select="parent::aterme_datum_items/parent::zwangerschap" as="element()?"/>
+        
+        <xsl:for-each select="$in">
+            <Observation>
+                <xsl:call-template name="insertLogicalId"/>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.DateLastMenstruation"/>
+                </meta>
+                <status value="final"/>
+                <code>
+                    <coding>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
+                        <code value="21840007"/>
+                        <display value="datum van laatste menstruatie"/>
+                    </coding>
+                </code>
+                <xsl:for-each select="$subject">
+                    <xsl:call-template name="makeReference">
+                        <xsl:with-param name="in" select="$subject"/>
+                        <xsl:with-param name="wrapIn" select="'subject'"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="$focus">
+                    <xsl:call-template name="makeReference">
+                        <xsl:with-param name="in" select="$focus"/>
+                        <xsl:with-param name="wrapIn" select="'focus'"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <valueDateTime>
+                    <xsl:call-template name="date-to-datetime">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
+                </valueDateTime>
+            </Observation>
+        </xsl:for-each>
+    </xsl:template>
 
     <xd:doc>
         <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
