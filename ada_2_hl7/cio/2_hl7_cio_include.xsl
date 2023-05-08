@@ -407,7 +407,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="../bouwstenen/zorgverlener[@id = current()/auteur/zorgverlener/@value]">
                         <author>
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.32_20210701000000">
-                                <xsl:with-param name="theTime" select="$authorTime"/>                                
+                                <xsl:with-param name="theTime" select="$authorTime"/>
+                            </xsl:call-template>
+                        </author>
+                    </xsl:for-each>
+                </xsl:when>
+                <xsl:when test="current()/auteur/zorgverlener/*[.//(@value | @code)]">
+                    <xsl:for-each select="current()/auteur//zorgverlener[not(parent::zorgverlener)]">
+                        <author>
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.32_20210701000000">
+                                <xsl:with-param name="theTime" select="$authorTime"/>
                             </xsl:call-template>
                         </author>
                     </xsl:for-each>
@@ -425,6 +434,32 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </assignedAuthor>
                         </author>
                     </xsl:for-each>
+                </xsl:when>
+                <xsl:when test="current()/auteur/zorgaanbieder/*[.//(@value | @code)]">
+                    <xsl:for-each select="current()/auteur//zorgaanbieder[not(parent::zorgaanbieder)]">
+                        <author>
+                            <xsl:call-template name="makeTSValue">
+                                <xsl:with-param name="elemName">time</xsl:with-param>
+                                <xsl:with-param name="inputValue" select="$authorTime/@value"/>
+                            </xsl:call-template>
+                            <assignedAuthor>
+                                <id nullFlavor="NI"/>
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.33_20210701000000"/>
+                            </assignedAuthor>
+                        </author>
+                    </xsl:for-each>
+                </xsl:when>
+                <!-- no author but still a registration date/time, should not happen but let's output what we've gotten -->
+                <xsl:when test="not(empty($authorTime))">
+                    <author>
+                        <xsl:call-template name="makeTSValue">
+                            <xsl:with-param name="elemName">time</xsl:with-param>
+                            <xsl:with-param name="inputValue" select="$authorTime/@value"/>
+                        </xsl:call-template>
+                        <assignedAuthor>
+                            <id nullFlavor="NI"/>
+                        </assignedAuthor>
+                    </author>
                 </xsl:when>
             </xsl:choose>
 
