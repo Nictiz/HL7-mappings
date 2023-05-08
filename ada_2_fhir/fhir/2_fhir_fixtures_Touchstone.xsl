@@ -66,7 +66,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:apply-templates select="$node" mode="filter"/>
         </xsl:variable>
         <!--<xsl:message select="concat(count(string-to-codepoints(nf:getGroupingKeyDefault($filter))), ' - ',nf:getGroupingKeyDefault($filter))"></xsl:message>-->
-        <xsl:sequence select="xs:integer(nf:product-sum(string-to-codepoints(nf:getGroupingKeyDefault($filter))))"/>
+        <xsl:sequence select="xs:integer(nf:product-sum(string-to-codepoints(nf:getGroupingKeyDefault($filter))[position() lt 500]))"/>
     </xsl:function>
     
     <xsl:template match="@* | node()" mode="filter">

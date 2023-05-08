@@ -1,7 +1,9 @@
 <bundle>
    <medical_device conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.10.1.1">
       <hcimroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1">
-         <identification_number conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6" nullFlavor="NI"/>
+         <identification_number conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"
+                                root="2.16.840.1.113883.2.4.3.11.999.7"
+                                value="mm-bgz-patA-medDevice1"/>
          <subject conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11">
             <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12">
                <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.1.1">
@@ -113,9 +115,11 @@
       <start_date value="2022-07-28"
                   conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.10.1.11"/>
       <indication conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.10.1.7">
-         <problem value="mm-bgz-patA-problem2"
-                  conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.1">
+         <problem conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.1">
             <hcimroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1">
+               <identification_number conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"
+                                      root="2.16.840.1.113883.2.4.3.11.999.7"
+                                      value="mm-bgz-patA-problem2"/>
                <subject conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11">
                   <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12">
                      <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.1.1">
@@ -254,8 +258,15 @@
                   codeSystem="2.16.840.1.113883.6.96"
                   displayName="Right and left"/>
       <location conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.10.1.8">
-         <healthcare_provider value="mm-bgz-PatA-HealthcareProvider1"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.2.1">
+         <healthcare_provider conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.2.1">
+            <hcimroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1">
+               <identification_number conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"
+                                      root="2.16.840.1.113883.2.4.3.11.999.7"
+                                      value="mm-bgz-PatA-HealthcareProvider1"/>
+            </hcimroot>
+            <healthcare_provider_identification_number value="01000001"
+                                                       root="2.16.840.1.113883.2.4.6.1"
+                                                       conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.2.2"/>
             <organization_name value="Huisartsenpraktijk het Hogeland"
                                conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.2.3"/>
             <department_specialty conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.2.7"
@@ -316,10 +327,11 @@
          </healthcare_provider>
       </location>
       <health_professional conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.10.1.9">
-         <health_professional value="mm-bgz-PatA-HealtcareProf1"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.1.1">
+         <health_professional conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.1.1">
             <hcimroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1">
-               <identification_number conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6" nullFlavor="NI"/>
+               <identification_number conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"
+                                      root="2.16.840.1.113883.2.4.3.11.999.7"
+                                      value="mm-bgz-PatA-HealtcareProf1"/>
                <information_source conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.2">
                   <patient_as_information_source conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.3">
                      <patient conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.140" nullFlavor="NI"/>
@@ -420,6 +432,9 @@
                   </patient>
                </subject>
             </hcimroot>
+            <health_professional_identification_number value="01000002"
+                                                       root="2.16.840.1.113883.2.4.6.1"
+                                                       conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.1.2"/>
             <name_information conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.1.3">
                <name_information conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.235">
                   <first_names value="Franciscus Dominicus Antonius"
@@ -492,9 +507,15 @@
                </contact_information>
             </contact_information>
             <healthcare_provider conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.1.6">
-               <healthcare_provider value="mm-bgz-PatA-HealthcareProvider1"
-                                    root="2.16.840.1.113883.2.4.15.1060"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.2.1">
+               <healthcare_provider conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.2.1">
+                  <hcimroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1">
+                     <identification_number conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"
+                                            root="2.16.840.1.113883.2.4.3.11.999.7"
+                                            value="mm-bgz-PatA-HealthcareProvider1"/>
+                  </hcimroot>
+                  <healthcare_provider_identification_number value="01000001"
+                                                             root="2.16.840.1.113883.2.4.6.1"
+                                                             conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.2.2"/>
                   <organization_name value="Huisartsenpraktijk het Hogeland"
                                      conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.2.3"/>
                   <department_specialty conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.17.2.7"

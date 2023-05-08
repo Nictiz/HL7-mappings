@@ -70,6 +70,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="*[ends-with(local-name(), '_registration')]/patient/hcimroot" mode="copy-for-resolve" priority="2"/>
     
     <!-- Matching on @value and @root, and excluding local-name containing 'identification' but should be on @datatype = 'reference' -->
+    <xsl:template match="*[@value and @root = '2.16.840.1.113883.2.4.3.11.999.7'][not(*)][not(contains(local-name(), 'identification'))]" mode="copy-for-resolve">
+        <xsl:variable name="resolved" select="($ada-input//*[hcimroot/identification_number[lower-case(@value) = lower-case(current()/@value)][@root = current()/@root]])[1]"/>
+        <xsl:if test="count($resolved) lt 1">
+            <xsl:message select="concat('Could not resolve ''',@value,''' in ',ancestor::*[ends-with(local-name(), '_registration')]/local-name())"/>
+        </xsl:if>
+        <xsl:apply-templates select="$resolved" mode="#current"/>
+    </xsl:template>
+    
+    <!--<!-\- Matching on @value and @root, and excluding local-name containing 'identification' but should be on @datatype = 'reference' -\->
     <xsl:template match="*[starts-with(lower-case(@value), 'mm-bgz-')]" mode="copy-for-resolve" priority="1">
         <xsl:variable name="transactionId" select="ancestor::*[ends-with(local-name(), '_registration')]/@transactionRef"/>
         <xsl:variable name="valueDomain" select="nf:get-concept-value-domain(., 'type', $transactionId)"/>
@@ -90,7 +99,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:next-match/>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
+    </xsl:template>-->
     
     <xd:doc>
         <xd:desc>Default copy template</xd:desc>
@@ -100,33 +109,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:apply-templates select="@* | node()" mode="#current"/>
         </xsl:copy>
     </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Finds valuedomain @type or @originaltype of a concept in ada release file.</xd:desc>
-        <xd:param name="currentConcept">The current ada concept, must have @conceptId to find the corresponding concept in ada release file</xd:param>
-        <xd:param name="attributeToReturn">The attribute to return, currently supported: type and originaltype. Defaults to type.</xd:param>
-    </xd:doc>
-    <xsl:function name="nf:get-concept-value-domain" as="xs:string?">
-        <xsl:param name="currentConcept" as="element()?"/>
-        <xsl:param name="attributeToReturn" as="xs:string?"/>
-        <xsl:param name="transactionId" as="xs:string?"/>
-        <xsl:if test="$currentConcept">
-            <xsl:variable name="adaReleaseConcept" select="$adaReleaseFile/ada/applications/application/views/view[@transactionId eq $transactionId]/dataset[1]//concept[@id = $currentConcept/@conceptId]"/>
-            <xsl:choose>
-                <xsl:when test="upper-case(normalize-space($attributeToReturn)) = 'ORIGINALTYPE'">
-                    <xsl:value-of select="$adaReleaseConcept/valueDomain/@originaltype"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:choose>
-                        <!-- @type reference is no longer used in ada release files, so let's add it here, so we know when to resolve adaref -->
-                        <xsl:when test="$adaReleaseConcept[valueDomain/@type = 'string' and contains]">reference</xsl:when>
-                        <xsl:otherwise>
-                            <xsl:value-of select="$adaReleaseConcept/valueDomain/@type"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:if>
-    </xsl:function>
     
 </xsl:stylesheet>
