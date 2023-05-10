@@ -77,4 +77,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </Observation>
         </xsl:for-each>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
+    </xd:doc>
+    <xsl:template match="levensovertuiging_rc" mode="_generateDisplay">
+        <xsl:text>Life stance</xsl:text>
+        <xsl:if test="levensovertuiging[@displayValue]">
+            <xsl:text>:</xsl:text>
+            <xsl:value-of select="levensovertuiging/@value"/>
+        </xsl:if>
+    </xsl:template>
+    
 </xsl:stylesheet>
