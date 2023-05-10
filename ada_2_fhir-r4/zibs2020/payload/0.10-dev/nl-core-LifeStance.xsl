@@ -47,19 +47,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LifeStance"/>
                 </meta>
                 <status value="final"/>
-                <category>
+                <code>
                     <coding>
                         <system value="http://snomed.info/sct"/>
                         <code value="160538000"/>
                         <display value="geloofsovertuiging"/>
                     </coding>
-                </category>
+                </code>
                 <xsl:for-each select="levensovertuiging">
-                    <code>
+                    <valueCodeableConcept>
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
-                    </code>
+                    </valueCodeableConcept>
                 </xsl:for-each>
                 <xsl:call-template name="makeReference">
                     <xsl:with-param name="in" select="$subject"/>
