@@ -59,6 +59,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-IllnessPerception.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-LaboratoryTestResult.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-LegalSituation.xsl"/>
+    <xsl:import href="nl-core-LifeStance.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-LivingSituation.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-MedicalDevice.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-MedicationContraIndication.xsl"/>
@@ -68,7 +69,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../0.7-beta1/nl-core-NutritionAdvice.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-O2Saturation.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-ParticipationInSociety.xsl"/>
-    <xsl:import href="../0.8.0-beta.1/nl-core-Patient.xsl"/>
+    <xsl:import href="nl-core-Patient.xsl"/>
     <xsl:import href="../0.7-beta1/nl-core-Payer.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-PharmaceuticalProduct.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-Problem.xsl"/>
