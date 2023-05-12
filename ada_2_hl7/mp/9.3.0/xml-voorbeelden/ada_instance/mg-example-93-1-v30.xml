@@ -1,0 +1,507 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../beschikbaarstellen_medicatiegegevens/ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new" created-by="arianne" last-update-by="arianne" creation-date="2023-01-30T15:53:59.289+01:00" last-update-date="2023-01-30T15:53:59.289+01:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp93" shortName="beschikbaarstellen_medicatiegegevens" formName="medicatiegegevens" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.374" transactionEffectiveDate="2022-06-30T00:00:00" prefix="mp-" language="nl-NL" title="Example instance" id="mg-example-93-1-v30">
+         <patient>
+            <naamgegevens>
+               <initialen value="B. "/>
+               <naamgebruik value="1" code="NL1" codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4" displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <voorvoegsels value="van "/>
+                  <achternaam value="XXX_Kester"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999911557" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1954-08-02" datatype="datetime"/>
+            <geslacht value="2" code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_920_mg_example-1-KST" root="2.16.840.1.113883.2.4.3.11.999.77.1.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
+            <medicatieafspraak comment="">
+               <identificatie value="MBH_920_mg_example-1-MA1" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.194"/>
+               <medicatieafspraak_datum_tijd value="T-20D{08:00:00}" datatype="datetime"/>
+               <gebruiksperiode comment="">
+                  <start_datum_tijd value="T-20D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T+9D{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_920_mg_example-1-MA0" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.196"/>
+               </relatie_medicatieafspraak>
+               <relatie_toedieningsafspraak>
+                  <identificatie value="MBH_920_mg_example-1-TA0" root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.197"/>
+               </relatie_toedieningsafspraak>
+               <relatie_medicatiegebruik>
+                  <identificatie value="MBH_920_mg_example-1-MGB0" root="2.16.840.1.113883.2.4.3.11.999.77.6.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.198"/>
+               </relatie_medicatiegebruik>
+               <relatie_contact>
+                  <identificatienummer value="MBH_920_mg_example-1-contact0" root="2.16.840.1.113883.2.4.3.11.999.66.2709" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.845"/>
+               </relatie_contact>
+               <relatie_zorgepisode>
+                  <identificatienummer value="MBH_920_mg_example-1-episode0" root="2.16.840.1.113883.2.4.3.11.999.66.9200" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.844"/>
+               </relatie_zorgepisode>
+               <voorschrijver comment="">
+                  <zorgverlener datatype="reference" value="UZI-000001111-PeterVanPulver"/>
+               </voorschrijver>
+               <reden_wijzigen_of_staken code="112251000146103" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="te sterk effect van medicatie"/>
+               <reden_van_voorschrijven>
+                  <probleem>
+                     <probleem_naam code="25064002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="hoofdpijn"/>
+                  </probleem>
+               </reden_van_voorschrijven>
+               <afgesproken_geneesmiddel comment="">
+                  <farmaceutisch_product datatype="reference" value="PRK-17469-IBUPROFEN-TABLET-600MG"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Wordt gegenereerd"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9" code="9" displayName="oraal" codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie comment="">
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid unit="dag" value="1"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <aanvullende_informatie code="2" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050" codeSystemName="G-std thesaurus 2050" displayName="Bewust lage dosering"/>
+               <toelichting value="voorbeeld toelichting in vrije tekst"/>
+            </medicatieafspraak>
+            <wisselend_doseerschema comment="">
+               <identificatie value="MBH_920_mg_example-1-WDS1" root="2.16.840.1.113883.2.4.3.11.999.77.632.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.633"/>
+               <wisselend_doseerschema_datum_tijd value="T-7D{10:30:00}" datatype="datetime"/>
+               <gebruiksperiode comment="">
+                  <start_datum_tijd value="T-14D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T-7D{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <wisselend_doseerschema_stop_type value="1" code="113371000146109" codeSystem="2.16.840.1.113883.6.96" displayName="definitief gestopt met medicatie"/>
+               <reden_wijzigen_of_staken code="58848006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="geen of onvoldoende effect"/>
+               <afgesproken_geneesmiddel comment="">
+                  <farmaceutisch_product value="PRK-17469-IBUPROFEN-TABLET-600MG" datatype="reference"/>
+               </afgesproken_geneesmiddel>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="MBH_920_mg_example-1-MA1" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.641"/>
+               </relatie_medicatieafspraak>
+               <relatie_wisselend_doseerschema>
+                  <identificatie value="MBH_920_mg_example-1-WDS0" root="2.16.840.1.113883.2.4.3.11.999.77.632.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.696"/>
+               </relatie_wisselend_doseerschema>
+               <relatie_contact>
+                  <identificatienummer value="MBH_920_mg_example-1-contact0" root="2.16.840.1.113883.2.4.3.11.999.66.2709" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1342"/>
+               </relatie_contact>
+               <relatie_zorgepisode>
+                  <identificatienummer value="MBH_920_mg_example-1-episode0" root="2.16.840.1.113883.2.4.3.11.999.66.9200" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1344"/>
+               </relatie_zorgepisode>
+               <auteur comment="">
+                  <zorgverlener value="UZI-000001111-PeterVanPulver" datatype="reference"/>
+               </auteur>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="wordt gegenereerd"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard Toedieningswegen (tabel 7)" code="9" displayName="Oraal"/>
+                  <herhaalperiode_cyclisch_schema value="5" unit="dag"/>
+                  <doseerinstructie comment="">
+                     <doseerduur value="2" unit="dag"/>
+                     <volgnummer value="1"/>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                           <dagdeel value="3" code="3157002" codeSystem="2.16.840.1.113883.6.96" displayName="'s avonds"/>
+                           <is_flexibel value="true"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie comment="">
+                     <doseerduur value="2" unit="dag"/>
+                     <volgnummer value="2"/>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                           <dagdeel value="3" code="3157002" codeSystem="2.16.840.1.113883.6.96" displayName="'s avonds"/>
+                           <is_flexibel value="true"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie comment="">
+                     <doseerduur value="1" unit="dag"/>
+                     <volgnummer value="3"/>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="0"/>
+                           </aantal>
+                           <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuks"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                           <dagdeel value="3" code="3157002" codeSystem="2.16.840.1.113883.6.96" displayName="'s avonds"/>
+                           <is_flexibel value="true"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <toelichting value="Dosering aangepast i.v.m. te lage bloedwaarde"/>
+            </wisselend_doseerschema>
+            <verstrekkingsverzoek comment="">
+               <identificatie value="MBH_920_mg_example-1_VV1" root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.289"/>
+               <verstrekkingsverzoek_datum_tijd value="T{08:53}" datatype="datetime"/>
+               <auteur>
+                  <zorgverlener datatype="reference" value="UZI-000001111-PeterVanPulver"/>
+               </auteur>
+               <te_verstrekken_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="PRK-17469-IBUPROFEN-TABLET-600MG"/>
+               </te_verstrekken_geneesmiddel>
+               <te_verstrekken_hoeveelheid comment="">
+                  <aantal value="20"/>
+                  <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <aantal_herhalingen value="2"/>
+               <geannuleerd_indicator value="true"/>
+               <beoogd_verstrekker>
+                  <zorgaanbieder datatype="reference" value="URA-01236578-ApoGulleGaper"/>
+               </beoogd_verstrekker>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="MBH_920_mg_example-1-MA1" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.293"/>
+               </relatie_medicatieafspraak>
+               <relatie_contact>
+                  <identificatienummer value="MBH_920_mg_example-1-contact0" root="2.16.840.1.113883.2.4.3.11.999.66.2709" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1346"/>
+               </relatie_contact>
+               <relatie_zorgepisode>
+                  <identificatienummer value="MBH_920_mg_example-1-episode0" root="2.16.840.1.113883.2.4.3.11.999.66.9200" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1348"/>
+               </relatie_zorgepisode>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak comment="">
+               <identificatie value="MBH_920_mg_example-1-TA1" root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
+               <toedieningsafspraak_datum_tijd value="T-20D{12:30:00}" datatype="datetime"/>
+               <gebruiksperiode comment="">
+                  <start_datum_tijd value="T-20D{00:00:00}" datatype="datetime"/>
+                  <tijds_duur unit="week" value="3"/>
+               </gebruiksperiode>
+               <verstrekker comment="">
+                  <zorgaanbieder datatype="reference" value="URA-01236578-ApoGulleGaper"/>
+               </verstrekker>
+               <toedieningsafspraak_reden_wijzigen_of_staken code="112251000146103" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="te sterk effect van medicatie"/>
+               <geneesmiddel_bij_toedieningsafspraak comment="">
+                  <farmaceutisch_product datatype="reference" value="PRK-17469-IBUPROFEN-TABLET-600MG"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T-20D{00:00:00}&gt;, gedurende 3 weken, 1 maal per dag 1 stuk, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9" code="9" displayName="oraal" codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                  <doseerinstructie comment="">
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="stuk" code="245" codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid unit="dag" value="1"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <distributievorm code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8" codeSystemName="Distributievorm" displayName="Geïndividualiseerd distributiesysteem (GDS)"/>
+               <toedieningsafspraak_aanvullende_informatie value="voorbeeld: aanvullend informatie bij TA in vrije tekst"/>
+               <toelichting value="voorbeeld toelichting in vrije tekst"/>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="MBH_920_mg_example-1-MA1" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.565"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+            <medicatieverstrekking comment="">
+               <identificatie value="MBH_920_mg_example-1-MVE1" root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.361"/>
+               <medicatieverstrekkings_datum_tijd value="T+0D{09:12:00}" datatype="datetime"/>
+               <aanschrijf_datum value="T-3D{09:20:00}" datatype="datetime"/>
+               <verstrekker comment="">
+                  <zorgaanbieder datatype="reference" value="URA-01236578-ApoGulleGaper"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="1"/>
+                  <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel comment="">
+                  <farmaceutisch_product datatype="reference" value="PRK-17469-IBUPROFEN-TABLET-600MG"/>
+               </verstrekt_geneesmiddel>
+               <afleverlocatie value="Bij patiënt thuis (niet bij de buren door de brievenbus)"/>
+               <distributievorm code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8" codeSystemName="Distributievorm" displayName="Geïndividualiseerd distributiesysteem (GDS)"/>
+               <medicatieverstrekking_aanvullende_informatie code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2052" codeSystemName="G-std thesaurus 2052" displayName="Aantal bewust gewijzigd"/>
+               <toelichting value="voorbeeld toelichting in vrije tekst"/>
+               <relatie_verstrekkingsverzoek comment="">
+                  <identificatie value="MBH_920_mg_example-1-VV1" root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.564"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+            <medicatiegebruik comment="">
+               <identificatie value="MBH_920_mg_example-1-MGB1" root="2.16.840.1.113883.2.4.3.11.999.77.6.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.411"/>
+               <medicatiegebruik_datum_tijd value="T-5D{18:20:05}" datatype="datetime"/>
+               <gebruik_indicator value="true"/>
+               <volgens_afspraak_indicator value="true"/>
+               <gebruiksperiode comment="">
+                  <start_datum_tijd value="T-20D{00:00:00}" datatype="datetime"/>
+                  <tijds_duur value="10" unit="dag"/>
+               </gebruiksperiode>
+               <gebruiksproduct comment="">
+                  <farmaceutisch_product value="PRK-17469-IBUPROFEN-TABLET-600MG" datatype="reference"/>
+               </gebruiksproduct>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T-20D{00:00:00}&gt;, gedurende 10 dagen, 1 maal per dag 2 stuks, oraal"/>
+                  <toedieningsweg code="9" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard Toedieningswegen (tabel 7)" displayName="oraal"/>
+                  <doseerinstructie comment="">
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_toedieningsafspraak comment="">
+                  <identificatie value="MBH_920_mg_example-1-TA1" root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.415"/>
+               </relatie_toedieningsafspraak>
+               <relatie_contact>
+                  <identificatienummer value="MBH_920_mg_example-1-contact0" root="2.16.840.1.113883.2.4.3.11.999.66.2709" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1350"/>
+               </relatie_contact>
+               <relatie_zorgepisode>
+                  <identificatienummer value="MBH_920_mg_example-1-episode0" root="2.16.840.1.113883.2.4.3.11.999.66.9200" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1352"/>
+               </relatie_zorgepisode>
+               <voorschrijver comment="">
+                  <zorgverlener value="UZI-000001111-PeterVanPulver" datatype="reference"/>
+               </voorschrijver>
+               <informant>
+                  <informant_is_patient value="true"/>
+               </informant>
+               <auteur comment="">
+                  <auteur_is_zorgverlener>
+                     <zorgverlener value="UZI-000001111-PeterVanPulver" datatype="reference"/>
+                  </auteur_is_zorgverlener>
+               </auteur>
+               <reden_gebruik value="voorbeeld reden gebruik in vrije tekst"/>
+               <reden_wijzigen_of_stoppen_gebruik code="405613005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="geplande procedure"/>
+               <toelichting value="voorbeeld toelichting in vrije tekst"/>
+            </medicatiegebruik>
+            <medicatietoediening comment="">
+               <identificatie value="MBH_920_mg_example-1-MTD1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.447" root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+               <toedienings_product comment="">
+                  <farmaceutisch_product value="PRK-17469-IBUPROFEN-TABLET-600MG" datatype="reference"/>
+               </toedienings_product>
+               <toedienings_datum_tijd value="T-16D{20:05:00}" datatype="datetime"/>
+               <afgesproken_datum_tijd value="T-16D{20:00:00}" datatype="datetime"/>
+               <toegediende_hoeveelheid comment="">
+                  <aantal value="0"/>
+                  <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+               </toegediende_hoeveelheid>
+               <afgesproken_hoeveelheid comment="">
+                  <aantal value="1"/>
+                  <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+               </afgesproken_hoeveelheid>
+               <volgens_afspraak_indicator value="false"/>
+               <toedieningsweg code="9" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard Toedieningswegen (tabel 7)" displayName="Oraal"/>
+               <relatie_wisselend_doseerschema comment="">
+                  <identificatie value="MBH_920_mg_example-1-WDS1" root="2.16.840.1.113883.2.4.3.11.999.77.632.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1326"/>
+               </relatie_wisselend_doseerschema>
+               <relatie_contact>
+                  <identificatienummer value="MBH_920_mg_example-1-contact0" root="2.16.840.1.113883.2.4.3.11.999.66.2709" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1354"/>
+               </relatie_contact>
+               <relatie_zorgepisode>
+                  <identificatienummer value="MBH_920_mg_example-1-episode0" root="2.16.840.1.113883.2.4.3.11.999.66.9200" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1356"/>
+               </relatie_zorgepisode>
+               <toediener comment="">
+                  <zorgaanbieder>
+                     <zorgaanbieder datatype="reference" value="URA-00001111-HuisartsenpraktijkPulverPartners"/>
+                  </zorgaanbieder>
+               </toediener>
+               <medicatietoediening_reden_van_afwijken code="153241000146104" codeSystem="2.16.840.1.113883.6.96" displayName="zorgafnemer niet beschikbaar om medicatie in ontvangst te nemen"/>
+               <toelichting value="voorbeeld toelichting in vrije tekst"/>
+            </medicatietoediening>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_920_mg_example-2" root="2.16.840.1.113883.2.4.3.11.999.77.1.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
+            <wisselend_doseerschema comment="">
+               <identificatie value="MBH_920_mg_example-2-WDS-1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.633" root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+               <wisselend_doseerschema_datum_tijd value="T-20D{08:00:00}" datatype="datetime"/>
+               <gebruiksperiode comment="">
+                  <start_datum_tijd value="T-20D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T-15D{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product value="PRK-17469-IBUPROFEN-TABLET-600MG" datatype="reference"/>
+               </afgesproken_geneesmiddel>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="MBH_920_QA1_MA" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.641"/>
+               </relatie_medicatieafspraak>
+               <auteur comment="">
+                  <zorgverlener value="UZI-000001111-PeterVanPulver" datatype="reference"/>
+               </auteur>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="wordt gegenereerd"/>
+                  <toedieningsweg code="9" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard Toedieningswegen (tabel 7)" displayName="Oraal"/>
+                  <doseerinstructie comment="">
+                     <doseerduur value="7" unit="dag"/>
+                     <volgnummer value="1"/>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                           <toedientijd value="20:00:00" datatype="time"/>
+                           <is_flexibel value="true"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie comment="">
+                     <doseerduur value="3" unit="dag"/>
+                     <volgnummer value="2"/>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                           <toedientijd value="20:00:00" datatype="time"/>
+                           <is_flexibel value="true"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </wisselend_doseerschema>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_920_mg_example-3" root="2.16.840.1.113883.2.4.3.11.999.77.1.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
+            <medicatietoediening comment="">
+               <identificatie value="MBH_920_mg_example-3-MTD-1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.447" root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+               <toedienings_product comment="">
+                  <farmaceutisch_product value="PRK-17469-IBUPROFEN-TABLET-600MG" datatype="reference"/>
+               </toedienings_product>
+               <toedienings_datum_tijd value="T-30D{10:30:00}" datatype="datetime"/>
+               <afgesproken_datum_tijd value="T-30D{10:00:00}" datatype="datetime"/>
+               <toegediende_hoeveelheid comment="">
+                  <aantal value="1"/>
+                  <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+               </toegediende_hoeveelheid>
+               <afgesproken_hoeveelheid comment="">
+                  <aantal value="4"/>
+                  <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+               </afgesproken_hoeveelheid>
+               <volgens_afspraak_indicator value="true"/>
+               <toedieningsweg code="9" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard Toedieningswegen (tabel 7)" displayName="ORAAL"/>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="MBH_920_QA1_MA" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1168"/>
+               </relatie_medicatieafspraak>
+               <toediener comment="">
+                  <zorgaanbieder>
+                     <zorgaanbieder datatype="reference" value="URA-00001111-HuisartsenpraktijkPulverPartners"/>
+                  </zorgaanbieder>
+               </toediener>
+            </medicatietoediening>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="PRK-17469-IBUPROFEN-TABLET-600MG">
+               <product_code code="17469" codeSystem="2.16.840.1.113883.2.4.4.10" displayName="IBUPROFEN TABLET 600MG" codeSystemName="G-Standaard PRK"/>
+               <product_code code="42080" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="G-Standaard GPK" displayName="IBUPROFEN TABLET 600MG"/>
+            </farmaceutisch_product>
+            <zorgverlener id="UZI-000001111-PeterVanPulver">
+               <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens comment="">
+                  <voornamen value="Peter"/>
+                  <geslachtsnaam comment="">
+                     <voorvoegsels value="van "/>
+                     <achternaam value="Pulver"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100" codeSystem="2.16.840.1.113883.2.4.6.7" codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))" codeSystemVersion="2017-12-14T00:00:00" displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder datatype="reference" value="URA-00001111-HuisartsenpraktijkPulverPartners"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="URA-00001111-HuisartsenpraktijkPulverPartners">
+               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+               <adresgegevens comment="">
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="1"/>
+                  <postcode value="1234AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort value="5" code="WP" codeSystem="2.16.840.1.113883.5.1119" displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+            <zorgaanbieder id="URA-01236578-ApoGulleGaper">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek de Gulle Gaper"/>
+               <adresgegevens comment="">
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="10"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort value="5" code="WP" codeSystem="2.16.840.1.113883.5.1119" displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

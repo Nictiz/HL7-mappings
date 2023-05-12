@@ -1302,15 +1302,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc>Makes HL7 TS value attribute, based on input ada possible vague date/time string</xd:desc>
-        <xd:param name="inputValue">The input ada value string</xd:param>
-        <xd:param name="inputNullFlavor">The input ada nullFlavor</xd:param>
-        <xd:param name="precision">Determines the picture of the date(time) format. Seconds is the default.</xd:param>
+        <xd:param name="in">Input ada element, defaults to context.</xd:param>
         <xd:param name="inputDateT">The input variable date T as xs:date. Optional, default to global param $dateT</xd:param>
+        <xd:param name="inputValue">The input ada value string. Defaults to $in/@value.</xd:param>
+        <xd:param name="inputNullFlavor">The input ada nullFlavor. Defaults to $in/@nullFlavor.</xd:param>
+        <xd:param name="precision">Determines the picture of the date(time) format. Seconds is the default.</xd:param>
     </xd:doc>
     <xsl:template name="makeTSValueAttr" match="element()" mode="MakeTSValueAttr">
+        <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="inputDateT" as="xs:date?" select="$dateT"/>
-        <xsl:param name="inputValue" as="xs:string?" select="@value"/>
-        <xsl:param name="inputNullFlavor" as="xs:string?" select="@nullFlavor"/>
+        <xsl:param name="inputValue" as="xs:string?" select="$in/@value"/>
+        <xsl:param name="inputNullFlavor" as="xs:string?" select="$in/@nullFlavor"/>
         <xsl:param name="precision" as="xs:string?">second</xsl:param>
         <xsl:choose>
             <xsl:when test="$inputValue">

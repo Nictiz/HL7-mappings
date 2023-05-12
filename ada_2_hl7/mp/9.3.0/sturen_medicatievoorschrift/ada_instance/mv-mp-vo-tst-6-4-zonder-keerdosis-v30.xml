@@ -1,0 +1,177 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../9.3.0/sturen_medicatievoorschrift/ada_schemas/ada_sturen_medicatievoorschrift.xsd">
+   <meta status="new"
+         created-by="medicatieprocesada"
+         last-update-by="medicatieprocesada"
+         creation-date="2023-01-09T17:27:35.178+01:00"
+         last-update-date="2023-01-09T17:27:35.178+01:00"/>
+   <data>
+      <sturen_medicatievoorschrift app="mp-mp93"
+                                   shortName="sturen_medicatievoorschrift"
+                                   formName="sturen_medicatievoorschrift"
+                                   transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.395"
+                                   transactionEffectiveDate="2022-06-30T00:00:00"
+                                   versionDate=""
+                                   prefix="mp-"
+                                   language="nl-NL"
+                                   title="TEST Scenarioset 6 Zonder keerdosis"
+                                   desc="&lt;div&gt;&lt;span style=&#34;font-family: sans-serif; font-size: 14px; background-color: #ffffff;&#34;&gt;Zonder keerdosis&lt;/span&gt;&lt;/div&gt;"
+                                   id="mv-mp-vo-tst-6-4-zonder-keerdosis-v30">
+         <scenario-nr value="6.4"/>
+         <systeemrol value="1"
+                     code="1"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.5.1.20201207000000"
+                     displayName="Beide"/>
+         <!--Patient found in instance with id: mg-TEST-Scenarioset6a-v30 and title: id: TEST REPO Scenarioset 6 a (Doseerschemas)-->
+         <patient comment="">
+            <naamgegevens comment="">
+               <initialen value="G. "/>
+               <naamgebruik value="1"
+                            code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam comment="">
+                  <achternaam value="XXX_Hemsbergen"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900602" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1963-11-02" datatype="datetime"/>
+            <geslacht value="3"
+                      code="F"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Vrouw"/>
+         </patient>
+         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_300_zonderkeerdosis-->
+         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
+            <identificatie value="MBH_300_zonderkeerdosis"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
+            <medicatieafspraak comment="">
+               <identificatie value="MBH_300_zonderkeerdosis_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.194"/>
+               <medicatieafspraak_datum_tijd value="T{08:12:00}" datatype="datetime"/>
+               <gebruiksperiode comment="">
+                  <start_datum_tijd value="T+0D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T+28D{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <voorschrijver comment="">
+                  <zorgverlener datatype="reference" value="Peter_van_Pulver"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel comment="">
+                  <farmaceutisch_product datatype="reference" value="PRK_Cetomacrogolcreme_92789"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+28D{23:59:59}&gt;, 3 maal per dag aanbrengen, cutaan"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="53"
+                                  displayName="cutaan"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <aanvullende_instructie code="1018"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"
+                                          displayName="aanbrengen"/>
+                  <doseerinstructie comment="">
+                     <dosering comment="">
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="3"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <verstrekkingsverzoek comment="">
+               <identificatie value="MBH_300_zonderkeerdosis_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.289"/>
+               <verstrekkingsverzoek_datum_tijd value="T{08:12:00}" datatype="datetime"/>
+               <auteur comment="">
+                  <zorgverlener datatype="reference" value="Peter_van_Pulver"/>
+               </auteur>
+               <te_verstrekken_geneesmiddel comment="">
+                  <farmaceutisch_product datatype="reference" value="PRK_Cetomacrogolcreme_92789"/>
+               </te_verstrekken_geneesmiddel>
+               <te_verstrekken_hoeveelheid comment="">
+                  <aantal value="1"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <beoogd_verstrekker comment="">
+                  <zorgaanbieder datatype="reference" value="Apotheek_de_Gulle_Gaper"/>
+               </beoogd_verstrekker>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="MBH_300_zonderkeerdosis_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.293"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
+         </medicamenteuze_behandeling>
+         <bouwstenen comment="">
+            <farmaceutisch_product id="PRK_Cetomacrogolcreme_92789" comment="">
+               <product_code code="92789"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="Cetomacrogolcreme met vaseline 10%"/>
+               <product_code code="133329"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="Cetomacrogolcreme met vaseline 10%"/>
+            </farmaceutisch_product>
+            <zorgverlener id="Peter_van_Pulver" comment="">
+               <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens comment="">
+                  <voornamen value="Peter"/>
+                  <geslachtsnaam comment="">
+                     <voorvoegsels value="van "/>
+                     <achternaam value="Pulver"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <contactgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.159">
+                  <telefoonnummers conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.160">
+                     <telefoonnummer value="1645645000"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.161"/>
+                     <nummer_soort code="WP"
+                                   codeSystem="2.16.840.1.113883.5.1119"
+                                   codeSystemName="Address Use"
+                                   displayName="Zakelijk telefoonnummer"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.163"/>
+                  </telefoonnummers>
+               </contactgegevens>
+               <zorgaanbieder comment="">
+                  <zorgaanbieder datatype="reference" value="Huisartsenpraktijk_Pulver_en_Partners"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="Huisartsenpraktijk_Pulver_en_Partners" comment="">
+               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+               <adresgegevens comment="">
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="1"/>
+                  <postcode value="1234AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort value="5"
+                               code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+            <zorgaanbieder id="Apotheek_de_Gulle_Gaper" comment="">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek de Gulle Gaper"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </sturen_medicatievoorschrift>
+   </data>
+</adaxml>

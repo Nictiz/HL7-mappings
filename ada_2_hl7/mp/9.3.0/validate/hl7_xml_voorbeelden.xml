@@ -1,0 +1,71 @@
+<!--start--><start xmlns:saxon="http://saxon.sf.net/"
+       xmlns:schold="http://www.ascc.net/xml/schematron"
+       xmlns:iso="http://purl.oclc.org/dsdl/schematron"
+       xmlns:xhtml="http://www.w3.org/1999/xhtml"
+       xmlns:hl7="urn:hl7-org:v3"
+       xmlns:cda="urn:hl7-org:v3"
+       xmlns:hl7v2="urn:hl7-org:v2xml"
+       xmlns:lab="urn:oid:1.3.6.1.4.1.19376.1.3.2"
+       xmlns:ihe="urn:ihe:pcc:hl7v3"
+       xmlns:sdtc="urn:hl7-org:sdtc"
+       xmlns:nfu="urn:urn:nictiz-nl:v3/nfu"
+       xmlns:pharm="urn:ihe:pharm:medication"
+       xmlns:f="http://hl7.org/fhir"
+       xmlns:hl7nl="urn:hl7-nl:v3"
+       inputDir="../mp/9.3.0/xml-voorbeelden/validate_cda_instance">
+   <validate>
+      <file name="file:/C:/Sourcetree/Github/HL7-mappings/ada_2_hl7/mp/9.3.0/xml-voorbeelden/cda_instance/av-example-93-1-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/C:/Sourcetree/Github/HL7-mappings/ada_2_hl7/mp/9.3.0/xml-voorbeelden/cda_instance/avma-example-93-1-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/C:/Sourcetree/Github/HL7-mappings/ada_2_hl7/mp/9.3.0/xml-voorbeelden/cda_instance/avvv-example-93-1-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/C:/Sourcetree/Github/HL7-mappings/ada_2_hl7/mp/9.3.0/xml-voorbeelden/cda_instance/mg-example-93-1-v30.xml">
+         <fail>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                                xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                test="(not($stoptype/cda:value/@code) or $stoptype/cda:value[@code='410546004'][@codeSystem='2.16.840.1.113883.6.96'])"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9412-2022-11-18T130922.html"
+                                role="warning"
+                                location="/*:ClinicalDocument[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:structuredBody[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:section[namespace-uri()='urn:hl7-org:v3'][1]/*:entry[namespace-uri()='urn:hl7-org:v3'][2]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAWisselendDoseerSchema2): In wisselend doseerschema mag stoptype - indien aanwezig - alleen de waarde 'stopgezet/definitief' hebben.</svrl:text>
+            </svrl:failed-assert>
+         </fail>
+      </file>
+      <file name="file:/C:/Sourcetree/Github/HL7-mappings/ada_2_hl7/mp/9.3.0/xml-voorbeelden/cda_instance/mv-example-93-1-v30.xml">
+         <fail>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                                xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                test="count(hl7:code[(@code = '440545006' and @codeSystem = '2.16.840.1.113883.6.96')]) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9426-2022-11-22T111407.html"
+                                role="error"
+                                location="/*:ClinicalDocument[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAVoorschrift6): element hl7:code[(@code = '440545006' and @codeSystem = '2.16.840.1.113883.6.96')] is mandatory [min 1x].</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                                xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                test="not(.)"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9426-2022-11-22T111407.html"
+                                role="warning"
+                                location="/*:ClinicalDocument[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAVoorschrift6)/d349015e18-true-d349756e0: dit element 'code' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: hl7:realmCode[@code = 'NL'] | hl7:typeId[@root = '2.16.840.1.113883.1.3'][@extension = 'POCD_HD000040'] | hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9426'] | hl7:id[not(@nullFlavor)] | hl7:code[(@code = '440545006' and @codeSystem = '2.16.840.1.113883.6.96')] | hl7:title[not(@nullFlavor)] | hl7:effectiveTime[not(@nullFlavor)] | hl7:confidentialityCode[@codeSystem = '2.16.840.1.113883.5.25' or @code = 'N' or @code = 'R' or @code = 'V' or @nullFlavor] | hl7:languageCode[not(@nullFlavor)] | hl7:recordTarget[hl7:patientRole] | hl7:author | hl7:custodian[hl7:assignedCustodian] | hl7:component (rule-reference: d349015e18-true-d349756e0)</svrl:text>
+            </svrl:failed-assert>
+         </fail>
+      </file>
+      <file name="file:/C:/Sourcetree/Github/HL7-mappings/ada_2_hl7/mp/9.3.0/xml-voorbeelden/cda_instance/vma-example-93-1-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/C:/Sourcetree/Github/HL7-mappings/ada_2_hl7/mp/9.3.0/xml-voorbeelden/cda_instance/vvv-example-93-1-v30.xml">
+         <pass/>
+      </file>
+   </validate>
+</start>

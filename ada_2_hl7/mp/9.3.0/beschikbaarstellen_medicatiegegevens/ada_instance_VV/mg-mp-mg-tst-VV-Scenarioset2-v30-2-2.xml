@@ -1,0 +1,154 @@
+<!--ada full xml for subscenario nr: 2-2--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../9.2.0/beschikbaarstellen_medicatiegegevens/ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="medicatieprocesada"
+         last-update-by="medicatieprocesada"
+         creation-date="2023-01-09T17:16:13.737+01:00"
+         last-update-date="2023-01-09T17:16:13.737+01:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp93"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.374"
+                                            transactionEffectiveDate="2022-06-30T00:00:00"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="TEST Medicatiegegevens VV Scenarioset 2"
+                                            desc="Aanvullende wensen"
+                                            id="mg-mp-mg-tst-VV-Scenarioset2-v30-2-2">
+         <scenario-nr value="2.2"/>
+         <systeemrol value="1"
+                     code="1"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.6.1.20201207000000"
+                     displayName="Beide"/>
+         <screenshot value="Maak screenshot(s) waarop de lijst met concepten voor 'aanvullende wensen' zichtbaar zijn"
+                     datatype="text"/>
+         <!--Patient found in instance with id: mg-TEST-Scenarioset2Patient-v30 and title: id: TEST REPO scenarioset 2 ALLEEN PATIENT-->
+         <patient comment="">
+            <naamgegevens comment="">
+               <initialen value="D."/>
+               <naamgebruik value="1"
+                            code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam comment="">
+                  <achternaam value="XXX_Dixhoorn"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900481" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1963-10-22" datatype="datetime"/>
+            <geslacht value="2"
+                      code="M"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Man"/>
+         </patient>
+         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_300_aanvullendeinformatiewensen-->
+         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
+            <identificatie value="MBH_300_aanvullendeinformatiewensen"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
+            <verstrekkingsverzoek comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.274">
+               <identificatie value="MBH_300_aanvullendeinformatiewensen_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.289"/>
+               <verstrekkingsverzoek_datum_tijd value="T-5D{08:06:00}"
+                                                datatype="datetime"
+                                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.279"/>
+               <auteur comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.290">
+                  <zorgverlener datatype="reference"
+                                value="Bertine_van_Doorn"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.291"/>
+               </auteur>
+               <te_verstrekken_geneesmiddel comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.277">
+                  <farmaceutisch_product datatype="reference"
+                                         value="PRK_FENETICILLINE_17205"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.278"/>
+               </te_verstrekken_geneesmiddel>
+               <te_verstrekken_hoeveelheid comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.285">
+                  <aantal value="30" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.562"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.563"/>
+               </te_verstrekken_hoeveelheid>
+               <beoogd_verstrekker comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.275">
+                  <zorgaanbieder datatype="reference"
+                                 value="Apotheek_De_Gulle_Gaper"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.276"/>
+               </beoogd_verstrekker>
+               <aanvullende_wensen conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.287"
+                                   value="3"
+                                   code="3"
+                                   codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2051"
+                                   displayName="Bezorgen"/>
+               <relatie_medicatieafspraak comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.292">
+                  <identificatie value="MBH_300_aanvullendeinformatiewensen_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.293"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
+         </medicamenteuze_behandeling>
+         <bouwstenen comment="">
+            <farmaceutisch_product id="PRK_FENETICILLINE_17205"
+                                   comment=""
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+               <product_code displayName="FENETICILLINE CAPSULE 500MG"
+                             code="17205"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="41092"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="FENETICILLINE 500MG CAPSULE"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
+            <zorgverlener id="Bertine_van_Doorn"
+                          comment=""
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.92">
+               <zorgverlener_identificatienummer value="000001112"
+                                                 root="2.16.528.1.1007.3.1"
+                                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.132"/>
+               <naamgegevens comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.133">
+                  <voornamen value="Bertine" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.134"/>
+                  <geslachtsnaam comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.138">
+                     <voorvoegsels value="van " conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.139"/>
+                     <achternaam value="Doorn" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.140"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.145"
+                            value="2"
+                            code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder comment="" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.168">
+                  <zorgaanbieder datatype="reference"
+                                 value="Huisartsenpraktijk_Pulver_en_Partners"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.846"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="Huisartsenpraktijk_Pulver_en_Partners" comment="">
+               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+               <adresgegevens comment="">
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="1"/>
+                  <postcode value="1234AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort value="5"
+                               code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+            <zorgaanbieder id="Apotheek_De_Gulle_Gaper" comment="">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

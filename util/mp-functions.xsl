@@ -17,6 +17,10 @@
     
 
     <xsl:variable name="stoptypeMap" as="element()+">
+        <map stoptype="onderbroken" code="385655000" codeSystem="2.16.840.1.113883.6.96" displayName="onderbroken" version="930"/>
+        <map stoptype="stopgezet" code="410546004" codeSystem="2.16.840.1.113883.6.96" displayName="stopgezet" version="930"/>
+        <map stoptype="geannuleerd" code="89925002" codeSystem="2.16.840.1.113883.6.96" displayName="geannuleerd" version="930"/>
+        <!-- deprecated codes from MP9 2.0 -->
         <map stoptype="tijdelijk" code="113381000146106" codeSystem="2.16.840.1.113883.6.96" displayName="tijdelijk gestopt" version="920"/>
         <map stoptype="definitief" code="113371000146109" codeSystem="2.16.840.1.113883.6.96" displayName="definitief gestopt" version="920"/>
         <!-- deprecated codes from pre MP 9.1 -->

@@ -1,0 +1,100 @@
+<!--ada full xml for subscenario nr: 9-1b--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../9.2.0/beschikbaarstellen_medicatiegegevens/ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="medicatieprocesada"
+         last-update-by="medicatieprocesada"
+         creation-date="2023-01-09T17:16:11.41+01:00"
+         last-update-date="2023-01-09T17:16:11.41+01:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp93"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.374"
+                                            transactionEffectiveDate="2022-06-30T00:00:00"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="TEST Medicatiegegevens MVE Scenarioset 9 (diversen MVE)"
+                                            desc="GDS"
+                                            id="mg-mp-mg-tst-MVE-Scenarioset9-v30-9-1b">
+         <scenario-nr value="9.1b"/>
+         <systeemrol value="1"
+                     code="1"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.6.1.20201207000000"
+                     displayName="Beide"/>
+         <!--Patient found in instance with id: mg-TEST-Scenarioset9Patient-v30 and title: id: TEST REPO Scenarioset 9 ALLEEN PATIENT-->
+         <patient comment="">
+            <naamgegevens comment="">
+               <initialen value="M."/>
+               <naamgebruik value="1"
+                            code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam comment="">
+                  <voorvoegsels value="van de"/>
+                  <achternaam value="XXX_Tewarie"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900961" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1985-11-09" datatype="datetime"/>
+            <geslacht value="3"
+                      code="F"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Vrouw"/>
+         </patient>
+         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_300_logistiekeverbruiksperiode_eind-->
+         <medicamenteuze_behandeling conceptId="">
+            <identificatie value="MBH_300_logistiekeverbruiksperiode_eind"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
+            <medicatieverstrekking comment="">
+               <identificatie value="MBH_300_logistiekeverbruiksperiode_eind_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.361"/>
+               <medicatieverstrekkings_datum_tijd value="T-9D{12:01:00}" datatype="datetime"/>
+               <verstrekker comment="">
+                  <zorgaanbieder datatype="reference" value="Apotheek_De_Gulle_Gaper"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="100"/>
+                  <eenheid code="245"
+                           displayName="stuk"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel comment="">
+                  <farmaceutisch_product datatype="reference" value="HPK_MIZOLASTINE_1101099"/>
+               </verstrekt_geneesmiddel>
+               <distributievorm value="1"
+                                code="1"
+                                codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8"
+                                displayName="GDS"/>
+               <relatie_verstrekkingsverzoek comment="">
+                  <identificatie value="MBH_300_logistiekeverbruiksperiode_eind_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.564"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+         </medicamenteuze_behandeling>
+         <bouwstenen comment="">
+            <farmaceutisch_product id="HPK_MIZOLASTINE_1101099" comment="">
+               <product_code code="1101099"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="MIZOLLEN TABLET MGA 10MG"/>
+               <product_code code="48291"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="MIZOLASTINE TABLET MGA  10MG"
+                             codeSystemName="G-Standaard PRK"/>
+               <product_code code="102164"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="MIZOLASTINE TABLET MGA  10MG"/>
+            </farmaceutisch_product>
+            <zorgaanbieder id="Apotheek_De_Gulle_Gaper" comment="">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>
