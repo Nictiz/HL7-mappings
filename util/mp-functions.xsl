@@ -224,7 +224,7 @@
                                     <!-- min/max -->
                                     <xsl:when test="$toedieningssnelheid/waarde/(min | minimum_waarde) | (max | maximum_waarde)[@value]">
                                         <xsl:if test="$toedieningssnelheid/waarde/(min | minimum_waarde)/@value and not($toedieningssnelheid/waarde/(max | maximum_waarde)/@value)">minimaal </xsl:if>
-                                        <xsl:if test="$toedieningssnelheid/waarde/(max | maximum_waarde)/@value and not($toedieningssnelheid/waarde/min/@value)">maximaal </xsl:if>
+                                        <xsl:if test="$toedieningssnelheid/waarde/(max | maximum_waarde)/@value and not($toedieningssnelheid/waarde/(min | minimum_waarde)/@value)">maximaal </xsl:if>
                                         <xsl:if test="$toedieningssnelheid/waarde/(min | minimum_waarde)/@value">
                                             <xsl:value-of select="$toedieningssnelheid/waarde/(min | minimum_waarde)/@value"/>
                                         </xsl:if>
