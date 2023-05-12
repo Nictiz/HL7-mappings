@@ -1471,6 +1471,17 @@
     </xsl:template>
 
     <xd:doc>
+        <xd:desc>Annotation is OBS, but was ACT. Act.value (ANY) was Act.text (ST). If ACT.text really is ST, then so is value[@xsi:type=ST]</xd:desc>
+    </xd:doc>
+    <xsl:template match="
+        hl7:careProvisionEvent/hl7:component7/hl7:*/hl7:*/hl7:annotation/hl7:value |
+        hl7:careProvisionEvent/hl7:component7/hl7:*/hl7:*/hl7:conclusion/hl7:subjectOf/hl7:annotation/hl7:value" mode="dob400">
+        <text xmlns="urn:hl7-org:v3">
+            <xsl:value-of select="."/>
+        </text>
+    </xsl:template>
+    
+    <xd:doc>
         <xd:desc>hl7:subjectOf1/hl7:conclusion/hl7:component/hl7:indication/hl7:reasonOf bevat van actIntent | referral naar actIntent | referral | registrationIntent | observationIntent</xd:desc>
     </xd:doc>
     <xsl:template match="hl7:subjectOf1/hl7:conclusion/hl7:component/hl7:indication/hl7:reasonOf" mode="dob400">

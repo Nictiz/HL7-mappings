@@ -1564,8 +1564,8 @@
         <xd:desc>Annotation was ACT, but now is OBS. Act.text (ST) is now Act.value (ANY). If ACT.text really is ST, then so is value[@xsi:type=ST]</xd:desc>
     </xd:doc>
     <xsl:template match="
-            hl7:careProvisionEvent/hl7:componentOf7/hl7:*/hl7:*/hl7:annotation/hl7:text |
-            hl7:careProvisionEvent/hl7:componentOf7/hl7:*/hl7:*/hl7:conclusion/hl7:subjectOf/hl7:annotation/hl7:text" mode="dob327">
+            hl7:careProvisionEvent/hl7:component7/hl7:*/hl7:*/hl7:annotation/hl7:text |
+            hl7:careProvisionEvent/hl7:component7/hl7:*/hl7:*/hl7:conclusion/hl7:subjectOf/hl7:annotation/hl7:text" mode="dob327">
         <value xsi:type="ST" xmlns="urn:hl7-org:v3">
             <xsl:value-of select="."/>
         </value>
