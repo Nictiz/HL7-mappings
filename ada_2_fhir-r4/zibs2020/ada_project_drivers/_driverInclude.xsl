@@ -398,6 +398,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:choose>
                 </xsl:for-each>
             </xsl:when>
+            <xsl:when test="$localName = 'levensovertuiging_rc'">
+                <xsl:apply-templates select="$in" mode="nl-core-LifeStance">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'lichaamslengte'">
                 <xsl:apply-templates select="$in" mode="nl-core-BodyHeight">
                     <xsl:with-param name="subject" select="$subject"/>
