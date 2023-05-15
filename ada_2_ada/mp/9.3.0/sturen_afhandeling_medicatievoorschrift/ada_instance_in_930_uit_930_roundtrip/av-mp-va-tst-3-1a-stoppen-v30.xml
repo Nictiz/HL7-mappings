@@ -1,0 +1,129 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../9.3.0/sturen_afhandeling_medicatievoorschrift/ada_schemas/ada_sturen_afhandeling_medicatievoorschrift.xsd">
+   <meta status="new"
+         created-by="medicatieprocesada"
+         last-update-by="medicatieprocesada"
+         creation-date="2023-01-09T16:56:16.96+01:00"
+         last-update-date="2023-01-09T16:56:16.96+01:00"/>
+   <data>
+      <sturen_afhandeling_medicatievoorschrift app="mp-mp93"
+                                               shortName="sturen_afhandeling_medicatievoorschrift"
+                                               formName="afhandelen_medicatievoorschrift"
+                                               transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.407"
+                                               transactionEffectiveDate="2022-06-30T00:00:00"
+                                               versionDate=""
+                                               prefix="mp-"
+                                               language="nl-NL"
+                                               title="TEST Scenarioset 3 (initieren scenario) Stoppen"
+                                               desc="&lt;div&gt;&lt;span style=&#34;font-family: sans-serif; font-size: 14px; background-color: #f9f9f9;&#34;&gt;Benodigd voor scenario 3.1b&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp;&lt;/div&gt;"
+                                               id="av-mp-va-tst-3-1a-stoppen-v30">
+         <patient comment="">
+            <naamgegevens comment="">
+               <initialen value="J. "/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam comment="">
+                  <voorvoegsels value="de "/>
+                  <achternaam value="XXX_Luzac"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900778" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1985-10-24" datatype="datetime"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_300_stoppen" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <toedieningsafspraak comment="">
+               <identificatie value="MBH_300_stoppen_TA_start"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <toedieningsafspraak_datum_tijd value="T{09:00:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T+0D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T+280D{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference" value="Apotheek_De_Gulle_Gaper"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product datatype="reference" value="HPK_Acetylsalicylzuur_1110837"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="wordt automatisch gegenereerd"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaardthesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid unit="dag" value="1"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="MBH_300_stoppen_MA_start"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+            <medicatieverstrekking comment="">
+               <identificatie value="MBH_300_stoppen_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <medicatieverstrekkings_datum_tijd value="T{09:00:00}" datatype="datetime"/>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference" value="Apotheek_De_Gulle_Gaper"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="180"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="HPK_Acetylsalicylzuur_1110837"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek comment="">
+                  <identificatie value="MBH_300_stoppen_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="HPK_Acetylsalicylzuur_1110837">
+               <product_code code="1110837"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+               <product_code code="49484"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="Acetylsalicylzuur tabletmsr 100mg"
+                             codeSystemName="G-Standaard PRK"/>
+               <product_code code="103039"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="Acetylsalicylzuur tabletmsr 100mg"/>
+            </farmaceutisch_product>
+            <zorgaanbieder id="Apotheek_De_Gulle_Gaper">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </sturen_afhandeling_medicatievoorschrift>
+   </data>
+</adaxml>

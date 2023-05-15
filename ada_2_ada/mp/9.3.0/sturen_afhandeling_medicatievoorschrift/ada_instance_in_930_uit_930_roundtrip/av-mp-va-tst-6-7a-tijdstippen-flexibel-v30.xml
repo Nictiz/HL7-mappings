@@ -1,0 +1,127 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../9.3.0/sturen_afhandeling_medicatievoorschrift/ada_schemas/ada_sturen_afhandeling_medicatievoorschrift.xsd">
+   <meta status="new"
+         created-by="medicatieprocesada"
+         last-update-by="medicatieprocesada"
+         creation-date="2023-01-09T16:56:20.274+01:00"
+         last-update-date="2023-01-09T16:56:20.274+01:00"/>
+   <data>
+      <sturen_afhandeling_medicatievoorschrift app="mp-mp93"
+                                               shortName="sturen_afhandeling_medicatievoorschrift"
+                                               formName="afhandelen_medicatievoorschrift"
+                                               transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.407"
+                                               transactionEffectiveDate="2022-06-30T00:00:00"
+                                               versionDate=""
+                                               prefix="mp-"
+                                               language="nl-NL"
+                                               title="TEST Scenarioset 6 Tijdstippen flexibel"
+                                               desc="Tijdstippen"
+                                               id="av-mp-va-tst-6-7a-tijdstippen-flexibel-v30">
+         <patient comment="">
+            <naamgegevens comment="">
+               <initialen value="G. "/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam comment="">
+                  <achternaam value="XXX_Hemsbergen"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900602" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1963-11-02" datatype="datetime"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_300_tijdstippen_flexibel"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <toedieningsafspraak comment="">
+               <identificatie value="MBH_300_tijdstippen_flexibel_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <toedieningsafspraak_datum_tijd value="T{09:24:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T+0D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T+14D{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference" value="Apotheek_de_Gulle_Gaper"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product datatype="reference" value="HPK_METFORMINE_693332"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+14D{23:59:59}&gt;, 3 maal daags 1 tablet, (8:00, 14:00, 20:00) oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <toedientijd value="08:00:00" datatype="time"/>
+                           <toedientijd value="14:00:00" datatype="time"/>
+                           <toedientijd value="20:00:00" datatype="time"/>
+                           <is_flexibel value="true"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="MBH_300_tijdstippen_flexibel_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+            <medicatieverstrekking comment="">
+               <identificatie value="MBH_300_tijdstippen_flexibel_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <medicatieverstrekkings_datum_tijd value="T{09:24:00}" datatype="datetime"/>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference" value="Apotheek_de_Gulle_Gaper"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="45"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="HPK_METFORMINE_693332"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek comment="">
+                  <identificatie value="MBH_300_tijdstippen_flexibel_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="HPK_METFORMINE_693332">
+               <product_code code="693332"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="METFORMINE HCL PCH TABLET 500MG"/>
+               <product_code code="1090"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="METFORMINE 500MG TABLET"
+                             codeSystemName="G-Standaard PRK"/>
+               <product_code code="3816"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="METFORMINE 500MG TABLET"/>
+            </farmaceutisch_product>
+            <zorgaanbieder id="Apotheek_de_Gulle_Gaper">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek de Gulle Gaper"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </sturen_afhandeling_medicatievoorschrift>
+   </data>
+</adaxml>
