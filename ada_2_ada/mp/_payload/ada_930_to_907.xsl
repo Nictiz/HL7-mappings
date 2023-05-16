@@ -588,7 +588,7 @@
         <medicatie_gebruik>
             <xsl:apply-templates select="@*" mode="#current"/>
             <xsl:apply-templates select="gebruiksperiode/(start_datum_tijd | eind_datum_tijd)" mode="#current"/>
-            <xsl:apply-templates select="identificatie | medicatiegebruik_datum_tijd | gebruik_indicator | volgens_afspraak_indicator | medicatie_gebruik_stop_type | gebruiksperiode/tijds_duur | gebruiksproduct | gebruiksinstructie" mode="#current"/>
+            <xsl:apply-templates select="identificatie | medicatiegebruik_datum_tijd | gebruik_indicator | volgens_afspraak_indicator | medicatie_gebruik_stop_type | medicatiegebruik_stop_type | gebruiksperiode/tijds_duur | gebruiksproduct | gebruiksinstructie" mode="#current"/>
             <xsl:if test="relatie_medicatieafspraak | relatie_toedieningsafspraak">
                 <gerelateerde_afspraak>
                     <xsl:for-each select="relatie_medicatieafspraak/identificatie[@value | @root]">

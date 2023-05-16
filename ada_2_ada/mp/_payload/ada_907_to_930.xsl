@@ -507,13 +507,25 @@
     <xd:doc>
         <xd:desc> replacement of terminology codes for stoptype </xd:desc>
     </xd:doc>
-    <xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatie_gebruik | medicatiegebruik)/stoptype" mode="ada907_2_930">
+    <xsl:template match="(medicatieafspraak | toedieningsafspraak)/stoptype" mode="ada907_2_930">
         <xsl:element name="{concat(local-name(..), '_stop_type')}">
             <xsl:apply-templates select="@* | node()" mode="#current"/>
             <xsl:for-each select="$mapStoptype[mp907[@code = current()/@code][@codeSystem = current()/@codeSystem]][mp930]">
                 <xsl:copy-of select="mp930/@*"/>
             </xsl:for-each>
         </xsl:element>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc> replacement of terminology codes for stoptype </xd:desc>
+    </xd:doc>
+    <xsl:template match="medicatie_gebruik/stoptype" mode="ada907_2_930">
+        <medicatiegebruik_stop_type>
+            <xsl:apply-templates select="@* | node()" mode="#current"/>
+            <xsl:for-each select="$mapStoptype[mp907[@code = current()/@code][@codeSystem = current()/@codeSystem]][mp930]">
+                <xsl:copy-of select="mp930/@*"/>
+            </xsl:for-each>
+        </medicatiegebruik_stop_type>
     </xsl:template>
 
     <xd:doc>
