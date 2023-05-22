@@ -15,6 +15,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nm="http://www.nictiz.nl/mappings" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     
     <xsl:import href="../../../fhir/2_fhir_fhir_include.xsl"/>
+    <xsl:import href="../0.7-beta1/_ada2resourceType.xsl"/> <!-- Overrride the generic ada2resourceType variable with a version suitable for package 0.6-beta2 and 0.7-beta1 -->
     
     <!-- If a file imported here exists in a different folder (meaning a different 'package'), this means the profile and therefore its ada2fhir mapping is the same in the current and the imported package version (and all versions in between). 
         If a bug is found and fixed, this fix should apply to the mapping in all versions of the package that use this mapping.
