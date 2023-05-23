@@ -78,11 +78,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="functie_zien" resource="Observation" profile="nl-core-VisualFunction"/>
 		<nm:map ada="functionele_of_mentale_status" resource="Observation" profile="nl-core-FunctionalOrMentalStatus"/>
         <nm:map ada="hartfrequentie" resource="Observation" profile="nl-core-HeartRate"/>
+        <nm:map ada="huidaandoening" resource="Condition" profile="nl-core-SkinDisorder"/>
         <nm:map ada="hulp_van_anderen" resource="CarePlan" profile="nl-core-HelpFromOthers"/>
         <nm:map ada="juridische_situatie" resource="Condition" profile="nl-core-LegalSituation-LegalStatus"/>
         <nm:map ada="juridische_situatie" resource="Condition" profile="nl-core-LegalSituation-Representation"/>
         <nm:map ada="laboratorium_uitslag" resource="Observation" profile="nl-core-LaboratoryTestResult"/>
         <nm:map ada="laboratorium_test" resource="Observation" profile="nl-core-LaboratoryTestResult"/>
+        <nm:map ada="levensovertuiging_rc" resource="Observation" profile="nl-core-LifeStance"/>
         <nm:map ada="lichaamslengte" resource="Observation" profile="nl-core-BodyHeight"/>
         <nm:map ada="lichaamstemperatuur" resource="Observation" profile="nl-core-BodyTemperature"/>
         <nm:map ada="lichaamsgewicht" resource="Observation" profile="nl-core-BodyWeight"/>
@@ -101,10 +103,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="bron_monster" resource="Device" profile="nl-core-LaboratoryTestResult.SpecimenSource"/>
         <nm:map ada="mustscore" resource="Observation" profile="nl-core-MUSTScore"/>
         <nm:map ada="o2saturatie" resource="Observation" profile="nl-core-O2Saturation"/>
+        <nm:map ada="ontwikkeling_kind" resource="Observation" profile="nl-core-DevelopmentChild"/>
         <nm:map ada="opleiding" resource="Observation" profile="nl-core-Education"/>
         <nm:map ada="participatie_in_maatschappij" resource="Observation" profile="nl-core-ParticipationInSociety"/>
         <nm:map ada="patient" resource="Patient" profile="nl-core-Patient"/>
         <nm:map ada="pijn_score" resource="Observation" profile="nl-core-PainScore"/>
+        <nm:map ada="polsfrequentie" resource="Observation" profile="nl-core-PulseRate"/>
         <nm:map ada="probleem" resource="Condition" profile="nl-core-Problem"/>
         <nm:map ada="product" resource="Device" profile="nl-core-MedicalDevice.Product"/>
         <nm:map ada="product" resource="Device" profile="nl-core-HearingFunction.HearingAid.Product"/>
@@ -114,6 +118,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="soepverslag" resource="Composition" profile="nl-core-SOAPReport"/>
         <nm:map ada="soepregel" resource="Observation" profile="nl-core-SOAPReport.SOAPLine"/>
         <nm:map ada="stoma" resource="Condition" profile="nl-core-Stoma"/>
+        <nm:map ada="strong_kids_score" resource="Observation" profile="nl-core-StrongKidsScore"/>
         <nm:map ada="sturen_medicatievoorschrift" resource="Bundle" profile="mp-MedicationPrescription-Bundle"/>
         <nm:map ada="sturen_afhandeling_medicatievoorschrift" resource="Bundle" profile="mp-MedicationPrescriptionProcessing-Bundle"/>
         <nm:map ada="sturen_antwoord_voorstel_medicatieafspraak" resource="Bundle" profile="mp-ReplyProposalMedicationAgreement-Bundle"/>
@@ -137,7 +142,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="vermogen_tot_uiterlijke_verzorging" resource="Observation" profile="nl-core-AbilityToGroom"/>
         <nm:map ada="vermogen_tot_zich_kleden" resource="Observation" profile="nl-core-AbilityToDressOneself"/>
         <nm:map ada="vermogen_tot_zich_wassen" resource="Observation" profile="nl-core-AbilityToWashOneself"/>
-        <nm:map ada="verrichting" resource="Procedure" profile="nl-core-Procedure"/>
+        <nm:map ada="verrichting" resource="Procedure" profile="nl-core-Procedure-event"/>
+        <nm:map ada="verrichting" resource="ServiceRequest" profile="nl-core-Procedure-request"/>
         <nm:map ada="verstrekkingsverzoek" resource="MedicationRequest" profile="mp-DispenseRequest"/>
         <nm:map ada="visueel_resultaat" resource="Media" profile="nl-core-TextResult-Media"/>
         <nm:map ada="visus" resource="Observation" profile="nl-core-VisualAcuity"/>
@@ -147,6 +153,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="wilsverklaring" resource="Consent" profile="nl-core-AdvanceDirective"/>
         <nm:map ada="wisselend_doseerschema" resource="MedicationRequest" profile="mp-VariableDosingRegimen"/>
         <nm:map ada="woonsituatie" resource="Observation" profile="nl-core-LivingSituation"/>
+        <nm:map ada="ziektebeleving" resource="Observation" profile="nl-core-IllnessPerception"/>
         <nm:map ada="zorgaanbieder" resource="Organization" profile="nl-core-HealthcareProvider-Organization"/>
         <nm:map ada="zorgaanbieder" resource="Location" profile="nl-core-HealthcareProvider"/>
         <nm:map ada="zorg_episode" resource="EpisodeOfCare" profile="nl-core-EpisodeOfCare"/>
