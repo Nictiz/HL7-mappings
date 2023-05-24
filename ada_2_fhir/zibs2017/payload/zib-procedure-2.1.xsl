@@ -376,7 +376,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:when test="*">
                                 <focalDevice>
                                     <manipulated>
-                                        <xsl:apply-templates select="." mode="doMedicalDeviceReference-2.2"/>
+                                        <xsl:apply-templates select="." mode="doMedicalDeviceProductReference-2.2"/>
                                     </manipulated>
                                 </focalDevice>
                             </xsl:when>

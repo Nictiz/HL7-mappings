@@ -7,7 +7,7 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Observatie/bepaling. Subject: Anouk A. Anouk van XXX_Rijn de XXX_Vries. Id: mm-bgz-patA-labResult1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Categorie: <span title="Laboratory test finding (49581000146104 - SNOMED CT)">Laboratory test finding</span>, Status: definitief</caption>
+            <caption>Observatie/bepaling. Subject: Anouk A. Anouk van XXX_Rijn de XXX_Vries. Id: patA-labResult1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Categorie: <span title="Laboratory test finding (49581000146104 - SNOMED CT)">Laboratory test finding</span>, Status: definitief</caption>
             <tfoot>
                <tr>
                   <td colspan="4">Onder referentiewaarden</td>
@@ -53,7 +53,7 @@
    </text>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
-      <value value="mm-bgz-patA-labResult1"/>
+      <value value="patA-labResult1"/>
    </identifier>
    <status value="final">
       <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
@@ -85,7 +85,12 @@
       <display value="Anouk A. Anouk van XXX_Rijn de XXX_Vries"/>
    </subject>
    <effectiveDateTime value="2019-05-12T08:50:00+02:00"/>
-   <valueString value="7.2 mmol/L"/>
+   <valueQuantity>
+      <value value="7.2"/>
+      <unit value="mmol/L"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="mmol/L"/>
+   </valueQuantity>
    <interpretation>
       <coding>
          <system value="http://hl7.org/fhir/v2/0078"/>
@@ -102,15 +107,21 @@
       </coding>
    </method>
    <specimen>
-      <reference value="Specimen/men-Isolate-medmij-bgz-test-73917c83-6ad1-11ec-0000-020000000000"/>
+      <reference value="Specimen/men-Isolate-medmij-bgz-test-d298fc83-6adb-11ec-0000-020000000000"/>
       <display value="Bloed"/>
    </specimen>
    <referenceRange>
       <low>
-         <value value="7.4 mmol/L"/>
+         <value value="7.4"/>
+         <unit value="mmol/L"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mmol/L"/>
       </low>
       <high>
-         <value value="9.9 mmol/L"/>
+         <value value="9.9"/>
+         <unit value="mmol/L"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mmol/L"/>
       </high>
       <type>
          <coding>

@@ -136,9 +136,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:when test="specimen_source | bron_monster">
                         <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDeviceProduct</xsl:variable>
                         <Device>
-                            <xsl:if test="string-length($containedDeviceId) gt 0">
-                                <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $containedDeviceId)}"/>
-                            </xsl:if>
+                            <id value="{$containedDeviceId}"/>
                             <meta>
                                 <profile value="{$profileValue}"/>
                             </meta>
@@ -300,7 +298,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <contained>
                             <Specimen>
                                 <xsl:if test="string-length($containedSpecimenId) gt 0">
-                                    <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $containedSpecimenId)}"/>
+                                    <id value="{$containedSpecimenId}"/>
                                 </xsl:if>
                                 <meta>
                                     <profile value="{$profileValue}"/>

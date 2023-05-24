@@ -223,17 +223,39 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <name value="{string-join(($organizationName, $organizationLocation)[not(. = '')],' - ')}"/>
                     </xsl:if>
                     
+                    <!-- J.D. - Noticed in zib2017 ADA project that in vanilla ADA contact and address are in a container with the same name. Filtering here ... -->
+                    <xsl:variable name="contact" as="element()*">
+                        <xsl:choose>
+                            <xsl:when test="(contactgegevens | contact_information)/(contactgegevens | contact_information)">
+                                <xsl:sequence select="(contactgegevens | contact_information)/(contactgegevens | contact_information)"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:sequence select="contactgegevens | contact_information"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable>
+                    <xsl:variable name="address" as="element()*">
+                        <xsl:choose>
+                            <xsl:when test="(adresgegevens | address_information)/(adresgegevens | address_information)">
+                                <xsl:sequence select="(adresgegevens | address_information)/(adresgegevens | address_information)"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:sequence select="adresgegevens | address_information"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable>
+                    
                     <!-- contactgegevens -->
                     <!-- MM-2693 Filter private contact details -->
                     <xsl:call-template name="nl-core-contactpoint-1.0">
-                        <xsl:with-param name="in" select="contactgegevens | contact_information"/>
+                        <xsl:with-param name="in" select="$contact"/>
                         <xsl:with-param name="filterprivate" select="true()" as="xs:boolean"/>
                     </xsl:call-template>
                     
                     <!-- address -->
                     <!-- MM-2693 Filter private addresses -->
                     <xsl:call-template name="nl-core-address-2.0">
-                        <xsl:with-param name="in" select="adresgegevens[not(adres_soort/tokenize(@code, '\s') ='HP')] | address_information[not(address_type/tokenize(@code, '\s') ='HP')]" as="element()*"/>
+                        <xsl:with-param name="in" select="$address[not((adres_soort | address_information)/tokenize(@code, '\s') ='HP')]" as="element()*"/>
                     </xsl:call-template>
                 </Organization>
             </xsl:variable>

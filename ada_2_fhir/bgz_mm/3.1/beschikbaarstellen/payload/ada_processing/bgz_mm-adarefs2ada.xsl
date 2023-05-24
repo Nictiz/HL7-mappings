@@ -18,7 +18,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:param name="ada-input" select="collection('../../ada_instance/?select=*.xml')"/>
     <xsl:param name="adaReleaseFile" select="document('zib2017-nl-ada-release.xml')"/>
-    
+
     <!-- output directory for full ada instances -->
     <xsl:param name="outputDir" as="xs:string?">../../ada_processed</xsl:param>
     
@@ -26,7 +26,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to start conversion. Input are the ada instances of transaction 'beschikbaarstellen BgZ'. Outputs ada instance bundle in the given output directory </xd:desc>
     </xd:doc>
     <xsl:template match="/">
-        <xsl:for-each-group select="$ada-input//*[ends-with(local-name(), '_registration')]/*" group-by="./hcimroot/subject/patient/patient/@value">
+        <xsl:for-each-group select="$ada-input//*[ends-with(local-name(), '_registration')][@title/starts-with(., 'mm-bgz')]/*" group-by="./hcimroot/subject/patient/patient/@value">
             <xsl:variable name="patientIdentifier" select="current-grouping-key()"/>
             <xsl:variable name="patientName">
                 <xsl:choose>
@@ -45,9 +45,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="($ada-input//*[ends-with(local-name(), '_registration')]/patient[patient_identification_number[@value = $patientIdentifier][@root = '2.16.840.1.113883.2.4.6.3']])[1]" mode="copy-for-resolve"/>
             </xsl:variable>
             <xsl:for-each-group select="current-group()" group-by="local-name()">
+                <xsl:variable name="currentGroupSorted">
+                    <xsl:perform-sort select="current-group()">
+                        <xsl:sort data-type="text" select="./hcimroot/identification_number/@value"/>
+                    </xsl:perform-sort>
+                </xsl:variable>
+                
                 <!-- We now have groups of zibs per patient, which we want to resolve and put in an 'ada bundle' (which is no official thing) -->
                 <xsl:variable name="resolved-ada-input" as="node()*">
-                    <xsl:apply-templates select="current-group()" mode="copy-for-resolve">
+                    <xsl:apply-templates select="$currentGroupSorted" mode="copy-for-resolve">
                         <xsl:with-param name="resolvedPatient" select="$resolvedPatient" tunnel="yes"/>
                     </xsl:apply-templates>
                 </xsl:variable>
@@ -59,6 +65,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:result-document>
             </xsl:for-each-group>
         </xsl:for-each-group>
+    </xsl:template>
+    
+    <xsl:template match="identification_number/@value" mode="copy-for-resolve">
+        <xsl:attribute name="value">
+            <xsl:choose>
+                <xsl:when test="starts-with(., 'mm-bgz-')">
+                    <xsl:value-of select="substring-after(., 'mm-bgz-')"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="."/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:attribute>
     </xsl:template>
     
     <xsl:template match="patient[@value and @root = '2.16.840.1.113883.2.4.6.3'][not(*)]" mode="copy-for-resolve" priority="2">
