@@ -13055,7 +13055,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:with-param name="post" select="': '"/>
                                     </xsl:call-template>
                                     <xsl:call-template name="util:getLocalizedString">
-                                        <xsl:with-param name="key" select="'HumanNameAssemblyOrder-' || f:valueCode/@value"/>
+                                        <xsl:with-param name="key" select="concat('HumanNameAssemblyOrder-', f:valueCode/@value)"/>
                                         <xsl:with-param name="textLang" select="$textLang"/>
                                     </xsl:call-template>
                                 </xsl:for-each>
