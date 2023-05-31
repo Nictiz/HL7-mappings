@@ -372,7 +372,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="profile" select="$profile"/>
                         </xsl:apply-templates>
                     </xsl:variable>
-                    <xsl:value-of select="normalize-space(string-join($generatedDisplay))"/>
+                    <xsl:value-of select="normalize-space(string-join($generatedDisplay, ''))"/>
                 </nm:reference-display>
             </nm:resource>
         </xsl:for-each>
