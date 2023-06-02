@@ -5,7 +5,8 @@ setlocal enabledelayedexpansion
 if "%saxonPath%"=="" (
   SET saxonPath=C:\SaxonHE9-9-1-7J\saxon9he.jar
 )
-SET inputDir=ada_processed
+SET inputDir=ada_instance
+SET processedDir=ada_processed
 SET xsltDir=payload
 SET outputDir=fhir_instance_resources
 
@@ -18,11 +19,16 @@ if not exist "%saxonPath%" (
 )
 
 echo Removing previous output
+if exist "%processedDir%" (
+	del "%processedDir%" /Q
+)
 if exist "%outputDir%" (
 	del "%outputDir%" /Q
 )
 
-for /f %%f in ('dir /b "%inputDir%"') do (
+java -jar "%saxonPath%" -s:"%xsltDir%/ada_processing/bgz_mm-adarefs2ada.xsl" -xsl:"%xsltDir%/ada_processing/bgz_mm-adarefs2ada.xsl" -o:"%outputDir%/dummy.xml
+
+for /f %%f in ('dir /b "%processedDir%"') do (
 	set id=%%~nf
 	call :doTransformation !id!
 )
@@ -37,4 +43,4 @@ set input=%1
 echo Converting !input!
 set baseId=!noDriverId:~0, -3!
 
-java -jar "%saxonPath%" -s:"%inputDir%/!input!.xml" -xsl:"%xsltDir%/beschikbaarstellen_2_fhir.xsl" -o:"%outputDir%/dummy.xml
+java -jar "%saxonPath%" -s:"%processedDir%/!input!.xml" -xsl:"%xsltDir%/beschikbaarstellen_2_fhir.xsl" -o:"%outputDir%/dummy.xml

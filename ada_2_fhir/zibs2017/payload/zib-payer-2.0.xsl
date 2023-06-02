@@ -157,11 +157,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:if>
                     <xsl:if test="verzekeraar | insurance_company">
                         <payor>
-                            <!--First create Organization resource that includes both organisatie_naam | organization_name and identificatie_nummer | identification_number -->
-                            <!--<reference>
-                                    
-                            </reference>-->
-                            <xsl:for-each select="(verzekeraar/identificatie_nummer | insurance_company/identification_number)[@value]">
+                            <xsl:apply-templates select="verzekeraar | insurance_company" mode="doOrganizationReference-2.0"/>
+                            <!--<xsl:for-each select="(verzekeraar/identificatie_nummer | insurance_company/identification_number)[@value]">
                                 <identifier>
                                     <xsl:call-template name="id-to-Identifier">
                                         <xsl:with-param name="in" select="."/>
@@ -174,7 +171,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:with-param name="in" select="."/>
                                     </xsl:call-template>
                                 </display>
-                            </xsl:for-each>
+                            </xsl:for-each>-->
                         </payor>
                     </xsl:if>
                     <xsl:if test="not(betaler_persoon | payer_person) and not(verzekeraar | insurance_company)">

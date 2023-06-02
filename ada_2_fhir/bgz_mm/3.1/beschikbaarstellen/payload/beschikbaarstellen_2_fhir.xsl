@@ -40,7 +40,44 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- OID separated list of oids like 2.16.840.1.113883.2.4.6.3 (bsn) to mask in output -->
     <xsl:param name="mask-ids" select="$oidBurgerservicenummer" as="xs:string"/>
     
+    <xsl:param name="ada-input" select="collection('../ada_processed/?select=*.xml')"/>
+    
     <xsl:variable name="usecase">medmij-bgz-test</xsl:variable>
+    
+    <!-- Overrule global variable to add generalPractitionerRef -->
+    <xsl:variable name="patients" as="element()*">
+        <xsl:for-each-group select="//patient[not(patient)][ancestor::subject][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="
+            string-join(for $att in nf:ada-pat-id(identificatienummer | patient_identificatie_nummer | patient_identification_number)/(@root, @value)
+            return
+            $att, '')">
+            <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyPatient(.)">
+                <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
+                <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
+                <unieke-patient xmlns="">
+                    <group-key>
+                        <xsl:value-of select="current-grouping-key()"/>
+                    </group-key>
+                    <reference-display>
+                        <xsl:value-of select="current-group()[1]/normalize-space(string-join(.//naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value | name_information[1]//*[not(name() = 'name_usage')]/@value, ' '))"/>
+                    </reference-display>
+                    <xsl:apply-templates select="current-group()[1]" mode="doPatientEntry-2.1">
+                        <xsl:with-param name="uuid" select="$uuid"/>
+                        <xsl:with-param name="generalPractitionerRef" tunnel="yes" as="element()*">
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference" xmlns="http://hl7.org/fhir">
+                                <valueReference>
+                                    <reference value="PractitionerRole/nl-core-practitionerrole-medmij-bgz-test-0100000201-01501000001"/>
+                                    <display value="Huisarts"/>
+                                </valueReference>
+                            </extension>
+                            <reference value="Practitioner/-practitioner-medmij-bgz-test-2-16-840-1-113883-2-4-6-1-01000002" xmlns="http://hl7.org/fhir"/>
+                            <display value="Franciscus Dominicus Antonius F.D.A. Frans Pleijster" xmlns="http://hl7.org/fhir"/>
+                        </xsl:with-param>
+                        <xsl:with-param name="contact" select="($ada-input//bundle/contact[hcimroot/subject/patient/patient/patient_identification_number/@value = current-group()[1]/patient_identification_number/@value])" tunnel="yes" as="element()*"/>
+                    </xsl:apply-templates>
+                </unieke-patient>
+            </xsl:for-each-group>
+        </xsl:for-each-group>
+    </xsl:variable>
     
     <xd:doc>
         <xd:desc>Start conversion. This conversion tries to account for all zibs in BgZ MSZ "beschikbaarstellen" in one go. Either build a FHIR Bundle of type searchset per zib, or build individual files.</xd:desc>
@@ -49,34 +86,37 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="commonEntries" as="element(f:entry)*">
             <xsl:choose>
                 <xsl:when test="bundle/*/local-name() = 'advance_directive'">
-                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
+                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, (:$relatedPersons/f:entry,:) $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
                 </xsl:when>
                 <!--<xsl:when test="bundle/*/local-name() = 'contact'">
                     <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
                 </xsl:when>-->
                 <!--<xsl:when test="bundle/*/local-name() = 'health_professional'">
-                    <xsl:copy-of select="$patients/f:entry, $organizations/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
+                    <xsl:copy-of select="$patients/f:entry, $organizations/f:entry, (:$relatedPersons/f:entry,:) $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
                 </xsl:when>-->
                 <xsl:when test="bundle/*/local-name() = 'laboratory_test_result'">
-                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry"/>
+                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, (:$relatedPersons/f:entry,:) $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry"/>
                 </xsl:when>
                 <xsl:when test="bundle/*/local-name() = 'medical_device'">
-                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
+                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, (:$relatedPersons/f:entry,:) $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
                 </xsl:when>
                 <!--<xsl:when test="bundle/*/local-name() = 'patient'">
-                    <xsl:copy-of select="$practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
+                    <xsl:copy-of select="$practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, (:$relatedPersons/f:entry,:) $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
                 </xsl:when>-->
                 <xsl:when test="bundle/*/local-name() = 'problem'">
-                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
+                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, (:$relatedPersons/f:entry,:) $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
                 </xsl:when>
                 <xsl:when test="bundle/*/local-name() = 'procedure'">
-                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $problems/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
+                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, (:$relatedPersons/f:entry,:) $problems/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
                 </xsl:when>
                 <xsl:when test="bundle/*/local-name() = 'vaccination'">
-                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $labObservations/f:entry"/>
+                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, (:$relatedPersons/f:entry,:) $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $labObservations/f:entry"/>
                 </xsl:when>
+                <!--<xsl:when test="bundle/*/local-name() = 'medication_agreement'">
+                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, (:$relatedPersons/f:entry,:) $problems/f:entry, $procedures/f:entry, $products/f:entry"/>
+                </xsl:when>-->
                 <xsl:otherwise>
-                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $relatedPersons/f:entry, $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
+                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, (:$relatedPersons/f:entry,:) $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
@@ -100,8 +140,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:variable>
                 
                 <!--Zibs that result in only a single resource, or  resources that have no special conditions-->
-                <xsl:if test="local-name() = ('advance_directive', 'alcohol_use', 'alert', 'allergy_intolerance', 'blood_pressure', 'body_height', 'body_weight', 'drug_use', 'encounter', 'functional_or_mental_status', 'living_situation', 'nutrition_advice', 'payer', 'problem', 'tobacco_use', 'treatment_directive')">
+                <xsl:if test="local-name() = ((:'administration_agreement', :)'advance_directive', 'alcohol_use', 'alert', 'allergy_intolerance', 'blood_pressure', 'body_height', 'body_weight', 'drug_use', 'encounter', 'functional_or_mental_status', 'living_situation', (:'medication_agreement', 'medication_use', :)'nutrition_advice', 'payer', 'problem', 'tobacco_use', 'treatment_directive')">
                     <entry xmlns="http://hl7.org/fhir">
+                        <xsl:if test="local-name() = 'administration_agreement'">
+                            <xsl:message terminate="yes">TODO</xsl:message>
+                        </xsl:if>
                         <xsl:if test="local-name() = 'advance_directive'">
                             <fullUrl value="{concat('zib-AdvanceDirective-', $usecase, '-', $patientName, '-advdir', position())}"/>
                             <resource>
@@ -228,6 +271,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
                                     <xsl:with-param name="logicalId" select="concat($patientName, '-living', position())"/>
+                                </xsl:call-template>
+                            </resource>
+                        </xsl:if>
+                        <xsl:if test="local-name() = 'medication_agreement'">
+                            <fullUrl value="{concat('zib-MedicationAgreement-', $usecase, '-', $patientName, '-medagr', position())}"/>
+                            <resource>
+                                <xsl:call-template name="zib-MedicationAgreement-3.0">
+                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-medagr', position())"/>
+                                </xsl:call-template>
+                            </resource>
+                        </xsl:if>
+                        <xsl:if test="local-name() = 'medication_use'">
+                            <fullUrl value="{concat('zib-MedicationUse-', $usecase, '-', $patientName, '-meduse', position())}"/>
+                            <resource>
+                                <xsl:call-template name="zib-MedicationUse-3.0">
+                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-meduse', position())"/>
                                 </xsl:call-template>
                             </resource>
                         </xsl:if>

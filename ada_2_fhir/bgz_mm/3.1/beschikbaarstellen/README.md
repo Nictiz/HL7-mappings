@@ -9,6 +9,5 @@ Na aanpassen kunnen deze bestanden gedownload worden via de searchset:
 https://decor.nictiz.nl/ada/projects/zib2017/?raw=true
 ```
 
-1. Download ADA instances
-3. bgz_mm-adarefs2ada.xsl
-4. To run all xslt transformations please run `ada_project_drivers\buildResources.bat`. The batch file assumes [Saxon](http://saxon.sourceforge.net) is installed in the folder `C:\SaxonHE9-9-1-7J\saxon9he.jar`. Another Saxon location can be specified using the %SaxonPath% EnvironmentVariable.
+1. Download ADA instances, save as `ada_instance\searchset.xml`
+2. To run all xslt transformations please run `buildResources.bat`. The batch file assumes [Saxon](http://saxon.sourceforge.net) is installed in the folder `C:\SaxonHE9-9-1-7J\saxon9he.jar`. Another Saxon location can be specified using the %SaxonPath% EnvironmentVariable.

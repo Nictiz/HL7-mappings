@@ -10,6 +10,8 @@
          <div>
             <a href="tel:0687654321">0687654321</a> (Mobiel Privé), <a href="mailto:J_XXX_Hoff@hotmail.com">J_XXX_Hoff@hotmail.com</a> (E-mail Privé)</div>
          <div>Knolweg 1003, 9999ZA Stitswerd Het Hogeland, NLD (officieel Privé (hoofd) Bezoek)</div>
+         <div>Huisarts: Franciscus Dominicus Antonius F.D.A. Frans Pleijster<div>Zorgverlenerrol: Huisarts</div>
+         </div>
       </div>
    </text>
    <identifier>
@@ -109,10 +111,21 @@
                <coding>
                   <system value="urn:iso:std:iso:3166"/>
                   <code value="NLD"/>
+                  <display value="Nederland"/>
                </coding>
             </valueCodeableConcept>
          </extension>
       </country>
    </address>
    <multipleBirthBoolean value="false"/>
+   <generalPractitioner>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-medmij-bgz-test-0100000201-01501000001"/>
+            <display value="Huisarts"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/-practitioner-medmij-bgz-test-2-16-840-1-113883-2-4-6-1-01000002"/>
+      <display value="Franciscus Dominicus Antonius F.D.A. Frans Pleijster"/>
+   </generalPractitioner>
 </Patient>

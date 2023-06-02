@@ -279,7 +279,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <!-- patiënt -->
                     <subject>
-                        <xsl:apply-templates select="../../patient" mode="doPatientReference-2.1"/>
+                        <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
                     
                     <!-- gerelateerde_afspraak en gerelateerde_verstrekking-->

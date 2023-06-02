@@ -2,22 +2,6 @@
     <type value="searchset"/>
     <entry>
         <resource>
-            <marital_status_registration app="zib2017" shortName="marital_status_registration" formName="marital_status" transactionRef="2.16.840.1.113883.2.4.3.11.60.7.4.2.7.9" transactionEffectiveDate="2017-12-31T00:00:00" versionDate="" prefix="zib2017-" language="en-US" title="" id="0391cfb2-a2ed-4732-91cf-b2a2ed1732ae">
-                <marital_status_rc conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.7.9.1">
-                    <hcimroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1">
-                        <subject conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11">
-                            <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12">
-                                <patient value="999901394" root="2.16.840.1.113883.2.4.6.3" conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146"/>
-                            </patient>
-                        </subject>
-                    </hcimroot>
-                    <marital_status conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.7.9.2" value="3" code="S" codeSystem="2.16.840.1.113883.5.2" displayName="Never Married"/>
-                </marital_status_rc>
-            </marital_status_registration>
-        </resource>
-    </entry>
-    <entry>
-        <resource>
             <marital_status_registration app="zib2017" shortName="marital_status_registration" formName="marital_status" transactionRef="2.16.840.1.113883.2.4.3.11.60.7.4.2.7.9" transactionEffectiveDate="2017-12-31T00:00:00" versionDate="" prefix="zib2017-" language="en-US" title="mm-bgz-patA-maritalstat" id="e9ed6d7b-e9d9-4d79-ad6d-7be9d91d7926">
                 <marital_status_rc conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.7.9.1">
                     <hcimroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1">
@@ -45,6 +29,7 @@
                             </patient>
                         </subject>
                     </hcimroot>
+                    <problem_anatomical_location conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.11" code="735264009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Rechter knie"/>
                     <problem_laterality conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.12" value="2" code="24028007" codeSystem="2.16.840.1.113883.6.96" displayName="Right"/>
                     <problem_type conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.8" value="1" code="282291009" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnosis"/>
                     <problem_name conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.3" code="323321000119100" codeSystem="2.16.840.1.113883.6.96" displayName="Artrose van rechter kniegewricht"/>
@@ -267,19 +252,138 @@
                         <identification_number conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6" root="2.16.840.1.113883.2.4.3.11.999.7" value="mm-bgz-patA-livingSit"/>
                         <information_source conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.2">
                             <patient_as_information_source conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.3">
-                                <patient conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.140" nullFlavor="NI"/>
+                                <patient conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.140" nullFlavor="NI" datatype="reference"/>
                             </patient_as_information_source>
                         </information_source>
+                        <subject conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11">
+                            <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12">
+                                <patient value="999901382" root="2.16.840.1.113883.2.4.6.3" conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146" datatype="reference"/>
+                            </patient>
+                        </subject>
+                        <date_time value="2022-11-27" datatype="datetime" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.14"/>
+                    </hcimroot>
+                    <comment value="Woning bereikbaar met trap" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.7.8.2"/>
+                    <house_type conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.7.8.3" value="6" code="WOONB" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.13.1" displayName="Woonboot"/>
+                </living_situation>
+            </living_situation_registration>
+        </resource>
+    </entry>
+    <entry>
+        <resource>
+            <planned_care_activity_for_transfer_registration app="zib2017" shortName="planned_care_activity_for_transfer_registration" formName="planned_care_activity_for_transfer" transactionRef="2.16.840.1.113883.2.4.3.11.60.7.4.2.16.1" transactionEffectiveDate="2017-12-31T00:00:00" versionDate="" prefix="zib2017-" language="en-US" title="mm-bgz-PatA-PlannedCareTransfer6" id="9ec36f96-b04e-47e7-836f-96b04e97e7a3">
+                <planned_care_activity conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.1">
+                    <hcimroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1">
+                        <identification_number conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6" root="2.16.840.1.113883.2.4.3.11.999.7" value="mm-bgz-PatA-PlannedCareTranser"/>
                         <subject conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11">
                             <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12">
                                 <patient value="999901382" root="2.16.840.1.113883.2.4.6.3" conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146"/>
                             </patient>
                         </subject>
                     </hcimroot>
-                    <comment value="Woning bereikbaar met trap" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.7.8.2"/>
-                    <house_type conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.7.8.3" value="6" code="WOONB" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.13.1" displayName="Woonboot"/>
-                </living_situation>
-            </living_situation_registration>
+                    <order_status conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.9" value="6" code="cancelled" codeSystem="2.16.840.1.113883.5.14" displayName="Cancelled"/>
+                    <start_date value="2022-03-26" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.10"/>
+                    <end_date value="2022-04-04" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.11"/>
+                    <order_type conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.8" value="1" code="308335008" codeSystem="2.16.840.1.113883.6.96" displayName="Encounter"/>
+                    <order_other conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.2" value="Gebruik krukken"/>
+                    <medical_device conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.7">
+                        <medical_device value="mm-bgz-patA-medDevice1" conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.139" root="2.16.840.1.113883.2.4.3.11.999.7"/>
+                    </medical_device>
+                </planned_care_activity>
+            </planned_care_activity_for_transfer_registration>
+        </resource>
+    </entry>
+    <entry>
+        <resource>
+            <planned_care_activity_for_transfer_registration app="zib2017" shortName="planned_care_activity_for_transfer_registration" formName="planned_care_activity_for_transfer" transactionRef="2.16.840.1.113883.2.4.3.11.60.7.4.2.16.1" transactionEffectiveDate="2017-12-31T00:00:00" versionDate="" prefix="zib2017-" language="en-US" title="mm-bgz-PatA-PlannedCareTransfer5" id="e016469e-a558-4e21-9646-9ea558de21c2">
+                <planned_care_activity conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.1">
+                    <hcimroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1">
+                        <identification_number conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6" root="2.16.840.1.113883.2.4.3.11.999.7" value="mm-bgz-PatA-PlannedCareTranser"/>
+                        <subject conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11">
+                            <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12">
+                                <patient value="999901382" root="2.16.840.1.113883.2.4.6.3" conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146"/>
+                            </patient>
+                        </subject>
+                    </hcimroot>
+                    <order_status conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.9" value="6" code="cancelled" codeSystem="2.16.840.1.113883.5.14" displayName="Cancelled"/>
+                    <start_date value="2022-03-26" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.10"/>
+                    <end_date value="2022-04-04" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.11"/>
+                    <order_type conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.8" value="1" code="308335008" codeSystem="2.16.840.1.113883.6.96" displayName="Encounter"/>
+                    <order_other value="Chirurgische handeling" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.2"/>
+                    <appointment conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.6">
+                        <encounter value="mm-bgz-patA-encounter1" conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.138" root="2.16.840.1.113883.2.4.3.11.999.7"/>
+                    </appointment>
+                </planned_care_activity>
+            </planned_care_activity_for_transfer_registration>
+        </resource>
+    </entry>
+    <entry>
+        <resource>
+            <planned_care_activity_for_transfer_registration app="zib2017" shortName="planned_care_activity_for_transfer_registration" formName="planned_care_activity_for_transfer" transactionRef="2.16.840.1.113883.2.4.3.11.60.7.4.2.16.1" transactionEffectiveDate="2017-12-31T00:00:00" versionDate="" prefix="zib2017-" language="en-US" title="mm-bgz-PatA-PlannedCareTransfer4" id="9533698a-0199-49c5-b369-8a019929c5e4">
+                <planned_care_activity conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.1">
+                    <hcimroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1">
+                        <identification_number conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6" root="2.16.840.1.113883.2.4.3.11.999.7" value="mm-bgz-PatA-PlannedCareTranser"/>
+                        <subject conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11">
+                            <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12">
+                                <patient value="999901382" root="2.16.840.1.113883.2.4.6.3" conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146"/>
+                            </patient>
+                        </subject>
+                    </hcimroot>
+                    <order_status conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.9" value="6" code="cancelled" codeSystem="2.16.840.1.113883.5.14" displayName="Cancelled"/>
+                    <start_date value="2022-03-26" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.10"/>
+                    <end_date value="2022-04-04" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.11"/>
+                    <order_type conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.8" value="5" code="33879002" codeSystem="2.16.840.1.113883.6.96" displayName="Administration of vaccine to produce active immunity"/>
+                    <order_other conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.2" nullFlavor="NI"/>
+                    <vaccination conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.5">
+                        <vaccination value="mm-bgz-patA-vaccin1" conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.137" root="2.16.840.1.113883.2.4.3.11.999.7"/>
+                    </vaccination>
+                </planned_care_activity>
+            </planned_care_activity_for_transfer_registration>
+        </resource>
+    </entry>
+    <entry>
+        <resource>
+            <planned_care_activity_for_transfer_registration app="zib2017" shortName="planned_care_activity_for_transfer_registration" formName="planned_care_activity_for_transfer" transactionRef="2.16.840.1.113883.2.4.3.11.60.7.4.2.16.1" transactionEffectiveDate="2017-12-31T00:00:00" versionDate="" prefix="zib2017-" language="en-US" title="mm-bgz-PatA-PlannedCareTransfer3" id="eae28e80-8741-4e9b-a28e-808741ce9b0f">
+                <planned_care_activity conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.1">
+                    <hcimroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1">
+                        <identification_number conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6" root="2.16.840.1.113883.2.4.3.11.999.7" value="mm-bgz-PatA-PlannedCareTranser"/>
+                        <subject conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11">
+                            <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12">
+                                <patient value="999901382" root="2.16.840.1.113883.2.4.6.3" conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146"/>
+                            </patient>
+                        </subject>
+                    </hcimroot>
+                    <order_status conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.9" value="6" code="cancelled" codeSystem="2.16.840.1.113883.5.14" displayName="Cancelled"/>
+                    <start_date value="2022-03-26" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.10"/>
+                    <end_date value="2022-04-04" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.11"/>
+                    <order_type conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.8" value="3" code="9632001" codeSystem="2.16.840.1.113883.6.96" displayName="Nursing procedure"/>
+                    <nursing_procedure conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.12">
+                        <nursing_intervention value="mm-bgz-patA-NurseIntervention1" conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.136" root="2.16.840.1.113883.2.4.3.11.999.7"/>
+                    </nursing_procedure>
+                </planned_care_activity>
+            </planned_care_activity_for_transfer_registration>
+        </resource>
+    </entry>
+    <entry>
+        <resource>
+            <planned_care_activity_for_transfer_registration app="zib2017" shortName="planned_care_activity_for_transfer_registration" formName="planned_care_activity_for_transfer" transactionRef="2.16.840.1.113883.2.4.3.11.60.7.4.2.16.1" transactionEffectiveDate="2017-12-31T00:00:00" versionDate="" prefix="zib2017-" language="en-US" title="mm-bgz-PatA-PlannedCareTransfer2" id="b907790e-316a-4b39-8779-0e316a6b396a">
+                <planned_care_activity conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.1">
+                    <hcimroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1">
+                        <identification_number conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6" root="2.16.840.1.113883.2.4.3.11.999.7" value="mm-bgz-PatA-PlannedCareTranser"/>
+                        <subject conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11">
+                            <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12">
+                                <patient value="999901382" root="2.16.840.1.113883.2.4.6.3" conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146"/>
+                            </patient>
+                        </subject>
+                    </hcimroot>
+                    <order_status conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.9" value="6" code="cancelled" codeSystem="2.16.840.1.113883.5.14" displayName="Cancelled"/>
+                    <start_date value="2022-03-26" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.10"/>
+                    <end_date value="2022-04-04" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.11"/>
+                    <order_type conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.8" value="2" code="71388002" codeSystem="2.16.840.1.113883.6.96" displayName="Procedure"/>
+                    <procedure conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.4">
+                        <procedure value="mm-bgz-patA-procedure1" conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.135" root="2.16.840.1.113883.2.4.3.11.999.7"/>
+                    </procedure>
+                </planned_care_activity>
+            </planned_care_activity_for_transfer_registration>
         </resource>
     </entry>
     <entry>
@@ -307,7 +411,7 @@
                             <postcode value="9999ZA" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.20.5.6"/>
                             <place_of_residence value="Stitswerd" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.20.5.3"/>
                             <municipality value="Het Hogeland" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.20.5.4"/>
-                            <country conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.20.5.5" code="NLD" codeSystem="1.0.3166.1.2.2"/>
+                            <country conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.20.5.5" code="NLD" codeSystem="1.0.3166.1.2.2" displayName="Nederland"/>
                             <address_type conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.20.5.8" value="2" code="HP" codeSystem="2.16.840.1.113883.5.1119" displayName="Primary Home"/>
                         </address_information>
                     </address_information>
@@ -4195,7 +4299,7 @@
                             </patient>
                         </subject>
                     </hcimroot>
-                    <contact_type conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.15.1.2" value="1" code="AMB" codeSystem="2.16.840.1.113883.5.4" displayName="Ambulatory"/>
+                    <contact_type conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.15.1.2" value="5" code="IMP" codeSystem="2.16.840.1.113883.5.4" displayName="Inpatient"/>
                     <contact_with conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.15.1.7">
                         <health_professional value="mm-bgz-PatA-HealtcareProf2" conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.40" root="2.16.840.1.113883.2.4.3.11.999.7"/>
                     </contact_with>
@@ -4236,18 +4340,10 @@
                             </patient>
                         </subject>
                     </hcimroot>
-                    <payer_person conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.1.1.2">
-                        <payer_name value="A. van XXX_Rijn" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.1.1.5"/>
-                        <bank_information conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.1.1.4">
-                            <bank_name value="ABN Bank" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.1.1.9"/>
-                            <bank_code value="ABNANL2A" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.1.1.10"/>
-                            <account_number value="NL64ABNC0417164300" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.1.1.11"/>
-                        </bank_information>
-                    </payer_person>
                     <insurance_company conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.1.1.3">
                         <insurance conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.1.1.8">
-                            <start_date_time value="2022-01-01" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.1.1.13"/>
-                            <end_date_time value="2022-12-31" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.1.1.14"/>
+                            <start_date_time value="T-1D" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.1.1.13"/>
+                            <end_date_time value="T+30D" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.1.1.14"/>
                             <insurance_type conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.1.1.15" value="2" code="A" codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.1" displayName="Aanvullend verzekerd"/>
                         </insurance>
                         <identification_number value="7095" root="2.16.840.1.113883.2.4.6.4" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.1.1.7"/>
@@ -4297,17 +4393,12 @@
                     </hcimroot>
                     <payer_person conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.1.1.2">
                         <payer_name value="J. XXX_Hoff" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.1.1.5"/>
+                        <bank_information conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.1.1.4">
+                            <bank_name value="ABN Bank" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.1.1.9"/>
+                            <bank_code value="ABNANL2A" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.1.1.10"/>
+                            <account_number value="NL64ABNC0417164300" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.1.1.11"/>
+                        </bank_information>
                     </payer_person>
-                    <insurance_company conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.1.1.3">
-                        <insurance conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.1.1.8">
-                            <start_date_time value="2022-01-01" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.1.1.13"/>
-                            <end_date_time value="2022-12-31" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.1.1.14"/>
-                            <insurance_type conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.1.1.15" value="1" code="B" codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.1" displayName="Basis"/>
-                        </insurance>
-                        <identification_number value="3332" root="2.16.840.1.113883.2.4.6.4" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.1.1.7"/>
-                        <organization_name value="Menzis Zorgverzekeraar N.V." conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.1.1.16"/>
-                        <insurant_number value="12345678" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.1.1.6"/>
-                    </insurance_company>
                     <address_information conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.1.1.17">
                         <address_information conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.21">
                             <street value="Postbus" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.20.5.2"/>
@@ -4315,7 +4406,7 @@
                             <postcode value="7500KC" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.20.5.6"/>
                             <place_of_residence value="Enschede" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.20.5.3"/>
                             <municipality value="Enschede" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.20.5.4"/>
-                            <country conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.20.5.5" code="NLD" codeSystem="1.0.3166.1.2.2"/>
+                            <country conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.20.5.5" code="NLD" codeSystem="1.0.3166.1.2.2" displayName="Nederland"/>
                             <address_type conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.20.5.8" value="1" code="PST" codeSystem="2.16.840.1.113883.5.1119" displayName="Postal Addres"/>
                         </address_information>
                     </address_information>
@@ -4591,29 +4682,29 @@
     <entry>
         <resource>
             <vaccination_registration app="zib2017" shortName="vaccination_registration" formName="vaccination" transactionRef="2.16.840.1.113883.2.4.3.11.60.7.4.2.11.1" transactionEffectiveDate="2017-12-31T00:00:00" versionDate="" prefix="zib2017-" language="en-US" title="mm-bgz-patA-vaccin2" id="3d07f21a-5f17-44a0-87f2-1a5f1764a04c">
-                <vaccination conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.11.1.1">
-                    <hcimroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1">
-                        <identification_number conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6" root="2.16.840.1.113883.2.4.3.11.999.7" value="mm-bgz-patA-vaccin2"/>
-                        <information_source conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.2">
-                            <patient_as_information_source conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.3">
-                                <patient conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.140" nullFlavor="NI"/>
-                            </patient_as_information_source>
-                        </information_source>
-                        <subject conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11">
-                            <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12">
-                                <patient value="999901382" root="2.16.840.1.113883.2.4.6.3" conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146"/>
-                            </patient>
-                        </subject>
-                    </hcimroot>
-                    <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.11.1.2" code="92975" codeSystem="2.16.840.1.113883.2.4.4.10" displayName="Hepatitis B vaccin"/>
-                    <dose value="1" unit="ml, 20 mcg HBsAg/ml" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.11.1.4"/>
-                    <vaccination_date value="2022-10-26" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.11.1.3"/>
-                    <administrator conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.11.1.6">
-                        <health_professional value="mm-bgz-PatA-HealtcareProf1" conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.182" root="2.16.840.1.113883.2.4.3.11.999.7"/>
-                    </administrator>
-                    <comment value="2e prik, eerste is gegeven op 2022-04-26" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.11.1.7"/>
-                </vaccination>
-            </vaccination_registration>
+      <vaccination conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.11.1.1">
+        <hcimroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1">
+          <identification_number conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6" root="2.16.840.1.113883.2.4.3.11.999.7" value="mm-bgz-patA-vaccin2"/>
+          <information_source conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.2">
+            <patient_as_information_source conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.3">
+              <patient conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.140" nullFlavor="NI"/>
+            </patient_as_information_source>
+          </information_source>
+          <subject conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11">
+            <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12">
+              <patient value="999901382" root="2.16.840.1.113883.2.4.6.3" conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146"/>
+            </patient>
+          </subject>
+        </hcimroot>
+        <product_code conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.11.1.2" code="92975" codeSystem="2.16.840.1.113883.2.4.4.10" displayName="Hepatitis B vaccin"/>
+        <dose value="1" unit="ml, 20 mcg HBsAg/ml" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.11.1.4"/>
+        <vaccination_date value="2022-10-26" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.11.1.3"/>
+        <administrator conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.11.1.6">
+          <health_professional value="mm-bgz-PatA-HealtcareProf1" conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.182" root="2.16.840.1.113883.2.4.3.11.999.7"/>
+        </administrator>
+        <comment value="2e prik, eerste is gegeven op 2022-04-26" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.11.1.7"/>
+      </vaccination>
+    </vaccination_registration>
         </resource>
     </entry>
     <entry>
@@ -4633,6 +4724,7 @@
                             </patient>
                         </subject>
                     </hcimroot>
+                    <problem_anatomical_location conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.11" code="279995000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Maagwand"/>
                     <problem_laterality conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.12" value="1" code="7771000" codeSystem="2.16.840.1.113883.6.96" displayName="Left"/>
                     <problem_type conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.8" value="3" code="409586006" codeSystem="2.16.840.1.113883.6.96" displayName="Complaint"/>
                     <problem_name conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.5.1.3" code="271681002" codeSystem="2.16.840.1.113883.6.96" displayName="Maagpijn"/>
@@ -4774,7 +4866,7 @@
     </entry>
     <entry>
         <resource>
-            <planned_care_activity_for_transfer_registration app="zib2017" shortName="planned_care_activity_for_transfer_registration" formName="planned_care_activity_for_transfer" transactionRef="2.16.840.1.113883.2.4.3.11.60.7.4.2.16.1" transactionEffectiveDate="2017-12-31T00:00:00" versionDate="" prefix="zib2017-" language="en-US" title="mm-bgz-PatA-PlannedCareTranser" id="a3af168e-d48b-4203-af16-8ed48b7203ba">
+            <planned_care_activity_for_transfer_registration app="zib2017" shortName="planned_care_activity_for_transfer_registration" formName="planned_care_activity_for_transfer" transactionRef="2.16.840.1.113883.2.4.3.11.60.7.4.2.16.1" transactionEffectiveDate="2017-12-31T00:00:00" versionDate="" prefix="zib2017-" language="en-US" title="mm-bgz-PatA-PlannedCareTransfer1" id="a3af168e-d48b-4203-af16-8ed48b7203ba">
                 <planned_care_activity conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.1">
                     <hcimroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1">
                         <identification_number conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6" root="2.16.840.1.113883.2.4.3.11.999.7" value="mm-bgz-PatA-PlannedCareTranser"/>
@@ -4787,26 +4879,10 @@
                     <order_status conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.9" value="6" code="cancelled" codeSystem="2.16.840.1.113883.5.14" displayName="Cancelled"/>
                     <start_date value="2022-03-26" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.10"/>
                     <end_date value="2022-04-04" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.11"/>
-                    <order_type conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.8" value="1" code="308335008" codeSystem="2.16.840.1.113883.6.96" displayName="Encounter"/>
-                    <order_other conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.2" value="Gebruik krukken"/>
+                    <order_type conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.8" value="6" code="18629005" codeSystem="2.16.840.1.113883.6.96" displayName="Administration of drug or medication"/>
                     <medication_administration conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.3">
                         <medication_administration value="mm-bgz-patA-MedAdministration1" conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.134" root="2.16.840.1.113883.2.4.3.11.999.7"/>
                     </medication_administration>
-                    <procedure conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.4">
-                        <procedure value="mm-bgz-patA-procedure1" conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.135" root="2.16.840.1.113883.2.4.3.11.999.7"/>
-                    </procedure>
-                    <nursing_procedure conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.12">
-                        <nursing_intervention value="mm-bgz-patA-NurseIntervention1" conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.136" root="2.16.840.1.113883.2.4.3.11.999.7"/>
-                    </nursing_procedure>
-                    <vaccination conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.5">
-                        <vaccination value="mm-bgz-patA-vaccin1" conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.137" root="2.16.840.1.113883.2.4.3.11.999.7"/>
-                    </vaccination>
-                    <appointment conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.6">
-                        <encounter value="mm-bgz-patA-encounter1" conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.138" root="2.16.840.1.113883.2.4.3.11.999.7"/>
-                    </appointment>
-                    <medical_device conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.16.1.7">
-                        <medical_device value="mm-bgz-patA-medDevice1" conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.139" root="2.16.840.1.113883.2.4.3.11.999.7"/>
-                    </medical_device>
                 </planned_care_activity>
             </planned_care_activity_for_transfer_registration>
         </resource>
@@ -4826,7 +4902,7 @@
                     <laboratory_test conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.3">
                         <test_code conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="10346-5" displayName="Hemoglobine [mol/volume] in bloed"/>
                         <test_method conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.9" code="272390001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Dillution"/>
-                        <test_date_time value="2019-05-12T08:50:00" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.13" datatype="datetime"/>
+                        <test_date_time value="2019-05-13T08:50:00" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.13" datatype="datetime"/>
                         <test_result value="7.2" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.10" datatype="quantity" unit="mmol/L"/>
                         <test_result_status conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.31" value="3" code="final" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1" displayName="Final"/>
                         <reference_range_upper_limit value="9.9" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.11" datatype="quantity" unit="mmol/L"/>
@@ -4838,7 +4914,7 @@
                     <laboratory_test conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.3">
                         <test_code conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.8" code="24373-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Ferritine [massa/volume] in bloed"/>
                         <test_method conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.9" code="83611000052104" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Turbidimetrie"/>
-                        <test_date_time value="2019-05-12T08:45:00" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.13" datatype="datetime"/>
+                        <test_date_time value="2019-05-13T08:45:00" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.13" datatype="datetime"/>
                         <test_result value="73" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.10" datatype="quantity" unit="ng/ml"/>
                         <test_result_status conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.31" value="3" code="final" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1" displayName="Final"/>
                         <reference_range_upper_limit value="100" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.11" datatype="quantity" unit="ng/ml"/>
@@ -4866,7 +4942,7 @@
                     <panel_or_battery conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.4" code="30350-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Hemoglobin [Mass/volume] in Venous blood"/>
                     <result_status conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.6" value="3" code="final" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1" displayName="Final"/>
                     <comment value="Staphylococcus aureus aangetroffen" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.5"/>
-                    <result_type conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.7" value="1" code="252275004" codeSystem="2.16.840.1.113883.6.96" displayName="Hematology"/>
+                    <result_type conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.7" value="2" code="275711006" codeSystem="2.16.840.1.113883.6.96" displayName="Chemistry"/>
                     <related_result conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.33">
                         <laboratory_test_result value="mm-bgz-patA-labResult2" conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.107" root="2.16.840.1.113883.2.4.3.11.999.7" datatype="reference"/>
                     </related_result>
@@ -4898,6 +4974,9 @@
                     <living_will_date value="2022-11-28" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.7.15.7"/>
                     <disorder conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.7.15.4">
                         <problem value="mm-bgz-patA-problem2" conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.216" root="2.16.840.1.113883.2.4.3.11.999.7"/>
+                    </disorder>
+                    <disorder conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.7.15.4">
+                        <problem value="mm-bgz-patA-problem1" root="2.16.840.1.113883.2.4.3.11.999.7" conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.216"/>
                     </disorder>
                     <representative conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.7.15.3">
                         <contact value="mm-bgz-patA-contactperson1" conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.217" root="2.16.840.1.113883.2.4.3.11.999.7"/>
@@ -5055,6 +5134,7 @@
                                     <administering_schedule conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.12.19948">
                                         <time_of_day conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.12.19953" value="1" code="73775008" codeSystem="2.16.840.1.113883.6.96" displayName="During the morning"/>
                                         <time_of_day conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.12.19953" value="4" code="2546009" codeSystem="2.16.840.1.113883.6.96" displayName="During the night"/>
+                                        <interval value="12" unit="uur" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.12.19950"/>
                                     </administering_schedule>
                                 </dosage>
                             </dosing_instructions>
@@ -5225,7 +5305,6 @@
                                             </range>
                                         </frequency>
                                         <administration_time value="07:30" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.12.19951"/>
-                                        <interval value="4" unit="uur" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.9.12.19950"/>
                                     </administering_schedule>
                                 </dosage>
                             </dosing_instructions>
@@ -5373,12 +5452,12 @@
                         <specimen_material conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.16" code="39477002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Feces"/>
                         <collection_date_time value="2019-05-12T08:15:00" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.17" datatype="datetime"/>
                         <received_date_time value="2019-05-12T08:30:00" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.25" datatype="datetime"/>
-                        <collection_method conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.18" code="118171006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                        <collection_method conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.18" code="62801000146108" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Verkrijgingstechniek onbekend"/>
                         <specimen_source value="Toilet" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.29"/>
                     </specimen>
                     <result_status conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.6" value="3" code="final" codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1" displayName="Final"/>
                     <comment value="Geen e.coli aangetroffen" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.5"/>
-                    <result_type conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.7" value="6" code="19851009" codeSystem="2.16.840.1.113883.6.96" displayName="Microbiology"/>
+                    <result_type conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.7" value="2" code="275711006" codeSystem="2.16.840.1.113883.6.96" displayName="Chemistry"/>
                     <requester conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.34">
                         <health_professional value="mm-bgz-PatA-HealtcareProf1" conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.108" root="2.16.840.1.113883.2.4.3.11.999.7" datatype="reference"/>
                     </requester>

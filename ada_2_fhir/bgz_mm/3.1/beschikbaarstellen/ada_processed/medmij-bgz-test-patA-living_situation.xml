@@ -6,7 +6,9 @@
                                 value="patA-livingSit"/>
          <information_source conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.2">
             <patient_as_information_source conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.3">
-               <patient conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.140" nullFlavor="NI"/>
+               <patient conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.140"
+                        nullFlavor="NI"
+                        datatype="reference"/>
             </patient_as_information_source>
          </information_source>
          <subject conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11">
@@ -100,9 +102,17 @@
                           displayName="Female"/>
                   <multiple_birth_indicator value="false" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.1.31"/>
                   <death_indicator value="false" conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.1.32"/>
+                  <marital_status conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.7.9.2"
+                                  value="3"
+                                  code="S"
+                                  codeSystem="2.16.840.1.113883.5.2"
+                                  displayName="Never Married"/>
                </patient>
             </patient>
          </subject>
+         <date_time value="2022-11-27"
+                    datatype="datetime"
+                    conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.14"/>
       </hcimroot>
       <comment value="Woning bereikbaar met trap"
                conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.7.8.2"/>

@@ -7,7 +7,7 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Verrichting. Subject: Anouk A. Anouk van XXX_Rijn de XXX_Vries. Id: patA-procedure1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Categorie: , Status: voltooid</caption>
+            <caption>Verrichting. Subject: Anouk A. Anouk van XXX_Rijn de XXX_Vries. Id: patA-procedure1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Categorie: <span title="chirurgische ingreep (387713003 - SNOMED CT)">chirurgische ingreep</span>, Status: voltooid</caption>
             <tbody>
                <tr>
                   <td>
@@ -65,9 +65,11 @@
    </basedOn>
    <status value="completed"/>
    <category>
-      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-         <valueCode value="unknown"/>
-      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="387713003"/>
+         <display value="chirurgische ingreep"/>
+      </coding>
    </category>
    <code>
       <coding>

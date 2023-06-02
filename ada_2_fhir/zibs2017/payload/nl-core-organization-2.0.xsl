@@ -18,8 +18,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
     
+    <!-- JD: Kind of hacky to add zib-Payer Insurance Company to zorgaanbiedres, but as it is all nl-core-organisation I do not see another option. -->
     <xsl:variable name="organizations" as="element()*">
-        <xsl:variable name="healthProvider" select="//zorgaanbieder[not(zorgaanbieder)] | //healthcare_provider[not(healthcare_provider)]"/>
+        <xsl:variable name="healthProvider" select="//zorgaanbieder[not(zorgaanbieder)] | //healthcare_provider[not(healthcare_provider)] | //payer/insurance_company"/>
         
         <!-- Zorgaanbieders -->
         <!-- AWE: the commented out version makes two different groups when @value and @root are in different order in the ada xml -->
@@ -62,8 +63,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Creates organization reference</xd:desc>
     </xd:doc>
-    <xsl:template name="organizationReference" match="zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)]" mode="doOrganizationReference-2.0">
-        <xsl:variable name="theIdentifier" select="(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)[@value]"/>
+    <xsl:template name="organizationReference" match="zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)] | payer/insurance_company" mode="doOrganizationReference-2.0">
+        <xsl:variable name="theIdentifier" select="(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number | identification_number)[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$organizations[group-key = $theGroupKey]" as="element()*"/>
         <xsl:choose>
@@ -96,22 +97,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Organization.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="organizationEntry" match="zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)]" mode="doOrganizationEntry-2.0">
+    <xsl:template name="organizationEntry" match="zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)] | payer/insurance_company" mode="doOrganizationEntry-2.0">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="entryFullUrl">
             <xsl:choose>
-                <xsl:when test="$uuid or empty(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)">
+                <xsl:when test="$uuid or empty(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number | identification_number)">
                     <xsl:value-of select="nf:get-fhir-uuid(.)"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:value-of select="nf:getUriFromAdaId(nf:ada-za-id(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number), 'Organization', false())"/>
+                    <xsl:value-of select="nf:getUriFromAdaId(nf:ada-za-id(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number | identification_number), 'Organization', false())"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:param>
         <xsl:param name="fhirResourceId">
             <xsl:choose>
                 <xsl:when test="$referById">
-                    <xsl:variable name="zaIdentification" as="element()*" select="(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)[@value | @root]"/>
+                    <xsl:variable name="zaIdentification" as="element()*" select="(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number | identification_number)[@value | @root]"/>
                     <xsl:choose>
                         <xsl:when test="$uuid">
                             <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
@@ -158,7 +159,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="logicalId">Organization.id value</xd:param>
         <xd:param name="in">Node to consider in the creation of an Organization resource</xd:param>
     </xd:doc>
-    <xsl:template name="nl-core-organization-2.0" match="zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)]" mode="doOrganizationResource-2.0">
+    <xsl:template name="nl-core-organization-2.0" match="zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)] | payer/insurance_company" mode="doOrganizationResource-2.0">
         <xsl:param name="in" as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:for-each select="$in">
@@ -185,7 +186,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <profile value="{$profileValue}"/>
                     </meta>
                     
-                    <xsl:for-each select="(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number | zibroot/identificatienummer | hcimroot/identification_number)[@value]">
+                    <xsl:for-each select="(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number | identification_number | zibroot/identificatienummer | hcimroot/identification_number)[@value]">
                         <identifier>
                             <xsl:call-template name="id-to-Identifier">
                                 <xsl:with-param name="in" select="."/>
@@ -229,6 +230,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:when test="(contactgegevens | contact_information)/(contactgegevens | contact_information)">
                                 <xsl:sequence select="(contactgegevens | contact_information)/(contactgegevens | contact_information)"/>
                             </xsl:when>
+                            <!-- Add zib-Payer contact -->
+                            <xsl:when test="self::insurance_company">
+                                <xsl:sequence select="parent::payer/contact_information/contact_information"/>
+                            </xsl:when>
                             <xsl:otherwise>
                                 <xsl:sequence select="contactgegevens | contact_information"/>
                             </xsl:otherwise>
@@ -238,6 +243,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:choose>
                             <xsl:when test="(adresgegevens | address_information)/(adresgegevens | address_information)">
                                 <xsl:sequence select="(adresgegevens | address_information)/(adresgegevens | address_information)"/>
+                            </xsl:when>
+                            <!-- Add zib-Payer address -->
+                            <xsl:when test="self::insurance_company">
+                                <xsl:sequence select="parent::payer/address_information/address_information"/>
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:sequence select="adresgegevens | address_information"/>

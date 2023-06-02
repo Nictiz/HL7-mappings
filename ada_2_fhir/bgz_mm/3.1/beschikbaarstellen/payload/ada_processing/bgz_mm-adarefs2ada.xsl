@@ -20,7 +20,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="adaReleaseFile" select="document('zib2017-nl-ada-release.xml')"/>
 
     <!-- output directory for full ada instances -->
-    <xsl:param name="outputDir" as="xs:string?">../../ada_processed</xsl:param>
+    <xsl:param name="outputDir" as="xs:string?">../ada_processed</xsl:param>
     
     <xd:doc>
         <xd:desc>Template to start conversion. Input are the ada instances of transaction 'beschikbaarstellen BgZ'. Outputs ada instance bundle in the given output directory </xd:desc>
@@ -95,6 +95,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:message select="concat('Could not resolve ''',@value,''' in ',ancestor::*[ends-with(local-name(), '_registration')]/local-name())"/>
         </xsl:if>
         <xsl:apply-templates select="$resolved" mode="#current"/>
+    </xsl:template>
+    
+    <xsl:template match="patient[@conceptId='2.16.840.1.113883.2.4.3.11.60.40.1.0.1.1']" mode="copy-for-resolve">
+        <xsl:variable name="patientIdentifier" select="patient_identification_number/@value"/>
+        <xsl:variable name="maritalStatus" select="($ada-input//marital_status_rc[hcimroot/subject/patient/patient/@value = $patientIdentifier])[1]/marital_status"/>
+        <xsl:copy>
+            <xsl:apply-templates select="@*|node()" mode="#current"/>
+            <xsl:copy-of select="$maritalStatus"/>
+        </xsl:copy>
     </xsl:template>
     
     <!--<!-\- Matching on @value and @root, and excluding local-name containing 'identification' but should be on @datatype = 'reference' -\->
