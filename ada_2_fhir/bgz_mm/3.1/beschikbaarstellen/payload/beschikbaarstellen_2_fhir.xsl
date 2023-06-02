@@ -79,6 +79,44 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each-group>
     </xsl:variable>
     
+    <!-- Overrule global variable to add fhirResourceId as we would like it -->
+    <xsl:variable name="labObservations" as="element()*">
+        <xsl:for-each-group select="//(laboratorium_test[not(laboratorium_test)] | laboratory_test[not(laboratory_test)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
+            <xsl:for-each select="current-group()">
+                <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
+                <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
+                <xsl:variable name="adaPatient" select="ancestor::laboratory_test_result/hcimroot/subject/patient/patient"/>
+                <xsl:variable name="patientIdentifier" select="$adaPatient/patient_identification_number/@value"/>
+                <xsl:variable name="patientName">
+                    <xsl:choose>
+                        <xsl:when test="$patientIdentifier = '999901382'">
+                            <xsl:value-of select="'patA'"/>
+                        </xsl:when>
+                        <xsl:when test="$patientIdentifier = '999901394'">
+                            <xsl:value-of select="'patB'"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="'patX'"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                <unieke-lab-observatie xmlns="">
+                    <group-key xmlns="">
+                        <xsl:value-of select="current-grouping-key()"/>
+                    </group-key>
+                    <reference-display xmlns="">
+                        <xsl:value-of select="(test_code | test_uitslag | test_result)/(@displayName | @originalText)"/>
+                    </reference-display>
+                    <xsl:apply-templates select="." mode="doLaboratoryResultObservationEntry-2.1">
+                        <xsl:with-param name="uuid" select="$uuid"/>
+                        <xsl:with-param name="searchMode">match</xsl:with-param>
+                        <xsl:with-param name="fhirResourceId" select="concat($patientName, '-labresult', string(count(../preceding-sibling::laboratory_test_result) + 1), '-', count(preceding-sibling::laboratory_test) + 1)"/>
+                    </xsl:apply-templates>
+                </unieke-lab-observatie>
+            </xsl:for-each>
+        </xsl:for-each-group>
+    </xsl:variable>
+    
     <xd:doc>
         <xd:desc>Start conversion. This conversion tries to account for all zibs in BgZ MSZ "beschikbaarstellen" in one go. Either build a FHIR Bundle of type searchset per zib, or build individual files.</xd:desc>
     </xd:doc>
@@ -414,7 +452,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:call-template name="zib-LaboratoryTestResult-Observation-2.1">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-labresult', string(count(../preceding-sibling::laboratory_test_result) + 1), '-', position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-labresult', string(count(../preceding-sibling::laboratory_test_result) + 1), '-', count(preceding-sibling::laboratory_test) + 1)"/>
                                 </xsl:call-template>
                             </resource>
                             <search>

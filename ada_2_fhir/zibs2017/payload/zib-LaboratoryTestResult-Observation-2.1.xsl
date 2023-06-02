@@ -275,6 +275,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </context>
                     </xsl:for-each>
                     
+                    <!-- Because BgZ MM uses LastN for querying, we would like to have 'some' effective[x]. If possible, use one of LaboratoriumTest/TestDateTime for this. We do this by getting the largest value. -->
+                    <!--NL-CM:13.1.13	TestDateTime	0..1	The date and if possible the time at which the test was carried out.-->
+                    <xsl:if test="laboratory_test/test_date_time[@value]">
+                        <xsl:variable name="maxValue" select="max(laboratory_test/test_date_time/@value/number(replace(., '\D', '')))"/>
+                        <effectiveDateTime>
+                            <xsl:attribute name="value">
+                                <xsl:call-template name="format2FHIRDate">
+                                    <xsl:with-param name="dateTime" select="xs:string((laboratory_test/test_date_time[number(replace(@value, '\D', '')) = $maxValue])[1]/@value)"/>
+                                    <xsl:with-param name="dateT" select="$dateT"/>
+                                </xsl:call-template>
+                            </xsl:attribute>
+                        </effectiveDateTime>
+                    </xsl:if>
+                    
                     <!-- NL-CM:0.0.9			ZorgverlenerAlsAuteur::Zorgverlener -->
                     <xsl:for-each select="zibroot/auteur/zorgverlener | hcimroot/author/health_professional">
                         <performer>
