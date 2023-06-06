@@ -87,6 +87,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="nl-core-HealthProfessional-PractitionerRole">
                         <xsl:with-param name="in" select="current-group()[1]"/>
                     </xsl:call-template>
+                    
+                    <xsl:call-template name="nl-core-HealthProfessional-Practitioner">
+                        <xsl:with-param name="in" select="current-group()[1]"/>
+                    </xsl:call-template>
                 </xsl:for-each-group>
             </xsl:variable>
             
