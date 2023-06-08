@@ -326,6 +326,7 @@
     <xsl:template match="criterium[parent::criterium]" mode="ada930_2_907">
         <xsl:copy>
             <code>
+                <xsl:apply-templates select="@*" mode="#current"/>
                 <xsl:for-each select="$mapZonodig[mp930[@code = current()/@code][@codeSystem = current()/@codeSystem]][mp907]">
                     <xsl:copy-of select="mp907/@*"/>
                 </xsl:for-each>
@@ -369,25 +370,40 @@
         </registratiedatum>
     </xsl:template>
 
-    <!--    <xd:doc>
-        <xd:desc> stoptype van MP9 2.0 naar 9.0.7 </xd:desc>
+
+<!--    <xd:doc>
+        <xd:desc> stoptype van MP9 3.0 naar 9.0.7 </xd:desc>
     </xd:doc>
     <xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatiegebruik | medicatie_gebruik)/*[contains(replace(local-name(), '_', ''), 'stoptype')]" mode="ada930_2_907">
+        
         <stoptype>
-            <xsl:apply-templates select="@* | node()" mode="#current"/>
+            <xsl:for-each select="$mapStoptype[mp930[@code = current()/@code][@codeSystem = current()/@codeSystem]][mp907]">
+                <xsl:copy-of select="mp907/@*"/>
+            </xsl:for-each>
         </stoptype>
     </xsl:template>-->
 
     <xd:doc>
         <xd:desc> stoptype van MP9 3.0 naar 9.0.7 </xd:desc>
     </xd:doc>
-    <xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatiegebruik | medicatie_gebruik)/*[contains(replace(local-name(), '_', ''), 'stoptype')]" mode="ada930_2_907">
-        <stoptype>
-            <xsl:for-each select="$mapStoptype[mp930[@code = current()/@code][@codeSystem = current()/@codeSystem]][mp907]">
-                <xsl:copy-of select="mp907/@*"/>
-            </xsl:for-each>
-        </stoptype>
-    </xsl:template>
+        <xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatiegebruik | medicatie_gebruik)/*[contains(replace(local-name(), '_', ''), 'stoptype')]" mode="ada930_2_907">
+        <xsl:choose>
+            <xsl:when test="medicatieafspraak_stop_type[@code = '89925002']">
+                <geannuleerd_indicator value='true'/>
+            </xsl:when>
+            <xsl:when test="toedieningsafspraak_stop_type[@code = '89925002']"> 
+                <geannuleerd_indicator value='true'/>
+            </xsl:when>
+            <xsl:otherwise>
+                <stoptype>
+                    <xsl:for-each select="$mapStoptype[mp930[@code = current()/@code][@codeSystem = current()/@codeSystem]][mp907]">
+                        <xsl:copy-of select="mp907/@*"/>
+                    </xsl:for-each>
+                </stoptype>
+            </xsl:otherwise>
+        </xsl:choose>
+        </xsl:template>
+    
 
     <xd:doc>
         <xd:desc>Handle toelichting, needs to be enriched with non supported stuff in 907</xd:desc>
