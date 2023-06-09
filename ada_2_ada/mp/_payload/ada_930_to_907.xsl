@@ -386,13 +386,10 @@
     <xd:doc>
         <xd:desc> stoptype van MP9 3.0 naar 9.0.7 </xd:desc>
     </xd:doc>
-        <xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatiegebruik | medicatie_gebruik)/*[contains(replace(local-name(), '_', ''), 'stoptype')]" mode="ada930_2_907">
+    <xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatiegebruik | medicatie_gebruik)/*[contains(replace(local-name(), '_', ''), 'stoptype')]" mode="ada930_2_907">
         <xsl:choose>
-            <xsl:when test="medicatieafspraak_stop_type[@code = '89925002']">
-                <geannuleerd_indicator value='true'/>
-            </xsl:when>
-            <xsl:when test="toedieningsafspraak_stop_type[@code = '89925002']"> 
-                <geannuleerd_indicator value='true'/>
+            <xsl:when test=".[@code = '89925002']">
+                <geannuleerd_indicator value="true"/>
             </xsl:when>
             <xsl:otherwise>
                 <stoptype>
@@ -402,8 +399,8 @@
                 </stoptype>
             </xsl:otherwise>
         </xsl:choose>
-        </xsl:template>
-    
+    </xsl:template>
+
 
     <xd:doc>
         <xd:desc>Handle toelichting, needs to be enriched with non supported stuff in 907</xd:desc>
