@@ -348,7 +348,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
             </xsl:for-each>
             
-            <!-- At the moment, only ondergrens and bovengrens as quantity is implemented -->
+            <!-- At the moment, only ondergrens and bovengrens as quantity and decimal is implemented -->
             <xsl:if test="$in/referentie_ondergrens[@datatype = 'quantity'] or $in/referentie_bovengrens[@datatype = 'quantity']">
                 <referenceRange>
                     <xsl:for-each select="$in/referentie_ondergrens">
@@ -359,6 +359,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="$in/referentie_bovengrens">
                         <high>
                             <xsl:call-template name="hoeveelheid-to-Quantity"/>
+                        </high>
+                    </xsl:for-each>
+                </referenceRange>
+            </xsl:if>
+            
+            <xsl:if test="$in/referentie_ondergrens[@datatype = 'decimal'] or $in/referentie_bovengrens[@datatype = 'decimal']">
+                <referenceRange>
+                    <xsl:for-each select="$in/referentie_ondergrens">
+                        <low>
+                            <xsl:call-template name="hoeveelheid-to-decimal"/>
+                        </low>
+                    </xsl:for-each>
+                    <xsl:for-each select="$in/referentie_bovengrens">
+                        <high>
+                            <xsl:call-template name="hoeveelheid-to-decimal"/>
                         </high>
                     </xsl:for-each>
                 </referenceRange>
