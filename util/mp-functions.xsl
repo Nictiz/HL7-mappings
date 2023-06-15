@@ -309,7 +309,9 @@
                                 </xsl:if>
                             </xsl:variable>
                             <xsl:variable name="isFlexible" as="xs:string?">
-                                <xsl:if test="toedieningsschema/is_flexibel/@value = 'false' or $interval">- let op, tijden exact aanhouden</xsl:if>
+                                <!-- AWE, MP-515 new default text for interval -->
+                                <xsl:if test="toedieningsschema/is_flexibel/@value = 'false'">- let op, tijden exact aanhouden</xsl:if>
+                                <xsl:if test="$interval">- gelijke tussenpozen aanhouden</xsl:if>
                             </xsl:variable>
 
                             <xsl:value-of select="normalize-space(concat(string-join($zo-nodig, ' '), ' ', string-join($weekdag-string, ' '), ' ', string-join($frequentie-string, ' '), $interval-string, ' ', string-join($toedientijd-string, ' '), ' ', string-join($keerdosis-string, ' '), ' ', string-join($dagdeel-string, ' '), ' ', $toedieningsduur-string, ' ', string-join($toedieningssnelheid-string, ' '), string-join($maxdose-string, ' '), $isFlexible))"/>
