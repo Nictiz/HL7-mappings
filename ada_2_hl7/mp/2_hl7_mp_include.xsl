@@ -535,13 +535,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>maxDoseQuantity</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9064_20160601000000">
-        <numerator xsi:type="PQ">
+        <numerator>
             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9164_20170118000000_2">
                 <xsl:with-param name="Gstd_value" select="aantal/@value"/>
                 <xsl:with-param name="Gstd_unit" select="eenheid"/>
             </xsl:call-template>
         </numerator>
-        <denominator xsi:type="PQ">
+        <denominator>
             <xsl:attribute name="value" select="./tijdseenheid/@value"/>
             <xsl:attribute name="unit" select="nf:convertTime_ADA_unit2UCUM(./tijdseenheid/@unit)"/>
         </denominator>
