@@ -280,6 +280,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </author>
                 </xsl:for-each>
 
+                <!-- stoptype -->
                 <xsl:for-each select="wisselend_doseerschema_stop_type[.//(@value | @code)]">
                     <entryRelationship typeCode="COMP">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9414_20221118141506"/>
@@ -292,6 +293,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </entryRelationship>
                 </xsl:for-each>
 
+                <!-- aanvullende instructie -->
+                <xsl:for-each select="gebruiksinstructie/aanvullende_instructie[.//(@value | @code)]">
+                    <entryRelationship typeCode="SPRT">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9085_20160621114818">
+                            <xsl:with-param name="ada-aanvullende-instructie" select="."/>
+                        </xsl:call-template>
+                    </entryRelationship>
+                </xsl:for-each>
+                
                 <!-- toelichting -->
                 <xsl:for-each select="toelichting[.//(@value | @code)]">
                     <entryRelationship typeCode="SUBJ" inversionInd="true">
