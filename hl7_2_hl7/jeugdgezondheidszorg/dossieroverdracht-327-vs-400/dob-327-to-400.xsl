@@ -11,6 +11,8 @@
             <xd:ul>
                 <xd:li>07-06-2020 - Eerste versie</xd:li>
                 <xd:li>10-02-2022 - 1.0.0</xd:li>
+                <xd:li>24-04-2023 - 1.1.0</xd:li>
+                <xd:li>15-06-2023 - 1.1.1</xd:li>
             </xd:ul>
             <xd:p><xd:b>License:</xd:b> Copyright © Nictiz</xd:p>
             <xd:p>This program is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2.1 of the License, or (at your option) any later version.</xd:p>
@@ -25,7 +27,7 @@
     <xsl:variable name="dob400date" select="'2020-05-27T00:00:00'"/>
 
     <xsl:variable name="W0639_HL7_W0646_HL7_W0647_HL7">
-        <valueSet id="2.16.840.1.113883.2.4.3.11.60.100.11.2.639" name="W0639_HL7" displayName="W0639 RubriekID (HL7) alle" effectiveDate="2020-05-27T00:00:00" statusCode="final" versionLabel="401">
+        <valueSet id="2.16.840.1.113883.2.4.3.11.60.100.11.2.639" name="W0639_HL7" displayName="W0639 RubriekID (HL7) alle" effectiveDate="2020-05-27T00:00:00" statusCode="final" versionLabel="402">
             <desc language="nl-NL">RubriekID voor alle rubrieken</desc>
             <conceptList>
                 <concept code="R002" codeSystem="2.16.840.1.113883.2.4.4.40.391" displayName="Dossierinformatie" level="0" type="L"/>
@@ -75,7 +77,7 @@
                 <concept code="R054" codeSystem="2.16.840.1.113883.2.4.4.40.391" displayName="Screening psychosociale problemen" level="0" type="L"/>
             </conceptList>
         </valueSet>
-        <valueSet id="2.16.840.1.113883.2.4.3.11.60.100.11.2.646" name="W0646_HL7" displayName="W0646 GroepID" effectiveDate="2020-05-27T00:00:00" statusCode="final" versionLabel="401">
+        <valueSet id="2.16.840.1.113883.2.4.3.11.60.100.11.2.646" name="W0646_HL7" displayName="W0646 GroepID" effectiveDate="2020-05-27T00:00:00" statusCode="final" versionLabel="402">
             <desc language="nl-NL">GroepID</desc>
             <conceptList>
                 <concept code="G001" codeSystem="2.16.840.1.113883.2.4.4.40.393" displayName="Adres cliënt" level="0" type="L"/>
@@ -155,7 +157,7 @@
                 <concept code="G117" codeSystem="2.16.840.1.113883.2.4.4.40.393" displayName="Visus" level="0" type="L"/>
             </conceptList>
         </valueSet>
-        <valueSet id="2.16.840.1.113883.2.4.3.11.60.100.11.2.647" name="W0647_HL7" displayName="W0647 BDS Elementen" effectiveDate="2020-05-27T00:00:00" statusCode="final" versionLabel="401">
+        <valueSet id="2.16.840.1.113883.2.4.3.11.60.100.11.2.647" name="W0647_HL7" displayName="W0647 BDS Elementen" effectiveDate="2020-05-27T00:00:00" statusCode="final" versionLabel="402">
             <desc language="nl-NL">BDS Elementen</desc>
             <conceptList>
                 <concept code="1" codeSystem="2.16.840.1.113883.2.4.4.40.267" displayName="Voorvoegsel achternaam" level="0" type="L"/>
