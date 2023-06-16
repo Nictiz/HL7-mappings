@@ -1,45 +1,77 @@
-<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../sturen_voorstel_medicatieafspraak/ada_schemas/ada_sturen_voorstel_medicatieafspraak.xsd">
-   <meta status="new" created-by="arianne" last-update-by="arianne" creation-date="2023-01-30T15:54:00.254+01:00" last-update-date="2023-01-30T15:54:00.254+01:00"/>
+<adaxml xsi:noNamespaceSchemaLocation="../../sturen_voorstel_medicatieafspraak/ada_schemas/ada_sturen_voorstel_medicatieafspraak.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <meta status="new"
+         created-by="arianne"
+         last-update-by="arianne"
+         creation-date="2023-01-30T15:54:00.254+01:00"
+         last-update-date="2023-01-30T15:54:00.254+01:00"/>
    <data>
-      <sturen_voorstel_medicatieafspraak app="mp-mp93" shortName="sturen_voorstel_medicatieafspraak" formName="sturen_voorstel_medicatieafspraak" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.398" transactionEffectiveDate="2022-06-30T00:00:00" versionDate="" prefix="mp-" language="nl-NL" title="Example instance" id="vma-example-93-1-v30">
+      <sturen_voorstel_medicatieafspraak app="mp-mp93"
+                                         shortName="sturen_voorstel_medicatieafspraak"
+                                         formName="sturen_voorstel_medicatieafspraak"
+                                         transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.398"
+                                         transactionEffectiveDate="2022-06-30T00:00:00"
+                                         versionDate=""
+                                         prefix="mp-"
+                                         language="nl-NL"
+                                         title="Example instance"
+                                         id="vma-example-93-1-v30">
          <patient comment="">
             <naamgegevens comment="">
                <initialen value="S. "/>
-               <naamgebruik value="1" code="NL1" codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4" displayName="Eigen geslachtsnaam"/>
+               <naamgebruik value="1"
+                            code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
                <geslachtsnaam comment="">
                   <achternaam value="XXX_Jankie"/>
                </geslachtsnaam>
             </naamgegevens>
-            <identificatienummer value="999910437" root="2.16.840.1.113883.2.4.6.3"/>
-            <geboortedatum value="1954-05-08" datatype="datetime"/>
-            <geslacht value="3" code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            <identificatienummer value="999910437"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1954-05-08"
+                           datatype="datetime"/>
+            <geslacht value="3"
+                      code="F"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Vrouw"/>
          </patient>
          <medicamenteuze_behandeling id="MBH_920_vma-example-1">
             <medicatieafspraak comment="">
                <gebruiksperiode>
-                  <start_datum_tijd value="T-20D{00:00:00}" datatype="datetime"/>
-                  <eind_datum_tijd value="T+9D{23:59:59}" datatype="datetime"/>
+                  <start_datum_tijd value="T-20D{00:00:00}"
+                                    datatype="datetime"/>
+                  <eind_datum_tijd value="T+9D{23:59:59}"
+                                   datatype="datetime"/>
                </gebruiksperiode>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product datatype="reference" value="PRK-353-OXAZEPAM"/>
+                  <farmaceutisch_product datatype="reference"
+                                         value="PRK-353-OXAZEPAM"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie comment="">
                   <omschrijving value="wordt gegenereerd"/>
-                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9" code="9" displayName="Oraal" codeSystemName="G-Standaard Toedieningswegen"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
                   <doseerinstructie>
                      <dosering comment="">
                         <keerdosis comment="">
                            <aantal comment="">
                               <nominale_waarde value="1"/>
                            </aantal>
-                           <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"/>
                         </keerdosis>
                         <toedieningsschema comment="">
                            <frequentie comment="">
                               <aantal comment="">
                                  <nominale_waarde value="1"/>
                               </aantal>
-                              <tijdseenheid unit="dag" value="2"/>
+                              <tijdseenheid unit="dag"
+                                            value="2"/>
                            </frequentie>
                         </toedieningsschema>
                      </dosering>
@@ -50,11 +82,18 @@
          </medicamenteuze_behandeling>
          <bouwstenen>
             <farmaceutisch_product id="PRK-353-OXAZEPAM">
-               <product_code code="353" codeSystem="2.16.840.1.113883.2.4.4.10" displayName="OXAZEPAM TABLET 10MG" codeSystemName="G-Standaard PRK"/>
-               <product_code code="1023" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="G-Standaard GPK" displayName="OXAZEPAM TABLET 10MG"/>
+               <product_code code="353"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="OXAZEPAM TABLET 10MG"
+                             codeSystemName="G-Standaard PRK"/>
+               <product_code code="1023"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="OXAZEPAM TABLET 10MG"/>
             </farmaceutisch_product>
             <zorgaanbieder id="URA-01236578-ApoGulleGaper">
-               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <zorgaanbieder_identificatienummer value="01236578"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek de Gulle Gaper"/>
                <adresgegevens comment="">
                   <straat value="Dorpsstraat"/>
@@ -62,28 +101,38 @@
                   <huisnummerletter value="A"/>
                   <postcode value="1234AA"/>
                   <woonplaats value="Ons Dorp"/>
-                  <adres_soort value="5" code="WP" codeSystem="2.16.840.1.113883.5.1119" displayName="Werkadres"/>
+                  <adres_soort value="5"
+                               code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
             <lichaamslengte comment="">
-               <lengte_waarde value="165" unit="cm"/>
-               <lengte_datum_tijd value="T{07:05:00}" datatype="datetime"/>
+               <lengte_waarde value="165"
+                              unit="cm"/>
+               <lengte_datum_tijd value="T{07:05:00}"
+                                  datatype="datetime"/>
             </lichaamslengte>
             <lichaamsgewicht comment="">
-               <gewicht_waarde value="75" unit="kg"/>
-               <gewicht_datum_tijd value="T{07:05:00}" datatype="datetime"/>
+               <gewicht_waarde value="75"
+                               unit="kg"/>
+               <gewicht_datum_tijd value="T{07:05:00}"
+                                   datatype="datetime"/>
             </lichaamsgewicht>
          </bouwstenen>
          <voorstel_gegevens>
             <voorstel>
-               <identificatie value="#Voorstel_id_123" root="1.2.3.999" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.528"/>
+               <identificatie value="#Voorstel_id_123"
+                              root="1.2.3.999"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.528"/>
                <voorstel_datum value="T{11:59:00}"/>
                <auteur>
                   <auteur_is_zorgaanbieder>
                      <zorgaanbieder value="URA-01236578-ApoGulleGaper"/>
                   </auteur_is_zorgaanbieder>
                </auteur>
-               <medicamenteuze_behandeling value="MBH_920_vma-example-1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.534"/>
+               <medicamenteuze_behandeling value="MBH_920_vma-example-1"
+                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.534"/>
                <toelichting value="voorbeeld toelichting bij het voorstel in vrije tekst"/>
             </voorstel>
          </voorstel_gegevens>
