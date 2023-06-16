@@ -5,7 +5,7 @@
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:14749b3e-6ad7-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:d5421b3e-6b27-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -16,22 +16,30 @@
                </tag>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T, 1 maal per dag 1 stuk, Oraal"/>
+               <valueString value="Vanaf T, gedurende 2 weken, 1 maal per dag 1 stuk, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
+                     <valueDuration>
+                        <value value="2"/>
+                        <unit value="week"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="wk"/>
+                     </valueDuration>
+                  </extension>
                   <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_Lengte_Gewicht"/>
+                  <value value="MBH_300_VOS_Lengte_Gewicht"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_300_Lengte_Gewicht_MA_1"/>
+               <value value="MBH_300_VOS_Lengte_Gewicht_MA"/>
             </identifier>
             <status value="active"/>
             <intent value="order"/>
@@ -43,18 +51,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:a07ec504-6ac4-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:8735aae9-6adb-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
+               <display value="RIVAROXABAN TABLET 15MG"/>
             </medicationReference>
             <subject>
                <reference value="urn:uuid:834e3f9e-6ad4-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
-            <authoredOn value="${DATE, T, D, +0}T07:05:00+02:00"/>
+            <authoredOn value="${DATE, T, D, +0}T10:00:00+02:00"/>
             <requester>
-               <reference value="urn:uuid:d46c5558-6aca-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:7af79824-6ac8-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -70,7 +78,7 @@
                   <coding>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
                      <code value="9"/>
-                     <display value="Oraal"/>
+                     <display value="oraal"/>
                   </coding>
                </route>
                <doseAndRate>
@@ -98,7 +106,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d9899d5d-6b11-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:1b00b0a1-6b71-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -111,12 +119,12 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_Lengte_Gewicht"/>
+                  <value value="MBH_300_VOS_Lengte_Gewicht"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <value value="MBH_300_Lengte_Gewicht_VV_1"/>
+               <value value="MBH_300_VOS_Lengte_Gewicht_VV"/>
             </identifier>
             <status value="active"/>
             <intent value="order"/>
@@ -128,18 +136,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:a07ec504-6ac4-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:8735aae9-6adb-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
+               <display value="RIVAROXABAN TABLET 15MG"/>
             </medicationReference>
             <subject>
                <reference value="urn:uuid:834e3f9e-6ad4-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
-            <authoredOn value="${DATE, T, D, +0}T07:05:00+02:00"/>
+            <authoredOn value="${DATE, T, D, +0}T10:00:00+02:00"/>
             <requester>
-               <reference value="urn:uuid:d46c5558-6aca-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:7af79824-6ac8-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -152,21 +160,21 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_300_Lengte_Gewicht_MA_1"/>
+                  <value value="MBH_300_VOS_Lengte_Gewicht_MA"/>
                </identifier>
-               <display value="relatie naar medicatieafspraak  met identificatie: MBH_300_Lengte_Gewicht_MA_1 || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <display value="relatie naar medicatieafspraak  met identificatie: MBH_300_VOS_Lengte_Gewicht_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </basedOn>
             <dispenseRequest>
                <quantity>
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                      <valueQuantity>
-                        <value value="180"/>
+                        <value value="14"/>
                         <unit value="stuk"/>
                         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                         <code value="245"/>
                      </valueQuantity>
                   </extension>
-                  <value value="180"/>
+                  <value value="14"/>
                   <unit value="stuk"/>
                   <system value="http://unitsofmeasure.org"/>
                   <code value="1"/>
@@ -227,14 +235,14 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d46c5558-6aca-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:7af79824-6ac8-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:5e0fb42e-6af4-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:b3d44558-6acf-11ec-0000-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
@@ -264,7 +272,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5e0fb42e-6af4-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:b3d44558-6acf-11ec-0000-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -364,7 +372,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a07ec504-6ac4-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:8735aae9-6adb-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -373,16 +381,16 @@
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="49484"/>
-                  <display value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
+                  <code value="100145"/>
+                  <display value="RIVAROXABAN TABLET 15MG"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="103039"/>
-                  <display value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
+                  <code value="138355"/>
+                  <display value="RIVAROXABAN TABLET 15MG"/>
                </coding>
-               <text value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
+               <text value="RIVAROXABAN TABLET 15MG"/>
             </code>
          </Medication>
       </resource>
@@ -392,7 +400,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:26f4b684-6b53-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:bc899734-6aac-11ec-0000-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -420,7 +428,7 @@
             </subject>
             <effectiveDateTime value="${DATE, T, D, -12}T13:14:00+02:00"/>
             <valueQuantity>
-               <value value="178"/>
+               <value value="164"/>
                <unit value="cm"/>
                <system value="http://unitsofmeasure.org"/>
                <code value="cm"/>
@@ -433,7 +441,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6af40fbe-6b62-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:780f10c0-6b5b-11ec-0000-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -461,7 +469,7 @@
             </subject>
             <effectiveDateTime value="${DATE, T, D, -12}T13:20:00+02:00"/>
             <valueQuantity>
-               <value value="76"/>
+               <value value="102"/>
                <unit value="kg"/>
                <system value="http://unitsofmeasure.org"/>
                <code value="kg"/>

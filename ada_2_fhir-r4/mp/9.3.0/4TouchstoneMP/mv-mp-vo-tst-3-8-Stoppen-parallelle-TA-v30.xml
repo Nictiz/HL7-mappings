@@ -62,7 +62,7 @@
             </subject>
             <authoredOn value="${DATE, T, D, +0}T09:05:00+02:00"/>
             <requester>
-               <reference value="urn:uuid:2df71558-6b6c-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:ea3fd558-6ab1-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Jan van Harten, Medisch specialisten, chirurgie, Ziekenhuis het Gele Hart"/>
             </requester>
@@ -149,6 +149,88 @@
       </request>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:a08248a1-6b09-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-DispenseRequest"/>
+               <tag>
+                  <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
+                  <code value="actionable"/>
+               </tag>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_stoppen_parallele_TA"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <value value="MBH_300_stoppen_parallele_TA_VV_start"/>
+            </identifier>
+            <status value="active"/>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="52711000146108"/>
+                  <display value="verstrekkingsverzoek"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:7d6dcf1d-6b74-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="PANTOPRAZOL 40MG TABLET MSR"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:1c84b21e-6b37-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, J. de XXX_Luzac"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, +0}T09:05:00+02:00"/>
+            <requester>
+               <reference value="urn:uuid:ea3fd558-6ab1-11ec-0000-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Jan van Harten, Medisch specialisten, chirurgie, Ziekenhuis het Gele Hart"/>
+            </requester>
+            <performer>
+               <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
+            </performer>
+            <basedOn>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_stoppen_parallele_TA_MA_start"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak  met identificatie: MBH_300_stoppen_parallele_TA_MA_start || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </basedOn>
+            <dispenseRequest>
+               <quantity>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                     <valueQuantity>
+                        <value value="28"/>
+                        <unit value="stuk"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="245"/>
+                     </valueQuantity>
+                  </extension>
+                  <value value="28"/>
+                  <unit value="stuk"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="1"/>
+               </quantity>
+            </dispenseRequest>
+         </MedicationRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
+   </entry>
+   <entry>
       <fullUrl value="urn:uuid:1c84b21e-6b37-11ec-0000-020000000000"/>
       <resource>
          <Patient>
@@ -199,19 +281,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2df71558-6b6c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:ea3fd558-6ab1-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:9eb0d42e-6b29-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:dbada42e-6af2-11ec-0000-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Jan van Harten"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:de05b9d8-6acf-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:f07009d8-6b48-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Ziekenhuis het Gele Hart"/>
             </organization>
@@ -223,6 +305,11 @@
                   <display value="Medisch specialisten, chirurgie"/>
                </coding>
             </specialty>
+            <telecom>
+               <system value="phone"/>
+               <value value="1634534321"/>
+               <use value="work"/>
+            </telecom>
          </PractitionerRole>
       </resource>
       <request>
@@ -231,7 +318,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9eb0d42e-6b29-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:dbada42e-6af2-11ec-0000-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -258,6 +345,11 @@
                   </extension>
                </given>
             </name>
+            <telecom>
+               <system value="phone"/>
+               <value value="1634534321"/>
+               <use value="work"/>
+            </telecom>
          </Practitioner>
       </resource>
       <request>
@@ -266,7 +358,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:de05b9d8-6acf-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:f07009d8-6b48-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -278,10 +370,9 @@
             </identifier>
             <type>
                <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
-                  <version value="2020-10-23T00:00:00"/>
-                  <code value="0601"/>
-                  <display value="Ziekenhuizen, algemene ziekenhuizen"/>
+                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+                  <code value="V4"/>
+                  <display value="Ziekenhuis"/>
                </coding>
             </type>
             <name value="Ziekenhuis het Gele Hart"/>
@@ -307,6 +398,25 @@
                <city value="Hartstad"/>
                <postalCode value="1200AA"/>
             </address>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="01236578"/>
+            </identifier>
+            <name value="Apotheek De Gulle Gaper"/>
          </Organization>
       </resource>
       <request>

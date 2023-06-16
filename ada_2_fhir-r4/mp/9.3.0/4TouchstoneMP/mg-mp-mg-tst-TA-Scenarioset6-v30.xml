@@ -114,7 +114,7 @@
                <valueDateTime value="${DATE, T, D, +0}T09:04:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T, iedere 8 uur 1 stuk - let op, tijden exact aanhouden, Oraal"/>
+               <valueString value="Vanaf T, iedere 8 uur 1 stuk - gelijke tussenpozen aanhouden, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -1398,7 +1398,7 @@
                <valueDateTime value="${DATE, T, D, +0}T09:47:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T, tot en met T + 8 dagen, toedieningssnelheid: maximaal 0.2 à 0.5 ml per uur, parenteraal"/>
+               <valueString value="Vanaf T, tot en met T + 8 dagen, toedieningssnelheid: 0.2 à 0.5 ml per uur, parenteraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -1856,39 +1856,6 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:65ff631d-6b39-11ec-0000-020000000000"/>
-      <resource>
-         <Medication>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="1101099"/>
-                  <display value="MIZOLLEN TABLET MGA 10MG"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="48291"/>
-                  <display value="MIZOLASTINE TABLET MGA  10MG"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="102164"/>
-                  <display value="MIZOLASTINE TABLET MGA  10MG"/>
-               </coding>
-               <text value="MIZOLLEN TABLET MGA 10MG"/>
-            </code>
-         </Medication>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
-   </entry>
-   <entry>
       <fullUrl value="urn:uuid:1639dee9-6ace-11ec-0000-020000000000"/>
       <resource>
          <Medication>
@@ -1913,6 +1880,39 @@
                   <display value="AMOXICILLINE DISPERTABLET 500MG"/>
                </coding>
                <text value="AMOXICILLINE DISPER SANDOZ TABLET 500MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:65ff631d-6b39-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="1101099"/>
+                  <display value="MIZOLLEN TABLET MGA 10MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="48291"/>
+                  <display value="MIZOLASTINE TABLET MGA  10MG"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="102164"/>
+                  <display value="MIZOLASTINE TABLET MGA  10MG"/>
+               </coding>
+               <text value="MIZOLLEN TABLET MGA 10MG"/>
             </code>
          </Medication>
       </resource>

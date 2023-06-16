@@ -10,12 +10,12 @@
       </valueIdentifier>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-      <valueString value="Vanaf T - 6 dagen, tot en met T + 6 dagen, cyclus van 5 dagen: steeds eerst gedurende 3 dagen 1 maal per dag om 19:00 2 stuks, dan gedurende 2 dagen 1 maal per dag om 19:00 1 stuk, oraal"/>
+      <valueString value="Vanaf T - 6 dagen, tot en met T + 3 dagen, cyclus van 5 dagen: steeds eerst gedurende 3 dagen 1 maal per dag om 19:00 2 stuks, dan gedurende 2 dagen 1 maal per dag om 19:00 1 stuk, oraal"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
       <valuePeriod>
          <start value="${DATE, T, D, -6}T00:00:00+02:00"/>
-         <end value="${DATE, T, D, +6}T23:59:59+02:00"/>
+         <end value="${DATE, T, D, +3}T23:59:59+02:00"/>
       </valuePeriod>
    </extension>
    <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule">
@@ -70,6 +70,9 @@
       </identifier>
       <display value="relatie naar medicatieafspraak met identificatie: MBH_300_wdsmtd1_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
    </basedOn>
+   <note>
+      <text value="Dosering aangepast i.v.m. te lage INR waarde."/>
+   </note>
    <dosageInstruction>
       <sequence value="1"/>
       <timing>
