@@ -178,12 +178,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:variable>
                 
                 <!--Zibs that result in only a single resource, or  resources that have no special conditions-->
-                <xsl:if test="local-name() = ((:'administration_agreement', :)'advance_directive', 'alcohol_use', 'alert', 'allergy_intolerance', 'blood_pressure', 'body_height', 'body_weight', 'drug_use', 'encounter', 'functional_or_mental_status', 'living_situation', (:'medication_agreement', 'medication_use', :)'nutrition_advice', 'payer', 'problem', 'tobacco_use', 'treatment_directive')">
-                    <entry xmlns="http://hl7.org/fhir">
-                        <xsl:if test="local-name() = 'administration_agreement'">
+                <xsl:if test="local-name() = ((:'administration_agreement', :) 'advance_directive', 'alcohol_use', 'alert', 'allergy_intolerance', 'blood_pressure', 'body_height', 'body_weight', 'drug_use', 'encounter', 'functional_or_mental_status', 'living_situation', (:'medication_agreement', 'medication_use', :) 'nutrition_advice', 'payer', 'problem', 'tobacco_use', 'treatment_directive')">
+                    <xsl:variable name="pos" select="position()"/>
+
+                    <xsl:if test="local-name() = 'administration_agreement'">
+                        <entry xmlns="http://hl7.org/fhir">
                             <xsl:message terminate="yes">TODO</xsl:message>
-                        </xsl:if>
-                        <xsl:if test="local-name() = 'advance_directive'">
+                            <search>
+                                <mode value="match"/>
+                            </search>
+                        </entry>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'advance_directive'">
+                        <entry xmlns="http://hl7.org/fhir">
                             <fullUrl value="{concat('zib-AdvanceDirective-', $usecase, '-', $patientName, '-advdir', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-AdvanceDirective-2.1">
@@ -192,8 +199,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="logicalId" select="concat($patientName, '-advdir', position())"/>
                                 </xsl:call-template>
                             </resource>
-                        </xsl:if>
-                        <xsl:if test="local-name() = 'alcohol_use'">
+                            <search>
+                                <mode value="match"/>
+                            </search>
+                        </entry>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'alcohol_use'">
+                        <entry xmlns="http://hl7.org/fhir">
                             <fullUrl value="{concat('zib-AlcoholUse-', $usecase, '-', $patientName, '-alcohol', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-AlcoholUse-2.1">
@@ -202,8 +214,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="logicalId" select="concat($patientName, '-alcohol', position())"/>
                                 </xsl:call-template>
                             </resource>
-                        </xsl:if>
-                        <xsl:if test="local-name() = 'alert'">
+                            <search>
+                                <mode value="match"/>
+                            </search>
+                        </entry>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'alert'">
+                        <entry xmlns="http://hl7.org/fhir">
                             <fullUrl value="{concat('zib-Alert-', $usecase, '-', $patientName, '-alert', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-Alert-2.1">
@@ -212,8 +229,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="logicalId" select="concat($patientName, '-alert', position())"/>
                                 </xsl:call-template>
                             </resource>
-                        </xsl:if>
-                        <xsl:if test="local-name() = 'allergy_intolerance'">
+                            <search>
+                                <mode value="match"/>
+                            </search>
+                        </entry>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'allergy_intolerance'">
+                        <entry xmlns="http://hl7.org/fhir">
                             <fullUrl value="{concat('zib-AllergyIntolerance-', $usecase, '-', $patientName, '-allergy', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-AllergyIntolerance-2.1">
@@ -222,8 +244,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="logicalId" select="concat($patientName, '-allergy', position())"/>
                                 </xsl:call-template>
                             </resource>
-                        </xsl:if>
-                        <xsl:if test="local-name() = 'blood_pressure'">
+                            <search>
+                                <mode value="match"/>
+                            </search>
+                        </entry>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'blood_pressure'">
+                        <entry xmlns="http://hl7.org/fhir">
                             <fullUrl value="{concat('zib-BloodPressure-', $usecase, '-', $patientName, '-bloodpressure', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-BloodPressure-3.0">
@@ -232,8 +259,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="logicalId" select="concat($patientName, '-bloodpressure', position())"/>
                                 </xsl:call-template>
                             </resource>
-                        </xsl:if>
-                        <xsl:if test="local-name() = 'body_height'">
+                            <search>
+                                <mode value="match"/>
+                            </search>
+                        </entry>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'body_height'">
+                        <entry xmlns="http://hl7.org/fhir">
                             <fullUrl value="{concat('zib-BodyHeight-', $usecase, '-', $patientName, '-bodyheight', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-BodyHeight-2.x">
@@ -242,8 +274,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="logicalId" select="concat($patientName, '-bodyheight', position())"/>
                                 </xsl:call-template>
                             </resource>
-                        </xsl:if>
-                        <xsl:if test="local-name() = 'body_weight'">
+                            <search>
+                                <mode value="match"/>
+                            </search>
+                        </entry>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'body_weight'">
+                        <entry xmlns="http://hl7.org/fhir">
                             <fullUrl value="{concat('zib-BodyWeight-', $usecase, '-', $patientName, '-bodyweight', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-BodyWeight-2.x">
@@ -252,8 +289,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="logicalId" select="concat($patientName, '-bodyweight', position())"/>
                                 </xsl:call-template>
                             </resource>
-                        </xsl:if>
-                        <!--<xsl:if test="local-name() = 'contact'">
+                            <search>
+                                <mode value="match"/>
+                            </search>
+                        </entry>
+                    </xsl:if>
+                    <!--<xsl:if test="local-name() = 'contact'">
+                            <entry xmlns="http://hl7.org/fhir">
                             <fullUrl value="{concat('zib-ContactPerson-', $usecase, '-', $patientName, '-contactperson', position())}"/>
                             <resource>
                                 <xsl:call-template name="nl-core-relatedperson-2.0">
@@ -262,8 +304,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="logicalId" select="concat($patientName, '-contactperson', position())"/>
                                 </xsl:call-template>
                             </resource>
+                        <search>
+                            <mode value="match"/>
+                        </search>
+                    </entry>
                         </xsl:if>-->
-                        <xsl:if test="local-name() = 'drug_use'">
+                    <xsl:if test="local-name() = 'drug_use'">
+                        <entry xmlns="http://hl7.org/fhir">
                             <fullUrl value="{concat('zib-DrugUse-', $usecase, '-', $patientName, '-druguse', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-DrugUse-2.1">
@@ -272,8 +319,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="logicalId" select="concat($patientName, '-druguse', position())"/>
                                 </xsl:call-template>
                             </resource>
-                        </xsl:if>
-                        <xsl:if test="local-name() = 'encounter'">
+                            <search>
+                                <mode value="match"/>
+                            </search>
+                        </entry>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'encounter'">
+                        <entry xmlns="http://hl7.org/fhir">
                             <fullUrl value="{concat('zib-Encounter-', $usecase, '-', $patientName, '-encounter', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-Encounter-2.1">
@@ -282,8 +334,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="logicalId" select="concat($patientName, '-encounter', position())"/>
                                 </xsl:call-template>
                             </resource>
-                        </xsl:if>
-                        <xsl:if test="local-name() = 'functional_or_mental_status'">
+                            <search>
+                                <mode value="match"/>
+                            </search>
+                        </entry>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'functional_or_mental_status'">
+                        <entry xmlns="http://hl7.org/fhir">
                             <fullUrl value="{concat('zib-FunctionalOrMentalStatus-', $usecase, '-', $patientName, '-funcment', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-FunctionalOrMentalStatus-2.1">
@@ -292,8 +349,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="logicalId" select="concat($patientName, '-funcment', position())"/>
                                 </xsl:call-template>
                             </resource>
-                        </xsl:if>
-                        <!--<xsl:if test="local-name() = 'healthcare_provider'">
+                            <search>
+                                <mode value="match"/>
+                            </search>
+                        </entry>
+                    </xsl:if>
+                    <!--<xsl:if test="local-name() = 'healthcare_provider'">
+                            <entry xmlns="http://hl7.org/fhir">
                             <fullUrl value="{concat('zib-HealthcareProvider-', $usecase, '-', $patientName, '-healthcareProv', position())}"/>
                             <resource>
                                 <xsl:call-template name="nl-core-organization-2.0">
@@ -301,8 +363,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="logicalId" select="concat($patientName, '-healthcareProv', position())"/>
                                 </xsl:call-template>
                             </resource>
+                        <search>
+                            <mode value="match"/>
+                        </search>
+                    </entry>
                         </xsl:if>-->
-                        <xsl:if test="local-name() = 'living_situation'">
+                    <xsl:if test="local-name() = 'living_situation'">
+                        <entry xmlns="http://hl7.org/fhir">
                             <fullUrl value="{concat('zib-LivingSituation-', $usecase, '-', $patientName, '-living', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-LivingSituation-2.1">
@@ -311,8 +378,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="logicalId" select="concat($patientName, '-living', position())"/>
                                 </xsl:call-template>
                             </resource>
-                        </xsl:if>
-                        <xsl:if test="local-name() = 'medication_agreement'">
+                            <search>
+                                <mode value="match"/>
+                            </search>
+                        </entry>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'medication_agreement'">
+                        <entry xmlns="http://hl7.org/fhir">
                             <fullUrl value="{concat('zib-MedicationAgreement-', $usecase, '-', $patientName, '-medagr', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-MedicationAgreement-3.0">
@@ -321,8 +393,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="logicalId" select="concat($patientName, '-medagr', position())"/>
                                 </xsl:call-template>
                             </resource>
-                        </xsl:if>
-                        <xsl:if test="local-name() = 'medication_use'">
+                            <search>
+                                <mode value="match"/>
+                            </search>
+                        </entry>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'medication_use'">
+                        <entry xmlns="http://hl7.org/fhir">
                             <fullUrl value="{concat('zib-MedicationUse-', $usecase, '-', $patientName, '-meduse', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-MedicationUse-3.0">
@@ -331,8 +408,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="logicalId" select="concat($patientName, '-meduse', position())"/>
                                 </xsl:call-template>
                             </resource>
-                        </xsl:if>
-                        <xsl:if test="local-name() = 'nutrition_advice'">
+                            <search>
+                                <mode value="match"/>
+                            </search>
+                        </entry>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'nutrition_advice'">
+                        <entry xmlns="http://hl7.org/fhir">
                             <fullUrl value="{concat('zib-NutritionAdvice-', $usecase, '-', $patientName, '-nutrition', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-NutritionAdvice-2.1">
@@ -341,8 +423,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="logicalId" select="concat($patientName, '-nutrition', position())"/>
                                 </xsl:call-template>
                             </resource>
-                        </xsl:if>
-                        <!--<xsl:if test="local-name() = 'patient'">
+                            <search>
+                                <mode value="match"/>
+                            </search>
+                        </entry>
+                    </xsl:if>
+                    <!--<xsl:if test="local-name() = 'patient'">
+                            <entry xmlns="http://hl7.org/fhir">
                             <fullUrl value="{nf:getUriFromAdaId(., 'Patient', false())}"/>
                             <resource>
                                 <xsl:call-template name="nl-core-patient-2.1">
@@ -350,18 +437,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
                                 </xsl:call-template>
                             </resource>
+                            <search>
+                            <mode value="match"/>
+                        </search>
+                    </entry>
                         </xsl:if>-->
-                        <xsl:if test="local-name() = 'payer'">
-                            <fullUrl value="{concat('zib-Payer-', $usecase, '-', $patientName, '-payer', position())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-Payer-2.0">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-payer', position())"/>
-                                </xsl:call-template>
-                            </resource>
-                        </xsl:if>
-                        <xsl:if test="local-name() = 'problem'">
+                    <!-- every single Payer zib could end up in multiple Coverage resource depending on how many insurance types are contained -->
+                    <xsl:if test="local-name() = 'payer'">
+                        <xsl:variable name="coverageResources" as="element()*">
+                            <xsl:call-template name="zib-Payer-2.0">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                <xsl:with-param name="logicalId" select="concat($patientName, '-payer', $pos)"/>
+                            </xsl:call-template>
+                        </xsl:variable>
+                        <xsl:for-each select="$coverageResources">
+                            <entry xmlns="http://hl7.org/fhir">
+                                <fullUrl value="{concat('zib-Payer-', $usecase, '-', $patientName, '-payer', $pos, '-', position())}"/>
+                                <resource>
+                                    <xsl:copy-of select="."/>
+                                </resource>
+                                <search>
+                                    <mode value="match"/>
+                                </search>
+                            </entry>
+                        </xsl:for-each>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'problem'">
+                        <entry xmlns="http://hl7.org/fhir">
                             <fullUrl value="{concat('zib-Problem-', $usecase, '-', $patientName, '-problem', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-Problem-3.0">
@@ -370,8 +473,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="logicalId" select="concat($patientName, '-problem', position())"/>
                                 </xsl:call-template>
                             </resource>
-                        </xsl:if>
-                        <xsl:if test="local-name() = 'tobacco_use'">
+                            <search>
+                                <mode value="match"/>
+                            </search>
+                        </entry>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'tobacco_use'">
+                        <entry xmlns="http://hl7.org/fhir">
                             <fullUrl value="{concat('zib-TobaccoUse-', $usecase, '-', $patientName, '-tobacco', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-TobaccoUse-2.1">
@@ -380,8 +488,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="logicalId" select="concat($patientName, '-tobacco', position())"/>
                                 </xsl:call-template>
                             </resource>
-                        </xsl:if>
-                        <xsl:if test="local-name() = 'treatment_directive'">
+                            <search>
+                                <mode value="match"/>
+                            </search>
+                        </entry>
+                    </xsl:if>
+                    <xsl:if test="local-name() = 'treatment_directive'">
+                        <entry xmlns="http://hl7.org/fhir">
                             <fullUrl value="{concat('zib-TreatmentDirective-', $usecase, '-', $patientName, '-treatmentdir', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-TreatmentDirective-2.2">
@@ -390,11 +503,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="logicalId" select="concat($patientName, '-treatmentdir', position())"/>
                                 </xsl:call-template>
                             </resource>
-                        </xsl:if>
-                        <search>
-                            <mode value="match"/>
-                        </search>
-                    </entry>
+                            <search>
+                                <mode value="match"/>
+                            </search>
+                        </entry>
+                    </xsl:if>
                 </xsl:if>
                 
                 <!--Additional resources or resources with special conditions-->
