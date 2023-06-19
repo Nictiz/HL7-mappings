@@ -159,6 +159,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="zorg_team" resource="CareTeam" profile="nl-core-CareTeam"/>
         <nm:map ada="zorgverlener" resource="PractitionerRole" profile="nl-core-HealthProfessional-PractitionerRole"/>
         <nm:map ada="zorgverlener" resource="Practitioner" profile="nl-core-HealthProfessional-Practitioner"/>
+        <nm:map ada="zwangerschap" resource="Condition" profile="nl-core-Pregnancy"/>
+        <nm:map ada="zwangerschapsduur" resource="Observation" profile="nl-core-Pregnancy.PregnancyDuration"/>
+        <nm:map ada="pariteit" resource="Observation" profile="nl-core-Pregnancy.Parity"/>
+        <nm:map ada="graviditeit" resource="Observation" profile="nl-core-Pregnancy.Gravidity"/>
+        <nm:map ada="aterme_datum_items" resource="Observation" profile="nl-core-Pregnancy.EstimatedDateOfDelivery"/>
+        <nm:map ada="datum_laatste_menstruatie" resource="Observation" profile="nl-core-Pregnancy.DateLastMenstruation"/>
     </xsl:variable>
 
     <xsl:variable name="zib2020Oid" select="'2.16.840.1.113883.2.4.3.11.60.40.1'"/>
@@ -251,7 +257,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
               $in//visueel_resultaat[parent::tekst_uitslag],
               $in//soepregel[parent::soepverslag],
               $in//monster[parent::laboratorium_uitslag],
-              $in//bron_monster[parent::monster]
+              $in//bron_monster[parent::monster],
+              $in//zwangerschapsduur[parent::zwangerschap],
+              $in//pariteit[parent::zwangerschap],
+              $in//graviditeit[parent::zwangerschap],
+              $in//aterme_datum_items[parent::zwangerschap],
+              $in//datum_laatste_menstruatie[parent::aterme_datum_items/parent::zwangerschap]
             )[.//(@value | @code | @nullFlavor)]" group-by="local-name()">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <xsl:call-template name="_buildFhirMetadataForAdaEntry">
