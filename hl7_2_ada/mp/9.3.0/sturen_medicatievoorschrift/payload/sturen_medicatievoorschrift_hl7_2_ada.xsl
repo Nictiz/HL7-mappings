@@ -12,7 +12,7 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:pharm="urn:ihe:pharm:medication" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities"  xmlns:sdtc="urn:hl7-org:sdtc" xmlns:pharm="urn:ihe:pharm:medication" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../../../zibs2020/payload/all-zibs.xsl"/>
     <xsl:import href="../../../mp-handle-bouwstenen.xsl"/>
 
@@ -66,6 +66,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:call-template name="doGeneratedComment">
             <xsl:with-param name="in" select="//*[hl7:ControlActProcess]"/>
         </xsl:call-template>
+        
+        <xsl:if test="count($patient) gt 1">
+            <xsl:call-template name="util:logMessage">
+                <xsl:with-param name="level" select="$logWARN"/>
+                <xsl:with-param name="msg">There is more than one patient in the hl7 input message, this is unexpected and should be investigated.</xsl:with-param>
+            </xsl:call-template>
+        </xsl:if>
+        
         <xsl:variable name="adaXml">
             <adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                 <xsl:if test="$outputSchemaRef">
