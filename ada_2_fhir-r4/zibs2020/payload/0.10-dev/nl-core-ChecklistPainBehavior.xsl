@@ -32,8 +32,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     
     <xd:doc>
-        <xd:desc>Create a nl-core-ChecklistPainBehavior instance as an Observation FHIR instance from ADA checklist_pijn_gedrag.</xd:desc>
+        <xd:desc>Create an nl-core-ChecklistPainBehavior instance as an Observation FHIR instance from ADA checklist_pijn_gedrag.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
     <xsl:template match="checklist_pijn_gedrag" name="nl-core-ChecklistPainBehavior" mode="nl-core-ChecklistPainBehavior" as="element(f:Observation)">
         <xsl:param name="in" as="element()?" select="."/>
