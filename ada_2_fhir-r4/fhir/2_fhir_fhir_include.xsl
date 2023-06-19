@@ -68,6 +68,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="betaler" resource="Coverage" profile="nl-core-Payer.InsuranceCompany"/>
         <nm:map ada="betaler" resource="Coverage" profile="nl-core-Payer.PayerPerson"/>
         <nm:map ada="betaler" resource="Organization" profile="nl-core-Payer-Organization"/>
+        <nm:map ada="checklist_pijn_gedrag" resource="Observation" profile="nl-core-ChecklistPainBehavior"/>
         <nm:map ada="contact" resource="Encounter" profile="nl-core-Encounter"/>
         <nm:map ada="contactpersoon" resource="RelatedPerson" profile="nl-core-ContactPerson"/>
         <nm:map ada="dosscore" resource="Observation" profile="nl-core-DOSScore"/>
