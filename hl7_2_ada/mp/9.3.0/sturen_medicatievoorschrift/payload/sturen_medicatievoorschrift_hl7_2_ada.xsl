@@ -43,12 +43,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:param>
+    
+    <!-- MP-1161, make sure to not select the patient that is part of the lab transaction that may also be in an joint XML message such as the PVMV -->
+    <xsl:param name="theMPPatient" select="//(hl7:organizer[hl7:code[@code='95'][@codeSystem='2.16.840.1.113883.2.4.3.11.60.20.77.4']] | hl7:ClinicalDocument[hl7:code[@code='440545006'][@codeSystem=$oidSNOMEDCT]])/hl7:recordTarget/hl7:patientRole"/>
 
     <xd:doc>
         <xd:desc>Template to start conversion for stand alone use. </xd:desc>
     </xd:doc>
     <xsl:template match="/">
-        <xsl:variable name="patient-recordTarget" select="//hl7:recordTarget/hl7:patientRole"/>
+        <xsl:variable name="patient-recordTarget" select="$theMPPatient"/>
         <xsl:call-template name="Voorschrift-9-ADA">
             <xsl:with-param name="patient" select="$patient-recordTarget"/>
         </xsl:call-template>
@@ -59,7 +62,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="patient">HL7 patient</xd:param>
     </xd:doc>
     <xsl:template name="Voorschrift-9-ADA">
-        <xsl:param name="patient" select="//hl7:recordTarget/hl7:patientRole"/>
+        <xsl:param name="patient" select="$theMPPatient"/>
         <xsl:call-template name="doGeneratedComment">
             <xsl:with-param name="in" select="//*[hl7:ControlActProcess]"/>
         </xsl:call-template>
