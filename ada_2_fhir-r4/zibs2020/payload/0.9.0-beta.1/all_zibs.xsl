@@ -36,7 +36,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../0.5-beta1/nl-core-BodyHeight.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-BodyWeight.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-BodyTemperature.xsl"/>
-    <xsl:import href="../0.5-beta1/nl-core-CareTeam.xsl"/>    
+    <xsl:import href="../0.5-beta1/nl-core-CareTeam.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-ComfortScale.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-ContactInformation.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-ContactPerson.xsl"/>
