@@ -26,7 +26,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="zwangerschap" name="nl-core-Pregnancy" mode="nl-core-Pregnancy" as="element(f:Condition)?">
         <xsl:param name="in" select="." as="element()?"/>
-        <xsl:param name="subject" select="patient" as="element()?"/>
+        <xsl:param name="subject" select="patient/*" as="element()?"/>
 
         <xsl:for-each select="$in">
             <Condition>
@@ -36,9 +36,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </meta>
                 <code>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
-                        <code value="364320009"/>
-                        <display value="observatie betreffende zwangerschap"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
+                        <code value="118185001"/>
+                        <display value="bevinding betreffende zwangerschap"/>
                     </coding>
                 </code>
                 <xsl:for-each select="$subject">
@@ -50,7 +50,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="toelichting">
                     <note>
                         <text>
-                            <xsl:call-template name="string-to-string"/>
+                            <xsl:call-template name="string-to-string">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
                         </text>
                     </note>
                 </xsl:for-each>
@@ -153,7 +155,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <code>
                     <coding>
                         <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                        <code value="364325004"/>
+                        <code value="161732006"/>
                         <display value="aantal zwangerschappen"/>
                     </coding>
                 </code>
@@ -216,7 +218,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </effectiveDateTime>
                 </xsl:for-each>
-                '<xsl:for-each select="aterme_datum">
+                <xsl:for-each select="aterme_datum">
                     <valueDateTime>
                         <xsl:call-template name="date-to-datetime">
                             <xsl:with-param name="in" select="."/>
