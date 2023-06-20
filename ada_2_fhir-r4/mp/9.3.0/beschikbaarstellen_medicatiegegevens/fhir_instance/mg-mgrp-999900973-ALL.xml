@@ -2,6 +2,80 @@
    <id value="mg-mgrp-999900973-ALL"/>
    <type value="transaction"/>
    <entry>
+      <fullUrl value="urn:uuid:a3017b3e-6acc-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="Vanaf T - 20 dagen, Volgens schema trombosedienst, Oraal"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+               <valuePeriod>
+                  <start value="${DATE, T, D, -20}T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_wdsmtd1"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_300_wdsmtd1_MA"/>
+            </identifier>
+            <status value="unknown"/>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="33633005"/>
+                  <display value="voorschrijven van geneesmiddel"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:ca0c3ae9-6aff-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="ACENOCOUMAROL TABLET 1MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:f09cbd3e-6b06-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, M. van de XXX_Roelofs"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -20}T08:00:00+02:00"/>
+            <requester>
+               <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+            </requester>
+            <dosageInstruction>
+               <additionalInstruction>
+                  <coding>
+                     <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+                     <code value="OTH"/>
+                     <display value="overig"/>
+                  </coding>
+                  <text value="Volgens schema trombosedienst"/>
+               </additionalInstruction>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
+   </entry>
+   <entry>
       <fullUrl value="urn:uuid:d0b672b0-6b6b-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
@@ -48,7 +122,7 @@
             </subject>
             <authoredOn value="${DATE, T, D, -20}T08:00:00+02:00"/>
             <requester>
-               <reference value="urn:uuid:fdf54558-6b5e-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -365,7 +439,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0532e2b0-6ae7-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:8bb4f32d-6b74-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -432,13 +506,6 @@
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Tanja de Bakker, Trombosediensten, Trombosedienst Ons Dorp"/>
             </requester>
-            <reasonCode>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="58848006"/>
-                  <display value="gebrek aan geneesmiddeleffect"/>
-               </coding>
-            </reasonCode>
             <basedOn>
                <type value="MedicationRequest"/>
                <identifier>
@@ -447,9 +514,6 @@
                </identifier>
                <display value="relatie naar medicatieafspraak met identificatie: MBH_300_wdsmtd1_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </basedOn>
-            <note>
-               <text value="Dosering aangepast i.v.m. te lage INR waarde."/>
-            </note>
             <dosageInstruction>
                <sequence value="1"/>
                <timing>
@@ -595,7 +659,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c156b1f5-6ab7-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:f7f5f1f5-6ae2-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -608,12 +672,12 @@
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 6 dagen, tot en met T + 6 dagen, cyclus van 5 dagen: steeds eerst gedurende 3 dagen 1 maal per dag om 19:00 2 stuks, dan gedurende 2 dagen 1 maal per dag om 19:00 1 stuk, oraal"/>
+               <valueString value="Vanaf T - 6 dagen, tot en met T + 3 dagen, cyclus van 5 dagen: steeds eerst gedurende 3 dagen 1 maal per dag om 19:00 2 stuks, dan gedurende 2 dagen 1 maal per dag om 19:00 1 stuk, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <start value="${DATE, T, D, -6}T00:00:00+02:00"/>
-                  <end value="${DATE, T, D, +6}T23:59:59+02:00"/>
+                  <end value="${DATE, T, D, +3}T23:59:59+02:00"/>
                </valuePeriod>
             </extension>
             <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule">
@@ -668,6 +732,9 @@
                </identifier>
                <display value="relatie naar medicatieafspraak met identificatie: MBH_300_wdsmtd1_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </basedOn>
+            <note>
+               <text value="Dosering aangepast i.v.m. te lage INR waarde."/>
+            </note>
             <dosageInstruction>
                <sequence value="1"/>
                <timing>
@@ -1341,14 +1408,14 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:fdf54558-6b5e-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:9bdfc42e-6ab8-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:4a573558-6ad5-11ec-0000-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
@@ -1373,7 +1440,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9bdfc42e-6ab8-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:4a573558-6ad5-11ec-0000-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -1536,7 +1603,7 @@
             </type>
             <name value="Trombosedienst Ons Dorp"/>
             <address>
-               <line value="Kerkstraat  28 d">
+               <line value="Kerkstraat 28 d">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
                      <valueString value="Kerkstraat"/>
                   </extension>
