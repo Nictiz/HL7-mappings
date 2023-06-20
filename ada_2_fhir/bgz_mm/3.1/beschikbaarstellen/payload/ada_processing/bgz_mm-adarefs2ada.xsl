@@ -92,7 +92,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="*[@value and @root = '2.16.840.1.113883.2.4.3.11.999.7'][not(*)][not(contains(local-name(), 'identification'))]" mode="copy-for-resolve">
         <xsl:variable name="resolved" select="($ada-input//*[hcimroot/identification_number[lower-case(@value) = lower-case(current()/@value)][@root = current()/@root]])[1]"/>
         <xsl:if test="count($resolved) lt 1">
-            <xsl:message select="concat('Could not resolve ''',@value,''' in ',ancestor::*[ends-with(local-name(), '_registration')]/local-name())"/>
+            <xsl:message terminate="no" select="concat('WARN   : Could not resolve ''',@value,''' in ', string-join(for $el in ancestor-or-self::* return if ($el[@id]) then concat(local-name($el), '[@id=''', $el/@id, ''']') else local-name($el), '/'))"/>
         </xsl:if>
         <xsl:apply-templates select="$resolved" mode="#current"/>
     </xsl:template>
