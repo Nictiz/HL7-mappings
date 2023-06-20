@@ -31,7 +31,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-Payer</xsl:variable>
         
         <xsl:variable name="insuranceTypes" select="distinct-values($in/(verzekeraar/verzekering/verzekeringssoort | insurance_company/insurance/insurance_type)/(@code, @originalText)[1])"/>
-        <xsl:for-each-group select="$in[(verzekeraar/verzekering/verzekeringssoort | insurance_company/insurance/insurance_type)/(@code, @originalText)[1] = $insuranceTypes]" group-by="(verzekeraar/verzekering/verzekeringssoort | insurance_company/insurance/insurance_type)/(@code, @originalText)[1]">
+        <xsl:variable name="coverages" select="$in[(verzekeraar/verzekering/verzekeringssoort | insurance_company/insurance/insurance_type)/(@code, @originalText)[1] = $insuranceTypes]" as="element()*"/>
+        <xsl:for-each-group select="$coverages | $in except $coverages" group-by="(payer_person, (verzekeraar/verzekering/verzekeringssoort | insurance_company/insurance/insurance_type)/(@code, @originalText))[1]">
             <xsl:variable name="insuranceType" select="current-grouping-key()"/>
             <xsl:variable name="insuranceCompanies" select="verzekeraar[verzekering/verzekeringssoort/(@code, @originalText)[1] = $insuranceType] | insurance_company[insurance/insurance_type/(@code, @originalText)[1] = $insuranceType]"/>
             <xsl:variable name="insurances" select="$insuranceCompanies[verzekering/verzekeringssoort/(@code, @originalText)[1] = $insuranceType] | $insuranceCompanies[insurance/insurance_type/(@code, @originalText)[1] = $insuranceType]"/>
