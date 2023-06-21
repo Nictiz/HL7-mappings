@@ -85,7 +85,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:when test="auteur_is_zorgaanbieder/zorgaanbieder[@value]">
                                     <xsl:call-template name="makeReference">
                                         <xsl:with-param name="in" select="ancestor::data/*//zorgaanbieder[@id = current()/auteur_is_zorgaanbieder/zorgaanbieder/@value]"/>
-                                        <xsl:with-param name="profile" select="$profilenameHealthcareProviderOrganization"/>
+                                        <xsl:with-param name="profile" select="$profilenameHealthcareProvider"/>
                                     </xsl:call-template>
                                 </xsl:when>
                                 <xsl:when test="auteur_is_zorgverlener/zorgverlener[@value]">
@@ -229,7 +229,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <coding>
                                     <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                     <code value="{$maCodeMP920}"/>
-                                    <display value="voorschrijven"/>
+                                    <display value="voorschrijven van geneesmiddel"/>
                                 </coding>
                             </valueCodeableConcept>
                         </extension>
