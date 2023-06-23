@@ -115,11 +115,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <display value="frequentie van voeding van zuigeling"/>
                             </coding>
                         </code>
-                        <valueString>
+                        <valueQuantity>
                             <xsl:call-template name="hoeveelheid-to-Quantity">
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
-                        </valueString>
+                        </valueQuantity>
                     </component>
                 </xsl:for-each>
                 
