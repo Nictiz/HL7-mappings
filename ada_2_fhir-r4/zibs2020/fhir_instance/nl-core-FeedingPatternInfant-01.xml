@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="nl-core-FeedingPatternInfant-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-FeedingPatternInfant"/>
+   </meta>
+   <basedOn>
+      <reference value="NutritionOrder/nl-core-FeedingPatternInfant-01-NutritionOrder-01"/>
+      <type value="NutritionOrder"/>
+      <display value="voedingsadvies"/>
+   </basedOn>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="289145007"/>
+         <display value="bevinding betreffende voedingspatroon van zuigeling"/>
+      </coding>
+   </code>
+   <effectiveDateTime value="20-12-2016T10:00"/>
+   <note>
+      <text value="Heeft veel zuigbehoefte en krijgt fopspeen voor de nacht"/>
+   </note>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="373453009"/>
+            <display value="voedingssupplement"/>
+         </coding>
+      </code>
+      <valueString value="Geen"/>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="364653007"/>
+            <display value="frequentie van voeding van zuigeling"/>
+         </coding>
+      </code>
+      <valueString>
+         <value value="6"/>
+         <unit value="/d"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="/d"/>
+      </valueString>
+   </component>
+   <component>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-FeedingPatternInfant.FeedingMethod">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="169741004"/>
+               <display value="zuigeling krijgt voeding via borst"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="109021000146107"/>
+            <display value="soort zuigelingenvoeding"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="226789007"/>
+            <display value="moedermelk"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+</Observation>

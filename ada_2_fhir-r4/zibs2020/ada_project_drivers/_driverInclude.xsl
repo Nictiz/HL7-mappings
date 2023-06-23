@@ -619,6 +619,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="patient" select="$subject"/>
                 </xsl:apply-templates>
             </xsl:when>
+            <xsl:when test="$localName = 'voedingspatroon_zuigeling'">
+                <xsl:apply-templates select="$in" mode="nl-core-FeedingPatternInfant">
+                    <xsl:with-param name="patient" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'vrijheidsbeperkende_interventie'">
                 <xsl:apply-templates select="$in" mode="nl-core-FreedomRestrictingIntervention">
                     <xsl:with-param name="subject" select="$subject"/>
