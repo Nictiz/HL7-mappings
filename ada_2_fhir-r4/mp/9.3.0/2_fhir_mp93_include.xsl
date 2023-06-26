@@ -108,6 +108,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </resource>
             </entry>
+            <!-- Whenever the author of a MedicationUse is a HealthcareProvider, it is represented by a Location instead of an Organization -->
+            <xsl:if test="@id = ../../medicamenteuze_behandeling/medicatiegebruik/auteur/auteur_is_zorgaanbieder/zorgaanbieder/@value">
+                <entry>
+                    <fullUrl value="{$fhirMetadata[nm:resource-type/text() = 'Location'][nm:group-key/text() = $zabKey]/nm:full-url/text()}"/>
+                    <resource>
+                        <xsl:call-template name="nl-core-HealthcareProvider">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </resource>
+                </entry>
+            </xsl:if>
         </xsl:for-each-group>
         <xsl:for-each-group select="/adaxml/data/*/medicamenteuze_behandeling/medicatietoediening/toediener/zorgaanbieder/zorgaanbieder/nf:resolveAdaInstance(., /)" group-by="nf:getGroupingKeyDefault(.)">
             <!-- entry for PractitionerRole -->
