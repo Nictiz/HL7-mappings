@@ -987,23 +987,42 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:element>
                                 </xsl:if>
                                 <!-- Codes? -->
+                                <!-- country is an element of type code in ada, so do not map an uncoded string to the value attribute, as it will lead to ada validation issue -->
                                 <xsl:if test="$country">
                                     <xsl:element name="{$elmCountry}">
-                                        <xsl:if test="$country/text()">
-                                            <xsl:attribute name="value" select="$country/text()"/>
-                                        </xsl:if>
-                                        <xsl:if test="$country/@code">
-                                            <xsl:copy-of select="$country/@code"/>
-                                            <xsl:copy-of select="$country/@codeSystem"/>
-                                            <xsl:choose>
-                                                <xsl:when test="$country/@displayName">
-                                                    <xsl:attribute name="displayName" select="$country"/>
-                                                </xsl:when>
-                                                <xsl:when test="$country/text()">
-                                                    <xsl:attribute name="displayName" select="$country/text()"/>
-                                                </xsl:when>
-                                            </xsl:choose>
-                                        </xsl:if>
+                                        <xsl:choose>
+                                            <xsl:when test="$country[@*]">
+                                                <xsl:copy-of select="$country/@code"/>
+                                                <xsl:copy-of select="$country/@codeSystem"/>
+                                                <xsl:choose>
+                                                    <xsl:when test="$country/@displayName">
+                                                        <xsl:attribute name="displayName" select="$country/@displayName"/>
+                                                    </xsl:when>
+                                                    <xsl:when test="$country/text()">
+                                                        <xsl:attribute name="displayName" select="$country/text()"/>
+                                                    </xsl:when>
+                                                </xsl:choose>
+                                                <xsl:copy-of select="$country/@originalText"/>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <!-- no coded input, we'll do our best for Netherlands -->
+                                                <xsl:if test="$country/text()">
+                                                    <xsl:choose>
+                                                        <xsl:when test="upper-case(normalize-space($country/text())) = ('NEDERLAND', 'THE NETHERLANDS')">
+                                                            <xsl:attribute name="code">NL</xsl:attribute>
+                                                            <xsl:attribute name="codeSystem">1.0.3166.1.2.2</xsl:attribute>
+                                                            <xsl:attribute name="displayName">Nederland</xsl:attribute>
+                                                        </xsl:when>
+                                                        <xsl:otherwise>
+                                                            <!-- not in value, due to validation errors -->
+                                                            <xsl:attribute name="displayName" select="$country/text()"/>
+                                                        </xsl:otherwise>
+                                                    </xsl:choose>
+                                                </xsl:if>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+
+
                                     </xsl:element>
                                 </xsl:if>
                                 <xsl:if test="$additionalInformation">

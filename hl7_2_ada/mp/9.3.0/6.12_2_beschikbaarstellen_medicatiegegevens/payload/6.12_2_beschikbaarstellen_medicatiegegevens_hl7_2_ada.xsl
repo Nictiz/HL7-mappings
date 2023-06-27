@@ -12,7 +12,7 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:pharm="urn:ihe:pharm:medication" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:util="urn:hl7:utilities"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" xmlns:pharm="urn:ihe:pharm:medication" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../../hl7_2_ada_mp_include.xsl"/>
     <xsl:output method="xml" indent="yes"/>
 
@@ -40,7 +40,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <!-- anders alleen root element om valide xml in output te hebben -->
             <xsl:otherwise>
-                <beschikbaarstellen_medicatiegegevens app="mp-mp92" shortName="{$transactionName}" formName="{$adaFormname}" transactionRef="{$transactionOid}" transactionEffectiveDate="{$transactionEffectiveDate}" prefix="mp-" language="nl-NL"/>
+                <beschikbaarstellen_medicatiegegevens app="mp-mp93" shortName="{$transactionName}" formName="{$adaFormname}" transactionRef="{$transactionOid}" transactionEffectiveDate="{$transactionEffectiveDate}" prefix="mp-" language="nl-NL"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
@@ -64,14 +64,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="$dispense-lists">
                         <xsl:variable name="patient" select="./hl7:subject/hl7:Patient"/>
                         <xsl:variable name="dispense-events" select="./hl7:component/hl7:medicationDispenseEvent"/>
-                        <beschikbaarstellen_medicatiegegevens app="mp-mp92" shortName="{$transactionName}" formName="{$adaFormname}" transactionRef="{$transactionOid}" transactionEffectiveDate="{$transactionEffectiveDate}" prefix="mp-" language="nl-NL">
+                        <beschikbaarstellen_medicatiegegevens app="mp-mp93" shortName="{$transactionName}" formName="{$adaFormname}" transactionRef="{$transactionOid}" transactionEffectiveDate="{$transactionEffectiveDate}" prefix="mp-" language="nl-NL">
                             <xsl:attribute name="title">Generated from HL7v3 verstrekkingenlijst 6.12 xml</xsl:attribute>
                             <xsl:attribute name="id" select="tokenize(base-uri(), '/')[last()]"/>
                             <xsl:for-each select="$patient">
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1_20180601000000"/>
                             </xsl:for-each>
                             <xsl:for-each select="$dispense-events">
-                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.110_20130521000000_2_MP920">
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.110_20130521000000_2_MP93">
                                     <xsl:with-param name="current-dispense-event" select="."/>
                                     <xsl:with-param name="transaction" select="$transactionName"/>
                                 </xsl:call-template>
@@ -100,31 +100,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:apply-templates select="$adaXmlWithBouwstenen" mode="handleMP92AdaNameChanges"/>
 
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc> Medication Dispense Event 6.12 </xd:desc>
         <xd:param name="current-dispense-event"/>
         <xd:param name="transaction">Which transaction is the context of this translation. Currently known: beschikbaarstellen_medicatiegegevens or beschikbaarstellen_verstrekkingenvertaling </xd:param>
     </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.110_20130521000000_2_MP920">
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.110_20130521000000_2_MP93">
         <xsl:param name="current-dispense-event" select="."/>
         <xsl:param name="transaction" select="$transactionName"/>
         <medicamenteuze_behandeling>
             <!-- mbh id is not known in 6.12. We nullFlavor it -->
             <identificatie nullFlavor="NI"/>
-            <xsl:call-template name="mp9-toedieningsafspraak-from-mp612-MP920">
+            <xsl:call-template name="mp9-toedieningsafspraak-from-mp612-MP93">
                 <xsl:with-param name="current-dispense-event" select="$current-dispense-event"/>
                 <xsl:with-param name="transaction" select="$transaction"/>
             </xsl:call-template>
         </medicamenteuze_behandeling>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Handle an hl7 dispenseEvent and create an ada toedieningsafspraak element.</xd:desc>
         <xd:param name="current-dispense-event">The input hl7 dispenseEvent, defaults to context.</xd:param>
         <xd:param name="transaction">Which transaction is the context of this translation. Currently known: beschikbaarstellen_medicatiegegevens or beschikbaarstellen_verstrekkingenvertaling </xd:param>
     </xd:doc>
-    <xsl:template name="mp9-toedieningsafspraak-from-mp612-MP920" match="hl7:medicationDispenseEvent" mode="MP92">
+    <xsl:template name="mp9-toedieningsafspraak-from-mp612-MP93" match="hl7:medicationDispenseEvent" mode="MP93">
         <xsl:param name="current-dispense-event" select="." as="element()?"/>
         <xsl:param name="transaction" select="$transactionName"/>
         <!-- let's sort the available hl7:medicationAdministrationRequest's in chronological order -->
@@ -142,10 +142,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!--issue MP-371 copy-of (in $mar-sorted) causes namespace-uri-from-QName to fail, use a regex instead -->
         <!-- gebruiksperiode-start bij eenmalig gebruik-->
         <xsl:variable name="effectiveTimes-eenmalig" select="$mar-sorted/hl7:effectiveTime[not(@xsi:type) or replace(xs:string(@xsi:type), '(.*:)?(.+)', '$2') = 'TS']"/>
-        
+
         <!-- variable that contains all IVL_TS in all of the medicationAdministrationRequest's -->
         <xsl:variable name="IVL_TS" as="element()*" select="$mar-sorted//(hl7:effectiveTime | hl7:comp)[replace(xs:string(@xsi:type), '(.*:)?(.+)', '$2') = 'IVL_TS']"/>
-        
+
         <!-- toedieningsafspraak -->
         <xsl:for-each select="$current-dispense-event">
             <toedieningsafspraak>
@@ -204,7 +204,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:comment>Found more then one instruction for eenmalig gebruik in dispense event with id <xsl:value-of select="$current-dispense-event/hl7:id/@extension"/>. Not supported to convert this into structured information for gebruiksperiode-start</xsl:comment>
                             </xsl:otherwise>
                         </xsl:choose>
-                        
+
                         <!-- alleen tijds_duur output bij 1 MAR die een width heeft, 
                             of als alle MAR's dezelfde width én dezelfde startdatum (of absentie daarvan) hebben. 
                             Bij meerdere MAR's met verschillende startdatum berekenen we indien mogelijk de einddatum -->
@@ -233,7 +233,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:if>
                             </xsl:when>
                         </xsl:choose>
-                        
+
                         <!-- gebruiksperiode-eind -->
                         <!-- in 6.12 kun je een conclusie trekken over gebruiksperiode-eind, als álle MARs een IVL_TS/high/@value hebben óf allemaal een start en een width-->
                         <!--  zonder startdatum 'zweven' de periodes en kun je geen uitspraak doen over totale gebruiksduur-->
@@ -294,10 +294,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:if>
-                
+
                 <!-- geannuleerd indicator en stoptype wordt niet ondersteund in 6.12, geen output hiervoor-->
                 <!-- verstrekker -->
-                <xsl:for-each select="hl7:responsibleParty/hl7:assignedCareProvider/hl7:representedOrganization">
+                <xsl:variable name="hl7Verstrekker" as="element()*">
+                    <xsl:choose>
+                        <!-- should be in hl7:responsibleParty -->
+                        <xsl:when test="hl7:responsibleParty/hl7:assignedCareProvider/hl7:representedOrganization">
+                            <xsl:sequence select="hl7:responsibleParty/hl7:assignedCareProvider/hl7:representedOrganization"/>
+                        </xsl:when>
+                        <!-- okay, sigh, we'll try to fall back on hl7:performer -->
+                        <xsl:when test="hl7:performer/hl7:assignedPerson/hl7:representedOrganization">
+                            <xsl:sequence select="hl7:performer/hl7:assignedPerson/hl7:representedOrganization"/>
+                        </xsl:when>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:for-each select="$hl7Verstrekker">
                     <verstrekker>
                         <xsl:call-template name="mp92-zorgaanbieder">
                             <xsl:with-param name="hl7CurrentOrganization" select="."/>
@@ -314,13 +326,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </geneesmiddel_bij_toedieningsafspraak>
                 </xsl:for-each>
-                
+
                 <xsl:apply-templates select="$current-dispense-event/hl7:product" mode="MP92">
                     <xsl:with-param name="effectiveTimes-eenmalig" select="$effectiveTimes-eenmalig"/>
                     <xsl:with-param name="hl7-current-comp" select="."/>
                     <xsl:with-param name="mar-sorted" select="$mar-sorted"/>
                 </xsl:apply-templates>
-                
+
                 <!-- 6.12 kent geen aanvullende informatie en toelichting in vrije tekst -->
                 <!--<aanvullende_informatie value="16" code="16" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2053" displayName="Melding lareb"/>
          <toelichting value="toelichting bij TA"/>-->
@@ -338,9 +350,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:otherwise>
                     </xsl:choose>
                 </relatie_medicatieafspraak>
-                
+
             </toedieningsafspraak>
         </xsl:for-each>
-    </xsl:template>    
+    </xsl:template>
+
     
 </xsl:stylesheet>

@@ -16,15 +16,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../2_hl7_mp_include.xsl"/>
     <xsl:import href="../../zib2020bbr/payload/ada2hl7_all-zibs.xsl"/>
 
-    <!-- these imports are needed to handle the FHIR Timing datatype in HL7v3 substanceAdministration -->
-    <xsl:import href="../../../util/mp-functions-fhir.xsl"/>
-    <xsl:import href="../../../ada_2_fhir/fhir/2_fhir_fhir_include.xsl"/>
-    <xsl:import href="../../../ada_2_fhir/zibs2017/payload/ext-zib-medication-repeat-period-cyclical-schedule-2.0.xsl"/>
-
     <xsl:param name="logLevel" select="$logINFO" as="xs:string"/>
     <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
     <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>
-
 
     <xd:doc>
         <xd:desc>Financiële indicatiecode</xd:desc>
@@ -245,7 +239,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </text>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:for-each select="gebruiksinstructie/omschrijving[.//(@value | @code)]">
+                        <xsl:for-each select="gebruiksinstructie/omschrijving[@value]">
                             <text mediaType="text/plain">
                                 <xsl:value-of select="@value"/>
                             </text>
@@ -1163,9 +1157,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
-
     <xd:doc>
         <xd:desc>MA volgende behandelaar</xd:desc>
+        <xd:param name="in">ada element to be handled</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9446_20221128115041">
         <xsl:param name="in" select="."/>
@@ -1204,33 +1198,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="../zorgaanbieder[@id = current()//zorgaanbieder[not(zorgaanbieder)]/@value]">
                     <scopingEntity>
                         <xsl:for-each select="(zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)">
-                        <!-- MP CDA Zorgaanbieder identificaties -->
-                        <xsl:call-template name="makeIIid"/>
-                    </xsl:for-each>
+                            <!-- MP CDA Zorgaanbieder identificaties -->
+                            <xsl:call-template name="makeIIid"/>
+                        </xsl:for-each>
 
-                    <xsl:for-each select="organisatie_type">
-                        <code>
-                            <xsl:call-template name="makeCodeAttribs"/>
-                        </code>
-                    </xsl:for-each>
+                        <xsl:for-each select="organisatie_type">
+                            <code>
+                                <xsl:call-template name="makeCodeAttribs"/>
+                            </code>
+                        </xsl:for-each>
 
-                    <xsl:for-each select="organisatie_naam[@value | @nullFlavor]">
-                        <desc>
-                            <xsl:choose>
-                                <xsl:when test="string-length(@value) gt 0">
-                                    <xsl:value-of select="@value"/>
-                                </xsl:when>
-                                <xsl:when test="@nullFlavor">
-                                    <xsl:attribute name="nullFlavor">
-                                        <xsl:value-of select="@nullFlavor"/>
-                                    </xsl:attribute>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:attribute name="nullFlavor">NI</xsl:attribute>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </desc>
-                    </xsl:for-each>
+                        <xsl:for-each select="organisatie_naam[@value | @nullFlavor]">
+                            <desc>
+                                <xsl:choose>
+                                    <xsl:when test="string-length(@value) gt 0">
+                                        <xsl:value-of select="@value"/>
+                                    </xsl:when>
+                                    <xsl:when test="@nullFlavor">
+                                        <xsl:attribute name="nullFlavor">
+                                            <xsl:value-of select="@nullFlavor"/>
+                                        </xsl:attribute>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:attribute name="nullFlavor">NI</xsl:attribute>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </desc>
+                        </xsl:for-each>
                     </scopingEntity>
                 </xsl:for-each>
 

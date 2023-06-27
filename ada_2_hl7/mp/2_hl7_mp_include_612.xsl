@@ -14,7 +14,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:util="urn:hl7:utilities" xmlns:nf="http://www.nictiz.nl/functions" xmlns:pharm="urn:ihe:pharm:medication" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="2_hl7_mp_include.xsl"/>
-    <xsl:import href="../zib2017bbr/payload/ada2hl7_all-zibs.xsl"/>
+    <!-- link to 2020 needed for 2_hl7_mp_include.xsl -->
+    <xsl:import href="../zib2020bbr/payload/ada2hl7_all-zibs.xsl"/>    
     <xsl:import href="../naw/2_hl7_naw_include.xsl"/>
     <xsl:output method="xml" indent="yes"/>
 
@@ -98,7 +99,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <!-- bij een niet-cyclisch schema met startdatum gebruik, en doseerduur in alle doseerinstructies de juiste startdatum berekenen, 
          de doseerduur gebruiken als gebruiksduur in deze MAR en de eventuele einddatum gebruik negeren -->
-        <xsl:variable name="gebruiksperiode-start-value">
+        <xsl:variable name="gebruiksperiode-start-value" as="xs:string?">
             <xsl:choose>
                 <xsl:when test="$niet-cyclisch-met-start and count($doseerinstructies) = count($doseerinstructies[./doseerduur])">
                     <xsl:value-of select="nf:calculate_Doseerinstructie_Startdate(xs:date(substring($gebruiksperiode-start/@value, 1, 10)), $dosering, $doseerinstructies)"/>
@@ -124,7 +125,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 
             </xsl:choose>
         </xsl:variable>
-        <xsl:variable name="gebruiksperiode-eind" select="$adaBouwsteen[not($niet-cyclisch-met-start)]/(gebruiksperiode_eind | gebruiksperiode/eind_datum_tijd)"/>
+        <xsl:variable name="gebruiksperiode-eind" select="$adaBouwsteen[not($niet-cyclisch-met-start)]/(gebruiksperiode_eind | gebruiksperiode/eind_datum_tijd)" as="element()*"/>
         <xsl:variable name="gebruiksperiode_exists" select="$gebruiksperiode-duur/@value or $gebruiksperiode-start/@value or $gebruiksperiode-eind/@value"/>
 
         <xsl:variable name="toedieningsschema" select="$dosering/toedieningsschema"/>
@@ -1268,15 +1269,15 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
     </xsl:template>
 
     <xd:doc>
-        <xd:desc> Usable Period MP 6.12 </xd:desc>
+        <xd:desc>Usable Period MP 6.12 </xd:desc>
         <xd:param name="begindatum">begindatum</xd:param>
         <xd:param name="duur">ada element for duur</xd:param>
         <xd:param name="einddatum">einddatum</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9019_20130521000000">
-        <xsl:param name="begindatum" select="./begindatum/@value"/>
+        <xsl:param name="begindatum" select="begindatum[@value]" as="xs:string?"/>
         <xsl:param name="duur" select="./duur" as="element()?"/>
-        <xsl:param name="einddatum" select="./einddatum/@value"/>
+        <xsl:param name="einddatum" select="einddatum[@value]"/>
 
         <!-- gebruiksduur kan in MP 9 dataset ook in uren, weken en jaren, maar moet in een 6.12 voorschrift altijd in dagen -->
         <!-- omrekenen dus -->
@@ -1284,7 +1285,8 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
         <!-- Item(s) :: begindatum -->
         <xsl:for-each select="$begindatum[. castable as xs:date or . castable as xs:dateTime]">
             <xsl:call-template name="makeTSValue">
-                <xsl:with-param name="inputValue" select="$begindatum"/>
+                <xsl:with-param name="inputValue" select="."/>
+                <xsl:with-param name="inputNullFlavor"/>
                 <xsl:with-param name="xsiType" select="''"/>
                 <xsl:with-param name="elemName">low</xsl:with-param>
                 <xsl:with-param name="precision">minute</xsl:with-param>
@@ -1300,9 +1302,9 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             </xsl:call-template>
         </xsl:for-each>
         <!-- Item(s) :: einddatum -->
-        <xsl:for-each select="$einddatum[. castable as xs:date or . castable as xs:dateTime]">
+        <xsl:for-each select="$einddatum/@value[. castable as xs:date or . castable as xs:dateTime]">
             <xsl:call-template name="makeTSValue">
-                <xsl:with-param name="inputValue" select="$einddatum"/>
+                <xsl:with-param name="inputValue" select="."/>
                 <xsl:with-param name="xsiType" select="''"/>
                 <xsl:with-param name="elemName">high</xsl:with-param>
                 <xsl:with-param name="precision">minute</xsl:with-param>
