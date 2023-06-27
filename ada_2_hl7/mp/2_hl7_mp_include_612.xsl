@@ -1275,9 +1275,9 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
         <xd:param name="einddatum">einddatum</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9019_20130521000000">
-        <xsl:param name="begindatum" select="begindatum[@value]" as="xs:string?"/>
+        <xsl:param name="begindatum" select="begindatum/@value" as="xs:string*"/>
         <xsl:param name="duur" select="./duur" as="element()?"/>
-        <xsl:param name="einddatum" select="einddatum[@value]"/>
+        <xsl:param name="einddatum" select="einddatum/@value" as="xs:string*"/>
 
         <!-- gebruiksduur kan in MP 9 dataset ook in uren, weken en jaren, maar moet in een 6.12 voorschrift altijd in dagen -->
         <!-- omrekenen dus -->
@@ -1302,16 +1302,16 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             </xsl:call-template>
         </xsl:for-each>
         <!-- Item(s) :: einddatum -->
-        <xsl:for-each select="$einddatum/@value[. castable as xs:date or . castable as xs:dateTime]">
+        <xsl:for-each select="$einddatum[. castable as xs:date or . castable as xs:dateTime]">
             <xsl:call-template name="makeTSValue">
                 <xsl:with-param name="inputValue" select="."/>
+                <xsl:with-param name="inputNullFlavor"/>
                 <xsl:with-param name="xsiType" select="''"/>
                 <xsl:with-param name="elemName">high</xsl:with-param>
                 <xsl:with-param name="precision">minute</xsl:with-param>
             </xsl:call-template>
         </xsl:for-each>
     </xsl:template>
-
 
     <xd:doc>
         <xd:desc> Material Code </xd:desc>
