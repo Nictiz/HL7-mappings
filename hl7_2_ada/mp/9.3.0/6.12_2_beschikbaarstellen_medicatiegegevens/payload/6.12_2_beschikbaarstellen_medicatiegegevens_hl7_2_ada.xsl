@@ -121,11 +121,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:when>
                     <xsl:when test="$HPK">
                         <xsl:attribute name="extension" select="$HPK/@code"/>
-                        <xsl:attribute name="root" select="$genericMBHidHPK"/>                        
+                        <xsl:attribute name="root" select="$genericMBHidHPK"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:attribute name="extension" select="$current-dispense-event/hl7:id/@extension"/>
-                        <xsl:attribute name="root" select="concat($concatOidMBH ,$current-dispense-event/hl7:id/@root)"/>
+                        <xsl:attribute name="root" select="concat($concatOidMBH, $current-dispense-event/hl7:id/@root)"/>
                     </xsl:otherwise>
                 </xsl:choose>
             </identificatie>
@@ -169,7 +169,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- identificatie -->
                 <xsl:if test="$transaction = 'beschikbaarstellen_medicatiegegevens'">
                     <!-- identificatie -->
-                    <xsl:comment>The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.</xsl:comment>
+                    <xsl:if test="$logLevel = $logDEBUG">
+                        <xsl:comment>The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.</xsl:comment>
+                    </xsl:if>
                     <xsl:for-each select="hl7:id[@extension]">
                         <identificatie root="{concat($concatOidTA, @root)}" value="{@extension}"/>
                     </xsl:for-each>
@@ -201,13 +203,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:if>
                         <xsl:choose>
                             <xsl:when test="count($effectiveTimes-eenmalig[not(@nullFlavor)]) = 1">
-                                <xsl:comment>gebruiksperiode-start bij eenmalig gebruik</xsl:comment>
+                                <xsl:if test="$logLevel = $logDEBUG">
+                                    <xsl:comment>gebruiksperiode-start bij eenmalig gebruik</xsl:comment>
+                                </xsl:if>
                                 <xsl:call-template name="mp9-gebruiksperiode-start">
                                     <xsl:with-param name="inputValue" select="$effectiveTimes-eenmalig/@value"/>
                                 </xsl:call-template>
                             </xsl:when>
                             <xsl:when test="count($effectiveTimes-eenmalig[@nullFlavor]) = 1">
-                                <xsl:comment>gebruiksperiode-start nullFlavor</xsl:comment>
+                                <xsl:if test="$logLevel = $logDEBUG">
+                                    <xsl:comment>gebruiksperiode-start nullFlavor</xsl:comment>
+                                </xsl:if>
                                 <xsl:call-template name="mp9-gebruiksperiode-start">
                                     <xsl:with-param name="nullFlavor" select="$effectiveTimes-eenmalig/@nullFlavor"/>
                                 </xsl:call-template>
@@ -218,7 +224,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="level" select="$logWARN"/>
                                     <xsl:with-param name="msg">Found more then one instruction for eenmalig gebruik. Not supported to convert this into structured information for gebruiksperiode-start</xsl:with-param>
                                 </xsl:call-template>
-                                <xsl:comment>Found more then one instruction for eenmalig gebruik in dispense event with id <xsl:value-of select="$current-dispense-event/hl7:id/@extension"/>. Not supported to convert this into structured information for gebruiksperiode-start</xsl:comment>
+                                <xsl:if test="$logLevel = $logDEBUG">
+                                    <xsl:comment>Found more then one instruction for eenmalig gebruik in dispense event with id <xsl:value-of select="$current-dispense-event/hl7:id/@extension"/>. Not supported to convert this into structured information for gebruiksperiode-start</xsl:comment>
+                                </xsl:if>
                             </xsl:otherwise>
                         </xsl:choose>
 
@@ -371,6 +379,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </toedieningsafspraak>
         </xsl:for-each>
     </xsl:template>
-
 
 </xsl:stylesheet>
