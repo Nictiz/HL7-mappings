@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schematron_closed_warnings/mp-medverslstresp.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"?>
+<!--Generated from ada instance with title: "Generated from HL7v3 verstrekkingenlijst 6.12 xml" and id: "QURX_EX990113NL_02c_999911715.xml".-->
+<QURX_IN990113NL xmlns:pharm="urn:ihe:pharm:medication"
+                 xmlns="urn:hl7-org:v3"
+                 xmlns:hl7="urn:hl7-org:v3"
+                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20200122/mp-xml-20200122T161947/schemas/QURX_IN990113NL.xsd">
+   <id extension="TOBEGENERATED" root="2.16.840.1.113883.2.4.6.6.1.1"/>
+   <creationTime value="20230609164116"/>
+   <versionCode code="NICTIZEd2005-Okt"/>
+   <interactionId extension="QURX_IN990113NL" root="2.16.840.1.113883.1.6"/>
+   <profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
+   <processingCode code="P"/>
+   <processingModeCode code="T"/>
+   <acceptAckCode code="NE"/>
+   <acknowledgement typeCode="AA">
+      <targetMessage>
+         <id extension="0123456789" root="2.16.528.1.1007.3.3.1234567.1"/>
+      </targetMessage>
+   </acknowledgement>
+   <receiver>
+      <device>
+         <id extension="01234567" root="2.16.840.1.113883.2.4.6.6"/>
+      </device>
+   </receiver>
+   <sender>
+      <device>
+         <id extension="1" root="2.16.840.1.113883.2.4.6.6"/>
+      </device>
+   </sender>
+   <ControlActProcess moodCode="EVN">
+      <authorOrPerformer typeCode="AUT">
+         <participant>
+            <AssignedDevice>
+               <id extension="009876543" root="2.16.528.1.1007.3.2"/>
+               <id extension="00765432" root="2.16.840.1.113883.2.4.6.6"/>
+               <Organization>
+                  <id extension="01234567" root="2.16.528.1.1007.3.3"/>
+                  <name>Apotheek De Gulle Gaper</name>
+               </Organization>
+            </AssignedDevice>
+         </participant>
+      </authorOrPerformer>
+      <subject>
+         <MedicationDispenseList>
+            <code code="MEDLIST" codeSystem="2.16.840.1.113883.5.4"/>
+            <subject>
+               <Patient>
+                  <id extension="999911715" root="2.16.840.1.113883.2.4.6.3"/>
+                  <addr use="HP">
+                     <streetName>Knolweg</streetName>
+                     <houseNumber>1001</houseNumber>
+                     <postalCode>9999 XX</postalCode>
+                     <city>Stitswerd</city>
+                  </addr>
+                  <statusCode code="active"/>
+                  <Person>
+                     <name>
+                        <given qualifier="CL">Hanneke</given>
+                        <family qualifier="BR">XXX_Bekker</family>
+                     </name>
+                     <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1"/>
+                     <birthTime value="19640802"/>
+                  </Person>
+               </Patient>
+            </subject>
+            <component>
+               <medicationDispenseEvent>
+                  <id extension="14606290-2dbd-11e8-b566-0800200c9a66"
+                      root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="20170306"/>
+                  <quantity nullFlavor="NA"/>
+                  <performer>
+                     <assignedPerson>
+                        <id nullFlavor="MSK"/>
+                     </assignedPerson>
+                  </performer>
+                  <product>
+                     <dispensedMedication>
+                        <MedicationKind classCode="MMAT" determinerCode="KIND">
+                           <code code="15401367"
+                                 codeSystem="2.16.840.1.113883.2.4.4.8"
+                                 displayName="PARACETAMOL PCH TABLET 500MG"
+                                 codeSystemName="G-Standaard Artikelnummer"/>
+                        </MedicationKind>
+                        <directTargetOf typeCode="DIR">
+                           <prescription>
+                              <id extension="31204f30-2dbd-11e8-b566-0800200c9a66"
+                                  root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
+                              <statusCode nullFlavor="UNK"/>
+                           </prescription>
+                        </directTargetOf>
+                        <therapeuticAgentOf>
+                           <medicationAdministrationRequest classCode="SBADM" moodCode="RQO">
+                              <text mediaType="text/plain">Zo nodig bij pijn, maximaal 6 stuks per dag</text>
+                              <statusCode code="active"/>
+                              <maxDoseQuantity>
+                                 <numerator xsi:type="PQ" value="6" unit="1">
+                                    <translation value="6"
+                                                 code="245"
+                                                 displayName="stuk"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+                                 </numerator>
+                                 <denominator xsi:type="PQ" value="1" unit="d"/>
+                              </maxDoseQuantity>
+                              <precondition>
+                                 <observationEventCriterion>
+                                    <code code="1140"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          displayName="zo nodig bij pijn"/>
+                                 </observationEventCriterion>
+                              </precondition>
+                           </medicationAdministrationRequest>
+                        </therapeuticAgentOf>
+                     </dispensedMedication>
+                  </product>
+                  <responsibleParty>
+                     <assignedCareProvider>
+                        <id nullFlavor="NI"/>
+                        <code code="17.000"
+                              codeSystem="2.16.840.1.113883.2.4.15.111"
+                              displayName="Apotheker"/>
+                        <representedOrganization>
+                           <id extension="01234567" root="2.16.528.1.1007.3.3"/>
+                        </representedOrganization>
+                     </assignedCareProvider>
+                  </responsibleParty>
+               </medicationDispenseEvent>
+            </component>
+            <component>
+               <medicationDispenseEvent>
+                  <id extension="13438b70-2dbe-11e8-b566-0800200c9a66"
+                      root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="20170313"/>
+                  <quantity nullFlavor="NA"/>
+                  <performer>
+                     <assignedPerson>
+                        <id nullFlavor="MSK"/>
+                     </assignedPerson>
+                  </performer>
+                  <product>
+                     <dispensedMedication>
+                        <MedicationKind classCode="MMAT" determinerCode="KIND">
+                           <code code="15401367"
+                                 codeSystem="2.16.840.1.113883.2.4.4.8"
+                                 displayName="PARACETAMOL PCH TABLET 500MG"
+                                 codeSystemName="G-Standaard Artikelnummer"/>
+                        </MedicationKind>
+                        <directTargetOf typeCode="DIR">
+                           <prescription>
+                              <id extension="46f90080-2dbe-11e8-b566-0800200c9a66"
+                                  root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
+                              <statusCode nullFlavor="UNK"/>
+                           </prescription>
+                        </directTargetOf>
+                        <therapeuticAgentOf>
+                           <medicationAdministrationRequest classCode="SBADM" moodCode="RQO">
+                              <text mediaType="text/plain">Gedurende 7 dagen, 1 keer per 4 uur 1 stuk</text>
+                              <statusCode code="active"/>
+                              <effectiveTime xsi:type="SXPR_TS">
+                                 <comp xsi:type="IVL_TS">
+                                    <width value="7" unit="d"/>
+                                 </comp>
+                                 <comp xsi:type="PIVL_TS" operator="A">
+                                    <period value="4" unit="h"/>
+                                 </comp>
+                              </effectiveTime>
+                              <doseQuantity>
+                                 <center value="1" unit="1">
+                                    <translation value="1"
+                                                 code="245"
+                                                 displayName="stuk"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+                                 </center>
+                              </doseQuantity>
+                           </medicationAdministrationRequest>
+                        </therapeuticAgentOf>
+                     </dispensedMedication>
+                  </product>
+                  <responsibleParty>
+                     <assignedCareProvider>
+                        <id nullFlavor="NI"/>
+                        <code code="17.000"
+                              codeSystem="2.16.840.1.113883.2.4.15.111"
+                              displayName="Apotheker"/>
+                        <representedOrganization>
+                           <id extension="01234567" root="2.16.528.1.1007.3.3"/>
+                        </representedOrganization>
+                     </assignedCareProvider>
+                  </responsibleParty>
+               </medicationDispenseEvent>
+            </component>
+            <component>
+               <medicationDispenseEvent>
+                  <id extension="a083ca80-5772-11e8-b566-0800200c9a66"
+                      root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="20180313"/>
+                  <quantity nullFlavor="NA"/>
+                  <performer>
+                     <assignedPerson>
+                        <id nullFlavor="MSK"/>
+                     </assignedPerson>
+                  </performer>
+                  <product>
+                     <dispensedMedication>
+                        <MedicationKind classCode="MMAT" determinerCode="KIND">
+                           <code nullFlavor="OTH">
+                              <originalText>Ureum 10% in eucerine cum aqua</originalText>
+                           </code>
+                           <desc>Titel: Ureum 10% in eucerine cum aqua
+                                        Regel: Ureum 10 gr 
+                                        Regel: Eucerine met water creme FNA ad 100g.
+                                    </desc>
+                           <activeIngredient>
+                              <quantity>
+                                 <numerator xsi:type="PQ" value="10" unit="g">
+                                    <translation value="10"
+                                                 code="215"
+                                                 displayName="gram"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                                 </numerator>
+                                 <denominator xsi:type="PQ" value="100" unit="g">
+                                    <translation value="100"
+                                                 code="215"
+                                                 displayName="gram"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                                 </denominator>
+                              </quantity>
+                              <activeIngredientMaterialKind>
+                                 <code code="15219127"
+                                       codeSystem="2.16.840.1.113883.2.4.4.8"
+                                       displayName="UREUM"/>
+                              </activeIngredientMaterialKind>
+                           </activeIngredient>
+                           <activeIngredient>
+                              <quantity>
+                                 <numerator xsi:type="PQ" nullFlavor="QS"/>
+                                 <denominator xsi:type="PQ" value="100" unit="g">
+                                    <translation value="100"
+                                                 code="215"
+                                                 displayName="gram"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                                 codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                                 </denominator>
+                              </quantity>
+                              <activeIngredientMaterialKind>
+                                 <code code="14740877"
+                                       codeSystem="2.16.840.1.113883.2.4.4.8"
+                                       displayName="EUCERINE MET WATER FAGRON"/>
+                              </activeIngredientMaterialKind>
+                           </activeIngredient>
+                        </MedicationKind>
+                        <directTargetOf typeCode="DIR">
+                           <prescription>
+                              <id extension="0000054645464" root="2.16.840.1.113883.2.4.6.1.10652.1.9"/>
+                              <statusCode nullFlavor="UNK"/>
+                           </prescription>
+                        </directTargetOf>
+                        <therapeuticAgentOf>
+                           <medicationAdministrationRequest classCode="SBADM" moodCode="RQO">
+                              <text mediaType="text/plain">Zo nodig</text>
+                              <statusCode code="active"/>
+                              <precondition>
+                                 <observationEventCriterion>
+                                    <code code="1137"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          displayName="zo nodig"/>
+                                 </observationEventCriterion>
+                              </precondition>
+                           </medicationAdministrationRequest>
+                        </therapeuticAgentOf>
+                     </dispensedMedication>
+                  </product>
+                  <responsibleParty>
+                     <assignedCareProvider>
+                        <id nullFlavor="NI"/>
+                        <code code="17.000"
+                              codeSystem="2.16.840.1.113883.2.4.15.111"
+                              displayName="Apotheker"/>
+                        <representedOrganization>
+                           <id extension="01234567" root="2.16.528.1.1007.3.3"/>
+                        </representedOrganization>
+                     </assignedCareProvider>
+                  </responsibleParty>
+               </medicationDispenseEvent>
+            </component>
+         </MedicationDispenseList>
+      </subject>
+      <queryAck>
+         <queryId extension="TOBEGENERATED" root="1.2.3.999"/>
+         <queryResponseCode code="OK"/>
+         <resultTotalQuantity value="1"/>
+         <resultCurrentQuantity value="1"/>
+         <resultRemainingQuantity value="0"/>
+      </queryAck>
+   </ControlActProcess>
+</QURX_IN990113NL>
