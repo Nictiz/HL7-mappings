@@ -13,8 +13,11 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <!-- Needed for use cases that do not import fhir package, such as the mp 907 use cases, do not comment out this import even though it may cause double import warnings -->
-    <xsl:import href="../../util/mp-functions.xsl"/>
+    <!-- these imports are needed to handle the FHIR Timing datatype in HL7v3 substanceAdministration -->
+    <xsl:import href="../../util/mp-functions-fhir.xsl"/>
+
+    <xsl:import href="../../ada_2_fhir/fhir/2_fhir_fhir_include.xsl"/>
+    <xsl:import href="../../ada_2_fhir/zibs2017/payload/ext-zib-medication-repeat-period-cyclical-schedule-2.0.xsl"/>
 
     <xd:doc scope="stylesheet">
         <xd:desc>
@@ -535,13 +538,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>maxDoseQuantity</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9064_20160601000000">
-        <numerator xsi:type="PQ">
+        <numerator>
             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9164_20170118000000_2">
                 <xsl:with-param name="Gstd_value" select="aantal/@value"/>
                 <xsl:with-param name="Gstd_unit" select="eenheid"/>
             </xsl:call-template>
         </numerator>
-        <denominator xsi:type="PQ">
+        <denominator>
             <xsl:attribute name="value" select="./tijdseenheid/@value"/>
             <xsl:attribute name="unit" select="nf:convertTime_ADA_unit2UCUM(./tijdseenheid/@unit)"/>
         </denominator>
