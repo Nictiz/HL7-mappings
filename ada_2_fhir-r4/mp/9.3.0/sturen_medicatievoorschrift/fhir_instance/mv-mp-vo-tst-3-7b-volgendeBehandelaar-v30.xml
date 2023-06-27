@@ -64,7 +64,7 @@
             </subject>
             <authoredOn value="${DATE, T, D, +0}T13:00:00+02:00"/>
             <requester>
-               <reference value="urn:uuid:2df71558-6b6c-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:ea3fd558-6ab1-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Jan van Harten, Medisch specialisten, chirurgie, Ziekenhuis het Gele Hart"/>
             </requester>
@@ -173,19 +173,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2df71558-6b6c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:ea3fd558-6ab1-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:9eb0d42e-6b29-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:dbada42e-6af2-11ec-0000-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Jan van Harten"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:de05b9d8-6acf-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:f07009d8-6b48-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Ziekenhuis het Gele Hart"/>
             </organization>
@@ -197,6 +197,11 @@
                   <display value="Medisch specialisten, chirurgie"/>
                </coding>
             </specialty>
+            <telecom>
+               <system value="phone"/>
+               <value value="1634534321"/>
+               <use value="work"/>
+            </telecom>
          </PractitionerRole>
       </resource>
       <request>
@@ -205,7 +210,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9eb0d42e-6b29-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:dbada42e-6af2-11ec-0000-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -232,6 +237,11 @@
                   </extension>
                </given>
             </name>
+            <telecom>
+               <system value="phone"/>
+               <value value="1634534321"/>
+               <use value="work"/>
+            </telecom>
          </Practitioner>
       </resource>
       <request>
@@ -240,7 +250,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:de05b9d8-6acf-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:f07009d8-6b48-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -252,10 +262,9 @@
             </identifier>
             <type>
                <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
-                  <version value="2020-10-23T00:00:00"/>
-                  <code value="0601"/>
-                  <display value="Ziekenhuizen, algemene ziekenhuizen"/>
+                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+                  <code value="V4"/>
+                  <display value="Ziekenhuis"/>
                </coding>
             </type>
             <name value="Ziekenhuis het Gele Hart"/>

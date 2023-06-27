@@ -1427,7 +1427,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:be0a2b3e-6b2a-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:1d05d19b-6adc-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -1729,6 +1729,73 @@
       </request>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:2df71558-6b6c-11ec-0000-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+            </meta>
+            <practitioner>
+               <reference value="urn:uuid:9eb0d42e-6b29-11ec-0000-020000000000"/>
+               <type value="Practitioner"/>
+               <display value="Healthcare professional (person), Jan van Harten"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:uuid:f07009d8-6b48-11ec-0000-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Ziekenhuis het Gele Hart"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2020-10-23T00:00:00"/>
+                  <code value="0303"/>
+                  <display value="Medisch specialisten, chirurgie"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:9eb0d42e-6b29-11ec-0000-020000000000"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+               <value value="000002222"/>
+            </identifier>
+            <name>
+               <use value="official"/>
+               <text value="Jan van Harten"/>
+               <family value="van Harten">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Harten"/>
+                  </extension>
+               </family>
+               <given value="Jan">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Practitioner"/>
+      </request>
+   </entry>
+   <entry>
       <fullUrl value="urn:uuid:4560482e-6aec-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
@@ -1796,73 +1863,6 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2df71558-6b6c-11ec-0000-020000000000"/>
-      <resource>
-         <PractitionerRole>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
-            </meta>
-            <practitioner>
-               <reference value="urn:uuid:9eb0d42e-6b29-11ec-0000-020000000000"/>
-               <type value="Practitioner"/>
-               <display value="Healthcare professional (person), Jan van Harten"/>
-            </practitioner>
-            <organization>
-               <reference value="urn:uuid:de05b9d8-6acf-11ec-0000-020000000000"/>
-               <type value="Organization"/>
-               <display value="Healthcare provider (organization), Ziekenhuis het Gele Hart"/>
-            </organization>
-            <specialty>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
-                  <version value="2020-10-23T00:00:00"/>
-                  <code value="0303"/>
-                  <display value="Medisch specialisten, chirurgie"/>
-               </coding>
-            </specialty>
-         </PractitionerRole>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="PractitionerRole"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:9eb0d42e-6b29-11ec-0000-020000000000"/>
-      <resource>
-         <Practitioner>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
-            </meta>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
-               <value value="000002222"/>
-            </identifier>
-            <name>
-               <use value="official"/>
-               <text value="Jan van Harten"/>
-               <family value="van Harten">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
-                     <valueString value="van"/>
-                  </extension>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                     <valueString value="Harten"/>
-                  </extension>
-               </family>
-               <given value="Jan">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                     <valueCode value="BR"/>
-                  </extension>
-               </given>
-            </name>
-         </Practitioner>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Practitioner"/>
-      </request>
-   </entry>
-   <entry>
       <fullUrl value="urn:uuid:7fa869d8-6b44-11ec-0000-020000000000"/>
       <resource>
          <Organization>
@@ -1904,7 +1904,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:de05b9d8-6acf-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:f07009d8-6b48-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -1916,10 +1916,9 @@
             </identifier>
             <type>
                <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
-                  <version value="2020-10-23T00:00:00"/>
-                  <code value="0601"/>
-                  <display value="Ziekenhuizen, algemene ziekenhuizen"/>
+                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+                  <code value="V4"/>
+                  <display value="Ziekenhuis"/>
                </coding>
             </type>
             <name value="Ziekenhuis het Gele Hart"/>
@@ -1950,6 +1949,34 @@
       <request>
          <method value="POST"/>
          <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:661c3b1d-6b30-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="42293"/>
+                  <display value="FERROFUMARAAT TABLET 200MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="15342"/>
+                  <display value="FERROFUMARAAT TABLET 200MG"/>
+               </coding>
+               <text value="FERROFUMARAAT TABLET 200MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
       </request>
    </entry>
    <entry>
@@ -2028,34 +2055,6 @@
                   <display value="FENETICILLINE 500MG CAPSULE"/>
                </coding>
                <text value="FENETICILLINE CAPSULE 500MG"/>
-            </code>
-         </Medication>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:661c3b1d-6b30-11ec-0000-020000000000"/>
-      <resource>
-         <Medication>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="42293"/>
-                  <display value="FERROFUMARAAT TABLET 200MG"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="15342"/>
-                  <display value="FERROFUMARAAT TABLET 200MG"/>
-               </coding>
-               <text value="FERROFUMARAAT TABLET 200MG"/>
             </code>
          </Medication>
       </resource>
