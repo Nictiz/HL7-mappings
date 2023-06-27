@@ -1,56 +1,98 @@
-<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../sturen_voorstel_verstrekkingsverzoek/ada_schemas/ada_sturen_voorstel_verstrekkingsverzoek.xsd">
-   <meta status="new" created-by="arianne" last-update-by="arianne" creation-date="2023-01-30T15:54:00.774+01:00" last-update-date="2023-01-30T15:54:00.774+01:00"/>
+<adaxml xsi:noNamespaceSchemaLocation="../../sturen_voorstel_verstrekkingsverzoek/ada_schemas/ada_sturen_voorstel_verstrekkingsverzoek.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <meta status="new"
+         created-by="arianne"
+         last-update-by="arianne"
+         creation-date="2023-01-30T15:54:00.774+01:00"
+         last-update-date="2023-01-30T15:54:00.774+01:00"/>
    <data>
-      <sturen_voorstel_verstrekkingsverzoek app="mp-mp93" shortName="sturen_voorstel_verstrekkingsverzoek" formName="sturen_voorstel_verstrekkingsverzoek" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.401" transactionEffectiveDate="2022-06-30T00:00:00" versionDate="" prefix="mp-" language="nl-NL" title="Example instance" id="vvv-example-93-1-v30">
+      <sturen_voorstel_verstrekkingsverzoek app="mp-mp93"
+                                            shortName="sturen_voorstel_verstrekkingsverzoek"
+                                            formName="sturen_voorstel_verstrekkingsverzoek"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.401"
+                                            transactionEffectiveDate="2022-06-30T00:00:00"
+                                            versionDate=""
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="Example instance"
+                                            id="vvv-example-93-1-v30">
          <patient comment="">
             <naamgegevens comment="">
                <initialen value="S. "/>
-               <naamgebruik value="1" code="NL1" codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4" displayName="Eigen geslachtsnaam"/>
+               <naamgebruik value="1"
+                            code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
                <geslachtsnaam comment="">
                   <achternaam value="XXX_Jankie"/>
                </geslachtsnaam>
             </naamgegevens>
-            <identificatienummer value="999910437" root="2.16.840.1.113883.2.4.6.3"/>
-            <geboortedatum value="1954-05-08" datatype="datetime"/>
-            <geslacht value="3" code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            <identificatienummer value="999910437"
+                                 root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1954-05-08"
+                           datatype="datetime"/>
+            <geslacht value="3"
+                      code="F"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Vrouw"/>
          </patient>
          <medicamenteuze_behandeling id="MBH_920_vvv-example-1">
             <verstrekkingsverzoek comment="">
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product datatype="reference" value="HPK-2214350-XARELTO"/>
+                  <farmaceutisch_product datatype="reference"
+                                         value="HPK-2214350-XARELTO"/>
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid comment="">
                   <aantal value="21"/>
-                  <eenheid code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" codeSystemName="G-Standaard thesaurus basiseenheden" displayName="stuk"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
                </te_verstrekken_hoeveelheid>
                <beoogd_verstrekker>
-                  <zorgaanbieder datatype="reference" value="URA-01236578-GulleGaper"/>
+                  <zorgaanbieder datatype="reference"
+                                 value="URA-01236578-GulleGaper"/>
                </beoogd_verstrekker>
                <toelichting value="toelichting bij verstrekkingsverzoek in vrije tekst"/>
                <relatie_medicatieafspraak comment="">
-                  <identificatie value="MBH_920_VVV_Test1_MA" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.293"/>
+                  <identificatie value="MBH_920_VVV_Test1_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.293"/>
                </relatie_medicatieafspraak>
             </verstrekkingsverzoek>
          </medicamenteuze_behandeling>
          <bouwstenen>
             <farmaceutisch_product id="HPK-2214350-XARELTO">
-               <product_code codeSystem="2.16.840.1.113883.2.4.4.7" codeSystemName="G-Standaard HPK" code="2214350" displayName="XARELTO TABLET FILMOMHULD 20MG"/>
-               <product_code codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="G-Standaard PRK" code="100153" displayName="RIVAROXABAN TABLET 20MG"/>
-               <product_code codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="G-Standaard GPK" code="138363" displayName="RIVAROXABAN TABLET 20MG"/>
+               <product_code codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             code="2214350"
+                             displayName="XARELTO TABLET FILMOMHULD 20MG"/>
+               <product_code codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             code="100153"
+                             displayName="RIVAROXABAN TABLET 20MG"/>
+               <product_code codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             code="138363"
+                             displayName="RIVAROXABAN TABLET 20MG"/>
             </farmaceutisch_product>
             <zorgaanbieder id="URA-01236578-GulleGaper">
-               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <zorgaanbieder_identificatienummer value="01236578"
+                                                  root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
             </zorgaanbieder>
          </bouwstenen>
          <voorstel_gegevens>
             <voorstel>
-               <identificatie value="Voorstel_id_123456" root="2.16.840.1.113883.2.4.3.11.999.77.528.1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.528"/>
+               <identificatie value="Voorstel_id_123456"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.528.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.528"/>
                <voorstel_datum value="T{11:59:00}"/>
                <auteur>
                   <auteur_is_patient value="true"/>
                </auteur>
-               <medicamenteuze_behandeling value="MBH_920_vvv-example-1" conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.534"/>
+               <medicamenteuze_behandeling value="MBH_920_vvv-example-1"
+                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.534"/>
                <toelichting value="de hond heeft de pillen opgegeten"/>
             </voorstel>
          </voorstel_gegevens>

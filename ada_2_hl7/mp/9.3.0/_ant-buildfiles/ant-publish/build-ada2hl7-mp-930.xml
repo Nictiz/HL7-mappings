@@ -307,10 +307,6 @@
         <delete>
             <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="*.xml"/>
         </delete>
-        <mkdir dir="${build.dir}/xml-voorbeelden/cda_instance"/>
-        <delete>
-            <fileset dir="${build.dir}/xml-voorbeelden/cda_instance" includes="*.xml"/>
-        </delete>
 
         <!-- medicatievoorschrift -->
         <sequential>
@@ -424,22 +420,7 @@
             </xslt>
         </sequential>
 
-        <!-- everything also to CDA-->
-        <sequential>
-            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="*.xml"/>
-            <echo/>
-            <echo>${echo.label} ${build.dir}/../${organizer.to.cda.xsl} input dir ${build.dir}/xml-voorbeelden/hl7_instance</echo>
-            <xslt force="true" style="${build.dir}/../${organizer.to.cda.xsl}" destdir="${build.dir}/xml-voorbeelden/cda_instance" extension=".xml" useimplicitfileset="false">
-                <fileset refid="inputfilesMP"/>
-                <param name="generateInstructionText" expression="true"/>
-                <param name="dateT" expression="${date.T}" if="date.T"/>
-                <param name="schematronRef" expression="${gen.schematron.ref}" if="gen.schematron.ref"/>
-                <factory name="${xsl.saxon.class}"/>
-                <classpath location="${xsl.saxon}"/>
-            </xslt>
-        </sequential>
-
-        <!-- bouwstenen transactions, we don't want cda for those -->
+        <!-- bouwstenen transactions -->
         <sequential>
             <echo/>
             <echo>${echo.label} ${build.dir}/xml-voorbeelden/bouwstenen_transacties/bouwstenen_transacties_org.xsl input files in ${build.dir}/xml-voorbeelden/ada_instance</echo>
@@ -537,12 +518,6 @@
         <antcall target="schematronresults_hl7_930_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_xml_voorbeelden.xml"/>
             <param name="input.dir" value="../${is.abbreviation}/${is.version}/xml-voorbeelden/validate_hl7_instance"/>
-            <param name="input.fileset" value="*.xml"/>
-        </antcall>
-        <!-- xml voorbeelden cda -->
-        <antcall target="schematronresults_hl7_930_sub">
-            <param name="result.xml" value="${build.dir}/validate/hl7_xml_voorbeelden.xml"/>
-            <param name="input.dir" value="../${is.abbreviation}/${is.version}/xml-voorbeelden/validate_cda_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
 
@@ -658,47 +633,9 @@
             <classpath location="${xsl.saxon}"/>
         </xslt>
 
-        <echo>${echo.label} xml-voorbeelden cda_instance</echo>
-        <xslt force="true" style="${validate.dir}/mp-mp93_mgb.xsl" destdir="${build.dir}/xml-voorbeelden/validate_cda_instance" extension=".xml" useImplicitFileset="false">
-            <fileset dir="${build.dir}/xml-voorbeelden/cda_instance" includes="mg-*.xml"/>
-            <factory name="${xsl.saxon.class}"/>
-            <classpath location="${xsl.saxon}"/>
-        </xslt>
-
-        <xslt force="true" style="${validate.dir}/mp-mp93_av.xsl" destdir="${build.dir}/xml-voorbeelden/validate_cda_instance" extension=".xml" useImplicitFileset="false">
-            <fileset dir="${build.dir}/xml-voorbeelden/cda_instance" includes="av-*.xml"/>
-            <factory name="${xsl.saxon.class}"/>
-            <classpath location="${xsl.saxon}"/>
-        </xslt>
-        <xslt force="true" style="${validate.dir}/mp-mp93_avvv.xsl" destdir="${build.dir}/xml-voorbeelden/validate_cda_instance" extension=".xml" useImplicitFileset="false">
-            <fileset dir="${build.dir}/xml-voorbeelden/cda_instance" includes="avvv-*.xml"/>
-            <factory name="${xsl.saxon.class}"/>
-            <classpath location="${xsl.saxon}"/>
-        </xslt>
-        <xslt force="true" style="${validate.dir}/mp-mp93_vos.xsl" destdir="${build.dir}/xml-voorbeelden/validate_cda_instance" extension=".xml" useImplicitFileset="false">
-            <fileset dir="${build.dir}/xml-voorbeelden/cda_instance" includes="mv-*.xml"/>
-            <factory name="${xsl.saxon.class}"/>
-            <classpath location="${xsl.saxon}"/>
-        </xslt>
-        <xslt force="true" style="${validate.dir}/mp-mp93_vma.xsl" destdir="${build.dir}/xml-voorbeelden/validate_cda_instance" extension=".xml" useImplicitFileset="false">
-            <fileset dir="${build.dir}/xml-voorbeelden/cda_instance" includes="vma-*.xml"/>
-            <factory name="${xsl.saxon.class}"/>
-            <classpath location="${xsl.saxon}"/>
-        </xslt>
-        <xslt force="true" style="${validate.dir}/mp-mp93_avma.xsl" destdir="${build.dir}/xml-voorbeelden/validate_cda_instance" extension=".xml" useImplicitFileset="false">
-            <fileset dir="${build.dir}/xml-voorbeelden/cda_instance" includes="avma-*.xml"/>
-            <factory name="${xsl.saxon.class}"/>
-            <classpath location="${xsl.saxon}"/>
-        </xslt>
-        <xslt force="true" style="${validate.dir}/mp-mp93_vvv.xsl" destdir="${build.dir}/xml-voorbeelden/validate_cda_instance" extension=".xml" useImplicitFileset="false">
-            <fileset dir="${build.dir}/xml-voorbeelden/cda_instance" includes="vvv-*.xml"/>
-            <factory name="${xsl.saxon.class}"/>
-            <classpath location="${xsl.saxon}"/>
-        </xslt>
-
         <echo/>
         <echo>${echo.label} xml-voorbeelden bouwstenen hl7_instance</echo>
-        <!--        <xslt force="true" style="${validate.dir}/mp-mp93_mg_ma.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
+                <xslt force="true" style="${validate.dir}/mp-mp93_mg_ma.xsl" destdir="${build.dir}/xml-voorbeelden/validate_hl7_instance" extension=".xml" useImplicitFileset="false">
             <fileset dir="${build.dir}/xml-voorbeelden/hl7_instance" includes="bsma-*.xml"/>
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
@@ -733,7 +670,6 @@
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
         </xslt>
--->
 
     </target>
  

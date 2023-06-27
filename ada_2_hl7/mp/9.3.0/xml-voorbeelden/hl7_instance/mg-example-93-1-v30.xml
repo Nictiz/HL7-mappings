@@ -249,7 +249,7 @@
                displayName="optimaliseren van dosering van medicatie (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 18 dec 2022, tot en met 25 dec 2022, cyclus van 5 dagen: steeds eerst gedurende 2 dagen 1 maal per dag 2 stuks 's avonds, dan gedurende 2 dagen 1 maal per dag 2 stuks 's avonds, dan gedurende 1 dag 1 maal per dag 0 stuks 's avonds, Oraal, definitief gestopt</text>
+         <text mediaType="text/plain">Vanaf 18 dec 2022, tot en met 25 dec 2022, cyclus van 5 dagen: steeds eerst gedurende 2 dagen 1 maal per dag 2 stuks 's avonds, dan gedurende 2 dagen 1 maal per dag 2 stuks 's avonds, dan gedurende 1 dag 1 maal per dag 0 stuks 's avonds, Oraal, stopgezet</text>
          <effectiveTime xsi:type="IVL_TS">
             <low value="20221218000000"/>
             <high value="20221225235959"/>
@@ -310,9 +310,9 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
                <value xsi:type="CE"
-                      code="113371000146109"
+                      code="410546004"
                       codeSystem="2.16.840.1.113883.6.96"
-                      displayName="definitief gestopt met medicatie"/>
+                      displayName="stopgezet"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="RSON">
@@ -1199,6 +1199,19 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
                <value xsi:type="BL" value="false"/>
+            </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="RSON">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9375"/>
+               <code code="153631000146105"
+                     displayName="reden voor afwijken in toedienen van medicatie (waarneembare entiteit)"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+               <value xsi:type="CE"
+                      code="153241000146104"
+                      codeSystem="2.16.840.1.113883.6.96"
+                      displayName="zorgafnemer niet beschikbaar om medicatie in ontvangst te nemen"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="SUBJ" inversionInd="true">
