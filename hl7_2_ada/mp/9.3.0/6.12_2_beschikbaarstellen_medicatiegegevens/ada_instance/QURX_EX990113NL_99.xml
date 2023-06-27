@@ -5,8 +5,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2023-06-27T14:31:42.816968+02:00"
-         last-update-date="2023-06-27T14:31:42.816968+02:00"/>
+         creation-date="2023-06-27T16:33:27.980813+02:00"
+         last-update-date="2023-06-27T16:33:27.980813+02:00"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp93"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -46,9 +46,11 @@
             <geslacht code="F" codeSystem="2.16.840.1.113883.5.1"/>
          </patient>
          <medicamenteuze_behandeling>
-            <identificatie nullFlavor="NI"/>
+            <identificatie extension="mag01"
+                           root="1.3.6.1.4.1.58606.1.2.2.16.528.1.1007.3.3.1234567.3"/>
             <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
-               <identificatie root="1.3.6.1.4.1.58606.1.2.16.528.1.1007.3.3.1234567.3" value="mag01"/>
+               <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.528.1.1007.3.3.1234567.3"
+                              value="mag01"/>
                <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
                <toedieningsafspraak_datum_tijd value="2016-03-04T12:00:00"/>
                <verstrekker>
