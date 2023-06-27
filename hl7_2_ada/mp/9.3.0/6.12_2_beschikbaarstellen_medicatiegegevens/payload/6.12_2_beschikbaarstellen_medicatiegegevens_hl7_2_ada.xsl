@@ -24,7 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="transactionOid">2.16.840.1.113883.2.4.3.11.60.20.77.4.301</xsl:variable>
     <xsl:variable name="transactionEffectiveDate" as="xs:dateTime">2022-02-07T00:00:00</xsl:variable>
     <xsl:variable name="adaFormname">medicatiegegevens</xsl:variable>
-    <xsl:variable name="mpVersion">mp92</xsl:variable>
+    <xsl:variable name="mpVersion">mp93</xsl:variable>
 
     <xd:doc>
         <xd:desc>Template voor converteren van de 6.12 XML</xd:desc>
@@ -40,7 +40,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <!-- anders alleen root element om valide xml in output te hebben -->
             <xsl:otherwise>
-                <beschikbaarstellen_medicatiegegevens app="mp-mp93" shortName="{$transactionName}" formName="{$adaFormname}" transactionRef="{$transactionOid}" transactionEffectiveDate="{$transactionEffectiveDate}" prefix="mp-" language="nl-NL"/>
+                <beschikbaarstellen_medicatiegegevens app="mp-{$mpVersion}" shortName="{$transactionName}" formName="{$adaFormname}" transactionRef="{$transactionOid}" transactionEffectiveDate="{$transactionEffectiveDate}" prefix="mp-" language="nl-NL"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
@@ -110,8 +110,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="current-dispense-event" select="."/>
         <xsl:param name="transaction" select="$transactionName"/>
         <medicamenteuze_behandeling>
-            <!-- mbh id is not known in 6.12. We nullFlavor it -->
-            <identificatie nullFlavor="NI"/>
+            <!-- mbh id is not known in 6.12. We fake it using https://bits.nictiz.nl/browse/MP-572 -->
+            <xsl:variable name="PRK" select="(hl7:product/hl7:dispensedMedication/hl7:MedicationKind/(hl7:code | hl7:code/hl7:translation)[@codeSystem = $oidGStandaardPRK][@code])[1]"/>
+            <xsl:variable name="HPK" select="(hl7:product/hl7:dispensedMedication/hl7:MedicationKind/(hl7:code | hl7:code/hl7:translation)[@codeSystem = $oidGStandaardHPK][@code])[1]"/>
+            <identificatie>
+                <xsl:choose>
+                    <xsl:when test="$PRK">
+                        <xsl:attribute name="extension" select="$PRK/@code"/>
+                        <xsl:attribute name="root" select="$genericMBHidPRK"/>
+                    </xsl:when>
+                    <xsl:when test="$HPK">
+                        <xsl:attribute name="extension" select="$HPK/@code"/>
+                        <xsl:attribute name="root" select="$genericMBHidHPK"/>                        
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:attribute name="extension" select="$current-dispense-event/hl7:id/@extension"/>
+                        <xsl:attribute name="root" select="concat($concatOidMBH ,$current-dispense-event/hl7:id/@root)"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </identificatie>
             <xsl:call-template name="mp9-toedieningsafspraak-from-mp612-MP93">
                 <xsl:with-param name="current-dispense-event" select="$current-dispense-event"/>
                 <xsl:with-param name="transaction" select="$transaction"/>
@@ -355,5 +372,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
-    
+
 </xsl:stylesheet>

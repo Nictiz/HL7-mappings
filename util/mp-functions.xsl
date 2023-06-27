@@ -13,8 +13,11 @@
     <xsl:variable name="mveCode" as="xs:string*" select="('373784005')"/>
     <xsl:variable name="mgbCode" as="xs:string*" select="('422979000')"/>
     <xsl:variable name="mtdCode" as="xs:string*" select="('18629005')"/>
-    <xsl:variable name="concatOidTA">1.3.6.1.4.1.58606.1.</xsl:variable>
-    
+
+    <xsl:variable name="genericMBHidPRK">2.16.840.1.113883.2.4.3.11.61.2</xsl:variable>
+    <xsl:variable name="genericMBHidHPK">2.16.840.1.113883.2.4.3.11.61.3</xsl:variable>
+    <xsl:variable name="concatOidMBH">1.3.6.1.4.1.58606.1.2.</xsl:variable>
+    <xsl:variable name="concatOidTA">1.3.6.1.4.1.58606.1.1.</xsl:variable>    
 
     <xsl:variable name="stoptypeMap" as="element()+">
         <map stoptype="onderbroken" code="385655000" codeSystem="2.16.840.1.113883.6.96" displayName="onderbroken" version="930"/>
