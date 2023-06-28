@@ -145,7 +145,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <code>
                         <coding>
-                            <system value="http://loinc.org"/>
+                            <system value="{local:getUri($oidLOINC)}"/>
                             <code value="29463-7"/>
                             <display value="lichaamsgewicht"/>
                         </coding>
@@ -203,7 +203,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <component>
                             <code>
                                 <coding>
-                                    <system value="http://loinc.org"/>
+                                    <system value="{local:getUri($oidLOINC)}"/>
                                     <code value="8352-7"/>
                                     <display value="Clothing worn during measure"/>
                                 </coding>

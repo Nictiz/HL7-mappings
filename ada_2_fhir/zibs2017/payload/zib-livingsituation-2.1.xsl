@@ -53,7 +53,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <code>
                         <coding>
-                            <system value="http://snomed.info/sct"/>
+                            <system value="{local:getUri($oidSNOMEDCT)}"/>
                             <code value="365508006"/>
                             <display value="bevinding betreffende woon- en huisvestingssituatie"/>
                         </coding>

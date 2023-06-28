@@ -61,7 +61,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <code>
                         <coding>
-                            <system value="http://loinc.org"/>
+                            <system value="{local:getUri($oidLOINC)}"/>
                             <code value="85354-9"/>
                             <display value="Blood pressure panel with all children optional"/>
                         </coding>
@@ -119,7 +119,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://loinc.org"/>
+                                <system value="{local:getUri($oidLOINC)}"/>
                                 <code value="8480-6"/>
                                 <display value="Intravasculaire systolische bloeddruk [druk] in arterieel vaatstelsel"/>
                             </coding>
@@ -144,7 +144,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://loinc.org"/>
+                                <system value="{local:getUri($oidLOINC)}"/>
                                 <code value="8462-4"/>
                                 <display value="Intravasculaire diastolische bloeddruk [druk] in arterieel vaatstelsel"/>
                             </coding>
@@ -169,7 +169,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <component>
                             <code>
                                 <coding>
-                                    <system value="http://loinc.org"/>
+                                    <system value="{local:getUri($oidLOINC)}"/>
                                     <code value="8478-0"/>
                                     <display value="Mean blood pressure"/>
                                 </coding>
@@ -184,7 +184,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <component>
                             <code>
                                 <coding>
-                                    <system value="http://snomed.info/sct"/>
+                                    <system value="{local:getUri($oidSNOMEDCT)}"/>
                                     <code value="6797001"/>
                                     <display value="gemiddelde bloeddruk"/>
                                 </coding>
@@ -201,7 +201,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <component>
                             <code>
                                 <coding>
-                                    <system value="http://snomed.info/sct"/>
+                                    <system value="{local:getUri($oidSNOMEDCT)}"/>
                                     <code value="85549003"/>
                                     <display value="Korotkofftonen"/>
                                 </coding>
@@ -218,7 +218,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <component>
                             <code>
                                 <coding>
-                                    <system value="http://loinc.org"/>
+                                    <system value="{local:getUri($oidLOINC)}"/>
                                     <code value="8358-4"/>
                                     <display value="Blood pressure device Cuff size"/>
                                 </coding>
@@ -233,7 +233,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <component>
                             <code>
                                 <coding>
-                                    <system value="http://snomed.info/sct"/>
+                                    <system value="{local:getUri($oidSNOMEDCT)}"/>
                                     <code value="70665002"/>
                                     <display value="bloeddrukmanchet"/>
                                 </coding>
@@ -250,7 +250,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <component>
                             <code>
                                 <coding>
-                                    <system value="http://snomed.info/sct"/>
+                                    <system value="{local:getUri($oidSNOMEDCT)}"/>
                                     <code value="424724000"/>
                                     <display value="lichaamspositie voor bepalen van bloeddruk"/>
                                 </coding>
@@ -265,7 +265,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <component>
                             <code>
                                 <coding>
-                                    <system value="http://loinc.org"/>
+                                    <system value="{local:getUri($oidLOINC)}"/>
                                     <code value="8361-8"/>
                                     <display value="Body position with respect to gravity"/>
                                 </coding>

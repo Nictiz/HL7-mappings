@@ -165,7 +165,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <category>
                         <coding>
-                            <system value="http://snomed.info/sct"/>
+                            <system value="{local:getUri($oidSNOMEDCT)}"/>
                             <code value="11341000146107"/>
                             <display value="levenstestament en wilsverklaring in dossier"/>
                         </coding>
