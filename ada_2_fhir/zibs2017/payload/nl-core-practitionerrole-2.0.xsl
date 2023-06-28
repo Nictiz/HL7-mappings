@@ -247,7 +247,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <!-- in some data sets the contact_information is unfortunately unnecessarily nested in an extra group, hence the extra predicate -->
                     <!-- MM-2693 Filter private contact details -->
-                    <xsl:for-each select=".//(contactgegevens[not(contactgegevens)][not(ancestor::patient)] | contact_information[not(contact_information)][not(ancestor::patient)])">
+                    <xsl:for-each select=".//(contactgegevens[not(contactgegevens)] | contact_information[not(contact_information)])[not(ancestor::patient)]">
                         <xsl:call-template name="nl-core-contactpoint-1.0">
                             <xsl:with-param name="in" select="."/>
                             <xsl:with-param name="filterprivate" select="true()" as="xs:boolean"/>

@@ -181,7 +181,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
                     
                     <!-- in some data sets the name_information is unfortunately unnecessarily nested in an extra group, hence the extra predicate -->
-                    <xsl:for-each select=".//(naamgegevens[not(naamgegevens)][not(ancestor::patient)] | name_information[not(name_information)][not(ancestor::patient)])">
+                    <xsl:for-each select=".//(naamgegevens[not(naamgegevens)] | name_information[not(name_information)])[not(ancestor::patient)]">
                         <xsl:call-template name="nl-core-humanname-2.0">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
@@ -189,7 +189,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <!-- in some data sets the contact_information is unfortunately unnecessarily nested in an extra group, hence the extra predicate -->
                     <!-- MM-2693 Filter private contact details -->
-                    <xsl:for-each select=".//(contactgegevens[not(contactgegevens)][not(ancestor::patient)] | contact_information[not(contact_information)][not(ancestor::patient)])">
+                    <xsl:for-each select=".//(contactgegevens[not(contactgegevens)] | contact_information[not(contact_information)])[not(ancestor::patient)]">
                         <xsl:call-template name="nl-core-contactpoint-1.0">
                             <xsl:with-param name="in" select="."/>
                             <xsl:with-param name="filterprivate" select="true()" as="xs:boolean"/>
@@ -198,7 +198,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <!-- in some data sets the address_information is unfortunately unnecessarily nested in an extra group, hence the extra predicate -->
                     <!-- MM-2693 Filter private addresses -->
-                    <xsl:for-each select=".//(adresgegevens[not(adresgegevens)][not(adres_soort/tokenize(@code, '\s') ='HP')][not(ancestor::patient)] | address_information[not(address_information)][not(address_type/tokenize(@code, '\s') ='HP')][not(ancestor::patient)])">
+                    <xsl:for-each select=".//(adresgegevens[not(adresgegevens)][not(adres_soort/tokenize(@code, '\s') ='HP')] | address_information[not(address_information)][not(address_type/tokenize(@code, '\s') ='HP')])[not(ancestor::patient)]">
                         <xsl:call-template name="nl-core-address-2.0">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>

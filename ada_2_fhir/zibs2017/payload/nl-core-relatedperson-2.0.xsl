@@ -140,21 +140,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
                     
                     <!-- in some data sets the name_information is unfortunately unnecessarily nested in an extra group, hence the extra predicate -->
-                    <xsl:for-each select=".//(naamgegevens[not(naamgegevens)][not(ancestor::patient)] | name_information[not(name_information)][not(ancestor::patient)])">
+                    <xsl:for-each select=".//(naamgegevens[not(naamgegevens)] | name_information[not(name_information)])[not(ancestor::patient)]">
                         <xsl:call-template name="nl-core-humanname-2.0">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
                     </xsl:for-each>
                     
                     <!-- in some data sets the contact_information is unfortunately unnecessarily nested in an extra group, hence the extra predicate -->
-                    <xsl:for-each select=".//(contactgegevens[not(contactgegevens)][not(ancestor::patient)] | contact_information[not(contact_information)][not(ancestor::patient)])">
+                    <xsl:for-each select=".//(contactgegevens[not(contactgegevens)] | contact_information[not(contact_information)])[not(ancestor::patient)]">
                         <xsl:call-template name="nl-core-contactpoint-1.0">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
                     </xsl:for-each>
                     
                     <!-- in some data sets the address_information is unfortunately unnecessarily nested in an extra group, hence the extra predicate -->
-                    <xsl:for-each select=".//(adresgegevens[not(adresgegevens)][not(ancestor::patient)] | address_information[not(address_information)][not(ancestor::patient)])">
+                    <xsl:for-each select=".//(adresgegevens[not(adresgegevens)] | address_information[not(address_information)])[not(ancestor::patient)]">
                         <xsl:call-template name="nl-core-address-2.0">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
