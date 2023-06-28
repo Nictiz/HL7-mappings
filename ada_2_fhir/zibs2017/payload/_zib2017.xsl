@@ -50,7 +50,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:variable>
     
     <xsl:variable name="relatedPersons" as="element()*">
-        <xsl:for-each-group select="//(informant/persoon[not(persoon)] | contactpersoon[not(contactpersoon)] | contact_person[not(contact_person)] | contact[not(contact)])[not(@datatype = 'reference')][*//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
+        <xsl:for-each-group select="//(informant//persoon[not(persoon)] | contactpersoon[not(contactpersoon)] | contact_person[not(contact_person)] | contact[not(contact)])[not(@datatype = 'reference')][*//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
             <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
             <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
             <unieke-persoon xmlns="">

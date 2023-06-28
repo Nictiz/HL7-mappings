@@ -49,7 +49,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Returns contents of Reference datatype element</xd:desc>
     </xd:doc>
-    <xsl:template name="practitionerReference" match="zorgverlener[not(zorgverlener)] | health_professional[not(health_professional)]" mode="doPractitionerReference-2.0" as="element()*">
+    <xsl:template name="practitionerReference" match="//(zorgverlener[not(zorgverlener)] | health_professional[not(health_professional)])" mode="doPractitionerReference-2.0" as="element()*">
         <xsl:variable name="theIdentifier" select="zorgverlener_identificatienummer[@value] | zorgverlener_identificatie_nummer[@value] | health_professional_identification_number[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyPractitioner(.)"/>
         <xsl:variable name="theGroupElement" select="$practitioners[group-key = $theGroupKey]" as="element()?"/>
@@ -79,7 +79,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Practitioner.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="practitionerEntry" match="zorgverlener[not(zorgverlener)][*] | health_professional[not(health_professional)][*]" mode="doPractitionerEntry-2.0">
+    <xsl:template name="practitionerEntry" match="//(zorgverlener[not(zorgverlener)][*] | health_professional[not(health_professional)][*])" mode="doPractitionerEntry-2.0">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="entryFullUrl">
             <xsl:choose>
@@ -141,7 +141,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="logicalId">Optional FHIR logical id for the record.</xd:param>
         <xd:param name="in">Node to consider in the creation of the Practitioner resource for HealthProfessional.</xd:param>
     </xd:doc>
-    <xsl:template name="nl-core-practitioner-2.0" match="zorgverlener[not(zorgverlener)] | health_professional[not(health_professional)]" mode="doPractitionerResource-2.0">
+    <xsl:template name="nl-core-practitioner-2.0" match="//(zorgverlener[not(zorgverlener)] | health_professional[not(health_professional)])" mode="doPractitionerResource-2.0">
         <xsl:param name="in" as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         

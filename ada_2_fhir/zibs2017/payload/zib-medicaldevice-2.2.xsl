@@ -55,7 +55,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Returns contents of Reference datatype element</xd:desc>
     </xd:doc>
-    <xsl:template name="medicalDeviceReference" match="(medisch_hulpmiddel[not(medisch_hulpmiddel)] | medical_device[not(medical_device)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doMedicalDeviceReference-2.2">
+    <xsl:template name="medicalDeviceReference" match="//(medisch_hulpmiddel[not(medisch_hulpmiddel)] | medical_device[not(medical_device)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doMedicalDeviceReference-2.2">
         <xsl:variable name="theIdentifier" select="(zibroot/identificatienummer | hcimroot/identification_number)[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$medicalDevices[group-key = $theGroupKey]" as="element()?"/>
@@ -81,7 +81,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Returns contents of Reference datatype element</xd:desc>
     </xd:doc>
-    <xsl:template name="medicalDeviceProductReference" match="(medisch_hulpmiddel[not(medisch_hulpmiddel)] | medical_device[not(medical_device)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doMedicalDeviceProductReference-2.2">
+    <xsl:template name="medicalDeviceProductReference" match="//(medisch_hulpmiddel[not(medisch_hulpmiddel)] | medical_device[not(medical_device)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doMedicalDeviceProductReference-2.2">
         <xsl:variable name="theIdentifier" select="(zibroot/identificatienummer | hcimroot/identification_number)[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$medicalDeviceProducts[group-key = $theGroupKey]" as="element()?"/>
@@ -113,7 +113,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.DeviceUseStatement.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="medicalDeviceEntry" match="(medisch_hulpmiddel[not(medisch_hulpmiddel)] | medical_device[not(medical_device)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doMedicalDeviceEntry-2.2" as="element(f:entry)">
+    <xsl:template name="medicalDeviceEntry" match="//(medisch_hulpmiddel[not(medisch_hulpmiddel)] | medical_device[not(medical_device)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doMedicalDeviceEntry-2.2" as="element(f:entry)">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value] | ancestor::bundle//subject//patient[not(patient)][*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
@@ -159,7 +159,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Device.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="medicalDeviceProductEntry" match="(medisch_hulpmiddel[not(medisch_hulpmiddel)] | medical_device[not(medical_device)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doMedicalDeviceProductEntry-2.2" as="element(f:entry)">
+    <xsl:template name="medicalDeviceProductEntry" match="//(medisch_hulpmiddel[not(medisch_hulpmiddel)] | medical_device[not(medical_device)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doMedicalDeviceProductEntry-2.2" as="element(f:entry)">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value] | ancestor::bundle//subject//patient[not(patient)][*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
@@ -203,7 +203,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-MedicalDevice-2.2" match="(medisch_hulpmiddel[not(medisch_hulpmiddel)] | medical_device[not(medical_device)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:DeviceUseStatement)" mode="doZibMedicalDevice-2.2">
+    <xsl:template name="zib-MedicalDevice-2.2" match="//(medisch_hulpmiddel[not(medisch_hulpmiddel)] | medical_device[not(medical_device)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:DeviceUseStatement)" mode="doZibMedicalDevice-2.2">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value] | ancestor::bundle//subject//patient[not(patient)][*//@value])[1]" as="element()"/>
@@ -341,7 +341,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-MedicalDeviceProduct-2.2" match="(medisch_hulpmiddel[not(medisch_hulpmiddel)] | medical_device[not(medical_device)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Device)" mode="doZibMedicalDeviceProduct-2.2">
+    <xsl:template name="zib-MedicalDeviceProduct-2.2" match="//(medisch_hulpmiddel[not(medisch_hulpmiddel)] | medical_device[not(medical_device)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Device)" mode="doZibMedicalDeviceProduct-2.2">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value] | ancestor::bundle//subject//patient[not(patient)][*//@value])[1]" as="element()"/>

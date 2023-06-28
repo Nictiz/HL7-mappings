@@ -20,7 +20,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template name="relatedPersonReference" match="informant/persoon[not(persoon)] | contactpersoon[not(contactpersoon)] | contact_person[not(contact_person)] | contact[not(contact)]" mode="doRelatedPersonReference-2.0">
+    <xsl:template name="relatedPersonReference" match="//(informant//persoon[not(persoon)] | contactpersoon[not(contactpersoon)] | contact_person[not(contact_person)] | contact[not(contact)])" mode="doRelatedPersonReference-2.0">
         <xsl:variable name="theIdentifier" select="identificatie_nummer[@value] | identification_number[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$relatedPersons[group-key = $theGroupKey]" as="element()?"/>
@@ -50,7 +50,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.RelatedPerson.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="relatedPersonEntry" match="informant/persoon[not(persoon)] | contactpersoon[not(contactpersoon)] | contact_person[not(contact_person)] | contact[not(contact)]" mode="doRelatedPersonEntry-2.0">
+    <xsl:template name="relatedPersonEntry" match="//(informant//persoon[not(persoon)] | contactpersoon[not(contactpersoon)] | contact_person[not(contact_person)] | contact[not(contact)])" mode="doRelatedPersonEntry-2.0">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value] | ancestor::bundle//subject//patient[not(patient)][*//@value])[1]" as="element()"/>
         <xsl:param name="entryFullUrl" select="nf:get-fhir-uuid(.)"/>
@@ -91,7 +91,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">Node to consider in the creation of the RelatedPerson resource for ContactPerson.</xd:param>
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
     </xd:doc>
-    <xsl:template name="nl-core-relatedperson-2.0" match="informant/persoon[not(persoon)] | contactpersoon[not(contactpersoon)] | contact_person[not(contact_person)] | contact[not(contact)]" mode="doRelatedPersonResource-2.0">
+    <xsl:template name="nl-core-relatedperson-2.0" match="//(informant//persoon[not(persoon)] | contactpersoon[not(contactpersoon)] | contact_person[not(contact_person)] | contact[not(contact)])" mode="doRelatedPersonResource-2.0">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value] | ancestor::bundle//subject//patient[not(patient)][*//@value])[1]" as="element()"/>
