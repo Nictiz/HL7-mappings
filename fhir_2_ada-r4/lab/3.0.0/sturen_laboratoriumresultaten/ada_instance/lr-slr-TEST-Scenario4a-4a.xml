@@ -1,0 +1,141 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_laboratoriumresultaten.xsd">
+   <meta status="new"
+         created-by="labuitwisselingada"
+         last-update-by="labuitwisselingada"/>
+   <data>
+      <sturen_laboratoriumresultaten app="lab"
+                                     shortName="sturen_laboratoriumresultaten"
+                                     formName="sturen_laboratoriumresultaten"
+                                     transactionRef="2.16.840.1.113883.2.4.3.11.60.25.4.28"
+                                     transactionEffectiveDate="2022-03-03T00:00:00"
+                                     prefix="lab-"
+                                     language="nl-NL"
+                                     title="Generated from HL7 FHIR sturen_laboratoriumresultaten"
+                                     id="lr-slr-TEST-Scenario4a-4a">
+         <patientgegevens>
+            <patient>
+               <naamgegevens>
+                  <ongestructureerde_naam value="Elise Erelies"/>
+                  <voornamen value="Elise"/>
+                  <geslachtsnaam>
+                     <achternaam value="Erelies"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <identificatienummer value="999999114" root="2.16.840.1.113883.2.4.6.3"/>
+               <geboortedatum value="1950-11-01" datatype="datetime"/>
+               <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            </patient>
+         </patientgegevens>
+         <beschikbaarstellende_partij>
+            <zorgaanbieder id="urn-uuid-ac1249ce-192a-11ee-1038-020000000000">
+               <zorgaanbieder_identificatienummer value="00003333" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Klinisch chemisch Lab 't Proefje"/>
+               <contactgegevens>
+                  <telefoonnummers>
+                     <telefoonnummer value="06-11122233"/>
+                     <nummer_soort code="WP"
+                                   codeSystem="2.16.840.1.113883.5.1119"
+                                   displayName="Zakelijk telefoonnummer"/>
+                     <toelichting value="Bel met vragen"/>
+                  </telefoonnummers>
+                  <email_adressen>
+                     <email_adres value="tproefje@lab.nl"/>
+                     <email_soort code="WP"
+                                  codeSystem="2.16.840.1.113883.5.1119"
+                                  displayName="Zakelijk e-mailadres"/>
+                  </email_adressen>
+               </contactgegevens>
+               <adresgegevens>
+                  <straat value="Hoofdstraat"/>
+                  <huisnummer value="23"/>
+                  <postcode value="1234AA"/>
+                  <woonplaats value="Zorgstad"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+               <organisatie_type code="L1"
+                                 codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                 codeSystemName="HL7 RoleCodeNL Care provider type (organizations)"
+                                 codeSystemVersion="2022-09-10T00:00:00"
+                                 displayName="Laboratorium"/>
+            </zorgaanbieder>
+         </beschikbaarstellende_partij>
+         <onderzoeksresultaat>
+            <laboratorium_uitslag>
+               <edifact_referentienummer value="111666"/>
+               <kopie_indicator value="true"/>
+               <laboratorium_test>
+                  <test_identificatie value="88888" root="2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
+                  <test_code code="3272"
+                             codeSystem="2.16.840.1.113883.2.4.4.30.45"
+                             codeSystemName="NHG Tabel 45 Diagnostische bepalingen"
+                             displayName="Kalium urine 24u"/>
+                  <test_datum_tijd value="T-10D" datatype="datetime"/>
+                  <test_uitslag value="30" unit="mmol/(24.h)" datatype="quantity"/>
+                  <test_uitslag_status code="final"
+                                       codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
+                                       displayName="Definitief"/>
+                  <referentie_bovengrens value="60" unit="mmol/(24.h)" datatype="quantity"/>
+                  <referentie_ondergrens value="40" unit="mmol/(24.h)" datatype="quantity"/>
+                  <uitslag_interpretatie value="Lager dan referentiebereik."/>
+               </laboratorium_test>
+               <monster>
+                  <monsternummer value="335" root="2.16.840.1.113883.2.4.3.11.999.25.4267.2"/>
+                  <monstervolgnummer value="1" datatype="count"/>
+                  <containertype code="706055000"
+                                 codeSystem="2.16.840.1.113883.6.96"
+                                 codeSystemName="SNOMED CT"
+                                 displayName="container voor 24-uursurine"/>
+                  <monstermateriaal code="276833005"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED CT"
+                                    displayName="24-uursurine"/>
+                  <verzamelvolume value="1.75" unit="l" datatype="quantity"/>
+                  <afnameprocedure code="2475000"
+                                   codeSystem="2.16.840.1.113883.6.96"
+                                   codeSystemName="SNOMED CT"
+                                   displayName="verzamelen van 24-uursurine"/>
+                  <toelichting value="Monster is door patiënt zelf verzameld en ingeleverd."/>
+               </monster>
+               <uitvoerder>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatienummer value="00003333" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Klinisch chemisch Lab 't Proefje"/>
+                     <contactgegevens>
+                        <telefoonnummers>
+                           <telefoonnummer value="06-11122233"/>
+                           <nummer_soort code="WP"
+                                         codeSystem="2.16.840.1.113883.5.1119"
+                                         displayName="Zakelijk telefoonnummer"/>
+                           <toelichting value="Bel met vragen"/>
+                        </telefoonnummers>
+                        <email_adressen>
+                           <email_adres value="tproefje@lab.nl"/>
+                           <email_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Zakelijk e-mailadres"/>
+                        </email_adressen>
+                     </contactgegevens>
+                     <adresgegevens>
+                        <straat value="Hoofdstraat"/>
+                        <huisnummer value="23"/>
+                        <postcode value="1234AA"/>
+                        <woonplaats value="Zorgstad"/>
+                        <adres_soort code="WP"
+                                     codeSystem="2.16.840.1.113883.5.1119"
+                                     displayName="Werkadres"/>
+                     </adresgegevens>
+                     <organisatie_type code="L1"
+                                       codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                       codeSystemName="HL7 RoleCodeNL Care provider type (organizations)"
+                                       codeSystemVersion="2022-09-10T00:00:00"
+                                       displayName="Laboratorium"/>
+                  </zorgaanbieder>
+               </uitvoerder>
+            </laboratorium_uitslag>
+         </onderzoeksresultaat>
+      </sturen_laboratoriumresultaten>
+   </data>
+</adaxml>

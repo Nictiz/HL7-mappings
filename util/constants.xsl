@@ -115,7 +115,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="oidUZISystems">2.16.528.1.1007.3.2</xsl:variable>
     <xsl:variable name="oidUZIRoleCode">2.16.840.1.113883.2.4.15.111</xsl:variable>
     <xsl:variable name="oidUZOVI">2.16.840.1.113883.2.4.6.4</xsl:variable>
-    <xsl:variable name="oidZIBLaboratoriumUitslagTestUitslagStatus">2.16.840.1.113883.2.4.3.11.60.40.4.16.1</xsl:variable>
+    <xsl:variable name="oidZIBLaboratoryResultStatus">2.16.840.1.113883.2.4.3.11.60.40.4.16.1</xsl:variable>
 
     <xsl:variable name="oidsGstandaardMedication" as="xs:string*" select="($oidGStandaardSSK, $oidGStandaardSNK, $oidGStandaardGPK, $oidGStandaardPRK, $oidGStandaardHPK, $oidGStandaardZInummer)"/>
 
@@ -154,6 +154,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="urlExtTimeIntervalPeriod"><xsl:value-of select="$urlBaseNictizProfile"/>ext-TimeInterval.Period</xsl:variable>
     <xsl:variable name="urlExtTimeIntervalDuration"><xsl:value-of select="$urlBaseNictizProfile"/>ext-TimeInterval.Duration</xsl:variable>
     <xsl:variable name="urlTimingExact">http://hl7.org/fhir/StructureDefinition/timing-exact</xsl:variable>
+    <xsl:variable name="urlHL7CodeSystemDataAbsentReason">http://terminology.hl7.org/CodeSystem/data-absent-reason</xsl:variable>
 
     <xsl:variable name="NHGZoNodigNumeriek">1137</xsl:variable>
 
@@ -191,6 +192,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <map hl7Code="aborted" hl7CodeSystem="{$oidHL7ActStatus}" displayName="afgebroken" displayNameEN="aborted"/>
         <map hl7Code="completed" hl7CodeSystem="{$oidHL7ActStatus}" displayName="voltooid" displayNameEN="completed"/>
         <map hl7Code="cancelled" hl7CodeSystem="{$oidHL7ActStatus}" displayName="niet gestart" displayNameEN="cancelled"/>
+    </xsl:variable>
+    
+    <xsl:variable name="zibLaboratoryResultStatusMap" as="element()+">
+        <map hl7Code="pending" hl7CodeSystem="{$oidZIBLaboratoryResultStatus}" displayName="Uitslag volgt" displayNameEN="Pending"/>
+        <map hl7Code="preliminary" hl7CodeSystem="{$oidZIBLaboratoryResultStatus}" displayName="Voorlopig" displayNameEN="Preliminary"/>
+        <map hl7Code="final" hl7CodeSystem="{$oidZIBLaboratoryResultStatus}" displayName="Definitief" displayNameEN="Final"/>
+        <map hl7Code="appended" hl7CodeSystem="{$oidZIBLaboratoryResultStatus}" displayName="Aanvullend" displayNameEN="Appended"/>
+        <map hl7Code="corrected" hl7CodeSystem="{$oidZIBLaboratoryResultStatus}" displayName="Gecorrigeerd" displayNameEN="Corrected"/>
+    </xsl:variable>
+    <xsl:variable name="zibLaboratoryTestResultStatusMap" as="element()+">
+        <xsl:copy-of select="$zibLaboratoryResultStatusMap"/>
     </xsl:variable>
 
     <xsl:variable name="uziRoleCodeMap" as="element()+">
@@ -502,6 +514,52 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <map inCode="30714006" inCodeSystem="{$oidSNOMEDCT}" code="R" codeSystem="http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation" displayName="Resistant"/>
             <!--Susceptible || Sensitief-->
             <map inCode="131196009" inCodeSystem="{$oidSNOMEDCT}" code="S" codeSystem="http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation" displayName="Susceptible"/>
+        </map>
+    </xsl:variable>
+    
+    <!-- https://zibs.nl/wiki/LaboratoriumUitslag-v4.6(2020NL)#InterpretatieVlaggenCodelijst -->
+    <!-- http://hl7.org/fhir/R4/valueset-observation-interpretation.html -->
+    <xsl:variable name="fhirObservationInterpretation_to_zibInterpretatieVlaggen" as="element(map)">
+        <map>
+            <!-- Above reference range || Boven referentiewaarde -->
+            <map inCode="H" inCodeSystem="http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation" code="281302008" codeSystem="{$oidSNOMEDCT}" displayName="Boven referentiewaarde"/>
+            <!--Below reference range || Onder referentiewaarde-->
+            <map inCode="L" inCodeSystem="http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation" code="281300000" codeSystem="{$oidSNOMEDCT}" displayName="Onder referentiewaarde"/>
+            <!--Intermediate || Intermediair-->
+            <map inCode="I" inCodeSystem="http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation" code="11896004" codeSystem="{$oidSNOMEDCT}" displayName="Intermediair"/>
+            <!--Resistant || Resistent-->
+            <map inCode="R" inCodeSystem="http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation" code="30714006" codeSystem="{$oidSNOMEDCT}" displayName="Resistent"/>
+            <!--Susceptible || Sensitief-->
+            <map inCode="S" inCodeSystem="http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation" code="131196009" codeSystem="{$oidSNOMEDCT}" displayName="Sensitief"/>
+        </map>
+    </xsl:variable>
+    
+    <!-- http://hl7.org/fhir/R4/codesystem-data-absent-reason.html -->
+    <!-- https://terminology.hl7.org/CodeSystem-v3-NullFlavor.html -->
+    <!-- http://hl7.org/fhir/R4/cm-data-absent-reason-v3.html -->
+    <xsl:variable name="fhirDataAbsentReason_to_NullFlavor">
+        <map>
+            <map inCode="unknown" inCodeSystem="{$urlHL7CodeSystemDataAbsentReason}" code="UNK" codeSystem="{$oidHL7NullFlavor}" displayName="onbekend"/>
+            <map inCode="asked-unknown" inCodeSystem="{$urlHL7CodeSystemDataAbsentReason}" code="ASKU" codeSystem="{$oidHL7NullFlavor}" displayName="Asked But Unknown"/>
+            <map inCode="temp-unknown" inCodeSystem="{$urlHL7CodeSystemDataAbsentReason}" code="NAV" codeSystem="{$oidHL7NullFlavor}" displayName="Temporarily Unknown"/>
+            <map inCode="not-asked" inCodeSystem="{$urlHL7CodeSystemDataAbsentReason}" code="NASK" codeSystem="{$oidHL7NullFlavor}" displayName="Not Asked"/>
+            <!-- not in ConceptMap -->
+            <map inCode="asked-declined" inCodeSystem="{$urlHL7CodeSystemDataAbsentReason}" code="MSK" codeSystem="{$oidHL7NullFlavor}" displayName="Asked But Declined"/>
+            <map inCode="masked" inCodeSystem="{$urlHL7CodeSystemDataAbsentReason}" code="MSK" codeSystem="{$oidHL7NullFlavor}" displayName="Masked"/>
+            <map inCode="not-applicable" inCodeSystem="{$urlHL7CodeSystemDataAbsentReason}" code="NA" codeSystem="{$oidHL7NullFlavor}" displayName="Not Applicable"/>
+            <!-- not in ConceptMap -->
+            <map inCode="unsupported" inCodeSystem="{$urlHL7CodeSystemDataAbsentReason}" code="NI" codeSystem="{$oidHL7NullFlavor}" displayName="Unsupported"/>
+            <!-- not in ConceptMap -->
+            <map inCode="as-text" inCodeSystem="{$urlHL7CodeSystemDataAbsentReason}" code="OTH" codeSystem="{$oidHL7NullFlavor}" displayName="As Text"/>
+            <!-- not in ConceptMap -->
+            <map inCode="error" inCodeSystem="{$urlHL7CodeSystemDataAbsentReason}" code="NI" codeSystem="{$oidHL7NullFlavor}" displayName="Error"/>
+            <!-- not in ConceptMap -->
+            <map inCode="not-a-number" inCodeSystem="{$urlHL7CodeSystemDataAbsentReason}" code="INV" codeSystem="{$oidHL7NullFlavor}" displayName="Not a Number (NaN)"/>
+            <map inCode="negative-infinity" inCodeSystem="{$urlHL7CodeSystemDataAbsentReason}" code="NINF" codeSystem="{$oidHL7NullFlavor}" displayName="Negative Infinity (NINF)"/>
+            <map inCode="positive-infinity" inCodeSystem="{$urlHL7CodeSystemDataAbsentReason}" code="PINF" codeSystem="{$oidHL7NullFlavor}" displayName="Positive Infinity (PINF)"/>
+            <!-- not in ConceptMap -->
+            <map inCode="not-performed" inCodeSystem="{$urlHL7CodeSystemDataAbsentReason}" code="NI" codeSystem="{$oidHL7NullFlavor}" displayName="Not Performed"/>
+            <map inCode="not-permitted" inCodeSystem="{$urlHL7CodeSystemDataAbsentReason}" code="OTH" codeSystem="{$oidHL7NullFlavor}" displayName="Not Permitted"/>
         </map>
     </xsl:variable>
 
