@@ -59,7 +59,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <email_adressen>
             <email_adres value="{f:value/@value}"/>
             <xsl:for-each select="f:use[@value]">
-                <nummer_soort>
+                <email_soort>
                     <xsl:call-template name="code-to-code">
                         <xsl:with-param name="value" select="@value"/>
                         <xsl:with-param name="codeMap" as="element()*">
@@ -67,7 +67,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <map inValue="work" code="WP" codeSystem="{$oidHL7AddressUse}" displayName="Zakelijk e-mailadres"/>
                         </xsl:with-param>
                     </xsl:call-template>
-                </nummer_soort>
+                </email_soort>
             </xsl:for-each>
         </email_adressen>
     </xsl:template>
