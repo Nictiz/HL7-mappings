@@ -104,6 +104,7 @@
     <target name="convert_ada_2_fhir_300">
         
         <!-- convert beschikbaarstellen_laboratoriumresultaten -->
+        <!-- This process also creates empty Bundle files, should be fixed some time -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.labbr}"/>
             <param name="xsl.name" value="../${usecase.labbr}/payload/${usecase.labbr}.xsl"/>

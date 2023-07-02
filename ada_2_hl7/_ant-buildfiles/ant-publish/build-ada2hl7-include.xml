@@ -46,9 +46,9 @@
 
     </target>
 
-    <target name="setup_sub_schemas" description="Setup ${build.dir}/${usecase} containing the new/schemas folder from the original ADA project">
+    <target name="setup_sub_schemas" description="Setup ${build.dir}/${usecase} containing the new/schemas folder from the original ADA project: ${ada.project.source.dir}/schemas">
         <echo/>
-        <echo>Setup ${build.dir}/${usecase} containing refreshed ada schemas (${schema.string})</echo>
+        <echo>Setup ${build.dir}/${usecase} containing refreshed ada schemas (${schema.string}) containing the new/schemas folder from the original ADA project: ${ada.project.source.dir}/schemas</echo>
 
         <mkdir dir="${build.dir}/${usecase}/ada_schemas"/>
         <delete>
@@ -86,7 +86,7 @@
         
         <fileset id="inputfiles.validate" dir="${build.dir}">
             <include name="${fileset.include}"/>
-            <exclude name="${fileset.exclude}"/>
+            <exclude name="${fileset.exclude}" if="fileset.exclude"/>
         </fileset>
         
         <echo/>

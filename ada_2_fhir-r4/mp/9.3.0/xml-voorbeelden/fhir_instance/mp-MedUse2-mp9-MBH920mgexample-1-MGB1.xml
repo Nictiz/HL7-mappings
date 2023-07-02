@@ -1,0 +1,150 @@
+<MedicationStatement xmlns="http://hl7.org/fhir">
+   <id value="mp-MedUse2-mp9-MBH920mgexample-1-MGB1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="Vanaf 11 nov 2022, gedurende 10 dagen, 1 maal per dag 2 stuks, oraal"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
+      <valueReference>
+         <reference value="PractitionerRole/nl-core-HPrf-PracRol-mp9-PrcRol-2165281100731-000001111"/>
+         <type value="PractitionerRole"/>
+         <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator">
+      <valueBoolean value="true"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_920_mg_example-1-KST"/>
+      </valueIdentifier>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
+      <valueReference>
+         <reference value="PractitionerRole/nl-core-HPrf-PracRol-mp9-PrcRol-2165281100731-000001111"/>
+         <type value="PractitionerRole"/>
+         <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+      <value value="MBH_920_mg_example-1-MGB1"/>
+   </identifier>
+   <status value="active"/>
+   <statusReason>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="405613005"/>
+         <display value="geplande procedure"/>
+      </coding>
+   </statusReason>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422979000"/>
+         <display value="bevinding betreffende gedrag met betrekking tot medicatieregime"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/mp-PhPrd-mp9-216840111388324410-17469"/>
+      <type value="Medication"/>
+      <display value="IBUPROFEN TABLET 600MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-XXX-Kester"/>
+      <type value="Patient"/>
+      <display value="Patient, B. van XXX_Kester"/>
+   </subject>
+   <context>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Context-EpisodeOfCare">
+         <valueReference>
+            <type value="EpisodeOfCare"/>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.66.9200"/>
+               <value value="MBH_920_mg_example-1-episode0"/>
+            </identifier>
+            <display value="relatie naar zorgepisode met identificatie: MBH_920_mg_example-1-episode0 || 2.16.840.1.113883.2.4.3.11.999.66.9200"/>
+         </valueReference>
+      </extension>
+      <type value="Encounter"/>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.66.2709"/>
+         <value value="MBH_920_mg_example-1-contact0"/>
+      </identifier>
+      <display value="relatie naar contact met identificatie: MBH_920_mg_example-1-contact0 || 2.16.840.1.113883.2.4.3.11.999.66.2709"/>
+   </context>
+   <effectivePeriod>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
+         <valueDuration>
+            <value value="10"/>
+            <unit value="dag"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="d"/>
+         </valueDuration>
+      </extension>
+      <start value="2022-11-11T00:00:00+01:00"/>
+   </effectivePeriod>
+   <dateAsserted value="2022-11-26T18:20:05+01:00"/>
+   <informationSource>
+      <reference value="Patient/nl-core-Patient-mp9-XXX-Kester"/>
+      <type value="Patient"/>
+      <display value="Patient, B. van XXX_Kester"/>
+   </informationSource>
+   <derivedFrom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="422037009"/>
+               <display value="toedieningsafspraak"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+         <value value="MBH_920_mg_example-1-TA1"/>
+      </identifier>
+      <display value="relatie naar toedieningsafspraak"/>
+   </derivedFrom>
+   <reasonCode>
+      <text value="voorbeeld reden gebruik in vrije tekst"/>
+   </reasonCode>
+   <note>
+      <text value="voorbeeld toelichting in vrije tekst"/>
+   </note>
+   <dosage>
+      <timing>
+         <repeat>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="oraal"/>
+         </coding>
+      </route>
+      <doseAndRate>
+         <doseQuantity>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+               <valueQuantity>
+                  <value value="2"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </valueQuantity>
+            </extension>
+            <value value="2"/>
+            <unit value="stuk"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="1"/>
+         </doseQuantity>
+      </doseAndRate>
+   </dosage>
+</MedicationStatement>

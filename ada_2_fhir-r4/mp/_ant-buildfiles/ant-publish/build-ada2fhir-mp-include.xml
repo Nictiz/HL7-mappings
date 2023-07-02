@@ -11,8 +11,8 @@
     <property name="is.abbreviation" value="mp"/>
     <property name="project.version" value="1.0.0"/>
     <property name="build.dir" value="../.."/>
-    <property name="ada.project.source.dir" value="C:\SVN\art_decor\trunk\ada-data\projects\${is.abbreviation}-${is.abbreviation}${is.version.short}"/>
-    <property name="refs.dir" value="C:\SVN\art_decor\trunk\ada-data\adarefs2ada\${is.abbreviation}\${is.version}"/>
+    <property name="ada.project.source.dir" value="${build.dir}\..\..\..\..\art_decor\projects\${is.abbreviation}-${is.abbreviation}${is.version.short}"/>
+    <property name="refs.dir" value="${build.dir}\..\..\..\..\art_decor\adarefs2ada\${is.abbreviation}\${is.version}"/>
 
     <!-- place import exactly here, otherwise it can't resolve the properties above, or we can't resolve some properties below, such as ${echo.label.in} -->
     <import file="../../../_ant-buildfiles/ant-publish/build-ada2fhir-r4-include.xml"/>
@@ -213,31 +213,29 @@
             <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="mg-*.xml"/>
             
             <echo/>
-            <echo>${echo.label} input files ${build.dir}/xml-voorbeelden/ada_instance, to be converted with: ${build.dir}/${usecase.mg}/payload/${usecase.mg}_2_fhir_resources.xsl</echo>
-            <xslt force="true" style="${build.dir}/${usecase.mg}/payload/${usecase.mg}_2_fhir_resources.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useimplicitfileset="false">
+            <echo>${echo.label} input files ${build.dir}/xml-voorbeelden/ada_instance, to be converted with: ${build.dir}/fhir_fixtures4Touchstone/payload/${usecase.mg}_2_fhir_resources.xsl</echo>
+            <xslt force="true" style="${build.dir}/fhir_fixtures4Touchstone/payload/${usecase.mg}_2_fhir_resources.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useimplicitfileset="false">
                 <fileset refid="inputfilesMP"/>
                 <param name="generateInstructionText" expression="true"/>
                 <param name="dateT" expression="${date.T}" if="date.T"/>
-                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
+                <!--<param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>-->
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
             
             <echo/>
-            <echo>${echo.label} input files ${build.dir}/xml-voorbeelden/ada_instance, to be converted with: ${build.dir}/${usecase.mg}/payload/${usecase.mg}_2_fhir.xsl</echo>
-            <xslt force="true" style="${build.dir}/${usecase.mg}/payload/${usecase.mg}_2_fhir.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useImplicitFileset="false">
+            <echo>${echo.label} input files ${build.dir}/xml-voorbeelden/ada_instance, to be converted with: ${build.dir}/fhir_fixtures4Touchstone/payload/${usecase.mg}_2_fhir.xsl</echo>
+            <xslt force="true" style="${build.dir}/fhir_fixtures4Touchstone/payload/${usecase.mg}_2_fhir.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useImplicitFileset="false">
                 <fileset refid="inputfilesMP"/>
                 <param name="generateInstructionText" expression="true"/>
                 <param name="dateT" expression="${date.T}" if="date.T"/>
-                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
+                <!--<param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>-->
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
-            
         </sequential>
-        
-          
-        <!-- medicatieoverzicht -->
+
+        <!--<!-\- medicatieoverzicht -\->
         <sequential>
             <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="mo*.xml"/>
             
@@ -262,10 +260,103 @@
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
-        </sequential>   
+        </sequential>-->
         
-    
-          
+        <sequential>
+            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="mv*.xml"/>
+            
+            <echo/>
+            <echo>${echo.label} input files ${build.dir}/xml-voorbeelden/ada_instance, to be converted with: ${build.dir}/fhir_fixtures4Touchstone/payload/${usecase.mv}_2_fhir.xsl</echo>
+            <xslt force="true" style="${build.dir}/fhir_fixtures4Touchstone/payload/${usecase.mv}_2_fhir.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useimplicitfileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <!--<param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>-->
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+        
+        <!-- afhandelen medicatievoorschrift -->
+        <sequential>
+            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="av*.xml" excludes="avvv*.xml,avma*.xml"/>
+            
+            <echo/>
+            <echo>${echo.label} input files ${build.dir}/xml-voorbeelden/ada_instance, to be converted with: ${build.dir}/fhir_fixtures4Touchstone/payload/${usecase.amv}_2_fhir.xsl</echo>
+            <xslt force="true" style="${build.dir}/fhir_fixtures4Touchstone/payload/${usecase.amv}_2_fhir.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useimplicitfileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <!--<param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>-->
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+        
+        <!-- voorstel ma -->
+        <sequential>
+            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="vma*.xml"/>
+            
+            <echo/>
+            <echo>${echo.label} input files ${build.dir}/xml-voorbeelden/ada_instance, to be converted with: ${build.dir}/fhir_fixtures4Touchstone/payload/${usecase.vma}_2_fhir.xsl</echo>
+            <xslt force="true" style="${build.dir}/fhir_fixtures4Touchstone/payload/${usecase.vma}_2_fhir.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useimplicitfileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <!--<param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>-->
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+        
+        <!-- antwoord voorstel ma -->
+        <sequential>
+            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="avma*.xml"/>
+            
+            <echo/>
+            <echo>${echo.label} input files ${build.dir}/xml-voorbeelden/ada_instance, to be converted with: ${build.dir}/fhir_fixtures4Touchstone/payload/${usecase.avma}_2_fhir.xsl</echo>
+            <xslt force="true" style="${build.dir}/fhir_fixtures4Touchstone/payload/${usecase.avma}_2_fhir.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useimplicitfileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <!--<param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>-->
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+        
+        <!-- voorstel vv -->
+        <sequential>
+            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="vvv*.xml"/>
+            
+            <echo/>
+            <echo>${echo.label} input files ${build.dir}/xml-voorbeelden/ada_instance, to be converted with: ${build.dir}/fhir_fixtures4Touchstone/payload/${usecase.vvv}_2_fhir.xsl</echo>
+            <xslt force="true" style="${build.dir}/fhir_fixtures4Touchstone/payload/${usecase.vvv}_2_fhir.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useimplicitfileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <!--<param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>-->
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+        
+        <!-- antwoord voorstel vv -->
+        <sequential>
+            <fileset id="inputfilesMP" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="avvv*.xml"/>
+            
+            <echo/>
+            <echo>${echo.label} input files ${build.dir}/xml-voorbeelden/ada_instance, to be converted with: ${build.dir}/fhir_fixtures4Touchstone/payload/${usecase.avvv}_2_fhir.xsl</echo>
+            <xslt force="true" style="${build.dir}/fhir_fixtures4Touchstone/payload/${usecase.avvv}_2_fhir.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useimplicitfileset="false">
+                <fileset refid="inputfilesMP"/>
+                <param name="generateInstructionText" expression="true"/>
+                <param name="dateT" expression="${date.T}" if="date.T"/>
+                <!--<param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>-->
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+        
     </target>
     
 

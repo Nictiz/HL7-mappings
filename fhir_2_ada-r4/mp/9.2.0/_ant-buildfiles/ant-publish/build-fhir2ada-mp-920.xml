@@ -74,8 +74,8 @@
         <antcall target="convert_fhir_2_ada_sub">
             <param name="usecase" value="${usecase.mg}"/>
             <param name="build.dir" value="${build.dir}"/>
-            <param name="xsl.in" value="fhir_instance_repo"/>
-            <param name="xsl.out" value="ada_instance_repo"/>
+            <param name="xsl.in" value="fhir_instance"/>
+            <param name="xsl.out" value="ada_instance"/>
         </antcall>
 
         <!-- sturen_medicatievoorschrift -->
@@ -160,16 +160,16 @@
         <antcall target="convert_fhir_2_ada_sub">
             <param name="usecase" value="${usecase.mg}"/>
             <param name="build.dir" value="${build.dir}"/>
-            <param name="xsl.in" value="fhir_instance_repo"/>
-            <param name="xsl.out" value="ada_instance_repo"/>
+            <param name="xsl.in" value="fhir_instance"/>
+            <param name="xsl.out" value="ada_instance"/>
         </antcall>
         <!-- bundles -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="${usecase.mg}"/>
             <param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.2.0/${usecase.fhir.fixtures}/payload/${usecase.mg}_2_fhir.xsl"/>
-            <param name="xsl.in" value="${build.dir}/${usecase.mg}/ada_instance_repo"/>
+            <param name="xsl.in" value="${build.dir}/${usecase.mg}/ada_instance"/>
             <param name="xsl.in.include" value="*.xml"/>
-            <param name="xsl.out" value="${build.dir}/${usecase.mg}/roundtrip_fhir_instance_repo"/>
+            <param name="xsl.out" value="${build.dir}/${usecase.mg}/roundtrip_fhir_instance"/>
             <param name="param.tdate" value="${date.T}"/>
             <param name="param.maskids" value="${mask.ids}"/>
         </antcall>
@@ -181,7 +181,7 @@
         <!-- beschikbaarstellen_medicatiegegevens -->
         <antcall target="setup_sub">
             <param name="usecase" value="${usecase.mg}"/>
-            <param name="folder.name" value="fhir_instance_repo"/>
+            <param name="folder.name" value="fhir_instance"/>
             <param name="include.files" value="mg*.xml"/>
         </antcall>
 

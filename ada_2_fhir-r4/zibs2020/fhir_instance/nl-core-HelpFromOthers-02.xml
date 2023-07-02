@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CarePlan xmlns="http://hl7.org/fhir">
+   <id value="nl-core-HelpFromOthers-02"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HelpFromOthers"/>
+   </meta>
+   <status value="active"/>
+   <intent value="plan"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="243114000"/>
+         <display value="ondersteuning"/>
+      </coding>
+   </category>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <activity>
+      <detail>
+         <code>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="60689008"/>
+               <display value="thuiszorg voor patiënt"/>
+            </coding>
+         </code>
+         <status value="in-progress"/>
+         <scheduledString value="Dagelijks"/>
+         <performer>
+            <reference value="Organization/nl-core-HelpFromOthers-02-Organization-01"/>
+            <type value="Organization"/>
+            <display value="Healthcare provider (organization), Thuiszorg X"/>
+         </performer>
+         <description value="Ondersteuning bij wassen"/>
+      </detail>
+   </activity>
+   <note>
+      <text value="Voornamelijk van belang om voldoende steun te bieden tijdens het douchen vanwege gevaar op vallen."/>
+   </note>
+</CarePlan>

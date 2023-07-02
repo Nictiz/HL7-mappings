@@ -15,18 +15,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:pharm="urn:ihe:pharm:medication" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:f="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="../../../../zibs2020/payload/all-zibs.xsl"/>
     <xsl:import href="../../../mp-handle-bouwstenen.xsl"/>
-  
+
     <xd:doc>
         <xd:desc>Dit is een conversie voor MP 9 2.0 van HL7v3 naar ADA beschikbaarstellen medicatiegegevens</xd:desc>
     </xd:doc>
-    
+
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all" omit-xml-declaration="yes"/>
     <!-- parameter to control whether or not the result should contain a reference to the ada xsd -->
     <xsl:param name="outputSchemaRef" as="xs:boolean" select="true()"/>
     <xsl:param name="schemaFileString" as="xs:string?">../../hl7_2_ada/mp/9.2.0/beschikbaarstellen_medicatiegegevens/ada_schemas/beschikbaarstellen_medicatiegegevens.xsd</xsl:param>
     <!-- whether or not this hl7_2_ada conversion should deduplicate bouwstenen, such as products, health providers, health professionals, contact persons -->
-        <xsl:param name="deduplicateAdaBouwstenen" as="xs:boolean?" select="false()"/>
-<!--    <xsl:param name="deduplicateAdaBouwstenen" as="xs:boolean?" select="true()"/>-->
+    <xsl:param name="deduplicateAdaBouwstenen" as="xs:boolean?" select="false()"/>
+    <!--    <xsl:param name="deduplicateAdaBouwstenen" as="xs:boolean?" select="true()"/>-->
 
     <xsl:variable name="medicatiegegevens-lijst-92" select="//hl7:organizer[hl7:code[@code = '102'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']] | //hl7:organizer[hl7:code[@code = '419891008'][@codeSystem = '2.16.840.1.113883.6.96']] | hl7:ClinicalDocument[hl7:code[@code = '52981000146104'][@codeSystem = '2.16.840.1.113883.6.96']]"/>
 
@@ -42,7 +42,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- let's use the extension of the message id -->
                 <xsl:value-of select="$medicatiegegevens-lijst-92/../../../hl7:id/@extension"/>
             </xsl:when>
-            <xsl:otherwise><xsl:value-of select="generate-id(.)"/></xsl:otherwise>
+            <xsl:otherwise>
+                <xsl:value-of select="generate-id(.)"/>
+            </xsl:otherwise>
         </xsl:choose>
     </xsl:param>
 
@@ -77,7 +79,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:for-each select="$medicatiegegevens-lijst">
                         <xsl:call-template name="doGeneratedComment"/>
                         <xsl:variable name="patient" select="hl7:recordTarget/hl7:patientRole"/>
-                        <beschikbaarstellen_medicatiegegevens app="mp-mp920" shortName="beschikbaarstellen_medicatiegegevens" formName="medicatiegegevens" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.172" transactionEffectiveDate="2021-04-02T09:33:39" prefix="mp-" language="nl-NL" title="{$theId}" id="{$theId}">
+                        <beschikbaarstellen_medicatiegegevens app="mp-mp92" shortName="beschikbaarstellen_medicatiegegevens" formName="medicatiegegevens" transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.301" transactionEffectiveDate="2022-02-07T00:00:00" prefix="mp-" language="nl-NL" title="{$theId}" id="{$theId}">
                             <xsl:for-each select="$patient">
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1_20210701">
                                     <xsl:with-param name="in" select="."/>
@@ -159,7 +161,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:variable>
 
-              <xsl:copy-of select="$adaXmlWithBouwstenen"/>
+        <xsl:copy-of select="$adaXmlWithBouwstenen"/>
 
     </xsl:template>
 

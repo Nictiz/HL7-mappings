@@ -14,7 +14,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:nm="http://www.nictiz.nl/mappings" xmlns:f="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="payload/mp_latest_package.xsl"/>
-    <xsl:import href="../../../util/mp-functions.xsl"/>
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
@@ -44,7 +43,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- entry for patient -->
             <xsl:variable name="patientKey" select="current-grouping-key()"/>
             <entry>
-                <fullUrl value="{$fhirMetadata[nm:group-key/text() = $patientKey]/nm:full-url/text()}"/>
+                <xsl:call-template name="insertFullUrl">
+                    <xsl:with-param name="in" select="."/>
+                </xsl:call-template>
                 <resource>
                     <xsl:call-template name="nl-core-Patient">
                         <xsl:with-param name="in" select="."/>
@@ -56,7 +57,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- entry for Contact -->
             <xsl:variable name="contactKey" select="current-grouping-key()"/>
             <entry>
-                <fullUrl value="{$fhirMetadata[nm:resource-type/text() = 'RelatedPerson'][nm:group-key/text() = $contactKey]/nm:full-url/text()}"/>
+                <xsl:call-template name="insertFullUrl">
+                    <xsl:with-param name="in" select="."/>
+                </xsl:call-template>
                 <resource>
                     <xsl:call-template name="nl-core-ContactPerson">
                         <xsl:with-param name="patient" select="../../patient"/>
@@ -64,22 +67,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </resource>
             </entry>
         </xsl:for-each-group>
-        <xsl:for-each-group select="/adaxml/data/*/bouwstenen/zorgverlener" group-by="nf:getGroupingKeyDefault(.)">
+        <!-- let's resolve the zorgaanbieder ín the zorgverlener, to make sure deduplication also works for duplicated zorgaanbieders -->
+        <xsl:variable name="zorgverlenerWithResolvedZorgaanbieder" as="element(zorgverlener)*">
+            <xsl:apply-templates select="/adaxml/data/*/bouwstenen/zorgverlener" mode="resolveAdaZorgaanbieder"/>                
+        </xsl:variable>
+        <xsl:for-each-group select="$zorgverlenerWithResolvedZorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
             <!-- entry for practitionerrole -->
-            <xsl:variable name="zvlKey" select="current-grouping-key()"/>
             <entry>
-                <fullUrl value="{$fhirMetadata[nm:resource-type/text() = 'PractitionerRole'][nm:group-key/text() = $zvlKey]/nm:full-url/text()}"/>
+                <xsl:call-template name="insertFullUrl">
+                    <xsl:with-param name="in" select="."/>
+                    <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
+                </xsl:call-template>                
                 <resource>
                     <xsl:call-template name="nl-core-HealthProfessional-PractitionerRole">
                         <xsl:with-param name="in" select="."/>
-                        <xsl:with-param name="organization" select="../zorgaanbieder[@id = current()//zorgaanbieder[not(zorgaanbieder)]/@value]"/>
                     </xsl:call-template>
                 </resource>
             </entry>
             <!-- also an entry for practitioner -->
-            <xsl:variable name="zvlKey" select="nf:getGroupingKeyDefault(.)"/>
             <entry>
-                <fullUrl value="{$fhirMetadata[nm:resource-type/text() = 'Practitioner'][nm:group-key/text() = $zvlKey]/nm:full-url/text()}"/>
+                <xsl:call-template name="insertFullUrl">
+                    <xsl:with-param name="in" select="."/>
+                    <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitioner"/>
+                </xsl:call-template>
                 <resource>
                     <xsl:call-template name="nl-core-HealthProfessional-Practitioner">
                         <xsl:with-param name="in" select="."/>
@@ -103,7 +113,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- entry for product -->
             <xsl:variable name="prdKey" select="current-grouping-key()"/>
             <entry>
-                <fullUrl value="{$fhirMetadata[nm:resource-type/text() = 'Medication'][nm:group-key/text() = $prdKey]/nm:full-url/text()}"/>
+                <xsl:call-template name="insertFullUrl">
+                    <xsl:with-param name="in" select="."/>
+                </xsl:call-template>
                 <resource>
                     <xsl:call-template name="nl-core-PharmaceuticalProduct">
                         <xsl:with-param name="in" select="."/>
@@ -115,7 +127,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- entry for problem -->
             <xsl:variable name="prbKey" select="current-grouping-key()"/>
             <entry>
-                <fullUrl value="{$fhirMetadata[nm:resource-type/text() = 'Condition'][nm:group-key/text() = $prbKey]/nm:full-url/text()}"/>
+                <xsl:call-template name="insertFullUrl">
+                    <xsl:with-param name="in" select="."/>
+                </xsl:call-template>
                 <resource>
                     <xsl:call-template name="nl-core-Problem">
                         <xsl:with-param name="in" select="."/>
@@ -128,10 +142,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- entry for problem -->
             <xsl:variable name="locKey" select="current-grouping-key()"/>
             <entry>
-                <fullUrl value="{$fhirMetadata[nm:resource-type/text() = 'Location'][nm:group-key/text() = $locKey]/nm:full-url/text()}"/>
+                <xsl:call-template name="insertFullUrl">
+                    <xsl:with-param name="in" select="."/>
+                </xsl:call-template>
                 <resource>
                     <Location>
                         <xsl:call-template name="insertLogicalId"/>
+                        <meta>
+                            <!-- J.D.: Add this to conform to our 'all resources SHALL contain meta.profile' requirement, although we do not have a specific profile to conform to in this case -->
+                            <profile value="http://hl7.org/fhir/StructureDefinition/Location"/>
+                        </meta>
                         <name value="{@value}"/>
                     </Location>
                 </resource>
@@ -141,7 +161,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- entry for Observation -->
             <xsl:variable name="obsKey" select="current-grouping-key()"/>
             <entry>
-                <fullUrl value="{$fhirMetadata[nm:resource-type/text() = 'Observation'][nm:group-key/text() = $obsKey]/nm:full-url/text()}"/>
+                <xsl:call-template name="insertFullUrl">
+                    <xsl:with-param name="in" select="."/>
+                </xsl:call-template>
                 <resource>
                     <xsl:call-template name="nl-core-BodyHeight">
                         <xsl:with-param name="in" select="."/>
@@ -154,7 +176,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- entry for Observation -->
             <xsl:variable name="obsKey" select="current-grouping-key()"/>
             <entry>
-                <fullUrl value="{$fhirMetadata[nm:resource-type/text() = 'Observation'][nm:group-key/text() = $obsKey]/nm:full-url/text()}"/>
+                <xsl:call-template name="insertFullUrl">
+                    <xsl:with-param name="in" select="."/>
+                </xsl:call-template>
                 <resource>
                     <xsl:call-template name="nl-core-BodyWeight">
                         <xsl:with-param name="in" select="."/>
@@ -310,7 +334,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <fullUrl value="urn:uuid:{nf:get-uuid(.)}"/>
                 <resource>
                     <Communication xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir">
-                        <id value="{nf:get-uuid(*[1])}"/>
+                        <xsl:if test="$populateId = true() or $referencingStrategy = 'logicalId'">
+                            <id value="{nf:get-uuid(*[1])}"/>
+                        </xsl:if>
                         <meta>
                             <xsl:choose>
                                 <xsl:when test="antwoord_medicatieafspraak[@code]">

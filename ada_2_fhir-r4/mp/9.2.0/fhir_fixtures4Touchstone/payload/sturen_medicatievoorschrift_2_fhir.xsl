@@ -65,6 +65,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <!-- whether or nog to output schema / schematron links -->
     <xsl:param name="schematronXsdLinkInOutput" as="xs:boolean?" select="false()"/>
+    
+    <xsl:param name="usecase">mp9</xsl:param>
+    
 
     <xd:doc>
         <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen medicatiegegevens".</xd:desc>

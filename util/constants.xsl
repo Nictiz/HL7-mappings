@@ -99,6 +99,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="oidNHGTabel45DiagnBepal">2.16.840.1.113883.2.4.4.30.45</xsl:variable>
     <xsl:variable name="oidNHGTabel45DiagnBepalResultaat">2.16.840.1.113883.2.4.4.30.1045</xsl:variable>
     <xsl:variable name="oidNHGTabel56Profylaxe">2.16.840.1.113883.2.4.4.30.56</xsl:variable>
+    <xsl:variable name="oidNHGTabe361Gebruikseenheid">2.16.840.1.113883.2.4.4.1.361</xsl:variable>
     <xsl:variable name="oidQuestionnaireItemUIControlCodes">2.16.840.1.113883.4.642.1.849</xsl:variable>
     <xsl:variable name="oidQuestionnaireItemType">2.16.840.1.113883.4.642.1.438</xsl:variable>
     <xsl:variable name="oidQuestionnaireItemUsageMode">2.16.840.1.113883.4.642.1.855</xsl:variable>
@@ -113,6 +114,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="oidUZIPersons">2.16.528.1.1007.3.1</xsl:variable>
     <xsl:variable name="oidUZISystems">2.16.528.1.1007.3.2</xsl:variable>
     <xsl:variable name="oidUZIRoleCode">2.16.840.1.113883.2.4.15.111</xsl:variable>
+    <xsl:variable name="oidUZOVI">2.16.840.1.113883.2.4.6.4</xsl:variable>
     <xsl:variable name="oidZIBLaboratoriumUitslagTestUitslagStatus">2.16.840.1.113883.2.4.3.11.60.40.4.16.1</xsl:variable>
 
     <xsl:variable name="oidsGstandaardMedication" as="xs:string*" select="($oidGStandaardSSK, $oidGStandaardSNK, $oidGStandaardGPK, $oidGStandaardPRK, $oidGStandaardHPK, $oidGStandaardZInummer)"/>
@@ -130,12 +132,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="urlExtNLPractitionerRoleReference"><xsl:value-of select="$urlBaseNictizProfile"/>practitionerrole-reference</xsl:variable>
     <xsl:variable name="urlExtHL7DataAbsentReason">http://hl7.org/fhir/StructureDefinition/data-absent-reason</xsl:variable>
     <xsl:variable name="urlExtHL7NullFlavor">http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor</xsl:variable>
+    <xsl:variable name="urlExtMedicationAdministration2AgreedDateTime"><xsl:value-of select="$urlBaseNictizProfile"/>ext-MedicationAdministration2.AgreedDateTime</xsl:variable>
+    <xsl:variable name="urlExtMedicationAdministration2AgreedAmount"><xsl:value-of select="$urlBaseNictizProfile"/>ext-MedicationAdministration2.AgreedAmount</xsl:variable>
+    <xsl:variable name="urlExtMedicationAdministration2ReasonForDeviation"><xsl:value-of select="$urlBaseNictizProfile"/>ext-MedicationAdministration2.ReasonForDeviation</xsl:variable>
+    <xsl:variable name="urlExtMedicationAgreementAdditionalInformation"><xsl:value-of select="$urlBaseNictizProfile"/>ext-MedicationAgreement.MedicationAgreementAdditionalInformation</xsl:variable>
+    <xsl:variable name="urlExtMedicationAgreementNextPractitioner"><xsl:value-of select="$urlBaseNictizProfile"/>ext-MedicationAgreement.NextPractitioner</xsl:variable>
     <xsl:variable name="urlExtMedicationAgreementPeriodOfUseCondition"><xsl:value-of select="$urlBaseNictizProfile"/>ext-MedicationAgreement.PeriodOfUse.Condition</xsl:variable>
     <xsl:variable name="urlExtMedicationAgreementRelationMedicationUse"><xsl:value-of select="$urlBaseNictizProfile"/>ext-MedicationAgreement.RelationMedicationUse</xsl:variable>
     <xsl:variable name="urlExtMedicationMedicationDispenseDistributionForm"><xsl:value-of select="$urlBaseNictizProfile"/>ext-MedicationDispense.DistributionForm</xsl:variable>
+    <xsl:variable name="urlExtMedicationUse2Prescriber"><xsl:value-of select="$urlBaseNictizProfile"/>ext-MedicationUse2.Prescriber</xsl:variable>
+    <xsl:variable name="urlExtMedicationUseAuthor"><xsl:value-of select="$urlBaseNictizProfile"/>ext-MedicationUse2.Author</xsl:variable>
     <xsl:variable name="urlExtPharmaceuticalTreatmentIdentifier"><xsl:value-of select="$urlBaseNictizProfile"/>ext-PharmaceuticalTreatment.Identifier</xsl:variable>
+    <xsl:variable name="urlExtRelationAdministrationAgreement"><xsl:value-of select="$urlBaseNictizProfile"/>ext-RelationAdministrationAgreement</xsl:variable>
     <xsl:variable name="urlExtRepeatPeriodCyclical"><xsl:value-of select="$urlBaseNictizProfile"/>zib-Medication-RepeatPeriodCyclicalSchedule</xsl:variable>
     <xsl:variable name="urlExtResourceCategory"><xsl:value-of select="$urlBaseNictizProfile"/>ext-ResourceCategory</xsl:variable>
+    <xsl:variable name="urlExtStoptype"><xsl:value-of select="$urlBaseNictizProfile"/>ext-StopType</xsl:variable>
     <!-- MP9 2.0.0-bèta version -->
     <xsl:variable name="urlExtTimeInterval-Period"><xsl:value-of select="$urlBaseNictizProfile"/>ext-TimeInterval-Period</xsl:variable>
     <xsl:variable name="urlExtTimeInterval-Duration"><xsl:value-of select="$urlBaseNictizProfile"/>ext-TimeInterval-Duration</xsl:variable>
@@ -300,10 +311,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <map hl7Code="GC" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Geboortecentrum"/>
         <map hl7Code="DIA" hl7CodeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Dialysecentrum"/>
     </xsl:variable>
-
+    
+    <!-- 2022-09-07 oidAORTAApplicatieID Added on https://hl7.nl/wiki/index.php?title=OIDs_en_FHIR_System_URIs -->
     <xsl:variable name="oidMap" as="element()+">
         <map oid="{$oidAGB}" uri="http://fhir.nl/fhir/NamingSystem/agb-z" displayName="AGB-Z"/>
         <map oid="{$oidAGBSpecialismen}" displayName="Vektis AGB-medische specialismen"/>
+        <map oid="{$oidAORTAApplicatieID}" uri="http://fhir.nl/fhir/NamingSystem/aorta-app-id" displayName="AORTA ApplicatieID"/>
         <map oid="{$oidATC}" uri="http://www.whocc.no/atc" displayName="Anatomic Therapeutic Classification (ATC)"/>
         <map oid="{$oidBIGregister}" uri="http://fhir.nl/fhir/NamingSystem/big" displayName="BIG"/>
         <map oid="{$oidBurgerservicenummer}" uri="http://fhir.nl/fhir/NamingSystem/bsn" displayName="BSN"/>
@@ -342,6 +355,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <map oid="{$oidUZIPersons}" uri="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers" displayName="UZI Personen"/>
         <map oid="{$oidUZIRoleCode}" uri="http://fhir.nl/fhir/NamingSystem/uzi-rolcode" displayName="UZI Rolcodes"/>
         <map oid="{$oidUZISystems}" uri="http://fhir.nl/fhir/NamingSystem/uzi-nr-sys" displayName="UZI Systemen"/>
+        <map oid="{$oidUZOVI}" uri="http://fhir.nl/fhir/NamingSystem/uzovi" displayName="UZOVI"/>
         <xsl:choose>
             <xsl:when test="$fhirVersion='STU3'">
                 <map oid="{$oidChoiceListOrientation}" uri="http://hl7.org/fhir/choice-list-orientation" displayName="ChoiceListOrientation"/>
@@ -497,14 +511,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <map xmlns="" dayPart="morning" fhirWhen="MORN" hl7PIVLPhaseLow="1970010106" hl7PIVLPhaseHigh="1970010112" code="73775008" codeSystem="{$oidSNOMEDCT}" displayName="'s ochtends" codeSystemName="SNOMED CT"/>
         <map xmlns="" dayPart="afternoon" fhirWhen="AFT" hl7PIVLPhaseLow="1970010112" hl7PIVLPhaseHigh="1970010118" code="255213009" codeSystem="{$oidSNOMEDCT}" displayName="'s middags" codeSystemName="SNOMED CT"/>
         <map xmlns="" dayPart="evening" fhirWhen="EVE" hl7PIVLPhaseLow="1970010118" hl7PIVLPhaseHigh="1970010200" code="3157002" codeSystem="{$oidSNOMEDCT}" displayName="'s avonds" codeSystemName="SNOMED CT"/>
-    </xsl:variable>
-
-    <xsl:variable name="stoptypeMap" as="element()+">
-        <map code="113381000146106" codeSystem="2.16.840.1.113883.6.96" displayName="tijdelijk gestopt"/>
-        <map code="113371000146109" codeSystem="2.16.840.1.113883.6.96" displayName="definitief gestopt"/>
-        <!-- deprecated codes from pre MP 9.2 -->
-        <map hl7Code="1" hl7CodeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="tijdelijk gestopt"/>
-        <map hl7Code="2" hl7CodeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="definitief gestopt"/>
     </xsl:variable>
 
     <xsl:variable name="weekdayMap" as="element()+">

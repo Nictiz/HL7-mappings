@@ -18,7 +18,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="hl7-Contactpersoon-20210701.xsl"/>
     <xsl:import href="hl7-Lichaamsgewicht-20210701.xsl"/>
     <xsl:import href="hl7-patient-20210701.xsl"/>
+    <xsl:import href="hl7-toelichting-20210701.xsl"/>
     <xsl:import href="hl7-Zorgaanbieder-20210701.xsl"/>
     <xsl:import href="hl7-Zorgverlener-20210701.xsl"/>
+    <xsl:import href="hl7-ProbleemObservatie-20210701.xsl"/>
+    <xsl:import href="hl7-Lichaamslengte-20210701.xsl"/>
+    <xsl:import href="hl7-toelichting-20210701.xsl"/>
        
  </xsl:stylesheet>

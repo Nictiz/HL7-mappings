@@ -24,7 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
     
-    <xsl:import href="../../../../zibs2020/payload/zib_latest_package.xsl"/>
+    <xsl:import href="../../../../zibs2020/payload/0.6-beta2/all_zibs.xsl"/>
     
     <xd:doc>
         <xd:desc>If true, write all generated resources to disk in the fhir_instance directory. Otherwise, return all the output in a FHIR Bundle.</xd:desc>
@@ -65,7 +65,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
             <xsl:variable name="device" as="element()*">
                 <xsl:for-each-group select="onderzoeksresultaat/laboratorium_uitslag/monster/bron_monster" group-by="nf:getGroupingKeyDefault(.)">
-                    <xsl:call-template name="_nl-core-LaboratoryTestResult.Specimen.Source">
+                    <xsl:call-template name="nl-core-LaboratoryTestResult.Specimen.Source">
                         <xsl:with-param name="in" select="current-group()[1]"/>
                         <xsl:with-param name="subject" select="../../../../patientgegevens/patient"/>
                     </xsl:call-template>
@@ -73,7 +73,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:variable>
             <xsl:variable name="specimen" as="element()*">
                 <xsl:for-each-group select="onderzoeksresultaat/laboratorium_uitslag/monster" group-by="nf:getGroupingKeyDefault(.)">
-                    <xsl:call-template name="_nl-core-LaboratoryTestResult.Specimen">
+                    <xsl:call-template name="nl-core-LaboratoryTestResult.Specimen">
                         <xsl:with-param name="in" select="current-group()[1]"/>
                         <xsl:with-param name="subject" select="../../../patientgegevens/patient"/>
                         <xsl:with-param name="type" select="microorganisme"/>
@@ -104,10 +104,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <resource>
                         <xsl:copy-of select="."/>
                     </resource>
-                    <request>
-                        <method value="POST"/>
-                        <url value="{local-name(.)}"/>
-                    </request>
                 </entry>
             </xsl:for-each>
         </xsl:variable>
@@ -132,9 +128,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:otherwise>
                 <Bundle xmlns="http://hl7.org/fhir">
                     <id value="{nf:assure-logicalid-length(nf:removeSpecialCharacters(@id))}"/>
-                    <type value="transaction"/>
-                    <!--<total value="{count($resources)}"/>-->
-                    <!--<xsl:choose>
+                    <type value="searchset"/>
+                    <!-- What should we count? -->
+                    <total value="TODO"/>
+                    <!--<total value="{count($resources/f:resource/*)}"/>-->
+                    <xsl:choose>
                         <xsl:when test="$bundleSelfLink[not(. = '')]">
                             <link>
                                 <relation value="self"/>
@@ -148,7 +146,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:with-param name="terminate" select="false()"/>
                             </xsl:call-template>
                         </xsl:otherwise>
-                    </xsl:choose>-->
+                    </xsl:choose>
                     <xsl:copy-of select="$resources"/>
                 </Bundle>
             </xsl:otherwise>
@@ -164,10 +162,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="_nl-core-LaboratoryTestResult-panel">
                     <xsl:with-param name="subject" select="../../patientgegevens/patient"/>
                 </xsl:call-template>
+                <xsl:for-each select="laboratorium_test">
+                    <xsl:call-template name="_nl-core-LaboratoryTestResult-individualTest">
+                        <xsl:with-param name="subject" select="../../../patientgegevens/patient"/>
+                    </xsl:call-template>
+                </xsl:for-each>
             </xsl:for-each>
             <xsl:for-each select="laboratorium_uitslag[not(onderzoek)]/laboratorium_test">
                 <xsl:call-template name="_nl-core-LaboratoryTestResult-individualTest">
-                    <xsl:with-param name="subject" select="../../patientgegevens/patient"/>
+                    <xsl:with-param name="subject" select="../../../patientgegevens/patient"/>
                 </xsl:call-template>
             </xsl:for-each>
         </xsl:variable>
@@ -177,10 +180,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <resource>
                     <xsl:copy-of select="."/>
                 </resource>
-                <request>
-                    <method value="POST"/>
-                    <url value="{local-name(.)}"/>
-                </request>
             </entry>
         </xsl:for-each>
     </xsl:template>

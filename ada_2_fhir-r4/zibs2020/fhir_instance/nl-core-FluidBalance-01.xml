@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="nl-core-FluidBalance-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-FluidBalance"/>
+   </meta>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="710853006"/>
+         <display value="evaluatie van vochtbalans"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <effectivePeriod>
+      <start value="2016-12-19T00:00:00+01:00"/>
+      <end value="2016-12-20T00:00:00+01:00"/>
+   </effectivePeriod>
+   <note>
+      <text value="Moeite met aflezen"/>
+   </note>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="251852001"/>
+            <display value="totale vochtinname"/>
+         </coding>
+      </code>
+      <valueQuantity>
+         <value value="1400"/>
+         <unit value="mL"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mL"/>
+      </valueQuantity>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="251841007"/>
+            <display value="totale vochtuitscheiding"/>
+         </coding>
+      </code>
+      <valueQuantity>
+         <value value="1000"/>
+         <unit value="mL"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mL"/>
+      </valueQuantity>
+   </component>
+</Observation>

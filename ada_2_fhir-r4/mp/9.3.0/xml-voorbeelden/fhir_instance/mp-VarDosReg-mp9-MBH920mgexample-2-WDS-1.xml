@@ -1,0 +1,144 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="mp-VarDosReg-mp9-MBH920mgexample-2-WDS-1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-VariableDosingRegimen"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_920_mg_example-2"/>
+      </valueIdentifier>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="Vanaf 11 nov 2022, tot en met 16 nov 2022, eerst gedurende 7 dagen 1 maal per dag om 20:00 1 stuk, dan gedurende 3 dagen 1 maal per dag om 20:00 1 stuk, Oraal"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+      <valuePeriod>
+         <start value="2022-11-11T00:00:00+01:00"/>
+         <end value="2022-11-16T23:59:59+01:00"/>
+      </valuePeriod>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+      <value value="MBH_920_mg_example-2-WDS-1"/>
+   </identifier>
+   <status value="unknown"/>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="395067002"/>
+         <display value="optimaliseren van dosering van medicatie"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/mp-PhPrd-mp9-216840111388324410-17469"/>
+      <type value="Medication"/>
+      <display value="IBUPROFEN TABLET 600MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-XXX-Kester"/>
+      <type value="Patient"/>
+      <display value="Patient, B. van XXX_Kester"/>
+   </subject>
+   <authoredOn value="2022-11-11T08:00:00+01:00"/>
+   <requester>
+      <reference value="PractitionerRole/nl-core-HPrf-PracRol-mp9-PrcRol-2165281100731-000001111"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+   </requester>
+   <basedOn>
+      <type value="MedicationRequest"/>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <value value="MBH_920_QA1_MA"/>
+      </identifier>
+      <display value="relatie naar medicatieafspraak met identificatie: MBH_920_QA1_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+   </basedOn>
+   <dosageInstruction>
+      <sequence value="1"/>
+      <timing>
+         <repeat>
+            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+               <valueBoolean value="false"/>
+            </extension>
+            <boundsDuration>
+               <value value="7"/>
+               <unit value="dag"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="d"/>
+            </boundsDuration>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+            <timeOfDay value="20:00:00"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+      <doseAndRate>
+         <doseQuantity>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+               <valueQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </valueQuantity>
+            </extension>
+            <value value="1"/>
+            <unit value="stuk"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="1"/>
+         </doseQuantity>
+      </doseAndRate>
+   </dosageInstruction>
+   <dosageInstruction>
+      <sequence value="2"/>
+      <timing>
+         <repeat>
+            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+               <valueBoolean value="false"/>
+            </extension>
+            <boundsDuration>
+               <value value="3"/>
+               <unit value="dag"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="d"/>
+            </boundsDuration>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+            <timeOfDay value="20:00:00"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+      <doseAndRate>
+         <doseQuantity>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+               <valueQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </valueQuantity>
+            </extension>
+            <value value="1"/>
+            <unit value="stuk"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="1"/>
+         </doseQuantity>
+      </doseAndRate>
+   </dosageInstruction>
+</MedicationRequest>

@@ -1,0 +1,100 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="mp-AdmAgr-mp9-MBH300andermans2TA"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
+      <valueDateTime value="${DATE, T, D, -159}T09:15:00+02:00"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="Vanaf T - 159 dagen, gedurende 1 week, 3 maal per dag 1 stuk, Oraal"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+      <valuePeriod>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
+            <valueDuration>
+               <value value="1"/>
+               <unit value="week"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="wk"/>
+            </valueDuration>
+         </extension>
+         <start value="${DATE, T, D, -159}T00:00:00+02:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_300_andermans2"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+      <value value="MBH_300_andermans2_TA"/>
+   </identifier>
+   <status value="unknown"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422037009"/>
+         <display value="toedieningsafspraak"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/mp-PhPrd-mp9-21684011138832447-802891"/>
+      <type value="Medication"/>
+      <display value="AMOXICILLINE DISPER SANDOZ TABLET 500MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-C-XXX-Dijk"/>
+      <type value="Patient"/>
+      <display value="Patient, C. XXX_Dijk"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/nl-core-HPrv-Org-mp9-Org-2165281100733-01236578"/>
+         <type value="Organization"/>
+         <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
+      </actor>
+   </performer>
+   <authorizingPrescription>
+      <type value="MedicationRequest"/>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <value value="MBH_300_eigen2_MA"/>
+      </identifier>
+      <display value="relatie naar medicatieafspraak met identificatie: MBH_300_eigen2_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+   </authorizingPrescription>
+   <dosageInstruction>
+      <timing>
+         <repeat>
+            <frequency value="3"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+      <doseAndRate>
+         <doseQuantity>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+               <valueQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </valueQuantity>
+            </extension>
+            <value value="1"/>
+            <unit value="stuk"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="1"/>
+         </doseQuantity>
+      </doseAndRate>
+   </dosageInstruction>
+</MedicationDispense>

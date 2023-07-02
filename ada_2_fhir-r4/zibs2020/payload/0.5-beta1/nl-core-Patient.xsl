@@ -145,7 +145,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </maritalStatus>
                 </xsl:for-each>
 
-                <xsl:for-each select="meerling_indicator">
+                <xsl:for-each select="meerling_indicator[@value]">
                     <multipleBirthBoolean>
                         <xsl:attribute name="value">
                             <xsl:call-template name="boolean-to-boolean"/>
@@ -271,9 +271,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:variable>
 
-        <xsl:call-template name="generateLogicalId">
-            <xsl:with-param name="uniqueString" select="$uniqueString"/>
-        </xsl:call-template>
+        <xsl:apply-templates select="." mode="generateLogicalId">
+            <xsl:with-param name="uniqueString" select="string-join($uniqueString, '')"/>
+        </xsl:apply-templates>
 
     </xsl:template>
 
