@@ -28,8 +28,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:variable name="out" as="element()">
             <xsl:choose>
-                <xsl:when test="$codeMap[@inValue = $value]">
-                    <xsl:copy-of select="$codeMap[@inValue = $value]"/>
+                <!-- constants.xsl uses maps with inCode that would not work otherwise -->
+                <xsl:when test="$codeMap[(@inValue, @inCode)[1] = $value]">
+                    <xsl:copy-of select="$codeMap[(@inValue, @inCode)[1] = $value]"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:copy-of select="."/>
