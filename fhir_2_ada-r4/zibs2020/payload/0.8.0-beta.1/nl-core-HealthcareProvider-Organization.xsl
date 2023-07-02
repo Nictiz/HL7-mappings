@@ -18,8 +18,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to convert f:Organization to ADA zorgaanbieder</xd:desc>
     </xd:doc>
     <xsl:template match="f:Organization" mode="nl-core-HealthcareProvider-Organization">
+        <xsl:param name="doAdaId" select="true()" as="xs:boolean"/>
         <xsl:variable name="entryFullURrlAtValue" select="../../f:fullUrl/@value"/>
-        <zorgaanbieder id="{nf:convert2NCName($entryFullURrlAtValue)}">
+        <zorgaanbieder>
+            <xsl:if test="$doAdaId">
+                <xsl:attribute name="id" select="nf:convert2NCName($entryFullURrlAtValue)"/>
+            </xsl:if>
             <!-- zorgaanbieder_identificatienummer -->
             <xsl:apply-templates select="f:identifier" mode="#current"/>
             <!-- organisatie_naam -->
@@ -64,11 +68,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <organisatie_naam value="{@value}"/>
     </xsl:template>
 
-
     <xd:doc>
         <xd:desc>Template to convert f:type to organisatie_type</xd:desc>
     </xd:doc>
-
     <xsl:template match="f:type" mode="nl-core-HealthcareProvider-Organization">
         <xsl:choose>
             <xsl:when test="f:coding/f:system[@value = concat('urn:oid:', $oidAGBSpecialismen) or @value=$oidMap[@oid=$oidAGBSpecialismen]/@uri]">
