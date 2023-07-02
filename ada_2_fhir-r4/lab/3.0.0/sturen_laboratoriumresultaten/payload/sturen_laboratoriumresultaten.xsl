@@ -24,7 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
     
-    <xsl:import href="../../../../zibs2020/payload/0.6-beta2/all_zibs.xsl"/>
+    <xsl:import href="../../../../zibs2020/payload/zib_latest_package.xsl"/>
     <xsl:import href="../../../../fhir/2_fhir_BundleEntryRequest.xsl"/>
     
     <xd:doc>
@@ -76,7 +76,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="groupKey" select="current-grouping-key()"/>
                         </xsl:call-template>
                         <resource>
-                            <xsl:call-template name="nl-core-LaboratoryTestResult.Specimen.Source">
+                            <xsl:call-template name="nl-core-LaboratoryTestResult.SpecimenSource">
                                 <xsl:with-param name="in" select="current-group()[1]"/>
                                 <xsl:with-param name="subject" select="../../../../patientgegevens/patient"/>
                             </xsl:call-template>
@@ -95,10 +95,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:call-template name="nl-core-LaboratoryTestResult.Specimen">
                                 <xsl:with-param name="in" select="current-group()[1]"/>
                                 <xsl:with-param name="subject" select="../../../patientgegevens/patient"/>
-                                <xsl:with-param name="type" select="microorganisme"/>
+                                <xsl:with-param name="type" select="(microorganisme, monstermateriaal)[1]"/>
                             </xsl:call-template>
                         </resource>
                     </entry>
+                    <xsl:for-each select="current-group()[microorganisme][monstermateriaal]">
+                        <xsl:variable name="monster2" as="element(monster2)">
+                            <xsl:element name="monster2" namespace="">
+                                <xsl:copy-of select="* except microorganisme"/>
+                            </xsl:element>
+                        </xsl:variable>
+                        <entry xmlns="http://hl7.org/fhir">
+                            <xsl:call-template name="_insertFullUrlByGroupKey">
+                                <xsl:with-param name="groupKey" select="current-grouping-key()"/>
+                                <xsl:with-param name="resourceType" select="'Specimen'"/>
+                            </xsl:call-template>
+                            <resource>
+                                <xsl:call-template name="nl-core-LaboratoryTestResult.Specimen">
+                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="subject" select="../../../patientgegevens/patient"/>
+                                    <xsl:with-param name="type" select="monstermateriaal"/>
+                                </xsl:call-template>
+                            </resource>
+                        </entry>
+                    </xsl:for-each>
                 </xsl:for-each-group>
             </xsl:variable>
             <xsl:variable name="zorgaanbieders" as="element()*">
