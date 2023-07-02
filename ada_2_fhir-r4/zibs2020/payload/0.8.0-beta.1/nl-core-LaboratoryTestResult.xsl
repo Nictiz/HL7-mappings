@@ -370,7 +370,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="nl-core-LaboratoryTestResult.Specimen" mode="nl-core-LaboratoryTestResult.Specimen" match="monster" as="element(f:Specimen)?">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="$in/../../../patientgegevens/patient" as="element()?"/>
-        <xsl:param name="type" as="element()?"/>
+        <xsl:param name="type" select="(microorganisme, monstermateriaal)[1]" as="element()?"/>
         
         <xsl:for-each select="$in">
             <Specimen>
