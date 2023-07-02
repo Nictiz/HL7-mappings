@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-   
-   
-      <Bundle xmlns="http://hl7.org/fhir">
+<Bundle xmlns="http://hl7.org/fhir">
    <id value="lr-slr-KWAL-KC-LOINC-Scenario3-KCLOINC3"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c54fb5f0-ccab-11ed-1213-020000000000"/>
+      <fullUrl value="urn:uuid:abf166b4-192a-11ee-1158-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -37,13 +35,13 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:c54fb5b4-ccab-11ed-1213-020000000000"/>
+               <reference value="urn:uuid:abf1665a-192a-11ee-1158-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
             <effectiveDateTime value="${DATE, T, D, -10}"/>
             <performer>
-               <reference value="urn:uuid:c54fb62c-ccab-11ed-1213-020000000000"/>
+               <reference value="urn:uuid:abf16678-192a-11ee-1158-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Trombosedienst Ons Dorp"/>
             </performer>
@@ -66,18 +64,10 @@
                <text value="Te hoog let op, actie ondernemen."/>
             </interpretation>
             <specimen>
-               <reference value="urn:uuid:c54fb5d2-ccab-11ed-1213-020000000000"/>
+               <reference value="urn:uuid:abf166f0-192a-11ee-1158-020000000000"/>
                <type value="Specimen"/>
                <display value="monster"/>
             </specimen>
-            <referenceRange>
-               <low>
-                  <value value="0.9"/>
-               </low>
-               <high>
-                  <value value="1.1"/>
-               </high>
-            </referenceRange>
          </Observation>
       </resource>
       <request>
@@ -86,7 +76,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c54fb5d2-ccab-11ed-1213-020000000000"/>
+      <fullUrl value="urn:uuid:abf166f0-192a-11ee-1158-020000000000"/>
       <resource>
          <Specimen>
             <meta>
@@ -96,8 +86,15 @@
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4267.1"/>
                <value value="#1"/>
             </identifier>
+            <type>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="119361006"/>
+                  <display value="Plasma"/>
+               </coding>
+            </type>
             <subject>
-               <reference value="urn:uuid:c54fb5b4-ccab-11ed-1213-020000000000"/>
+               <reference value="urn:uuid:abf1665a-192a-11ee-1158-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, E. XXX_Doppen"/>
             </subject>
@@ -121,7 +118,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c54fb62c-ccab-11ed-1213-020000000000"/>
+      <fullUrl value="urn:uuid:abf16678-192a-11ee-1158-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -177,7 +174,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c54fb5b4-ccab-11ed-1213-020000000000"/>
+      <fullUrl value="urn:uuid:abf1665a-192a-11ee-1158-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -197,7 +194,7 @@
                </family>
                <given value="E.">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                     <valueCode value="BR"/>
+                     <valueCode value="IN"/>
                   </extension>
                </given>
             </name>
