@@ -219,10 +219,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Transforms FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#Quantity">Quantity</xd:a> to ada element of type hoeveelheid</xd:desc>
         <xd:param name="adaElementName">Optional string to provide the name of one of the ada output element. Defaults to 'hoeveelheid'.</xd:param>
+        <xd:param name="adaDatatype">Optional string to add datatype attribute in ada element.</xd:param>
     </xd:doc>
     <xsl:template name="Quantity-to-hoeveelheid" as="element()*">
         <xsl:param name="adaElementName" as="xs:string">hoeveelheid</xsl:param>
-
+        <xsl:param name="adaDatatype" as="xs:string?"/>
         <xsl:element name="{$adaElementName}">
             <xsl:choose>
                 <xsl:when test="f:extension/@url = $urlExtHL7NullFlavor">
@@ -233,6 +234,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:attribute name="unit" select="f:code/@value"/>
                 </xsl:otherwise>
             </xsl:choose>
+            <xsl:if test="not(empty($adaDatatype))">
+                <xsl:attribute name="datatype" select="$adaDatatype"/>
+            </xsl:if>
         </xsl:element>
 
     </xsl:template>
