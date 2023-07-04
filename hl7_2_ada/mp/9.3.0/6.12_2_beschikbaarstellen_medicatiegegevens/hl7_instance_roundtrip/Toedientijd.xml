@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schematron_closed_warnings/mp-medverslstresp.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"?>
+<!--Generated from ada instance with title: "Generated from HL7v3 verstrekkingenlijst 6.12 xml" and id: "Toedientijd.xml".-->
+<QURX_IN990113NL xmlns:pharm="urn:ihe:pharm:medication"
+                 xmlns="urn:hl7-org:v3"
+                 xmlns:hl7="urn:hl7-org:v3"
+                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20200122/mp-xml-20200122T161947/schemas/QURX_IN990113NL.xsd">
+   <id extension="TOBEGENERATED" root="2.16.840.1.113883.2.4.6.6.1.1"/>
+   <creationTime value="20230627172158"/>
+   <versionCode code="NICTIZEd2005-Okt"/>
+   <interactionId extension="QURX_IN990113NL" root="2.16.840.1.113883.1.6"/>
+   <profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
+   <processingCode code="P"/>
+   <processingModeCode code="T"/>
+   <acceptAckCode code="NE"/>
+   <acknowledgement typeCode="AA">
+      <targetMessage>
+         <id extension="0123456789" root="2.16.528.1.1007.3.3.1234567.1"/>
+      </targetMessage>
+   </acknowledgement>
+   <receiver>
+      <device>
+         <id extension="01234567" root="2.16.840.1.113883.2.4.6.6"/>
+      </device>
+   </receiver>
+   <sender>
+      <device>
+         <id extension="1" root="2.16.840.1.113883.2.4.6.6"/>
+      </device>
+   </sender>
+   <ControlActProcess moodCode="EVN">
+      <authorOrPerformer typeCode="AUT">
+         <participant>
+            <AssignedDevice>
+               <id extension="009876543" root="2.16.528.1.1007.3.2"/>
+               <id extension="00765432" root="2.16.840.1.113883.2.4.6.6"/>
+               <Organization>
+                  <id extension="01234567" root="2.16.528.1.1007.3.3"/>
+                  <name>Apotheek De Gulle Gaper</name>
+               </Organization>
+            </AssignedDevice>
+         </participant>
+      </authorOrPerformer>
+      <subject>
+         <MedicationDispenseList>
+            <code code="MEDLIST" codeSystem="2.16.840.1.113883.5.4"/>
+            <subject>
+               <Patient>
+                  <id extension="012345672" root="2.16.840.1.113883.2.4.6.3"/>
+                  <addr use="HP">
+                     <streetName>Boerhaavelaan</streetName>
+                     <houseNumber>24</houseNumber>
+                     <postalCode>2035 RC</postalCode>
+                     <city>HAARLEM</city>
+                  </addr>
+                  <statusCode code="active"/>
+                  <Person>
+                     <name>
+                        <given qualifier="IN">J.J.</given>
+                        <prefix qualifier="VV">le </prefix>
+                        <family qualifier="BR">Noble</family>
+                        <prefix qualifier="VV">van </prefix>
+                        <family qualifier="SP">Son</family>
+                     </name>
+                     <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1"/>
+                     <birthTime value="19721218"/>
+                  </Person>
+               </Patient>
+            </subject>
+            <component>
+               <medicationDispenseEvent>
+                  <id extension="00240703301"
+                      root="2.16.840.1.113883.2.4.3.39.6101.23639.10000972.3"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime value="20190628"/>
+                  <quantity nullFlavor="NA"/>
+                  <performer>
+                     <assignedPerson>
+                        <id nullFlavor="MSK"/>
+                     </assignedPerson>
+                  </performer>
+                  <product>
+                     <dispensedMedication>
+                        <MedicationKind classCode="MMAT" determinerCode="KIND">
+                           <code code="14899337"
+                                 codeSystem="2.16.840.1.113883.2.4.4.8"
+                                 displayName="TRAMADOL HCL SANDOZ RETARD TABLET MGA 100MG">
+                              <translation code="1632108" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                              <translation code="50431" codeSystem="2.16.840.1.113883.2.4.4.10"/>
+                              <translation code="104213" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+                           </code>
+                        </MedicationKind>
+                        <directTargetOf typeCode="DIR">
+                           <prescription>
+                              <id nullFlavor="UNK"/>
+                              <statusCode nullFlavor="UNK"/>
+                           </prescription>
+                        </directTargetOf>
+                        <therapeuticAgentOf>
+                           <medicationAdministrationRequest classCode="SBADM" moodCode="RQO">
+                              <text mediaType="text/plain">1 maal per dag 1 tablet 's avonds</text>
+                              <statusCode code="active"/>
+                              <effectiveTime xsi:type="PIVL_TS">
+                                 <phase>
+                                    <center value="197001012100"/>
+                                 </phase>
+                                 <period value="1" unit="d"/>
+                              </effectiveTime>
+                              <doseQuantity>
+                                 <center value="1" unit="1">
+                                    <translation value="1"
+                                                 code="245"
+                                                 displayName="ST"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+                                    <translation value="1"
+                                                 code="100"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="tablet"/>
+                                 </center>
+                              </doseQuantity>
+                           </medicationAdministrationRequest>
+                        </therapeuticAgentOf>
+                     </dispensedMedication>
+                  </product>
+                  <responsibleParty>
+                     <assignedCareProvider>
+                        <id nullFlavor="NI"/>
+                        <code code="17.000"
+                              codeSystem="2.16.840.1.113883.2.4.15.111"
+                              displayName="Apotheker"/>
+                        <representedOrganization>
+                           <id extension="00023639" root="2.16.528.1.1007.3.3"/>
+                           <name>Kringapotheek Asten</name>
+                           <addr use="WP">
+                              <streetName nullFlavor="NI"/>
+                              <houseNumber nullFlavor="NI"/>
+                              <postalCode nullFlavor="NI"/>
+                              <city>Asten</city>
+                           </addr>
+                        </representedOrganization>
+                     </assignedCareProvider>
+                  </responsibleParty>
+               </medicationDispenseEvent>
+            </component>
+         </MedicationDispenseList>
+      </subject>
+      <queryAck>
+         <queryId extension="TOBEGENERATED" root="1.2.3.999"/>
+         <queryResponseCode code="OK"/>
+         <resultTotalQuantity value="1"/>
+         <resultCurrentQuantity value="1"/>
+         <resultRemainingQuantity value="0"/>
+      </queryAck>
+   </ControlActProcess>
+</QURX_IN990113NL>

@@ -1292,7 +1292,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:if test="string-length($xsiType) gt 0">
                 <xsl:attribute name="xsi:type" select="$xsiType"/>
             </xsl:if>
+            <xsl:variable name="emptyElement" as="element()?"/>
+            
             <xsl:call-template name="makeTSValueAttr">
+                <xsl:with-param name="in" select="$emptyElement"/>
                 <xsl:with-param name="inputValue" select="$inputValue"/>
                 <xsl:with-param name="inputNullFlavor" select="$inputNullFlavor"/>
                 <xsl:with-param name="precision" select="$precision"/>
@@ -1309,7 +1312,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="precision">Determines the picture of the date(time) format. Seconds is the default.</xd:param>
     </xd:doc>
     <xsl:template name="makeTSValueAttr" match="element()" mode="MakeTSValueAttr">
-        <xsl:param name="in" as="element()?" select="."/>
+        <xsl:param name="in" select="."/>
         <xsl:param name="inputDateT" as="xs:date?" select="$dateT"/>
         <xsl:param name="inputValue" as="xs:string?" select="$in/@value"/>
         <xsl:param name="inputNullFlavor" as="xs:string?" select="$in/@nullFlavor"/>
