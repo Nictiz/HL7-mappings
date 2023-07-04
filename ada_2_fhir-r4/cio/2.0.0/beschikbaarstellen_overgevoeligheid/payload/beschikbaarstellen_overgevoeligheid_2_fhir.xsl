@@ -54,8 +54,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc/>
     </xd:doc>
     <xsl:template match="beschikbaarstellen_overgevoeligheid">
-        <!--<xsl:message>Parameter writeOutputToDisk has value = <xsl:value-of select="$writeOutputToDisk"/></xsl:message>
-        <xsl:message>Parameter dateT has value = <xsl:value-of select="$dateT"/></xsl:message>-->
         
         <xsl:variable name="resources" as="element(f:entry)*">
             <xsl:variable name="overgevoelighedenreacties" as="element()*">
@@ -123,7 +121,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:when>
                         <xsl:otherwise>
                             <!-- This happens when transforming a non-saved document in Oxygen -->
-                            <xsl:message>Could not output to result-document without Resource.id. Outputting to console instead.</xsl:message>
+                            <xsl:call-template name="util:logMessage">
+                                <xsl:with-param name="level" select="$logWARN"/>
+                                <xsl:with-param name="msg">Could not output to result-document without Resource.id. Outputting to console instead.</xsl:with-param>
+                            </xsl:call-template>
                             <xsl:copy-of select="."/>
                         </xsl:otherwise>
                     </xsl:choose>
@@ -974,10 +975,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="theMetaData" select="$fhirMetadata[nm:logical-id = $fhirId]" as="element()*"/>
         <xsl:choose>
             <xsl:when test="count($theMetaData) = 0">
-                <xsl:message terminate="yes">_insertFullUrlById: Nothing found. (<xsl:value-of select="count($fhirId)"/>)</xsl:message>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logFATAL"/>
+                    <xsl:with-param name="msg">_insertFullUrlById: Nothing found. (<xsl:value-of select="count($fhirId)"/>)</xsl:with-param>
+                    <xsl:with-param name="terminate" select="true()"/>
+                </xsl:call-template>
             </xsl:when>
             <xsl:when test="count($theMetaData) gt 1">
-                <xsl:message terminate="no">_insertFullUrlById: Multiple found (<xsl:value-of select="count($theMetaData)"/>): <xsl:value-of select="$fhirId"/> - <xsl:value-of select="$theMetaData/nm:full-url"/></xsl:message>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logWARN"/>
+                    <xsl:with-param name="msg">_insertFullUrlById: Multiple found (<xsl:value-of select="count($theMetaData)"/>): <xsl:value-of select="$fhirId"/> - <xsl:value-of select="$theMetaData/nm:full-url"/></xsl:with-param>
+                </xsl:call-template>
             </xsl:when>
         </xsl:choose>
         

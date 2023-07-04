@@ -12,7 +12,7 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:util="urn:hl7:utilities" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <!--<xsl:import href="_zib2017.xsl"/>
     <xsl:import href="ext-zib-medication-additional-information-2.0.xsl"/>
     <xsl:import href="ext-zib-medication-copy-indicator-2.0.xsl"/>
@@ -194,7 +194,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <status value="stopped"/>
                         </xsl:when>
                         <xsl:when test="stoptype/@code or stoptype[@codeSystem = $oidHL7NullFlavor]">
-                            <xsl:message terminate="yes">An unknown stoptype has been encountered, @code: <xsl:value-of select="stoptype/@code"/>, @codeSystem: <xsl:value-of select="stoptype/@codeSystem"/></xsl:message>
+                            <xsl:call-template name="util:logMessage">
+                                <xsl:with-param name="level" select="$logFATAL"/>
+                                <xsl:with-param name="msg">An unknown stoptype has been encountered, @code: <xsl:value-of select="stoptype/@code"/>, @codeSystem: <xsl:value-of select="stoptype/@codeSystem"/></xsl:with-param>
+                                <xsl:with-param name="terminate" select="true()"/>
+                            </xsl:call-template>
                         </xsl:when>
                         <xsl:otherwise>
                             <!-- MP-133 / MM-3618 -->

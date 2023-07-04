@@ -409,7 +409,10 @@
                 </xsl:variable>
 
                 <xsl:if test="string-length($time) gt 0 and not($time castable as xs:time)">
-                    <xsl:message>Variable dateTime "<xsl:value-of select="$in"/>" found with illegal time string "<xsl:value-of select="$timePart"/>"</xsl:message>
+                    <xsl:call-template name="util:logMessage">
+                        <xsl:with-param name="level" select="$logERROR"/>
+                        <xsl:with-param name="msg">Variable dateTime "<xsl:value-of select="$in"/>" found with illegal time string "<xsl:value-of select="$timePart"/>"</xsl:with-param>
+                    </xsl:call-template>
                 </xsl:if>
                 <xsl:variable name="calculatedDateTime">
                     <xsl:choose>

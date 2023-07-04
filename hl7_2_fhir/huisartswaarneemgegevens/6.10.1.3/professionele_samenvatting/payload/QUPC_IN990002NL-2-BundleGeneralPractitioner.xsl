@@ -12,7 +12,7 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="java.util.UUID" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" xmlns:uuid="java.util.UUID" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0">
     <!-- import because we want to be able to override the param for macAddress for UUID generation -->
     <xsl:import href="utils.xsl"/>
     <xd:doc scope="stylesheet">
@@ -66,7 +66,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="hl7:QUPC_IN990002NL">
         <xsl:choose>
             <xsl:when test="ancestor::hl7:MCCI_IN200101">
-                <xsl:message terminate="yes">Unsupported input MCCI_IN200101. Can only support singular QUPC_IN990002NL</xsl:message>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logWARN"/>
+                    <xsl:with-param name="msg">Unsupported input MCCI_IN200101. Can only support singular QUPC_IN990002NL</xsl:with-param>
+                    <xsl:with-param name="terminate" select="true()"/>
+                </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:variable name="bundle-id" select="local:getIdFromId(hl7:id[1], $maskedIdentifiers)"/>
@@ -1395,7 +1399,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <valueBoolean value="{hl7:value/@value}"/>
                         </xsl:when>
                         <xsl:when test="hl7:value">
-                            <xsl:message>Niet-ondersteund datatype <xsl:value-of select="@xsi:type"/></xsl:message>
+                            <xsl:call-template name="util:logMessage">
+                                <xsl:with-param name="level" select="$logWARN"/>
+                                <xsl:with-param name="msg">Niet-ondersteund datatype <xsl:value-of select="@xsi:type"/></xsl:with-param>
+                            </xsl:call-template>
                         </xsl:when>
                     </xsl:choose>
                     <xsl:if test="hl7:interpretationCode">

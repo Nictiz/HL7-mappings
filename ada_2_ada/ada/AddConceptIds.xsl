@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns="" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xsl:import href="../../util/utilities.xsl"/>
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
     <xsl:strip-space elements="*"/>
 
@@ -18,7 +19,10 @@
 
         <xsl:choose>
             <xsl:when test="empty($schemaFragment)">
-                <xsl:message>Schema fragment empty for node <xsl:value-of select="local-name(.)"/>, please check</xsl:message>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logWARN"/>
+                    <xsl:with-param name="msg">Schema fragment empty for node <xsl:value-of select="local-name(.)"/>, please check</xsl:with-param>
+                </xsl:call-template>
                 <!-- simply copy this node, we won't find any conceptId's in this node anyway -->
                 <xsl:copy-of select="$in"/>                
             </xsl:when>
@@ -50,7 +54,10 @@
     <xsl:template match="/">
         <xsl:choose>
             <xsl:when test="empty($schema)">
-                <xsl:message>Schema empty, please check</xsl:message>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logERROR"/>
+                    <xsl:with-param name="msg">Schema empty, please check</xsl:with-param>
+                </xsl:call-template>
                 <!-- simply copy this node, we won't find any conceptId's anyway -->
                 <xsl:copy-of select="."/>
             </xsl:when>

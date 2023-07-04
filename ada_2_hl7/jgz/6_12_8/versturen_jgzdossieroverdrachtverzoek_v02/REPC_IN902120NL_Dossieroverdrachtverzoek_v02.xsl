@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:util="urn:hl7:utilities" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#default"/>
     <xsl:include href="../2_hl7_jgz-include.xsl"/>
     
@@ -1598,7 +1598,10 @@
                                                     <xsl:value-of select="$gContactGroepsbijeenkomst"/>
                                                 </xsl:when>
                                                 <xsl:otherwise>
-                                                    <xsl:message>Onbekend activiteitype gevonden: <xsl:value-of select="$activiteitType"/></xsl:message>
+                                                    <xsl:call-template name="util:logMessage">
+                                                        <xsl:with-param name="level" select="$logWARN"/>
+                                                        <xsl:with-param name="msg">Onbekend activiteittype gevonden: <xsl:value-of select="$activiteitType"/></xsl:with-param>
+                                                    </xsl:call-template>
                                                 </xsl:otherwise>
                                             </xsl:choose>
                                         </xsl:variable>

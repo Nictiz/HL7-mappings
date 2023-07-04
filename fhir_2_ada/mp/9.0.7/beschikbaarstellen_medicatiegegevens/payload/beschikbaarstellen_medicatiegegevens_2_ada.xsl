@@ -15,6 +15,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" 
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:util="urn:hl7:utilities"
     xmlns:f="http://hl7.org/fhir"
     xmlns:local="urn:fhir:stu3:functions"
     xmlns:nf="http://www.nictiz.nl/functions" 
@@ -46,7 +47,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <xsl:choose>
                         <xsl:when test="count(f:Bundle/f:entry/f:resource/f:Patient) ge 2 or count(distinct-values(f:Bundle/f:entry/f:resource/(f:MedicationRequest|f:MedicationDispense|f:MedicationStatement)/f:subject/f:reference/@value)) ge 2">
-                            <xsl:message terminate="yes">Multiple Patients and/or subject references found. Please check.</xsl:message>
+                            <xsl:call-template name="util:logMessage">
+                                <xsl:with-param name="level" select="$logWARN"/>
+                                <xsl:with-param name="msg">Multiple Patients and/or subject references found. Please check.</xsl:with-param>
+                            </xsl:call-template>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:Patient" mode="nl-core-patient-2.1"/>

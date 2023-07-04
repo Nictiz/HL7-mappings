@@ -712,7 +712,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:value-of select="xs:yearMonthDuration(concat('P',$theValue,'Y'))"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:message>Cannot calculate duration for unsupported unit in hl7:width[<xsl:value-of select="for $att in $in/@* return concat(' ',name($att),'=',$att)"/>]</xsl:message>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logWARN"/>
+                    <xsl:with-param name="msg">Cannot calculate duration for unsupported unit in hl7:width[<xsl:value-of select="for $att in $in/@* return concat(' ',name($att),'=',$att)"/>]</xsl:with-param>
+                </xsl:call-template>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
