@@ -7,27 +7,27 @@
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:for-each select="$in[.//@value | .//@code]">
             <xsl:variable name="lineItems" as="element()*">
-                <xsl:for-each select="straat/@value | street/@value">
+                <xsl:for-each select="(straat | street)/@value">
                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
                         <valueString value="{normalize-space(.)}"/>
                     </extension>
                 </xsl:for-each>
-                <xsl:for-each select="huisnummer/@value | house_number/@value">
+                <xsl:for-each select="(huisnummer | house_number)/@value">
                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
                         <valueString value="{normalize-space(.)}"/>
                     </extension>
                 </xsl:for-each>
-                <xsl:for-each select="huisnummerletter/@value | huisnummertoevoeging/@value | house_number_letter/@value | house_number_addition/@value">
+                <xsl:for-each select="(huisnummerletter | house_number_letter)/@value | (huisnummertoevoeging | house_number_addition)/@value">
                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
                         <valueString value="{normalize-space(.)}"/>
                     </extension>
                 </xsl:for-each>
-                <xsl:for-each select="additionele_informatie/@value | additional_information/@value">
+                <xsl:for-each select="(additionele_informatie | additional_information)/@value">
                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-unitID">
                         <valueString value="{normalize-space(.)}"/>
                     </extension>
                 </xsl:for-each>
-                <xsl:for-each select="aanduiding_bij_nummer/@value | house_number_indication/@value">
+                <xsl:for-each select="(aanduiding_bij_nummer | house_number_indication)/@code">
                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator">
                         <valueString value="{normalize-space(.)}"/>
                     </extension>
@@ -35,7 +35,7 @@
             </xsl:variable>
             <address>
                 <!-- adres_soort -->
-                <xsl:for-each select="adres_soort[@codeSystem = '2.16.840.1.113883.5.1119'][@code] | address_type[@codeSystem = '2.16.840.1.113883.5.1119'][@code]">
+                <xsl:for-each select="(adres_soort | address_type)[@codeSystem = '2.16.840.1.113883.5.1119'][@code]">
                     <xsl:choose>
                         <!-- Postadres -->
                         <xsl:when test="@code = 'PST'">
@@ -132,17 +132,27 @@
                         <xsl:copy-of select="$lineItems"/>
                     </line>
                 </xsl:if>
-                <xsl:for-each select="woonplaats/@value | place_of_residence/@value">
+                <xsl:for-each select="(woonplaats | place_of_residence)/@value">
                     <city value="{normalize-space(.)}"/>
                 </xsl:for-each>
-                <xsl:for-each select="gemeente/@value | municipality/@value">
+                <xsl:for-each select="(gemeente | municipality)/@value">
                     <district value="{normalize-space(.)}"/>
                 </xsl:for-each>
                 <xsl:for-each select="postcode/@value">
                     <postalCode value="{translate(.,' ','')}"/>
                 </xsl:for-each>
-                <xsl:for-each select="land/@value | country/@value">
-                    <country value="{normalize-space(.)}"/>
+                <xsl:for-each select="(land | country)/(@value | @code)">
+                    <country value="{normalize-space(.)}">
+                        <xsl:if test="../@code">
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                                <valueCodeableConcept>
+                                    <xsl:call-template name="code-to-CodeableConcept">
+                                        <xsl:with-param name="in" select=".."/>
+                                    </xsl:call-template>
+                                </valueCodeableConcept>
+                            </extension>
+                        </xsl:if>
+                    </country>
                 </xsl:for-each>
             </address>
         </xsl:for-each>

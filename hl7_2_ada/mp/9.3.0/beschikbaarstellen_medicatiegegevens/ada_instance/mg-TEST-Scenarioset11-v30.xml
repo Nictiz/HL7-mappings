@@ -4,8 +4,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2023-02-28T10:27:03.004+01:00"
-         last-update-date="2023-02-28T10:27:03.004+01:00"/>
+         creation-date="2023-06-27T17:20:53.320709+02:00"
+         last-update-date="2023-06-27T17:20:53.320709+02:00"/>
    <data><!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
       <beschikbaarstellen_medicatiegegevens app="mp-mp93"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -74,7 +74,7 @@
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                </relatie_medicatieafspraak>
                <auteur>
-                  <zorgverlener value="d242e84" datatype="reference"/>
+                  <zorgverlener value="d242e36" datatype="reference"/>
                </auteur>
                <gebruiksinstructie>
                   <omschrijving value="Vanaf 12 dec 2022, tot en met 17 dec 2022, eerst gedurende 3 dagen 1 maal per dag om 20:00 2 stuks, dan gedurende 3 dagen 1 maal per dag om 20:00 1 stuk, Oraal"/>
@@ -601,7 +601,9 @@
                                  root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
                </relatie_wisselend_doseerschema>
                <toediener>
-                  <zorgaanbieder value="" datatype="reference"/>
+                  <zorgaanbieder>
+                     <zorgaanbieder value="d242e788" datatype="reference"/>
+                  </zorgaanbieder>
                </toediener>
             </medicatietoediening>
             <medicatietoediening>
@@ -638,7 +640,9 @@
                                  root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
                </relatie_wisselend_doseerschema>
                <toediener>
-                  <zorgaanbieder value="" datatype="reference"/>
+                  <zorgaanbieder>
+                     <zorgaanbieder value="d242e788" datatype="reference"/>
+                  </zorgaanbieder>
                </toediener>
                <toelichting value="Geprobeerd, maar niet gelukt met de tablet"/>
             </medicatietoediening>
@@ -676,7 +680,9 @@
                                  root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
                </relatie_wisselend_doseerschema>
                <toediener>
-                  <zorgaanbieder value="" datatype="reference"/>
+                  <zorgaanbieder>
+                     <zorgaanbieder value="d242e788" datatype="reference"/>
+                  </zorgaanbieder>
                </toediener>
             </medicatietoediening>
          </medicamenteuze_behandeling>
@@ -735,34 +741,10 @@
                   <zorgaanbieder value="d242e47" datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgverlener id="d242e84">
-               <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
-               <naamgegevens>
-                  <voornamen value="Peter"/>
-                  <naamgebruik code="NL1"
-                               codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
-                               displayName="Eigen geslachtsnaam"/>
-                  <geslachtsnaam>
-                     <voorvoegsels value="van "/>
-                     <achternaam value="Pulver"/>
-                  </geslachtsnaam>
-               </naamgegevens>
-               <specialisme code="0100"
-                            codeSystem="2.16.840.1.113883.2.4.6.7"
-                            codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                            codeSystemVersion="2020-10-23T00:00:00"
-                            displayName="Huisartsen, niet nader gespecificeerd"/>
-               <zorgaanbieder>
-                  <zorgaanbieder value="d242e47" datatype="reference"/>
-               </zorgaanbieder>
-            </zorgverlener>
             <zorgverlener id="d242e176">
                <zorgverlener_identificatienummer value="222221111" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Tanja"/>
-                  <naamgebruik code="NL1"
-                               codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
-                               displayName="Eigen geslachtsnaam"/>
                   <geslachtsnaam>
                      <voorvoegsels value="de "/>
                      <achternaam value="Bakker"/>
@@ -820,10 +802,12 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="">
-               <zorgaanbieder id="d242e785">
-                  <organisatie_naam nullFlavor="NI"/>
-               </zorgaanbieder>
+            <zorgaanbieder id="d242e788">
+               <zorgaanbieder_identificatienummer value="11110000" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Thuiszorg Om en Bij"/>
+               <organisatie_type code="T2"
+                                 codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                 displayName="Thuiszorg"/>
             </zorgaanbieder>
          </bouwstenen>
       </beschikbaarstellen_medicatiegegevens>

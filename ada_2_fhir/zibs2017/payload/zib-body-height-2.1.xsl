@@ -1,27 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 Copyright © Nictiz
-
 This program is free software; you can redistribute it and/or modify it under the terms of the
 GNU Lesser General Public License as published by the Free Software Foundation; either version
 2.1 of the License, or (at your option) any later version.
-
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
 without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 See the GNU Lesser General Public License for more details.
-
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
+
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <!--<xsl:import href="_zib2017.xsl"/>
-    <xsl:import href="nl-core-patient-2.1.xsl"/>-->
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
 
     <xsl:variable name="bodyHeights" as="element()*">
-        <!-- lichaamslengte body-heights -->
         <xsl:for-each-group select="//(lichaamslengte | body_height)" group-by="nf:getGroupingKeyDefault(.)">
             <unieke-observatie xmlns="">
                 <group-key xmlns="">
@@ -64,15 +59,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Produces a FHIR entry element with an Observation resource for body height</xd:desc>
-        <xd:param name="uuid">If true generate uuid from scratch. Defaults to false(). Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
+        <xd:desc>Produces a FHIR entry element with an Observation resource for BodyHeight</xd:desc>
+        <xd:param name="uuid">If true generate uuid from scratch. Defaults to false(). Generating a uuid from scratch limits reproduction of the same output as the uuids will be different every time.</xd:param>
         <xd:param name="adaPatient">Optional, but should be there. Patient this resource is for.</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
         <xd:param name="entryFullUrl">Optional. Value for the entry.fullUrl</xd:param>
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Observation.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="bodyHeightEntry" match="lichaamslengte[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | body_height[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="dobodyHeightEntry-2.1" as="element(f:entry)">
+    <xsl:template name="bodyHeightEntry" match="lichaamslengte[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | body_height[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doBodyHeightEntry-2.1" as="element(f:entry)">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
@@ -113,25 +108,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Mapping of HCIM Body Height concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-BodyHeight">zib-BodyHeight</xd:a>.</xd:desc>
+        <xd:desc>Mapping of HCIM BodyHeight concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-BodyHeight">zib-BodyHeight</xd:a>.</xd:desc>
         <xd:param name="logicalId">Optional FHIR logical id for the record.</xd:param>
-        <xd:param name="in">Node to consider in the creation of the Observation resource for Body Height</xd:param>
+        <xd:param name="in">Node to consider in the creation of the Observation resource for BodyHeight</xd:param>
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-BodyHeight-2.1" match="lichaamslengte | body_height" mode="doBodyHeight-2.1">
-        <!-- not complete zib implemented yet, only the elements as used in MP dataset -->
+    <xsl:template name="zib-BodyHeight-2.1" match="lichaamslengte | body_height" mode="doZibBodyHeight-2.1">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
-
-        <xsl:variable name="patientRef" as="element()*">
-            <xsl:for-each select="$adaPatient">
-                <xsl:call-template name="patientReference"/>
-            </xsl:for-each>
-        </xsl:variable>
-
+        
         <xsl:for-each select="$in">
             <xsl:variable name="resource">
                 <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-BodyHeight</xsl:variable>
@@ -139,10 +127,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:if test="string-length($logicalId) gt 0">
                         <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
                     </xsl:if>
+                    
                     <meta>
                         <profile value="{$profileValue}"/>
                     </meta>
+                    
                     <status value="final"/>
+                    
                     <category>
                         <coding>
                             <system value="{local:getUri($oidFHIRObservationCategory)}"/>
@@ -150,17 +141,39 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <display value="Vital Signs"/>
                         </coding>
                     </category>
+                    
                     <code>
                         <coding>
-                            <system value="http://loinc.org"/>
+                            <system value="{local:getUri($oidLOINC)}"/>
                             <code value="8302-2"/>
                             <display value="lichaamslengte"/>
                         </coding>
+                        
+                        <xsl:for-each select="(positie | position)[@code]">
+                            <xsl:choose>
+                                <xsl:when test="@code = '10904000' and @codeSystem = '2.16.840.1.113883.6.96'">
+                                    <coding>
+                                        <system value="{local:getUri($oidLOINC)}"/>
+                                        <code value="8308-9"/>
+                                        <display value="Body height --standing"/>
+                                    </coding>
+                                </xsl:when>
+                                <xsl:when test="@code = '102538003' and @codeSystem = '2.16.840.1.113883.6.96'">
+                                    <coding>
+                                        <system value="{local:getUri($oidLOINC)}"/>
+                                        <code value="8306-3"/>
+                                        <display value="Body height --lying"/>
+                                    </coding>
+                                </xsl:when>
+                            </xsl:choose>
+                        </xsl:for-each>
                     </code>
-                    <!-- patient reference -->
+                    
+                    <!-- Patient reference -->
                     <subject>
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
+                    
                     <!-- effectiveDateTime is required in the FHIR profile, so always output effectiveDateTime, data-absent-reason if no actual value -->
                     <effectiveDateTime>
                         <xsl:choose>
@@ -170,14 +183,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:with-param name="dateTime" select="xs:string((lengte_datum_tijd | height_date_time)/@value)"/>
                                     </xsl:call-template>
                                 </xsl:attribute>
-                                </xsl:when>
+                            </xsl:when>
                         <xsl:otherwise>
-                                    <extension url="{$urlExtHL7DataAbsentReason}">
-                                        <valueCode value="unknown"/>
-                                    </extension>
-                                </xsl:otherwise>
-                            </xsl:choose>
+                            <extension url="{$urlExtHL7DataAbsentReason}">
+                                <valueCode value="unknown"/>
+                            </extension>
+                        </xsl:otherwise>
+                    </xsl:choose>
                     </effectiveDateTime>
+                    
                     <!-- performer is mandatory in FHIR profile, we have no information in MP, so we are hardcoding data-absent reason -->
                     <!-- https://bits.nictiz.nl/browse/MM-434 -->
                     <performer>
@@ -186,6 +200,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </extension>
                         <display value="onbekend"/>
                     </performer>
+                    
                     <xsl:for-each select="(lengte_waarde | height_value)[@value]">
                         <valueQuantity>
                             <!-- ada has cm or m, FHIR only allows cm -->
@@ -205,6 +220,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:choose>
                         </valueQuantity>
                     </xsl:for-each>
+                    
+                    <xsl:for-each select="(toelichting | comment)[@value]">
+                        <comment>
+                            <xsl:call-template name="string-to-string">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </comment>
+                    </xsl:for-each>
+                    
                 </Observation>
             </xsl:variable>
 

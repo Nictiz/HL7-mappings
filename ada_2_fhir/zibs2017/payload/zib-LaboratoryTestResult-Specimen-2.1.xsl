@@ -1,32 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 Copyright © Nictiz
-
 This program is free software; you can redistribute it and/or modify it under the terms of the
 GNU Lesser General Public License as published by the Free Software Foundation; either version
 2.1 of the License, or (at your option) any later version.
-
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
 without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 See the GNU Lesser General Public License for more details.
-
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
+
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <!--<xsl:import href="_zib2017.xsl"/>-->
+    
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
 
     <!-- ============================================================================================== -->
-    <!-- FIXME/TODO? We plakken hier het monsternummer en het monstervolgnummer aan elkaar met een '-'. Dit betekent dat we hier buiten het lab om een identificatie maken. Dat kan niet goed goan.
+    <!-- FIXME/TODO? We plakken hier het monsternummer en het monstervolgnummer aan elkaar met een '-'. Dit betekent dat we hier buiten het lab om een identificatie maken. Dat kan niet goed gaan.
         Verder weten we uit de praktijk dat labs monsternummer en monstervolgnummer en container-id door elkaar gooien, dus misschien is de input al vervuild.
     -->
     <!-- FIXME/TODO? Isolaat parent en Catethertip worden contained resources. Dit wordt oook zo gedaan in de FHIR STU3 core voorbeelden. Juist/onjuist in ons geval? -->
     <!-- ============================================================================================== -->
 
     <xsl:variable name="labSpecimens" as="element()*">
-        <xsl:for-each-group select="//laboratory_test_result/specimen[.//(@value | @code | @nullFlavor)] | //laboratorium_uitslag/monster[.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
+        <xsl:for-each-group select="//(laboratory_test_result/specimen | //laboratorium_uitslag/monster)[.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
             <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
             <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
             <uniek-materiaal xmlns="">
@@ -47,7 +45,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template name="laboratoryResultSpecimenReference" match="laboratory_test_result/specimen[.//(@value | @code | @nullFlavor)] | laboratorium_uitslag/monster[.//(@value | @code | @nullFlavor)]" mode="doLaboratoryResultSpecimenReference-2.1" as="element()+">
+    <xsl:template name="laboratoryResultSpecimenReference" match="(laboratory_test_result/specimen | laboratorium_uitslag/monster)[.//(@value | @code | @nullFlavor)]" mode="doLaboratoryResultSpecimenReference-2.1" as="element()+">
         <xsl:variable name="theIdentifier" select="identificatie_nummer[@value] | identification_number[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$labSpecimens[group-key = $theGroupKey]" as="element()?"/>
@@ -70,15 +68,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Produces a FHIR entry element with an Specimen resource</xd:desc>
-        <xd:param name="uuid">If true generate uuid from scratch. Defaults to false(). Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
-        <xd:param name="adaPatient">Optional, but should be there. Patient for which this Specimen is for.</xd:param>
+        <xd:desc>Produces a FHIR entry element with a Specimen resource for LaboratoryTestResult</xd:desc>
+        <xd:param name="uuid">If true generate uuid from scratch. Defaults to false(). Generating a uuid from scratch limits reproduction of the same output as the uuids will be different every time.</xd:param>
+        <xd:param name="adaPatient">Optional, but should be there. Patient this resource is for.</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
         <xd:param name="entryFullUrl">Optional. Value for the entry.fullUrl</xd:param>
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Specimen.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="laboratoryResultSpecimenEntry" match="laboratory_test_result/specimen[.//(@value | @code | @nullFlavor)] | laboratorium_uitslag/monster[.//(@value | @code | @nullFlavor)]" mode="doLaboratoryResultSpecimenEntry-2.1" as="element(f:entry)">
+    <xsl:template name="laboratoryResultSpecimenEntry" match="(laboratory_test_result/specimen | laboratorium_uitslag/monster)[.//(@value | @code | @nullFlavor)]" mode="doLaboratoryResultSpecimenEntry-2.1" as="element(f:entry)">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value] | ancestor::*/hcimroot/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
@@ -116,24 +114,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Mapping of nl.zorg.LaboratoriumUitslag concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Specimen">zib-LaboratoryTestResult-Specimen</xd:a>.</xd:desc>
+        <xd:desc>Mapping of HCIM LaboratoryTestResult concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Specimen">zib-LaboratoryTestResult-Specimen</xd:a>.</xd:desc>
         <xd:param name="logicalId">Optional FHIR logical id for the record.</xd:param>
-        <xd:param name="in">Node to consider in the creation of an Specimen resource</xd:param>
+        <xd:param name="in">Node to consider in the creation of the Specimen resource for LaboratoryTestResult.</xd:param>
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-LaboratoryTestResult-Specimen-2.1" match="laboratory_test[not(laboratory_test)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | laboratory_test[not(laboratory_test)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element()" mode="doZibLaboratoryResultSpecimen-2.1">
+    <xsl:template name="zib-LaboratoryTestResult-Specimen-2.1" match="//(laboratorium_test[not(laboratorium_test)] | laboratory_test[not(laboratory_test)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element()" mode="doZibLaboratoryTestResultSpecimen-2.1">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
-
-        <xsl:variable name="patientRef" as="element()*">
-            <xsl:for-each select="$adaPatient">
-                <xsl:call-template name="patientReference"/>
-            </xsl:for-each>
-        </xsl:variable>
-
+        
         <xsl:for-each select="$in">
             <xsl:variable name="currentAdaTransaction" select="./ancestor::*[ancestor::data]"/>
             <xsl:variable name="containedSpecimenId" select="generate-id(microorganism | microorganisme)"/>
@@ -173,10 +165,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!--TS	NL-CM:13.1.25			AannameDatumTijd	0..1	Datum en tijdstip waarop het materiaal bij het laboratorium of prikpunt is afgegeven. Het gaat hierbij om materiaal dat door de patiënt zelf verzameld is.		-->
                 <xsl:if test="received_date_time | aanname_datum_tijd">
                     <receivedTime>
-                        <xsl:call-template name="date-to-datetime">
-                            <xsl:with-param name="in" select="received_date_time | aanname_datum_tijd"/>
-                            <xsl:with-param name="inputDateT" select="$dateT"/>
-                        </xsl:call-template>
+                        <xsl:attribute name="value">
+                            <xsl:call-template name="format2FHIRDate">
+                                <xsl:with-param name="dateTime" select="xs:string((received_date_time | aanname_datum_tijd)/@value)"/>
+                                <xsl:with-param name="dateT" select="$dateT"/>
+                            </xsl:call-template>
+                        </xsl:attribute>
                     </receivedTime>
                 </xsl:if>
             </xsl:variable>
@@ -189,7 +183,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <collection>
                         <!-- Pre-adopt 2019 where datatype has changed for NL-CM:13.1.24 CollectionPeriod from TS to TimeInterval -->
                         <!-- https://bits.nictiz.nl/browse/MM-767 -->
-                        <xsl:for-each select="ollection_period/duration | verzamelperiode/tijds_duur">
+                        <xsl:for-each select="collection_period/duration | verzamelperiode/tijds_duur">
                             <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Specimen-CollectionDuration">
                                 <valueDuration>
                                     <xsl:call-template name="hoeveelheid-to-Quantity">
@@ -218,9 +212,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <!--TS	NL-CM:13.1.17			AfnameDatumTijd	0..1	Tijdstip van afname van het materiaal.	399445004 specimen collection date-->
                             <xsl:when test="collection_period[@nullFlavor | @value] | verzamelperiode[@nullFlavor | @value] | collection_date_time | afname_datum_tijd">
                                 <collectedDateTime>
-                                    <xsl:call-template name="date-to-datetime">
-                                        <xsl:with-param name="in" select="collection_date_time | afname_datum_tijd"/>
-                                    </xsl:call-template>
+                                    <xsl:attribute name="value">
+                                        <xsl:call-template name="format2FHIRDate">
+                                            <xsl:with-param name="dateTime" select="xs:string((collection_date_time | afname_datum_tijd)/@value)"/>
+                                            <xsl:with-param name="dateT" select="$dateT"/>
+                                        </xsl:call-template>
+                                    </xsl:attribute>
                                 </collectedDateTime>
                             </xsl:when>
                         </xsl:choose>
@@ -295,7 +292,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!--CD	NL-CM:13.1.22			Microorganisme	0..1	Bij met name microbiologische bepalingen is soms geen sprake materiaal maar van een isolaat met daarop een bepaald micro-organisme. Dit concept biedt de mogelijkheid informatie omtrent dit micro-organisme vast te leggen.		MicroorganismeCodelijst-->
                     <!--Assumptions when there is a micro-organism:
                         - collection info is about original specimen, not about the derived specimen (micro-organism)
-                        - specimen_id and coontainer info are about the derived specimen
+                        - specimen_id and container info are about the derived specimen
                     -->
                     <xsl:if test="microorganism | microorganisme">
                         <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Specimen</xsl:variable>
@@ -417,6 +414,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </text>
                         </note>
                     </xsl:for-each>
+                    
                 </Specimen>
             </xsl:variable>
 

@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 Copyright © Nictiz
-
 This program is free software; you can redistribute it and/or modify it under the terms of the
 GNU Lesser General Public License as published by the Free Software Foundation; either version
 2.1 of the License, or (at your option) any later version.
-
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
 without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 See the GNU Lesser General Public License for more details.
-
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
+
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <!-- import because we want to be able to override the param for macAddress for UUID generation -->
     <!--    <xsl:import href="all-zibs.xsl"/>-->
@@ -51,7 +49,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Returns contents of Reference datatype element</xd:desc>
     </xd:doc>
-    <xsl:template name="practitionerReference" match="zorgverlener[not(zorgverlener)] | health_professional[not(health_professional)]" mode="doPractitionerReference-2.0" as="element()*">
+    <xsl:template name="practitionerReference" match="//(zorgverlener[not(zorgverlener)] | health_professional[not(health_professional)])" mode="doPractitionerReference-2.0" as="element()*">
         <xsl:variable name="theIdentifier" select="zorgverlener_identificatienummer[@value] | zorgverlener_identificatie_nummer[@value] | health_professional_identification_number[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyPractitioner(.)"/>
         <xsl:variable name="theGroupElement" select="$practitioners[group-key = $theGroupKey]" as="element()?"/>
@@ -75,19 +73,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Produces a FHIR entry element with a Practitioner resource</xd:desc>
-        <xd:param name="uuid">If false and (zorgverlener_identificatie_nummer | health_professional_identification_number) generate from that. Otherwise generate uuid from scratch. Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
+        <xd:desc>Produces a FHIR entry element with a Practitioner resource for HealthProfessional</xd:desc>
+        <xd:param name="uuid">If false and (zorgverlener_identificatie_nummer | health_professional_identification_number) generate from that. Otherwise generate uuid from scratch. Generating a uuid from scratch limits reproduction of the same output as the uuids will be different every time.</xd:param>
         <xd:param name="entryFullUrl">Optional. Value for the entry.fullUrl</xd:param>
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Practitioner.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="practitionerEntry" match="zorgverlener[not(zorgverlener)][*] | health_professional[not(health_professional)][*]" mode="doPractitionerEntry-2.0">
+    <xsl:template name="practitionerEntry" match="//(zorgverlener[not(zorgverlener)][*] | health_professional[not(health_professional)][*])" mode="doPractitionerEntry-2.0">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="entryFullUrl">
             <xsl:choose>
                 <xsl:when test="$uuid or empty(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)">
                     <!-- let's use the practitioner node without specialty and organization to determine uuid, 
-                        this way the practitionerrole uuid generation can use the whole zorgverlener element for it's uuid and not conflict with the one for practitioner -->
+                        this way the practitionerrole uuid generation can use the whole zorgverlener element for its uuid and not conflict with the one for practitioner -->
                     <xsl:variable name="healthProNoOrganization" as="element()?">
                         <xsl:apply-templates select="." mode="copy4PractitionerKey"/>
                     </xsl:variable>
@@ -139,14 +137,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc/>
-        <xd:param name="logicalId">Practitioner.id value</xd:param>
-        <xd:param name="in">Node to consider in the creation of a Practitioner resource</xd:param>
+        <xd:desc>Mapping of HCIM HealthProfessional concept in ADA to FHIR resource <xd:a href="https://simplifier.net/resolve/?target=simplifier&amp;canonical=http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner">nl-core-practitioner</xd:a>.</xd:desc>
+        <xd:param name="logicalId">Optional FHIR logical id for the record.</xd:param>
+        <xd:param name="in">Node to consider in the creation of the Practitioner resource for HealthProfessional.</xd:param>
     </xd:doc>
-    <xsl:template name="nl-core-practitioner-2.0" match="zorgverlener[not(zorgverlener)] | health_professional[not(health_professional)]" mode="doPractitionerResource-2.0">
+    <xsl:template name="nl-core-practitioner-2.0" match="//(zorgverlener[not(zorgverlener)] | health_professional[not(health_professional)])" mode="doPractitionerResource-2.0">
         <xsl:param name="in" as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
-        <!-- zorgverlener -->
+        
         <xsl:for-each select="$in">
             <xsl:variable name="resource">
                 <xsl:variable name="profileValue">http://fhir.nl/fhir/StructureDefinition/nl-core-practitioner</xsl:variable>
@@ -161,12 +159,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:if>
+                    
                     <meta>
                         <profile value="{$profileValue}"/>
                     </meta>
                     
-                    <!-- zorgverlener_identificatie_nummer -->
-                    <xsl:for-each select="zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number">
+                    <xsl:for-each select="(zorgverlener_identificatienummer | zorgverlener_identificatie_nummer | health_professional_identification_number)[@value]">
                         <identifier>
                             <xsl:call-template name="id-to-Identifier">
                                 <xsl:with-param name="in" select="."/>
@@ -174,21 +172,37 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </identifier>
                     </xsl:for-each>
                     
-                    <!-- naamgegevens -->
-                    <xsl:for-each select=".//naamgegevens[not(naamgegevens)] | .//name_information[not(name_information)]">
+                    <xsl:for-each select="zibroot/identificatienummer | hcimroot/identification_number">
+                        <identifier>
+                            <xsl:call-template name="id-to-Identifier">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </identifier>
+                    </xsl:for-each>
+                    
+                    <!-- in some data sets the name_information is unfortunately unnecessarily nested in an extra group, hence the extra predicate -->
+                    <xsl:for-each select=".//(naamgegevens[not(naamgegevens)] | name_information[not(name_information)])[not(ancestor::patient)]">
                         <xsl:call-template name="nl-core-humanname-2.0">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
                     </xsl:for-each>
                     
-                    <!-- telecom is mapped on the resource PractitionerRole -->
+                    <!-- in some data sets the contact_information is unfortunately unnecessarily nested in an extra group, hence the extra predicate -->
+                    <!-- MM-2693 Filter private contact details -->
+                    <xsl:for-each select=".//(contactgegevens[not(contactgegevens)] | contact_information[not(contact_information)])[not(ancestor::patient)]">
+                        <xsl:call-template name="nl-core-contactpoint-1.0">
+                            <xsl:with-param name="in" select="."/>
+                            <xsl:with-param name="filterprivate" select="true()" as="xs:boolean"/>
+                        </xsl:call-template>
+                    </xsl:for-each>
                     
-                    <!-- address -->
+                    <!-- in some data sets the address_information is unfortunately unnecessarily nested in an extra group, hence the extra predicate -->
                     <!-- MM-2693 Filter private addresses -->
-                    <!-- <address_type code="HP" codeSystem="2.16.840.1.113883.5.1119" displayName="Primary Home"/> -->
-                    <xsl:call-template name="nl-core-address-2.0">
-                        <xsl:with-param name="in" select="adresgegevens[not(adres_soort/tokenize(@code, '\s') ='HP')] | address_information[not(address_type/tokenize(@code, '\s') ='HP')]" as="element()*"/>
-                    </xsl:call-template> 
+                    <xsl:for-each select=".//(adresgegevens[not(adresgegevens)][not(adres_soort/tokenize(@code, '\s') ='HP')] | address_information[not(address_information)][not(address_type/tokenize(@code, '\s') ='HP')])[not(ancestor::patient)]">
+                        <xsl:call-template name="nl-core-address-2.0">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </xsl:for-each>
                     
                 </Practitioner>
             </xsl:variable>
@@ -210,7 +224,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Do not copy the organization, specialty and role as they are not in FHIR Practitioner resource, so should not be part of duplicate detection</xd:desc>
     </xd:doc>
     <xsl:template match="zorgaanbieder | healthcare_provider | specialisme | specialty | zorgverlener_rol | health_professional_role" mode="copy4PractitionerKey"/>
-    
     
     <xd:doc>
         <xd:desc>If <xd:ref name="healthProfessional" type="parameter"/> holds a value, return the upper-cased combined string of @value/@root/@code/@codeSystem/@nullFlavor on the health_professional_identification_number/name_information/address_information/contact_information. Else return empty.
@@ -259,8 +272,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
     </xsl:function>
     
-    
-    
     <xd:doc>
         <xd:desc>If <xd:ref name="healthProfessional" type="parameter"/> holds a value, return a human readable string of health_professional_identification_number/name_information/organization_name/specialty/health_professional_role. Else return empty</xd:desc>
         <xd:param name="healthProfessional"/>
@@ -269,7 +280,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="healthProfessional" as="element()?"/>
         <xsl:for-each select="$healthProfessional">
             <xsl:variable name="personIdentifier" select="nf:ada-zvl-id(.//zorgverlener_identificatienummer[1] | .//zorgverlener_identificatie_nummer[1] | .//health_professional_identification_number[1])/@value"/>
-            <xsl:variable name="personName" select=".//naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value | .//name_information[1]//*[not(name() = 'name_usage')]/@value"/>
+            <xsl:variable name="personName" select=".//naamgegevens[not(naamgegevens)][not(ancestor::patient)][1]//*[not(name() = 'naamgebruik')]/@value | .//name_information[not(name_information)][not(ancestor::patient)][1]//*[not(name() = 'name_usage')]/@value"/>
             <xsl:variable name="organizationName" select=".//organisatie_naam[1]/@value | .//organization_name[1]/@value"/>
             <xsl:variable name="specialty" select=".//(specialisme | specialty)[not(@codeSystem = $oidHL7NullFlavor)][1]/@displayName"/>
             <xsl:variable name="role" select=".//zorgverleners_rol/(@displayName, @code)[1] | .//health_professional_role/(@displayName, @code)[1]"/>
@@ -287,6 +298,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:for-each>
     </xsl:function>
-    
-    
+
 </xsl:stylesheet>

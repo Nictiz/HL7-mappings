@@ -15,7 +15,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <!-- these imports are needed to handle the FHIR Timing datatype in HL7v3 substanceAdministration -->
     <xsl:import href="../../util/mp-functions-fhir.xsl"/>
-
     <xsl:import href="../../ada_2_fhir/fhir/2_fhir_fhir_include.xsl"/>
     <xsl:import href="../../ada_2_fhir/zibs2017/payload/ext-zib-medication-repeat-period-cyclical-schedule-2.0.xsl"/>
 

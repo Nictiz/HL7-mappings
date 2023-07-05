@@ -62,8 +62,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Creates organization reference</xd:desc>
     </xd:doc>
-    <xsl:template name="organizationReference" match="zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)]" mode="doOrganizationReference-2.0">
-        <xsl:variable name="theIdentifier" select="zorgaanbieder_identificatienummer[@value] | zorgaanbieder_identificatie_nummer[@value] | healthcare_provider_identification_number[@value]"/>
+    <xsl:template name="organizationReference" match="//(zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)])" mode="doOrganizationReference-2.0">
+        <xsl:variable name="theIdentifier" select="(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number)[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$organizations[group-key = $theGroupKey]" as="element()*"/>
         <xsl:choose>
@@ -96,7 +96,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Organization.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="organizationEntry" match="zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)]" mode="doOrganizationEntry-2.0">
+    <xsl:template name="organizationEntry" match="//(zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)])" mode="doOrganizationEntry-2.0">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="entryFullUrl">
             <xsl:choose>
@@ -158,7 +158,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="logicalId">Organization.id value</xd:param>
         <xd:param name="in">Node to consider in the creation of an Organization resource</xd:param>
     </xd:doc>
-    <xsl:template name="nl-core-organization-2.0" match="zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)]" mode="doOrganizationResource-2.0">
+    <xsl:template name="nl-core-organization-2.0" match="//(zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)])" mode="doOrganizationResource-2.0">
         <xsl:param name="in" as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:for-each select="$in">
@@ -168,7 +168,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:when test="ancestor::beschikbaarstellen_verstrekkingenvertaling">http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Organization</xsl:when>
                         <xsl:otherwise>http://fhir.nl/fhir/StructureDefinition/nl-core-organization</xsl:otherwise>
                     </xsl:choose>
-                </xsl:variable>
+                </xsl:variable>                
                 <Organization>
                     <xsl:if test="string-length($logicalId) gt 0">
                         <xsl:choose>
@@ -180,16 +180,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:if>
+                    
                     <meta>
                         <profile value="{$profileValue}"/>
                     </meta>
-                    <xsl:for-each select="zorgaanbieder_identificatienummer[@value] | zorgaanbieder_identificatie_nummer[@value] | healthcare_provider_identification_number[@value]">
+                    
+                    <xsl:for-each select="(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number | zibroot/identificatienummer | hcimroot/identification_number)[@value]">
                         <identifier>
                             <xsl:call-template name="id-to-Identifier">
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
                         </identifier>
                     </xsl:for-each>
+                    
                     <!-- type -->
                     <xsl:for-each select="organization_type | organisatie_type | department_specialty | afdeling_specialisme">
                         <xsl:variable name="display" select="@displayName[not(. = '')]"/>
@@ -211,6 +214,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </type>
                     </xsl:for-each>
+                    
                     <!-- name -->
                     <xsl:variable name="organizationName" select="(organisatie_naam | organization_name)/@value"/>
                     <xsl:variable name="organizationLocation" select="(organisatie_locatie | organization_location)/@value"/>
@@ -218,12 +222,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <!-- Cardinality of ADA allows organizationLocation to be present without organizationName. This allows Organization.name to be the value of organizationLocation. This conforms to mapping of HCIM HealthcareProvider -->
                         <name value="{string-join(($organizationName, $organizationLocation)[not(. = '')],' - ')}"/>
                     </xsl:if>
+                    
                     <!-- contactgegevens -->
                     <!-- MM-2693 Filter private contact details -->
                     <xsl:call-template name="nl-core-contactpoint-1.0">
                         <xsl:with-param name="in" select="contactgegevens | contact_information"/>
                         <xsl:with-param name="filterprivate" select="true()" as="xs:boolean"/>
                     </xsl:call-template>
+                    
                     <!-- address -->
                     <!-- MM-2693 Filter private addresses -->
                     <xsl:call-template name="nl-core-address-2.0">
