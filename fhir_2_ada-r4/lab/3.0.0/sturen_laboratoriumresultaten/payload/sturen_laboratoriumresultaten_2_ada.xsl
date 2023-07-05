@@ -92,7 +92,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 							 Group top level Observation by edifact_referentienummer and/or Specimen as available
 							 
 							 create as many onderzoeksresultaat elements as there are (groups of) Observation(s) -->
-					<xsl:variable name="allObservations" select="f:Bundle/f:entry/f:resource/f:Observation"/>
+					<xsl:variable name="allObservations" select="f:Bundle/f:entry/f:resource/f:Observation[not(f:code//@value = ($bodyHeightLOINCcode, $bodyWeightLOINCcode))]"/>
 					<xsl:variable name="topLevelObservations" select="$allObservations[not(ancestor::f:entry/f:fullUrl/@value = $allObservations/f:hasMember/f:reference/@value)]" as="element(f:Observation)*"/>
 					
 					<xsl:for-each-group select="$topLevelObservations" group-by="concat(exists(f:hasMember), f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber']/f:valueString/@value, f:specimen/f:reference/@value)">
