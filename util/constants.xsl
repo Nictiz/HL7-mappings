@@ -115,7 +115,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="oidUZISystems">2.16.528.1.1007.3.2</xsl:variable>
     <xsl:variable name="oidUZIRoleCode">2.16.840.1.113883.2.4.15.111</xsl:variable>
     <xsl:variable name="oidUZOVI">2.16.840.1.113883.2.4.6.4</xsl:variable>
-    <xsl:variable name="oidZIBLaboratoryResultStatus">2.16.840.1.113883.2.4.3.11.60.40.4.16.1</xsl:variable>
+    <xsl:variable name="oidZIBLaboratoriumUitslagTestUitslagStatus">2.16.840.1.113883.2.4.3.11.60.40.4.16.1</xsl:variable>
 
     <xsl:variable name="oidsGstandaardMedication" as="xs:string*" select="($oidGStandaardSSK, $oidGStandaardSNK, $oidGStandaardGPK, $oidGStandaardPRK, $oidGStandaardHPK, $oidGStandaardZInummer)"/>
 
@@ -195,11 +195,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:variable>
     
     <xsl:variable name="zibLaboratoryResultStatusMap" as="element()+">
-        <map hl7Code="pending" hl7CodeSystem="{$oidZIBLaboratoryResultStatus}" displayName="Uitslag volgt" displayNameEN="Pending"/>
-        <map hl7Code="preliminary" hl7CodeSystem="{$oidZIBLaboratoryResultStatus}" displayName="Voorlopig" displayNameEN="Preliminary"/>
-        <map hl7Code="final" hl7CodeSystem="{$oidZIBLaboratoryResultStatus}" displayName="Definitief" displayNameEN="Final"/>
-        <map hl7Code="appended" hl7CodeSystem="{$oidZIBLaboratoryResultStatus}" displayName="Aanvullend" displayNameEN="Appended"/>
-        <map hl7Code="corrected" hl7CodeSystem="{$oidZIBLaboratoryResultStatus}" displayName="Gecorrigeerd" displayNameEN="Corrected"/>
+        <map hl7Code="pending" hl7CodeSystem="{$oidZIBLaboratoriumUitslagTestUitslagStatus}" displayName="Uitslag volgt" displayNameEN="Pending"/>
+        <map hl7Code="preliminary" hl7CodeSystem="{$oidZIBLaboratoriumUitslagTestUitslagStatus}" displayName="Voorlopig" displayNameEN="Preliminary"/>
+        <map hl7Code="final" hl7CodeSystem="{$oidZIBLaboratoriumUitslagTestUitslagStatus}" displayName="Definitief" displayNameEN="Final"/>
+        <map hl7Code="appended" hl7CodeSystem="{$oidZIBLaboratoriumUitslagTestUitslagStatus}" displayName="Aanvullend" displayNameEN="Appended"/>
+        <map hl7Code="corrected" hl7CodeSystem="{$oidZIBLaboratoriumUitslagTestUitslagStatus}" displayName="Gecorrigeerd" displayNameEN="Corrected"/>
     </xsl:variable>
     <xsl:variable name="zibLaboratoryTestResultStatusMap" as="element()+">
         <xsl:copy-of select="$zibLaboratoryResultStatusMap"/>

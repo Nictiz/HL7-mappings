@@ -112,11 +112,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xd:doc>
 	<xsl:template match="f:status" mode="nl-core-LaboratoryTestResult">
 		<xsl:variable name="mapStatus" as="element()*">
-			<map inValue="pending" code="pending" codeSystem="{$oidZIBLaboratoryResultStatus}" codeSystemName="{$oidMap[@oid=$oidZIBLaboratoryResultStatus]/@displayName}" displayName="{$zibLaboratoryResultStatusMap[@hl7Code='pending']/@displayName}"/>
-			<map inValue="preliminary" code="preliminary" codeSystem="{$oidZIBLaboratoryResultStatus}" codeSystemName="{$oidMap[@oid=$oidZIBLaboratoryResultStatus]/@displayName}" displayName="{$zibLaboratoryResultStatusMap[@hl7Code='preliminary']/@displayName}"/>
-			<map inValue="final" code="final" codeSystem="{$oidZIBLaboratoryResultStatus}" codeSystemName="{$oidMap[@oid=$oidZIBLaboratoryResultStatus]/@displayName}" displayName="{$zibLaboratoryResultStatusMap[@hl7Code='final']/@displayName}"/>
-			<map inValue="appended" code="appended" codeSystem="{$oidZIBLaboratoryResultStatus}" codeSystemName="{$oidMap[@oid=$oidZIBLaboratoryResultStatus]/@displayName}" displayName="{$zibLaboratoryResultStatusMap[@hl7Code='appended']/@displayName}"/>
-			<map inValue="corrected" code="corrected" codeSystem="{$oidZIBLaboratoryResultStatus}" codeSystemName="{$oidMap[@oid=$oidZIBLaboratoryResultStatus]/@displayName}" displayName="{$zibLaboratoryResultStatusMap[@hl7Code='corrected']/@displayName}"/>
+			<map inValue="pending" code="pending" codeSystem="{$oidZIBLaboratoriumUitslagTestUitslagStatus}" codeSystemName="{$oidMap[@oid=$oidZIBLaboratoriumUitslagTestUitslagStatus]/@displayName}" displayName="{$zibLaboratoryResultStatusMap[@hl7Code='pending']/@displayName}"/>
+			<map inValue="preliminary" code="preliminary" codeSystem="{$oidZIBLaboratoriumUitslagTestUitslagStatus}" codeSystemName="{$oidMap[@oid=$oidZIBLaboratoriumUitslagTestUitslagStatus]/@displayName}" displayName="{$zibLaboratoryResultStatusMap[@hl7Code='preliminary']/@displayName}"/>
+			<map inValue="final" code="final" codeSystem="{$oidZIBLaboratoriumUitslagTestUitslagStatus}" codeSystemName="{$oidMap[@oid=$oidZIBLaboratoriumUitslagTestUitslagStatus]/@displayName}" displayName="{$zibLaboratoryResultStatusMap[@hl7Code='final']/@displayName}"/>
+			<map inValue="appended" code="appended" codeSystem="{$oidZIBLaboratoriumUitslagTestUitslagStatus}" codeSystemName="{$oidMap[@oid=$oidZIBLaboratoriumUitslagTestUitslagStatus]/@displayName}" displayName="{$zibLaboratoryResultStatusMap[@hl7Code='appended']/@displayName}"/>
+			<map inValue="corrected" code="corrected" codeSystem="{$oidZIBLaboratoriumUitslagTestUitslagStatus}" codeSystemName="{$oidMap[@oid=$oidZIBLaboratoriumUitslagTestUitslagStatus]/@displayName}" displayName="{$zibLaboratoryResultStatusMap[@hl7Code='corrected']/@displayName}"/>
 		</xsl:variable>
 		<xsl:if test="@value = $mapStatus/@inValue">
 			<resultaat_status>
@@ -247,11 +247,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xd:doc>
 	<xsl:template match="f:status" mode="nl-core-LaboratoryTestResult-Member">
 		<xsl:variable name="mapStatus" as="element()*">
-			<map inValue="pending" code="pending" codeSystem="{$oidZIBLaboratoryResultStatus}" codeSystemName="{$oidMap[@oid=$oidZIBLaboratoryResultStatus]/@displayName}" displayName="{$zibLaboratoryResultStatusMap[@hl7Code='pending']/@displayName}"/>
-			<map inValue="preliminary" code="preliminary" codeSystem="{$oidZIBLaboratoryResultStatus}" codeSystemName="{$oidMap[@oid=$oidZIBLaboratoryResultStatus]/@displayName}" displayName="{$zibLaboratoryResultStatusMap[@hl7Code='preliminary']/@displayName}"/>
-			<map inValue="final" code="final" codeSystem="{$oidZIBLaboratoryResultStatus}" codeSystemName="{$oidMap[@oid=$oidZIBLaboratoryResultStatus]/@displayName}" displayName="{$zibLaboratoryResultStatusMap[@hl7Code='final']/@displayName}"/>
-			<map inValue="appended" code="appended" codeSystem="{$oidZIBLaboratoryResultStatus}" codeSystemName="{$oidMap[@oid=$oidZIBLaboratoryResultStatus]/@displayName}" displayName="{$zibLaboratoryResultStatusMap[@hl7Code='appended']/@displayName}"/>
-			<map inValue="corrected" code="corrected" codeSystem="{$oidZIBLaboratoryResultStatus}" codeSystemName="{$oidMap[@oid=$oidZIBLaboratoryResultStatus]/@displayName}" displayName="{$zibLaboratoryResultStatusMap[@hl7Code='corrected']/@displayName}"/>
+			<map inValue="pending" code="pending" codeSystem="{$oidZIBLaboratoriumUitslagTestUitslagStatus}" codeSystemName="{$oidMap[@oid=$oidZIBLaboratoriumUitslagTestUitslagStatus]/@displayName}" displayName="{$zibLaboratoryResultStatusMap[@hl7Code='pending']/@displayName}"/>
+			<map inValue="preliminary" code="preliminary" codeSystem="{$oidZIBLaboratoriumUitslagTestUitslagStatus}" codeSystemName="{$oidMap[@oid=$oidZIBLaboratoriumUitslagTestUitslagStatus]/@displayName}" displayName="{$zibLaboratoryResultStatusMap[@hl7Code='preliminary']/@displayName}"/>
+			<map inValue="final" code="final" codeSystem="{$oidZIBLaboratoriumUitslagTestUitslagStatus}" codeSystemName="{$oidMap[@oid=$oidZIBLaboratoriumUitslagTestUitslagStatus]/@displayName}" displayName="{$zibLaboratoryResultStatusMap[@hl7Code='final']/@displayName}"/>
+			<map inValue="appended" code="appended" codeSystem="{$oidZIBLaboratoriumUitslagTestUitslagStatus}" codeSystemName="{$oidMap[@oid=$oidZIBLaboratoriumUitslagTestUitslagStatus]/@displayName}" displayName="{$zibLaboratoryResultStatusMap[@hl7Code='appended']/@displayName}"/>
+			<map inValue="corrected" code="corrected" codeSystem="{$oidZIBLaboratoriumUitslagTestUitslagStatus}" codeSystemName="{$oidMap[@oid=$oidZIBLaboratoriumUitslagTestUitslagStatus]/@displayName}" displayName="{$zibLaboratoryResultStatusMap[@hl7Code='corrected']/@displayName}"/>
 		</xsl:variable>
 		<xsl:if test="@value = $mapStatus/@inValue">
 			<test_uitslag_status>
