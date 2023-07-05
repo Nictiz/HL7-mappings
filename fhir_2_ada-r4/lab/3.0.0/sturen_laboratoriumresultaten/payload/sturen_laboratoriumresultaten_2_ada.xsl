@@ -12,14 +12,14 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" exclude-result-prefixes="#all" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" exclude-result-prefixes="#all" version="2.0">
 	<xsl:import href="../../../../zibs2020/payload/0.8.0-beta.1/all_zibs.xsl"/>
 	<xsl:output indent="yes" omit-xml-declaration="yes"/>
 
 	<xd:doc>
 		<xd:desc>Base template for the main interaction.</xd:desc>
 	</xd:doc>
-	<xsl:template match="/">
+	<xsl:template name="ada_sturen_laboratoriumresultaten" match="/">
 		<!--<xsl:variable name="bouwstenen" as="element()*">
 			<!-\- zorgverlener -\->
 			<xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:PractitionerRole" mode="resolve-HealthProfessional-PractitionerRole"/>
@@ -45,7 +45,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					
 					<xsl:choose>
 						<xsl:when test="count(f:Bundle/f:entry/f:resource/f:Patient) ge 2 or count(distinct-values(f:Bundle/f:entry/f:resource/(f:MedicationRequest | f:MedicationDispense | f:MedicationStatement | f:Observation)/f:subject/f:reference/@value)) ge 2">
-							<xsl:message terminate="yes">Multiple Patients and/or subject references found. Please check.</xsl:message>
+							<xsl:call-template name="util:logMessage">
+								<xsl:with-param name="level" select="$logERROR"/>
+								<xsl:with-param name="msg">Multiple Patients and/or subject references found. All entries in the same Bundle SHALL be about the same Patient resource. Please check input.</xsl:with-param>
+							</xsl:call-template>
 						</xsl:when>
 						<xsl:otherwise>
 							<patientgegevens>
@@ -74,7 +77,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 								<xsl:copy-of select="(f:Bundle/f:entry/f:resource/f:Organization)[1]/ancestor::f:entry"/>
 							</xsl:when>
 							<xsl:otherwise>
-								<xsl:message terminate="yes">FATAL: Unable to determine custodian (beschikbaarstellende_partij) from incoming data. </xsl:message>
+								<xsl:call-template name="util:logMessage">
+									<xsl:with-param name="level" select="$logFATAL"/>
+									<xsl:with-param name="msg">Unable to determine custodian (beschikbaarstellende_partij) from incoming data. The custodian is determined based on MedicationRequest/requester, MedicationDispense/performer, or MedicationStatement.extension[author] and constitutes a required piece in the target transaction</xsl:with-param>
+								</xsl:call-template>
 							</xsl:otherwise>
 						</xsl:choose>
 					</xsl:variable>

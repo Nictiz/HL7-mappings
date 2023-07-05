@@ -34,16 +34,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xsl:param name="performer" select="($laboratoryTests | $laboratoryTestMembers)/f:performer/nf:resolveRefInBundle(.)/*" as="element(f:Organization)*"/>
 		
 		<xsl:if test="count($performer) gt 1">
-			<xsl:message terminate="yes">FATAL: Unsupported call of nl-core-LaboratoryTestResult. Observations with different performers cannot be grouped</xsl:message>
+			<xsl:call-template name="util:logMessage">
+				<xsl:with-param name="level" select="$logFATAL"/>
+				<xsl:with-param name="msg">Unsupported call of nl-core-LaboratoryTestResult. Observations with different performers cannot be grouped</xsl:with-param>
+			</xsl:call-template>
 		</xsl:if>
 		<xsl:if test="$laboratoryTests[f:hasMember] and $laboratoryTests[not(f:hasMember)]">
-			<xsl:message terminate="yes">FATAL: Unsupported call of nl-core-LaboratoryTestResult. You can send in 1 Observation with hasMember or multiple Observations without hasMember, not both</xsl:message>
+			<xsl:call-template name="util:logMessage">
+				<xsl:with-param name="level" select="$logFATAL"/>
+				<xsl:with-param name="msg">Unsupported call of nl-core-LaboratoryTestResult. You can send in 1 Observation with hasMember or multiple Observations without hasMember, not both</xsl:with-param>
+			</xsl:call-template>
 		</xsl:if>
 		<xsl:if test="count(distinct-values($laboratoryTests/f:extension[@url = $extLaboratoryTestResultEdifactReferenceNumber]/f:valueString/@value)) gt 1">
-			<xsl:message terminate="yes">FATAL: Unsupported call of nl-core-LaboratoryTestResult. You cannot group Observations from different Edifact messages as they would not have belonged together</xsl:message>
+			<xsl:call-template name="util:logMessage">
+				<xsl:with-param name="level" select="$logFATAL"/>
+				<xsl:with-param name="msg">Unsupported call of nl-core-LaboratoryTestResult. You cannot group Observations from different Edifact messages as they would not have belonged together</xsl:with-param>
+			</xsl:call-template>
 		</xsl:if>
 		<xsl:if test="count(distinct-values(($laboratoryTests | $laboratoryTestMembers)/f:extension[@url = $extLaboratoryTestResultEdifactReferenceNumber]/f:valueString/@value)) gt 1">
-			<xsl:message terminate="yes">FATAL: Unsupported call of nl-core-LaboratoryTestResult. Observations with hasMember cannot be in a different Edifact message from their members</xsl:message>
+			<xsl:call-template name="util:logMessage">
+				<xsl:with-param name="level" select="$logFATAL"/>
+				<xsl:with-param name="msg">Unsupported call of nl-core-LaboratoryTestResult. Observations with hasMember cannot be in a different Edifact message from their members</xsl:with-param>
+			</xsl:call-template>
 		</xsl:if>
 		
 		<laboratorium_uitslag>
