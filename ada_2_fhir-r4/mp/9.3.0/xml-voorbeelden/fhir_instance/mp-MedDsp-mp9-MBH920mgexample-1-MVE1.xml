@@ -1,0 +1,93 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="mp-MedDsp-mp9-MBH920mgexample-1-MVE1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.MedicationDispenseAdditionalInformation">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2052"/>
+            <code value="1"/>
+            <display value="Aantal bewust gewijzigd"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.RequestDate">
+      <valueDateTime value="2022-11-28T09:20:00+01:00"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.DistributionForm">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8"/>
+            <code value="1"/>
+            <display value="Geïndividualiseerd distributiesysteem (GDS)"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_920_mg_example-1-KST"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+      <value value="MBH_920_mg_example-1-MVE1"/>
+   </identifier>
+   <status value="completed"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="373784005"/>
+         <display value="verstrekken van medicatie"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/mp-PhPrd-mp9-216840111388324410-17469"/>
+      <type value="Medication"/>
+      <display value="IBUPROFEN TABLET 600MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-XXX-Kester"/>
+      <type value="Patient"/>
+      <display value="Patient, B. van XXX_Kester"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/nl-core-HPrv-Org-mp9-Org-2165281100733-01236578"/>
+         <type value="Organization"/>
+         <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
+      </actor>
+   </performer>
+   <authorizingPrescription>
+      <type value="MedicationRequest"/>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+         <value value="MBH_920_mg_example-1-VV1"/>
+      </identifier>
+      <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_920_mg_example-1-VV1 || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+   </authorizingPrescription>
+   <quantity>
+      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+         <valueQuantity>
+            <value value="1"/>
+            <unit value="stuk"/>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+            <code value="245"/>
+         </valueQuantity>
+      </extension>
+      <value value="1"/>
+      <unit value="stuk"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="1"/>
+   </quantity>
+   <whenHandedOver value="2022-12-01T09:12:00+01:00"/>
+   <destination>
+      <reference value="Location/nl-core-Dummy-mp9-Bijpatintthuisnietbijdeburendoordebrievenbus"/>
+      <type value="Location"/>
+      <display value="afleverlocatie"/>
+   </destination>
+   <note>
+      <text value="voorbeeld toelichting in vrije tekst"/>
+   </note>
+</MedicationDispense>

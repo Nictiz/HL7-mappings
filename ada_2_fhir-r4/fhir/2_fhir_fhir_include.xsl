@@ -55,7 +55,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xd:desc>
     </xd:doc>
     <xsl:variable name="ada2resourceType">
-        <nm:map ada="afleverlocatie" resource="Location" profile="nl-core-Dummy"/>
         <nm:map ada="alcohol_gebruik" resource="Observation" profile="nl-core-AlcoholUse"/>
         <nm:map ada="alert" resource="Flag" profile="nl-core-alert"/>
         <nm:map ada="allergie_intolerantie" resource="AllergyIntolerance" profile="nl-core-AllergyIntolerance"/>
@@ -373,7 +372,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="profile" select="$profile"/>
                         </xsl:apply-templates>
                     </xsl:variable>
-                    <xsl:value-of select="normalize-space(string-join($generatedDisplay))"/>
+                    <xsl:value-of select="normalize-space(string-join($generatedDisplay, ''))"/>
                 </nm:reference-display>
             </nm:resource>
         </xsl:for-each>

@@ -68,12 +68,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <coding>
                             <xsl:choose>
                                 <xsl:when test="(status_naam | status_name)[@code = ('15188001', '301438001', '713512009') and @codeSystem = '2.16.840.1.113883.6.96']">
-                                    <system value="http://snomed.info/sct"/>
+                                    <system value="{local:getUri($oidSNOMEDCT)}"/>
                                     <code value="118228005"/>
                                     <display value="bevinding betreffende functioneren"/>
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <system value="http://snomed.info/sct"/>
+                                    <system value="{local:getUri($oidSNOMEDCT)}"/>
                                     <code value="384821006"/>
                                     <display value="bevinding betreffende mentale toestand, gedrag en/of psychosociaal functioneren"/>
                                 </xsl:otherwise>

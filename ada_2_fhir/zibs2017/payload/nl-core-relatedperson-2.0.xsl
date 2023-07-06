@@ -20,7 +20,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template name="relatedPersonReference" match="informant/persoon[not(persoon)] | contactpersoon[not(contactpersoon)] | contact_person[not(contact_person)] | contact[not(contact)]" mode="doRelatedPersonReference-2.0">
+    <xsl:template name="relatedPersonReference" match="//(informant//persoon[not(persoon)] | contactpersoon[not(contactpersoon)] | contact_person[not(contact_person)] | contact[not(contact)])" mode="doRelatedPersonReference-2.0">
         <xsl:variable name="theIdentifier" select="identificatie_nummer[@value] | identification_number[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$relatedPersons[group-key = $theGroupKey]" as="element()?"/>
@@ -50,7 +50,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.RelatedPerson.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="relatedPersonEntry" match="informant/persoon[not(persoon)] | contactpersoon[not(contactpersoon)] | contact_person[not(contact_person)] | contact[not(contact)]" mode="doRelatedPersonEntry-2.0">
+    <xsl:template name="relatedPersonEntry" match="//(informant//persoon[not(persoon)] | contactpersoon[not(contactpersoon)] | contact_person[not(contact_person)] | contact[not(contact)])" mode="doRelatedPersonEntry-2.0">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value] | ancestor::bundle//subject//patient[not(patient)][*//@value])[1]" as="element()"/>
         <xsl:param name="entryFullUrl" select="nf:get-fhir-uuid(.)"/>
@@ -91,7 +91,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">Node to consider in the creation of the RelatedPerson resource for ContactPerson.</xd:param>
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
     </xd:doc>
-    <xsl:template name="nl-core-relatedperson-2.0" match="informant/persoon[not(persoon)] | contactpersoon[not(contactpersoon)] | contact_person[not(contact_person)] | contact[not(contact)]" mode="doRelatedPersonResource-2.0">
+    <xsl:template name="nl-core-relatedperson-2.0" match="//(informant//persoon[not(persoon)] | contactpersoon[not(contactpersoon)] | contact_person[not(contact_person)] | contact[not(contact)])" mode="doRelatedPersonResource-2.0">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value] | ancestor::bundle//subject//patient[not(patient)][*//@value])[1]" as="element()"/>
@@ -140,21 +140,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
                     
                     <!-- in some data sets the name_information is unfortunately unnecessarily nested in an extra group, hence the extra predicate -->
-                    <xsl:for-each select=".//(naamgegevens[not(naamgegevens)][not(ancestor::patient)] | name_information[not(name_information)][not(ancestor::patient)])">
+                    <xsl:for-each select=".//(naamgegevens[not(naamgegevens)] | name_information[not(name_information)])[not(ancestor::patient)]">
                         <xsl:call-template name="nl-core-humanname-2.0">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
                     </xsl:for-each>
                     
                     <!-- in some data sets the contact_information is unfortunately unnecessarily nested in an extra group, hence the extra predicate -->
-                    <xsl:for-each select=".//(contactgegevens[not(contactgegevens)][not(ancestor::patient)] | contact_information[not(contact_information)][not(ancestor::patient)])">
+                    <xsl:for-each select=".//(contactgegevens[not(contactgegevens)] | contact_information[not(contact_information)])[not(ancestor::patient)]">
                         <xsl:call-template name="nl-core-contactpoint-1.0">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
                     </xsl:for-each>
                     
                     <!-- in some data sets the address_information is unfortunately unnecessarily nested in an extra group, hence the extra predicate -->
-                    <xsl:for-each select=".//(adresgegevens[not(adresgegevens)][not(ancestor::patient)] | address_information[not(address_information)][not(ancestor::patient)])">
+                    <xsl:for-each select=".//(adresgegevens[not(adresgegevens)] | address_information[not(address_information)])[not(ancestor::patient)]">
                         <xsl:call-template name="nl-core-address-2.0">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>

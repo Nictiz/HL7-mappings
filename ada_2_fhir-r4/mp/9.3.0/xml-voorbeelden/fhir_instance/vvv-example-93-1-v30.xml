@@ -1,0 +1,192 @@
+<Bundle xmlns="http://hl7.org/fhir">
+   <id value="vvv-example-93-1-v30"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-ProposalDispenseRequest-Bundle"/>
+   </meta>
+   <type value="transaction"/>
+   <entry>
+      <fullUrl value="urn:uuid:c33f0e9f-6a95-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-DispenseRequest"/>
+               <tag>
+                  <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
+                  <code value="actionable"/>
+               </tag>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
+               <valueString value="de hond heeft de pillen opgegeten"/>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.528.1"/>
+               <value value="Voorstel_id_123456"/>
+            </identifier>
+            <status value="active"/>
+            <intent value="plan"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="52711000146108"/>
+                  <display value="verstrekkingsverzoek"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:c33f1c12-6a95-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="XARELTO TABLET FILMOMHULD 20MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:c33f1eb5-6a95-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, S. XXX_Jankie"/>
+            </subject>
+            <authoredOn value="2022-12-01T11:59:00+01:00"/>
+            <requester>
+               <reference value="urn:uuid:c33f1eb5-6a95-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, S. XXX_Jankie"/>
+            </requester>
+            <performer>
+               <reference value="urn:uuid:c33f1aa8-6a95-11ec-0000-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
+            </performer>
+            <basedOn>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_920_VVV_Test1_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak  met identificatie: MBH_920_VVV_Test1_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </basedOn>
+            <note>
+               <text value="toelichting bij verstrekkingsverzoek in vrije tekst"/>
+            </note>
+            <dispenseRequest>
+               <quantity>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                     <valueQuantity>
+                        <value value="21"/>
+                        <unit value="stuk"/>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                        <code value="245"/>
+                     </valueQuantity>
+                  </extension>
+                  <value value="21"/>
+                  <unit value="stuk"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="1"/>
+               </quantity>
+            </dispenseRequest>
+         </MedicationRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c33f1eb5-6a95-11ec-0000-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                     <valueCode value="masked"/>
+                  </extension>
+               </value>
+            </identifier>
+            <name>
+               <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                  <valueCode value="NL1"/>
+               </extension>
+               <use value="official"/>
+               <text value="S. XXX_Jankie"/>
+               <family value="XXX_Jankie">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="XXX_Jankie"/>
+                  </extension>
+               </family>
+               <given value="S.">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="IN"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="1954-05-08"/>
+         </Patient>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c33f1aa8-6a95-11ec-0000-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="01236578"/>
+            </identifier>
+            <name value="Apotheek De Gulle Gaper"/>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c33f1c12-6a95-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="2214350"/>
+                  <display value="XARELTO TABLET FILMOMHULD 20MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="100153"/>
+                  <display value="RIVAROXABAN TABLET 20MG"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="138363"/>
+                  <display value="RIVAROXABAN TABLET 20MG"/>
+               </coding>
+               <text value="XARELTO TABLET FILMOMHULD 20MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+</Bundle>

@@ -53,7 +53,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <code>
                         <coding>
-                            <system value="http://snomed.info/sct"/>
+                            <system value="{local:getUri($oidSNOMEDCT)}"/>
                             <code value="228366006"/>
                             <display value="bevinding betreffende drugsgebruik"/>
                         </coding>
@@ -119,7 +119,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <component>
                             <code>
                                 <coding>
-                                    <system value="http://snomed.info/sct"/>
+                                    <system value="{local:getUri($oidSNOMEDCT)}"/>
                                     <code value="410942007"/>
                                     <display value="drug of geneesmiddel"/>
                                 </coding>
@@ -138,7 +138,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <component>
                             <code>
                                 <coding>
-                                    <system value="http://snomed.info/sct"/>
+                                    <system value="{local:getUri($oidSNOMEDCT)}"/>
                                     <code value="410675002"/>
                                     <display value="toedieningsweg"/>
                                 </coding>
@@ -157,7 +157,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <component>
                             <code>
                                 <coding>
-                                    <system value="http://snomed.info/sct"/>
+                                    <system value="{local:getUri($oidSNOMEDCT)}"/>
                                     <code value="228390007"/>
                                     <display value="Frequency of drug misuse"/>
                                 </coding>

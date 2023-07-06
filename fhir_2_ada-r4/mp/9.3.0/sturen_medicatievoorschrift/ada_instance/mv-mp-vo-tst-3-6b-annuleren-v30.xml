@@ -1,0 +1,147 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatievoorschrift.xsd">
+   <meta status="new" created-by="generated" last-update-by="generated"/>
+   <data>
+      <sturen_medicatievoorschrift app="mp-mp93"
+                                   shortName="sturen_medicatievoorschrift"
+                                   formName="sturen_medicatievoorschrift"
+                                   transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.395"
+                                   transactionEffectiveDate="2022-06-30T00:00:00"
+                                   versionDate=""
+                                   prefix="mp-"
+                                   language="nl-NL"
+                                   title="Generated from HL7 FHIR sturen_medicatievoorschrift"
+                                   id="mv-mp-vo-tst-3-6b-annuleren-v30">
+         <patient>
+            <naamgegevens>
+               <ongestructureerde_naam value="J. de XXX_Luzac"/>
+               <initialen value="J."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <voorvoegsels value="de"/>
+                  <achternaam value="XXX_Luzac"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900778" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1985-10-24" datatype="datetime"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_300_annuleren" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak>
+               <identificatie value="MBH_300_annuleren_MA_geannuleerd"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <medicatieafspraak_datum_tijd value="T-1D{14:10:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T+7D{14:10:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T+7D{14:10:00}" datatype="datetime"/>
+               </gebruiksperiode>
+               <medicatieafspraak_stop_type code="89925002"
+                                            codeSystem="2.16.840.1.113883.6.96"
+                                            codeSystemName="SNOMED CT"
+                                            displayName="geannuleerd"/>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_annuleren_MA_starten"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+               <voorschrijver>
+                  <zorgverlener value="urn-uuid-c33f1cd1-6a95-11ec-0000-020000000000"
+                                datatype="reference"/>
+               </voorschrijver>
+               <reden_wijzigen_of_staken code="OTH"
+                                         codeSystem="2.16.840.1.113883.5.1008"
+                                         codeSystemName="HL7 NullFlavor"
+                                         displayName="Overig"/>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product value="urn-uuid-c33f157b-6a95-11ec-0000-020000000000"
+                                         datatype="reference"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf T + 7 dagen om 14:10 uur, tot en met T + 7 dagen om 14:10 uur, 1 maal per week 1 stuk, Oraal, geannuleerd"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="Oraal"/>
+                  <doseerinstructie>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="week"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="urn-uuid-c33f157b-6a95-11ec-0000-020000000000">
+               <product_code code="25410"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="MEFLOQUINE TABLET 250MG"
+                             preferred="true"/>
+               <product_code code="66478"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="MEFLOQUINE TABLET 250MG"/>
+            </farmaceutisch_product>
+            <zorgverlener id="urn-uuid-c33f1cd1-6a95-11ec-0000-020000000000">
+               <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <ongestructureerde_naam value="Bertine van Doorn"/>
+                  <voornamen value="Bertine"/>
+                  <geslachtsnaam>
+                     <voorvoegsels value="van"/>
+                     <achternaam value="Doorn"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="Vektis AGB-medische specialismen"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <contactgegevens>
+                  <telefoonnummers>
+                     <telefoonnummer value="1634534000"/>
+                     <nummer_soort code="WP"
+                                   codeSystem="2.16.840.1.113883.5.1119"
+                                   displayName="Zakelijk telefoonnummer"/>
+                  </telefoonnummers>
+               </contactgegevens>
+               <zorgaanbieder>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-c33f043b-6a95-11ec-0000-020000000000"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="urn-uuid-c33f043b-6a95-11ec-0000-020000000000">
+               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="1"/>
+                  <postcode value="1234AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+         </bouwstenen>
+      </sturen_medicatievoorschrift>
+   </data>
+</adaxml>

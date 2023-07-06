@@ -63,7 +63,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Creates organization reference</xd:desc>
     </xd:doc>
-    <xsl:template name="organizationReference" match="zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)] | payer/insurance_company" mode="doOrganizationReference-2.0">
+    <xsl:template name="organizationReference" match="//(zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)] | payer/insurance_company)" mode="doOrganizationReference-2.0">
         <xsl:variable name="theIdentifier" select="(zorgaanbieder_identificatienummer | zorgaanbieder_identificatie_nummer | healthcare_provider_identification_number | identification_number)[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$organizations[group-key = $theGroupKey]" as="element()*"/>
@@ -97,7 +97,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Organization.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="organizationEntry" match="zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)] | payer/insurance_company" mode="doOrganizationEntry-2.0">
+    <xsl:template name="organizationEntry" match="//(zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)] | payer/insurance_company)" mode="doOrganizationEntry-2.0">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="entryFullUrl">
             <xsl:choose>
@@ -159,7 +159,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="logicalId">Organization.id value</xd:param>
         <xd:param name="in">Node to consider in the creation of an Organization resource</xd:param>
     </xd:doc>
-    <xsl:template name="nl-core-organization-2.0" match="zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)] | payer/insurance_company" mode="doOrganizationResource-2.0">
+    <xsl:template name="nl-core-organization-2.0" match="//(zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)] | payer/insurance_company)" mode="doOrganizationResource-2.0">
         <xsl:param name="in" as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:for-each select="$in">

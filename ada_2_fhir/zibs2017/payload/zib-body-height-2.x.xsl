@@ -153,7 +153,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <code>
                         <coding>
-                            <system value="http://loinc.org"/>
+                            <system value="{local:getUri($oidLOINC)}"/>
                             <code value="8302-2"/>
                             <display value="Lichaamslengte [lengte] in ^patiënt"/>
                         </coding>
@@ -162,14 +162,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:choose>
                                 <xsl:when test="@code = '10904000' and @codeSystem = '2.16.840.1.113883.6.96'">
                                     <coding>
-                                        <system value="http://loinc.org"/>
+                                        <system value="{local:getUri($oidLOINC)}"/>
                                         <code value="8308-9"/>
                                         <display value="Lichaamslengte^staand [lengte] in ^patiënt"/>
                                     </coding>
                                 </xsl:when>
                                 <xsl:when test="@code = '102538003' and @codeSystem = '2.16.840.1.113883.6.96'">
                                     <coding>
-                                        <system value="http://loinc.org"/>
+                                        <system value="{local:getUri($oidLOINC)}"/>
                                         <code value="8306-3"/>
                                         <display value="Lichaamslengte^liggend [lengte] in ^patiënt"/>
                                     </coding>

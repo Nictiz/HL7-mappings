@@ -141,15 +141,17 @@
                 <xsl:for-each select="postcode/@value">
                     <postalCode value="{translate(.,' ','')}"/>
                 </xsl:for-each>
-                <xsl:for-each select="(land | country)/@code">
+                <xsl:for-each select="(land | country)/(@value | @code)">
                     <country value="{normalize-space(.)}">
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
-                            <valueCodeableConcept>
-                                <xsl:call-template name="code-to-CodeableConcept">
-                                    <xsl:with-param name="in" select=".."/>
-                                </xsl:call-template>
-                            </valueCodeableConcept>
-                        </extension>
+                        <xsl:if test="../@code">
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+                                <valueCodeableConcept>
+                                    <xsl:call-template name="code-to-CodeableConcept">
+                                        <xsl:with-param name="in" select=".."/>
+                                    </xsl:call-template>
+                                </valueCodeableConcept>
+                            </extension>
+                        </xsl:if>
                     </country>
                 </xsl:for-each>
             </address>

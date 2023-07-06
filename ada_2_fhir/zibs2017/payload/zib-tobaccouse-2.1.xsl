@@ -53,7 +53,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <code>
                         <coding>
-                            <system value="http://snomed.info/sct"/>
+                            <system value="{local:getUri($oidSNOMEDCT)}"/>
                             <code value="365980008"/>
                             <display value="bevinding betreffende tabakgebruik en blootstelling aan tabaksrook"/>
                         </coding>
@@ -119,7 +119,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <component>
                             <code>
                                 <coding>
-                                    <system value="http://snomed.info/sct"/>
+                                    <system value="{local:getUri($oidSNOMEDCT)}"/>
                                     <code value="53661000146106"/>
                                     <display value="type tabak gebruikt"/>
                                 </coding>
@@ -138,7 +138,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <component>
                             <code>
                                 <coding>
-                                    <system value="http://snomed.info/sct"/>
+                                    <system value="{local:getUri($oidSNOMEDCT)}"/>
                                     <code value="266918002"/>
                                     <display value="hoeveelheid en type tabak gerookt"/>
                                 </coding>
@@ -155,7 +155,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <component>
                             <code>
                                 <coding>
-                                    <system value="http://snomed.info/sct"/>
+                                    <system value="{local:getUri($oidSNOMEDCT)}"/>
                                     <code value="401201003"/>
                                     <display value="pakjaren"/>
                                 </coding>

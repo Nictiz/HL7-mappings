@@ -55,7 +55,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template name="procedureReference" match="(verrichting[not(verrichting)] | procedure[not(procedure)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProcedureReference-2.1">
+    <xsl:template name="procedureReference" match="//(verrichting[not(verrichting)] | procedure[not(procedure)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProcedureReference-2.1">
         <xsl:variable name="theIdentifier" select="(zibroot/identificatienummer | hcimroot/identification_number)[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$procedures[group-key = $theGroupKey]" as="element()?"/>
@@ -81,7 +81,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template name="procedureRequestReference" match="(verrichting[not(verrichting)] | procedure[not(procedure)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProcedureRequestReference-2.1">
+    <xsl:template name="procedureRequestReference" match="//(verrichting[not(verrichting)] | procedure[not(procedure)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProcedureRequestReference-2.1">
         <xsl:variable name="theIdentifier" select="(zibroot/identificatienummer | hcimroot/identification_number)[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$procedureRequests[group-key = $theGroupKey]" as="element()?"/>
@@ -113,7 +113,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Procedure.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="procedureEntry" match="(verrichting[not(verrichting)] | procedure[not(procedure)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProcedureEntry-2.1" as="element(f:entry)">
+    <xsl:template name="procedureEntry" match="//(verrichting[not(verrichting)] | procedure[not(procedure)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProcedureEntry-2.1" as="element(f:entry)">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value] | ancestor::bundle//subject//patient[not(patient)][*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
@@ -159,7 +159,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.ProcedureRequest.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="procedureRequestEntry" match="(verrichting[not(verrichting)] | procedure[not(procedure)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProcedureRequestEntry-2.1" as="element(f:entry)">
+    <xsl:template name="procedureRequestEntry" match="//(verrichting[not(verrichting)] | procedure[not(procedure)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProcedureRequestEntry-2.1" as="element(f:entry)">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value] | ancestor::bundle//subject//patient[not(patient)][*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
@@ -203,7 +203,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-Procedure-2.1" match="(verrichting[not(verrichting)] | procedure[not(procedure)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Procedure)" mode="doZibProcedure-2.1">
+    <xsl:template name="zib-Procedure-2.1" match="//(verrichting[not(verrichting)] | procedure[not(procedure)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Procedure)" mode="doZibProcedure-2.1">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value] | ancestor::bundle//subject//patient[not(patient)][*//@value])[1]" as="element()"/>
@@ -400,7 +400,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-ProcedureRequest-2.1" match="(verrichting[not(verrichting)] | procedure[not(procedure)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:ProcedureRequest)" mode="doZibProcedureRequest-2.1">
+    <xsl:template name="zib-ProcedureRequest-2.1" match="//(verrichting[not(verrichting)] | procedure[not(procedure)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:ProcedureRequest)" mode="doZibProcedureRequest-2.1">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value] | ancestor::bundle//subject//patient[not(patient)][*//@value])[1]" as="element()"/>

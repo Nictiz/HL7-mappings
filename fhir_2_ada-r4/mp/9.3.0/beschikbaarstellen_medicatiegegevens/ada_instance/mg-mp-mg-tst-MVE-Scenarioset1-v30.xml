@@ -1,0 +1,101 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new" created-by="generated" last-update-by="generated"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp93"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.374"
+                                            transactionEffectiveDate="2022-06-30T00:00:00"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="Generated from HL7 FHIR medicatiegegevens"
+                                            id="mg-mp-mg-tst-MVE-Scenarioset1-v30">
+         <patient>
+            <naamgegevens>
+               <ongestructureerde_naam value="D. XXX_Dijks"/>
+               <initialen value="D."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Dijks"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900468" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1963-10-21" datatype="datetime"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_300_chronisch" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieverstrekking>
+               <identificatie value="MBH_300_chronisch_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime" value="T-30D{12:32:00}"/>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-c33f1aa8-6a95-11ec-0000-020000000000"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid>
+                  <aantal value="21"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product value="urn-uuid-c33f1b57-6a95-11ec-0000-020000000000"
+                                         datatype="reference"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek>
+                  <identificatie value="MBH_300_chronisch_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+            <medicatieverstrekking>
+               <identificatie value="MBH_300_chronisch_MVE_extraMVEbestaandeTA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime" value="T-10D{12:35:00}"/>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-c33f1aa8-6a95-11ec-0000-020000000000"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid>
+                  <aantal value="90"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product value="urn-uuid-c33f1b57-6a95-11ec-0000-020000000000"
+                                         datatype="reference"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek>
+                  <identificatie value="MBH_300_chronisch_VV_extraVVbestaandeMA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="urn-uuid-c33f1b57-6a95-11ec-0000-020000000000">
+               <product_code code="202185"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="ROTER APC TABLET"
+                             preferred="true"/>
+               <product_code code="3891"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="ACETYLSALICYLZUUR/PARACETAMOL/COF TAB 250/250/50MG"/>
+               <product_code code="61433"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="ACETYLSALICYLZUUR/PARACETAMOL/COF TAB 250/250/50MG"/>
+            </farmaceutisch_product>
+            <zorgaanbieder id="urn-uuid-c33f1aa8-6a95-11ec-0000-020000000000">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

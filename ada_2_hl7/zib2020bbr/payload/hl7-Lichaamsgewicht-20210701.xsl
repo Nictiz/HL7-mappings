@@ -44,7 +44,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- toelichting, text is mandatory in this template so do not output anything when there is no @value in input -->
                 <xsl:for-each select="(toelichting | comment)[@value]">
                     <entryRelationship typeCode="REFR">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.32_20180611000000"/>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.0.32_20210701000000"/>
                     </entryRelationship>
                 </xsl:for-each>
             </observation>

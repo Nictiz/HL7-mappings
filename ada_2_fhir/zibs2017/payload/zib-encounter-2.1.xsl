@@ -57,14 +57,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:when test="nf:isFuture($startDate)">
                                 <xsl:attribute name="value" select="'planned'"/>
                             </xsl:when>
-                            <xsl:when test="nf:isPast($startDate) and (nf:isFuture($endDate) or not($endDate))">
-                                <xsl:attribute name="value" select="'in-progress'"/>
-                            </xsl:when>
-                            <xsl:when test="(not($startDate) or nf:isPast($startDate)) and nf:isPast($endDate)">
+                            <xsl:when test="nf:isPast($endDate)">
                                 <xsl:attribute name="value" select="'finished'"/>
-                            </xsl:when>
-                            <xsl:when test="not($startDate) and nf:isFuture($endDate)">
-                                <xsl:attribute name="value" select="'in-progress'"/>
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:attribute name="value" select="'unknown'"/>
@@ -131,7 +125,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:choose>
                     </xsl:for-each>
                     
-                   <xsl:if test="(begin_datum_tijd | start_date_time)[@value] or (eind_datum_tijd | end_date_time)[@value]">
+                    <xsl:if test="(begin_datum_tijd | start_date_time | eind_datum_tijd | end_date_time)[@value]">
                         <period>
                             <!-- period.start is required in the FHIR profile, so always output period.start, data-absent-reason if no actual value -->
                             <start>
@@ -163,7 +157,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:for-each>
                         </period>
                     </xsl:if>
-                       
+                    
                     <xsl:for-each select="(reden_contact/afwijkende_uitslag | contact_reason/deviating_result)[@value]">
                         <reason>
                             <text>
@@ -198,7 +192,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:choose>
                     </xsl:for-each>
                     
-                    <xsl:if test="(herkomst | origin)[@code] or (bestemming | destination)[@code]">
+                    <xsl:if test="(herkomst | origin | bestemming | destination)[@code]">
                         <hospitalization>
                             <xsl:for-each select="(herkomst | origin)[@code]">
                                 <admitSource>
@@ -226,7 +220,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:apply-templates select="." mode="doOrganizationReference-2.0"/>
                         </serviceProvider>
                     </xsl:for-each>
-                    
                 </Encounter>
             </xsl:variable>
             
