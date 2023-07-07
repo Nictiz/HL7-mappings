@@ -49,7 +49,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <profile value="{$profileValue}"/>
                         </meta>
 
-                        <!-- cannot support the same identifier on more than 1 resources. so skip the identifier if more than one Coverage resource comes out of here -->
+                        <!-- cannot support the same identifier on more than 1 resources, so skip the identifier if more than one Coverage resource comes out of here -->
                         <xsl:if test="count($insuranceTypes) le 1">
                             <xsl:for-each select="zibroot/identificatienummer | hcimroot/identification_number">
                                 <identifier>

@@ -18,7 +18,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
     
-    <!-- JD: Kind of hacky to add zib-Payer Insurance Company to zorgaanbiedres, but as it is all nl-core-organisation I do not see another option. -->
+    <!-- JD: Kind of hacky to add zib-Payer Insurance Company to zorgaanbieders, but as it is all nl-core-organization I do not see another option. -->
     <xsl:variable name="organizations" as="element()*">
         <xsl:variable name="healthProvider" select="//zorgaanbieder[not(zorgaanbieder)] | //healthcare_provider[not(healthcare_provider)] | //payer/insurance_company"/>
         
