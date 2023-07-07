@@ -10,7 +10,7 @@
         <xd:desc>Handles the gebruiksinstructie omschrijving taking account of parameter $generateInstructionText</xd:desc>
         <xd:param name="in">The ada gebruiksinstructie element is expected as context or input parameter</xd:param>
     </xd:doc>
-    <xsl:template name="_handleGebruiksinstructieOmschrijving" match="gebruiksinstructie | instructions_for_use" mode="_handleGebruiksinstructieOmschrijving">
+    <xsl:template name="_handleGebruiksinstructieOmschrijving" match="gebruiksinstructie" mode="_handleGebruiksinstructieOmschrijving">
         <xsl:param name="in" as="element(gebruiksinstructie)?" select="."/>
         <xsl:for-each select="$in">
             <xsl:choose>
@@ -26,7 +26,7 @@
                     </xsl:for-each>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:for-each select="(omschrijving | description)[@value]">
+                    <xsl:for-each select="omschrijving[@value]">
                         <text>
                             <xsl:call-template name="string-to-string"/>
                         </text>
@@ -39,7 +39,7 @@
     <xd:doc>
         <xd:desc>does some processing for ada element 'toedieningsweg' based on whether it is in transaction for verstrekkingenvertaling (toedieningsweg 0..1 R) or other transactions (toedieningsweg 1..1 R)</xd:desc>
     </xd:doc>
-    <xsl:template name="_handle-toedieningsweg-3.0" match="toedieningsweg | route_of_administration" mode="_handleToedieningsweg-3.0">
+    <xsl:template name="_handle-toedieningsweg-3.0" match="toedieningsweg" mode="_handleToedieningsweg-3.0">
         <xsl:choose>
             <!-- bij verstrekkingenvertaling is toedieningsweg niet verplicht -->
             <!-- weglaten met nullFlavor NI  -->
@@ -61,7 +61,7 @@
         <xd:param name="outputText">Optional, defaults to true.Whether or not to output the textual dosage description. 
             From MP 9.1  onwards the text is in an extension on the resource level.</xd:param>
     </xd:doc>
-    <xsl:template name="handle-gebruiksinstructie-3.0" match="gebruiksinstructie | instructions_for_use" mode="handleGebruiksinstructie-3.0">
+    <xsl:template name="handle-gebruiksinstructie-3.0" match="gebruiksinstructie" mode="handleGebruiksinstructie-3.0">
         <xsl:param name="in" select="." as="element()*"/>
         <xsl:param name="outputText" as="xs:boolean?" select="true()"/>
 
@@ -75,12 +75,12 @@
             </xsl:variable>
 
             <xsl:choose>
-                <xsl:when test=".[(doseerinstructie | dosing_instructions)[.//(@value | @code)]]">
-                    <xsl:for-each select="doseerinstructie | dosing_instructions">
+                <xsl:when test=".[doseerinstructie[.//(@value | @code)]]">
+                    <xsl:for-each select="doseerinstructie">
                         <xsl:choose>
                             <!-- when there is a dosering with contents -->
-                            <xsl:when test="(dosering | dosage)[.//(@value | @code)]">
-                                <xsl:for-each select="(dosering | dosage)[.//(@value | @code)]">
+                            <xsl:when test="dosering[.//(@value | @code)]">
+                                <xsl:for-each select="dosering[.//(@value | @code)]">
                                     <xsl:element name="{$fhir-dosage-name}">
                                         <xsl:apply-templates select="." mode="doDosageContents-3.0">
                                             <xsl:with-param name="outputText" select="$outputText"/>
@@ -100,7 +100,7 @@
                     </xsl:for-each>
                 </xsl:when>
                 <!-- when the doseerinstructie does not have contents, but there is content in gebruiksinstructie other than omschrijving -->
-                <xsl:when test="*[not(self::omschrijving) and not(self::description)][.//(@value | @code)]">
+                <xsl:when test="*[not(self::omschrijving)][.//(@value | @code)]">
                     <xsl:element name="{$fhir-dosage-name}">
                         <xsl:apply-templates select="." mode="doDosageContents-3.0">
                             <xsl:with-param name="outputText" select="$outputText"/>
@@ -115,13 +115,13 @@
         <xd:desc>zib-Administration-Schedule-3.0</xd:desc>
         <xd:param name="toedieningsschema">ada toedieningsschema</xd:param>
     </xd:doc>
-    <xsl:template name="zib-Administration-Schedule-3.0" match="toedieningsschema | administering_schedule" mode="zib-Administration-Schedule-3.0">
+    <xsl:template name="zib-Administration-Schedule-3.0" match="toedieningsschema" mode="zib-Administration-Schedule-3.0">
         <xsl:param name="toedieningsschema" as="element()?" select="."/>
         <xsl:for-each select="$toedieningsschema">
             <timing>
-                <xsl:if test="../../(doseerduur | dose_duraction) or ../(toedieningsduur | duration_of_administration) or .//*[@value or @code]">
+                <xsl:if test="../../doseerduur or ../toedieningsduur or .//*[@value or @code]">
                     <repeat>
-                        <!--<!-\- exact / is_flexibel -\->
+                        <!-- exact / is_flexibel -->
                         <xsl:for-each select="is_flexibel[@value | @nullFlavor]">
                             <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                                 <valueBoolean>
@@ -137,7 +137,7 @@
                                     </xsl:choose>
                                 </valueBoolean>
                             </extension>
-                        </xsl:for-each>-->
+                        </xsl:for-each>
                         
                         <!-- is_flexibel = false, meaning timing-exact = true by dataset definition for interval -->
                         <xsl:if test="interval[@value] and not(is_flexibel[@value | @nullFlavor])">
@@ -147,7 +147,7 @@
                         </xsl:if>
 
                         <!-- doseerduur -->
-                        <xsl:for-each select="../../(doseerduur | dose_duration)[@value]">
+                        <xsl:for-each select="../../doseerduur[@value]">
                             <boundsDuration>
                                 <xsl:call-template name="hoeveelheid-to-Duration">
                                     <xsl:with-param name="in" select="."/>
@@ -156,21 +156,21 @@
                         </xsl:for-each>
 
                         <!-- toedieningsduur -->
-                        <xsl:for-each select="../(toedieningsduur | duration_of_administration)[@value]">
+                        <xsl:for-each select="../toedieningsduur[@value]">
                             <duration value="{./@value}"/>
                             <durationUnit value="{nf:convertTime_ADA_unit2UCUM_FHIR(./@unit)}"/>
                         </xsl:for-each>
 
                         <!-- frequentie -->
-                        <xsl:for-each select="(frequentie/aantal/(vaste_waarde | min) | frequency/range/(nominal_value | minimum_value))[@value]">
+                        <xsl:for-each select="frequentie/aantal/(vaste_waarde | min)[@value]">
                             <frequency value="{./@value}"/>
                         </xsl:for-each>
-                        <xsl:for-each select="(frequentie/aantal/(max) | frequency/range/maximum_value)[@value]">
+                        <xsl:for-each select="frequentie/aantal/(max)[@value]">
                             <frequencyMax value="{./@value}"/>
                         </xsl:for-each>
 
                         <!-- frequentie/tijdseenheid -->
-                        <xsl:for-each select="frequentie/tijdseenheid | frequency/range/nominal_value">
+                        <xsl:for-each select="frequentie/tijdseenheid">
                             <period value="{./@value}"/>
                             <periodUnit value="{nf:convertTime_ADA_unit2UCUM_FHIR(./@unit)}"/>
                         </xsl:for-each>
@@ -182,7 +182,7 @@
                         </xsl:for-each>
 
                         <!-- weekdag -->
-                        <xsl:for-each select="weekdag | week_day">
+                        <xsl:for-each select="weekdag">
                             <dayOfWeek>
                                 <xsl:attribute name="value">
                                     <xsl:choose>
@@ -199,7 +199,7 @@
                         </xsl:for-each>
 
                         <!-- toedientijd -->
-                        <xsl:for-each select="(toedientijd | administration_time)[@value]">
+                        <xsl:for-each select="toedientijd[@value]">
                             <xsl:choose>
                                 <xsl:when test="nf:add-Amsterdam-timezone-to-dateTimeString(@value) castable as xs:dateTime">
                                     <timeOfDay value="{format-dateTime(xs:dateTime(nf:add-Amsterdam-timezone-to-dateTimeString(@value)), '[H01]:[m01]:[s01]')}"/>
@@ -222,7 +222,7 @@
                         </xsl:for-each>
 
                         <!-- dagdeel -->
-                        <xsl:for-each select="(dagdeel | time_of_day)[@code][not(@codeSystem = $oidHL7NullFlavor)]">
+                        <xsl:for-each select="dagdeel[@code][not(@codeSystem = $oidHL7NullFlavor)]">
                             <when>
                                 <xsl:attribute name="value">
                                     <xsl:choose>
@@ -249,13 +249,13 @@
         <xd:param name="outputText">Optional, defaults to true. Whether or not to output the text. 
             From 9.1.0  onwards the text is in an extension on the resource level.</xd:param>
     </xd:doc>
-    <xsl:template name="zib-InstructionsForUse-3.0" match="dosering | dosage" as="element()*" mode="doDosageContents-3.0">
+    <xsl:template name="zib-InstructionsForUse-3.0" match="dosering" as="element()*" mode="doDosageContents-3.0">
         <xsl:param name="outputText" as="xs:boolean?" select="true()"/>
 
-        <xsl:for-each select="../(volgnummer | sequence_number)[@value]">
+        <xsl:for-each select="../volgnummer[@value]">
             <sequence value="{@value}"/>
         </xsl:for-each>
-        
+
         <!-- gebruiksinstructie/omschrijving  -->
         <xsl:if test="$outputText">
             <!-- gebruiksinstructie/omschrijving  -->
@@ -264,7 +264,7 @@
             </xsl:call-template>
         </xsl:if>
         <!-- gebruiksinstructie/aanvullende_instructie  -->
-        <xsl:for-each select="../../(aanvullende_instructie | additional_instructions)[@code]">
+        <xsl:for-each select="../../aanvullende_instructie[@code]">
             <additionalInstruction>
                 <xsl:call-template name="code-to-CodeableConcept">
                     <xsl:with-param name="in" select="."/>
@@ -273,9 +273,9 @@
             </additionalInstruction>
         </xsl:for-each>
         <!-- doseerinstructie with only doseerduur / herhaalperiode cyclisch schema -->
-        <xsl:if test="../../(herhaalperiode_cyclisch_schema | repeat_period_cyclical_schedule)[.//(@value | @code | @nullFlavor)] and not(./(toedieningsschema | administering_schedule)[.//(@value | @code | @nullFlavor)])">
+        <xsl:if test="../../herhaalperiode_cyclisch_schema[.//(@value | @code | @nullFlavor)] and not(./toedieningsschema[.//(@value | @code | @nullFlavor)])">
             <!-- pauze periode -->
-            <xsl:for-each select="../(doseerduur | dose_duration)[.//(@value | @code)]">
+            <xsl:for-each select="doseerduur[.//(@value | @code)]">
                 <timing>
                     <repeat>
                         <boundsDuration>
@@ -288,7 +288,7 @@
             </xsl:for-each>
         </xsl:if>
         <!-- dosering/toedieningsschema -->
-        <xsl:for-each select="./(toedieningsschema | administering_schedule)[.//(@code | @value | @nullFlavor)]">
+        <xsl:for-each select="./toedieningsschema[.//(@code | @value | @nullFlavor)]">
             <xsl:call-template name="zib-Administration-Schedule-3.0">
                 <xsl:with-param name="toedieningsschema" select="."/>
             </xsl:call-template>
@@ -416,10 +416,10 @@
         </xd:desc>
         <xd:param name="outputText">Optional, defaults to true. Whether or not to output the text. From 9.1.0 onwards the text is in an extension on the resource level.</xd:param>
     </xd:doc>
-    <xsl:template name="zib-InstructionsForUse-3.0-di" match="doseerinstructie | dosing_instructions" mode="doDosageContents-3.0">
+    <xsl:template name="zib-InstructionsForUse-3.0-di" match="doseerinstructie" mode="doDosageContents-3.0">
         <xsl:param name="outputText" as="xs:boolean?" select="true()"/>
 
-        <xsl:for-each select="(volgnummer | sequence_number)[@value]">
+        <xsl:for-each select="volgnummer[@value]">
             <sequence value="{@value}"/>
         </xsl:for-each>
 
@@ -431,10 +431,10 @@
             </xsl:call-template>
         </xsl:if>
         <!-- gebruiksinstructie/aanvullende_instructie and toedieningsweg are only relevant if there is at least one of outputText/keerdosis/toedieningsschema -->
-        <xsl:variable name="gebruiksinstructieItemsRelevant" select="$outputText or (dosering/keerdosis | dosage/dose)[.//(@value | @unit)] or (dosering/toedieningsschema | dosage/administering_schedule)[.//(@value | @code | @nullFlavor)]"/>
+        <xsl:variable name="gebruiksinstructieItemsRelevant" select="$outputText or dosering/keerdosis[.//(@value | @unit)] or dosering/toedieningsschema[.//(@value | @code | @nullFlavor)]"/>
         <!-- gebruiksinstructie/aanvullende_instructie  -->
         <xsl:if test="$gebruiksinstructieItemsRelevant">
-            <xsl:for-each select="../(aanvullende_instructie | additional_instructions)[@code]">
+            <xsl:for-each select="../aanvullende_instructie[@code]">
                 <additionalInstruction>
                     <xsl:call-template name="code-to-CodeableConcept">
                         <xsl:with-param name="in" select="."/>
@@ -444,9 +444,9 @@
             </xsl:for-each>
         </xsl:if>
         <!-- doseerinstructie with only doseerduur / herhaalperiode cyclisch schema -->
-        <xsl:if test="../(herhaalperiode_cyclisch_schema | repeat_period_cyclical_schedule)[.//(@value | @code | @nullFlavor)] and not((dosering/toedieningsschema | dosage/administering_schedule)[.//(@value | @code | @nullFlavor)])">
+        <xsl:if test="../herhaalperiode_cyclisch_schema[.//(@value | @code | @nullFlavor)] and not(dosering/toedieningsschema[.//(@value | @code | @nullFlavor)])">
             <!-- pauze periode -->
-            <xsl:for-each select="(doseerduur | dose_duraction)[.//(@value | @code)]">
+            <xsl:for-each select="doseerduur[.//(@value | @code)]">
                 <timing>
                     <repeat>
                         <boundsDuration>
@@ -460,7 +460,7 @@
         </xsl:if>
         <!-- gebruiksinstructie/toedieningsweg -->
         <xsl:if test="$gebruiksinstructieItemsRelevant">
-            <xsl:apply-templates select="../(toedieningsweg | route_of_administration)" mode="_handleToedieningsweg-3.0"/>
+            <xsl:apply-templates select="../toedieningsweg" mode="_handleToedieningsweg-3.0"/>
         </xsl:if>
 
     </xsl:template>
@@ -473,7 +473,7 @@
         <xd:param name="outputText">Optional, defaults to true. Whether or not to output the text. 
             From 9.1.0  onwards the text is in an extension on the resource level.</xd:param>
     </xd:doc>
-    <xsl:template name="zib-InstructionsForUse-3.0-gi" match="gebruiksinstructie | instructions_for_use" mode="doDosageContents-3.0">
+    <xsl:template name="zib-InstructionsForUse-3.0-gi" match="gebruiksinstructie" mode="doDosageContents-3.0">
         <xsl:param name="outputText" as="xs:boolean?" select="true()"/>
 
         <!-- gebruiksinstructie/omschrijving  -->
@@ -485,7 +485,7 @@
         </xsl:if>
 
         <!-- gebruiksinstructie/aanvullende_instructie  -->
-        <xsl:for-each select="(aanvullende_instructie | additional_instructions)[@code]">
+        <xsl:for-each select="aanvullende_instructie[@code]">
             <additionalInstruction>
                 <xsl:call-template name="code-to-CodeableConcept">
                     <xsl:with-param name="in" select="."/>
@@ -495,7 +495,7 @@
         </xsl:for-each>
 
         <!-- gebruiksinstructie/toedieningsweg -->
-        <xsl:apply-templates select="toedieningsweg | route_of_administration" mode="_handleToedieningsweg-3.0"/>
+        <xsl:apply-templates select="toedieningsweg" mode="_handleToedieningsweg-3.0"/>
 
     </xsl:template>
 
