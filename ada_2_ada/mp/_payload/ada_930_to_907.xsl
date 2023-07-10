@@ -7,8 +7,7 @@
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all" omit-xml-declaration="yes"/>
     <xsl:strip-space elements="*"/>
 
-
-    <xsl:param name="schemaFileString" as="xs:string?">../mp/9.0.7/beschikbaarstellen_medicatiegegevens/ada_schemas/beschikbaarstellen_medicatiegegevens.xsd</xsl:param>
+    <xsl:param name="schemaFileString" as="xs:string?">9.0.7/beschikbaarstellen_medicatiegegevens/ada_schemas/beschikbaarstellen_medicatiegegevens.xsd</xsl:param>
 
     <xd:doc>
         <xd:desc>Start template</xd:desc>
@@ -375,7 +374,6 @@
         <xd:desc> stoptype van MP9 3.0 naar 9.0.7 </xd:desc>
     </xd:doc>
     <xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatiegebruik | medicatie_gebruik)/*[contains(replace(local-name(), '_', ''), 'stoptype')]" mode="ada930_2_907">
-        
         <stoptype>
             <xsl:for-each select="$mapStoptype[mp930[@code = current()/@code][@codeSystem = current()/@codeSystem]][mp907]">
                 <xsl:copy-of select="mp907/@*"/>
@@ -737,9 +735,9 @@
     </xsl:template>
 
     <xd:doc>
-        <xd:desc> zorgaanbieder_identificatie_nummer </xd:desc>
+        <xd:desc>add underscore sometimes in zorgaanbieder_identificatie_nummer </xd:desc>
     </xd:doc>
-    <xsl:template match="zorgaanbieder_identificatienummer[not(ancestor::medicatieafspraak/voorschrijver or ancestor::beoogd_verstrekker)]" mode="ada930_2_907_step2">
+    <xsl:template match="zorgaanbieder_identificatienummer[not(ancestor::medicatieafspraak/voorschrijver or ancestor::beoogd_verstrekker or ancestor::auteur[parent::medicatie_gebruik]/auteur_is_zorgaanbieder)]" mode="ada930_2_907_step2">
         <xsl:element name="zorgaanbieder_identificatie_nummer">
             <xsl:apply-templates select="@* | node()" mode="#current"/>
         </xsl:element>

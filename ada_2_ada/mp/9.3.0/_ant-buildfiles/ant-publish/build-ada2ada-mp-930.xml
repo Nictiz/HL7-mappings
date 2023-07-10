@@ -28,20 +28,15 @@
     <property name="build.dir" value="${basedir}/../.."/>
     <property name="dummy.output.dir" value="dummy"/>
 
-    <property name="base.url.github.907" value="https://raw.githubusercontent.com/Nictiz/HL7-mappings/ADA2ADA-ant/ada_2_ada/mp/9.0.7"/>
-    <property name="base.url.github.930" value="https://raw.githubusercontent.com/Nictiz/HL7-mappings/mp93-ada2hl7/ada_2_hl7/mp/9.3.0"/>
+    <property name="base.url.github.907" value="https://raw.githubusercontent.com/Nictiz/HL7-mappings/ada_2_ada/mp/9.0.7"/>
+    <property name="base.url.github.930" value="https://raw.githubusercontent.com/Nictiz/HL7-mappings/ada_2_ada/mp/9.3.0"/>
     <property name="base.url.github.ada2ada" value="https://raw.githubusercontent.com/Nictiz/HL7-mappings/master/"/>
 
 
 
     <import file="../../../_ant-buildfiles/ant-publish/build-ada2ada-mp-include.xml"/>
 
-    <!--9.3.0-->
-    <property name="ada.project.source.dir" value="C:\Sourcetree\Github\art_decor\projects\${is.abbreviation}-${is.abbreviation}${is.version.short}"/>
-    <property name="refs.dir" value="C:\Sourcetree\Github\art_decor\adarefs2ada\${is.abbreviation}\${is.version}"/>
-    <property name="refs.dir.907" value="C:\Sourcetree\Github\art_decor\adarefs2ada\${is.abbreviation}\9.0.7"/>
-    <property name="refs.dir.930" value="C:\Sourcetree\Github\art_decor\adarefs2ada\${is.abbreviation}\9.3.0"/>
-
+    <property name="refs.dir.907" value="../../../../../../art_decor/adarefs2ada/${is.abbreviation}/9.0.7"/>
 
     <target name="build">
         <!-- beschikbaarstellen_medicatiegegevens -->
@@ -57,13 +52,7 @@
             <param name="usecase.short" value="mv"/>
             <param name="input.dir.startstring" value="ada_instance"/>
         </antcall>
-        
-        <!-- sturen_afhandeling_medicatievoorschrift -->
-        <antcall target="build_sub">
-            <param name="usecase" value="${usecase.amv}"/>
-            <param name="usecase.short" value="amv"/>
-            <param name="input.dir.startstring" value="ada_instance"/>
-        </antcall>
+
     </target>
 
 
@@ -94,7 +83,7 @@
             <param name="base.url.github" value="${base.url.github.930}"/>
         </antcall>
 
-        <!-- beschikbaarstellen_medicatiegegevens start at 930 -->
+        <!-- start at 930 -->
         <antcall target="ada_2_ada_sub">
             <param name="usecase" value="${usecase}"/>
             <param name="xsl.name" value="ada_${usecase.short}_930_to_907.xsl"/>
@@ -174,13 +163,6 @@
             <param name="input.dir.startstring" value="ada_instance"/>
         </antcall>
 
-        <!-- sturen_afhandeling_medicatievoorschrift -->
-        <antcall target="setup_sub_usecase">
-            <param name="usecase" value="${usecase.amv}"/>
-            <param name="input.dir.startstring" value="ada_instance"/>
-        </antcall>
-        
-
     </target>
 
     <target name="setup_sub_usecase">
@@ -194,7 +176,7 @@
         <antcall target="setup_sub">
             <param name="usecase" value="${usecase}"/>
             <param name="target.dir.instances" value="${input.dir.startstring}_in_930"/>
-            <param name="refs.dir.instances" value="${refs.dir.930}/${usecase}/${input.dir.startstring}"/>
+            <param name="refs.dir.instances" value="${refs.dir}/${usecase}/${input.dir.startstring}"/>
             <param name="fileset.include" value="*.xml"/>
         </antcall>
 
@@ -245,10 +227,5 @@
             </fileset>
         </copy>
     </target>
-
-
-
-
-
 
 </project>
