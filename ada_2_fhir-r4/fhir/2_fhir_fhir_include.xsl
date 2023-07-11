@@ -62,6 +62,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="apgar_score" resource="Observation" profile="nl-core-ApgarScore-1Minute"/>
         <nm:map ada="apgar_score" resource="Observation" profile="nl-core-ApgarScore-5Minute"/>
         <nm:map ada="apgar_score" resource="Observation" profile="nl-core-ApgarScore-10Minute"/>
+        <nm:map ada="barthel_index" resource="Observation" profile="nl-core-BarthelADLIndex"/>
         <nm:map ada="behandel_aanwijzing" resource="Consent" profile="nl-core-TreatmentDirective2"/>
         <nm:map ada="bloeddruk" resource="Observation" profile="nl-core-BloodPressure"/>
         <nm:map ada="comfort_score" resource="Observation" profile="nl-core-ComfortScale"/>
