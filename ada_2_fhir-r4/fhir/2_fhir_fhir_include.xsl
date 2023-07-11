@@ -69,6 +69,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="betaler" resource="Coverage" profile="nl-core-Payer.InsuranceCompany"/>
         <nm:map ada="betaler" resource="Coverage" profile="nl-core-Payer.PayerPerson"/>
         <nm:map ada="betaler" resource="Organization" profile="nl-core-Payer-Organization"/>
+        <nm:map ada="checklist_pijn_gedrag" resource="Observation" profile="nl-core-ChecklistPainBehavior"/>
         <nm:map ada="contact" resource="Encounter" profile="nl-core-Encounter"/>
         <nm:map ada="contactpersoon" resource="RelatedPerson" profile="nl-core-ContactPerson"/>
         <nm:map ada="dosscore" resource="Observation" profile="nl-core-DOSScore"/>
@@ -85,6 +86,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="juridische_situatie" resource="Condition" profile="nl-core-LegalSituation-Representation"/>
         <nm:map ada="laboratorium_uitslag" resource="Observation" profile="nl-core-LaboratoryTestResult"/>
         <nm:map ada="laboratorium_test" resource="Observation" profile="nl-core-LaboratoryTestResult"/>
+        <nm:map ada="levensovertuiging_rc" resource="Observation" profile="nl-core-LifeStance"/>
         <nm:map ada="lichaamslengte" resource="Observation" profile="nl-core-BodyHeight"/>
         <nm:map ada="lichaamstemperatuur" resource="Observation" profile="nl-core-BodyTemperature"/>
         <nm:map ada="lichaamsgewicht" resource="Observation" profile="nl-core-BodyWeight"/>
@@ -117,6 +119,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="soepverslag" resource="Composition" profile="nl-core-SOAPReport"/>
         <nm:map ada="soepregel" resource="Observation" profile="nl-core-SOAPReport.SOAPLine"/>
         <nm:map ada="stoma" resource="Condition" profile="nl-core-Stoma"/>
+        <nm:map ada="strong_kids_score" resource="Observation" profile="nl-core-StrongKidsScore"/>
         <nm:map ada="sturen_medicatievoorschrift" resource="Bundle" profile="mp-MedicationPrescription-Bundle"/>
         <nm:map ada="sturen_afhandeling_medicatievoorschrift" resource="Bundle" profile="mp-MedicationPrescriptionProcessing-Bundle"/>
         <nm:map ada="sturen_antwoord_voorstel_medicatieafspraak" resource="Bundle" profile="mp-ReplyProposalMedicationAgreement-Bundle"/>
@@ -140,7 +143,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="vermogen_tot_uiterlijke_verzorging" resource="Observation" profile="nl-core-AbilityToGroom"/>
         <nm:map ada="vermogen_tot_zich_kleden" resource="Observation" profile="nl-core-AbilityToDressOneself"/>
         <nm:map ada="vermogen_tot_zich_wassen" resource="Observation" profile="nl-core-AbilityToWashOneself"/>
-        <nm:map ada="verrichting" resource="Procedure" profile="nl-core-Procedure"/>
+        <nm:map ada="verrichting" resource="Procedure" profile="nl-core-Procedure-event"/>
+        <nm:map ada="verrichting" resource="ServiceRequest" profile="nl-core-Procedure-request"/>
         <nm:map ada="verstrekkingsverzoek" resource="MedicationRequest" profile="mp-DispenseRequest"/>
         <nm:map ada="visueel_resultaat" resource="Media" profile="nl-core-TextResult-Media"/>
         <nm:map ada="visus" resource="Observation" profile="nl-core-VisualAcuity"/>
@@ -150,12 +154,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="wilsverklaring" resource="Consent" profile="nl-core-AdvanceDirective"/>
         <nm:map ada="wisselend_doseerschema" resource="MedicationRequest" profile="mp-VariableDosingRegimen"/>
         <nm:map ada="woonsituatie" resource="Observation" profile="nl-core-LivingSituation"/>
+        <nm:map ada="ziektebeleving" resource="Observation" profile="nl-core-IllnessPerception"/>
         <nm:map ada="zorgaanbieder" resource="Organization" profile="nl-core-HealthcareProvider-Organization"/>
         <nm:map ada="zorgaanbieder" resource="Location" profile="nl-core-HealthcareProvider"/>
         <nm:map ada="zorg_episode" resource="EpisodeOfCare" profile="nl-core-EpisodeOfCare"/>
         <nm:map ada="zorg_team" resource="CareTeam" profile="nl-core-CareTeam"/>
         <nm:map ada="zorgverlener" resource="PractitionerRole" profile="nl-core-HealthProfessional-PractitionerRole"/>
         <nm:map ada="zorgverlener" resource="Practitioner" profile="nl-core-HealthProfessional-Practitioner"/>
+        <nm:map ada="zwangerschap" resource="Condition" profile="nl-core-Pregnancy"/>
+        <nm:map ada="zwangerschapsduur" resource="Observation" profile="nl-core-Pregnancy.PregnancyDuration"/>
+        <nm:map ada="pariteit" resource="Observation" profile="nl-core-Pregnancy.Parity"/>
+        <nm:map ada="graviditeit" resource="Observation" profile="nl-core-Pregnancy.Gravidity"/>
+        <nm:map ada="aterme_datum_items" resource="Observation" profile="nl-core-Pregnancy.EstimatedDateOfDelivery"/>
+        <nm:map ada="datum_laatste_menstruatie" resource="Observation" profile="nl-core-Pregnancy.DateLastMenstruation"/>
     </xsl:variable>
 
     <xsl:variable name="zib2020Oid" select="'2.16.840.1.113883.2.4.3.11.60.40.1'"/>
@@ -248,7 +259,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
               $in//visueel_resultaat[parent::tekst_uitslag],
               $in//soepregel[parent::soepverslag],
               $in//monster[parent::laboratorium_uitslag],
-              $in//bron_monster[parent::monster]
+              $in//bron_monster[parent::monster],
+              $in//zwangerschapsduur[parent::zwangerschap],
+              $in//pariteit[parent::zwangerschap],
+              $in//graviditeit[parent::zwangerschap],
+              $in//aterme_datum_items[parent::zwangerschap],
+              $in//datum_laatste_menstruatie[parent::aterme_datum_items/parent::zwangerschap]
             )[.//(@value | @code | @nullFlavor)]" group-by="local-name()">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <xsl:call-template name="_buildFhirMetadataForAdaEntry">

@@ -276,6 +276,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
             </xsl:when>
+            <xsl:when test="$localName = 'checklist_pijn_gedrag'">
+                <xsl:apply-templates select="$in" mode="nl-core-ChecklistPainBehavior">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'comfort_score'">
                 <xsl:apply-templates select="$in" mode="nl-core-ComfortScale">
                     <xsl:with-param name="subject" select="$subject"/>
@@ -403,6 +408,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:choose>
                 </xsl:for-each>
             </xsl:when>
+            <xsl:when test="$localName = 'levensovertuiging_rc'">
+                <xsl:apply-templates select="$in" mode="nl-core-LifeStance">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'lichaamslengte'">
                 <xsl:apply-templates select="$in" mode="nl-core-BodyHeight">
                     <xsl:with-param name="subject" select="$subject"/>
@@ -427,6 +437,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="$in" mode="nl-core-MedicalDevice">
                     <xsl:with-param name="subject" select="$subject"/>
                     <!-- ADA instances for this project start with $zib2020Oid and end in .1, or in 9.*.* in the case of the medication related zibs -->
+                    <xsl:with-param name="derivedFrom" select="if (ancestor::verrichting) then ancestor::*[starts-with(@conceptId, $zib2020Oid) and matches(@conceptId, '(\.1|9\.\d+\.\d+)$')] else ()"/>
+                    <xsl:with-param name="derivedFromProfile" select="if (ancestor::verrichting) then if (nf:isFuture(ancestor::verrichting/verrichting_start_datum/@value) or ancestor::verrichting/aanvrager) then 'nl-core-Procedure-request' else ('nl-core-Procedure-event') else ()"/>
                     <xsl:with-param name="reasonReference" select="if (ancestor::functionele_of_mentale_status or ancestor::mobiliteit or ancestor::stoma) then ancestor::*[starts-with(@conceptId, $zib2020Oid) and matches(@conceptId, '(\.1|9\.\d+\.\d+)$')] else ()"/>
                 </xsl:apply-templates>  
                 <xsl:for-each select="product">
@@ -494,6 +506,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:when test="$localName = 'stoma'">
                 <xsl:apply-templates select="$in" mode="nl-core-Stoma">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
+            <xsl:when test="$localName = 'strong_kids_score'">
+                <xsl:apply-templates select="$in" mode="nl-core-StrongKidsScore">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
             </xsl:when>
@@ -568,10 +585,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:apply-templates>
             </xsl:when>
             <xsl:when test="$localName = 'verrichting'">
-                <xsl:apply-templates select="$in" mode="nl-core-Procedure">
-                    <xsl:with-param name="subject" select="$subject"/>
-                    <xsl:with-param name="report" select="if (ancestor::tekst_uitslag) then ancestor::tekst_uitslag else ()"/>
-                </xsl:apply-templates>
+                <xsl:choose>
+                    <xsl:when test="verrichting_start_datum/@value">
+                        <xsl:if test="nf:isPast(verrichting_start_datum/@value)">
+                            <xsl:apply-templates select="$in" mode="nl-core-Procedure-event">
+                                <xsl:with-param name="subject" select="$subject"/>
+                                <xsl:with-param name="report" select="if (ancestor::tekst_uitslag) then ancestor::tekst_uitslag else ()"/>
+                            </xsl:apply-templates>
+                        </xsl:if>
+                        <xsl:if test="nf:isFuture(verrichting_start_datum/@value) or aanvrager">
+                            <xsl:apply-templates select="$in" mode="nl-core-Procedure-request">
+                                <xsl:with-param name="subject" select="$subject"/>
+                            </xsl:apply-templates>
+                        </xsl:if>
+                    </xsl:when>
+                    <xsl:when test="not(verrichting_start_datum/@value) and verrichting_eind_datum/@value">
+                        <xsl:message terminate="yes">Not implemented</xsl:message>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <!-- Fallback. 'event' instead of 'request' because there is a possibility that zib TextResult refers to zib Procedure, which by definition is a FHIR Procedure -->
+                        <xsl:apply-templates select="$in" mode="nl-core-Procedure-event">
+                            <xsl:with-param name="subject" select="$subject"/>
+                            <xsl:with-param name="report" select="if (ancestor::tekst_uitslag) then ancestor::tekst_uitslag else ()"/>
+                        </xsl:apply-templates>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:when>
             <xsl:when test="$localName = 'visus'">
                 <xsl:apply-templates select="$in" mode="nl-core-VisualAcuity"/>
@@ -601,6 +639,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
             </xsl:when>
+            <xsl:when test="$localName = 'ziektebeleving'">
+                <xsl:apply-templates select="$in" mode="nl-core-IllnessPerception">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'zorgaanbieder'">
                 <!-- Ideally, we would only create HealthcareProviders based on the following logic, but because there is no way to know if the Location or Organization is being referenced, we always output both: -->
                 <!--<xsl:if test="organisatie_locatie/locatie_naam[@value] | contactgegevens | adresgegevens">-->
@@ -625,6 +668,36 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:if test="zorgverlener_identificatienummer | naamgegevens | geslacht | adresgegevens | contactgegevens">
                     <xsl:apply-templates select="$in" mode="nl-core-HealthProfessional-Practitioner"/>
                 </xsl:if>
+            </xsl:when>
+            <xsl:when test="$localName = 'zwangerschap'">
+                <xsl:apply-templates select="$in" mode="nl-core-Pregnancy">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+                <xsl:for-each select="zwangerschapsduur">
+                    <xsl:call-template name="nl-core-Pregnancy.PregnancyDuration">
+                        <xsl:with-param name="subject" select="$subject"/>
+                    </xsl:call-template>    
+                </xsl:for-each>
+                <xsl:for-each select="pariteit">
+                    <xsl:call-template name="nl-core-Pregnancy.Parity">
+                        <xsl:with-param name="subject" select="$subject"/>
+                    </xsl:call-template>    
+                </xsl:for-each>
+                <xsl:for-each select="graviditeit">
+                    <xsl:call-template name="nl-core-Pregnancy.Gravidity">
+                        <xsl:with-param name="subject" select="$subject"/>
+                    </xsl:call-template>    
+                </xsl:for-each>
+                <xsl:for-each select="aterme_datum_items[aterme_datum | bepalings_methode | datum_bepaling]">
+                    <xsl:call-template name="nl-core-Pregnancy.EstimatedDateOfDelivery">
+                        <xsl:with-param name="subject" select="$subject"/>
+                    </xsl:call-template>    
+                </xsl:for-each>
+                <xsl:for-each select="aterme_datum_items/datum_laatste_menstruatie">
+                    <xsl:call-template name="nl-core-Pregnancy.DateLastMenstruation">
+                        <xsl:with-param name="subject" select="$subject"/>
+                    </xsl:call-template>    
+                </xsl:for-each>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:message>Unknown ada localName: '<xsl:value-of select="$localName"/>'</xsl:message>
