@@ -150,6 +150,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="visus" resource="Observation" profile="nl-core-VisualAcuity"/>
         <nm:map ada="vochtbalans" resource="Observation" profile="nl-core-FluidBalance"/>
         <nm:map ada="voedingsadvies" resource="NutritionOrder" profile="nl-core-NutritionAdvice"/>
+        <nm:map ada="voedingspatroon_zuigeling" resource="Observation" profile="nl-core-FeedingPatternInfant"/>
         <nm:map ada="vrijheidsbeperkende_interventie" resource="Procedure" profile="nl-core-FreedomRestrictingIntervention"/>
         <nm:map ada="wilsverklaring" resource="Consent" profile="nl-core-AdvanceDirective"/>
         <nm:map ada="wisselend_doseerschema" resource="MedicationRequest" profile="mp-VariableDosingRegimen"/>
