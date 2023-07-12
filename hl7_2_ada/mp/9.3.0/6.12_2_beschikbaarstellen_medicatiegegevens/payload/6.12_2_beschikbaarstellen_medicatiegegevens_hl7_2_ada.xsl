@@ -193,7 +193,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <!-- gebruiksperiode-start -->
                         <!-- in 6.12 kun je alleen een conclusie trekken over gebruiksperiode-start, als álle MARs een IVL_TS/low/@value hebben, dus hier checken we of er géén mar is zonder IVL_TS/low -->
                         <!-- extra possibility to allow for empty namespace because the copy-of in $mar-sorted has a bug in Saxon 9.9.1.7: namespace is somehow not resolved properly in a copied-of variable -->
-                        <xsl:if test="not($mar-sorted[not((.//hl7:effectiveTime | .//hl7:comp)[replace(xs:string(@xsi:type), '(.*:)?(.+)', '$2') = 'IVL_TS']/hl7:low/@value)])">
+                        <xsl:if test="count($mar-sorted) gt 0 and not($mar-sorted[not((.//hl7:effectiveTime | .//hl7:comp)[replace(xs:string(@xsi:type), '(.*:)?(.+)', '$2') = 'IVL_TS']/hl7:low/@value)])">
                             <!-- okay, alle mar's hebben een IVL_TS/low, pfieuw -->
                             <!-- er kunnen er meer dan 1 zijn in 6.12 - neem de laagste low als gebruiksperiode startdatum -->
                             <!-- omdat $mar gesorteerd is, is dat de eerste $IVL_TS -->
@@ -233,7 +233,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <!-- alleen tijds_duur output bij 1 MAR die een width heeft, 
                             of als alle MAR's dezelfde width én dezelfde startdatum (of absentie daarvan) hebben. 
                             Bij meerdere MAR's met verschillende startdatum berekenen we indien mogelijk de einddatum -->
-                        <xsl:variable name="AllIVL_TSHaveWidth" as="xs:boolean" select="count($IVL_TS) = count($IVL_TS[hl7:width])"/>
+                        <xsl:variable name="AllIVL_TSHaveWidth" as="xs:boolean" select="count($IVL_TS) gt 0 and (count($IVL_TS) = count($IVL_TS[hl7:width]))"/>
                         <xsl:variable name="comparedWidth" as="element()*">
                             <xsl:for-each-group select="$IVL_TS" group-by="concat(hl7:width/@value, hl7:width/@unit)">
                                 <xsl:sequence select="hl7:width"/>
@@ -268,7 +268,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <!-- we already have tijds_duur, no need to calculate eind, so do nothing here -->
                             </xsl:when>
                             <!-- alle MARs IVL_TS/high/@value-->
-                            <xsl:when test="not($mar-sorted[not((.//hl7:effectiveTime | .//hl7:comp)[replace(xs:string(@xsi:type), '(.*:)?(.+)', '$2') = 'IVL_TS']/hl7:high/@value)])">
+                            <xsl:when test="count($mar-sorted) gt 0 and not($mar-sorted[not((.//hl7:effectiveTime | .//hl7:comp)[replace(xs:string(@xsi:type), '(.*:)?(.+)', '$2') = 'IVL_TS']/hl7:high/@value)])">
                                 <!-- er kunnen er meer dan 1 zijn in 6.12 - neem de hoogste high als gebruiksperiode einddatum -->
                                 <xsl:variable name="eind-datums" as="element()*">
                                     <xsl:for-each select="$IVL_TS/hl7:high[@value]">
