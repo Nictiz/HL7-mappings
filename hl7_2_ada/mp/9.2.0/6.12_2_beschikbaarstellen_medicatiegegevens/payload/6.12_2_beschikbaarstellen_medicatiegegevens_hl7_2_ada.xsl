@@ -205,10 +205,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:otherwise>
                                 <xsl:call-template name="util:logMessage">
                                     <xsl:with-param name="level" select="$logWARN"/>
-                                    <xsl:with-param name="msg">Found more then one instruction for eenmalig gebruik. Not supported to convert this into structured information for gebruiksperiode-start</xsl:with-param>
+                                    <xsl:with-param name="msg">Found more than one instruction for eenmalig gebruik. Not supported to convert this into structured information for gebruiksperiode-start</xsl:with-param>
                                 </xsl:call-template>
                                 <xsl:if test="$logLevel = $logDEBUG">
-                                    <xsl:comment>Found more then one instruction for eenmalig gebruik in dispense event with id <xsl:value-of select="$current-dispense-event/hl7:id/@extension"/>. Not supported to convert this into structured information for gebruiksperiode-start</xsl:comment>
+                                    <xsl:comment>Found more than one instruction for eenmalig gebruik in dispense event with id <xsl:value-of select="$current-dispense-event/hl7:id/@extension"/>. Not supported to convert this into structured information for gebruiksperiode-start</xsl:comment>
                                 </xsl:if>
                             </xsl:otherwise>
                         </xsl:choose>
