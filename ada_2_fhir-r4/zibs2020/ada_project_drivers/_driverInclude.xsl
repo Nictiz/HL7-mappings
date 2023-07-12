@@ -480,6 +480,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$localName = 'patient'">
                 <xsl:apply-templates select="$in" mode="nl-core-Patient"/>
             </xsl:when>
+            <xsl:when test="$localName = 'pijn_score'">
+                <xsl:apply-templates select="$in" mode="nl-core-PainScore">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'polsfrequentie'">
                 <xsl:apply-templates select="$in" mode="nl-core-PulseRate">
                     <xsl:with-param name="subject" select="$subject"/>
@@ -705,7 +710,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:message>Unknown ada localName: '<xsl:value-of select="$localName"/>'</xsl:message>
+                <xsl:message>Unknown ada localName: '<xsl:value-of select="$localName"/>' in _driverInclude</xsl:message>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
