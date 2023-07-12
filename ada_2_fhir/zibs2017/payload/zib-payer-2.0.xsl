@@ -36,7 +36,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each-group select="$in/betaler_persoon | $in/payer_person | $in/verzekeraar/verzekering | $in/insurance_company/insurance" group-by="(self::betaler_persoon/local-name(), self::payer_person/local-name(), (verzekeringssoort | insurance_type)/(@code, @originalText)[1])[1]">
             <xsl:variable name="insuranceType" select="current-grouping-key()"/>
             <xsl:variable name="insuranceCompanies" select="..[verzekering/verzekeringssoort/(@code, @originalText)[1] = $insuranceType] | ..[insurance/insurance_type/(@code, @originalText)[1] = $insuranceType]"/>
-            <xsl:variable name="insurances" select="$insuranceCompanies[verzekering/verzekeringssoort/(@code, @originalText)[1] = $insuranceType] | $insuranceCompanies[insurance/insurance_type/(@code, @originalText)[1] = $insuranceType]"/>
+            <xsl:variable name="insurances" select="$insuranceCompanies/verzekering[verzekeringssoort/(@code, @originalText)[1] = $insuranceType] | $insuranceCompanies/insurance[insurance_type/(@code, @originalText)[1] = $insuranceType]"/>
             <xsl:variable name="pos" select="position()"/>
             <xsl:for-each select="current-group()/ancestor-or-self::betaler[1] | current-group()/ancestor-or-self::payer[1]">
                 <xsl:variable name="resource">
