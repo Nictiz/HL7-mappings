@@ -983,7 +983,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:when test="count($theMetaData) gt 1">
                 <xsl:call-template name="util:logMessage">
-                    <xsl:with-param name="level" select="$logWARN"/>
+                    <xsl:with-param name="level" select="$logERROR"/>
                     <xsl:with-param name="msg">_insertFullUrlById: Multiple found (<xsl:value-of select="count($theMetaData)"/>): <xsl:value-of select="$fhirId"/> - <xsl:value-of select="$theMetaData/nm:full-url"/></xsl:with-param>
                 </xsl:call-template>
             </xsl:when>

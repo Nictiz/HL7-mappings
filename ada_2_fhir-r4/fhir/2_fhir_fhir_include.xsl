@@ -303,11 +303,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </nm:group-key>
                 <xsl:variable name="logicalId">
                     <xsl:choose>
-                        <!--<xsl:when test="
-                                (:not($uuid) and :)
-                                $adaElement = 'patient' and string-length(nf:get-resourceid-from-token($in)) gt 0">
-                                <xsl:value-of select="nf:get-resourceid-from-token($in)"/>
-                            </xsl:when>-->
                         <xsl:when test="$in/@logicalId">
                             <xsl:choose>
                                 <xsl:when test="count($ada2resourceType/nm:map[@ada = $adaElement]) gt 1">
@@ -521,9 +516,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </identifier>
                 </xsl:when>
-                <!--<xsl:when test="local-name() = $adaElement and .[@value]">
-                        Fallback?
-                    </xsl:when>-->
             </xsl:choose>
 
             <xsl:if test="string-length($element/nm:reference-display) gt 0">

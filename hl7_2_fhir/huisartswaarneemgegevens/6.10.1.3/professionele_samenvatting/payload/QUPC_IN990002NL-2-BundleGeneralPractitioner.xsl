@@ -67,7 +67,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:choose>
             <xsl:when test="ancestor::hl7:MCCI_IN200101">
                 <xsl:call-template name="util:logMessage">
-                    <xsl:with-param name="level" select="$logWARN"/>
+                    <xsl:with-param name="level" select="$logFATAL"/>
                     <xsl:with-param name="msg">Unsupported input MCCI_IN200101. Can only support singular QUPC_IN990002NL</xsl:with-param>
                     <xsl:with-param name="terminate" select="true()"/>
                 </xsl:call-template>
@@ -1401,7 +1401,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:when test="hl7:value">
                             <xsl:call-template name="util:logMessage">
                                 <xsl:with-param name="level" select="$logWARN"/>
-                                <xsl:with-param name="msg">Niet-ondersteund datatype <xsl:value-of select="@xsi:type"/></xsl:with-param>
+                                <xsl:with-param name="msg">Unsupported datatype <xsl:value-of select="@xsi:type"/></xsl:with-param>
                             </xsl:call-template>
                         </xsl:when>
                     </xsl:choose>

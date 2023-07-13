@@ -416,7 +416,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$xsiTypeURIName = '{urn:hl7-org:v3}:TS' or ($xsiTypeURIName = '{urn:hl7-org:v3}:IVL_TS' and (@value | @nullFlavor))">
                     <xsl:call-template name="handleTS">
                         <xsl:with-param name="in" select="."/>
-
                         <xsl:with-param name="elemName" select="$elemName"/>
                         <xsl:with-param name="datatype">
                             <xsl:if test="$dodatatype">date</xsl:if>
@@ -425,7 +424,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:call-template name="util:logMessage">
-                        <xsl:with-param name="level" select="$logWARN"/>
+                        <xsl:with-param name="level" select="$logFATAL"/>
+                        <xsl:with-param name="terminate" select="true()"/>
                         <xsl:with-param name="msg">Cannot determine the datatype based on @xsi:type, or value not supported: <xsl:value-of select="$xsiType"/>. Calculated QName <xsl:value-of select="$xsiTypeURIName"/></xsl:with-param>
                     </xsl:call-template>                    
                 </xsl:otherwise>
@@ -1449,7 +1449,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:if test="@value[not(. = ('true', 'false'))]">
                 <xsl:call-template name="util:logMessage">
                     <xsl:with-param name="level" select="$logFATAL"/>
-                    <xsl:with-param name="msg">FATAL: Message contains illegal boolean value. Expected 'true' or 'false'. Found: "<xsl:value-of select="$in/@value"/>" </xsl:with-param>
+                    <xsl:with-param name="msg">Message contains illegal boolean value. Expected 'true' or 'false'. Found: "<xsl:value-of select="$in/@value"/>" </xsl:with-param>
                     <xsl:with-param name="terminate" select="true()"/>
                 </xsl:call-template>
             </xsl:if>

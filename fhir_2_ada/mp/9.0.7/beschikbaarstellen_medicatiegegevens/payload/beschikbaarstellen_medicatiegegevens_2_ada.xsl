@@ -48,7 +48,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:choose>
                         <xsl:when test="count(f:Bundle/f:entry/f:resource/f:Patient) ge 2 or count(distinct-values(f:Bundle/f:entry/f:resource/(f:MedicationRequest|f:MedicationDispense|f:MedicationStatement)/f:subject/f:reference/@value)) ge 2">
                             <xsl:call-template name="util:logMessage">
-                                <xsl:with-param name="level" select="$logWARN"/>
+                                <xsl:with-param name="level" select="$logERROR"/>
                                 <xsl:with-param name="msg">Multiple Patients and/or subject references found. Please check.</xsl:with-param>
                             </xsl:call-template>
                         </xsl:when>
