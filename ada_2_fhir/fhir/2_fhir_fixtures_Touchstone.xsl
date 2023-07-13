@@ -22,15 +22,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="referById" as="xs:boolean" select="true()"/>
     
     <xd:doc>
-        <xd:desc>Creates xml document for a FHIR resource</xd:desc>
-    </xd:doc>
-    <xsl:template match="*" mode="doResourceInResultdoc">
-        <xsl:result-document href="./{replace(./f:id/@value, '\.', '-')}.xml">
-            <xsl:copy-of select="."/>
-        </xsl:result-document>
-    </xsl:template>
-    
-    <xd:doc>
         <xd:desc> Generates a timestamp of the amount of 100 nanosecond intervals from 15 October 1582, in UTC time.
             Override this function here to use a stable timestamp in order to create stable uuids</xd:desc>
         <xd:param name="node"/>
@@ -62,7 +53,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="*" mode="doResourceInResultdoc">
         <xsl:param name="outputDir" select="'.'"/>
-        <xsl:result-document href="{$outputDir}/{f:id/@value}.xml">
+        <xsl:result-document href="{$outputDir}/{replace(./f:id/@value, '\.', '-')}.xml">
             <xsl:copy-of select="."/>
         </xsl:result-document>
     </xsl:template>
