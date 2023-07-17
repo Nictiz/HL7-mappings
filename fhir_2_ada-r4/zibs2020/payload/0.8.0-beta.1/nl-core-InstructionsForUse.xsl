@@ -206,35 +206,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to convert f:repeat to frequentie and other siblings</xd:desc>
     </xd:doc>
     <xsl:template match="f:repeat" mode="nl-core-InstructionsForUse">
-        <xsl:choose>
-            <xsl:when test="(f:frequency | f:frequencyMax | f:period | f:periodUnit) and not(f:extension[@url = $extTimingExact]/f:valueBoolean[@value = 'true'])">
-                <!-- frequentie -->
-                <frequentie>
-                    <!-- aantal -->
-                    <aantal>
-                        <!-- min -->
-                        <!-- vaste_waarde -->
-                        <xsl:apply-templates select="f:frequency" mode="#current"/>
-                        <!-- max -->
-                        <xsl:apply-templates select="f:frequencyMax" mode="#current"/>
-                    </aantal>
-                    <xsl:if test="f:period | f:periodUnit">
-                        <!-- tijdseenheid -->
-                        <tijdseenheid>
-                            <xsl:apply-templates select="f:period" mode="#current"/>
-                            <xsl:apply-templates select="f:periodUnit" mode="#current"/>
-                        </tijdseenheid>
-                    </xsl:if>
-                </frequentie>
-            </xsl:when>
-            <xsl:when test="(f:frequency | f:period | f:periodUnit) and f:extension[@url = $extTimingExact]/f:valueBoolean[@value = 'true']">
-                <!-- interval, assumption is that if present f:frequency = 1, maybe raise error of do division if not ... TODO -->
-                <interval>
-                    <xsl:apply-templates select="f:period" mode="#current"/>
-                    <xsl:apply-templates select="f:periodUnit" mode="#current"/>
-                </interval>
-            </xsl:when>
-        </xsl:choose>
+        <xsl:variable name="isInterval" as="xs:boolean" select="(f:frequency | f:period | f:periodUnit) and f:extension[@url = $extTimingExact]/f:valueBoolean[@value = 'true']"/>
+        
+        <!-- frequentie -->
+        <xsl:if test="(f:frequency | f:frequencyMax | f:period | f:periodUnit) and not(f:extension[@url = $extTimingExact]/f:valueBoolean[@value = 'true'])">
+            <frequentie>
+                <!-- aantal -->
+                <aantal>
+                    <!-- min -->
+                    <!-- vaste_waarde -->
+                    <xsl:apply-templates select="f:frequency" mode="#current"/>
+                    <!-- max -->
+                    <xsl:apply-templates select="f:frequencyMax" mode="#current"/>
+                </aantal>
+                <xsl:if test="f:period | f:periodUnit">
+                    <!-- tijdseenheid -->
+                    <tijdseenheid>
+                        <xsl:apply-templates select="f:period" mode="#current"/>
+                        <xsl:apply-templates select="f:periodUnit" mode="#current"/>
+                    </tijdseenheid>
+                </xsl:if>
+            </frequentie>
+        </xsl:if>
         <!-- weekdag -->
         <xsl:apply-templates select="f:dayOfWeek" mode="#current"/>
         <!-- dagdeel -->
@@ -242,7 +235,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- toedientijd -->
         <xsl:apply-templates select="f:timeOfDay" mode="#current"/>
         <!-- is_flexibel -->
-        <xsl:for-each select="f:extension[@url = $extTimingExact]/f:valueBoolean">
+        <xsl:for-each select="f:extension[not($isInterval)][@url = $extTimingExact]/f:valueBoolean">
             <!-- timing exact has reverse boolean logic with is_flexibel -->
             <is_flexibel>
                 <xsl:choose>
@@ -255,6 +248,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:choose>
             </is_flexibel>
         </xsl:for-each>
+        <!-- interval -->
+        <xsl:if test="$isInterval">
+            <!-- interval, assumption is that if present f:frequency = 1, maybe raise error of do division if not ... TODO -->
+            <interval>
+                <xsl:apply-templates select="f:period" mode="#current"/>
+                <xsl:apply-templates select="f:periodUnit" mode="#current"/>
+            </interval>
+        </xsl:if>
     </xsl:template>
 
     <xd:doc>

@@ -86,7 +86,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <!-- return the normalize space of whatever was the input -->
             <xsl:otherwise>
-                <xsl:message terminate="no">Encountered an ada dateTime '<xsl:value-of select="$inputDateTime"/>' which could not be converted to HL7 date(time). Input = output.</xsl:message>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logWARN"/>
+                    <xsl:with-param name="msg">Encountered an ada dateTime '<xsl:value-of select="$inputDateTime"/>' which could not be converted to HL7 date(time). Input = output.</xsl:with-param>
+                </xsl:call-template>
                 <xsl:value-of select="$processedDateTime"/>
             </xsl:otherwise>
         </xsl:choose>
@@ -125,9 +128,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:choose>
                 <xsl:when test="$dataType = ('blob', 'complex', 'duration', 'ordinal', 'reference')">
                     <!-- could argue this is reason to terminate, however not in case of MP voorschrift... -->
-                    <xsl:message terminate="no">
-                        <xsl:value-of select="$notSupported"/>
-                    </xsl:message>
+                    <xsl:call-template name="util:logMessage">
+                        <xsl:with-param name="level" select="$logWARN"/>
+                        <xsl:with-param name="msg" select="$notSupported"/>
+                    </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$dataType = 'boolean'">
                     <xsl:call-template name="makeBLValue">
@@ -155,9 +159,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$dataType = ('duration')">
-                    <xsl:message terminate="no">
-                        <xsl:value-of select="$notSupported"/>
-                    </xsl:message>
+                    <xsl:call-template name="util:logMessage">
+                        <xsl:with-param name="level" select="$logWARN"/>
+                        <xsl:with-param name="msg" select="$notSupported"/>
+                    </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$dataType = ('identifier')">
                     <xsl:call-template name="makeIIValue">
@@ -165,9 +170,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$dataType = ('ordinal')">
-                    <xsl:message terminate="no">
-                        <xsl:value-of select="$notSupported"/>
-                    </xsl:message>
+                    <xsl:call-template name="util:logMessage">
+                        <xsl:with-param name="level" select="$logWARN"/>
+                        <xsl:with-param name="msg" select="$notSupported"/>
+                    </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$dataType = 'quantity'">
                     <xsl:call-template name="makePQValue">
@@ -177,9 +183,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$dataType = 'reference'">
-                    <xsl:message terminate="no">
-                        <xsl:value-of select="$notSupported"/>
-                    </xsl:message>
+                    <xsl:call-template name="util:logMessage">
+                        <xsl:with-param name="level" select="$logWARN"/>
+                        <xsl:with-param name="msg" select="$notSupported"/>
+                    </xsl:call-template>
                 </xsl:when>
                 <xsl:when test="$dataType = 'string'">
                     <xsl:call-template name="makeSTValue">
@@ -192,9 +199,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:message terminate="no">
-                        <xsl:value-of select="$notSupported"/>
-                    </xsl:message>
+                    <xsl:call-template name="util:logMessage">
+                        <xsl:with-param name="level" select="$logWARN"/>
+                        <xsl:with-param name="msg" select="$notSupported"/>
+                    </xsl:call-template>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>

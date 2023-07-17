@@ -12,7 +12,7 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:util="urn:hl7:utilities" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
@@ -86,7 +86,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- author -->
                 <xsl:for-each select="(zibroot | hcimroot)/(auteur | author)/(zorgverlener_als_auteur | health_professional_as_author)/(zorgverlener | health_professional)[not((zorgverleners_rol | health_professional_role)[@code = 'RESP'])]">
                     <!-- FIXME: not part of the template, but could still be outputted -->
-                    <xsl:message terminate="no">hcimroot/author encountered, but not outputted, since it is not defined in the template</xsl:message>
+                    <xsl:call-template name="util:logMessage">
+                        <xsl:with-param name="level" select="$logWARN"/>
+                        <xsl:with-param name="msg">hcimroot/author encountered, but not outputted, since it is not defined in the template</xsl:with-param>
+                    </xsl:call-template>
                 </xsl:for-each>
 
                 <!-- participant typeCode="RESP" -->
@@ -123,7 +126,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <!-- upper and lower limit MUST have same datatype in order to mean something, we select first one -->
                             <xsl:variable name="theDatatype" select="($adaLowerAndUpperLimit/@datatype)[1]"/>
                             <xsl:if test="$adaLowerLimit/@datatype ne $adaUpperLimit/@datatype">
-                                <xsl:message terminate="no">The lower and upper limit MUST have same datatype in order to mean something, however different datatypes encountered. Lower limit datatype: <xsl:value-of select="$adaLowerLimit/@datatype"/>. Upper limit datatype: <xsl:value-of select="$adaUpperLimit/@datatype"/>. Proceeding with first enountered datatype: <xsl:value-of select="$theDatatype"/></xsl:message>
+                                <xsl:call-template name="util:logMessage">
+                                    <xsl:with-param name="level" select="$logERROR"/>
+                                    <xsl:with-param name="msg">The lower and upper limit MUST have same datatype in order to mean something, however different datatypes encountered. Lower limit datatype: <xsl:value-of select="$adaLowerLimit/@datatype"/>. Upper limit datatype: <xsl:value-of select="$adaUpperLimit/@datatype"/>. Proceeding with first enountered datatype: <xsl:value-of select="$theDatatype"/></xsl:with-param>
+                                </xsl:call-template>
                             </xsl:if>
                              <xsl:choose>
                                 <xsl:when test="$theDatatype = 'quantity'">
@@ -178,7 +184,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:element>
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <xsl:message terminate="no">Datatype <xsl:value-of select="$theDatatype"/> not supported for reference lower/upper limit.</xsl:message>
+                                    <xsl:call-template name="util:logMessage">
+                                        <xsl:with-param name="level" select="$logERROR"/>
+                                        <xsl:with-param name="msg">Datatype <xsl:value-of select="$theDatatype"/> not supported for reference lower/upper limit.</xsl:with-param>
+                                    </xsl:call-template>
                                 </xsl:otherwise>
                             </xsl:choose>
                             <interpretationCode code="N" displayName="Normal" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation"/>

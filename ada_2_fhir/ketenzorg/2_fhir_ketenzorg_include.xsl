@@ -276,7 +276,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:when test="'obsolete'">resolved</xsl:when>
                                     <xsl:when test="'nullified'">entered-in-error</xsl:when>
                                     <xsl:otherwise>
-                                        <xsl:message>Unsupported EpisodeOfCare status code "<xsl:value-of select="@code"/>"</xsl:message>
+                                        <xsl:call-template name="util:logMessage">
+                                            <xsl:with-param name="level" select="$logWARN"/>
+                                            <xsl:with-param name="msg">Unsupported EpisodeOfCare status code "<xsl:value-of select="@code"/>"</xsl:with-param>
+                                        </xsl:call-template>
                                     </xsl:otherwise>
                                 </xsl:choose>
                             </xsl:attribute>

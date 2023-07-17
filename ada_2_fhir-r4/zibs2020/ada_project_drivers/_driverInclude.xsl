@@ -70,7 +70,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:copy-of select="$bundle[self::patient][1]"/>
             </xsl:when>
             <xsl:when test="$patient-id and not($referencedPatient)">
-                <xsl:message>Could not find Patient instance with patient-id '<xsl:value-of select="$patient-id"/>'</xsl:message>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logWARN"/>
+                    <xsl:with-param name="msg">Could not find Patient instance with patient-id '<xsl:value-of select="$patient-id"/>'</xsl:with-param>
+                </xsl:call-template>
             </xsl:when>
         </xsl:choose>
     </xsl:template>
@@ -173,7 +176,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:when>
                         <xsl:otherwise>
                             <!-- This happens when transforming a non-saved document in Oxygen -->
-                            <xsl:message>Could not output to result-document without Resource.id. Outputting to console instead.</xsl:message>
+                            <xsl:call-template name="util:logMessage">
+                                <xsl:with-param name="level" select="$logWARN"/>
+                                <xsl:with-param name="msg">Could not output to result-document without Resource.id. Outputting to console instead.</xsl:with-param>
+                            </xsl:call-template>
                             <xsl:copy-of select="."/>
                         </xsl:otherwise>
                     </xsl:choose>
@@ -607,7 +613,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:message>Unknown ada localName: '<xsl:value-of select="$localName"/>'</xsl:message>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logWARN"/>
+                    <xsl:with-param name="msg">Unknown ada localName: '<xsl:value-of select="$localName"/>'</xsl:with-param>
+                </xsl:call-template>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
@@ -617,7 +626,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="fhirId" select="$in/f:id/@value"/>
        
         <xsl:if test="count($fhirMetadata[nm:logical-id = $fhirId]) = 0 ">
-            <xsl:message terminate="yes">_insertFullUrlById: Nothing found.</xsl:message>
+            <xsl:call-template name="util:logMessage">
+                <xsl:with-param name="level" select="$logFATAL"/>
+                <xsl:with-param name="msg">_insertFullUrlById: Nothing found.</xsl:with-param>
+                <xsl:with-param name="terminate" select="true()"/>
+            </xsl:call-template>
         </xsl:if>
         
         <xsl:variable name="fullUrl">

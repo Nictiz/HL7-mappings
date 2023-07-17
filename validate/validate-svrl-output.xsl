@@ -12,11 +12,11 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns:file="http://expath.org/ns/file" xmlns:svrl="http://purl.oclc.org/dsdl/svrl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns:file="http://expath.org/ns/file" xmlns:util="urn:hl7:utilities" xmlns:svrl="http://purl.oclc.org/dsdl/svrl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+    <xsl:import href="../util/utilities.xsl"/>
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
     <xsl:strip-space elements="*"/>
-    <xsl:param name="inputDir" as="xs:string">../sturen_medicatievoorschrift/validate_hl7_instance</xsl:param>
+    <xsl:param name="inputDir" as="xs:string">../ada_2_hl7/mp/9.3.0/sturen_medicatievoorschrift/validate_hl7_instance</xsl:param>
     <xsl:param name="inputFileSet" as="xs:string">*.xml</xsl:param>
 
     <xsl:variable name="inputFiles" select="collection(concat($inputDir, '/?select=', $inputFileSet))" as="document-node()*"/>
@@ -47,9 +47,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
             <xsl:copy-of select="$results"/>
 
-            <!-- log error message in case there is any fail -->            
+            <!-- log error message in case there is any fail -->
             <xsl:if test="$results//fail">
-                <xsl:message terminate="no">ERROR: Not all instances validated correctly in input directory: <xsl:value-of select="$inputDir"/></xsl:message>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logERROR"/>
+                    <xsl:with-param name="msg">Not all instances validated correctly in input directory: <xsl:value-of select="$inputDir"/></xsl:with-param>
+                </xsl:call-template>
             </xsl:if>
         </start>
     </xsl:template>
