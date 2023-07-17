@@ -42,7 +42,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:param name="ada-input" select="collection('../ada_processed/?select=*.xml')"/>
     
-    <xsl:variable name="usecase">medmij-bgz-test</xsl:variable>
+    <xsl:param name="usecase">medmij-bgz-test</xsl:param>
     
     <!-- Overrule global variable to add generalPractitionerRef -->
     <xsl:variable name="patients" as="element()*">

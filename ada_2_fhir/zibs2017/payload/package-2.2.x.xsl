@@ -52,7 +52,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="zib-medicationuse-3.0.xsl"/>
     <xsl:import href="zib-nutritionadvice-2.1.xsl"/>
     <xsl:import href="zib-payer-2.0.xsl"/>
-    <!--<xsl:import href="zib-product-2.0.xsl"/>-->
     <xsl:import href="zib-problem-3.0.xsl"/>
     <xsl:import href="zib-procedure-2.1.xsl"/>
     <xsl:import href="zib-tobaccouse-2.1.xsl"/>
