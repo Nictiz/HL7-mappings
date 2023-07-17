@@ -1,0 +1,85 @@
+<RelatedPerson xmlns="http://hl7.org/fhir">
+   <id value="-core-relatedperson-bgz-msz-273e4f00-6b4c-11ec-0000-020000000000"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>Id patB-contactperson2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Puck P. van 't Hoen</div>
+         <div>Straatweg 11, 1256DC Venlo (officieel Privé (hoofd) Bezoek)</div>
+         <div>
+            <span title="Tweede relatie/contactpersoon (2 - RoleCodeLijst (COD472-VEKT))">Tweede relatie/contactpersoon</span>, <span title="Dochter (DAUC - v3/RoleCode)">Dochter</span> van Maria Francisca M.F. Maria van 't Hoen Verheul</div>
+      </div>
+   </text>
+   <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.22.472"/>
+            <code value="2"/>
+            <display value="Tweede relatie/contactpersoon"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patB-contactperson2"/>
+   </identifier>
+   <patient>
+      <reference value="Patient/MARIA-FRANCISCA-M-F--MARIA-VAN-T-HOEN-VERHEUL"/>
+      <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
+   </patient>
+   <relationship>
+      <coding>
+         <system value="http://hl7.org/fhir/v3/RoleCode"/>
+         <code value="DAUC"/>
+         <display value="Dochter"/>
+      </coding>
+   </relationship>
+   <name>
+      <family value="van 't Hoen">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+            <valueString value="van 't"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="Hoen"/>
+         </extension>
+      </family>
+      <given value="Puck">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+      <given value="P.">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="IN"/>
+         </extension>
+      </given>
+   </name>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="HP"/>
+               <display value="Officieel adres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-address-official">
+         <valueBoolean value="true"/>
+      </extension>
+      <use value="home"/>
+      <type value="physical"/>
+      <line value="Straatweg 11">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Straatweg"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="11"/>
+         </extension>
+      </line>
+      <city value="Venlo"/>
+      <postalCode value="1256DC"/>
+   </address>
+</RelatedPerson>

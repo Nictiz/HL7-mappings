@@ -1,0 +1,132 @@
+<AllergyIntolerance xmlns="http://hl7.org/fhir">
+   <id value="zib-AllergyIntolerance-medmij-bgz-test-patA-allergy1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Allergie/intolerantie. Patiënt: Anouk A. Anouk van XXX_Rijn de XXX_Vries. Id: patA-AllergyIntolerance1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Categorie: <span title="allergie voor substantie (419199007 - SNOMED CT)">allergie voor substantie</span>, Status: actief / bevestigd</caption>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="Pinda (762952008 - SNOMED CT)">Pinda</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Eerste symptomen</th>
+                  <td>14 maart 1997</td>
+               </tr>
+               <tr>
+                  <th>Meest recente voorkomen</th>
+                  <td>3 mei 2017</td>
+               </tr>
+               <tr>
+                  <th>Reactie</th>
+                  <td>
+                     <ul>
+                        <li>
+                           <div>3 mei 2017 <span title="Severe (24484000 - SNOMED CT)">Severe</span>
+                           </div>
+                           <div>
+                              <span title="Anaphylaxis (39579001 - SNOMED CT)">Anaphylaxis</span>
+                           </div>
+                           <div>Zwellen van de luchtweg en aangezicht</div>
+                        </li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patA-AllergyIntolerance1"/>
+   </identifier>
+   <clinicalStatus value="active">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActStatus"/>
+               <code value="active"/>
+               <display value="Active"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <verificationStatus value="confirmed"/>
+   <category value="biologic">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="419199007"/>
+               <display value="allergie voor substantie"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </category>
+   <criticality value="high">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="399166001"/>
+               <display value="fataal"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </criticality>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="762952008"/>
+         <display value="Pinda"/>
+      </coding>
+   </code>
+   <patient>
+      <reference value="Patient/medmij-bgz-test-patA"/>
+      <display value="Anouk A. Anouk van XXX_Rijn de XXX_Vries"/>
+   </patient>
+   <onsetDateTime value="1997-03-14"/>
+   <lastOccurrence value="2017-05-03"/>
+   <reaction>
+      <substance>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="762952008"/>
+            <display value="Pinda"/>
+         </coding>
+      </substance>
+      <manifestation>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="39579001"/>
+            <display value="Anaphylaxis"/>
+         </coding>
+      </manifestation>
+      <description value="Zwellen van de luchtweg en aangezicht"/>
+      <onset value="2017-05-03"/>
+      <severity value="severe">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="24484000"/>
+                  <display value="Severe"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </severity>
+      <exposureRoute>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="26643006"/>
+            <display value="Oraal"/>
+         </coding>
+      </exposureRoute>
+   </reaction>
+</AllergyIntolerance>

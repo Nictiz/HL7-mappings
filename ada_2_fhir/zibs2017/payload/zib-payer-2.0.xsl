@@ -23,173 +23,167 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-Payer-2.0" match="betaler[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | payer[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Coverage)" mode="doZibPayer-2.0">
+    <xsl:template name="zib-Payer-2.0" match="betaler[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | payer[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Coverage)*" mode="doZibPayer-2.0">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
+        <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-Payer</xsl:variable>
         
-        <xsl:for-each select="$in">
-            <xsl:variable name="resource">
-                <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-Payer</xsl:variable>
-                <Coverage>
-                    <xsl:if test="string-length($logicalId) gt 0">
-                        <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], $logicalId)}"/>
-                    </xsl:if>
-                    
-                    <meta>
-                        <profile value="{$profileValue}"/>
-                    </meta>
-                    
-                    <xsl:for-each select="zibroot/identificatienummer | hcimroot/identification_number">
-                        <identifier>
-                            <xsl:call-template name="id-to-Identifier">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </identifier>
-                    </xsl:for-each>
-                    
-                    <xsl:for-each select="(verzekeraar/verzekering/verzekeringssoort | insurance_company/insurance/insurance_type)[@code]">
-                        <type>
-                            <xsl:call-template name="code-to-CodeableConcept">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </type>
-                    </xsl:for-each>
-                    
-                    <!-- Patient reference -->
-                    <subscriber>
-                        <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
-                    </subscriber>
-                    
-                    <xsl:for-each select="(verzekeraar/verzekerde_nummer | insurance_company/insurant_number)[@value]">
-                        <subscriberId>
-                            <xsl:call-template name="string-to-string">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </subscriberId>
-                    </xsl:for-each>
-                    
-                    <!-- Patient reference -->
-                    <beneficiary>
-                        <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
-                    </beneficiary>
-                    
-                    <xsl:if test="(verzekeraar/verzekering/begin_datum_tijd | insurance_company/insurance/start_date_time)[@value] or (verzekeraar/verzekering/eind_datum_tijd | insurance_company/insurance/end_date_time)[@value]">
-                        <period>
-                            <xsl:for-each select="(verzekeraar/verzekering/begin_datum_tijd | insurance_company/insurance/start_date_time)[@value]">
-                                <start>
-                                    <xsl:attribute name="value">
-                                        <xsl:call-template name="format2FHIRDate">
-                                            <xsl:with-param name="dateTime" select="xs:string(@value)"/>
-                                            <xsl:with-param name="dateT" select="$dateT"/>
-                                        </xsl:call-template>
-                                    </xsl:attribute>
-                                </start>
-                            </xsl:for-each>
-                            <!-- period.end is required in the FHIR profile, so always output period.end, data-absent-reason if no actual value -->
-                            <end>
-                                <xsl:choose>
-                                    <xsl:when test="(verzekeraar/verzekering/eind_datum_tijd | insurance_company/insurance/end_date_time)[@value]">
-                                        <xsl:attribute name="value">
-                                            <xsl:call-template name="format2FHIRDate">
-                                                <xsl:with-param name="dateTime" select="xs:string((verzekeraar/verzekering/eind_datum_tijd | insurance_company/insurance/end_date_time)/@value)"/>
-                                                <xsl:with-param name="dateT" select="$dateT"/>
-                                            </xsl:call-template>
-                                        </xsl:attribute>
-                                    </xsl:when>
-                                    <xsl:otherwise>
-                                        <extension url="{$urlExtHL7DataAbsentReason}">
-                                            <valueCode value="unknown"/>
-                                        </extension>
-                                    </xsl:otherwise>
-                                </xsl:choose>
-                            </end>
-                        </period>
-                    </xsl:if>
-                    
-                    <!-- payor is required in the FHIR profile, so always output payor, data-absent-reason if no actual value -->
-                    <xsl:if test="betaler_persoon | payer_person">
-                        <payor>
-                            <xsl:if test="(betaler_persoon/bankgegevens/bank_naam | payer_person/bank_information/bank_name)[@value] or (betaler_persoon/bankgegevens/bankcode | payer_person/bank_information/bank_code)[@value] or (betaler_persoon/bankgegevens/rekeningnummer | payer_person/bank_information/account_number)[@value]">
-                                <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Payer-BankInformation">
-                                    <xsl:for-each select="(betaler_persoon/bankgegevens/bank_naam | payer_person/bank_information/bank_name)[@value]">
-                                        <extension url="BankName">
-                                            <valueString>
-                                                <xsl:call-template name="string-to-string">
-                                                    <xsl:with-param name="in" select="."/>
-                                                </xsl:call-template>
-                                            </valueString>
-                                        </extension>
-                                    </xsl:for-each>
-                                    <xsl:for-each select="(betaler_persoon/bankgegevens/rekeningnummer | payer_person/bank_information/account_number)[@value]">
-                                        <extension url="AccountNumber">
-                                            <valueString>
-                                                <xsl:call-template name="string-to-string">
-                                                    <xsl:with-param name="in" select="."/>
-                                                </xsl:call-template>
-                                            </valueString>
-                                        </extension>
-                                    </xsl:for-each>
-                                    <xsl:for-each select="(betaler_persoon/bankgegevens/bankcode | payer_person/bank_information/bank_code)[@value]">
-                                        <extension url="Bankcode">
-                                            <valueString>
-                                                <xsl:call-template name="string-to-string">
-                                                    <xsl:with-param name="in" select="."/>
-                                                </xsl:call-template>
-                                            </valueString>
-                                        </extension>
-                                    </xsl:for-each>
-                                </extension>
-                            </xsl:if>
-                            <xsl:for-each select="(betaler_persoon/betaler_naam | payer_person/payer_name)[@value]">
-                                <!--First create Patient/RelatedPerson resource
-                                <reference>
-                                    
-                                </reference>-->
-                                <display>
-                                    <xsl:call-template name="string-to-string">
-                                        <xsl:with-param name="in" select="."/>
-                                    </xsl:call-template>
-                                </display>
-                            </xsl:for-each>
-                        </payor>
-                    </xsl:if>
-                    <xsl:if test="verzekeraar | insurance_company">
-                        <payor>
-                            <!--First create Organization resource that includes both organisatie_naam | organization_name and identificatie_nummer | identification_number -->
-                            <!--<reference>
-                                    
-                            </reference>-->
-                            <xsl:for-each select="(verzekeraar/identificatie_nummer | insurance_company/identification_number)[@value]">
+        <xsl:variable name="insuranceTypes" select="distinct-values($in/(verzekeraar/verzekering/verzekeringssoort | insurance_company/insurance/insurance_type)/(@code, @originalText)[1])"/>
+        <xsl:for-each-group select="$in/betaler_persoon | $in/payer_person | $in/verzekeraar/verzekering | $in/insurance_company/insurance" group-by="(self::betaler_persoon/local-name(), self::payer_person/local-name(), (verzekeringssoort | insurance_type)/(@code, @originalText)[1])[1]">
+            <xsl:variable name="insuranceType" select="current-grouping-key()"/>
+            <xsl:variable name="insuranceCompanies" select="..[verzekering/verzekeringssoort/(@code, @originalText)[1] = $insuranceType] | ..[insurance/insurance_type/(@code, @originalText)[1] = $insuranceType]"/>
+            <xsl:variable name="insurances" select="$insuranceCompanies/verzekering[verzekeringssoort/(@code, @originalText)[1] = $insuranceType] | $insuranceCompanies/insurance[insurance_type/(@code, @originalText)[1] = $insuranceType]"/>
+            <xsl:variable name="pos" select="position()"/>
+            <xsl:for-each select="current-group()/ancestor-or-self::betaler[1] | current-group()/ancestor-or-self::payer[1]">
+                <xsl:variable name="resource">
+                    <Coverage>
+                        <xsl:if test="string-length($logicalId) gt 0">
+                            <id value="{nf:make-fhir-logicalid(tokenize($profileValue, './')[last()], concat($logicalId, '-', $pos + position() - 1))}"/>
+                        </xsl:if>
+
+                        <meta>
+                            <profile value="{$profileValue}"/>
+                        </meta>
+
+                        <!-- cannot support the same identifier on more than 1 resources, so skip the identifier if more than one Coverage resource comes out of here -->
+                        <xsl:if test="count($insuranceTypes) le 1">
+                            <xsl:for-each select="zibroot/identificatienummer | hcimroot/identification_number">
                                 <identifier>
                                     <xsl:call-template name="id-to-Identifier">
                                         <xsl:with-param name="in" select="."/>
                                     </xsl:call-template>
                                 </identifier>
                             </xsl:for-each>
-                            <xsl:for-each select="(verzekeraar/organisatie_naam | insurance_company/organization_name)[@value]">
-                                <display>
-                                    <xsl:call-template name="string-to-string">
-                                        <xsl:with-param name="in" select="."/>
-                                    </xsl:call-template>
-                                </display>
-                            </xsl:for-each>
-                        </payor>
-                    </xsl:if>
-                    <xsl:if test="not(betaler_persoon | payer_person) and not(verzekeraar | insurance_company)">
-                        <payor>
-                            <extension url="{$urlExtHL7DataAbsentReason}">
-                                <valueCode value="unknown"/>
-                            </extension>
-                        </payor>
-                    </xsl:if>
-                    
-                </Coverage>
-            </xsl:variable>
-            
-            <!-- Add resource.text -->
-            <xsl:apply-templates select="$resource" mode="addNarrative"/>
-        </xsl:for-each>
+                        </xsl:if>
+                        
+                        <!-- only want 1 type -->
+                        <xsl:for-each select="((verzekeraar/verzekering/verzekeringssoort | insurance_company/insurance/insurance_type)[@code = $insuranceType])[1]">
+                            <type>
+                                <xsl:call-template name="code-to-CodeableConcept">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </type>
+                        </xsl:for-each>
+
+                        <!-- Patient reference -->
+                        <subscriber>
+                            <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
+                        </subscriber>
+
+                        <xsl:for-each select="($insuranceCompanies/verzekerde_nummer | $insuranceCompanies/insurant_number)[@value]">
+                            <subscriberId>
+                                <xsl:call-template name="string-to-string">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </subscriberId>
+                        </xsl:for-each>
+
+                        <!-- Patient reference -->
+                        <beneficiary>
+                            <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
+                        </beneficiary>
+
+                        <xsl:if test="($insurances/begin_datum_tijd | $insurances/start_date_time)[@value] or ($insurances/eind_datum_tijd | $insurances/end_date_time)[@value]">
+                            <period>
+                                <xsl:for-each select="($insurances/begin_datum_tijd | $insurances/start_date_time)[@value]">
+                                    <start>
+                                        <xsl:attribute name="value">
+                                            <xsl:call-template name="format2FHIRDate">
+                                                <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                                <xsl:with-param name="dateT" select="$dateT"/>
+                                            </xsl:call-template>
+                                        </xsl:attribute>
+                                    </start>
+                                </xsl:for-each>
+                                <!-- period.end is required in the FHIR profile, so always output period.end, data-absent-reason if no actual value -->
+                                <end>
+                                    <xsl:choose>
+                                        <xsl:when test="($insurances/eind_datum_tijd | $insurances/end_date_time)[@value]">
+                                            <xsl:attribute name="value">
+                                                <xsl:call-template name="format2FHIRDate">
+                                                    <xsl:with-param name="dateTime" select="xs:string(($insurances/eind_datum_tijd | $insurances/end_date_time)/@value)"/>
+                                                    <xsl:with-param name="dateT" select="$dateT"/>
+                                                </xsl:call-template>
+                                            </xsl:attribute>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <extension url="{$urlExtHL7DataAbsentReason}">
+                                                <valueCode value="unknown"/>
+                                            </extension>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                </end>
+                            </period>
+                        </xsl:if>
+
+                        <!-- payor is required in the FHIR profile, so always output payor, data-absent-reason if no actual value -->
+                        <xsl:if test="betaler_persoon | payer_person">
+                            <payor>
+                                <xsl:if test="(betaler_persoon/bankgegevens/bank_naam | payer_person/bank_information/bank_name)[@value] or (betaler_persoon/bankgegevens/bankcode | payer_person/bank_information/bank_code)[@value] or (betaler_persoon/bankgegevens/rekeningnummer | payer_person/bank_information/account_number)[@value]">
+                                    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Payer-BankInformation">
+                                        <xsl:for-each select="(betaler_persoon/bankgegevens/bank_naam | payer_person/bank_information/bank_name)[@value]">
+                                            <extension url="BankName">
+                                                <valueString>
+                                                    <xsl:call-template name="string-to-string">
+                                                        <xsl:with-param name="in" select="."/>
+                                                    </xsl:call-template>
+                                                </valueString>
+                                            </extension>
+                                        </xsl:for-each>
+                                        <xsl:for-each select="(betaler_persoon/bankgegevens/rekeningnummer | payer_person/bank_information/account_number)[@value]">
+                                            <extension url="AccountNumber">
+                                                <valueString>
+                                                    <xsl:call-template name="string-to-string">
+                                                        <xsl:with-param name="in" select="."/>
+                                                    </xsl:call-template>
+                                                </valueString>
+                                            </extension>
+                                        </xsl:for-each>
+                                        <xsl:for-each select="(betaler_persoon/bankgegevens/bankcode | payer_person/bank_information/bank_code)[@value]">
+                                            <extension url="Bankcode">
+                                                <valueString>
+                                                    <xsl:call-template name="string-to-string">
+                                                        <xsl:with-param name="in" select="."/>
+                                                    </xsl:call-template>
+                                                </valueString>
+                                            </extension>
+                                        </xsl:for-each>
+                                    </extension>
+                                </xsl:if>
+                                <xsl:for-each select="(betaler_persoon/betaler_naam | payer_person/payer_name)[@value]">
+                                    <!--First create Patient/RelatedPerson resource
+                                <reference>
+                                    
+                                </reference>-->
+                                    <display>
+                                        <xsl:call-template name="string-to-string">
+                                            <xsl:with-param name="in" select="."/>
+                                        </xsl:call-template>
+                                    </display>
+                                </xsl:for-each>
+                            </payor>
+                        </xsl:if>
+                        <xsl:for-each select="$insuranceCompanies">
+                            <payor>
+                                <xsl:apply-templates select="." mode="doOrganizationReference-2.0"/>
+                            </payor>
+                        </xsl:for-each>
+                        <xsl:if test="empty(betaler_persoon | payer_person | $insuranceCompanies)">
+                            <payor>
+                                <extension url="{$urlExtHL7DataAbsentReason}">
+                                    <valueCode value="unknown"/>
+                                </extension>
+                            </payor>
+                        </xsl:if>
+
+                    </Coverage>
+                </xsl:variable>
+
+                <!-- Add resource.text -->
+                <xsl:apply-templates select="$resource" mode="addNarrative"/>
+            </xsl:for-each>
+        </xsl:for-each-group>
     </xsl:template>
 </xsl:stylesheet>
