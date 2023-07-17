@@ -13,6 +13,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:f="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <!-- import because we want to be able to override the param for macAddress for UUID generation and the param for referById -->
     <xsl:import href="../../../../zibs2017/payload/package-2.2.x.xsl"/>
+    <xsl:import href="../../../../fhir/2_fhir_fixtures_Touchstone.xsl"/>
     
     <xd:doc scope="stylesheet">
         <xd:desc>
@@ -39,7 +40,133 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- OID separated list of oids like 2.16.840.1.113883.2.4.6.3 (bsn) to mask in output -->
     <xsl:param name="mask-ids" select="(:$oidBurgerservicenummer:)''" as="xs:string"/>
     
+    <xsl:param name="ada-input" select="collection('../ada_processed/?select=*.xml')"/>
+    
     <xsl:variable name="usecase">bgz-msz</xsl:variable>
+    
+    <!-- Overrule global variable to add generalPractitionerRef -->
+    <xsl:variable name="patients" as="element()*">
+        <xsl:for-each-group select="//patient[not(patient)][ancestor::subject][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="
+            string-join(for $att in nf:ada-pat-id(identificatienummer | patient_identificatie_nummer | patient_identification_number)/(@root, @value)
+            return
+            $att, '')">
+            <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyPatient(.)">
+                <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
+                <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
+                <xsl:variable name="patientIdentifier" select="./patient_identification_number/@value"/>
+                <unieke-patient xmlns="">
+                    <group-key>
+                        <xsl:value-of select="current-grouping-key()"/>
+                    </group-key>
+                    <reference-display>
+                        <xsl:value-of select="current-group()[1]/normalize-space(string-join(.//naamgegevens[1]//*[not(name() = 'naamgebruik')]/@value | name_information[1]//*[not(name() = 'name_usage')]/@value, ' '))"/>
+                    </reference-display>
+                    <xsl:apply-templates select="current-group()[1]" mode="doPatientEntry-2.1">
+                        <xsl:with-param name="uuid" select="$uuid"/>
+                        <xsl:with-param name="generalPractitionerRef" tunnel="yes" as="element()*">
+                            <xsl:choose>
+                                <xsl:when test="$patientIdentifier = '999999151'">
+                                    <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference" xmlns="http://hl7.org/fhir">
+                                        <valueReference>
+                                            <reference value="PractitionerRole/nl-core-practitionerrole-bgz-msz-8877665501-015123456A1"/>
+                                            <display value="Ria Alexandra R.A. Ria Slot || Huisarts || Huisartsenpraktijk Rotterdam"/>
+                                        </valueReference>
+                                    </extension>
+                                    <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-840-1-113883-2-4-6-1-88776655" xmlns="http://hl7.org/fhir"/>
+                                    <display value="Ria Alexandra R.A. Ria Slot" xmlns="http://hl7.org/fhir"/>
+                                </xsl:when>
+                                <xsl:when test="$patientIdentifier = '999900092'">
+                                    <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference" xmlns="http://hl7.org/fhir">
+                                        <valueReference>
+                                            <reference value="PractitionerRole/nl-core-practitionerrole-bgz-msz-0013131301-015123456B1"/>
+                                            <display value="Anna A. Anna de Vries Bijns || Huisarts || Huisartsenpraktijk Molenhoek"/>
+                                        </valueReference>
+                                    </extension>
+                                    <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-840-1-113883-2-4-6-1-00131313" xmlns="http://hl7.org/fhir"/>
+                                    <display value="Anna A. Anna de Vries Bijns" xmlns="http://hl7.org/fhir"/>
+                                </xsl:when>
+                            </xsl:choose>
+                        </xsl:with-param>
+                        <xsl:with-param name="contact" select="($ada-input//bundle/contact[hcimroot/subject/patient/patient/patient_identification_number/@value = current-group()[1]/patient_identification_number/@value])" tunnel="yes" as="element()*"/>
+                    </xsl:apply-templates>
+                </unieke-patient>
+            </xsl:for-each-group>
+        </xsl:for-each-group>
+    </xsl:variable>
+    
+    <!-- Overrule global variable to add fhirResourceId as we would like it -->
+    <xsl:variable name="labObservations" as="element()*">
+        <xsl:for-each-group select="//(laboratorium_test[not(laboratorium_test)] | laboratory_test[not(laboratory_test)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
+            <xsl:for-each select="current-group()">
+                <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
+                <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
+                <xsl:variable name="adaPatient" select="ancestor::laboratory_test_result/hcimroot/subject/patient/patient"/>
+                <xsl:variable name="patientIdentifier" select="$adaPatient/patient_identification_number/@value"/>
+                <xsl:variable name="patientName">
+                    <xsl:choose>
+                        <xsl:when test="$patientIdentifier = '999999151'">
+                            <xsl:value-of select="'patA'"/>
+                        </xsl:when>
+                        <xsl:when test="$patientIdentifier = '999900092'">
+                            <xsl:value-of select="'patB'"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="'patX'"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                <unieke-lab-observatie xmlns="">
+                    <group-key xmlns="">
+                        <xsl:value-of select="current-grouping-key()"/>
+                    </group-key>
+                    <reference-display xmlns="">
+                        <xsl:value-of select="(test_code | test_uitslag | test_result)/(@displayName | @originalText)"/>
+                    </reference-display>
+                    <xsl:apply-templates select="." mode="doLaboratoryResultObservationEntry-2.1">
+                        <xsl:with-param name="uuid" select="$uuid"/>
+                        <xsl:with-param name="searchMode">match</xsl:with-param>
+                        <xsl:with-param name="fhirResourceId" select="concat($patientName, '-labresult', string(count(../preceding-sibling::laboratory_test_result) + 1), '-', count(preceding-sibling::laboratory_test) + 1)"/>
+                    </xsl:apply-templates>
+                </unieke-lab-observatie>
+            </xsl:for-each>
+        </xsl:for-each-group>
+    </xsl:variable>
+    
+    <!-- Overrule global variable to add fhirResourceId as we would like it -->
+    <xsl:variable name="labSpecimens" as="element()*">
+        <xsl:for-each-group select="/bundle/(laboratory_test_result/specimen | laboratorium_uitslag/monster)[.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
+            <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
+            <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
+            <xsl:variable name="adaPatient" select="ancestor::laboratory_test_result/hcimroot/subject/patient/patient"/>
+            <xsl:variable name="patientIdentifier" select="$adaPatient/patient_identification_number/@value"/>
+            <xsl:variable name="patientName">
+                <xsl:choose>
+                    <xsl:when test="$patientIdentifier = '999999151'">
+                        <xsl:value-of select="'patA'"/>
+                    </xsl:when>
+                    <xsl:when test="$patientIdentifier = '999900092'">
+                        <xsl:value-of select="'patB'"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="'patX'"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            <uniek-materiaal xmlns="">
+                <group-key xmlns="">
+                    <xsl:value-of select="current-grouping-key()"/>
+                </group-key>
+                <reference-display xmlns="">
+                    <xsl:value-of select="(specimen_material | monstermateriaal)/(@displayName | @originalText)"/>
+                </reference-display>
+                <xsl:apply-templates select="current-group()[1]" mode="doLaboratoryResultSpecimenEntry-2.1">
+                    <xsl:with-param name="uuid" select="$uuid"/>
+                    <xsl:with-param name="searchMode">match</xsl:with-param>
+                    <xsl:with-param name="fhirResourceId" select="concat($patientName, '-labresult', string(count(../preceding-sibling::laboratory_test_result) + 1), '-', count(preceding-sibling::specimen) + 1)"/>
+                </xsl:apply-templates>
+            </uniek-materiaal>
+        </xsl:for-each-group>
+    </xsl:variable>
     
     <xd:doc>
         <xd:desc>Start conversion. This conversion tries to account for all zibs in BgZ MSZ "beschikbaarstellen" in one go. Either build a FHIR Bundle of type searchset per zib, or build individual files.</xd:desc>
@@ -283,7 +410,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:call-template name="zib-LaboratoryTestResult-Observation-2.1">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-labresult', string(count(../preceding-sibling::laboratory_test_result) + 1), '-', position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-labresult', string(count(../preceding-sibling::laboratory_test_result) + 1), '-', count(preceding-sibling::laboratory_test) + 1)"/>
                                 </xsl:call-template>
                             </resource>
                             <search>
@@ -299,7 +426,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:call-template name="zib-LaboratoryTestResult-Specimen-2.1">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-labresult', string(count(../preceding-sibling::laboratory_test_result) + 1), '-', position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-labresult', string(count(../preceding-sibling::laboratory_test_result) + 1), '-', count(preceding-sibling::specimen) + 1)"/>
                                 </xsl:call-template>
                             </resource>
                             <search>
