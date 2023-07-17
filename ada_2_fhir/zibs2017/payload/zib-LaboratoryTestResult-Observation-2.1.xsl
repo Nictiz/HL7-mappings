@@ -225,7 +225,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <coding>
                             <system value="{local:getUri($oidSNOMEDCT)}"/>
                             <code value="49581000146104"/>
-                            <display value="Laboratory test finding"/>
+                            <display value="bevinding betreffende laboratoriumonderzoek"/>
                         </coding>
                     </category>
                     
@@ -431,7 +431,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <coding>
                             <system value="{local:getUri($oidSNOMEDCT)}"/>
                             <code value="49581000146104"/>
-                            <display value="Laboratory test finding"/>
+                            <display value="bevinding betreffende laboratoriumonderzoek"/>
                         </coding>
                     </category>
                     
