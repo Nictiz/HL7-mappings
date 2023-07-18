@@ -1996,6 +1996,1468 @@
       </request>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:e3076ccb-6acb-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+               <valuePeriod>
+                  <start value="${DATE, T, D, -289}T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_NieuweMA"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_300_NieuweMA_start_MA"/>
+            </identifier>
+            <status value="unknown"/>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="33633005"/>
+                  <display value="voorschrijven van geneesmiddel"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:2c0de6e9-6ab9-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="DICLOFENAC NATRIUM TABLET MGA 100MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:a31a397e-6b15-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, C. XXX_Dijk"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -289}T11:30:00+02:00"/>
+            <requester>
+               <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+            </requester>
+            <dosageInstruction>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="1"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="1"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:30b6a65d-6aaf-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+               <valuePeriod>
+                  <start value="${DATE, T, D, -289}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, -71}T23:59:59+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_NieuweMA"/>
+               </valueIdentifier>
+            </extension>
+            <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="410546004"/>
+                     <display value="stopgezet"/>
+                  </coding>
+               </valueCodeableConcept>
+            </modifierExtension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_300_NieuweMA_stop_MA"/>
+            </identifier>
+            <status value="unknown"/>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="33633005"/>
+                  <display value="voorschrijven van geneesmiddel"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:2c0de6e9-6ab9-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="DICLOFENAC NATRIUM TABLET MGA 100MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:a31a397e-6b15-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, C. XXX_Dijk"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -70}T13:45:00+02:00"/>
+            <requester>
+               <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+            </requester>
+            <reasonCode>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="112751000146109"/>
+                  <display value="medicatiebeleid veranderd"/>
+               </coding>
+            </reasonCode>
+            <dosageInstruction>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="1"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="1"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+            <priorPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_NieuweMA_start_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak: MBH_300_NieuweMA_start_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </priorPrescription>
+         </MedicationRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:10cf4b3e-6b43-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+               <valuePeriod>
+                  <start value="${DATE, T, D, -30}T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_NieuweMA"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_300_NieuweMA_nieuw_MA"/>
+            </identifier>
+            <status value="unknown"/>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="33633005"/>
+                  <display value="voorschrijven van geneesmiddel"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:2c0de6e9-6ab9-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="DICLOFENAC NATRIUM TABLET MGA 100MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:a31a397e-6b15-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, C. XXX_Dijk"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -30}T10:45:00+02:00"/>
+            <requester>
+               <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+            </requester>
+            <dosageInstruction>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="1"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="1"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+            <priorPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_NieuweMA_start_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak: MBH_300_NieuweMA_start_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </priorPrescription>
+         </MedicationRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:78e39b3e-6b21-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="Vanaf T - 30 dagen, tot en met T - 16 dagen, 2 maal per dag 1 stuk, oraal"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+               <valuePeriod>
+                  <start value="${DATE, T, D, -30}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, -16}T23:59:59+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_OTCmedicatie"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_300_OTCmedicatie_MA"/>
+            </identifier>
+            <status value="unknown"/>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="33633005"/>
+                  <display value="voorschrijven van geneesmiddel"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:9f77bf1d-6aea-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="IBUPROFEN TABLET 200MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:a31a397e-6b15-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, C. XXX_Dijk"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -30}T10:45:00+02:00"/>
+            <requester>
+               <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+            </requester>
+            <dosageInstruction>
+               <timing>
+                  <repeat>
+                     <frequency value="2"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="1"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="1"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:9251b25d-6b14-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="Vanaf T - 98 dagen, 2 maal per dag 2 stuks, oraal"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+               <valuePeriod>
+                  <start value="${DATE, T, D, -98}T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_ToekomstigEnNieuweMA"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_300_ToekomstigEnNieuweMA_startMA"/>
+            </identifier>
+            <status value="unknown"/>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="33633005"/>
+                  <display value="voorschrijven van geneesmiddel"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:e8d11404-6a99-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="OMEPRAZOL CAPSULE MSR 10MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:a31a397e-6b15-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, C. XXX_Dijk"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -98}T15:11:00+02:00"/>
+            <requester>
+               <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+            </requester>
+            <dosageInstruction>
+               <timing>
+                  <repeat>
+                     <frequency value="2"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="2"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="2"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:471a4e5d-6b4b-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="Vanaf T + 10 dagen, 3 maal per dag 1 stuk, oraal"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+               <valuePeriod>
+                  <start value="${DATE, T, D, +10}T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_ToekomstigEnNieuweMA"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_300_ToekomstigEnNieuweMA_ToekomstMA"/>
+            </identifier>
+            <status value="unknown"/>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="33633005"/>
+                  <display value="voorschrijven van geneesmiddel"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:e8d11404-6a99-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="OMEPRAZOL CAPSULE MSR 10MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:a31a397e-6b15-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, C. XXX_Dijk"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -70}T14:44:00+02:00"/>
+            <requester>
+               <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+            </requester>
+            <dosageInstruction>
+               <timing>
+                  <repeat>
+                     <frequency value="3"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="1"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="1"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:3152a25d-6aad-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="Vanaf T - 98 dagen, tot en met T - 63 dagen, 2 maal per dag 2 stuks, oraal, stopgezet"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+               <valuePeriod>
+                  <start value="${DATE, T, D, -98}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, -63}T23:59:59+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_ToekomstigEnNieuweMA"/>
+               </valueIdentifier>
+            </extension>
+            <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="410546004"/>
+                     <display value="stopgezet"/>
+                  </coding>
+               </valueCodeableConcept>
+            </modifierExtension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_300_ToekomstigEnNieuweMA_stopMA"/>
+            </identifier>
+            <status value="unknown"/>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="33633005"/>
+                  <display value="voorschrijven van geneesmiddel"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:e8d11404-6a99-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="OMEPRAZOL CAPSULE MSR 10MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:a31a397e-6b15-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, C. XXX_Dijk"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -63}T09:13:00+02:00"/>
+            <requester>
+               <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+            </requester>
+            <dosageInstruction>
+               <timing>
+                  <repeat>
+                     <frequency value="2"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="2"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="2"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+            <priorPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_ToekomstigEnNieuweMA_startMA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak: MBH_300_ToekomstigEnNieuweMA_startMA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </priorPrescription>
+         </MedicationRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2a9f0b3e-6b2b-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="Vanaf T - 30 dagen, tot en met T + 9 dagen, gedurende 39 dagen 2 maal per dag 1 stuk, oraal"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+               <valuePeriod>
+                  <start value="${DATE, T, D, -30}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, +9}T23:59:59+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_ToekomstigEnNieuweMA"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_300_ToekomstigEnNieuweMA_NieuwMA"/>
+            </identifier>
+            <status value="unknown"/>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="33633005"/>
+                  <display value="voorschrijven van geneesmiddel"/>
+               </coding>
+            </category>
+            <subject>
+               <reference value="urn:uuid:a31a397e-6b15-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, C. XXX_Dijk"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -63}T09:15:00+02:00"/>
+            <requester>
+               <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+            </requester>
+            <dosageInstruction>
+               <timing>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="39"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="2"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="1"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="1"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+            <priorPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_ToekomstigEnNieuweMA_startMA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak: MBH_300_ToekomstigEnNieuweMA_startMA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </priorPrescription>
+         </MedicationRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:a502bdcb-6ac2-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="Vanaf T - 20 dagen, gedurende 3 weken, gedurende 3 weken 1 maal per dag 1 stuk, oraal"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+               <valuePeriod>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
+                     <valueDuration>
+                        <value value="3"/>
+                        <unit value="week"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="wk"/>
+                     </valueDuration>
+                  </extension>
+                  <start value="${DATE, T, D, -20}T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_nieuweToekomstigeMA"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_300_nieuweToekomstigeMA_startMA"/>
+            </identifier>
+            <status value="unknown"/>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="33633005"/>
+                  <display value="voorschrijven van geneesmiddel"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:1cc41504-6a9f-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="ATORVASTATINE 10MG TABLET"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:a31a397e-6b15-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, C. XXX_Dijk"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -20}T10:01:00+02:00"/>
+            <requester>
+               <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+            </requester>
+            <dosageInstruction>
+               <timing>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="3"/>
+                        <unit value="week"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="wk"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="1"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="1"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:4873895d-6b1f-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="Vanaf T + 1 dag, gedurende 1 week, gedurende 1 week 1 maal per dag 3 stuks, oraal"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+               <valuePeriod>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
+                     <valueDuration>
+                        <value value="1"/>
+                        <unit value="week"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="wk"/>
+                     </valueDuration>
+                  </extension>
+                  <start value="${DATE, T, D, +1}T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_nieuweToekomstigeMA"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_300_nieuweToekomstigeMA_toekomstMA"/>
+            </identifier>
+            <status value="unknown"/>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="33633005"/>
+                  <display value="voorschrijven van geneesmiddel"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:1cc41504-6a9f-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="ATORVASTATINE 10MG TABLET"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:a31a397e-6b15-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, C. XXX_Dijk"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -15}T13:26:00+02:00"/>
+            <requester>
+               <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+            </requester>
+            <dosageInstruction>
+               <timing>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="week"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="wk"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="3"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="3"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:3a492c9b-6abc-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="Vanaf T + 1 dag, gedurende 1 week, gedurende 1 week 1 maal per dag 3 stuks, oraal, geannuleerd"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+               <valuePeriod>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
+                     <valueDuration>
+                        <value value="1"/>
+                        <unit value="week"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="wk"/>
+                     </valueDuration>
+                  </extension>
+                  <start value="${DATE, T, D, +1}T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_nieuweToekomstigeMA"/>
+               </valueIdentifier>
+            </extension>
+            <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="89925002"/>
+                     <display value="geannuleerd"/>
+                  </coding>
+               </valueCodeableConcept>
+            </modifierExtension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_300_nieuweToekomstigeMA_annuleerMA"/>
+            </identifier>
+            <status value="unknown"/>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="33633005"/>
+                  <display value="voorschrijven van geneesmiddel"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:1cc41504-6a9f-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="ATORVASTATINE 10MG TABLET"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:a31a397e-6b15-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, C. XXX_Dijk"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -5}T15:15:00+02:00"/>
+            <requester>
+               <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+            </requester>
+            <dosageInstruction>
+               <timing>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="week"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="wk"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="3"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="3"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+            <priorPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_nieuweToekomstigeMA_toekomstMA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak: MBH_300_nieuweToekomstigeMA_toekomstMA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </priorPrescription>
+         </MedicationRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:509d3b3e-6acd-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="Vanaf T + 1 dag, gedurende 4 dagen, gedurende 4 dagen 1 maal per dag 2 stuks, oraal"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+               <valuePeriod>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
+                     <valueDuration>
+                        <value value="4"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </valueDuration>
+                  </extension>
+                  <start value="${DATE, T, D, +1}T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_nieuweToekomstigeMA"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_300_nieuweToekomstigeMA_nieuwTMA"/>
+            </identifier>
+            <status value="unknown"/>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="33633005"/>
+                  <display value="voorschrijven van geneesmiddel"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:1cc41504-6a9f-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="ATORVASTATINE 10MG TABLET"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:a31a397e-6b15-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, C. XXX_Dijk"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -5}T15:20:00+02:00"/>
+            <requester>
+               <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+            </requester>
+            <reasonCode>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="159691000146109"/>
+                  <display value="foutieve registratie van medicatie"/>
+               </coding>
+            </reasonCode>
+            <dosageInstruction>
+               <timing>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="4"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="2"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="2"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+            <priorPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_nieuweToekomstigeMA_toekomstMA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak: MBH_300_nieuweToekomstigeMA_toekomstMA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </priorPrescription>
+         </MedicationRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:bb4fad5d-6b60-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_stopMA_zonder_referentie"/>
+               </valueIdentifier>
+            </extension>
+            <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="410546004"/>
+                     <display value="stopgezet"/>
+                  </coding>
+               </valueCodeableConcept>
+            </modifierExtension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_300_stopMA_zonder_referentie_stopMA"/>
+            </identifier>
+            <status value="unknown"/>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="33633005"/>
+                  <display value="voorschrijven van geneesmiddel"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:2c0de6e9-6ab9-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="DICLOFENAC NATRIUM TABLET MGA 100MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:a31a397e-6b15-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, C. XXX_Dijk"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -5}T13:55:00+02:00"/>
+            <requester>
+               <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+            </requester>
+            <dosageInstruction>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value=""/>
+                  </coding>
+               </route>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:d8b37d5d-6aab-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="Vanaf T - 5 dagen, tot en met T + 2 dagen, 1 maal per dag 1.5 stuk, oraal"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+               <valuePeriod>
+                  <start value="${DATE, T, D, -5}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, +2}T23:59:59+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_stopMA_zonder_referentie"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_300_stopMA_zonder_referentie_startMA"/>
+            </identifier>
+            <status value="unknown"/>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="33633005"/>
+                  <display value="voorschrijven van geneesmiddel"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:2c0de6e9-6ab9-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="DICLOFENAC NATRIUM TABLET MGA 100MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:a31a397e-6b15-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, C. XXX_Dijk"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -5}T13:57:00+02:00"/>
+            <requester>
+               <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+            </requester>
+            <dosageInstruction>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="1.5"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="1.5"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:b5731d5d-6b37-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="Vanaf T + 3 dagen, gedurende 3 dagen, 1 maal per dag 1 stuk, oraal"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+               <valuePeriod>
+                  <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
+                     <valueDuration>
+                        <value value="3"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </valueDuration>
+                  </extension>
+                  <start value="${DATE, T, D, +3}T00:00:00+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_stopMA_zonder_referentie"/>
+               </valueIdentifier>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_300_stopMA_zonder_referentie_toekomstMA"/>
+            </identifier>
+            <status value="unknown"/>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="33633005"/>
+                  <display value="voorschrijven van geneesmiddel"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:2c0de6e9-6ab9-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="DICLOFENAC NATRIUM TABLET MGA 100MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:a31a397e-6b15-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, C. XXX_Dijk"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, -5}T14:03:00+02:00"/>
+            <requester>
+               <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+            </requester>
+            <dosageInstruction>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="1"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="1"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+         </MedicationRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
+   </entry>
+   <entry>
       <fullUrl value="urn:uuid:a31a397e-6b15-11ec-0000-020000000000"/>
       <resource>
          <Patient>
@@ -2645,6 +4107,62 @@
                   <display value="FERROFUMARAAT TABLET 200MG"/>
                </coding>
                <text value="FERROFUMARAAT TABLET 200MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:9f77bf1d-6aea-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="27251"/>
+                  <display value="IBUPROFEN TABLET 200MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="50997"/>
+                  <display value="IBUPROFEN TABLET 200MG"/>
+               </coding>
+               <text value="IBUPROFEN TABLET 200MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:e8d11404-6a99-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="60054"/>
+                  <display value="OMEPRAZOL CAPSULE MSR 10MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="115142"/>
+                  <display value="OMEPRAZOL CAPSULE MSR 10MG"/>
+               </coding>
+               <text value="OMEPRAZOL CAPSULE MSR 10MG"/>
             </code>
          </Medication>
       </resource>
