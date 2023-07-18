@@ -1,0 +1,76 @@
+<PractitionerRole xmlns="http://hl7.org/fhir">
+   <id value="nl-core-practitionerrole-bgz-msz-0013131301-015123456B1"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Zorgverlenerrol. Id: patB-healthProf1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7)</caption>
+            <tbody>
+               <tr>
+                  <th>Zorgverlener</th>
+                  <td>
+                     <div>Anna A. Anna de Vries Bijns</div>
+                     <div>Huisartsenpraktijk Molenhoek</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Specialisme</th>
+                  <td>
+                     <span title="Huisarts (01.015 - http://fhir.nl/fhir/NamingSystem/uzi-rolcode)">Huisarts</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <div>
+                        <a href="tel:077-1234567">077-1234567</a> (Vast telefoonnummer Werk)</div>
+                     <div>
+                        <a href="mailto:Bijns.DeVries@HPMolenhoek.nl">Bijns.DeVries@HPMolenhoek.nl</a> (E-mail Werk)</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patB-healthProf1"/>
+   </identifier>
+   <practitioner>
+      <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-840-1-113883-2-4-6-1-00131313"/>
+      <display value="Anna A. Anna de Vries Bijns"/>
+   </practitioner>
+   <organization>
+      <reference value="Organization/organization-bgz-msz-2-16-840-1-113883-2-4-3-11-999-7-6-123456B1"/>
+      <display value="Huisartsenpraktijk Molenhoek"/>
+   </organization>
+   <specialty>
+      <coding>
+         <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+         <code value="01.015"/>
+         <display value="Huisarts"/>
+      </coding>
+   </specialty>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Vast telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="077-1234567"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="Bijns.DeVries@HPMolenhoek.nl"/>
+      <use value="work"/>
+   </telecom>
+</PractitionerRole>

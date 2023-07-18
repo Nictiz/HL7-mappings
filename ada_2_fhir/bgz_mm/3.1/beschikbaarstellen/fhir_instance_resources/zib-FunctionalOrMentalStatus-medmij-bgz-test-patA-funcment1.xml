@@ -1,0 +1,81 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="zib-FunctionalOrMentalStatus-medmij-bgz-test-patA-funcment1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-FunctionalOrMentalStatus"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Anouk A. Anouk van XXX_Rijn de XXX_Vries. Id: patA-funcstat1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Categorie: <span title="bevinding betreffende mentale toestand, gedrag en/of psychosociaal functioneren (384821006 - SNOMED CT)">bevinding betreffende mentale toestand, gedrag en/of psychosociaal functioneren</span>, Status: definitief</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Pijn bij normale belasting van rechterknie</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>Vanaf 5 augustus 2018</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <th>Medisch hulpmiddel</th>
+                  <td>Krukken Verstelbare elleboogkrukken met gesloten manchet</td>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="Verminderde mobiliteit (8510008 - SNOMED CT)">Verminderde mobiliteit</span>
+                  </td>
+                  <td>
+                     <span title="Intermediair (11896004 - SNOMED CT)">Intermediair</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-FunctionalOrMentalStatus-MedicalDevice">
+      <valueReference>
+         <reference value="DeviceUseStatement/zib-MedicalDevice-medmij-bgz-test-patA-medDevice1"/>
+         <display value="Krukken Verstelbare elleboogkrukken met gesloten manchet"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patA-funcstat1"/>
+   </identifier>
+   <status value="final"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="384821006"/>
+         <display value="bevinding betreffende mentale toestand, gedrag en/of psychosociaal functioneren"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="8510008"/>
+         <display value="Verminderde mobiliteit"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/medmij-bgz-test-patA"/>
+      <display value="Anouk A. Anouk van XXX_Rijn de XXX_Vries"/>
+   </subject>
+   <effectivePeriod>
+      <start value="2018-08-05"/>
+   </effectivePeriod>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="11896004"/>
+         <display value="Intermediair"/>
+      </coding>
+   </valueCodeableConcept>
+   <comment value="Pijn bij normale belasting van rechterknie"/>
+</Observation>

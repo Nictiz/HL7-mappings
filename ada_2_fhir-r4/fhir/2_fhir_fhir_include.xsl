@@ -75,7 +75,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="flaccpijn_score" resource="Observation" profile="nl-core-FLACCpainScale"/>
         <nm:map ada="functie_horen" resource="Observation" profile="nl-core-HearingFunction"/>
         <nm:map ada="functie_zien" resource="Observation" profile="nl-core-VisualFunction"/>
-		<nm:map ada="functionele_of_mentale_status" resource="Observation" profile="nl-core-FunctionalOrMentalStatus"/>
+        <nm:map ada="functionele_of_mentale_status" resource="Observation" profile="nl-core-FunctionalOrMentalStatus"/>
         <nm:map ada="hartfrequentie" resource="Observation" profile="nl-core-HeartRate"/>
         <nm:map ada="hulp_van_anderen" resource="CarePlan" profile="nl-core-HelpFromOthers"/>
         <nm:map ada="juridische_situatie" resource="Condition" profile="nl-core-LegalSituation-LegalStatus"/>
@@ -193,62 +193,67 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in"/>
 
         <xsl:if test="not($referencingStrategy = ('logicalId', 'uuid', 'none'))">
-            <xsl:message terminate="yes">Invalid $referencingStrategy. Should be one of 'logicalId', 'uuid', 'none'</xsl:message>
+            <xsl:call-template name="util:logMessage">
+                <xsl:with-param name="level" select="$logFATAL"/>
+                <xsl:with-param name="msg">Invalid $referencingStrategy. Should be one of 'logicalId', 'uuid', 'none'</xsl:with-param>
+                <xsl:with-param name="terminate" select="true()"/>
+            </xsl:call-template>
         </xsl:if>
 
         <xsl:for-each-group select="$in[self::patient[.//(@value | @code | @nullFlavor)]]" group-by="concat((identificatienummer[@root = $oidBurgerservicenummer], identificatienummer[not(@root = $oidBurgerservicenummer)])[1]/@root, (identificatienummer[@root = $oidBurgerservicenummer], identificatienummer[not(@root = $oidBurgerservicenummer)])[1]/normalize-space(@value))">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <xsl:call-template name="_buildFhirMetadataForAdaEntry">
-                    <xsl:with-param name="partNumber" select="position()"/>                    
+                    <xsl:with-param name="partNumber" select="position()"/>
                 </xsl:call-template>
             </xsl:for-each-group>
         </xsl:for-each-group>
-        
+
         <xsl:for-each-group select="$in[self::zorgverlener[.//(@value | @code | @nullFlavor)]]" group-by="
-            concat(nf:ada-healthprofessional-id(zorgverlener_identificatienummer)/@root,
-            nf:ada-healthprofessional-id(zorgverlener_identificatienummer)/normalize-space(@value))">
-            
+                concat(nf:ada-healthprofessional-id(zorgverlener_identificatienummer)/@root,
+                nf:ada-healthprofessional-id(zorgverlener_identificatienummer)/normalize-space(@value))">
+
             <!-- let's resolve the zorgaanbieder ín the zorgverlener, to make sure deduplication also works for duplicated zorgaanbieders -->
             <xsl:variable name="zorgverlenerWithResolvedZorgaanbieder" as="element(zorgverlener)*">
-                <xsl:apply-templates select="current-group()" mode="resolveAdaZorgaanbieder"/>                
+                <xsl:apply-templates select="current-group()" mode="resolveAdaZorgaanbieder"/>
             </xsl:variable>
-            
+
             <xsl:for-each-group select="$zorgverlenerWithResolvedZorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
                 <xsl:call-template name="_buildFhirMetadataForAdaEntry">
                     <xsl:with-param name="partNumber" select="position()"/>
                 </xsl:call-template>
             </xsl:for-each-group>
         </xsl:for-each-group>
-        
+
         <xsl:for-each-group select="$in[self::zorgaanbieder[.//(@value | @code | @nullFlavor)]]" group-by="
-            concat(nf:ada-healthprovider-id(zorgaanbieder_identificatienummer)/@root,
-            nf:ada-healthprovider-id(zorgaanbieder_identificatienummer)/normalize-space(@value))">
-             
+                concat(nf:ada-healthprovider-id(zorgaanbieder_identificatienummer)/@root,
+                nf:ada-healthprovider-id(zorgaanbieder_identificatienummer)/normalize-space(@value))">
+
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <xsl:call-template name="_buildFhirMetadataForAdaEntry">
                     <xsl:with-param name="partNumber" select="position()"/>
                 </xsl:call-template>
             </xsl:for-each-group>
         </xsl:for-each-group>
-        
+
         <!-- If and only if there is more than one laboratorium_test, there should be an instance for each
                  distinct laboratorium_test (in addition the "grouping" instance already identified as part of the 
                  main process. -->
         <xsl:for-each-group select="$in[self::laboratorium_uitslag]/laboratorium_test[.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyLaboratoryTest(.)">
             <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
         </xsl:for-each-group>
-        
+
         <!-- General rule for all zib root concepts that need to be converted into a FHIR resource -->
-        <xsl:for-each-group select="(
-              $in[not(self::patient or self::zorgverlener or self::zorgaanbieder)],
-              $in//horen_hulpmiddel/medisch_hulpmiddel,
-              $in//zien_hulpmiddel/medisch_hulpmiddel,
-              $in//product[parent::medisch_hulpmiddel],
-              $in//visueel_resultaat[parent::tekst_uitslag],
-              $in//soepregel[parent::soepverslag],
-              $in//monster[parent::laboratorium_uitslag],
-              $in//bron_monster[parent::monster]
-            )[.//(@value | @code | @nullFlavor)]" group-by="local-name()">
+        <xsl:for-each-group select="
+                (
+                $in[not(self::patient or self::zorgverlener or self::zorgaanbieder)],
+                $in//horen_hulpmiddel/medisch_hulpmiddel,
+                $in//zien_hulpmiddel/medisch_hulpmiddel,
+                $in//product[parent::medisch_hulpmiddel],
+                $in//visueel_resultaat[parent::tekst_uitslag],
+                $in//soepregel[parent::soepverslag],
+                $in//monster[parent::laboratorium_uitslag],
+                $in//bron_monster[parent::monster]
+                )[.//(@value | @code | @nullFlavor)]" group-by="local-name()">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <xsl:call-template name="_buildFhirMetadataForAdaEntry">
                     <xsl:with-param name="partNumber" select="position()"/>
@@ -257,7 +262,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each-group>
 
         <xsl:for-each select="$in[not(.//(@value | @code | @nullFlavor))][not(ends-with(local-name(), '-start'))]">
-            <xsl:message>Error: no meaningful content found in <xsl:value-of select="replace(tokenize(base-uri(), '/')[last()], '.xml', '')"/> - <xsl:value-of select="local-name()"/></xsl:message>
+            <xsl:call-template name="util:logMessage">
+                <xsl:with-param name="level" select="$logERROR"/>
+                <xsl:with-param name="msg">no meaningful content found in <xsl:value-of select="replace(tokenize(base-uri(), '/')[last()], '.xml', '')"/> - <xsl:value-of select="local-name()"/></xsl:with-param>
+            </xsl:call-template>
         </xsl:for-each>
 
     </xsl:template>
@@ -295,11 +303,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </nm:group-key>
                 <xsl:variable name="logicalId">
                     <xsl:choose>
-                        <!--<xsl:when test="
-                                (:not($uuid) and :)
-                                $adaElement = 'patient' and string-length(nf:get-resourceid-from-token($in)) gt 0">
-                                <xsl:value-of select="nf:get-resourceid-from-token($in)"/>
-                            </xsl:when>-->
                         <xsl:when test="$in/@logicalId">
                             <xsl:choose>
                                 <xsl:when test="count($ada2resourceType/nm:map[@ada = $adaElement]) gt 1">
@@ -408,12 +411,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="profile" as="xs:string" select="''"/>
         <xsl:param name="wrapIn" as="xs:string?"/>
         <xsl:param name="contained" as="xs:boolean" tunnel="yes" select="false()"/>
-        
+
         <!-- Debug -->
         <xsl:if test="count($fhirMetadata) = 0">
-            <xsl:message terminate="yes">Cannot create reference because $fhirMetadata is empty or unknown.</xsl:message>
+            <xsl:call-template name="util:logMessage">
+                <xsl:with-param name="level" select="$logFATAL"/>
+                <xsl:with-param name="msg">Cannot create reference because $fhirMetadata is empty or unknown.</xsl:with-param>
+                <xsl:with-param name="terminate" select="true()"/>
+            </xsl:call-template>
         </xsl:if>
-        
+
         <xsl:variable name="resolvedAdaElement" as="element()*">
             <xsl:choose>
                 <xsl:when test="$in[@datatype = 'reference' and @value] and not(empty(nf:resolveAdaInstance($in, /)))">
@@ -422,20 +429,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:when>
                 <xsl:otherwise>
                     <!-- use xsl:sequence instead of copy-of to preserve the context of the adaXml -->
-                    <xsl:sequence select="$in"/>                    
+                    <xsl:sequence select="$in"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
 
         <xsl:variable name="groupKey" as="xs:string?">
-            <xsl:choose>               
+            <xsl:choose>
                 <xsl:when test="$resolvedAdaElement[self::laboratorium_test]">
                     <xsl:value-of select="nf:getGroupingKeyLaboratoryTest($resolvedAdaElement)"/>
                 </xsl:when>
                 <xsl:when test="$resolvedAdaElement[self::zorgverlener]">
                     <!-- let's resolve the zorgaanbieder ín the zorgverlener, to make sure deduplication also works for duplicated zorgaanbieders -->
                     <xsl:variable name="zorgverlenerWithResolvedZorgaanbieder" as="element(zorgverlener)*">
-                        <xsl:apply-templates select="$resolvedAdaElement" mode="resolveAdaZorgaanbieder"/>                
+                        <xsl:apply-templates select="$resolvedAdaElement" mode="resolveAdaZorgaanbieder"/>
                     </xsl:variable>
                     <xsl:value-of select="nf:getGroupingKeyDefault($zorgverlenerWithResolvedZorgaanbieder)"/>
                 </xsl:when>
@@ -449,13 +456,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:choose>
                 <xsl:when test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1">
                     <xsl:if test="string-length($profile) = 0">
-                        <xsl:message terminate="yes">makeReference: Duplicate entry found for $groupKey '<xsl:value-of select="$groupKey"/>' in $fhirMetadata, while no $profile was supplied.</xsl:message>
+                        <xsl:call-template name="util:logMessage">
+                            <xsl:with-param name="level" select="$logFATAL"/>
+                            <xsl:with-param name="msg">makeReference: Duplicate entry found for $groupKey '<xsl:value-of select="$groupKey"/>' in $fhirMetadata, while no $profile was supplied.</xsl:with-param>
+                            <xsl:with-param name="terminate" select="true()"/>
+                        </xsl:call-template>
                     </xsl:if>
                     <xsl:if test="not($fhirMetadata[@profile = $profile and nm:group-key = $groupKey])">
-                        <xsl:message terminate="yes">makeReference: Duplicate entry found for $groupKey '<xsl:value-of select="$groupKey"/>' in $fhirMetadata, but no valid $profile ('<xsl:value-of select="$profile"/>') was supplied.</xsl:message>
+                        <xsl:call-template name="util:logMessage">
+                            <xsl:with-param name="level" select="$logFATAL"/>
+                            <xsl:with-param name="msg">makeReference: Duplicate entry found for $groupKey '<xsl:value-of select="$groupKey"/>' in $fhirMetadata, but no valid $profile ('<xsl:value-of select="$profile"/>') was supplied.</xsl:with-param>
+                            <xsl:with-param name="terminate" select="true()"/>
+                        </xsl:call-template>
                     </xsl:if>
                     <xsl:if test="count($fhirMetadata[@profile = $profile and nm:group-key = $groupKey]) gt 1">
-                        <xsl:message terminate="yes">makeReference: Duplicate entry found for $groupKey '<xsl:value-of select="$groupKey"/>' and $profile '<xsl:value-of select="$profile"/>'in $fhirMetadata.</xsl:message>
+                        <xsl:call-template name="util:logMessage">
+                            <xsl:with-param name="level" select="$logFATAL"/>
+                            <xsl:with-param name="msg">makeReference: Duplicate entry found for $groupKey '<xsl:value-of select="$groupKey"/>' and $profile '<xsl:value-of select="$profile"/>'in $fhirMetadata.</xsl:with-param>
+                            <xsl:with-param name="terminate" select="true()"/>
+                        </xsl:call-template>
                     </xsl:if>
                     <xsl:copy-of select="$fhirMetadata[@profile = $profile and nm:group-key = $groupKey]"/>
                 </xsl:when>
@@ -472,7 +491,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="level" select="$logERROR"/>
                 <xsl:with-param name="msg">Cannot resolve reference within set of ada-instances: <xsl:value-of select="$groupKey"/></xsl:with-param>
             </xsl:call-template>
-          </xsl:if>
+        </xsl:if>
 
         <xsl:variable name="populatedReference" as="element()*">
             <xsl:if test="string-length($element/nm:ref-url) gt 0">
@@ -496,9 +515,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="in" select="($identifier[not(@root = $mask-ids-var)], $identifier)[1]"/>
                         </xsl:call-template>
                     </identifier>
-                </xsl:when> <!--<xsl:when test="local-name() = $adaElement and .[@value]">
-                        Fallback?
-                    </xsl:when>-->
+                </xsl:when>
             </xsl:choose>
 
             <xsl:if test="string-length($element/nm:reference-display) gt 0">
@@ -564,7 +581,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:variable>
 
         <xsl:if test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1 and string-length($profile) = 0">
-            <xsl:message terminate="yes">insertId: Duplicate entry found in $fhirMetadata, while no $profile was supplied. $groupKey: <xsl:value-of select="$groupKey"/></xsl:message>
+            <xsl:call-template name="util:logMessage">
+                <xsl:with-param name="level" select="$logFATAL"/>
+                <xsl:with-param name="msg">insertId: Duplicate entry found in $fhirMetadata, while no $profile was supplied. $groupKey: <xsl:value-of select="$groupKey"/></xsl:with-param>
+                <xsl:with-param name="terminate" select="true()"/>
+            </xsl:call-template>
         </xsl:if>
 
         <xsl:variable name="logicalId">
@@ -597,14 +618,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$in[self::laboratorium_test]">
                     <xsl:value-of select="nf:getGroupingKeyLaboratoryTest($in)"/>
                 </xsl:when>
-                   <xsl:otherwise>
+                <xsl:otherwise>
                     <xsl:value-of select="nf:getGroupingKeyDefault($in)"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
 
         <xsl:if test="count($fhirMetadata[nm:group-key = $groupKey]) gt 1 and string-length($profile) = 0">
-            <xsl:message terminate="yes">insertFullUrl: Duplicate entry found in $fhirMetadata, while no $profile was supplied.</xsl:message>
+            <xsl:call-template name="util:logMessage">
+                <xsl:with-param name="level" select="$logFATAL"/>
+                <xsl:with-param name="msg">insertFullUrl: Duplicate entry found in $fhirMetadata, while no $profile was supplied.</xsl:with-param>
+                <xsl:with-param name="terminate" select="true()"/>
+            </xsl:call-template>
         </xsl:if>
 
         <xsl:variable name="fullUrl">
@@ -744,7 +769,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:value-of select="$ada2resourceType/nm:map[@ada = $adaElement/local-name()][1]/@profile"/>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc>Helper template to build the a quantity for medication.</xd:desc>
         <xd:param name="adaValue">The ada element containing the value of quantity</xd:param>
@@ -753,7 +778,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="_buildMedicationQuantity">
         <xsl:param name="adaValue" as="element()"/>
         <xsl:param name="adaUnit" as="element()"/>
-        
+
         <!-- G-Standaard (Simple)Quantity -->
         <xsl:for-each select="$adaUnit[@codeSystem = $oidGStandaardBST902THES2]">
             <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
@@ -770,7 +795,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <unit value="{$adaUnit[@codeSystem=$oidGStandaardBST902THES2]/@displayName}"/>
         <system value="{$oidMap[@oid=$oidUCUM]/@uri}"/>
         <code value="{nf:convertGstdBasiseenheid2UCUM($adaUnit[@codeSystem=$oidGStandaardBST902THES2]/@code)}"/>
-        
+
     </xsl:template>
 
 </xsl:stylesheet>

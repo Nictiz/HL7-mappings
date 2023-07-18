@@ -11,15 +11,15 @@
     <property name="is.version.short" value="907"/>
     <!-- date.T, currently only used for the examples -->
     <property name="date.T" value="2020-06-08"/>
-    
+
     <import file="../../../_ant-buildfiles/ant-publish/build-ada2fhir-mp-include.xml"/>
-    
+
     <target name="setup_907">
         <!-- The generic MP stuff -->
         <antcall target="setup"/>
-        
+
         <!-- the MP specific stuff for version 9.0.7 -->
-        
+
         <!-- preprocess for Touchstone (update use period to use end date for querying purposes -->
         <mkdir dir="${build.dir}/${usecase.mg}/ada_instance_4_TS"/>
         <delete>
@@ -27,7 +27,7 @@
         </delete>
         <sequential>
             <fileset id="inputFiles" dir="${build.dir}/${usecase.mg}/ada_instance_MA" includes="mg-mgr-mg-MA-Scenarioset0*.xml"/>
-            
+
             <echo/>
             <echo>${echo.label} input files ${build.dir}/${usecase.mg}/ada_instance, to be converted with: ${build.dir}/${usecase.mg}/payload/preprocess_ada_4_Touchstone.xsl</echo>
             <xslt force="true" style="${build.dir}/${usecase.mg}/payload/preprocess_ada_4_Touchstone.xsl" destdir="${build.dir}/${usecase.mg}/ada_instance_4_TS" extension=".xml" useImplicitFileset="false">
@@ -42,7 +42,7 @@
         </sequential>
         <!-- let's cleanup our temp stuff -->
         <delete dir="${build.dir}/${usecase.mg}/ada_instance_4_TS"/>
-        
+
         <!-- beschikbaarstellen_verstrekkingenvertaling medmij stuff -->
         <antcall target="setup_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.vv}"/>
@@ -51,7 +51,7 @@
             <param name="fileset.include" value="*.xml"/>
             <param name="refs.dir" value="${refs.dir}/${usecase.vv}"/>
         </antcall>
-        
+
         <!-- beschikbaarstellen_medicatiegegevens medmij stuff -->
         <mkdir dir="${build.dir}/${usecase.mg}/ada_instance"/>
         <delete>
@@ -62,7 +62,7 @@
                 <include name="XXX_*.xml"/>
             </fileset>
         </copy>
-        
+
         <!-- beschikbaarstellen_medicatieoverzicht medmij stuff -->
         <mkdir dir="${build.dir}/${usecase.mo}/ada_instance"/>
         <delete>
@@ -74,18 +74,18 @@
                 <include name="XXX_Jangi*.xml"/>
             </fileset>
         </copy>
-        
+
         <!-- TestSet data -->
         <antcall target="setup_TestSet"/>
-        
+
         <!-- let's convert too, now that we are here -->
         <antcall target="convert_ada_2_fhir_907"/>
-        
+
     </target>
-    
-    
+
+
     <target name="setup_TestSet">
-        
+
         <!-- beschikbaarstellen_medicatiegegevens -->
         <!-- beschikbaarstellen_medicatiegegevens MA -->
         <antcall target="setup_sub_instances">
@@ -96,7 +96,7 @@
             <param name="refs.dir" value="${refs.dir}/${usecase.mg}"/>
             <param name="ada.refs.dir" value="ada_instance_TestSet"/>
         </antcall>
-        
+
         <!-- beschikbaarstellen_medicatiegegevens VV -->
         <antcall target="setup_sub_instances">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
@@ -105,14 +105,14 @@
             <param name="refs.dir" value="${refs.dir}/${usecase.mg}"/>
             <param name="ada.refs.dir" value="ada_instance_TestSet"/>
         </antcall>
-        
+
         <!-- preprocess for Touchstone (update use period to use end date for querying purposes -->
         <antcall target="preprocess4Touchstone">
             <param name="base.dir" value="${build.dir}/${usecase.mg}"/>
             <param name="ada.dir" value="ada_instance_TestSet_MA"/>
             <param name="fileset.include" value="mg-mgr-ma-TestSet-scen0*.xml"/>
         </antcall>
-        
+
         <!-- beschikbaarstellen_medicatieoverzicht -->
         <antcall target="setup_sub_instances">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mo}"/>
@@ -121,7 +121,7 @@
             <param name="refs.dir" value="${refs.dir}/${usecase.mo}"/>
             <param name="ada.refs.dir" value="ada_instance_TestSet"/>
         </antcall>
-        
+
         <!-- copy output ada instances to ada_instance_mp_TestSet -->
         <mkdir dir="${build.dir}/${usecase.mo}/ada_instance_mp_TestSet"/>
         <!-- delete previous results, if any -->
@@ -133,71 +133,85 @@
                 <include name="*output.xml"/>
             </fileset>
         </copy>
-        
+
     </target>
-    
+
     <target name="convert_ada_2_fhir_907">
         <!-- The generic MP stuff -->
         <echo>convert_ada_2_fhir_907. The generic MP stuff, originally convert_ada_2_fhir, but now edited for Touchstone</echo>
-        <!--<antcall target="convert_ada_2_fhir"/>-->
+
         <!-- beschikbaarstellen_medicatiegegevens -->
         <antcall target="convert_ada_2_fhir_sub_mp_Touchstone">
             <param name="usecase" value="${usecase.mg}"/>
+            <param name="usecase.dir" value="${usecase.mg}"/>
             <param name="xsl.in" value="ada_instance_MA"/>
+            <param name="includes" value="*.*"/>
             <param name="xsl.out" value="fhir_instance_MA"/>
         </antcall>
         <antcall target="convert_ada_2_fhir_sub_mp_Touchstone">
             <param name="usecase" value="${usecase.mg}"/>
+            <param name="usecase.dir" value="${usecase.mg}"/>
             <param name="xsl.in" value="ada_instance_VV"/>
+            <param name="includes" value="*.*"/>
             <param name="xsl.out" value="fhir_instance_VV"/>
         </antcall>
-        
+
         <!-- beschikbaarstellen_medicatieoverzicht -->
         <antcall target="convert_ada_2_fhir_sub_mp_Touchstone">
             <param name="usecase" value="${usecase.mo}"/>
+            <param name="usecase.dir" value="${usecase.mo}"/>
             <param name="xsl.in" value="ada_instance_mp"/>
+            <param name="includes" value="*.*"/>
             <param name="xsl.out" value="fhir_instance_mp"/>
         </antcall>
-        
+
         <!-- also do the examples -->
         <antcall target="convert_ada_2_fhir_examples"/>
-        
+
         <!-- beschikbaarstellen_verstrekkingenvertaling, not yet implemented in 9.1.0,
         this call should be moved to generic function convert_ada_2_fhir after it has been implemented in 9.1.0-->
         <antcall target="convert_ada_2_fhir_sub_mp_Touchstone">
             <param name="usecase" value="${usecase.vv}"/>
+            <param name="usecase.dir" value="${usecase.vv}"/>
             <param name="xsl.in" value="ada_instance"/>
+            <param name="includes" value="*.*"/>
             <param name="xsl.out" value="fhir_instance"/>
         </antcall>
-        
+
         <!-- MP 907 specific stuff for test purposes -->
         <antcall target="convert_ada_2_fhir_907_TestSet"/>
-        
+
         <!-- the MP specific stuff for version 9.0.7 -->
         <echo>the MP specific stuff for version 9.0.7</echo>
         <echo/>
         <echo>MedMij stuff beschikbaarstellen_medicatiegegevens</echo>
         <antcall target="convert_ada_2_fhir_sub_mp_Touchstone">
             <param name="usecase" value="${usecase.mg}"/>
+            <param name="usecase.dir" value="${usecase.mg}"/>
             <param name="xsl.in" value="ada_instance"/>
+            <param name="includes" value="*.*"/>
             <param name="xsl.out" value="fhir_instance"/>
         </antcall>
-        
+
         <echo>MedMij stuff beschikbaarstellen_medicatieoverzicht</echo>
         <antcall target="convert_ada_2_fhir_sub_mp_Touchstone">
             <param name="usecase" value="${usecase.mo}"/>
+            <param name="usecase.dir" value="${usecase.mo}"/>
             <param name="xsl.in" value="ada_instance"/>
+            <param name="includes" value="*.*"/>
             <param name="xsl.out" value="fhir_instance"/>
         </antcall>
-        
+
         <!-- beschikbaarstellen_medicatiegegevens nictiz (regression) test stuff -->
         <echo>Nictiz test stuff beschikbaarstellen_medicatiegegevens</echo>
         <antcall target="convert_ada_2_fhir_sub_mp_Touchstone">
             <param name="usecase" value="${usecase.mg}"/>
+            <param name="usecase.dir" value="${usecase.mg}"/>
             <param name="xsl.in" value="ada_instance_test_nictiz"/>
+            <param name="includes" value="*.*"/>
             <param name="xsl.out" value="fhir_instance_test_nictiz"/>
         </antcall>
-        
+
         <!-- copy the appropriate fhir instances for Touchstone to a separate folder, to ease upload to Touchstone -->
         <echo>copy the appropriate fhir instances for Touchstone to a separate folder: 4TouchstoneMP</echo>
         <mkdir dir="${build.dir}/4TouchstoneMP"/>
@@ -217,27 +231,42 @@
             <fileset dir="${build.dir}/${usecase.vv}/fhir_instance" includes="*.xml" excludes="QURX*.xml"/>
         </copy>
     </target>
-    
+
     <target name="convert_ada_2_fhir_907_TestSet">
         <!-- TestSet -->
         <!-- beschikbaarstellen_medicatiegegevens -->
         <antcall target="convert_ada_2_fhir_sub_mp_Touchstone">
             <param name="usecase" value="${usecase.mg}"/>
+            <param name="usecase.dir" value="${usecase.mg}"/>
             <param name="xsl.in" value="ada_instance_TestSet_MA"/>
+            <param name="includes" value="*.*"/>
             <param name="xsl.out" value="fhir_instance_TestSet_MA"/>
         </antcall>
         <antcall target="convert_ada_2_fhir_sub_mp_Touchstone">
             <param name="usecase" value="${usecase.mg}"/>
+            <param name="usecase.dir" value="${usecase.mg}"/>
             <param name="xsl.in" value="ada_instance_TestSet_VV"/>
+            <param name="includes" value="*.*"/>
             <param name="xsl.out" value="fhir_instance_TestSet_VV"/>
         </antcall>
         <!-- medicatieoverzicht -->
         <antcall target="convert_ada_2_fhir_sub_mp_Touchstone">
             <param name="usecase" value="${usecase.mo}"/>
+            <param name="usecase.dir" value="${usecase.mo}"/>
             <param name="xsl.in" value="ada_instance_TestSet"/>
+            <param name="includes" value="*.*"/>
             <param name="xsl.out" value="fhir_instance_TestSet"/>
         </antcall>
-        
+
+        <!-- specific instances for internal testing -->
+        <antcall target="convert_ada_2_fhir_sub_mp_Touchstone">
+            <param name="usecase" value="${usecase.vv}"/>
+            <param name="usecase.dir" value="nictiz_test"/>
+            <param name="xsl.in" value="ada_instance"/>
+            <param name="includes" value="vv*.xml"/>
+            <param name="xsl.out" value="fhir_instance"/>
+        </antcall>
+
         <!-- copy the appropriate fhir instances for Touchstone to a separate folder, to ease upload to Touchstone -->
         <echo>copy the appropriate fhir instances for Touchstone to a separate folder</echo>
         <mkdir dir="${build.dir}/4TouchstoneMPTestSet"/>
@@ -252,7 +281,45 @@
             <fileset dir="${build.dir}/${usecase.mg}/fhir_instance_TestSet_VV" excludes="mg-mgr-*.xml"/>
             <fileset dir="${build.dir}/${usecase.mg}/fhir_instance_TestSet_MA" excludes="mg-mgr-*.xml"/>
         </copy>
-        
+
     </target>
-    
+
+    <target name="convert_ada_2_fhir_sub_mp_Touchstone">
+
+        <property name="xsl.ada2fhir" value="${build.dir}/fhir_fixtures4Touchstone/payload/${usecase}_2_fhir.xsl"/>
+        <property name="xsl.ada2fhir.resources" value="${build.dir}/fhir_fixtures4Touchstone/payload/${usecase}_2_fhir_resources.xsl"/>
+
+        <property name="xsl.input" value="${build.dir}/${usecase.dir}/${xsl.in}"/>
+        <property name="xsl.output" value="${build.dir}/${usecase.dir}/${xsl.out}"/>
+
+        <!-- make dir if it does not exist (anymore) -->
+        <mkdir dir="${xsl.output}"/>
+        <echo>Deleting previous results, if any</echo>
+        <delete>
+            <fileset dir="${xsl.output}" includes="*.xml"/>
+        </delete>
+
+        <fileset id="inputFiles" dir="${xsl.input}" includes="${includes}"/>
+
+        <echo/>
+        <echo>${echo.label} input files ${xsl.input}, to be converted with: ${xsl.ada2fhir.resources}</echo>
+        <xslt force="true" style="${xsl.ada2fhir.resources}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+            <fileset refid="inputFiles"/>
+            <param name="generateInstructionText" expression="true"/>
+            <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+        </xslt>
+
+        <echo/>
+        <echo>${echo.label} input files ${xsl.input}, to be converted with: ${xsl.ada2fhir}</echo>
+        <xslt force="true" style="${xsl.ada2fhir}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+            <fileset refid="inputFiles"/>
+            <param name="generateInstructionText" expression="true"/>
+            <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
+            <factory name="${xsl.saxon.class}"/>
+            <classpath location="${xsl.saxon}"/>
+        </xslt>
+    </target>
+
 </project>

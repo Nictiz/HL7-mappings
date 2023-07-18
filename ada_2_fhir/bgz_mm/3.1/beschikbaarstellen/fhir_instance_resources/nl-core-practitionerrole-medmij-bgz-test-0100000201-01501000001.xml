@@ -1,0 +1,76 @@
+<PractitionerRole xmlns="http://hl7.org/fhir">
+   <id value="nl-core-practitionerrole-medmij-bgz-test-0100000201-01501000001"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Zorgverlenerrol. Id: PatA-HealtcareProf1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7)</caption>
+            <tbody>
+               <tr>
+                  <th>Zorgverlener</th>
+                  <td>
+                     <div>Franciscus Dominicus Antonius F.D.A. Frans Pleijster</div>
+                     <div>Huisartsenpraktijk het Hogeland</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Specialisme</th>
+                  <td>
+                     <span title="Huisarts (01.015 - http://fhir.nl/fhir/NamingSystem/uzi-rolcode)">Huisarts</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <div>
+                        <a href="tel:0595-123456">0595-123456</a> (Vast telefoonnummer Werk)</div>
+                     <div>
+                        <a href="mailto:Fictieve.Huisarts@HetHogeland.nl">Fictieve.Huisarts@HetHogeland.nl</a> (E-mail Werk)</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="PatA-HealtcareProf1"/>
+   </identifier>
+   <practitioner>
+      <reference value="Practitioner/-practitioner-medmij-bgz-test-2-16-840-1-113883-2-4-6-1-01000002"/>
+      <display value="Franciscus Dominicus Antonius F.D.A. Frans Pleijster"/>
+   </practitioner>
+   <organization>
+      <reference value="Organization/-organization-medmij-bgz-test-2-16-840-1-113883-2-4-6-1-01000001"/>
+      <display value="Huisartsenpraktijk het Hogeland"/>
+   </organization>
+   <specialty>
+      <coding>
+         <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+         <code value="01.015"/>
+         <display value="Huisarts"/>
+      </coding>
+   </specialty>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Land Line"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="0595-123456"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="Fictieve.Huisarts@HetHogeland.nl"/>
+      <use value="work"/>
+   </telecom>
+</PractitionerRole>

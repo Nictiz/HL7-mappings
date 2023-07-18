@@ -1,0 +1,81 @@
+<NutritionOrder xmlns="http://hl7.org/fhir">
+   <id value="zib-NutritionAdvice-medmij-bgz-test-patA-nutrition1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-NutritionAdvice"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Voedingsadvies. Patiënt: Anouk A. Anouk van XXX_Rijn de XXX_Vries. Id: patA-NutritionAdvise (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Status: actief</caption>
+            <tbody>
+               <tr>
+                  <th>Aanvraagdatum</th>
+                  <td>
+                     <i>onbekend (ontbrekend gegeven)</i>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Toelichting</th>
+                  <td>Wegens verhoogde bloeddruk</td>
+               </tr>
+               <tr>
+                  <td colspan="2">
+                     <table>
+                        <caption>Orale voeding</caption>
+                        <thead>
+                           <tr>
+                              <th>Type</th>
+                              <th>Texture</th>
+                              <th>Vloeistofconsistentie</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td>Natriumarm dieet</td>
+                              <td>Vast<div>Vast</div>
+                              </td>
+                              <td>Vast</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-NutritionAdvice-Explanation">
+      <valueString value="Wegens verhoogde bloeddruk"/>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patA-NutritionAdvise"/>
+   </identifier>
+   <status value="active"/>
+   <patient>
+      <reference value="Patient/medmij-bgz-test-patA"/>
+      <display value="Anouk A. Anouk van XXX_Rijn de XXX_Vries"/>
+   </patient>
+   <dateTime>
+      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+         <valueCode value="unknown"/>
+      </extension>
+   </dateTime>
+   <oralDiet>
+      <type>
+         <text value="Natriumarm dieet"/>
+      </type>
+      <texture>
+         <modifier>
+            <text value="Vast"/>
+         </modifier>
+         <foodType>
+            <text value="Vast"/>
+         </foodType>
+      </texture>
+      <fluidConsistencyType>
+         <text value="Vast"/>
+      </fluidConsistencyType>
+   </oralDiet>
+</NutritionOrder>

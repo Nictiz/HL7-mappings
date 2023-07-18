@@ -16,6 +16,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
     
+    <!-- Needed to add the correct .category for BgZ-MM -->
+    <xsl:param name="usecase" select="''"/>
+    
     <xsl:variable name="procedures" as="element()*">
         <xsl:for-each-group select="//(verrichting[not(verrichting)] | procedure[not(procedure)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
             <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
@@ -261,11 +264,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:choose>
                     </status>
                     
-                    <!-- category is required in the FHIR profile, so always output category, data-absent-reason if no actual value -->
+                    <!-- category is required in the FHIR profile, and 387713003 is needed for BgZ MM -->
                     <category>
-                        <extension url="{$urlExtHL7DataAbsentReason}">
-                            <valueCode value="unknown"/>
-                        </extension>
+                        <xsl:choose>
+                            <xsl:when test="$usecase = 'medmij-bgz-test'">
+                                <coding>
+                                    <system value="http://snomed.info/sct"/>
+                                    <code value="387713003"/>
+                                    <display value="chirurgische ingreep"/>
+                                </coding>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <extension url="{$urlExtHL7DataAbsentReason}">
+                                    <valueCode value="unknown"/>
+                                </extension>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                        
                     </category>
                     
                     <xsl:for-each select="(verrichting_type | procedure_type)[@code]">
@@ -376,7 +391,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:when test="*">
                                 <focalDevice>
                                     <manipulated>
-                                        <xsl:apply-templates select="." mode="doMedicalDeviceReference-2.2"/>
+                                        <xsl:apply-templates select="." mode="doMedicalDeviceProductReference-2.2"/>
                                     </manipulated>
                                 </focalDevice>
                             </xsl:when>
