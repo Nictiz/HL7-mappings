@@ -2,7 +2,7 @@
    <id value="mg-mp-mg-tst-MGB-Scenarioset1-v30"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:b9df08f6-6ab0-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:b62fccbd-6b2e-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -29,9 +29,9 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
                <valueReference>
-                  <reference value="urn:uuid:4c764878-6b0d-11ec-0000-020000000000"/>
-                  <type value="Patient"/>
-                  <display value="Patient, D. XXX_Dijks"/>
+                  <reference value="urn:uuid:85be682e-6b50-11ec-0000-020000000000"/>
+                  <type value="PractitionerRole"/>
+                  <display value="Healthcare professional (role), Marcha van Partners, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Itis"/>
                </valueReference>
             </extension>
             <identifier>
@@ -61,6 +61,7 @@
                <end value="${DATE, T, D, -5}T23:59:59+02:00"/>
             </effectivePeriod>
             <dateAsserted value="${DATE, T, D, -4}T10:59:59+02:00"/>
+            <informationSource/>
             <derivedFrom>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
                   <valueCodeableConcept>
@@ -237,7 +238,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:18732cbd-6b0b-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6acc4fd6-6b45-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -264,9 +265,9 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
                <valueReference>
-                  <reference value="urn:uuid:4c764878-6b0d-11ec-0000-020000000000"/>
-                  <type value="Patient"/>
-                  <display value="Patient, D. XXX_Dijks"/>
+                  <reference value="urn:uuid:a60284d8-6b21-11ec-0000-020000000000"/>
+                  <type value="Location"/>
+                  <display value="Healthcare provider (location), Huisartsenpraktijk Itis"/>
                </valueReference>
             </extension>
             <identifier>
@@ -295,6 +296,11 @@
                <start value="${DATE, T, D, -30}T00:00:00+02:00"/>
             </effectivePeriod>
             <dateAsserted value="${DATE, T, D, -20}T11:43:12+02:00"/>
+            <informationSource>
+               <reference value="urn:uuid:4c764878-6b0d-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, D. XXX_Dijks"/>
+            </informationSource>
             <derivedFrom>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
                   <valueCodeableConcept>
@@ -708,6 +714,73 @@
       </request>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:85be682e-6b50-11ec-0000-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+            </meta>
+            <practitioner>
+               <reference value="urn:uuid:9162e824-6aab-11ec-0000-020000000000"/>
+               <type value="Practitioner"/>
+               <display value="Healthcare professional (person), Marcha van Partners"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:uuid:1ca6c464-6b4c-11ec-0000-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Huisartsenpraktijk Itis"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2020-10-23T00:00:00"/>
+                  <code value="0100"/>
+                  <display value="Huisartsen, niet nader gespecificeerd"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:9162e824-6aab-11ec-0000-020000000000"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+               <value value="000001115"/>
+            </identifier>
+            <name>
+               <use value="official"/>
+               <text value="Marcha van Partners"/>
+               <family value="van Partners">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Partners"/>
+                  </extension>
+               </family>
+               <given value="Marcha">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Practitioner"/>
+      </request>
+   </entry>
+   <entry>
       <fullUrl value="urn:uuid:7fa869d8-6b44-11ec-0000-020000000000"/>
       <resource>
          <Organization>
@@ -746,6 +819,88 @@
       <request>
          <method value="POST"/>
          <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:1ca6c464-6b4c-11ec-0000-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00005111"/>
+            </identifier>
+            <name value="Huisartsenpraktijk Itis"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Langelaan 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Langelaan"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Onze Stad"/>
+               <postalCode value="1234ZZ"/>
+            </address>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:a60284d8-6b21-11ec-0000-020000000000"/>
+      <resource>
+         <Location>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider"/>
+            </meta>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Langelaan 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Langelaan"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Onze Stad"/>
+               <postalCode value="1234ZZ"/>
+            </address>
+            <managingOrganization>
+               <reference value="urn:uuid:1ca6c464-6b4c-11ec-0000-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Huisartsenpraktijk Itis"/>
+            </managingOrganization>
+         </Location>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Location"/>
       </request>
    </entry>
    <entry>

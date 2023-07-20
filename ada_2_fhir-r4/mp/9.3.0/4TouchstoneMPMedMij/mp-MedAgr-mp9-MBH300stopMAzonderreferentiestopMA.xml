@@ -3,6 +3,15 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
    </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="Vanaf T - 14 dagen, tot en met T + 2 dagen, 1 maal per dag 1 stuk, Oraal, stopgezet"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+      <valuePeriod>
+         <start value="${DATE, T, D, -14}T00:00:00+02:00"/>
+         <end value="${DATE, T, D, +2}T23:59:59+02:00"/>
+      </valuePeriod>
+   </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
       <valueIdentifier>
          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
@@ -48,11 +57,35 @@
       <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
    </requester>
    <dosageInstruction>
+      <timing>
+         <repeat>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
       <route>
          <coding>
             <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-            <code value=""/>
+            <code value="9"/>
+            <display value="Oraal"/>
          </coding>
       </route>
+      <doseAndRate>
+         <doseQuantity>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+               <valueQuantity>
+                  <value value="1"/>
+                  <unit value="Stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </valueQuantity>
+            </extension>
+            <value value="1"/>
+            <unit value="Stuk"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="1"/>
+         </doseQuantity>
+      </doseAndRate>
    </dosageInstruction>
 </MedicationRequest>
