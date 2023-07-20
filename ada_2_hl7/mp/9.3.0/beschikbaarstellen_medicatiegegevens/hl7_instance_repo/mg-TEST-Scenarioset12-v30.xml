@@ -5507,18 +5507,6 @@
                <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
-         <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_300_NieuweMA_start_MA"
-                   root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <code code="33633005"
-                     codeSystem="2.16.840.1.113883.6.96"
-                     codeSystemName="SNOMED CT"
-                     displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"/>
-            </substanceAdministration>
-         </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">
             <procedure classCode="PROC" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
@@ -6995,10 +6983,10 @@
                displayName="voorschrijven van geneesmiddel (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 25 sep 2022, 2 maal per dag 2 stuks, oraal</text>
+         <text mediaType="text/plain">Vanaf 25 sep 2022, gedurende 50 dagen, 2 maal per dag 2 stuks, oraal</text>
          <effectiveTime xsi:type="IVL_TS">
             <low value="20220925000000"/>
-            <high nullFlavor="NI"/>
+            <width value="50" unit="d"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -9094,7 +9082,15 @@
                displayName="voorschrijven van geneesmiddel (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">stopgezet</text>
+         <text mediaType="text/plain">Vanaf 18 dec 2022, tot en met 3 jan 2023, 1 maal per dag 1 stuk gedurende seconden, Oraal, stopgezet</text>
+         <effectiveTime xsi:type="IVL_TS">
+            <low value="20221218000000"/>
+            <high value="20230103235959"/>
+         </effectiveTime>
+         <routeCode code="9"
+                    codeSystem="2.16.840.1.113883.2.4.4.9"
+                    displayName="Oraal"
+                    codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
          <consumable>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
@@ -9151,6 +9147,31 @@
                       codeSystem="2.16.840.1.113883.6.96"
                       displayName="stopgezet"/>
             </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="1"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+                  <repeat>
+                     <duration value=""/>
+                     <durationUnit value="s"/>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="1" unit="1">
+                     <translation value="1"
+                                  code="245"
+                                  displayName="Stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">
             <procedure classCode="PROC" moodCode="EVN">
@@ -9445,96 +9466,6 @@
       </substanceAdministration>
    </component>
    <component typeCode="COMP">
-      <substanceAdministration classCode="SBADM" moodCode="RQO">
-         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9416"/>
-         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9415"/>
-         <id extension="MBH_300_stopMA_zonder_referentie_toekomstTA"
-             root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-         <code code="422037009"
-               displayName="Toedieningsafspraak"
-               codeSystem="2.16.840.1.113883.6.96"
-               codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 4 jan 2023, gedurende 3 dagen, 1 maal per dag 0.5 stuk, oraal</text>
-         <effectiveTime xsi:type="IVL_TS">
-            <low value="20230104000000"/>
-            <width value="3" unit="d"/>
-         </effectiveTime>
-         <routeCode code="9"
-                    codeSystem="2.16.840.1.113883.2.4.4.9"
-                    displayName="oraal"
-                    codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
-         <consumable>
-            <manufacturedProduct>
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="594253"
-                        codeSystem="2.16.840.1.113883.2.4.4.7"
-                        displayName="DICLOFENAC NATRIUM SANDOZ RETARD TABLET MGA 100MG"
-                        codeSystemName="G-Standaard HPK">
-                     <translation code="8052"
-                                  codeSystem="2.16.840.1.113883.2.4.4.10"
-                                  displayName="DICLOFENAC NATRIUM TABLET MGA 100MG"
-                                  codeSystemName="G-Standaard PRK"/>
-                     <translation code="22268"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="DICLOFENAC NATRIUM TABLET MGA 100MG"
-                                  codeSystemName="G-Standaard GPK"/>
-                  </code>
-               </manufacturedMaterial>
-            </manufacturedProduct>
-         </consumable>
-         <author>
-            <time value="20221225145500"/>
-            <assignedAuthor>
-               <id nullFlavor="NI"/>
-               <representedOrganization>
-                  <id extension="00001111" root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
-                  <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
-                     <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
-                  </addr>
-               </representedOrganization>
-            </assignedAuthor>
-         </author>
-         <entryRelationship typeCode="COMP">
-            <sequenceNumber value="1"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
-                  <repeat>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </effectiveTime>
-               <doseQuantity>
-                  <center value="0.5" unit="1">
-                     <translation value="0.5"
-                                  code="245"
-                                  displayName="stuk"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                  </center>
-               </doseQuantity>
-               <consumable xsi:nil="true"/>
-            </substanceAdministration>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
-               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_stopMA_zonder_referentie"/>
-               <code code="1"
-                     displayName="Medicamenteuze behandeling"
-                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
-            </procedure>
-         </entryRelationship>
-      </substanceAdministration>
-   </component>
-   <component typeCode="COMP">
       <substanceAdministration classCode="SBADM" moodCode="EVN" negationInd="false">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9444"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9442"/>
@@ -9694,186 +9625,6 @@
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9101"/>
                <id extension="MBH_300_stopMA_zonder_referentie_TA"
-                   root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <code displayName="Toedieningsafspraak"
-                     code="422037009"
-                     codeSystem="2.16.840.1.113883.6.96"
-                     codeSystemName="SNOMED CT"/>
-               <consumable xsi:nil="true"/>
-            </substanceAdministration>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
-               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_stopMA_zonder_referentie"/>
-               <code code="1"
-                     displayName="Medicamenteuze behandeling"
-                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
-            </procedure>
-         </entryRelationship>
-      </substanceAdministration>
-   </component>
-   <component typeCode="COMP">
-      <substanceAdministration classCode="SBADM" moodCode="EVN" negationInd="false">
-         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9444"/>
-         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9442"/>
-         <id extension="MBH_300_stopMA_zonder_referentie_toekomstMGB"
-             root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
-         <code code="422979000"
-               displayName="bevinding betreffende gedrag met betrekking tot medicatieregime (bevinding)"
-               codeSystem="2.16.840.1.113883.6.96"
-               codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 4 jan 2023, gedurende 1 week, 1 maal per dag 0.5 stuk, oraal</text>
-         <effectiveTime xsi:type="IVL_TS">
-            <low value="20230104000000"/>
-            <width value="1" unit="wk"/>
-         </effectiveTime>
-         <routeCode code="9"
-                    codeSystem="2.16.840.1.113883.2.4.4.9"
-                    displayName="oraal"
-                    codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
-         <consumable>
-            <manufacturedProduct>
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9363"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="594253"
-                        codeSystem="2.16.840.1.113883.2.4.4.7"
-                        displayName="DICLOFENAC NATRIUM SANDOZ RETARD TABLET MGA 100MG"
-                        codeSystemName="G-Standaard HPK">
-                     <translation code="8052"
-                                  codeSystem="2.16.840.1.113883.2.4.4.10"
-                                  displayName="DICLOFENAC NATRIUM TABLET MGA 100MG"
-                                  codeSystemName="G-Standaard PRK"/>
-                     <translation code="22268"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="DICLOFENAC NATRIUM TABLET MGA 100MG"
-                                  codeSystemName="G-Standaard GPK"/>
-                  </code>
-               </manufacturedMaterial>
-            </manufacturedProduct>
-         </consumable>
-         <author>
-            <time value="20221225150100"/>
-            <assignedAuthor>
-               <id extension="000001111" root="2.16.528.1.1007.3.1"/>
-               <code code="0100"
-                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                     displayName="Huisartsen, niet nader gespecificeerd"
-                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                     codeSystemVersion="2020-10-23T00:00:00"/>
-               <assignedPerson>
-                  <name>
-                     <given qualifier="BR">Peter</given>
-                     <prefix qualifier="VV">van </prefix>
-                     <family qualifier="BR">Pulver</family>
-                  </name>
-               </assignedPerson>
-               <representedOrganization>
-                  <id extension="00001111" root="2.16.528.1.1007.3.3"/>
-                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
-                  <addr use="WP">
-                     <streetName>Dorpsstraat</streetName>
-                     <houseNumber>1</houseNumber>
-                     <postalCode>1234 AA</postalCode>
-                     <city>Ons Dorp</city>
-                  </addr>
-               </representedOrganization>
-            </assignedAuthor>
-         </author>
-         <informant>
-            <assignedEntity>
-               <id extension="999900456" root="2.16.840.1.113883.2.4.6.3"/>
-               <code code="ONESELF"
-                     displayName="Self"
-                     codeSystem="2.16.840.1.113883.5.111"
-                     codeSystemName="RoleCode"/>
-            </assignedEntity>
-         </informant>
-         <entryRelationship typeCode="COMP">
-            <observation classCode="OBS" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9189"/>
-               <code displayName="Gebruikindicator"
-                     code="15"
-                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
-               <value xsi:type="BL" value="true"/>
-            </observation>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP">
-            <observation classCode="OBS" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9317"/>
-               <code displayName="patient takes medication as prescribed (finding)"
-                     code="112221000146107"
-                     codeSystem="2.16.840.1.113883.6.96"
-                     codeSystemName="SNOMED CT"/>
-               <value xsi:type="BL" value="true"/>
-            </observation>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP">
-            <sequenceNumber value="1"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
-                  <repeat>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
-                  </repeat>
-               </effectiveTime>
-               <doseQuantity>
-                  <center value="0.5" unit="1">
-                     <translation value="0.5"
-                                  code="245"
-                                  displayName="stuk"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                  </center>
-               </doseQuantity>
-               <consumable xsi:nil="true"/>
-            </substanceAdministration>
-         </entryRelationship>
-         <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9388"/>
-               <code code="33633005"
-                     codeSystem="2.16.840.1.113883.6.96"
-                     codeSystemName="SNOMED CT"
-                     displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"/>
-               <author>
-                  <time nullFlavor="NI"/>
-                  <assignedAuthor>
-                     <id extension="000001111" root="2.16.528.1.1007.3.1"/>
-                     <code code="0100"
-                           codeSystem="2.16.840.1.113883.2.4.6.7"
-                           displayName="Huisartsen, niet nader gespecificeerd"
-                           codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                           codeSystemVersion="2020-10-23T00:00:00"/>
-                     <assignedPerson>
-                        <name>
-                           <given qualifier="BR">Peter</given>
-                           <prefix qualifier="VV">van </prefix>
-                           <family qualifier="BR">Pulver</family>
-                        </name>
-                     </assignedPerson>
-                     <representedOrganization>
-                        <id extension="00001111" root="2.16.528.1.1007.3.3"/>
-                        <name>Huisartsenpraktijk Pulver &amp; Partners</name>
-                        <addr use="WP">
-                           <streetName>Dorpsstraat</streetName>
-                           <houseNumber>1</houseNumber>
-                           <postalCode>1234 AA</postalCode>
-                           <city>Ons Dorp</city>
-                        </addr>
-                     </representedOrganization>
-                  </assignedAuthor>
-               </author>
-            </substanceAdministration>
-         </entryRelationship>
-         <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9101"/>
-               <id extension="MBH_300_stopMA_zonder_referentie_toekomstTA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                <code displayName="Toedieningsafspraak"
                      code="422037009"
