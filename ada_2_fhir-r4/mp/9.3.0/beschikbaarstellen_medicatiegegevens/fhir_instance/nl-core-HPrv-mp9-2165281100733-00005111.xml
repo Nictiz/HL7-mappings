@@ -1,0 +1,33 @@
+<Location xmlns="http://hl7.org/fhir">
+   <id value="nl-core-HPrv-mp9-2165281100733-00005111"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider"/>
+   </meta>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+               <code value="WP"/>
+               <display value="Werkadres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <use value="work"/>
+      <line value="Langelaan 1">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Langelaan"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="1"/>
+         </extension>
+      </line>
+      <city value="Onze Stad"/>
+      <postalCode value="1234ZZ"/>
+   </address>
+   <managingOrganization>
+      <reference value="Organization/nl-core-HPrv-Org-mp9-Org-2165281100733-00005111"/>
+      <type value="Organization"/>
+      <display value="Healthcare provider (organization), Huisartsenpraktijk Itis"/>
+   </managingOrganization>
+</Location>

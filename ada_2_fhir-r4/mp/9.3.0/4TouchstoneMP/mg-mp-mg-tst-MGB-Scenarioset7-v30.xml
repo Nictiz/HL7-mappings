@@ -2,7 +2,7 @@
    <id value="mg-mp-mg-tst-MGB-Scenarioset7-v30"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c6cb2be7-6af8-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c76a4b86-6b6c-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -29,9 +29,9 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
                <valueReference>
-                  <reference value="urn:uuid:758f80d2-6b35-11ec-0000-020000000000"/>
-                  <type value="Patient"/>
-                  <display value="Patient, M. van de XXX_Rambaran Mishre"/>
+                  <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
+                  <type value="PractitionerRole"/>
+                  <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <identifier>
@@ -61,6 +61,11 @@
                <end value="${DATE, T, D, +0}T23:59:59+02:00"/>
             </effectivePeriod>
             <dateAsserted value="${DATE, T, D, +0}T21:53:00+02:00"/>
+            <informationSource>
+               <reference value="urn:uuid:758f80d2-6b35-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, M. van de XXX_Rambaran Mishre"/>
+            </informationSource>
             <derivedFrom>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
                   <valueCodeableConcept>
@@ -101,7 +106,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2e659367-6b5a-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:186cd746-6a97-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -128,9 +133,9 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
                <valueReference>
-                  <reference value="urn:uuid:758f80d2-6b35-11ec-0000-020000000000"/>
-                  <type value="Patient"/>
-                  <display value="Patient, M. van de XXX_Rambaran Mishre"/>
+                  <reference value="urn:uuid:8a32056e-6b50-11ec-0000-020000000000"/>
+                  <type value="Location"/>
+                  <display value="Healthcare provider (location), Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <identifier>
@@ -160,6 +165,11 @@
                <end value="${DATE, T, D, +0}T23:59:59+02:00"/>
             </effectivePeriod>
             <dateAsserted value="${DATE, T, D, +0}T22:08:00+02:00"/>
+            <informationSource>
+               <reference value="urn:uuid:758f80d2-6b35-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, M. van de XXX_Rambaran Mishre"/>
+            </informationSource>
             <derivedFrom>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
                   <valueCodeableConcept>
@@ -200,7 +210,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c299a786-6ae6-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:4aecdcbd-6b27-11ec-0000-020000000000"/>
       <resource>
          <MedicationStatement>
             <meta>
@@ -227,9 +237,9 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
                <valueReference>
-                  <reference value="urn:uuid:758f80d2-6b35-11ec-0000-020000000000"/>
-                  <type value="Patient"/>
-                  <display value="Patient, M. van de XXX_Rambaran Mishre"/>
+                  <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
+                  <type value="PractitionerRole"/>
+                  <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
             </extension>
             <identifier>
@@ -259,6 +269,11 @@
                <end value="${DATE, T, D, +0}T23:59:59+02:00"/>
             </effectivePeriod>
             <dateAsserted value="${DATE, T, D, +0}T23:01:00+02:00"/>
+            <informationSource>
+               <reference value="urn:uuid:758f80d2-6b35-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, M. van de XXX_Rambaran Mishre"/>
+            </informationSource>
             <derivedFrom>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
                   <valueCodeableConcept>
@@ -454,6 +469,47 @@
       <request>
          <method value="POST"/>
          <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:8a32056e-6b50-11ec-0000-020000000000"/>
+      <resource>
+         <Location>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider"/>
+            </meta>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
+            <managingOrganization>
+               <reference value="urn:uuid:7fa869d8-6b44-11ec-0000-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
+            </managingOrganization>
+         </Location>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Location"/>
       </request>
    </entry>
    <entry>

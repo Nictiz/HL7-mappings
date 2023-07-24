@@ -1841,7 +1841,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:47af79f5-6aed-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:bf31870d-6a9c-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -2047,7 +2047,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5ee3a9f5-6aa9-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:f1a29d0d-6b32-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -2770,7 +2770,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2e4f014a-6ab9-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:25231f0d-6af5-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -2793,16 +2793,6 @@
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
                   <value value="MBH_300_wijzigen_verlaging"/>
                </valueIdentifier>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RelationAdministrationAgreement">
-               <valueReference>
-                  <type value="MedicationDispense"/>
-                  <identifier>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-                     <value value="MBH_300_wijzigen_verlaging_TA_start"/>
-                  </identifier>
-                  <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_wijzigen_verlaging_TA_start || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               </valueReference>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
@@ -2992,7 +2982,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:eeeba0aa-6b33-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:e4f05c48-6b7d-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -3015,6 +3005,16 @@
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
                   <value value="MBH_300_wijzigen_verlaging"/>
                </valueIdentifier>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RelationAdministrationAgreement">
+               <valueReference>
+                  <type value="MedicationDispense"/>
+                  <identifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+                     <value value="MBH_300_wijzigen_verlaging_TA_start"/>
+                  </identifier>
+                  <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_wijzigen_verlaging_TA_start || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               </valueReference>
             </extension>
             <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
                <valueCodeableConcept>
@@ -3855,9 +3855,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBG_300_annuleren_MA_geannuleerd"/>
+                  <value value="MBH_300_annuleren_MA_geannuleerd"/>
                </identifier>
-               <display value="relatie naar medicatieafspraak met identificatie: MBG_300_annuleren_MA_geannuleerd || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_annuleren_MA_geannuleerd || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </authorizingPrescription>
             <dosageInstruction>
                <timing>
@@ -4270,7 +4270,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:47838508-6acd-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:14d07f0d-6b7a-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -4653,6 +4653,25 @@
       </request>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="01236578"/>
+            </identifier>
+            <name value="Apotheek De Gulle Gaper"/>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
       <fullUrl value="urn:uuid:7fa869d8-6b44-11ec-0000-020000000000"/>
       <resource>
          <Organization>
@@ -4686,25 +4705,6 @@
                <city value="Ons Dorp"/>
                <postalCode value="1234AA"/>
             </address>
-         </Organization>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Organization"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
-      <resource>
-         <Organization>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
-            </meta>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
-               <value value="01236578"/>
-            </identifier>
-            <name value="Apotheek De Gulle Gaper"/>
          </Organization>
       </resource>
       <request>
