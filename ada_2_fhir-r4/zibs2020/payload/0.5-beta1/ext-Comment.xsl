@@ -39,7 +39,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:for-each select="$in[string-length(@value) gt 0]">
             <extension url="{$urlExtComment}">
-                <valueString value="{@value}"/>
+                <valueString>
+                    <xsl:call-template name="string-to-string">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
+                </valueString>
             </extension>
         </xsl:for-each>
     </xsl:template>

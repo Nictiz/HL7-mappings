@@ -48,6 +48,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../0.7-beta1/nl-core-Education.xsl"/>
     <xsl:import href="../0.7-beta1/nl-core-Encounter.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-EpisodeOfcare.xsl"/>
+    <xsl:import href="nl-core-FamilySituation.xsl"/>
     <xsl:import href="nl-core-FeedingPatternInfant.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-FLACCpainScale.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-FluidBalance.xsl"/>

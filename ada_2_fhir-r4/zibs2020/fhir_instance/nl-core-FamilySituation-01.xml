@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="nl-core-FamilySituation-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-FamilySituation"/>
+   </meta>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="365470003"/>
+         <display value="bevinding betreffende gegevens over gezin en gezinssamenstelling"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-TreatmentDirective2-02-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Jan Pieter Mark (Piet) Pietersen"/>
+   </subject>
+   <note>
+      <text value="Beide inwonende kinderen zijn zeer zelfstandig."/>
+   </note>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="224130005"/>
+            <display value="gezinssamenstelling"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="160756002"/>
+            <display value="woont met familie"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="224118004"/>
+            <display value="aantal nakomelingen"/>
+         </coding>
+      </code>
+      <valueInteger value="3"/>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="55811000146107"/>
+            <display value="                                      aantal thuiswonende kinderen"/>
+         </coding>
+      </code>
+      <valueInteger value="2"/>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="270111000146104"/>
+            <display value="zorgtaken"/>
+         </coding>
+      </code>
+      <valueString value="Heeft zorg voor vader die in huis woont."/>
+   </component>
+   <component>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-FamiliySituation.LivingAtHome">
+         <valueBoolean value="true"/>
+      </extension>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
+         <valueString value="Jongste kind"/>
+      </extension>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="67822003"/>
+            <display value="kind"/>
+         </coding>
+      </code>
+      <valueDateTime value="2011-04-19"/>
+   </component>
+   <component>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-FamiliySituation.LivingAtHome">
+         <valueBoolean value="true"/>
+      </extension>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="67822003"/>
+            <display value="kind"/>
+         </coding>
+      </code>
+      <valueDateTime value="2003-01-01"/>
+   </component>
+   <component>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-FamiliySituation.LivingAtHome">
+         <valueBoolean value="false"/>
+      </extension>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="67822003"/>
+            <display value="kind"/>
+         </coding>
+      </code>
+      <valueDateTime value="2001-07-01"/>
+   </component>
+</Observation>
