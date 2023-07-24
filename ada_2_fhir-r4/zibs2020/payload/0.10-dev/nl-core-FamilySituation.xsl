@@ -106,8 +106,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <coding>
                                 <system value="http://snomed.info/sct"/>
                                 <code value="55811000146107"/>
-                                <display value="	
-                                    aantal thuiswonende kinderen"/>
+                                <display value="aantal thuiswonende kinderen"/>
                             </coding>
                         </code>
                         <valueInteger>
