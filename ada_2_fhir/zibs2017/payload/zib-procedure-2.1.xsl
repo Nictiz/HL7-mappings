@@ -30,9 +30,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <reference-display>
                     <xsl:value-of select="(verrichting_type | procedure_type)/(@displayName | @originalText)"/>
                 </reference-display>
-                <xsl:apply-templates select="current-group()[1]" mode="doProcedureEntry-2.1">
-                    <!--<xsl:with-param name="uuid" select="$uuid"/>-->
-                </xsl:apply-templates>
+                <xsl:choose>
+                    <xsl:when test="nf:isFuture((verrichting_start_datum | procedure_start_date)/@value) or aanvrager | requester">
+                        <xsl:apply-templates select="current-group()[1]" mode="doProcedureRequestEntry-2.1"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:apply-templates select="current-group()[1]" mode="doProcedureEntry-2.1"/>
+                    </xsl:otherwise>
+                </xsl:choose>
             </unique-procedure>
         </xsl:for-each-group>
     </xsl:variable>

@@ -88,6 +88,9 @@
             <xsl:when test="$dateOrDt castable as xs:dateTime">
                 <xsl:value-of select="$dateOrDt &gt; current-dateTime()"/>
             </xsl:when>
+            <xsl:when test="starts-with($dateOrDt, 'T+')">
+                <xsl:value-of select="true()"/>
+            </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="false()"/>
             </xsl:otherwise>
@@ -152,6 +155,9 @@
             </xsl:when>
             <xsl:when test="$dateOrDt castable as xs:dateTime">
                 <xsl:value-of select="$dateOrDt &lt; current-dateTime()"/>
+            </xsl:when>
+            <xsl:when test="starts-with($dateOrDt, 'T-')">
+                <xsl:value-of select="true()"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="false()"/>

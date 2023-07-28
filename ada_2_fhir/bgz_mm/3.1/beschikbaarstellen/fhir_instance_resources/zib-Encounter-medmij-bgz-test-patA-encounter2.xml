@@ -1,5 +1,5 @@
 <Encounter xmlns="http://hl7.org/fhir">
-   <id value="zib-Encounter-medmij-bgz-test-patA-encounter1"/>
+   <id value="zib-Encounter-medmij-bgz-test-patA-encounter2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
    </meta>
@@ -7,7 +7,7 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Contact. Subject: Anouk A. Anouk van XXX_Rijn de XXX_Vries. Id: patA-encounter1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Status: voltooid</caption>
+            <caption>Contact. Subject: Anouk A. Anouk van XXX_Rijn de XXX_Vries. Id: patA-encounter2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Status: gepland</caption>
             <tbody>
                <tr>
                   <th>Type contact</th>
@@ -19,7 +19,7 @@
                </tr>
                <tr>
                   <th>Periode</th>
-                  <td>28 november 2022</td>
+                  <td>${DATE, T, D, +45} - ${DATE, T, D, +45}</td>
                </tr>
                <tr>
                   <th>Reden</th>
@@ -29,7 +29,7 @@
                   <th>Probleem/Verrichting</th>
                   <td>
                      <ul>
-                        <li>Artrose van rechter kniegewricht</li>
+                        <li>Artrose van linker kniegewricht</li>
                         <li>Implantatie van gewrichtsprothese in knie</li>
                      </ul>
                   </td>
@@ -62,9 +62,9 @@
    </text>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
-      <value value="patA-encounter1"/>
+      <value value="patA-encounter2"/>
    </identifier>
-   <status value="finished"/>
+   <status value="planned"/>
    <class>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
          <valueCodeableConcept>
@@ -103,21 +103,21 @@
       </individual>
    </participant>
    <period>
-      <start value="2022-11-28"/>
-      <end value="2022-11-28"/>
+      <start value="${DATE, T, D, +45}"/>
+      <end value="${DATE, T, D, +45}"/>
    </period>
    <reason>
       <text value="Geen informatie"/>
    </reason>
    <diagnosis>
       <condition>
-         <reference value="Condition/zib-Problem-medmij-bgz-test-patA-problem2"/>
-         <display value="Artrose van rechter kniegewricht"/>
+         <reference value="Condition/zib-Problem-medmij-bgz-test-patA-problem5"/>
+         <display value="Artrose van linker kniegewricht"/>
       </condition>
    </diagnosis>
    <diagnosis>
       <condition>
-         <reference value="ProcedureRequest/zib-ProcedureRequest-medmij-bgz-test-patA-procedure1"/>
+         <reference value="ProcedureRequest/zib-ProcedureRequest-medmij-bgz-test-patA-procedure2"/>
          <display value="Implantatie van gewrichtsprothese in knie"/>
       </condition>
    </diagnosis>
