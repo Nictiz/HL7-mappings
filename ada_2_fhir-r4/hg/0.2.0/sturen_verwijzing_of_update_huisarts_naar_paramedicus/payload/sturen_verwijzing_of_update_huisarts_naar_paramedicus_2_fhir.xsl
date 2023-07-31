@@ -441,6 +441,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <display value="volgen van klinisch zorgpad"/>
                                 </coding>
                             </code>
+                            <text>
+                                <status value="extensions"/>
+                                <div xmlns="http://www.w3.org/1999/xhtml">
+                                    <xsl:value-of select="concat('Zorgpad: ', @value)"/>
+                                </div>
+                            </text>
                         </section>
                     </xsl:for-each>
                     
@@ -461,6 +467,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <display value="faciliteiten benodigd bij consult"/>
                                 </coding>
                             </code>
+                            <text>
+                                <status value="extensions"/>
+                                <div xmlns="http://www.w3.org/1999/xhtml">
+                                    <xsl:value-of select="concat('Voorzieningen nodig bij consult: ', @value)"/>
+                                </div>
+                            </text>
                         </section>
                     </xsl:for-each>
                 </section>
@@ -497,6 +509,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <display value="verwijzing voor"/>
                                 </coding>
                             </code>
+                            <text>
+                                <status value="extensions"/>
+                                <div xmlns="http://www.w3.org/1999/xhtml">
+                                    <xsl:value-of select="concat('Reden bericht: ', if (probleem/probleem_naam/@displayName) then concat(probleem/probleem_naam/@displayName, ', ') else '', context/@value)"/>
+                                </div>
+                            </text>
                             
                             <xsl:for-each select="probleem">
                                 <entry>
@@ -526,6 +544,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <display value="behandeling lopende"/>
                                 </coding>
                             </code>
+                            <text>
+                                <status value="extensions"/>
+                                <div xmlns="http://www.w3.org/1999/xhtml">
+                                    <xsl:value-of select="concat('Ingestelde behandeling: ', @value)"/>
+                                </div>
+                            </text>
                         </section>
                     </xsl:for-each>
                     
@@ -546,6 +570,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <display value="toelichting op aard van verwijzing"/>
                                 </coding>
                             </code>
+                            <text>
+                                <status value="extensions"/>
+                                <div xmlns="http://www.w3.org/1999/xhtml">
+                                    <xsl:value-of select="concat('Procedurevoorstel: ', @value)"/>
+                                </div>
+                            </text>
                         </section>
                     </xsl:for-each>
                     
@@ -566,6 +596,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <display value="toelichting op voorgesteld beleid"/>
                                 </coding>
                             </code>
+                            <text>
+                                <status value="extensions"/>
+                                <div xmlns="http://www.w3.org/1999/xhtml">
+                                    <xsl:value-of select="concat('Verder van belang: ', @value)"/>
+                                </div>
+                            </text>
                         </section>
                     </xsl:for-each>
                 </section>
@@ -643,5 +679,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:if test="string-length($fullUrl) gt 0">
             <fullUrl value="{$fullUrl}"/>
         </xsl:if>
+    </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
+    </xd:doc>
+    <xsl:template match="kern" mode="_generateDisplay">
+        <xsl:variable name="parts" as="item()*">
+            <xsl:text>Referral note</xsl:text>
+            <xsl:value-of select="../envelop/patientgegevens/patient/@value"/>
+        </xsl:variable>
+        <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
     </xsl:template>
 </xsl:stylesheet>
