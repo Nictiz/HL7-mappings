@@ -413,7 +413,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
             <title value="Referral note"/>
             
-            <xsl:for-each select="../envelop">
+            <xsl:if test="../envelop/(zorgpad[@value] | voorzieningen_nodig_bij_consult[@value])">
                 <section>
                     <title value="Envelop"/>
                     <code>
@@ -424,7 +424,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </coding>
                     </code>
                     
-                    <xsl:for-each select="zorgpad[@value]">
+                    <xsl:for-each select="../envelop/zorgpad[@value]">
                         <section>
                             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TextValue">
                                 <valueString>
@@ -450,7 +450,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </section>
                     </xsl:for-each>
                     
-                    <xsl:for-each select="voorzieningen_nodig_bij_consult[@value]">
+                    <xsl:for-each select="../envelop/voorzieningen_nodig_bij_consult[@value]">
                         <section>
                             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TextValue">
                                 <valueString>
@@ -476,7 +476,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </section>
                     </xsl:for-each>
                 </section>
-            </xsl:for-each>
+            </xsl:if>
             
             <xsl:if test="reden_bericht/context[@value] | reden_bericht/probleem | ingestelde_behandeling[@value] | procedure_voorstel[@value] | verder_van_belang[@value]">
                 <section>
