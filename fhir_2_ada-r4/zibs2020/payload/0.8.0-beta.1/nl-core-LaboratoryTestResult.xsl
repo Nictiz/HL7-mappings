@@ -43,7 +43,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xsl:if test="$laboratoryTests[f:hasMember] and $laboratoryTests[not(f:hasMember)]">
 			<xsl:call-template name="util:logMessage">
 				<xsl:with-param name="level" select="$logFATAL"/>
-				<xsl:with-param name="msg">Unsupported call of nl-core-LaboratoryTestResult. You can send in 1 Observation with hasMember or multiple Observations without hasMember, not both</xsl:with-param>
+				<xsl:with-param name="msg">Unsupported call of nl-core-LaboratoryTestResult. You can send 1 Observation with hasMember or multiple Observations without hasMember, not both</xsl:with-param>
 				<xsl:with-param name="terminate" select="true()"/>
 			</xsl:call-template>
 		</xsl:if>
