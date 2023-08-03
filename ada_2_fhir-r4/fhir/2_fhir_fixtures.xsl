@@ -130,7 +130,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:function name="uuid:next-nr" as="xs:integer">
         <xsl:param name="node"/>
-        <xsl:sequence select="xs:integer(nf:product-sum(string-to-codepoints(concat($node/@profile,nf:getGroupingKeyDefault($node)))))"/>
+        <xsl:sequence select="xs:integer(nf:product-sum(string-to-codepoints(concat($node/@profile,nf:getGroupingKeyDefault($node)))[position() lt 500]))"/>
     </xsl:function>
     
     <xd:doc>

@@ -431,8 +431,7 @@
         <xsl:copy>
             <xsl:apply-templates select="@*" mode="#current"/>
             <xsl:choose>
-                <xsl:when test="@code= 'OTH'">
-                </xsl:when>
+                <xsl:when test="@code = 'OTH'"> </xsl:when>
                 <xsl:otherwise>
                     <xsl:for-each select="$mapRedenwijzigenstaken[mp907[@code = current()/@code][@codeSystem = current()/@codeSystem]][mp930]">
                         <xsl:copy-of select="mp930/@*"/>
@@ -443,7 +442,7 @@
                     </xsl:for-each>
                 </xsl:otherwise>
             </xsl:choose>
-           </xsl:copy>
+        </xsl:copy>
     </xsl:template>
 
     <xd:doc>
@@ -508,7 +507,16 @@
         <xd:desc> replacement of terminology codes for stoptype </xd:desc>
     </xd:doc>
     <xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatie_gebruik)/stoptype" mode="ada907_2_930">
-        <xsl:element name="{concat(local-name(..), '_stop_type')}">
+        <xsl:variable name="newElemName">
+            <xsl:choose>
+                <xsl:when test="parent::medicatie_gebruik">medicatiegebruik_stop_type</xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="concat(local-name(..), '_stop_type')"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+
+        <xsl:element name="{$newElemName}">
             <xsl:apply-templates select="@* | node()" mode="#current"/>
             <xsl:for-each select="$mapStoptype[mp907[@code = current()/@code][@codeSystem = current()/@codeSystem]][mp930]">
                 <xsl:copy-of select="mp930/@*"/>
@@ -526,7 +534,7 @@
             </xsl:when>
         </xsl:choose>
     </xsl:template>
-   
+
     <xd:doc>
         <xd:desc>geannuleerd indicator TA van 9.0.7 naar stoptype geannuleerd 9 3.0</xd:desc>
     </xd:doc>
@@ -537,7 +545,7 @@
             </xsl:when>
         </xsl:choose>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Handle zorgverlener</xd:desc>
     </xd:doc>
@@ -678,9 +686,16 @@
         <xd:desc> relaties </xd:desc>
     </xd:doc>
     <xsl:template match="relatie_naar_medicatieafspraak | relatie_naar_verstrekkingsverzoek" mode="ada907_2_930">
-        <xsl:element name="{replace(local-name(), '(relatie_naar)(.+)', 'relatie$2')}">
-            <xsl:apply-templates select="@* | node()" mode="#current"/>
-        </xsl:element>
+        <xsl:choose>
+            <xsl:when test="identificatie/@nullFlavor = 'NI'">
+                <!-- do not output -->
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:element name="{replace(local-name(), '(relatie_naar)(.+)', 'relatie$2')}">
+                    <xsl:apply-templates select="@* | node()" mode="#current"/>
+                </xsl:element>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
     <xd:doc>
@@ -798,6 +813,7 @@
         <xd:desc> no conceptIds, no value for coded elements (local for ada gui), get rid of temp reference_id in adaextension </xd:desc>
     </xd:doc>
     <xsl:template match="@conceptId | *[@code]/@value | adaextension[reference_id][not(*[not(self::reference_id)])] | adaextension/reference_id" mode="ada907_2_930"/>
+
 
     <xd:doc>
         <xd:desc> Kopieer verder alles 1-op-1 </xd:desc>

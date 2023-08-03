@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hl7="urn:hl7-org:v3" xmlns:exslt="http://exslt.org/common" exclude-result-prefixes="xs xd hl7 xsi exslt" version="1.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:util="urn:hl7:utilities" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hl7="urn:hl7-org:v3" xmlns:exslt="http://exslt.org/common" exclude-result-prefixes="xs xd hl7 xsi exslt" version="1.0">
+    <xsl:import href="../../../util/utilities.xsl"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Alexander Henket, Nictiz</xd:p>
@@ -1430,13 +1431,19 @@
                                 </responsibleParty>
                             </xsl:when>
                             <xsl:otherwise>
-                                <xsl:message>careProvisionEvent/authorization/consentEvent heeft niet-verwachte waarde voor author/responsibleParty/code. Gevonden: <xsl:value-of select="concat(hl7:code[1]/@code, ' ', hl7:code[1]/@nullFlavor, ' ', hl7:code[1]/@codeSystem, ' ', hl7:code[1]/@displayName)"/></xsl:message>
+                                <xsl:call-template name="util:logMessage">
+                                    <xsl:with-param name="level" select="$logWARN"/>
+                                    <xsl:with-param name="msg">careProvisionEvent/authorization/consentEvent heeft niet-verwachte waarde voor author/responsibleParty/code. Gevonden: <xsl:value-of select="concat(hl7:code[1]/@code, ' ', hl7:code[1]/@nullFlavor, ' ', hl7:code[1]/@codeSystem, ' ', hl7:code[1]/@displayName)"/></xsl:with-param>
+                                </xsl:call-template>
                                 <xsl:apply-templates select="." mode="dob400"/>
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:for-each>
                     <xsl:if test="count(hl7:responsibleParty) = 0">
-                        <xsl:message>careProvisionEvent/authorization/consentEvent heeft niet-verwachte waarde voor author. Verwacht: hl7:responsibleParty. Gevonden: <xsl:value-of select="name(hl7:*[not(local-name() = 'time')])"/></xsl:message>
+                        <xsl:call-template name="util:logMessage">
+                            <xsl:with-param name="level" select="$logWARN"/>
+                            <xsl:with-param name="msg">careProvisionEvent/authorization/consentEvent heeft niet-verwachte waarde voor author. Verwacht: hl7:responsibleParty. Gevonden: <xsl:value-of select="name(hl7:*[not(local-name() = 'time')])"/></xsl:with-param>
+                        </xsl:call-template>
                         <xsl:apply-templates select="." mode="dob400"/>
                     </xsl:if>
                 </author>

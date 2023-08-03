@@ -85,45 +85,45 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:choose>
                     </dateTime>
                     
-                    <xsl:for-each select="(dieet_type | diet_type)[@value]">
+                    <xsl:if test="(dieet_type | diet_type)[@value] | (consistentie | consistency)[@value]">
                         <oralDiet>
-                            <type>
-                                <text>
-                                    <xsl:call-template name="string-to-string">
-                                        <xsl:with-param name="in" select="."/>
-                                    </xsl:call-template>
-                                </text>
-                            </type>
+                            <xsl:for-each select="(dieet_type | diet_type)[@value]">
+                                <type>
+                                    <text>
+                                        <xsl:call-template name="string-to-string">
+                                            <xsl:with-param name="in" select="."/>
+                                        </xsl:call-template>
+                                    </text>
+                                </type>
+                            </xsl:for-each>
+                            <xsl:for-each select="(consistentie | consistency)[@value]">
+                                <texture>
+                                    <modifier>
+                                        <text>
+                                            <xsl:call-template name="string-to-string">
+                                                <xsl:with-param name="in" select="."/>
+                                            </xsl:call-template>
+                                        </text>
+                                    </modifier>
+                                    
+                                    <foodType>
+                                        <text>
+                                            <xsl:call-template name="string-to-string">
+                                                <xsl:with-param name="in" select="."/>
+                                            </xsl:call-template>
+                                        </text>
+                                    </foodType>
+                                </texture>
+                                <fluidConsistencyType>
+                                    <text>
+                                        <xsl:call-template name="string-to-string">
+                                            <xsl:with-param name="in" select="."/>
+                                        </xsl:call-template>
+                                    </text>
+                                </fluidConsistencyType>
+                            </xsl:for-each>
                         </oralDiet>
-                    </xsl:for-each>
-                    
-                    <xsl:for-each select="(consistentie | consistency)[@value]">
-                        <texture>
-                            <modifier>
-                                <text>
-                                    <xsl:call-template name="string-to-string">
-                                        <xsl:with-param name="in" select="."/>
-                                    </xsl:call-template>
-                                </text>
-                            </modifier>
-                            
-                            <foodType>
-                                <text>
-                                    <xsl:call-template name="string-to-string">
-                                        <xsl:with-param name="in" select="."/>
-                                    </xsl:call-template>
-                                </text>
-                            </foodType>
-                        </texture>
-                        
-                        <fluidConsistencyType>
-                            <text>
-                                <xsl:call-template name="string-to-string">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
-                            </text>
-                        </fluidConsistencyType>
-                    </xsl:for-each>
+                    </xsl:if>
                     
                 </NutritionOrder>
             </xsl:variable>

@@ -338,7 +338,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <toedieningsschema>
                         <!-- only output frequentie if the hl7:period is more than one day ánd an integer -->
                         <!-- once a day is implicit in toedieningstijd: take at noon daily, only need to add frequence when it is take at noon every other day... -->
-                        <!-- a time with an interval of more then once a day does not make sense -->
+                        <!-- a time with an interval of more than once a day does not make sense -->
                         <!-- not does a specific with an interval of a partial day (i.e. take at noon every 1,5 day does not make sense) -->
                         <xsl:choose>
                             <xsl:when test="$hl7-pivl[1]/hl7:period[@value = '1'][@unit = 'd']"><!-- Do nothing, no need to output frequency of once a day --></xsl:when>
@@ -2323,7 +2323,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:when test="count($effectiveTimes-eenmalig) = 0"><!-- do nothing --></xsl:when>
                     <xsl:otherwise>
                         <xsl:if test="$logLevel = $logDEBUG">
-                            <xsl:comment>Found more then one instruction for eenmalig gebruik. Not supported to convert this into structured information for gebruiksperiode-start</xsl:comment>
+                            <xsl:comment>Found more than one instruction for eenmalig gebruik. Not supported to convert this into structured information for gebruiksperiode-start</xsl:comment>
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -2516,7 +2516,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:when test="count($effectiveTimes-eenmalig) = 0"><!-- do nothing --></xsl:when>
                     <xsl:otherwise>
                         <xsl:if test="$logLevel = $logDEBUG">
-                            <xsl:comment>Found more then one instruction for eenmalig gebruik. Not supported to convert this into structured information for gebruiksperiode-start</xsl:comment>
+                            <xsl:comment>Found more than one instruction for eenmalig gebruik. Not supported to convert this into structured information for gebruiksperiode-start</xsl:comment>
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -3519,7 +3519,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$PIVL_TS[hl7:phase/hl7:center]">
             <!-- only output frequentie if the hl7:period is more than one day ánd an integer -->
             <!-- once a day is implicit in toedieningstijd: take at noon daily, only need to add frequence when it is take at noon every other day... -->
-            <!-- a time with an interval of more then once a day does not make sense -->
+            <!-- a time with an interval of more than once a day does not make sense -->
             <!-- not does a specific with an interval of a partial day (i.e. take at noon every 1,5 day does not make sense) -->
             <xsl:choose>
                 <xsl:when test="hl7:period[@value = '1'][@unit = 'd']"><!-- Do nothing, no need to output frequency of once a day --></xsl:when>

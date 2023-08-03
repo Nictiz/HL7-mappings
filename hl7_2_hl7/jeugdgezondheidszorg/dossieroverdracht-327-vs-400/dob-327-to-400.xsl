@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hl7="urn:hl7-org:v3" xmlns:exslt="http://exslt.org/common" exclude-result-prefixes="xs xd hl7 xsi exslt" version="1.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:util="urn:hl7:utilities" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hl7="urn:hl7-org:v3" xmlns:exslt="http://exslt.org/common" exclude-result-prefixes="xs xd hl7 xsi exslt" version="1.0">
+    <xsl:import href="../../../util/utilities.xsl"/>
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Author:</xd:b> Alexander Henket, Nictiz</xd:p>
@@ -1302,7 +1303,10 @@
                 </xsl:copy>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:message>Onbekende asPatientOfOtherProvider relatie aan patientPerson op basis van onderliggende careProvision/code. Verwacht: Huisarts, Andere betrokken organisaties/hulpverleners of Voor‑ of buitenschoolse voorzieningen/school</xsl:message>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logWARN"/>
+                    <xsl:with-param name="msg">Onbekende asPatientOfOtherProvider relatie aan patientPerson op basis van onderliggende careProvision/code. Verwacht: Huisarts, Andere betrokken organisaties/hulpverleners of Voor‑ of buitenschoolse voorzieningen/school</xsl:with-param>
+                </xsl:call-template>
                 <xsl:copy>
                     <xsl:apply-templates select="@*" mode="dob327"/>
                     <xsl:apply-templates select="node()" mode="dob327"/>

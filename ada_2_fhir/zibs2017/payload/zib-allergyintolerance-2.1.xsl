@@ -10,8 +10,8 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:util="urn:hl7:utilities" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
@@ -217,7 +217,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:choose>
                         </xsl:attribute>
                     </verificationStatus>
-                    
+
                     <!-- CD    NL-CM:8.2.4        AllergieCategorie        0..1 AllergieCategorieCodelijst-->
                     <!-- The ZIB prescribes an (optional) value list for the allergy category, which is mapped onto
                          AllergyIntolerance.category. However, .category defines its own required coding, which can't be
@@ -238,7 +238,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:when test="@code = '419199007' and @codeSystem = $oidSNOMEDCT">biologic</xsl:when>
                                 <xsl:when test="@codeSystem = $oidHL7NullFlavor"/>
                                 <xsl:otherwise>
-                                    <xsl:message>Unsupported AllergyIntolerance category code "<xsl:value-of select="@code"/>" from system "<xsl:value-of select="@codeSystem"/>"</xsl:message>
+                                    <xsl:call-template name="util:logMessage">
+                                        <xsl:with-param name="level" select="$logWARN"/>
+                                        <xsl:with-param name="msg">Unsupported AllergyIntolerance category code "<xsl:value-of select="@code"/>" from system "<xsl:value-of select="@codeSystem"/>"</xsl:with-param>
+                                    </xsl:call-template>
                                 </xsl:otherwise>
                             </xsl:choose>
                         </xsl:variable>
@@ -354,7 +357,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <!--Fatal    399166001    SNOMED CT    2.16.840.1.113883.6.96    Fataal-->
                                     <xsl:when test="@code = '399166001' and @codeSystem = $oidSNOMEDCT">high</xsl:when>
                                     <xsl:otherwise>
-                                        <xsl:message>Unsupported AllergyIntolerance criticality code "<xsl:value-of select="@code"/>" codeSystem "<xsl:value-of select="@codeSystem"/>"</xsl:message>
+                                        <xsl:call-template name="util:logMessage">
+                                            <xsl:with-param name="level" select="$logWARN"/>
+                                            <xsl:with-param name="msg">Unsupported AllergyIntolerance criticality code "<xsl:value-of select="@code"/>" codeSystem "<xsl:value-of select="@codeSystem"/>"</xsl:with-param>
+                                        </xsl:call-template>
                                     </xsl:otherwise>
                                 </xsl:choose>
                             </xsl:attribute>
@@ -466,12 +472,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:variable>
 
                     <xsl:variable name="informantRef" as="element()*">
-                        <xsl:for-each select="$adaInformant[self::zorgverlener | self::health_professional]">                            
+                        <xsl:for-each select="$adaInformant[self::zorgverlener | self::health_professional]">
                             <xsl:call-template name="practitionerRoleReference">
                                 <xsl:with-param name="useExtension" select="true()"/>
                                 <xsl:with-param name="addDisplay" select="false()"/>
                             </xsl:call-template>
-                            <xsl:apply-templates select="." mode="doPractitionerReference-2.0"/>                            
+                            <xsl:apply-templates select="." mode="doPractitionerReference-2.0"/>
                         </xsl:for-each>
                         <xsl:for-each select="$adaInformant[self::patient]">
                             <xsl:sequence select="$patientRef"/>
@@ -566,7 +572,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <!--Severe    24484000    SNOMED CT    2.16.840.1.113883.6.96    Ernstig-->
                                             <xsl:when test="@code = '24484000' and @codeSystem = $oidSNOMEDCT">severe</xsl:when>
                                             <xsl:otherwise>
-                                                <xsl:message>Unsupported AllergyIntolerance reaction severity "<xsl:value-of select="@code"/>" codeSystem "<xsl:value-of select="@codeSystem"/>"</xsl:message>
+                                                <xsl:call-template name="util:logMessage">
+                                                    <xsl:with-param name="level" select="$logWARN"/>
+                                                    <xsl:with-param name="msg">Unsupported AllergyIntolerance reaction severity "<xsl:value-of select="@code"/>" codeSystem "<xsl:value-of select="@codeSystem"/>"</xsl:with-param>
+                                                </xsl:call-template>
                                             </xsl:otherwise>
                                         </xsl:choose>
                                     </xsl:attribute>

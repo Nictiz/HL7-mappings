@@ -26,28 +26,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="contextContactEpisodeOfCare.xsl"/>
     <xsl:import href="ext-CopyIndicator.xsl"/>
     <xsl:import href="ext-MedicationAgreementPeriodOfUseCondition.xsl"/>
-    <xsl:import href="ext-TimeInterval-period.xsl"/>
     <xsl:import href="ext-TimeInterval-Duration.xsl"/>
+    <xsl:import href="ext-TimeInterval-period.xsl"/>
     <xsl:import href="nl-core-AddressInformation.xsl"/>
+    <xsl:import href="nl-core-AdministrationAgreement.xsl"/>
     <xsl:import href="nl-core-BodyHeight.xsl"/>
     <xsl:import href="nl-core-BodyWeight.xsl"/>
     <xsl:import href="nl-core-ContactInformation.xsl"/>
     <xsl:import href="nl-core-ContactPerson.xsl"/>
+    <xsl:import href="nl-core-DispenseRequest.xsl"/>
+    <xsl:import href="nl-core-ext-StopType.xsl"/>
     <xsl:import href="nl-core-HealthcareProvider-Organization.xsl"/>
     <xsl:import href="nl-core-HealthProfessional-Practitioner.xsl"/>
     <xsl:import href="nl-core-HealthProfessional-PractitionerRole.xsl"/>
     <xsl:import href="nl-core-InstructionsForUse.xsl"/>
-    <xsl:import href="nl-core-LaboratoryTestResult.xsl"/>
-    <xsl:import href="nl-core-VariableDosingRegimen.xsl"/>
+    <xsl:import href="nl-core-MedicationAdministration.xsl"/>
+    <xsl:import href="nl-core-MedicationAgreement.xsl"/>    
+    <xsl:import href="nl-core-MedicationDispense.xsl"/>
+    <xsl:import href="nl-core-MedicationUse2.xsl"/>
     <xsl:import href="nl-core-NameInformation.xsl"/>
+    <xsl:import href="nl-core-Note.xsl"/>
     <xsl:import href="nl-core-Patient.xsl"/>
     <xsl:import href="nl-core-PharmaceuticalProduct.xsl"/>
     <xsl:import href="nl-core-Problem.xsl"/>
-    <xsl:import href="nl-core-ext-StopType.xsl"/>
-    <xsl:import href="nl-core-DispenseRequest.xsl"/>
-    <xsl:import href="nl-core-MedicationDispense.xsl"/>
-    <xsl:import href="nl-core-Note.xsl"/>
-
+    <xsl:import href="nl-core-VariableDosingRegimen.xsl"/>
+    
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 

@@ -7,8 +7,7 @@
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all" omit-xml-declaration="yes"/>
     <xsl:strip-space elements="*"/>
 
-
-    <xsl:param name="schemaFileString" as="xs:string?">../mp/9.0.7/beschikbaarstellen_medicatiegegevens/ada_schemas/beschikbaarstellen_medicatiegegevens.xsd</xsl:param>
+    <xsl:param name="schemaFileString" as="xs:string?">9.0.7/beschikbaarstellen_medicatiegegevens/ada_schemas/beschikbaarstellen_medicatiegegevens.xsd</xsl:param>
 
     <xd:doc>
         <xd:desc>Start template</xd:desc>
@@ -326,6 +325,7 @@
     <xsl:template match="criterium[parent::criterium]" mode="ada930_2_907">
         <xsl:copy>
             <code>
+                <xsl:apply-templates select="@*" mode="#current"/>
                 <xsl:for-each select="$mapZonodig[mp930[@code = current()/@code][@codeSystem = current()/@codeSystem]][mp907]">
                     <xsl:copy-of select="mp907/@*"/>
                 </xsl:for-each>
@@ -369,16 +369,8 @@
         </registratiedatum>
     </xsl:template>
 
-    <!--    <xd:doc>
-        <xd:desc> stoptype van MP9 2.0 naar 9.0.7 </xd:desc>
-    </xd:doc>
-    <xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatiegebruik | medicatie_gebruik)/*[contains(replace(local-name(), '_', ''), 'stoptype')]" mode="ada930_2_907">
-        <stoptype>
-            <xsl:apply-templates select="@* | node()" mode="#current"/>
-        </stoptype>
-    </xsl:template>-->
 
-    <xd:doc>
+<!--    <xd:doc>
         <xd:desc> stoptype van MP9 3.0 naar 9.0.7 </xd:desc>
     </xd:doc>
     <xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatiegebruik | medicatie_gebruik)/*[contains(replace(local-name(), '_', ''), 'stoptype')]" mode="ada930_2_907">
@@ -387,7 +379,26 @@
                 <xsl:copy-of select="mp907/@*"/>
             </xsl:for-each>
         </stoptype>
+    </xsl:template>-->
+
+    <xd:doc>
+        <xd:desc> stoptype van MP9 3.0 naar 9.0.7 </xd:desc>
+    </xd:doc>
+    <xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatiegebruik | medicatie_gebruik)/*[contains(replace(local-name(), '_', ''), 'stoptype')]" mode="ada930_2_907">
+        <xsl:choose>
+            <xsl:when test=".[@code = '89925002']">
+                <geannuleerd_indicator value="true"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <stoptype>
+                    <xsl:for-each select="$mapStoptype[mp930[@code = current()/@code][@codeSystem = current()/@codeSystem]][mp907]">
+                        <xsl:copy-of select="mp907/@*"/>
+                    </xsl:for-each>
+                </stoptype>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
+
 
     <xd:doc>
         <xd:desc>Handle toelichting, needs to be enriched with non supported stuff in 907</xd:desc>
@@ -588,7 +599,7 @@
         <medicatie_gebruik>
             <xsl:apply-templates select="@*" mode="#current"/>
             <xsl:apply-templates select="gebruiksperiode/(start_datum_tijd | eind_datum_tijd)" mode="#current"/>
-            <xsl:apply-templates select="identificatie | medicatiegebruik_datum_tijd | gebruik_indicator | volgens_afspraak_indicator | medicatie_gebruik_stop_type | gebruiksperiode/tijds_duur | gebruiksproduct | gebruiksinstructie" mode="#current"/>
+            <xsl:apply-templates select="identificatie | medicatiegebruik_datum_tijd | gebruik_indicator | volgens_afspraak_indicator | medicatie_gebruik_stop_type | medicatiegebruik_stop_type | gebruiksperiode/tijds_duur | gebruiksproduct | gebruiksinstructie" mode="#current"/>
             <xsl:if test="relatie_medicatieafspraak | relatie_toedieningsafspraak">
                 <gerelateerde_afspraak>
                     <xsl:for-each select="relatie_medicatieafspraak/identificatie[@value | @root]">
@@ -724,9 +735,9 @@
     </xsl:template>
 
     <xd:doc>
-        <xd:desc> zorgaanbieder_identificatie_nummer </xd:desc>
+        <xd:desc>add underscore sometimes in zorgaanbieder_identificatie_nummer </xd:desc>
     </xd:doc>
-    <xsl:template match="zorgaanbieder_identificatienummer[not(ancestor::medicatieafspraak/voorschrijver or ancestor::beoogd_verstrekker)]" mode="ada930_2_907_step2">
+    <xsl:template match="zorgaanbieder_identificatienummer[not(ancestor::medicatieafspraak/voorschrijver or ancestor::beoogd_verstrekker or ancestor::auteur[parent::medicatie_gebruik]/auteur_is_zorgaanbieder)]" mode="ada930_2_907_step2">
         <xsl:element name="zorgaanbieder_identificatie_nummer">
             <xsl:apply-templates select="@* | node()" mode="#current"/>
         </xsl:element>
