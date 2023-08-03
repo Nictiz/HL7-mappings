@@ -46,8 +46,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					<xsl:choose>
 						<xsl:when test="count(f:Bundle/f:entry/f:resource/f:Patient) ge 2 or count(distinct-values(f:Bundle/f:entry/f:resource/(f:MedicationRequest | f:MedicationDispense | f:MedicationStatement | f:Observation)/f:subject/f:reference/@value)) ge 2">
 							<xsl:call-template name="util:logMessage">
-								<xsl:with-param name="level" select="$logERROR"/>
+								<xsl:with-param name="level" select="$logFATAL"/>
 								<xsl:with-param name="msg">Multiple Patients and/or subject references found. All entries in the same Bundle SHALL be about the same Patient resource. Please check input.</xsl:with-param>
+								<xsl:with-param name="terminate" select="true()"/>
 							</xsl:call-template>
 						</xsl:when>
 						<xsl:otherwise>
@@ -80,6 +81,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 								<xsl:call-template name="util:logMessage">
 									<xsl:with-param name="level" select="$logFATAL"/>
 									<xsl:with-param name="msg">Unable to determine custodian (beschikbaarstellende_partij) from incoming data. The custodian is determined based on MedicationRequest/requester, MedicationDispense/performer, or MedicationStatement.extension[author] and constitutes a required piece in the target transaction</xsl:with-param>
+									<xsl:with-param name="terminate" select="true()"/>
 								</xsl:call-template>
 							</xsl:otherwise>
 						</xsl:choose>
