@@ -544,24 +544,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
     <xd:doc>
-        <xd:desc>Transforms ada element of type hoeveelheid to FHIR decimal</xd:desc>
-        <xd:param name="in">ada element may have any name but should have datatype aantal (count)</xd:param>
-    </xd:doc>
-    <xsl:template name="hoeveelheid-to-decimal" as="element()*">
-        <xsl:param name="in" as="element()?" select="."/>
-        <xsl:choose>
-            <xsl:when test="$in[not(@value) or @nullFlavor]">
-                <extension url="{$urlExtHL7NullFlavor}">
-                    <xsl:variable name="valueCode" select="($in/@nullFlavor, 'NI')[1]"/>
-                    <valueCode value="{$valueCode}"/>
-                </extension>
-            </xsl:when>
-            <xsl:otherwise>
-                <value value="{$in/@value}"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-    <xd:doc>
         <xd:desc>Transforms ada element to FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#id">id contents</xd:a> ([A-Za-z0-9\-\.]{1,64}). Masks ids, e.g. Burgerservicenummers, if their @root occurs in <xd:ref name="mask-ids" type="parameter"/></xd:desc>
         <xd:param name="in">ada element with datatype identifier</xd:param>
     </xd:doc>
