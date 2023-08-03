@@ -19,7 +19,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xd:doc>
 		<xd:desc>Base template for the main interaction.</xd:desc>
 	</xd:doc>
-	<xsl:template match="/">
+	<xsl:template name="ada_sturen_medicatievoorschrift" match="/">
 		<xsl:variable name="bouwstenen" as="element()*">
 			<!--  contactpersoon -->
 			<xsl:apply-templates select="f:Bundle/f:entry/f:resource/f:RelatedPerson" mode="nl-core-ContactPerson"/>

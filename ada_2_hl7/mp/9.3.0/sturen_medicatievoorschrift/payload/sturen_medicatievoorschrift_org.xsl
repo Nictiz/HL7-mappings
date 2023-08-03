@@ -26,7 +26,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- param to influence whether to output schematron references, typically only needed for test instances -->
     <xsl:param name="schematronRef" as="xs:boolean" select="false()"/>
 
-    <xsl:template match="/">
+    <xsl:template name="mp-mp93_vos" match="/">
         <xsl:call-template name="Voorschrift_9x">
             <xsl:with-param name="in" select="adaxml/data/sturen_medicatievoorschrift"/>
         </xsl:call-template>

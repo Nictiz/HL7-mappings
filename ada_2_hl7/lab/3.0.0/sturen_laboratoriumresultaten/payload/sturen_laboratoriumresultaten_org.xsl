@@ -28,7 +28,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- param to influence whether to output schematron references, typically only needed for test instances -->
     <xsl:param name="schematronRef" as="xs:boolean" select="false()"/>
     
-    <xsl:template match="/">
+    <xsl:template name="lu-sturenLaboratoriumresultaten" match="/">
         <xsl:call-template name="SturenLaboratoriumresultaten-300">
             <xsl:with-param name="in" select="adaxml/data/sturen_laboratoriumresultaten"/>
         </xsl:call-template>

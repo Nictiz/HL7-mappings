@@ -98,6 +98,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-VisualFunction.VisualAid"/>
         <nm:map ada="mobiliteit" resource="Observation" profile="nl-core-Mobility"/>
         <nm:map ada="monster" resource="Specimen" profile="nl-core-LaboratoryTestResult.Specimen"/>
+        <nm:map ada="monster2" resource="Specimen" profile="nl-core-LaboratoryTestResult.Specimen"/>
         <nm:map ada="bron_monster" resource="Device" profile="nl-core-LaboratoryTestResult.SpecimenSource"/>
         <nm:map ada="mustscore" resource="Observation" profile="nl-core-MUSTScore"/>
         <nm:map ada="o2saturatie" resource="Observation" profile="nl-core-O2Saturation"/>
@@ -256,6 +257,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 )[.//(@value | @code | @nullFlavor)]" group-by="local-name()">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <xsl:call-template name="_buildFhirMetadataForAdaEntry">
+                    <xsl:with-param name="partNumber" select="position()"/>
+                </xsl:call-template>
+            </xsl:for-each-group>
+            <xsl:variable name="cnt" select="count(current-group())"/>
+            <xsl:variable name="monsterMateriaal" as="element(f:monster2)?">
+                <xsl:if test="current-group()[self::monster][microorganisme][monstermateriaal]">
+                <monster2>
+                    <xsl:copy-of select="current-group()[self::monster][microorganisme][monstermateriaal][1]/* except microorganisme"/>
+                </monster2>
+                </xsl:if>
+            </xsl:variable>
+            <xsl:for-each-group select="$monsterMateriaal" group-by="nf:getGroupingKeyDefault(.)">
+                <xsl:call-template name="_buildFhirMetadataForAdaEntry">
+                    <xsl:with-param name="in" select="$monsterMateriaal"/>
                     <xsl:with-param name="partNumber" select="position()"/>
                 </xsl:call-template>
             </xsl:for-each-group>

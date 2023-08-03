@@ -40,6 +40,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-HealthProfessional-Practitioner.xsl"/>
     <xsl:import href="nl-core-HealthProfessional-PractitionerRole.xsl"/>
     <xsl:import href="nl-core-InstructionsForUse.xsl"/>
+    <xsl:import href="nl-core-LaboratoryTestResult.xsl"/>
     <xsl:import href="nl-core-MedicationAdministration.xsl"/>
     <xsl:import href="nl-core-MedicationAgreement.xsl"/>    
     <xsl:import href="nl-core-MedicationDispense.xsl"/>
