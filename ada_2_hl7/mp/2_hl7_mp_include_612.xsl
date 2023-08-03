@@ -12,10 +12,13 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:pharm="urn:ihe:pharm:medication" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:util="urn:hl7:utilities" xmlns:nf="http://www.nictiz.nl/functions" xmlns:pharm="urn:ihe:pharm:medication" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
     <xsl:import href="2_hl7_mp_include.xsl"/>
+    <!-- link to 2020 needed for 2_hl7_mp_include.xsl -->
+    <xsl:import href="../zib2020bbr/payload/ada2hl7_all-zibs.xsl"/>    
     <xsl:import href="../naw/2_hl7_naw_include.xsl"/>
-  
+    <xsl:output method="xml" indent="yes"/>
+
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Created on:</xd:b> Oct 16, 2018</xd:p>
@@ -23,8 +26,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xd:p>Mapping xslt for creating HL7 for Medicatieproces 6.12. To be imported or included from another xslt. Only templates for 6.12 which are not shared by other versions.</xd:p>
         </xd:desc>
     </xd:doc>
-    <xsl:output method="xml" indent="yes"/>
-    
+
     <xd:doc>
         <xd:desc> Cyclisch schema comp </xd:desc>
         <xd:param name="operator"/>
@@ -37,10 +39,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="doseerduur"/>
         <xsl:param name="doseerduur-startdatum" as="xs:string?"/>
         <xsl:param name="herhaalperiode"/>
-        
+
         <!-- in een cyclisch schema moet in 6.12 de doseerduur in dagen  -->
         <xsl:variable name="doseerduur_in_dagen" select="nf:calculate_Duur_In_Dagen($doseerduur/@value, nf:convertTime_ADA_unit2UCUM($doseerduur/@unit))"/>
-        
+
         <xsl:attribute name="operator" select="$operator"/>
         <xsl:for-each select="$doseerduur[@value and @unit]">
             <phase>
@@ -67,101 +69,111 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="xsiType" select="''"/>
             </xsl:call-template>
         </xsl:for-each>
-        
+
     </xsl:template>
-    
-      <xd:doc>
-        <xd:desc/>
-        <xd:param name="medicatieafspraak"/>
+
+    <xd:doc>
+        <xd:desc>Helper template to make TherapeuticAgentOf</xd:desc>
+        <xd:param name="adaBouwsteen">The ada bouwsteen which has gebruiksinstructie, so for example medicatieafspraak, toedieningsafspraak. No default</xd:param>
         <xd:param name="frequentie_value"/>
         <xd:param name="zonodig"/>
-        <xd:param name="dosering"/>
+        <xd:param name="dosering">The ada dosering, defaults to context</xd:param>
     </xd:doc>
     <xsl:template name="makeTherapeuticAgentOf_4_template_2.16.840.1.113883.2.4.3.11.60.20.77.10.100_20130521000000">
-        <xsl:param name="medicatieafspraak" as="element()?"/>
+        <xsl:param name="adaBouwsteen" as="element()?"/>
         <xsl:param name="frequentie_value" as="xs:integer?"/>
         <xsl:param name="zonodig" as="xs:boolean?"/>
-        <xsl:param name="dosering" select="."/>
-        
-        <xsl:variable name="herhaalperiode" select="$medicatieafspraak/gebruiksinstructie/herhaalperiode_cyclisch_schema"/>
-        <xsl:variable name="doseerinstructies" select="$medicatieafspraak//doseerinstructie"/>
-        <xsl:variable name="gebruiksperiode-start" select="$medicatieafspraak/gebruiksperiode_start"/>
+        <xsl:param name="dosering" select="." as="element()*"/>
+
+        <xsl:variable name="herhaalperiode" select="$adaBouwsteen/gebruiksinstructie/herhaalperiode_cyclisch_schema"/>
+        <xsl:variable name="doseerinstructies" select="$adaBouwsteen//doseerinstructie"/>
+        <xsl:variable name="gebruiksperiode-start" select="$adaBouwsteen/(gebruiksperiode_start | gebruiksperiode/start_datum_tijd)"/>
         <!-- een niet-cyclisch schema met meerdere doseerinstructies zonder startdatum gebruiksperiode kan niet
                  gestructureerd in 6.12 omdat de volgorde dan niet overgebracht kan worden -->
-        <xsl:variable name="niet-cyclisch-zonder-start" select="not($herhaalperiode/@value) and count($medicatieafspraak//doseerinstructie) gt 1 and not($gebruiksperiode-start/@value)"/>
+        <!-- tenzij er geen verschillende doseerduur én geen verschillend sequencenummer in zit, dan zijn ze gewoon parallel naast elkaar, dat kan in 6.12 ook -->
+        <xsl:variable name="niet-cyclisch-zonder-start" select="not($herhaalperiode/@value) and count($adaBouwsteen//doseerinstructie) gt 1 and not($gebruiksperiode-start/@value)"/>
         <!-- een niet-cyclisch schema met meerdere doseerinstructies mét startdatum gebruiksperiode kan wel
            gestructureerd in 6.12 omdat de volgorde dan dus wel overgebracht kan worden in meerdere MAR's
            dit gaat mbv de IVL_TS gebruiksperiode -->
-        <xsl:variable name="niet-cyclisch-met-start" select="not($herhaalperiode/@value) and count($medicatieafspraak//doseerinstructie) gt 1 and $gebruiksperiode-start/@value"/>
-        
-        <!-- bij een niet-cyclisch schema met startdatum gebruik, de juiste startdatum berekenen, 
+        <xsl:variable name="niet-cyclisch-met-start" select="not($herhaalperiode/@value) and count($adaBouwsteen//doseerinstructie) gt 1 and $gebruiksperiode-start/@value"/>
+
+        <!-- bij een niet-cyclisch schema met startdatum gebruik, en doseerduur in alle doseerinstructies de juiste startdatum berekenen, 
          de doseerduur gebruiken als gebruiksduur in deze MAR en de eventuele einddatum gebruik negeren -->
-        <xsl:variable name="gebruiksperiode-start-value">
+        <xsl:variable name="gebruiksperiode-start-value" as="xs:string?">
             <xsl:choose>
-                <xsl:when test="$niet-cyclisch-met-start">
-                    <xsl:value-of select="nf:calculate_Doseerinstructie_Startdate(xs:date(substring-before($gebruiksperiode-start/@value, 'T')), $dosering, $doseerinstructies)"/>
+                <xsl:when test="$niet-cyclisch-met-start and count($doseerinstructies) = count($doseerinstructies[./doseerduur])">
+                    <xsl:value-of select="nf:calculate_Doseerinstructie_Startdate(xs:date(substring($gebruiksperiode-start/@value, 1, 10)), $dosering, $doseerinstructies)"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="$gebruiksperiode-start/@value"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <xsl:variable name="gebruiksperiode-duur" select="$medicatieafspraak[not($niet-cyclisch-met-start)]/gebruiksperiode | $dosering[$niet-cyclisch-met-start]/../doseerduur"/>
-        <xsl:variable name="gebruiksperiode-eind" select="$medicatieafspraak[not($niet-cyclisch-met-start)]/gebruiksperiode_eind"/>
+        <xsl:variable name="gebruiksperiode-duur" as="element()?">
+            <xsl:choose>
+                 <xsl:when test="not($niet-cyclisch-met-start) and not($niet-cyclisch-zonder-start)">
+                    <xsl:sequence select="$adaBouwsteen/(gebruiksperiode | gebruiksperiode/tijds_duur)[@value]"></xsl:sequence>
+                </xsl:when>
+                <!-- if none of the doseerinstructies have doseerduur then all of them are applicable during the gebruiksperiode  -->
+                <xsl:when test="not($doseerinstructies[./doseerduur])">
+                    <xsl:sequence select="$adaBouwsteen/(gebruiksperiode | gebruiksperiode/tijds_duur)[@value]"></xsl:sequence>
+                </xsl:when>
+                <!-- if all of the doseerinstructies have doseerduur and startdate then we can use the current doseerduur in 6.12 IVL_TS -->
+                <xsl:when test="$niet-cyclisch-met-start and count($doseerinstructies) = count($doseerinstructies[./doseerduur])">
+                    <xsl:sequence select="$dosering/../doseerduur"></xsl:sequence>
+                </xsl:when>
+                
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="gebruiksperiode-eind" select="$adaBouwsteen[not($niet-cyclisch-met-start)]/(gebruiksperiode_eind | gebruiksperiode/eind_datum_tijd)" as="element()*"/>
         <xsl:variable name="gebruiksperiode_exists" select="$gebruiksperiode-duur/@value or $gebruiksperiode-start/@value or $gebruiksperiode-eind/@value"/>
-        
-        <xsl:variable name="toedieningsschema" select="$medicatieafspraak/gebruiksinstructie/doseerinstructie/dosering/toedieningsschema"/>
+
+        <xsl:variable name="toedieningsschema" select="$dosering/toedieningsschema"/>
         <xsl:variable name="schema_in_1_pivlts" as="xs:boolean">
             <xsl:choose>
                 <!-- TODO uitbreiden met mogelijkheden -->
-                <xsl:when test="$medicatieafspraak//herhaalperiode_cyclisch_schema">
+                <xsl:when test="$adaBouwsteen//herhaalperiode_cyclisch_schema">
                     <xsl:value-of select="false()"/>
                 </xsl:when>
                 <xsl:when test="count($toedieningsschema/toedientijd[@value]) > 1">
                     <xsl:value-of select="false()"/>
                 </xsl:when>
-                <!--            <xsl:when test="count($toedieningsschema/dagdeel) > 1">
-               <xsl:value-of select="false()"/>
-            </xsl:when>-->
                 <xsl:otherwise>
                     <xsl:value-of select="true()"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <xsl:variable name="eenmalig_gebruik" select="$toedieningsschema/frequentie/aantal/vaste_waarde/@value and not($toedieningsschema/frequentie/tijdseenheid/@value)"/>
-        <xsl:variable name="doseerduur-in-uren" select="$medicatieafspraak/gebruiksinstructie/doseerinstructie/doseerduur[@unit = $ada-unit-hour]"/>
-        <!-- een niet-cyclisch schema met meerdere doseerinstructies zonder startdatum gebruiksperiode kan niet
-                 gestructureerd in 6.12 omdat de volgorde dan niet overgebracht kan worden -->
-        <xsl:variable name="toedieningsschema612_exists" as="xs:boolean">
+        <xsl:variable name="eenmalig_gebruik" select="$toedieningsschema/frequentie/aantal/(vaste_waarde | nominale_waarde)/@value and not($toedieningsschema/frequentie/tijdseenheid/@value)"/>
+        <xsl:variable name="doseerduur-in-uren" select="$dosering/../doseerduur[@unit = $ada-unit-hour]"/>
+         <xsl:variable name="toedieningsschema612_exists" as="xs:boolean?">
             <xsl:choose>
                 <!-- een cyclisch schema met doseerduur in uren kunnen we niet gestructureerd overbrengen in 6.12 -->
                 <xsl:when test="$herhaalperiode and $doseerduur-in-uren">false</xsl:when>
                 <!-- een niet-cyclisch schema met meerdere doseerinstructies zonder startdatum gebruiksperiode kan niet
-                 gestructureerd in 6.12 omdat de volgorde dan niet overgebracht kan worden -->
-                <xsl:when test="$niet-cyclisch-zonder-start">false</xsl:when>
+                 gestructureerd in 6.12 omdat de volgorde dan niet overgebracht kan worden, tenzij ze allemaal parallel zijn -->
+                <xsl:when test="$niet-cyclisch-zonder-start and $doseerinstructies[./doseerduur]">false</xsl:when>
                 <!-- dagdelen worden niet ondersteund in 6.12. Alleen de tekst en gebruiksperiode worden overgenomen. -->
                 <xsl:when test="$toedieningsschema//dagdeel[@value or @code]">false</xsl:when>
                 <xsl:when test="exists($toedieningsschema//*[local-name(.) != 'dagdeel']/@value)">true</xsl:when>
+                <xsl:otherwise>false</xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        
+
         <therapeuticAgentOf>
             <medicationAdministrationRequest classCode="SBADM" moodCode="RQO">
                 <!-- Item(s) :: omschrijving -->
-                <xsl:for-each select="$dosering/../../omschrijving">
-                    <xsl:call-template name="makeSTValue">
-                        <xsl:with-param name="xsiType" select="''"/>
-                        <xsl:with-param name="elemName">text</xsl:with-param>
-                    </xsl:call-template>
+                <xsl:for-each select="$adaBouwsteen/gebruiksinstructie/omschrijving[@value]">
+                    <text mediaType="text/plain">
+                        <xsl:value-of select="@value"/>
+                    </text>
                 </xsl:for-each>
                 <statusCode code="active"/>
                 <xsl:choose>
-                    <!-- TODO, alle varianten ondersteunen -->
                     <!-- Gebruiksperiode en toedieningsschema, maar géén eenmalig gebruik -->
                     <xsl:when test="$gebruiksperiode_exists and $toedieningsschema612_exists and not($eenmalig_gebruik)">
                         <effectiveTime xsi:type="SXPR_TS">
                             <!-- Gebruiksperiode in een IVL_TS comp -->
-                            <xsl:for-each select="$medicatieafspraak">
+                            <xsl:for-each select="$adaBouwsteen">
                                 <comp xsi:type="IVL_TS">
                                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9019_20130521000000">
                                         <xsl:with-param name="begindatum" select="$gebruiksperiode-start-value"/>
@@ -175,13 +187,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:with-param name="dosering" select="."/>
                                 <xsl:with-param name="frequentie_value" select="$frequentie_value"/>
                                 <xsl:with-param name="herhaalperiode" select="$herhaalperiode"/>
-                                <xsl:with-param name="medicatieafspraak" select="$medicatieafspraak"/>
+                                <xsl:with-param name="adaBouwsteen" select="$adaBouwsteen"/>
                             </xsl:call-template>
                         </effectiveTime>
                     </xsl:when>
                     <!-- Gebruiksperiode zonder toedieningsschema: alleen een IVL_TS in effectiveTime -->
                     <xsl:when test="$gebruiksperiode_exists and not($toedieningsschema612_exists)">
-                        <xsl:for-each select="$medicatieafspraak">
+                        <xsl:for-each select="$adaBouwsteen">
                             <effectiveTime xsi:type="IVL_TS">
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9019_20130521000000">
                                     <xsl:with-param name="begindatum" select="$gebruiksperiode-start/@value"/>
@@ -194,20 +206,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- Géén gebruiksperiode, wel een eenvoudig toedieningsschema in één PIVL_TS in effectiveTime, géén eenmalig gebruik-->
                     <xsl:when test="not($gebruiksperiode_exists) and $toedieningsschema612_exists and $schema_in_1_pivlts and not($eenmalig_gebruik)">
                         <!-- "eenvoudig" doseerschema, in één PIVL_TS('en) te vangen -->
-                        <xsl:if test="$frequentie_value or ./toedieningsschema[interval/@value]">
-                            <xsl:for-each select="./toedieningsschema">
-                                <effectiveTime xsi:type="PIVL_TS">
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9020_20150305134139">
-                                        <xsl:with-param name="doseerduur" select="./../../doseerduur[@value]"/>
-                                        <xsl:with-param name="interval" select="./interval"/>
-                                        <xsl:with-param name="operator">A</xsl:with-param>
-                                        <xsl:with-param name="toedieningsschema" select="."/>
-                                        <xsl:with-param name="vaste_frequentie" select="$frequentie_value"/>
-                                        <xsl:with-param name="vaste_freq_tijd" select="./frequentie/tijdseenheid"/>
-                                    </xsl:call-template>
-                                </effectiveTime>
-                            </xsl:for-each>
-                        </xsl:if>
+                        <xsl:for-each select="./toedieningsschema">
+                            <effectiveTime xsi:type="PIVL_TS">
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9020_20150305134139">
+                                    <xsl:with-param name="doseerduur" select="./../../doseerduur[@value]"/>
+                                    <xsl:with-param name="interval" select="./interval"/>
+                                    <xsl:with-param name="operator"/>
+                                    <xsl:with-param name="toedieningsschema" select="."/>
+                                    <xsl:with-param name="toedientijd" select="./toedientijd/@value"/>
+                                    <xsl:with-param name="vaste_frequentie" select="$frequentie_value"/>
+                                    <xsl:with-param name="vaste_freq_tijd" select="./frequentie/tijdseenheid"/>
+                                </xsl:call-template>
+                            </effectiveTime>
+                        </xsl:for-each>
                     </xsl:when>
                     <!-- Géén gebruiksperiode, maar een toedieningsschema dat niet in één PIVL_TS te vangen is -->
                     <xsl:when test="not($gebruiksperiode_exists) and not($schema_in_1_pivlts)">
@@ -217,20 +228,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:with-param name="dosering" select="."/>
                                 <xsl:with-param name="frequentie_value" select="$frequentie_value"/>
                                 <xsl:with-param name="herhaalperiode" select="$herhaalperiode"/>
-                                <xsl:with-param name="medicatieafspraak" select="$medicatieafspraak"/>
+                                <xsl:with-param name="adaBouwsteen" select="$adaBouwsteen"/>
                             </xsl:call-template>
                         </effectiveTime>
                     </xsl:when>
                     <!-- eenmalig gebruik -->
                     <xsl:when test="$eenmalig_gebruik">
-                        <xsl:variable name="aantal_keer" select="./toedieningsschema/frequentie/aantal/vaste_waarde/@value"/>
+                        <xsl:variable name="aantal_keer" select="./toedieningsschema/frequentie/aantal/(vaste_waarde | nominale_waarde)/@value"/>
                         <!-- 6.12 ondersteunt alleen eenmalig gebruik -->
                         <xsl:choose>
                             <xsl:when test="$aantal_keer = 1">
                                 <!-- Neem startdatum van gebruik als dat beschikbaar is, anders nemen we aan: de datum van vandaag -->
                                 <xsl:variable name="date_eenmalig_gebruik">
                                     <xsl:choose>
-                                        <xsl:when test="$medicatieafspraak/gebruiksperiode/start">
+                                        <xsl:when test="$adaBouwsteen/gebruiksperiode/start">
                                             <xsl:call-template name="format2HL7Date">
                                                 <xsl:with-param name="dateTime" select="./@value"/>
                                             </xsl:call-template>
@@ -254,16 +265,28 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
                     </xsl:when>
                 </xsl:choose>
                 <xsl:if test="$herhaalperiode and $doseerduur-in-uren">
-                    <xsl:comment>Let op! Er is in de input een herhaalperiode voor een cyclisch schema aangetroffen in combinatie met een doseerduur in uren. Dit kan in een 6.12 voorschrift niet gestructureerd worden opgenomen.</xsl:comment>
+                    <xsl:comment>Let op! Er is in de input een herhaalperiode voor een cyclisch schema aangetroffen in combinatie met een doseerduur in uren. Dit kan in een 6.12 niet gestructureerd worden opgenomen.</xsl:comment>
+                    <xsl:call-template name="util:logMessage">
+                        <xsl:with-param name="level" select="$logWARN"/>
+                        <xsl:with-param name="msg">Let op! Er is in de input een herhaalperiode voor een cyclisch schema aangetroffen in combinatie met een doseerduur in uren. Dit kan in een 6.12 niet gestructureerd worden opgenomen.</xsl:with-param>
+                    </xsl:call-template>
                 </xsl:if>
-                <xsl:if test="$niet-cyclisch-zonder-start">
-                    <xsl:comment>Let op! Er is in de input een niet-cyclisch schema met meerdere doseerinstructies zonder startdatum gebruiksperiode. Dit kan in een 6.12 voorschrift niet gestructureerd worden opgenomen omdat de volgorde dan niet overgebracht kan worden.</xsl:comment>
+                <xsl:if test="$niet-cyclisch-zonder-start and $doseerinstructies[./doseerduur]">
+                    <xsl:comment>Let op! Er is in de input een niet-cyclisch schema met meerdere doseerinstructies zonder startdatum gebruiksperiode. Dit kan in 6.12 niet gestructureerd worden opgenomen omdat de volgorde dan niet overgebracht kan worden.</xsl:comment>
+                    <xsl:call-template name="util:logMessage">
+                        <xsl:with-param name="level" select="$logWARN"/>
+                        <xsl:with-param name="msg">Let op! Er is in de input een niet-cyclisch schema met meerdere doseerinstructies zonder startdatum gebruiksperiode. Dit kan in 6.12 niet gestructureerd worden opgenomen omdat de volgorde dan niet overgebracht kan worden.</xsl:with-param>
+                    </xsl:call-template>
                 </xsl:if>
                 <xsl:if test="$toedieningsschema//dagdeel[@value or @code]">
-                    <xsl:comment>Let op! Er is in de input een toedieningsschema met een of meerdere dagdelen aangetroffen. Dit kan in een 6.12 voorschrift niet gestructureerd worden opgenomen, daarom vindt u alleen de eventuele gebruiksperiode en tekstuele omschrijving terug.</xsl:comment>
+                    <xsl:comment>Let op! Er is in de input een toedieningsschema met een of meerdere dagdelen aangetroffen. Dit kan in 6.12 niet gestructureerd worden opgenomen, daarom vindt u alleen de eventuele gebruiksperiode en tekstuele omschrijving terug.</xsl:comment>
+                    <xsl:call-template name="util:logMessage">
+                        <xsl:with-param name="level" select="$logWARN"/>
+                        <xsl:with-param name="msg">Let op! Er is in de input een toedieningsschema met een of meerdere dagdelen aangetroffen. Dit kan in 6.12 niet gestructureerd worden opgenomen, daarom vindt u alleen de eventuele gebruiksperiode en tekstuele omschrijving terug.</xsl:with-param>
+                    </xsl:call-template>
                 </xsl:if>
-                <!-- Item(s) :: toedieningsweg-->
-                <xsl:for-each select="$dosering/../../toedieningsweg">
+                <!-- Item(s) :: toedieningsweg, not allowed with nullFlavor, but allowed to omit-->
+                <xsl:for-each select="$dosering/../../toedieningsweg[@value | @code][not(@codeSystem = $oidHL7NullFlavor)]">
                     <xsl:call-template name="makeCEValue">
                         <xsl:with-param name="xsiType" select="''"/>
                         <xsl:with-param name="elemName">routeCode</xsl:with-param>
@@ -289,11 +312,12 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
                             <xsl:otherwise>OTH</xsl:otherwise>
                         </xsl:choose>
                     </xsl:variable>
-                    <xsl:variable name="codeSystem" select="@codeSystem"/>                            
+                    <xsl:variable name="codeSystem" select="@codeSystem"/>
                     <!-- TODO de plek van originalText moet nog verbeterd, dit gaat niet goed werken -->
                     <xsl:variable name="strOriginalText">
                         <xsl:choose>
                             <xsl:when test="@codeSystem = $oidNHGTabel25BCodesNumeriek"><!-- leeg --></xsl:when>
+                            <xsl:when test="@originalText"><xsl:value-of select="@originalText"/></xsl:when>
                             <xsl:otherwise>
                                 <xsl:value-of select="@displayName"/>
                             </xsl:otherwise>
@@ -313,14 +337,14 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
                     <precondition>
                         <!-- Template :: Observation Event Criterion -->
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9001_20130521000000">
-                            <xsl:with-param name="code" select="./code/@code"/>
-                            <xsl:with-param name="codeSystem" select="./code/@codeSystem"/>
-                            <xsl:with-param name="displayName" select="./code/@displayName"/>
-                            <xsl:with-param name="strOriginalText" select="./code/@originalText"/>
+                            <xsl:with-param name="code" select="(code | criterium)/@code"/>
+                            <xsl:with-param name="codeSystem" select="(code | criterium)/@codeSystem"/>
+                            <xsl:with-param name="displayName" select="(code | criterium)/@displayName"/>
+                            <xsl:with-param name="strOriginalText" select="(code | criterium)/@originalText"/>
                         </xsl:call-template>
                     </precondition>
                 </xsl:for-each>
-                <xsl:if test="$zonodig and not($dosering/zo_nodig/criterium/code[@code = '1137'])">
+                <xsl:if test="$zonodig and not($dosering/zo_nodig/criterium/(code | criterium)[@code = '1137'])">
                     <precondition>
                         <observationEventCriterion>
                             <code code="1137" codeSystem="{$oidNHGTabel25BCodesNumeriek}" displayName="zo nodig"/>
@@ -329,30 +353,33 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
                 </xsl:if>
             </medicationAdministrationRequest>
         </therapeuticAgentOf>
-        
+
     </xsl:template>
     <xd:doc>
         <xd:desc> Helping template for toedieningsschema in comp elements </xd:desc>
-        <xd:param name="dosering"/>
-        <xd:param name="frequentie_value"/>
-        <xd:param name="herhaalperiode"/>
-        <xd:param name="medicatieafspraak"/>
-        <xd:param name="toedieningsschema"/>
+        <xd:param name="dosering">The ada dosage (dosering)</xd:param>
+        <xd:param name="frequentie_value">The ada frequency value</xd:param>
+        <xd:param name="herhaalperiode">The ada repeat period cyclic schedule</xd:param>
+        <xd:param name="adaBouwsteen">The ada therapeutic building block</xd:param>
+        <xd:param name="toedieningsschema">The ada administering schedule</xd:param>
     </xd:doc>
     <xsl:template name="schema_in_comps">
         <xsl:param name="dosering" select="."/>
         <xsl:param name="frequentie_value" as="xs:integer?"/>
-        <xsl:param name="herhaalperiode" select="./../../herhaalperiode_cyclisch_schema"/>
-        <xsl:param name="medicatieafspraak" select="./../../.."/>
+        <xsl:param name="herhaalperiode" select="../../herhaalperiode_cyclisch_schema"/>
+        <xsl:param name="adaBouwsteen" select="../../.."/>
         <xsl:param name="toedieningsschema" select="$dosering/toedieningsschema"/>
-        
-        <xsl:variable name="doseerinstructies" select="$medicatieafspraak//doseerinstructie"/>
+
+        <xsl:variable name="doseerinstructies" select="$adaBouwsteen//doseerinstructie"/>
         <xsl:variable name="doseerduur" select="$dosering/../doseerduur[@value]"/>
         <xsl:variable name="cyclisch-schema" as="xs:boolean" select="exists($herhaalperiode/@value)"/>
         <xsl:variable name="startdatum-dosering-1" as="xs:date">
             <xsl:choose>
-                <xsl:when test="$medicatieafspraak/gebruiksperiode_start/@value[. castable as xs:date or . castable as xs:dateTime]">
-                    <xsl:value-of select="xs:date(substring-before($medicatieafspraak/gebruiksperiode_start/@value, 'T'))"/>
+                <xsl:when test="$adaBouwsteen/(gebruiksperiode_start | gebruiksperiode/start_datum_tijd)[@value castable as xs:date]">
+                    <xsl:value-of select="xs:date($adaBouwsteen/(gebruiksperiode_start | gebruiksperiode/start_datum_tijd)/@value)"/>
+                </xsl:when>
+                <xsl:when test="$adaBouwsteen/(gebruiksperiode_start | gebruiksperiode/start_datum_tijd)[@value castable as xs:dateTime]">
+                    <xsl:value-of select="xs:date(substring-before($adaBouwsteen/(gebruiksperiode_start | gebruiksperiode/start_datum_tijd)/@value, 'T'))"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="current-date()"/>
@@ -360,31 +387,12 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="doseerduur-startdatum" select="nf:calculate_Doseerinstructie_Startdate($startdatum-dosering-1, $dosering, $doseerinstructies)"/>
+        <!-- doseerduur voor niet-cyclische PIVL_TS'en -->
+        <xsl:variable name="doseerduur-niet-cyclisch" select="$doseerduur[not($cyclisch-schema)]"/>
         <!-- de startdatum voor geankerd interval is 
             bij meerdere doseerinstructies verplicht omdat volgorde in 6.12 moet worden afgeleid met deze datums 
             bij 1 doseerinstructie niet op te nemen in 6.12 omdat ook daar dan impliciet de gebruiksperiode geldt, indien aanwezig. 
             Zonder gebruiksperiode zweeft het interval überhaupt ergens - niemand weet waar (behalve misschien via de tekst "te gebruiken bij start vakantie").-->
-        <xsl:if test="$cyclisch-schema">
-            <xsl:choose>
-                <xsl:when test="$doseerduur">
-                    <comp xsi:type="PIVL_TS">
-                        <xsl:call-template name="makeCyclischComp">
-                            <xsl:with-param name="herhaalperiode" select="$herhaalperiode"/>
-                            <xsl:with-param name="doseerduur-startdatum" select="string($doseerduur-startdatum)"/>
-                            <xsl:with-param name="doseerduur" select="$doseerduur"/>
-                            <xsl:with-param name="operator">A</xsl:with-param>
-                        </xsl:call-template>
-                    </comp>
-                </xsl:when>
-                <xsl:otherwise>
-                    <!-- Herhaalperiode zonder doseerduur, dat is illegaal -->
-                    <xsl:comment>In de input een herhaalperiode_cyclisch_schema aangetroffen (<xsl:value-of select="$herhaalperiode/@value"/><xsl:value-of select="' '"/><xsl:value-of select="$herhaalperiode/@unit"/>), maar geen doseerduur. Dat is illegaal. Check de input!</xsl:comment>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:if>
-        <!-- doseerduur voor andere PIVL_TS'en -->
-        <xsl:variable name="doseerduur-niet-cyclisch" select="$doseerduur[not($cyclisch-schema)]"/>
-        
         <xsl:if test="($frequentie_value or $toedieningsschema/interval[@value]) and not($toedieningsschema/toedientijd[@value])">
             <xsl:for-each select="$toedieningsschema">
                 <comp xsi:type="PIVL_TS">
@@ -411,17 +419,37 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             </xsl:variable>
             <comp xsi:type="PIVL_TS">
                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9020_20150305134139">
-                    <xsl:with-param name="doseerduur" select="''"/>
+                    <xsl:with-param name="doseerduur"/>
                     <xsl:with-param name="interval" select="./interval"/>
                     <xsl:with-param name="operator" select="$operator"/>
-                    <xsl:with-param name="toedieningsschema" select="./.."/>
-                    <xsl:with-param name="toedientijd" select="./@value"/>
+                    <xsl:with-param name="toedieningsschema" select=".."/>
+                    <xsl:with-param name="toedientijd" select="@value"/>
                     <xsl:with-param name="vaste_frequentie" select="$frequentie_value"/>
-                    <xsl:with-param name="vaste_freq_tijd" select="./../frequentie/tijdseenheid"/>
+                    <xsl:with-param name="vaste_freq_tijd" select="../frequentie/tijdseenheid"/>
                 </xsl:call-template>
             </comp>
         </xsl:for-each>
-        
+        <xsl:if test="$cyclisch-schema">
+            <xsl:choose>
+                <xsl:when test="$doseerduur">
+                    <comp xsi:type="PIVL_TS">
+                        <xsl:call-template name="makeCyclischComp">
+                            <xsl:with-param name="herhaalperiode" select="$herhaalperiode"/>
+                            <xsl:with-param name="doseerduur-startdatum" select="string($doseerduur-startdatum)"/>
+                            <xsl:with-param name="doseerduur" select="$doseerduur"/>
+                            <xsl:with-param name="operator">A</xsl:with-param>
+                        </xsl:call-template>
+                    </comp>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- Herhaalperiode zonder doseerduur, dat is illegaal -->
+                    <xsl:comment>In de input een herhaalperiode_cyclisch_schema aangetroffen (<xsl:value-of select="$herhaalperiode/@value"/><xsl:value-of select="' '"/><xsl:value-of select="$herhaalperiode/@unit"/>), maar geen doseerduur. Dat is illegaal. Check de input!</xsl:comment>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:if>
+
+
+
     </xsl:template>
     <xd:doc>
         <xd:desc> Frequency </xd:desc>
@@ -439,12 +467,14 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
         <xsl:param name="doseerduur-startdatum"/>
         <xsl:param name="interval"/>
         <xsl:param name="operator">I</xsl:param>
-        <xsl:param name="toedieningsschema"/>
-        <xsl:param name="toedientijd" as="xs:dateTime?"/>
+        <xsl:param name="toedieningsschema" as="element(toedieningsschema)"/>
+        <xsl:param name="toedientijd" as="xs:string?"/>
         <xsl:param name="vaste_frequentie" as="xs:integer?"/>
         <xsl:param name="vaste_freq_tijd"/>
-        
-        <xsl:attribute name="operator" select="$operator"/>
+
+        <xsl:if test="string-length($operator) gt 0">
+            <xsl:attribute name="operator" select="$operator"/>
+        </xsl:if>
         <xsl:if test="($vaste_frequentie or $interval[. instance of element()]) and not($toedientijd castable as xs:dateTime)">
             <xsl:variable name="unit">
                 <xsl:choose>
@@ -476,7 +506,17 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             </xsl:call-template>
         </xsl:if>
         <!-- Toedientijd -->
-        <xsl:if test="$toedientijd castable as xs:dateTime">
+        <xsl:if test="$toedientijd castable as xs:dateTime or $toedientijd castable as xs:time">
+            <xsl:variable name="dateTimeToedientijd" as="xs:dateTime">
+                <xsl:choose>
+                    <xsl:when test="$toedientijd castable as xs:dateTime">
+                        <xsl:value-of select="$toedientijd"/>
+                    </xsl:when>
+                    <xsl:when test="$toedientijd castable as xs:time">
+                        <xsl:value-of select="xs:dateTime(concat('1970-01-01T', $toedientijd))"/>
+                    </xsl:when>
+                </xsl:choose>
+            </xsl:variable>
             <!-- het doseerinterval, meestal 1 dag bij toedientijd -->
             <xsl:variable name="unit">
                 <!-- default is 'd', in 6.12 is het zelfs verplicht 'd', maar als de frequentie/tijdseenheid in de input is ingevuld nemen we die -->
@@ -500,7 +540,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
                 <center>
                     <xsl:attribute name="value">
                         <xsl:call-template name="format2HL7Date">
-                            <xsl:with-param name="dateTime" select="string($toedientijd)"/>
+                            <xsl:with-param name="dateTime" select="string($dateTimeToedientijd)"/>
                             <xsl:with-param name="precision">minute</xsl:with-param>
                         </xsl:call-template>
                     </xsl:attribute>
@@ -514,7 +554,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             </xsl:call-template>
         </xsl:if>
     </xsl:template>
-  
+
     <xd:doc>
         <xd:desc> Aanvullende gebruiksinstructie NHG Tabel 25 B-codes </xd:desc>
         <xd:param name="code"/>
@@ -536,8 +576,37 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             <xsl:with-param name="strOriginalText" select="$strOriginalText"/>
         </xsl:call-template>
     </xsl:template>
-    
-    
+
+    <xd:doc>
+        <xd:desc>Template  MedicationDispenseListResponse Payload. ada_2_hl7</xd:desc>
+        <xd:param name="patient">Thea ada patient to be converted</xd:param>
+        <xd:param name="toedieningsafspraak">The ada toedieningsafspraken to be converted</xd:param>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9026_20150318000000">
+        <xsl:param name="patient" as="element()?"/>
+        <xsl:param name="toedieningsafspraak" as="element()*"/>
+
+        <MedicationDispenseList>
+            <code code="MEDLIST" codeSystem="2.16.840.1.113883.5.4"/>
+            <xsl:for-each select="$patient">
+                <subject>
+                    <Patient>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.816_20130521000000"/>
+                    </Patient>
+                </subject>
+            </xsl:for-each>
+
+            <xsl:for-each select="$toedieningsafspraak">
+                <component>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.110_20130521000000"/>
+                </component>
+            </xsl:for-each>
+
+        </MedicationDispenseList>
+
+    </xsl:template>
+
+
     <xd:doc>
         <xd:desc> Assigned Person IdentifiedConfirmable MedicationCombinedOrder </xd:desc>
     </xd:doc>
@@ -592,13 +661,13 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             </Organization>
         </xsl:for-each>
     </xsl:template>
- 
+
     <xd:doc>
         <xd:desc>Dosering</xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9048_20150724151109">
         <doseQuantity>
-            <xsl:for-each select="./aantal/min[@value]">
+            <xsl:for-each select="./aantal/(min | minimum_waarde)[@value]">
                 <low>
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9164_20170118000000_2">
                         <xsl:with-param name="Gstd_value" select="./@value"/>
@@ -606,7 +675,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
                     </xsl:call-template>
                 </low>
             </xsl:for-each>
-            <xsl:for-each select="./aantal/vaste_waarde[@value]">
+            <xsl:for-each select="./aantal/(vaste_waarde | nominale_waarde)[@value]">
                 <center>
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9164_20170118000000_2">
                         <xsl:with-param name="Gstd_value" select="./@value"/>
@@ -614,17 +683,17 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
                     </xsl:call-template>
                 </center>
             </xsl:for-each>
-            <xsl:for-each select="./aantal/max[@value]">
+            <xsl:for-each select="./aantal/(max | maximum_waarde)[@value]">
                 <high>
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9164_20170118000000_2">
-                        <xsl:with-param name="Gstd_value" select="./@value"/>
-                        <xsl:with-param name="Gstd_unit" select="./../../eenheid"/>
+                        <xsl:with-param name="Gstd_value" select="@value"/>
+                        <xsl:with-param name="Gstd_unit" select="../../eenheid"/>
                     </xsl:call-template>
                 </high>
             </xsl:for-each>
         </doseQuantity>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc> Afleverlocatie </xd:desc>
     </xd:doc>
@@ -641,7 +710,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             </serviceDeliveryLocation>
         </destination>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc/>
         <xd:param name="UCUMvalue"/>
@@ -657,59 +726,61 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             <xsl:with-param name="UCUMunit" select="$UCUMunit"/>
         </xsl:call-template>
     </xsl:template>
-    
-    
-  
-    
+
     <xd:doc>
         <xd:desc> therapeuticAgentOf - Medication Administration Request </xd:desc>
-        <xd:param name="medicatieafspraak"/>
+        <xd:param name="adaBouwsteen">The ada bouwsteen which has gebruiksinstructie, so for example medicatieafspraak, toedieningsafspraak. Defaults to context.</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.100_20130521000000">
-        <!-- Pass max 1 medicatieafspraak in this template -->
-        <xsl:param name="medicatieafspraak" as="element()?" select="."/>
-        
-        <xsl:for-each select="$medicatieafspraak/gebruiksinstructie/doseerinstructie">
-            <xsl:for-each select="./dosering">
-                <xsl:variable name="toedieningsschema" select="./toedieningsschema"/>
-                
-                <!-- support for variable frequency: 1 to 2 times a day -->
-                <xsl:variable name="frequentie_in_first_MAR" as="xs:integer?">
-                    <xsl:choose>
-                        <xsl:when test="$toedieningsschema/frequentie/aantal/min[@value castable as xs:integer]">
-                            <xsl:value-of select="xs:integer($toedieningsschema/frequentie/aantal/min/@value)"/>
-                        </xsl:when>
-                        <xsl:when test="$toedieningsschema/frequentie/aantal/vaste_waarde[@value castable as xs:integer]">
-                            <xsl:value-of select="xs:integer($toedieningsschema/frequentie/aantal/vaste_waarde/@value)"/>
-                        </xsl:when>
-                        <xsl:when test="not($toedieningsschema/frequentie/aantal/min[@value]) and $toedieningsschema/frequentie/aantal/max[@value castable as xs:integer]">
-                            <xsl:value-of select="xs:integer($toedieningsschema/frequentie/aantal/max/@value)"/>
-                        </xsl:when>
-                    </xsl:choose>
-                </xsl:variable>
-                <!-- if there is no min frequency, but there is a max, then there must be a 'zo nodig' instruction in the first MAR (medicationAdministrationRequest) -->
-                <xsl:variable name="zonodig_in_first_MAR" select="not($toedieningsschema/frequentie/min[@value]) and $toedieningsschema/frequentie/max[@value]"/>
-                
+        <xsl:param name="adaBouwsteen" as="element()?" select="."/>
+
+        <xsl:for-each select="$adaBouwsteen/gebruiksinstructie/doseerinstructie/dosering">
+            <xsl:variable name="adaToedieningsschema" select="./toedieningsschema"/>
+
+            <!-- support for variable frequency: 1 to 2 times a day -->
+            <xsl:variable name="frequentie_in_first_MAR" as="xs:integer?">
+                <xsl:choose>
+                    <xsl:when test="$adaToedieningsschema/frequentie/aantal/(min | minimum_waarde)[@value castable as xs:integer]">
+                        <xsl:value-of select="xs:integer($adaToedieningsschema/frequentie/aantal/(min | minimum_waarde)/@value)"/>
+                    </xsl:when>
+                    <xsl:when test="$adaToedieningsschema/frequentie/aantal/(vaste_waarde | nominale_waarde)[@value castable as xs:integer]">
+                        <xsl:value-of select="xs:integer($adaToedieningsschema/frequentie/aantal/(vaste_waarde | nominale_waarde)/@value)"/>
+                    </xsl:when>
+                    <xsl:when test="not($adaToedieningsschema/frequentie/aantal/(min | minimum_waarde)[@value]) and $adaToedieningsschema/frequentie/aantal/(max | maximum_waarde)[@value castable as xs:integer]">
+                        <xsl:value-of select="xs:integer($adaToedieningsschema/frequentie/aantal/(max | maximum_waarde)/@value)"/>
+                    </xsl:when>
+                </xsl:choose>
+            </xsl:variable>
+            <!-- if there is no min frequency, but there is a max, then there must be a 'zo nodig' instruction in the first MAR (medicationAdministrationRequest) -->
+            <xsl:variable name="zonodig_in_first_MAR" select="not($adaToedieningsschema/frequentie/(min | minimum_waarde)[@value]) and $adaToedieningsschema/frequentie/(max | maximum_waarde)[@value]"/>
+
+            <xsl:call-template name="makeTherapeuticAgentOf_4_template_2.16.840.1.113883.2.4.3.11.60.20.77.10.100_20130521000000">
+                <xsl:with-param name="adaBouwsteen" select="$adaBouwsteen"/>
+                <xsl:with-param name="dosering" select="."/>
+                <xsl:with-param name="frequentie_value" select="$frequentie_in_first_MAR"/>
+                <xsl:with-param name="zonodig" select="$zonodig_in_first_MAR"/>
+            </xsl:call-template>
+            <!-- the zo nodig frequency (max frequency minus min frequency with 'as needed' precondition -->
+            <xsl:if test="$adaToedieningsschema/frequentie/aantal/(min | minimum_waarde)[@value castable as xs:integer] and $adaToedieningsschema/frequentie/aantal/(max | maximum_waarde)[@value castable as xs:integer]">
                 <xsl:call-template name="makeTherapeuticAgentOf_4_template_2.16.840.1.113883.2.4.3.11.60.20.77.10.100_20130521000000">
-                    <xsl:with-param name="medicatieafspraak" select="$medicatieafspraak"/>
+                    <xsl:with-param name="adaBouwsteen" select="$adaBouwsteen"/>
                     <xsl:with-param name="dosering" select="."/>
-                    <xsl:with-param name="frequentie_value" select="$frequentie_in_first_MAR"/>
-                    <xsl:with-param name="zonodig" select="$zonodig_in_first_MAR"/>
+                    <xsl:with-param name="frequentie_value" select="xs:integer($adaToedieningsschema/frequentie/aantal/(max | maximum_waarde)/@value - $adaToedieningsschema/frequentie/aantal/(min | minimum_waarde)/@value)"/>
+                    <xsl:with-param name="zonodig" select="true()"/>
                 </xsl:call-template>
-                <!-- the zo nodig frequency (max frequency minus min frequency with 'as needed' precondition -->
-                <xsl:if test="$toedieningsschema/frequentie/aantal/min[@value castable as xs:integer] and $toedieningsschema/frequentie/aantal/max[@value castable as xs:integer]">
-                    <xsl:call-template name="makeTherapeuticAgentOf_4_template_2.16.840.1.113883.2.4.3.11.60.20.77.10.100_20130521000000">
-                        <xsl:with-param name="medicatieafspraak" select="$medicatieafspraak"/>
-                        <xsl:with-param name="dosering" select="."/>
-                        <xsl:with-param name="frequentie_value" select="xs:integer($toedieningsschema/frequentie/aantal/max/@value - $toedieningsschema/frequentie/aantal/min/@value)"/>
-                        <xsl:with-param name="zonodig" select="true()"/>
-                    </xsl:call-template>
-                </xsl:if>
-            </xsl:for-each>
+            </xsl:if>
         </xsl:for-each>
-    </xsl:template> 
-    
-    
+
+        <xsl:for-each select="$adaBouwsteen/gebruiksinstructie[not(doseerinstructie)]">
+            <xsl:call-template name="makeTherapeuticAgentOf_4_template_2.16.840.1.113883.2.4.3.11.60.20.77.10.100_20130521000000">
+                <xsl:with-param name="adaBouwsteen" select="$adaBouwsteen"/>
+                <!-- empty the dosering -->
+                <xsl:with-param name="dosering" select="/.."/>
+            </xsl:call-template>
+        </xsl:for-each>
+    </xsl:template>
+
+
     <xd:doc>
         <xd:desc> Medication Administration Instruction </xd:desc>
         <xd:param name="code"/>
@@ -731,8 +802,8 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             </xsl:call-template>
         </medicationAdministrationInstruction>
     </xsl:template>
-    
-    
+
+
     <xd:doc>
         <xd:desc> Medication Dispense Request </xd:desc>
         <xd:param name="verstrekkingsverzoek"/>
@@ -781,8 +852,8 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             </xsl:for-each>
         </medicationDispenseRequest>
     </xsl:template>
-    
-    
+
+
     <xd:doc>
         <xd:desc> Medication Combined Order </xd:desc>
         <xd:param name="patient"/>
@@ -841,7 +912,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
                     <!-- gebruiksinstructie -->
                     <xsl:for-each select="$medicatieafspraak">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.100_20130521000000">
-                            <xsl:with-param name="medicatieafspraak" select="."/>
+                            <xsl:with-param name="adaBouwsteen" select="."/>
                         </xsl:call-template>
                     </xsl:for-each>
                 </prescribedMedication>
@@ -882,18 +953,18 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             </xsl:for-each>
         </prescription>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc> Medication Kind </xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.106_20130521000000">
         <MedicationKind classCode="MMAT" determinerCode="KIND">
             <xsl:choose>
-                <xsl:when test="product_code">
-                    <!-- Item(s) :: product_code -->
-                    <xsl:for-each select="product_code">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9005_20130521000000"/>
-                    </xsl:for-each>
+                <xsl:when test="product_code[@value | @code][not(@codeSystem = $oidHL7NullFlavor)]">
+                    <xsl:call-template name="makeProductCode">
+                        <xsl:with-param name="productCode" select="product_code"/>
+                        <xsl:with-param name="GstandaardLevel" select="nf:get-main-gstd-level(product_code)"/>
+                    </xsl:call-template>
                 </xsl:when>
                 <xsl:otherwise>
                     <code nullFlavor="OTH">
@@ -907,6 +978,11 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
                         <desc>
                             <xsl:value-of select="@value"/>
                         </desc>
+                    </xsl:for-each>
+                    <xsl:for-each select="product_specificatie/farmaceutische_vorm">
+                        <xsl:call-template name="makeCode">
+                            <xsl:with-param name="elemName">formCode</xsl:with-param>
+                        </xsl:call-template>
                     </xsl:for-each>
                     <xsl:for-each select="product_specificatie/ingredient">
                         <activeIngredient>
@@ -936,8 +1012,8 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             </xsl:for-each>-->
         </MedicationKind>
     </xsl:template>
-    
-    
+
+
     <xd:doc>
         <xd:desc> Active Ingredient </xd:desc>
     </xd:doc>
@@ -953,52 +1029,145 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.108_20130521000000"/>
         </activeIngredientMaterialKind>
     </xsl:template>
-    
-    
+
+
     <xd:doc>
         <xd:desc> Ingredient Material Kind </xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.108_20130521000000">
         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9018_20130521000000"/>
-        
+
     </xsl:template>
-    
-    
+
+    <xd:doc>
+        <xd:desc>Template  Medication Dispense Event</xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.110_20130521000000">
+        <medicationDispenseEvent>
+            <xsl:for-each select="identificatie">
+                <xsl:call-template name="makeIIValue">
+                    <xsl:with-param name="elemName">id</xsl:with-param>
+                    <xsl:with-param name="root" select="replace(@root, $concatOidTA, '')"/>
+                </xsl:call-template>
+            </xsl:for-each>
+            <statusCode code="completed"/>
+            <xsl:for-each select="toedieningsafspraak_datum_tijd">
+                <xsl:call-template name="makeTSValue">
+                    <xsl:with-param name="elemName">effectiveTime</xsl:with-param>
+                </xsl:call-template>
+            </xsl:for-each>
+            <quantity nullFlavor="NA"/>
+            <performer>
+                <assignedPerson>
+                    <id nullFlavor="MSK"/>
+                </assignedPerson>
+            </performer>
+            <product>
+                <dispensedMedication>
+                    <xsl:for-each select="ancestor::*/bouwstenen/farmaceutisch_product[@id = current()/geneesmiddel_bij_toedieningsafspraak/farmaceutisch_product/@value]">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.106_20130521000000"/>
+                    </xsl:for-each>
+                    <xsl:for-each select="relatie_medicatieafspraak">
+                        <directTargetOf typeCode="DIR">
+                            <prescription>
+                                <xsl:for-each select="identificatie">
+                                    <xsl:call-template name="makeIIid"/>
+                                </xsl:for-each>
+                                <statusCode nullFlavor="UNK"/>
+                            </prescription>
+                        </directTargetOf>
+                    </xsl:for-each>
+                    <!-- therapeuticAgentOf gebruiksinstructie-->
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.100_20130521000000"/>
+                </dispensedMedication>
+            </product>
+
+            <xsl:variable name="theAdaPerformer" as="element(zorgaanbieder)?">
+                <xsl:choose>
+                    <xsl:when test="verstrekker//zorgaanbieder[not(zorgaanbieder)][@value][not(*)]">
+                        <xsl:sequence select="(ancestor::*/bouwstenen/zorgaanbieder[@id = current()/verstrekker//zorgaanbieder[not(zorgaanbieder)]/@value])[1]"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:sequence select="(current()/verstrekker//zorgaanbieder[not(zorgaanbieder)])[1]"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+
+            <xsl:for-each select="$theAdaPerformer">
+                <responsibleParty>
+                    <assignedCareProvider>
+                        <!-- zorgverlener is not part of MP9 TA -->
+                        <id nullFlavor="NI"/>
+                        <!-- Default apotheker is not always right, may be 01.004 apotheekhoudende huisarts. But since this is mandatory in 6.12 we'll use a default anyhow. -->
+                        <code code="17.000" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="Apotheker"/>
+                        <representedOrganization>
+                            <xsl:for-each select="(zorgaanbieder_identificatie_nummer | zorgaanbieder_identificatienummer)">
+                                <xsl:call-template name="makeIIid"/>
+                            </xsl:for-each>
+                            <xsl:for-each select="organisatie_naam[@value]">
+                                <name>
+                                    <xsl:value-of select="@value"/>
+                                </name>
+                            </xsl:for-each>
+                            <xsl:for-each select=".//adresgegevens[not(adresgegevens)][*]">
+                                <addr>
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.101_20180611000000"/>
+                                </addr>
+                            </xsl:for-each>
+                        </representedOrganization>
+                    </assignedCareProvider>
+                </responsibleParty>
+            </xsl:for-each>
+        </medicationDispenseEvent>
+    </xsl:template>
+
+
     <xd:doc>
         <xd:desc> Ingredient quantity </xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.122_20130521000000">
-        <!-- todo: add support for translation - helps to roundtrip back to MP 9, due to mandatory translation to G-standaard unit -->
-        <xsl:for-each select="hoeveelheid_ingredient/waarde">
-            <xsl:call-template name="makePQValue">
-                <xsl:with-param name="elemName">numerator</xsl:with-param>
-            </xsl:call-template>
+
+        <xsl:for-each select="hoeveelheid_ingredient | ingredient_hoeveelheid">
+            <numerator xsi:type="PQ">
+                <xsl:call-template name="makeHoeveelheidContent">
+                    <xsl:with-param name="hoeveelheid-ada" select="."/>
+                </xsl:call-template>
+            </numerator>
         </xsl:for-each>
-        <xsl:for-each select="hoeveelheid_product/waarde">
-            <xsl:call-template name="makePQValue">
-                <xsl:with-param name="elemName">denominator</xsl:with-param>
-            </xsl:call-template>
+        <xsl:for-each select="hoeveelheid_product | product_hoeveelheid">
+            <denominator xsi:type="PQ">
+                <xsl:call-template name="makeHoeveelheidContent">
+                    <xsl:with-param name="hoeveelheid-ada" select="."/>
+                </xsl:call-template>
+            </denominator>
         </xsl:for-each>
+
     </xsl:template>
-    
-    
+
+
     <xd:doc>
         <xd:desc> PatientNL </xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.800_20130521000000">
         <!-- Item(s) :: persoonsidentificatie-->
-        <xsl:for-each select="./patient_identificatienummer">
+        <xsl:for-each select="patient_identificatienummer | identificatienummer">
             <xsl:call-template name="makeII.NL.BSNValue">
                 <xsl:with-param name="xsiType" select="''"/>
                 <xsl:with-param name="elemName">id</xsl:with-param>
             </xsl:call-template>
+        </xsl:for-each>
+        <xsl:for-each select=".//adresgegevens[not(adresgegevens)]">
+            <addr>
+                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.101_20180611000000"/>
+            </addr>
         </xsl:for-each>
         <statusCode code="active"/>
         <Person>
             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.805_20130521000000"/>
         </Person>
     </xsl:template>
-    
+
+
     <xd:doc>
         <xd:desc> PersonNL </xd:desc>
     </xd:doc>
@@ -1016,7 +1185,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
                 <xsl:with-param name="xsiType" select="''"/>
             </xsl:call-template>
         </xsl:for-each>
-        
+
         <!-- Item(s) :: geboortedatum-->
         <xsl:for-each select="./geboortedatum[@value]">
             <xsl:call-template name="makeTSValue">
@@ -1033,8 +1202,15 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             </multipleBirthInd>
         </xsl:for-each>
     </xsl:template>
-    
-    
+
+    <xd:doc>
+        <xd:desc> PatientNL in verstrekking </xd:desc>
+    </xd:doc>
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.816_20130521000000">
+        <!-- assumption is that template 800 covers the necessary patient stuff as well -->
+        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.800_20130521000000"/>
+    </xsl:template>
+
     <xd:doc>
         <xd:desc> Observation Event Criterion </xd:desc>
         <xd:param name="code"/>
@@ -1061,7 +1237,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             </xsl:call-template>
         </observationEventCriterion>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc> Medication Code </xd:desc>
     </xd:doc>
@@ -1071,7 +1247,7 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             <xsl:with-param name="elemName">code</xsl:with-param>
         </xsl:call-template>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc> Beoogde verstrekker </xd:desc>
     </xd:doc>
@@ -1091,27 +1267,29 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
             </assignedPerson>
         </xsl:for-each>
     </xsl:template>
-    
+
     <xd:doc>
-        <xd:desc> Usable Period MP 6.12 </xd:desc>
-        <xd:param name="begindatum"/>
-        <xd:param name="duur"/>
-        <xd:param name="einddatum"/>
+        <xd:desc>Usable Period MP 6.12 </xd:desc>
+        <xd:param name="begindatum">begindatum</xd:param>
+        <xd:param name="duur">ada element for duur</xd:param>
+        <xd:param name="einddatum">einddatum</xd:param>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9019_20130521000000">
-        <xsl:param name="begindatum" select="./begindatum/@value"/>
-        <xsl:param name="duur" select="./duur"/>
-        <xsl:param name="einddatum" select="./einddatum/@value"/>
-        
+        <xsl:param name="begindatum" select="begindatum/@value" as="xs:string*"/>
+        <xsl:param name="duur" select="./duur" as="element()?"/>
+        <xsl:param name="einddatum" select="einddatum/@value" as="xs:string*"/>
+
         <!-- gebruiksduur kan in MP 9 dataset ook in uren, weken en jaren, maar moet in een 6.12 voorschrift altijd in dagen -->
         <!-- omrekenen dus -->
         <xsl:variable name="duur_in_dagen" select="nf:calculate_Duur_In_Dagen($duur/@value, nf:convertTime_ADA_unit2UCUM($duur/@unit))"/>
         <!-- Item(s) :: begindatum -->
         <xsl:for-each select="$begindatum[. castable as xs:date or . castable as xs:dateTime]">
             <xsl:call-template name="makeTSValue">
-                <xsl:with-param name="inputValue" select="$begindatum"/>
+                <xsl:with-param name="inputValue" select="."/>
+                <xsl:with-param name="inputNullFlavor"/>
                 <xsl:with-param name="xsiType" select="''"/>
                 <xsl:with-param name="elemName">low</xsl:with-param>
+                <xsl:with-param name="precision">minute</xsl:with-param>
             </xsl:call-template>
         </xsl:for-each>
         <!-- Item(s) :: gebruiksduur -->
@@ -1126,27 +1304,34 @@ Gevonden is een x van "<xsl:value-of select="$aantal_keer"/>". Dit kan niet gest
         <!-- Item(s) :: einddatum -->
         <xsl:for-each select="$einddatum[. castable as xs:date or . castable as xs:dateTime]">
             <xsl:call-template name="makeTSValue">
-                <xsl:with-param name="inputValue" select="$einddatum"/>
+                <xsl:with-param name="inputValue" select="."/>
+                <xsl:with-param name="inputNullFlavor"/>
                 <xsl:with-param name="xsiType" select="''"/>
                 <xsl:with-param name="elemName">high</xsl:with-param>
+                <xsl:with-param name="precision">minute</xsl:with-param>
             </xsl:call-template>
         </xsl:for-each>
     </xsl:template>
-    
-    
+
     <xd:doc>
         <xd:desc> Material Code </xd:desc>
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9018_20130521000000">
+        <xsl:call-template name="makeProductCode">
+            <xsl:with-param name="productCode" select="ingredient_code"/>
+            <xsl:with-param name="GstandaardLevel" select="nf:get-main-gstd-level(ingredient_code)"/>
+        </xsl:call-template>
+
+        <!--        
         <xsl:for-each select="ingredient_code">
             <xsl:call-template name="makeCEValue">
                 <xsl:with-param name="elemName">code</xsl:with-param>
                 <xsl:with-param name="xsiType"/>
             </xsl:call-template>
         </xsl:for-each>
-        
+-->
     </xsl:template>
-    
-    
-    
-    </xsl:stylesheet>
+
+
+
+</xsl:stylesheet>

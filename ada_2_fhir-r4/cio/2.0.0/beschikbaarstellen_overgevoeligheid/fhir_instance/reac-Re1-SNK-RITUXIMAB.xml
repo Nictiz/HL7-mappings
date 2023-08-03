@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="reac-Re1-SNK-RITUXIMAB"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-Reaction"/>
+   </meta>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.4"/>
+      <value value="Re1-SNK RITUXIMAB"/>
+   </identifier>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="281647001"/>
+         <display value="ongewenste reactie"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/patient-van-de-XXX-Broekmeulen"/>
+      <type value="Patient"/>
+      <display value="Patient, N. van de XXX_Broekmeulen"/>
+   </subject>
+   <effectivePeriod>
+      <start value="${DATE, T, D, -961}T08:50:00+02:00"/>
+   </effectivePeriod>
+   <issued value="${DATE, T, D, -961}T09:10:22+02:00"/>
+   <performer>
+      <reference value="PractitionerRole/pracrole-000003335"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Z. Banen, Overige artsen, basisarts, Algemeen Stadsziekenhuis"/>
+   </performer>
+   <note>
+      <text value="dyspneu en roodheid van gezicht, ong. 15 min na verhoging van pompstand naar 5 ml/uur"/>
+   </note>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="246075003"/>
+            <display value="veroorzaker"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.750"/>
+            <code value="75191"/>
+            <display value="RITUXIMAB"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="246112005"/>
+            <display value="ernst"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="24484000"/>
+            <display value="ernstig"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="284009009"/>
+            <display value="route van toediening"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="5"/>
+            <display value="INTRAVENEUS"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+</Observation>

@@ -1,0 +1,271 @@
+<Patient xmlns="http://hl7.org/fhir">
+   <id value="medmij-bgz-test-patA"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), <span title="Naamsamenstelling: Eigennaam">Anouk A. van XXX_Rijn</span> (Anouk), Vrouw, 17 december 1985, Geen meerling, <span title="Never Married (S - MaritalStatus)">Never Married</span>
+         </div>
+         <div>
+            <a href="tel:0612345678">0612345678</a> (Mobiel Privé), <a href="mailto:A.van.XXX_Rijn@gmail.com">A.van.XXX_Rijn@gmail.com</a> (E-mail Privé)</div>
+         <div>Knolweg 1002 A - Hoogbouw to, 9999ZZ Stitswerd Het Hogeland, NLD (officieel Privé (hoofd) Bezoek)</div>
+         <div>
+            <span title="Domestic partner (DOMPART - v3/RoleCode)">Domestic partner</span>, <span title="Eerste relatie/contactpersoon (1 - RoleCodeLijst (COD472-VEKT))">Eerste relatie/contactpersoon</span>
+            <span title="Naamsamenstelling: Eigennaam">Benedictus B. de XXX_Vries</span> (Ben)<div>
+               <a href="tel:06-12345678">06-12345678</a> (Mobiel Privé), <a href="mailto:Ben.de.XXX_Vries@gmail.com">Ben.de.XXX_Vries@gmail.com</a> (E-mail Privé), Knolweg 1002 to, 9999ZZ Stitswerd Het Hogeland, NLD (officieel Privé (hoofd) Bezoek)</div>
+         </div>
+         <div>Huisarts: Franciscus Dominicus Antonius F.D.A. Frans Pleijster<div>Zorgverlenerrol: Huisarts</div>
+         </div>
+      </div>
+   </text>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+      <value>
+         <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+            <valueCode value="masked"/>
+         </extension>
+      </value>
+   </identifier>
+   <name>
+      <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+         <valueCode value="NL1"/>
+      </extension>
+      <family value="van XXX_Rijn">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+            <valueString value="van"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="XXX_Rijn"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-prefix">
+            <valueString value="de"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+            <valueString value="XXX_Vries"/>
+         </extension>
+      </family>
+      <given value="Anouk">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+      <given value="A.">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="IN"/>
+         </extension>
+      </given>
+      <given value="Anouk">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="CL"/>
+         </extension>
+      </given>
+   </name>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="MC"/>
+               <display value="Mobile Phone"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="0612345678"/>
+      <use value="home"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="A.van.XXX_Rijn@gmail.com"/>
+      <use value="home"/>
+   </telecom>
+   <gender value="female">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+               <code value="F"/>
+               <display value="Female"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </gender>
+   <birthDate value="1985-12-17"/>
+   <deceasedBoolean value="false"/>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="HP"/>
+               <display value="Officieel adres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-address-official">
+         <valueBoolean value="true"/>
+      </extension>
+      <use value="home"/>
+      <type value="physical"/>
+      <line value="Knolweg 1002 A - Hoogbouw to">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Knolweg"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="1002"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+            <valueString value="A"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+            <valueString value="-"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-unitID">
+            <valueString value="Hoogbouw"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator">
+            <valueString value="to"/>
+         </extension>
+      </line>
+      <city value="Stitswerd"/>
+      <district value="Het Hogeland"/>
+      <postalCode value="9999ZZ"/>
+      <country value="NLD">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:iso:std:iso:3166"/>
+                  <version value="1.0.3166.1.2.2"/>
+                  <code value="NLD"/>
+                  <display value="Nederland"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </country>
+   </address>
+   <maritalStatus>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.5.2"/>
+         <code value="S"/>
+         <display value="Never Married"/>
+      </coding>
+   </maritalStatus>
+   <multipleBirthBoolean value="false"/>
+   <contact>
+      <relationship>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/RoleCode"/>
+            <code value="DOMPART"/>
+            <display value="Domestic partner"/>
+         </coding>
+      </relationship>
+      <relationship>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.22.472"/>
+            <code value="1"/>
+            <display value="Eerste relatie/contactpersoon"/>
+         </coding>
+      </relationship>
+      <name>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+            <valueCode value="NL1"/>
+         </extension>
+         <family value="de XXX_Vries">
+            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+               <valueString value="de"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+               <valueString value="XXX_Vries"/>
+            </extension>
+         </family>
+         <given value="Benedictus">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+               <valueCode value="BR"/>
+            </extension>
+         </given>
+         <given value="B.">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+               <valueCode value="IN"/>
+            </extension>
+         </given>
+         <given value="Ben">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+               <valueCode value="CL"/>
+            </extension>
+         </given>
+      </name>
+      <telecom>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                  <code value="MC"/>
+                  <display value="Mobile Phone"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+         <system value="phone"/>
+         <value value="06-12345678"/>
+         <use value="home"/>
+      </telecom>
+      <telecom>
+         <system value="email"/>
+         <value value="Ben.de.XXX_Vries@gmail.com"/>
+         <use value="home"/>
+      </telecom>
+      <address>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                  <code value="HP"/>
+                  <display value="Officieel adres"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+         <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-address-official">
+            <valueBoolean value="true"/>
+         </extension>
+         <use value="home"/>
+         <type value="physical"/>
+         <line value="Knolweg 1002 to">
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+               <valueString value="Knolweg"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+               <valueString value="1002"/>
+            </extension>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator">
+               <valueString value="to"/>
+            </extension>
+         </line>
+         <city value="Stitswerd"/>
+         <district value="Het Hogeland"/>
+         <postalCode value="9999ZZ"/>
+         <country value="NLD">
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="urn:iso:std:iso:3166"/>
+                     <version value="1.0.3166.1.2.2"/>
+                     <code value="NLD"/>
+                     <display value="Nederland"/>
+                  </coding>
+               </valueCodeableConcept>
+            </extension>
+         </country>
+      </address>
+   </contact>
+   <generalPractitioner>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-medmij-bgz-test-0100000201-01501000001"/>
+            <display value="Huisarts"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/-practitioner-medmij-bgz-test-2-16-840-1-113883-2-4-6-1-01000002"/>
+      <display value="Franciscus Dominicus Antonius F.D.A. Frans Pleijster"/>
+   </generalPractitioner>
+</Patient>

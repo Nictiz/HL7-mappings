@@ -27,8 +27,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
 
     <xsl:variable name="patients" as="element()*">
-        <!-- Patiënten -->
-        <xsl:for-each-group select="//patient[not(patient)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="
+        <xsl:for-each-group select="//patient[not(patient)][not(@datatype = 'reference')][*//(@value | @code | @nullFlavor)]" group-by="
                 string-join(for $att in nf:ada-pat-id(identificatienummer | patient_identificatie_nummer | patient_identification_number)/(@root, @value)
                 return
                     $att, '')">
@@ -49,9 +48,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each-group>
         </xsl:for-each-group>
     </xsl:variable>
+    
     <xsl:variable name="relatedPersons" as="element()*">
-        <!-- related-persons -->
-        <xsl:for-each-group select="//(informant/persoon[not(persoon)] | contactpersoon[not(contactpersoon)] | contact_person[not(contact_person)])[not(@datatype = 'reference')][*//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
+        <xsl:for-each-group select="//(informant//persoon[not(persoon)] | contactpersoon[not(contactpersoon)] | contact_person[not(contact_person)] | contact[not(contact)])[not(@datatype = 'reference')][*//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
             <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
             <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
             <unieke-persoon xmlns="">
@@ -67,8 +66,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </unieke-persoon>
         </xsl:for-each-group>
     </xsl:variable>
+    
     <xsl:variable name="alerts" as="element()*">
-        <!-- probleem in problem -->
         <xsl:for-each-group select="//alert[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
             <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
             <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
@@ -86,8 +85,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </unieke-problem>
         </xsl:for-each-group>
     </xsl:variable>
+    
     <xsl:variable name="allergyIntolerances" as="element()*">
-        <!-- related-persons -->
         <xsl:for-each-group select="//(allergie_intolerantie | allergy_intolerance)[not(@datatype = 'reference')][*//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyDefault(.)">
             <!-- uuid als fullUrl en ook een fhir id genereren vanaf de tweede groep -->
             <xsl:variable name="uuid" as="xs:boolean" select="position() > 1"/>
@@ -105,8 +104,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </unieke-allergie-intolerantie>
         </xsl:for-each-group>
     </xsl:variable>
+    
     <xsl:variable name="body-observations" as="element()*">
-        <!-- body_height | body_weight -->
         <xsl:copy-of select="$bodyHeights"/>
         <xsl:copy-of select="$bodyWeights"/>
     </xsl:variable>
@@ -202,6 +201,50 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
+        </xsl:choose>
+    </xsl:function>
+    
+    <xd:doc>
+        <xd:desc>Returns true (boolean) if the date or dateTime is in the future. Defaults to false. Input should be a value that is castable to a date or dateTime. Input may be empty which results in the default false value.</xd:desc>
+        <xd:param name="dateOrDt">The ADA date or dateTime.</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:isFuture" as="xs:boolean">
+        <xsl:param name="dateOrDt"/>
+        <xsl:choose>
+            <xsl:when test="$dateOrDt castable as xs:date">
+                <xsl:value-of select="$dateOrDt &gt; current-date()"/>
+            </xsl:when>
+            <xsl:when test="$dateOrDt castable as xs:dateTime">
+                <xsl:value-of select="$dateOrDt &gt; current-dateTime()"/>
+            </xsl:when>
+            <xsl:when test="starts-with($dateOrDt, 'T+')">
+                <xsl:value-of select="true()"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="false()"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    
+    <xd:doc>
+        <xd:desc>Returns true (boolean) if the date or dateTime is in the past. Defaults to false. Input should be a value that is castable to a date or dateTime. Input may be empty which results in the default false value.</xd:desc>
+        <xd:param name="dateOrDt">The ADA date or dateTime.</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:isPast" as="xs:boolean">
+        <xsl:param name="dateOrDt"/>
+        <xsl:choose>
+            <xsl:when test="$dateOrDt castable as xs:date">
+                <xsl:value-of select="$dateOrDt &lt; current-date()"/>
+            </xsl:when>
+            <xsl:when test="$dateOrDt castable as xs:dateTime">
+                <xsl:value-of select="$dateOrDt &lt; current-dateTime()"/>
+            </xsl:when>
+            <xsl:when test="starts-with($dateOrDt, 'T-')">
+                <xsl:value-of select="true()"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="false()"/>
+            </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
 

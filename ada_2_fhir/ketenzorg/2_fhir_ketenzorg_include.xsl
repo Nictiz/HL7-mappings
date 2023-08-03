@@ -276,7 +276,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:when test="'obsolete'">resolved</xsl:when>
                                     <xsl:when test="'nullified'">entered-in-error</xsl:when>
                                     <xsl:otherwise>
-                                        <xsl:message>Unsupported EpisodeOfCare status code "<xsl:value-of select="@code"/>"</xsl:message>
+                                        <xsl:call-template name="util:logMessage">
+                                            <xsl:with-param name="level" select="$logWARN"/>
+                                            <xsl:with-param name="msg">Unsupported EpisodeOfCare status code "<xsl:value-of select="@code"/>"</xsl:with-param>
+                                        </xsl:call-template>
                                     </xsl:otherwise>
                                 </xsl:choose>
                             </xsl:attribute>
@@ -1357,7 +1360,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
                 <!-- As title, the display name of the 'E' entry can be used.
                      If no 'E' entry is availabe, fallback to a generic title. -->
-                <xsl:variable name="e_entry"  select="$gp-JournalEntries/descendant-or-self::f:Observation[1]/f:component[f:code//f:code/@value = 'DISDX'][1]" as="element()?"/>
+                <xsl:variable name="e_entry"  select="($gp-JournalEntries/descendant-or-self::f:Observation[1]/f:component[f:code//f:code/@value = 'DISDX'])[1]" as="element()?"/>
                 <xsl:choose>
                     <xsl:when test="$e_entry">
                         <title value="{$e_entry//f:valueCodeableConcept//f:display/@value}"/>

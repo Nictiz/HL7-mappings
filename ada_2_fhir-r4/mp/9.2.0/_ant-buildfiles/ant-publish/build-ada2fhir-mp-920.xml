@@ -75,7 +75,14 @@
             <param name="sub.build.dir" value="${build.dir}/${usecase.mg.st}"/>
             <param name="schema.string" value="*${usecase.mg.st}.xsd"/>
             <param name="fileset.dir" value="ada_instance"/>
-            <param name="fileset.include" value="*.xml"/>
+            <param name="fileset.include" value="mg-*.xml"/>
+            <param name="refs.dir" value="${refs.dir}/${usecase.mg.st}"/>
+        </antcall>
+        <antcall target="setup_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mg.st}"/>
+            <param name="schema.string" value="*${usecase.mg.st}.xsd"/>
+            <param name="fileset.dir" value="ada_instance_sets"/>
+            <param name="fileset.include" value="mgsets-*.xml"/>
             <param name="refs.dir" value="${refs.dir}/${usecase.mg.st}"/>
         </antcall>
 
@@ -221,6 +228,11 @@
         </antcall>
 
         <echo>sturen_medicatiegegevens</echo>
+        <mkdir dir="${build.dir}/${usecase.mg.st}/fhir_instance"/>
+        <echo>Deleting previous results, if any</echo>
+        <delete>
+            <fileset dir="${build.dir}/${usecase.mg.st}/fhir_instance" includes="*.*"/>
+        </delete>
         <!-- push bundles for Touchstone for sturen_medicatiegegevens -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="${usecase.mg.st}"/>
@@ -233,6 +245,24 @@
             <param name="param.maskids" value="${mask.ids}"/>
             <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
             <param name="output.dir" value="../${build.dir}/${usecase.mg.st}/fhir_instance"/>
+        </antcall>
+        <!-- Also do sets -->
+        <mkdir dir="${build.dir}/${usecase.mg.st}/fhir_instance"/>
+        <echo>Deleting previous results, if any</echo>
+        <delete>
+            <fileset dir="${build.dir}/${usecase.mg.st}/fhir_instance_sets" includes="*.*"/>
+        </delete>
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="usecase" value="${usecase.mg.st}"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.fhir.fixtures}/payload/${usecase.mg.st}_2_fhir.xsl"/>
+            <param name="xsl.in" value="${build.dir}/${usecase.mg.st}/ada_instance_sets"/>
+            <param name="xsl.in.include" value="*.xml"/>
+            <!-- the xsl will write it's resources using the output.dir, but ant xslt still needs an output dir -->
+            <param name="xsl.out" value="${xsl.output.dummy}"/>
+            <param name="param.tdate" value="${date.T}" if:set="date.T"/>
+            <param name="param.maskids" value="${mask.ids}"/>
+            <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
+            <param name="output.dir" value="../${build.dir}/${usecase.mg.st}/fhir_instance_sets"/>
         </antcall>
 
         <echo>sturen_medicatievoorschrift</echo>
@@ -392,8 +422,7 @@
                 <!-- the resources and scenarioset bundles are needed on Touchstone / WildFHIR, exclude the ALL bundles -->
                 <exclude name="mg-*ALL.xml"/>
             </fileset>
-            <!-- no longer needed, we use the beschikbaarstellen set for push as well -->
-            <!--            <fileset dir="${build.dir}/${usecase.mg.st}/fhir_instance"/>-->
+            <fileset dir="${build.dir}/${usecase.mg.st}/fhir_instance_sets"/>
             <fileset dir="${build.dir}/${usecase.mv}/fhir_instance"/>
             <fileset dir="${build.dir}/${usecase.amv}/fhir_instance"/>
             <fileset dir="${build.dir}/${usecase.vma}/fhir_instance"/>

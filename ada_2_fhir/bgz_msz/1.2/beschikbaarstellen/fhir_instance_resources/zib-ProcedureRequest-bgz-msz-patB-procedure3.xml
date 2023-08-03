@@ -1,0 +1,115 @@
+<ProcedureRequest xmlns="http://hl7.org/fhir">
+   <id value="zib-ProcedureRequest-bgz-msz-patB-procedure3"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ProcedureRequest"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichtingaanvraag. Subject: Maria Francisca M.F. Maria van 't Hoen Verheul. Id: patB-procedure3 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Status: actief<span style="display: block;">Intentie: plan</span>
+               <span style="display: block;">Aangevraagd door: Johanna J. Joke de Bruin || Internist || naam eigen ziekenhuis</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="eenvoudige mastectomie (172043006 - SNOMED CT)">eenvoudige mastectomie</span>
+                  </td>
+                  <td>
+                     <div>Wanneer: ${DATE, T, D, +1}T10:00:00+02:00 - ${DATE, T, D, +1}T12:00:00+02:00</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Beoogde uitvoerende</th>
+                  <td>
+                     <div>Type: <span title="Uitvoerder (PRF - v3/ParticipationType)">Uitvoerder</span>
+                     </div>
+                     <div>Antonius Franciscus A.F. Ton Zoomers || Chirurg || naam eigen ziekenhuis</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>maligne neoplasma van mamma</td>
+               </tr>
+               <tr>
+                  <td>Deel van lichaam</td>
+                  <td>
+                     <span title="structuur van mamma (76752008 - SNOMED CT)">structuur van mamma</span>
+                     <span title="rechts (24028007 - SNOMED CT)">rechts</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patB-procedure3"/>
+   </identifier>
+   <status value="active"/>
+   <intent value="plan"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="172043006"/>
+         <display value="eenvoudige mastectomie"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/MARIA-FRANCISCA-M-F--MARIA-VAN-T-HOEN-VERHEUL"/>
+      <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
+   </subject>
+   <occurrencePeriod>
+      <start value="${DATE, T, D, +1}T10:00:00+02:00"/>
+      <end value="${DATE, T, D, +1}T12:00:00+02:00"/>
+   </occurrencePeriod>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-bgz-msz-0014141401-016123456B3"/>
+               <display value="Johanna J. Joke de Bruin || Internist || naam eigen ziekenhuis"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-840-1-113883-2-4-6-1-00141414"/>
+         <display value="Johanna J. Joke de Bruin"/>
+      </agent>
+   </requester>
+   <performerType>
+      <coding>
+         <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+         <code value="PRF"/>
+         <display value="Uitvoerder"/>
+      </coding>
+   </performerType>
+   <performer>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-bgz-msz-0015151501-014123456B3"/>
+            <display value="Antonius Franciscus A.F. Ton Zoomers || Chirurg || naam eigen ziekenhuis"/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-840-1-113883-2-4-6-1-00151515"/>
+      <display value="Antonius Franciscus A.F. Ton Zoomers"/>
+   </performer>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-bgz-msz-patB-problem6"/>
+      <display value="maligne neoplasma van mamma"/>
+   </reasonReference>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="24028007"/>
+               <display value="rechts"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="76752008"/>
+         <display value="structuur van mamma"/>
+      </coding>
+   </bodySite>
+</ProcedureRequest>

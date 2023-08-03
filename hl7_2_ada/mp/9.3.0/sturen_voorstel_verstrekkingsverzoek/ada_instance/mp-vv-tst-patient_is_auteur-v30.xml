@@ -1,0 +1,87 @@
+<!--Generated from HL7v3 instance.-->
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_voorstel_verstrekkingsverzoek.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2023-06-27T17:21:12.637947+02:00"
+         last-update-date="2023-06-27T17:21:12.637947+02:00"/>
+   <data>
+      <sturen_voorstel_verstrekkingsverzoek app="mp-mp93"
+                                            shortName="sturen_voorstel_verstrekkingsverzoek"
+                                            formName="sturen_voorstel_verstrekkingsverzoek"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.328"
+                                            transactionEffectiveDate="2022-02-07T00:00:00"
+                                            versionDate=""
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="mp-vv-tst-patient_is_auteur-v30"
+                                            id="mp-vv-tst-patient_is_auteur-v30">
+         <patient>
+            <naamgegevens>
+               <initialen value="C."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <voorvoegsels value="van de "/>
+                  <achternaam value="XXX_Brugge"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900419" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime" value="1963-10-16"/>
+            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+         </patient>
+         <medicamenteuze_behandeling id="">
+            <verstrekkingsverzoek>
+               <te_verstrekken_geneesmiddel>
+                  <farmaceutisch_product value="d41e29" datatype="reference"/>
+               </te_verstrekken_geneesmiddel>
+               <te_verstrekken_hoeveelheid>
+                  <aantal value="10"/>
+                  <eenheid value="10"
+                           code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <beoogd_verstrekker>
+                  <zorgaanbieder value="d41e35" datatype="reference"/>
+               </beoogd_verstrekker>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_start_eind_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="d41e29">
+               <product_code code="6947"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="METOCLOPRAMIDE TABLET 10MG"/>
+               <product_code code="19429"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="METOCLOPRAMIDE TABLET 10MG"/>
+            </farmaceutisch_product>
+            <zorgaanbieder id="d41e35">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+            </zorgaanbieder>
+         </bouwstenen>
+         <voorstel_gegevens>
+            <voorstel>
+               <identificatie value="MBH_300_Voorstelgegevens_patient_is_auteur_VVV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.2"/>
+               <voorstel_datum datatype="datetime" value="2023-01-01T13:24:00"/>
+               <auteur>
+                  <auteur_is_patient value="true"/>
+               </auteur>
+               <medicamenteuze_behandeling value="" datatype="reference"/>
+               <toelichting value="Veel last van misselijkheid en ik heb onvoldoende voorraad"/>
+            </voorstel>
+         </voorstel_gegevens>
+      </sturen_voorstel_verstrekkingsverzoek>
+   </data>
+</adaxml>

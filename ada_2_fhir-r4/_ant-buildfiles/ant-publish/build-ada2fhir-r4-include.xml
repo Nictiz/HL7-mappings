@@ -122,7 +122,7 @@
         <echo>${echo.label} validate schema with input files ${fileset.include} but excluding ${fileset.exclude} and schema ${validate.schema}</echo>
         <schemavalidate warn="true" failonerror="false">
             <fileset refid="inputfiles.validate"/>
-            <schema namespace="http://hl7.org/fhir" file="${validate.schema}"/>
+            <schema namespace="http://hl7.org/fhir" url="${validate.schema}"/>
         </schemavalidate>
 
     </target>

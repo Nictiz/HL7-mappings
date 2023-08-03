@@ -1,0 +1,70 @@
+<Coverage xmlns="http://hl7.org/fhir">
+   <id value="zib-Payer-bgz-msz-patA-payer1-1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Payer"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verzekering/garantstelling. Id: patA-payer1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7)</caption>
+            <tbody>
+               <tr>
+                  <th>Type</th>
+                  <td>
+                     <span title="Aanvullend verzekerd (A - 2.16.840.1.113883.2.4.3.11.60.101.5.1)">Aanvullend verzekerd</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>${DATE, T, D, -182} - ${DATE, T, D, +183}</td>
+               </tr>
+               <tr>
+                  <th>abonnee</th>
+                  <td>Dennis D. Dennis Janse</td>
+               </tr>
+               <tr>
+                  <th>Verzekerdenummer</th>
+                  <td>88664422</td>
+               </tr>
+               <tr>
+                  <th>Betaler</th>
+                  <td>ONVZ Zorgverzekeraar</td>
+               </tr>
+               <tr>
+                  <th>begunstigde</th>
+                  <td>Dennis D. Dennis Janse</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patA-payer1"/>
+   </identifier>
+   <type>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.101.5.1"/>
+         <code value="A"/>
+         <display value="Aanvullend verzekerd"/>
+      </coding>
+   </type>
+   <subscriber>
+      <reference value="Patient/DENNIS-D--DENNIS-JANSE"/>
+      <display value="Dennis D. Dennis Janse"/>
+   </subscriber>
+   <subscriberId value="88664422"/>
+   <beneficiary>
+      <reference value="Patient/DENNIS-D--DENNIS-JANSE"/>
+      <display value="Dennis D. Dennis Janse"/>
+   </beneficiary>
+   <period>
+      <start value="${DATE, T, D, -182}"/>
+      <end value="${DATE, T, D, +183}"/>
+   </period>
+   <payor>
+      <reference value="Organization/nl-core-organization-bgz-msz-2-16-840-1-113883-2-4-6-4-3343"/>
+      <display value="ONVZ Zorgverzekeraar"/>
+   </payor>
+</Coverage>

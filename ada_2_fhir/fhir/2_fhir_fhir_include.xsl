@@ -114,7 +114,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:element>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:message terminate="yes">FATAL: Cannot determine the datatype based on @datatype, or value not supported: <xsl:value-of select="$theDatatype"/></xsl:message>
+                    <xsl:call-template name="util:logMessage">
+                        <xsl:with-param name="level" select="$logFATAL"/>
+                        <xsl:with-param name="msg">Cannot determine the datatype based on @datatype, or value not supported: <xsl:value-of select="$theDatatype"/></xsl:with-param>
+                        <xsl:with-param name="terminate" select="true()"/>
+                    </xsl:call-template>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>
@@ -126,7 +130,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="boolean-to-boolean" as="item()?">
         <xsl:param name="in" as="element()?" select="."/>
-
+        
         <xsl:choose>
             <xsl:when test="$in/@value">
                 <!-- we do not terminate: garbage in / garbage out -->
@@ -146,6 +150,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
         </xsl:choose>
     </xsl:template>
+    
     <xd:doc>
         <xd:desc>Transforms ada string element to FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#string">@value</xd:a></xd:desc>
         <xd:param name="in">the ada string element, may have any name but should have ada datatype string</xd:param>
@@ -730,7 +735,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="$oid"/>
-                <xsl:message>WARNING: local:getUri() expects an OID, but got "<xsl:value-of select="$oid"/>"</xsl:message>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logWARN"/>
+                    <xsl:with-param name="msg">local:getUri() expects an OID, but got "<xsl:value-of select="$oid"/>"</xsl:with-param>
+                </xsl:call-template>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
@@ -759,7 +767,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:value-of select="nf:getUriFromAdaId($adaIdentification, (), ())"/>
     </xsl:function>
     <xd:doc>
-        <xd:desc>Requires param adaIdentification or resourceId. If possible generates a uri based on oid or uuid from input. If not possible generates an uri based on gerenated uuid making use of input element</xd:desc>
+        <xd:desc>Requires param adaIdentification or resourceId. If possible generates a uri based on oid or uuid from input. If not possible generates an uri based on generated uuid making use of input element</xd:desc>
         <xd:param name="adaIdentification">input element for which uri is needed</xd:param>
         <xd:param name="resourceType">if a resourceId was created before we should reuse that, but for that we need a baseUrl + resource type like https://myserver/fhir/Observation to create [base]/resourceId</xd:param>
         <xd:param name="reference">If true creates a fullUrl otherwise a relative reference</xd:param>
@@ -930,7 +938,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:variable name="newDate" select="nf:calculate-t-date($dateTime, $dateT)"/>
                         <xsl:choose>
                             <xsl:when test="$newDate castable as xs:dateTime">
-                                <!-- in an ada relative datetime the timezone is not permitted (or known), let's add the timezon -->
+                                <!-- in an ada relative datetime the timezone is not permitted (or known), let's add the timezone -->
                                 <xsl:value-of select="nf:add-Amsterdam-timezone-to-dateTimeString($newDate)"/>
                             </xsl:when>
                             <xsl:otherwise>

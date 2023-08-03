@@ -12,7 +12,8 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns:file="http://expath.org/ns/file" xmlns:svrl="http://purl.oclc.org/dsdl/svrl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns:file="http://expath.org/ns/file" xmlns:util="urn:hl7:utilities" xmlns:svrl="http://purl.oclc.org/dsdl/svrl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
+    <xsl:import href="utilities.xsl"/>
     
     <!-- merges SVRL output of various input files into a single aggregated result -->
     <!-- call with itself as input, no need for 'default-input.xml'. Example:
@@ -78,9 +79,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <!-- log error message in case there is any fail -->            
         <xsl:if test="$results//fail">
-            <xsl:message terminate="no">ERROR: Not all instances validated correctly in input directory: <xsl:value-of select="replace(resolve-uri($inputDir), '^file:', '')"/></xsl:message>
+            <xsl:call-template name="util:logMessage">
+                <xsl:with-param name="level" select="$logERROR"/>
+                <xsl:with-param name="msg">Not all instances validated correctly in input directory: <xsl:value-of select="replace(resolve-uri($inputDir), '^file:', '')"/></xsl:with-param>
+            </xsl:call-template>
+            
             <xsl:for-each select="$results//file[fail]">
-                <xsl:message terminate="no"><xsl:text>       </xsl:text><xsl:value-of select="position()"/> FAILED: <xsl:value-of select="replace(resolve-uri(@name), '^file:', '')"/></xsl:message>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logERROR"/>
+                    <xsl:with-param name="msg"><xsl:text>       </xsl:text><xsl:value-of select="position()"/> FAILED: <xsl:value-of select="replace(resolve-uri(@name), '^file:', '')"/></xsl:with-param>
+                </xsl:call-template>
             </xsl:for-each>
         </xsl:if>
         

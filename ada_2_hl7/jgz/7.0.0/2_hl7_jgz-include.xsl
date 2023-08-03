@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<stylesheet xmlns="http://www.w3.org/1999/XSL/Transform" xmlns:hl7="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="20">
+<stylesheet xmlns="http://www.w3.org/1999/XSL/Transform" xmlns:hl7="urn:hl7-org:v3" xmlns:util="urn:hl7:utilities" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="20">
     <include href="../../hl7/2_hl7_hl7_include.xsl"/>
     
     <!-- TransmissionWrapper Initiating -->
@@ -1129,7 +1129,10 @@
                             <xsl:value-of select="$gContactGroepsbijeenkomst"/>
                         </xsl:when>
                         <xsl:otherwise>
-                            <xsl:message>Onbekend activiteitype gevonden: <xsl:value-of select="$activiteitType"/></xsl:message>
+                            <xsl:call-template name="util:logMessage">
+                                <xsl:with-param name="level" select="$logWARN"/>
+                                <xsl:with-param name="msg">Onbekend activiteittype gevonden: <xsl:value-of select="$activiteitType"/></xsl:with-param>
+                            </xsl:call-template>
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:variable>
@@ -1794,7 +1797,10 @@
                         <xsl:value-of select="$gContactGroepsbijeenkomst"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:message>Onbekend activiteitype gevonden: <xsl:value-of select="$activiteitType"/></xsl:message>
+                        <xsl:call-template name="util:logMessage">
+                            <xsl:with-param name="level" select="$logWARN"/>
+                            <xsl:with-param name="msg">Onbekend activiteittype gevonden: <xsl:value-of select="$activiteitType"/></xsl:with-param>
+                        </xsl:call-template>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>

@@ -204,7 +204,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- type bouwsteen, hier een medicatieafspraak -->
                     <category>
                         <coding>
-                            <system value="http://snomed.info/sct"/>
+                            <system value="{local:getUri($oidSNOMEDCT)}"/>
                             <code value="16076005"/>
                             <display value="Prescription (procedure)"/>
                         </coding>
