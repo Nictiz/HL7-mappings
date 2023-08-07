@@ -1,0 +1,115 @@
+<Appointment xmlns="http://hl7.org/fhir">
+   <id value="eAfspraak-Appointment-medmij-bgz-test-patA-plannedcare5"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/eAfspraak-Appointment"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Afspraak. Id: patA-encounter2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Status: geannuleerd</caption>
+            <tbody>
+               <tr>
+                  <th>Type</th>
+                  <td>
+                     <span title="Inpatient (IMP - v3/ActCode)">Inpatient</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>Geen informatie</td>
+               </tr>
+               <tr>
+                  <th>Timing</th>
+                  <td> tot </td>
+               </tr>
+               <tr>
+                  <th>Deelnemers</th>
+                  <td>
+                     <ul>
+                        <li> - Anouk A. Anouk van XXX_Rijn de XXX_Vries</li>
+                        <li> - Olivier Ruben O.R. Olivier de Rijcke || Orthopedisch chirurg || Ziekenhuis het Hogeland<ul>
+                              <li>
+                                 <span title="Performer (PRF - v3/ParticipationType)">Performer</span>
+                              </li>
+                           </ul>
+                        </li>
+                        <li> - Ziekenhuis het Hogeland</li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patA-encounter2"/>
+   </identifier>
+   <status value="cancelled">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActStatus"/>
+               <code value="cancelled"/>
+               <display value="Cancelled"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </status>
+   <appointmentType>
+      <coding>
+         <system value="http://hl7.org/fhir/v3/ActCode"/>
+         <code value="IMP"/>
+         <display value="Inpatient"/>
+      </coding>
+   </appointmentType>
+   <start>
+      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+         <valueCode value="unknown"/>
+      </extension>
+   </start>
+   <end value=""/>
+   <reason>
+      <text value="Geen informatie"/>
+   </reason>
+   <indication>
+      <reference value="Condition/zib-Problem-medmij-bgz-test-patA-problem5"/>
+      <display value="Artrose van linker kniegewricht"/>
+   </indication>
+   <indication>
+      <reference value="ProcedureRequest/zib-ProcedureRequest-medmij-bgz-test-patA-procedure2"/>
+      <display value="Implantatie van gewrichtsprothese in knie"/>
+   </indication>
+   <participant>
+      <actor>
+         <reference value="Patient/medmij-bgz-test-patA"/>
+         <display value="Anouk A. Anouk van XXX_Rijn de XXX_Vries"/>
+      </actor>
+   </participant>
+   <participant>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+            <code value="PRF"/>
+            <display value="Performer"/>
+         </coding>
+      </type>
+      <actor>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-medmij-bgz-test-0300000101-03206000001"/>
+               <display value="Olivier Ruben O.R. Olivier de Rijcke || Orthopedisch chirurg || Ziekenhuis het Hogeland"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/-practitioner-medmij-bgz-test-2-16-840-1-113883-2-4-6-1-03000001"/>
+         <display value="Olivier Ruben O.R. Olivier de Rijcke"/>
+      </actor>
+   </participant>
+   <participant>
+      <actor>
+         <reference value="Organization/-organization-medmij-bgz-test-2-16-840-1-113883-2-4-6-1-06000001"/>
+         <display value="Ziekenhuis het Hogeland"/>
+      </actor>
+   </participant>
+</Appointment>

@@ -424,6 +424,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value] | ancestor::bundle//subject//patient[not(patient)][*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
         
+        <!-- Params for PlannedCareActivityForTransfer -->
+        <xsl:param name="startDate" as="element()?"/>
+        <xsl:param name="endDate" as="element()?"/>
+        <xsl:param name="orderStatus" as="element()?"/>
+        
         <xsl:for-each select="$in">
             <xsl:variable name="resource">
                 <xsl:variable name="profileValue">http://nictiz.nl/fhir/StructureDefinition/zib-ProcedureRequest</xsl:variable>
@@ -444,7 +449,28 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </identifier>
                     </xsl:for-each>
                     
-                    <status value="active"/>
+                    <status value="active">
+                        <xsl:attribute name="value">
+                            <xsl:choose>
+                                <!-- PlannedCareActivityForTransfer -->
+                                <xsl:when test="$orderStatus">
+                                    <xsl:choose>
+                                        <xsl:when test="$orderStatus/@code = 'new'">active</xsl:when>
+                                        <xsl:when test="$orderStatus/@code = 'active'">active</xsl:when>
+                                        <xsl:when test="$orderStatus/@code = 'held'">suspended</xsl:when>
+                                        <xsl:when test="$orderStatus/@code = 'cancelled'">cancelled</xsl:when>
+                                        <xsl:when test="$orderStatus/@code = 'aborted'">cancelled</xsl:when>
+                                        <xsl:when test="$orderStatus/@code = '385644000'">active</xsl:when>
+                                        <xsl:when test="$orderStatus/@code = '385651009'">active</xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:attribute name="value" select="'unknown'"/>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                </xsl:when>
+                                <xsl:otherwise>active</xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:attribute>
+                    </status>
                     
                     <intent value="plan"/>
                     
@@ -461,9 +487,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </subject>
                     
-                    <xsl:if test="(verrichting_start_datum | procedure_start_date)[@value] or (verrichting_eind_datum | procedure_end_date)[@value]">
+                    <xsl:if test="(verrichting_start_datum | procedure_start_date)[@value] or (verrichting_eind_datum | procedure_end_date)[@value] or string-length($startDate) gt 0 or string-length($endDate) gt 0">
                         <occurrencePeriod>
-                            <xsl:for-each select="(verrichting_start_datum | procedure_start_date)[@value]">
+                            <xsl:for-each select="($startDate | verrichting_start_datum | procedure_start_date)[@value][1]">
                                 <start>
                                     <xsl:attribute name="value">
                                         <xsl:call-template name="format2FHIRDate">
@@ -473,7 +499,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:attribute>
                                 </start>
                             </xsl:for-each>
-                            <xsl:for-each select="(verrichting_eind_datum | procedure_end_date)[@value]">
+                            <xsl:for-each select="($endDate | verrichting_eind_datum | procedure_end_date)[@value][1]">
                                 <end>
                                     <xsl:attribute name="value">
                                         <xsl:call-template name="format2FHIRDate">
