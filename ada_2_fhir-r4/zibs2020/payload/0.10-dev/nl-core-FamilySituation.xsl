@@ -135,7 +135,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="kind">
                     <component>
                         <xsl:for-each select="inwonend">
-                            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-FamiliySituation.LivingAtHome">
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-FamilySituation.LivingAtHome">
                                 <valueBoolean>
                                     <xsl:call-template name="boolean-to-boolean"/>
                                 </valueBoolean>
