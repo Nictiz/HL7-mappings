@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ServiceRequest xmlns="http://hl7.org/fhir">
+   <id value="bgz-msz-patA-encounter3-ServiceRequest-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-request"/>
+   </meta>
+   <status value="unknown"/>
+   <intent value="order"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="T+1D{15:00}"/>
+         <display value="externe fixatie van fractuur van malleolus"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/bgz-msz-patA-patient"/>
+      <type value="Patient"/>
+      <display value="Patient, Dennis (Dennis) Janse"/>
+   </subject>
+   <occurrencePeriod>
+      <start value="${DATE, T, D, +1}T14:00:00+02:00"/>
+      <end value="${DATE, T, D, +1}T15:00:00+02:00"/>
+   </occurrencePeriod>
+   <requester>
+      <reference value="PractitionerRole/bgz-msz-patA-encounter3-PractitionerRole-02"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Alfred Bart (Alfred) Bakker, Overige artsen, SEH-arts, naam eigen ziekenhuis"/>
+   </requester>
+   <performer>
+      <reference value="PractitionerRole/bgz-msz-patA-encounter1-PractitionerRole-01"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Jeroen Hendrik Robert (Jeroen) Peters, Medisch specialisten, orthopedie, naam eigen ziekenhuis"/>
+   </performer>
+   <locationReference>
+      <reference value="Location/bgz-msz-patA-encounter1-Location-01"/>
+      <type value="Location"/>
+      <display value="Healthcare provider (location), naam eigen ziekenhuis"/>
+   </locationReference>
+   <reasonReference>
+      <reference value="Condition/bgz-msz-patA-encounter1-Condition-01"/>
+      <type value="Condition"/>
+      <display value="Problem, type: interpretatie van diagnose"/>
+   </reasonReference>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="70258002"/>
+         <display value="structuur van enkelgewricht"/>
+      </coding>
+   </bodySite>
+</ServiceRequest>

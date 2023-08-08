@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Consent xmlns="http://hl7.org/fhir">
+   <id value="bgz-msz-patA-advdir1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AdvanceDirective"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdvanceDirective.Disorder">
+      <valueReference>
+         <reference value="Condition/bgz-msz-patA-advdir1-Condition-01"/>
+         <type value="Condition"/>
+         <display value="Problem, type: interpretatie van diagnose"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
+      <valueString value="gescand document"/>
+   </extension>
+   <status value="active"/>
+   <scope>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/consentscope"/>
+         <code value="adr"/>
+         <display value="Advanced Care Directive"/>
+      </coding>
+   </scope>
+   <category>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/consentcategorycodes"/>
+         <code value="acd"/>
+         <display value="Advance Directive"/>
+      </coding>
+   </category>
+   <patient>
+      <reference value="Patient/bgz-msz-patA-patient"/>
+      <type value="Patient"/>
+      <display value="Patient, Dennis (Dennis) Janse"/>
+   </patient>
+   <dateTime value="2012-09-16"/>
+   <sourceAttachment>
+      <contentType value="application/octet-stream"/>
+      <data value="ZHVtbXktd2lsc3ZlcmtsYXJpbmcgRGVubmlzIEphbnNlLnBkZg=="/>
+   </sourceAttachment>
+   <policy>
+      <uri value="https://wetten.overheid.nl/"/>
+   </policy>
+   <provision>
+      <actor>
+         <role>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode"/>
+               <code value="RESPRSN"/>
+               <display value="responsible party"/>
+            </coding>
+         </role>
+         <reference>
+            <reference value="RelatedPerson/bgz-msz-patA-advdir1-RelatedPerson-01"/>
+            <type value="RelatedPerson"/>
+            <display value="Contact person, Dirk (Dirk) Janse"/>
+         </reference>
+      </actor>
+      <code>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.14.1"/>
+            <code value="LW"/>
+            <display value="Levenswensverklaring"/>
+         </coding>
+      </code>
+   </provision>
+</Consent>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Practitioner xmlns="http://hl7.org/fhir">
+   <id value="bgz-msz-patA-procedure2-Practitioner-02"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
+   </meta>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+      <value value="45678912"/>
+   </identifier>
+   <name>
+      <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+         <valueCode value="NL1"/>
+      </extension>
+      <use value="official"/>
+      <text value="Jeroen Hendrik Robert (Jeroen) Peters"/>
+      <family value="Peters">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="Peters"/>
+         </extension>
+      </family>
+      <given value="Jeroen">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+      <given value="Hendrik">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+      <given value="Robert">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+   </name>
+   <name>
+      <use value="usual"/>
+      <given value="Jeroen"/>
+   </name>
+   <telecom>
+      <system value="phone">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                  <code value="MC"/>
+                  <display value="Mobiel telefoonnummer"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </system>
+      <value value="06-23412345"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="j.peters@hospital.nl"/>
+      <use value="work"/>
+   </telecom>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+               <code value="WP"/>
+               <display value="Werkadres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <use value="work"/>
+      <line value="Dr. Molewaterplein 40">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Dr. Molewaterplein"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="40"/>
+         </extension>
+      </line>
+      <city value="Rotterdam"/>
+      <district value="Rotterdam"/>
+      <postalCode value="3015 GD"/>
+      <country value="Nederland">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:iso:std:iso:3166"/>
+                  <version value="2020-10-26T00:00:00"/>
+                  <code value="NL"/>
+                  <display value="Nederland"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </country>
+   </address>
+</Practitioner>

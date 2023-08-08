@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="bgz-msz-patA-bodyheight1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BodyHeight"/>
+   </meta>
+   <status value="final"/>
+   <category>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+         <code value="vital-signs"/>
+         <display value="Vital Signs"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="8302-2"/>
+         <display value="Body height"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/bgz-msz-patA-patient"/>
+      <type value="Patient"/>
+      <display value="Patient, Dennis (Dennis) Janse"/>
+   </subject>
+   <effectiveDateTime value="2018-11-01"/>
+   <valueQuantity>
+      <value value="183"/>
+      <unit value="cm"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="cm"/>
+   </valueQuantity>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="425260001"/>
+            <display value="Body position for height measurement"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="10904000"/>
+            <display value="staande positie"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+</Observation>

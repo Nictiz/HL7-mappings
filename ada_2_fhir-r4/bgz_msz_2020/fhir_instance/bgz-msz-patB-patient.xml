@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patient xmlns="http://hl7.org/fhir">
+   <id value="bgz-msz-patB-patient"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
+   </meta>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+      <value value="999999092"/>
+   </identifier>
+   <name>
+      <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+         <valueCode value="NL4"/>
+      </extension>
+      <use value="official"/>
+      <text value="Maria Francisca (Maria) van 't Hoen-Verheul"/>
+      <family value="van 't Hoen-Verheul">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+            <valueString value="van 't"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="Hoen"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-partner-name">
+            <valueString value="Verheul"/>
+         </extension>
+      </family>
+      <given value="Maria">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+      <given value="Francisca">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+   </name>
+   <name>
+      <use value="usual"/>
+      <given value="Maria"/>
+   </name>
+   <telecom>
+      <system value="phone">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                  <code value="MC"/>
+                  <display value="Mobiel telefoonnummer"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </system>
+      <value value="+316-10101010"/>
+      <use value="home"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="francisca@maria.org"/>
+      <use value="home"/>
+   </telecom>
+   <gender value="female">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
+               <code value="F"/>
+               <display value="Vrouw"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </gender>
+   <birthDate value="1956-04-16"/>
+   <deceasedBoolean value="false"/>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+               <code value="HP"/>
+               <display value="Officieel adres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <use value="home"/>
+      <type value="both"/>
+      <line value="Steenstraat 143 A II">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Steenstraat"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="143"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+            <valueString value="A II"/>
+         </extension>
+      </line>
+      <city value="Molenhoek"/>
+      <district value="Mook en Middelaar"/>
+      <postalCode value="6584 YZ"/>
+      <country value="Nederland">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.16.34"/>
+                  <version value="2020-03-31T00:00:00"/>
+                  <code value="6030"/>
+                  <display value="Nederland"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </country>
+   </address>
+   <multipleBirthBoolean value="true"/>
+</Patient>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PractitionerRole xmlns="http://hl7.org/fhir">
+   <id value="bgz-msz-patA-encounter3-PractitionerRole-02"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+   </meta>
+   <practitioner>
+      <reference value="Practitioner/bgz-msz-patA-encounter3-Practitioner-02"/>
+      <type value="Practitioner"/>
+      <display value="Healthcare professional (person), Alfred Bart (Alfred) Bakker"/>
+   </practitioner>
+   <organization>
+      <reference value="Organization/bgz-msz-patA-encounter1-Organization-01"/>
+      <type value="Organization"/>
+      <display value="Healthcare provider (organization), naam eigen ziekenhuis"/>
+   </organization>
+   <specialty>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+         <version value="2020-10-23T00:00:00"/>
+         <code value="8417"/>
+         <display value="Overige artsen, SEH-arts"/>
+      </coding>
+   </specialty>
+   <telecom>
+      <system value="phone">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                  <code value="MC"/>
+                  <display value="Mobiel telefoonnummer"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </system>
+      <value value="06-33334444"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="a.b.bakker@hospital.nl"/>
+      <use value="work"/>
+   </telecom>
+</PractitionerRole>

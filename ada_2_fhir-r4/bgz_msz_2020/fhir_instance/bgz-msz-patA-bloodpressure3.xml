@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="bgz-msz-patA-bloodpressure3"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BloodPressure"/>
+   </meta>
+   <status value="final"/>
+   <category>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+         <code value="vital-signs"/>
+         <display value="Vital Signs"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="85354-9"/>
+         <display value="Blood pressure panel with all children optional"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/bgz-msz-patA-patient"/>
+      <type value="Patient"/>
+      <display value="Patient, Dennis (Dennis) Janse"/>
+   </subject>
+   <effectiveDateTime value="T+3D{10:00}"/>
+   <bodySite>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="368209003"/>
+         <display value="structuur van rechter bovenarm"/>
+      </coding>
+   </bodySite>
+   <method>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="22762002"/>
+         <display value="non-invasief"/>
+      </coding>
+   </method>
+   <component>
+      <code>
+         <coding>
+            <system value="http://loinc.org"/>
+            <code value="8480-6"/>
+            <display value="Systolic blood pressure"/>
+         </coding>
+      </code>
+      <valueQuantity>
+         <value value="130"/>
+         <unit value="mm[Hg]"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mm[Hg]"/>
+      </valueQuantity>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://loinc.org"/>
+            <code value="8462-4"/>
+            <display value="Diastolic blood pressure"/>
+         </coding>
+      </code>
+      <valueQuantity>
+         <value value="79"/>
+         <unit value="mm[Hg]"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mm[Hg]"/>
+      </valueQuantity>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="85549003"/>
+            <display value="Korotkofftonen (waarneembare entiteit)"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="255271000"/>
+            <display value="fase 4"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="70665002"/>
+            <display value="Blood pressure cuff"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.15.1"/>
+            <code value="STD"/>
+            <display value="Standaard"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+</Observation>

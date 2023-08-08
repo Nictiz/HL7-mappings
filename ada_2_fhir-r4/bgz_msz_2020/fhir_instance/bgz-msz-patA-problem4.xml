@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Condition xmlns="http://hl7.org/fhir">
+   <id value="bgz-msz-patA-problem4"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem"/>
+   </meta>
+   <clinicalStatus>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/condition-clinical"/>
+         <code value="active"/>
+         <display value="Active"/>
+      </coding>
+   </clinicalStatus>
+   <verificationStatus>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/condition-ver-status"/>
+         <code value="confirmed"/>
+         <display value="Confirmed"/>
+      </coding>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="410605003"/>
+         <display value="aanwezigheid bevestigd"/>
+      </coding>
+   </verificationStatus>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="248536006"/>
+         <display value="bevinding van functionele prestatie en activiteit"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="15188001"/>
+         <display value="gehoorverlies"/>
+      </coding>
+   </code>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="24028007"/>
+               <display value="rechts"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="368567003"/>
+         <display value="geheel rechter uitwendig oor"/>
+      </coding>
+   </bodySite>
+   <subject>
+      <reference value="Patient/bgz-msz-patA-patient"/>
+      <type value="Patient"/>
+      <display value="Patient, Dennis (Dennis) Janse"/>
+   </subject>
+   <onsetDateTime value="2012-03-08"/>
+   <note>
+      <text value="Slechthorend door harde muziek"/>
+   </note>
+</Condition>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Immunization xmlns="http://hl7.org/fhir">
+   <id value="bgz-msz-patA-vaccin2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Vaccination-event"/>
+   </meta>
+   <status value="completed"/>
+   <vaccineCode>
+      <coding>
+         <system value="http://www.whocc.no/atc"/>
+         <code value="J07BC20"/>
+         <display value="Hepatitis A+B-vaccin"/>
+      </coding>
+   </vaccineCode>
+   <patient>
+      <reference value="Patient/bgz-msz-patA-patient"/>
+      <type value="Patient"/>
+      <display value="Patient, Dennis (Dennis) Janse"/>
+   </patient>
+   <occurrenceDateTime value="2015-03-02"/>
+   <doseQuantity>
+      <value value="1"/>
+      <unit value="mL"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="mL"/>
+   </doseQuantity>
+   <performer>
+      <function>
+         <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/v2-0443"/>
+            <code value="AP"/>
+         </coding>
+      </function>
+      <actor>
+         <reference value="PractitionerRole/bgz-msz-patA-vaccin1-PractitionerRole-01"/>
+         <type value="PractitionerRole"/>
+         <display value="Healthcare professional (role), Ria Alexandra (Ria) Slot, Huisartsen, niet nader gespecificeerd"/>
+      </actor>
+   </performer>
+   <note>
+      <text value="Reis door Indonesië"/>
+   </note>
+</Immunization>

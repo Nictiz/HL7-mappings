@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DeviceUseStatement xmlns="http://hl7.org/fhir">
+   <id value="bgz-msz-patA-funcment1-DeviceUseStatement-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice"/>
+   </meta>
+   <status value="active"/>
+   <subject>
+      <reference value="Patient/bgz-msz-patA-patient"/>
+      <type value="Patient"/>
+      <display value="Patient, Dennis (Dennis) Janse"/>
+   </subject>
+   <timingPeriod>
+      <start value="2012-03-08"/>
+   </timingPeriod>
+   <device>
+      <reference value="Device/bgz-msz-patA-funcment1-Device-01"/>
+      <type value="Device"/>
+      <display value="Gehoorapparaat"/>
+   </device>
+   <reasonReference>
+      <reference value="Observation/bgz-msz-patA-funcment1"/>
+      <type value="Observation"/>
+      <display value="Functional or mental status observation, measurement date 2012-02-01"/>
+   </reasonReference>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="24028007"/>
+               <display value="rechts"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="368567003"/>
+         <display value="geheel rechter uitwendig oor"/>
+      </coding>
+   </bodySite>
+   <note>
+      <text value="Apparaat niet zichtbaar"/>
+   </note>
+</DeviceUseStatement>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Encounter xmlns="http://hl7.org/fhir">
+   <id value="bgz-msz-patA-encounter1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Encounter"/>
+   </meta>
+   <!--.status: Dependent on outcome of https://github.com/Nictiz/Nictiz-R4-zib2020/issues/45-->
+   <status value="unknown"/>
+   <class>
+      <system value="http://terminology.hl7.org/CodeSystem/v3-ActCode"/>
+      <code value="EMER"/>
+      <display value="SEH"/>
+   </class>
+   <participant>
+      <individual>
+         <reference value="PractitionerRole/bgz-msz-patA-encounter1-PractitionerRole-01"/>
+         <type value="PractitionerRole"/>
+         <display value="Healthcare professional (role), Jeroen Hendrik Robert (Jeroen) Peters, Medisch specialisten, orthopedie, naam eigen ziekenhuis"/>
+      </individual>
+   </participant>
+   <period>
+      <start value="${DATE, T, D, +1}T11:00:00+02:00"/>
+      <end value="${DATE, T, D, +1}T13:30:00+02:00"/>
+   </period>
+   <reasonReference>
+      <reference value="Condition/bgz-msz-patA-encounter1-Condition-01"/>
+      <type value="Condition"/>
+      <display value="Problem, type: interpretatie van diagnose"/>
+   </reasonReference>
+   <hospitalization>
+      <admitSource>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="264362003"/>
+            <display value="thuis"/>
+         </coding>
+      </admitSource>
+   </hospitalization>
+   <location>
+      <location>
+         <reference value="Location/bgz-msz-patA-encounter1-Location-01"/>
+         <type value="Location"/>
+         <display value="Healthcare provider (location), naam eigen ziekenhuis"/>
+      </location>
+   </location>
+</Encounter>

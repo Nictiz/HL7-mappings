@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Condition xmlns="http://hl7.org/fhir">
+   <id value="bgz-msz-patA-encounter1-Condition-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Problem"/>
+   </meta>
+   <clinicalStatus>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/condition-clinical"/>
+         <code value="active"/>
+         <display value="Active"/>
+      </coding>
+   </clinicalStatus>
+   <verificationStatus>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/condition-ver-status"/>
+         <code value="confirmed"/>
+         <display value="Confirmed"/>
+      </coding>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="410605003"/>
+         <display value="aanwezigheid bevestigd"/>
+      </coding>
+   </verificationStatus>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="282291009"/>
+         <display value="interpretatie van diagnose"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16114001"/>
+         <display value="fractuur van enkel"/>
+      </coding>
+   </code>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="70258002"/>
+         <display value="structuur van enkelgewricht"/>
+      </coding>
+   </bodySite>
+   <subject>
+      <reference value="Patient/bgz-msz-patA-patient"/>
+      <type value="Patient"/>
+      <display value="Patient, Dennis (Dennis) Janse"/>
+   </subject>
+   <onsetDateTime value="T+1D"/>
+   <note>
+      <text value="Op een bal gaan staan tijdens het voetballen."/>
+   </note>
+</Condition>

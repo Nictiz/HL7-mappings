@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DeviceUseStatement xmlns="http://hl7.org/fhir">
+   <id value="bgz-msz-patA-medDevice2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicalDevice"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicalDevice.HealthProfessional">
+      <valueReference>
+         <reference value="PractitionerRole/bgz-msz-patA-encounter1-PractitionerRole-01"/>
+         <type value="PractitionerRole"/>
+         <display value="Healthcare professional (role), Jeroen Hendrik Robert (Jeroen) Peters, Medisch specialisten, orthopedie, naam eigen ziekenhuis"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicalDevice.Location">
+      <valueReference>
+         <reference value="Location/bgz-msz-patA-encounter1-Location-01"/>
+         <type value="Location"/>
+         <display value="Healthcare provider (location), naam eigen ziekenhuis"/>
+      </valueReference>
+   </extension>
+   <status value="active"/>
+   <subject>
+      <reference value="Patient/bgz-msz-patA-patient"/>
+      <type value="Patient"/>
+      <display value="Patient, Dennis (Dennis) Janse"/>
+   </subject>
+   <timingPeriod>
+      <start value="T+2D"/>
+   </timingPeriod>
+   <device>
+      <reference value="Device/bgz-msz-patA-medDevice2"/>
+      <type value="Device"/>
+      <display value="Niet-gemotoriseerde rolstoel"/>
+   </device>
+   <reasonReference>
+      <reference value="Condition/bgz-msz-patA-encounter1-Condition-01"/>
+      <type value="Condition"/>
+      <display value="Problem, type: interpretatie van diagnose"/>
+   </reasonReference>
+</DeviceUseStatement>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelatedPerson xmlns="http://hl7.org/fhir">
+   <id value="bgz-msz-patA-contactperson1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson"/>
+   </meta>
+   <patient>
+      <reference value="Patient/bgz-msz-patA-patient"/>
+      <type value="Patient"/>
+      <display value="Patient, Dennis (Dennis) Janse"/>
+   </patient>
+   <relationship>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.22.472"/>
+         <code value="01"/>
+         <display value="Eerste relatie/contactpersoon"/>
+      </coding>
+   </relationship>
+   <relationship>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode"/>
+         <code value="SONC"/>
+         <display value="Zoon"/>
+      </coding>
+   </relationship>
+   <name>
+      <use value="official"/>
+      <text value="Dirk (Dirk) Janse"/>
+      <family value="Janse">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="Janse"/>
+         </extension>
+      </family>
+      <given value="Dirk">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <valueCode value="BR"/>
+         </extension>
+      </given>
+   </name>
+   <name>
+      <use value="usual"/>
+      <given value="Dirk"/>
+   </name>
+   <telecom>
+      <system value="phone">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                  <code value="MC"/>
+                  <display value="Mobiel telefoonnummer"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </system>
+      <value value="+316-22668899"/>
+      <use value="home"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="dirk.janse@test.nl"/>
+      <use value="home"/>
+   </telecom>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+               <code value="HP"/>
+               <display value="Officieel adres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <use value="home"/>
+      <type value="both"/>
+      <line value="Huweelstraat to 15">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Huweelstraat"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="15"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator">
+            <valueString value="to"/>
+         </extension>
+      </line>
+      <city value="Barendrecht"/>
+      <postalCode value="1248 CC"/>
+      <country value="Nederland">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.16.34"/>
+                  <version value="2020-03-31T00:00:00"/>
+                  <code value="6030"/>
+                  <display value="Nederland"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </country>
+   </address>
+</RelatedPerson>

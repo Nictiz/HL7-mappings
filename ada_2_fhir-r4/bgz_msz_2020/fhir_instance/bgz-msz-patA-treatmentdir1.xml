@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Consent xmlns="http://hl7.org/fhir">
+   <id value="bgz-msz-patA-treatmentdir1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentDirective2"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
+      <valueString value="voor behandeling &#34;MRI&#34;; beperking geldt tot aan ontslag uit het ziekenhuis"/>
+   </extension>
+   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-TreatmentDirective2.SpecificationOther">
+      <valueString value="Ja, maar met beperkingen"/>
+   </modifierExtension>
+   <status value="active"/>
+   <scope>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/consentscope"/>
+         <code value="treatment"/>
+         <display value="Treatment"/>
+      </coding>
+   </scope>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="129125009"/>
+         <display value="verrichting met expliciete context"/>
+      </coding>
+   </category>
+   <patient>
+      <reference value="Patient/bgz-msz-patA-patient"/>
+      <type value="Patient"/>
+      <display value="Patient, Dennis (Dennis) Janse"/>
+   </patient>
+   <dateTime value="T+1D"/>
+   <sourceReference>
+      <reference value="Consent/bgz-msz-patA-treatmentdir1-Consent-01"/>
+      <type value="Consent"/>
+      <display value="Wilsverklaring, Levenswensverklaring, 2012-09-16"/>
+   </sourceReference>
+   <policy>
+      <uri value="https://wetten.overheid.nl/"/>
+   </policy>
+   <provision>
+      <actor>
+         <role>
+            <coding>
+               <system value="http://terminology.hl7.org/CodeSystem/v3-RoleCode"/>
+               <code value="CONSENTER"/>
+               <display value="consenter"/>
+            </coding>
+         </role>
+         <reference/>
+      </actor>
+      <code>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+            <valueCode value="OTH"/>
+         </extension>
+         <text value="MRI"/>
+      </code>
+   </provision>
+</Consent>

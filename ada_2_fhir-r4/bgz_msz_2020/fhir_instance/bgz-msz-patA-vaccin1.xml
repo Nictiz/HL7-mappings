@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Immunization xmlns="http://hl7.org/fhir">
+   <id value="bgz-msz-patA-vaccin1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Vaccination-event"/>
+   </meta>
+   <status value="completed"/>
+   <vaccineCode>
+      <coding>
+         <system value="http://www.whocc.no/atc"/>
+         <code value="J07AM01"/>
+         <display value="Tetanusvaccin"/>
+      </coding>
+   </vaccineCode>
+   <patient>
+      <reference value="Patient/bgz-msz-patA-patient"/>
+      <type value="Patient"/>
+      <display value="Patient, Dennis (Dennis) Janse"/>
+   </patient>
+   <occurrenceDateTime value="2019-04-03"/>
+   <doseQuantity>
+      <value value="2"/>
+      <unit value="mL"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="mL"/>
+   </doseQuantity>
+   <performer>
+      <function>
+         <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/v2-0443"/>
+            <code value="AP"/>
+         </coding>
+      </function>
+      <actor>
+         <reference value="PractitionerRole/bgz-msz-patA-vaccin1-PractitionerRole-01"/>
+         <type value="PractitionerRole"/>
+         <display value="Healthcare professional (role), Ria Alexandra (Ria) Slot, Huisartsen, niet nader gespecificeerd"/>
+      </actor>
+   </performer>
+   <note>
+      <text value="Gebeten door een hond"/>
+   </note>
+</Immunization>
