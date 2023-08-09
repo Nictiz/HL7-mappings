@@ -50,8 +50,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc>Mapping between ADA scenario names and the resulting FHIR resource type and profile ids. 
-            Note that that multiple nm:map elements with the same ada attribute might occur if an ADA scenario results in multiple profiles.
-            Note that that multiple nm:map elements with different ada attribute but same other attributes might occur due to differences in ada datasets.
+            Note that multiple nm:map elements with the same ada attribute might occur if an ADA scenario results in multiple profiles.
+            Note that multiple nm:map elements with different ada attribute but same other attributes might occur due to differences in ada data sets.
         </xd:desc>
     </xd:doc>
     <xsl:variable name="ada2resourceType">
