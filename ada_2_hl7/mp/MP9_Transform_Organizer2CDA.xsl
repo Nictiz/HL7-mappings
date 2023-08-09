@@ -9,6 +9,8 @@
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
     <!-- param to influence whether to output schema references, typically only needed for test instances -->
     <xsl:param name="schematronRef" as="xs:boolean" select="false()"/>
+    
+    <xsl:variable name="maCode" as="xs:string*" select="'16076005', '33633005'"/>
 
     <xd:doc>
         <xd:desc>Start template when called from outside</xd:desc>
@@ -130,6 +132,9 @@
                         <!-- Voorstel MA -->
                         <xsl:when test="./hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9127'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9142</xsl:when>
 
+                        <!-- Antwoord VMA -->
+                        <xsl:when test="./hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9399'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9395</xsl:when>
+                        
                         <!-- Voorstel VV -->
                         <xsl:when test="./hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9130'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9144</xsl:when>
 
@@ -241,7 +246,7 @@
                     </xsl:when>
                     <!-- otherwise use the author of most recent medicatieafspraak for transaction voorschrift -->
                     <xsl:when test=".[hl7:code[@code = '95' and @codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4']]">
-                        <xsl:variable name="maAuthor" select="hl7:component/hl7:substanceAdministration[hl7:code[@code = '16076005'][@codeSystem = '2.16.840.1.113883.6.96']]/hl7:author"/>
+                        <xsl:variable name="maAuthor" select="hl7:component/hl7:substanceAdministration[hl7:code[@code = $maCode][@codeSystem = '2.16.840.1.113883.6.96']]/hl7:author"/>
                         <xsl:variable name="maAuthorMaxTime" select="($maAuthor[hl7:time[@value castable as xs:integer][@value = $maAuthor/hl7:time[@value castable as xs:integer]/xs:integer(max(@value))]])[1]" as="element()?"/>
                         <xsl:choose>
                             <xsl:when test="$maAuthorMaxTime">

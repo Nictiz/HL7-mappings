@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   
+   
+      <Bundle xmlns="http://hl7.org/fhir">
+   <id value="lr-slr-KWAL-KC-LOINC-Scenario1-KCLOINC1"/>
+   <type value="transaction"/>
+   <entry>
+      <fullUrl value="urn:uuid:756e02ee-6040-11ed-1165-020000000000"/>
+      <resource>
+         <Observation>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+               <valueBoolean value="true"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
+               <valueString value="888777"/>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4296.4"/>
+               <value value="KWAL_LAR_Panel_KC_LOINC"/>
+            </identifier>
+            <status value="final"/>
+            <category>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+                  <code value="laboratory"/>
+                  <display value="Laboratory"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="24336-0"/>
+                  <display value="Gassen panel in arterieel bloed"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:756e01e0-6040-11ed-1165-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, Patricia XXX_Sacht"/>
+            </subject>
+            <performer>
+               <reference value="urn:uuid:756e02b2-6040-11ed-1165-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Klinisch chemisch Lab de Erlenmeyer"/>
+            </performer>
+            <note>
+               <text value="Geen belangrijke afwijkingen"/>
+            </note>
+            <specimen>
+               <reference value="urn:uuid:756e01fe-6040-11ed-1165-020000000000"/>
+               <type value="Specimen"/>
+               <display value="monster"/>
+            </specimen>
+            <hasMember>
+               <reference value="urn:uuid:756e021c-6040-11ed-1165-020000000000"/>
+               <type value="Observation"/>
+               <display value="laboratorium_test"/>
+            </hasMember>
+            <hasMember>
+               <reference value="urn:uuid:756e023a-6040-11ed-1165-020000000000"/>
+               <type value="Observation"/>
+               <display value="laboratorium_test"/>
+            </hasMember>
+            <hasMember>
+               <reference value="urn:uuid:756e0258-6040-11ed-1165-020000000000"/>
+               <type value="Observation"/>
+               <display value="laboratorium_test"/>
+            </hasMember>
+         </Observation>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Observation"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:756e021c-6040-11ed-1165-020000000000"/>
+      <resource>
+         <Observation>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+               <valueBoolean value="true"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
+               <valueString value="888777"/>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.4"/>
+               <value value="99993"/>
+            </identifier>
+            <status value="final"/>
+            <category>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+                  <code value="laboratory"/>
+                  <display value="Laboratory"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="2744-1"/>
+                  <display value="pH [logaritmische molaire concentratie] in arterieel bloed"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:756e01e0-6040-11ed-1165-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, Patricia XXX_Sacht"/>
+            </subject>
+            <effectiveDateTime value="${DATE, T, M, -1}"/>
+            <performer>
+               <reference value="urn:uuid:756e02b2-6040-11ed-1165-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Klinisch chemisch Lab de Erlenmeyer"/>
+            </performer>
+            <valueQuantity>
+               <value value="7.43"/>
+               <unit value="[pH]"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="[pH]"/>
+            </valueQuantity>
+            <note>
+               <text value="Geen belangrijke afwijkingen"/>
+            </note>
+            <specimen>
+               <reference value="urn:uuid:756e01fe-6040-11ed-1165-020000000000"/>
+               <type value="Specimen"/>
+               <display value="monster"/>
+            </specimen>
+            <referenceRange>
+               <low>
+                  <value value="7.45"/>
+                  <unit value="[pH]"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="[pH]"/>
+               </low>
+               <high>
+                  <value value="7.35"/>
+                  <unit value="[pH]"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="[pH]"/>
+               </high>
+            </referenceRange>
+         </Observation>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Observation"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:756e023a-6040-11ed-1165-020000000000"/>
+      <resource>
+         <Observation>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+               <valueBoolean value="true"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
+               <valueString value="888777"/>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.4"/>
+               <value value="99994"/>
+            </identifier>
+            <status value="final"/>
+            <category>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+                  <code value="laboratory"/>
+                  <display value="Laboratory"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="2019-8"/>
+                  <display value="Koolstofdioxide [partiële druk] in arterieel bloed"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:756e01e0-6040-11ed-1165-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, Patricia XXX_Sacht"/>
+            </subject>
+            <effectiveDateTime value="${DATE, T, M, -1}"/>
+            <performer>
+               <reference value="urn:uuid:756e02b2-6040-11ed-1165-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Klinisch chemisch Lab de Erlenmeyer"/>
+            </performer>
+            <valueQuantity>
+               <value value="36"/>
+               <unit value="mm[Hg]"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="mm[Hg]"/>
+            </valueQuantity>
+            <note>
+               <text value="Geen belangrijke afwijkingen"/>
+            </note>
+            <specimen>
+               <reference value="urn:uuid:756e01fe-6040-11ed-1165-020000000000"/>
+               <type value="Specimen"/>
+               <display value="monster"/>
+            </specimen>
+            <referenceRange>
+               <low>
+                  <value value="45"/>
+                  <unit value="mm[Hg]"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="mm[Hg]"/>
+               </low>
+               <high>
+                  <value value="35"/>
+                  <unit value="mm[Hg]"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="mm[Hg]"/>
+               </high>
+            </referenceRange>
+         </Observation>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Observation"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:756e0258-6040-11ed-1165-020000000000"/>
+      <resource>
+         <Observation>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+               <valueBoolean value="true"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
+               <valueString value="888777"/>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.4"/>
+               <value value="99995"/>
+            </identifier>
+            <status value="final"/>
+            <category>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+                  <code value="laboratory"/>
+                  <display value="Laboratory"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="2703-7"/>
+                  <display value="Zuurstof [partiële druk] in arterieel bloed"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:756e01e0-6040-11ed-1165-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, Patricia XXX_Sacht"/>
+            </subject>
+            <effectiveDateTime value="${DATE, T, M, -1}"/>
+            <performer>
+               <reference value="urn:uuid:756e02b2-6040-11ed-1165-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Klinisch chemisch Lab de Erlenmeyer"/>
+            </performer>
+            <valueQuantity>
+               <value value="74"/>
+               <unit value="mm[Hg]"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="mm[Hg]"/>
+            </valueQuantity>
+            <interpretation>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="281300000"/>
+                  <display value="onder referentiebereik"/>
+               </coding>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"/>
+                  <code value="L"/>
+                  <display value="Low"/>
+               </coding>
+            </interpretation>
+            <note>
+               <text value="Geen belangrijke afwijkingen"/>
+            </note>
+            <specimen>
+               <reference value="urn:uuid:756e01fe-6040-11ed-1165-020000000000"/>
+               <type value="Specimen"/>
+               <display value="monster"/>
+            </specimen>
+            <referenceRange>
+               <low>
+                  <value value="100"/>
+                  <unit value="mm[Hg]"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="mm[Hg]"/>
+               </low>
+               <high>
+                  <value value="75"/>
+                  <unit value="mm[Hg]"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="mm[Hg]"/>
+               </high>
+            </referenceRange>
+         </Observation>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Observation"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:756e01fe-6040-11ed-1165-020000000000"/>
+      <resource>
+         <Specimen>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4267.4"/>
+               <value value="2233"/>
+            </identifier>
+            <subject>
+               <reference value="urn:uuid:756e01e0-6040-11ed-1165-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, Patricia XXX_Sacht"/>
+            </subject>
+            <collection>
+               <collectedDateTime value="${DATE, T, M, -1}"/>
+            </collection>
+         </Specimen>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Specimen"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:756e0276-6040-11ed-1165-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00001111"/>
+            </identifier>
+            <type>
+               <coding>
+                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+                  <version value="2022-07-07T00:00:00"/>
+                  <code value="Z3"/>
+                  <display value="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
+               </coding>
+            </type>
+            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            <telecom>
+               <system value="phone"/>
+               <value value="099-12345678"/>
+            </telecom>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:756e02b2-6040-11ed-1165-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00003335"/>
+            </identifier>
+            <type>
+               <coding>
+                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+                  <version value="2022-07-07T00:00:00"/>
+                  <code value="L1"/>
+                  <display value="Laboratorium"/>
+               </coding>
+            </type>
+            <name value="Klinisch chemisch Lab de Erlenmeyer"/>
+            <telecom>
+               <system value="phone"/>
+               <value value="06-11122255"/>
+            </telecom>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Kerkstraat 101 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Kerkstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="101"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Zorgstad"/>
+               <postalCode value="2143BB"/>
+            </address>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:756e01e0-6040-11ed-1165-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value value="999901011"/>
+            </identifier>
+            <name>
+               <use value="official"/>
+               <text value="Patricia XXX_Sacht"/>
+               <family value="XXX_Sacht">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="XXX_Sacht"/>
+                  </extension>
+               </family>
+               <given value="Patricia">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="2000-11-13"/>
+         </Patient>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
+   </entry>
+</Bundle>
+   
