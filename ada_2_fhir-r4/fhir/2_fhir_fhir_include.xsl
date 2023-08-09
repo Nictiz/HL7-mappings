@@ -49,9 +49,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="serverBaseUri" select="'http://example.nictiz.nl/fhir'" as="xs:string"/>
 
     <xd:doc>
-        <xd:desc>Mapping between ADA scenario names and the resulting FHIR resource type and profile id's. 
-            Note that that muliple nm:map elements with the same ada attribute might occur if an ADA scenario results in multiple profiles.
-            Note that that muliple nm:map elements with different ada attribute but same other attributes might occur due to differences in ada datasets.
+        <xd:desc>Mapping between ADA scenario names and the resulting FHIR resource type and profile ids. 
+            Note that that multiple nm:map elements with the same ada attribute might occur if an ADA scenario results in multiple profiles.
+            Note that that multiple nm:map elements with different ada attribute but same other attributes might occur due to differences in ada datasets.
         </xd:desc>
     </xd:doc>
     <xsl:variable name="ada2resourceType">
@@ -66,6 +66,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="behandel_aanwijzing" resource="Consent" profile="nl-core-TreatmentDirective2"/>
         <nm:map ada="bloeddruk" resource="Observation" profile="nl-core-BloodPressure"/>
         <nm:map ada="comfort_score" resource="Observation" profile="nl-core-ComfortScale"/>
+        <nm:map ada="beleid" resource="CarePlan" profile="nl-core-MultidisciplinaryTeamMeeting.Plan"/>
         <nm:map ada="betaler" resource="Coverage" profile="nl-core-Payer.InsuranceCompany"/>
         <nm:map ada="betaler" resource="Coverage" profile="nl-core-Payer.PayerPerson"/>
         <nm:map ada="betaler" resource="Organization" profile="nl-core-Payer-Organization"/>
@@ -110,7 +111,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="participatie_in_maatschappij" resource="Observation" profile="nl-core-ParticipationInSociety"/>
         <nm:map ada="patient" resource="Patient" profile="nl-core-Patient"/>
         <nm:map ada="patientbespreking" resource="Encounter" profile="nl-core-MultidisciplinaryTeamMeeting"/>
-        <nm:map ada="patientbespreking" resource="CarePlan" profile="nl-core-MultidisciplinaryTeamMeeting.Plan"/>
         <nm:map ada="pijn_score" resource="Observation" profile="nl-core-PainScore"/>
         <nm:map ada="polsfrequentie" resource="Observation" profile="nl-core-PulseRate"/>
         <nm:map ada="probleem" resource="Condition" profile="nl-core-Problem"/>
@@ -249,7 +249,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <!-- If and only if there is more than one laboratorium_test, there should be an instance for each
                  distinct laboratorium_test (in addition the "grouping" instance already identified as part of the 
-                 main process. -->
+                 main process). -->
         <xsl:for-each-group select="$in[self::laboratorium_uitslag]/laboratorium_test[.//(@value | @code | @nullFlavor)]" group-by="nf:getGroupingKeyLaboratoryTest(.)">
             <xsl:call-template name="_buildFhirMetadataForAdaEntry"/>
         </xsl:for-each-group>
@@ -268,7 +268,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
               $in//pariteit[parent::zwangerschap],
               $in//graviditeit[parent::zwangerschap],
               $in//aterme_datum_items[parent::zwangerschap],
-              $in//datum_laatste_menstruatie[parent::aterme_datum_items/parent::zwangerschap]
+              $in//datum_laatste_menstruatie[parent::aterme_datum_items/parent::zwangerschap],
+              $in//beleid[parent::patientbespreking]
             )[.//(@value | @code | @nullFlavor)]" group-by="local-name()">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <xsl:call-template name="_buildFhirMetadataForAdaEntry">

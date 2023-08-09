@@ -42,7 +42,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-FreedomRestrictingIntervention.LegallyCapable">
                         <xsl:for-each select="wilsbekwaam">
                             <extension url="legallyCapable">
-                                <valueBoolean>                                    
+                                <valueBoolean>
                                     <xsl:call-template name="boolean-to-boolean">
                                         <xsl:with-param name="in" select="."/>
                                     </xsl:call-template>

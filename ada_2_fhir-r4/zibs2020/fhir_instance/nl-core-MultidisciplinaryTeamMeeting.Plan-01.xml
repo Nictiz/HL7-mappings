@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CarePlan xmlns="http://hl7.org/fhir">
+   <id value="nl-core-MultidisciplinaryTeamMeeting.Plan-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MultidisciplinaryTeamMeeting.Plan"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MultidisciplinaryTeamMeeting.IntentTreatment">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="373808002"/>
+            <display value="Curatieve intentie"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <status value="active"/>
+   <intent value="plan"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="423134005"/>
+         <display value="gedeelte betreffende behandelplan in status"/>
+      </coding>
+   </category>
+   <encounter>
+      <reference value="Encounter/nl-core-MultidisciplinaryTeamMeeting-01"/>
+      <type value="Encounter"/>
+      <display value="multidisciplinaire zorgbespreking, type Expertpanel MDO colorectaal, op 2020-06-25T10:30:00"/>
+   </encounter>
+</CarePlan>

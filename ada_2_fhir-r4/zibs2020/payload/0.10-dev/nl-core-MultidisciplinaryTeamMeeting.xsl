@@ -48,32 +48,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MultidisciplinaryTeamMeeting"/>
                 </meta>
-                <xsl:for-each select="patientbespreking_label">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MultidisciplinaryTeamMeeting.PatientConsultationLabel">
-                        <valueString>
-                            <xsl:call-template name="string-to-string">
-                                <xsl:with-param name="in" select="."/>
-                            </xsl:call-template>
-                        </valueString>
-                    </extension>
-                </xsl:for-each>
                 
+                <xsl:comment>.status: Dependent on outcome of https://github.com/Nictiz/Nictiz-R4-zib2020/issues/194</xsl:comment>
                 <status value="unknown"/>
+                
                 <class>
-                    <text value="MultidisciplinaryTeamMeeting"/>
-                </class>
-                <type>
                     <system value="http://snomed.info/sct"/>
                     <code value="384682003"/>
                     <display value="multidisciplinaire zorgbespreking"/>
-                </type>
+                </class>
                 
-                <xsl:for-each select="$subject">
-                    <xsl:call-template name="makeReference">
-                        <xsl:with-param name="in" select="$subject"/>
-                        <xsl:with-param name="wrapIn" select="'subject'"/>
-                    </xsl:call-template>
+                <xsl:for-each select="patientbespreking_label">
+                    <type>
+                        <text>
+                            <xsl:call-template name="string-to-string">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </text>
+                    </type>
                 </xsl:for-each>
+                
+                <xsl:call-template name="makeReference">
+                    <xsl:with-param name="in" select="$subject"/>
+                    <xsl:with-param name="wrapIn" select="'subject'"/>
+                </xsl:call-template>
                 
                 <xsl:for-each select="deelnemer">
                     <participant>
@@ -87,7 +85,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:for-each select="zorgverlener">
                             <individual>
                                 <xsl:call-template name="makeReference">
-                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="in" select="zorgverlener"/>
                                     <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
                                 </xsl:call-template>
                             </individual>
@@ -95,7 +93,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:for-each select="contactpersoon">
                             <individual>
                                 <xsl:call-template name="makeReference">
-                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="in" select="contactpersoon"/>
                                     <xsl:with-param name="profile" select="'nl-core-ContactPerson'"/>
                                 </xsl:call-template>
                             </individual>
@@ -105,7 +103,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Encounter-PatientParticipant">
                                     <valueReference>
                                         <xsl:call-template name="makeReference">
-                                            <xsl:with-param name="in" select="$subject"/>
+                                            <xsl:with-param name="in" select="patient"/>
                                             <xsl:with-param name="profile" select="'nl-core-Patient'"/>
                                         </xsl:call-template>
                                     </valueReference>
@@ -114,40 +112,38 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:for-each>
                     </participant>
                 </xsl:for-each>
+                
                 <xsl:for-each select="patientbespreking_datum_tijd">
                     <period>
-                            <start>
-                                <xsl:attribute name="value">
-                                    <xsl:call-template name="format2FHIRDate">
-                                        <xsl:with-param name="dateTime" select="xs:string(patientbespreking_datum_tijd/@value)"/>
-                                    </xsl:call-template>
-                                </xsl:attribute>
-                            </start>
-                            <end>
-                                <xsl:attribute name="value">
-                                    <xsl:call-template name="format2FHIRDate">
-                                        <xsl:with-param name="dateTime" select="xs:string(patientbespreking_datum_tijd/@value)"/>
-                                    </xsl:call-template>
-                                </xsl:attribute>
-                            </end>
+                        <start>
+                            <xsl:call-template name="date-to-datetime">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </start>
+                        <end>
+                            <xsl:call-template name="date-to-datetime">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </end>
                     </period>
                 </xsl:for-each>
-                <xsl:for-each select="probleem">
+                
+                <xsl:for-each select="aandoening">
                     <reasonReference>
-                            <xsl:call-template name="makeReference">
-                                <xsl:with-param name="in" select="."/>
-                                <xsl:with-param name="profile" select="'nl-core-Problem'"/>
-                            </xsl:call-template>
+                        <xsl:call-template name="makeReference">
+                            <xsl:with-param name="in" select="probleem"/>
+                            <xsl:with-param name="profile" select="'nl-core-Problem'"/>
+                        </xsl:call-template>
                     </reasonReference>
                 </xsl:for-each>
             </Encounter>
         </xsl:for-each>
     </xsl:template>
     
-    
     <xsl:template match="beleid" name="nl-core-MultidisciplinaryTeamMeeting.Plan" mode="nl-core-MultidisciplinaryTeamMeeting.Plan" as="element(f:CarePlan)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
+        
         <xsl:for-each select="$in">
             <CarePlan>
                 <xsl:call-template name="insertLogicalId">
@@ -156,6 +152,39 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MultidisciplinaryTeamMeeting.Plan"/>
                 </meta>
+                
+                <xsl:for-each select="intentie_behandeling">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MultidisciplinaryTeamMeeting.IntentTreatment">
+                        <valueCodeableConcept>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </valueCodeableConcept>
+                    </extension>
+                </xsl:for-each>
+                
+                <status value="active"/>
+                <intent value="plan"/>
+                
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct" />
+                        <code value="423134005" />
+                        <display value="gedeelte betreffende behandelplan in status"/>
+                    </coding>
+                </category>
+                
+                <xsl:call-template name="makeReference">
+                    <xsl:with-param name="in" select="$subject"/>
+                    <xsl:with-param name="wrapIn" select="'subject'"/>
+                </xsl:call-template>
+                
+                <encounter>
+                    <xsl:call-template name="makeReference">
+                        <xsl:with-param name="in" select=".."/>
+                        <xsl:with-param name="profile" select="'nl-core-MultidisciplinaryMeeting'"/>
+                    </xsl:call-template>
+                </encounter>
             </CarePlan>
         </xsl:for-each>
     </xsl:template>
