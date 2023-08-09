@@ -35,55 +35,57 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="Voorschrift_9x">
         <xsl:param name="in" select="adaxml/data/sturen_medicatievoorschrift"/>
 
-        <xsl:variable name="patient" select="$in/patient"/>
-        <xsl:variable name="mbh" select="$in/medicamenteuze_behandeling"/>
 
-        <xsl:if test="$schematronRef">
-            <xsl:processing-instruction name="nictiz">status="example"</xsl:processing-instruction>
-            <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../schematron_closed_warnings/mp-mp93_vos.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
-        </xsl:if>
-        <xsl:comment>Generated from ada instance with title: "<xsl:value-of select="$mbh/../@title"/>" and id: "<xsl:value-of select="$mbh/../@id"/>".</xsl:comment>
-        <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd" classCode="CLUSTER" moodCode="EVN">
-            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9433"/>
-            <code code="95" displayName="Voorschrift" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>
-            <statusCode nullFlavor="NI"/>
-            <!-- Patient -->
-            <xsl:for-each select="$patient">
-                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1_20180611000000"/>
-            </xsl:for-each>
-            <!-- Medicamenteuze behandeling -->
-            <xsl:for-each select="$mbh">
-                <!-- Medicatieafspraak -->
-                <xsl:for-each select="medicatieafspraak[not(kopie_indicator/@value = 'true')]">
+        <xsl:for-each select="$in">
+            <xsl:variable name="patient" select="patient"/>
+            <xsl:variable name="mbh" select="medicamenteuze_behandeling"/>
+            
+            <xsl:if test="$schematronRef">
+                <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../schematron_closed_warnings/mp-mp93_vos.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
+            </xsl:if>
+            <xsl:comment>Generated from ada instance with title: "<xsl:value-of select="$mbh/../@title"/>" and id: "<xsl:value-of select="$mbh/../@id"/>".</xsl:comment>
+            <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd" classCode="CLUSTER" moodCode="EVN">
+                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9433"/>
+                <code code="95" displayName="Voorschrift" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>
+                <statusCode nullFlavor="NI"/>
+                <!-- Patient -->
+                <xsl:for-each select="$patient">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1_20180611000000"/>
+                </xsl:for-each>
+                <!-- Medicamenteuze behandeling -->
+                <xsl:for-each select="$mbh">
+                    <!-- Medicatieafspraak -->
+                    <xsl:for-each select="medicatieafspraak[not(kopie_indicator/@value = 'true')]">
+                        <component typeCode="COMP">
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9430_20221122132432"/>
+                        </component>
+                    </xsl:for-each>
+                    <!-- Medicatieafspraak -->
+                    <xsl:for-each select="medicatieafspraak[kopie_indicator/@value = 'true']">
+                        <component typeCode="COMP">
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9431_20221122133531"/>
+                        </component>
+                    </xsl:for-each>
+                    <!-- Verstrekkingsverzoek -->
+                    <xsl:for-each select="verstrekkingsverzoek">
+                        <component typeCode="COMP">
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9449_20230106093041"/>
+                        </component>
+                    </xsl:for-each>
+                </xsl:for-each>
+                <!-- Lichaamslengte -->
+                <xsl:for-each select="bouwstenen/lichaamslengte[.//(@value | @code)]">
                     <component typeCode="COMP">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9430_20221122132432"/>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.30_20210701000000"/>
                     </component>
                 </xsl:for-each>
-                <!-- Medicatieafspraak -->
-                <xsl:for-each select="medicatieafspraak[kopie_indicator/@value = 'true']">
+                <!-- Lichaamsgewicht -->
+                <xsl:for-each select="bouwstenen/lichaamsgewicht[.//(@value | @code)]">
                     <component typeCode="COMP">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9431_20221122133531"/>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.19_20210701000000"/>
                     </component>
                 </xsl:for-each>
-                <!-- Verstrekkingsverzoek -->
-                <xsl:for-each select="verstrekkingsverzoek">
-                    <component typeCode="COMP">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9449_20230106093041"/>
-                    </component>
-                </xsl:for-each>
-            </xsl:for-each>
-            <!-- Lichaamslengte -->
-            <xsl:for-each select="$in/bouwstenen/lichaamslengte[.//(@value | @code)]">
-                <component typeCode="COMP">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.30_20210701000000"/>
-                </component>
-            </xsl:for-each>
-            <!-- Lichaamsgewicht -->
-            <xsl:for-each select="$in/bouwstenen/lichaamsgewicht[.//(@value | @code)]">
-                <component typeCode="COMP">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.19_20210701000000"/>
-                </component>
-            </xsl:for-each>
-        </organizer>
+            </organizer>
+        </xsl:for-each>
     </xsl:template>
 </xsl:stylesheet>
