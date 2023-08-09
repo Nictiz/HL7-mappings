@@ -8,7 +8,7 @@
   <xsl:import href="../../lab/3.0.0/sturen_laboratoriumresultaten/payload/sturen_laboratoriumresultaten_org.xsl"/>
   
   <xsl:template match="/">
-    <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:hl7-org:v3 ../hl7_schemas/master_organizer.xsd">
+    <organizer xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 ../hl7_schemas/master_organizer.xsd">
       <xsl:call-template name="mp-mp93_vos"/>
       <xsl:call-template name="lu-sturenLaboratoriumresultaten"/>
     </organizer>
