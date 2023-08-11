@@ -61,7 +61,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="businessIdentifierRef" as="element()?" select="onderwerp/patient-id"/>
         
         <xsl:variable name="patient-id" select="$businessIdentifierRef/@value"/>
-        <xsl:variable name="referencedPatient" select="collection('../ada_instance')//patient[identificatienummer/@value = $patient-id]"/>
+        <!-- Give preference to patient that is not in 'referenties' -->
+        <xsl:variable name="referencedPatient" select="(collection('../ada_instance')//patient[identificatienummer/@value = $patient-id]/(self::*[not(ancestor::referenties)],self::*[ancestor::referenties]))[1]"/>
         <xsl:choose>
             <xsl:when test="$referencedPatient">
                 <xsl:copy-of select="$referencedPatient"/>
@@ -90,6 +91,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:variable name="logicalId">
             <xsl:choose>
+                <!-- Edge case where there is a zib contained in 'referenties' block, while this zib is also present as a separate file. We should take the logical id from the separate file, so we should skip this step. -->
+                <xsl:when test="parent::referenties and current-group()[not(parent::referenties)]">
+                    <xsl:apply-templates select="current-group()[not(parent::referenties)][1]" mode="_generateId">
+                        <xsl:with-param name="profile" select="$profile"/>
+                        <xsl:with-param name="partNumber" select="$partNumber"/>
+                    </xsl:apply-templates>
+                </xsl:when>
                 <xsl:when test="ancestor::*/local-name() = 'referenties'">
                     <!-- This is a contained ada instance, therefore does not have a valid base-uri() -->
                     <!-- Moved position parameter here, because I do not expect it to function outside of 'referenties', but at the moment it does not have to -->
@@ -166,6 +174,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$writeOutputToDisk">
                 <xsl:for-each select="$resources">
                     <xsl:choose>
+                        <!-- When a bundled version of a resource exists, ignore the current version (because we assume the bundled version contains more details) -->
+                        <xsl:when test="not(ends-with(base-uri(), '-bundled.xml')) and doc-available(concat('../ada_instance/', ./f:id/@value, '-bundled.xml'))"/>
                         <xsl:when test="string-length(f:id/@value) gt 0">
                             <xsl:result-document href="../fhir_instance/{./f:id/@value}.xml">
                                 <xsl:copy-of select="."/>
