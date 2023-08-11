@@ -1,27 +1,50 @@
-<?xml-model href="http://hl7.org/fhir/STU3/medicationdispense.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><MedicationDispense xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/medicationdispense.xsd">
-   <id value="medmij-bgz-administrationagreement-ts-01"/>
+<?xml-model href="http://hl7.org/fhir/STU3/medicationdispense.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<MedicationDispense xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/medicationdispense.xsd">
+   <id value="zib-AdministrationAgreement-medmij-bgz-test-patA-admagr1"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
    </meta>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
-      <valueDateTime value="2018-06-01T12:25:00+02:00"/>
+      <valueDateTime value="2022-11-28T11:00:00+02:00"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AgreementReason">
+      <valueString value="Plaatsing Knieprothese"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
       <valuePeriod>
-         <start value="2018-06-27T00:00:00+02:00"/>
+         <start value="2022-11-28T00:00:00+02:00"/>
+         <end value="2022-12-12T00:00:00+02:00"/>
       </valuePeriod>
    </extension>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.3.999"/>
+            <code value="10"/>
+            <display value="Gebruiksinstructie gegeven"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-StopType">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"/>
+            <code value="2"/>
+            <display value="Definitief"/>
+         </coding>
+      </valueCodeableConcept>
+   </modifierExtension>
+   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-RepeatPeriodCyclicalSchedule">
       <valueDuration>
-         <value value="30"/>
-         <unit value="dag"/>
+         <value value="8"/>
+         <unit value="dagen"/>
          <system value="http://unitsofmeasure.org"/>
          <code value="d"/>
       </valueDuration>
-   </extension>
+   </modifierExtension>
    <identifier>
-      <system value="http://example-implementer.com/fhir/MedicationRequest-ID"/>
-      <value value="13610554"/>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patA-AdminAgreement2"/>
    </identifier>
    <status value="completed"/>
    <category>
@@ -32,54 +55,58 @@
       </coding>
    </category>
    <medicationReference>
-      <reference value="Medication/229709-2-16-840-1-113883-2-4-4-7"/>
-      <display value="PRIMPERAN ZETPIL 20MG"/>
+      <reference value="Medication/zib-Product-medmij-bgz-test-patA-product2"/>
+      <display value="Ibuprofen 600mg"/>
    </medicationReference>
    <subject>
-      <reference value="Patient/medmij-bgz-patient-ts-01"/>
-      <display value="Johan XXX_Helleman"/>
+      <reference value="Patient/medmij-bgz-test-patA"/>
+      <display value="Anouk A. Anouk van XXX_Rijn de XXX_Vries"/>
    </subject>
    <performer>
       <actor>
-         <reference value="Organization/medmij-bgz-healthcareprovider-ts-05"/>
-         <display value="Apotheek de Gulle Gaper"/>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-medmij-bgz-test-0200000117-00006000001"/>
+               <display value="Apotheker"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/-practitioner-medmij-bgz-test-2-16-840-1-113883-2-4-6-1-02000001"/>
+         <display value="Petrus P. Peter Poeder"/>
       </actor>
    </performer>
+   <note>
+      <text value="Voor gebruik tot maximaal 3 weken na plaatsing kunstknie"/>
+   </note>
    <dosageInstruction>
       <sequence value="1"/>
-      <text value="Vanaf 1-6-2018, gedurende 30 dagen, zo nodig 1 maal per dag 1 stuk, rectaal"/>
+      <text value="Gedurende 21 dagen, elke 4 uur één tablet, zo nodig één tablet extra, oraal"/>
+      <additionalInstruction>
+         <text value="Na 7 dagen één dag niet gebruiken"/>
+      </additionalInstruction>
       <timing>
          <repeat>
             <boundsDuration>
-               <value value="30"/>
-               <unit value="day"/>
+               <value value="21"/>
+               <unit value="dagen"/>
                <system value="http://unitsofmeasure.org"/>
                <code value="d"/>
             </boundsDuration>
-            <frequency value="1"/>
-            <period value="1"/>
-            <periodUnit value="d"/>
+            <period value="4"/>
+            <periodUnit value="h"/>
          </repeat>
       </timing>
-      <asNeededCodeableConcept>
-         <coding>
-            <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
-            <code value="1137"/>
-            <display value="zo nodig"/>
-         </coding>
-      </asNeededCodeableConcept>
       <route>
          <coding>
             <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-            <code value="12"/>
-            <display value="Rectaal"/>
+            <code value="9"/>
+            <display value="Oraal"/>
          </coding>
       </route>
       <doseQuantity>
-         <value value="1"/>
-         <unit value="stuk"/>
+         <value value="600"/>
+         <unit value="mg"/>
          <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-         <code value="245"/>
+         <code value="229"/>
       </doseQuantity>
    </dosageInstruction>
 </MedicationDispense>

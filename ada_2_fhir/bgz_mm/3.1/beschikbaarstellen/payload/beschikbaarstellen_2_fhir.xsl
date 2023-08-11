@@ -464,14 +464,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
                 </xsl:if>
                 <xsl:if test="local-name() = 'planned_care_activity'">
-                    <xsl:if test="appointment | procedure">
+                    <xsl:if test="appointment">
                         <entry xmlns="http://hl7.org/fhir">
-                            <fullUrl value="{concat('zib-Problem-', $usecase, '-', $patientName, '-plannedcare', position())}"/>
+                            <fullUrl value="{concat('zib-Problem-', $usecase, '-', $patientName, '-encounter88', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-PlannedCareActivityForTransfer">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-plannedcare', position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-encounter88', position())"/>
+                                </xsl:call-template>
+                            </resource>
+                            <search>
+                                <mode value="match"/>
+                            </search>
+                        </entry>
+                    </xsl:if>
+                    <xsl:if test="procedure">
+                        <entry xmlns="http://hl7.org/fhir">
+                            <fullUrl value="{concat('zib-Problem-', $usecase, '-', $patientName, '-procedure88', position())}"/>
+                            <resource>
+                                <xsl:call-template name="zib-PlannedCareActivityForTransfer">
+                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-procedure88', position())"/>
                                 </xsl:call-template>
                             </resource>
                             <search>
