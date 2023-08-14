@@ -55,7 +55,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- MP-1181 amended to work with absolute and relative paths on both apple and windows machines -->
     <xsl:variable name="cleanDir">
         <xsl:choose>
-            <xsl:when test="matches($inputDir, '^[A-Z]:')">
+            <xsl:when test="matches($inputDir, '^[A-Za-z]:')">
                 <!-- absolute path -->
                 <xsl:value-of select="concat('file:/', replace($inputDir, '\\', '/'))"/>
             </xsl:when>
