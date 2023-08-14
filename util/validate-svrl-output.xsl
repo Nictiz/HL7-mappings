@@ -52,7 +52,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="inputDir" as="xs:string">../sturen_medicatievoorschrift/validate_hl7_instance</xsl:param>
     <xsl:param name="inputFileSet" as="xs:string">*.xml</xsl:param>
     
-    <xsl:variable name="cleanDir" select="'file:///' || replace($inputDir, '\\', '/')"/>
+    <!-- MP-1181 amended to work with absolute and relative paths on both apple and windows machines -->
+    <xsl:variable name="cleanDir">
+        <xsl:choose>
+            <xsl:when test="matches($inputDir, '^[A-Z]:')">
+                <!-- absolute path -->
+                <xsl:value-of select="concat('file:/', replace($inputDir, '\\', '/'))"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <!-- relative path -->
+                <xsl:value-of select="replace($inputDir, '\\', '/')"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:variable>
+    
     <xsl:variable name="inputFiles" select="collection(concat($cleanDir, '/?select=', $inputFileSet))" as="document-node()*"/>
     
     <xsl:variable name="results" as="element(validate)">
