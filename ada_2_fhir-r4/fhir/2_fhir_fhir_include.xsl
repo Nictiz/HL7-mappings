@@ -71,6 +71,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="contactpersoon" resource="RelatedPerson" profile="nl-core-ContactPerson"/>
         <nm:map ada="dosscore" resource="Observation" profile="nl-core-DOSScore"/>
         <nm:map ada="drugs_gebruik" resource="Observation" profile="nl-core-DrugUse"/>
+        <nm:map ada="envelop" resource="ServiceRequest" profile="hg-ReferralServiceRequest"/>
+        <nm:map ada="envelop" resource="Task" profile="hg-ReferralTask"/>
         <nm:map ada="farmaceutisch_product" resource="Medication" profile="nl-core-PharmaceuticalProduct"/>
         <nm:map ada="flaccpijn_score" resource="Observation" profile="nl-core-FLACCpainScale"/>
         <nm:map ada="functie_horen" resource="Observation" profile="nl-core-HearingFunction"/>
@@ -80,6 +82,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="hulp_van_anderen" resource="CarePlan" profile="nl-core-HelpFromOthers"/>
         <nm:map ada="juridische_situatie" resource="Condition" profile="nl-core-LegalSituation-LegalStatus"/>
         <nm:map ada="juridische_situatie" resource="Condition" profile="nl-core-LegalSituation-Representation"/>
+        <nm:map ada="kern" resource="Composition" profile="hg-ReferralComposition"/>
         <nm:map ada="laboratorium_uitslag" resource="Observation" profile="nl-core-LaboratoryTestResult"/>
         <nm:map ada="laboratorium_test" resource="Observation" profile="nl-core-LaboratoryTestResult"/>
         <nm:map ada="lichaamslengte" resource="Observation" profile="nl-core-BodyHeight"/>
