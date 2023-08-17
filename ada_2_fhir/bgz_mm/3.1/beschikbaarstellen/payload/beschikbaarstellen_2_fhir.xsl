@@ -158,7 +158,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="/">
         <xsl:variable name="commonEntries" as="element(f:entry)*">
-            <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry"/>
+            <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $locations/f:entry"/>
         </xsl:variable>
         
         <xsl:variable name="bouwstenen" as="element(f:entry)*">
@@ -466,12 +466,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:if test="local-name() = 'planned_care_activity'">
                     <xsl:if test="appointment">
                         <entry xmlns="http://hl7.org/fhir">
-                            <fullUrl value="{concat('zib-Problem-', $usecase, '-', $patientName, '-encounter', position())}"/>
+                            <fullUrl value="{concat('zib-Problem-', $usecase, '-', $patientName, '-plannedencounter', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-PlannedCareActivityForTransfer">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-encounter', position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-plannedencounter', position())"/>
                                 </xsl:call-template>
                             </resource>
                             <search>
@@ -481,12 +481,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:if>
                     <xsl:if test="procedure">
                         <entry xmlns="http://hl7.org/fhir">
-                            <fullUrl value="{concat('zib-Problem-', $usecase, '-', $patientName, '-procedure', position())}"/>
+                            <fullUrl value="{concat('zib-Problem-', $usecase, '-', $patientName, '-plannedprocedure', position())}"/>
                             <resource>
                                 <xsl:call-template name="zib-PlannedCareActivityForTransfer">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-procedure', position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-plannedprocedure', position())"/>
                                 </xsl:call-template>
                             </resource>
                             <search>

@@ -103,6 +103,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="resolved" select="($ada-input//*[hcimroot/identification_number[lower-case(@value) = lower-case(current()/@value)][@root = current()/@root]])[1]"/>
         <xsl:if test="count($resolved) lt 1">
             <xsl:message terminate="no" select="concat('WARN   : Could not resolve ''',@value,''' in ', string-join(for $el in ancestor-or-self::* return if ($el[@id]) then concat(local-name($el), '[@id=''', $el/@id, ''']') else local-name($el), '/'))"/>
+            <xsl:copy-of select="."/>
         </xsl:if>
         <xsl:apply-templates select="$resolved" mode="#current"/>
     </xsl:template>

@@ -31,7 +31,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:value-of select="(verrichting_type | procedure_type)/(@displayName | @originalText)"/>
                 </reference-display>
                 <xsl:choose>
-                    <xsl:when test="nf:isFuture((verrichting_start_datum | procedure_start_date)/@value) or aanvrager | requester">
+                    <xsl:when test="nf:isFuture((verrichting_start_datum | procedure_start_date)/@value)">
                         <xsl:apply-templates select="current-group()[1]" mode="doProcedureRequestEntry-2.1"/>
                     </xsl:when>
                     <xsl:otherwise>
@@ -467,7 +467,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:otherwise>
                                     </xsl:choose>
                                 </xsl:when>
-                                <xsl:otherwise>active</xsl:otherwise>
+                                <xsl:otherwise>unknown</xsl:otherwise>
                             </xsl:choose>
                         </xsl:attribute>
                     </status>

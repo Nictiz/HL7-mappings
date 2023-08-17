@@ -1,5 +1,5 @@
 <Appointment xmlns="http://hl7.org/fhir">
-   <id value="eAfspraak-Appointment-medmij-bgz-test-patA-encounter2"/>
+   <id value="eAfspraak-Appointment-medmij-bgz-test-patA-plannedencounter2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/eAfspraak-Appointment"/>
    </meta>
@@ -7,7 +7,7 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Afspraak. Id: patA-encounter4 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Status: geannuleerd</caption>
+            <caption>Afspraak. Id: patA-encounter4 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Status: voorgesteld</caption>
             <tbody>
                <tr>
                   <th>Type</th>
@@ -17,20 +17,20 @@
                </tr>
                <tr>
                   <th>Timing</th>
-                  <td> tot </td>
+                  <td>${DATE, T, D, +7}T00:00:00+02:00 - ${DATE, T, D, +7}T00:00:00+02:00</td>
                </tr>
                <tr>
                   <th>Deelnemers</th>
                   <td>
                      <ul>
-                        <li> - Anouk A. Anouk van XXX_Rijn de XXX_Vries</li>
-                        <li> - Olivier Ruben O.R. Olivier de Rijcke || Orthopedisch chirurg || Ziekenhuis het Hogeland<ul>
+                        <li>geaccepteerd - Anouk A. Anouk van XXX_Rijn de XXX_Vries</li>
+                        <li>geaccepteerd - Olivier Ruben O.R. Olivier de Rijcke || Orthopedisch chirurg || Ziekenhuis het Hogeland<ul>
                               <li>
                                  <span title="Performer (PRF - v3/ParticipationType)">Performer</span>
                               </li>
                            </ul>
                         </li>
-                        <li> - Ziekenhuis het Hogeland</li>
+                        <li>geaccepteerd - Ziekenhuis het Hogeland</li>
                      </ul>
                   </td>
                </tr>
@@ -42,13 +42,13 @@
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
       <value value="patA-encounter4"/>
    </identifier>
-   <status value="cancelled">
+   <status value="proposed">
       <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
          <valueCodeableConcept>
             <coding>
                <system value="http://hl7.org/fhir/v3/ActStatus"/>
-               <code value="cancelled"/>
-               <display value="Cancelled"/>
+               <code value="new"/>
+               <display value="Ordered"/>
             </coding>
          </valueCodeableConcept>
       </extension>
@@ -60,12 +60,8 @@
          <display value="Inpatient"/>
       </coding>
    </appointmentType>
-   <start>
-      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
-         <valueCode value="unknown"/>
-      </extension>
-   </start>
-   <end value=""/>
+   <start value="${DATE, T, D, +7}T00:00:00+02:00"/>
+   <end value="${DATE, T, D, +7}T00:00:00+02:00"/>
    <indication>
       <reference value="Condition/zib-Problem-medmij-bgz-test-patA-problem5"/>
       <display value="Artrose van linker kniegewricht"/>
@@ -75,6 +71,7 @@
          <reference value="Patient/medmij-bgz-test-patA"/>
          <display value="Anouk A. Anouk van XXX_Rijn de XXX_Vries"/>
       </actor>
+      <status value="accepted"/>
    </participant>
    <participant>
       <type>
@@ -94,11 +91,13 @@
          <reference value="Practitioner/-practitioner-medmij-bgz-test-2-16-840-1-113883-2-4-6-1-03000001"/>
          <display value="Olivier Ruben O.R. Olivier de Rijcke"/>
       </actor>
+      <status value="accepted"/>
    </participant>
    <participant>
       <actor>
-         <reference value="Organization/-organization-medmij-bgz-test-2-16-840-1-113883-2-4-6-1-06000001"/>
+         <reference value="Location/core-location-medmij-bgz-test-2-16-840-1-113883-2-4-6-1-06000001"/>
          <display value="Ziekenhuis het Hogeland"/>
       </actor>
+      <status value="accepted"/>
    </participant>
 </Appointment>

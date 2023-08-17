@@ -868,7 +868,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="format2FHIRDate">
         <xsl:param name="dateTime" as="xs:string?"/>
-        <xsl:param name="precision">second</xsl:param>
+        <xsl:param name="precision"/>
         <xsl:param name="dateT" as="xs:date?" select="$dateT"/>
 
         <xsl:variable name="picture" as="xs:string?">
@@ -949,10 +949,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:otherwise>
                         <!-- output a relative date for Touchstone -->
                         <xsl:value-of select="concat('${DATE, T, ', $yearMonthDay, ', ', $sign, $amount, '}')"/>
-                        <xsl:if test="$time castable as xs:time">
-                            <!-- we'll assume the timezone (required in FHIR) because there is no way of knowing the T-date -->
-                            <xsl:value-of select="concat('T', $time, '+02:00')"/>
-                        </xsl:if>
+                        <xsl:choose>
+                            <xsl:when test="$time castable as xs:time">
+                                <!-- we'll assume the timezone (required in FHIR) because there is no way of knowing the T-date -->
+                                <xsl:value-of select="concat('T', $time, '+02:00')"/>
+                            </xsl:when>
+                            <xsl:when test="upper-case($precision) = ('SECOND', 'SECONDS', 'SECONDEN', 'SEC', 'S')">
+                                <xsl:value-of select="'T00:00:00+02:00'"/>
+                            </xsl:when>
+                        </xsl:choose>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
