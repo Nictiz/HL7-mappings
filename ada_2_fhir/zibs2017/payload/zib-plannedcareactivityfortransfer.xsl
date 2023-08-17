@@ -121,29 +121,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </appointmentType>
                     </xsl:if>
                     
-                    <xsl:for-each select="$startDate">
-                        <start>
-                            <xsl:attribute name="value">
-                                <xsl:call-template name="format2FHIRDate">
-                                    <xsl:with-param name="dateTime" select="xs:string(.)"/>
-                                    <xsl:with-param name="dateT" select="$dateT"/>
-                                    <xsl:with-param name="precision">seconds</xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:attribute>
-                        </start>
-                    </xsl:for-each>
-                    <xsl:for-each select="$endDate">
-                        <end>
-                            <xsl:attribute name="value">
-                                <xsl:call-template name="format2FHIRDate">
-                                    <xsl:with-param name="dateTime" select="xs:string(.)"/>
-                                    <xsl:with-param name="dateT" select="$dateT"/>
-                                    <xsl:with-param name="precision">seconds</xsl:with-param>
-                                </xsl:call-template>
-                            </xsl:attribute>
-                        </end>
-                    </xsl:for-each>
-                    
                     <xsl:for-each select="(reden_contact/afwijkende_uitslag | contact_reason/deviating_result)[@value]">
                         <reason>
                             <text>
@@ -171,6 +148,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </indication>
                             </xsl:when>
                         </xsl:choose>
+                    </xsl:for-each>
+                    
+                    <xsl:for-each select="$startDate">
+                        <start>
+                            <xsl:attribute name="value">
+                                <xsl:call-template name="format2FHIRDate">
+                                    <xsl:with-param name="dateTime" select="xs:string(.)"/>
+                                    <xsl:with-param name="dateT" select="$dateT"/>
+                                    <xsl:with-param name="precision">seconds</xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:attribute>
+                        </start>
+                    </xsl:for-each>
+                    <xsl:for-each select="$endDate">
+                        <end>
+                            <xsl:attribute name="value">
+                                <xsl:call-template name="format2FHIRDate">
+                                    <xsl:with-param name="dateTime" select="xs:string(.)"/>
+                                    <xsl:with-param name="dateT" select="$dateT"/>
+                                    <xsl:with-param name="precision">seconds</xsl:with-param>
+                                </xsl:call-template>
+                            </xsl:attribute>
+                        </end>
                     </xsl:for-each>
                     
                     <participant>
@@ -303,14 +303,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
                         </xsl:when>
                         <xsl:when test="$zaIdentification">
-                            <!--                        <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join($zaIdentification[1]/(@root | @value), ''))))"/>-->
-                            <!-- string-join follows order of @value / @root in XML, but we want a predictable order -->
                             <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(concat($zaIdentification[1]/@root, '-', $zaIdentification[1]/@value))))"/>
                         </xsl:when>
-                        <!-- AWE, in some rare cases this does not give a unique resource id -->
-                        <!--<xsl:otherwise>
-                        <xsl:value-of select="(upper-case(nf:removeSpecialCharacters(string-join(./*/@value, ''))))"/>
-                        </xsl:otherwise>-->
                         <!-- so fall back on entryFullUrl instead -->
                         <xsl:otherwise>
                             <xsl:value-of select="nf:removeSpecialCharacters(replace($entryFullUrl, 'urn:[^i]*id:', ''))"/>
@@ -339,7 +333,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </entry>
     </xsl:template>
     
-    <xsl:template name="nl-core-location-2.0" match="//(zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)] | payer/insurance_company)" mode="doLocationResource-2.0">
+    <xsl:template name="nl-core-location-2.0" match="//(zorgaanbieder[not(zorgaanbieder)] | healthcare_provider[not(healthcare_provider)])" mode="doLocationResource-2.0">
         <xsl:param name="in" as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:for-each select="$in">
@@ -381,10 +375,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:when test="(contactgegevens | contact_information)/(contactgegevens | contact_information)">
                                 <xsl:sequence select="(contactgegevens | contact_information)/(contactgegevens | contact_information)"/>
                             </xsl:when>
-                            <!-- Add zib-Payer contact -->
-                            <xsl:when test="self::insurance_company">
-                                <xsl:sequence select="parent::payer/contact_information/contact_information"/>
-                            </xsl:when>
                             <xsl:otherwise>
                                 <xsl:sequence select="contactgegevens | contact_information"/>
                             </xsl:otherwise>
@@ -394,10 +384,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:choose>
                             <xsl:when test="(adresgegevens | address_information)/(adresgegevens | address_information)">
                                 <xsl:sequence select="(adresgegevens | address_information)/(adresgegevens | address_information)"/>
-                            </xsl:when>
-                            <!-- Add zib-Payer address -->
-                            <xsl:when test="self::insurance_company">
-                                <xsl:sequence select="parent::payer/address_information/address_information"/>
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:sequence select="adresgegevens | address_information"/>
