@@ -91,7 +91,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:variable name="logicalId">
             <xsl:choose>
-                <!-- Edge case where there is a zib contained in 'referenties' block, while this zib is also present as a separate file. We should take the logical id from the separate file, so we should skip this step. -->
+                <!-- Edge case where there is a zib contained in 'referenties' block, while this zib is also present as a separate file. We should take the logical id from the separate file, so we should call template again. -->
                 <xsl:when test="parent::referenties and current-group()[not(parent::referenties)]">
                     <xsl:apply-templates select="current-group()[not(parent::referenties)][1]" mode="_generateId">
                         <xsl:with-param name="profile" select="$profile"/>
@@ -109,7 +109,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:when>
                 <!-- Zorgverleners that are referenced do not have an ancestor called 'referenties' anymore because of MP-834, so we fix that here, based on base-uri not containing 'HealthcareProfessional', which is kind of hacky but works. -->
                 <xsl:when test="$localName = 'zorgverlener' and not(contains(base-uri(), 'HealthProfessional'))">
-                    <xsl:value-of select="string-join(($id, $ada2resourceType/*[@profile = $profile]/@resource, format-number($partNumber, '00')), '-')"/>
+                    <!-- partNumber does not contain the correct number in this case. Try to use the numerical part of ada @id (like 'zrgv-1') as a backup -->
+                    <xsl:variable name="position">
+                        <xsl:choose>
+                            <xsl:when test="matches(@id, '\d')">
+                                <xsl:analyze-string select="@id" regex="\d">
+                                    <xsl:matching-substring>
+                                        <xsl:value-of select="."/>
+                                    </xsl:matching-substring>
+                                </xsl:analyze-string>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="$partNumber"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable>
+                    <xsl:value-of select="string-join(($id, $ada2resourceType/*[@profile = $profile]/@resource, format-number($position, '00')), '-')"/>
                 </xsl:when>
                 <xsl:when test="$localName = ('soepregel','visueel_resultaat','monster')">
                     <xsl:value-of select="$baseId"/>
