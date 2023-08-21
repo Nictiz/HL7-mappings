@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema elementFormDefault="qualified" targetNamespace="urn:hl7-nl:v3" xmlns="urn:hl7-nl:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <xsd:import namespace="urn:hl7-org:v3" schemaLocation="datatypes.xsd"/>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns:hl7="urn:hl7-org:v3" xmlns="urn:hl7-nl:v3" xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="urn:hl7-nl:v3">
+    <xsd:import schemaLocation="datatypes.xsd" namespace="urn:hl7-org:v3"/>
+    
     <xsd:complexType name="PIVL_TS">
         <xsd:annotation>
             <xsd:appinfo>
@@ -11,7 +12,7 @@
                 </sch:pattern>
                 <sch:pattern name="no updateMode or History on PIVL attributes">
                     <sch:rule abstract="true" id="PIVL_TS-1">
-                        <sch:assert test="count(*[self::phase or self::period][@validTimeLow or @validTimeHigh or @controlActRoot or @controlActExtension or @updateMode]) = 0"/>
+                        <sch:assert test="count(*[self::phase or self::period][@validTimeLow or @validTimeHigh or @controlActRoot or @controlActExtension or @updateMode])=0"/>
                     </sch:rule>
                 </sch:pattern>
                 <sch:pattern name="count: positive">
@@ -24,10 +25,10 @@
         <xsd:complexContent>
             <xsd:extension base="hl7:SXCM_TS">
                 <xsd:sequence>
-                    <xsd:element minOccurs="0" name="phase" type="IVL_TS"/>
-                    <xsd:element minOccurs="0" name="period" type="PQ"/>
-                    <xsd:element minOccurs="0" name="frequency" type="RTO"/>
-                    <xsd:element minOccurs="0" name="count" type="INT"/>
+                    <xsd:element name="phase" type="IVL_TS" minOccurs="0"/>
+                    <xsd:element name="period" type="PQ" minOccurs="0"/>
+                    <xsd:element name="frequency" type="RTO" minOccurs="0"/>
+                    <xsd:element name="count" type="INT" minOccurs="0"/>
                 </xsd:sequence>
                 <xsd:attribute name="alignment" type="CalendarCycle" use="optional"/>
                 <xsd:attribute name="isFlexible" type="xsd:boolean" use="optional"/>
@@ -39,7 +40,7 @@
             <xsd:appinfo>
                 <sch:pattern name="null rules">
                     <sch:rule abstract="true" id="IVL_TS-0">
-                        <sch:assert test="(@nullFlavor and not(any | low | high | width)) or (not(@nullFlavor) and (any | low | high | width))"/>
+                        <sch:assert test="(@nullFlavor and not(any|low|high|width)) or (not(@nullFlavor) and (any|low|high|width))"/>
                     </sch:rule>
                 </sch:pattern>
                 <sch:pattern name="co-occurence rules">
@@ -54,7 +55,7 @@
                 </sch:pattern>
                 <sch:pattern name="no updateMode or History on IVL attributes">
                     <sch:rule abstract="true" id="IVL_TS-3">
-                        <sch:assert test="count(*[self::low or self::high or self::width][@validTimeLow or @validTimeHigh or @controlActRoot or @controlActExtension or @updateMode]) = 0"/>
+                        <sch:assert test="count(*[self::low or self::high or self::width][@validTimeLow or @validTimeHigh or @controlActRoot or @controlActExtension or @updateMode])=0"/>
                     </sch:rule>
                 </sch:pattern>
             </xsd:appinfo>
@@ -62,10 +63,10 @@
         <xsd:complexContent>
             <xsd:extension base="hl7:SXCM_TS">
                 <xsd:sequence>
-                    <xsd:element minOccurs="0" name="low" type="TS"/>
-                    <xsd:element minOccurs="0" name="high" type="TS"/>
-                    <xsd:element minOccurs="0" name="width" type="QTY"/>
-                    <xsd:element minOccurs="0" name="any" type="TS"/>
+                    <xsd:element name="low" type="TS" minOccurs="0"/>
+                    <xsd:element name="high" type="TS" minOccurs="0"/>
+                    <xsd:element name="width" type="QTY" minOccurs="0"/>
+                    <xsd:element name="any" type="TS" minOccurs="0"/>
                 </xsd:sequence>
                 <xsd:attribute name="lowClosed" type="xsd:boolean" use="optional"/>
                 <xsd:attribute name="highClosed" type="xsd:boolean" use="optional"/>
@@ -111,7 +112,7 @@
                 </sch:pattern>
                 <sch:pattern name="no updateMode or History on RTO Attributes">
                     <sch:rule abstract="true" id="RTO-1">
-                        <sch:assert test="count(*[self::numerator or self::denominator][@validTimeLow or @validTimeHigh or @controlActRoot or @controlActExtension or @updateMode]) = 0"/>
+                        <sch:assert test="count(*[self::numerator or self::denominator][@validTimeLow or @validTimeHigh or @controlActRoot or @controlActExtension or @updateMode])=0"/>
                     </sch:rule>
                 </sch:pattern>
                 <sch:pattern name="no uncertainty">
@@ -129,13 +130,14 @@
         <xsd:complexContent>
             <xsd:extension base="QTY">
                 <xsd:sequence>
-                    <xsd:element minOccurs="0" name="numerator" type="QTY"/>
-                    <xsd:element minOccurs="0" name="denominator" type="QTY"/>
+                    <xsd:element name="numerator" type="QTY" minOccurs="0"/>
+                    <xsd:element name="denominator" type="QTY" minOccurs="0"/>
                 </xsd:sequence>
             </xsd:extension>
         </xsd:complexContent>
     </xsd:complexType>
-    <xsd:complexType abstract="true" name="QTY">
+    
+    <xsd:complexType name="QTY" abstract="true">
         <xsd:annotation>
             <xsd:appinfo>
                 <sch:pattern name="uncertainty rules">
@@ -160,7 +162,7 @@
                 </sch:pattern>
                 <sch:pattern name="No History or Update Mode">
                     <sch:rule abstract="true" id="QTY-4">
-                        <sch:assert test="count(*[self::originalText or self::uncertainty or self::uncertainRange or self::expression][@validTimeLow or @validTimeHigh or @controlActRoot or @controlActExtension or @updateMode]) = 0"/>
+                        <sch:assert test="count(*[self::originalText or self::uncertainty or self::uncertainRange or self::expression][@validTimeLow or @validTimeHigh or @controlActRoot or @controlActExtension or @updateMode])=0"/>
                     </sch:rule>
                 </sch:pattern>
             </xsd:appinfo>
@@ -168,21 +170,22 @@
         <xsd:complexContent>
             <xsd:extension base="ANY">
                 <xsd:sequence>
-                    <xsd:element minOccurs="0" name="expression" type="ED"/>
-                    <xsd:element minOccurs="0" name="originalText" type="ED"/>
-                    <xsd:element minOccurs="0" name="uncertainty" type="QTY"/>
-                    <xsd:element minOccurs="0" name="uncertainRange" type="IVL_QTY"/>
+                    <xsd:element name="expression" type="ED" minOccurs="0"/>
+                    <xsd:element name="originalText" type="ED" minOccurs="0"/>
+                    <xsd:element name="uncertainty" type="QTY" minOccurs="0"/>
+                    <xsd:element name="uncertainRange" type="IVL_QTY" minOccurs="0"/>
                 </xsd:sequence>
                 <xsd:attribute name="uncertaintyType" type="UncertaintyType" use="optional"/>
             </xsd:extension>
         </xsd:complexContent>
     </xsd:complexType>
+    
     <xsd:complexType name="IVL_QTY">
         <xsd:annotation>
             <xsd:appinfo>
                 <sch:pattern name="null rules">
                     <sch:rule abstract="true" id="IVL_QTY-0">
-                        <sch:assert test="(@nullFlavor and not(any | low | high | width)) or (not(@nullFlavor) and (any | low | high | width))"/>
+                        <sch:assert test="(@nullFlavor and not(any|low|high|width)) or (not(@nullFlavor) and (any|low|high|width))"/>
                     </sch:rule>
                 </sch:pattern>
                 <sch:pattern name="co-occurence rules">
@@ -197,7 +200,7 @@
                 </sch:pattern>
                 <sch:pattern name="no updateMode or History on IVL attributes">
                     <sch:rule abstract="true" id="IVL_QTY-3">
-                        <sch:assert test="count(*[self::low or self::high or self::width][@validTimeLow or @validTimeHigh or @controlActRoot or @controlActExtension or @updateMode]) = 0"/>
+                        <sch:assert test="count(*[self::low or self::high or self::width][@validTimeLow or @validTimeHigh or @controlActRoot or @controlActExtension or @updateMode])=0"/>
                     </sch:rule>
                 </sch:pattern>
             </xsd:appinfo>
@@ -205,10 +208,10 @@
         <xsd:complexContent>
             <xsd:extension base="QSET_QTY">
                 <xsd:sequence>
-                    <xsd:element minOccurs="0" name="low" type="QTY"/>
-                    <xsd:element minOccurs="0" name="high" type="QTY"/>
-                    <xsd:element minOccurs="0" name="width" type="QTY"/>
-                    <xsd:element minOccurs="0" name="any" type="QTY"/>
+                    <xsd:element name="low" type="QTY" minOccurs="0"/>
+                    <xsd:element name="high" type="QTY" minOccurs="0"/>
+                    <xsd:element name="width" type="QTY" minOccurs="0"/>
+                    <xsd:element name="any" type="QTY" minOccurs="0"/>
                 </xsd:sequence>
                 <xsd:attribute name="lowClosed" type="xsd:boolean" use="optional"/>
                 <xsd:attribute name="highClosed" type="xsd:boolean" use="optional"/>
@@ -233,7 +236,7 @@
             </xsd:extension>
         </xsd:complexContent>
     </xsd:complexType>
-    <xsd:complexType abstract="true" name="HXIT">
+    <xsd:complexType name="HXIT" abstract="true">
         <xsd:annotation>
             <xsd:appinfo>
                 <sch:pattern name="extension requires root">
@@ -248,12 +251,12 @@
         <xsd:attribute name="controlInformationRoot" type="Uid" use="optional"/>
         <xsd:attribute name="controlInformationExtension" type="xsd:string" use="optional"/>
     </xsd:complexType>
-    <xsd:complexType abstract="true" name="QSET_QTY">
+    <xsd:complexType name="QSET_QTY" abstract="true">
         <xsd:annotation>
             <xsd:appinfo>
                 <sch:pattern name="No History or Update Mode">
                     <sch:rule abstract="true" id="QSET_QTY-0">
-                        <sch:assert test="count(*[self::originalText][@validTimeLow or @validTimeHigh or @controlActRoot or @controlActExtension or @updateMode]) = 0"/>
+                        <sch:assert test="count(*[self::originalText][@validTimeLow or @validTimeHigh or @controlActRoot or @controlActExtension or @updateMode])=0"/>
                     </sch:rule>
                 </sch:pattern>
             </xsd:appinfo>
@@ -261,17 +264,17 @@
         <xsd:complexContent>
             <xsd:extension base="ANY">
                 <xsd:sequence>
-                    <xsd:element minOccurs="0" name="originalText" type="ED"/>
+                    <xsd:element name="originalText" type="ED" minOccurs="0"/>
                 </xsd:sequence>
             </xsd:extension>
         </xsd:complexContent>
     </xsd:complexType>
-    <xsd:complexType abstract="true" name="QSET_TS">
+    <xsd:complexType name="QSET_TS" abstract="true">
         <xsd:annotation>
             <xsd:appinfo>
                 <sch:pattern name="No History or Update Mode">
                     <sch:rule abstract="true" id="QSET_TS-0">
-                        <sch:assert test="count(*[self::originalText][@validTimeLow or @validTimeHigh or @controlActRoot or @controlActExtension or @updateMode]) = 0"/>
+                        <sch:assert test="count(*[self::originalText][@validTimeLow or @validTimeHigh or @controlActRoot or @controlActExtension or @updateMode])=0"/>
                     </sch:rule>
                 </sch:pattern>
             </xsd:appinfo>
@@ -279,7 +282,7 @@
         <xsd:complexContent>
             <xsd:extension base="ANY">
                 <xsd:sequence>
-                    <xsd:element minOccurs="0" name="originalText" type="ED"/>
+                    <xsd:element name="originalText" type="ED" minOccurs="0"/>
                 </xsd:sequence>
             </xsd:extension>
         </xsd:complexContent>
@@ -310,6 +313,7 @@
             </xsd:extension>
         </xsd:complexContent>
     </xsd:complexType>
+    
     <xsd:complexType name="PQ">
         <xsd:annotation>
             <xsd:appinfo>
@@ -328,7 +332,7 @@
         <xsd:complexContent>
             <xsd:extension base="QTY">
                 <xsd:sequence>
-                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="translation" type="PQR"/>
+                    <xsd:element name="translation" type="PQR" minOccurs="0" maxOccurs="unbounded"/>
                 </xsd:sequence>
                 <xsd:attribute name="value" type="Decimal" use="optional"/>
                 <xsd:attribute name="unit" type="Code" use="optional"/>
@@ -422,7 +426,7 @@
                 </sch:pattern>
                 <sch:pattern name="no updateMode or History on CD elements">
                     <sch:rule abstract="true" id="CD-9">
-                        <sch:assert test="count(*[self::displayName or self::originalText or self::originalTextReference or self::translation][@validTimeLow or @validTimeHigh or @controlActRoot or @controlActExtension or @updateMode]) = 0"/>
+                        <sch:assert test="count(*[self::displayName or self::originalText or self::originalTextReference or self::translation][@validTimeLow or @validTimeHigh or @controlActRoot or @controlActExtension or @updateMode])=0"/>
                     </sch:rule>
                 </sch:pattern>
             </xsd:appinfo>
@@ -430,10 +434,10 @@
         <xsd:complexContent>
             <xsd:extension base="ANY">
                 <xsd:sequence>
-                    <xsd:element minOccurs="0" name="displayName" type="ST"/>
-                    <xsd:element minOccurs="0" name="originalText" type="ED"/>
-                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="translation" type="CD"/>
-                    <xsd:element minOccurs="0" name="source" type="XReference"/>
+                    <xsd:element name="displayName" type="ST" minOccurs="0"/>
+                    <xsd:element name="originalText" type="ED" minOccurs="0"/>
+                    <xsd:element name="translation" type="CD" minOccurs="0" maxOccurs="unbounded"/>
+                    <xsd:element name="source" type="XReference" minOccurs="0"/>
                 </xsd:sequence>
                 <xsd:attribute name="code" type="xsd:string" use="optional"/>
                 <xsd:attribute name="codeSystem" type="Uid" use="optional"/>
@@ -456,7 +460,7 @@
                 </sch:pattern>
                 <sch:pattern name="only one of value, data, xml">
                     <sch:rule abstract="true" id="ED-1">
-                        <sch:assert test="count(*[self::value or self::xml or self::data]) &lt;= 1"/>
+                        <sch:assert test="count(*[self::value or self::xml or self::data])&lt;=1"/>
                     </sch:rule>
                 </sch:pattern>
                 <sch:pattern name="integrityCheckAlgorithm required">
@@ -486,7 +490,7 @@
                 </sch:pattern>
                 <sch:pattern name="value implies mediaType is text/plain">
                     <sch:rule abstract="true" id="ED-7">
-                        <sch:assert test="not(@value) or (@value and (not(@mediaType) or @mediaType = 'text/plain'))"/>
+                        <sch:assert test="not(@value) or (@value and (not(@mediaType) or @mediaType='text/plain'))"/>
                     </sch:rule>
                 </sch:pattern>
                 <sch:pattern name="no charset for value or xml">
@@ -496,7 +500,7 @@
                 </sch:pattern>
                 <sch:pattern name="No History or Update Mode">
                     <sch:rule abstract="true" id="ED-9">
-                        <sch:assert test="count(*[self::reference or self::thumbnail][@validTimeLow or @validTimeHigh or @controlActRoot or @controlActExtension or @updateMode]) = 0"/>
+                        <sch:assert test="count(*[self::reference or self::thumbnail][@validTimeLow or @validTimeHigh or @controlActRoot or @controlActExtension or @updateMode])=0"/>
                     </sch:rule>
                 </sch:pattern>
                 <sch:pattern name="no nested translations">
@@ -519,16 +523,16 @@
         <xsd:complexContent>
             <xsd:extension base="ANY">
                 <xsd:sequence>
-                    <xsd:element minOccurs="0" name="data" type="xsd:base64Binary"/>
-                    <xsd:element minOccurs="0" name="xml" type="xsd:anyType"/>
-                    <xsd:element minOccurs="0" name="reference" type="TEL"/>
-                    <xsd:element minOccurs="0" name="integrityCheck" type="xsd:base64Binary"/>
-                    <xsd:element minOccurs="0" name="thumbnail" type="ED"/>
-                    <xsd:element minOccurs="0" name="description" type="ST"/>
-                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="translation" type="ED"/>
+                    <xsd:element name="data" type="xsd:base64Binary" minOccurs="0"/>
+                    <xsd:element name="xml" type="xsd:anyType" minOccurs="0"/>
+                    <xsd:element name="reference" type="TEL" minOccurs="0"/>
+                    <xsd:element name="integrityCheck" type="xsd:base64Binary" minOccurs="0"/>
+                    <xsd:element name="thumbnail" type="ED" minOccurs="0"/>
+                    <xsd:element name="description" type="ST" minOccurs="0"/>
+                    <xsd:element name="translation" type="ED" minOccurs="0" maxOccurs="unbounded"/>
                 </xsd:sequence>
                 <xsd:attribute name="value" type="xsd:string" use="optional"/>
-                <xsd:attribute default="text/plain" name="mediaType" type="xsd:string" use="optional"/>
+                <xsd:attribute name="mediaType" type="xsd:string" use="optional" default="text/plain"/>
                 <xsd:attribute name="charset" type="Code" use="optional"/>
                 <xsd:attribute name="language" type="Code" use="optional"/>
                 <xsd:attribute name="compression" type="Compression" use="optional"/>
@@ -546,7 +550,7 @@
                 </sch:pattern>
                 <sch:pattern name="content if not null">
                     <sch:rule abstract="true" id="ST-1">
-                        <sch:assert test="(@nullFlavor or (@value and string-length(@value) &amp;gt; 0)) and not(@nullFlavor and @value)"/>
+                        <sch:assert test="(@nullFlavor or (@value and string-length(@value)&amp;gt;0)) and not(@nullFlavor and @value)"/>
                     </sch:rule>
                 </sch:pattern>
                 <sch:pattern name="translation: no translations">
@@ -559,7 +563,7 @@
         <xsd:complexContent>
             <xsd:extension base="ANY">
                 <xsd:sequence>
-                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="translation" type="ST"/>
+                    <xsd:element name="translation" type="ST" minOccurs="0" maxOccurs="unbounded"/>
                 </xsd:sequence>
                 <xsd:attribute name="value" type="xsd:string" use="optional"/>
                 <xsd:attribute name="language" type="Code" use="optional"/>
@@ -576,7 +580,7 @@
                 </sch:pattern>
                 <sch:pattern name="no updateMode or History on TEL attributes">
                     <sch:rule abstract="true" id="TEL-1">
-                        <sch:assert test="count(*[self::useablePeriod][@validTimeLow or @validTimeHigh or @controlActRoot or @controlActExtension or @updateMode]) = 0"/>
+                        <sch:assert test="count(*[self::useablePeriod][@validTimeLow or @validTimeHigh or @controlActRoot or @controlActExtension or @updateMode])=0"/>
                     </sch:rule>
                 </sch:pattern>
             </xsd:appinfo>
@@ -584,7 +588,7 @@
         <xsd:complexContent>
             <xsd:extension base="ANY">
                 <xsd:sequence>
-                    <xsd:element minOccurs="0" name="useablePeriod" type="QSET_TS"/>
+                    <xsd:element name="useablePeriod" type="QSET_TS" minOccurs="0"/>
                 </xsd:sequence>
                 <xsd:attribute name="value" type="xsd:anyURI" use="optional"/>
                 <xsd:attribute name="use" type="set_TelecommunicationAddressUse" use="optional"/>
@@ -724,6 +728,10 @@
         </xsd:restriction>
     </xsd:simpleType>
     <!-- End pre-adopt DTr2 -->
+    
     <!-- 2019-11-05 by reference in HCIM Contact (2017) -->
-    <xsd:element name="admissionReferralSourceCode" type="hl7:CD"/>
+    <xsd:element name="admissionReferralSourceCode" type="hl7:CD" />
+    
+    <!-- 2021-07-05 by reference in HCIM HealthProfessional (2020) -->
+    <xsd:element name="administrativeGenderCode" type="hl7:CE"/>
 </xsd:schema>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:hl7-org:v3"
+   elementFormDefault="qualified" xmlns="urn:hl7-org:v3">
+
+   <xs:include schemaLocation="../coreschemas/infrastructureRoot.xsd"/>
+
+   <xs:group name="COCT_MT940000NL">
+      <xs:sequence>
+         <xs:element name="medicationAdministrationRequest"
+            type="COCT_MT940000NL.MedicationAdministrationRequest"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:complexType name="COCT_MT940000NL.MedicationAdministrationRequest">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:element name="id" type="II" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="text" type="ED" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="statusCode" type="CS" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="effectiveTime" type="SXCM_TS" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="priorityCode" type="CV" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="routeCode" type="CE" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="approachSiteCode" type="CE" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="doseQuantity" type="IVL_PQ" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="rateQuantity" type="IVL_PQ" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="doseCheckQuantity" type="RTO_QTY_QTY" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="maxDoseQuantity" type="RTO_QTY_QTY" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element type="COCT_MT940000NL.Component" minOccurs="0" maxOccurs="unbounded"
+            name="support2"/>
+         <xs:element type="COCT_MT940000NL.Precondition" minOccurs="0" maxOccurs="unbounded"
+            name="precondition"/>
+         <xs:element type="COCT_MT940000NL.Support" minOccurs="0" maxOccurs="unbounded"
+            name="support1"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="classCode" type="ActClass" use="optional" default="SBADM"/>
+      <xs:attribute name="moodCode" type="ActMood" use="optional" default="RQO"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT940000NL.Component">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:element type="COCT_MT940000NL.MedicationAdministrationInstruction" minOccurs="1"
+            maxOccurs="1" name="medicationAdministrationInstruction"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="typeCode" type="ActRelationshipType" use="optional" default="SPRT"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT940000NL.MedicationAdministrationInstruction">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:element name="code" type="CV" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="classCode" type="ActClass" use="optional" default="INFRM"/>
+      <xs:attribute name="moodCode" type="ActMood" use="optional" default="RQO"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT940000NL.Precondition">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:element name="pauseQuantity" type="PQ" minOccurs="0" maxOccurs="1"/>
+         <xs:element type="COCT_MT940000NL.ObservationEventCriterion" minOccurs="1" maxOccurs="1"
+            name="observationEventCriterion"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="typeCode" type="ActRelationshipType" use="optional" default="PRCN"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT940000NL.ObservationEventCriterion">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:element name="code" type="CV" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="classCode" type="ActClass" use="optional" default="OBS"/>
+      <xs:attribute name="moodCode" type="ActMood" use="optional" default="EVN.CRT"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT940000NL.Support">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:element type="COCT_MT940000NL.MedicationStorageInstruction" minOccurs="1" maxOccurs="1"
+            name="medicationStorageInstruction"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="typeCode" type="ActRelationshipType" use="optional" default="SPRT"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT940000NL.MedicationStorageInstruction">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:element name="code" type="CV" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="classCode" type="ActClass" use="optional" default="INFRM"/>
+      <xs:attribute name="moodCode" type="ActMood" use="optional" default="RQO"/>
+   </xs:complexType>
+</xs:schema>

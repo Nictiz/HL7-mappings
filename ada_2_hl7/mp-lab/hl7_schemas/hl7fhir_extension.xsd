@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Copyright (c) 2021, Nictiz
+  All rights reserved.
+--><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://hl7.org/fhir"
+           xmlns:xhtml="http://www.w3.org/1999/xhtml"
+           targetNamespace="http://hl7.org/fhir"
+           elementFormDefault="qualified"
+           version="1.0">
+   <xs:include schemaLocation="fhir/fhir-single.xsd"/>
+   <!-- 2021-04-21 Nictiz. Add element for referencing from CDA/V3. This is done because FHIR Timing replaces the V3 GTS for medication dosage --><xs:element name="effectiveTime" type="Timing"/>
+</xs:schema>

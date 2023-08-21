@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:hl7-org:v3" elementFormDefault="qualified" xmlns="urn:hl7-org:v3"
+   xmlns:hl7="urn:hl7-org:v3">
+   <xs:include schemaLocation="../coreschemas/datatypes.xsd"/>
+   <xs:include schemaLocation="../coreschemas/voc.xsd"/>
+   <!--
+   *****************************************************************************************************************
+   * XML schema for message type COCT_MT030200NL (E_Person NL [universal]).
+   *
+   * Deze CMET is een Nederlandse restrictie op de internationale E_Person CMET.
+   * Laatste update: september 2005.
+   *****************************************************************************************************************
+   -->
+   <xs:include schemaLocation="COCT_MT030200.xsd"/>
+   <xs:include schemaLocation="COCT_MT500000.xsd"/>
+   <xs:group name="COCT_MT030200NL">
+      <xs:sequence>
+         <xs:element name="Person" type="COCT_MT030200NL.Person"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:complexType name="COCT_MT030200NL.Person">
+      <xs:sequence>
+         <xs:element name="id" type="II" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="name" type="PN" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="administrativeGenderCode" type="CE" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="birthTime" type="TS" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="deceasedInd" type="BL" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="deceasedTime" type="TS" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="multipleBirthInd" type="BL" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="multipleBirthOrderNumber" type="INT" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="maritalStatusCode" type="CE" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="educationLevelCode" type="CE" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="birthplace" type="COCT_MT030200NL.Birthplace" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="scopedContactParty" type="COCT_MT030200NL.ContactParty" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="employment" type="COCT_MT030200NL.Employment" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="playedPatientOfOtherProvider" type="COCT_MT030200NL.PatientOfOtherProvider" minOccurs="0" maxOccurs="1"/>
+         <xs:group ref="COCT_MT500000" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="templateId" type="II" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="type" type="Classes" default="Person"/>
+      <xs:attribute name="classCode" type="EntityClass" use="optional" default="PSN"/>
+      <xs:attribute name="determinerCode" type="EntityDeterminer" use="optional" default="INSTANCE"/>
+      <xs:attribute name="typeID" use="optional">
+         <xs:simpleType>
+            <xs:list itemType="oid"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="realmCode" use="optional">
+         <xs:simpleType>
+            <xs:list itemType="cs"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="nullFlavor" type="cs" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT030200NL.Birthplace">
+      <xs:sequence>
+         <xs:element name="typeId" type="II" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="templateId" type="II" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="addr" type="AD" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="type" type="Classes" default="RoleHeir"/>
+      <xs:attribute name="classCode" type="RoleClass" use="optional" default="BIRTHPL"/>
+      <xs:attribute name="realmCode" use="optional">
+         <xs:simpleType>
+            <xs:list itemType="cs"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="nullFlavor" type="cs" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT030200NL.ContactParty">
+      <xs:sequence>
+         <xs:element name="typeId" type="II" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="templateId" type="II" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="code" type="CE" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="telecom" type="TEL" minOccurs="1" maxOccurs="unbounded"/>
+         <xs:choice>
+            <xs:element name="Person" minOccurs="1" maxOccurs="1" type="COCT_MT030200NL.Person2"/>
+         </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="type" type="Classes" default="Role"/>
+      <xs:attribute name="classCode" type="RoleClass" use="optional" default="CON"/>
+      <xs:attribute name="realmCode" use="optional">
+         <xs:simpleType>
+            <xs:list itemType="cs"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="nullFlavor" type="cs" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT030200NL.Person2">
+      <xs:sequence>
+         <xs:element name="typeId" type="II" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="templateId" type="II" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="name" type="PN" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="type" type="Classes" default="Role"/>
+      <xs:attribute name="classCode" type="EntityClass" use="optional" default="PSN"/>
+      <xs:attribute name="determinerCode" type="EntityDeterminer" use="optional" default="INSTANCE"/>      
+      <xs:attribute name="realmCode" use="optional">
+         <xs:simpleType>
+            <xs:list itemType="cs"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="nullFlavor" type="cs" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT030200NL.Employment">
+      <xs:sequence>
+         <xs:element name="typeId" type="II" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="templateId" type="II" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="occupationCode" type="CE" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="type" type="Classes" default="Employee"/>
+      <xs:attribute name="classCode" type="RoleClass" use="optional" default="EMP"/>
+      <xs:attribute name="realmCode" use="optional">
+         <xs:simpleType>
+            <xs:list itemType="cs"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="nullFlavor" type="cs" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT030200NL.PatientOfOtherProvider">
+      <xs:sequence>
+         <xs:element name="subjectOf" type="COCT_MT030200NL.Subject" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="templateId" type="II" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="type" type="Classes" default="Patient"/>
+      <xs:attribute name="classCode" type="RoleClass" use="optional" default="PAT"/>
+      <xs:attribute name="typeID" use="optional">
+         <xs:simpleType>
+            <xs:list itemType="oid"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="realmCode" use="optional">
+         <xs:simpleType>
+            <xs:list itemType="cs"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="nullFlavor" type="cs" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT030200NL.Subject">
+      <xs:sequence>
+         <xs:element name="patientCareProvision" type="COCT_MT030200NL.PatientCareProvision" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="templateId" type="II" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="type" type="Classes" default="Participation"/>
+      <xs:attribute name="typeCode" type="ParticipationType" use="optional" default="SBJ"/>
+      <xs:attribute name="typeID" use="optional">
+         <xs:simpleType>
+            <xs:list itemType="oid"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="realmCode" use="optional">
+         <xs:simpleType>
+            <xs:list itemType="cs"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="nullFlavor" type="cs" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT030200NL.PatientCareProvision">
+      <xs:sequence>
+         <xs:element name="code" type="CE" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="responsibleParty" type="COCT_MT030200NL.ResponsibleParty" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="templateId" type="II" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="type" type="Classes" default="ActHeir"/>
+      <xs:attribute name="classCode" type="ActClass" use="optional" default="PCPR"/>
+      <xs:attribute name="moodCode" type="ActMood" use="optional" default="EVN"/>
+      <xs:attribute name="typeID" use="optional">
+         <xs:simpleType>
+            <xs:list itemType="oid"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="realmCode" use="optional">
+         <xs:simpleType>
+            <xs:list itemType="cs"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="nullFlavor" type="cs" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT030200NL.ResponsibleParty">
+      <xs:sequence>
+         <xs:element name="healthCareProvider" type="COCT_MT030200NL.HealthCareProvider" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="templateId" type="II" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="type" type="Classes" default="Participation"/>
+      <xs:attribute name="typeCode" type="ParticipationType" use="optional" default="RESP"/>
+      <xs:attribute name="typeID" use="optional">
+         <xs:simpleType>
+            <xs:list itemType="oid"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="realmCode" use="optional">
+         <xs:simpleType>
+            <xs:list itemType="cs"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="nullFlavor" type="cs" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT030200NL.HealthCareProvider">
+      <xs:sequence>
+         <xs:element name="id" type="II" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="healthCareChoice" type="COCT_MT030200NL.Choice" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="templateId" type="II" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="type" type="Classes" default="LicensedEntity"/>
+      <xs:attribute name="classCode" type="RoleClass" use="optional" default="PROV"/>
+      <xs:attribute name="typeID" use="optional">
+         <xs:simpleType>
+            <xs:list itemType="oid"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="realmCode" use="optional">
+         <xs:simpleType>
+            <xs:list itemType="cs"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="nullFlavor" type="cs" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT030200NL.Choice">
+      <xs:choice>
+         <xs:element name="healthCareProviderPerson" minOccurs="0" maxOccurs="1" type="COCT_MT030200NL.ProviderPerson"/>
+      </xs:choice>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT030200NL.ProviderPerson">
+      <xs:sequence>
+         <xs:element name="name" type="PN" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="templateId" type="II" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="type" type="Classes" default="Person"/>
+      <xs:attribute name="classCode" type="EntityClass" use="optional" default="PSN"/>
+      <xs:attribute name="determinerCode" type="EntityDeterminer" use="optional" default="INSTANCE"/>
+      <xs:attribute name="typeID" use="optional">
+         <xs:simpleType>
+            <xs:list itemType="oid"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="realmCode" use="optional">
+         <xs:simpleType>
+            <xs:list itemType="cs"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="nullFlavor" type="cs" use="optional"/>
+   </xs:complexType>
+</xs:schema>
