@@ -102,7 +102,7 @@
         
         <echo/>
         <echo>${echo.label} ${xsl.validate.svrl} make recap of validation in ${result.xml}</echo>
-        <xslt force="true" style="${xsl.validate.svrl}" in="${build.dir}/../../validate/default_input.xml" out="${result.xml}">
+        <xslt force="true" style="${xsl.validate.svrl}" in="${xsl.validate.svrl}" out="${result.xml}">
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
             <param name="inputDir" expression="${input.dir}"/>

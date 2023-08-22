@@ -16,13 +16,15 @@
     
     <property name="echo.label" value="${echo.label.in} to ${echo.label.out}"/>
 
+    <property name="ada.project.source.dir" value="../../../../../../art_decor/projects/lab"/>
+    
+
     <!-- place import after properties above, otherwise it can't resolve these properties  -->
     <import file="../../../_ant-buildfiles/ant-publish/build-ada2hl7-lab-include.xml"/>
 
     <property name="gen.schematron.ref" value="false"/>
     <property name="usecase.nt" value="nictiz_test"/>
     
-    <property name="ada.project.source.dir" value="${build.dir}/../../../../../SVN/art_decor/trunk/ada-data/projects/lab"/>
     <property name="validate.dir" value="${build.dir}/../../../../../../SVN/AORTA/branches/Onderhoud_Lu/XML/schematron_closed_warnings_svrl"/>
     <property name="schema.organizer" value="${build.dir}/../../../../../../SVN/AORTA/branches/Onderhoud_Lu/XML/schemas_codeGen_flat/organizer.xsd"/>
     <property name="schema.cda" value="${build.dir}/../../../../../../SVN/AORTA/branches/Onderhoud_Lu/XML/schemas_codeGen_flat/CDANL_extended.xsd"/>
@@ -79,9 +81,9 @@
             <param name="refs.ada.dir" value="ada_instance"/>
         </antcall>
 
-        <!-- xml voorbeelden -->
+        <!-- xml voorbeelden, not yet there for lab -->
         <!-- schemas -->
-        <mkdir dir="${build.dir}/xml-voorbeelden/ada_schemas"/>
+<!--        <mkdir dir="${build.dir}/xml-voorbeelden/ada_schemas"/>
         <delete>
             <fileset dir="${build.dir}/xml-voorbeelden/ada_schemas" includes="*.xsd"/>
         </delete>
@@ -92,7 +94,7 @@
                 <include name="ada_meta.xsd"/>
             </fileset>
         </copy>
-        <!-- instances -->
+        <!-\- instances -\->
         <echo/>
         <echo>Setup ${build.dir}/xml-voorbeelden containing refreshed ada production instances (${refs.dir}/xml-voorbeelden/ada_instance/*example*.xml)</echo>
 
@@ -104,7 +106,7 @@
             <fileset dir="${refs.dir}/xml-voorbeelden/ada_instance">
                 <include name="*example*.xml"/>
             </fileset>
-        </copy>
+        </copy>-->
 
 
         <!-- let's convert to hl7 too while we're at it -->
