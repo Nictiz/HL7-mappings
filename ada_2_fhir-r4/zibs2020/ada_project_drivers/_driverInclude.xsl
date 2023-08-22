@@ -61,7 +61,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="businessIdentifierRef" as="element()?" select="onderwerp/patient-id"/>
         
         <xsl:variable name="patient-id" select="$businessIdentifierRef/@value"/>
-        <xsl:variable name="referencedPatient" select="collection('../ada_instance')//patient[identificatienummer/@value = $patient-id]"/>
+        <!-- Give preference to patient that is not in 'referenties' -->
+        <xsl:variable name="referencedPatient" select="(collection('../ada_instance')//patient[identificatienummer/@value = $patient-id]/(self::*[not(ancestor::referenties)],self::*[ancestor::referenties]))[1]"/>
         <xsl:choose>
             <xsl:when test="$referencedPatient">
                 <xsl:copy-of select="$referencedPatient"/>
@@ -90,6 +91,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:variable name="logicalId">
             <xsl:choose>
+                <!-- Edge case where there is a zib contained in 'referenties' block, while this zib is also present as a separate file. We should take the logical id from the separate file, so we should call template again. -->
+                <xsl:when test="parent::referenties and current-group()[not(parent::referenties)]">
+                    <xsl:apply-templates select="current-group()[not(parent::referenties)][1]" mode="_generateId">
+                        <xsl:with-param name="profile" select="$profile"/>
+                        <xsl:with-param name="partNumber" select="$partNumber"/>
+                    </xsl:apply-templates>
+                </xsl:when>
                 <xsl:when test="ancestor::*/local-name() = 'referenties'">
                     <!-- This is a contained ada instance, therefore does not have a valid base-uri() -->
                     <!-- Moved position parameter here, because I do not expect it to function outside of 'referenties', but at the moment it does not have to -->
@@ -101,7 +109,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:when>
                 <!-- Zorgverleners that are referenced do not have an ancestor called 'referenties' anymore because of MP-834, so we fix that here, based on base-uri not containing 'HealthcareProfessional', which is kind of hacky but works. -->
                 <xsl:when test="$localName = 'zorgverlener' and not(contains(base-uri(), 'HealthProfessional'))">
-                    <xsl:value-of select="string-join(($id, $ada2resourceType/*[@profile = $profile]/@resource, format-number($partNumber, '00')), '-')"/>
+                    <!-- partNumber does not contain the correct number in this case. Try to use the numerical part of ada @id (like 'zrgv-1') as a backup -->
+                    <xsl:variable name="position">
+                        <xsl:choose>
+                            <xsl:when test="matches(@id, '\d')">
+                                <xsl:analyze-string select="@id" regex="\d">
+                                    <xsl:matching-substring>
+                                        <xsl:value-of select="."/>
+                                    </xsl:matching-substring>
+                                </xsl:analyze-string>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="$partNumber"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable>
+                    <xsl:value-of select="string-join(($id, $ada2resourceType/*[@profile = $profile]/@resource, format-number($position, '00')), '-')"/>
                 </xsl:when>
                 <xsl:when test="$localName = ('soepregel','visueel_resultaat','monster')">
                     <xsl:value-of select="$baseId"/>
@@ -166,6 +189,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$writeOutputToDisk">
                 <xsl:for-each select="$resources">
                     <xsl:choose>
+                        <!-- When a bundled version of a resource exists, ignore the current version (because we assume the bundled version contains more details) -->
+                        <xsl:when test="not(ends-with(base-uri(), '-bundled.xml')) and doc-available(concat('../ada_instance/', ./f:id/@value, '-bundled.xml'))"/>
                         <xsl:when test="string-length(f:id/@value) gt 0">
                             <xsl:result-document href="../fhir_instance/{./f:id/@value}.xml">
                                 <xsl:copy-of select="."/>
@@ -444,7 +469,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <!-- ADA instances for this project start with $zib2020Oid and end in .1, or in 9.*.* in the case of the medication related zibs -->
                     <xsl:with-param name="derivedFrom" select="if (ancestor::verrichting) then ancestor::*[starts-with(@conceptId, $zib2020Oid) and matches(@conceptId, '(\.1|9\.\d+\.\d+)$')] else ()"/>
                     <xsl:with-param name="derivedFromProfile" select="if (ancestor::verrichting) then if (nf:isFuture(ancestor::verrichting/verrichting_start_datum/@value) or ancestor::verrichting/aanvrager) then 'nl-core-Procedure-request' else ('nl-core-Procedure-event') else ()"/>
-                    <xsl:with-param name="reasonReference" select="if (ancestor::functionele_of_mentale_status or ancestor::mobiliteit or ancestor::stoma) then ancestor::*[starts-with(@conceptId, $zib2020Oid) and matches(@conceptId, '(\.1|9\.\d+\.\d+)$')] else ()"/>
+                    <xsl:with-param name="reasonReference" select="if (ancestor::functionele_of_mentale_status or ancestor::mobiliteit or ancestor::stoma or ancestor::darmfunctie) then ancestor::*[starts-with(@conceptId, $zib2020Oid) and matches(@conceptId, '(\.1|9\.\d+\.\d+)$')] else ()"/>
                 </xsl:apply-templates>  
                 <xsl:for-each select="product">
                     <xsl:call-template name="nl-core-MedicalDevice.Product">
