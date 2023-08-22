@@ -24,7 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     
     <xd:doc>
-        <xd:desc>Create a nl-core-FreedomRestrictingIntervention instance as a Procedure FHIR instance from ADA vrijheidsbeperkende_interventie.</xd:desc>
+        <xd:desc>Create an nl-core-FreedomRestrictingIntervention instance as a Procedure FHIR instance from ADA vrijheidsbeperkende_interventie.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">The subject as ADA element or reference.</xd:param>
     </xd:doc>

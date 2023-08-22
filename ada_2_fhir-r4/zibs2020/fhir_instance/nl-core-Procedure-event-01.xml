@@ -1,29 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Procedure xmlns="http://hl7.org/fhir">
-   <id value="nl-core-Procedure-01"/>
+   <id value="nl-core-Procedure-event-01"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-event"/>
    </meta>
-   <extension url="http://hl7.org/fhir/StructureDefinition/procedure-method">
-      <valueCodeableConcept>
-         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="129284003"/>
-            <display value="chirurgische handeling"/>
-         </coding>
-      </valueCodeableConcept>
-   </extension>
-   <basedOn>
-      <reference value="Procedure/nl-core-Procedure-01"/>
-      <type value="Procedure"/>
-      <display value="Procedure, type: implantatie van totale knieprothese, method: chirurgische handeling"/>
-   </basedOn>
    <status value="completed"/>
    <code>
       <coding>
-         <system value="http://snomed.info/sct"/>
-         <code value="609588000"/>
-         <display value="implantatie van totale knieprothese"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.120.5.2"/>
+         <code value="038663"/>
+         <display value="Prothese implantatie kniegewricht"/>
       </coding>
    </code>
    <subject>
@@ -31,10 +17,7 @@
       <type value="Patient"/>
       <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
    </subject>
-   <performedPeriod>
-      <start value="2012-06-05"/>
-      <end value="2012-06-06"/>
-   </performedPeriod>
+   <performedDateTime value="2012-06-05"/>
    <performer>
       <actor>
          <reference value="PractitionerRole/nl-core-Procedure-01-PractitionerRole-09"/>
@@ -65,13 +48,7 @@
       <coding>
          <system value="http://snomed.info/sct"/>
          <code value="72696002"/>
+         <display value="structuur van knieregio"/>
       </coding>
    </bodySite>
-   <focalDevice>
-      <manipulated>
-         <reference value="DeviceUseStatement/nl-core-Procedure-01-DeviceUseStatement-01"/>
-         <type value="DeviceUseStatement"/>
-         <display value="medisch_hulpmiddel"/>
-      </manipulated>
-   </focalDevice>
 </Procedure>
