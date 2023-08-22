@@ -72,7 +72,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <validate>
             <xsl:for-each select="$inputFiles">
                 <xsl:variable name="fails" select=".//(svrl:failed-assert | svrl:successful-report)[not(@role = ('info', 'information'))]" as="element()*"/>
-                <file name="{resolve-uri(.//svrl:active-pattern[1]/@document)}" firstPatternId="{.//svrl:active-pattern[1]/@id}">
+                <file name="{resolve-uri(.//(svrl:active-pattern[@document])[1]/@document)}" firstPatternId="{.//(svrl:active-pattern[@id])[1]/@id}" firstPatternName="{.//(svrl:active-pattern[@name])[1]/@name}">
                     <xsl:choose>
                         <xsl:when test="$fails">
                             <fail>
