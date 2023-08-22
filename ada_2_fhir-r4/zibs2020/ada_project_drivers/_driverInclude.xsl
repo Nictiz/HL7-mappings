@@ -294,6 +294,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="patient" select="$subject"/>
                 </xsl:apply-templates>
             </xsl:when>
+            <xsl:when test="$localName = 'darmfunctie'">
+                <xsl:apply-templates select="$in" mode="nl-core-BowelFunction">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'dosscore'">
                 <xsl:apply-templates select="$in" mode="nl-core-DOSScore">
                     <xsl:with-param name="subject" select="$subject"/>
@@ -610,9 +615,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:otherwise>
                         <!-- Fallback. 'event' instead of 'request' because there is a possibility that zib TextResult refers to zib Procedure, which by definition is a FHIR Procedure -->
                         <xsl:apply-templates select="$in" mode="nl-core-Procedure-event">
-                            <xsl:with-param name="subject" select="$subject"/>
-                            <xsl:with-param name="report" select="if (ancestor::tekst_uitslag) then ancestor::tekst_uitslag else ()"/>
-                        </xsl:apply-templates>
+                    <xsl:with-param name="subject" select="$subject"/>
+                    <xsl:with-param name="report" select="if (ancestor::tekst_uitslag) then ancestor::tekst_uitslag else ()"/>
+                </xsl:apply-templates>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
