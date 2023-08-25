@@ -158,41 +158,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="/">
         <xsl:variable name="commonEntries" as="element(f:entry)*">
-            <xsl:choose>
-                <xsl:when test="bundle/*/local-name() = 'advance_directive'">
-                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, (:$relatedPersons/f:entry,:) $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
-                </xsl:when>
-                <!--<xsl:when test="bundle/*/local-name() = 'contact'">
-                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
-                </xsl:when>-->
-                <!--<xsl:when test="bundle/*/local-name() = 'health_professional'">
-                    <xsl:copy-of select="$patients/f:entry, $organizations/f:entry, (:$relatedPersons/f:entry,:) $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
-                </xsl:when>-->
-                <xsl:when test="bundle/*/local-name() = 'laboratory_test_result'">
-                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, (:$relatedPersons/f:entry,:) $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry"/>
-                </xsl:when>
-                <xsl:when test="bundle/*/local-name() = 'medical_device'">
-                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, (:$relatedPersons/f:entry,:) $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
-                </xsl:when>
-                <!--<xsl:when test="bundle/*/local-name() = 'patient'">
-                    <xsl:copy-of select="$practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, (:$relatedPersons/f:entry,:) $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
-                </xsl:when>-->
-                <xsl:when test="bundle/*/local-name() = 'problem'">
-                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, (:$relatedPersons/f:entry,:) $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
-                </xsl:when>
-                <xsl:when test="bundle/*/local-name() = 'procedure'">
-                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, (:$relatedPersons/f:entry,:) $problems/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
-                </xsl:when>
-                <xsl:when test="bundle/*/local-name() = 'vaccination'">
-                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, (:$relatedPersons/f:entry,:) $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $labObservations/f:entry"/>
-                </xsl:when>
-                <!--<xsl:when test="bundle/*/local-name() = 'medication_agreement'">
-                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, (:$relatedPersons/f:entry,:) $problems/f:entry, $procedures/f:entry, $products/f:entry"/>
-                </xsl:when>-->
-                <xsl:otherwise>
-                    <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, (:$relatedPersons/f:entry,:) $problems/f:entry, $procedures/f:entry, $procedureRequests/f:entry, $medicalDevices/f:entry, $medicalDeviceProducts/f:entry, $advanceDirectives/f:entry, $vaccinations/f:entry, $labObservations/f:entry"/>
-                </xsl:otherwise>
-            </xsl:choose>
+            <xsl:copy-of select="$patients/f:entry, $practitioners/f:entry, $organizations/f:entry, $practitionerRoles/f:entry, $locations/f:entry"/>
         </xsl:variable>
         
         <xsl:variable name="bouwstenen" as="element(f:entry)*">
@@ -212,380 +178,168 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:variable>
-                
-                <!--Zibs that result in only a single resource, or  resources that have no special conditions-->
-                <xsl:if test="local-name() = ((:'administration_agreement', :) 'advance_directive', 'alcohol_use', 'alert', 'allergy_intolerance', 'blood_pressure', 'body_height', 'body_weight', 'drug_use', 'encounter', 'functional_or_mental_status', 'living_situation', (:'medication_agreement', 'medication_use', :) 'nutrition_advice', 'payer', 'problem', 'tobacco_use', 'treatment_directive')">
-                    <xsl:variable name="pos" select="position()"/>
 
-                    <xsl:if test="local-name() = 'administration_agreement'">
-                        <entry xmlns="http://hl7.org/fhir">
-                            <xsl:message terminate="yes">TODO</xsl:message>
-                            <search>
-                                <mode value="match"/>
-                            </search>
-                        </entry>
-                    </xsl:if>
-                    <xsl:if test="local-name() = 'advance_directive'">
-                        <entry xmlns="http://hl7.org/fhir">
-                            <fullUrl value="{concat('zib-AdvanceDirective-', $usecase, '-', $patientName, '-advdir', position())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-AdvanceDirective-2.1">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-advdir', position())"/>
-                                </xsl:call-template>
-                            </resource>
-                            <search>
-                                <mode value="match"/>
-                            </search>
-                        </entry>
-                    </xsl:if>
-                    <xsl:if test="local-name() = 'alcohol_use'">
-                        <entry xmlns="http://hl7.org/fhir">
-                            <fullUrl value="{concat('zib-AlcoholUse-', $usecase, '-', $patientName, '-alcohol', position())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-AlcoholUse-2.1">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-alcohol', position())"/>
-                                </xsl:call-template>
-                            </resource>
-                            <search>
-                                <mode value="match"/>
-                            </search>
-                        </entry>
-                    </xsl:if>
-                    <xsl:if test="local-name() = 'alert'">
-                        <entry xmlns="http://hl7.org/fhir">
-                            <fullUrl value="{concat('zib-Alert-', $usecase, '-', $patientName, '-alert', position())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-Alert-2.1">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-alert', position())"/>
-                                </xsl:call-template>
-                            </resource>
-                            <search>
-                                <mode value="match"/>
-                            </search>
-                        </entry>
-                    </xsl:if>
-                    <xsl:if test="local-name() = 'allergy_intolerance'">
-                        <entry xmlns="http://hl7.org/fhir">
-                            <fullUrl value="{concat('zib-AllergyIntolerance-', $usecase, '-', $patientName, '-allergy', position())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-AllergyIntolerance-2.1">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-allergy', position())"/>
-                                </xsl:call-template>
-                            </resource>
-                            <search>
-                                <mode value="match"/>
-                            </search>
-                        </entry>
-                    </xsl:if>
-                    <xsl:if test="local-name() = 'blood_pressure'">
-                        <entry xmlns="http://hl7.org/fhir">
-                            <fullUrl value="{concat('zib-BloodPressure-', $usecase, '-', $patientName, '-bloodpressure', position())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-BloodPressure-3.0">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-bloodpressure', position())"/>
-                                </xsl:call-template>
-                            </resource>
-                            <search>
-                                <mode value="match"/>
-                            </search>
-                        </entry>
-                    </xsl:if>
-                    <xsl:if test="local-name() = 'body_height'">
-                        <entry xmlns="http://hl7.org/fhir">
-                            <fullUrl value="{concat('zib-BodyHeight-', $usecase, '-', $patientName, '-bodyheight', position())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-BodyHeight-2.x">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-bodyheight', position())"/>
-                                </xsl:call-template>
-                            </resource>
-                            <search>
-                                <mode value="match"/>
-                            </search>
-                        </entry>
-                    </xsl:if>
-                    <xsl:if test="local-name() = 'body_weight'">
-                        <entry xmlns="http://hl7.org/fhir">
-                            <fullUrl value="{concat('zib-BodyWeight-', $usecase, '-', $patientName, '-bodyweight', position())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-BodyWeight-2.x">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-bodyweight', position())"/>
-                                </xsl:call-template>
-                            </resource>
-                            <search>
-                                <mode value="match"/>
-                            </search>
-                        </entry>
-                    </xsl:if>
-                    <!--<xsl:if test="local-name() = 'contact'">
-                            <entry xmlns="http://hl7.org/fhir">
-                            <fullUrl value="{concat('zib-ContactPerson-', $usecase, '-', $patientName, '-contactperson', position())}"/>
-                            <resource>
-                                <xsl:call-template name="nl-core-relatedperson-2.0">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-contactperson', position())"/>
-                                </xsl:call-template>
-                            </resource>
-                        <search>
-                            <mode value="match"/>
-                        </search>
-                    </entry>
-                        </xsl:if>-->
-                    <xsl:if test="local-name() = 'drug_use'">
-                        <entry xmlns="http://hl7.org/fhir">
-                            <fullUrl value="{concat('zib-DrugUse-', $usecase, '-', $patientName, '-druguse', position())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-DrugUse-2.1">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-druguse', position())"/>
-                                </xsl:call-template>
-                            </resource>
-                            <search>
-                                <mode value="match"/>
-                            </search>
-                        </entry>
-                    </xsl:if>
-                    <xsl:if test="local-name() = 'encounter'">
-                        <entry xmlns="http://hl7.org/fhir">
-                            <fullUrl value="{concat('zib-Encounter-', $usecase, '-', $patientName, '-encounter', position())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-Encounter-2.1">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-encounter', position())"/>
-                                </xsl:call-template>
-                            </resource>
-                            <search>
-                                <mode value="match"/>
-                            </search>
-                        </entry>
-                    </xsl:if>
-                    <xsl:if test="local-name() = 'functional_or_mental_status'">
-                        <entry xmlns="http://hl7.org/fhir">
-                            <fullUrl value="{concat('zib-FunctionalOrMentalStatus-', $usecase, '-', $patientName, '-funcment', position())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-FunctionalOrMentalStatus-2.1">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-funcment', position())"/>
-                                </xsl:call-template>
-                            </resource>
-                            <search>
-                                <mode value="match"/>
-                            </search>
-                        </entry>
-                    </xsl:if>
-                    <!--<xsl:if test="local-name() = 'healthcare_provider'">
-                            <entry xmlns="http://hl7.org/fhir">
-                            <fullUrl value="{concat('zib-HealthcareProvider-', $usecase, '-', $patientName, '-healthcareProv', position())}"/>
-                            <resource>
-                                <xsl:call-template name="nl-core-organization-2.0">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-healthcareProv', position())"/>
-                                </xsl:call-template>
-                            </resource>
-                        <search>
-                            <mode value="match"/>
-                        </search>
-                    </entry>
-                        </xsl:if>-->
-                    <xsl:if test="local-name() = 'living_situation'">
-                        <entry xmlns="http://hl7.org/fhir">
-                            <fullUrl value="{concat('zib-LivingSituation-', $usecase, '-', $patientName, '-living', position())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-LivingSituation-2.1">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-living', position())"/>
-                                </xsl:call-template>
-                            </resource>
-                            <search>
-                                <mode value="match"/>
-                            </search>
-                        </entry>
-                    </xsl:if>
-                    <xsl:if test="local-name() = 'medication_agreement'">
-                        <entry xmlns="http://hl7.org/fhir">
-                            <fullUrl value="{concat('zib-MedicationAgreement-', $usecase, '-', $patientName, '-medagr', position())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-MedicationAgreement-3.0">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-medagr', position())"/>
-                                </xsl:call-template>
-                            </resource>
-                            <search>
-                                <mode value="match"/>
-                            </search>
-                        </entry>
-                    </xsl:if>
-                    <xsl:if test="local-name() = 'medication_use'">
-                        <entry xmlns="http://hl7.org/fhir">
-                            <fullUrl value="{concat('zib-MedicationUse-', $usecase, '-', $patientName, '-meduse', position())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-MedicationUse-3.0">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-meduse', position())"/>
-                                </xsl:call-template>
-                            </resource>
-                            <search>
-                                <mode value="match"/>
-                            </search>
-                        </entry>
-                    </xsl:if>
-                    <xsl:if test="local-name() = 'nutrition_advice'">
-                        <entry xmlns="http://hl7.org/fhir">
-                            <fullUrl value="{concat('zib-NutritionAdvice-', $usecase, '-', $patientName, '-nutrition', position())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-NutritionAdvice-2.1">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-nutrition', position())"/>
-                                </xsl:call-template>
-                            </resource>
-                            <search>
-                                <mode value="match"/>
-                            </search>
-                        </entry>
-                    </xsl:if>
-                    <!--<xsl:if test="local-name() = 'patient'">
-                            <entry xmlns="http://hl7.org/fhir">
-                            <fullUrl value="{nf:getUriFromAdaId(., 'Patient', false())}"/>
-                            <resource>
-                                <xsl:call-template name="nl-core-patient-2.1">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
-                                </xsl:call-template>
-                            </resource>
-                            <search>
-                            <mode value="match"/>
-                        </search>
-                    </entry>
-                        </xsl:if>-->
-                    <!-- every single Payer zib could end up in multiple Coverage resource depending on how many insurance types are contained -->
-                    <xsl:if test="local-name() = 'payer'">
-                        <xsl:variable name="coverageResources" as="element()*">
-                            <xsl:call-template name="zib-Payer-2.0">
+                <xsl:variable name="pos" select="position()"/>
+
+                <xsl:if test="local-name() = 'advance_directive'">
+                    <entry xmlns="http://hl7.org/fhir">
+                        <fullUrl value="{concat('zib-AdvanceDirective-', $usecase, '-', $patientName, '-advdir', $pos)}"/>
+                        <resource>
+                            <xsl:call-template name="zib-AdvanceDirective-2.1">
                                 <xsl:with-param name="in" select="."/>
                                 <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                <xsl:with-param name="logicalId" select="concat($patientName, '-payer', $pos)"/>
+                                <xsl:with-param name="logicalId" select="concat($patientName, '-advdir', $pos)"/>
                             </xsl:call-template>
-                        </xsl:variable>
-                        <xsl:for-each select="$coverageResources">
-                            <entry xmlns="http://hl7.org/fhir">
-                                <fullUrl value="{concat('zib-Payer-', $usecase, '-', $patientName, '-payer', $pos, '-', position())}"/>
-                                <resource>
-                                    <xsl:copy-of select="."/>
-                                </resource>
-                                <search>
-                                    <mode value="match"/>
-                                </search>
-                            </entry>
-                        </xsl:for-each>
-                    </xsl:if>
-                    <xsl:if test="local-name() = 'problem'">
-                        <entry xmlns="http://hl7.org/fhir">
-                            <fullUrl value="{concat('zib-Problem-', $usecase, '-', $patientName, '-problem', position())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-Problem-3.0">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-problem', position())"/>
-                                </xsl:call-template>
-                            </resource>
-                            <search>
-                                <mode value="match"/>
-                            </search>
-                        </entry>
-                    </xsl:if>
-                    <xsl:if test="local-name() = 'tobacco_use'">
-                        <entry xmlns="http://hl7.org/fhir">
-                            <fullUrl value="{concat('zib-TobaccoUse-', $usecase, '-', $patientName, '-tobacco', position())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-TobaccoUse-2.1">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-tobacco', position())"/>
-                                </xsl:call-template>
-                            </resource>
-                            <search>
-                                <mode value="match"/>
-                            </search>
-                        </entry>
-                    </xsl:if>
-                    <xsl:if test="local-name() = 'treatment_directive'">
-                        <entry xmlns="http://hl7.org/fhir">
-                            <fullUrl value="{concat('zib-TreatmentDirective-', $usecase, '-', $patientName, '-treatmentdir', position())}"/>
-                            <resource>
-                                <xsl:call-template name="zib-TreatmentDirective-2.2">
-                                    <xsl:with-param name="in" select="."/>
-                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-treatmentdir', position())"/>
-                                </xsl:call-template>
-                            </resource>
-                            <search>
-                                <mode value="match"/>
-                            </search>
-                        </entry>
-                    </xsl:if>
+                        </resource>
+                        <search>
+                            <mode value="match"/>
+                        </search>
+                    </entry>
                 </xsl:if>
-                
-                <!--Additional resources or resources with special conditions-->
-                <!--<xsl:if test="local-name() = 'health_professional'">
-                    <entry>
-                        <!-\-<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'Practitioner', false())}"/>-\->
-                        <fullUrl value="{concat('zib-Practitioner-', $usecase, '-', $patientName, '-', position())}"/>
+                <xsl:if test="local-name() = 'alcohol_use'">
+                    <entry xmlns="http://hl7.org/fhir">
+                        <fullUrl value="{concat('zib-AlcoholUse-', $usecase, '-', $patientName, '-alcohol', $pos)}"/>
                         <resource>
-                            <xsl:call-template name="nl-core-practitioner-2.0">
+                            <xsl:call-template name="zib-AlcoholUse-2.1">
                                 <xsl:with-param name="in" select="."/>
-                                <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                <xsl:with-param name="logicalId" select="concat($patientName, '-alcohol', $pos)"/>
                             </xsl:call-template>
                         </resource>
                         <search>
                             <mode value="match"/>
                         </search>
                     </entry>
-                    
-                    <entry>
-                        <!-\-<fullUrl value="{nf:getUriFromAdaId(hcimroot/identification_number, 'PractitionerRole', false())}"/>-\->
-                        <fullUrl value="{concat('zib-PractitionerRole-', $usecase, '-', $patientName, '-', position())}"/>
+                </xsl:if>
+                <xsl:if test="local-name() = 'alert'">
+                    <entry xmlns="http://hl7.org/fhir">
+                        <fullUrl value="{concat('zib-Alert-', $usecase, '-', $patientName, '-alert', $pos)}"/>
                         <resource>
-                            <xsl:call-template name="nl-core-practitionerrole-2.0">
+                            <xsl:call-template name="zib-Alert-2.1">
                                 <xsl:with-param name="in" select="."/>
-                                <xsl:with-param name="logicalId" select="concat($patientName, '-', position())"/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                <xsl:with-param name="logicalId" select="concat($patientName, '-alert', $pos)"/>
                             </xsl:call-template>
                         </resource>
                         <search>
                             <mode value="match"/>
                         </search>
                     </entry>
-                </xsl:if>-->
-                
+                </xsl:if>
+                <xsl:if test="local-name() = 'allergy_intolerance'">
+                    <entry xmlns="http://hl7.org/fhir">
+                        <fullUrl value="{concat('zib-AllergyIntolerance-', $usecase, '-', $patientName, '-allergy', $pos)}"/>
+                        <resource>
+                            <xsl:call-template name="zib-AllergyIntolerance-2.1">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                <xsl:with-param name="logicalId" select="concat($patientName, '-allergy', $pos)"/>
+                            </xsl:call-template>
+                        </resource>
+                        <search>
+                            <mode value="match"/>
+                        </search>
+                    </entry>
+                </xsl:if>
+                <xsl:if test="local-name() = 'blood_pressure'">
+                    <entry xmlns="http://hl7.org/fhir">
+                        <fullUrl value="{concat('zib-BloodPressure-', $usecase, '-', $patientName, '-bloodpressure', $pos)}"/>
+                        <resource>
+                            <xsl:call-template name="zib-BloodPressure-3.0">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                <xsl:with-param name="logicalId" select="concat($patientName, '-bloodpressure', $pos)"/>
+                            </xsl:call-template>
+                        </resource>
+                        <search>
+                            <mode value="match"/>
+                        </search>
+                    </entry>
+                </xsl:if>
+                <xsl:if test="local-name() = 'body_height'">
+                    <entry xmlns="http://hl7.org/fhir">
+                        <fullUrl value="{concat('zib-BodyHeight-', $usecase, '-', $patientName, '-bodyheight', $pos)}"/>
+                        <resource>
+                            <xsl:call-template name="zib-BodyHeight-2.x">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                <xsl:with-param name="logicalId" select="concat($patientName, '-bodyheight', $pos)"/>
+                            </xsl:call-template>
+                        </resource>
+                        <search>
+                            <mode value="match"/>
+                        </search>
+                    </entry>
+                </xsl:if>
+                <xsl:if test="local-name() = 'body_weight'">
+                    <entry xmlns="http://hl7.org/fhir">
+                        <fullUrl value="{concat('zib-BodyWeight-', $usecase, '-', $patientName, '-bodyweight', $pos)}"/>
+                        <resource>
+                            <xsl:call-template name="zib-BodyWeight-2.x">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                <xsl:with-param name="logicalId" select="concat($patientName, '-bodyweight', $pos)"/>
+                            </xsl:call-template>
+                        </resource>
+                        <search>
+                            <mode value="match"/>
+                        </search>
+                    </entry>
+                </xsl:if>
+                <xsl:if test="local-name() = 'drug_use'">
+                    <entry xmlns="http://hl7.org/fhir">
+                        <fullUrl value="{concat('zib-DrugUse-', $usecase, '-', $patientName, '-druguse', $pos)}"/>
+                        <resource>
+                            <xsl:call-template name="zib-DrugUse-2.1">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                <xsl:with-param name="logicalId" select="concat($patientName, '-druguse', $pos)"/>
+                            </xsl:call-template>
+                        </resource>
+                        <search>
+                            <mode value="match"/>
+                        </search>
+                    </entry>
+                </xsl:if>
+                <xsl:if test="local-name() = 'encounter' and not(hcimroot/planned_care_activity_referenced/@value = 'true')">
+                    <entry xmlns="http://hl7.org/fhir">
+                        <fullUrl value="{concat('zib-Encounter-', $usecase, '-', $patientName, '-encounter', $pos)}"/>
+                        <resource>
+                            <xsl:call-template name="zib-Encounter-2.1">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                <xsl:with-param name="logicalId" select="concat($patientName, '-encounter', $pos)"/>
+                            </xsl:call-template>
+                        </resource>
+                        <search>
+                            <mode value="match"/>
+                        </search>
+                    </entry>
+                </xsl:if>
+                <xsl:if test="local-name() = 'functional_or_mental_status'">
+                    <entry xmlns="http://hl7.org/fhir">
+                        <fullUrl value="{concat('zib-FunctionalOrMentalStatus-', $usecase, '-', $patientName, '-funcment', $pos)}"/>
+                        <resource>
+                            <xsl:call-template name="zib-FunctionalOrMentalStatus-2.1">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                <xsl:with-param name="logicalId" select="concat($patientName, '-funcment', $pos)"/>
+                            </xsl:call-template>
+                        </resource>
+                        <search>
+                            <mode value="match"/>
+                        </search>
+                    </entry>
+                </xsl:if>
                 <xsl:if test="local-name() = 'laboratory_test_result'">
                     <xsl:if test="panel_or_battery[@code]">
                         <entry>
-                            <fullUrl value="{concat('zib-LaboratoryTestResult-PanelObservation-', $usecase, '-', $patientName, '-labresult', position())}"/>
+                            <fullUrl value="{concat('zib-LaboratoryTestResult-PanelObservation-', $usecase, '-', $patientName, '-labresult', $pos)}"/>
                             <resource>
                                 <xsl:call-template name="zib-LaboratoryTestResult-PanelObservation-2.1">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-labresult', position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-labresult', $pos)"/>
                                 </xsl:call-template>
                             </resource>
                             <search>
@@ -593,7 +347,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </search>
                         </entry>
                     </xsl:if>
-                    
+
                     <xsl:for-each select="laboratory_test">
                         <entry>
                             <fullUrl value="{concat('zib-LaboratoryTestResult-Observation-', $usecase, '-', $patientName, '-labresult', position())}"/>
@@ -609,7 +363,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </search>
                         </entry>
                     </xsl:for-each>
-                    
+
                     <xsl:for-each select="specimen">
                         <entry>
                             <fullUrl value="{concat('zib-LaboratoryTestResult-Specimen-', $usecase, '-', $patientName, '-labresult', position())}"/>
@@ -624,31 +378,63 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <mode value="match"/>
                             </search>
                         </entry>
-                    </xsl:for-each> 
+                    </xsl:for-each>
                 </xsl:if>
-                
+                <xsl:if test="local-name() = 'living_situation'">
+                    <entry xmlns="http://hl7.org/fhir">
+                        <fullUrl value="{concat('zib-LivingSituation-', $usecase, '-', $patientName, '-living', $pos)}"/>
+                        <resource>
+                            <xsl:call-template name="zib-LivingSituation-2.1">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                <xsl:with-param name="logicalId" select="concat($patientName, '-living', $pos)"/>
+                            </xsl:call-template>
+                        </resource>
+                        <search>
+                            <mode value="match"/>
+                        </search>
+                    </entry>
+                </xsl:if>
                 <xsl:if test="local-name() = 'medical_device'">
-                    <entry>
-                        <fullUrl value="{concat('zib-MedicalDevice-', $usecase, '-', $patientName, '-medDevice', position())}"/>
+                    <!-- Future medical_device in the context of PlannedCareActivity are declared controversial, see MM-2924 -->
+                    <xsl:if test="nf:isPast(start_date/@value)">
+                        <entry>
+                            <fullUrl value="{concat('zib-MedicalDevice-', $usecase, '-', $patientName, '-medDevice', $pos)}"/>
+                            <resource>
+                                <xsl:call-template name="zib-MedicalDevice-2.2">
+                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-medDevice', $pos)"/>
+                                </xsl:call-template>
+                            </resource>
+                            <search>
+                                <mode value="match"/>
+                            </search>
+                        </entry>
+
+                        <entry>
+                            <fullUrl value="{concat('zib-MedicalDeviceProduct-', $usecase, '-', $patientName, '-medDevice', $pos)}"/>
+                            <resource>
+                                <xsl:call-template name="zib-MedicalDeviceProduct-2.2">
+                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-medDevice', $pos)"/>
+                                </xsl:call-template>
+                            </resource>
+                            <search>
+                                <mode value="match"/>
+                            </search>
+                        </entry>
+                    </xsl:if>
+                </xsl:if>
+                <xsl:if test="local-name() = 'nutrition_advice'">
+                    <entry xmlns="http://hl7.org/fhir">
+                        <fullUrl value="{concat('zib-NutritionAdvice-', $usecase, '-', $patientName, '-nutrition', $pos)}"/>
                         <resource>
-                            <xsl:call-template name="zib-MedicalDevice-2.2">
+                            <xsl:call-template name="zib-NutritionAdvice-2.1">
                                 <xsl:with-param name="in" select="."/>
                                 <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                <xsl:with-param name="logicalId" select="concat($patientName, '-medDevice', position())"/>
-                            </xsl:call-template>
-                        </resource>
-                        <search>
-                            <mode value="match"/>
-                        </search>
-                    </entry>
-                    
-                    <entry>
-                        <fullUrl value="{concat('zib-MedicalDeviceProduct-', $usecase, '-', $patientName, '-medDevice', position())}"/>
-                        <resource>
-                            <xsl:call-template name="zib-MedicalDeviceProduct-2.2">
-                                <xsl:with-param name="in" select="."/>
-                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                <xsl:with-param name="logicalId" select="concat($patientName, '-medDevice', position())"/>
+                                <xsl:with-param name="logicalId" select="concat($patientName, '-nutrition', $pos)"/>
                             </xsl:call-template>
                         </resource>
                         <search>
@@ -656,16 +442,83 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </search>
                     </entry>
                 </xsl:if>
-                
+                <!-- every single Payer zib could end up in multiple Coverage resource depending on how many insurance types are contained -->
+                <xsl:if test="local-name() = 'payer'">
+                    <xsl:variable name="coverageResources" as="element()*">
+                        <xsl:call-template name="zib-Payer-2.0">
+                            <xsl:with-param name="in" select="."/>
+                            <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                            <xsl:with-param name="logicalId" select="concat($patientName, '-payer', $pos)"/>
+                        </xsl:call-template>
+                    </xsl:variable>
+                    <xsl:for-each select="$coverageResources">
+                        <entry xmlns="http://hl7.org/fhir">
+                            <fullUrl value="{concat('zib-Payer-', $usecase, '-', $patientName, '-payer', $pos, '-', position())}"/>
+                            <resource>
+                                <xsl:copy-of select="."/>
+                            </resource>
+                            <search>
+                                <mode value="match"/>
+                            </search>
+                        </entry>
+                    </xsl:for-each>
+                </xsl:if>
+                <xsl:if test="local-name() = 'planned_care_activity'">
+                    <xsl:if test="appointment">
+                        <entry xmlns="http://hl7.org/fhir">
+                            <fullUrl value="{concat('eAfspraak-Appointment-', $usecase, '-', $patientName, '-plannedencounter', $pos)}"/>
+                            <resource>
+                                <xsl:call-template name="zib-PlannedCareActivityForTransfer">
+                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-plannedencounter', $pos)"/>
+                                </xsl:call-template>
+                            </resource>
+                            <search>
+                                <mode value="match"/>
+                            </search>
+                        </entry>
+                    </xsl:if>
+                    <xsl:if test="procedure">
+                        <entry xmlns="http://hl7.org/fhir">
+                            <fullUrl value="{concat('zib-ProcedureRequest-', $usecase, '-', $patientName, '-plannedprocedure', $pos)}"/>
+                            <resource>
+                                <xsl:call-template name="zib-PlannedCareActivityForTransfer">
+                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-plannedprocedure', $pos)"/>
+                                </xsl:call-template>
+                            </resource>
+                            <search>
+                                <mode value="match"/>
+                            </search>
+                        </entry>
+                    </xsl:if>
+                </xsl:if>
+                <xsl:if test="local-name() = 'problem'">
+                    <entry xmlns="http://hl7.org/fhir">
+                        <fullUrl value="{concat('zib-Problem-', $usecase, '-', $patientName, '-problem', $pos)}"/>
+                        <resource>
+                            <xsl:call-template name="zib-Problem-3.0">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                <xsl:with-param name="logicalId" select="concat($patientName, '-problem', $pos)"/>
+                            </xsl:call-template>
+                        </resource>
+                        <search>
+                            <mode value="match"/>
+                        </search>
+                    </entry>
+                </xsl:if>
                 <xsl:if test="local-name() = 'procedure'">
                     <xsl:if test="nf:isPast((verrichting_start_datum | procedure_start_date)/@value)">
                         <entry>
-                            <fullUrl value="{concat('zib-Procedure-', $usecase, '-', $patientName, '-procedure', position())}"/>
+                            <fullUrl value="{concat('zib-Procedure-', $usecase, '-', $patientName, '-procedure', $pos)}"/>
                             <resource>
                                 <xsl:call-template name="zib-Procedure-2.1">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-procedure', position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-procedure', $pos)"/>
                                 </xsl:call-template>
                             </resource>
                             <search>
@@ -673,14 +526,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </search>
                         </entry>
                     </xsl:if>
-                    <xsl:if test="nf:isFuture((verrichting_start_datum | procedure_start_date)/@value) or aanvrager | requester">
+                    <xsl:if test="(nf:isFuture((verrichting_start_datum | procedure_start_date)/@value) or aanvrager | requester) and not(hcimroot/planned_care_activity_referenced/@value = 'true')">
                         <entry>
-                            <fullUrl value="{concat('zib-ProcedureRequest-', $usecase, '-', $patientName, '-procedure', position())}"/>
+                            <fullUrl value="{concat('zib-ProcedureRequest-', $usecase, '-', $patientName, '-procedure', $pos)}"/>
                             <resource>
                                 <xsl:call-template name="zib-ProcedureRequest-2.1">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-procedure', position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-procedure', $pos)"/>
                                 </xsl:call-template>
                             </resource>
                             <search>
@@ -689,39 +542,70 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </entry>
                     </xsl:if>
                 </xsl:if>
-                
-                <xsl:if test="local-name() = 'vaccination'">
-                    <entry>
-                        <fullUrl value="{concat('zib-Vaccination-', $usecase, '-', $patientName, '-vaccin', position())}"/>
+                <xsl:if test="local-name() = 'tobacco_use'">
+                    <entry xmlns="http://hl7.org/fhir">
+                        <fullUrl value="{concat('zib-TobaccoUse-', $usecase, '-', $patientName, '-tobacco', $pos)}"/>
                         <resource>
-                            <xsl:call-template name="zib-Vaccination-2.1">
+                            <xsl:call-template name="zib-TobaccoUse-2.1">
                                 <xsl:with-param name="in" select="."/>
                                 <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                <xsl:with-param name="logicalId" select="concat($patientName, '-vaccin', position())"/>
+                                <xsl:with-param name="logicalId" select="concat($patientName, '-tobacco', $pos)"/>
                             </xsl:call-template>
                         </resource>
                         <search>
                             <mode value="match"/>
                         </search>
                     </entry>
-                    
-                    <xsl:if test="(gewenste_datum_hervaccinatie | prefered_date_for_revaccination)[@value]">
+                </xsl:if>
+                <xsl:if test="local-name() = 'treatment_directive'">
+                    <entry xmlns="http://hl7.org/fhir">
+                        <fullUrl value="{concat('zib-TreatmentDirective-', $usecase, '-', $patientName, '-treatmentdir', $pos)}"/>
+                        <resource>
+                            <xsl:call-template name="zib-TreatmentDirective-2.2">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                <xsl:with-param name="logicalId" select="concat($patientName, '-treatmentdir', $pos)"/>
+                            </xsl:call-template>
+                        </resource>
+                        <search>
+                            <mode value="match"/>
+                        </search>
+                    </entry>
+                </xsl:if>
+                <xsl:if test="local-name() = 'vaccination'">
+                    <!-- Future vaccination in the context of PlannedCareActivity are declared controversial, see MM-2924 -->
+                    <xsl:if test="nf:isPast((vaccination_date)/@value)">
                         <entry>
-                            <fullUrl value="{concat('zib-VaccinationRecommendation-', $usecase, '-', $patientName, '-vaccin', position())}"/>
+                            <fullUrl value="{concat('zib-Vaccination-', $usecase, '-', $patientName, '-vaccin', $pos)}"/>
                             <resource>
-                                <xsl:call-template name="zib-VaccinationRecommendation-2.0">
+                                <xsl:call-template name="zib-Vaccination-2.1">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
-                                    <xsl:with-param name="logicalId" select="concat($patientName, '-vaccin', position())"/>
+                                    <xsl:with-param name="logicalId" select="concat($patientName, '-vaccin', $pos)"/>
                                 </xsl:call-template>
                             </resource>
                             <search>
                                 <mode value="match"/>
                             </search>
                         </entry>
+
+                        <xsl:if test="(gewenste_datum_hervaccinatie | prefered_date_for_revaccination)[@value]">
+                            <entry>
+                                <fullUrl value="{concat('zib-VaccinationRecommendation-', $usecase, '-', $patientName, '-vaccin', $pos)}"/>
+                                <resource>
+                                    <xsl:call-template name="zib-VaccinationRecommendation-2.0">
+                                        <xsl:with-param name="in" select="."/>
+                                        <xsl:with-param name="adaPatient" select="$adaPatient" as="element()"/>
+                                        <xsl:with-param name="logicalId" select="concat($patientName, '-vaccin', $pos)"/>
+                                    </xsl:call-template>
+                                </resource>
+                                <search>
+                                    <mode value="match"/>
+                                </search>
+                            </entry>
+                        </xsl:if>
                     </xsl:if>
                 </xsl:if>
-                
             </xsl:for-each>
         </xsl:variable>
         

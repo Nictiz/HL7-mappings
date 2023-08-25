@@ -1,0 +1,144 @@
+<?xml-model href="http://hl7.org/fhir/STU3/medicationdispense.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<MedicationDispense xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/medicationdispense.xsd">
+   <id value="zib-AdministrationAgreement-medmij-bgz-test-patA-admagr2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
+      <valueDateTime value="2022-11-28T11:00:00+02:00"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AgreementReason">
+      <valueString value="Plaatsing Knieprothese"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+      <valuePeriod>
+         <start value="2022-11-28T00:00:00+02:00"/>
+         <end value="2022-12-12T23:59:59+02:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.3.999"/>
+            <code value="10"/>
+            <display value="Gebruiksinstructie gegeven"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-StopType">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"/>
+            <code value="2"/>
+            <display value="Definitief"/>
+         </coding>
+      </valueCodeableConcept>
+   </modifierExtension>
+   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-RepeatPeriodCyclicalSchedule">
+      <valueDuration>
+         <value value="8"/>
+         <unit value="dagen"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="d"/>
+      </valueDuration>
+   </modifierExtension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patA-AdminAgreement2"/>
+   </identifier>
+   <status value="completed"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422037009"/>
+         <display value="instrueren door zorgverlener over toediening van medicatie (verrichting)"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/zib-Product-medmij-bgz-test-patA-product2"/>
+      <display value="Ibuprofen 600mg"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/medmij-bgz-test-patA"/>
+      <display value="Anouk A. Anouk van XXX_Rijn de XXX_Vries"/>
+   </subject>
+   <performer>
+      <actor>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-medmij-bgz-test-0200000117-00006000001"/>
+               <display value="Apotheker"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/-practitioner-medmij-bgz-test-2-16-840-1-113883-2-4-6-1-02000001"/>
+         <display value="Petrus P. Peter Poeder"/>
+      </actor>
+   </performer>
+   <note>
+      <text value="Voor gebruik tot maximaal 3 weken na plaatsing kunstknie"/>
+   </note>
+   <dosageInstruction>
+      <sequence value="1"/>
+      <text value="Gedurende 24 dagen, cyclus van 8 dagen: steeds gedurende 7 dagen, elke 4 uur één tablet, zo nodig één tablet extra, oraal"/>
+      <additionalInstruction>
+         <text value="Na 7 dagen één dag niet gebruiken"/>
+      </additionalInstruction>
+      <timing>
+         <repeat>
+            <boundsDuration>
+               <value value="21"/>
+               <unit value="dagen"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="d"/>
+            </boundsDuration>
+            <period value="4"/>
+            <periodUnit value="h"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+      <doseQuantity>
+         <value value="600"/>
+         <unit value="mg"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="229"/>
+      </doseQuantity>
+   </dosageInstruction>
+   <dosageInstruction>
+      <sequence value="1"/>
+      <asNeededCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.5"/>
+            <code value="1028"/>
+            <display value="Bij pijn"/>
+         </coding>
+      </asNeededCodeableConcept>
+      <doseRange>
+         <high>
+            <value value="600"/>
+            <unit value="mg"/>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+            <code value="229"/>
+         </high>
+      </doseRange>
+      <maxDosePerPeriod>
+         <numerator>
+            <value value="600"/>
+            <unit value="mg"/>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+            <code value="229"/>
+         </numerator>
+         <denominator>
+            <value value="1"/>
+            <unit value="dag"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="d"/>
+         </denominator>
+      </maxDosePerPeriod>
+   </dosageInstruction>
+</MedicationDispense>
