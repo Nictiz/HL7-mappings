@@ -54,6 +54,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <display value="geloofsovertuiging"/>
                     </coding>
                 </code>
+                <xsl:call-template name="makeReference">
+                    <xsl:with-param name="in" select="$subject"/>
+                    <xsl:with-param name="wrapIn" select="'subject'"/>
+                </xsl:call-template>
                 <xsl:for-each select="levensovertuiging">
                     <valueCodeableConcept>
                         <xsl:call-template name="code-to-CodeableConcept">
@@ -61,10 +65,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </valueCodeableConcept>
                 </xsl:for-each>
-                <xsl:call-template name="makeReference">
-                    <xsl:with-param name="in" select="$subject"/>
-                    <xsl:with-param name="wrapIn" select="'subject'"/>
-                </xsl:call-template>
                 <xsl:for-each select="toelichting">
                     <note>
                         <text>
