@@ -4,7 +4,7 @@
          created-by="medicatieprocesada"
          last-update-by="medicatieprocesada"
          creation-date="2023-01-09T17:32:42.871+01:00"
-         last-update-date="2023-01-09T17:32:42.871+01:00"/>
+         last-update-date="2023-08-11T12:10:45.188+02:00"/>
    <data>
       <sturen_medicatiegegevens app="mp-mp93"
                                 shortName="sturen_medicatiegegevens"
@@ -254,8 +254,91 @@
                </auteur>
             </medicatiegebruik>
          </medicamenteuze_behandeling>
-         <bouwstenen conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.259"
-                     comment="">
+         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_300_MGBmetvrijetekst-->
+         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
+            <identificatie value="MBH_300_MGBmetvrijetekst"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
+            <medicatiegebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.362"
+                              comment="">
+               <identificatie value="MBH_300_MGBmetvrijetekst_MGB"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.411"/>
+               <medicatiegebruik_datum_tijd value="T-20D{00:00:00}"
+                                            datatype="datetime"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.400"/>
+               <gebruik_indicator value="false"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.406"/>
+               <gebruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.401"
+                                comment="">
+                  <start_datum_tijd value="T-30D{13:05:00}"
+                                    datatype="datetime"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.402"/>
+               </gebruiksperiode>
+               <gebruiksproduct conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.365"
+                                comment="">
+                  <farmaceutisch_product value="Lucovitaal_rode_gist_rijst"
+                                         datatype="reference"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.366"/>
+               </gebruiksproduct>
+               <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.367"
+                                   comment="">
+                  <omschrijving value="Vanaf T-30D{13:05:00} 1x daags 1 tabletje met water innemen"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.369"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="oraal"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.371"/>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.372"
+                                    comment="">
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.375"
+                               comment="">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.384"
+                                   comment="">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.566"
+                                   comment="">
+                              <nominale_waarde value="1"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.387"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.567"/>
+                        </keerdosis>
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.391"
+                                           comment="">
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.392"
+                                       comment="">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.569"
+                                      comment="">
+                                 <nominale_waarde value="1"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.395"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.570"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.623"
+                       comment="">
+                  <auteur_is_zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.627"
+                                          comment="">
+                     <zorgverlener value="Peter_van_Pulver"
+                                   datatype="reference"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.628"/>
+                  </auteur_is_zorgverlener>
+               </auteur>
+               <reden_gebruik value="Voedingssupplement"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.407"/>
+            </medicatiegebruik>
+         </medicamenteuze_behandeling>
+         <bouwstenen comment=""
+                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.259">
             <farmaceutisch_product id="HPK_RIVAROXABAN_2214350"
                                    comment=""
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
@@ -298,6 +381,15 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="INDAPAMIDE 2,5MG TABLET"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260"
+                                   comment=""
+                                   id="Lucovitaal_rode_gist_rijst">
+               <product_specificatie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.262"
+                                     comment="">
+                  <product_naam value="Lucovitaal Rode Gist Rijst Tabletten"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.264"/>
+               </product_specificatie>
             </farmaceutisch_product>
             <zorgverlener id="Peter_van_Pulver"
                           comment=""

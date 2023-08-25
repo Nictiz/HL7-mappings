@@ -31,11 +31,11 @@
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
-               <valueString value="verhoging dosis"/>
+               <valueString value="verhoging dosis vanwege aanhoudende misselijkheid"/>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.2"/>
-               <value value="MBH_300_start_eind_VMA"/>
+               <value value="MBH_300_start_eind_lengte_gewicht_VMA"/>
             </identifier>
             <status value="active"/>
             <intent value="plan"/>
@@ -58,9 +58,9 @@
             </subject>
             <authoredOn value="${DATE, T, D, +0}T07:10:00+02:00"/>
             <requester>
-               <reference value="urn:uuid:d3775824-6b66-11ec-0000-020000000000"/>
-               <type value="PractitionerRole"/>
-               <display value="Healthcare professional (role), Marcha van Partners, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Itis"/>
+               <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </requester>
             <dosageInstruction>
                <timing>
@@ -227,6 +227,25 @@
                <value value="00005111"/>
             </identifier>
             <name value="Huisartsenpraktijk Itis"/>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="01236578"/>
+            </identifier>
+            <name value="Apotheek De Gulle Gaper"/>
          </Organization>
       </resource>
       <request>
