@@ -770,7 +770,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Mapping of medicatieafspraak concept in ADA ('eigen of ongedefinieerde MA') to HL7 CDA template 2.16.840.1.113883.2.4.3.11.60.20.77.10.9430</xd:desc>
         <xd:param name="in">ADA Node to consider in the creation of the hl7 element</xd:param>
     </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9430_20221122132432" match="medicatieafspraak | medication_agreement">
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9430_20221122132432" match="medicatieafspraak | medication_agreement" mode="ada_2_hl7">
         <xsl:param name="in" select="."/>
         <xsl:for-each select="$in">
             <substanceAdministration classCode="SBADM" moodCode="RQO">
