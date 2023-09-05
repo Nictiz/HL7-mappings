@@ -13,8 +13,8 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:f="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:uuid="http://www.uuid.org" xmlns="http://hl7.org/fhir" xmlns:nm="http://www.nictiz.nl/mappings" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <xsl:import href="../../sturen_antwoord_voorstel_verstrekkingsverzoek/payload/sturen_antwoord_voorstel_verstrekkingsverzoek_2_fhir.xsl"/>
-    <xsl:import href="../../../../fhir/2_fhir_fixtures.xsl"/>
+    <xsl:import href="../../../sturen_antwoord_voorstel_medicatieafspraak/payload/sturen_antwoord_voorstel_medicatieafspraak_2_fhir.xsl"/>
+    <xsl:import href="../../../../../fhir/2_fhir_fixtures.xsl"/>
 
     <xd:doc scope="stylesheet">
         <xd:desc>
@@ -50,9 +50,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
     <!-- The meta tag to be added. Optional. Typical use case is 'actionable' for prescriptions or proposals. Empty for informational purposes. -->
     <xsl:param name="metaTag" as="xs:string?">actionable</xsl:param>
-
     <!-- output dir for our result doc(s) -->
     <xsl:param name="outputDir">.</xsl:param>
+    
     <!-- whether or nog to output schema / schematron links -->
     <xsl:param name="schematronXsdLinkInOutput" as="xs:boolean?" select="false()"/>
     
@@ -64,7 +64,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="/">
         <xsl:call-template name="antwoordVoorstelMedicatieafspraak920">
-            <xsl:with-param name="in" select="//*/voorstel_gegevens"/>
+            <xsl:with-param name="in" select=".//sturen_antwoord_voorstel_medicatieafspraak/voorstel_gegevens"/>
         </xsl:call-template>
     </xsl:template>
     <xd:doc>

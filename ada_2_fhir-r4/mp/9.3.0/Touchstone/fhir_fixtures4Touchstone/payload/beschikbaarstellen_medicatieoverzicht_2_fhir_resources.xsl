@@ -13,9 +13,9 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:R4:functions" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <xsl:import href="../../2_fhir_mp93_include.xsl"/>
-    <xsl:import href="MedicationOverview.xsl"/>
-    <xsl:import href="../../../../fhir/2_fhir_fixtures.xsl"/>
+    <xsl:import href="../../../2_fhir_mp93_include.xsl"/>
+    <xsl:import href="../MedicationOverview.xsl"/>
+    <xsl:import href="../../../../../fhir/2_fhir_fixtures.xsl"/>
 
     <xd:doc scope="stylesheet">
         <xd:desc>

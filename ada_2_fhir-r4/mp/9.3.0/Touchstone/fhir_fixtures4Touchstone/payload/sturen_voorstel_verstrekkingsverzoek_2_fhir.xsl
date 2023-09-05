@@ -13,8 +13,8 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:nf="http://www.nictiz.nl/functions" xmlns:f="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:uuid="http://www.uuid.org" xmlns="http://hl7.org/fhir" xmlns:nm="http://www.nictiz.nl/mappings" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <xsl:import href="../../sturen_antwoord_voorstel_medicatieafspraak/payload/sturen_antwoord_voorstel_medicatieafspraak_2_fhir.xsl"/>
-    <xsl:import href="../../../../fhir/2_fhir_fixtures.xsl"/>
+    <xsl:import href="../../../sturen_voorstel_verstrekkingsverzoek/payload/sturen_voorstel_verstrekkingsverzoek_2_fhir.xsl"/>
+    <xsl:import href="../../../../../fhir/2_fhir_fixtures.xsl"/>
 
     <xd:doc scope="stylesheet">
         <xd:desc>
@@ -30,10 +30,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
     <xsl:strip-space elements="*"/>
-
     <!-- If the desired output is to be a Bundle, then a self link string of type url is required. 
          See: https://www.hl7.org/fhir/search.html#conformance -->
     <xsl:param name="bundleSelfLink" as="xs:string?"/>
+
+
     <!-- only give dateT a value if you want conversion of relative T dates to actual dates, otherwise a Touchstone relative T-date string will be generated -->
     <!--    <xsl:param name="dateT" as="xs:date?" select="current-date()"/>-->
     <!--        <xsl:param name="dateT" as="xs:date?" select="xs:date('2020-03-24')"/>-->
@@ -48,11 +49,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- parameter to determine whether to refer by resource/id -->
     <!-- should be false when there is no FHIR server available to retrieve the resources -->
     <xsl:param name="referById" as="xs:boolean" select="false()"/>
-    <!-- The meta tag to be added. Optional. Typical use case is 'actionable' for prescriptions or proposals. Empty for informational purposes. -->
-    <xsl:param name="metaTag" as="xs:string?">actionable</xsl:param>
+    <!-- whether to generate a user instruction description text from the structured information, typically only needed for test instances  -->
+    <xsl:param name="generateInstructionText" as="xs:boolean?" select="true()"/>
+    <!--    <xsl:param name="generateInstructionText" as="xs:boolean?" select="false()"/>-->
     <!-- output dir for our result doc(s) -->
     <xsl:param name="outputDir">.</xsl:param>
-    
+    <!-- empty searchModeParam, since this is a push message -->
+    <xsl:param name="searchModeParam" as="xs:string?"/>
+    <!-- The meta tag to be added. Optional. Typical use case is 'actionable' for prescriptions or proposals. Empty for informational purposes. -->
+    <xsl:param name="metaTag" as="xs:string?">actionable</xsl:param>
+
     <!-- whether or nog to output schema / schematron links -->
     <xsl:param name="schematronXsdLinkInOutput" as="xs:boolean?" select="false()"/>
     
@@ -60,61 +66,54 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
 
     <xd:doc>
-        <xd:desc>Start conversion. Handle interaction specific stuff for "sturen_antwoord_voorstel_verstrekkingsverzoek".</xd:desc>
+        <xd:desc>Start conversion. Handle interaction specific stuff for "beschikbaarstellen medicatiegegevens".</xd:desc>
     </xd:doc>
     <xsl:template match="/">
-        <xsl:call-template name="antwoordVoorstelMedicatieafspraak920">
-            <xsl:with-param name="in" select=".//sturen_antwoord_voorstel_medicatieafspraak/voorstel_gegevens"/>
-        </xsl:call-template>
+        <xsl:call-template name="voorstelVerstrekkingsverzoek920"/>
+
     </xsl:template>
     <xd:doc>
-        <xd:desc>Build a FHIR Resource</xd:desc>
-        <xd:param name="in">ada voorstel_gegevens</xd:param>
+        <xd:desc>Build a FHIR Bundle</xd:desc>
     </xd:doc>
-    <xsl:template name="antwoordVoorstelMedicatieafspraak920">
-        <xsl:param name="in"/>
+    <xsl:template name="voorstelVerstrekkingsverzoek920">
 
-        <xsl:for-each select="$in">
-            <xsl:variable name="resultBundle">
+        <xsl:variable name="resultBundle">
 
+            <xsl:if test="$schematronXsdLinkInOutput">
+                <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
+            </xsl:if>
+            <Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema">
                 <xsl:if test="$schematronXsdLinkInOutput">
-                    <xsl:processing-instruction name="xml-model">href="http://hl7.org/fhir/R4/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
+                    <xsl:attribute name="xsi:schemaLocation">http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd</xsl:attribute>
                 </xsl:if>
-                <Bundle xsl:exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-                    <xsl:if test="$schematronXsdLinkInOutput">
-                        <xsl:attribute name="xsi:schemaLocation">http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd</xsl:attribute>
-                    </xsl:if>
-                    <id value="{nf:removeSpecialCharacters(..[1]/@id)}"/>
-                    <meta>
-                        <profile value="{nf:get-full-profilename-from-adaelement($in/..)}"/>
-                    </meta>
-                    <type value="transaction"/>
-                    <xsl:choose>
-                        <xsl:when test="$bundleSelfLink[not(. = '')]">
-                            <link>
-                                <relation value="self"/>
-                                <url value="{$bundleSelfLink}"/>
-                            </link>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:call-template name="util:logMessage">
-                                <xsl:with-param name="level" select="$logWARN"/>
-                                <xsl:with-param name="msg">Parameter bundleSelfLink is empty, but server SHALL return the parameters that were actually used to process the search.</xsl:with-param>
-                                <xsl:with-param name="terminate" select="false()"/>
-                            </xsl:call-template>
-                        </xsl:otherwise>
-                    </xsl:choose>
+                <id value="{nf:removeSpecialCharacters(.//sturen_voorstel_verstrekkingsverzoek[1]/@id)}"/>
+                <meta>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.//sturen_voorstel_verstrekkingsverzoek[1])}"/>
+                </meta>
+                <type value="transaction"/>
+                <xsl:choose>
+                    <xsl:when test="$bundleSelfLink[not(. = '')]">
+                        <link>
+                            <relation value="self"/>
+                            <url value="{$bundleSelfLink}"/>
+                        </link>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:call-template name="util:logMessage">
+                            <xsl:with-param name="level" select="$logWARN"/>
+                            <xsl:with-param name="msg">Parameter bundleSelfLink is empty, but server SHALL return the parameters that were actually used to process the search.</xsl:with-param>
+                            <xsl:with-param name="terminate" select="false()"/>
+                        </xsl:call-template>
+                    </xsl:otherwise>
+                </xsl:choose>
+                <xsl:apply-templates select="$bouwstenen-930" mode="addBundleEntrySearchOrRequest"/>
+                <!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations -->
+                <xsl:apply-templates select="$commonEntries" mode="addBundleEntrySearchOrRequest"/>
+            </Bundle>
+        </xsl:variable>
 
-                    <xsl:apply-templates select="$bouwstenen-930" mode="addBundleEntrySearchOrRequest"/>
-
-                    <!-- common entries (patient, practitioners, organizations, practitionerroles, products, locations -->
-                    <xsl:apply-templates select="$commonEntries" mode="addBundleEntrySearchOrRequest"/>
-                </Bundle>
-            </xsl:variable>
-
-            <xsl:result-document href="{$outputDir}/{$resultBundle/f:Bundle/f:id/@value}.xml">
-                <xsl:copy-of select="$resultBundle"/>
-            </xsl:result-document>
-        </xsl:for-each>
+        <xsl:result-document href="{$outputDir}/{$resultBundle/f:Bundle/f:id/@value}.xml">
+            <xsl:copy-of select="$resultBundle"/>
+        </xsl:result-document>
     </xsl:template>
 </xsl:stylesheet>
