@@ -197,7 +197,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:when test="self::persoon/contactpersoon[@value]">
                             <informationSource>
                                 <xsl:call-template name="makeReference">
-                                    <xsl:with-param name="in" select="ancestor::data/*//contactpersoon[@id = current()/persoon/contactpersoon/@value]"/>
+                                    <xsl:with-param name="in" select="ancestor::data/*//contactpersoon[@id = current()/contactpersoon/@value]"/>
                                 </xsl:call-template>
                             </informationSource>
                         </xsl:when>
@@ -211,7 +211,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:when test="self::informant_is_zorgverlener/zorgverlener[@value]">
                             <informationSource>
                                 <xsl:call-template name="makeReference">
-                                    <xsl:with-param name="in" select="ancestor::data/*//zorgverlener[@id = current()/auteur_is_zorgverlener/zorgverlener/@value]"/>
+                                    <xsl:with-param name="in" select="ancestor::data/*//zorgverlener[@id = current()/zorgverlener/@value]"/>
                                     <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
                                 </xsl:call-template>
                             </informationSource>
