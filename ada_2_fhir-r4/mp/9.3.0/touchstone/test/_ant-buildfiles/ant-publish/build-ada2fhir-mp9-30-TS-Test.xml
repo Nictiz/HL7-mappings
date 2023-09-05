@@ -356,33 +356,29 @@
         </antcall>
 
         <!-- copy the appropriate fhir instances for Touchstone to a separate folder, to ease upload to Touchstone -->
-        <echo>copy the appropriate fhir instances for Touchstone to a separate folder: 4TouchstoneMP</echo>
-        <mkdir dir="${build.dir}/4TouchstoneMP"/>
+        <echo>copy the appropriate fhir instances for Touchstone to a separate folder: 4touchstone_mp</echo>
+        <mkdir dir="${build.dir}/4touchstone_mp"/>
         <!-- clean previous results, if any -->
         <delete>
-            <fileset dir="${build.dir}/4TouchstoneMP" includes="*.xml"/>
+            <fileset dir="${build.dir}/4touchstone_mp" includes="*.xml"/>
         </delete>
-        <copy todir="${build.dir}/4TouchstoneMP">
+        <copy todir="${build.dir}/4touchstone_mp">
             <fileset dir="${build.dir}/${usecase.mg}/fhir_instance">
                 <include name="*.xml"/>
             </fileset>
             <fileset dir="${build.dir}/${usecase.mg.st}/fhir_instance_sets"/>
             <fileset dir="${build.dir}/${usecase.mv}/fhir_instance"/>
             <fileset dir="${build.dir}/${usecase.amv}/fhir_instance"/>
-            <fileset dir="${build.dir}/${usecase.vma}/fhir_instance"/>
-            <fileset dir="${build.dir}/${usecase.avma}/fhir_instance"/>
-            <fileset dir="${build.dir}/${usecase.vvv}/fhir_instance"/>
-            <fileset dir="${build.dir}/${usecase.avvv}/fhir_instance"/>
         </copy>
 
         <!-- copy the appropriate fhir instances for Touchstone MedMij to a separate folder, to ease upload to Touchstone -->
-        <echo>copy the appropriate fhir instances for Touchstone MedMij to a separate folder: 4TouchstoneMPMedMij</echo>
-        <mkdir dir="${build.dir}/4TouchstoneMPMedMij"/>
+        <echo>copy the appropriate fhir instances for Touchstone MedMij to a separate folder: 4touchstone_mp_medmij</echo>
+        <mkdir dir="${build.dir}/4touchstone_mp_medmij"/>
         <!-- clean previous results, if any -->
         <delete>
-            <fileset dir="${build.dir}/4TouchstoneMPMedMij" includes="*.xml"/>
+            <fileset dir="${build.dir}/4touchstone_mp_medmij" includes="*.xml"/>
         </delete>
-        <copy todir="${build.dir}/4TouchstoneMPMedMij">
+        <copy todir="${build.dir}/4touchstone_mp_medmij">
             <fileset dir="${build.dir}/${usecase.mg}/fhir_instance_medmij">
                 <include name="*.xml"/>
                 <!-- the resources and scenarioset bundles are needed on Touchstone / WildFHIR, exclude the ALL bundles -->
