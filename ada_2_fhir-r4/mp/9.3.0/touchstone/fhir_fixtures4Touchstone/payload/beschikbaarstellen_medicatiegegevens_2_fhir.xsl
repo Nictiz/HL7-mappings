@@ -84,7 +84,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:if test="$schematronXsdLinkInOutput">
                     <xsl:attribute name="xsi:schemaLocation">http://hl7.org/fhir https://hl7.org/fhir/R4/bundle.xsd</xsl:attribute>
                 </xsl:if>
-                <id value="{nf:removeSpecialCharacters(.//beschikbaarstellen_medicatiegegevens[1]/@id)}"/>
+                <!-- Touchstone does not accept '.' in filenames -->
+                <id value="{nf:removeSpecialCharsAndDotForTouchstone(.//beschikbaarstellen_medicatiegegevens[1]/@id)}"/>
                 <type value="transaction"/>
                 <xsl:choose>
                     <xsl:when test="$bundleSelfLink[not(. = '')]">
