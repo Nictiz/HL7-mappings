@@ -111,6 +111,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="oidSBVZSystems">2.16.528.1.1007.4</xsl:variable>
     <xsl:variable name="oidUCUM">2.16.840.1.113883.6.8</xsl:variable>
     <xsl:variable name="oidURAOrganizations">2.16.528.1.1007.3.3</xsl:variable>
+    <!-- http://www.oid-info.com/get/1.3.6.1.1.16 -->
+    <xsl:variable name="oidUUID">1.3.6.1.1.16</xsl:variable>
     <xsl:variable name="oidUZIPersons">2.16.528.1.1007.3.1</xsl:variable>
     <xsl:variable name="oidUZISystems">2.16.528.1.1007.3.2</xsl:variable>
     <xsl:variable name="oidUZIRoleCode">2.16.840.1.113883.2.4.15.111</xsl:variable>
