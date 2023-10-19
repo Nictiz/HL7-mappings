@@ -33,10 +33,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:apply-templates select="f:dispenseRequest/f:quantity[f:extension/@url = 'http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation']" mode="#current"/>
             <!--aantal_herhalingen-->
             <xsl:apply-templates select="f:dispenseRequest/f:numberOfRepeatsAllowed" mode="#current"/>
-            <!-- verbruiksperiode/tijds_duur -->
-            <xsl:apply-templates select="f:dispenseRequest/f:validityPeriod/f:extension[@url = ($urlExtTimeInterval-Duration, $urlExtTimeIntervalDuration)]" mode="#current"/>
-            <!-- verbruiksperiode/@start_datum_tijd/@value en eind_datum_tijd/@value -->
-            <xsl:apply-templates select="f:dispenseRequest/f:validityPeriod[f:start | f:end]" mode="#current"/>
+            <!-- verbruiksperiode/@start_datum_tijd/@value en eind_datum_tijd/@value en tijds_duur-->
+            <xsl:apply-templates select="f:dispenseRequest/f:validityPeriod[f:start | f:end | f:extension[@url = ($urlExtTimeInterval-Duration, $urlExtTimeIntervalDuration)]]" mode="#current"/>
+            
             <!--geannuleerd_indicator-->
             <xsl:if test="f:status/@value eq 'cancelled'">
                 <geannuleerd_indicator value="true"/>
@@ -148,6 +147,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="adaElementNameStart">start_datum_tijd</xsl:with-param>
                 <xsl:with-param name="adaElementNameEnd">eind_datum_tijd</xsl:with-param>
                 <xsl:with-param name="adaDatatype" as="xs:string?">datetime</xsl:with-param>
+            </xsl:call-template>
+            <xsl:call-template name="Duration-to-hoeveelheid">
+                <xsl:with-param name="in" select="f:extension[@url = ($urlExtTimeInterval-Duration, $urlExtTimeIntervalDuration)]/f:valueDuration"/>
+                <xsl:with-param name="adaElementName">tijds_duur</xsl:with-param>
             </xsl:call-template>
         </verbruiksperiode>
     </xsl:template>
