@@ -332,7 +332,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </abatementDateTime>
                     </xsl:if>-->
 
-                    <!-- TS    NL-CM:8.2.6        BeginDatumTijd            0..1    -->
+                    <!-- TS    NL-CM:0.0.14    DatumTijd    0..1-->
                     <!-- assertedDate -->
                     <xsl:for-each select="(zibroot/datum_tijd | hcimroot/date_time)[@value]">
                         <assertedDate>
