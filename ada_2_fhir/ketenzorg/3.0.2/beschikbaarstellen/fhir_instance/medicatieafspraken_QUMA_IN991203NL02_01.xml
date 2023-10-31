@@ -1,7 +1,7 @@
 <?xml-model href="http://hl7.org/fhir/STU3/bundle.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><Bundle xmlns="http://hl7.org/fhir"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/fhir-all.xsd">
-   <id value="380c0fa6-e371-11ed-1201-020000000000"/>
+   <id value="075de91e-621b-11ee-6030-020000000000"/>
    <type value="searchset"/>
    <total value="1"/>
    <link>
@@ -89,7 +89,7 @@
                <display value="Metoclopramide zetpil 20mg"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:380c0faa-e371-11ed-1201-020000000000"/>
+               <reference value="urn:uuid:075de922-621b-11ee-6030-020000000000"/>
                <display value="Joris Hansman"/>
             </subject>
             <authoredOn value="2016-06-23T16:54:23+02:00"/>
@@ -97,7 +97,7 @@
                <agent>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
                      <valueReference>
-                        <reference value="urn:uuid:380c103d-e371-11ed-1201-020000000000"/>
+                        <reference value="urn:uuid:075dea0f-621b-11ee-6030-020000000000"/>
                         <display value="Dr Jansen || Internist || Ziekenhuis zus en zo"/>
                      </valueReference>
                   </extension>
@@ -143,7 +143,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:380c0faa-e371-11ed-1201-020000000000"/>
+      <fullUrl value="urn:uuid:075de922-621b-11ee-6030-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -208,6 +208,7 @@
                <status value="extensions"/>
                <div xmlns="http://www.w3.org/1999/xhtml">
                   <div>Id 012345678 (UZI-NR-PERS), Dr Jansen</div>
+                  <div>Dorpsstraat 10, 1111AA Ons Dorp (WP)</div>
                </div>
             </text>
             <identifier>
@@ -217,6 +218,28 @@
             <name>
                <text value="Dr Jansen"/>
             </name>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://hl7.org/fhir/v3/AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 10">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="10"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1111AA"/>
+            </address>
          </Practitioner>
       </resource>
       <search>
@@ -283,7 +306,7 @@
       </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:380c103d-e371-11ed-1201-020000000000"/>
+      <fullUrl value="urn:uuid:075dea0f-621b-11ee-6030-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>

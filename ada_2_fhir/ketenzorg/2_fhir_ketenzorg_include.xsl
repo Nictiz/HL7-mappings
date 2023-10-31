@@ -455,7 +455,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </period>
                 </xsl:if>
                 
-                <xsl:for-each select="../bundle/author">
+                <xsl:for-each select="../bundle/author/health_professional">
                     <author>
                         <extension url="{$urlExtNLPractitionerRoleReference}">
                             <valueReference>
@@ -849,6 +849,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:choose>
                                 <xsl:when test="$theEncounters/f:fullUrl[ends-with(@value, $theReference)]">
                                     <reference value="{$theReference}"/>
+                                    <display value="Contact: {nf:get-encounter-display($theEncounters[f:fullUrl[ends-with(@value, $theReference)]]/f:resource/*)}"/>
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <identifier>
@@ -856,9 +857,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <xsl:with-param name="in" select="."/>
                                         </xsl:call-template>
                                     </identifier>
+                                    <display value="Contact ID: {string-join((@value, @root), ' ')}"/>
                                 </xsl:otherwise>
                             </xsl:choose>
-                            <display value="Contact ID: {string-join((@value, @root), ' ')}"/>
                         </context>
                     </xsl:for-each>
                     <!--NL-CM:13.1.9	TestMethod	0..1	The test method used to obtain the result.	246501002 Technique (attribute)	ListTestMethodCodelist-->
@@ -1016,6 +1017,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:choose>
                             <xsl:when test="$theEncounters/f:fullUrl[ends-with(@value, $theReference)]">
                                 <reference value="{$theReference}"/>
+                                <display value="Contact: {nf:get-encounter-display($theEncounters[f:fullUrl[ends-with(@value, $theReference)]]/f:resource/*)}"/>
                             </xsl:when>
                             <xsl:otherwise>
                                 <identifier>
@@ -1023,9 +1025,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:with-param name="in" select="."/>
                                     </xsl:call-template>
                                 </identifier>
+                                <display value="Contact ID: {string-join((@value, @root), ' ')}"/>
                             </xsl:otherwise>
                         </xsl:choose>
-                        <display value="Contact ID: {string-join((@value, @root), ' ')}"/>
                     </context>
                 </xsl:for-each>
                 <!--NL-CM:13.3.9 			ResultDateTime 	0..1 	Date and if possible the time at which the measurement was carried out.-->
@@ -1210,6 +1212,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:choose>
                             <xsl:when test="$theEncounters/f:fullUrl[ends-with(@value, $theReference)]">
                                 <reference value="{$theReference}"/>
+                                <display value="Contact: {nf:get-encounter-display($theEncounters[f:fullUrl[ends-with(@value, $theReference)]]/f:resource/*)}"/>
                             </xsl:when>
                             <xsl:otherwise>
                                 <identifier>
@@ -1217,12 +1220,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:with-param name="in" select="."/>
                                     </xsl:call-template>
                                 </identifier>
+                                <display value="Contact ID: {string-join((@value, @root), ' ')}"/>
                             </xsl:otherwise>
                         </xsl:choose>
-                        <display value="Contact ID: {string-join((@value, @root), ' ')}"/>
                     </context>
                 </xsl:for-each>
-                <xsl:for-each select="$author">
+                <xsl:for-each select="$author/health_professional">
                     <performer>
                         <xsl:apply-templates select="." mode="doPractitionerReference-2.0"/>
                     </performer>
@@ -1332,6 +1335,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:choose>
                             <xsl:when test="$theEncounters/f:fullUrl[ends-with(@value, $theReference)]">
                                 <reference value="{$theReference}"/>
+                                <display value="Contact: {nf:get-encounter-display($theEncounters[f:fullUrl[ends-with(@value, $theReference)]]/f:resource/*)}"/>
                             </xsl:when>
                             <xsl:otherwise>
                                 <identifier>
@@ -1339,9 +1343,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:with-param name="in" select="."/>
                                     </xsl:call-template>
                                 </identifier>
+                                <display value="Contact ID: {string-join((@value, @root), ' ')}"/>
                             </xsl:otherwise>
                         </xsl:choose>
-                        <display value="Contact ID: {string-join((@value, @root), ' ')}"/>
                     </encounter>
                 </xsl:for-each>
                 
@@ -1352,8 +1356,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </xsl:attribute>
                 </date>
-                <xsl:for-each select="$author">
+                <xsl:for-each select="$author/health_professional">
                     <author>
+                        <extension url="{$urlExtNLPractitionerRoleReference}">
+                            <valueReference>
+                                <xsl:apply-templates select="." mode="doPractitionerRoleReference-2.0"/>
+                            </valueReference>
+                        </extension>
                         <xsl:apply-templates select="." mode="doPractitionerReference-2.0"/>
                     </author>
                 </xsl:for-each>
@@ -1460,17 +1469,42 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- Add resource.text -->
         <xsl:apply-templates select="$resource" mode="addNarrative"/>
     </xsl:template>
+    
+    <xd:doc>
+        <xd:desc>If <xd:ref name="healthProfessional" type="parameter"/> holds a value, return a human readable string of health_professional_identification_number/name_information/organization_name/specialty/health_professional_role. Else return empty</xd:desc>
+        <xd:param name="healthProfessional"/>
+    </xd:doc>
+    <xsl:function name="nf:get-encounter-display" as="xs:string?">
+        <xsl:param name="encounter" as="element()?"/>
+        <xsl:for-each select="$encounter">
+            <xsl:variable name="theType" select="f:type/f:coding/f:display/@value"/>
+            <xsl:variable name="personName" select="f:participant[f:type/f:coding/f:code/@value = 'PRF']/f:individual/f:display/@value"/>
+            <xsl:variable name="theDateString" select="substring(f:period/f:start/@value, 1, 10)"/>
+            <xsl:variable name="theDate" select="if ($theDateString castable as xs:date) then format-date(xs:date($theDateString), '[D01]-[M01]-[Y0001]') else $theDateString"/>
+            <xsl:value-of select="normalize-space(string-join((string-join(($theType, string-join($personName, ' en ')), ' met '), $theDate), ' op '))"/>
+        </xsl:for-each>
+    </xsl:function>
 
     <xd:doc>
         <xd:desc/>
     </xd:doc>
     <xsl:template name="observationEntry" match="journaalregel | journal_entry" mode="doObservationEntry">
         <xsl:variable name="ada-id" select="nf:get-fhir-uuid(.)"/>
+        <xsl:variable name="author" as="element()*">
+            <xsl:choose>
+                <xsl:when test="ancestor::encounter_note[1]/hcimroot/author">
+                    <xsl:copy-of select="ancestor::encounter_note[1]/hcimroot/author"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:copy-of select="ancestor::encounter_note[1]/preceding-sibling::bundle/author"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
         <entry>
             <fullUrl value="{$ada-id}"/>
             <resource>
                 <xsl:call-template name="gp-JournalEntry">
-                    <xsl:with-param name="author" select="../bundle/author"/>
+                    <xsl:with-param name="author" select="$author"/>
                     <xsl:with-param name="subject" select="ancestor::*[bundle]/bundle/subject"/>
                 </xsl:call-template>
             </resource>
