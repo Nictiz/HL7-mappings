@@ -4,8 +4,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2023-06-27T17:20:59.906135+02:00"
-         last-update-date="2023-06-27T17:20:59.906135+02:00"/>
+         creation-date="2023-11-02T15:23:33.68709+01:00"
+         last-update-date="2023-11-02T15:23:33.68709+01:00"/>
    <data>
       <sturen_medicatievoorschrift app="mp-mp93"
                                    shortName="sturen_medicatievoorschrift"
@@ -44,10 +44,10 @@
                   <tijds_duur value="28" unit="dag"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d603e39" datatype="reference"/>
+                  <zorgverlener value="d857e39" datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d603e34" datatype="reference"/>
+                  <farmaceutisch_product value="d857e34" datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
                   <omschrijving value="Vanaf 1 jan 2023, gedurende 28 dagen, 1 maal per dag 1 stuk 's ochtends en Bij pijn 1 maal per dag 1 stuk 's avonds, Oraal"/>
@@ -114,9 +114,35 @@
                   </doseerinstructie>
                </gebruiksinstructie>
             </medicatieafspraak>
+            <verstrekkingsverzoek>
+               <identificatie value="MBH_300_stoppen_parallele_TA_VV_start"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2023-01-01T09:05:00"/>
+               <auteur>
+                  <zorgverlener value="d857e39" datatype="reference"/>
+               </auteur>
+               <te_verstrekken_geneesmiddel>
+                  <farmaceutisch_product value="d857e34" datatype="reference"/>
+               </te_verstrekken_geneesmiddel>
+               <te_verstrekken_hoeveelheid>
+                  <aantal value="28"/>
+                  <eenheid value="28"
+                           code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <beoogd_verstrekker>
+                  <zorgaanbieder value="d857e113" datatype="reference"/>
+               </beoogd_verstrekker>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_stoppen_parallele_TA_MA_start"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d603e34">
+            <farmaceutisch_product id="d857e34">
                <product_code code="43044"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -126,7 +152,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="PANTOPRAZOL 40MG TABLET MSR"/>
             </farmaceutisch_product>
-            <zorgverlener id="d603e39">
+            <zorgverlener id="d857e39">
                <zorgverlener_identificatienummer value="000002222" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Jan"/>
@@ -140,18 +166,24 @@
                             codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
                             codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Medisch specialisten, chirurgie"/>
+               <contactgegevens>
+                  <telefoonnummers>
+                     <telefoonnummer value="1634534321"/>
+                     <telecom_type code="UNK"
+                                   codeSystem="2.16.840.1.113883.5.1008"
+                                   displayName="unknown"/>
+                     <nummer_soort code="WP"
+                                   codeSystem="2.16.840.1.113883.5.1119"
+                                   displayName="Work place"/>
+                  </telefoonnummers>
+               </contactgegevens>
                <zorgaanbieder>
-                  <zorgaanbieder value="d603e50" datatype="reference"/>
+                  <zorgaanbieder value="d857e51" datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d603e50">
+            <zorgaanbieder id="d857e51">
                <zorgaanbieder_identificatienummer value="00004444" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Ziekenhuis het Gele Hart"/>
-               <afdeling_specialisme code="0601"
-                                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                                     codeSystemVersion="2020-10-23T00:00:00"
-                                     displayName="Ziekenhuizen, algemene ziekenhuizen"/>
                <adresgegevens>
                   <straat value="Groenestraat"/>
                   <huisnummer value="1"/>
@@ -161,6 +193,13 @@
                                codeSystem="2.16.840.1.113883.5.1119"
                                displayName="Werkadres"/>
                </adresgegevens>
+               <organisatie_type code="V4"
+                                 codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                 displayName="Ziekenhuis"/>
+            </zorgaanbieder>
+            <zorgaanbieder id="d857e113">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
             </zorgaanbieder>
          </bouwstenen>
       </sturen_medicatievoorschrift>

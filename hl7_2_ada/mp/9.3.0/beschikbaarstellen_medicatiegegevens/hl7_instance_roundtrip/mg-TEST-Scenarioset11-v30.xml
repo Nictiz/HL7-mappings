@@ -503,7 +503,7 @@
                displayName="optimaliseren van dosering van medicatie (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 18 dec 2022, tot en met 25 dec 2022, cyclus van 5 dagen: steeds eerst gedurende 2 dagen 1 maal per dag 2 stuks 's avonds, dan gedurende 2 dagen 1 maal per dag 2 stuks 's avonds, dan gedurende 1 dag 1 maal per dag 0 stuks 's avonds, Oraal, </text>
+         <text mediaType="text/plain">Vanaf 18 dec 2022, tot en met 25 dec 2022, cyclus van 5 dagen: steeds eerst gedurende 2 dagen 1 maal per dag 2 stuks 's avonds, dan gedurende 2 dagen 1 maal per dag 2 stuks 's avonds, dan gedurende 1 dag 1 maal per dag 0 stuks 's avonds, Oraal, stopgezet</text>
          <effectiveTime xsi:type="IVL_TS">
             <low value="20221218000000"/>
             <high value="20221225235959"/>
@@ -576,29 +576,6 @@
                       codeSystem="2.16.840.1.113883.6.96"
                       displayName="stopgezet"/>
             </observation>
-         </entryRelationship>
-         <entryRelationship typeCode="RSON">
-            <observation classCode="OBS" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9439"/>
-               <code code="160111000146106"
-                     displayName="reden voor wijzigen van voorschrift"
-                     codeSystem="2.16.840.1.113883.6.96"
-                     codeSystemName="SNOMED CT"/>
-               <value xsi:type="CE"
-                      code="58848006"
-                      codeSystem="2.16.840.1.113883.6.96"
-                      displayName="gebrek aan geneesmiddeleffect"/>
-            </observation>
-         </entryRelationship>
-         <entryRelationship typeCode="SUBJ" inversionInd="true">
-            <act classCode="ACT" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
-               <code code="48767-8"
-                     codeSystem="2.16.840.1.113883.6.1"
-                     codeSystemName="LOINC"
-                     displayName="Annotation comment"/>
-               <text mediaType="text/plain">Dosering aangepast i.v.m. te lage INR waarde.</text>
-            </act>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="1"/>
@@ -768,10 +745,10 @@
                displayName="optimaliseren van dosering van medicatie (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 26 dec 2022, tot en met 7 jan 2023, cyclus van 5 dagen: steeds eerst gedurende 3 dagen 1 maal per dag om 19:00 2 stuks, dan gedurende 2 dagen 1 maal per dag om 19:00 1 stuk, oraal</text>
+         <text mediaType="text/plain">Vanaf 26 dec 2022, tot en met 4 jan 2023, cyclus van 5 dagen: steeds eerst gedurende 3 dagen 1 maal per dag om 19:00 2 stuks, dan gedurende 2 dagen 1 maal per dag om 19:00 1 stuk, oraal</text>
          <effectiveTime xsi:type="IVL_TS">
             <low value="20221226000000"/>
-            <high value="20230107235959"/>
+            <high value="20230104235959"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -841,6 +818,16 @@
                       codeSystem="2.16.840.1.113883.6.96"
                       displayName="gebrek aan geneesmiddeleffect"/>
             </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="SUBJ" inversionInd="true">
+            <act classCode="ACT" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
+               <code code="48767-8"
+                     codeSystem="2.16.840.1.113883.6.1"
+                     codeSystemName="LOINC"
+                     displayName="Annotation comment"/>
+               <text mediaType="text/plain">Dosering aangepast i.v.m. te lage INR waarde.</text>
+            </act>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="1"/>
@@ -1406,6 +1393,19 @@
                <value xsi:type="BL" value="false"/>
             </observation>
          </entryRelationship>
+         <entryRelationship typeCode="RSON">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9375"/>
+               <code code="153631000146105"
+                     displayName="reden voor afwijken in toedienen van medicatie (waarneembare entiteit)"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+               <value xsi:type="CE"
+                      code="406149000"
+                      codeSystem="2.16.840.1.113883.6.96"
+                      displayName="toediening van medicatie geweigerd"/>
+            </observation>
+         </entryRelationship>
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9381"/>
@@ -1505,6 +1505,19 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
                <value xsi:type="BL" value="false"/>
+            </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="RSON">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9375"/>
+               <code code="153631000146105"
+                     displayName="reden voor afwijken in toedienen van medicatie (waarneembare entiteit)"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+               <value xsi:type="CE"
+                      code="408366001"
+                      codeSystem="2.16.840.1.113883.6.96"
+                      displayName="niet in staat om medicatie te gebruiken"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="SUBJ" inversionInd="true">
@@ -1616,6 +1629,19 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
                <value xsi:type="BL" value="false"/>
+            </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="RSON">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9375"/>
+               <code code="153631000146105"
+                     displayName="reden voor afwijken in toedienen van medicatie (waarneembare entiteit)"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+               <value xsi:type="CE"
+                      code="153241000146104"
+                      codeSystem="2.16.840.1.113883.6.96"
+                      displayName="zorgafnemer niet beschikbaar om medicatie in ontvangst te nemen"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
