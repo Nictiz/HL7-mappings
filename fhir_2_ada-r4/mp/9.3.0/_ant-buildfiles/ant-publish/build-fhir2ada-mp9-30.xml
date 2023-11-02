@@ -39,6 +39,7 @@
     <property name="usecase.fhir.fixtures" value="fhir_fixtures4Touchstone"/>
     <property name="usecase.av" value="sturen_afhandeling_medicatievoorschrift"/>
     <property name="usecase.mg" value="beschikbaarstellen_medicatiegegevens"/>
+    <property name="usecase.mg.st" value="sturen_medicatiegegevens"/>
     <property name="usecase.mo" value="beschikbaarstellen_medicatieoverzicht"/>
     <property name="usecase.mv" value="sturen_medicatievoorschrift"/>
     <property name="usecase.vma" value="sturen_voorstel_medicatieafspraak"/>
@@ -73,6 +74,14 @@
         <!-- beschikbaarstellen_medicatiegegevens -->
            <antcall target="convert_fhir_2_ada_sub">
             <param name="usecase" value="${usecase.mg}"/>
+            <param name="build.dir" value="${build.dir}"/>
+            <param name="xsl.in" value="fhir_instance"/>
+            <param name="xsl.out" value="ada_instance"/>
+        </antcall>
+        
+        <!-- sturen_medicatiegegevens -->
+        <antcall target="convert_fhir_2_ada_sub">
+            <param name="usecase" value="${usecase.mg.st}"/>
             <param name="build.dir" value="${build.dir}"/>
             <param name="xsl.in" value="fhir_instance"/>
             <param name="xsl.out" value="ada_instance"/>
@@ -240,6 +249,13 @@
             <param name="include.files" value="mg*.xml"/>
         </antcall>
 
+        <!-- sturen_medicatiegegevens -->
+        <antcall target="setup_sub">
+            <param name="usecase" value="${usecase.mg.st}"/>
+            <param name="folder.name" value="fhir_instance"/>
+            <param name="include.files" value="mg*.xml"/>
+        </antcall>
+        
         <!-- sturen_medicatievoorschrift -->
         <antcall target="setup_sub">
             <param name="usecase" value="${usecase.mv}"/>
