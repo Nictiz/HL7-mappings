@@ -179,7 +179,12 @@
         <!-- beschikbaarstellen_medicatiegegegevens -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="${usecase.mv}"/>
-            <param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.3.0/${usecase.fhir.fixtures}/payload/${usecase.mg}_2_fhir.xsl"/>
+            <!--nieuw-->
+            <param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.3.0/${usecase.mg}/payload/${usecase.mg}_2_fhir.xsl"/>
+            <!--nieuw-->
+            <!-- oud -->
+            <!--<param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.3.0/${usecase.fhir.fixtures}/payload/${usecase.mg}_2_fhir.xsl"/>-->
+            <!-- oud -->
             <param name="xsl.in" value="${build.dir}/${usecase.mg}/ada_instance"/>
             <param name="xsl.in.include" value="*.xml"/>
             <param name="xsl.out" value="${build.dir}/${usecase.mg}/roundtrip_fhir_instance"/>
