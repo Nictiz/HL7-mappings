@@ -3,7 +3,7 @@
          created-by="zibsada"
          last-update-by="zibsada"
          creation-date="2021-09-30T15:34:39.998+02:00"
-         last-update-date="2021-09-30T15:43:00.08+02:00"/>
+         last-update-date="2023-11-02T11:01:45.162+01:00"/>
    <data>
       <encounter_registration app="zib2017"
                               shortName="encounter_registration"
@@ -18,18 +18,21 @@
          <encounter conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.15.1.1">
             <hcimroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1">
                <identification_number conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"
-                                      nullFlavor="NI"/>
+                                      root="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"
+                                      value="bgz-msz-patA-encounter3"/>
                <information_source conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.2">
                   <patient_as_information_source conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.3">
                      <patient conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.140"
-                              nullFlavor="NI"/>
+                              nullFlavor="NI"
+                              datatype="reference"/>
                   </patient_as_information_source>
                </information_source>
                <subject conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11">
                   <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12">
                      <patient value="999999151"
                               root="2.16.840.1.113883.2.4.6.3"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146"/>
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146"
+                              datatype="reference"/>
                   </patient>
                </subject>
             </hcimroot>
@@ -41,19 +44,23 @@
             <contact_with conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.15.1.7">
                <health_professional value="zib-2017-bgz-patA-healthProf2"
                                     root="2.16.840.1.113883.2.4.3.11.999.7"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.40"/>
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.40"
+                                    datatype="reference"/>
             </contact_with>
             <location conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.15.1.8">
                <healthcare_provider value="naam eigen ziekenhuis"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.41"/>
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.41"
+                                    datatype="reference"/>
             </location>
             <start_date_time value="T+44D{09:00}"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.15.1.3"/>
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.15.1.3"
+                             datatype="datetime"/>
             <contact_reason conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.15.1.13">
                <procedure conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.15.1.11">
                   <procedure value="zib-2017-bgz-patA-procedure1"
                              root="2.16.840.1.113883.2.4.3.11.999.7"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.43"/>
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.43"
+                             datatype="reference"/>
                </procedure>
             </contact_reason>
          </encounter>

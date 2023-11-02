@@ -3,7 +3,7 @@
          created-by="zibsada"
          last-update-by="zibsada"
          creation-date="2021-09-23T18:20:43.083+02:00"
-         last-update-date="2023-08-04T13:07:48.581+02:00"/>
+         last-update-date="2023-11-02T10:06:35.283+01:00"/>
    <data>
       <allergy_intolerance_registration app="zib2017"
                                         shortName="allergy_intolerance_registration"
@@ -18,18 +18,21 @@
          <allergy_intolerance conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.1">
             <hcimroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1">
                <identification_number conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"
-                                      nullFlavor="NI"/>
+                                      root="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"
+                                      value="bgz-msz-patA-allergy3"/>
                <information_source conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.2">
                   <patient_as_information_source conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.3">
                      <patient conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.140"
-                              nullFlavor="NI"/>
+                              nullFlavor="NI"
+                              datatype="reference"/>
                   </patient_as_information_source>
                </information_source>
                <subject conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11">
                   <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12">
                      <patient value="999999151"
                               root="2.16.840.1.113883.2.4.6.3"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146"/>
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146"
+                              datatype="reference"/>
                   </patient>
                </subject>
             </hcimroot>
@@ -48,14 +51,16 @@
                             codeSystem="2.16.840.1.113883.5.14"
                             displayName="Completed"/>
             <start_date_time value="2006"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.6"/>
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.6"
+                             datatype="datetime"/>
             <criticality conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.7"
                          value="2"
                          code="6736007"
                          codeSystem="2.16.840.1.113883.6.96"
                          displayName="Moderate"/>
             <last_reaction_date_time value="2012"
-                                     conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.8"/>
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.8"
+                                     datatype="datetime"/>
             <reaction conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.10">
                <symptom conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.11"
                         value="8"

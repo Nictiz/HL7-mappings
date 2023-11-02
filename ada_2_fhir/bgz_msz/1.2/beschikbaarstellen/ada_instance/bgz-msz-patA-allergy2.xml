@@ -3,7 +3,7 @@
          created-by="zibsada"
          last-update-by="zibsada"
          creation-date="2021-09-23T18:07:41.348+02:00"
-         last-update-date="2023-10-11T14:56:47.409+02:00"/>
+         last-update-date="2023-11-02T10:05:04.454+01:00"/>
    <data>
       <allergy_intolerance_registration app="zib2017"
                                         shortName="allergy_intolerance_registration"
@@ -18,18 +18,21 @@
          <allergy_intolerance conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.1">
             <hcimroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1">
                <identification_number conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"
-                                      nullFlavor="NI"/>
+                                      root="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"
+                                      value="bgz-msz-patA-allergy2"/>
                <information_source conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.2">
                   <patient_as_information_source conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.3">
                      <patient conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.140"
-                              nullFlavor="NI"/>
+                              nullFlavor="NI"
+                              datatype="reference"/>
                   </patient_as_information_source>
                </information_source>
                <subject conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11">
                   <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12">
                      <patient value="999999151"
                               root="2.16.840.1.113883.2.4.6.3"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146"/>
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146"
+                              datatype="reference"/>
                   </patient>
                </subject>
             </hcimroot>
@@ -48,14 +51,16 @@
                             codeSystem="2.16.840.1.113883.5.14"
                             displayName="Active"/>
             <start_date_time value="2009"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.6"/>
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.6"
+                             datatype="datetime"/>
             <criticality conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.7"
                          value="1"
                          code="255604002"
                          codeSystem="2.16.840.1.113883.6.96"
                          displayName="Mild"/>
             <last_reaction_date_time value="2011"
-                                     conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.8"/>
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.8"
+                                     datatype="datetime"/>
             <comment value="Alleen voor amoxicilline"
                      conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.9"/>
             <reaction conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.8.2.10">

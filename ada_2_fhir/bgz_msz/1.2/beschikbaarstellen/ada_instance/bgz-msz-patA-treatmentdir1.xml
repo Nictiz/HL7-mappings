@@ -3,7 +3,7 @@
          created-by="zibsada"
          last-update-by="zibsada"
          creation-date="2021-09-28T13:45:53.152+02:00"
-         last-update-date="2023-10-30T16:57:08.263+01:00"/>
+         last-update-date="2023-11-02T14:37:53.09+01:00"/>
    <data>
       <treatment_directive_registration app="zib2017"
                                         shortName="treatment_directive_registration"
@@ -18,19 +18,21 @@
          <treatment_directive conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.2.1.1">
             <hcimroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1">
                <identification_number conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"
-                                      root="2.16.840.1.113883.2.4.3.11.999.7"
-                                      value="patA-treatmentdir1"/>
+                                      root="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"
+                                      value="bgz-msz-patA-treatmentdir1"/>
                <information_source conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.2">
                   <patient_as_information_source conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.3">
                      <patient conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.140"
-                              nullFlavor="NI"/>
+                              nullFlavor="NI"
+                              datatype="reference"/>
                   </patient_as_information_source>
                </information_source>
                <subject conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11">
                   <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12">
                      <patient value="999999151"
                               root="2.16.840.1.113883.2.4.6.3"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146"/>
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146"
+                              datatype="reference"/>
                   </patient>
                </subject>
             </hcimroot>
@@ -43,7 +45,8 @@
                               codeSystem="2.16.840.1.113883.6.96"
                               displayName="Patient"/>
                <verification_date value="T+1D"
-                                  conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.2.1.10"/>
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.2.1.10"
+                                  datatype="datetime"/>
             </verification>
             <treatment conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.2.1.3"
                        originalText="MRI"
@@ -63,7 +66,8 @@
             <advance_directive conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.2.1.14">
                <advance_directive value="zib-2017-bgz-patA-advdir"
                                   root="2.16.840.1.113883.2.4.3.11.999.7"
-                                  conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.17"/>
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.17"
+                                  datatype="reference"/>
             </advance_directive>
          </treatment_directive>
       </treatment_directive_registration>

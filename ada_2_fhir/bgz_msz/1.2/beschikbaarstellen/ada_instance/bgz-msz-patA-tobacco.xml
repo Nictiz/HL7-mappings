@@ -3,7 +3,7 @@
          created-by="zibsada"
          last-update-by="zibsada"
          creation-date="2021-09-23T13:33:40.404+02:00"
-         last-update-date="2021-09-27T16:36:23.792+02:00"/>
+         last-update-date="2023-11-02T14:36:19.392+01:00"/>
    <data>
       <tobacco_use_registration app="zib2017"
                                 shortName="tobacco_use_registration"
@@ -18,18 +18,21 @@
          <tobacco_use conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.7.2.1">
             <hcimroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1">
                <identification_number conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"
-                                      nullFlavor="NI"/>
+                                      root="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"
+                                      value="bgz-msz-patA-tobacco"/>
                <information_source conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.2">
                   <patient_as_information_source conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.3">
                      <patient conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.140"
-                              nullFlavor="NI"/>
+                              nullFlavor="NI"
+                              datatype="reference"/>
                   </patient_as_information_source>
                </information_source>
                <subject conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11">
                   <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12">
                      <patient value="999999151"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146"
-                              root="2.16.840.1.113883.2.4.6.3"/>
+                              root="2.16.840.1.113883.2.4.6.3"
+                              datatype="reference"/>
                   </patient>
                </subject>
             </hcimroot>
@@ -47,8 +50,9 @@
                                 displayName="Occasional cigarette smoker (finding)"/>
             <observation_of_use conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.7.2.2">
                <start_date value="2001"
-                           conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.7.2.4"/>
-               <amount value="1"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.7.2.4"
+                           datatype="datetime"/>
+               <amount value="2"
                        unit="{cigars}/wk"
                        conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.7.2.6"/>
                <pack_years value="6"

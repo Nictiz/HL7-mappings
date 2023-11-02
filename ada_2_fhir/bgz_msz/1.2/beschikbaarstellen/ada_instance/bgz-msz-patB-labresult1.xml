@@ -4,7 +4,7 @@
          created-by="zibsada"
          last-update-by="zibsada"
          creation-date="2021-10-05T13:43:25.365+02:00"
-         last-update-date="2023-10-26T17:45:05.094+02:00"/>
+         last-update-date="2023-11-02T11:28:42.361+01:00"/>
    <data>
       <laboratory_test_result_registration app="zib2017"
                                            shortName="laboratory_test_result_registration"
@@ -19,17 +19,20 @@
          <laboratory_test_result conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.1">
             <hcimroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1">
                <identification_number conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"
-                                      nullFlavor="NI"/>
+                                      root="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"
+                                      value="bgz-msz-patB-labresult1"/>
                <information_source conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.2">
                   <patient_as_information_source conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.3">
                      <patient conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.140"
-                              nullFlavor="NI"/>
+                              nullFlavor="NI"
+                              datatype="reference"/>
                   </patient_as_information_source>
                </information_source>
                <subject conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11">
                   <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12">
                      <patient value="999999072"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146"/>
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146"
+                              datatype="reference"/>
                   </patient>
                </subject>
             </hcimroot>
@@ -40,7 +43,8 @@
                           code="26484-6"
                           displayName="Monocyten [aantal/volume] in bloed"/>
                <test_date_time value="T+1D{09:00}"
-                               conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.13"/>
+                               conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.13"
+                               datatype="datetime"/>
                <test_result value="0.43"
                             unit="10*9/L"
                             datatype="quantity"
@@ -66,7 +70,8 @@
                           codeSystemName="LOINC"
                           displayName="Lymfocyten [aantal/volume] in bloed d.m.v. manuele telling"/>
                <test_date_time value="T+1D{09:00}"
-                               conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.13"/>
+                               conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.13"
+                               datatype="datetime"/>
                <test_result value="0.86"
                             unit="10*9/L"
                             datatype="quantity"
@@ -97,7 +102,8 @@
                           codeSystemName="LOINC"
                           displayName="Lymfocyten.variant [aanwezigheid] in bloed d.m.v. microscopie.licht"/>
                <test_date_time value="T+1D{09:00}"
-                               conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.13"/>
+                               conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.13"
+                               datatype="datetime"/>
                <test_result value="260373001"
                             codeSystem="2.16.840.1.113883.6.96"
                             datatype="code"
@@ -111,7 +117,8 @@
             </laboratory_test>
             <requester conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.34">
                <health_professional value="zib-2017-bgz-patB-healthProf2"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.108"/>
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.108"
+                                    datatype="reference"/>
             </requester>
          </laboratory_test_result>
       </laboratory_test_result_registration>
