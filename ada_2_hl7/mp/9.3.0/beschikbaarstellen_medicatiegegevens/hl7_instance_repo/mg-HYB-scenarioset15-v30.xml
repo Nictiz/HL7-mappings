@@ -22,7 +22,6 @@
             <streetName>Knolweg</streetName>
             <houseNumber>1003</houseNumber>
             <postalCode>9999 ZA</postalCode>
-            <county>Apeldoorn</county>
             <city>Apeldoorn</city>
             <country>157</country>
          </addr>
@@ -42,15 +41,15 @@
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9430"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9429"/>
          <id extension="MBH_300_hybride_voorschrift_MA"
-             root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+             root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
          <code code="33633005"
                displayName="voorschrijven van geneesmiddel (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 1 jan 2023, tot en met 8 jan 2023, 1 maal per dag 2 stuks, Oraal</text>
+         <text mediaType="text/plain">Vanaf 9 aug 2023, 2 maal per dag 1 stuk, Oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20230101"/>
-            <high value="20230108"/>
+            <low value="20230809000000"/>
+            <high nullFlavor="NI"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -73,7 +72,7 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20221231121000"/>
+            <time value="20230807000000"/>
             <assignedAuthor>
                <id extension="000004449" root="2.16.528.1.1007.3.1"/>
                <code code="0100"
@@ -83,7 +82,7 @@
                      codeSystemVersion="2020-10-23T00:00:00"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Hannie</given>
+                     <given qualifier="IN">H.</given>
                      <family qualifier="BR">Huiske</family>
                   </name>
                </assignedPerson>
@@ -100,20 +99,43 @@
                </representedOrganization>
             </assignedAuthor>
          </author>
+         <entryRelationship typeCode="RSON">
+            <observation classCode="OBS" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.121.10.24"/>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.19"/>
+               <code code="282291009"
+                     displayName="Diagnose"
+                     codeSystem="2.16.840.1.113883.6.96"/>
+               <value xsi:type="CD"
+                      code="0000009852"
+                      codeSystem="2.16.840.1.113883.6.3.2"
+                      displayName="urineweginfectie"/>
+               <entryRelationship typeCode="REFR" inversionInd="true">
+                  <observation classCode="OBS" moodCode="EVN">
+                     <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.3.20"/>
+                     <code code="33999-4"
+                           displayName="Diagnosis status"
+                           codeSystem="2.16.840.1.113883.6.1"
+                           codeSystemName="LOINC"/>
+                     <value xsi:type="CD" nullFlavor="NI"/>
+                  </observation>
+               </entryRelationship>
+            </observation>
+         </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
                   <repeat>
-                     <frequency value="1"/>
+                     <frequency value="2"/>
                      <period value="1"/>
                      <periodUnit value="d"/>
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="2" unit="1">
-                     <translation value="2"
+                  <center value="1" unit="1">
+                     <translation value="1"
                                   code="245"
                                   displayName="Stuk"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -126,7 +148,7 @@
          <entryRelationship typeCode="COMP" inversionInd="true">
             <procedure classCode="PROC" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
-               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+               <id root="2.16.840.1.113883.2.4.4.7"
                    extension="MBH_300_hybride_voorschrift"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
@@ -144,8 +166,8 @@
                displayName="Verstrekkingsverzoek"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <quantity value="14" unit="1">
-            <translation value="14"
+         <quantity value="240" unit="1">
+            <translation value="240"
                          code="245"
                          displayName="Stuk"
                          codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -177,7 +199,7 @@
             </assignedEntity>
          </performer>
          <author>
-            <time value="20221231121000"/>
+            <time value="20230807000000"/>
             <assignedAuthor>
                <id extension="000004449" root="2.16.528.1.1007.3.1"/>
                <code code="0100"
@@ -187,7 +209,7 @@
                      codeSystemVersion="2020-10-23T00:00:00"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Hannie</given>
+                     <given qualifier="IN">H.</given>
                      <family qualifier="BR">Huiske</family>
                   </name>
                </assignedPerson>
@@ -219,7 +241,7 @@
          <entryRelationship typeCode="COMP" inversionInd="true">
             <procedure classCode="PROC" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
-               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+               <id root="2.16.840.1.113883.2.4.4.7"
                    extension="MBH_300_hybride_voorschrift"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
@@ -232,15 +254,15 @@
       <substanceAdministration classCode="SBADM" moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9416"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9415"/>
-         <id extension="16020" root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+         <id extension="16020_verstrekking" root="2.16.840.1.113883.2.4.6.6.2727.2"/>
          <code code="422037009"
                displayName="Toedieningsafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 1 jan 2023, tot en met 8 jan 2023, 1 maal per dag 2 stuks, Oraal</text>
+         <text mediaType="text/plain">Vanaf 18 okt 2017, 2 maal per dag 1 stuk, Oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20230101"/>
-            <high value="20230108"/>
+            <low value="20171018000000"/>
+            <high nullFlavor="NI"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -257,7 +279,7 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20221231151000"/>
+            <time value="20230807000000"/>
             <assignedAuthor>
                <id nullFlavor="NI"/>
                <representedOrganization>
@@ -272,14 +294,14 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
                   <repeat>
-                     <frequency value="1"/>
+                     <frequency value="2"/>
                      <period value="1"/>
                      <periodUnit value="d"/>
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="2" unit="1">
-                     <translation value="2"
+                  <center value="1" unit="1">
+                     <translation value="1"
                                   code="245"
                                   displayName="Stuk"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -292,8 +314,8 @@
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="Vooraankondiging_PresciptionID"
-                   root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+               <id extension="MBH_300_hybride_voorschrift_prescriptionID"
+                   root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
@@ -304,8 +326,7 @@
          <entryRelationship typeCode="COMP" inversionInd="true">
             <procedure classCode="PROC" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
-               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_hybride_generiekeTA"/>
+               <id root="2.16.840.1.113883.2.4.3.11.61.2" extension="16020"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>

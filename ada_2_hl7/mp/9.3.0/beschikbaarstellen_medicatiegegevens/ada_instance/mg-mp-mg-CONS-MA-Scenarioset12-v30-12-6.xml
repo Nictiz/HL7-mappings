@@ -1,0 +1,363 @@
+<!--ada full xml for subscenario nr: 12-6-->
+<adaxml xsi:noNamespaceSchemaLocation="../../../9.3.0/beschikbaarstellen_medicatiegegevens/ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <meta status="new"
+         created-by="medicatieprocesada"
+         last-update-by="medicatieprocesada"
+         creation-date="2023-06-22T15:46:23.813+02:00"
+         last-update-date="2023-07-20T13:35:12.19+02:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp93"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.374"
+                                            transactionEffectiveDate="2022-06-30T00:00:00"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="TEST Medicatiegegevens Scenarioset 12 (Consolidatie)"
+                                            desc="Een medicamenteuze behandeling waarin een stopMA geregistreerd wordt zonder referentie, die alle eerder gemaakte bouwstenen (TA/MGB) stopt. Hierna wordt een nieuwe MA en toekomstige MA gemaakt."
+                                            id="mg-mp-mg-CONS-MA-Scenarioset12-v30-12-6">
+         <scenario-nr value="12.6"
+                      conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.2.1.1"/>
+         <systeemrol conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.6"
+                     value="2"
+                     code="2"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.6.1.20201207000000"
+                     displayName="Raadplegend"/>
+         <!--Patient found in instance with id: mg-CONS-Scenarioset12-v30 and title: id: TEST REPO Scenarioset 12 (consolidatie)-->
+         <patient comment=""
+                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1">
+            <naamgegevens comment=""
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.2">
+               <initialen value="C. "
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.4"/>
+               <naamgebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.6"
+                            value="1"
+                            code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam comment=""
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.7">
+                  <achternaam value="XXX_Dijk"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.9"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900456"
+                                 root="2.16.840.1.113883.2.4.6.3"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.35"/>
+            <geboortedatum value="1963-10-20"
+                           datatype="datetime"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.36"/>
+            <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.37"
+                      value="2"
+                      code="M"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Man"/>
+         </patient>
+         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_300_stopMA_zonder_referentie-->
+         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
+            <identificatie value="MBH_300_stopMA_zonder_referentie"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
+            <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.43"
+                               comment="">
+               <identificatie value="MBH_300_stopMA_zonder_referentie_stopMA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.194"/>
+               <medicatieafspraak_datum_tijd value="T-5D{13:55:00}"
+                                             datatype="datetime"
+                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.83"/>
+               <gebruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.84"
+                                comment="">
+                  <start_datum_tijd value="T-14D{00:00:00}"
+                                    datatype="datetime"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.629"/>
+                  <eind_datum_tijd value="T+2D{23:59:59}"
+                                   datatype="datetime"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.630"/>
+               </gebruiksperiode>
+               <medicatieafspraak_stop_type conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.88"
+                                            value="4"
+                                            code="410546004"
+                                            codeSystem="2.16.840.1.113883.6.96"
+                                            displayName="stopgezet"/>
+               <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.44"
+                              comment="">
+                  <zorgverlener value="Peter_van_Pulver"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.45"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.48"
+                                         comment="">
+                  <farmaceutisch_product value="PRK_Diclofenac_8052"
+                                         datatype="reference"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.49"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.50"
+                                   comment="">
+                  <omschrijving value="Wordt gegenereerd"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.52"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.54"
+                                  code="9"
+                                  displayName="Oraal"/>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.55"
+                                    comment="">
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.58"
+                               comment="">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.67"
+                                   comment="">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.547"
+                                   comment="">
+                              <nominale_waarde value="1"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.70"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="Stuk"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.552"/>
+                        </keerdosis>
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.74"
+                                           comment="">
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.75"
+                                       comment="">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.554"
+                                      comment="">
+                                 <nominale_waarde value="1"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.78"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.555"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.43"
+                               comment="">
+               <identificatie value="MBH_300_stopMA_zonder_referentie_startMA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.194"/>
+               <medicatieafspraak_datum_tijd value="T-5D{13:57:00}"
+                                             datatype="datetime"
+                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.83"/>
+               <gebruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.84"
+                                comment="">
+                  <start_datum_tijd value="T-5D{00:00:00}"
+                                    datatype="datetime"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.629"/>
+                  <eind_datum_tijd value="T+2D{23:59:59}"
+                                   datatype="datetime"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.630"/>
+               </gebruiksperiode>
+               <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.44"
+                              comment="">
+                  <zorgverlener value="Peter_van_Pulver"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.45"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.48"
+                                         comment="">
+                  <farmaceutisch_product value="PRK_Diclofenac_8052"
+                                         datatype="reference"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.49"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.50"
+                                   comment="">
+                  <omschrijving value="wordt gegenereerd"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.52"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="oraal"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.54"/>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.55"
+                                    comment="">
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.58"
+                               comment="">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.67"
+                                   comment="">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.547"
+                                   comment="">
+                              <nominale_waarde value="1.5"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.70"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.552"/>
+                        </keerdosis>
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.74"
+                                           comment="">
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.75"
+                                       comment="">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.554"
+                                      comment="">
+                                 <nominale_waarde value="1"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.78"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.555"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.43"
+                               comment="">
+               <identificatie value="MBH_300_stopMA_zonder_referentie_toekomstMA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.194"/>
+               <medicatieafspraak_datum_tijd value="T-5D{14:03:00}"
+                                             datatype="datetime"
+                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.83"/>
+               <gebruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.84"
+                                comment="">
+                  <start_datum_tijd value="T+3D{00:00:00}"
+                                    datatype="datetime"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.629"/>
+                  <tijds_duur value="3"
+                              unit="dag"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.631"/>
+               </gebruiksperiode>
+               <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.44"
+                              comment="">
+                  <zorgverlener value="Peter_van_Pulver"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.45"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.48"
+                                         comment="">
+                  <farmaceutisch_product value="PRK_Diclofenac_8052"
+                                         datatype="reference"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.49"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.50"
+                                   comment="">
+                  <omschrijving value="wordt gegenereerd"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.52"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="oraal"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.54"/>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.55"
+                                    comment="">
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.58"
+                               comment="">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.67"
+                                   comment="">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.547"
+                                   comment="">
+                              <nominale_waarde value="1"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.70"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.552"/>
+                        </keerdosis>
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.74"
+                                           comment="">
+                           <frequentie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.75"
+                                       comment="">
+                              <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.554"
+                                      comment="">
+                                 <nominale_waarde value="1"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.78"/>
+                              </aantal>
+                              <tijdseenheid value="1"
+                                            unit="dag"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.555"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+         </medicamenteuze_behandeling>
+         <bouwstenen comment=""
+                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.259">
+            <farmaceutisch_product id="PRK_Diclofenac_8052"
+                                   comment=""
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+               <product_code code="8052"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="DICLOFENAC NATRIUM TABLET MGA 100MG"
+                             codeSystemName="G-Standaard PRK"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="22268"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="DICLOFENAC NATRIUM TABLET MGA 100MG"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
+            <zorgverlener id="Peter_van_Pulver"
+                          comment=""
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.92">
+               <zorgverlener_identificatienummer value="000001111"
+                                                 root="2.16.528.1.1007.3.1"
+                                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.132"/>
+               <naamgegevens comment=""
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.133">
+                  <voornamen value="Peter"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.134"/>
+                  <geslachtsnaam comment=""
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.138">
+                     <voorvoegsels value="van "
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.139"/>
+                     <achternaam value="Pulver"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.140"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.145"
+                            value="2"
+                            code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder comment=""
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.168">
+                  <zorgaanbieder datatype="reference"
+                                 value="Huisartsenpraktijk_Pulver_en_Partners"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.846"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="Huisartsenpraktijk_Pulver_en_Partners"
+                           comment=""
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.202">
+               <zorgaanbieder_identificatienummer value="00001111"
+                                                  root="2.16.528.1.1007.3.3"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.231"/>
+               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.232"/>
+               <adresgegevens comment=""
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.243">
+                  <straat value="Dorpsstraat"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.244"/>
+                  <huisnummer value="1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.245"/>
+                  <postcode value="1234AA"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.249"/>
+                  <woonplaats value="Ons Dorp"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.250"/>
+                  <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.254"
+                               value="5"
+                               code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>
