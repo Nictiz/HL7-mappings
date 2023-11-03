@@ -2420,7 +2420,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2e227f0d-6abf-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:de070d48-6afe-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -2430,7 +2430,13 @@
                <valueDateTime value="2023-01-01T10:15:00+01:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="elke dag om 09:00, 12:00 en 15:00 1 stuk - let op, tijden exact aanhouden, oraal"/>
+               <valueString value="Vanaf 1 jan 2023, tot en met 8 jan 2023, elke dag om 09:00, 12:00 en 15:00 1 stuk - let op, tijden exact aanhouden, oraal"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+               <valuePeriod>
+                  <start value="2023-01-01T00:00:00+01:00"/>
+                  <end value="2023-01-08T23:59:59+01:00"/>
+               </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>

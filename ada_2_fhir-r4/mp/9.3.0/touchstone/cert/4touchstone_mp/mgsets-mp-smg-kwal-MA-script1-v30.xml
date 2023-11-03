@@ -243,12 +243,15 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:189e2b3e-6b55-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:a64cca5d-6b29-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="Vanaf T - 10 dagen, tot en met T + 7 dagen, oraal, stopgezet"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
                   <start value="${DATE, T, D, -10}T00:00:00+02:00"/>
@@ -283,6 +286,11 @@
                   <display value="voorschrijven van geneesmiddel"/>
                </coding>
             </category>
+            <medicationReference>
+               <reference value="urn:uuid:4a07db1d-6ae4-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="CAPECITABINE TABLET FO 500MG"/>
+            </medicationReference>
             <subject>
                <reference value="urn:uuid:3ae2f678-6b63-11ec-0000-020000000000"/>
                <type value="Patient"/>
@@ -298,7 +306,8 @@
                <route>
                   <coding>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value=""/>
+                     <code value="9"/>
+                     <display value="oraal"/>
                   </coding>
                </route>
             </dosageInstruction>

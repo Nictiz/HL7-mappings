@@ -137,7 +137,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:3d877542-6b73-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c1a01542-6aff-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -149,6 +149,9 @@
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
                <valueDateTime value="${DATE, T, D, +0}T15:00:00+02:00"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="Vanaf T - 9 dagen, tot en met T + 12 dagen, oraal, stopgezet"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -212,7 +215,8 @@
                <route>
                   <coding>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value=""/>
+                     <code value="9"/>
+                     <display value="oraal"/>
                   </coding>
                </route>
             </dosageInstruction>

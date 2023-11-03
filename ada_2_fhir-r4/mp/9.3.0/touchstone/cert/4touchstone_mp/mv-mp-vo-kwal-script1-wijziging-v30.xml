@@ -5,6 +5,94 @@
    </meta>
    <type value="transaction"/>
    <entry>
+      <fullUrl value="urn:uuid:afa64a5d-6ac9-11ec-0000-020000000000"/>
+      <resource>
+         <MedicationRequest>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+               <tag>
+                  <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
+                  <code value="actionable"/>
+               </tag>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+               <valueString value="Vanaf T - 9 dagen, tot en met T + 12 dagen, oraal, stopgezet"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+               <valuePeriod>
+                  <start value="${DATE, T, D, -9}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, +12}T23:59:59+02:00"/>
+               </valuePeriod>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+               <valueIdentifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                  <value value="MBH_300_SCRIPT1"/>
+               </valueIdentifier>
+            </extension>
+            <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="410546004"/>
+                     <display value="stopgezet"/>
+                  </coding>
+               </valueCodeableConcept>
+            </modifierExtension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <value value="MBH_300_SCRIPT1_MA_STOP"/>
+            </identifier>
+            <status value="active"/>
+            <intent value="order"/>
+            <category>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="33633005"/>
+                  <display value="voorschrijven van geneesmiddel"/>
+               </coding>
+            </category>
+            <medicationReference>
+               <reference value="urn:uuid:4a07db1d-6ae4-11ec-0000-020000000000"/>
+               <type value="Medication"/>
+               <display value="CAPECITABINE TABLET FO 500MG"/>
+            </medicationReference>
+            <subject>
+               <reference value="urn:uuid:3ae2f678-6b63-11ec-0000-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, P. XXX_Schut"/>
+            </subject>
+            <authoredOn value="${DATE, T, D, +0}T11:20:00+02:00"/>
+            <requester>
+               <reference value="urn:uuid:7af79824-6ac8-11ec-0000-020000000000"/>
+               <type value="PractitionerRole"/>
+               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+            </requester>
+            <dosageInstruction>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="oraal"/>
+                  </coding>
+               </route>
+            </dosageInstruction>
+            <priorPrescription>
+               <type value="MedicationRequest"/>
+               <identifier>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                  <value value="MBH_300_SCRIPT1_MA"/>
+               </identifier>
+               <display value="relatie naar medicatieafspraak: MBH_300_SCRIPT1_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            </priorPrescription>
+         </MedicationRequest>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="MedicationRequest"/>
+      </request>
+   </entry>
+   <entry>
       <fullUrl value="urn:uuid:4d6af8ab-6b28-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
@@ -120,85 +208,6 @@
                      <code value="1"/>
                   </doseQuantity>
                </doseAndRate>
-            </dosageInstruction>
-            <priorPrescription>
-               <type value="MedicationRequest"/>
-               <identifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_300_SCRIPT1_MA"/>
-               </identifier>
-               <display value="relatie naar medicatieafspraak: MBH_300_SCRIPT1_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-            </priorPrescription>
-         </MedicationRequest>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationRequest"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:1e4b8b3e-6b06-11ec-0000-020000000000"/>
-      <resource>
-         <MedicationRequest>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
-               <tag>
-                  <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
-                  <code value="actionable"/>
-               </tag>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
-               <valuePeriod>
-                  <start value="${DATE, T, D, -9}T00:00:00+02:00"/>
-                  <end value="${DATE, T, D, +12}T23:59:59+02:00"/>
-               </valuePeriod>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_SCRIPT1"/>
-               </valueIdentifier>
-            </extension>
-            <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
-               <valueCodeableConcept>
-                  <coding>
-                     <system value="http://snomed.info/sct"/>
-                     <code value="410546004"/>
-                     <display value="stopgezet"/>
-                  </coding>
-               </valueCodeableConcept>
-            </modifierExtension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_300_SCRIPT1_MA_STOP"/>
-            </identifier>
-            <status value="active"/>
-            <intent value="order"/>
-            <category>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="33633005"/>
-                  <display value="voorschrijven van geneesmiddel"/>
-               </coding>
-            </category>
-            <subject>
-               <reference value="urn:uuid:3ae2f678-6b63-11ec-0000-020000000000"/>
-               <type value="Patient"/>
-               <display value="Patient, P. XXX_Schut"/>
-            </subject>
-            <authoredOn value="${DATE, T, D, +0}T11:20:00+02:00"/>
-            <requester>
-               <reference value="urn:uuid:7af79824-6ac8-11ec-0000-020000000000"/>
-               <type value="PractitionerRole"/>
-               <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
-            </requester>
-            <dosageInstruction>
-               <route>
-                  <coding>
-                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value=""/>
-                  </coding>
-               </route>
             </dosageInstruction>
             <priorPrescription>
                <type value="MedicationRequest"/>

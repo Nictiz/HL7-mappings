@@ -3,6 +3,9 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
    </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="Vanaf T - 10 dagen, tot en met T + 7 dagen, oraal, stopgezet"/>
+   </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
       <valuePeriod>
          <start value="${DATE, T, D, -10}T00:00:00+02:00"/>
@@ -37,6 +40,11 @@
          <display value="voorschrijven van geneesmiddel"/>
       </coding>
    </category>
+   <medicationReference>
+      <reference value="Medication/mp-PhPrd-mp9-216840111388324410-59366"/>
+      <type value="Medication"/>
+      <display value="CAPECITABINE TABLET FO 500MG"/>
+   </medicationReference>
    <subject>
       <reference value="Patient/nl-core-Patient-mp9-HdeXXX-Huyser"/>
       <type value="Patient"/>
@@ -52,7 +60,8 @@
       <route>
          <coding>
             <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-            <code value=""/>
+            <code value="9"/>
+            <display value="oraal"/>
          </coding>
       </route>
    </dosageInstruction>
