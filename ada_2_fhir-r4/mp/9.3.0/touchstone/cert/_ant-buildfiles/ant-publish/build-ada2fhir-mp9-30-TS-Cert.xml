@@ -48,6 +48,19 @@
                 <include name="*kwal*.xml"/>
             </fileset>
         </copy>
+        
+        <!-- for the filter scenario's (set 0) -->
+        <mkdir dir="${build.dir}/${usecase.mg}/ada_instance_filter"/>
+        <!-- deleting previous results, if any -->
+        <delete>
+            <fileset dir="${build.dir}/${usecase.mg}/ada_instance_filter" includes="*.*"/>
+        </delete>
+        <copy todir="${build.dir}/${usecase.mg}/ada_instance_filter" failonerror="true">
+            <!-- get these from raadplegen_medicatiegegevens -->
+            <fileset dir="${refs.dir}/${usecase.mg}/ada_instance">
+                <include name="*script0*.xml"/>
+            </fileset>
+        </copy>        
 
         <!-- sturen_medicatiegegevens  -->
         <echo>sturen_medicatiegegevens</echo>
