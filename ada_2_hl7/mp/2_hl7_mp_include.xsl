@@ -508,7 +508,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <doseQuantity>
             <xsl:choose>
                 <xsl:when test="aantal[.//@value]">
-                    <xsl:for-each select="aantal[@value] | aantal/(vaste_waarde | nominale_waarde)[.//@value]">
+                    <xsl:for-each select="aantal[@value] | aantal/(vaste_waarde | nominale_waarde)[@value]">
                         <center>
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9164_20170118000000_2">
                                 <xsl:with-param name="Gstd_value" select="@value"/>
@@ -516,7 +516,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </center>
                     </xsl:for-each>
-                    <xsl:for-each select="aantal/(min | minimum_waarde)[.//@value]">
+                    <xsl:for-each select="aantal/(min | minimum_waarde)[@value]">
                         <low>
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9164_20170118000000_2">
                                 <xsl:with-param name="Gstd_value" select="@value"/>
@@ -524,7 +524,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </low>
                     </xsl:for-each>
-                    <xsl:for-each select="aantal/(max | maximum_waarde)[.//@value]">
+                    <xsl:for-each select="aantal/(max | maximum_waarde)[@value]">
                         <high>
                             <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9164_20170118000000_2">
                                 <xsl:with-param name="Gstd_value" select="@value"/>
