@@ -29,6 +29,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- parameter to determine whether to refer by resource/id -->
     <!-- should be false when there is no FHIR server available to retrieve the resources -->
     <xsl:param name="referById" as="xs:boolean" select="true()"/>
+    <xd:doc>
+        <xd:desc>Privacy parameter. Accepts a comma separated list of patient ID root values (normally OIDs). When an ID is encountered with a root value in this list, then this ID will be masked in the output data. This is useful to prevent outputting Dutch bsns (<xd:ref name="oidBurgerservicenummer" type="variable"/>) for example. Default is to include any ID in the output as it occurs in the input.</xd:desc>
+    </xd:doc>
+    <xsl:param name="mask-ids" as="xs:string?" select="$oidBurgerservicenummer"/>
     
     <!-- use case acronym to be added in resource.id -->
     <xsl:param name="usecase" as="xs:string?">cio</xsl:param>
