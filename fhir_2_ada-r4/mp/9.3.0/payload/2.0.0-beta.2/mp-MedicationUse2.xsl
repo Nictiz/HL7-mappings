@@ -168,13 +168,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <gebruik_indicator>
                     <xsl:attribute name="value" select="'false'"/>
                 </gebruik_indicator>
-                <stoptype code="385655000" codeSystem="2.16.840.1.113883.6.96" displayName="onderbroken"/>
             </xsl:when>
             <xsl:when test="@value eq 'stopped'">
                 <gebruik_indicator>
                     <xsl:attribute name="value" select="'false'"/>
                 </gebruik_indicator>
-                <stoptype code="410546004" codeSystem="2.16.840.1.113883.6.96" displayName="stopgezet"/>
             </xsl:when>
             <xsl:when test="
                     some $val in ('not-taken', 'completed')
