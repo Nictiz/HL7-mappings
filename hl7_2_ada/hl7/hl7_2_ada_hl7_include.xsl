@@ -1006,6 +1006,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <xsl:when test="$country[@*]">
                                                 <xsl:copy-of select="$country/@code"/>
                                                 <xsl:copy-of select="$country/@codeSystem"/>
+                                                <xsl:copy-of select="$country/@codeSystemVersion"/>
+                                                <xsl:copy-of select="$country/@codeSystemName"/>
                                                 <xsl:choose>
                                                     <xsl:when test="$country/@displayName">
                                                         <xsl:attribute name="displayName" select="$country/@displayName"/>
@@ -1027,8 +1029,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                         </xsl:when>
                                                         <xsl:otherwise>
                                                             <!-- not in value, due to validation errors -->
+                                                      
                                                             <xsl:attribute name="displayName" select="$country/text()"/>
                                                         </xsl:otherwise>
+                                                        
                                                     </xsl:choose>
                                                 </xsl:if>
                                             </xsl:otherwise>

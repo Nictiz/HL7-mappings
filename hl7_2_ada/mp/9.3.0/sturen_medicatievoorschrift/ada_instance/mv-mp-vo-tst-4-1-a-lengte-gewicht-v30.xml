@@ -4,8 +4,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2023-06-27T17:20:59.917106+02:00"
-         last-update-date="2023-06-27T17:20:59.917106+02:00"/>
+         creation-date="2023-11-02T15:23:33.68848+01:00"
+         last-update-date="2023-11-02T15:23:33.68848+01:00"/>
    <data>
       <sturen_medicatievoorschrift app="mp-mp93"
                                    shortName="sturen_medicatievoorschrift"
@@ -32,28 +32,28 @@
             <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
          </patient>
          <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_Lengte_Gewicht"
+            <identificatie value="MBH_300_VOS_Lengte_Gewicht"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <medicatieafspraak>
-               <identificatie value="MBH_300_Lengte_Gewicht_MA_1"
+               <identificatie value="MBH_300_VOS_Lengte_Gewicht_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <medicatieafspraak_datum_tijd datatype="datetime" value="2023-01-01T07:05:00"/>
+               <medicatieafspraak_datum_tijd datatype="datetime" value="2023-01-01T10:00:00"/>
                <gebruiksperiode>
                   <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00"/>
-                  <eind_datum_tijd datatype="datetime" nullFlavor="NI"/>
+                  <tijds_duur value="2" unit="week"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d618e37" datatype="reference"/>
+                  <zorgverlener value="d880e37" datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d618e32" datatype="reference"/>
+                  <farmaceutisch_product value="d880e32" datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 1 jan 2023, 1 maal per dag 1 stuk, Oraal"/>
+                  <omschrijving value="Vanaf 1 jan 2023, gedurende 2 weken, 1 maal per dag 1 stuk, oraal"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="Oraal"/>
+                                  displayName="oraal"/>
                   <doseerinstructie>
                      <volgnummer value="1"/>
                      <dosering>
@@ -79,44 +79,44 @@
                </gebruiksinstructie>
             </medicatieafspraak>
             <verstrekkingsverzoek>
-               <identificatie value="MBH_300_Lengte_Gewicht_VV_1"
+               <identificatie value="MBH_300_VOS_Lengte_Gewicht_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2023-01-01T07:05:00"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2023-01-01T10:00:00"/>
                <auteur>
-                  <zorgverlener value="d618e37" datatype="reference"/>
+                  <zorgverlener value="d880e37" datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="d618e32" datatype="reference"/>
+                  <farmaceutisch_product value="d880e32" datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid>
-                  <aantal value="180"/>
-                  <eenheid value="180"
+                  <aantal value="14"/>
+                  <eenheid value="14"
                            code="245"
                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                            codeSystemName="G-Standaard thesaurus basiseenheden"
                            displayName="stuk"/>
                </te_verstrekken_hoeveelheid>
                <beoogd_verstrekker>
-                  <zorgaanbieder value="d618e91" datatype="reference"/>
+                  <zorgaanbieder value="d880e91" datatype="reference"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
-                  <identificatie value="MBH_300_Lengte_Gewicht_MA_1"
+                  <identificatie value="MBH_300_VOS_Lengte_Gewicht_MA"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                </relatie_medicatieafspraak>
             </verstrekkingsverzoek>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d618e32">
-               <product_code code="49484"
+            <farmaceutisch_product id="d880e32">
+               <product_code code="100145"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
-                             displayName="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
-               <product_code code="103039"
+                             displayName="RIVAROXABAN TABLET 15MG"/>
+               <product_code code="138355"
                              codeSystem="2.16.840.1.113883.2.4.4.1"
                              codeSystemName="G-Standaard GPK"
-                             displayName="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
+                             displayName="RIVAROXABAN TABLET 15MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="d618e37">
+            <zorgverlener id="d880e37">
                <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Peter"/>
@@ -142,10 +142,10 @@
                   </telefoonnummers>
                </contactgegevens>
                <zorgaanbieder>
-                  <zorgaanbieder value="d618e49" datatype="reference"/>
+                  <zorgaanbieder value="d880e49" datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d618e49">
+            <zorgaanbieder id="d880e49">
                <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
@@ -158,16 +158,16 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="d618e91">
+            <zorgaanbieder id="d880e91">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
             </zorgaanbieder>
             <lichaamslengte>
-               <lengte_waarde value="178" unit="cm"/>
+               <lengte_waarde value="164" unit="cm"/>
                <lengte_datum_tijd datatype="datetime" value="2022-12-20T13:14:00"/>
             </lichaamslengte>
             <lichaamsgewicht>
-               <gewicht_waarde value="76" unit="kg"/>
+               <gewicht_waarde value="102" unit="kg"/>
                <gewicht_datum_tijd datatype="datetime" value="2022-12-20T13:20:00"/>
             </lichaamsgewicht>
          </bouwstenen>
