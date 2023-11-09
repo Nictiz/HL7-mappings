@@ -3,7 +3,7 @@
          created-by="zibsada"
          last-update-by="zibsada"
          creation-date="2021-09-29T16:29:18.623+02:00"
-         last-update-date="2023-10-18T11:39:53.703+02:00"/>
+         last-update-date="2023-11-09T12:14:08.166Z"/>
    <data>
       <laboratory_test_result_registration app="zib2017"
                                            shortName="laboratory_test_result_registration"
@@ -22,14 +22,16 @@
                <information_source conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.2">
                   <patient_as_information_source conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.3">
                      <patient conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.140"
-                              nullFlavor="NI"/>
+                              nullFlavor="NI"
+                              datatype="reference"/>
                   </patient_as_information_source>
                </information_source>
                <subject conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11">
                   <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12">
                      <patient value="999999151"
                               root="2.16.840.1.113883.2.4.6.3"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146"/>
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146"
+                              datatype="reference"/>
                   </patient>
                </subject>
             </hcimroot>
@@ -40,19 +42,31 @@
                           code="59260-0"
                           displayName="Hemoglobine [mol/volume] in bloed"/>
                <test_date_time value="T+2D{09:00}"
-                               conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.13"/>
-               <test_result value="8.9 mmol/L"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.10"/>
+                               conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.13"
+                               datatype="datetime"/>
+               <test_result value="8.9"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.10"
+                            datatype="quantity"
+                            unit="mmol/L"/>
                <test_result_status conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.31"
                                    value="3"
                                    code="final"
                                    codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
                                    displayName="Final"/>
-               <reference_range_upper_limit value="9.9 mmol/L"
-                                            conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.11"/>
-               <reference_range_lower_limit value="7.4 mmol/L"
-                                            conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.12"/>
+               <reference_range_upper_limit value="9.9"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.11"
+                                            datatype="quantity"
+                                            unit="mmol/L"/>
+               <reference_range_lower_limit value="7.4"
+                                            conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.12"
+                                            datatype="quantity"
+                                            unit="mmol/L"/>
             </laboratory_test>
+            <result_type conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.13.1.7"
+                         value="2"
+                         code="275711006"
+                         codeSystem="2.16.840.1.113883.6.96"
+                         displayName="Chemistry"/>
          </laboratory_test_result>
       </laboratory_test_result_registration>
    </data>
