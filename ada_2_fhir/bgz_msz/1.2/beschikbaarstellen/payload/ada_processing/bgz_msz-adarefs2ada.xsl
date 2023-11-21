@@ -31,10 +31,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="patientIdentifier" select="current-grouping-key()"/>
             <xsl:variable name="patientName">
                 <xsl:choose>
-                    <xsl:when test="$patientIdentifier = 999999151">
+                    <xsl:when test="$patientIdentifier = 'bgz-msz-patA#bgz-msz-patA'">
                         <xsl:value-of select="'patA'"/>
                     </xsl:when>
-                    <xsl:when test="$patientIdentifier = 999900092">
+                    <xsl:when test="$patientIdentifier = 'bgz-msz-patB#bgz-msz-patB'">
                         <xsl:value-of select="'patB'"/>
                     </xsl:when>
                     <xsl:otherwise>
@@ -58,12 +58,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xsl:template match="patient[@value and @root = '2.16.840.1.113883.2.4.6.3'][not(*)]" mode="copy-for-resolve">
-        <xsl:apply-templates select="($ada-input/adaxml/data/*/patient[patient_identification_number[@value = current()/@value][@root = current()/@root]])[1]" mode="#current"/>
+        <xsl:apply-templates select="($ada-input/adaxml/data/*/patient[current()/@value = concat(@id,'#',@id)])[1]" mode="#current"/>
     </xsl:template>
     
     <!-- Matching on @value and @root, and excluding local-name containing 'identification' but should be on @datatype = 'reference' -->
     <xsl:template match="*[@value and @root = '2.16.840.1.113883.2.4.3.11.999.7'][not(*)][not(contains(local-name(), 'identification'))]" mode="copy-for-resolve">
-        <xsl:apply-templates select="($ada-input/adaxml/data/*/*[hcimroot/identification_number[@value = current()/@value][@root = current()/@root]])[1]" mode="#current"/>
+        <xsl:apply-templates select="($ada-input/adaxml/data/*/*[current()/@value = concat(@id,'#',@id)])[1]" mode="#current"/>
     </xsl:template>
     
     <xd:doc>
