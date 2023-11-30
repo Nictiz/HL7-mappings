@@ -5,7 +5,7 @@
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:2cb47b3e-6b08-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:90a5e32b-6b26-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -16,7 +16,7 @@
                </tag>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 4 dagen, tot en met T, 1 stuk, Oraal, stopgezet"/>
+               <valueString value="Vanaf T - 4 dagen, tot en met T, 1 maal per dag 1 stuk, Oraal, stopgezet"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -76,6 +76,13 @@
                </coding>
             </reasonCode>
             <dosageInstruction>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
                <route>
                   <coding>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>

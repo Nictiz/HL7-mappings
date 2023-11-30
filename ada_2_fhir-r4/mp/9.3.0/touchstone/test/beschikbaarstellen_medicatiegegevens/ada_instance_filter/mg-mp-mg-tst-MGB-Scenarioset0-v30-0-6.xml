@@ -56,9 +56,9 @@
                       displayName="Man"
                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.37"/>
          </patient>
-         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_300_script0_QA1-->
+         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_300_QA1-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
-            <identificatie value="MBH_300_script0_QA1"
+            <identificatie value="MBH_300_QA1"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
             <medicatiegebruik comment=""
@@ -66,7 +66,7 @@
                <identificatie value="MBH_300_QA1_MGB"
                               root="2.16.840.1.113883.2.4.3.11.999.77.6.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.411"/>
-               <medicatiegebruik_datum_tijd value="T-15D{08:00:00}"
+               <medicatiegebruik_datum_tijd value="T-1D{10:04:23}"
                                             datatype="datetime"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.400"/>
                <gebruik_indicator value="true"
@@ -78,19 +78,19 @@
                   <start_datum_tijd value="T-20D{00:00:00}"
                                     datatype="datetime"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.402"/>
-                  <tijds_duur value="5"
-                              unit="dag"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.404"/>
+                  <eind_datum_tijd value="T+9D{23:59:59}"
+                                   datatype="datetime"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.403"/>
                </gebruiksperiode>
                <gebruiksproduct comment=""
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.365">
                   <farmaceutisch_product datatype="reference"
-                                         value="HPK_paracetamol_665800"
+                                         value="HPK_ibuprofen_641898"
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.366"/>
                </gebruiksproduct>
                <gebruiksinstructie comment=""
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.367">
-                  <omschrijving value="Vanaf &lt;T-20D{00:00:00}&gt;, gedurende 5 dagen, 2 maal per dag 2 stuks"
+                  <omschrijving value="Vanaf &lt;T-20D{00:00:00}&gt;t/m &lt;T+9D{23:59:59}&gt;, 2 maal per dag 1 stuk, oraal"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.369"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -105,7 +105,7 @@
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.384">
                            <aantal comment=""
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.566">
-                              <nominale_waarde value="2"
+                              <nominale_waarde value="1"
                                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.387"/>
                            </aantal>
                            <eenheid code="245"
@@ -133,7 +133,7 @@
                </gebruiksinstructie>
                <relatie_toedieningsafspraak comment=""
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1329">
-                  <identificatie value="MBH_300_script0_QA1_TA"
+                  <identificatie value="MBH_300_QA1_TA"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.415"/>
                </relatie_toedieningsafspraak>
@@ -143,17 +143,12 @@
                                 value="Peter_van_Pulver"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.364"/>
                </voorschrijver>
-               <informant comment=""
-                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.593">
-                  <informant_is_patient value="true"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.620"/>
-               </informant>
                <auteur comment=""
                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.623">
-                  <auteur_is_zorgverlener comment=""
-                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.627">
-                     <zorgverlener datatype="reference"
-                                   value="Peter_van_Pulver"
+                  <auteur_is_zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.627"
+                                          comment="">
+                     <zorgverlener value="Peter_van_Pulver"
+                                   datatype="reference"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.628"/>
                   </auteur_is_zorgverlener>
                </auteur>
@@ -368,6 +363,25 @@
          </medicamenteuze_behandeling>
          <bouwstenen comment=""
                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.259">
+            <farmaceutisch_product id="HPK_ibuprofen_641898"
+                                   comment=""
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+               <product_code code="641898"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="IBUPROFEN PCH TABLET 600MG"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="17469"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="IBUPROFEN TABLET 600MG"
+                             codeSystemName="G-Standaard PRK"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="42080"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="IBUPROFEN TABLET 600MG"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
             <farmaceutisch_product id="HPK_vloeibare_voeding_vitamine_K_690090"
                                    comment=""
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
@@ -399,25 +413,6 @@
                              codeSystem="2.16.840.1.113883.2.4.4.1"
                              codeSystemName="G-Standaard GPK"
                              displayName="ACETYLSALICYLZUUR TABLET 100MG"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-            </farmaceutisch_product>
-            <farmaceutisch_product comment=""
-                                   id="HPK_paracetamol_665800"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
-               <product_code code="665800"
-                             codeSystem="2.16.840.1.113883.2.4.4.7"
-                             codeSystemName="G-Standaard HPK"
-                             displayName="PARACETAMOL SANDOZ TABLET 500MG"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code code="67903"
-                             codeSystem="2.16.840.1.113883.2.4.4.10"
-                             codeSystemName="G-Standaard PRK"
-                             displayName="PARACETAMOL 500MG TABLET"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code code="2194"
-                             codeSystem="2.16.840.1.113883.2.4.4.1"
-                             codeSystemName="G-Standaard GPK"
-                             displayName="PARACETAMOL 500MG TABLET"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
             </farmaceutisch_product>
             <zorgverlener id="Peter_van_Pulver"

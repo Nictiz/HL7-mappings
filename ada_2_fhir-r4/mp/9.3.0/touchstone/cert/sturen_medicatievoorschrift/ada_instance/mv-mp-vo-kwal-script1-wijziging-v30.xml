@@ -64,6 +64,93 @@
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
             <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.43"
                                comment="">
+               <identificatie value="MBH_300_SCRIPT1_MA_STOP"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.194"/>
+               <medicatieafspraak_datum_tijd value="T{11:20:00}"
+                                             datatype="datetime"
+                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.83"/>
+               <gebruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.84"
+                                comment="">
+                  <start_datum_tijd value="T-9D{00:00:00}"
+                                    datatype="datetime"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.629"/>
+                  <eind_datum_tijd value="T+12D{23:59:59}"
+                                   datatype="datetime"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.630"/>
+               </gebruiksperiode>
+               <medicatieafspraak_stop_type conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.88"
+                                            value="4"
+                                            code="410546004"
+                                            codeSystem="2.16.840.1.113883.6.96"
+                                            displayName="stopgezet"/>
+               <relatie_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.195"
+                                          comment="">
+                  <identificatie value="MBH_300_SCRIPT1_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.196"/>
+               </relatie_medicatieafspraak>
+               <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.44"
+                              comment="">
+                  <zorgverlener value="Peter_van_Pulver"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.45"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.48"
+                                         comment="">
+                  <farmaceutisch_product value="PRK_capecitabine_59366"
+                                         datatype="reference"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.49"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.50"
+                                   comment="">
+                  <omschrijving value="Wordt gegenereerd"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.52"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.54"
+                                  code="9"
+                                  displayName="oraal"/>
+                  <herhaalperiode_cyclisch_schema value="21"
+                                                  unit="dag"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.53"/>
+                  <doseerinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.55"
+                                    comment="">
+                     <doseerduur value="14"
+                                 unit="dag"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.56"/>
+                     <dosering conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.58"
+                               comment="">
+                        <keerdosis conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.67"
+                                   comment="">
+                           <aantal conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.547"
+                                   comment="">
+                              <nominale_waarde value="4"
+                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.70"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.552"/>
+                        </keerdosis>
+                        <toedieningsschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.74"
+                                           comment="">
+                           <toedientijd value="09:00:00"
+                                        datatype="time"
+                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.81"/>
+                           <toedientijd value="21:00:00"
+                                        datatype="time"
+                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.81"/>
+                           <is_flexibel value="true"
+                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.271"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.43"
+                               comment="">
                <identificatie value="MBH_300_SCRIPT1_MA_WIJZIGING"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.194"/>
@@ -147,47 +234,6 @@
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
-               </gebruiksinstructie>
-            </medicatieafspraak>
-            <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.43"
-                               comment="">
-               <identificatie value="MBH_300_SCRIPT1_MA_STOP"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.194"/>
-               <medicatieafspraak_datum_tijd value="T{11:20:00}"
-                                             datatype="datetime"
-                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.83"/>
-               <gebruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.84"
-                                comment="">
-                  <start_datum_tijd value="T-9D{00:00:00}"
-                                    datatype="datetime"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.629"/>
-                  <eind_datum_tijd value="T+12D{23:59:59}"
-                                   datatype="datetime"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.630"/>
-               </gebruiksperiode>
-               <medicatieafspraak_stop_type conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.88"
-                                            value="4"
-                                            code="410546004"
-                                            codeSystem="2.16.840.1.113883.6.96"
-                                            displayName="stopgezet"/>
-               <relatie_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.195"
-                                          comment="">
-                  <identificatie value="MBH_300_SCRIPT1_MA"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.196"/>
-               </relatie_medicatieafspraak>
-               <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.44"
-                              comment="">
-                  <zorgverlener value="Peter_van_Pulver"
-                                datatype="reference"
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.45"/>
-               </voorschrijver>
-               <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.50"
-                                   comment="">
-                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.54"/>
                </gebruiksinstructie>
             </medicatieafspraak>
             <verstrekkingsverzoek conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.274"

@@ -16,7 +16,7 @@
       <valueDateTime value="${DATE, T, D, +7}T15:00:00+02:00"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-      <valueString value="Vanaf T + 13 dagen, gedurende 18 weken, cyclus van 21 dagen: steeds gedurende 14 dagen 4 keer om 09:00 en 21:00 stuks - let op, tijden exact aanhouden, oraal"/>
+      <valueString value="Vanaf T + 13 dagen, gedurende 18 weken, cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 4 stuks - let op, tijden exact aanhouden, oraal"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
       <valuePeriod>
@@ -104,7 +104,6 @@
                <system value="http://unitsofmeasure.org"/>
                <code value="d"/>
             </boundsDuration>
-            <count value="4"/>
             <timeOfDay value="09:00:00"/>
             <timeOfDay value="21:00:00"/>
          </repeat>
@@ -116,5 +115,21 @@
             <display value="oraal"/>
          </coding>
       </route>
+      <doseAndRate>
+         <doseQuantity>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+               <valueQuantity>
+                  <value value="4"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </valueQuantity>
+            </extension>
+            <value value="4"/>
+            <unit value="stuk"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="1"/>
+         </doseQuantity>
+      </doseAndRate>
    </dosageInstruction>
 </MedicationDispense>
