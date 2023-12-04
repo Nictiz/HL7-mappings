@@ -31,11 +31,11 @@
    <svrl:ns-prefix-in-attribute-values uri="http://www.w3.org/XML/1998/namespace" prefix="xml"/>
    <svrl:ns-prefix-in-attribute-values uri="urn:urn:nictiz-nl:v3/nfu" prefix="nfu"/>
    <svrl:ns-prefix-in-attribute-values uri="urn:oid:1.3.6.1.4.1.19376.1.3.2" prefix="lab"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"/>
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         name="MPBaseMedicatiegegevens7"/>
    <svrl:fired-rule context="/" fpi="RUL-EXPEL"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9409-2022-11-18T085131"
                         name="Basis Medicatiegegevens"/>
    <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9411']]"
@@ -62,6 +62,12 @@
    <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9411']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole/hl7:addr"
                     id="d96527e79-false-d96755e0"
                     fpi="RULC-1"/>
+   <svrl:successful-report test="*[not(@nullFlavor or self::hl7:useablePeriod)][normalize-space(.)='']"
+                           see="https://art-decor.org/mediawiki/index.php?title=DTr1_AD"
+                           role="warning"
+                           location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:recordTarget[namespace-uri()='urn:hl7-org:v3'][1]/*:patientRole[namespace-uri()='urn:hl7-org:v3'][1]/*:addr[namespace-uri()='urn:hl7-org:v3'][1]">
+      <svrl:text>dtr1-8-AD: empty address particles should not be present.</svrl:text>
+   </svrl:successful-report>
    <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9411']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole/hl7:addr/hl7:streetName"
                     id="d96871e83-false-d96879e0"
                     fpi="RULC-1"/>
@@ -77,6 +83,12 @@
    <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9411']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole/hl7:addr/hl7:country"
                     id="d96871e244-false-d96980e0"
                     fpi="RULC-1"/>
+   <svrl:failed-assert test="@nullFlavor | * | text()[string-length(normalize-space()) gt 0]"
+                       see="https://art-decor.org/mediawiki/index.php?title=DTr1_BIN"
+                       role="error"
+                       location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:recordTarget[namespace-uri()='urn:hl7-org:v3'][1]/*:patientRole[namespace-uri()='urn:hl7-org:v3'][1]/*:addr[namespace-uri()='urn:hl7-org:v3'][1]/*:country[namespace-uri()='urn:hl7-org:v3'][1]">
+      <svrl:text>dtr1-1-BIN: there must be a nullFlavor, or content must be non-empty</svrl:text>
+   </svrl:failed-assert>
    <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9411']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole/hl7:patient"
                     id="d96527e94-false-d97132e0"
                     fpi="RULC-1"/>
@@ -104,10 +116,10 @@
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9411']]/hl7:component[cda:substanceAdministration[cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9416'] and cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9415']]]"
                     fpi="RULC-1"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9409-2022-11-18T085131-closed"
                         name="Basis Medicatiegegevens"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.121.10.24-2021-07-01T000000"
                         name="problem observation"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.24'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.3.10.3.19']]]"
@@ -130,7 +142,7 @@
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.24'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.3.10.3.19']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.24'] and hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.3.10.3.19']]/hl7:entryRelationship[@typeCode = 'REFR'][not(@nullFlavor)]"
                     fpi="RULC-1"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9084-2016-06-21T103838"
                         name="MP MedBeh identificatie"/>
    <svrl:fired-rule context="*[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9084']]]"
@@ -178,40 +190,40 @@
    <svrl:fired-rule context="*[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9084']]]/hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9084']]/hl7:code[(@code = '1' and @codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.3')]"
                     id="d40e1547-false-d7266e0"
                     fpi="RULC-1"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9085-2016-06-21T114818"
                         name="MP CDA Aanvullende gebruiksinstructie"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9095-2016-06-23T195047"
                         name="Aanschrijfdatum"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9097-2016-06-23T203415"
                         name="Distributievorm"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9101-2016-06-24T130316"
                         name="MP Toedieningsafspraak identificatie"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9102-2016-06-24T133045"
                         name="MP Verstrekking identificatie"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9178-2017-05-23T091005"
                         name="MP CDA VS Aanvullende informatie"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9189-2017-10-26T161543"
                         name="Gebruikindicator"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9200-2018-01-12T101847"
                         name="Kopie-indicator"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9312-2019-12-23T150301"
                         name="MP Verstrekkingsverzoek identificatie"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9317-2020-01-20T141110"
                         name="Volgens afspraak indicator"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9357-2021-04-02T133425"
                         name="Financiële indicatiecode"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9359-2021-05-17T141255"
                         name="MP CDA Dosering"/>
    <svrl:fired-rule context="*[cda:substanceAdministration[cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9359']]]/cda:substanceAdministration[cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9359']]"
@@ -256,7 +268,7 @@
    <svrl:fired-rule context="*[cda:substanceAdministration[cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9359']]]/cda:substanceAdministration[cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9359']]/cda:consumable"
                     id="d40e3451-false-d35679e0"
                     fpi="RULC-1"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9362-2021-06-02T154632"
                         name="MP CDA Medication Information"/>
    <svrl:fired-rule context="*[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]]"
@@ -334,22 +346,22 @@
                        location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][3]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:consumable[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedMaterial[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
       <svrl:text>(MPCDAMedicationCode3): Bij magistraal / eigen bereiding / eigen codering moet er minimaal één - volgens de G-standaard gecodeerd - ingrediënt worden opgenomen.</svrl:text>
    </svrl:failed-assert>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9363-2021-06-02T155855"
                         name="MP CDA Medication Information Proposal Statement"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9364-2021-06-02T161935"
                         name="MP CDA Verstrekking"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9375-2021-06-16T173557"
                         name="Reden van afwijken"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9376-2021-06-17T000000"
                         name="MP Afgesproken"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9381-2021-06-17T181505"
                         name="MP Wisselend doseerschema identificatie"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9384-2021-06-18T152903"
                         name="MP Medicatieafspraak identificatie"/>
    <svrl:fired-rule context="*[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9384']]]"
@@ -388,31 +400,31 @@
    <svrl:fired-rule context="*[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9384']]]/hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9384']]/hl7:consumable"
                     id="d40e5022-false-d47591e0"
                     fpi="RULC-1"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9386-2021-06-29T170021"
                         name="MP Medicatiegebruik identificatie"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9388-2021-07-09T160923"
                         name="MP MA Voorschrijver"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9390-2021-08-16T074229"
                         name="Reden voor medicatiegebruik"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9401-2022-03-15T000000"
                         name="MP CDA MA Aanvullende informatie"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9402-2022-03-15T000000"
                         name="MP CDA TA Aanvullende informatie"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9406-2022-11-01T091730"
                         name="MP CDA Medicatietoediening"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9412-2022-11-18T130922"
                         name="MP CDA Wisselend doseerschema"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9414-2022-11-18T141506"
                         name="Stoptype"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9415-2022-11-21T070356"
                         name="MP CDA Toedieningsafspraak inhoud"/>
    <svrl:fired-rule context="*[cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9415']]"
@@ -473,7 +485,7 @@
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9415']]/cda:entryRelationship[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9084']]]"
                     fpi="RULC-1"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9416-2022-11-21T074758"
                         name="MP CDA Toedieningsafspraak"/>
    <svrl:fired-rule context="*[cda:substanceAdministration[cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9416'] and cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9415']]]/cda:substanceAdministration[cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9416'] and cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9415']]"
@@ -482,7 +494,7 @@
    <svrl:fired-rule context="*[cda:substanceAdministration[cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9416'] and cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9415']]]/cda:substanceAdministration[cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9416'] and cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9415']]/cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9416']"
                     id="d40e7696-false-d181973e0"
                     fpi="RULC-1"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9429-2022-11-22T130054"
                         name="MP CDA Medicatieafspraak inhoud"/>
    <svrl:fired-rule context="*[cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9429']]"
@@ -549,7 +561,7 @@
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9429']]/cda:entryRelationship[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9084']]]"
                     fpi="RULC-1"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9430-2022-11-22T132432"
                         name="MP CDA Medicatieafspraak"/>
    <svrl:fired-rule context="*[cda:substanceAdministration[cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9430'] and cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9429']]]/cda:substanceAdministration[cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9430'] and cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9429']]"
@@ -558,28 +570,28 @@
    <svrl:fired-rule context="*[cda:substanceAdministration[cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9430'] and cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9429']]]/cda:substanceAdministration[cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9430'] and cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9429']]/cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9430']"
                     id="d40e8936-false-d407960e0"
                     fpi="RULC-1"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9438-2022-11-24T113046"
                         name="Reden wijzigen of staken afspraak"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9439-2022-11-24T114130"
                         name="Reden wijzigen of staken afspraak WDS"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9440-2022-11-24T114649"
                         name="Reden wijzigen of staken toedieningsafspraak"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9441-2022-11-24T125142"
                         name="Reden voor wijzigen/stoppen medicatiegebruik"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9442-2022-11-24T134142"
                         name="MP CDA Medicatiegebruik inhoud"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9444-2022-11-24T154710"
                         name="MP CDA Medicatiegebruik"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9448-2023-01-06T092258"
                         name="Aanvullende wens"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9449-2023-01-06T093041"
                         name="MP CDA Verstrekkingsverzoek"/>
    <svrl:fired-rule context="*[cda:supply[cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9449']]]/cda:supply[cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9449']]"
@@ -646,10 +658,10 @@
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[cda:supply[cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9449']]]/cda:supply[cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9449']]/cda:entryRelationship[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9084']]]"
                     fpi="RULC-1"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.3.10.0.32-2021-07-01T000000"
                         name="toelichting"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.3.10.3.20-2018-06-11T000000"
                         name="problem status"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.3.10.3.20']]]"
@@ -667,7 +679,7 @@
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.3.10.3.20']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.3.10.3.20']]/hl7:value[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.5.1.2-2017-12-31T000000.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor]"
                     id="d40e13943-false-d563563e0"
                     fpi="RULC-1"/>
-   <svrl:active-pattern document="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
+   <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.7.10.54-2019-05-31T125008"
                         name="problem verificationstatus"/>
 </svrl:schematron-output>

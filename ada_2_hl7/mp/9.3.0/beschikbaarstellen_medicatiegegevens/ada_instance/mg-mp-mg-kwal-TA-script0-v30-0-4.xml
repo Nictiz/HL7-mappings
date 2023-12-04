@@ -5,7 +5,7 @@
          created-by="medicatieprocesada"
          last-update-by="medicatieprocesada"
          creation-date="2023-08-15T10:08:24.238+02:00"
-         last-update-date="2023-08-22T10:44:39.397+02:00"/>
+         last-update-date="2023-11-29T15:25:27.483Z"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp93"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -15,7 +15,7 @@
                                             prefix="mp-"
                                             language="nl-NL"
                                             title="KWAL Medicatiegegevens TA Script0 (filterqueries)"
-                                            desc="&lt;div&gt;Toedieningsafspraken met een filter op gebruiksperiode – ingangsdatum (alles vanaf T-18) (Antwoord: bericht met 2 toedieningsafspraken)&lt;/div&gt;"
+                                            desc="&lt;div&gt;Toedieningsafspraken met een filter op gebruiksperiode – ingangsdatum (alles vanaf T-1) (Antwoord: bericht met 1 toedieningsafspraak)&lt;/div&gt;"
                                             id="mg-mp-mg-kwal-TA-script0-v30-0-4">
          <scenario-nr value="0.4"
                       conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.2.1.1"/>
@@ -54,91 +54,6 @@
                       codeSystem="2.16.840.1.113883.5.1"
                       displayName="Man"/>
          </patient>
-         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_300_script0_QA2-->
-         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
-            <identificatie value="MBH_300_script0_QA2"
-                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
-            <toedieningsafspraak comment=""
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.294">
-               <identificatie value="MBH_300_script0_QA2_TA"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
-               <toedieningsafspraak_datum_tijd value="T-10D{09:18:00}"
-                                               datatype="datetime"
-                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.332"/>
-               <gebruiksperiode comment=""
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334">
-                  <start_datum_tijd value="T-10D{00:00:00}"
-                                    datatype="datetime"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.335"/>
-                  <eind_datum_tijd value="T-3D{23:59:59}"
-                                   datatype="datetime"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.336"/>
-               </gebruiksperiode>
-               <verstrekker comment=""
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.295">
-                  <zorgaanbieder datatype="reference"
-                                 value="Apotheek_De_Gulle_Gaper"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.296"/>
-               </verstrekker>
-               <geneesmiddel_bij_toedieningsafspraak comment=""
-                                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.297">
-                  <farmaceutisch_product datatype="reference"
-                                         value="HPK_oxazepam_613401"
-                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.298"/>
-               </geneesmiddel_bij_toedieningsafspraak>
-               <gebruiksinstructie comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.299">
-                  <omschrijving value="Vanaf &lt;T-10D{00:00:00}&gt; t/m &lt;T-3D{23:59:59}&gt;, 2 maal per dag 1 stuk"
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.301"/>
-                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
-                                  code="9"
-                                  displayName="oraal"
-                                  codeSystemName="G-Standaard Toedieningswegen"
-                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.303"/>
-                  <doseerinstructie comment=""
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.304">
-                     <dosering comment=""
-                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.307">
-                        <keerdosis comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.316">
-                           <aantal comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.575">
-                              <nominale_waarde value="1"
-                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.319"/>
-                           </aantal>
-                           <eenheid code="245"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"
-                                    displayName="stuk"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.576"/>
-                        </keerdosis>
-                        <toedieningsschema comment=""
-                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.323">
-                           <frequentie comment=""
-                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.324">
-                              <aantal comment=""
-                                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.578">
-                                 <nominale_waarde value="2"
-                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.327"/>
-                              </aantal>
-                              <tijdseenheid value="1"
-                                            unit="dag"
-                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.579"/>
-                           </frequentie>
-                        </toedieningsschema>
-                     </dosering>
-                  </doseerinstructie>
-               </gebruiksinstructie>
-               <relatie_medicatieafspraak comment=""
-                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.338">
-                  <identificatie value="MBH_300_script0_QA2_MA"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.565"/>
-               </relatie_medicatieafspraak>
-            </toedieningsafspraak>
-         </medicamenteuze_behandeling>
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_300_script0_QA4-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
             <identificatie value="MBH_300_script0_QA4"
@@ -149,12 +64,12 @@
                <identificatie value="MBH_300_script0_QA4_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
-               <toedieningsafspraak_datum_tijd value="T-11D{11:15:00}"
+               <toedieningsafspraak_datum_tijd value="T-12D{11:15:00}"
                                                datatype="datetime"
                                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.332"/>
                <gebruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334"
                                 comment="">
-                  <start_datum_tijd value="T-11D{00:00:00}"
+                  <start_datum_tijd value="T-12D{00:00:00}"
                                     datatype="datetime"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.335"/>
                </gebruiksperiode>
@@ -196,25 +111,6 @@
          </medicamenteuze_behandeling>
          <bouwstenen comment=""
                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.259">
-            <farmaceutisch_product id="HPK_oxazepam_613401"
-                                   comment=""
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
-               <product_code code="613401"
-                             codeSystem="2.16.840.1.113883.2.4.4.7"
-                             codeSystemName="G-Standaard HPK"
-                             displayName="OXAZEPAM ACTAVIS TABLET 10MG"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code code="353"
-                             codeSystem="2.16.840.1.113883.2.4.4.10"
-                             codeSystemName="G-Standaard PRK"
-                             displayName="OXAZEPAM TABLET 10MG"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-               <product_code code="1023"
-                             codeSystem="2.16.840.1.113883.2.4.4.1"
-                             codeSystemName="G-Standaard GPK"
-                             displayName="OXAZEPAM TABLET 10MG"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
-            </farmaceutisch_product>
             <farmaceutisch_product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260"
                                    comment=""
                                    id="HPK_FENPROCOUMON_1119265">
