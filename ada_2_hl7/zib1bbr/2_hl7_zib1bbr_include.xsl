@@ -64,9 +64,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:value-of select="@value"/>
                     </city>
                 </xsl:for-each>
-                <xsl:for-each select="land[@value]">
+                <xsl:for-each select="land[(@value | @code | @codeSystem | @displayName)]">
                     <country>
-                        <xsl:value-of select="@value"/>
+                        <xsl:choose>
+                            <xsl:when test="@code | @codeSystem ">
+                             <xsl:call-template name="makeCodeAttribs"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="(@value | @displayName)"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+      
+                        
                     </country>
                 </xsl:for-each>
                 <!-- Additionele informatie wordt geschrapt uit de definitie

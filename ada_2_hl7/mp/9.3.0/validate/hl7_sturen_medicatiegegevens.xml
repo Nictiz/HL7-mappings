@@ -1,0 +1,941 @@
+<!--start--><start xmlns:saxon="http://saxon.sf.net/"
+       xmlns:schold="http://www.ascc.net/xml/schematron"
+       xmlns:iso="http://purl.oclc.org/dsdl/schematron"
+       xmlns:xhtml="http://www.w3.org/1999/xhtml"
+       xmlns:hl7="urn:hl7-org:v3"
+       xmlns:cda="urn:hl7-org:v3"
+       xmlns:hl7v2="urn:hl7-org:v2xml"
+       xmlns:lab="urn:oid:1.3.6.1.4.1.19376.1.3.2"
+       xmlns:ihe="urn:ihe:pcc:hl7v3"
+       xmlns:sdtc="urn:hl7-org:sdtc"
+       xmlns:nfu="urn:urn:nictiz-nl:v3/nfu"
+       xmlns:pharm="urn:ihe:pharm:medication"
+       xmlns:f="http://hl7.org/fhir"
+       xmlns:hl7nl="urn:hl7-nl:v3"
+       xmlns:h="http://www.w3.org/1999/xhtml"
+       inputDir="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/validate_hl7_instance_repo">
+   <validate>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-VV-Scenarioset9-v30-9-2.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset3-v30-3-6.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-VV-Scenarioset7-v30-7-2.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-kwal-TA-script1-v30.xml">
+         <fail>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(.)"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9359-2021-05-17T141255.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][2]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][2]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:doseQuantity[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDADosering4)/d140771e47-true-d140851e0: dit element 'doseQuantity' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9359'] | f:effectiveTime | hl7:doseQuantity[hl7:center] | hl7:doseQuantity[hl7:low|hl7:high] | cda:rateQuantity | cda:maxDoseQuantity | cda:consumable | cda:precondition[cda:criterion] (rule-reference: d140771e47-true-d140851e0)</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(@codeSystem = $HPK) or (hl7:translation[@codeSystem = $GPK] and hl7:translation[@codeSystem = $PRK])"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9360-2021-06-02T150453.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:consumable[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedMaterial[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicationCode3): Bij HPK, indien beschikbaar, ook vertaling naar PRK én GPK opnemen. Indien niet beschikbaar is het toegestaan de HPK zonder vertaling te communiceren.</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(@codeSystem = $HPK) or (hl7:translation[@codeSystem = $GPK] and hl7:translation[@codeSystem = $PRK])"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9360-2021-06-02T150453.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][2]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:consumable[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedMaterial[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicationCode3): Bij HPK, indien beschikbaar, ook vertaling naar PRK én GPK opnemen. Indien niet beschikbaar is het toegestaan de HPK zonder vertaling te communiceren.</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(@codeSystem = $HPK) or (hl7:translation[@codeSystem = $GPK] and hl7:translation[@codeSystem = $PRK])"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9360-2021-06-02T150453.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][3]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:consumable[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedMaterial[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicationCode3): Bij HPK, indien beschikbaar, ook vertaling naar PRK én GPK opnemen. Indien niet beschikbaar is het toegestaan de HPK zonder vertaling te communiceren.</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:routeCode) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9415-2022-11-21T070356.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][3]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAToedieningsafspraakSchemaInhoud5): element cda:routeCode is required [min 1x].</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:routeCode) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9416-2022-11-21T074758.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][3]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAToedieningsafspraakSchema6): element cda:routeCode is required [min 1x].</svrl:text>
+            </svrl:failed-assert>
+         </fail>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MTD-Scenarioset11-v30-11-2.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-WDS-Scenarioset3-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-kwal-TA-script2-v30-2.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MVE-Scenarioset9-v30-9-1b.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-MGB-Scenarioset13-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MVE-Scenarioset2-v30-2-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MVE-Scenarioset9-v30-9-1c.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-kwal-MGB-script3-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MTD-Scenarioset11-v30-11-3.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-VV-Scenarioset7-v30-7-3.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset3-v30-3-7.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-VV-Scenarioset9-v30-9-3.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset6-v30-6-6.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-WDS-Scenarioset13-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset6-v30-6-7a.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-kwal-VV-script2-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset6-v30-6-7a.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-TA-Scenarioset10-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset3-v30-3-5.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset6-v30-6-4.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-VV-Scenarioset7-v30-7-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MTD-Scenarioset11-v30-11-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MVE-Scenarioset2-v30-2-2.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset6-v30-6-5.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset3-v30-3-4.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset6-v30-6-7b.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset6-v30-6-7b.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-VV-Scenarioset9-v30-9-4.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset6-v30-6-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset10-v30-10-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MTD-Scenarioset11-v30-11-4.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-VV-Scenarioset9-v30-9-1c.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-kwal-VV-script4-v30-4.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-kwal-MVE-script1-v30.xml">
+         <fail>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(@codeSystem = $HPK) or (hl7:translation[@codeSystem = $GPK] and hl7:translation[@codeSystem = $PRK])"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9360-2021-06-02T150453.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:supply[namespace-uri()='urn:hl7-org:v3'][1]/*:product[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedMaterial[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicationCode3): Bij HPK, indien beschikbaar, ook vertaling naar PRK én GPK opnemen. Indien niet beschikbaar is het toegestaan de HPK zonder vertaling te communiceren.</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(@codeSystem = $HPK) or (hl7:translation[@codeSystem = $GPK] and hl7:translation[@codeSystem = $PRK])"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9360-2021-06-02T150453.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][2]/*:supply[namespace-uri()='urn:hl7-org:v3'][1]/*:product[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedMaterial[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicationCode3): Bij HPK, indien beschikbaar, ook vertaling naar PRK én GPK opnemen. Indien niet beschikbaar is het toegestaan de HPK zonder vertaling te communiceren.</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="@displayName"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9021-2015-03-05T000000.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][2]/*:supply[namespace-uri()='urn:hl7-org:v3'][1]/*:quantity[namespace-uri()='urn:hl7-org:v3'][1]/*:translation[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(QuantUnitAndTranslation): attribute @displayName MOET aanwezig zijn.</svrl:text>
+            </svrl:failed-assert>
+         </fail>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-VV-Scenarioset9-v30-9-1b.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-WDS-Scenarioset13-v30-13-3.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset3-v30-3-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-kwal-VV-script2-v30-2.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset6-v30-6-2.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset3-v30-3-3.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-kwal-MA-script4-v30-4.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset10-v30-10-2.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-MGB-Scenarioset2-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-VV-Scenarioset10-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-WDS-Scenarioset2-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-VV-Scenarioset9-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-kwal-MA-script2-v30-2.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-VV-Scenarioset9-v30-9-1a.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-kwal-VV-script3-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset3-v30-3-2.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MVE-Scenarioset1-v30-1-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-kwal-MGB-script2-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset6-v30-6-3.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset6-v30-6-15.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-TA-Scenarioset7-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset6-v30-6-15.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MVE-Scenarioset7-v30-7-2.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset5-v30-5-6.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-kwal-MVE-script3-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset3-v30-3-5.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset6-v30-6-4.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset6-v30-6-3.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-kwal-TA-script5-v30-5.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-VV-Scenarioset2-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-WDS-Scenarioset1-v30-1-2.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-VV-Scenarioset2-v30-2-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset6-v30-6-2.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset6-v30-6-5.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset3-v30-3-4.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-kwal-MA-script4-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset5-v30-5-7.xml">
+         <fail>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="@nullFlavor or @displayName"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9442-2022-11-24T134142.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:routeCode[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatiegebruikSchemaInhoud5): Het is verplicht de displayName mee te geven als er een waarde is.</svrl:text>
+            </svrl:failed-assert>
+         </fail>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MVE-Scenarioset7-v30-7-3.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-kwal-WDS-script2-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MVE-Scenarioset9-v30-9-3.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset6-v30-6-14.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-kwal-TA-script3-v30-3.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset6-v30-6-14.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-MGB-Scenarioset10-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MVE-Scenarioset7-v30-7-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset10-v30-10-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset5-v30-5-5.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset3-v30-3-6.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-kwal-TA-script2-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-WDS-Scenarioset1-v30-1-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-VV-Scenarioset2-v30-2-2.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-kwal-VV-script1-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-MVE-Scenarioset10-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-WDS-Scenarioset10-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-kwal-WDS-script2-v30-2.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset6-v30-6-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset3-v30-3-7.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset6-v30-6-6.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-MA-Scenarioset7-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset11-v30-11-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset5-v30-5-4.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-kwal-MVE-script1-v30-1.xml">
+         <fail>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(@codeSystem = $HPK) or (hl7:translation[@codeSystem = $GPK] and hl7:translation[@codeSystem = $PRK])"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9360-2021-06-02T150453.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:supply[namespace-uri()='urn:hl7-org:v3'][1]/*:product[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedMaterial[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicationCode3): Bij HPK, indien beschikbaar, ook vertaling naar PRK én GPK opnemen. Indien niet beschikbaar is het toegestaan de HPK zonder vertaling te communiceren.</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(@codeSystem = $HPK) or (hl7:translation[@codeSystem = $GPK] and hl7:translation[@codeSystem = $PRK])"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9360-2021-06-02T150453.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][2]/*:supply[namespace-uri()='urn:hl7-org:v3'][1]/*:product[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedMaterial[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicationCode3): Bij HPK, indien beschikbaar, ook vertaling naar PRK én GPK opnemen. Indien niet beschikbaar is het toegestaan de HPK zonder vertaling te communiceren.</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="@displayName"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9021-2015-03-05T000000.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][2]/*:supply[namespace-uri()='urn:hl7-org:v3'][1]/*:quantity[namespace-uri()='urn:hl7-org:v3'][1]/*:translation[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(QuantUnitAndTranslation): attribute @displayName MOET aanwezig zijn.</svrl:text>
+            </svrl:failed-assert>
+         </fail>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset6-v30-6-13.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset6-v30-6-13.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-WDS-Scenarioset2-v30-2-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-WDS-Scenarioset1-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-MVE-Scenarioset7-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-MGB-Scenarioset1-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-kwal-VV-script3-v30-3.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset6-v30-6-2.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset3-v30-3-3.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset6-v30-6-5.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-kwal-TA-script3-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset10-v30-10-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-kwal-MGB-script1-v30.xml">
+         <fail>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(@codeSystem = $HPK) or (hl7:translation[@codeSystem = $GPK] and hl7:translation[@codeSystem = $PRK])"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9360-2021-06-02T150453.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:consumable[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedMaterial[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicationCode3): Bij HPK, indien beschikbaar, ook vertaling naar PRK én GPK opnemen. Indien niet beschikbaar is het toegestaan de HPK zonder vertaling te communiceren.</svrl:text>
+            </svrl:failed-assert>
+         </fail>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset6-v30-6-4.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-WDS-Scenarioset11-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset3-v30-3-2.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset6-v30-6-3.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset5-v30-5-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset1-v30-1-2a.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset1-v30-1-2a.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-MA-Scenarioset6-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-kwal-VV-script5-v30-5.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset6-v30-6-12.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset6-v30-6-12.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-kwal-MA-script3-v30-3.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset6-v30-6-10.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset6-v30-6-10.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-kwal-MVE-script2-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-TA-Scenarioset6-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset5-v30-5-3.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset6-v30-6-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset6-v30-6-6.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset10-v30-10-3.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset10-v30-10-2.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-kwal-MA-script5-v30-5.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset3-v30-3-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset5-v30-5-2.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset1-v30-1-2b.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset1-v30-1-2b.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-kwal-MA-script5-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset6-v30-6-11.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset6-v30-6-11.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-kwal-MGB-script1-v30-1.xml">
+         <fail>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(@codeSystem = $HPK) or (hl7:translation[@codeSystem = $GPK] and hl7:translation[@codeSystem = $PRK])"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9360-2021-06-02T150453.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:consumable[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedMaterial[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicationCode3): Bij HPK, indien beschikbaar, ook vertaling naar PRK én GPK opnemen. Indien niet beschikbaar is het toegestaan de HPK zonder vertaling te communiceren.</svrl:text>
+            </svrl:failed-assert>
+         </fail>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-kwal-MVE-script2-v30-2.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset7-v30-7-3.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset2-v30-2-2.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset2-v30-2-3.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset7-v30-7-2.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-TA-Scenarioset3-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-WDS-Scenarioset3-v30-3-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset1-v30-1-4.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset6-v30-6-15.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-kwal-VV-script5-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset6-v30-6-9.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset2-v30-2-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-MA-Scenarioset11-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-MA-Scenarioset3-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset7-v30-7-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset6-v30-6-8.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-MVE-Scenarioset2-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset6-v30-6-14.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset1-v30-1-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-kwal-VV-script4-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-kwal-MGB-script2-v30-2.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset6-v30-6-10.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-MA-Scenarioset2-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-MA-Scenarioset10-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset2-v30-2-4.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset7-v30-7-2.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset7-v30-7-3.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MVE-Scenarioset10-v30-10-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset2-v30-2-5.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset6-v30-6-11.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset1-v30-1-2b.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-MGB-Scenarioset5-v30.xml">
+         <fail>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="@nullFlavor or @displayName"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9442-2022-11-24T134142.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][2]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:routeCode[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatiegebruikSchemaInhoud5): Het is verplicht de displayName mee te geven als er een waarde is.</svrl:text>
+            </svrl:failed-assert>
+         </fail>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset6-v30-6-13.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset6-v30-6-8.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-WDS-Scenarioset10-v30-10-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-MTD-Scenarioset11-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-kwal-MA-script1-v30.xml">
+         <fail>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:routeCode) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9429-2022-11-22T130054.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][3]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatieAfspraakSchemaInhoud5): element cda:routeCode is required [min 1x].</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]]) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9429-2022-11-22T130054.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][3]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatieAfspraakSchemaInhoud5): element cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]] is mandatory [min 1x].</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:routeCode) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9430-2022-11-22T132432.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][3]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatieAfspraakSchema6): element cda:routeCode is required [min 1x].</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]]) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9430-2022-11-22T132432.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][3]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatieAfspraakSchema6): element cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]] is mandatory [min 1x].</svrl:text>
+            </svrl:failed-assert>
+         </fail>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset7-v30-7-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-TA-Scenarioset2-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset6-v30-6-9.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset6-v30-6-12.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset1-v30-1-3.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-VV-Scenarioset7-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset1-v30-1-2a.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-kwal-MVE-script5-v30-5.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset2-v30-2-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset1-v30-1-3.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset1-v30-1-4.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-kwal-MVE-script3-v30-3.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-WDS-Scenarioset11-v30-11-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-kwal-TA-script5-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-MGB-Scenarioset7-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-MVE-Scenarioset1-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset7-v30-7-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset6-v30-6-7b.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-kwal-MA-script3-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-MTD-Scenarioset13-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset13-v30-13-5.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset7-v30-7-3.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset2-v30-2-2.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-WDS-Scenarioset11-v30-11-3.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-WDS-Scenarioset6-v30-6-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MTD-Scenarioset13-v30-13-4.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-kwal-TA-script1-v30-1.xml">
+         <fail>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(.)"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9359-2021-05-17T141255.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][2]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][2]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:doseQuantity[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDADosering4)/d140771e47-true-d140851e0: dit element 'doseQuantity' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9359'] | f:effectiveTime | hl7:doseQuantity[hl7:center] | hl7:doseQuantity[hl7:low|hl7:high] | cda:rateQuantity | cda:maxDoseQuantity | cda:consumable | cda:precondition[cda:criterion] (rule-reference: d140771e47-true-d140851e0)</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(@codeSystem = $HPK) or (hl7:translation[@codeSystem = $GPK] and hl7:translation[@codeSystem = $PRK])"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9360-2021-06-02T150453.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:consumable[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedMaterial[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicationCode3): Bij HPK, indien beschikbaar, ook vertaling naar PRK én GPK opnemen. Indien niet beschikbaar is het toegestaan de HPK zonder vertaling te communiceren.</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(@codeSystem = $HPK) or (hl7:translation[@codeSystem = $GPK] and hl7:translation[@codeSystem = $PRK])"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9360-2021-06-02T150453.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][2]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:consumable[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedMaterial[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicationCode3): Bij HPK, indien beschikbaar, ook vertaling naar PRK én GPK opnemen. Indien niet beschikbaar is het toegestaan de HPK zonder vertaling te communiceren.</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(@codeSystem = $HPK) or (hl7:translation[@codeSystem = $GPK] and hl7:translation[@codeSystem = $PRK])"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9360-2021-06-02T150453.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][3]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:consumable[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedMaterial[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicationCode3): Bij HPK, indien beschikbaar, ook vertaling naar PRK én GPK opnemen. Indien niet beschikbaar is het toegestaan de HPK zonder vertaling te communiceren.</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:routeCode) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9415-2022-11-21T070356.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][3]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAToedieningsafspraakSchemaInhoud5): element cda:routeCode is required [min 1x].</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:routeCode) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9416-2022-11-21T074758.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][3]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAToedieningsafspraakSchema6): element cda:routeCode is required [min 1x].</svrl:text>
+            </svrl:failed-assert>
+         </fail>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-WDS-Scenarioset11-v30-11-2.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset1-v30-1-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset2-v30-2-3.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset7-v30-7-2.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset6-v30-6-7a.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset6-v30-6-8.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-kwal-MA-script2-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-kwal-MA-script1-v30-1.xml">
+         <fail>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:routeCode) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9429-2022-11-22T130054.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][3]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatieAfspraakSchemaInhoud5): element cda:routeCode is required [min 1x].</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]]) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9429-2022-11-22T130054.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][3]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatieAfspraakSchemaInhoud5): element cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]] is mandatory [min 1x].</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:routeCode) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9430-2022-11-22T132432.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][3]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatieAfspraakSchema6): element cda:routeCode is required [min 1x].</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]]) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9430-2022-11-22T132432.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][3]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatieAfspraakSchema6): element cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]] is mandatory [min 1x].</svrl:text>
+            </svrl:failed-assert>
+         </fail>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-kwal-MGB-script3-v30-3.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-VV-Scenarioset10-v30-10-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset1-v30-1-3.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset1-v30-1-4.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-MVE-Scenarioset9-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-kwal-MVE-script5-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset3-v30-3-8.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-TA-Scenarioset6-v30-6-9.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-TA-Scenarioset1-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-kwal-VV-script1-v30-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset2-v30-2-3.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-MA-Scenarioset1-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset2-v30-2-4.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset1-v30-1-1.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-MGB-Scenarioset6-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-VV-Scenarioset10-v30-10-2.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MA-Scenarioset2-v30-2-5.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mgsets-mp-smg-tst-WDS-Scenarioset6-v30.xml">
+         <pass/>
+      </file>
+      <file name="file:/Users/laurirondolo/Documents/Repositories/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance_repo/mg-mp-smg-tst-MGB-Scenarioset2-v30-2-2.xml">
+         <pass/>
+      </file>
+   </validate>
+</start>

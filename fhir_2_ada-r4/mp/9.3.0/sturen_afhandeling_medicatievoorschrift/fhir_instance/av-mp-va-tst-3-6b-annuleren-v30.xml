@@ -5,7 +5,7 @@
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f21c2-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:528125be-6b38-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -16,15 +16,15 @@
                </tag>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
-               <valueDateTime value="${DATE, T, D, -1}T14:10:00+02:00"/>
+               <valueDateTime value="${DATE, T, D, +0}T14:10:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T + 7 dagen om 14:10 uur, tot en met T + 7 dagen om 14:10 uur, 1 maal per week 1 stuk, Oraal, geannuleerd"/>
+               <valueString value="Vanaf T + 6 dagen, tot en met T + 6 dagen, 1 maal per week 1 stuk, Oraal, geannuleerd"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="${DATE, T, D, +7}T14:10:00+02:00"/>
-                  <end value="${DATE, T, D, +7}T14:10:00+02:00"/>
+                  <start value="${DATE, T, D, +6}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, +6}T00:00:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -65,18 +65,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f1b92-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:08e5b404-6b15-11ec-0000-020000000000"/>
                <type value="Medication"/>
                <display value="LARIAM TABLET 250MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f1f07-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:1c84b21e-6b37-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:c33f1aa8-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -85,9 +85,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBG_300_annuleren_MA_geannuleerd"/>
+                  <value value="MBH_300_annuleren_MA_geannuleerd"/>
                </identifier>
-               <display value="relatie naar medicatieafspraak met identificatie: MBG_300_annuleren_MA_geannuleerd || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_annuleren_MA_geannuleerd || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </authorizingPrescription>
             <dosageInstruction>
                <timing>
@@ -129,7 +129,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1f07-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:1c84b21e-6b37-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -179,7 +179,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1aa8-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -198,7 +198,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1b92-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:08e5b404-6b15-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <meta>

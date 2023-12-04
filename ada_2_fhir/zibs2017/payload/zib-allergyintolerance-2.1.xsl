@@ -393,7 +393,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:apply-templates select="$adaPatient" mode="doPatientReference-2.1"/>
                     </patient>
 
-                    <!-- TS    NL-CM:0.0.14    DatumTijd    0..1-->
+                    <!-- TS    NL-CM:8.2.6        BeginDatumTijd            0..1    -->
                     <!-- onsetDateTime -->
                     <xsl:for-each select="(begin_datum_tijd | start_date_time)[@value]">
                         <onsetDateTime>
@@ -406,9 +406,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </onsetDateTime>
                     </xsl:for-each>
 
-                    <!-- TS    NL-CM:8.2.6        BeginDatumTijd            0..1    -->
+                    <!-- TS    NL-CM:0.0.14    DatumTijd    0..1-->
                     <!-- assertedDate -->
                     <xsl:for-each select="(zibroot/datum_tijd | hcimroot/date_time)[@value]">
+                        <xsl:call-template name="util:logMessage">
+                            <xsl:with-param name="level" select="$logWARN"/>
+                            <xsl:with-param name="msg">In the zib-AllergyIntolerance profile the DateTime concept from the BasicElements (NL-CM:0.0.14) is mapped to .onsetDateTime instead of .assertedDate (following https://bits.nictiz.nl/browse/MM-616), but this stylesheet wasn't updated accordingly. Since this stylesheet is actively used (for instance in MP 6.12) this discrepancy will not be corrected.</xsl:with-param>
+                            <xsl:with-param name="terminate">false</xsl:with-param>
+                        </xsl:call-template>
                         <assertedDate>
                             <xsl:attribute name="value">
                                 <xsl:call-template name="format2FHIRDate">

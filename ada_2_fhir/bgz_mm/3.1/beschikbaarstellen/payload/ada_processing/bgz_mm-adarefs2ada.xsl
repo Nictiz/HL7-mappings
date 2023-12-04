@@ -67,6 +67,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each-group>
     </xsl:template>
     
+    <xsl:template match="hcimroot" mode="copy-for-resolve">
+        <xsl:variable name="id" select="identification_number/@value"/>
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" mode="#current"/>
+            <xsl:if test="$ada-input//planned_care_activity/*/*/@value = $id">
+                <planned_care_activity_referenced value="true"/>
+            </xsl:if>
+        </xsl:copy>
+    </xsl:template>
+    
     <xsl:template match="identification_number/@value" mode="copy-for-resolve">
         <xsl:attribute name="value">
             <xsl:choose>
@@ -93,6 +103,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="resolved" select="($ada-input//*[hcimroot/identification_number[lower-case(@value) = lower-case(current()/@value)][@root = current()/@root]])[1]"/>
         <xsl:if test="count($resolved) lt 1">
             <xsl:message terminate="no" select="concat('WARN   : Could not resolve ''',@value,''' in ', string-join(for $el in ancestor-or-self::* return if ($el[@id]) then concat(local-name($el), '[@id=''', $el/@id, ''']') else local-name($el), '/'))"/>
+            <xsl:copy-of select="."/>
         </xsl:if>
         <xsl:apply-templates select="$resolved" mode="#current"/>
     </xsl:template>
@@ -105,29 +116,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:copy-of select="$maritalStatus"/>
         </xsl:copy>
     </xsl:template>
-    
-    <!--<!-\- Matching on @value and @root, and excluding local-name containing 'identification' but should be on @datatype = 'reference' -\->
-    <xsl:template match="*[starts-with(lower-case(@value), 'mm-bgz-')]" mode="copy-for-resolve" priority="1">
-        <xsl:variable name="transactionId" select="ancestor::*[ends-with(local-name(), '_registration')]/@transactionRef"/>
-        <xsl:variable name="valueDomain" select="nf:get-concept-value-domain(., 'type', $transactionId)"/>
-        <xsl:choose>
-            <xsl:when test="$valueDomain = 'reference'">
-                <xsl:variable name="resolved" select="($ada-input//*[@title = current()/@value]/*)[1]"/>
-                <xsl:if test="count($resolved) ne 1">
-                    <xsl:message>Could not resolve reference to <xsl:value-of select="current()/local-name()"/> '<xsl:value-of select="current()/@value"/>' in <xsl:value-of select="ancestor::*[ends-with(local-name(), '_registration')]/@title"/></xsl:message>
-                </xsl:if>
-                <xsl:element name="{$resolved/local-name()}">
-                    <xsl:copy-of select="@*"/>
-                    <xsl:copy-of select="$resolved/@*"/>
-                    <xsl:apply-templates select="$resolved/*" mode="#current"/>
-                </xsl:element>
-                
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:next-match/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>-->
     
     <xd:doc>
         <xd:desc>Default copy template</xd:desc>

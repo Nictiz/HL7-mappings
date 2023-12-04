@@ -23,7 +23,7 @@
     <property name="schema.organizer" value="${build.dir}/../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210921/mp-xml-20210921T194523/schemas_codeGen_flat/organizer.xsd"/>
     <property name="schema.cda" value="${build.dir}/../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210921/mp-xml-20210921T194523/schemas_codeGen_flat/CDANL_extended.xsd"/>
 
-    <property name="xsl.validate.svrl" value="${build.dir}/../../validate/validate-svrl-output.xsl"/>
+    <property name="xsl.validate.svrl" value="${build.dir}/../../../util/validate-svrl-output.xsl"/>
 
     <target name="setup_mp930" description="Setup subdirectories, schemas, ada instance xml's in ${build.dir} for ${is.name} ${is.version}">
 
@@ -104,6 +104,7 @@
             <param name="refs.ada.dir" value="ada_instance_repo"/>
         </antcall>
 
+        
         <!-- medicatievoorschrift-->
         <antcall target="setup_sub">
             <param name="usecase" value="${usecase.mv}"/>
@@ -134,7 +135,74 @@
             <param name="fileset.include" value="*.xml"/>
             <param name="refs.ada.dir" value="ada_instance"/>
         </antcall>
-
+        
+        
+        <!-- TOEGEVOEGD -->
+        <!-- sturen_medicatiegegevens copies schemas for project dir and appropriate ada instances from refs.dir for MA-->
+        <antcall target="setup_sub">
+            <param name="usecase" value="${usecase.mg.st}"/>
+            <param name="fileset.dir" value="ada_instance_MA"/>
+            <param name="fileset.include" value="mg-*MA*.xml"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
+        </antcall>
+        <!-- sturen_medicatiegegevens appropriate ada instances from refs.dir for VV -->
+        <antcall target="setup_sub_instances">
+            <param name="usecase" value="${usecase.mg.st}"/>
+            <param name="fileset.dir" value="ada_instance_VV"/>
+            <param name="fileset.include" value="mg-*VV*.xml"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
+        </antcall>
+        <!-- sturen_medicatiegegevens appropriate ada instances from refs.dir for TA -->
+        <antcall target="setup_sub_instances">
+            <param name="usecase" value="${usecase.mg.st}"/>
+            <param name="fileset.dir" value="ada_instance_TA"/>
+            <param name="fileset.include" value="mg-*TA*.xml"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
+        </antcall>
+        <!-- sturen_medicatiegegevens appropriate ada instances from refs.dir for MVE -->
+        <antcall target="setup_sub_instances">
+            <param name="usecase" value="${usecase.mg.st}"/>
+            <param name="fileset.dir" value="ada_instance_MVE"/>
+            <param name="fileset.include" value="mg-*MVE*.xml"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
+        </antcall>
+        <!-- sturen_medicatiegegevens appropriate ada instances from refs.dir for MGB -->
+        <antcall target="setup_sub_instances">
+            <param name="usecase" value="${usecase.mg.st}"/>
+            <param name="fileset.dir" value="ada_instance_MGB"/>
+            <param name="fileset.include" value="mg-*MGB*.xml"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
+        </antcall>
+        <!-- sturen_medicatiegegevens appropriate ada instances from refs.dir for MTD -->
+        <antcall target="setup_sub_instances">
+            <param name="usecase" value="${usecase.mg.st}"/>
+            <param name="fileset.dir" value="ada_instance_MTD"/>
+            <param name="fileset.include" value="mg-*MTD*.xml"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
+        </antcall>
+        <!-- sturen_medicatiegegevens appropriate ada instances from refs.dir for WDS -->
+        <antcall target="setup_sub_instances">
+            <param name="usecase" value="${usecase.mg.st}"/>
+            <param name="fileset.dir" value="ada_instance_WDS"/>
+            <param name="fileset.include" value="mg-*WDS*.xml"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
+        </antcall>
+        <!-- sturen_medicatiegegevens appropriate ada instances from refs.dir for regression the old MedMij stuff -->
+        <antcall target="setup_sub_instances">
+            <param name="usecase" value="${usecase.mg.st}"/>
+            <param name="fileset.dir" value="ada_instance"/>
+            <param name="fileset.include" value="*.xml"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
+        </antcall>
+        <!-- sturen_medicatiegegevens the repo stuff for testing purposes -->
+        <antcall target="setup_sub_instances">
+            <param name="usecase" value="${usecase.mg.st}"/>
+            <param name="fileset.dir" value="ada_instance_repo"/>
+            <param name="fileset.include" value="*.xml"/>
+            <param name="refs.ada.dir" value="ada_instance_repo"/>
+        </antcall>
+        <!-- EIND TOEGEVOEGD -->
+        
         <!-- sturen_voorstel_verstrekkingsverzoek copies schemas for project dir and appropriate ada instances from refs.dir -->
         <antcall target="setup_sub">
             <param name="usecase" value="${usecase.vvv}"/>
@@ -149,6 +217,7 @@
             <param name="fileset.include" value="*.xml"/>
             <param name="refs.ada.dir" value="ada_instance"/>
         </antcall>
+
 
         <!-- xml voorbeelden -->
         <!-- schemas -->
@@ -249,6 +318,66 @@
             <param name="xsl.in" value="ada_instance_repo"/>
             <param name="xsl.out" value="hl7_instance_repo"/>
         </antcall>
+        
+        
+        
+        
+        <!-- convert sturen_medicatiegegevens -->
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mg.st}"/>
+            <param name="xsl.name" value="../${usecase.mg.st}/payload/${usecase.mg.st}_org.xsl"/>
+            <param name="xsl.in" value="ada_instance_MA"/>
+            <param name="xsl.out" value="hl7_instance_MA"/>
+        </antcall>
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mg.st}"/>
+            <param name="xsl.name" value="../${usecase.mg.st}/payload/${usecase.mg.st}_org.xsl"/>
+            <param name="xsl.in" value="ada_instance_VV"/>
+            <param name="xsl.out" value="hl7_instance_VV"/>
+        </antcall>
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mg.st}"/>
+            <param name="xsl.name" value="../${usecase.mg.st}/payload/${usecase.mg.st}_org.xsl"/>
+            <param name="xsl.in" value="ada_instance_TA"/>
+            <param name="xsl.out" value="hl7_instance_TA"/>
+        </antcall>
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mg.st}"/>
+            <param name="xsl.name" value="../${usecase.mg.st}/payload/${usecase.mg.st}_org.xsl"/>
+            <param name="xsl.in" value="ada_instance_MVE"/>
+            <param name="xsl.out" value="hl7_instance_MVE"/>
+        </antcall>
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mg.st}"/>
+            <param name="xsl.name" value="../${usecase.mg.st}/payload/${usecase.mg.st}_org.xsl"/>
+            <param name="xsl.in" value="ada_instance_MGB"/>
+            <param name="xsl.out" value="hl7_instance_MGB"/>
+        </antcall>
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mg.st}"/>
+            <param name="xsl.name" value="../${usecase.mg.st}/payload/${usecase.mg.st}_org.xsl"/>
+            <param name="xsl.in" value="ada_instance_MTD"/>
+            <param name="xsl.out" value="hl7_instance_MTD"/>
+        </antcall>
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mg.st}"/>
+            <param name="xsl.name" value="../${usecase.mg.st}/payload/${usecase.mg.st}_org.xsl"/>
+            <param name="xsl.in" value="ada_instance_WDS"/>
+            <param name="xsl.out" value="hl7_instance_WDS"/>
+        </antcall>
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mg.st}"/>
+            <param name="xsl.name" value="../${usecase.mg.st}/payload/${usecase.mg.st}_org.xsl"/>
+            <param name="xsl.in" value="ada_instance"/>
+            <param name="xsl.out" value="hl7_instance"/>
+        </antcall>
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mg.st}"/>
+            <param name="xsl.name" value="../${usecase.mg.st}/payload/${usecase.mg.st}_org.xsl"/>
+            <param name="xsl.in" value="ada_instance_repo"/>
+            <param name="xsl.out" value="hl7_instance_repo"/>
+        </antcall>
+        
 
         <!-- convert sturen_medicatievoorschrift -->
         <antcall target="convert_ada_2_hl7_sub">
@@ -474,50 +603,58 @@
         <!-- beschikbaarstellen_medicatiegegevens -->
         <antcall target="schematronresults_hl7_930_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.mg}.xml"/>
-            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.mg}/validate_hl7_instance_repo"/>
+            <param name="input.dir" value="../ada_2_hl7/${is.abbreviation}/${is.version}/${usecase.mg}/validate_hl7_instance_repo"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
 
+        <!-- look at the results from target schematronvalidate_hl7_930 for conclusions -->
+        <!-- sturen_medicatiegegevens -->
+        <antcall target="schematronresults_hl7_930_sub">
+            <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.mg.st}.xml"/>
+            <param name="input.dir" value="../ada_2_hl7/${is.abbreviation}/${is.version}/${usecase.mg.st}/validate_hl7_instance_repo"/>
+            <param name="input.fileset" value="*.xml"/>
+        </antcall>
+        
         <!-- sturen_afhandeling_medicatievoorschrift -->
         <antcall target="schematronresults_hl7_930_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.av}.xml"/>
-            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.av}/validate_hl7_instance"/>
+            <param name="input.dir" value="../ada_2_hl7/${is.abbreviation}/${is.version}/${usecase.av}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- sturen_medicatievoorschrift hl7 organizer -->
         <antcall target="schematronresults_hl7_930_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.mv}.xml"/>
-            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.mv}/validate_hl7_instance"/>
+            <param name="input.dir" value="../ada_2_hl7/${is.abbreviation}/${is.version}/${usecase.mv}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- sturen_voorstel_medicatieafspraak -->
         <antcall target="schematronresults_hl7_930_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.vma}.xml"/>
-            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.vma}/validate_hl7_instance"/>
+            <param name="input.dir" value="../ada_2_hl7/${is.abbreviation}/${is.version}/${usecase.vma}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- sturen_antwoord_voorstel_medicatieafspraak -->
         <antcall target="schematronresults_hl7_930_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.avma}.xml"/>
-            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.avma}/validate_hl7_instance"/>
+            <param name="input.dir" value="../ada_2_hl7/${is.abbreviation}/${is.version}/${usecase.avma}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- sturen_voorstel_verstrekkingsverzoek -->
         <antcall target="schematronresults_hl7_930_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.vvv}.xml"/>
-            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.vvv}/validate_hl7_instance"/>
+            <param name="input.dir" value="../ada_2_hl7/${is.abbreviation}/${is.version}/${usecase.vvv}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- sturen_antwoord_voorstel_verstrekkingsverzoek -->
         <antcall target="schematronresults_hl7_930_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.avvv}.xml"/>
-            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.avvv}/validate_hl7_instance"/>
+            <param name="input.dir" value="../ada_2_hl7/${is.abbreviation}/${is.version}/${usecase.avvv}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- xml voorbeelden organizer -->
         <antcall target="schematronresults_hl7_930_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_xml_voorbeelden.xml"/>
-            <param name="input.dir" value="../${is.abbreviation}/${is.version}/xml-voorbeelden/validate_hl7_instance"/>
+            <param name="input.dir" value="../ada_2_hl7/${is.abbreviation}/${is.version}/xml-voorbeelden/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
 
@@ -541,6 +678,14 @@
         <!-- beschikbaarstellen_medicatiegegevens -->
         <antcall target="validate_hl7_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
+            <param name="xsl.input" value="hl7_instance_repo"/>
+            <param name="xsl.output" value="validate_hl7_instance_repo"/>
+            <param name="xsl.mp" value="${validate.dir}/mp-mp93_mgb.xsl"/>
+        </antcall>
+        
+        <!-- sturen_medicatiegegevens -->
+        <antcall target="validate_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mg.st}"/>
             <param name="xsl.input" value="hl7_instance_repo"/>
             <param name="xsl.output" value="validate_hl7_instance_repo"/>
             <param name="xsl.mp" value="${validate.dir}/mp-mp93_mgb.xsl"/>
@@ -671,6 +816,42 @@
             <classpath location="${xsl.saxon}"/>
         </xslt>
 
+    </target>
+    
+    
+    <!-- start roundtrip ada2hl72ada -->
+    
+    <target name="roundtrip_ada_2_hl7_930">
+        
+        <!-- hl7 2 ada first -->
+        <antcall target="convert_ada_2_hl7_930"/>
+        
+        <!-- roundtrip -->
+        <antcall target="roundtrip_hl7_2_ada_930_sub"/>
+        
+    </target>
+    
+    <target name="roundtrip_hl7_2_ada_930_sub">
+        
+        
+        
+        <!-- let's start the roundtrip for beschikbaarstellen_medicatiegegevens, so hl7 2 ada, use ada_2_hl7 sub, but with an hl7_2_ada xsl! -->
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
+            <param name="xsl.name" value="../../../../hl7_2_ada/mp/${is.version}/${usecase.mg}/payload/${usecase.mg}_hl7_2_ada.xsl"/>
+            <param name="xsl.in" value="hl7_instance"/>
+            <param name="xsl.out" value="ada_instance_roundtrip"/>
+        </antcall>
+        
+        <!-- let's start the roundtrip for sturen_medicatiegegevens,so hl7 2 ada, so hl7 2 ada, use ada_2_hl7 sub, but with an hl7_2_ada xsl! -->
+        <antcall target="convert_ada_2_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mg.st}"/>
+            <param name="xsl.name" value="../../../../hl7_2_ada/mp/${is.version}/${usecase.mg.st}/payload/${usecase.mg.st}_hl7_2_ada.xsl"/>
+            <param name="xsl.in" value="hl7_instance"/>
+            <param name="xsl.out" value="ada_instance_roundtrip"/>
+        </antcall>
+        
+        
     </target>
  
 </project>

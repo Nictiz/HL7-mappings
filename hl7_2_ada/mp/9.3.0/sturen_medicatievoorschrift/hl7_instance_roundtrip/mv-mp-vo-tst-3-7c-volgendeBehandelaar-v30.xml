@@ -40,10 +40,10 @@
                displayName="voorschrijven van geneesmiddel (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 1 jan 2023, tot en met 3 okt 2023, 1 maal per dag 1 stuk, Oraal</text>
+         <text mediaType="text/plain">Vanaf 5 jan 2023, tot en met 21 feb 2023, 1 maal per dag 1 stuk, Oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20230101000000"/>
-            <high value="20231003235959"/>
+            <low value="20230105000000"/>
+            <high value="20230221235959"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -74,6 +74,7 @@
                      displayName="Medisch specialisten, chirurgie"
                      codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
                      codeSystemVersion="2020-10-23T00:00:00"/>
+               <telecom use="WP" value="tel:1634534321"/>
                <assignedPerson>
                   <name>
                      <given qualifier="BR">Jan</given>
@@ -90,13 +91,9 @@
                      <postalCode>1200 AA</postalCode>
                      <city>Hartstad</city>
                   </addr>
-                  <asOrganizationPartOf>
-                     <code code="0601"
-                           codeSystem="2.16.840.1.113883.2.4.6.7"
-                           displayName="Ziekenhuizen, algemene ziekenhuizen"
-                           codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                           codeSystemVersion="2020-10-23T00:00:00"/>
-                  </asOrganizationPartOf>
+                  <standardIndustryClassCode code="V4"
+                                             codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                             displayName="Ziekenhuis"/>
                </representedOrganization>
             </assignedAuthor>
          </author>
@@ -180,5 +177,102 @@
             </procedure>
          </entryRelationship>
       </substanceAdministration>
+   </component>
+   <component typeCode="COMP">
+      <supply classCode="SPLY" moodCode="RQO">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9449"/>
+         <id extension="MBH_300_VolgendeBehandelaar_VV_Start2"
+             root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+         <code code="52711000146108"
+               displayName="Verstrekkingsverzoek"
+               codeSystem="2.16.840.1.113883.6.96"
+               codeSystemName="SNOMED CT"/>
+         <quantity value="47" unit="1">
+            <translation value="47"
+                         code="245"
+                         displayName="stuk"
+                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                         codeSystemName="G-Standaard thesaurus basiseenheden"/>
+         </quantity>
+         <product>
+            <manufacturedProduct>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
+               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                  <code code="105678"
+                        codeSystem="2.16.840.1.113883.2.4.4.10"
+                        displayName="APIXABAN TABLET 5MG"
+                        codeSystemName="G-Standaard PRK">
+                     <translation code="141992"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1"
+                                  displayName="APIXABAN TABLET 5MG"
+                                  codeSystemName="G-Standaard GPK"/>
+                  </code>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </product>
+         <performer>
+            <assignedEntity>
+               <id nullFlavor="NI"/>
+               <representedOrganization>
+                  <id extension="01236578" root="2.16.528.1.1007.3.3"/>
+                  <name>Apotheek De Gulle Gaper</name>
+               </representedOrganization>
+            </assignedEntity>
+         </performer>
+         <author>
+            <time value="20230101130000"/>
+            <assignedAuthor>
+               <id extension="000002222" root="2.16.528.1.1007.3.1"/>
+               <code code="0303"
+                     codeSystem="2.16.840.1.113883.2.4.6.7"
+                     displayName="Medisch specialisten, chirurgie"
+                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <telecom use="WP" value="tel:1634534321"/>
+               <assignedPerson>
+                  <name>
+                     <given qualifier="BR">Jan</given>
+                     <prefix qualifier="VV">van </prefix>
+                     <family qualifier="BR">Harten</family>
+                  </name>
+               </assignedPerson>
+               <representedOrganization>
+                  <id extension="00004444" root="2.16.528.1.1007.3.3"/>
+                  <name>Ziekenhuis het Gele Hart</name>
+                  <addr use="WP">
+                     <streetName>Groenestraat</streetName>
+                     <houseNumber>1</houseNumber>
+                     <postalCode>1200 AA</postalCode>
+                     <city>Hartstad</city>
+                  </addr>
+                  <standardIndustryClassCode code="V4"
+                                             codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                             displayName="Ziekenhuis"/>
+               </representedOrganization>
+            </assignedAuthor>
+         </author>
+         <entryRelationship typeCode="REFR">
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
+               <id extension="MBH_300_VolgendeBehandelaar_MA_Start2"
+                   root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <code code="33633005"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"
+                     displayName="Medicatieafspraak"/>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP" inversionInd="true">
+            <procedure classCode="PROC" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                   extension="MBH_300_VolgendeBehandelaar"/>
+               <code code="1"
+                     displayName="Medicamenteuze behandeling"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+            </procedure>
+         </entryRelationship>
+      </supply>
    </component>
 </organizer>

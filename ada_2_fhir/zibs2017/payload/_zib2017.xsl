@@ -203,49 +203,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
         </xsl:choose>
     </xsl:function>
-    
-    <xd:doc>
-        <xd:desc>Returns true (boolean) if the date or dateTime is in the future. Defaults to false. Input should be a value that is castable to a date or dateTime. Input may be empty which results in the default false value.</xd:desc>
-        <xd:param name="dateOrDt">The ADA date or dateTime.</xd:param>
-    </xd:doc>
-    <xsl:function name="nf:isFuture" as="xs:boolean">
-        <xsl:param name="dateOrDt"/>
-        <xsl:choose>
-            <xsl:when test="$dateOrDt castable as xs:date">
-                <xsl:value-of select="$dateOrDt &gt; current-date()"/>
-            </xsl:when>
-            <xsl:when test="$dateOrDt castable as xs:dateTime">
-                <xsl:value-of select="$dateOrDt &gt; current-dateTime()"/>
-            </xsl:when>
-            <xsl:when test="starts-with($dateOrDt, 'T+')">
-                <xsl:value-of select="true()"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="false()"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:function>
-    
-    <xd:doc>
-        <xd:desc>Returns true (boolean) if the date or dateTime is in the past. Defaults to false. Input should be a value that is castable to a date or dateTime. Input may be empty which results in the default false value.</xd:desc>
-        <xd:param name="dateOrDt">The ADA date or dateTime.</xd:param>
-    </xd:doc>
-    <xsl:function name="nf:isPast" as="xs:boolean">
-        <xsl:param name="dateOrDt"/>
-        <xsl:choose>
-            <xsl:when test="$dateOrDt castable as xs:date">
-                <xsl:value-of select="$dateOrDt &lt; current-date()"/>
-            </xsl:when>
-            <xsl:when test="$dateOrDt castable as xs:dateTime">
-                <xsl:value-of select="$dateOrDt &lt; current-dateTime()"/>
-            </xsl:when>
-            <xsl:when test="starts-with($dateOrDt, 'T-')">
-                <xsl:value-of select="true()"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="false()"/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:function>
 
 </xsl:stylesheet>

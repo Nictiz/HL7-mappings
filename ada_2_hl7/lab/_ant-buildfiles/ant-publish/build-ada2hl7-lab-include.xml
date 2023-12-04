@@ -18,8 +18,7 @@
         
         ~/Development/SVN/art_decor/trunk/ada-data/adarefs2ada/
     -->
-    <property name="ada.project.source.dir" value="../../../../../../../../SVN/art_decor/trunk/ada-data/projects/${is.abbreviation}"/>
-    <property name="refs.dir" value="../../../../../../../../SVN/art_decor/trunk/ada-data/adarefs2ada/${is.abbreviation}/${is.version}"/>
+    <property name="refs.dir" value="../../../../../../art_decor/adarefs2ada/${is.abbreviation}/${is.version}"/>
 
     <property name="organizer.to.cda.xsl" value="LAB_Transform_Organizer2CDA.xsl"/>
 
@@ -98,7 +97,8 @@
         </antcall>
 
         <!-- also do the examples -->
-        <antcall target="convert_ada_2_hl7_examples"/>
+        <!-- no example usecase for lab -->
+<!--        <antcall target="convert_ada_2_hl7_examples"/>-->
 
     </target>
 
