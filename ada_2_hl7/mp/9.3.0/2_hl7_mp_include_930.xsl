@@ -191,6 +191,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- patient -->
             <xsl:for-each select="patient[not(toediener_is_patient/@value = 'false')][.//@value]">
                 <performer>
+                    <!-- temp workaround for MP-1351, add time with nullFlavor -->
+                    <time nullFlavor="NI"/>
                     <assignedEntity>
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.7.10.52_20170825000000">
                             <xsl:with-param name="ada_patient_identificatienummer" select="../../../../patient/identificatienummer"/>
