@@ -62,12 +62,6 @@
    <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9411']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole/hl7:addr"
                     id="d96527e79-false-d96755e0"
                     fpi="RULC-1"/>
-   <svrl:successful-report test="*[not(@nullFlavor or self::hl7:useablePeriod)][normalize-space(.)='']"
-                           see="https://art-decor.org/mediawiki/index.php?title=DTr1_AD"
-                           role="warning"
-                           location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:recordTarget[namespace-uri()='urn:hl7-org:v3'][1]/*:patientRole[namespace-uri()='urn:hl7-org:v3'][1]/*:addr[namespace-uri()='urn:hl7-org:v3'][1]">
-      <svrl:text>dtr1-8-AD: empty address particles should not be present.</svrl:text>
-   </svrl:successful-report>
    <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9411']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole/hl7:addr/hl7:streetName"
                     id="d96871e83-false-d96879e0"
                     fpi="RULC-1"/>
@@ -86,12 +80,6 @@
    <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9411']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole/hl7:addr/hl7:country"
                     id="d96871e244-false-d96980e0"
                     fpi="RULC-1"/>
-   <svrl:failed-assert test="@nullFlavor | * | text()[string-length(normalize-space()) gt 0]"
-                       see="https://art-decor.org/mediawiki/index.php?title=DTr1_BIN"
-                       role="error"
-                       location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:recordTarget[namespace-uri()='urn:hl7-org:v3'][1]/*:patientRole[namespace-uri()='urn:hl7-org:v3'][1]/*:addr[namespace-uri()='urn:hl7-org:v3'][1]/*:country[namespace-uri()='urn:hl7-org:v3'][1]">
-      <svrl:text>dtr1-1-BIN: there must be a nullFlavor, or content must be non-empty</svrl:text>
-   </svrl:failed-assert>
    <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9411']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole/hl7:patient"
                     id="d96527e94-false-d97132e0"
                     fpi="RULC-1"/>

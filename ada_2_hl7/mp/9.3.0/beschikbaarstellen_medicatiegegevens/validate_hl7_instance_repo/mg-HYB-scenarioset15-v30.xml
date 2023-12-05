@@ -62,12 +62,6 @@
    <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9411']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole/hl7:addr"
                     id="d96527e79-false-d96755e0"
                     fpi="RULC-1"/>
-   <svrl:successful-report test="*[not(@nullFlavor or self::hl7:useablePeriod)][normalize-space(.)='']"
-                           see="https://art-decor.org/mediawiki/index.php?title=DTr1_AD"
-                           role="warning"
-                           location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:recordTarget[namespace-uri()='urn:hl7-org:v3'][1]/*:patientRole[namespace-uri()='urn:hl7-org:v3'][1]/*:addr[namespace-uri()='urn:hl7-org:v3'][1]">
-      <svrl:text>dtr1-8-AD: empty address particles should not be present.</svrl:text>
-   </svrl:successful-report>
    <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9411']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole/hl7:addr/hl7:streetName"
                     id="d96871e83-false-d96879e0"
                     fpi="RULC-1"/>
@@ -83,12 +77,6 @@
    <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9411']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole/hl7:addr/hl7:country"
                     id="d96871e244-false-d96980e0"
                     fpi="RULC-1"/>
-   <svrl:failed-assert test="@nullFlavor | * | text()[string-length(normalize-space()) gt 0]"
-                       see="https://art-decor.org/mediawiki/index.php?title=DTr1_BIN"
-                       role="error"
-                       location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:recordTarget[namespace-uri()='urn:hl7-org:v3'][1]/*:patientRole[namespace-uri()='urn:hl7-org:v3'][1]/*:addr[namespace-uri()='urn:hl7-org:v3'][1]/*:country[namespace-uri()='urn:hl7-org:v3'][1]">
-      <svrl:text>dtr1-1-BIN: there must be a nullFlavor, or content must be non-empty</svrl:text>
-   </svrl:failed-assert>
    <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9411']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole/hl7:patient"
                     id="d96527e94-false-d97132e0"
                     fpi="RULC-1"/>
@@ -320,7 +308,7 @@
                     id="d35987e112-false-d36006e0"
                     fpi="RULC-1"/>
    <svrl:failed-assert test="hl7:code[@codeSystem=data($GstdCodeSystems)][@code] or hl7:name"
-                       see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9361-2021-06-02T154629.html"
+                       see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20230217T123829/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9361-2021-06-02T154629.html"
                        role="error"
                        location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][3]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:consumable[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedMaterial[namespace-uri()='urn:hl7-org:v3'][1]">
       <svrl:text>(MPCDAMedicationInformationContents2): Geneesmiddel naam (name) verplicht opnemen wanneer de codering *niet* afdoende is om de samenstelling van het geneesmiddel te achterhalen</svrl:text>
@@ -341,7 +329,7 @@
       <svrl:text>dtr1-3-CD: codeSystemName only if codeSystem</svrl:text>
    </svrl:failed-assert>
    <svrl:failed-assert test="../pharm:ingredient"
-                       see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9360-2021-06-02T150453.html"
+                       see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20230217T123829/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9360-2021-06-02T150453.html"
                        role="warning"
                        location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][3]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:consumable[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedMaterial[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
       <svrl:text>(MPCDAMedicationCode3): Bij magistraal / eigen bereiding / eigen codering moet er minimaal één - volgens de G-standaard gecodeerd - ingrediënt worden opgenomen.</svrl:text>
@@ -527,7 +515,7 @@
    <svrl:fired-rule context="*[cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9429']]/cda:author[hl7:assignedAuthor]"
                     fpi="RULC-1"/>
    <svrl:failed-assert test="count(hl7:assignedAuthor/hl7:representedOrganization/hl7:addr[@use='WP']) ge 1"
-                       see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9429-2022-11-22T130054.html"
+                       see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20230217T123829/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9429-2022-11-22T130054.html"
                        role="warning"
                        location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]">
       <svrl:text>(MPCDAMedicatieAfspraakSchemaInhoud5): Er is minimaal één werkadres van de auteur (hl7:assignedAuthor/hl7:representedOrganization/hl7:addr[@use='WP']) verwacht bij een medicatieafspraak.</svrl:text>
@@ -631,7 +619,7 @@
    <svrl:fired-rule context="*[cda:supply[cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9449']]]/cda:supply[cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9449']]/cda:author[hl7:assignedAuthor]"
                     fpi="RULC-1"/>
    <svrl:failed-assert test="count(hl7:assignedAuthor/hl7:representedOrganization/hl7:addr[@use='WP']) ge 1"
-                       see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9449-2023-01-06T093041.html"
+                       see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20230217T123829/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9449-2023-01-06T093041.html"
                        role="warning"
                        location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][2]/*:supply[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]">
       <svrl:text>(MPCDAVerstrekkingsverzoek6): Er is minimaal één werkadres van de auteur verwacht bij een verstrekkingsverzoek.</svrl:text>
@@ -665,19 +653,19 @@
                         id="template-2.16.840.1.113883.2.4.3.11.60.3.10.3.20-2018-06-11T000000"
                         name="problem status"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.3.10.3.20']]]"
-                    id="d40e13848-false-d563396e0"
+                    id="d40e13848-false-d563392e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.3.10.3.20']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.3.10.3.20']]"
-                    id="d40e13870-false-d563419e0"
+                    id="d40e13870-false-d563415e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.3.10.3.20']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.3.10.3.20']]/hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.3.10.3.20']"
-                    id="d40e13894-false-d563500e0"
+                    id="d40e13894-false-d563496e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.3.10.3.20']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.3.10.3.20']]/hl7:code[(@code = '33999-4' and @codeSystem = '2.16.840.1.113883.6.1') or @nullFlavor]"
-                    id="d40e13926-false-d563532e0"
+                    id="d40e13926-false-d563528e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.3.10.3.20']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.3.10.3.20']]/hl7:value[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.5.1.2-2017-12-31T000000.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor]"
-                    id="d40e13943-false-d563563e0"
+                    id="d40e13943-false-d563559e0"
                     fpi="RULC-1"/>
    <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-HYB-scenarioset15-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.7.10.54-2019-05-31T125008"
