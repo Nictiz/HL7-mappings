@@ -34,7 +34,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- Construct the full given name string and family string -->
             <xsl:variable name="given" as="xs:string?" select="nf:_renderGivenNames($normalizedFirstNames, $normalizedInitials)"/>
             <xsl:variable name="family" as="xs:string?" select="nf:_renderFamilyName(.)"/>
-
+            
             <!-- Create the main .name instance containing all official names -->
             <name>
                 <xsl:if test="naamgebruik">
@@ -45,12 +45,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </valueCode>
                     </extension>
-                </xsl:if>
-                <!-- copying the unstructured name under the assumption that it is the official name-->
-                <xsl:if test="string-length(ongestructureerde_naam/@value) gt 0">
-                    <text>
-                        <xsl:copy-of select="ongestructureerde_naam/@value"/>
-                    </text>
                 </xsl:if>
                 
                 <use value="official"/>
