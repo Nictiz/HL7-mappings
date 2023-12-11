@@ -16,11 +16,11 @@
                </tag>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T, 1 maal per dag 1 stuk, Oraal"/>
+               <valueString value="Vanaf 1 jan 2023, 1 maal per dag 1 stuk, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
+                  <start value="2023-01-01T00:00:00+01:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -48,11 +48,11 @@
                <display value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:1b96b314-6b73-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:834e3f9e-6ad4-11ec-0000-020000000000"/>
                <type value="Patient"/>
-               <display value="Patient, E. Erelies"/>
+               <display value="Patient, E. XXX_Doppen"/>
             </subject>
-            <authoredOn value="${DATE, T, D, +0}T07:05:00+02:00"/>
+            <authoredOn value="2023-01-01T07:05:00+01:00"/>
             <requester>
                <reference value="urn:uuid:7af79824-6ac8-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
@@ -133,11 +133,11 @@
                <display value="ACETYLSALICYLZUUR TABLETMSR 100MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:1b96b314-6b73-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:834e3f9e-6ad4-11ec-0000-020000000000"/>
                <type value="Patient"/>
-               <display value="Patient, E. Erelies"/>
+               <display value="Patient, E. XXX_Doppen"/>
             </subject>
-            <authoredOn value="${DATE, T, D, +0}T07:05:00+02:00"/>
+            <authoredOn value="2023-01-01T07:05:00+01:00"/>
             <requester>
                <reference value="urn:uuid:7af79824-6ac8-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
@@ -180,7 +180,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:1b96b314-6b73-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:834e3f9e-6ad4-11ec-0000-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -188,17 +188,17 @@
             </meta>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-               <value value="999999114"/>
+               <value value="999900511"/>
             </identifier>
             <name>
                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
                   <valueCode value="NL1"/>
                </extension>
                <use value="official"/>
-               <text value="E. Erelies"/>
-               <family value="Erelies">
+               <text value="E. XXX_Doppen"/>
+               <family value="XXX_Doppen">
                   <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                     <valueString value="Erelies"/>
+                     <valueString value="XXX_Doppen"/>
                   </extension>
                </family>
                <given value="E.">
@@ -207,18 +207,18 @@
                   </extension>
                </given>
             </name>
-            <gender value="female">
+            <gender value="male">
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
                   <valueCodeableConcept>
                      <coding>
                         <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
-                        <code value="F"/>
-                        <display value="Vrouw"/>
+                        <code value="M"/>
+                        <display value="Man"/>
                      </coding>
                   </valueCodeableConcept>
                </extension>
             </gender>
-            <birthDate value="1950-11-01"/>
+            <birthDate value="1963-10-24"/>
          </Patient>
       </resource>
       <request>

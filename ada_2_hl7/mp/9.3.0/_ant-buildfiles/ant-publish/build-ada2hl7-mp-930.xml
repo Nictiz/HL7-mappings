@@ -20,8 +20,8 @@
     <!--    <property name="validate.dir" value="${build.dir}/../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210931/mp-xml-20210921T194523/schematron_closed_warnings"/>-->
     <property name="validate.dir" value="${build.dir}/../../../../../../SVN/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop"/>
 
-    <property name="schema.organizer" value="${build.dir}/../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210921/mp-xml-20210921T194523/schemas_codeGen_flat/organizer.xsd"/>
-    <property name="schema.cda" value="${build.dir}/../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210921/mp-xml-20210921T194523/schemas_codeGen_flat/CDANL_extended.xsd"/>
+    <property name="schema.organizer" value="${build.dir}/../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20231017/mp-xml-20231017T223005/schemas_codeGen_flat/organizer.xsd"/>
+    <property name="schema.cda" value="${build.dir}/../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20231017/mp-xml-20231017T223005/schemas_codeGen_flat/CDANL_extended.xsd"/>
 
     <property name="xsl.validate.svrl" value="${build.dir}/../../../util/validate-svrl-output.xsl"/>
 
@@ -317,10 +317,7 @@
             <param name="xsl.name" value="../${usecase.mg}/payload/${usecase.mg}_org.xsl"/>
             <param name="xsl.in" value="ada_instance_repo"/>
             <param name="xsl.out" value="hl7_instance_repo"/>
-        </antcall>
-        
-        
-        
+        </antcall>       
         
         <!-- convert sturen_medicatiegegevens -->
         <antcall target="convert_ada_2_hl7_sub">
@@ -371,13 +368,6 @@
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="hl7_instance"/>
         </antcall>
-        <antcall target="convert_ada_2_hl7_sub">
-            <param name="sub.build.dir" value="${build.dir}/${usecase.mg.st}"/>
-            <param name="xsl.name" value="../${usecase.mg.st}/payload/${usecase.mg.st}_org.xsl"/>
-            <param name="xsl.in" value="ada_instance_repo"/>
-            <param name="xsl.out" value="hl7_instance_repo"/>
-        </antcall>
-        
 
         <!-- convert sturen_medicatievoorschrift -->
         <antcall target="convert_ada_2_hl7_sub">
@@ -611,7 +601,7 @@
         <!-- sturen_medicatiegegevens -->
         <antcall target="schematronresults_hl7_930_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.mg.st}.xml"/>
-            <param name="input.dir" value="../ada_2_hl7/${is.abbreviation}/${is.version}/${usecase.mg.st}/validate_hl7_instance_repo"/>
+            <param name="input.dir" value="../ada_2_hl7/${is.abbreviation}/${is.version}/${usecase.mg.st}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         
@@ -686,8 +676,8 @@
         <!-- sturen_medicatiegegevens -->
         <antcall target="validate_hl7_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mg.st}"/>
-            <param name="xsl.input" value="hl7_instance_repo"/>
-            <param name="xsl.output" value="validate_hl7_instance_repo"/>
+            <param name="xsl.input" value="hl7_instance"/>
+            <param name="xsl.output" value="validate_hl7_instance"/>
             <param name="xsl.mp" value="${validate.dir}/mp-mp93_mgb.xsl"/>
         </antcall>
 

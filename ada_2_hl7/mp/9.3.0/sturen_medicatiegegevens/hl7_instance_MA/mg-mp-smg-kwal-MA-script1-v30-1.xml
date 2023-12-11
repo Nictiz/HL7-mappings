@@ -54,7 +54,12 @@
                   <code code="59366"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
                         displayName="CAPECITABINE TABLET FO 500MG"
-                        codeSystemName="G-Standaard PRK"/>
+                        codeSystemName="G-Standaard PRK">
+                     <translation code="112984"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1"
+                                  displayName="CAPECITABINE TABLET FO 500MG"
+                                  codeSystemName="G-Standaard GPK"/>
+                  </code>
                </manufacturedMaterial>
             </manufacturedProduct>
          </consumable>
@@ -163,7 +168,12 @@
                   <code code="59366"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
                         displayName="CAPECITABINE TABLET FO 500MG"
-                        codeSystemName="G-Standaard PRK"/>
+                        codeSystemName="G-Standaard PRK">
+                     <translation code="112984"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1"
+                                  displayName="CAPECITABINE TABLET FO 500MG"
+                                  codeSystemName="G-Standaard GPK"/>
+                  </code>
                </manufacturedMaterial>
             </manufacturedProduct>
          </consumable>
@@ -281,11 +291,31 @@
                displayName="voorschrijven van geneesmiddel (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 22 dec 2022, tot en met 8 jan 2023, stopgezet</text>
+         <text mediaType="text/plain">Vanaf 22 dec 2022, tot en met 8 jan 2023, cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 4 stuks, oraal, stopgezet</text>
          <effectiveTime xsi:type="IVL_TS">
             <low value="20221222000000"/>
             <high value="20230108235959"/>
          </effectiveTime>
+         <routeCode code="9"
+                    codeSystem="2.16.840.1.113883.2.4.4.9"
+                    displayName="oraal"
+                    codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+         <consumable>
+            <manufacturedProduct>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
+               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                  <code code="59366"
+                        codeSystem="2.16.840.1.113883.2.4.4.10"
+                        displayName="CAPECITABINE TABLET FO 500MG"
+                        codeSystemName="G-Standaard PRK">
+                     <translation code="112984"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1"
+                                  displayName="CAPECITABINE TABLET FO 500MG"
+                                  codeSystemName="G-Standaard GPK"/>
+                  </code>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </consumable>
          <author>
             <time value="20230108112000"/>
             <assignedAuthor>
@@ -326,6 +356,45 @@
                       codeSystem="2.16.840.1.113883.6.96"
                       displayName="stopgezet"/>
             </observation>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="1"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+                  <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-RepeatPeriodCyclicalSchedule">
+                     <valueDuration>
+                        <value value="21"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </valueDuration>
+                  </modifierExtension>
+                  <repeat>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="false"/>
+                     </extension>
+                     <boundsDuration>
+                        <value value="14"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <timeOfDay value="09:00:00"/>
+                     <timeOfDay value="21:00:00"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="4" unit="1">
+                     <translation value="4"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM" moodCode="RQO">
