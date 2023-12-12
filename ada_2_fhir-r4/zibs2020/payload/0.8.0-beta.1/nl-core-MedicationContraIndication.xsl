@@ -35,7 +35,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:for-each select="$in">
             <Flag>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="'nl-core-MedicationContraIndication'"/>
+                </xsl:call-template>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationContraIndication"/>
                 </meta>
