@@ -1,0 +1,76 @@
+<PractitionerRole xmlns="http://hl7.org/fhir">
+   <id value="nl-core-practitionerrole-medmij-bgz-test-0300000101-03206000001"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Zorgverlenerrol. Id: PatA-HealtcareProf2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7)</caption>
+            <tbody>
+               <tr>
+                  <th>Zorgverlener</th>
+                  <td>
+                     <div>Olivier Ruben O.R. Olivier de Rijcke</div>
+                     <div>Ziekenhuis het Hogeland</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Specialisme</th>
+                  <td>
+                     <span title="Orthopedisch chirurg (01.032 - http://fhir.nl/fhir/NamingSystem/uzi-rolcode)">Orthopedisch chirurg</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <div>
+                        <a href="tel:012-3456789">012-3456789</a> (Vast telefoonnummer Werk)</div>
+                     <div>
+                        <a href="mailto:Fictieve.Chirurg@HetHogeland.nl">Fictieve.Chirurg@HetHogeland.nl</a> (E-mail Werk)</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="PatA-HealtcareProf2"/>
+   </identifier>
+   <practitioner>
+      <reference value="Practitioner/-practitioner-medmij-bgz-test-2-16-840-1-113883-2-4-6-1-03000001"/>
+      <display value="Olivier Ruben O.R. Olivier de Rijcke"/>
+   </practitioner>
+   <organization>
+      <reference value="Organization/-organization-medmij-bgz-test-2-16-840-1-113883-2-4-6-1-06000001"/>
+      <display value="Ziekenhuis het Hogeland"/>
+   </organization>
+   <specialty>
+      <coding>
+         <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+         <code value="01.032"/>
+         <display value="Orthopedisch chirurg"/>
+      </coding>
+   </specialty>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Land Line"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="012-3456789"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="Fictieve.Chirurg@HetHogeland.nl"/>
+      <use value="work"/>
+   </telecom>
+</PractitionerRole>

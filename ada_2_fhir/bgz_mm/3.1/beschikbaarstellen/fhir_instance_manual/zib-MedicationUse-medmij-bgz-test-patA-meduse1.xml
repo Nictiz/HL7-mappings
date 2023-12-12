@@ -1,0 +1,89 @@
+<?xml-model href="http://hl7.org/fhir/STU3/medicationstatement.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><MedicationStatement xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/medicationstatement.xsd">
+   <id value="zib-MedicationUse-medmij-bgz-test-patA-meduse1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Prescriber">
+      <valueReference>
+         <reference value="PractitionerRole/nl-core-practitionerrole-medmij-bgz-test-0100000201-01501000001"/>
+         <display value="Huisarts"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-ReasonForChangeOrDiscontinuationOfUse">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"/>
+            <code value="13"/>
+            <display value="Volgens afspraak"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patA-MedUse1"/>
+   </identifier>
+   <status value="on-hold"/>
+   <category>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+         <code value="6"/>
+         <display value="Medicatiegebruik"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/zib-Product-medmij-bgz-test-patA-product1"/>
+      <display value="Apixaban 2.5mg"/>
+   </medicationReference>
+   <effectivePeriod>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+         <valueDuration>
+            <value value="14"/>
+            <unit value="dagen"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="d"/>
+         </valueDuration>
+      </extension>
+      <start value="2022-11-28T00:00:00+02:00"/>
+   </effectivePeriod>
+   <dateAsserted value="2022-11-28T10:00:00+02:00"/>
+   <subject>
+      <reference value="Patient/medmij-bgz-test-patA"/>
+      <display value="Anouk A. Anouk van XXX_Rijn de XXX_Vries"/>
+   </subject>
+   <taken value="y"/>
+   <reasonCode>
+      <text value="Plaatsing Knieprothese"/>
+   </reasonCode>
+   <note>
+      <text value="Volgens afspraak 2 weken na plaatsing kunstknie gestopt met medicatie"/>
+   </note>
+   <dosage>
+      <sequence value="1"/>
+      <text value="Vanaf 28 november, gedurende 14 dagen, 2 maal per dag 1T, oraal"/>
+      <timing>
+         <repeat>
+            <boundsDuration>
+               <value value="14"/>
+               <unit value="dagen"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="d"/>
+            </boundsDuration>
+            <when value="MORN"/>
+            <when value="NIGHT"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+      <doseQuantity>
+         <value value="2.5"/>
+         <unit value="mg"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="229"/>
+      </doseQuantity>
+   </dosage>
+</MedicationStatement>

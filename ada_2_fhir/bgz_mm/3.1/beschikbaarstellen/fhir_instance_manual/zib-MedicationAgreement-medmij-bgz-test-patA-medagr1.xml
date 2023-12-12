@@ -1,0 +1,113 @@
+<?xml-model href="http://hl7.org/fhir/STU3/medicationrequest.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><MedicationRequest xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir http://hl7.org/fhir/STU3/medicationrequest.xsd">
+   <id value="zib-MedicationAgreement-medmij-bgz-test-patA-medagr1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+      <valuePeriod>
+         <start value="2022-11-28T00:00:00+02:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+      <valueDuration>
+         <value value="14"/>
+         <unit value="dagen"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="d"/>
+      </valueDuration>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-AdditionalInformation">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.3.2050"/>
+            <code value="4"/>
+            <display value="Medische noodzaak"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-StopType">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"/>
+            <code value="1"/>
+            <display value="Tijdelijk"/>
+         </coding>
+      </valueCodeableConcept>
+   </modifierExtension>
+   <identifier>
+      <system value="http://example-implementer.com/fhir/MedicationRequest-ID"/>
+      <value value="5a1b6023-791e-4ef4-818f-8b7c681e1c1e"/>
+   </identifier>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16076005"/>
+         <display value="Voorschrijven (verrichting)"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/zib-Product-medmij-bgz-test-patA-product1"/>
+      <display value="Apixaban 2.5mg"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/medmij-bgz-test-patA"/>
+      <display value="Anouk A. Anouk van XXX_Rijn de XXX_Vries"/>
+   </subject>
+   <authoredOn value="2022-11-28T10:00:00+02:00"/>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-medmij-bgz-test-0100000201-01501000001"/>
+               <display value="Huisarts"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/-practitioner-medmij-bgz-test-2-16-840-1-113883-2-4-6-1-01000002"/>
+         <display value="Franciscus Dominicus Antonius F.D.A. Frans Pleijster"/>
+      </agent>
+   </requester>
+   <reasonCode>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"/>
+         <code value="15"/>
+         <display value="Geplande procedure"/>
+      </coding>
+   </reasonCode>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-medmij-bgz-test-patA-problem2"/>
+      <display value="Artrose van rechter kniegewricht"/>
+   </reasonReference>
+   <note>
+      <text value="Tot 2 weken na plaatsing kunstknie"/>
+   </note>
+   <dosageInstruction>
+      <sequence value="1"/>
+      <text value="Vanaf 28 november, gedurende 14 dagen, 2 maal per dag 1T, oraal"/>
+      <timing>
+         <repeat>
+            <boundsDuration>
+               <value value="14"/>
+               <unit value="dagen"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="d"/>
+            </boundsDuration>
+            <when value="MORN"/>
+            <when value="NIGHT"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+      <doseQuantity>
+         <value value="2.5"/>
+         <unit value="mg"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="229"/>
+      </doseQuantity>
+   </dosageInstruction>
+</MedicationRequest>

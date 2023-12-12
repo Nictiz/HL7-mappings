@@ -1,0 +1,98 @@
+<Encounter xmlns="http://hl7.org/fhir">
+   <id value="zib-Encounter-bgz-msz-patA-encounter3"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Contact. Subject: Dennis D. Dennis Janse. Id: patA-encounter3 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Status: gepland</caption>
+            <tbody>
+               <tr>
+                  <th>Type contact</th>
+                  <td>
+                     <div>
+                        <span title="Poliklinisch (AMB - v3/ActCode)">Poliklinisch</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>Vanaf ${DATE, T, D, +44}T09:00:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Probleem/Verrichting</th>
+                  <td>externe fixatie van fractuur van malleolus</td>
+               </tr>
+               <tr>
+                  <th>Participant</th>
+                  <td>
+                     <div>
+                        <span title="Hoofdbehandelaar (RESP - v3/ParticipationType)">Hoofdbehandelaar</span> - Jeroen Hendrik Robert J.H.R. Jeroen Peters || Orthopedisch chirurg || naam eigen ziekenhuis</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Zorgaanbieder</th>
+                  <td>naam eigen ziekenhuis</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patA-encounter3"/>
+   </identifier>
+   <status value="planned"/>
+   <class>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActCode"/>
+               <code value="AMB"/>
+               <display value="Poliklinisch"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="http://hl7.org/fhir/v3/ActCode"/>
+      <code value="AMB"/>
+      <display value="Poliklinisch"/>
+   </class>
+   <subject>
+      <reference value="Patient/DENNIS-D--DENNIS-JANSE"/>
+      <display value="Dennis D. Dennis Janse"/>
+   </subject>
+   <participant>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+            <code value="RESP"/>
+            <display value="Hoofdbehandelaar"/>
+         </coding>
+      </type>
+      <individual>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-bgz-msz-4567891201-032123456A2"/>
+               <display value="Jeroen Hendrik Robert J.H.R. Jeroen Peters || Orthopedisch chirurg || naam eigen ziekenhuis"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-840-1-113883-2-4-6-1-45678912"/>
+         <display value="Jeroen Hendrik Robert J.H.R. Jeroen Peters"/>
+      </individual>
+   </participant>
+   <period>
+      <start value="${DATE, T, D, +44}T09:00:00+02:00"/>
+   </period>
+   <diagnosis>
+      <condition>
+         <reference value="Procedure/zib-Procedure-bgz-msz-patA-procedure1"/>
+         <display value="externe fixatie van fractuur van malleolus"/>
+      </condition>
+   </diagnosis>
+   <serviceProvider>
+      <reference value="Organization/organization-bgz-msz-2-16-840-1-113883-2-4-3-11-999-7-6-123456A2"/>
+      <display value="naam eigen ziekenhuis"/>
+   </serviceProvider>
+</Encounter>

@@ -1,0 +1,138 @@
+<AllergyIntolerance xmlns="http://hl7.org/fhir">
+   <id value="zib-AllergyIntolerance-bgz-msz-patA-allergy2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Allergie/intolerantie. Patiënt: Dennis D. Dennis Janse. Id: patA-allergy2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Categorie: <span title="neiging tot ongewenste reactie op medicatie en/of drug (419511003 - SNOMED CT)">neiging tot ongewenste reactie op medicatie en/of drug</span>, Status: actief / bevestigd</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Alleen voor amoxicilline</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="penicillines (035 - G-Standaard Tabel 122)">penicillines</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Eerste symptomen</th>
+                  <td>2009</td>
+               </tr>
+               <tr>
+                  <th>Meest recente voorkomen</th>
+                  <td>2011</td>
+               </tr>
+               <tr>
+                  <th>Reactie</th>
+                  <td>
+                     <ul>
+                        <li>
+                           <div>
+                              <span title="licht (255604002 - SNOMED CT)">licht</span>
+                           </div>
+                           <div>
+                              <span title="misselijkheid en braken (16932000 - SNOMED CT)">misselijkheid en braken</span>
+                           </div>
+                        </li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patA-allergy2"/>
+   </identifier>
+   <clinicalStatus value="active">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActStatus"/>
+               <code value="active"/>
+               <display value="Actief"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <verificationStatus value="confirmed"/>
+   <category value="medication">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="419511003"/>
+               <display value="neiging tot ongewenste reactie op medicatie en/of drug"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </category>
+   <criticality value="low">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="255604002"/>
+               <display value="licht"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </criticality>
+   <code>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.902.122"/>
+         <code value="035"/>
+         <display value="penicillines"/>
+      </coding>
+   </code>
+   <patient>
+      <reference value="Patient/DENNIS-D--DENNIS-JANSE"/>
+      <display value="Dennis D. Dennis Janse"/>
+   </patient>
+   <onsetDateTime value="2009"/>
+   <lastOccurrence value="2011"/>
+   <note>
+      <text value="Alleen voor amoxicilline"/>
+   </note>
+   <reaction>
+      <substance>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.750"/>
+            <code value="023167"/>
+            <display value="Amoxicilline"/>
+         </coding>
+      </substance>
+      <manifestation>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="16932000"/>
+            <display value="misselijkheid en braken"/>
+         </coding>
+      </manifestation>
+      <severity value="mild">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="255604002"/>
+                  <display value="licht"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </severity>
+      <exposureRoute>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="738956005"/>
+            <display value="oraal"/>
+         </coding>
+      </exposureRoute>
+   </reaction>
+</AllergyIntolerance>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composition xmlns="http://hl7.org/fhir">
+   <id value="composition-hg-VerwijzingFysiotherapeut"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/hg-ReferralComposition"/>
+   </meta>
+   <identifier>
+      <value value="hg-VerwijzingFysiotherapeut"/>
+   </identifier>
+   <status value="final"/>
+   <type>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="57133-1"/>
+         <display value="Referral note"/>
+      </coding>
+   </type>
+   <subject>
+      <reference value="Patient/patient-van-XXX-Prins-van-Gestel"/>
+      <type value="Patient"/>
+      <display value="Patient, Marijne (Marijne) van XXX_Prins"/>
+   </subject>
+   <date value="T"/>
+   <title value="Referral note"/>
+   <section>
+      <title value="Kern"/>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="406550009"/>
+            <display value="samenvatting van zorgvraag"/>
+         </coding>
+      </code>
+      <section>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TextValue">
+            <valueString value="Ik verwijs mevrouw voor knieklachten links. Sinds 3 maanden ontstaan na periode van overbelasting. Beeld mijns inziens passend bij gonartrose."/>
+         </extension>
+         <title value="Reden bericht"/>
+         <code>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="440378000"/>
+               <display value="verwijzing voor"/>
+            </coding>
+         </code>
+         <text>
+            <status value="extensions"/>
+            <div xmlns="http://www.w3.org/1999/xhtml">Reden bericht: Ik verwijs mevrouw voor knieklachten links. Sinds 3 maanden ontstaan na periode van overbelasting. Beeld mijns inziens passend bij gonartrose.</div>
+         </text>
+      </section>
+      <section>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TextValue">
+            <valueString value="paracetamol indien nodig"/>
+         </extension>
+         <title value="Ingestelde behandeling"/>
+         <code>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="108631000146107"/>
+               <display value="behandeling lopende"/>
+            </coding>
+         </code>
+         <text>
+            <status value="extensions"/>
+            <div xmlns="http://www.w3.org/1999/xhtml">Ingestelde behandeling: paracetamol indien nodig</div>
+         </text>
+      </section>
+      <section>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TextValue">
+            <valueString value="graag uw fysiotherapeutische diagnose en behandeling, indien na 3 maanden geen verbetering retour voor eventuele doorverwijzing naar orthopeed"/>
+         </extension>
+         <title value="Procedurevoorstel"/>
+         <code>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="240471000146100"/>
+               <display value="toelichting op aard van verwijzing"/>
+            </coding>
+         </code>
+         <text>
+            <status value="extensions"/>
+            <div xmlns="http://www.w3.org/1999/xhtml">Procedurevoorstel: graag uw fysiotherapeutische diagnose en behandeling, indien na 3 maanden geen verbetering retour voor eventuele doorverwijzing naar orthopeed</div>
+         </text>
+      </section>
+      <section>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TextValue">
+            <valueString value="Mevr. is ook onder behandeling voor COPD Gold II"/>
+         </extension>
+         <title value="Verder van belang"/>
+         <code>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="159121000146100"/>
+               <display value="toelichting op voorgesteld beleid"/>
+            </coding>
+         </code>
+         <text>
+            <status value="extensions"/>
+            <div xmlns="http://www.w3.org/1999/xhtml">Verder van belang: Mevr. is ook onder behandeling voor COPD Gold II</div>
+         </text>
+      </section>
+   </section>
+</Composition>

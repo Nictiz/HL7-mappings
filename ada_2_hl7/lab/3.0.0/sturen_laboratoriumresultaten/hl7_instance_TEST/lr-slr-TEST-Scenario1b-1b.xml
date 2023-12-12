@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Generated from ada instance with title: "TEST Scenario 1b_Panel_KC_LOINC" and id: "lr-slr-TEST-Scenario1b-1b".-->
+<!--Generated from ada instance with title: "TEST Sturen/ontvangen Scenario 1: Panel Nierfunctie KlinischeChemie in LOINC" and id: "lr-slr-TEST-Scenario1b-1b".-->
 <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xmlns="urn:hl7-org:v3"
            xmlns:cda="urn:hl7-org:v3"
@@ -104,222 +104,141 @@
                      codeSystem="2.16.840.1.113883.6.1"
                      codeSystemName="LOINC"
                      displayName="Specimen Collection"/>
+               <effectiveTime value="20211212"/>
                <participant typeCode="PRD">
                   <participantRole classCode="SPEC">
                      <id extension="123" root="2.16.840.1.113883.2.4.3.11.999.25.4267.2"/>
                      <playingEntity>
                         <code xsi:type="CE"
-                              code="122575003"
+                              code="119364003"
                               codeSystem="2.16.840.1.113883.6.96"
-                              displayName="Urine"
+                              displayName="Serum"
                               codeSystemName="SNOMED Clinical Terms"/>
                      </playingEntity>
                   </participantRole>
                </participant>
                <entryRelationship typeCode="COMP">
                   <act classCode="ACT" moodCode="EVN">
-                     <templateId root="1.3.6.1.4.1.19376.1.3.1.3"/>
-                     <code code="SPRECEIVE"
-                           codeSystem="1.3.5.1.4.1.19376.1.5.3.2"
-                           codeSystemName="IHEActCode"
-                           displayName="monster ontvangen"/>
-                     <effectiveTime value="20211201"/>
-                  </act>
-               </entryRelationship>
-               <entryRelationship typeCode="COMP">
-                  <act classCode="ACT" moodCode="EVN">
                      <templateId root="2.16.840.1.113883.10.20.1.40"/>
                      <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.2"/>
                      <code code="48767-8"
                            displayName="Annotation Comment"
                            codeSystem="2.16.840.1.113883.6.1"
                            codeSystemName="LOINC"/>
-                     <text>Urine ingeleverd door patiënt.</text>
+                     <text>Serum afgenomen bij patiënt.</text>
                      <statusCode code="completed"/>
                   </act>
                </entryRelationship>
             </procedure>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
-            <observation classCode="OBS" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.31"/>
-               <templateId root="1.3.6.1.4.1.19376.1.3.1.6"/>
-               <id extension="11111" root="2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
-               <code xsi:type="CD"
-                     code="62238-1"
+            <organizer classCode="BATTERY" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.2"/>
+               <templateId root="1.3.6.1.4.1.19376.1.3.1.4"/>
+               <code code="45066-8"
                      codeSystem="2.16.840.1.113883.6.1"
-                     displayName=" Glomerulaire filtratiesnelheid/1,73 m2.voorspeld [filtratiesnelheid/oppervlakte] in serum of plasma of bloed d.m.v. formule gebaseerd op creatinine (CKD-EPI)formule"/>
+                     displayName="creatinine &amp; glomerulaire filtratiesnelheid.voorspeld panel"
+                     codeSystemName="Logical Observation Identifier Names and Codes"/>
                <statusCode code="completed"/>
-               <effectiveTime value="20211202"/>
-               <value xsi:type="PQ" value="97" unit="mL/min/{1.73_m2}"/>
-               <entryRelationship typeCode="COMP">
-                  <act classCode="ACT" moodCode="EVN">
-                     <templateId root="2.16.840.1.113883.10.20.1.40"/>
-                     <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.2"/>
-                     <code code="48767-8"
-                           displayName="Annotation Comment"
-                           codeSystem="2.16.840.1.113883.6.1"
-                           codeSystemName="LOINC"/>
-                     <text>Waarde is goed.</text>
-                     <statusCode code="completed"/>
-                  </act>
-               </entryRelationship>
-               <entryRelationship typeCode="COMP">
+               <component typeCode="COMP">
                   <observation classCode="OBS" moodCode="EVN">
-                     <templateId root="2.16.840.1.113883.2.4.3.11.60.121.10.54"/>
-                     <code code="92236-9"
+                     <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.31"/>
+                     <templateId root="1.3.6.1.4.1.19376.1.3.1.6"/>
+                     <id extension="11111" root="2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
+                     <code xsi:type="CD"
+                           code="98979-8"
                            codeSystem="2.16.840.1.113883.6.1"
-                           displayName="Lab observation result status"/>
-                     <value xsi:type="CV"
-                            code="final"
-                            codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
-                            displayName="Definitief"/>
-                  </observation>
-               </entryRelationship>
-               <referenceRange typeCode="REFV">
-                  <observationRange classCode="OBS" moodCode="EVN.CRT">
-                     <value xsi:type="IVL_PQ">
-                        <low value="90" unit="mL/min/{1.73_m2}"/>
-                     </value>
-                  </observationRange>
-               </referenceRange>
-            </observation>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP">
-            <observation classCode="OBS" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.31"/>
-               <templateId root="1.3.6.1.4.1.19376.1.3.1.6"/>
-               <id extension="22222" root="2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
-               <code xsi:type="CD"
-                     code="14683-7"
-                     codeSystem="2.16.840.1.113883.6.1"
-                     displayName=" Creatinine [mol/volume] in urine"/>
-               <statusCode code="completed"/>
-               <effectiveTime value="20211202"/>
-               <value xsi:type="PQ" value="135" unit="mmol/L"/>
-               <interpretationCode code="H"
-                                   codeSystem="2.16.840.1.113883.5.83"
-                                   displayName="Boven referentiewaarde">
-                  <translation code="281302008"
-                               codeSystem="2.16.840.1.113883.6.96"
-                               displayName="Boven referentiewaarde"/>
-               </interpretationCode>
-               <entryRelationship typeCode="COMP">
-                  <act classCode="ACT" moodCode="EVN">
-                     <templateId root="2.16.840.1.113883.10.20.1.40"/>
-                     <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.2"/>
-                     <code code="48767-8"
-                           displayName="Annotation Comment"
-                           codeSystem="2.16.840.1.113883.6.1"
-                           codeSystemName="LOINC"/>
-                     <text>Creatinine iets hoger dan normaal.</text>
+                           displayName="Glomerulaire filtratiesnelheid/1,73 m2.voorspeld [filtratiesnelheid/oppervlakte] in serum of plasma of bloed d.m.v. formule gebaseerd op creatinine (CKD-EPI 2021)"/>
                      <statusCode code="completed"/>
-                  </act>
-               </entryRelationship>
-               <entryRelationship typeCode="COMP">
-                  <observation classCode="OBS" moodCode="EVN">
-                     <templateId root="2.16.840.1.113883.2.4.3.11.60.121.10.54"/>
-                     <code code="92236-9"
-                           codeSystem="2.16.840.1.113883.6.1"
-                           displayName="Lab observation result status"/>
-                     <value xsi:type="CV"
-                            code="final"
-                            codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
-                            displayName="Definitief"/>
+                     <effectiveTime value="20211212"/>
+                     <value xsi:type="PQ" value="97" unit="mL/min/{1.73_m2}"/>
+                     <entryRelationship typeCode="COMP">
+                        <act classCode="ACT" moodCode="EVN">
+                           <templateId root="2.16.840.1.113883.10.20.1.40"/>
+                           <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.2"/>
+                           <code code="48767-8"
+                                 displayName="Annotation Comment"
+                                 codeSystem="2.16.840.1.113883.6.1"
+                                 codeSystemName="LOINC"/>
+                           <text>Waarde is goed.</text>
+                           <statusCode code="completed"/>
+                        </act>
+                     </entryRelationship>
+                     <entryRelationship typeCode="COMP">
+                        <observation classCode="OBS" moodCode="EVN">
+                           <templateId root="2.16.840.1.113883.2.4.3.11.60.121.10.54"/>
+                           <code code="92236-9"
+                                 codeSystem="2.16.840.1.113883.6.1"
+                                 displayName="Lab observation result status"/>
+                           <value xsi:type="CV"
+                                  code="final"
+                                  codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
+                                  displayName="Definitief"/>
+                        </observation>
+                     </entryRelationship>
+                     <referenceRange typeCode="REFV">
+                        <observationRange classCode="OBS" moodCode="EVN.CRT">
+                           <value xsi:type="IVL_PQ">
+                              <low value="90" unit="mL/min/{1.73_m2}"/>
+                           </value>
+                        </observationRange>
+                     </referenceRange>
                   </observation>
-               </entryRelationship>
-               <referenceRange typeCode="REFV">
-                  <observationRange classCode="OBS" moodCode="EVN.CRT">
-                     <value xsi:type="IVL_PQ">
-                        <low value="62" unit="mmol/L"/>
-                        <high value="134" unit="mmol/L"/>
-                     </value>
-                  </observationRange>
-               </referenceRange>
-            </observation>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP">
-            <observation classCode="OBS" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.31"/>
-               <templateId root="1.3.6.1.4.1.19376.1.3.1.6"/>
-               <id extension="33333" root="2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
-               <code xsi:type="CD"
-                     code="30000-4"
-                     codeSystem="2.16.840.1.113883.6.1"
-                     displayName="Albumine/creatinine [verhouding] in urine d.m.v. detectielimiet &lt;= 20 mg/L"/>
-               <statusCode code="completed"/>
-               <effectiveTime value="20211202"/>
-               <value xsi:type="PQ" value="2" unit="mg/mmol"/>
-               <entryRelationship typeCode="COMP">
-                  <act classCode="ACT" moodCode="EVN">
-                     <templateId root="2.16.840.1.113883.10.20.1.40"/>
-                     <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.2"/>
-                     <code code="48767-8"
-                           displayName="Annotation Comment"
+               </component>
+               <component typeCode="COMP">
+                  <observation classCode="OBS" moodCode="EVN">
+                     <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.31"/>
+                     <templateId root="1.3.6.1.4.1.19376.1.3.1.6"/>
+                     <id extension="22222" root="2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
+                     <code xsi:type="CD"
+                           code="45066-8"
                            codeSystem="2.16.840.1.113883.6.1"
-                           codeSystemName="LOINC"/>
-                     <text>Goede uitslag voor een patient van 75 jaar.</text>
+                           displayName="Creatinine [mol/volume] in urine"/>
                      <statusCode code="completed"/>
-                  </act>
-               </entryRelationship>
-               <entryRelationship typeCode="COMP">
-                  <observation classCode="OBS" moodCode="EVN">
-                     <templateId root="2.16.840.1.113883.2.4.3.11.60.121.10.54"/>
-                     <code code="92236-9"
-                           codeSystem="2.16.840.1.113883.6.1"
-                           displayName="Lab observation result status"/>
-                     <value xsi:type="CV"
-                            code="final"
-                            codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
-                            displayName="Definitief"/>
+                     <effectiveTime value="20211212"/>
+                     <value xsi:type="PQ" value="135" unit="umol/l"/>
+                     <interpretationCode code="H"
+                                         codeSystem="2.16.840.1.113883.5.83"
+                                         displayName="Boven referentiewaarde">
+                        <translation code="281302008"
+                                     codeSystem="2.16.840.1.113883.6.96"
+                                     displayName="Boven referentiewaarde"/>
+                     </interpretationCode>
+                     <entryRelationship typeCode="COMP">
+                        <act classCode="ACT" moodCode="EVN">
+                           <templateId root="2.16.840.1.113883.10.20.1.40"/>
+                           <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.2"/>
+                           <code code="48767-8"
+                                 displayName="Annotation Comment"
+                                 codeSystem="2.16.840.1.113883.6.1"
+                                 codeSystemName="LOINC"/>
+                           <text>Creatinine iets hoger dan normaal.</text>
+                           <statusCode code="completed"/>
+                        </act>
+                     </entryRelationship>
+                     <entryRelationship typeCode="COMP">
+                        <observation classCode="OBS" moodCode="EVN">
+                           <templateId root="2.16.840.1.113883.2.4.3.11.60.121.10.54"/>
+                           <code code="92236-9"
+                                 codeSystem="2.16.840.1.113883.6.1"
+                                 displayName="Lab observation result status"/>
+                           <value xsi:type="CV"
+                                  code="final"
+                                  codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
+                                  displayName="Definitief"/>
+                        </observation>
+                     </entryRelationship>
+                     <referenceRange typeCode="REFV">
+                        <observationRange classCode="OBS" moodCode="EVN.CRT">
+                           <value xsi:type="IVL_PQ">
+                              <low value="62" unit="umol/l"/>
+                              <high value="134" unit="umol/l"/>
+                           </value>
+                        </observationRange>
+                     </referenceRange>
                   </observation>
-               </entryRelationship>
-               <referenceRange typeCode="REFV">
-                  <observationRange classCode="OBS" moodCode="EVN.CRT">
-                     <value xsi:type="IVL_PQ">
-                        <high value="3" unit="mg/mmol"/>
-                     </value>
-                  </observationRange>
-               </referenceRange>
-            </observation>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP">
-            <observation classCode="OBS" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.7.10.31"/>
-               <templateId root="1.3.6.1.4.1.19376.1.3.1.6"/>
-               <id extension="44444" root="2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
-               <code xsi:type="CD"
-                     code="14957-5"
-                     codeSystem="2.16.840.1.113883.6.1"
-                     displayName="Albumine [massa/volume] in urine d.m.v. detectielimiet &lt;= 20 mg/L"/>
-               <statusCode code="completed"/>
-               <effectiveTime value="20211202"/>
-               <value xsi:type="PQ" value="0" unit="mg/L"/>
-               <entryRelationship typeCode="COMP">
-                  <act classCode="ACT" moodCode="EVN">
-                     <templateId root="2.16.840.1.113883.10.20.1.40"/>
-                     <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.2"/>
-                     <code code="48767-8"
-                           displayName="Annotation Comment"
-                           codeSystem="2.16.840.1.113883.6.1"
-                           codeSystemName="LOINC"/>
-                     <text>Zie ratio voor interpretatie.</text>
-                     <statusCode code="completed"/>
-                  </act>
-               </entryRelationship>
-               <entryRelationship typeCode="COMP">
-                  <observation classCode="OBS" moodCode="EVN">
-                     <templateId root="2.16.840.1.113883.2.4.3.11.60.121.10.54"/>
-                     <code code="92236-9"
-                           codeSystem="2.16.840.1.113883.6.1"
-                           displayName="Lab observation result status"/>
-                     <value xsi:type="CV"
-                            code="final"
-                            codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
-                            displayName="Definitief"/>
-                  </observation>
-               </entryRelationship>
-            </observation>
+               </component>
+            </organizer>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <observation classCode="OBS" moodCode="EVN">

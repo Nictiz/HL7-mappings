@@ -1,0 +1,70 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="mp-MedDsp-mp9-MBH300SCRIPT1MVE"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_300_SCRIPT1"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+      <value value="MBH_300_SCRIPT1_MVE"/>
+   </identifier>
+   <status value="completed"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="373784005"/>
+         <display value="verstrekken van medicatie"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/mp-PhPrd-mp9-21684011138832447-3060195"/>
+      <type value="Medication"/>
+      <display value="ECANSYA TABLET FILMOMHULD 500MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-HdeXXX-Huyser"/>
+      <type value="Patient"/>
+      <display value="Patient, H. de XXX_Huyser"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/nl-core-HPrv-Org-mp9-Org-2165281100733-01236578"/>
+         <type value="Organization"/>
+         <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
+      </actor>
+   </performer>
+   <authorizingPrescription>
+      <type value="MedicationRequest"/>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+         <value value="MBH_300_SCRIPT1_VV"/>
+      </identifier>
+      <display value="relatie naar verstrekkingsverzoek met identificatie: MBH_300_SCRIPT1_VV || 2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+   </authorizingPrescription>
+   <quantity>
+      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+         <valueQuantity>
+            <value value="140"/>
+            <unit value="stuk"/>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+            <code value="245"/>
+         </valueQuantity>
+      </extension>
+      <value value="140"/>
+      <unit value="stuk"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="1"/>
+   </quantity>
+   <daysSupply>
+      <value value="2"/>
+      <unit value="week"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="wk"/>
+   </daysSupply>
+   <whenHandedOver value="${DATE, T, D, -9}T08:30:00+02:00"/>
+</MedicationDispense>

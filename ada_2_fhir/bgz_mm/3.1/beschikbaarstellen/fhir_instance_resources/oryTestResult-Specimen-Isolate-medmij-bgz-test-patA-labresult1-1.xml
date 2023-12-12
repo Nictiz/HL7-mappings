@@ -1,0 +1,131 @@
+<Specimen xmlns="http://hl7.org/fhir">
+   <id value="oryTestResult-Specimen-Isolate-medmij-bgz-test-patA-labresult1-1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Specimen-Isolate"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Specimen. Subject: Anouk A. Anouk van XXX_Rijn de XXX_Vries. Id: Specimen1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7)</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Twee buisjes van 10ml. één nuchter en één 's avonds</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Type</th>
+                  <td>
+                     <span title="Staphylococcus aureus (3092008 - SNOMED CT)">Staphylococcus aureus</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Container</th>
+                  <td>
+                     <div>Id: Specimen1-1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7)</div>
+                     <div>Type: <span title="Container voor bloed- of weefselopslag of -kweek (700957004 - SNOMED CT)">Container voor bloed- of weefselopslag of -kweek</span>
+                     </div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <contained>
+      <Specimen>
+         <id value="d56e75"/>
+         <meta>
+            <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Specimen"/>
+         </meta>
+         <type>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="87612001"/>
+               <display value="Bloed"/>
+            </coding>
+         </type>
+         <subject>
+            <reference value="Patient/medmij-bgz-test-patA"/>
+            <display value="Anouk A. Anouk van XXX_Rijn de XXX_Vries"/>
+         </subject>
+         <receivedTime value="2019-05-12T08:30:00+02:00"/>
+         <collection>
+            <collectedDateTime value="2019-05-12T08:15:00+02:00"/>
+            <quantity>
+               <value value="20"/>
+               <unit value="ml"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="ml"/>
+            </quantity>
+            <method>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="22778000"/>
+                  <display value="Venapunctie"/>
+               </coding>
+            </method>
+            <bodySite>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="24028007"/>
+                        <display value="Right"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Morphology">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="399881009"/>
+                        <display value="Afwijkende vasculaire verbinding (afwijkende morfologie)"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="76248009"/>
+                  <display value="Gehele regio cubiti"/>
+               </coding>
+            </bodySite>
+         </collection>
+      </Specimen>
+   </contained>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="Specimen1"/>
+   </identifier>
+   <type>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="3092008"/>
+         <display value="Staphylococcus aureus"/>
+      </coding>
+   </type>
+   <subject>
+      <reference value="Patient/medmij-bgz-test-patA"/>
+      <display value="Anouk A. Anouk van XXX_Rijn de XXX_Vries"/>
+   </subject>
+   <parent>
+      <reference value="#d56e75"/>
+      <display value="87612001: Bloed"/>
+   </parent>
+   <container>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+         <value value="Specimen1-1"/>
+      </identifier>
+      <type>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="700957004"/>
+            <display value="Container voor bloed- of weefselopslag of -kweek"/>
+         </coding>
+      </type>
+   </container>
+   <note>
+      <text value="Twee buisjes van 10ml. één nuchter en één 's avonds"/>
+   </note>
+</Specimen>

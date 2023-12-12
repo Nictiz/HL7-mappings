@@ -31,13 +31,13 @@
                         <xsl:otherwise>phone</xsl:otherwise>
                     </xsl:choose>
                 </xsl:variable>
-                <xsl:variable name="numberType" select="nummer_soort/@code | number_type/@code"/>
+                <xsl:variable name="numberType" select="(nummer_soort | number_type)/@code"/>
                 <xsl:variable name="numberTypeValue" as="xs:string?">
                     <xsl:choose>
-                        <xsl:when test="$telecomType = 'MC'">mobile</xsl:when>
                         <xsl:when test="$numberType = 'WP'">work</xsl:when>
                         <xsl:when test="$numberType = 'HP'">home</xsl:when>
                         <xsl:when test="$numberType = 'TMP'">temp</xsl:when>
+                        <xsl:when test="$telecomType = 'MC'">mobile</xsl:when>
                     </xsl:choose>
                 </xsl:variable>
                 <xsl:variable name="doContactDetails" select="if ($filterprivate) then not($numberType[. = $filterValues]) else true()" as="xs:boolean"/>
@@ -70,7 +70,7 @@
                                 </xsl:otherwise>
                             </xsl:choose>
                         </system>
-                        <xsl:for-each select="telefoonnummer/@value | telephone_number/@value">
+                        <xsl:for-each select="(telefoonnummer | telephone_number)/@value">
                             <value value="{normalize-space(.)}"/>
                         </xsl:for-each>
                         <xsl:if test="$numberTypeValue">
@@ -80,7 +80,7 @@
                 </xsl:if>
             </xsl:for-each>
             <xsl:for-each select="email_adressen[email_adres/@value] | email_addresses[email_address/@value]">
-                <xsl:variable name="emailType" select="email_soort/@code | email_address_type/@code"/>
+                <xsl:variable name="emailType" select="(email_soort | email_address_type)/@code"/>
                 <xsl:variable name="emailTypeValue" as="xs:string?">
                     <xsl:choose>
                         <xsl:when test="$emailType = 'WP'">work</xsl:when>
@@ -91,7 +91,7 @@
                 <xsl:if test="$doContactDetails">
                     <telecom>
                         <system value="email"/>
-                        <xsl:for-each select="email_adres/@value | email_address/@value">
+                        <xsl:for-each select="(email_adres | email_address)/@value">
                             <value value="{normalize-space(.)}"/>
                         </xsl:for-each>
                         <xsl:if test="$emailTypeValue">
