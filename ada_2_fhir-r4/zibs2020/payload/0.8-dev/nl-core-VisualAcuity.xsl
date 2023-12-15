@@ -59,8 +59,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <code>
                     <coding>
                         <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                        <code value="363983007"/>
-                        <display value="visus"/>
+                        <code value="260246004" />
+                        <display value="bevinding betreffende visus"/>                      
                     </coding>
                 </code>
                 <xsl:call-template name="makeReference">
@@ -96,8 +96,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <code>
                             <coding>
                                 <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                                <code value="363983007" />
-                                <display value="visus"/>
+                                <code value="16830007" />
+                                <display value="onderzoek van visus"/>
                             </coding>
                         </code>
                         <valueCodeableConcept>
