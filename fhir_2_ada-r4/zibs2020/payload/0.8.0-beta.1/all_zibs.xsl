@@ -26,8 +26,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="contextContactEpisodeOfCare.xsl"/>
     <xsl:import href="ext-CopyIndicator.xsl"/>
     <xsl:import href="ext-MedicationAgreementPeriodOfUseCondition.xsl"/>
+    <xsl:import href="ext-StopType.xsl"/>
     <xsl:import href="ext-TimeInterval-Duration.xsl"/>
-    <xsl:import href="ext-TimeInterval-period.xsl"/>
+    <xsl:import href="ext-TimeInterval-Period.xsl"/>
     <xsl:import href="nl-core-AddressInformation.xsl"/>
     <xsl:import href="nl-core-AdministrationAgreement.xsl"/>
     <xsl:import href="nl-core-BodyHeight.xsl"/>
@@ -35,7 +36,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="nl-core-ContactInformation.xsl"/>
     <xsl:import href="nl-core-ContactPerson.xsl"/>
     <xsl:import href="nl-core-DispenseRequest.xsl"/>
-    <xsl:import href="nl-core-ext-StopType.xsl"/>
     <xsl:import href="nl-core-HealthcareProvider-Organization.xsl"/>
     <xsl:import href="nl-core-HealthProfessional-Practitioner.xsl"/>
     <xsl:import href="nl-core-HealthProfessional-PractitionerRole.xsl"/>
