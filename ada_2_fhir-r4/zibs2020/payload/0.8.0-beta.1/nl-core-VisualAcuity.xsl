@@ -59,8 +59,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <code>
                     <coding>
                         <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                        <code value="16830007"/>
-                        <display value="onderzoek van visus"/>
+                        <code value="363983007"/>
+                        <display value="visus"/>
                     </coding>
                 </code>
                 <xsl:call-template name="makeReference">
@@ -79,9 +79,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="decimale_visus_waarde">
                     <valueQuantity>
                         <value value="{@value}"/>
-                        <unit value="decimal"/>
-                        <system value="http://unitsofmeasure.org"/>
-                        <code value="{nf:convert_ADA_unit2UCUM_FHIR('decimal')}"/>
                     </valueQuantity>
                 </xsl:for-each>
                 <xsl:for-each select="anatomische_locatie[lateraliteit]">
@@ -90,7 +87,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <coding>
                             <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                             <code value="81745001"/>
-                            <display value="structuur van bulbus oculi (lichaamsstructuur)"/>
+                            <display value="oog"/>
                         </coding>
                     </bodySite>
                 </xsl:for-each>
@@ -99,8 +96,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <code>
                             <coding>
                                 <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                                <code value="16830007"/>
-                                <display value="onderzoek van visus (verrichting)"/>
+                                <code value="363983007" />
+                                <display value="visus"/>
                             </coding>
                         </code>
                         <valueCodeableConcept>
@@ -132,7 +129,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <coding>
                                 <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="152731000146106"/>
-                                <display value="distance to visual acuity chart (observable entity)"/>
+                                <display value="afstand tot visuskaart"/>
                             </coding>
                         </code>
                         <valueQuantity>
