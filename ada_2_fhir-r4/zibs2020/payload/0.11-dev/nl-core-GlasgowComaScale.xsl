@@ -34,6 +34,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create an nl-core-GlasgowComaScale instance as an Observation FHIR instance from ADA glasgow_coma_scale.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
     <xsl:template match="glasgow_coma_scale" name="nl-core-GlasgowComaScale" mode="nl-core-GlasgowComaScale" as="element(f:Observation)">
         <xsl:param name="in" as="element()?" select="."/>
@@ -150,14 +151,4 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
     
-    <xd:doc>
-        <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
-    </xd:doc>
-    <xsl:template match="glasgow_coma_scale" mode="_generateId">
-    </xsl:template>    
-    <xd:doc>
-        <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
-    </xd:doc>
-    <xsl:template match="glasgow_coma_scale" mode="_generateDisplay">
-    </xsl:template>
 </xsl:stylesheet>
