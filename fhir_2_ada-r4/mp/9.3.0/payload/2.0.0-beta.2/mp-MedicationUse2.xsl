@@ -30,8 +30,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- volgens_afspraak_indicator -->
             <xsl:apply-templates select="f:extension[@url = $urlExtAsAgreedIndicator]" mode="#current"/>
             <!-- stoptype -->
-            <!-- do not use the nl-core stoptype, outputs a wrongly named ada element, since the IA's chose to update the dataset name in MP9 3.0 -->
-            <xsl:apply-templates select="f:modifierExtension[@url = $urlExtStoptype]/f:valueCodeableConcept" mode="#current"/>
+            <xsl:choose>
+                <xsl:when test="f:modifierExtension[@url = $urlExtStoptype]/f:valueCodeableConcept">
+                    <!-- do not use the nl-core stoptype, outputs a wrongly named ada element, since the IA's chose to update the dataset name in MP9 3.0 -->
+                    <xsl:apply-templates select="f:modifierExtension[@url = $urlExtStoptype]/f:valueCodeableConcept" mode="#current"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- fall back on status, maybe it is on-hold or stopped -->
+                    <xsl:apply-templates select="f:status" mode="mp-MedUseStopType"/>                    
+                </xsl:otherwise>
+            </xsl:choose>
             <!-- gebruiksperiode -->
             <xsl:apply-templates select="f:effectivePeriod" mode="#current"/>
             <!-- gebruiks_product -->
@@ -168,11 +176,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <gebruik_indicator>
                     <xsl:attribute name="value" select="'false'"/>
                 </gebruik_indicator>
+               
             </xsl:when>
             <xsl:when test="@value eq 'stopped'">
                 <gebruik_indicator>
                     <xsl:attribute name="value" select="'false'"/>
-                </gebruik_indicator>
+                 </gebruik_indicator>
             </xsl:when>
             <xsl:when test="
                     some $val in ('not-taken', 'completed')
@@ -201,6 +210,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc>
+            Template to convert f:status to stoptype when the modifierExtension for stoptype is not present.
+            It uses the stoptypeMap-mapping for version 930 and is done for only two status:
+            on-hold > onderbroken
+            stopped > stopgezet
+        
+        </xd:desc>
+    </xd:doc>
+    <xsl:template match="f:status" mode="mp-MedUseStopType">
+        <xsl:choose>
+            <xsl:when test="@value eq 'on-hold'">
+                <medicatiegebruik_stop_type 
+                    code="{$stoptypeMap[@stoptype = 'onderbroken' and @version='930']/@code}" 
+                    codeSystem="{$stoptypeMap[@stoptype = 'onderbroken' and @version='930']/@codeSystem}" 
+                    displayName="{$stoptypeMap[@stoptype = 'onderbroken' and @version='930']/@displayName}"/>
+            </xsl:when>
+            <xsl:when test="@value eq 'stopped'">
+                <medicatiegebruik_stop_type 
+                    code="{$stoptypeMap[@stoptype = 'stopgezet' and @version='930']/@code}" 
+                    codeSystem="{$stoptypeMap[@stoptype = 'stopgezet' and @version='930']/@codeSystem}" 
+                    displayName="{$stoptypeMap[@stoptype = 'stopgezet' and @version='930']/@displayName}"
+                    version="{$stoptypeMap[@stoptype = 'stopgezet' and @version='930']/@version}"/>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:template>
+   
+    
     <xd:doc>
         <xd:desc>
             Template to convert f:statusReason to reden_wijzigen_of_stoppen_gebruik.
