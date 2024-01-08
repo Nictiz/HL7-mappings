@@ -121,9 +121,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <status>
                     <xsl:attribute name="value">
                         <xsl:choose>
-                            <xsl:when test="(medicatie_gebruik_stop_type | medicatiegebruik_stop_type)[@code = $stoptypeMap[@stoptype = 'onderbroken']/@code]">on-hold</xsl:when>
-                            <xsl:when test="(medicatie_gebruik_stop_type | medicatiegebruik_stop_type)[@code = $stoptypeMap[@stoptype = 'stopgezet']/@code]">stopped</xsl:when>
-                            <xsl:when test="gebruik_indicator/@value = 'false' and not(medicatie_gebruik_stop_type | medicatiegebruik_stop_type)">not-taken</xsl:when>
+                            <xsl:when test="(medicatie_gebruik_stop_type | medicatiegebruik_stop_type)[@code = $stoptypeMap[@stoptype = ('onderbroken', 'tijdelijk')]/@code]">on-hold</xsl:when>
+                            <xsl:when test="(medicatie_gebruik_stop_type | medicatiegebruik_stop_type)[@code = $stoptypeMap[@stoptype = ('stopgezet','definitief')]/@code]">stopped</xsl:when>
+                            <xsl:when test="gebruik_indicator/@value = 'false' and not((medicatie_gebruik_stop_type | medicatiegebruik_stop_type)[@code][not(@codesystem = $oidHL7NullFlavor)])">not-taken</xsl:when>
                             <xsl:otherwise>active</xsl:otherwise>
                         </xsl:choose>
                         </xsl:attribute>
