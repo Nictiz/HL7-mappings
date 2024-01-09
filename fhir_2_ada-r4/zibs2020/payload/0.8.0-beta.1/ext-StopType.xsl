@@ -26,7 +26,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to resolve f:modifierExtension ext-Medication-stop-type.</xd:desc>
     </xd:doc>
-    <xsl:template match="f:modifierExtension[@url = $urlExtStoptype]" mode="nl-core-ext-StopType">
+    <xsl:template match="f:modifierExtension[@url = $urlExtStoptype]" mode="ext-StopType">
         <xsl:apply-templates select="f:valueCodeableConcept" mode="#current"/>
     </xsl:template>
  
@@ -34,7 +34,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to convert f:valueCodeableConcept to stoptype.</xd:desc>
     </xd:doc>
-    <xsl:template match="f:valueCodeableConcept" mode="nl-core-ext-StopType">
+    <xsl:template match="f:valueCodeableConcept" mode="ext-StopType">
         <xsl:call-template name="CodeableConcept-to-code">
             <xsl:with-param name="in" select="."/>
             <xsl:with-param name="adaElementName">
