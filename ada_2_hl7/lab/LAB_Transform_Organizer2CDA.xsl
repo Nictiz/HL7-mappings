@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet exclude-result-prefixes="xd nf xsl uuid" xmlns:uuid="http://www.uuid.org" xmlns="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:hl7="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    
+    <xsl:import href="../../util/utilities.xsl"/>
     <xsl:import href="../../util/uuid.xsl"/>
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
@@ -9,17 +11,17 @@
     <xsl:param name="macAddress">02-00-00-00-00-00</xsl:param>
     <!-- param to influence whether to output schema references, typically only needed for test instances -->
     <xsl:param name="schematronRef" as="xs:boolean" select="false()"/>
-    
+
     <!-- https://nictiznl.sharepoint.com/sites/KHSI/Kwaliteitshandboek%20Standaardisatie/XML.aspx -->
     <xsl:variable name="cdaIdRoot">2.16.840.1.113883.2.4.3.11.999.25.1</xsl:variable>
     <xsl:variable name="cdaSetIdRoot">2.16.840.1.113883.2.4.3.11.999.25.2</xsl:variable>
-    
+
     <xd:doc>
         <xd:desc>Start template when called from outside</xd:desc>
     </xd:doc>
     <xsl:template match="/">
         <xsl:copy copy-namespaces="no">
-            <xsl:apply-templates select="@* | node()" mode="organizer2CDA" />
+            <xsl:apply-templates select="@* | node()" mode="organizer2CDA"/>
         </xsl:copy>
     </xsl:template>
 
@@ -27,18 +29,13 @@
         <xd:desc> Transforms HL7 organizer example message into CDA version of the same thing. From publication 9.0.6 </xd:desc>
     </xd:doc>
     <xsl:template match="hl7:organizer[not(ancestor::hl7:organizer)]" mode="organizer2CDA">
-        <ClinicalDocument 
-            xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" 
-            xmlns:hl7nl="urn:hl7-nl:v3" 
-            xmlns:pharm="urn:ihe:pharm:medication" 
-            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="urn:hl7-org:v3 ../hl7_schemas/CDANL_extended.xsd">
+        <ClinicalDocument xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 ../hl7_schemas/CDANL_extended.xsd">
             <xsl:if test="$schematronRef">
                 <xsl:attribute name="xsi:schemaLocation">urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/CDANL_extended.xsd</xsl:attribute>
             </xsl:if>
             <realmCode code="NL"/>
             <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
-            
+
             <!-- Laboratoriumresultaten -->
             <xsl:if test="./hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.66.10.77']">
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.25.10.51"/>
@@ -109,7 +106,7 @@
                                 <xsl:if test="empty(hl7:participant[@typeCode = 'CST']/hl7:participantRole/hl7:addr)">
                                     <addr nullFlavor="UNK"/>
                                 </xsl:if>
-                                
+
                             </xsl:when>
                             <xsl:when test="hl7:participant[@typeCode = 'CST']/hl7:participantRole/hl7:id">
                                 <xsl:copy-of select="hl7:participant[@typeCode = 'CST']/hl7:participantRole/hl7:id" copy-namespaces="no"/>
@@ -176,13 +173,19 @@
                                                 </xsl:for-each>
                                             </paragraph>
                                             <xsl:for-each select="hl7:act/hl7:entryRelationship/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.55']]">
-                                                <paragraph><xsl:text>Status: </xsl:text><xsl:value-of select="hl7:value/(@displayName, hl7:originalText, @code)[1]"/></paragraph>
+                                                <paragraph>
+                                                    <xsl:text>Status: </xsl:text>
+                                                    <xsl:value-of select="hl7:value/(@displayName, hl7:originalText, @code)[1]"/>
+                                                </paragraph>
                                             </xsl:for-each>
                                             <xsl:if test="hl7:act/hl7:entryRelationship/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9200']]/hl7:value[@value = 'true']">
                                                 <paragraph>Deze resultaten zijn een kopie van de bron</paragraph>
                                             </xsl:if>
                                             <xsl:for-each select="hl7:act/hl7:entryRelationship/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.121.10.53']]">
-                                                <paragraph><xsl:text>EDIFACT-referentienummer: </xsl:text><xsl:value-of select="hl7:value"/></paragraph>
+                                                <paragraph>
+                                                    <xsl:text>EDIFACT-referentienummer: </xsl:text>
+                                                    <xsl:value-of select="hl7:value"/>
+                                                </paragraph>
                                             </xsl:for-each>
                                             <table>
                                                 <tbody>
@@ -198,7 +201,9 @@
                                                     <xsl:for-each select=".//hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.7.10.31']]">
                                                         <xsl:variable name="abnormal" select="exists(hl7:interpretationCode[@code = ('H', 'L', '281302008', '281300000')] | hl7:interpetationCode[@codeSystem = '2.16.840.1.113883.4.642.3.59'])"/>
                                                         <tr>
-                                                            <td><xsl:value-of select="hl7:code/@displayName"/></td>
+                                                            <td>
+                                                                <xsl:value-of select="hl7:code/@displayName"/>
+                                                            </td>
                                                             <td>
                                                                 <xsl:for-each select="hl7:code | hl7:code/hl7:translation">
                                                                     <xsl:value-of select="@code"/>
@@ -359,7 +364,7 @@
             <xsl:apply-templates select="* | node()" mode="organizer2CDA"/>
         </entry>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc/>
     </xd:doc>
@@ -375,7 +380,7 @@
     <xsl:template match="hl7:recordTarget/hl7:patientRole" mode="organizer2CDA">
         <xsl:copy copy-namespaces="no">
             <xsl:apply-templates select="@*" mode="organizer2CDA"/>
-            
+
             <xsl:copy-of select="hl7:id" copy-namespaces="no"/>
             <xsl:copy-of select="hl7:addr" copy-namespaces="no"/>
             <xsl:if test="empty(hl7:addr)">
@@ -487,7 +492,7 @@
             </assignedAuthor>
         </author>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc/>
     </xd:doc>
@@ -503,7 +508,7 @@
             <xsl:apply-templates select="hl7:assignedEntity" mode="organizer2CDA"/>
         </xsl:copy>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc/>
     </xd:doc>
@@ -525,7 +530,7 @@
             <xsl:copy-of select="hl7:representedOrganization" copy-namespaces="no"/>
         </xsl:copy>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc/>
     </xd:doc>
