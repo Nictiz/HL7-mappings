@@ -23,6 +23,7 @@
     <property name="project.title" value="${echo.label} for ${is.name} ${is.version}"/>
 
     <property name="usecase.mg" value="beschikbaarstellen_medicatiegegevens"/>
+    <property name="usecase.mg.st" value="sturen_medicatiegegevens"/>
     <property name="usecase.mg.rp" value="raadplegen_medicatiegegevens"/>
     <property name="usecase.mo" value="beschikbaarstellen_medicatieoverzicht"/>
     <property name="usecase.mv" value="sturen_medicatievoorschrift"/>
@@ -57,6 +58,22 @@
             <param name="fileset.include" value="*VV*.xml"/>
             <param name="refs.ada.dir" value="ada_instance"/>
         </antcall>
+        
+        <!-- sturen_medicatiegegevens MA -->
+        <antcall target="setup_sub">
+            <param name="usecase" value="${usecase.mg.st}"/>
+            <param name="fileset.dir" value="ada_instance_MA"/>
+            <param name="fileset.include" value="*MA*.xml"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
+        </antcall>
+        <!-- sturen_medicatiegegevens VV -->
+        <antcall target="setup_sub">
+            <param name="usecase" value="${usecase.mg.st}"/>
+            <param name="fileset.dir" value="ada_instance_VV"/>
+            <param name="fileset.include" value="*VV*.xml"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
+        </antcall>
+        
         <!-- beschikbaarstellen_medicatieoverzicht -->
         <antcall target="setup_sub">
             <param name="usecase" value="${usecase.mo}"/>

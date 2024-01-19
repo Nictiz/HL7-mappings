@@ -30,6 +30,97 @@
    </recordTarget>
    <component typeCode="COMP">
       <substanceAdministration classCode="SBADM" moodCode="RQO">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9430"/>
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9429"/>
+         <id extension="MBH_300_WDS_weekdagen_MA"
+             root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <code code="33633005"
+               displayName="voorschrijven van geneesmiddel (verrichting)"
+               codeSystem="2.16.840.1.113883.6.96"
+               codeSystemName="SNOMED CT"/>
+         <text mediaType="text/plain">Vanaf 9 dec 2022, Volgens schema trombosedienst, Oraal</text>
+         <effectiveTime xsi:type="IVL_TS">
+            <low value="20221209170000"/>
+            <high nullFlavor="NI"/>
+         </effectiveTime>
+         <routeCode code="9"
+                    codeSystem="2.16.840.1.113883.2.4.4.9"
+                    displayName="Oraal"
+                    codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+         <consumable>
+            <manufacturedProduct>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
+               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                  <code code="1783"
+                        codeSystem="2.16.840.1.113883.2.4.4.10"
+                        displayName="FENPRCOUMON TABLET 3MG"
+                        codeSystemName="G-Standaard PRK">
+                     <translation code="6637"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1"
+                                  displayName="ENPRCOUMON TABLET 3MG"
+                                  codeSystemName="G-Standaard GPK"/>
+                  </code>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </consumable>
+         <author>
+            <time value="20221209160000"/>
+            <assignedAuthor>
+               <id extension="222221111" root="2.16.528.1.1007.3.1"/>
+               <code code="3400"
+                     codeSystem="2.16.840.1.113883.2.4.6.7"
+                     displayName="Trombosediensten"
+                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <assignedPerson>
+                  <name>
+                     <given qualifier="BR">Tanja</given>
+                     <prefix qualifier="VV">de </prefix>
+                     <family qualifier="BR">Bakker</family>
+                  </name>
+               </assignedPerson>
+               <representedOrganization>
+                  <id extension="11112222" root="2.16.528.1.1007.3.3"/>
+                  <name>Trombosedienst Ons Dorp</name>
+                  <addr use="WP">
+                     <streetName>Kerkstraat </streetName>
+                     <houseNumber>28</houseNumber>
+                     <buildingNumberSuffix>d</buildingNumberSuffix>
+                     <postalCode>1332 GH</postalCode>
+                     <city>Ons Dorp</city>
+                  </addr>
+                  <asOrganizationPartOf>
+                     <code code="3400"
+                           codeSystem="2.16.840.1.113883.2.4.6.7"
+                           displayName="Trombosediensten"
+                           codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                           codeSystemVersion="2020-10-23T00:00:00"/>
+                  </asOrganizationPartOf>
+               </representedOrganization>
+            </assignedAuthor>
+         </author>
+         <entryRelationship typeCode="SPRT">
+            <act classCode="ACT" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9085"/>
+               <code nullFlavor="OTH">
+                  <originalText>Volgens schema trombosedienst</originalText>
+               </code>
+            </act>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP" inversionInd="true">
+            <procedure classCode="PROC" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                   extension="MBH_300_WDS_weekdagen"/>
+               <code code="1"
+                     displayName="Medicamenteuze behandeling"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+            </procedure>
+         </entryRelationship>
+      </substanceAdministration>
+   </component>
+   <component typeCode="COMP">
+      <substanceAdministration classCode="SBADM" moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9412"/>
          <id extension="MBH_300_WDS_weekdagen_wds"
              root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
@@ -81,7 +172,7 @@
                <representedOrganization>
                   <id extension="11112222" root="2.16.528.1.1007.3.3"/>
                   <name>Trombosedienst Ons Dorp</name>
-                  <addr>
+                  <addr use="WP">
                      <streetName>Kerkstraat </streetName>
                      <houseNumber>28</houseNumber>
                      <buildingNumberSuffix>d</buildingNumberSuffix>

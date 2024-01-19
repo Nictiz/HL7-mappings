@@ -506,30 +506,43 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9048_20160614145840">
         <doseQuantity>
-            <xsl:for-each select="aantal[@value] | aantal/(vaste_waarde | nominale_waarde)[.//@value]">
-                <center>
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9164_20170118000000_2">
-                        <xsl:with-param name="Gstd_value" select="@value"/>
-                        <xsl:with-param name="Gstd_unit" select="../eenheid | ../../eenheid"/>
-                    </xsl:call-template>
-                </center>
-            </xsl:for-each>
-            <xsl:for-each select="aantal/(min | minimum_waarde)[.//@value]">
-                <low>
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9164_20170118000000_2">
-                        <xsl:with-param name="Gstd_value" select="@value"/>
-                        <xsl:with-param name="Gstd_unit" select="../../eenheid"/>
-                    </xsl:call-template>
-                </low>
-            </xsl:for-each>
-            <xsl:for-each select="aantal/(max | maximum_waarde)[.//@value]">
-                <high>
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9164_20170118000000_2">
-                        <xsl:with-param name="Gstd_value" select="@value"/>
-                        <xsl:with-param name="Gstd_unit" select="../../eenheid"/>
-                    </xsl:call-template>
-                </high>
-            </xsl:for-each>
+            <xsl:choose>
+                <xsl:when test="aantal[.//@value]">
+                    <xsl:for-each select="aantal[@value] | aantal/(vaste_waarde | nominale_waarde)[@value]">
+                        <center>
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9164_20170118000000_2">
+                                <xsl:with-param name="Gstd_value" select="@value"/>
+                                <xsl:with-param name="Gstd_unit" select="../eenheid | ../../eenheid"/>
+                            </xsl:call-template>
+                        </center>
+                    </xsl:for-each>
+                    <xsl:for-each select="aantal/(min | minimum_waarde)[@value]">
+                        <low>
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9164_20170118000000_2">
+                                <xsl:with-param name="Gstd_value" select="@value"/>
+                                <xsl:with-param name="Gstd_unit" select="../../eenheid"/>
+                            </xsl:call-template>
+                        </low>
+                    </xsl:for-each>
+                    <xsl:for-each select="aantal/(max | maximum_waarde)[@value]">
+                        <high>
+                            <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9164_20170118000000_2">
+                                <xsl:with-param name="Gstd_value" select="@value"/>
+                                <xsl:with-param name="Gstd_unit" select="../../eenheid"/>
+                            </xsl:call-template>
+                        </high>
+                    </xsl:for-each>
+                </xsl:when>
+                <!-- doseQuantity without a value should be converted as well, garbage in, garbage out, we don't omit data from input -->
+                <xsl:when test="eenheid[@code]">
+                    <center>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9164_20170118000000_2">
+                            <xsl:with-param name="Gstd_unit" select="eenheid"/>
+                        </xsl:call-template>
+                    </center>
+                </xsl:when>
+            </xsl:choose>
+            
         </doseQuantity>
     </xsl:template>
 
@@ -3148,10 +3161,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="toedieningsschema[.//(@value | @code)]">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9358_20210517124213"/>
                 </xsl:for-each>
-
-                <xsl:for-each select="keerdosis[.//(@value | @code)]">
-                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9048_20160614145840"/>
-                </xsl:for-each>
+                <xsl:for-each select="keerdosis[.//(@value | @code )]">
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9048_20160614145840"/>
+                </xsl:for-each>   
                 <xsl:for-each select="toedieningssnelheid[.//(@value | @code)]">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9150_20160726150449"/>
                 </xsl:for-each>
@@ -3330,10 +3342,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- verbruiks_duur  -->
-                <xsl:for-each select="(verbruiks_duur | verbruiksduur)[@value]">
+                <xsl:for-each select="(verbruiks_duur | verbruiksduur)[(@value | @unit)]">
                     <expectedUseTime>
-                        <!-- Tijdseenheid is verplicht in dagen -->
-                        <width value="{nf:calculate_Duur_In_Dagen(./@value,nf:convertTime_ADA_unit2UCUM(./@unit))}" unit="d"/>
+                        <width>
+                            <xsl:call-template name="makeTimePQValueAttribs"/>
+                        </width>
+                        
                     </expectedUseTime>
                 </xsl:for-each>
 

@@ -411,6 +411,10 @@
                 <xsl:when test="$ADAunit = $ada-unit-cm">cm</xsl:when>
                 <xsl:when test="$ADAunit = $ada-unit-m">m</xsl:when>
                 <xsl:when test="$ADAunit = $ada-unit-mmHg">mm[Hg]</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-diopter">[diop]</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-prism-diopter">[p'diop]</xsl:when>
+                <xsl:when test="$ADAunit = $ada-unit-degrees">deg</xsl:when>
+                
                 <xsl:when test="nf:isValidUCUMUnit($ADAunit)">
                     <xsl:value-of select="$ADAunit"/>
                 </xsl:when>

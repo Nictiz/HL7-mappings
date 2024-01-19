@@ -16,12 +16,12 @@
                </tag>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T + 2 dagen, tot en met T + 5 dagen, 1 maal per 2 dagen 2 stuks, Oraal"/>
+               <valueString value="Vanaf 3 jan 2023, tot en met 6 jan 2023, 1 maal per 2 dagen 2 stuks, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="${DATE, T, D, +2}T00:00:00+02:00"/>
-                  <end value="${DATE, T, D, +5}T23:59:59+02:00"/>
+                  <start value="2023-01-03T00:00:00+01:00"/>
+                  <end value="2023-01-06T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -31,11 +31,11 @@
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
-               <valueString value="verhoging dosis"/>
+               <valueString value="verhoging dosis vanwege aanhoudende misselijkheid"/>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.2"/>
-               <value value="MBH_300_start_eind_VMA"/>
+               <value value="MBH_300_start_eind_lengte_gewicht_VMA"/>
             </identifier>
             <status value="active"/>
             <intent value="plan"/>
@@ -56,11 +56,11 @@
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
-            <authoredOn value="${DATE, T, D, +0}T07:10:00+02:00"/>
+            <authoredOn value="2023-01-01T07:10:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:d3775824-6b66-11ec-0000-020000000000"/>
-               <type value="PractitionerRole"/>
-               <display value="Healthcare professional (role), Marcha van Partners, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Itis"/>
+               <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </requester>
             <dosageInstruction>
                <timing>
@@ -235,6 +235,25 @@
       </request>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="01236578"/>
+            </identifier>
+            <name value="Apotheek De Gulle Gaper"/>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
       <fullUrl value="urn:uuid:16186ce9-6b6b-11ec-0000-020000000000"/>
       <resource>
          <Medication>
@@ -289,7 +308,7 @@
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
-            <effectiveDateTime value="${DATE, T, D, +0}T07:05:00+02:00"/>
+            <effectiveDateTime value="2023-01-01T07:05:00+01:00"/>
             <valueQuantity>
                <value value="165"/>
                <unit value="cm"/>
@@ -330,7 +349,7 @@
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
-            <effectiveDateTime value="${DATE, T, D, +0}T07:05:00+02:00"/>
+            <effectiveDateTime value="2023-01-01T07:05:00+01:00"/>
             <valueQuantity>
                <value value="75"/>
                <unit value="kg"/>

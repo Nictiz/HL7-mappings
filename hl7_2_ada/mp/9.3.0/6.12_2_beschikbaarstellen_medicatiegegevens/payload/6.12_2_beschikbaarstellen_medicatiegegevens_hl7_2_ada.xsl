@@ -116,15 +116,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <identificatie>
                 <xsl:choose>
                     <xsl:when test="$PRK">
-                        <xsl:attribute name="extension" select="$PRK/@code"/>
+                        <xsl:attribute name="value" select="$PRK/@code"/>
                         <xsl:attribute name="root" select="$genericMBHidPRK"/>
                     </xsl:when>
                     <xsl:when test="$HPK">
-                        <xsl:attribute name="extension" select="$HPK/@code"/>
+                        <xsl:attribute name="value" select="$HPK/@code"/>
                         <xsl:attribute name="root" select="$genericMBHidHPK"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:attribute name="extension" select="$current-dispense-event/hl7:id/@extension"/>
+                        <xsl:attribute name="value" select="$current-dispense-event/hl7:id/@extension"/>
                         <xsl:attribute name="root" select="concat($concatOidMBH, $current-dispense-event/hl7:id/@root)"/>
                     </xsl:otherwise>
                 </xsl:choose>

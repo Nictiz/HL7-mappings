@@ -4,8 +4,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2023-06-27T17:20:59.793431+02:00"
-         last-update-date="2023-06-27T17:20:59.793431+02:00"/>
+         creation-date="2023-11-02T15:23:33.682508+01:00"
+         last-update-date="2023-11-02T15:23:33.682508+01:00"/>
    <data>
       <sturen_medicatievoorschrift app="mp-mp93"
                                    shortName="sturen_medicatievoorschrift"
@@ -41,16 +41,16 @@
                <medicatieafspraak_datum_tijd datatype="datetime" value="2023-01-01T12:00:00"/>
                <gebruiksperiode>
                   <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00"/>
-                  <eind_datum_tijd datatype="datetime" value="2023-10-08T23:59:59"/>
+                  <eind_datum_tijd datatype="datetime" value="2023-04-11T23:59:59"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d566e39" datatype="reference"/>
+                  <zorgverlener value="d804e39" datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d566e34" datatype="reference"/>
+                  <farmaceutisch_product value="d804e34" datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 1 jan 2023, tot en met 8 okt 2023, 1 maal per dag 1 stuk, Oraal"/>
+                  <omschrijving value="Vanaf 1 jan 2023, tot en met 11 apr 2023, 1 maal per dag 1 stuk, Oraal"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
@@ -79,9 +79,35 @@
                   </doseerinstructie>
                </gebruiksinstructie>
             </medicatieafspraak>
+            <verstrekkingsverzoek>
+               <identificatie value="MBH_300_VolgendeBehandelaar_VV_Start1"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2023-01-01T12:00:00"/>
+               <auteur>
+                  <zorgverlener value="d804e39" datatype="reference"/>
+               </auteur>
+               <te_verstrekken_geneesmiddel>
+                  <farmaceutisch_product value="d804e34" datatype="reference"/>
+               </te_verstrekken_geneesmiddel>
+               <te_verstrekken_hoeveelheid>
+                  <aantal value="100"/>
+                  <eenheid value="100"
+                           code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <beoogd_verstrekker>
+                  <zorgaanbieder value="d804e93" datatype="reference"/>
+               </beoogd_verstrekker>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_VolgendeBehandelaar_MA_Start1"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d566e34">
+            <farmaceutisch_product id="d804e34">
                <product_code code="105678"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -91,7 +117,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="APIXABAN TABLET 5MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="d566e39">
+            <zorgverlener id="d804e39">
                <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Bertine"/>
@@ -117,10 +143,10 @@
                   </telefoonnummers>
                </contactgegevens>
                <zorgaanbieder>
-                  <zorgaanbieder value="d566e51" datatype="reference"/>
+                  <zorgaanbieder value="d804e51" datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d566e51">
+            <zorgaanbieder id="d804e51">
                <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
@@ -132,6 +158,10 @@
                                codeSystem="2.16.840.1.113883.5.1119"
                                displayName="Werkadres"/>
                </adresgegevens>
+            </zorgaanbieder>
+            <zorgaanbieder id="d804e93">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
             </zorgaanbieder>
          </bouwstenen>
       </sturen_medicatievoorschrift>
