@@ -41,7 +41,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- geannuleerd_indicator  -->
             <xsl:apply-templates select="f:status" mode="#current"/>
             <!-- toedieningsafspraak_stop_type -->
-            <xsl:apply-templates select="f:modifierExtension[@url = $urlExtStoptype]" mode="nl-core-ext-StopType"/>
+            <xsl:apply-templates select="f:modifierExtension[@url = $urlExtStoptype]" mode="ext-StopType"/>
             <!-- verstrekker -->
             <xsl:apply-templates select="f:performer" mode="#current"/>
             <!-- reden_afspraak -->

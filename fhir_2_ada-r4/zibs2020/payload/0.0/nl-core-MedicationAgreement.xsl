@@ -44,7 +44,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<!-- geannuleerd_indicator niet voor MA -->
 			<!--			<xsl:apply-templates select="f:status" mode="#current"/>-->
 			<!-- stop_type -->
-			<xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="nl-core-ext-StopType"/>
+			<xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="ext-StopType"/>
 			<!-- relatie medicatieafspraak -->
 			<xsl:apply-templates select="f:priorPrescription" mode="#current"/>
 			<!-- relatie_medicatiegebruik -->

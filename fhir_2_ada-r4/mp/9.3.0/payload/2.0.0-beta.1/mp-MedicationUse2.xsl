@@ -30,7 +30,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- volgens_afspraak_indicator -->
             <xsl:apply-templates select="f:extension[@url = $urlExtAsAgreedIndicator]" mode="#current"/>
             <!-- stoptype -->
-            <!-- do not use the nl-core stoptype, outputs a wrongly named ada element, since the IA's chose to update the dataset name in MP9 3.0 -->
+            <!-- do not use the ext-stoptype, outputs a wrongly named ada element, since the IA's chose to update the dataset name in MP9 3.0 -->
             <xsl:apply-templates select="f:modifierExtension[@url = $urlExtStoptype]/f:valueCodeableConcept" mode="#current"/>
             <!-- gebruiksperiode -->
             <xsl:apply-templates select="f:effectivePeriod" mode="#current"/>
