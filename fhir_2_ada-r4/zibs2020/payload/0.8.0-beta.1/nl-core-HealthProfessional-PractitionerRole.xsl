@@ -28,10 +28,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="practionerReference" select="f:practitioner/f:reference/@value"/>
         <xsl:variable name="organizationReference" select="f:organization/f:reference/@value"/>
         <xsl:variable name="specialtyReference" select="ancestor::f:entry/f:fullUrl/@value"/>
-        <xsl:apply-templates select="ancestor::f:Bundle/f:entry[f:fullUrl/@value=$practionerReference]/f:resource/f:Practitioner" mode="nl-core-HealthProfessional-Practitioner">
+        <!-- TODO: hier kunnen ook relatieve urls zitten aanpassen-->
+       <!-- <xsl:apply-templates select="ancestor::f:Bundle/f:entry[f:fullUrl/@value=$practionerReference]/f:resource/f:Practitioner" mode="nl-core-HealthProfessional-Practitioner">-->
+        <xsl:apply-templates select="ancestor::f:Bundle/f:entry/f:resource/f:Practitioner" mode="nl-core-HealthProfessional-Practitioner">
             <xsl:with-param name="organizationReference" select="$organizationReference"/>
             <xsl:with-param name="specialtyReference" select="$specialtyReference"/>
         </xsl:apply-templates>
+            
     </xsl:template>
     
     <xd:doc>

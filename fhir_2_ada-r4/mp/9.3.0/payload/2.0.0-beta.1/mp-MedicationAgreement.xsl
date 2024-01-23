@@ -142,8 +142,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xd:desc>Template to convert f:medicationReference to afgesproken_geneesmiddel</xd:desc>
 	</xd:doc>
 	<xsl:template match="f:medicationReference" mode="mp-MedicationAgreement">
-		<afgesproken_geneesmiddel>
+		<!--<afgesproken_geneesmiddel>
+	
 			<farmaceutisch_product value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
+		</afgesproken_geneesmiddel>-->
+		
+		<afgesproken_geneesmiddel>
+			
+			<farmaceutisch_product>
+				<xsl:call-template name="Reference-to-identificatie"/>
+			</farmaceutisch_product>
 		</afgesproken_geneesmiddel>
 	</xsl:template>
 	
@@ -171,7 +179,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xd:doc>
 	<xsl:template match="f:requester" mode="mp-MedicationAgreement">
 		<voorschrijver>
-			<zorgverlener value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
+			<!--<zorgverlener value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>-->
+			<zorgverlener>
+				<xsl:call-template name="Reference-to-identificatie"/>
+			</zorgverlener>
 		</voorschrijver>
 	</xsl:template>
 	
