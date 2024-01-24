@@ -1141,7 +1141,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <td>
                                     <table>
                                         <tbody>
-                                            <xsl:if test="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/Comment']">
+                                            <xsl:if test="f:extension[@url = ('http://nictiz.nl/fhir/StructureDefinition/ext-Comment', 'http://nictiz.nl/fhir/StructureDefinition/Comment')]">
                                                 <tr>
                                                     <th>
                                                         <xsl:call-template name="util:getLocalizedString">
@@ -1151,7 +1151,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                     </th>
                                                     <td>
                                                         <xsl:variable name="contents" as="element()*">
-                                                            <xsl:for-each select="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/Comment']/f:valueString">
+                                                            <xsl:for-each select="f:extension[@url = ('http://nictiz.nl/fhir/StructureDefinition/ext-Comment', 'http://nictiz.nl/fhir/StructureDefinition/Comment')]/f:valueString">
                                                                 <li>
                                                                     <xsl:call-template name="doDT_String">
                                                                         <xsl:with-param name="in" select="."/>
@@ -2620,13 +2620,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="textLang" select="$textLang"/>
                     </xsl:call-template>
-                    <xsl:if test="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/Comment']">
+                    <xsl:if test="f:extension[@url = ('http://nictiz.nl/fhir/StructureDefinition/ext-Comment', 'http://nictiz.nl/fhir/StructureDefinition/Comment')]">
                         <tfoot>
                             <tr>
                                 <td colspan="2">
                                     <xsl:call-template name="doDT">
                                         <xsl:with-param name="baseName">value</xsl:with-param>
-                                        <xsl:with-param name="in" select="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/Comment']/f:*[starts-with(local-name(), 'value')]"/>
+                                        <xsl:with-param name="in" select="f:extension[@url = ('http://nictiz.nl/fhir/StructureDefinition/ext-Comment', 'http://nictiz.nl/fhir/StructureDefinition/Comment')]/f:*[starts-with(local-name(), 'value')]"/>
                                         <xsl:with-param name="textLang" select="$textLang"/>
                                         <xsl:with-param name="sep">div</xsl:with-param>
                                         <xsl:with-param name="allowDiv" select="true()"/>
@@ -9733,9 +9733,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:for-each>
                                     </div>
                                 </xsl:if>
-                                <xsl:if test="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/Comment']">
+                                <xsl:if test="f:extension[@url = ('http://nictiz.nl/fhir/StructureDefinition/ext-Comment', 'http://nictiz.nl/fhir/StructureDefinition/Comment')]">
                                     <div>
-                                        <xsl:for-each select="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/Comment']">
+                                        <xsl:for-each select="f:extension[@url = ('http://nictiz.nl/fhir/StructureDefinition/ext-Comment', 'http://nictiz.nl/fhir/StructureDefinition/Comment')]">
                                             <xsl:call-template name="doDT_String">
                                                 <xsl:with-param name="in" select="f:valueString"/>
                                                 <xsl:with-param name="textLang" select="$textLang"/>
