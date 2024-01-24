@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Task xmlns="http://hl7.org/fhir">
+   <id value="task-hg-VerwijzingHuisartsParamedicusMaximaalbericht"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/hg-ReferralTask"/>
+   </meta>
+   <identifier>
+      <value value="hg-VerwijzingHuisartsParamedicusMaximaalbericht"/>
+   </identifier>
+   <status value="requested"/>
+   <intent value="order"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="3457005"/>
+         <display value="verwijzen van patiënt"/>
+      </coding>
+   </code>
+   <focus>
+      <reference value="ServiceRequest/servicerequest-hg-VerwijzingHuisartsParamedicusMaximaalbericht"/>
+      <type value="ServiceRequest"/>
+      <display value="Gezondheidscentrum de Brug"/>
+   </focus>
+   <for>
+      <reference value="Patient/patient-van-XXX-Sanderink-de-Kok"/>
+      <type value="Patient"/>
+      <display value="Patient, Sandra Janine (Sandra) van XXX_Sanderink"/>
+   </for>
+   <authoredOn value="T"/>
+   <requester>
+      <reference value="PractitionerRole/practitionerrole-000001111"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Huisartsen, niet nader gespecificeerd, Gezondheidscentrum de Brug"/>
+   </requester>
+   <owner>
+      <reference value="PractitionerRole/practitionerrole-04115923"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Fysiotherapeuten, fysiotherapie en manuele therapie, FysioHolland"/>
+   </owner>
+</Task>

@@ -1,0 +1,84 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="zib-BodyWeight-bgz-msz-patB-bodyweight2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-BodyWeight"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Maria Francisca M.F. Maria van 't Hoen Verheul. Id: patB-bodyweight2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, +1}T07:30:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="Lichaamsgewicht [massa] in ^patiënt (29463-7 - LOINC)">Lichaamsgewicht [massa] in ^patiënt</span>
+                  </td>
+                  <td>54 kg</td>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="Clothing worn during measure (8352-7 - LOINC)">Clothing worn during measure</span>
+                  </td>
+                  <td>
+                     <span title="Lichte kleding/ondergoed (MINIMAL - 2.16.840.1.113883.2.4.3.11.60.40.4.8.1)">Lichte kleding/ondergoed</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patB-bodyweight2"/>
+   </identifier>
+   <status value="final"/>
+   <category>
+      <coding>
+         <system value="http://hl7.org/fhir/observation-category"/>
+         <code value="vital-signs"/>
+         <display value="Vital Signs"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="29463-7"/>
+         <display value="Lichaamsgewicht [massa] in ^patiënt"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/MARIA-FRANCISCA-M-F--MARIA-VAN-T-HOEN-VERHEUL"/>
+      <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
+   </subject>
+   <effectiveDateTime value="${DATE, T, D, +1}T07:30:00+02:00"/>
+   <valueQuantity>
+      <value value="54"/>
+      <unit value="kg"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="kg"/>
+   </valueQuantity>
+   <component>
+      <code>
+         <coding>
+            <system value="http://loinc.org"/>
+            <code value="8352-7"/>
+            <display value="Clothing worn during measure"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.8.1"/>
+            <code value="MINIMAL"/>
+            <display value="Lichte kleding/ondergoed"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+</Observation>

@@ -1,0 +1,80 @@
+<Immunization xmlns="http://hl7.org/fhir">
+   <id value="zib-Vaccination-bgz-msz-patA-vaccin1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Vaccination"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Vaccinatie. Patiënt: Dennis D. Dennis Janse. Id: patA-vaccin1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Status: voltooid</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Gebeten door een hond</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>
+                     <span title="Tetanusvaccin (J07AM01 - http://www.whocc.no/atc)">Tetanusvaccin</span>
+                  </th>
+                  <td>
+                     <div>Toegediend: ja (3 april 2019)</div>
+                     <div>Gemeld door uitvoerende: nee</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Zorgverlener</th>
+                  <td>Ria Alexandra R.A. Ria Slot || Huisarts || Huisartsenpraktijk Rotterdam</td>
+               </tr>
+               <tr>
+                  <th>Vaccine Details</th>
+                  <td>
+                     <div>Dosering: 2 mL</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patA-vaccin1"/>
+   </identifier>
+   <status value="completed"/>
+   <notGiven value="false"/>
+   <vaccineCode>
+      <coding>
+         <system value="http://www.whocc.no/atc"/>
+         <code value="J07AM01"/>
+         <display value="Tetanusvaccin"/>
+      </coding>
+   </vaccineCode>
+   <patient>
+      <reference value="Patient/DENNIS-D--DENNIS-JANSE"/>
+      <display value="Dennis D. Dennis Janse"/>
+   </patient>
+   <date value="2019-04-03"/>
+   <primarySource value="false"/>
+   <doseQuantity>
+      <value value="2"/>
+      <unit value="mL"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="mL"/>
+   </doseQuantity>
+   <practitioner>
+      <actor>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-bgz-msz-8877665501-015123456A1"/>
+               <display value="Ria Alexandra R.A. Ria Slot || Huisarts || Huisartsenpraktijk Rotterdam"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-840-1-113883-2-4-6-1-88776655"/>
+         <display value="Ria Alexandra R.A. Ria Slot"/>
+      </actor>
+   </practitioner>
+   <note>
+      <text value="Gebeten door een hond"/>
+   </note>
+</Immunization>

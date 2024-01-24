@@ -13,10 +13,17 @@
     <xsl:variable name="mveCode" as="xs:string*" select="('373784005')"/>
     <xsl:variable name="mgbCode" as="xs:string*" select="('422979000')"/>
     <xsl:variable name="mtdCode" as="xs:string*" select="('18629005')"/>
-    <xsl:variable name="concatOidTA">1.3.6.1.4.1.58606.1.</xsl:variable>
-    
+
+    <xsl:variable name="genericMBHidPRK">2.16.840.1.113883.2.4.3.11.61.2</xsl:variable>
+    <xsl:variable name="genericMBHidHPK">2.16.840.1.113883.2.4.3.11.61.3</xsl:variable>
+    <xsl:variable name="concatOidMBH">1.3.6.1.4.1.58606.1.2.</xsl:variable>
+    <xsl:variable name="concatOidTA">1.3.6.1.4.1.58606.1.1.</xsl:variable>    
 
     <xsl:variable name="stoptypeMap" as="element()+">
+        <map stoptype="onderbroken" code="385655000" codeSystem="2.16.840.1.113883.6.96" displayName="onderbroken" version="930"/>
+        <map stoptype="stopgezet" code="410546004" codeSystem="2.16.840.1.113883.6.96" displayName="stopgezet" version="930"/>
+        <map stoptype="geannuleerd" code="89925002" codeSystem="2.16.840.1.113883.6.96" displayName="geannuleerd" version="930"/>
+        <!-- deprecated codes from MP9 2.0 -->
         <map stoptype="tijdelijk" code="113381000146106" codeSystem="2.16.840.1.113883.6.96" displayName="tijdelijk gestopt" version="920"/>
         <map stoptype="definitief" code="113371000146109" codeSystem="2.16.840.1.113883.6.96" displayName="definitief gestopt" version="920"/>
         <!-- deprecated codes from pre MP 9.1 -->
@@ -224,7 +231,7 @@
                                     <!-- min/max -->
                                     <xsl:when test="$toedieningssnelheid/waarde/(min | minimum_waarde) | (max | maximum_waarde)[@value]">
                                         <xsl:if test="$toedieningssnelheid/waarde/(min | minimum_waarde)/@value and not($toedieningssnelheid/waarde/(max | maximum_waarde)/@value)">minimaal </xsl:if>
-                                        <xsl:if test="$toedieningssnelheid/waarde/(max | maximum_waarde)/@value and not($toedieningssnelheid/waarde/min/@value)">maximaal </xsl:if>
+                                        <xsl:if test="$toedieningssnelheid/waarde/(max | maximum_waarde)/@value and not($toedieningssnelheid/waarde/(min | minimum_waarde)/@value)">maximaal </xsl:if>
                                         <xsl:if test="$toedieningssnelheid/waarde/(min | minimum_waarde)/@value">
                                             <xsl:value-of select="$toedieningssnelheid/waarde/(min | minimum_waarde)/@value"/>
                                         </xsl:if>
@@ -305,7 +312,11 @@
                                 </xsl:if>
                             </xsl:variable>
                             <xsl:variable name="isFlexible" as="xs:string?">
-                                <xsl:if test="toedieningsschema/is_flexibel/@value = 'false' or $interval">- let op, tijden exact aanhouden</xsl:if>
+                                <!-- AWE, MP-515 new default text for interval -->
+                                <xsl:choose>
+                                    <xsl:when test="$interval">- gelijke tussenpozen aanhouden</xsl:when>
+                                    <xsl:when test="toedieningsschema/is_flexibel/@value = 'false'">- let op, tijden exact aanhouden</xsl:when>
+                                </xsl:choose>
                             </xsl:variable>
 
                             <xsl:value-of select="normalize-space(concat(string-join($zo-nodig, ' '), ' ', string-join($weekdag-string, ' '), ' ', string-join($frequentie-string, ' '), $interval-string, ' ', string-join($toedientijd-string, ' '), ' ', string-join($keerdosis-string, ' '), ' ', string-join($dagdeel-string, ' '), ' ', $toedieningsduur-string, ' ', string-join($toedieningssnelheid-string, ' '), string-join($maxdose-string, ' '), $isFlexible))"/>

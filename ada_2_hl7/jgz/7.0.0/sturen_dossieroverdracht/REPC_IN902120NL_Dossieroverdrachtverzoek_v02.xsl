@@ -1598,7 +1598,10 @@
                                                     <xsl:value-of select="$gContactGroepsbijeenkomst"/>
                                                 </xsl:when>
                                                 <xsl:otherwise>
-                                                    <xsl:message>Onbekend activiteitype gevonden: <xsl:value-of select="$activiteitType"/></xsl:message>
+                                                    <xsl:call-template name="util:logMessage">
+                                                        <xsl:with-param name="level" select="$logWARN"/>
+                                                        <xsl:with-param name="msg">Onbekend activiteittype gevonden: <xsl:value-of select="$activiteitType"/></xsl:with-param>
+                                                    </xsl:call-template>
                                                 </xsl:otherwise>
                                             </xsl:choose>
                                         </xsl:variable>

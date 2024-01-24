@@ -1,0 +1,181 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="zib-BloodPressure-bgz-msz-patA-bloodpressure1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-BloodPressure"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Dennis D. Dennis Janse. Id: patA-bloodpressure1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Categorie: <span title="Vital Signs (vital-signs - observation-category)">Vital Signs</span>, Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, +1}T11:05:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="non-invasief (22762002 - SNOMED CT)">non-invasief</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="Blood pressure panel with all children optional (85354-9 - LOINC)">Blood pressure panel with all children optional</span>
+                  </td>
+                  <td/>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="Intravasculaire systolische bloeddruk [druk] in arterieel vaatstelsel (8480-6 - LOINC)">Intravasculaire systolische bloeddruk [druk] in arterieel vaatstelsel</span>
+                  </td>
+                  <td>140 mm[Hg]</td>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="Intravasculaire diastolische bloeddruk [druk] in arterieel vaatstelsel (8462-4 - LOINC)">Intravasculaire diastolische bloeddruk [druk] in arterieel vaatstelsel</span>
+                  </td>
+                  <td>85 mm[Hg]</td>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="Korotkofftonen (85549003 - SNOMED CT)">Korotkofftonen</span>
+                  </td>
+                  <td>
+                     <span title="fase 4 (255271000 - SNOMED CT)">fase 4</span>
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="Blood pressure device Cuff size (8358-4 - LOINC)">Blood pressure device Cuff size</span>
+                  </td>
+                  <td>
+                     <span title="Groot (L - 2.16.840.1.113883.2.4.3.11.60.40.4.15.1)">Groot</span>
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="bloeddrukmanchet (70665002 - SNOMED CT)">bloeddrukmanchet</span>
+                  </td>
+                  <td>
+                     <span title="Groot (L - 2.16.840.1.113883.2.4.3.11.60.40.4.15.1)">Groot</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patA-bloodpressure1"/>
+   </identifier>
+   <status value="final"/>
+   <category>
+      <coding>
+         <system value="http://hl7.org/fhir/observation-category"/>
+         <code value="vital-signs"/>
+         <display value="Vital Signs"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="85354-9"/>
+         <display value="Blood pressure panel with all children optional"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/DENNIS-D--DENNIS-JANSE"/>
+      <display value="Dennis D. Dennis Janse"/>
+   </subject>
+   <effectiveDateTime value="${DATE, T, D, +1}T11:05:00+02:00"/>
+   <method>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="22762002"/>
+         <display value="non-invasief"/>
+      </coding>
+   </method>
+   <component>
+      <code>
+         <coding>
+            <system value="http://loinc.org"/>
+            <code value="8480-6"/>
+            <display value="Intravasculaire systolische bloeddruk [druk] in arterieel vaatstelsel"/>
+         </coding>
+      </code>
+      <valueQuantity>
+         <value value="140"/>
+         <unit value="mm[Hg]"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mm[Hg]"/>
+      </valueQuantity>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://loinc.org"/>
+            <code value="8462-4"/>
+            <display value="Intravasculaire diastolische bloeddruk [druk] in arterieel vaatstelsel"/>
+         </coding>
+      </code>
+      <valueQuantity>
+         <value value="85"/>
+         <unit value="mm[Hg]"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="mm[Hg]"/>
+      </valueQuantity>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="85549003"/>
+            <display value="Korotkofftonen"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="255271000"/>
+            <display value="fase 4"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://loinc.org"/>
+            <code value="8358-4"/>
+            <display value="Blood pressure device Cuff size"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.15.1"/>
+            <code value="L"/>
+            <display value="Groot"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="70665002"/>
+            <display value="bloeddrukmanchet"/>
+         </coding>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.15.1"/>
+            <code value="L"/>
+            <display value="Groot"/>
+         </coding>
+      </valueCodeableConcept>
+   </component>
+</Observation>

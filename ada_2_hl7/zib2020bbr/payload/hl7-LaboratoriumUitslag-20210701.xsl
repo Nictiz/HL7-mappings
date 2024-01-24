@@ -495,7 +495,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         </xsl:for-each>
                                     </xsl:when>
                                     <xsl:otherwise>
-                                        <id nullFlavor="NI"/>
+                                        <xsl:attribute name="nullFlavor">NI</xsl:attribute>
+                                       
                                     </xsl:otherwise>
                                 </xsl:choose>
                                 <xsl:for-each select="verzamelvolume">

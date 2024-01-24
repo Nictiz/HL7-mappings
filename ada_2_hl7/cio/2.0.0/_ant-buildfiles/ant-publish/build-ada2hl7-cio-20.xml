@@ -17,7 +17,7 @@
     <property name="instances.dir" value="${build.dir}/../../../../art_decor/production-ada-instances/${is.abbreviation}/${is.version}"/>
     <property name="validate.dir" value="${build.dir}/../../../../../../SVN/art_decor/branches/cio-qual-20230424T150542/schematron_svrl"/>
     <!--    <property name="validate.dir" value="${build.dir}/../../../../../../SVN/AORTA/trunk/Zorgtoepassing/ContraindicatiesOvergevoeligheden/DECOR/cio-runtime-develop"/>-->
-    <property name="xsl.validate.svrl" value="${build.dir}/../../validate/validate-svrl-output.xsl"/>
+    <property name="xsl.validate.svrl" value="${build.dir}/../../../util/validate-svrl-output.xsl"/>
     <property name="schema.organizer" value="${build.dir}/../../../../../../SVN/art_decor/branches/cio-qual-20230424T150542/schemas_codeGen_flat/organizer.xsd"/>
     
     <import file="../../../../_ant-buildfiles/ant-publish/build-ada2hl7-include.xml"/>
@@ -177,30 +177,31 @@
         <!-- first the schematrons per instance -->
         <antcall target="validate_hl7_cio2"/>
         <!-- then summarize the results per use case -->
-        <antcall target="schematronresults_hl7_930"/>
+        <antcall target="schematronresults_hl7"/>
         
     </target>
     
-    <target name="schematronresults_hl7_930">
+    <target name="schematronresults_hl7">
         
         <!-- look at the results from target schematronvalidate_hl7_930 for conclusions -->
         <!-- beschikbaarstellen_contraindicatie -->
         <antcall target="schematronresults_cio2_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.bci}.xml"/>
-            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.bci}/validate_hl7_instance"/>
+<!--            <param name="input.dir" value="../${usecase.bci}/validate_hl7_instance"/>-->
+            <param name="input.dir" value="../ada_2_hl7/${is.abbreviation}/${is.version}/${usecase.bov}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         <!-- beschikbaarstellen_overgevoeligheid -->
         <antcall target="schematronresults_cio2_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_${usecase.bov}.xml"/>
-            <param name="input.dir" value="../${is.abbreviation}/${is.version}/${usecase.bov}/validate_hl7_instance"/>
+            <param name="input.dir" value="../ada_2_hl7/${is.abbreviation}/${is.version}/${usecase.bov}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
         
           <!-- xml voorbeelden organizer -->
         <antcall target="schematronresults_cio2_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_xml_voorbeelden.xml"/>
-            <param name="input.dir" value="../${is.abbreviation}/${is.version}/xml-voorbeelden/validate_hl7_instance"/>
+            <param name="input.dir" value="../ada_2_hl7/${is.abbreviation}/${is.version}/xml-voorbeelden/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
             

@@ -38,9 +38,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:choose>
                 </xsl:variable>
                 <xsl:choose>
-                    <xsl:when test="$resource/f:identifier">
+                    <xsl:when test="$resource/f:*/f:identifier">
                         <xsl:call-template name="Identifier-to-identificatie">
-                            <xsl:with-param name="in" select="$resource/f:identifier"/>
+                            <xsl:with-param name="in" select="$resource/f:*/f:identifier"/>
                         </xsl:call-template>
                     </xsl:when>
                     <xsl:otherwise>

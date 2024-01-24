@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Task xmlns="http://hl7.org/fhir">
+   <id value="task-hg-VerwijzingHuisartsParamedicusMinimaalbericht"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/hg-ReferralTask"/>
+   </meta>
+   <identifier>
+      <value value="hg-VerwijzingHuisartsParamedicusMinimaalbericht"/>
+   </identifier>
+   <status value="requested"/>
+   <intent value="order"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="3457005"/>
+         <display value="verwijzen van patiënt"/>
+      </coding>
+   </code>
+   <focus>
+      <reference value="ServiceRequest/servicerequest-hg-VerwijzingHuisartsParamedicusMinimaalbericht"/>
+      <type value="ServiceRequest"/>
+      <display value="envelop"/>
+   </focus>
+   <for>
+      <reference value="Patient/patient-XXX-Andrioli"/>
+      <type value="Patient"/>
+      <display value="Patient, XXX_Andrioli"/>
+   </for>
+   <authoredOn value="T"/>
+   <requester>
+      <reference value="PractitionerRole/practitionerrole-000001111"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role)"/>
+   </requester>
+   <owner>
+      <reference value="Organization/organization-04086949"/>
+      <type value="Organization"/>
+      <display value="Healthcare provider (organization), organisation-id 04086949 in system 2.16.840.1.113883.2.4.6.1"/>
+   </owner>
+</Task>

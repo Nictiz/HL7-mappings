@@ -81,7 +81,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:if>
                 <xsl:copy>
-                    <xsl:apply-templates select="@* | node()" mode="#current"/>
+                    <xsl:apply-templates select="@* | node()" mode="addNarrative"/>
                 </xsl:copy>
             </xsl:otherwise>
         </xsl:choose>
@@ -4052,7 +4052,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <tr>
                                 <th>
                                     <xsl:call-template name="util:getLocalizedString">
-                                        <xsl:with-param name="key">Problem</xsl:with-param>
+                                        <xsl:with-param name="key">Problem/Procedure</xsl:with-param>
                                         <xsl:with-param name="textLang" select="$textLang"/>
                                     </xsl:call-template>
                                 </th>
@@ -12526,7 +12526,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:value-of select="concat('mailto:', normalize-space(f:value/@value))"/>
                                 </xsl:when>
                                 <xsl:when test="f:system/@value = ('phone', 'fax', 'pager', 'sms')">
-                                    <xsl:value-of select="concat('tel:', normalize-space(f:value/@value))"/>
+                                    <xsl:value-of select="concat('tel:', translate(normalize-space(f:value/@value), ' ', ''))"/>
                                 </xsl:when>
                             </xsl:choose>
                         </xsl:variable>
@@ -13063,7 +13063,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:with-param name="post" select="': '"/>
                                     </xsl:call-template>
                                     <xsl:call-template name="util:getLocalizedString">
-                                        <xsl:with-param name="key" select="'HumanNameAssemblyOrder-' || f:valueCode/@value"/>
+                                        <xsl:with-param name="key" select="concat('HumanNameAssemblyOrder-', f:valueCode/@value)"/>
                                         <xsl:with-param name="textLang" select="$textLang"/>
                                     </xsl:call-template>
                                 </xsl:for-each>

@@ -1,10 +1,12 @@
-<!--ada full xml for subscenario nr: KCLOINC3--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../../sturen_laboratoriumresultaten/ada_schemas/ada_sturen_laboratoriumresultaten.xsd">
+<adaxml xsi:noNamespaceSchemaLocation="../../sturen_laboratoriumresultaten/ada_schemas/ada_sturen_laboratoriumresultaten.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <!-- == Produced by adarefs2ada build lab/3.0.0/laboratoriumresultaten_met_references-2 at 2024-01-15T13:32:44.0194395+01:00 == -->
+   <!-- == ADA full xml for subscenario nr: KCLOINC3 == -->
    <meta status="new"
          created-by="labuitwisselingada"
          last-update-by="labuitwisselingada"
          creation-date="2022-08-11T13:45:00.446+02:00"
-         last-update-date="2022-08-22T09:28:18.989+02:00"/>
+         last-update-date="2022-10-10T16:38:40.389+02:00"/>
    <data>
       <sturen_laboratoriumresultaten app="lab"
                                      shortName="sturen_laboratoriumresultaten"
@@ -13,7 +15,7 @@
                                      transactionEffectiveDate="2022-03-03T00:00:00"
                                      prefix="lab-"
                                      language="nl-NL"
-                                     title="KWAL Scenario 3_KC_LOINC"
+                                     title="KWAL Sturen/Ontvangen Scenario 3 Meesturen INR met WDS in LOINC&#xA;"
                                      desc="Het meesturen van een klinisch chemisch laboratoriumresultaat met een ander bericht. "
                                      id="lr-slr-KWAL-KC-LOINC-Scenario3-KCLOINC3">
          <scenario-nr value="KC LOINC 3"
@@ -24,27 +26,29 @@
          <patientgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4302">
             <patient conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4303">
                <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4304">
-                  <initialen value="M." conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4306"/>
+                  <initialen value="E."
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4306"/>
                   <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4309">
-                     <achternaam value="XXX_Pherai"
+                     <achternaam value="XXX_Doppen"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4311"/>
                   </geslachtsnaam>
                </naamgegevens>
-               <identificatienummer value="999900870"
+               <identificatienummer value="999900511"
                                     root="2.16.840.1.113883.2.4.6.3"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4337"/>
-               <geboortedatum value="1985-11-01"
+               <geboortedatum value="1963-10-24T00:00:00"
                               datatype="datetime"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4338"/>
                <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4339"
-                         value="3"
-                         code="F"
+                         value="2"
+                         code="M"
                          codeSystem="2.16.840.1.113883.5.1"
-                         displayName="Vrouw"/>
-               <meerling_indicator nullFlavor="NA" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4340"/>
+                         displayName="Man"/>
+               <meerling_indicator nullFlavor="NA"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4340"/>
             </patient>
          </patientgegevens>
-         <!--Zorgaanbieder found in instance with id: sl-TEST-Scenarioset1a-v30 and title: TEST REPO Scenarioset 1a (ResultatenKlinischChemie_NHG)-->
+         <!--Zorgaanbieder found in instance with id: sl-KWAL-KC-LOINC-v30 and title: KWALIFICATIE REPO ResultatenKlinischChemie_LOINC-->
          <beschikbaarstellende_partij>
             <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4221">
                <zorgaanbieder_identificatienummer value="00001111"
@@ -52,12 +56,21 @@
                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4222"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4223"/>
+               <contactgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4225">
+                  <telefoonnummers conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4226">
+                     <telefoonnummer value="099-12345678"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4227"/>
+                  </telefoonnummers>
+               </contactgegevens>
                <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4234">
                   <straat value="Dorpsstraat"
                           conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4235"/>
-                  <huisnummer value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4236"/>
-                  <postcode value="1234AA" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4240"/>
-                  <woonplaats value="Ons Dorp" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4241"/>
+                  <huisnummer value="1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4236"/>
+                  <postcode value="1234AA"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4240"/>
+                  <woonplaats value="Ons Dorp"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4241"/>
                   <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4245"
                                value="5"
                                code="WP"
@@ -69,7 +82,7 @@
                                  code="Z3"
                                  codeSystem="2.16.840.1.113883.2.4.15.1060"
                                  codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"
-                                 codeSystemVersion="2022-07-07T00:00:00"
+                                 codeSystemVersion="2022-09-10T00:00:00"
                                  displayName="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
             </zorgaanbieder>
          </beschikbaarstellende_partij>
@@ -79,8 +92,10 @@
                <laboratorium_uitslag_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4296.1"
                                                    value="KWAL_LAR_LosResultaatINR1_KC_LOINC"
                                                    conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4296"/>
-               <edifact_referentienummer value="888333" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4409"/>
-               <kopie_indicator value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4297"/>
+               <edifact_referentienummer value="888333"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4409"/>
+               <kopie_indicator value="true"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4297"/>
                <laboratorium_test conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4255">
                   <test_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4298.1"
                                       value="95555"
@@ -153,17 +168,21 @@
                      <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4385">
                         <straat value="Kerkstraat"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4386"/>
-                        <huisnummer value="28" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4387"/>
-                        <huisnummerletter value="d" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4388"/>
-                        <postcode value="1332GH" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4391"/>
-                        <woonplaats value="Ons Dorp" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4392"/>
+                        <huisnummer value="28"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4387"/>
+                        <huisnummerletter value="d"
+                                          conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4388"/>
+                        <postcode value="1332GH"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4391"/>
+                        <woonplaats value="Ons Dorp"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4392"/>
                      </adresgegevens>
                      <organisatie_type conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4397"
                                        value="34"
                                        code="TD"
                                        codeSystem="2.16.840.1.113883.2.4.15.1060"
                                        codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"
-                                       codeSystemVersion="2022-07-07T00:00:00"
+                                       codeSystemVersion="2022-09-10T00:00:00"
                                        displayName="Trombosedienst"/>
                   </zorgaanbieder>
                </uitvoerder>

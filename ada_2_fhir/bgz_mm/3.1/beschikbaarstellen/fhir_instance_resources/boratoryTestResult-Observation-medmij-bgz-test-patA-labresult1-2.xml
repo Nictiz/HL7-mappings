@@ -1,0 +1,134 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="boratoryTestResult-Observation-medmij-bgz-test-patA-labresult1-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Anouk A. Anouk van XXX_Rijn de XXX_Vries. Id: patA-labResult1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Categorie: <span title="bevinding betreffende laboratoriumonderzoek (49581000146104 - SNOMED CT)">bevinding betreffende laboratoriumonderzoek</span>, Status: definitief</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="4">Binnen referentiewaarden</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td colspan="3">08:45:00, 12 mei 2019</td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td colspan="3">
+                     <span title="Turbidimetrie (83611000052104 - SNOMED CT)">Turbidimetrie</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Specimen</th>
+                  <td colspan="3">Bloed</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+                  <th>Interpretatie</th>
+                  <th>Referentiewaarden</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="Ferritine [massa/volume] in bloed (24373-3 - LOINC)">Ferritine [massa/volume] in bloed</span>
+                  </td>
+                  <td>73 ng/ml</td>
+                  <td>
+                     <span title="Intermediate (I - v2/0078)">Intermediate</span>
+                  </td>
+                  <td>
+                     <div>
+                        <span title="Normal Range (normal - referencerange-meaning)">Normal Range</span> 20 ng/ml - 100 ng/ml</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patA-labResult1"/>
+   </identifier>
+   <status value="final">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.16.1"/>
+               <code value="final"/>
+               <display value="Final"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </status>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="49581000146104"/>
+         <display value="bevinding betreffende laboratoriumonderzoek"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="24373-3"/>
+         <display value="Ferritine [massa/volume] in bloed"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/medmij-bgz-test-patA"/>
+      <display value="Anouk A. Anouk van XXX_Rijn de XXX_Vries"/>
+   </subject>
+   <effectiveDateTime value="2019-05-12T08:45:00+02:00"/>
+   <valueQuantity>
+      <value value="73"/>
+      <unit value="ng/ml"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="ng/ml"/>
+   </valueQuantity>
+   <interpretation>
+      <coding>
+         <system value="http://hl7.org/fhir/v2/0078"/>
+         <code value="I"/>
+         <display value="Intermediate"/>
+      </coding>
+   </interpretation>
+   <comment value="Binnen referentiewaarden"/>
+   <method>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="83611000052104"/>
+         <display value="Turbidimetrie"/>
+      </coding>
+   </method>
+   <specimen>
+      <reference value="Specimen/oryTestResult-Specimen-Isolate-medmij-bgz-test-patA-labresult1-1"/>
+      <display value="Bloed"/>
+   </specimen>
+   <referenceRange>
+      <low>
+         <value value="20"/>
+         <unit value="ng/ml"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="ng/ml"/>
+      </low>
+      <high>
+         <value value="100"/>
+         <unit value="ng/ml"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="ng/ml"/>
+      </high>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/referencerange-meaning"/>
+            <code value="normal"/>
+            <display value="Normal Range"/>
+         </coding>
+      </type>
+   </referenceRange>
+</Observation>

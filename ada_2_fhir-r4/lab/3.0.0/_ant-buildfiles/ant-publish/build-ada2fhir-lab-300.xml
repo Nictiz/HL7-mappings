@@ -22,7 +22,7 @@
     <property name="gen.schematron.ref" value="false"/>
     <property name="usecase.nt" value="nictiz_test"/>
     
-    <property name="ada.project.source.dir" value="${build.dir}/../../../../../SVN/art_decor/trunk/ada-data/projects/lab"/>
+    <property name="ada.project.source.dir" value="${build.dir}/../../../art_decor/projects/lab"/>
     <!--<property name="schema.fhir" value="https://hl7.org/fhir/R4/fhir-single.xsd"/>-->
     <!--<property name="schematron.fhir" value="${build.dir}/../../../../../../Bitbucket/art-decor-backend-existdb5/fhir/4.0/resources/schemas/fhir-invariants.xsl"/>-->
     <property name="schema.fhir" value="${build.dir}/../../fhir/fhir_schemas/fhir-single.xsd"/>
@@ -32,25 +32,14 @@
     <!--<property name="xsl.validate.svrl.input" value="${build.dir}/../../../util/validate-svrl-default-input.xml"/>-->
     
     <target name="setup_lab300" description="Setup subdirectories, schemas, ada instance xml's in ${build.dir} for ${is.name} ${is.version}">
-        <!-- nictiz_test copies appropriate ada instances from refs.dir -->
-        <!-- not yet implemented there is no ada project for 9 2.0 yet -->
-        <!--<antcall target="setup_sub_instances">
-            <param name="fileset.dir" value="ada_instance"/>
-            <param name="refs.ada.dir" value="ada_instance"/>
-            <param name="usecase" value="${usecase.nt}"/>
-        </antcall>-->
-        <!-- at the moment only schemas for nictiz test -->
-        <!--<antcall target="setup_sub_schemas">
-            <param name="usecase" value="${usecase.nt}"/>
-            <param name="schema.string" value="*${usecase.labsr}.xsd"/>
-        </antcall>-->
 
         <!-- laboratoriumresultaten-->
         <antcall target="setup_sub">
-            <param name="usecase" value="${usecase.labsr}"/>
+            <param name="sub.build.dir" value="${build.dir}/${usecase.labsr}"/>
+            <param name="schema.string" value="*${usecase.labsr}.xsd"/>
             <param name="fileset.dir" value="ada_instance"/>
             <param name="fileset.include" value="*.xml"/>
-            <param name="refs.ada.dir" value="ada_instance"/>
+            <param name="refs.dir" value="${refs.dir}/${usecase.labsr}"/>
         </antcall>
         
         <!-- at the moment only schemas for nictiz test -->
@@ -61,10 +50,11 @@
         
         <!-- laboratoriumresultaten-->
         <antcall target="setup_sub">
-            <param name="usecase" value="${usecase.labbr}"/>
+            <param name="sub.build.dir" value="${build.dir}/${usecase.labbr}"/>
+            <param name="schema.string" value="*${usecase.labbr}.xsd"/>
             <param name="fileset.dir" value="ada_instance"/>
             <param name="fileset.include" value="*.xml"/>
-            <param name="refs.ada.dir" value="ada_instance"/>
+            <param name="refs.dir" value="${refs.dir}/${usecase.labbr}"/>
         </antcall>
 
         <!-- xml voorbeelden -->

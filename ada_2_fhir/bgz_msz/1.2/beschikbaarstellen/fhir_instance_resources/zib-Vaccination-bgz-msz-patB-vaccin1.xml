@@ -1,0 +1,80 @@
+<Immunization xmlns="http://hl7.org/fhir">
+   <id value="zib-Vaccination-bgz-msz-patB-vaccin1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Vaccination"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Vaccinatie. Patiënt: Maria Francisca M.F. Maria van 't Hoen Verheul. Id: patB-vaccin1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Status: voltooid</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">fietsreis naar Vietnam</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>
+                     <span title="rabiësvaccin (J07BG01 - http://www.whocc.no/atc)">rabiësvaccin</span>
+                  </th>
+                  <td>
+                     <div>Toegediend: ja (3 januari 2017)</div>
+                     <div>Gemeld door uitvoerende: nee</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Zorgverlener</th>
+                  <td>Anna A. Anna de Vries Bijns || Huisarts || Huisartsenpraktijk Molenhoek</td>
+               </tr>
+               <tr>
+                  <th>Vaccine Details</th>
+                  <td>
+                     <div>Dosering: 1 mL</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patB-vaccin1"/>
+   </identifier>
+   <status value="completed"/>
+   <notGiven value="false"/>
+   <vaccineCode>
+      <coding>
+         <system value="http://www.whocc.no/atc"/>
+         <code value="J07BG01"/>
+         <display value="rabiësvaccin"/>
+      </coding>
+   </vaccineCode>
+   <patient>
+      <reference value="Patient/MARIA-FRANCISCA-M-F--MARIA-VAN-T-HOEN-VERHEUL"/>
+      <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
+   </patient>
+   <date value="2017-01-03"/>
+   <primarySource value="false"/>
+   <doseQuantity>
+      <value value="1"/>
+      <unit value="mL"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="mL"/>
+   </doseQuantity>
+   <practitioner>
+      <actor>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-bgz-msz-0013131301-015123456B1"/>
+               <display value="Anna A. Anna de Vries Bijns || Huisarts || Huisartsenpraktijk Molenhoek"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-840-1-113883-2-4-6-1-00131313"/>
+         <display value="Anna A. Anna de Vries Bijns"/>
+      </actor>
+   </practitioner>
+   <note>
+      <text value="fietsreis naar Vietnam"/>
+   </note>
+</Immunization>

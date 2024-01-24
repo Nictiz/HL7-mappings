@@ -1,0 +1,112 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_laboratoriumresultaten.xsd">
+   <meta status="new"
+         created-by="labuitwisselingada"
+         last-update-by="labuitwisselingada"/>
+   <data>
+      <sturen_laboratoriumresultaten app="lab"
+                                     shortName="sturen_laboratoriumresultaten"
+                                     formName="sturen_laboratoriumresultaten"
+                                     transactionRef="2.16.840.1.113883.2.4.3.11.60.25.4.28"
+                                     transactionEffectiveDate="2022-03-03T00:00:00"
+                                     prefix="lab-"
+                                     language="nl-NL"
+                                     title="Generated from HL7 FHIR sturen_laboratoriumresultaten"
+                                     id="lr-slr-TEST-Scenario2b-2b">
+         <patientgegevens>
+            <patient>
+               <naamgegevens>
+                  <ongestructureerde_naam value="Elise Erelies"/>
+                  <voornamen value="Elise"/>
+                  <geslachtsnaam>
+                     <achternaam value="Erelies"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <identificatienummer value="999999114" root="2.16.840.1.113883.2.4.6.3"/>
+               <geboortedatum value="1950-11-01" datatype="datetime"/>
+               <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            </patient>
+         </patientgegevens>
+         <beschikbaarstellende_partij>
+            <zorgaanbieder id="urn-uuid-dc7fd112-262c-11ee-3843-020000000000">
+               <zorgaanbieder_identificatienummer value="11112222" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Trombosedienst Ons Dorp"/>
+               <contactgegevens>
+                  <telefoonnummers>
+                     <telefoonnummer value="06-11122266"/>
+                  </telefoonnummers>
+               </contactgegevens>
+               <adresgegevens>
+                  <straat value="Kerkstraat"/>
+                  <huisnummer value="28"/>
+                  <huisnummerletter value="d"/>
+                  <postcode value="1332GH"/>
+                  <woonplaats value="Ons Dorp"/>
+               </adresgegevens>
+               <organisatie_type code="TD"
+                                 codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                 codeSystemName="HL7 RoleCodeNL Care provider type (organizations)"
+                                 codeSystemVersion="2022-09-10T00:00:00"
+                                 displayName="Trombosedienst"/>
+            </zorgaanbieder>
+         </beschikbaarstellende_partij>
+         <onderzoeksresultaat>
+            <laboratorium_uitslag>
+               <edifact_referentienummer value="111333"/>
+               <laboratorium_test>
+                  <test_identificatie value="55555" root="2.16.840.1.113883.2.4.3.11.999.25.4298.1"/>
+                  <test_code code="6301-6"
+                             codeSystem="2.16.840.1.113883.6.1"
+                             codeSystemName="LOINC"
+                             displayName="PT-INR [relatieve tijd] in plaatjesarm plasma d.m.v. stollingsmethode"/>
+                  <test_datum_tijd value="T-10D" datatype="datetime"/>
+                  <test_uitslag value="2.9" unit="" datatype="quantity"/>
+                  <test_uitslag_status code="final"
+                                       codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
+                                       displayName="Definitief"/>
+                  <interpretatie_vlaggen code="281302008"
+                                         codeSystem="2.16.840.1.113883.6.96"
+                                         codeSystemName="SNOMED CT"
+                                         displayName="boven referentiebereik"/>
+                  <uitslag_interpretatie value="Te hoog let op."/>
+               </laboratorium_test>
+               <monster>
+                  <monsternummer value="#1" root="2.16.840.1.113883.2.4.3.11.999.25.4267.1"/>
+                  <containertype code="767387006"
+                                 codeSystem="2.16.840.1.113883.6.96"
+                                 codeSystemName="SNOMED CT"
+                                 displayName="vacuümbuis voor bloedafname met citraat, theofylline, adenosine en dipyramidol (fysiek object)"/>
+                  <monstermateriaal code="119297000"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED CT"
+                                    displayName="Bloed"/>
+                  <afname_datum_tijd value="T-11D" datatype="datetime"/>
+               </monster>
+               <uitvoerder>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatienummer value="11112222" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Trombosedienst Ons Dorp"/>
+                     <contactgegevens>
+                        <telefoonnummers>
+                           <telefoonnummer value="06-11122266"/>
+                        </telefoonnummers>
+                     </contactgegevens>
+                     <adresgegevens>
+                        <straat value="Kerkstraat"/>
+                        <huisnummer value="28"/>
+                        <huisnummerletter value="d"/>
+                        <postcode value="1332GH"/>
+                        <woonplaats value="Ons Dorp"/>
+                     </adresgegevens>
+                     <organisatie_type code="TD"
+                                       codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                       codeSystemName="HL7 RoleCodeNL Care provider type (organizations)"
+                                       codeSystemVersion="2022-09-10T00:00:00"
+                                       displayName="Trombosedienst"/>
+                  </zorgaanbieder>
+               </uitvoerder>
+            </laboratorium_uitslag>
+         </onderzoeksresultaat>
+      </sturen_laboratoriumresultaten>
+   </data>
+</adaxml>

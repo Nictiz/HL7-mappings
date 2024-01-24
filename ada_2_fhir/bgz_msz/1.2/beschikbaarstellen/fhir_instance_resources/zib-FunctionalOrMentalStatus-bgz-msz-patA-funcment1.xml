@@ -1,0 +1,81 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="zib-FunctionalOrMentalStatus-bgz-msz-patA-funcment1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-FunctionalOrMentalStatus"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Dennis D. Dennis Janse. Id: patA-funcment1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Categorie: <span title="bevinding betreffende functioneren (118228005 - SNOMED CT)">bevinding betreffende functioneren</span>, Status: definitief</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Licht beperkend</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>Vanaf 1 februari 2012</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <th>Medisch hulpmiddel</th>
+                  <td>hoorapparaat Gehoorapparaat</td>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="gehoorverlies (15188001 - SNOMED CT)">gehoorverlies</span>
+                  </td>
+                  <td>
+                     <span title="licht (255604002 - SNOMED CT)">licht</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-FunctionalOrMentalStatus-MedicalDevice">
+      <valueReference>
+         <reference value="DeviceUseStatement/zib-MedicalDevice-bgz-msz-patA-medDevice1"/>
+         <display value="hoorapparaat Gehoorapparaat"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patA-funcment1"/>
+   </identifier>
+   <status value="final"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="118228005"/>
+         <display value="bevinding betreffende functioneren"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="15188001"/>
+         <display value="gehoorverlies"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/DENNIS-D--DENNIS-JANSE"/>
+      <display value="Dennis D. Dennis Janse"/>
+   </subject>
+   <effectivePeriod>
+      <start value="2012-02-01"/>
+   </effectivePeriod>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="255604002"/>
+         <display value="licht"/>
+      </coding>
+   </valueCodeableConcept>
+   <comment value="Licht beperkend"/>
+</Observation>

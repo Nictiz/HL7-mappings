@@ -1,0 +1,112 @@
+<Procedure xmlns="http://hl7.org/fhir">
+   <id value="zib-Procedure-bgz-msz-patB-procedure2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichting. Subject: Maria Francisca M.F. Maria van 't Hoen Verheul. Id: patB-procedure2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Categorie: , Status: voltooid<span style="display: block;">Uitvoerende: naam eigen ziekenhuis</span>
+               <span style="display: block;">Uitvoerende (<span title="Uitvoerder (PRF - v3/ParticipationType)">Uitvoerder</span>): Horst H. Horst Bontrager || Neurochirurg || naam eigen ziekenhuis</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="mechanische trombectomie van linker arteria carotis interna (84581000146105 - SNOMED CT)">mechanische trombectomie van linker arteria carotis interna</span>
+                  </td>
+                  <td>
+                     <div>Uitgevoerd: 2 juli 2010 - 2 juli 2020</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="fluoroscopisch geleide percutane mechanische trombectomie van sinus durae matris (439625002 - SNOMED CT)">fluoroscopisch geleide percutane mechanische trombectomie van sinus durae matris</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Deel van lichaam</th>
+                  <td>
+                     <span title="structuur van intracranieel bloedvat (281138005 - SNOMED CT)">structuur van intracranieel bloedvat</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>cerebraal infarct</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://hl7.org/fhir/StructureDefinition/procedure-method">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="439625002"/>
+            <display value="fluoroscopisch geleide percutane mechanische trombectomie van sinus durae matris"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patB-procedure2"/>
+   </identifier>
+   <status value="completed"/>
+   <category>
+      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+         <valueCode value="unknown"/>
+      </extension>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="84581000146105"/>
+         <display value="mechanische trombectomie van linker arteria carotis interna"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/MARIA-FRANCISCA-M-F--MARIA-VAN-T-HOEN-VERHEUL"/>
+      <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
+   </subject>
+   <performedPeriod>
+      <start value="2010-07-02"/>
+      <end value="2020-07-02"/>
+   </performedPeriod>
+   <performer>
+      <actor>
+         <reference value="Organization/organization-bgz-msz-2-16-840-1-113883-2-4-3-11-999-7-6-123456B3"/>
+         <display value="naam eigen ziekenhuis"/>
+      </actor>
+   </performer>
+   <performer>
+      <role>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+            <code value="PRF"/>
+            <display value="Uitvoerder"/>
+         </coding>
+      </role>
+      <actor>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-bgz-msz-0016161601-025123456B3"/>
+               <display value="Horst H. Horst Bontrager || Neurochirurg || naam eigen ziekenhuis"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-840-1-113883-2-4-6-1-00161616"/>
+         <display value="Horst H. Horst Bontrager"/>
+      </actor>
+   </performer>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-bgz-msz-patB-problem4"/>
+      <display value="cerebraal infarct"/>
+   </reasonReference>
+   <bodySite>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="281138005"/>
+         <display value="structuur van intracranieel bloedvat"/>
+      </coding>
+   </bodySite>
+</Procedure>
