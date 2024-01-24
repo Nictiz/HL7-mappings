@@ -980,7 +980,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                         <xsl:variable name="contents" as="element()*">
                                                             <xsl:for-each select="f:progress">
                                                                 <li>
-                                                                    <xsl:call-template name="doDT_Reference">
+                                                                    <xsl:call-template name="doDT_Annotation">
                                                                         <xsl:with-param name="in" select="."/>
                                                                         <xsl:with-param name="textLang" select="$textLang"/>
                                                                         <xsl:with-param name="allowDiv" select="true()"/>
