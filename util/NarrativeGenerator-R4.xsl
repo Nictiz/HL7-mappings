@@ -32,19 +32,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="override" select="'true'"/>
     <xsl:param name="util:textlangDefault" select="'nl-nl'"/>
     
-    <!--<xsl:output indent="yes" omit-xml-declaration="yes"/>
+    <xsl:output indent="yes" omit-xml-declaration="yes"/>
     <xsl:template match="/">
         <xsl:apply-templates mode="addNarrative"/>
-    </xsl:template>-->
+    </xsl:template>
     
     <!-- Main entry template to call -->
     <xsl:template name="addNarrative" match="*" mode="addNarrative">
+        <!-- When a contained resource is being processed we normally should not add text, 
+            but if we are generating text already and a contained resource is being referenced without a display, 
+            then we want to generate text for the purposes of the calling resource -->
+        <xsl:param name="skipContained" select="true()" as="xs:boolean"/>
         <xsl:choose>
             <!-- Don't generate text on anything contained and assume it was not done before us, so just copy as-is
                 https://www.hl7.org/fhir/R4/domainresource-definitions.html#DomainResource.text
                 dom-1: If the resource is contained in another resource, it SHALL NOT contain any narrative (expression : contained.text.empty(), xpath: not(parent::f:contained and f:text))
             -->
-            <xsl:when test="ancestor-or-self::f:contained">
+            <xsl:when test="ancestor-or-self::f:contained and $skipContained">
                 <xsl:copy-of select="."/>
             </xsl:when>
             <!-- These are the resources we know we support. Copy the elements before text, create text, copy the elements after text -->
@@ -825,8 +829,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <tbody>
                         <xsl:call-template name="doResourceContext">
                             <xsl:with-param name="in" select="f:context | f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/extension-context-nl-core-episodeofcare']/f:valueReference"/>
-                                        <xsl:with-param name="textLang" select="$textLang"/>
-                                    </xsl:call-template>
+                            <xsl:with-param name="textLang" select="$textLang"/>
+                        </xsl:call-template>
                         <xsl:if test="f:period">
                             <tr>
                                 <th>
@@ -855,6 +859,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <td>
                                     <xsl:call-template name="doDT_String">
                                         <xsl:with-param name="in" select="f:description"/>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </xsl:if>
+                        <xsl:if test="f:created">
+                            <tr>
+                                <th>
+                                    <xsl:call-template name="util:getLocalizedString">
+                                        <xsl:with-param name="key">Created</xsl:with-param>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </th>
+                                <td>
+                                    <xsl:call-template name="doDT_DateTime">
+                                        <xsl:with-param name="in" select="f:created"/>
                                         <xsl:with-param name="textLang" select="$textLang"/>
                                     </xsl:call-template>
                                 </td>
@@ -890,6 +910,91 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             <xsl:copy-of select="$contents/node()"/>
                                         </xsl:otherwise>
                                     </xsl:choose>
+                                </td>
+                            </tr>
+                        </xsl:if>
+                        <xsl:if test="f:contributor">
+                            <tr>
+                                <th>
+                                    <xsl:call-template name="util:getLocalizedString">
+                                        <xsl:with-param name="key">Contributor</xsl:with-param>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </th>
+                                <td>
+                                    <xsl:variable name="contents" as="element()*">
+                                        <xsl:for-each select="f:contributor">
+                                            <li>
+                                                <xsl:call-template name="doDT_Reference">
+                                                    <xsl:with-param name="in" select="."/>
+                                                    <xsl:with-param name="textLang" select="$textLang"/>
+                                                    <xsl:with-param name="allowDiv" select="true()"/>
+                                                </xsl:call-template>
+                                            </li>
+                                        </xsl:for-each>
+                                    </xsl:variable>
+                                    <xsl:choose>
+                                        <xsl:when test="$contents[2]">
+                                            <ul>
+                                                <xsl:copy-of select="$contents"/>
+                                            </ul>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:copy-of select="$contents/node()"/>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                </td>
+                            </tr>
+                        </xsl:if>
+                        <xsl:if test="f:instantiatesCanonical | f:instantiatesUri">
+                            <tr>
+                                <th>
+                                    <xsl:call-template name="util:getLocalizedString">
+                                        <xsl:with-param name="key">Instantiates</xsl:with-param>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </th>
+                                <td>
+                                    <xsl:call-template name="doDT">
+                                        <xsl:with-param name="in" select="f:instantiatesCanonical | f:instantiatesUri"/>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                        <xsl:with-param name="baseName">instantiates</xsl:with-param>
+                                        <xsl:with-param name="allowDiv" select="true()"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </xsl:if>
+                        <xsl:if test="f:basedOn">
+                            <tr>
+                                <th>
+                                    <xsl:call-template name="util:getLocalizedString">
+                                        <xsl:with-param name="key">Based On</xsl:with-param>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </th>
+                                <td>
+                                    <xsl:call-template name="doDT_Reference">
+                                        <xsl:with-param name="in" select="f:basedOn"/>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                        <xsl:with-param name="allowDiv" select="true()"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </xsl:if>
+                        <xsl:if test="f:replaces">
+                            <tr>
+                                <th>
+                                    <xsl:call-template name="util:getLocalizedString">
+                                        <xsl:with-param name="key">typeCode-RPLC</xsl:with-param>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </th>
+                                <td>
+                                    <xsl:call-template name="doDT_Reference">
+                                        <xsl:with-param name="in" select="f:replaces"/>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                        <xsl:with-param name="allowDiv" select="true()"/>
+                                    </xsl:call-template>
                                 </td>
                             </tr>
                         </xsl:if>
@@ -1114,7 +1219,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                         <xsl:variable name="contents" as="element()*">
                                                             <xsl:for-each select="f:progress">
                                                                 <li>
-                                                                    <xsl:call-template name="doDT_Reference">
+                                                                    <xsl:call-template name="doDT_Annotation">
                                                                         <xsl:with-param name="in" select="."/>
                                                                         <xsl:with-param name="textLang" select="$textLang"/>
                                                                         <xsl:with-param name="allowDiv" select="true()"/>
@@ -1178,14 +1283,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                                     <xsl:with-param name="textLang" select="$textLang"/>
                                                                 </xsl:call-template>
                                                                 <xsl:variable name="categoryStatus">
-                                                                    <xsl:if test="f:category">
+                                                                    <xsl:if test="f:kind">
                                                                         <xsl:call-template name="util:getLocalizedString">
-                                                                            <xsl:with-param name="key">Category</xsl:with-param>
+                                                                            <xsl:with-param name="key">Kind</xsl:with-param>
                                                                             <xsl:with-param name="textLang" select="$textLang"/>
                                                                             <xsl:with-param name="post" select="': '"/>
                                                                         </xsl:call-template>
                                                                         <xsl:call-template name="doDT_CodeableConcept">
-                                                                            <xsl:with-param name="in" select="f:category"/>
+                                                                            <xsl:with-param name="in" select="f:kind"/>
                                                                             <xsl:with-param name="textLang" select="$textLang"/>
                                                                         </xsl:call-template>
                                                                     </xsl:if>
@@ -1212,12 +1317,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                                         </xsl:if>
                                                                     </xsl:if>
                                                                 </xsl:variable>
-                                                                <xsl:if test="f:category | f:status">
+                                                                <xsl:if test="f:kind | f:status">
                                                                     <span style="display: block;">
                                                                         <xsl:copy-of select="$categoryStatus" copy-namespaces="no"/>
                                                                     </span>
                                                                 </xsl:if>
-                                                                <xsl:if test="f:prohibited[@value = 'true']">
+                                                                <xsl:if test="f:doNotPerform[@value = 'true']">
                                                                     <span style="display: block;">
                                                                         <b>
                                                                             <xsl:call-template name="util:getLocalizedString">
@@ -1256,6 +1361,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                                             <xsl:call-template name="doDT_String">
                                                                                 <xsl:with-param name="in" select="f:description"/>
                                                                                 <xsl:with-param name="textLang" select="$textLang"/>
+                                                                            </xsl:call-template>
+                                                                        </td>
+                                                                    </tr>
+                                                                </xsl:if>
+                                                                <xsl:if test="f:instantiatesCanonical | f:instantiatesUri">
+                                                                    <tr>
+                                                                        <th>
+                                                                            <xsl:call-template name="util:getLocalizedString">
+                                                                                <xsl:with-param name="key">Instantiates</xsl:with-param>
+                                                                                <xsl:with-param name="textLang" select="$textLang"/>
+                                                                            </xsl:call-template>
+                                                                        </th>
+                                                                        <td>
+                                                                            <xsl:call-template name="doDT">
+                                                                                <xsl:with-param name="in" select="f:instantiatesCanonical | f:instantiatesUri"/>
+                                                                                <xsl:with-param name="textLang" select="$textLang"/>
+                                                                                <xsl:with-param name="baseName">instantiates</xsl:with-param>
+                                                                                <xsl:with-param name="allowDiv" select="true()"/>
                                                                             </xsl:call-template>
                                                                         </td>
                                                                     </tr>
@@ -11170,6 +11293,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </td>
                             </tr>
                         </xsl:if>
+                        <xsl:if test="f:instantiatesCanonical | f:instantiatesUri">
+                            <tr>
+                                <th>
+                                    <xsl:call-template name="util:getLocalizedString">
+                                        <xsl:with-param name="key">Instantiates</xsl:with-param>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </th>
+                                <td>
+                                    <xsl:call-template name="doDT">
+                                        <xsl:with-param name="in" select="f:instantiatesCanonical | f:instantiatesUri"/>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                        <xsl:with-param name="baseName">instantiates</xsl:with-param>
+                                        <xsl:with-param name="allowDiv" select="true()"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </xsl:if>
                         <xsl:if test="f:basedOn">
                             <tr>
                                 <th>
@@ -14294,6 +14435,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="textLang" select="$textLang"/>
                             <xsl:with-param name="sep" select="$sep"/>
                         </xsl:call-template>
+                    </xsl:when>
+                    <xsl:when test="f:reference[starts-with(@value, '#')]">
+                        <xsl:variable name="targetId" select="substring-after(f:reference/@value, '#')"/>
+                        <xsl:variable name="targetResource" select="ancestor::*/f:contained/*[f:id/@value = $targetId]" as="element()*"/>
+                        <xsl:variable name="processedResource" as="element()?">
+                            <xsl:for-each select="$targetResource[1]">
+                                <xsl:call-template name="addNarrative">
+                                    <xsl:with-param name="skipContained" select="false()"/>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                        </xsl:variable>
+                        <xsl:choose>
+                            <xsl:when test="$processedResource/f:text">
+                                <xsl:copy-of select="$processedResource/f:text/*:div/*"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="f:reference/@value"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:when>
                     <xsl:when test="f:reference">
                         <xsl:call-template name="doDT_String">
