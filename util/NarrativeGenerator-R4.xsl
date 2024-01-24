@@ -12968,7 +12968,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:value-of select="concat('mailto:', normalize-space(f:value/@value))"/>
                                 </xsl:when>
                                 <xsl:when test="f:system/@value = ('phone', 'fax', 'pager', 'sms')">
-                                    <xsl:value-of select="concat('tel:', normalize-space(f:value/@value))"/>
+                                    <xsl:value-of select="concat('tel:', replace(normalize-space(f:value/@value), '\s', ''))"/>
                                 </xsl:when>
                             </xsl:choose>
                         </xsl:variable>

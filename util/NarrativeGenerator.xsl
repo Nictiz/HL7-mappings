@@ -29,6 +29,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="override" select="'true'"/>
     <xsl:param name="util:textlangDefault" select="'nl-nl'"/>
     
+    <!--<xsl:output indent="yes" omit-xml-declaration="yes"/>
+    <xsl:template match="/">
+        <xsl:apply-templates mode="addNarrative"/>
+    </xsl:template>-->
+    
     <!-- Main entry template to call -->
     <xsl:template name="addNarrative" match="*" mode="addNarrative">
         <xsl:choose>
@@ -12526,7 +12531,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:value-of select="concat('mailto:', normalize-space(f:value/@value))"/>
                                 </xsl:when>
                                 <xsl:when test="f:system/@value = ('phone', 'fax', 'pager', 'sms')">
-                                    <xsl:value-of select="concat('tel:', translate(normalize-space(f:value/@value), ' ', ''))"/>
+                                    <xsl:value-of select="concat('tel:', replace(normalize-space(f:value/@value), '\s', ''))"/>
                                 </xsl:when>
                             </xsl:choose>
                         </xsl:variable>
