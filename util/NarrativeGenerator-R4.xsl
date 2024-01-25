@@ -2609,7 +2609,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </div>
         </text>
     </xsl:template>
-    <!-- TODO ... check changes since STU3 below here except ServiceRequest and Slot -->
     <xsl:template match="f:Consent" mode="createNarrative">
         <xsl:variable name="textLang" select="(f:language/@value, $util:textlangDefault)[1]"/>
         <text xmlns="http://hl7.org/fhir">
@@ -3269,6 +3268,55 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </td>
                             </tr>
                         </xsl:if>
+                        <xsl:if test="f:beneficiary">
+                            <tr>
+                                <th>
+                                    <xsl:call-template name="util:getLocalizedString">
+                                        <xsl:with-param name="key">2.16.840.1.113883.5.90-BEN</xsl:with-param>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </th>
+                                <td>
+                                    <xsl:call-template name="doDT_Reference">
+                                        <xsl:with-param name="in" select="f:beneficiary"/>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                        <xsl:with-param name="allowDiv" select="true()"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </xsl:if>
+                        <xsl:if test="f:dependent">
+                            <tr>
+                                <th>
+                                    <xsl:call-template name="util:getLocalizedString">
+                                        <xsl:with-param name="key">2.16.840.1.113883.5.110-DEPEN</xsl:with-param>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </th>
+                                <td>
+                                    <xsl:call-template name="doDT_String">
+                                        <xsl:with-param name="in" select="f:dependent"/>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </xsl:if>
+                        <xsl:if test="f:relationship">
+                            <tr>
+                                <th>
+                                    <xsl:call-template name="util:getLocalizedString">
+                                        <xsl:with-param name="key">Relationship to subscriber</xsl:with-param>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </th>
+                                <td>
+                                    <xsl:call-template name="doDT_CodeableConcept">
+                                        <xsl:with-param name="in" select="f:relationship"/>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </xsl:if>
                         <xsl:for-each select="f:payor">
                             <tr>
                                 <th>
@@ -3327,19 +3375,148 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </td>
                             </tr>
                         </xsl:for-each>
-                        <xsl:if test="f:beneficiary">
+                        <xsl:for-each select="f:class">
                             <tr>
                                 <th>
                                     <xsl:call-template name="util:getLocalizedString">
-                                        <xsl:with-param name="key">2.16.840.1.113883.5.90-BEN</xsl:with-param>
+                                        <xsl:with-param name="key">Class</xsl:with-param>
                                         <xsl:with-param name="textLang" select="$textLang"/>
                                     </xsl:call-template>
                                 </th>
                                 <td>
-                                    <xsl:call-template name="doDT_Reference">
-                                        <xsl:with-param name="in" select="f:beneficiary"/>
+                                    <ul>
+                                        <li>
+                                            <xsl:call-template name="doDT_CodeableConcept">
+                                                <xsl:with-param name="in" select="f:type"/>
+                                                <xsl:with-param name="textLang" select="$textLang"/>
+                                            </xsl:call-template>
+                                            <xsl:text> - </xsl:text>
+                                            <xsl:call-template name="doDT_String">
+                                                <xsl:with-param name="in" select="f:value"/>
+                                                <xsl:with-param name="textLang" select="$textLang"/>
+                                            </xsl:call-template>
+                                            <xsl:text> - </xsl:text>
+                                            <xsl:call-template name="doDT_String">
+                                                <xsl:with-param name="in" select="f:name"/>
+                                                <xsl:with-param name="textLang" select="$textLang"/>
+                                            </xsl:call-template>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </xsl:for-each>
+                        <xsl:if test="f:order">
+                            <tr>
+                                <th>
+                                    <xsl:call-template name="util:getLocalizedString">
+                                        <xsl:with-param name="key">Coverage order</xsl:with-param>
                                         <xsl:with-param name="textLang" select="$textLang"/>
-                                        <xsl:with-param name="allowDiv" select="true()"/>
+                                    </xsl:call-template>
+                                </th>
+                                <td>
+                                    <xsl:call-template name="doDT_Integer">
+                                        <xsl:with-param name="in" select="f:order"/>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </xsl:if>
+                        <xsl:if test="f:network">
+                            <tr>
+                                <th>
+                                    <xsl:call-template name="util:getLocalizedString">
+                                        <xsl:with-param name="key">Insurer network</xsl:with-param>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </th>
+                                <td>
+                                    <xsl:call-template name="doDT_String">
+                                        <xsl:with-param name="in" select="f:network"/>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </td>
+                            </tr>
+                        </xsl:if>
+                        <xsl:for-each select="f:costToBeneficiary">
+                            <tr>
+                                <th>
+                                    <xsl:call-template name="util:getLocalizedString">
+                                        <xsl:with-param name="key">Cost to beneficiary</xsl:with-param>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </th>
+                                <td>
+                                    <xsl:if test="f:type">
+                                        <xsl:call-template name="util:getLocalizedString">
+                                            <xsl:with-param name="key">Type</xsl:with-param>
+                                            <xsl:with-param name="textLang" select="$textLang"/>
+                                            <xsl:with-param name="post">: </xsl:with-param>
+                                        </xsl:call-template>
+                                        <xsl:call-template name="doDT_CodeableConcept">
+                                            <xsl:with-param name="in" select="f:type"/>
+                                            <xsl:with-param name="textLang" select="$textLang"/>
+                                        </xsl:call-template>
+                                        <xsl:text> </xsl:text>
+                                    </xsl:if>
+                                    <xsl:if test="f:*[starts-with(local-name(), 'value')]">
+                                        <xsl:call-template name="util:getLocalizedString">
+                                            <xsl:with-param name="key">value</xsl:with-param>
+                                            <xsl:with-param name="textLang" select="$textLang"/>
+                                            <xsl:with-param name="post">: </xsl:with-param>
+                                        </xsl:call-template>
+                                        <xsl:call-template name="doDT">
+                                            <xsl:with-param name="in" select="f:*[starts-with(local-name(), 'value')]"/>
+                                            <xsl:with-param name="textLang" select="$textLang"/>
+                                            <xsl:with-param name="baseName">value</xsl:with-param>
+                                            <xsl:with-param name="allowDiv" select="true()"/>
+                                        </xsl:call-template>
+                                    </xsl:if>
+                                    <xsl:if test="f:exception">
+                                        <ul>
+                                            <caption>
+                                                <xsl:call-template name="util:getLocalizedString">
+                                                    <xsl:with-param name="key">Exception</xsl:with-param>
+                                                    <xsl:with-param name="textLang" select="$textLang"/>
+                                                </xsl:call-template>
+                                            </caption>
+                                            <xsl:for-each select="f:exception">
+                                                <li>
+                                                    <xsl:if test="f:type">
+                                                        <xsl:call-template name="util:getLocalizedString">
+                                                            <xsl:with-param name="key">Type</xsl:with-param>
+                                                            <xsl:with-param name="textLang" select="$textLang"/>
+                                                            <xsl:with-param name="post">: </xsl:with-param>
+                                                        </xsl:call-template>
+                                                        <xsl:call-template name="doDT_CodeableConcept">
+                                                            <xsl:with-param name="in" select="f:type"/>
+                                                            <xsl:with-param name="textLang" select="$textLang"/>
+                                                        </xsl:call-template>
+                                                        <xsl:text> </xsl:text>
+                                                    </xsl:if>
+                                                    <xsl:call-template name="doDT_Period">
+                                                        <xsl:with-param name="in" select="f:period"/>
+                                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                                        <xsl:with-param name="allowDiv" select="true()"/>
+                                                    </xsl:call-template>
+                                                </li>
+                                            </xsl:for-each>
+                                        </ul>
+                                    </xsl:if>
+                                </td>
+                            </tr>
+                        </xsl:for-each>
+                        <xsl:if test="f:subrogation">
+                            <tr>
+                                <th>
+                                    <xsl:call-template name="util:getLocalizedString">
+                                        <xsl:with-param name="key">Reimbursement to insurer</xsl:with-param>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </th>
+                                <td>
+                                    <xsl:call-template name="doDT_Boolean">
+                                        <xsl:with-param name="in" select="f:subrogation"/>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
                                     </xsl:call-template>
                                 </td>
                             </tr>
@@ -3349,6 +3526,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </div>
         </text>
     </xsl:template>
+    <!-- TODO ... check changes since STU3 below here except ServiceRequest and Slot -->
     <xsl:template match="f:Device" mode="createNarrative">
         <xsl:variable name="textLang" select="(f:language/@value, $util:textlangDefault)[1]"/>
         <text xmlns="http://hl7.org/fhir">
