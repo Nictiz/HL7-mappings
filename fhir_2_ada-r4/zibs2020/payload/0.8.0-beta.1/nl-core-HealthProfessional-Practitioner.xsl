@@ -63,25 +63,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
             <!-- zorgaanbieder -->
             <xsl:if test="not($organizationReference = '')">
-                <!-- 
                 <zorgaanbieder>
-                    <xsl:variable name="org" select="ancestor::f:Bundle/f:entry[f:fullUrl/@value = $specialtyReference]/f:resource/f:PractitionerRole/f:organization"/>
-                    <xsl:apply-templates select="ancestor::f:Bundle/f:entry[f:fullUrl/@value = $specialtyReference]/f:resource/f:PractitionerRole/f:organization" name="Reference-to-identificatie"/>
-                 </zorgaanbieder>
+                    <zorgaanbieder datatype="reference" value="{nf:convert2NCName($organizationReference)}"/>
+                </zorgaanbieder>
             </xsl:if>
             
         </zorgverlener>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>Template to resolve reference to organization and convert it to zorgaanbieder.</xd:desc>
-    </xd:doc>
-    <!-- LR verwijderen? -->
-    <xsl:template match="f:organization" mode="nl-core-HealthProfessional-Practitioner">
-            <zorgaanbieder>
-                <!--<zorgaanbieder datatype="reference" value="{nf:convert2NCName($organizationReference)}"/>-->
-                <xsl:call-template name="Reference-to-identificatie"/>
-            </zorgaanbieder>
     </xsl:template>
     
     <xd:doc>

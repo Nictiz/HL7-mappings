@@ -103,7 +103,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xsl:template match="f:medicationReference" mode="mp-MedicationAdministration">
 		<xsl:variable name="referenceValue" select="f:reference/@value"/>
 		<toedienings_product>
-			<farmaceutisch_product value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
+			<farmaceutisch_product value="{nf:process-reference-2NCName(f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
 		</toedienings_product>
 	</xsl:template>
 
@@ -191,17 +191,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 						<!-- should be either organization or location, we'll select the first one found regardless -->
 <!--						<xsl:variable name="resourceProvider" select="nf:resolveRefInBundle(($resource/f:PractitionerRole/(f:organization|f:location)[f:reference])[1])"/>-->
 						<zorgaanbieder>
+							<!-- LR: TODO convert2NCName functie aanpassen naar process-reference-2NCName maar moet nog controleren wat hier precies gebeurt -->
 							<zorgaanbieder value="{nf:convert2NCName(($resource/f:PractitionerRole/(f:organization|f:location)[f:reference])[1]/f:reference/@value)}" datatype="reference"/>
 						</zorgaanbieder>
 					</xsl:when>
 					<xsl:when test="f:type/@value = ('RelatedPerson') or $resource[f:RelatedPerson]">
 						<mantelzorger>
-							<contactpersoon value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
+							<contactpersoon value="{nf:process-reference-2NCName(f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
 						</mantelzorger>
 					</xsl:when>
 					<!-- pre MP9 3.0 it was possible to convey zorgverleener -->
 					<xsl:when test="f:type/@value = ('Practitioner') or $resource[f:Practitioner | f:PractitionerRole[f:practitioner | f:specialty]]">
 						<zorgverlener>
+							<!-- TODO: de regex is obv R4, kunnen we hier de regex ook toepassen voor relatieve urls? Aangezien dit pre MP9 3.0 is?-->
 							<zorgverlener value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
 						</zorgverlener>
 					</xsl:when>

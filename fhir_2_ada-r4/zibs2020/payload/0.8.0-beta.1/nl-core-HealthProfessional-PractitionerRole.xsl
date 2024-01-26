@@ -21,20 +21,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     exclude-result-prefixes="#all"
     version="2.0">
     
+    
      <xd:doc>
         <xd:desc>Template to resolve f:PractitionerRole and apply f:Practitioner</xd:desc>
     </xd:doc>
     <xsl:template match="f:PractitionerRole" mode="resolve-HealthProfessional-PractitionerRole">
-        <xsl:variable name="practionerReference" select="f:practitioner/f:reference/@value"/>
-        <xsl:variable name="organizationReference" select="f:organization/f:reference/@value"/>
         <xsl:variable name="specialtyReference" select="ancestor::f:entry/f:fullUrl/@value"/>
-        <!-- TODO: hier kunnen ook relatieve urls zitten aanpassen-->
-       <!-- <xsl:apply-templates select="ancestor::f:Bundle/f:entry[f:fullUrl/@value=$practionerReference]/f:resource/f:Practitioner" mode="nl-core-HealthProfessional-Practitioner">-->
-        <xsl:apply-templates select="ancestor::f:Bundle/f:entry/f:resource/f:Practitioner" mode="nl-core-HealthProfessional-Practitioner">
+        <xsl:variable name="organizationReference" select="nf:process-reference(f:organization/f:reference/@value, $specialtyReference)" as="xs:string"/>
+        <xsl:variable name="practitionerReference" select="nf:process-reference(f:practitioner/f:reference/@value, $specialtyReference)" as="xs:string"/>
+
+        <xsl:apply-templates select="ancestor::f:Bundle/f:entry[f:fullUrl/@value=$practitionerReference]/f:resource/f:Practitioner" mode="nl-core-HealthProfessional-Practitioner">          
             <xsl:with-param name="organizationReference" select="$organizationReference"/>
             <xsl:with-param name="specialtyReference" select="$specialtyReference"/>
         </xsl:apply-templates>
-            
     </xsl:template>
     
     <xd:doc>
