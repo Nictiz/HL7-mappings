@@ -67,9 +67,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <zorgaanbieder datatype="reference" value="{nf:convert2NCName($organizationReference)}"/>
                 </zorgaanbieder>
             </xsl:if>
+            
         </zorgverlener>
     </xsl:template>
-
+    
     <xd:doc>
         <xd:desc>Template to convert f:identifier to zorgverlener_identificatienummer</xd:desc>
         <xd:param name="practitionerIdUnderscore">Optional boolean to create ADA element zorgverlener_identificatie_nummer</xd:param>

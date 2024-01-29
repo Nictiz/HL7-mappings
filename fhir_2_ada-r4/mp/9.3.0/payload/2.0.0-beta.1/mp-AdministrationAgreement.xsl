@@ -80,7 +80,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="f:medicationReference" mode="mp-AdministrationAgreement">
         <xsl:variable name="referenceValue" select="f:reference/@value"/>
         <geneesmiddel_bij_toedieningsafspraak>
-            <farmaceutisch_product datatype="reference" value="{nf:convert2NCName(f:reference/@value)}"/>
+            <farmaceutisch_product datatype="reference" value="{nf:process-reference-2NCName(f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}"/>
         </geneesmiddel_bij_toedieningsafspraak>
     </xsl:template>
 
@@ -139,7 +139,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:performer" mode="mp-AdministrationAgreement">
         <verstrekker>
-            <zorgaanbieder datatype="reference" value="{nf:convert2NCName(f:actor[f:type/@value='Organization']/f:reference/@value)}"/>
+            <zorgaanbieder datatype="reference" value="{nf:process-reference-2NCName(f:actor[f:type/@value='Organization']/f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}"/>
         </verstrekker>
     </xsl:template>
 
