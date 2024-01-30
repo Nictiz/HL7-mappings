@@ -12,8 +12,7 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" exclude-result-prefixes="#all" version="2.0">
-
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" exclude-result-prefixes="#all" version="2.0">
     <xsl:variable name="humannameAssemblyOrder" select="'http://hl7.org/fhir/StructureDefinition/humanname-assembly-order'"/>
 
     <xd:doc>
@@ -57,6 +56,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$iso21090-EN-qualifier = 'BR'">voornamen</xsl:when>
                 <xsl:when test="$iso21090-EN-qualifier = 'IN'">initialen</xsl:when>
                 <xsl:when test="$iso21090-EN-qualifier = 'CL'">roepnaam</xsl:when>
+                <!-- MP-1410 default to voornamen -->
+                <xsl:otherwise>
+                    <xsl:call-template name="util:logMessage">
+                        <xsl:with-param name="msg">Er mist een extensie met URL 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier'. Onbekend welk type 'given' name dit is. Aanname is officiële voornamen.</xsl:with-param>
+                        <xsl:with-param name="level" select="$logERROR"/>
+                        <xsl:with-param name="terminate" select="false()"/>
+                    </xsl:call-template>
+                    <xsl:value-of select="'voornamen'"/>
+                </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
         <xsl:element name="{$elementName}">
