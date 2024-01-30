@@ -147,8 +147,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:when test="not(matches($testChar, $NCNameChars)) or ($testChar eq ':')">
                 <!-- ':' part of \i, but NOT part NCName/Letter. So replace it too -->
-                
-                <xsl:value-of select="nf:replaceChar((substring($pelString, 2, string-length($pelString) - 1), replace($finalString, $testChar, '-', 'q')))"/>
+                <!-- escape period, *, $, \ in testChar based on the regex function in FHIR Specification 2.3.0.2 Literal References 
+                https://hl7.org/fhir/R4/references.html#regex -->
+                <xsl:variable name="testCharEscaped" as="xs:string">
+                    <xsl:choose>
+                        <xsl:when test="$testChar = '.'">\.</xsl:when>
+                        <xsl:when test="$testChar = '*'">\*</xsl:when>
+                        <xsl:when test="$testChar = '$'">\$</xsl:when>
+                        <xsl:when test="$testChar = '\'">\\</xsl:when>
+                        <xsl:otherwise><xsl:value-of select="$testChar"/></xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:value-of select="nf:replaceChar((substring($pelString, 2, string-length($pelString) - 1), replace($finalString, $testCharEscaped, '-')))"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="nf:replaceChar((substring($pelString, 2, string-length($pelString) - 1), $finalString))"/>
