@@ -74,7 +74,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="nl-core-LaboratoryTestResult.Specimen">
                         <xsl:with-param name="in" select="current-group()[1]"/>
                         <xsl:with-param name="subject" select="../../../patientgegevens/patient"/>
-                        <xsl:with-param name="type" select="microorganisme"/>
+                        <xsl:with-param name="type" select="(microorganisme, monstermateriaal)[1]"/>
                     </xsl:call-template>
                 </xsl:for-each-group>
             </xsl:variable>

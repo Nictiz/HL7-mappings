@@ -3,7 +3,7 @@
    <id value="lr-slr-KWAL-KC-NHG-Scenario2b-KCNHG2b"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:dc24b2a0-262c-11ee-4773-020000000000"/>
+      <fullUrl value="urn:uuid:b0a46678-b936-11ee-5079-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -35,18 +35,21 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:dc24b246-262c-11ee-4773-020000000000"/>
+               <reference value="urn:uuid:b0a4661e-b936-11ee-5079-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, Patricia XXX_Sacht"/>
             </subject>
             <effectiveDateTime value="${DATE, T, D, -10}"/>
             <performer>
-               <reference value="urn:uuid:dc24b264-262c-11ee-4773-020000000000"/>
+               <reference value="urn:uuid:b0a4663c-b936-11ee-5079-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Trombosedienst Ons Dorp"/>
             </performer>
             <valueQuantity>
                <value value="2.4"/>
+               <unit value="{INR}"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="{INR}"/>
             </valueQuantity>
             <interpretation>
                <coding>
@@ -64,10 +67,24 @@
                <text value="Gecorrigeerde uitslag op eerder uitgevoerd onderzoek. Machine was stuk."/>
             </interpretation>
             <specimen>
-               <reference value="urn:uuid:dc24b2dc-262c-11ee-4773-020000000000"/>
+               <reference value="urn:uuid:b0a466b4-b936-11ee-5079-020000000000"/>
                <type value="Specimen"/>
                <display value="monster"/>
             </specimen>
+            <referenceRange>
+               <low>
+                  <value value="0.9"/>
+                  <unit value="{INR}"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="{INR}"/>
+               </low>
+               <high>
+                  <value value="1.1"/>
+                  <unit value="{INR}"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="{INR}"/>
+               </high>
+            </referenceRange>
          </Observation>
       </resource>
       <request>
@@ -76,7 +93,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dc24b2dc-262c-11ee-4773-020000000000"/>
+      <fullUrl value="urn:uuid:b0a466b4-b936-11ee-5079-020000000000"/>
       <resource>
          <Specimen>
             <meta>
@@ -94,7 +111,7 @@
                </coding>
             </type>
             <subject>
-               <reference value="urn:uuid:dc24b246-262c-11ee-4773-020000000000"/>
+               <reference value="urn:uuid:b0a4661e-b936-11ee-5079-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, Patricia XXX_Sacht"/>
             </subject>
@@ -118,7 +135,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dc24b264-262c-11ee-4773-020000000000"/>
+      <fullUrl value="urn:uuid:b0a4663c-b936-11ee-5079-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -131,7 +148,7 @@
             <type>
                <coding>
                   <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
-                  <version value="2022-07-07T00:00:00"/>
+                  <version value="2022-09-10T00:00:00"/>
                   <code value="TD"/>
                   <display value="Trombosedienst"/>
                </coding>
@@ -174,7 +191,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dc24b246-262c-11ee-4773-020000000000"/>
+      <fullUrl value="urn:uuid:b0a4661e-b936-11ee-5079-020000000000"/>
       <resource>
          <Patient>
             <meta>
