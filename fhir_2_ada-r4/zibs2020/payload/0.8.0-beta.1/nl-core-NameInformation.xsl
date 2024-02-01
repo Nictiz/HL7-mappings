@@ -57,14 +57,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$iso21090-EN-qualifier = 'BR'">voornamen</xsl:when>
                 <xsl:when test="$iso21090-EN-qualifier = 'IN'">initialen</xsl:when>
                 <xsl:when test="$iso21090-EN-qualifier = 'CL'">roepnaam</xsl:when>
-                <!-- MP-1410 default to voornamen -->
+                <!-- MP-1410 default to roepnaam -->
                 <xsl:otherwise>
                     <xsl:call-template name="util:logMessage">
-                        <xsl:with-param name="msg">Er mist een extensie met URL 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier'. Onbekend welk type (officiële voornamen, initialen of roepnaam) 'given' name dit is: "<xsl:value-of select="@value"/>". Aanname is officiële voornamen.</xsl:with-param>
+                        <xsl:with-param name="msg">Er mist een extensie met URL 'http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier'. Onbekend welk type (officiële voornamen, initialen of roepnaam) 'given' name dit is: "<xsl:value-of select="@value"/>". Aanname is roepnaam.</xsl:with-param>
                         <xsl:with-param name="level" select="$logERROR"/>
                         <xsl:with-param name="terminate" select="false()"/>
                     </xsl:call-template>
-                    <xsl:value-of select="'voornamen'"/>
+                    <xsl:value-of select="'roepnaam'"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
