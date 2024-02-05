@@ -204,7 +204,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					<xsl:when test="f:type/@value = ('Practitioner') or $resource[f:Practitioner | f:PractitionerRole[f:practitioner | f:specialty]]">
 						<zorgverlener>
 							<!-- LR: TODO de regex is obv R4, kunnen we hier de regex ook toepassen voor relatieve urls? Aangezien dit pre MP9 3.0 is?-->
-							<zorgverlener value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
+							<zorgverlener value="{nf:process-reference-2NCName(f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
 						</zorgverlener>
 					</xsl:when>
 					

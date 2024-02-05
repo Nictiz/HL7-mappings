@@ -270,7 +270,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to convert f:informationSource to informant</xd:desc>
     </xd:doc>
     <xsl:template match="f:informationSource" mode="mp-MedicationUse2">
-        <xsl:variable name="referenceValue" select="f:reference/@value"/>
+        <xsl:variable name="referenceValue" select="nf:process-reference(f:reference/@value, ancestor::f:entry/f:fullUrl/@value)"/>
         <xsl:variable name="referenceValuePractitionerRole" select="f:extension/f:valueReference/f:reference/@value"/>
         <xsl:variable name="resource" select="(ancestor::f:Bundle/f:entry[f:fullUrl/@value = $referenceValue]/f:resource/f:*)[1]"/>
         <informant>
@@ -413,7 +413,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to convert f:extension with extension url ext-MedicationUse.Author to auteur</xd:desc>
     </xd:doc>
     <xsl:template match="f:extension[@url = $urlExtMedicationUseAuthor]" mode="mp-MedicationUse2">
-        <xsl:variable name="referenceValue" select="f:valueReference/f:reference/@value"/>
+        <xsl:variable name="referenceValue" select="nf:process-reference(f:valueReference/f:reference/@value,ancestor::f:entry/f:fullUrl/@value)" as="xs:string"/>
         <xsl:variable name="resource" select="(ancestor::f:Bundle/f:entry[f:fullUrl/@value = $referenceValue]/f:resource/f:*)[1]"/>
         <auteur>
             <xsl:choose>
@@ -440,6 +440,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="organizationIdUnderscore" select="true()" tunnel="yes"/>
                         </xsl:apply-templates>
                     </auteur_is_zorgaanbieder>
+                </xsl:when>
+            <!-- LR: added errormessage for empty $resource -->
+            <xsl:when test="not($resource)">
+                        <xsl:call-template name="util:logMessage">
+                            <xsl:with-param name="level" select="$logERROR"/>
+                            <xsl:with-param name="msg">
+                                <xsl:value-of select="ancestor::f:resource/f:*/local-name()"/>
+                                <xsl:text> with fullUrl '</xsl:text>
+                                <xsl:value-of select="ancestor::f:resource/preceding-sibling::f:fullUrl/@value"/>
+                                <xsl:text>' .</xsl:text>
+                                <xsl:choose>
+                                    <xsl:when test="../parent::f:extension">
+                                        <xsl:value-of select="concat('extensie ', ../parent::f:extension/tokenize(@url, '/')[last()])"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:value-of select="f:*/local-name()"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                                <xsl:text> reference author: </xsl:text>
+                                <xsl:value-of select="$referenceValue"/>
+                                <xsl:text> cannot be resolved within the Bundle. Therefore information will be lost.</xsl:text>
+                            </xsl:with-param>
+                        </xsl:call-template>
                 </xsl:when>
             </xsl:choose>
         </auteur>
