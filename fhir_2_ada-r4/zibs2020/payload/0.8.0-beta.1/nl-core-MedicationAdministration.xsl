@@ -109,7 +109,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xsl:template match="f:medicationReference" mode="nl-core-MedicationAdministration">
 		<xsl:variable name="referenceValue" select="f:reference/@value"/>
 		<toedienings_product>
-			<farmaceutisch_product value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
+			<farmaceutisch_product value="{nf:process-reference-2NCName(f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
 		</toedienings_product>
 	</xsl:template>
 
@@ -195,12 +195,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					</xsl:when>
 					<xsl:when test="f:type/@value = ('Practitioner', 'PractitionerRole') or $resource[f:Practitioner | f:PractitionerRole]">
 						<zorgverlener>
-							<zorgverlener value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
+							<zorgverlener value="{nf:process-reference-2NCName(f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
 						</zorgverlener>
 					</xsl:when>
 					<xsl:when test="f:type/@value = ('RelatedPerson') or $resource[f:RelatedPerson]">
 						<mantelzorger>
-							<contactpersoon value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
+							<contactpersoon value="{nf:process-reference-2NCName(reference/@value, ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
 						</mantelzorger>
 					</xsl:when>
 				</xsl:choose>
