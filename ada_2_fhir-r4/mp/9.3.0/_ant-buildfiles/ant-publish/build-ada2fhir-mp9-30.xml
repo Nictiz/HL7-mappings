@@ -142,15 +142,13 @@
         <!--  bundles for beschikbaarstellen_medicatiegegevens -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="${usecase.mg}"/>
-            <param name="xsl.convert" value="${build.dir}/Touchstone/${usecase.fhir.fixtures}/payload/${usecase.mg}_2_fhir.xsl"/>
+            <param name="xsl.convert" value="${build.dir}/${usecase.mg}/payload/${usecase.mg}_2_fhir.xsl"/>
             <param name="xsl.in" value="${xsl.input.mg}"/>
             <param name="xsl.in.include" value="*.xml"/>
             <!-- the xsl will write it's resources using the output.dir, but ant xslt still needs an output dir -->
-            <param name="xsl.out" value="${xsl.output.dummy}"/>
+            <param name="xsl.out" value="${xsl.output.mg}"/>
             <param name="param.tdate" value="${date.T}" if:set="date.T"/>
             <param name="param.maskids" value="${mask.ids}"/>
-            <!-- this dir is relative to the xsl.out, so we need an extra dir up -->
-            <param name="output.dir" value="../${xsl.output.mg}"/>
         </antcall>
 
         <echo>sturen_medicatiegegevens</echo>
