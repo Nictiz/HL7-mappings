@@ -1,0 +1,57 @@
+<ImmunizationRecommendation xmlns="http://hl7.org/fhir">
+   <id value="zib-VaccinationRecommendation-bgz-msz-patA-vaccin1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-VaccinationRecommendation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Vaccinatieschema. Patiënt: Dennis D. Dennis Janse. Id: patA-vaccin1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7)</caption>
+            <tbody>
+               <tr>
+                  <th>Gemaakt: 3 april 2020. Status: <span title="Due (due - immunization-recommendation-status)">Due</span>
+                     <div>
+                        <span title="Tetanusvaccin (J07AM01 - http://www.whocc.no/atc)">Tetanusvaccin</span>
+                     </div>
+                  </th>
+                  <td/>
+               </tr>
+               <tr>
+                  <th>Eerdere vaccinatie</th>
+                  <td>Tetanusvaccin</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patA-vaccin1"/>
+   </identifier>
+   <patient>
+      <reference value="Patient/DENNIS-D--DENNIS-JANSE"/>
+      <display value="Dennis D. Dennis Janse"/>
+   </patient>
+   <recommendation>
+      <date value="2020-04-03"/>
+      <vaccineCode>
+         <coding>
+            <system value="http://www.whocc.no/atc"/>
+            <code value="J07AM01"/>
+            <display value="Tetanusvaccin"/>
+         </coding>
+      </vaccineCode>
+      <forecastStatus>
+         <coding>
+            <system value="http://hl7.org/fhir/immunization-recommendation-status"/>
+            <code value="due"/>
+            <display value="Due"/>
+         </coding>
+      </forecastStatus>
+      <supportingImmunization>
+         <reference value="Immunization/zib-Vaccination-bgz-msz-patA-vaccin1"/>
+         <display value="Tetanusvaccin"/>
+      </supportingImmunization>
+   </recommendation>
+</ImmunizationRecommendation>

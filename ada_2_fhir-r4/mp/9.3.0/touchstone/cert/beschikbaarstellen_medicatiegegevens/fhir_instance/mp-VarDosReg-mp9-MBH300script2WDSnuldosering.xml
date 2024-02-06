@@ -1,0 +1,156 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="mp-VarDosReg-mp9-MBH300script2WDSnuldosering"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-VariableDosingRegimen"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_300_script2"/>
+      </valueIdentifier>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="Vanaf T - 23 dagen, tot en met T - 17 dagen, eerst gedurende 4 dagen elke dag om 19:00 0 stuks, dan gedurende 3 dagen elke dag om 19:00 4 stuks, oraal"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+      <valuePeriod>
+         <start value="${DATE, T, D, -23}T00:00:00+02:00"/>
+         <end value="${DATE, T, D, -17}T23:59:59+02:00"/>
+      </valuePeriod>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+      <value value="MBH_300_script2_WDS_nuldosering"/>
+   </identifier>
+   <status value="unknown"/>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="395067002"/>
+         <display value="optimaliseren van dosering van medicatie"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/mp-PhPrd-mp9-216840111388324410-7323"/>
+      <type value="Medication"/>
+      <display value="ACENOCOUMAROL TABLET 1MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-MXXX-Oorschot"/>
+      <type value="Patient"/>
+      <display value="Patient, M. XXX_Oorschot"/>
+   </subject>
+   <authoredOn value="${DATE, T, D, -24}T10:30:00+02:00"/>
+   <requester>
+      <reference value="PractitionerRole/nl-core-HPrf-PracRol-mp9-PrcRol-2165281100731-222221111"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Tanja de Bakker, Trombosediensten, Trombosedienst Ons Dorp"/>
+   </requester>
+   <reasonCode>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="405613005"/>
+         <display value="verrichting gepland"/>
+      </coding>
+   </reasonCode>
+   <basedOn>
+      <type value="MedicationRequest"/>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <value value="MBH_300_script2_MA"/>
+      </identifier>
+      <display value="relatie naar medicatieafspraak met identificatie: MBH_300_script2_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+   </basedOn>
+   <note>
+      <text value="INR range: 2,4"/>
+   </note>
+   <dosageInstruction>
+      <sequence value="1"/>
+      <timing>
+         <repeat>
+            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+               <valueBoolean value="false"/>
+            </extension>
+            <boundsDuration>
+               <value value="4"/>
+               <unit value="dag"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="d"/>
+            </boundsDuration>
+            <timeOfDay value="19:00:00"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="oraal"/>
+         </coding>
+      </route>
+      <doseAndRate>
+         <doseQuantity>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+               <valueQuantity>
+                  <value value="0"/>
+                  <unit value="stuks"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </valueQuantity>
+            </extension>
+            <value value="0"/>
+            <unit value="stuks"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="1"/>
+         </doseQuantity>
+      </doseAndRate>
+   </dosageInstruction>
+   <dosageInstruction>
+      <sequence value="2"/>
+      <timing>
+         <repeat>
+            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+               <valueBoolean value="false"/>
+            </extension>
+            <boundsDuration>
+               <value value="3"/>
+               <unit value="dag"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="d"/>
+            </boundsDuration>
+            <timeOfDay value="19:00:00"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="oraal"/>
+         </coding>
+      </route>
+      <doseAndRate>
+         <doseQuantity>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+               <valueQuantity>
+                  <value value="4"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </valueQuantity>
+            </extension>
+            <value value="4"/>
+            <unit value="stuk"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="1"/>
+         </doseQuantity>
+      </doseAndRate>
+   </dosageInstruction>
+   <priorPrescription>
+      <type value="MedicationRequest"/>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+         <value value="MBH_300_script2_WDS_trombosedienst"/>
+      </identifier>
+      <display value="relatie naar wisselend doseerschema met identificatie: MBH_300_script2_WDS_trombosedienst || 2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+   </priorPrescription>
+</MedicationRequest>

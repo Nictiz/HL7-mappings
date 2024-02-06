@@ -1,0 +1,80 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="zib-LaboratoryTestResult-Observation-bgz-msz-patB-labresult1-3"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Maria Francisca M.F. Maria van 't Hoen Verheul. Id: patB-labresult1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Categorie: <span title="bevinding betreffende laboratoriumonderzoek (49581000146104 - SNOMED CT)">bevinding betreffende laboratoriumonderzoek</span>, <span title="hematologisch onderzoek (252275004 - SNOMED CT)">hematologisch onderzoek</span>, Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, +1}T09:00:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Specimen</th>
+                  <td>bloedserum</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="Lymfocyten.grote granulaire [aanwezigheid] in bloed (59808-6 - LOINC)">Lymfocyten.grote granulaire [aanwezigheid] in bloed</span>
+                  </td>
+                  <td>+</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patB-labresult1"/>
+   </identifier>
+   <status value="final">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.16.1"/>
+               <code value="final"/>
+               <display value="Definitief"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </status>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="49581000146104"/>
+         <display value="bevinding betreffende laboratoriumonderzoek"/>
+      </coding>
+   </category>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="252275004"/>
+         <display value="hematologisch onderzoek"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="59808-6"/>
+         <display value="Lymfocyten.grote granulaire [aanwezigheid] in bloed"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/MARIA-FRANCISCA-M-F--MARIA-VAN-T-HOEN-VERHEUL"/>
+      <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
+   </subject>
+   <effectiveDateTime value="${DATE, T, D, +1}T09:00:00+02:00"/>
+   <valueString value="+"/>
+   <specimen>
+      <reference value="Specimen/zib-LaboratoryTestResult-Specimen-bgz-msz-patB-labresult1-1"/>
+      <display value="bloedserum"/>
+   </specimen>
+</Observation>

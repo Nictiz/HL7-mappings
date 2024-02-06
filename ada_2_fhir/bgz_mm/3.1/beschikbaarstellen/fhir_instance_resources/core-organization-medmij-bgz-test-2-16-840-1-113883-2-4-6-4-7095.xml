@@ -1,0 +1,74 @@
+<Organization xmlns="http://hl7.org/fhir">
+   <id value="core-organization-medmij-bgz-test-2-16-840-1-113883-2-4-6-4-7095"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-organization"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Organisatie. Id: 7095 (UZOVI)</caption>
+            <tbody>
+               <tr>
+                  <th>Naam</th>
+                  <td>VGZ Zorgverzekeraar N.V.</td>
+               </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <a href="tel:098-7654321">098-7654321</a> (Vast telefoonnummer Werk)</td>
+               </tr>
+               <tr>
+                  <th>Adres</th>
+                  <td>Nieuwe Stationstraat 12, 6811KS Arnhem Arnhem, NLD</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/uzovi"/>
+      <value value="7095"/>
+   </identifier>
+   <name value="VGZ Zorgverzekeraar N.V."/>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Land Line"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="098-7654321"/>
+      <use value="work"/>
+   </telecom>
+   <address>
+      <type value="postal"/>
+      <line value="Nieuwe Stationstraat 12">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Nieuwe Stationstraat"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="12"/>
+         </extension>
+      </line>
+      <city value="Arnhem"/>
+      <district value="Arnhem"/>
+      <postalCode value="6811KS"/>
+      <country value="NLD">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:iso:std:iso:3166"/>
+                  <version value="1.0.3166.1.2.2"/>
+                  <code value="NLD"/>
+                  <display value="Nederland"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </country>
+   </address>
+</Organization>

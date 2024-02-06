@@ -12,7 +12,7 @@ See the GNU Lesser General Public License for more details.
 
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nf="http://www.nictiz.nl/functions" version="2.0">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:util="urn:hl7:utilities" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:nf="http://www.nictiz.nl/functions" version="2.0">
     <xsl:import href="../hl7/2_hl7_hl7_include.xsl"/>
 
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.3.10.1.101_20170602000000">
@@ -64,10 +64,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:value-of select="@value"/>
                     </city>
                 </xsl:for-each>
-                <xsl:for-each select="land[@value]">
+                <xsl:for-each select="land[(@value | @code | @codeSystem | @displayName)]">
                     <country>
-                        <xsl:value-of select="@value"/>
-                    </country>
+                        <xsl:choose>
+                            <xsl:when test="@code | @codeSystem">
+                                <xsl:call-template name="makeCodeAttribs"/>
+                            </xsl:when>
+                        </xsl:choose>
+                        <!-- fill text node, which is mandatory even with a coded concept -->
+                        <xsl:choose>
+                            <!-- coded value -->
+                            <xsl:when test="@displayName">
+                                <xsl:value-of select="@displayName"/>
+                            </xsl:when>
+                            <!-- free text value -->
+                            <xsl:when test="@value">
+                                <xsl:value-of select="@value"/>
+                            </xsl:when>
+                            <!-- fallback on whatever we have ... should not happen really -->
+                            <xsl:when test="@*">
+                                <xsl:call-template name="util:logMessage">
+                                    <xsl:with-param name="level" select="$logWARN"/>
+                                    <xsl:with-param name="msg">Did not get a proper string for country from input. Please investigate. Outputting whatever we received from coded attributes into the text node.</xsl:with-param>
+                                </xsl:call-template>
+                                <xsl:value-of select="string-join(@*, ' - ')"/>                                
+                            </xsl:when>                          
+                        </xsl:choose>
+                     </country>
                 </xsl:for-each>
                 <!-- Additionele informatie wordt geschrapt uit de definitie
                 <xsl:for-each select="./additioneleinformatie">

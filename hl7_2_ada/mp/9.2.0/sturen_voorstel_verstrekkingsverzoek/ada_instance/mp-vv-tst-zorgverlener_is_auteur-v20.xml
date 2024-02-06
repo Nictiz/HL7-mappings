@@ -1,0 +1,120 @@
+<!--Generated from HL7v3 instance.-->
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_voorstel_verstrekkingsverzoek.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2023-03-23T16:50:32.377967+01:00"
+         last-update-date="2023-03-23T16:50:32.377967+01:00"/>
+   <data>
+      <sturen_voorstel_verstrekkingsverzoek app="mp-mp92"
+                                            shortName="sturen_voorstel_verstrekkingsverzoek"
+                                            formName="sturen_voorstel_verstrekkingsverzoek"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.328"
+                                            transactionEffectiveDate="2022-02-07T00:00:00"
+                                            versionDate=""
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="mp-vv-tst-zorgverlener_is_auteur-v20"
+                                            id="mp-vv-tst-zorgverlener_is_auteur-v20">
+         <patient>
+            <naamgegevens>
+               <initialen value="C."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <voorvoegsels value="van de "/>
+                  <achternaam value="XXX_Brugge"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900419" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime" value="1963-10-16"/>
+            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+         </patient>
+         <medicamenteuze_behandeling id="d48e62">
+            <identificatie value="MBH_200_start_eind"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <verstrekkingsverzoek>
+               <te_verstrekken_geneesmiddel>
+                  <farmaceutisch_product value="d48e29" datatype="reference"/>
+               </te_verstrekken_geneesmiddel>
+               <te_verstrekken_hoeveelheid>
+                  <aantal value="5"/>
+                  <eenheid value="5"
+                           code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <beoogd_verstrekker>
+                  <zorgaanbieder value="d48e36" datatype="reference"/>
+               </beoogd_verstrekker>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_200_start_eind_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="d48e29">
+               <product_code code="560308"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaar HPK"
+                             displayName="METOCLOPRAMIDE HCL PCH TABLET 10MG"/>
+               <product_code code="6947"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="METOCLOPRAMIDE TABLET 10MG"/>
+               <product_code code="19429"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="METOCLOPRAMIDE TABLET 10MG"/>
+            </farmaceutisch_product>
+            <zorgverlener id="d48e41">
+               <zorgverlener_identificatienummer value="987654321" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Johan"/>
+                  <naamgebruik code="NL1"
+                               codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                               displayName="Eigen geslachtsnaam"/>
+                  <geslachtsnaam>
+                     <voorvoegsels value="van "/>
+                     <achternaam value="Vliet"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="9100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Verpleegkundigen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder value="d48e52" datatype="reference"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="d48e36">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+            </zorgaanbieder>
+            <zorgaanbieder id="d48e52">
+               <zorgaanbieder_identificatienummer value="87654321" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Thuiszorg Samen Uit"/>
+            </zorgaanbieder>
+         </bouwstenen>
+         <voorstel_gegevens>
+            <voorstel>
+               <identificatie value="MBH_200_start_eind_VVV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.2"/>
+               <voorstel_datum datatype="datetime" value="2022-01-01T13:24:00"/>
+               <auteur>
+                  <auteur_is_zorgverlener>
+                     <zorgverlener value="d48e41" datatype="reference"/>
+                  </auteur_is_zorgverlener>
+               </auteur>
+               <medicamenteuze_behandeling value="d48e62" datatype="reference"/>
+               <toelichting value="Te weinig voorraad voor het komende weekend"/>
+            </voorstel>
+         </voorstel_gegevens>
+      </sturen_voorstel_verstrekkingsverzoek>
+   </data>
+</adaxml>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bundle xmlns="http://hl7.org/fhir">
+   <id value="lr-slr-KWAL-MMB-Scenario5b-MMB5b"/>
+   <type value="transaction"/>
+   <entry>
+      <fullUrl value="urn:uuid:dc63af64-262c-11ee-3570-020000000000"/>
+      <resource>
+         <Observation>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
+               <valueString value="222555"/>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.3"/>
+               <value value="92224"/>
+            </identifier>
+            <status value="unknown"/>
+            <category>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+                  <code value="laboratory"/>
+                  <display value="Laboratory"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="21613-5"/>
+                  <display value="Chlamydia trachomatis DNA [aanwezigheid] d.m.v. moleculaire techniek (PCR)"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:dc63af0a-262c-11ee-3570-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, Patricia XXX_Sacht"/>
+            </subject>
+            <performer>
+               <reference value="urn:uuid:dc63af28-262c-11ee-3570-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Klinisch chemisch Lab 't Proefje"/>
+            </performer>
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="260373001"/>
+                  <display value="aangetoond"/>
+               </coding>
+            </valueCodeableConcept>
+         </Observation>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Observation"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:dc63af28-262c-11ee-3570-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00003333"/>
+            </identifier>
+            <type>
+               <coding>
+                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+                  <version value="2022-07-07T00:00:00"/>
+                  <code value="L1"/>
+                  <display value="Laboratorium"/>
+               </coding>
+            </type>
+            <name value="Klinisch chemisch Lab 't Proefje"/>
+            <telecom>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
+                  <valueString value="Bel met vragen"/>
+               </extension>
+               <system value="phone"/>
+               <value value="06-11122233"/>
+               <use value="work"/>
+            </telecom>
+            <telecom>
+               <system value="email"/>
+               <value value="tproefje@lab.nl"/>
+               <use value="work"/>
+            </telecom>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Hoofdstraat 23">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Hoofdstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="23"/>
+                  </extension>
+               </line>
+               <city value="Zorgstad"/>
+               <postalCode value="1234 AA"/>
+            </address>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:dc63af0a-262c-11ee-3570-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value value="999901011"/>
+            </identifier>
+            <name>
+               <use value="official"/>
+               <text value="Patricia XXX_Sacht"/>
+               <family value="XXX_Sacht">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="XXX_Sacht"/>
+                  </extension>
+               </family>
+               <given value="Patricia">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="2000-11-13"/>
+         </Patient>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
+   </entry>
+</Bundle>

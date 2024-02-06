@@ -26,13 +26,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Creates an nl-core-HealthProfessional-PractitionerRole FHIR instance from an ada 'zorgverlener' element. Please note that following the zib2020 R4 profiling guidelines, a PractitionerRole that references a Practitioner is considered more meaningful than directly referencing a Practitioner.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="organization">Optional ADA instance or ADA reference element of the organization.</xd:param>
     </xd:doc>
     <xsl:template match="zorgverlener" mode="nl-core-HealthProfessional-PractitionerRole" name="nl-core-HealthProfessional-PractitionerRole" as="element(f:PractitionerRole)?">
         <xsl:param name="in" select="." as="element()?"/>
-        <xsl:param name="organization" select="zorgaanbieder/*" as="element()?"/>
 
-        <xsl:for-each select="$in">
+        <!-- we need the zorgaanbieder resolved for deduplication purposes, if not received like that let's log a warning and do it now anyway -->
+        <xsl:variable name="zorgverlenerWithResolvedZorgaanbieder" as="element(zorgverlener)*">
+            <xsl:choose>
+                <xsl:when test="$in//zorgaanbieder[not(zorgaanbieder)][not(*)]/@value">
+                    <!-- let's resolve the zorgaanbieder ín the zorgverlener, to make sure we can find appropriate data in fhirMetaData -->
+                    <xsl:call-template name="util:logMessage">
+                        <xsl:with-param name="level" select="$logWARN"/>
+                        <xsl:with-param name="msg">nl-core-HealthProfessional-Practitioner: Expected an ada zorgverlener with resolved zorgaanbieder. This is needed for proper deduplication. Please check this! </xsl:with-param>
+                    </xsl:call-template>
+                    <xsl:apply-templates select="$in" mode="resolveAdaZorgaanbieder"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- the input zorgverlener has a resolved zorgaanbieder -->
+                    <xsl:sequence select="$in"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+
+        <xsl:for-each select="$zorgverlenerWithResolvedZorgaanbieder">
             <PractitionerRole>
                 <xsl:call-template name="insertLogicalId">
                     <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
@@ -49,7 +65,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:if>
 
                 <xsl:call-template name="makeReference">
-                    <xsl:with-param name="in" select="$organization"/>
+                    <xsl:with-param name="in" select="zorgaanbieder"/>
                     <xsl:with-param name="profile">nl-core-HealthcareProvider-Organization</xsl:with-param>
                     <xsl:with-param name="wrapIn" select="'organization'"/>
                 </xsl:call-template>
@@ -76,9 +92,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="zorgverlener" mode="nl-core-HealthProfessional-Practitioner" name="nl-core-HealthProfessional-Practitioner" as="element(f:Practitioner)*">
         <xsl:param name="in" select="." as="element()?"/>
 
-        <xsl:for-each select="$in">
+        <!-- we need the zorgaanbieder resolved for deduplication purposes, if not received like that let's log a warning and do it now anyway -->
+        <xsl:variable name="zorgverlenerWithResolvedZorgaanbieder" as="element(zorgverlener)*">
+            <xsl:choose>
+                <xsl:when test="$in//zorgaanbieder[not(zorgaanbieder)][not(*)]/@value">
+                    <!-- let's resolve the zorgaanbieder ín the zorgverlener, to make sure we can find appropriate data in fhirMetaData -->
+                    <xsl:call-template name="util:logMessage">
+                        <xsl:with-param name="level" select="$logWARN"/>
+                        <xsl:with-param name="msg">nl-core-HealthProfessional-Practitioner: Expected an ada zorgverlener with resolved zorgaanbieder. This is needed for proper deduplication. Please check this! </xsl:with-param>
+                    </xsl:call-template>
+                    <xsl:apply-templates select="$in" mode="resolveAdaZorgaanbieder"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <!-- the input zorgverlener has a resolved zorgaanbieder -->
+                    <xsl:sequence select="$in"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+
+        <xsl:for-each select="$zorgverlenerWithResolvedZorgaanbieder">
+
             <Practitioner>
                 <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="in" select="."/>
                     <xsl:with-param name="profile" select="'nl-core-HealthProfessional-Practitioner'"/>
                 </xsl:call-template>
                 <meta>
@@ -126,117 +162,171 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="zorgverlener" mode="_generateDisplay">
         <xsl:param name="profile" required="yes" as="xs:string"/>
 
-        <xsl:variable name="personIdentifier" select="nf:ada-zvl-id(.//zorgverlener_identificatienummer[1])"/>
-        <xsl:variable name="personIdentifierDisplay">
-            <xsl:variable name="codesystemDisplay" as="xs:string?">
-                <xsl:choose>
-                    <xsl:when test="string-length($oidMap[@oid = $personIdentifier/@root]/@displayName) gt 0">
-                        <xsl:value-of select="$oidMap[@oid = $personIdentifier/@root]/@displayName"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="$personIdentifier/@root"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:variable>
-            <xsl:variable name="idDisplay" as="xs:string*">
-                <xsl:if test="string-length($personIdentifier/@value) gt 0">person identification: <xsl:value-of select="normalize-space($personIdentifier/@value)"/></xsl:if>
-                <xsl:if test="string-length($codesystemDisplay) gt 0"> from system <xsl:value-of select="normalize-space($codesystemDisplay)"/></xsl:if>
-            </xsl:variable>
-            <xsl:value-of select="normalize-space(string-join($idDisplay, ' '))"/>
+        <!-- let's resolve the zorgaanbieder ín the zorgverlener, to make sure we can find appropriate data in fhirMetaData -->
+        <xsl:variable name="zorgverlenerWithResolvedZorgaanbieder" as="element(zorgverlener)*">
+            <xsl:apply-templates select="." mode="resolveAdaZorgaanbieder"/>
         </xsl:variable>
-        <xsl:variable name="personName" select="nf:renderName(naamgegevens)"/>
 
-        <xsl:variable name="organizationName" select=".//organisatie_naam[1]/@value"/>
-        <xsl:variable name="specialty" select=".//specialisme[not(@codeSystem = $oidHL7NullFlavor)][1]/@displayName"/>
-        <xsl:variable name="role" select=".//zorgverleners_rol[1]/(@displayName, @code)[1]"/>
+        <xsl:for-each select="$zorgverlenerWithResolvedZorgaanbieder">
 
-        <xsl:choose>
-            <xsl:when test="$profile = $profileNameHealthProfessionalPractitionerRole">
-                <xsl:variable name="parts" as="item()*">
-                    <xsl:text>Healthcare professional (role)</xsl:text>
-                    <xsl:value-of select="$personName"/>
-                    <xsl:value-of select="$specialty"/>
-                    <xsl:value-of select="$organizationName"/>
-                    <xsl:if test="not($specialty | $organizationName)">
-                        <xsl:value-of select="$role"/>
-                    </xsl:if>
+            <xsl:variable name="personIdentifier" select="nf:ada-zvl-id(.//zorgverlener_identificatienummer[1])"/>
+            <xsl:variable name="personIdentifierDisplay">
+                <xsl:variable name="codesystemDisplay" as="xs:string?">
+                    <xsl:choose>
+                        <xsl:when test="string-length($oidMap[@oid = $personIdentifier/@root]/@displayName) gt 0">
+                            <xsl:value-of select="$oidMap[@oid = $personIdentifier/@root]/@displayName"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="$personIdentifier/@root"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </xsl:variable>
-                <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
-            </xsl:when>
-            <xsl:when test="$profile = $profileNameHealthProfessionalPractitioner">
-                <xsl:variable name="parts" as="item()*">
-                    <xsl:text>Healthcare professional (person)</xsl:text>
-                    <xsl:value-of select="$personName"/>
-                    <xsl:if test="not($personName)">
-                        <xsl:value-of select="$personIdentifierDisplay"/>
-                    </xsl:if>
+                <xsl:variable name="idDisplay" as="xs:string*">
+                    <xsl:if test="string-length($personIdentifier/@value) gt 0">person identification: <xsl:value-of select="normalize-space($personIdentifier/@value)"/></xsl:if>
+                    <xsl:if test="string-length($codesystemDisplay) gt 0"> from system <xsl:value-of select="normalize-space($codesystemDisplay)"/></xsl:if>
                 </xsl:variable>
-                <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
-            </xsl:when>
-        </xsl:choose>
+                <xsl:value-of select="normalize-space(string-join($idDisplay, ' '))"/>
+            </xsl:variable>
+            <xsl:variable name="personName" select="nf:renderName(naamgegevens)"/>
+
+            <xsl:variable name="organizationName" select=".//organisatie_naam[1]/@value"/>
+            <xsl:variable name="specialty" select=".//specialisme[not(@codeSystem = $oidHL7NullFlavor)][1]/@displayName"/>
+            <xsl:variable name="role" select=".//zorgverleners_rol[1]/(@displayName, @code)[1]"/>
+
+            <xsl:choose>
+                <xsl:when test="$profile = $profileNameHealthProfessionalPractitionerRole">
+                    <xsl:variable name="parts" as="item()*">
+                        <xsl:text>Healthcare professional (role)</xsl:text>
+                        <xsl:value-of select="$personName"/>
+                        <xsl:value-of select="$specialty"/>
+                        <xsl:value-of select="$organizationName"/>
+                        <xsl:if test="not($specialty | $organizationName)">
+                            <xsl:value-of select="$role"/>
+                        </xsl:if>
+                    </xsl:variable>
+                    <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
+                </xsl:when>
+                <xsl:when test="$profile = $profileNameHealthProfessionalPractitioner">
+                    <xsl:variable name="parts" as="item()*">
+                        <xsl:text>Healthcare professional (person)</xsl:text>
+                        <xsl:value-of select="$personName"/>
+                        <xsl:if test="not($personName)">
+                            <xsl:value-of select="$personIdentifierDisplay"/>
+                        </xsl:if>
+                    </xsl:variable>
+                    <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
+                </xsl:when>
+            </xsl:choose>
+        </xsl:for-each>
+
     </xsl:template>
 
     <xd:doc>
         <xd:desc>Template to generate a unique id to identify a HealthProfessional present in a (set of) ada-instance(s)</xd:desc>
         <xd:param name="profile">Profile being handled, to distinguish between Practitioner and PractitionerRole</xd:param>
+        <xd:param name="partNumber">The sequence number of the ADA instance being passed in the total collection of ADA instances of this kind. This sequence number is needed for uniqueness of ids in resources.</xd:param>
         <xd:param name="fullUrl">If the HealthProfessional is identified by fullUrl, this optional parameter can be used as fallback for an id</xd:param>
     </xd:doc>
     <xsl:template match="zorgverlener" mode="_generateId">
         <xsl:param name="profile" required="yes" as="xs:string"/>
+        <xsl:param name="partNumber" as="xs:integer" select="0"/>
         <xsl:param name="fullUrl" tunnel="yes"/>
-        
-        <!-- we can only use zorgverlener_identificatienummer as logicalId when there is no other preceding zorgverlener with the same identificatienummer and a different grouping-key -->
-        <xsl:variable name="currentZvlId" select="nf:ada-healthprofessional-id(zorgverlener_identificatienummer)"/>
-        <xsl:variable name="precedingZvlCurrentId" as="element()*" select="preceding::zorgverlener[zorgverlener_identificatienummer[@root = $currentZvlId/@root][@value = $currentZvlId/@value]]"/>
-        <xsl:variable name="precedingZvlKey" select="nf:getGroupingKeyDefault($precedingZvlCurrentId)" as="xs:string?"/>
-        <xsl:variable name="idAsLogicalIdAllowed" as="xs:boolean?" select="empty($precedingZvlKey) or current-grouping-key() = $precedingZvlKey"/>
 
-        <xsl:variable name="uniqueString" as="xs:string?">
-
+        <!-- we need the zorgaanbieder resolved for deduplication purposes, if not received like that let's log a warning and do it now anyway -->
+        <xsl:variable name="zorgverlenerWithResolvedZorgaanbieder" as="element(zorgverlener)*">
             <xsl:choose>
-                <xsl:when test="not($idAsLogicalIdAllowed)">
-                    <xsl:next-match>
-                        <xsl:with-param name="profile" select="$profile"/>
-                    </xsl:next-match>
+                <xsl:when test=".//zorgaanbieder[not(zorgaanbieder)][not(*)]/@value">
+                    <!-- log a warning an resolve the zorgaanbieder ín the zorgverlener, to make sure we can find appropriate data in fhirMetaData -->
+                    <xsl:call-template name="util:logMessage">
+                        <xsl:with-param name="level" select="$logWARN"/>
+                        <xsl:with-param name="msg">nl-core-HealthProfessional-Practitioner: Expected an ada zorgverlener with resolved zorgaanbieder. This is needed for proper deduplication. Please check this! </xsl:with-param>
+                    </xsl:call-template>
+                    <xsl:apply-templates select="." mode="resolveAdaZorgaanbieder"/>
                 </xsl:when>
-                <xsl:when test="$profile = $profileNameHealthProfessionalPractitionerRole">
-                    <!-- we only use value attributes from person, specialism and organization, including the oid would breach the 64 chars for logicalId -->
-                    <xsl:variable name="personIdentifier" select="nf:getValueAttrDefault(nf:ada-healthprofessional-id(zorgverlener_identificatienummer))"/>
-                    <xsl:variable name="specialism" select="upper-case(string-join((specialisme//@code)/normalize-space(), ''))"/>
-                    <!-- AWE: not so nice to search "anywhere in the input ada" for a matching zorgaanbieder -->
-                    <xsl:variable name="organization" select="//zorgaanbieder[@id = current()//zorgaanbieder[not(zorgaanbieder)]/@value]"/>
-                    <xsl:variable name="organizationId" select="nf:getValueAttrDefault(nf:ada-healthprovider-id($organization/zorgaanbieder_identificatienummer))"/>
-
-                    <xsl:variable name="display" select="concat($personIdentifier, '-', $specialism, '-', $organizationId)"/>
-                    <xsl:choose>
-                        <xsl:when test="string-length($display) gt 0">
-                            <xsl:value-of select="$display"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:next-match/>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:when>
-                <xsl:when test="$profile = $profileNameHealthProfessionalPractitioner">
-                    <xsl:choose>
-                        <xsl:when test="zorgverlener_identificatienummer[@value | @root]">
-                            <!-- we remove '.' in root oid and '_' in extension to enlarge the chance of staying in 64 chars -->
-                            <xsl:for-each select="(zorgverlener_identificatienummer[@value | @root])[1]">
-                                <xsl:value-of select="concat(replace(@root, '\.', ''), '-', replace(@value, '_', ''))"/>
-                            </xsl:for-each>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:next-match/>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:when>
+                <xsl:otherwise>
+                    <!-- the input zorgverlener has a resolved zorgaanbieder -->
+                    <xsl:sequence select="."/>
+                </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
 
-        <xsl:call-template name="generateLogicalId">
-            <xsl:with-param name="uniqueString" select="$uniqueString"/>
-        </xsl:call-template>
+        <!-- we can use zorgverlener_identificatienummer as logicalId, from partNumber 2 onwards, we append the partNumber for uniqueness purposes -->
+        <xsl:variable name="currentZvlId" select="nf:ada-healthprofessional-id(zorgverlener_identificatienummer)"/>
 
+        <xsl:variable name="uniqueString" as="xs:string*">
+            <xsl:choose>
+                <xsl:when test="$currentZvlId[@value | @root]">
+                    <xsl:for-each select="($currentZvlId[@value | @root])[1]">
+                        <!-- use append for PractitionerRole to also create stable id based on identifier, but make it unique -->
+                        <xsl:if test="$profile = $profileNameHealthProfessionalPractitionerRole">PrcRol-</xsl:if>
+                        <!-- we remove '.' in root oid and '_' in extension to enlarge the chance of staying in 64 chars -->
+                        <xsl:value-of select="concat(replace(@root, '\.', ''), '-', replace(@value, '_', ''))"/>
+                        <xsl:if test="$partNumber gt 1">
+                            <xsl:value-of select="concat('-', $partNumber)"/>
+                        </xsl:if>
+                    </xsl:for-each>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:next-match>
+                        <xsl:with-param name="profile" select="$profile"/>
+                    </xsl:next-match>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+
+        <xsl:apply-templates select="." mode="generateLogicalId">
+            <xsl:with-param name="uniqueString" select="string-join($uniqueString, '')"/>
+            <xsl:with-param name="profile" select="$profile"/>
+        </xsl:apply-templates>
+
+    </xsl:template>
+
+
+    <xd:doc>
+        <xd:desc>Do not copy the double nested zorgaanbieder</xd:desc>
+    </xd:doc>
+    <xsl:template match="zorgverlener//zorgaanbieder[zorgaanbieder]" mode="resolveAdaZorgaanbieder">
+        <xsl:apply-templates select="node()" mode="#current"/>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Find the appropriate zorgaanbieder contents in this ada instance and copy those when found</xd:desc>
+    </xd:doc>
+    <xsl:template match="zorgverlener//zorgaanbieder[@value][not(*)]" mode="resolveAdaZorgaanbieder">
+        <!-- we'll be a bit tolerant, sometimes an undesired space is left behind in the reference -->
+        <xsl:variable name="normalizedRef" select="normalize-space(@value)"/>
+        
+        <xsl:choose>
+            <!-- assumption zorgaanbieder is found at same level as zorgverlener, which is a reasonable assumption -->
+            <xsl:when test="ancestor::zorgverlener/../zorgaanbieder[@id = $normalizedRef]">
+                <!-- should be max one found, but defensive programming -->
+                <xsl:copy-of select="(ancestor::zorgverlener/../zorgaanbieder[@id = $normalizedRef])[1]"/>
+            </xsl:when>
+            <!-- okay, assumption did not work out, let's search anywhere in the ada instance -->
+            <xsl:when test="ancestor::adaxml/data/*//zorgaanbieder[@id = current()/@value]">
+                <!-- should be max one found, but defensive programming -->
+                <xsl:copy-of select="(ancestor::adaxml/data/*//zorgaanbieder[@id = $normalizedRef])[1]"/>
+            </xsl:when>
+            <!-- even that did not work out, the ada instance really let us down. Now we'll have to fallback on whatever was in input -->
+            <xsl:otherwise>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logWARN"/>
+                    <xsl:with-param name="msg">nl-core-HealthProfessional: the ada instance really let us down, we could not resolve the zorgaanbieder with @id: '<xsl:value-of select="current()/@value"/>'. Now we'll have to fallback on whatever was in input and this will not be nice. Please check this! </xsl:with-param>
+                </xsl:call-template>
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="#current"/>
+                </xsl:copy>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Default copy template</xd:desc>
+    </xd:doc>
+    <xsl:template match="@* | node()" mode="resolveAdaZorgaanbieder">
+        <xsl:copy>
+            <xsl:apply-templates select="@* | node()" mode="#current"/>
+        </xsl:copy>
     </xsl:template>
 
     <xd:doc>

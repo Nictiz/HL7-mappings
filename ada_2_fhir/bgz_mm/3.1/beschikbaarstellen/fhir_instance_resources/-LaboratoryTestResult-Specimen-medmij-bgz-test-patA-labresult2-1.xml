@@ -1,0 +1,90 @@
+<Specimen xmlns="http://hl7.org/fhir">
+   <id value="-LaboratoryTestResult-Specimen-medmij-bgz-test-patA-labresult2-1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Specimen"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Specimen. Subject: Toilet. Id: Specimen2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7)</caption>
+            <tbody>
+               <tr>
+                  <th>Type</th>
+                  <td>
+                     <span title="Feces (39477002 - SNOMED CT)">Feces</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Received</th>
+                  <td>08:30:00, 12 mei 2019</td>
+               </tr>
+               <tr>
+                  <th>Inzameling</th>
+                  <td>08:15:00, 12 mei 2019<div>Methode: <span title="Verkrijgingstechniek onbekend (62801000146108 - SNOMED CT)">Verkrijgingstechniek onbekend</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Container</th>
+                  <td>
+                     <div>Id: Specimen2-1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7)</div>
+                     <div>Type: <span title="Monsterpotje (434746001 - SNOMED CT)">Monsterpotje</span>
+                     </div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <contained>
+      <Device>
+         <id value="d56e426"/>
+         <meta>
+            <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDeviceProduct"/>
+         </meta>
+         <type>
+            <text value="Toilet"/>
+         </type>
+      </Device>
+   </contained>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="Specimen2"/>
+   </identifier>
+   <type>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="39477002"/>
+         <display value="Feces"/>
+      </coding>
+   </type>
+   <subject>
+      <reference value="#d56e426"/>
+      <display value="Toilet"/>
+   </subject>
+   <receivedTime value="2019-05-12T08:30:00+02:00"/>
+   <collection>
+      <collectedDateTime value="2019-05-12T08:15:00+02:00"/>
+      <method>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="62801000146108"/>
+            <display value="Verkrijgingstechniek onbekend"/>
+         </coding>
+      </method>
+   </collection>
+   <container>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+         <value value="Specimen2-1"/>
+      </identifier>
+      <type>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="434746001"/>
+            <display value="Monsterpotje"/>
+         </coding>
+      </type>
+   </container>
+</Specimen>

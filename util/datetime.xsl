@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:functx="http://www.functx.com" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0">
+<xsl:stylesheet xmlns:functx="http://www.functx.com" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0">
     <xd:doc>
         <xd:desc>Contains some generic dateTime functions</xd:desc>
     </xd:doc>
@@ -61,7 +61,7 @@
     </xd:doc>
     <xsl:function name="nf:timestamp-to-dateTime" as="xs:dateTime?">
         <xsl:param name="timestamp" as="xs:string"/>
-        
+
         <xsl:choose>
             <xsl:when test="normalize-space($timestamp) castable as xs:dateTime">
                 <xsl:value-of select="xs:dateTime(nf:add-Amsterdam-timezone-to-dateTimeString(normalize-space($timestamp)))"/>
@@ -74,41 +74,177 @@
             </xsl:when>
         </xsl:choose>
     </xsl:function>
-    
+
     <xd:doc>
-        <xd:desc>Convert an ADA quantity element to an xs:yearMonthDuration or xs:dayTimeDuration value, if possible. This means that the input unit should be either 'a'/'ANN' ('y' is also accpeted), 'mo'/'MO', 'wk'/'WK', 'd'/'D', 'h'/'HR', 'min'/'MIN', or 's'/'S'.</xd:desc>
+        <xd:desc>Returns true (boolean) if the date or dateTime is in the future. Defaults to false. Input should be a value that is castable to a date or dateTime. Input may be empty which results in the default false value.</xd:desc>
+        <xd:param name="dateOrDt">The ADA date or dateTime.</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:isFuture" as="xs:boolean">
+        <xsl:param name="dateOrDt"/>
+        <xsl:choose>
+            <xsl:when test="$dateOrDt castable as xs:date">
+                <xsl:value-of select="$dateOrDt &gt; current-date()"/>
+            </xsl:when>
+            <xsl:when test="$dateOrDt castable as xs:dateTime">
+                <xsl:value-of select="$dateOrDt &gt; current-dateTime()"/>
+            </xsl:when>
+            <xsl:when test="starts-with($dateOrDt, 'T+')">
+                <xsl:value-of select="true()"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="false()"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+
+    <xd:doc>
+        <xd:desc>Returns true (boolean) if the dateOrDt is in the future compared to relativeDateOrDt. Defaults to false. 
+            Input should be a value that is castable to an XML date or dateTime. Input may be empty or non-parseable which results in the default false value.</xd:desc>
+        <xd:param name="dateOrDt">The ADA date or dateTime which should contain an XML date or dateTime.</xd:param>
+        <xd:param name="relativeDateOrDt">The ada date or dateTime to compare the dateOrDt to. Should contain an XML date or dateTime. 
+            Defaults to current-date(Time) when empty or non-parseable to an XML date(Time).</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:isFutureRelativeDate" as="xs:boolean">
+        <xsl:param name="dateOrDt" as="xs:string?"/>
+        <xsl:param name="relativeDateOrDt" as="xs:string?"/>
+
+        <xsl:choose>
+            <xsl:when test="$dateOrDt castable as xs:dateTime">
+                <xsl:choose>
+                    <xsl:when test="$relativeDateOrDt castable as xs:dateTime">
+                        <xsl:value-of select="xs:dateTime($dateOrDt) gt xs:dateTime($relativeDateOrDt)"/>
+                    </xsl:when>
+                    <xsl:when test="$relativeDateOrDt castable as xs:date">
+                        <xsl:value-of select="xs:dateTime($dateOrDt) gt xs:dateTime(concat($relativeDateOrDt, 'T00:00:00'))"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <!-- default current-dateTime -->
+                        <xsl:value-of select="xs:dateTime($dateOrDt) gt current-dateTime()"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:when>
+            <xsl:when test="$dateOrDt castable as xs:date">
+                <xsl:choose>
+                    <xsl:when test="$relativeDateOrDt castable as xs:date">
+                        <xsl:value-of select="xs:date($dateOrDt) gt xs:date($relativeDateOrDt)"/>
+                    </xsl:when>
+                    <xsl:when test="$relativeDateOrDt castable as xs:dateTime">
+                        <xsl:value-of select="xs:date($dateOrDt) gt xs:date(substring($relativeDateOrDt, 1, 10))"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <!-- default current-date -->
+                        <xsl:value-of select="xs:date($dateOrDt) gt current-date()"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="false()"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+
+    <xd:doc>
+        <xd:desc>Returns true (boolean) if the date or dateTime is in the past. Defaults to false. Input should be a value that is castable to a date or dateTime. Input may be empty which results in the default false value.</xd:desc>
+        <xd:param name="dateOrDt">The ADA date or dateTime which should contain an XML date or dateTime.</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:isPast" as="xs:boolean">
+        <xsl:param name="dateOrDt"/>
+        <xsl:choose>
+            <xsl:when test="$dateOrDt castable as xs:date">
+                <xsl:value-of select="$dateOrDt &lt; current-date()"/>
+            </xsl:when>
+            <xsl:when test="$dateOrDt castable as xs:dateTime">
+                <xsl:value-of select="$dateOrDt &lt; current-dateTime()"/>
+            </xsl:when>
+            <xsl:when test="starts-with($dateOrDt, 'T-')">
+                <xsl:value-of select="true()"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="false()"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+
+    <xd:doc>
+        <xd:desc>Returns true (boolean) if the dateOrDt is in the past compared to relativeDateOrDt. Defaults to false. 
+            Input should be a value that is castable to an XML date or dateTime. Input may be empty or non-parseable which results in the default false value.</xd:desc>
+        <xd:param name="dateOrDt">The ADA date or dateTime which should contain an XML date or dateTime.</xd:param>
+        <xd:param name="relativeDateOrDt">The ada date or dateTime to compare the dateOrDt to. Should contain an XML date or dateTime. 
+            Defaults to current-date(Time) when empty or non-parseable to an XML date(Time).</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:isPastRelativeDate" as="xs:boolean">
+        <xsl:param name="dateOrDt" as="xs:string?"/>
+        <xsl:param name="relativeDateOrDt" as="xs:string?"/>
+
+        <xsl:choose>
+            <xsl:when test="$dateOrDt castable as xs:dateTime">
+                <xsl:choose>
+                    <xsl:when test="$relativeDateOrDt castable as xs:dateTime">
+                        <xsl:value-of select="xs:dateTime($dateOrDt) lt xs:dateTime($relativeDateOrDt)"/>
+                    </xsl:when>
+                    <xsl:when test="$relativeDateOrDt castable as xs:date">
+                        <xsl:value-of select="xs:dateTime($dateOrDt) lt xs:dateTime(concat($relativeDateOrDt, 'T00:00:00'))"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <!-- default current-dateTime -->
+                        <xsl:value-of select="xs:dateTime($dateOrDt) lt current-dateTime()"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:when>
+            <xsl:when test="$dateOrDt castable as xs:date">
+                <xsl:choose>
+                    <xsl:when test="$relativeDateOrDt castable as xs:date">
+                        <xsl:value-of select="xs:date($dateOrDt) lt xs:date($relativeDateOrDt)"/>
+                    </xsl:when>
+                    <xsl:when test="$relativeDateOrDt castable as xs:dateTime">
+                        <xsl:value-of select="xs:date($dateOrDt) lt xs:date(substring($relativeDateOrDt, 1, 10))"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <!-- default current-date -->
+                        <xsl:value-of select="xs:date($dateOrDt) lt current-date()"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="false()"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+
+    <xd:doc>
+        <xd:desc>Convert an ADA quantity element to an xs:yearMonthDuration or xs:dayTimeDuration value, if possible. If not possible, the output is emptpy</xd:desc>
         <xd:param name="quantity">The ADA element of type quantity to convert.</xd:param>
     </xd:doc>
-    <xsl:function name="nf:quantity-to-xsDuration">
+    <xsl:function name="nf:quantity-to-xsDuration" as="xs:duration">
         <xsl:param name="quantity" as="element()"/>
 
-        <xsl:if test="$quantity/@value != ''">
+        <xsl:if test="$quantity/@value castable as xs:float">
             <xsl:choose>
-                <xsl:when test="upper-case($quantity/@unit) = ('Y', 'A', 'ANN')">
-                    <xsl:copy-of select="xs:yearMonthDuration(concat('P', normalize-space($quantity/@value), 'Y'))"/>                    
+                <xsl:when test="upper-case($quantity/@unit) = ('Y', 'A', 'ANN', 'JAAR', 'JAREN', 'YEAR', 'YEARS')">
+                    <xsl:copy-of select="xs:yearMonthDuration(concat('P', normalize-space($quantity/@value), 'Y'))"/>
                 </xsl:when>
-                <xsl:when test="upper-case($quantity/@unit) = 'MO'">
-                    <xsl:copy-of select="xs:yearMonthDuration(concat('P', normalize-space($quantity/@value), 'M'))"/>                    
+                <xsl:when test="upper-case($quantity/@unit) = ('MO', 'MAAND', 'MAANDEN', 'MONTH', 'MONTHS')">
+                    <xsl:copy-of select="xs:yearMonthDuration(concat('P', normalize-space($quantity/@value), 'M'))"/>
                 </xsl:when>
-                <xsl:when test="upper-case($quantity/@unit) = 'WK'">
-                    <xsl:copy-of select="xs:dayTimeDuration(concat('P', number($quantity/@value) * 7, 'D'))"/>                    
+                <xsl:when test="upper-case($quantity/@unit) = ('WK', 'WEEK', 'WEKEN', 'WEEKS')">
+                    <xsl:copy-of select="xs:dayTimeDuration(concat('P', number($quantity/@value) * 7, 'D'))"/>
                 </xsl:when>
-                <xsl:when test="upper-case($quantity/@unit) = 'D'">
-                    <xsl:copy-of select="xs:dayTimeDuration(concat('P', normalize-space($quantity/@value), 'D'))"/>                    
+                <xsl:when test="upper-case($quantity/@unit) = ('D', 'DAG', 'DAGEN', 'DAY', 'DAYS')">
+                    <xsl:copy-of select="xs:dayTimeDuration(concat('P', normalize-space($quantity/@value), 'D'))"/>
                 </xsl:when>
-                <xsl:when test="$quantity/@unit = ('h', 'HR')">
-                    <xsl:copy-of select="xs:dayTimeDuration(concat('PT', normalize-space($quantity/@value), 'H'))"/>                    
+                <xsl:when test="upper-case($quantity/@unit) = ('H', 'HR', 'UUR', 'UREN', 'HOUR', 'HOURS')">
+                    <xsl:copy-of select="xs:dayTimeDuration(concat('PT', normalize-space($quantity/@value), 'H'))"/>
                 </xsl:when>
-                <xsl:when test="upper-case($quantity/@unit) = 'MIN'">
-                    <xsl:copy-of select="xs:dayTimeDuration(concat('PT', normalize-space($quantity/@value), 'M'))"/>                    
+                <xsl:when test="upper-case($quantity/@unit) = ('MIN', 'MINUTE', 'MINUUT', 'MINUTES', 'MINUTEN')">
+                    <xsl:copy-of select="xs:dayTimeDuration(concat('PT', normalize-space($quantity/@value), 'M'))"/>
                 </xsl:when>
-                <xsl:when test="upper-case($quantity/@unit) = 'S'">
-                    <xsl:copy-of select="xs:dayTimeDuration(concat('PT', normalize-space($quantity/@value), 'S'))"/>                    
+                <xsl:when test="upper-case($quantity/@unit) = ('S', 'SEC', 'SECONDE', 'SECONDEN', 'SECONDES', 'SECOND', 'SECONDS')">
+                    <xsl:copy-of select="xs:dayTimeDuration(concat('PT', normalize-space($quantity/@value), 'S'))"/>
                 </xsl:when>
             </xsl:choose>
         </xsl:if>
     </xsl:function>
-    
+
     <xd:doc>
         <xd:desc>Takes input string. If it is a dateTime, it checks if it has a timezone. If it is a dateTime without timezone the appropriate Amsterdam timezone will be set. In all other cases, the input string is returned.</xd:desc>
         <xd:param name="in">ISO 8601 formatted dateTimeString with or without timezone "yyyy-mm-ddThh:mm:ss" or "yyyy-mm-ddThh:mm:ss[+/-]nn:nn"</xd:param>
@@ -164,6 +300,48 @@
                 <xsl:value-of select="$in"/>
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:function>
+
+
+    <xd:doc>
+        <xd:desc>Calculates a new date, using inDate, operator (plus/minus) an inDuration</xd:desc>
+        <xd:param name="inDate">The ada input date as a string. Should be parseable as xs:date or xs:dateTime. Otherwise no output.</xd:param>
+        <xd:param name="operator">The operator to do the arithmetics with. Should be plus or minus, otherwise no output.</xd:param>
+        <xd:param name="inDuration">The ada duration element, which should be added or subtracted. Must have proper @value and @unit attributes. Otherwise no output.</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:calculate-date" as="xs:string?">
+        <xsl:param name="inDate" as="xs:string?"/>
+        <xsl:param name="operator" as="xs:string?"/>
+        <xsl:param name="inDuration" as="element()"/>
+
+        <xsl:if test="string-length($inDate) gt 0 and not(empty($inDuration)) and $operator = ('plus', 'minus')">
+            <xsl:variable name="duration" select="nf:quantity-to-xsDuration($inDuration)"/>
+            <xsl:if test="not(empty($duration))">
+                <xsl:choose>
+                    <xsl:when test="$inDate castable as xs:dateTime">
+                        <xsl:choose>
+                            <xsl:when test="$operator = 'plus'">
+                                <xsl:value-of select="xs:dateTime($inDate) + $duration"/>
+                            </xsl:when>
+                            <xsl:when test="$operator = 'minus'">
+                                <xsl:value-of select="xs:dateTime($inDate) - $duration"/>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:when>
+                    <xsl:when test="$inDate castable as xs:date">
+                        <xsl:choose>
+                            <xsl:when test="$operator = 'plus'">
+                                <xsl:value-of select="xs:date($inDate) + $duration"/>
+                            </xsl:when>
+                            <xsl:when test="$operator = 'minus'">
+                                <xsl:value-of select="xs:date($inDate) - $duration"/>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:when>
+                </xsl:choose>
+            </xsl:if>
+        </xsl:if>
+
     </xsl:function>
 
     <xd:doc>
@@ -235,9 +413,12 @@
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:variable>
-                
+
                 <xsl:if test="string-length($time) gt 0 and not($time castable as xs:time)">
-                    <xsl:message>Variable dateTime "<xsl:value-of select="$in"/>" found with illegal time string "<xsl:value-of select="$timePart"/>"</xsl:message>
+                    <xsl:call-template name="util:logMessage">
+                        <xsl:with-param name="level" select="$logERROR"/>
+                        <xsl:with-param name="msg">Variable dateTime "<xsl:value-of select="$in"/>" found with illegal time string "<xsl:value-of select="$timePart"/>"</xsl:with-param>
+                    </xsl:call-template>
                 </xsl:if>
                 <xsl:variable name="calculatedDateTime">
                     <xsl:choose>
@@ -281,12 +462,12 @@
     </xd:doc>
     <xsl:function name="functx:day-of-week" as="xs:integer?">
         <xsl:param name="date" as="xs:date?"/>
-        
+
         <xsl:if test="not(empty($date))">
             <!--<xsl:variable name="ancientSunday" select="xs:date('1901-01-06')"/>-->
             <xsl:variable name="ancientSunday" select="xs:date('0001-01-07')"/>
             <xsl:choose>
-              <xsl:when test="xs:date($date) ge $ancientSunday">
+                <xsl:when test="xs:date($date) ge $ancientSunday">
                     <xsl:value-of select="xs:integer((xs:date($date) - $ancientSunday) div xs:dayTimeDuration('P1D')) mod 7"/>
                 </xsl:when>
                 <xsl:otherwise>
@@ -308,10 +489,10 @@
                     <!-- a relative date -->
                     <!-- let's look if there is a time present -->
                     <xsl:variable name="timePart" select="
-                        if (matches($in, '^(T|DOB)[^\{]*\{([^\}]+)\}')) then
-                        replace($in, '^(T|DOB)[^\{]*\{([^\}]+)\}', '$2')
-                        else
-                        ()"/>
+                            if (matches($in, '^(T|DOB)[^\{]*\{([^\}]+)\}')) then
+                                replace($in, '^(T|DOB)[^\{]*\{([^\}]+)\}', '$2')
+                            else
+                                ()"/>
                     <xsl:choose>
                         <xsl:when test="string-length($timePart) = 2">
                             <!-- time given in hours -->
@@ -323,7 +504,7 @@
                         </xsl:when>
                         <!-- no support for milliseconds in relative ada datetime -->
                         <xsl:otherwise>SECOND</xsl:otherwise>
-                    </xsl:choose>                    
+                    </xsl:choose>
                 </xsl:when>
                 <!-- date or dateTime, which may be vague -->
                 <xsl:when test="string-length($in) = 4">YEAR</xsl:when>

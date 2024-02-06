@@ -1,0 +1,81 @@
+<Condition xmlns="http://hl7.org/fhir">
+   <id value="zib-Problem-bgz-msz-patB-problem7"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Aandoening. Subject: Maria Francisca M.F. Maria van 't Hoen Verheul. Id: patB-problem7 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Categorie: <span title="complicatie (116223007 - SNOMED CT)">complicatie</span>, Status: inactief</caption>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="postoperatieve wondinfectie (58126003 - SNOMED CT)">postoperatieve wondinfectie</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Eerste symptomen</th>
+                  <td>${DATE, T, D, +2}</td>
+               </tr>
+               <tr>
+                  <th>Oplossing/remissie</th>
+                  <td>${DATE, T, D, +3}</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patB-problem7"/>
+   </identifier>
+   <clinicalStatus value="inactive">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="73425007"/>
+               <display value="inactief"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="116223007"/>
+         <display value="complicatie"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="58126003"/>
+         <display value="postoperatieve wondinfectie"/>
+      </coding>
+   </code>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="24028007"/>
+               <display value="rechts"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="73056007"/>
+         <display value="structuur van rechter mamma"/>
+      </coding>
+   </bodySite>
+   <subject>
+      <reference value="Patient/MARIA-FRANCISCA-M-F--MARIA-VAN-T-HOEN-VERHEUL"/>
+      <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
+   </subject>
+   <onsetDateTime value="${DATE, T, D, +2}"/>
+   <abatementDateTime value="${DATE, T, D, +3}"/>
+</Condition>

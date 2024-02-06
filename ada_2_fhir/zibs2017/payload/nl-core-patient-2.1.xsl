@@ -1,32 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 Copyright © Nictiz
-
 This program is free software; you can redistribute it and/or modify it under the terms of the
 GNU Lesser General Public License as published by the Free Software Foundation; either version
 2.1 of the License, or (at your option) any later version.
-
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
 without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 See the GNU Lesser General Public License for more details.
-
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
-    <!--<xsl:import href="../../fhir/2_fhir_fhir_include.xsl"/>
-    <xsl:import href="_zib2017.xsl"/>
-    <xsl:import href="nl-core-address-2.0.xsl"/>
-    <!-\- beware: choose the appropriate contactpoint xsl -\->
-    <!-\- 2019.01 -\->
-<!-\-    <xsl:import href="nl-core-contactpoint-1.0.xsl"/>-\->
-    <!-\- 2020.01 -\->    
-    <xsl:import href="nl-core-contactpoint-2.0.xsl"/>
-    <xsl:import href="nl-core-humanname-2.0.xsl"/>
-    <xsl:import href="ext-code-specification-1.0.xsl"/>-->
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
+    
     <xd:doc>
         <xd:desc>Converts ada patient to FHIR resource conforming to profile nl-core-patient-2.1</xd:desc>
         <xd:param name="referById">Optional parameter to indicate whether to output resource logical id. Defaults to false.</xd:param>
@@ -61,7 +49,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc>
         <xd:desc>Produces a FHIR entry element with a Patient resource</xd:desc>
-        <xd:param name="uuid">If true generate uuid from scratch. Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
+        <xd:param name="uuid">If true generate uuid from scratch. Generating a uuid from scratch limits reproduction of the same output as the uuids will be different every time.</xd:param>
         <xd:param name="entryFullUrl">Optional. Value for the entry.fullUrl</xd:param>
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Patient.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
@@ -111,8 +99,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="nl-core-patient-2.1" match="patient" mode="doPatientResource-2.1" as="element(f:Patient)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
-        <xsl:param name="generalPractitionerRef" as="element()*"/>
+        <xsl:param name="generalPractitionerRef" as="element()*" tunnel="yes"/>
         <xsl:param name="managingOrganizationRef" as="element()*"/>
+        <xsl:param name="contact" as="element()*" tunnel="yes"/>
+        <xsl:param name="dateT" as="xs:date?"/>
 
         <xsl:for-each select="$in">
             <xsl:variable name="resource">
@@ -127,28 +117,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <!-- do not add profile-id to patient id, we need the patient id to match the qualification token stuff -->
                         <id value="{$logicalId}"/>
                     </xsl:if>
+                    
                     <meta>
                         <profile value="{$profileValue}"/>
                     </meta>
-                    <!-- patient_identificatienummer  -->
-                    <xsl:for-each select="(identificatienummer | patient_identificatienummer | patient_identification_number)[@value | @nullFlavor]">
+                    
+                    <xsl:for-each select="(identificatienummer | patient_identificatienummer | patient_identification_number | zibroot/identificatienummer | hcimroot/identification_number)[@value | @nullFlavor]">
                         <identifier>
                             <xsl:call-template name="id-to-Identifier">
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
                         </identifier>
                     </xsl:for-each>
-                    <!-- naamgegevens -->
-                    <xsl:call-template name="nl-core-humanname-2.0">
-                        <!-- in some datasets the name_information is unfortunately unnecessary nested in an extra group, hence the extra predicate -->
-                        <xsl:with-param name="in" select=".//(naamgegevens[not(naamgegevens)] | name_information[not(name_information)])" as="element()*"/>
-                    </xsl:call-template>
-                    <!-- contactgegevens -->
-                    <xsl:call-template name="nl-core-contactpoint-1.0">
-                        <xsl:with-param name="in" select="contactgegevens | contact_information" as="element()*"/>
-                    </xsl:call-template>
-                    <!-- geslacht -->
-                    <xsl:for-each select="(geslacht | gender)[@value | @code]">
+                    
+                    <!-- in some data sets the name_information is unfortunately unnecessarily nested in an extra group, hence the extra predicate -->
+                    <xsl:for-each select=".//(naamgegevens[not(naamgegevens)] | name_information[not(name_information)])">
+                        <xsl:call-template name="nl-core-humanname-2.0">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    
+                    <!-- in some data sets the contact_information is unfortunately unnecessarily nested in an extra group, hence the extra predicate -->
+                    <xsl:for-each select=".//(contactgegevens[not(contactgegevens)] | contact_information[not(contact_information)])">
+                        <xsl:call-template name="nl-core-contactpoint-1.0">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    
+                    <xsl:for-each select="(geslacht | gender)[@code]">
                         <gender>
                             <xsl:call-template name="code-to-code">
                                 <xsl:with-param name="in" select="."/>
@@ -182,57 +178,102 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:choose>
                         </gender>
                     </xsl:for-each>
-                    <!-- geboortedatum -->
+                    
                     <xsl:for-each select="(geboortedatum | date_of_birth)[@value]">
-                        <birthDate value="{./@value}">
+                        <birthDate>
                             <xsl:attribute name="value">
                                 <xsl:call-template name="format2FHIRDate">
                                     <xsl:with-param name="dateTime" select="xs:string(@value)"/>
                                     <xsl:with-param name="precision" select="'DAY'"/>
+                                    <xsl:with-param name="dateT" select="$dateT"/>
                                 </xsl:call-template>
                             </xsl:attribute>
                         </birthDate>
                     </xsl:for-each>
-                    <!-- deceased -->
+                    
                     <xsl:choose>
-                        <xsl:when test="datum_overlijden | date_of_death">
+                        <xsl:when test="(datum_overlijden | date_of_death)[@value]">
                             <deceasedDateTime>
-                                <xsl:call-template name="date-to-datetime">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
+                                <xsl:attribute name="value">
+                                    <xsl:call-template name="format2FHIRDate">
+                                        <xsl:with-param name="dateTime" select="xs:string((datum_overlijden | date_of_death)/@value)"/>
+                                        <xsl:with-param name="dateT" select="$dateT"/>
+                                    </xsl:call-template>
+                                </xsl:attribute>
                             </deceasedDateTime>
                         </xsl:when>
-                        <xsl:when test="overlijdens_indicator | death_indicator">
+                        <xsl:when test="(overlijdens_indicator | death_indicator)[@value]">
                             <deceasedBoolean>
                                 <xsl:call-template name="boolean-to-boolean">
-                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="in" select="overlijdens_indicator | death_indicator"/>
                                 </xsl:call-template>
                             </deceasedBoolean>
                         </xsl:when>
                     </xsl:choose>
-                    <!-- address -->
-                    <xsl:call-template name="nl-core-address-2.0">
-                        <xsl:with-param name="in" select="adresgegevens | address_information" as="element()*"/>
-                    </xsl:call-template>
-                    <!-- maritalStatus -->
-
-                    <!-- multipleBirth -->
-                    <xsl:for-each select="meerling_indicator | multiple_birth_indicator">
+                    
+                    <!-- in some data sets the address_information is unfortunately unnecessarily nested in an extra group, hence the extra predicate -->
+                    <xsl:for-each select=".//(adresgegevens[not(adresgegevens)] | address_information[not(address_information)])">
+                        <xsl:call-template name="nl-core-address-2.0">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </xsl:for-each>
+                    
+                    <!-- marital_status is assumed to be manually added to the ada instance of patient -->
+                    <xsl:for-each select="(burgerlijke_staat | marital_status)[@code]">
+                        <maritalStatus>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </maritalStatus>
+                    </xsl:for-each>
+                    
+                    <xsl:for-each select="(meerling_indicator | multiple_birth_indicator)[@value]">
                         <multipleBirthBoolean>
                             <xsl:call-template name="boolean-to-boolean">
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
                         </multipleBirthBoolean>
                     </xsl:for-each>
-                    <!-- photo -->
-
-                    <!-- contact -->
-
-                    <!-- animal -->
-
-                    <!-- communication -->
-
-                    <!-- generalPractitioner -->
+                    
+                    <xsl:for-each select="$contact">
+                        <contact>
+                            <xsl:for-each select="(relatie | relationship)[@code]">
+                                <relationship>
+                                    <xsl:call-template name="code-to-CodeableConcept">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </relationship>
+                            </xsl:for-each>
+                            <xsl:for-each select="(rol_of_functie | rol | role)[@code]">
+                                <relationship>
+                                    <xsl:call-template name="code-to-CodeableConcept">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </relationship>
+                            </xsl:for-each>
+                            <!-- in some data sets the name_information is unfortunately unnecessarily nested in an extra group, hence the extra predicate -->
+                            <xsl:for-each select=".//(naamgegevens[not(naamgegevens)][not(ancestor::patient)] | name_information[not(name_information)][not(ancestor::patient)])">
+                                <xsl:call-template name="nl-core-humanname-2.0">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                            
+                            <!-- in some data sets the contact_information is unfortunately unnecessarily nested in an extra group, hence the extra predicate -->
+                            <xsl:for-each select=".//(contactgegevens[not(contactgegevens)][not(ancestor::patient)] | contact_information[not(contact_information)][not(ancestor::patient)])">
+                                <xsl:call-template name="nl-core-contactpoint-1.0">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                            
+                            <!-- in some data sets the address_information is unfortunately unnecessarily nested in an extra group, hence the extra predicate -->
+                            <xsl:for-each select=".//(adresgegevens[not(adresgegevens)][not(ancestor::patient)] | address_information[not(address_information)][not(ancestor::patient)])">
+                                <xsl:call-template name="nl-core-address-2.0">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                        </contact>
+                    </xsl:for-each>
+                    
                     <xsl:if test="$generalPractitionerRef">
                         <generalPractitioner>
                             <xsl:copy-of select="$generalPractitionerRef[self::f:extension]"/>
@@ -241,7 +282,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:copy-of select="$generalPractitionerRef[self::f:display]"/>
                         </generalPractitioner>
                     </xsl:if>
-                    <!-- managingOrganization -->
+                    
                     <xsl:if test="$managingOrganizationRef">
                         <generalPractitioner>
                             <xsl:copy-of select="$managingOrganizationRef[self::f:extension]"/>
@@ -250,7 +291,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:copy-of select="$managingOrganizationRef[self::f:display]"/>
                         </generalPractitioner>
                     </xsl:if>
-                    <!-- link -->
+                    
                 </Patient>
             </xsl:variable>
 

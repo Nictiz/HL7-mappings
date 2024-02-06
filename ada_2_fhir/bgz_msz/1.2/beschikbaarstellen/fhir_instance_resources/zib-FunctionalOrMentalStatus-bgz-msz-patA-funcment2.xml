@@ -1,0 +1,71 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="zib-FunctionalOrMentalStatus-bgz-msz-patA-funcment2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-FunctionalOrMentalStatus"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Dennis D. Dennis Janse. Id: patA-funcment2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Categorie: <span title="bevinding betreffende functioneren (118228005 - SNOMED CT)">bevinding betreffende functioneren</span>, Status: definitief</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Mag nog niet op loopgips steunen</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>Vanaf ${DATE, T, D, +1}</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="vermogen om zich te mobiliseren (301438001 - SNOMED CT)">vermogen om zich te mobiliseren</span>
+                  </td>
+                  <td>
+                     <span title="ernstig (24484000 - SNOMED CT)">ernstig</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patA-funcment2"/>
+   </identifier>
+   <status value="final"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="118228005"/>
+         <display value="bevinding betreffende functioneren"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="301438001"/>
+         <display value="vermogen om zich te mobiliseren"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/DENNIS-D--DENNIS-JANSE"/>
+      <display value="Dennis D. Dennis Janse"/>
+   </subject>
+   <effectivePeriod>
+      <start value="${DATE, T, D, +1}"/>
+   </effectivePeriod>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="24484000"/>
+         <display value="ernstig"/>
+      </coding>
+   </valueCodeableConcept>
+   <comment value="Mag nog niet op loopgips steunen"/>
+</Observation>

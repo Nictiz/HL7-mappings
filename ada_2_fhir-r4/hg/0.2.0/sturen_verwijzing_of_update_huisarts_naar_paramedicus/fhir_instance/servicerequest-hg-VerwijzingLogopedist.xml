@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ServiceRequest xmlns="http://hl7.org/fhir">
+   <id value="servicerequest-hg-VerwijzingLogopedist"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/hg-ReferralServiceRequest"/>
+   </meta>
+   <identifier>
+      <value value="hg-VerwijzingLogopedist"/>
+   </identifier>
+   <status value="completed"/>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.30.69"/>
+         <code value="Verwijsbrief"/>
+      </coding>
+   </category>
+   <subject>
+      <reference value="Patient/patient-van-XXX-Quigley-Streng"/>
+      <type value="Patient"/>
+      <display value="Patient, Marcus (Marc) van XXX_Quigley"/>
+   </subject>
+   <authoredOn value="T"/>
+   <supportingInfo>
+      <reference value="Composition/composition-hg-VerwijzingLogopedist"/>
+      <type value="Composition"/>
+      <display value="Referral note, XXX_Quigley"/>
+   </supportingInfo>
+</ServiceRequest>

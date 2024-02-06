@@ -11,8 +11,8 @@
     <property name="is.abbreviation" value="mp"/>
     <property name="project.version" value="1.0.0"/>
     <property name="build.dir" value="../.."/>
-    <property name="ada.project.source.dir" value="C:\SVN\art_decor\trunk\ada-data\projects\${is.abbreviation}-${is.abbreviation}${is.version.short}"/>
-    <property name="refs.dir" value="C:\SVN\art_decor\trunk\ada-data\adarefs2ada\${is.abbreviation}\${is.version}"/>
+    <property name="ada.project.source.dir" value="../../../../../../art_decor/projects/${is.abbreviation}-${is.abbreviation}${is.version.short}"/>
+    <property name="refs.dir" value="../../../../../../art_decor/adarefs2ada/${is.abbreviation}/${is.version}"/>
 
     <property name="organizer.to.cda.xsl" value="MP9_Transform_Organizer2CDA.xsl"/>
 
@@ -23,12 +23,14 @@
     <property name="project.title" value="${echo.label} for ${is.name} ${is.version}"/>
 
     <property name="usecase.mg" value="beschikbaarstellen_medicatiegegevens"/>
+    <property name="usecase.mg.st" value="sturen_medicatiegegevens"/>
     <property name="usecase.mg.rp" value="raadplegen_medicatiegegevens"/>
     <property name="usecase.mo" value="beschikbaarstellen_medicatieoverzicht"/>
     <property name="usecase.mv" value="sturen_medicatievoorschrift"/>
     <property name="usecase.mgb" value="sturen_medicatiegebruik"/>
     <property name="usecase.av" value="sturen_afhandeling_medicatievoorschrift"/>
     <property name="usecase.vma" value="sturen_voorstel_medicatieafspraak"/>
+    <property name="usecase.avma" value="sturen_antwoord_voorstel_medicatieafspraak"/>
     <property name="usecase.vvv" value="sturen_voorstel_verstrekkingsverzoek"/>
     <property name="usecase.avvv" value="sturen_antwoord_voorstel_verstrekkingsverzoek"/>
 
@@ -56,6 +58,22 @@
             <param name="fileset.include" value="*VV*.xml"/>
             <param name="refs.ada.dir" value="ada_instance"/>
         </antcall>
+        
+        <!-- sturen_medicatiegegevens MA -->
+        <antcall target="setup_sub">
+            <param name="usecase" value="${usecase.mg.st}"/>
+            <param name="fileset.dir" value="ada_instance_MA"/>
+            <param name="fileset.include" value="*MA*.xml"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
+        </antcall>
+        <!-- sturen_medicatiegegevens VV -->
+        <antcall target="setup_sub">
+            <param name="usecase" value="${usecase.mg.st}"/>
+            <param name="fileset.dir" value="ada_instance_VV"/>
+            <param name="fileset.include" value="*VV*.xml"/>
+            <param name="refs.ada.dir" value="ada_instance"/>
+        </antcall>
+        
         <!-- beschikbaarstellen_medicatieoverzicht -->
         <antcall target="setup_sub">
             <param name="usecase" value="${usecase.mo}"/>

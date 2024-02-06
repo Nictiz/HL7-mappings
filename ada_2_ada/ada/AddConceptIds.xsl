@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns="" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xsl:stylesheet exclude-result-prefixes="#all" xmlns="" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xsl:import href="../../util/utilities.xsl"/>
     <xsl:output method="xml" indent="yes" omit-xml-declaration="yes"/>
     <xsl:strip-space elements="*"/>
 
     <!-- de xsd variabelen worden gebruikt om de juiste conceptId's te vinden voor de ADA xml instance -->
-    <xsl:param name="schemaFileString" as="xs:string?">../ada_schemas/sturen_medicatiegegevens.xsd</xsl:param>
+    <xsl:param name="schemaFileString" as="xs:string?">../../../art_decor/adarefs2ada/mp/9.3.0/beschikbaarstellen_medicatiegegevens/ada_schemas/beschikbaarstellen_medicatiegegevens.xsd</xsl:param>
     <xsl:variable name="schema" select="document($schemaFileString)"/>
 
     <xd:doc>
@@ -16,36 +17,64 @@
         <xsl:param name="in" select="."/>
         <xsl:param name="schemaFragment" as="element(xs:complexType)?" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schema, local-name(ancestor::adaxml/data/*)))"/>
 
-        <xsl:for-each select="$in">
-            <xsl:variable name="elemName" select="local-name()"/>
-            <xsl:variable name="newSchemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName))"/>
+        <xsl:choose>
+            <xsl:when test="empty($schemaFragment)">
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logWARN"/>
+                    <xsl:with-param name="msg">Schema fragment empty for node <xsl:value-of select="local-name(.)"/>, please check</xsl:with-param>
+                </xsl:call-template>
+                <!-- simply copy this node, we won't find any conceptId's in this node anyway -->
+                <xsl:copy-of select="$in"/>                
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:for-each select="$in">
+                    <xsl:variable name="elemName" select="local-name()"/>
+                    <xsl:variable name="newSchemaFragment" select="nf:getADAComplexType($schema, nf:getADAComplexTypeName($schemaFragment, $elemName))"/>
 
-            <xsl:copy>
-                <xsl:apply-templates select="@*" mode="addConceptId"/>
-                <xsl:if test="not(@conceptId)">
-                    <xsl:copy-of select="nf:getADAComplexTypeConceptId($newSchemaFragment)"/>
-                </xsl:if>
-                <xsl:apply-templates select="node()" mode="addConceptId">
-                    <xsl:with-param name="schemaFragment" select="$newSchemaFragment"/>
-                </xsl:apply-templates>
+                    <xsl:copy>
+                        <xsl:apply-templates select="@*" mode="addConceptId"/>
+                        <xsl:if test="not(@conceptId) or string-length(@conceptId) = 0">
+                            <xsl:copy-of select="nf:getADAComplexTypeConceptId($newSchemaFragment)"/>
+                        </xsl:if>
+                        <xsl:apply-templates select="node()" mode="addConceptId">
+                            <xsl:with-param name="schemaFragment" select="$newSchemaFragment"/>
+                        </xsl:apply-templates>
 
-            </xsl:copy>
-        </xsl:for-each>
+                    </xsl:copy>
+                </xsl:for-each>
+            </xsl:otherwise>
+
+        </xsl:choose>
+
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>Start template</xd:desc>
     </xd:doc>
     <xsl:template match="/">
-        <xsl:apply-templates select="@* | node()" mode="addConceptId"/>
-    </xsl:template>
+        <xsl:choose>
+            <xsl:when test="empty($schema)">
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logERROR"/>
+                    <xsl:with-param name="msg">Schema empty, please check</xsl:with-param>
+                </xsl:call-template>
+                <!-- simply copy this node, we won't find any conceptId's anyway -->
+                <xsl:copy-of select="."/>
+            </xsl:when>
+            <xsl:otherwise>
+                <!-- let's go for it -->
+                <xsl:apply-templates select="@* | node()" mode="addConceptId"/>                
+            </xsl:otherwise>
+        </xsl:choose>
+        
+      </xsl:template>
 
     <xd:doc>
         <xd:desc>Default copy template</xd:desc>
     </xd:doc>
     <xsl:template match="@* | node()" mode="addConceptId">
         <xsl:copy>
-            <xsl:apply-templates select="@* | node()" mode="addConceptId"/>
+            <xsl:apply-templates select="@* | node()" mode="#current"/>
         </xsl:copy>
     </xsl:template>
 

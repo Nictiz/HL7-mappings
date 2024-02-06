@@ -73,13 +73,14 @@
         <attribute name="in.dir.absolute"/>
         
         <sequential>
-            <fileset id="in.files" dir="@{in.dir.absolute}">
+            <fileset id="in.files" dir="@{in.dir.absolute}" excludes="${files.to.exclude}">
                 <include name="**/*.xml"/>
             </fileset>
             
             <tempfile property="temp.dir"/>
+            <mkdir dir="${temp.dir}"/>
             
-            <xslt force="true" style="${narrativegenerator.dir}/addNarratives.xsl" destdir="${temp.dir}" useImplicitFileset="false">
+            <xslt force="true" style="${narrativegenerator.dir}/addNarratives.xsl" destdir="${temp.dir}" useImplicitFileset="false" failOnNoResources="false">
                 <factory name="net.sf.saxon.TransformerFactoryImpl"/>
                 <classpath location="${Saxon-HE.jar}"/>
                 <param name="override" expression="true"/>
@@ -91,6 +92,9 @@
             </xslt>
             
             <xslt style="${narrativegenerator.dir}/../util/formatXML.xsl" basedir="${temp.dir}" destdir="@{in.dir.absolute}">
+                <factory name="org.apache.xalan.processor.TransformerFactoryImpl"/>
+                <classpath location="${serializer.jar}"/>
+                <classpath location="${xalan.jar}"/>
                 <mapper type="identity"/>
             </xslt>
             

@@ -60,6 +60,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </tijds_duur>
                 </xsl:for-each>
                 
+                <!-- criterium -->
+                <xsl:for-each select="$IVL_TS/../hl7:precondition/hl7:criterion/hl7:text">
+                    <criterium value="{text()}"/>
+                </xsl:for-each>
+                
             </xsl:element>
         </xsl:for-each>
         

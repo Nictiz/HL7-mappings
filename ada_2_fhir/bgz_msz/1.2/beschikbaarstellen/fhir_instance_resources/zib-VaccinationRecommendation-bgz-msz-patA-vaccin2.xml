@@ -1,0 +1,57 @@
+<ImmunizationRecommendation xmlns="http://hl7.org/fhir">
+   <id value="zib-VaccinationRecommendation-bgz-msz-patA-vaccin2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-VaccinationRecommendation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Vaccinatieschema. Patiënt: Dennis D. Dennis Janse. Id: patA-vaccin2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7)</caption>
+            <tbody>
+               <tr>
+                  <th>Gemaakt: 2 april 2015. Status: <span title="Due (due - immunization-recommendation-status)">Due</span>
+                     <div>
+                        <span title="Hepatitis A+B-vaccin (J07BC20 - http://www.whocc.no/atc)">Hepatitis A+B-vaccin</span>
+                     </div>
+                  </th>
+                  <td/>
+               </tr>
+               <tr>
+                  <th>Eerdere vaccinatie</th>
+                  <td>Hepatitis A+B-vaccin</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patA-vaccin2"/>
+   </identifier>
+   <patient>
+      <reference value="Patient/DENNIS-D--DENNIS-JANSE"/>
+      <display value="Dennis D. Dennis Janse"/>
+   </patient>
+   <recommendation>
+      <date value="2015-04-02"/>
+      <vaccineCode>
+         <coding>
+            <system value="http://www.whocc.no/atc"/>
+            <code value="J07BC20"/>
+            <display value="Hepatitis A+B-vaccin"/>
+         </coding>
+      </vaccineCode>
+      <forecastStatus>
+         <coding>
+            <system value="http://hl7.org/fhir/immunization-recommendation-status"/>
+            <code value="due"/>
+            <display value="Due"/>
+         </coding>
+      </forecastStatus>
+      <supportingImmunization>
+         <reference value="Immunization/zib-Vaccination-bgz-msz-patA-vaccin2"/>
+         <display value="Hepatitis A+B-vaccin"/>
+      </supportingImmunization>
+   </recommendation>
+</ImmunizationRecommendation>

@@ -1,0 +1,230 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../9.0.7/sturen_medicatievoorschrift/ada_schemas/ada_sturen_medicatievoorschrift.xsd">
+   <meta status="new"
+         created-by="medicatieprocesada"
+         last-update-by="medicatieprocesada"
+         creation-date="2023-01-09T17:27:31.424+01:00"
+         last-update-date="2023-01-09T17:27:31.424+01:00"/>
+   <data>
+      <sturen_medicatievoorschrift app="mp-mp907"
+                                   shortName="sturen_medicatievoorschrift"
+                                   formName="sturen_voorschrift"
+                                   transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.95"
+                                   transactionEffectiveDate="2015-12-01T10:32:15"
+                                   versionDate=""
+                                   prefix="mp-"
+                                   language="nl-NL"
+                                   title="TEST Scenarioset 2 Aanvullende informatie en wensen"
+                                   desc="&lt;div&gt;&lt;span style=&#34;font-family: sans-serif; font-size: 14px; background-color: #f9f9f9;&#34;&gt;Aanvullende informatie (MA), aanvullende wensen (VV)&lt;/span&gt;&lt;/div&gt;"
+                                   id="mv-mp-vo-tst-2-4-aanvullendeinformatiewensen-v30">
+         <patient comment="">
+            <naamgegevens comment="">
+               <initialen value="C. "/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam comment="">
+                  <achternaam value="XXX_Coenen"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900420" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1963-10-17" datatype="datetime"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_300_aanvullendeinformatiewensen"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak comment="">
+               <gebruiksperiode_start value="T+0D{00:00:00}" datatype="datetime"/>
+               <gebruiksperiode_eind value="T+10D{23:59:59}" datatype="datetime"/>
+               <identificatie value="MBH_300_aanvullendeinformatiewensen_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <afspraakdatum value="T{08:06:00}" datatype="datetime"/>
+               <voorschrijver>
+                  <zorgverlener>
+                     <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Bertine"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van "/>
+                              <achternaam value="Doorn"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                  codeSystemVersion="2020-10-23T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <contactgegevens>
+                        <telefoonnummers>
+                           <telefoonnummer value="1634534000"/>
+                           <nummer_soort code="WP"
+                                         codeSystem="2.16.840.1.113883.5.1119"
+                                         codeSystemName="Address Use"
+                                         displayName="Zakelijk telefoonnummer"/>
+                        </telefoonnummers>
+                     </contactgegevens>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="Bertine_van_Doorn"/>
+                     </adaextension>
+                  </zorgverlener>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <product>
+                     <product_code displayName="FENETICILLINE CAPSULE 500MG"
+                                   code="17205"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="41092"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="FENETICILLINE 500MG CAPSULE"/>
+                     <adaextension>
+                        <reference_id value="PRK_FENETICILLINE_17205"/>
+                     </adaextension>
+                  </product>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T-4D{00:00:00}&gt; t/m &lt;T+5D{23:59:59}&gt;, 3 maal per dag 1 stuk, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaardthesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="3"/>
+                              </aantal>
+                              <tijdseenheid unit="dag" value="1"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <aanvullende_informatie code="1"
+                                       codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050"
+                                       displayName="Bewust hoge dosering"/>
+            </medicatieafspraak>
+            <verstrekkingsverzoek comment="">
+               <identificatie value="MBH_300_aanvullendeinformatiewensen_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <datum value="T{08:06:00}" datatype="datetime"/>
+               <auteur>
+                  <zorgverlener>
+                     <zorgverlener_identificatie_nummer value="000001112" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Bertine"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van "/>
+                              <achternaam value="Doorn"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                  codeSystemVersion="2020-10-23T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <contactgegevens>
+                        <telefoonnummers>
+                           <telefoonnummer value="1634534000"/>
+                           <nummer_soort code="WP"
+                                         codeSystem="2.16.840.1.113883.5.1119"
+                                         codeSystemName="Address Use"
+                                         displayName="Zakelijk telefoonnummer"/>
+                        </telefoonnummers>
+                     </contactgegevens>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatie_nummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="Bertine_van_Doorn"/>
+                     </adaextension>
+                  </zorgverlener>
+               </auteur>
+               <te_verstrekken_hoeveelheid comment="">
+                  <aantal value="30"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <te_verstrekken_geneesmiddel>
+                  <product>
+                     <product_code displayName="FENETICILLINE CAPSULE 500MG"
+                                   code="17205"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="41092"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="FENETICILLINE 500MG CAPSULE"/>
+                     <adaextension>
+                        <reference_id value="PRK_FENETICILLINE_17205"/>
+                     </adaextension>
+                  </product>
+               </te_verstrekken_geneesmiddel>
+               <beoogd_verstrekker>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek De Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="Apotheek_De_Gulle_Gaper"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </beoogd_verstrekker>
+               <aanvullende_wensen code="3"
+                                   codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2051"
+                                   displayName="Bezorgen"/>
+               <relatie_naar_medicatieafspraak comment="">
+                  <identificatie value="MBH_300_aanvullendeinformatiewensen_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_naar_medicatieafspraak>
+            </verstrekkingsverzoek>
+         </medicamenteuze_behandeling>
+      </sturen_medicatievoorschrift>
+   </data>
+</adaxml>

@@ -45,7 +45,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </reference-display>
                 <xsl:apply-templates select="current-group()[1]" mode="doProblemEntry-2.1">
                     <xsl:with-param name="uuid" select="$uuid"/>
-                    <xsl:with-param name="searchMode">match</xsl:with-param>
+                    <xsl:with-param name="searchMode">include</xsl:with-param>
                 </xsl:apply-templates>
             </unieke-problem>
         </xsl:for-each-group>
@@ -54,7 +54,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template name="problemReference" match="probleem[not(probleem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | problem[not(problem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProblemReference-2.1" as="element()+">
+    <xsl:template name="problemReference" match="//(probleem[not(probleem)] | problem[not(problem)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProblemReference-2.1" as="element()+">
         <xsl:variable name="theIdentifier" select="identificatie_nummer[@value] | identification_number[@value]"/>
         <xsl:variable name="theGroupKey" select="nf:getGroupingKeyDefault(.)"/>
         <xsl:variable name="theGroupElement" select="$problems[group-key = $theGroupKey]" as="element()?"/>
@@ -78,7 +78,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Produces a FHIR entry element with an Condition resource</xd:desc>
+        <xd:desc>Produces a FHIR entry element with a Condition resource</xd:desc>
         <xd:param name="uuid">If true generate uuid from scratch. Defaults to false(). Generating a UUID from scratch limits reproduction of the same output as the UUIDs will be different every time.</xd:param>
         <xd:param name="adaPatient">Optional, but should be there. Patient for which this Condition is for.</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
@@ -86,7 +86,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="fhirResourceId">Optional. Value for the entry.resource.Condition.id</xd:param>
         <xd:param name="searchMode">Optional. Value for entry.search.mode. Default: include</xd:param>
     </xd:doc>
-    <xsl:template name="problemEntry" match="probleem[not(probleem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | problem[not(problem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProblemEntry-2.1" as="element(f:entry)">
+    <xsl:template name="problemEntry" match="//(probleem[not(probleem)] | problem[not(problem)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" mode="doProblemEntry-2.1" as="element(f:entry)">
         <xsl:param name="uuid" select="false()" as="xs:boolean"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
         <xsl:param name="dateT" as="xs:date?"/>
@@ -150,7 +150,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="adaPatient">Required. ADA patient concept to build a reference to from this resource</xd:param>
         <xd:param name="dateT">Optional. dateT may be given for relative dates, only applicable for test instances</xd:param>
     </xd:doc>
-    <xsl:template name="zib-Problem-2.1" match="probleem[not(probleem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)] | problem[not(problem)][not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element()" mode="doZibProblem-2.1">
+    <xsl:template name="zib-Problem-2.1" match="//(probleem[not(probleem)] | problem[not(problem)])[not(@datatype = 'reference')][.//(@value | @code | @nullFlavor)]" as="element(f:Condition)" mode="doZibProblem-2.1">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="logicalId" as="xs:string?"/>
         <xsl:param name="adaPatient" select="(ancestor::*/patient[*//@value] | ancestor::*/bundle/subject/patient[*//@value])[1]" as="element()"/>
@@ -332,9 +332,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </abatementDateTime>
                     </xsl:if>-->
 
-                    <!-- TS    NL-CM:8.2.6        BeginDatumTijd            0..1    -->
+                    <!-- TS    NL-CM:0.0.14    DatumTijd    0..1-->
                     <!-- assertedDate -->
                     <xsl:for-each select="(zibroot/datum_tijd | hcimroot/date_time)[@value]">
+                        <xsl:call-template name="util:logMessage">
+                            <xsl:with-param name="level" select="$logWARN"/>
+                            <xsl:with-param name="msg">In the zib-Problem profile the DateTime concept from the BasicElements (NL-CM:0.0.14) is mapped to .onsetDateTime instead of .assertedDate. Since this stylesheet is actively used (for instance in MP 6.12) this discrepancy will not be corrected.</xsl:with-param>
+                            <xsl:with-param name="terminate">false</xsl:with-param>
+                        </xsl:call-template>
                         <assertedDate>
                             <xsl:attribute name="value">
                                 <xsl:call-template name="format2FHIRDate">

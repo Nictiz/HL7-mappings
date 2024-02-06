@@ -1,0 +1,45 @@
+<Patient xmlns="http://hl7.org/fhir">
+   <id value="VAN-DE-XXX-KRUK"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Patient"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <div>Id <i>afgeschermd (ontbrekend gegeven)</i> (BSN), <span title="Naamsamenstelling: Eigennaam">van de XXX Kruk</span>, Vrouw, 9 december 1985</div>
+      </div>
+   </text>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+      <value>
+         <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+            <valueCode value="masked"/>
+         </extension>
+      </value>
+   </identifier>
+   <name>
+      <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+         <valueCode value="NL1"/>
+      </extension>
+      <family value="van de XXX Kruk">
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+            <valueString value="van de"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+            <valueString value="XXX Kruk"/>
+         </extension>
+      </family>
+   </name>
+   <gender value="female">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
+               <code value="F"/>
+               <display value="Vrouw"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </gender>
+   <birthDate value="1985-12-09"/>
+</Patient>

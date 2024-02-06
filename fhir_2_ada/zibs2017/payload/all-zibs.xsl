@@ -21,10 +21,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     exclude-result-prefixes="#all"
     version="2.0">
     
+    <!-- moved import of util here to prevent duplicate import warnings due to fhir use in ada-hl7v3 conversions (dosageInstructions in FHIR) -->
     <xsl:import href="../../../util/constants.xsl"/>
     <xsl:import href="../../../util/datetime.xsl"/>
     <xsl:import href="../../../util/units.xsl"/>
-    <xsl:import href="../../../util/utilities.xsl"/>    
+    <xsl:import href="../../../util/utilities.xsl"/>
     
     <xsl:import href="../../fhir/fhir_2_ada_fhir_include.xsl"/>
     

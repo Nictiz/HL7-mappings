@@ -1,0 +1,140 @@
+<AllergyIntolerance xmlns="http://hl7.org/fhir">
+   <id value="zib-AllergyIntolerance-bgz-msz-patA-allergy1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Allergie/intolerantie. Patiënt: Dennis D. Dennis Janse. Id: patA-allergy1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Categorie: <span title="neiging tot ongewenste reactie op voedsel (418471000 - SNOMED CT)">neiging tot ongewenste reactie op voedsel</span>, Status: actief / bevestigd</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Niet allergisch voor cashewnoten</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="noten (13577000 - SNOMED CT)">noten</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Eerste symptomen</th>
+                  <td>29 mei 1976</td>
+               </tr>
+               <tr>
+                  <th>Meest recente voorkomen</th>
+                  <td>18 augustus 2012</td>
+               </tr>
+               <tr>
+                  <th>Reactie</th>
+                  <td>
+                     <ul>
+                        <li>
+                           <div>18 augustus 2012 <span title="ernstig (24484000 - SNOMED CT)">ernstig</span>
+                           </div>
+                           <div>
+                              <span title="anafylaxie (39579001 - SNOMED CT)">anafylaxie</span>
+                           </div>
+                           <div>Bewusteloos wegens wegvallen bloeddruk.</div>
+                        </li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patA-allergy1"/>
+   </identifier>
+   <clinicalStatus value="active">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActStatus"/>
+               <code value="active"/>
+               <display value="Actief"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <verificationStatus value="confirmed"/>
+   <category value="food">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="418471000"/>
+               <display value="neiging tot ongewenste reactie op voedsel"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </category>
+   <criticality value="high">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="24484000"/>
+               <display value="ernstig"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </criticality>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="13577000"/>
+         <display value="noten"/>
+      </coding>
+   </code>
+   <patient>
+      <reference value="Patient/DENNIS-D--DENNIS-JANSE"/>
+      <display value="Dennis D. Dennis Janse"/>
+   </patient>
+   <onsetDateTime value="1976-05-29"/>
+   <lastOccurrence value="2012-08-18"/>
+   <note>
+      <text value="Niet allergisch voor cashewnoten"/>
+   </note>
+   <reaction>
+      <substance>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="260189007"/>
+            <display value="pecannoot"/>
+         </coding>
+      </substance>
+      <manifestation>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="39579001"/>
+            <display value="anafylaxie"/>
+         </coding>
+      </manifestation>
+      <description value="Bewusteloos wegens wegvallen bloeddruk."/>
+      <onset value="2012-08-18"/>
+      <severity value="severe">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="24484000"/>
+                  <display value="ernstig"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </severity>
+      <exposureRoute>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="738956005"/>
+            <display value="oraal"/>
+         </coding>
+      </exposureRoute>
+   </reaction>
+</AllergyIntolerance>

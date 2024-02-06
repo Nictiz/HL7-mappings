@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns:f="http://hl7.org/fhir" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nwf="http://www.nictiz.nl/wiki-functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-    <!-- this import should be commented out here, as the import must be chosen in the calling xslt -->
-    <!-- uncomment only for development purposes -->
-    <!--        <xsl:import href="../ada_2_fhir/zibs2017/payload/package-2.0.5.xsl"/>-->
-
     <!-- give dateT a value when you need conversion of relative T dates, typically only needed for test instances -->
     <!--    <xsl:param name="dateT" as="xs:date?" select="current-date()"/>-->
     <xsl:param name="dateT" as="xs:date?"/>
@@ -18,12 +14,21 @@
     <xsl:variable name="mgbCode" as="xs:string*" select="('422979000')"/>
     <xsl:variable name="mtdCode" as="xs:string*" select="('18629005')"/>
 
+    <xsl:variable name="genericMBHidPRK">2.16.840.1.113883.2.4.3.11.61.2</xsl:variable>
+    <xsl:variable name="genericMBHidHPK">2.16.840.1.113883.2.4.3.11.61.3</xsl:variable>
+    <xsl:variable name="concatOidMBH">1.3.6.1.4.1.58606.1.2.</xsl:variable>
+    <xsl:variable name="concatOidTA">1.3.6.1.4.1.58606.1.1.</xsl:variable>    
+
     <xsl:variable name="stoptypeMap" as="element()+">
-        <map code="113381000146106" codeSystem="2.16.840.1.113883.6.96" displayName="tijdelijk gestopt"/>
-        <map code="113371000146109" codeSystem="2.16.840.1.113883.6.96" displayName="definitief gestopt"/>
-        <!-- deprecated codes from pre MP 9.2 -->
-        <map code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="tijdelijk gestopt"/>
-        <map code="2" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="definitief gestopt"/>
+        <map stoptype="onderbroken" code="385655000" codeSystem="2.16.840.1.113883.6.96" displayName="onderbroken" version="930"/>
+        <map stoptype="stopgezet" code="410546004" codeSystem="2.16.840.1.113883.6.96" displayName="stopgezet" version="930"/>
+        <map stoptype="geannuleerd" code="89925002" codeSystem="2.16.840.1.113883.6.96" displayName="geannuleerd" version="930"/>
+        <!-- deprecated codes from MP9 2.0 -->
+        <map stoptype="tijdelijk" code="113381000146106" codeSystem="2.16.840.1.113883.6.96" displayName="tijdelijk gestopt" version="920"/>
+        <map stoptype="definitief" code="113371000146109" codeSystem="2.16.840.1.113883.6.96" displayName="definitief gestopt" version="920"/>
+        <!-- deprecated codes from pre MP 9.1 -->
+        <map stoptype="tijdelijk" code="1" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="tijdelijk gestopt" version="907"/>
+        <map stoptype="definitief" code="2" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1" displayName="definitief gestopt" version="907"/>
     </xsl:variable>
 
     <xd:doc>
@@ -226,7 +231,7 @@
                                     <!-- min/max -->
                                     <xsl:when test="$toedieningssnelheid/waarde/(min | minimum_waarde) | (max | maximum_waarde)[@value]">
                                         <xsl:if test="$toedieningssnelheid/waarde/(min | minimum_waarde)/@value and not($toedieningssnelheid/waarde/(max | maximum_waarde)/@value)">minimaal </xsl:if>
-                                        <xsl:if test="$toedieningssnelheid/waarde/(max | maximum_waarde)/@value and not($toedieningssnelheid/waarde/min/@value)">maximaal </xsl:if>
+                                        <xsl:if test="$toedieningssnelheid/waarde/(max | maximum_waarde)/@value and not($toedieningssnelheid/waarde/(min | minimum_waarde)/@value)">maximaal </xsl:if>
                                         <xsl:if test="$toedieningssnelheid/waarde/(min | minimum_waarde)/@value">
                                             <xsl:value-of select="$toedieningssnelheid/waarde/(min | minimum_waarde)/@value"/>
                                         </xsl:if>
@@ -307,7 +312,11 @@
                                 </xsl:if>
                             </xsl:variable>
                             <xsl:variable name="isFlexible" as="xs:string?">
-                                <xsl:if test="toedieningsschema/is_flexibel/@value = 'false' or $interval">- let op, tijden exact aanhouden</xsl:if>
+                                <!-- AWE, MP-515 new default text for interval -->
+                                <xsl:choose>
+                                    <xsl:when test="$interval">- gelijke tussenpozen aanhouden</xsl:when>
+                                    <xsl:when test="toedieningsschema/is_flexibel/@value = 'false'">- let op, tijden exact aanhouden</xsl:when>
+                                </xsl:choose>
                             </xsl:variable>
 
                             <xsl:value-of select="normalize-space(concat(string-join($zo-nodig, ' '), ' ', string-join($weekdag-string, ' '), ' ', string-join($frequentie-string, ' '), $interval-string, ' ', string-join($toedientijd-string, ' '), ' ', string-join($keerdosis-string, ' '), ' ', string-join($dagdeel-string, ' '), ' ', $toedieningsduur-string, ' ', string-join($toedieningssnelheid-string, ' '), string-join($maxdose-string, ' '), $isFlexible))"/>
