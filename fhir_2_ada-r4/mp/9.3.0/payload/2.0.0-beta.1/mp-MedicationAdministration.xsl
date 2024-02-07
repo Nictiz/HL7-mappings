@@ -120,7 +120,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<xd:desc>Template to convert f:dosage/f:dose to toegediende_hoeveelheid aantal  and eenheid element.</xd:desc>
 	</xd:doc>
 	<xsl:template match="f:dosage/f:dose" mode="mp-MedicationAdministration">
-
 		<toegediende_hoeveelheid>
 			<xsl:call-template name="GstdQuantity2ada"/>
 		</toegediende_hoeveelheid>
@@ -192,7 +191,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <!--						<xsl:variable name="resourceProvider" select="nf:resolveRefInBundle(($resource/f:PractitionerRole/(f:organization|f:location)[f:reference])[1])"/>-->
 						<zorgaanbieder>
 							<!-- pre MP9 3.0 beta3 it was possible to convey zorgaanbieder -->
-							<zorgaanbieder value="{nf:process-reference-2NCName(($resource/f:PractitionerRole/(f:organization|f:location)[f:reference])[1]/f:reference/@value)}" datatype="reference"/>
+							<zorgaanbieder value="{nf:convert2NCName(($resource/f:PractitionerRole/(f:organization|f:location)[f:reference])[1]/f:reference/@value)}" datatype="reference"/>
 						</zorgaanbieder>
 					</xsl:when>
 					<xsl:when test="f:type/@value = ('RelatedPerson') or $resource[f:RelatedPerson]">
@@ -203,7 +202,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					<!-- From version MP9 3.0 beta3, performer is mapped to zorgverlener -->
 					<xsl:when test="f:type/@value = ('Practitioner') or $resource[f:Practitioner | f:PractitionerRole[f:practitioner | f:specialty]]">
 						<zorgverlener>
-							<zorgverlener value="{nf:process-reference-2NCName(f:reference/@value)}" datatype="reference"/>
+							<zorgverlener value="{nf:process-reference-2NCName(f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
 						</zorgverlener>
 					</xsl:when>
 					
