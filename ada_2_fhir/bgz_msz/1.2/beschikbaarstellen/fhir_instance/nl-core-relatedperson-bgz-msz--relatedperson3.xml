@@ -1,32 +1,50 @@
-<Patient xmlns="http://hl7.org/fhir">
-   <id value="patA-patient1"/>
+<RelatedPerson xmlns="http://hl7.org/fhir">
+   <id value="nl-core-relatedperson-bgz-msz--relatedperson3"/>
    <meta>
-      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-patient"/>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson"/>
    </meta>
    <text>
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
-         <div>Id 999999151 (BSN), <span title="Naamsamenstelling: Eigennaam">Dennis D. Janse</span> (Dennis), Man, 2 februari 1950, Geen meerling, <span title="Married (M - MaritalStatus)">Married</span>
-         </div>
+         <div>Id bgz-msz-patA-contactperson1 (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6), Dirk D. Janse (Dirk)</div>
          <div>
-            <a href="tel:+316-11122233">+316-11122233</a> (Mobiel Privé), <a href="mailto:djanse@test.nl">djanse@test.nl</a> (E-mail Privé)</div>
-         <div>Huweelstraat 15 Tijdelijk adres to, 1248CC Barendrecht, NL (TMP)</div>
+            <a href="tel:+316-22668899">+316-22668899</a> (Mobiel Privé), <a href="mailto:dirk.janse@test.nl">dirk.janse@test.nl</a> (E-mail Privé)</div>
+         <div>Huweelstraat 15 to, 1248CC Barendrecht, NL (officieel Privé (hoofd) Bezoek)</div>
+         <div>
+            <span title="Eerste relatie/contactpersoon (1 - RoleCodeLijst (COD472-VEKT))">Eerste relatie/contactpersoon</span>, <span title="son (SONC - v3/RoleCode)">son</span> van Dennis D. Dennis Janse</div>
       </div>
    </text>
+   <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-relatedperson-role">
+      <valueCodeableConcept>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.22.472"/>
+            <code value="1"/>
+            <display value="Eerste relatie/contactpersoon"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
    <identifier>
-      <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-      <value value="999999151"/>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"/>
+      <value value="bgz-msz-patA-contactperson1"/>
    </identifier>
+   <patient>
+      <reference value="Patient/DENNIS-D--DENNIS-JANSE"/>
+      <display value="Dennis D. Dennis Janse"/>
+   </patient>
+   <relationship>
+      <coding>
+         <system value="http://hl7.org/fhir/v3/RoleCode"/>
+         <code value="SONC"/>
+         <display value="son"/>
+      </coding>
+   </relationship>
    <name>
-      <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
-         <valueCode value="NL1"/>
-      </extension>
       <family value="Janse">
          <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
             <valueString value="Janse"/>
          </extension>
       </family>
-      <given value="Dennis">
+      <given value="Dirk">
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
             <valueCode value="BR"/>
          </extension>
@@ -36,7 +54,7 @@
             <valueCode value="IN"/>
          </extension>
       </given>
-      <given value="Dennis">
+      <given value="Dirk">
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
             <valueCode value="CL"/>
          </extension>
@@ -53,47 +71,35 @@
          </valueCodeableConcept>
       </extension>
       <system value="phone"/>
-      <value value="+316-11122233"/>
+      <value value="+316-22668899"/>
       <use value="home"/>
    </telecom>
    <telecom>
       <system value="email"/>
-      <value value="djanse@test.nl"/>
+      <value value="dirk.janse@test.nl"/>
       <use value="home"/>
    </telecom>
-   <gender value="male">
-      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
-         <valueCodeableConcept>
-            <coding>
-               <system value="http://hl7.org/fhir/v3/AdministrativeGender"/>
-               <code value="M"/>
-               <display value="Male"/>
-            </coding>
-         </valueCodeableConcept>
-      </extension>
-   </gender>
-   <birthDate value="1950-02-02"/>
-   <deceasedBoolean value="false"/>
    <address>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
          <valueCodeableConcept>
             <coding>
                <system value="http://hl7.org/fhir/v3/AddressUse"/>
-               <code value="TMP"/>
-               <display value="Tijdelijk adres"/>
+               <code value="HP"/>
+               <display value="Officieel adres"/>
             </coding>
          </valueCodeableConcept>
       </extension>
-      <use value="temp"/>
-      <line value="Huweelstraat 15 Tijdelijk adres to">
+      <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-address-official">
+         <valueBoolean value="true"/>
+      </extension>
+      <use value="home"/>
+      <type value="physical"/>
+      <line value="Huweelstraat 15 to">
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
             <valueString value="Huweelstraat"/>
          </extension>
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
             <valueString value="15"/>
-         </extension>
-         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-unitID">
-            <valueString value="Tijdelijk adres"/>
          </extension>
          <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-additionalLocator">
             <valueString value="to"/>
@@ -113,12 +119,4 @@
          </extension>
       </country>
    </address>
-   <maritalStatus>
-      <coding>
-         <system value="urn:oid:2.16.840.1.113883.5.2"/>
-         <code value="M"/>
-         <display value="Married"/>
-      </coding>
-   </maritalStatus>
-   <multipleBirthBoolean value="false"/>
-</Patient>
+</RelatedPerson>

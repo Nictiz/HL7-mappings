@@ -1,5 +1,5 @@
 <Condition xmlns="http://hl7.org/fhir">
-   <id value="zib-Problem-bgz-msz-patA-problem1"/>
+   <id value="zib-Problem-bgz-msz-bgz-msz-patA-problem5"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
    </meta>
@@ -7,26 +7,22 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Aandoening. Subject: Dennis D. Dennis Janse. Id: bgz-msz-patA-problem2 (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6), Categorie: <span title="interpretatie van diagnose (282291009 - SNOMED CT)">interpretatie van diagnose</span>, Status: inactief / weerlegd</caption>
+            <caption>Aandoening. Subject: Dennis D. Dennis Janse. Id: bgz-msz-patA-problem5 (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6), Categorie: <span title="interpretatie van diagnose (282291009 - SNOMED CT)">interpretatie van diagnose</span>, Status: actief / bevestigd</caption>
             <tfoot>
                <tr>
-                  <td colspan="2">Patiënt meende dat kortademigheid optrad als reactie op noten.</td>
+                  <td colspan="2">Op een bal gaan staan tijdens het voetballen.</td>
                </tr>
             </tfoot>
             <tbody>
                <tr>
                   <th>Code</th>
                   <td>
-                     <span title="allergisch astma (389145006 - SNOMED CT)">allergisch astma</span>
+                     <span title="fractuur van enkel (16114001 - SNOMED CT)">fractuur van enkel</span>
                   </td>
                </tr>
                <tr>
                   <th>Eerste symptomen</th>
-                  <td>${DATE, T, Y, -24}</td>
-               </tr>
-               <tr>
-                  <th>Oplossing/remissie</th>
-                  <td>${DATE, T, Y, -23}</td>
+                  <td>${DATE, T, D, -1}</td>
                </tr>
             </tbody>
          </table>
@@ -34,26 +30,26 @@
    </text>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"/>
-      <value value="bgz-msz-patA-problem2"/>
+      <value value="bgz-msz-patA-problem5"/>
    </identifier>
-   <clinicalStatus value="inactive">
+   <clinicalStatus value="active">
       <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
          <valueCodeableConcept>
             <coding>
                <system value="http://snomed.info/sct"/>
-               <code value="73425007"/>
-               <display value="inactief"/>
+               <code value="55561003"/>
+               <display value="actief"/>
             </coding>
          </valueCodeableConcept>
       </extension>
    </clinicalStatus>
-   <verificationStatus value="refuted">
+   <verificationStatus value="confirmed">
       <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
          <valueCodeableConcept>
             <coding>
                <system value="http://snomed.info/sct"/>
-               <code value="410516002"/>
-               <display value="afwezigheid bekend"/>
+               <code value="410605003"/>
+               <display value="aanwezigheid bevestigd"/>
             </coding>
          </valueCodeableConcept>
       </extension>
@@ -68,17 +64,32 @@
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="389145006"/>
-         <display value="allergisch astma"/>
+         <code value="16114001"/>
+         <display value="fractuur van enkel"/>
       </coding>
    </code>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="70258002"/>
+         <display value="structuur van enkelgewricht"/>
+      </coding>
+   </bodySite>
    <subject>
       <reference value="Patient/DENNIS-D--DENNIS-JANSE"/>
       <display value="Dennis D. Dennis Janse"/>
    </subject>
-   <onsetDateTime value="${DATE, T, Y, -24}"/>
-   <abatementDateTime value="${DATE, T, Y, -23}"/>
+   <onsetDateTime value="${DATE, T, D, -1}"/>
    <note>
-      <text value="Patiënt meende dat kortademigheid optrad als reactie op noten."/>
+      <text value="Op een bal gaan staan tijdens het voetballen."/>
    </note>
 </Condition>
