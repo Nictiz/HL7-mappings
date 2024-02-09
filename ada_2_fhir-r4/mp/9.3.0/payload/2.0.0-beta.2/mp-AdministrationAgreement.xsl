@@ -52,6 +52,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:if>                    
                 </meta>
 
+                <!-- MP-433: Starting from MP 9.3.0 beta.3 additionalInformation is nolonger supported in the profile AdministrationAgreement
+                        however to ensure backwards compatibility, handling this extension is kept in the mapping -->
                 <xsl:for-each select="toedieningsafspraak_aanvullende_informatie[@code | @value | @nullFlavor]">
                     <extension url="{$urlExtAdministrationAgreementAdditionalInformation}">
                         <!-- Issue MP-536 change from code to free text -->
