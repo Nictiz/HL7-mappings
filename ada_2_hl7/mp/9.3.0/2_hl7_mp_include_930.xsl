@@ -200,8 +200,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </assignedEntity>
                 </performer>
             </xsl:for-each>
+            
+            <!-- MP-1417, revert changes done bij MP-616, so re-add support for toediener/zorgverlener -->
+            <!-- zorgverlener -->
+            <xsl:for-each select="../../../bouwstenen/zorgverlener[@id = current()//zorgverlener[not(zorgverlener)]/@value]">
+                <performer>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.43_20210701000000"/>
+                </performer>
+            </xsl:for-each>
 
-            <!-- zorgaanbieder is toediener -->
+            <!-- zorgaanbieder is toediener, even though this is not specified anymore with MP-1417 in beta.3 the mapping still supports this for backward compatibility reasons, 
+                goal is to minimise possible data loss -->
             <xsl:for-each select="../../../bouwstenen/zorgaanbieder[@id = current()//zorgaanbieder[not(zorgaanbieder)]/@value]">
                 <performer>
                     <assignedEntity>

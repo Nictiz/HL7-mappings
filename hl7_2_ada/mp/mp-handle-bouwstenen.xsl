@@ -291,7 +291,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Make a reference to the bouwstenen</xd:desc>
     </xd:doc>
-    <xsl:template match="toediener/mantelzorger/contactpersoon | voorschrijver/zorgverlener | auteur/zorgverlener | auteur_is_zorgverlener/zorgverlener | toediener/zorgverlener/zorgverlener | toediener//zorgaanbieder[not(zorgaanbieder)] | farmaceutisch_product | beoogd_verstrekker/zorgaanbieder | verstrekker/zorgaanbieder | auteur_is_zorgaanbieder[not(ancestor::documentgegevens)]/zorgaanbieder" mode="handleBouwstenen">
+    <xsl:template match="toediener/mantelzorger/contactpersoon | voorschrijver/zorgverlener | auteur/zorgverlener | auteur_is_zorgverlener/zorgverlener | toediener//zorgverlener[not(zorgverlener)] | toediener[not(.//zorgverlener)]//zorgaanbieder[not(zorgaanbieder)] | farmaceutisch_product | beoogd_verstrekker/zorgaanbieder | verstrekker/zorgaanbieder | auteur_is_zorgaanbieder[not(ancestor::documentgegevens)]/zorgaanbieder" mode="handleBouwstenen">
         <xsl:copy>
             <xsl:attribute name="datatype">reference</xsl:attribute>
             <xsl:attribute name="value" select="@id"/>
