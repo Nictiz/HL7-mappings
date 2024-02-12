@@ -79,6 +79,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="decimale_visus_waarde">
                     <valueQuantity>
                         <value value="{@value}"/>
+                        <unit value="decimale visus"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="1"/>
                     </valueQuantity>
                 </xsl:for-each>
                 <xsl:for-each select="anatomische_locatie[lateraliteit]">

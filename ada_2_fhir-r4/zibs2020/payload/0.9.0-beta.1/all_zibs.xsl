@@ -82,7 +82,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../0.5-beta1/nl-core-TobaccoUse.xsl"/>
     <xsl:import href="../0.7-beta1/nl-core-TreatmentDirective2.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-Vaccination.xsl"/>
-    <xsl:import href="../0.8.0-beta.1/nl-core-VisualAcuity.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-VisualFunction.xsl"/>
     <xsl:import href="../0.5-beta1/ext-CodeSpecification.xsl"/>
     <xsl:import href="../0.5-beta1/ext-Comment.xsl"/>
