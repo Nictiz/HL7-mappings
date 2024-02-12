@@ -6,8 +6,11 @@
    <text>
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
-         <div>Id 222222232 (UZI-NR-PERS), Ottobert O. van Bekhoven</div>
-         <div>Valkendael 45, 6245HK Maastricht (WP)</div>
+         <div>Id 222222232 (UZI-NR-PERS), <span title="Naamsamenstelling: Eigennaam">Ottobert O. van Bekhoven</span>
+         </div>
+         <div>
+            <a href="tel:06-32165488">06-32165488</a> (Mobiel Werk), <a href="mailto:o.vanbekhoven@testmedischcentrum.nl">o.vanbekhoven@testmedischcentrum.nl</a> (E-mail Werk)</div>
+         <div>Valkendael 45, 6245HK Maastricht, 6030 (WP)</div>
       </div>
    </text>
    <identifier>
@@ -37,6 +40,25 @@
          </extension>
       </given>
    </name>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="MC"/>
+               <display value="Mobiel telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="06-32165488"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="o.vanbekhoven@testmedischcentrum.nl"/>
+      <use value="work"/>
+   </telecom>
    <address>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
          <valueCodeableConcept>
@@ -58,5 +80,17 @@
       </line>
       <city value="Maastricht"/>
       <postalCode value="6245HK"/>
+      <country value="6030">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.16.34"/>
+                  <version value="2020-03-31T00:00:00"/>
+                  <code value="6030"/>
+                  <display value="Nederland"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </country>
    </address>
 </Practitioner>

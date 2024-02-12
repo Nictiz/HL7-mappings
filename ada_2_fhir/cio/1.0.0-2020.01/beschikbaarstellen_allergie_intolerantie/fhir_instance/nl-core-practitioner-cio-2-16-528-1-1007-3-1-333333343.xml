@@ -6,8 +6,11 @@
    <text>
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
-         <div>Id 333333343 (UZI-NR-PERS), M. Boot</div>
-         <div>Kamerlingh Onnesstraat 2 huis, 2999AZ Leiderdorp (WP)</div>
+         <div>Id 333333343 (UZI-NR-PERS), <span title="Naamsamenstelling: Eigennaam">M. Boot</span>
+         </div>
+         <div>
+            <a href="tel:0800-654321">0800-654321</a> (Vast telefoonnummer Werk), <a href="mailto:m.boot@deallergoloog.nl">m.boot@deallergoloog.nl</a> (E-mail Werk)</div>
+         <div>Kamerlingh Onnesstraat 2 huis, 2999AZ Leiderdorp, 6030 (WP)</div>
       </div>
    </text>
    <identifier>
@@ -29,6 +32,25 @@
          </extension>
       </given>
    </name>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Vast telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="0800-654321"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="m.boot@deallergoloog.nl"/>
+      <use value="work"/>
+   </telecom>
    <address>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
          <valueCodeableConcept>
@@ -53,5 +75,17 @@
       </line>
       <city value="Leiderdorp"/>
       <postalCode value="2999AZ"/>
+      <country value="6030">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.16.34"/>
+                  <version value="2020-03-31T00:00:00"/>
+                  <code value="6030"/>
+                  <display value="Nederland"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </country>
    </address>
 </Practitioner>
