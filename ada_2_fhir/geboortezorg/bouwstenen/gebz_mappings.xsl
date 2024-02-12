@@ -113,7 +113,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:when test="@conceptId='2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4099'">
                 <coding>
-                    <system value="2.16.840.1.113883.6.96"/>
+                    <system value="http://snomed.info/sct"/>
                     <code value="249120008"/>
                     <display value="begin van eerste fase van partus (waarneembare entiteit)"/>
                 </coding>                   
@@ -126,8 +126,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:perform-sort>
                     </xsl:variable> 
                     <xsl:variable name="terminology" select="($terminologies/terminologyAssociation[@codeSystemName='SNOMED CT'] | $terminologies/terminologyAssociation[@codeSystemName='LOINC'] | $terminologies/terminologyAssociation)[1]"/>
+                    <xsl:variable name="system">
+                        <xsl:variable name="terminologySystem" select="$terminology/(@system|@codeSystem)"/>
+                        <xsl:choose>
+                            <xsl:when test="$terminologySystem = '2.16.840.1.113883.6.1'">
+                                <xsl:value-of select="'http://loinc.org'"/>
+                            </xsl:when>
+                            <xsl:when test="$terminologySystem = '2.16.840.1.113883.6.96'">
+                                <xsl:value-of select="'http://snomed.info/sct'"/>
+                            </xsl:when>
+                            <!-- There could be more of these, see https://hl7.org/fhir/STU3/terminologies-systems.html
+                            The validator should throw an error if another one is present, so test in Touchstone and return here to add them I guess -->
+                            <xsl:otherwise>
+                                <xsl:value-of select="$terminologySystem"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:variable>
                     <coding>
-                        <system value="{$terminology/(@system|@codeSystem)}"/>
+                        <system value="{$system}"/>
                         <code value="{$terminology/@code}"/>
                         <display value="{$terminology/(@display|@displayName)}"/>
                     </coding>   
