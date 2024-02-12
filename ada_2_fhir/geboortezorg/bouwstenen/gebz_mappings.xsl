@@ -126,24 +126,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:perform-sort>
                     </xsl:variable> 
                     <xsl:variable name="terminology" select="($terminologies/terminologyAssociation[@codeSystemName='SNOMED CT'] | $terminologies/terminologyAssociation[@codeSystemName='LOINC'] | $terminologies/terminologyAssociation)[1]"/>
-                    <xsl:variable name="system">
-                        <xsl:variable name="terminologySystem" select="$terminology/(@system|@codeSystem)"/>
-                        <xsl:choose>
-                            <xsl:when test="$terminologySystem = '2.16.840.1.113883.6.1'">
-                                <xsl:value-of select="'http://loinc.org'"/>
-                            </xsl:when>
-                            <xsl:when test="$terminologySystem = '2.16.840.1.113883.6.96'">
-                                <xsl:value-of select="'http://snomed.info/sct'"/>
-                            </xsl:when>
-                            <!-- There could be more of these, see https://hl7.org/fhir/STU3/terminologies-systems.html
-                            The validator should throw an error if another one is present, so test in Touchstone and return here to add them I guess -->
-                            <xsl:otherwise>
-                                <xsl:value-of select="$terminologySystem"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:variable>
                     <coding>
-                        <system value="{$system}"/>
+                        <system value="{local:getUri($terminology/(@system|@codeSystem))}"/>
                         <code value="{$terminology/@code}"/>
                         <display value="{$terminology/(@display|@displayName)}"/>
                     </coding>   
