@@ -46,8 +46,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="f:Resource/* | f:Patient | f:Practitioner | f:PractitionerRole | f:Organization | f:Condition | f:EpisodeOfCare | f:Observation | f:Procedure | f:Encounter" mode="doResourceInResultdoc">
         <xsl:variable name="zib-name" select="tokenize(f:meta/f:profile[last()]/@value, './')[last()]"/>
         <xsl:variable name="code" select="replace(f:code/f:coding/f:code/@value,':','')"/>
+        
+        <xsl:variable name="resourceWithIdentifier">
+            <xsl:choose>
+                <xsl:when test="f:identifier">
+                    <xsl:copy-of select="."/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:copy>
+                        <xsl:copy-of select="f:id | f:meta | f:implicitRules | f:language | f:text | f:contained | f:extension | f:modifierExtension"/>
+                        <identifier xmlns="http://hl7.org/fhir">
+                            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+                            <value value="{uuid:get-uuid(.)}"/>
+                        </identifier>
+                        <xsl:copy-of select="*[not(self::f:id or self::f:meta or self::f:implicitRules or self::f:language or self::f:text or self::f:contained or self::f:extension or self::f:modifierExtension)]"/>
+                    </xsl:copy>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        
         <xsl:result-document href="../fhir_instance/Gebz-{$usecase}-{$zib-name}{$code}-{f:id/@value}.xml">
-            <xsl:apply-templates select="." mode="ResultOutput"/>
+            <xsl:apply-templates select="$resourceWithIdentifier" mode="ResultOutput"/>
         </xsl:result-document>
     </xsl:template> 
        
