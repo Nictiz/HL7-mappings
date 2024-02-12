@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Condition xmlns="http://hl7.org/fhir">
+   <id value="nl-core-BowelFunction-01-Condition-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Stoma"/>
+   </meta>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="245857005"/>
+         <display value="stoma"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="261072008"/>
+         <display value="dubbelloops colostoma"/>
+      </coding>
+   </code>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="80581009"/>
+         <display value="bovenbuik"/>
+      </coding>
+   </bodySite>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <onsetDateTime value="2014-02-28"/>
+   <note>
+      <text value="Stoma is definitief. Vandaag stoma verzorgd, samen met patiënt. Peristomale huid is licht geïrriteerd."/>
+   </note>
+</Condition>

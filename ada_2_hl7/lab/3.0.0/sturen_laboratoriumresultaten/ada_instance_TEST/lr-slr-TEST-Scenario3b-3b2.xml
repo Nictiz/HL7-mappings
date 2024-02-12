@@ -4,7 +4,7 @@
          created-by="labuitwisselingada"
          last-update-by="labuitwisselingada"
          creation-date="2022-06-02T10:50:53.16+02:00"
-         last-update-date="2022-08-05T10:28:01.065+02:00"/>
+         last-update-date="2022-10-12T12:48:16.895+02:00"/>
    <data>
       <sturen_laboratoriumresultaten app="lab"
                                      shortName="sturen_laboratoriumresultaten"
@@ -13,12 +13,12 @@
                                      transactionEffectiveDate="2022-03-03T00:00:00"
                                      prefix="lab-"
                                      language="nl-NL"
-                                     title="TEST Scenario 3b_LosseTests_KC_LOINC"
+                                     title="TEST Sturen/ontvangen Scenario 3: Meerdere losse testresultaten Klinische Chemie in Loinc"
                                      desc="In dit scenario worden meerdere losse laboratoriumtests getest. Dit zijn dus 3 losse laboratoriumtests zonder overkoepelend onderzoek/panel, in dit geval zijn deze gecodeerd met LOINC. "
                                      id="lr-slr-TEST-Scenario3b-3b2">
          <scenario-nr value="3b2"
                       conceptId="2.16.840.1.113883.2.4.3.11.999.25.2.2.4401.2.1.1"/>
-         <!--Patient found in instance with id: sl-TEST-Scenarioset1a-v30 and title: TEST REPO Scenarioset 1a (ResultatenKlinischChemie_NHG)-->
+         <!--Patient found in instance with id: sl-TEST-Scenarioset1b-v30 and title: TEST REPO Scenarioset 1b (ResultatenKlinischChemie_LOINC)-->
          <patientgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4302">
             <patient conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4303">
                <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4304">
@@ -166,7 +166,7 @@
                         <straat value="Hoofdstraat"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4386"/>
                         <huisnummer value="23" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4387"/>
-                        <postcode value="1234 AA" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4391"/>
+                        <postcode value="1234AA" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4391"/>
                         <woonplaats value="Zorgstad" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4392"/>
                         <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4396"
                                      value="5"
@@ -256,7 +256,6 @@
                                                         conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4373"/>
                      <organisatie_naam value="Trombosedienst Ons Dorp"
                                        conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4374"/>
-                     <!--<afdeling_specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4375" value="240" code="3400" codeSystem="2.16.840.1.113883.2.4.6.7" codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)" codeSystemVersion="2020-10-23T00:00:00" displayName="Trombosediensten"/>-->
                      <contactgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4376">
                         <telefoonnummers conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4377">
                            <telefoonnummer value="06-11122266"
@@ -277,8 +276,11 @@
                         <woonplaats value="Ons Dorp" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4392"/>
                      </adresgegevens>
                      <organisatie_type conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4397"
+                                       value="34"
                                        code="TD"
                                        codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                       codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"
+                                       codeSystemVersion="2022-07-07T00:00:00"
                                        displayName="Trombosedienst"/>
                   </zorgaanbieder>
                </uitvoerder>

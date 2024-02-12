@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composition xmlns="http://hl7.org/fhir">
+   <id value="composition-hg-VerwijzingHuisartsParamedicusMaximaalbericht"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/hg-ReferralComposition"/>
+   </meta>
+   <identifier>
+      <value value="hg-VerwijzingHuisartsParamedicusMaximaalbericht"/>
+   </identifier>
+   <status value="final"/>
+   <type>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="57133-1"/>
+         <display value="Referral note"/>
+      </coding>
+   </type>
+   <subject>
+      <reference value="Patient/patient-van-XXX-Sanderink-de-Kok"/>
+      <type value="Patient"/>
+      <display value="Patient, Sandra Janine (Sandra) van XXX_Sanderink"/>
+   </subject>
+   <date value="T"/>
+   <author>
+      <reference value="PractitionerRole/practitionerrole-000001111"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Huisartsen, niet nader gespecificeerd, Gezondheidscentrum de Brug"/>
+   </author>
+   <title value="Referral note"/>
+   <section>
+      <title value="Envelop"/>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="405624007"/>
+            <display value="administratieve documentatie"/>
+         </coding>
+      </code>
+      <section>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TextValue">
+            <valueString value="Fysiotherapie opstarten"/>
+         </extension>
+         <title value="Zorgpad"/>
+         <code>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="370858005"/>
+               <display value="volgen van klinisch zorgpad"/>
+            </coding>
+         </code>
+         <text>
+            <status value="extensions"/>
+            <div xmlns="http://www.w3.org/1999/xhtml">Zorgpad: Fysiotherapie opstarten</div>
+         </text>
+      </section>
+      <section>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TextValue">
+            <valueString value="Gebruikt een rollator"/>
+         </extension>
+         <title value="Voorzieningen nodig bij consult"/>
+         <code>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="230211000146109"/>
+               <display value="faciliteiten benodigd bij consult"/>
+            </coding>
+         </code>
+         <text>
+            <status value="extensions"/>
+            <div xmlns="http://www.w3.org/1999/xhtml">Voorzieningen nodig bij consult: Gebruikt een rollator</div>
+         </text>
+      </section>
+   </section>
+   <section>
+      <title value="Kern"/>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="406550009"/>
+            <display value="samenvatting van zorgvraag"/>
+         </coding>
+      </code>
+      <section>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TextValue">
+            <valueString value="Kromme teen"/>
+         </extension>
+         <title value="Reden bericht"/>
+         <code>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="440378000"/>
+               <display value="verwijzing voor"/>
+            </coding>
+         </code>
+         <text>
+            <status value="extensions"/>
+            <div xmlns="http://www.w3.org/1999/xhtml">Reden bericht: Kromme teen</div>
+         </text>
+      </section>
+      <section>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TextValue">
+            <valueString value="Corrigeren"/>
+         </extension>
+         <title value="Ingestelde behandeling"/>
+         <code>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="108631000146107"/>
+               <display value="behandeling lopende"/>
+            </coding>
+         </code>
+         <text>
+            <status value="extensions"/>
+            <div xmlns="http://www.w3.org/1999/xhtml">Ingestelde behandeling: Corrigeren</div>
+         </text>
+      </section>
+      <section>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TextValue">
+            <valueString value="Middels spalken"/>
+         </extension>
+         <title value="Procedurevoorstel"/>
+         <code>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="240471000146100"/>
+               <display value="toelichting op aard van verwijzing"/>
+            </coding>
+         </code>
+         <text>
+            <status value="extensions"/>
+            <div xmlns="http://www.w3.org/1999/xhtml">Procedurevoorstel: Middels spalken</div>
+         </text>
+      </section>
+      <section>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TextValue">
+            <valueString value="Patiënt komt moeilijk uit haar woorden"/>
+         </extension>
+         <title value="Verder van belang"/>
+         <code>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="159121000146100"/>
+               <display value="toelichting op voorgesteld beleid"/>
+            </coding>
+         </code>
+         <text>
+            <status value="extensions"/>
+            <div xmlns="http://www.w3.org/1999/xhtml">Verder van belang: Patiënt komt moeilijk uit haar woorden</div>
+         </text>
+      </section>
+   </section>
+</Composition>

@@ -1,0 +1,99 @@
+<ProcedureRequest xmlns="http://hl7.org/fhir">
+   <id value="zib-ProcedureRequest-bgz-msz-patA-procedure2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ProcedureRequest"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichtingaanvraag. Subject: Dennis D. Dennis Janse. Id: patA-procedure2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Status: actief<span style="display: block;">Intentie: plan</span>
+               <span style="display: block;">Aangevraagd door: Jeroen Hendrik Robert J.H.R. Jeroen Peters || Orthopedisch chirurg || naam eigen ziekenhuis</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="aanleggen van loopgips voor onderbeen (122531000146102 - SNOMED CT)">aanleggen van loopgips voor onderbeen</span>
+                  </td>
+                  <td>
+                     <div>Wanneer: Vanaf ${DATE, T, D, +2}T09:30:00+02:00</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Beoogde uitvoerende</th>
+                  <td>
+                     <div>naam eigen ziekenhuis</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>fractuur van enkel</td>
+               </tr>
+               <tr>
+                  <td>Deel van lichaam</td>
+                  <td>
+                     <span title="structuur van enkelgewricht (70258002 - SNOMED CT)">structuur van enkelgewricht</span>
+                     <span title="links (7771000 - SNOMED CT)">links</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patA-procedure2"/>
+   </identifier>
+   <status value="active"/>
+   <intent value="plan"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="122531000146102"/>
+         <display value="aanleggen van loopgips voor onderbeen"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/DENNIS-D--DENNIS-JANSE"/>
+      <display value="Dennis D. Dennis Janse"/>
+   </subject>
+   <occurrencePeriod>
+      <start value="${DATE, T, D, +2}T09:30:00+02:00"/>
+   </occurrencePeriod>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-bgz-msz-4567891201-032123456A2"/>
+               <display value="Jeroen Hendrik Robert J.H.R. Jeroen Peters || Orthopedisch chirurg || naam eigen ziekenhuis"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-840-1-113883-2-4-6-1-45678912"/>
+         <display value="Jeroen Hendrik Robert J.H.R. Jeroen Peters"/>
+      </agent>
+   </requester>
+   <performer>
+      <reference value="Organization/organization-bgz-msz-2-16-840-1-113883-2-4-3-11-999-7-6-123456A2"/>
+      <display value="naam eigen ziekenhuis"/>
+   </performer>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-bgz-msz-patA-problem5"/>
+      <display value="fractuur van enkel"/>
+   </reasonReference>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="70258002"/>
+         <display value="structuur van enkelgewricht"/>
+      </coding>
+   </bodySite>
+</ProcedureRequest>

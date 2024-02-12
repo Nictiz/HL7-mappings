@@ -1,4 +1,4 @@
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:math="http://exslt.org/math" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:uuid="http://www.uuid.org" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:math="http://exslt.org/math" xmlns:util="urn:hl7:utilities" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:uuid="http://www.uuid.org" version="2.0">
 	<xsl:output method="xml" encoding="UTF-8"/>
 	<!-- pass an appropriate macAddress to ensure uniqueness of the UUID -->
     <!-- 02-00-00-00-00-00 may not be used in a production situation -->
@@ -105,7 +105,11 @@
 		<xsl:param name="power"/>
 		<xsl:choose>
 			<xsl:when test="$power lt 0 or contains(string($power), '.')">
-				<xsl:message terminate="yes">The XSLT template math:power doesn't support negative or fractional arguments.</xsl:message>
+				<xsl:call-template name="util:logMessage">
+					<xsl:with-param name="level" select="$logFATAL"/>
+					<xsl:with-param name="msg">The XSLT template math:power doesn't support negative or fractional arguments.</xsl:with-param>
+					<xsl:with-param name="terminate" select="true()"/>
+				</xsl:call-template>
 				<xsl:text>NaN</xsl:text>
 			</xsl:when>
 			<xsl:otherwise>

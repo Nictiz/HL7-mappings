@@ -1,0 +1,110 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="zib-LaboratoryTestResult-Observation-bgz-msz-patA-labresult1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Dennis D. Dennis Janse. Id: patA-labresult1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Categorie: <span title="bevinding betreffende laboratoriumonderzoek (49581000146104 - SNOMED CT)">bevinding betreffende laboratoriumonderzoek</span>, <span title="serumtest (275711006 - SNOMED CT)">serumtest</span>, Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>${DATE, T, D, +1}T13:00:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Specimen</th>
+                  <td>bloed</td>
+               </tr>
+               <tr>
+                  <th>Gerelateerd</th>
+                  <td>
+                     <ul>
+                        <li>has-member - Hemoglobine A1c [massa/volume] in bloed</li>
+                        <li>has-member - Hematocriet [volumefractie] in bloed</li>
+                        <li>has-member - Leukocyten [aantal/volume] in bloed</li>
+                     </ul>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="Compleet bloedbeeld panel in bloed d.m.v. geautomatiseerde telling (58410-2 - LOINC)">Compleet bloedbeeld panel in bloed d.m.v. geautomatiseerde telling</span>
+                  </td>
+                  <td/>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patA-labresult1"/>
+   </identifier>
+   <status value="final">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.16.1"/>
+               <code value="final"/>
+               <display value="Definitief"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </status>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="49581000146104"/>
+         <display value="bevinding betreffende laboratoriumonderzoek"/>
+      </coding>
+   </category>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="275711006"/>
+         <display value="serumtest"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="58410-2"/>
+         <display value="Compleet bloedbeeld panel in bloed d.m.v. geautomatiseerde telling"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/DENNIS-D--DENNIS-JANSE"/>
+      <display value="Dennis D. Dennis Janse"/>
+   </subject>
+   <effectiveDateTime value="${DATE, T, D, +1}T13:00:00+02:00"/>
+   <specimen>
+      <reference value="Specimen/zib-LaboratoryTestResult-Specimen-bgz-msz-patA-labresult1-1"/>
+      <display value="bloed"/>
+   </specimen>
+   <related>
+      <type value="has-member"/>
+      <target>
+         <reference value="Observation/zib-LaboratoryTestResult-Observation-bgz-msz-patA-labresult1-1"/>
+         <display value="Hemoglobine A1c [massa/volume] in bloed"/>
+      </target>
+   </related>
+   <related>
+      <type value="has-member"/>
+      <target>
+         <reference value="Observation/zib-LaboratoryTestResult-Observation-bgz-msz-patA-labresult1-2"/>
+         <display value="Hematocriet [volumefractie] in bloed"/>
+      </target>
+   </related>
+   <related>
+      <type value="has-member"/>
+      <target>
+         <reference value="Observation/zib-LaboratoryTestResult-Observation-bgz-msz-patA-labresult1-3"/>
+         <display value="Leukocyten [aantal/volume] in bloed"/>
+      </target>
+   </related>
+</Observation>

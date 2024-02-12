@@ -1,10 +1,12 @@
-<!--ada full xml for subscenario nr: 1b--><adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../../sturen_laboratoriumresultaten/ada_schemas/ada_sturen_laboratoriumresultaten.xsd">
+<adaxml xsi:noNamespaceSchemaLocation="../../sturen_laboratoriumresultaten/ada_schemas/ada_sturen_laboratoriumresultaten.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <!-- == Produced by adarefs2ada build lab/3.0.0/laboratoriumresultaten_met_references-2 at 2023-07-19T14:06:56.1388662+02:00 == -->
+   <!-- == ADA full xml for subscenario nr: 1b == -->
    <meta status="new"
          created-by="labuitwisselingada"
          last-update-by="labuitwisselingada"
          creation-date="2022-06-02T10:22:12.378+02:00"
-         last-update-date="2022-08-05T10:19:33.545+02:00"/>
+         last-update-date="2022-10-10T14:25:19.377+02:00"/>
    <data>
       <sturen_laboratoriumresultaten app="lab"
                                      shortName="sturen_laboratoriumresultaten"
@@ -13,24 +15,28 @@
                                      transactionEffectiveDate="2022-03-03T00:00:00"
                                      prefix="lab-"
                                      language="nl-NL"
-                                     title="TEST Scenario 1b_Panel_KC_LOINC"
+                                     title="TEST Sturen/ontvangen Scenario 1: Panel Nierfunctie KlinischeChemie in LOINC"
                                      desc="In dit scenario wordt 1 panel van klinisch chemisch onderzoek getest. Dit is 1 onderzoek (nierfunctie) met meerdere laboratoriumtests, in dit geval zijn deze gecodeerd met LOINC codes. "
                                      id="lr-slr-TEST-Scenario1b-1b">
-         <scenario-nr value="1b" conceptId="2.16.840.1.113883.2.4.3.11.999.25.2.2.4401.2.1.1"/>
-         <!--Patient found in instance with id: sl-TEST-Scenarioset1a-v30 and title: TEST REPO Scenarioset 1a (ResultatenKlinischChemie_NHG)-->
+         <scenario-nr value="1b"
+                      conceptId="2.16.840.1.113883.2.4.3.11.999.25.2.2.4401.2.1.1"/>
+         <!--Patient found in instance with id: sl-TEST-Scenarioset1b-v30 and title: TEST REPO Scenarioset 1b (ResultatenKlinischChemie_LOINC)-->
          <patientgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4302">
             <patient conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4303">
                <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4304">
-                  <voornamen value="Elise" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4305"/>
-                  <initialen value="E." conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4306"/>
+                  <voornamen value="Elise"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4305"/>
+                  <initialen value="E."
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4306"/>
                   <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4309">
-                     <achternaam value="Erelies" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4311"/>
+                     <achternaam value="Erelies"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4311"/>
                   </geslachtsnaam>
                </naamgegevens>
                <identificatienummer value="999999114"
                                     root="2.16.840.1.113883.2.4.6.3"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4337"/>
-               <geboortedatum value="1950-11-01"
+               <geboortedatum value="1950-11-01T00:00:00"
                               datatype="datetime"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4338"/>
                <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4339"
@@ -38,7 +44,8 @@
                          code="F"
                          codeSystem="2.16.840.1.113883.5.1"
                          displayName="Vrouw"/>
-               <meerling_indicator nullFlavor="NA" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4340"/>
+               <meerling_indicator nullFlavor="NA"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4340"/>
             </patient>
          </patientgegevens>
          <!--Zorgaanbieder found in instance with id: sl-KWAL-MMB-NHG-v30 and title: KWALIFICATIE REPO ResultatenMicrobiologie_NHG-->
@@ -50,10 +57,14 @@
                <organisatie_naam value="Huisartsenpraktijk Itis"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4223"/>
                <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4234">
-                  <straat value="Langelaan" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4235"/>
-                  <huisnummer value="1" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4236"/>
-                  <postcode value="1234ZZ" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4240"/>
-                  <woonplaats value="Onze Stad" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4241"/>
+                  <straat value="Langelaan"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4235"/>
+                  <huisnummer value="1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4236"/>
+                  <postcode value="1234ZZ"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4240"/>
+                  <woonplaats value="Onze Stad"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4241"/>
                   <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4245"
                                value="5"
                                code="WP"
@@ -75,17 +86,19 @@
                <laboratorium_uitslag_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4296.2"
                                                    value="LAR_NierfunctiePanelLOINC"
                                                    conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4296"/>
-               <edifact_referentienummer value="111222" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4409"/>
-               <kopie_indicator value="true" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4297"/>
+               <edifact_referentienummer value="111222"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4409"/>
+               <kopie_indicator value="true"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4297"/>
                <laboratorium_test conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4255">
                   <test_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4298.2"
                                       value="11111"
                                       conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4298"/>
-                  <test_code code="62238-1"
+                  <test_code code="98979-8"
                              codeSystem="2.16.840.1.113883.6.1"
-                             displayName=" Glomerulaire filtratiesnelheid/1,73 m2.voorspeld [filtratiesnelheid/oppervlakte] in serum of plasma of bloed d.m.v. formule gebaseerd op creatinine (CKD-EPI)formule"
+                             displayName="Glomerulaire filtratiesnelheid/1,73 m2.voorspeld [filtratiesnelheid/oppervlakte] in serum of plasma of bloed d.m.v. formule gebaseerd op creatinine (CKD-EPI 2021)"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4256"/>
-                  <test_datum_tijd value="T-30D"
+                  <test_datum_tijd value="T-20D"
                                    datatype="datetime"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4258"/>
                   <test_uitslag value="97"
@@ -108,21 +121,21 @@
                   <test_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4298.2"
                                       value="22222"
                                       conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4298"/>
-                  <test_code code="14683-7"
+                  <test_code code="45066-8"
                              codeSystem="2.16.840.1.113883.6.1"
-                             displayName=" Creatinine [mol/volume] in urine"
+                             displayName="Creatinine [mol/volume] in urine"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4256"/>
                   <testmethode code="258026004"
                                codeSystem="2.16.840.1.113883.6.96"
                                codeSystemName="SNOMED Clinical Terms"
                                displayName="enzyme method"
                                conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4257"/>
-                  <test_datum_tijd value="T-30D"
+                  <test_datum_tijd value="T-20D"
                                    datatype="datetime"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4258"/>
                   <test_uitslag value="135"
                                 datatype="quantity"
-                                unit="mmol/l"
+                                unit="umol/l"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4259"/>
                   <test_uitslag_status conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4260"
                                        value="3"
@@ -131,11 +144,11 @@
                                        displayName="Definitief"/>
                   <referentie_bovengrens value="134"
                                          datatype="quantity"
-                                         unit="mmol/l"
+                                         unit="umol/l"
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4261"/>
                   <referentie_ondergrens value="62"
                                          datatype="quantity"
-                                         unit="mmol/l"
+                                         unit="umol/l"
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4262"/>
                   <interpretatie_vlaggen conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4264"
                                          value="1"
@@ -145,76 +158,26 @@
                   <uitslag_interpretatie value="Creatinine iets hoger dan normaal."
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4265"/>
                </laboratorium_test>
-               <laboratorium_test conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4255">
-                  <test_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4298.2"
-                                      value="33333"
-                                      conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4298"/>
-                  <test_code code="30000-4"
-                             codeSystem="2.16.840.1.113883.6.1"
-                             displayName="Albumine/creatinine [verhouding] in urine d.m.v. detectielimiet &lt;= 20 mg/L"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4256"/>
-                  <testmethode code="258026004"
-                               codeSystem="2.16.840.1.113883.6.96"
-                               codeSystemName="SNOMED Clinical Terms"
-                               displayName="enzyme method"
-                               conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4257"/>
-                  <test_datum_tijd value="T-30D"
-                                   datatype="datetime"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4258"/>
-                  <test_uitslag value="2"
-                                datatype="quantity"
-                                unit="mg/mmol"
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4259"/>
-                  <test_uitslag_status conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4260"
-                                       value="3"
-                                       code="final"
-                                       codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
-                                       displayName="Definitief"/>
-                  <referentie_bovengrens value="3"
-                                         datatype="quantity"
-                                         unit="mg/mmol"
-                                         conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4261"/>
-                  <uitslag_interpretatie value="Goede uitslag voor een patient van 75 jaar."
-                                         conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4265"/>
-               </laboratorium_test>
-               <laboratorium_test conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4255">
-                  <test_identificatie root="2.16.840.1.113883.2.4.3.11.999.25.4298.2"
-                                      value="44444"
-                                      conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4298"/>
-                  <test_code code="14957-5"
-                             codeSystem="2.16.840.1.113883.6.1"
-                             displayName="Albumine [massa/volume] in urine d.m.v. detectielimiet &lt;= 20 mg/L"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4256"/>
-                  <test_datum_tijd value="T-30D"
-                                   datatype="datetime"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4258"/>
-                  <test_uitslag value="0"
-                                datatype="quantity"
-                                unit="mg/L"
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4259"/>
-                  <test_uitslag_status conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4260"
-                                       value="3"
-                                       code="final"
-                                       codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
-                                       displayName="Definitief"/>
-                  <uitslag_interpretatie value="Zie ratio voor interpretatie."
-                                         conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4265"/>
-               </laboratorium_test>
                <monster conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4266">
                   <monsternummer root="2.16.840.1.113883.2.4.3.11.999.25.4267.2"
                                  value="123"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4267"/>
-                  <monstermateriaal code="122575003"
+                  <monstermateriaal code="119297000"
                                     codeSystem="2.16.840.1.113883.6.96"
                                     codeSystemName="SNOMED Clinical Terms"
-                                    displayName="Urine"
+                                    displayName="Bloed"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4270"/>
-                  <aanname_datum_tijd value="T-31D"
-                                      datatype="datetime"
-                                      conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4281"/>
-                  <toelichting value="Urine ingeleverd door patiënt."
+                  <afname_datum_tijd value="T-20D"
+                                     datatype="datetime"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4280"/>
+                  <toelichting value="Serum afgenomen bij patiënt."
                                conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4285"/>
                </monster>
+               <onderzoek code="45066-8"
+                          codeSystem="2.16.840.1.113883.6.1"
+                          codeSystemName="Logical Observation Identifier Names and Codes"
+                          displayName="creatinine &amp; glomerulaire filtratiesnelheid.voorspeld panel"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4286"/>
                <resultaat_status conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4287"
                                  value="3"
                                  code="final"
@@ -252,9 +215,12 @@
                      <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4385">
                         <straat value="Hoofdstraat"
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4386"/>
-                        <huisnummer value="23" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4387"/>
-                        <postcode value="1234 AA" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4391"/>
-                        <woonplaats value="Zorgstad" conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4392"/>
+                        <huisnummer value="23"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4387"/>
+                        <postcode value="1234AA"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4391"/>
+                        <woonplaats value="Zorgstad"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4392"/>
                         <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4396"
                                      value="5"
                                      code="WP"
@@ -266,7 +232,7 @@
                                        code="L1"
                                        codeSystem="2.16.840.1.113883.2.4.15.1060"
                                        codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"
-                                       codeSystemVersion="2022-07-07T00:00:00"
+                                       codeSystemVersion="2022-09-10T00:00:00"
                                        displayName="Laboratorium"/>
                   </zorgaanbieder>
                </uitvoerder>

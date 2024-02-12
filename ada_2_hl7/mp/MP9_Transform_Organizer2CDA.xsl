@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet exclude-result-prefixes="xd nf xsl uuid" xmlns:uuid="http://www.uuid.org" xmlns="urn:hl7-org:v3" xmlns:nf="http://www.nictiz.nl/functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:hl7="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xsl:import href="../../util/uuid.xsl"/>
+    <xsl:import href="../../util/utilities.xsl"/>
+    
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
@@ -54,7 +56,9 @@
                         <xsl:when test="hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9284'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9283</xsl:when>
                         <!-- 9.2.0 -->
                         <xsl:when test="hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9341'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9338</xsl:when>
-
+                        <!-- 9.3.0 -->
+                        <xsl:when test="hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9411'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9410</xsl:when>
+                        
                         <!-- Afhandeling Voorschrift -->
                         <xsl:when test="./hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9124'">
                             <xsl:value-of select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9136'"/>
@@ -71,7 +75,9 @@
                         <xsl:when test="hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9295'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9296</xsl:when>
                         <!-- 9.2.0 -->
                         <xsl:when test="hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9346'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9347</xsl:when>
-
+                        <!-- 9.3.0 -->
+                        <xsl:when test="hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9420'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9419</xsl:when>
+                        
                         <!-- Medicatiegebruik -->
                         <xsl:when test="./hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9125'">
                             <xsl:value-of select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9138'"/>
@@ -111,7 +117,9 @@
                         <xsl:when test="hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9286'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9288</xsl:when>
                         <!-- 9.2.0 -->
                         <xsl:when test="hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9333'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9334</xsl:when>
-
+                        <!-- 9.3.0 -->
+                        <xsl:when test="hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9422'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9423</xsl:when>
+                        
                         <!-- Voorschrift -->
                         <xsl:when test="./hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9126'">
                             <xsl:value-of select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9140'"/>
@@ -128,16 +136,20 @@
                         <xsl:when test="hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9272'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9273</xsl:when>
                         <!-- 9.2.0 -->
                         <xsl:when test="hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9328'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9329</xsl:when>
-
+                        <!-- 9.3.0 -->
+                        <xsl:when test="hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9433'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9426</xsl:when>
+                        
                         <!-- Voorstel MA -->
                         <xsl:when test="./hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9127'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9142</xsl:when>
-
+                        <xsl:when test="./hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9436'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9435</xsl:when>
+                        
                         <!-- Antwoord VMA -->
                         <xsl:when test="./hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9399'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9395</xsl:when>
-                        
+                         
                         <!-- Voorstel VV -->
                         <xsl:when test="./hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9130'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9144</xsl:when>
-
+                        <xsl:when test="./hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9452'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9453</xsl:when>
+                        
                         <!-- Antwoord VVV -->
                         <xsl:when test="./hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9211'">2.16.840.1.113883.2.4.3.11.60.20.77.10.9215</xsl:when>
                     </xsl:choose>
@@ -147,11 +159,11 @@
             <id extension="{uuid:get-uuid(.)}" root="{concat(hl7:templateId[1]/@root, '.1.2.3.999')}"/>
             <xsl:choose>
                 <!-- 9.2.0 voorschrift, CDA, more specific code -->
-                <xsl:when test="hl7:templateId[last()]/@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9328'">
-                    <code code="440545006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Prescription record (record artifact)"/>
+                <xsl:when test="hl7:templateId[last()]/@root = ('2.16.840.1.113883.2.4.3.11.60.20.77.10.9328', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9433') or hl7:code[@code = ('95')]">
+                    <code code="440545006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="voorschrift (gegevensobject)"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <code code="52981000146104" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Medication section (record artifact)"/>
+                    <code code="52981000146104" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="gedeelte betreffende medicatie in status (gegevensobject)"/>
                 </xsl:otherwise>
             </xsl:choose>
             <!-- parameterize the title based on input, this is not perfect -->

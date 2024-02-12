@@ -1,0 +1,77 @@
+<ProcedureRequest xmlns="http://hl7.org/fhir">
+   <id value="zib-ProcedureRequest-bgz-msz-patB-procedure1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ProcedureRequest"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichtingaanvraag. Subject: Maria Francisca M.F. Maria van 't Hoen Verheul. Id: patB-procedure1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Status: actief<span style="display: block;">Intentie: plan</span>
+               <span style="display: block;">Aangevraagd door: Anna A. Anna de Vries Bijns || Huisarts || Huisartsenpraktijk Molenhoek</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="intraveneuze trombolyse (77381000146102 - SNOMED CT)">intraveneuze trombolyse</span>
+                  </td>
+                  <td>
+                     <div>Wanneer: 1 juli 2010 - 1 juli 2020</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Beoogde uitvoerende</th>
+                  <td>
+                     <div>VieCuri</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>cerebraal infarct</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patB-procedure1"/>
+   </identifier>
+   <status value="active"/>
+   <intent value="plan"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="77381000146102"/>
+         <display value="intraveneuze trombolyse"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/MARIA-FRANCISCA-M-F--MARIA-VAN-T-HOEN-VERHEUL"/>
+      <display value="Maria Francisca M.F. Maria van 't Hoen Verheul"/>
+   </subject>
+   <occurrencePeriod>
+      <start value="2010-07-01"/>
+      <end value="2020-07-01"/>
+   </occurrencePeriod>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-bgz-msz-0013131301-015123456B1"/>
+               <display value="Anna A. Anna de Vries Bijns || Huisarts || Huisartsenpraktijk Molenhoek"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-840-1-113883-2-4-6-1-00131313"/>
+         <display value="Anna A. Anna de Vries Bijns"/>
+      </agent>
+   </requester>
+   <performer>
+      <reference value="Organization/organization-bgz-msz-2-16-840-1-113883-2-4-3-11-999-7-6-123456B2"/>
+      <display value="VieCuri"/>
+   </performer>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-bgz-msz-patB-problem4"/>
+      <display value="cerebraal infarct"/>
+   </reasonReference>
+</ProcedureRequest>

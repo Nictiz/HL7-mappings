@@ -1,0 +1,67 @@
+<PractitionerRole xmlns="http://hl7.org/fhir">
+   <id value="nl-core-practitionerrole-bgz-msz-0016161601-025123456B3"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Zorgverlenerrol. Id: patB-healthProf4 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7)</caption>
+            <tbody>
+               <tr>
+                  <th>Zorgverlener</th>
+                  <td>
+                     <div>Horst H. Horst Bontrager</div>
+                     <div>naam eigen ziekenhuis</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Specialisme</th>
+                  <td>
+                     <span title="Neurochirurg (01.025 - http://fhir.nl/fhir/NamingSystem/uzi-rolcode)">Neurochirurg</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <a href="tel:024-1234567">024-1234567</a> (Vast telefoonnummer Werk)</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patB-healthProf4"/>
+   </identifier>
+   <practitioner>
+      <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-840-1-113883-2-4-6-1-00161616"/>
+      <display value="Horst H. Horst Bontrager"/>
+   </practitioner>
+   <organization>
+      <reference value="Organization/organization-bgz-msz-2-16-840-1-113883-2-4-3-11-999-7-6-123456B3"/>
+      <display value="naam eigen ziekenhuis"/>
+   </organization>
+   <specialty>
+      <coding>
+         <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+         <code value="01.025"/>
+         <display value="Neurochirurg"/>
+      </coding>
+   </specialty>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Vast telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="024-1234567"/>
+      <use value="work"/>
+   </telecom>
+</PractitionerRole>
