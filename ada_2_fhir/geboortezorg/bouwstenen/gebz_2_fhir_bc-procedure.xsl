@@ -146,14 +146,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <code>
                     <xsl:choose>
                         <xsl:when test="verrichting_type">
-                            <coding>
-                                <system value="{verrichting_type/@codeSystem}"/>
-                                <code value="{verrichting_type/@code}"/>
-                                <display value="{verrichting_type/@displayName}"/>
-                            </coding>
-                            <xsl:if test="verrichting_type/@originalText">
-                                <text value="{verrichting_type/@originalText}"/>    
-                            </xsl:if>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="verrichting_type"/>
+                             </xsl:call-template>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:call-template name="bc-coding"/>

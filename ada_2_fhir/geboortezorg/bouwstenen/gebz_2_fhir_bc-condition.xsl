@@ -151,13 +151,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </code>
                     </xsl:when>
                     <xsl:when test="probleem_naam">
-                        <code>
-                            <coding>
-                                <system value="{probleem_naam/@codeSystem}"/>
-                                <code value="{probleem_naam/@code}"/>
-                                <display value="{probleem_naam/@displayName}"/>
-                            </coding> 
-                        </code>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="probleem_naam"/>
+                        </xsl:call-template>
                     </xsl:when>
                     <xsl:otherwise>
                         <code>
