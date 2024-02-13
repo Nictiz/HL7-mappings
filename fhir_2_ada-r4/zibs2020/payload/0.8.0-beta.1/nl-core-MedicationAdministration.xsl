@@ -92,7 +92,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xsl:template match="f:extension[@url = $extMedicationAdministrationReasonForDeviation]" mode="nl-core-MedicationAdministration">
 		<xsl:call-template name="CodeableConcept-to-code">
 			<xsl:with-param name="in" select="f:valueCodeableConcept"/>
-			<xsl:with-param name="adaElementName">medicatie_toediening_reden_van_afwijken</xsl:with-param>
+		    <!-- name change in MP9 dataset -->		    
+			<xsl:with-param name="adaElementName">medicatietoediening_reden_van_afwijken</xsl:with-param>
 		</xsl:call-template>
 	</xsl:template>
 

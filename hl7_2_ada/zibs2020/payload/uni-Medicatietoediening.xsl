@@ -157,7 +157,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- medicatie_toediening_reden_van_afwijken -->
                 <xsl:call-template name="handleCV">
                     <xsl:with-param name="in" select="hl7:entryRelationship/hl7:observation[hl7:code[@code = '153631000146105'][@codeSystem = $oidSNOMEDCT]]/hl7:value"/>
-                    <xsl:with-param name="elemName">medicatie_toediening_reden_van_afwijken</xsl:with-param>
+                    <!-- name change in MP9 dataset -->
+                    <xsl:with-param name="elemName">medicatietoediening_reden_van_afwijken</xsl:with-param>
                 </xsl:call-template>
 
                 <!-- medicatie_toediening_status, nullified zit in geannuleerd_indicator -->
@@ -322,7 +323,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- medicatie_toediening_reden_van_afwijken -->
                 <xsl:call-template name="handleCV">
                     <xsl:with-param name="in" select="hl7:entryRelationship/hl7:observation[hl7:code[@code = '153631000146105'][@codeSystem = $oidSNOMEDCT]]/hl7:value"/>
-                    <xsl:with-param name="elemName">medicatie_toediening_reden_van_afwijken</xsl:with-param>
+                    <!-- name change in MP9 dataset -->                    
+                    <xsl:with-param name="elemName">medicatietoediening_reden_van_afwijken</xsl:with-param>
                 </xsl:call-template>
                 
                 <!-- medicatie_toediening_status, nullified zit in geannuleerd_indicator -->
