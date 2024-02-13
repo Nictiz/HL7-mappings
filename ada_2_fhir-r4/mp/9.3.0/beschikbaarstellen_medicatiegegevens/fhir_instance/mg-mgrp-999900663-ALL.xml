@@ -130,14 +130,14 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a64cca5d-6b29-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:65d4bb3e-6ac9-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 22 dec 2022, tot en met 8 jan 2023, oraal, stopgezet"/>
+               <valueString value="Vanaf 22 dec 2022, tot en met 8 jan 2023, cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 4 stuks, oraal, stopgezet"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -151,6 +151,14 @@
                   <value value="MBH_300_SCRIPT1"/>
                </valueIdentifier>
             </extension>
+            <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule">
+               <valueDuration>
+                  <value value="21"/>
+                  <unit value="dag"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="d"/>
+               </valueDuration>
+            </modifierExtension>
             <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
                <valueCodeableConcept>
                   <coding>
@@ -190,6 +198,21 @@
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
             <dosageInstruction>
+               <timing>
+                  <repeat>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="false"/>
+                     </extension>
+                     <boundsDuration>
+                        <value value="14"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <timeOfDay value="09:00:00"/>
+                     <timeOfDay value="21:00:00"/>
+                  </repeat>
+               </timing>
                <route>
                   <coding>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
@@ -197,6 +220,22 @@
                      <display value="oraal"/>
                   </coding>
                </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="4"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="4"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
             </dosageInstruction>
             <priorPrescription>
                <type value="MedicationRequest"/>
@@ -622,7 +661,7 @@
                <valueDateTime value="2023-01-08T15:00:00+01:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 14 jan 2023, gedurende 18 weken, cyclus van 21 dagen: steeds gedurende 14 dagen 4 keer om 09:00 en 21:00 stuks - let op, tijden exact aanhouden, oraal"/>
+               <valueString value="Vanaf 14 jan 2023, gedurende 18 weken, cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 4 stuks - let op, tijden exact aanhouden, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -710,7 +749,6 @@
                         <system value="http://unitsofmeasure.org"/>
                         <code value="d"/>
                      </boundsDuration>
-                     <count value="4"/>
                      <timeOfDay value="09:00:00"/>
                      <timeOfDay value="21:00:00"/>
                   </repeat>
@@ -722,6 +760,22 @@
                      <display value="oraal"/>
                   </coding>
                </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="4"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="4"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
             </dosageInstruction>
          </MedicationDispense>
       </resource>
@@ -731,7 +785,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:70f34d42-6b6a-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:8cdced42-6a9d-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -741,7 +795,7 @@
                <valueDateTime value="2023-01-08T15:00:00+01:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 23 dec 2022, tot en met 13 jan 2023, oraal, stopgezet"/>
+               <valueString value="Vanaf 23 dec 2022, tot en met 13 jan 2023, cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 5 stuks - let op, tijden exact aanhouden, oraal, stopgezet"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -763,6 +817,14 @@
                      <display value="stopgezet"/>
                   </coding>
                </valueCodeableConcept>
+            </modifierExtension>
+            <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule">
+               <valueDuration>
+                  <value value="21"/>
+                  <unit value="dag"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="d"/>
+               </valueDuration>
             </modifierExtension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
@@ -802,6 +864,21 @@
                <display value="relatie naar medicatieafspraak met identificatie: MBH_300_SCRIPT1_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </authorizingPrescription>
             <dosageInstruction>
+               <timing>
+                  <repeat>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="true"/>
+                     </extension>
+                     <boundsDuration>
+                        <value value="14"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <timeOfDay value="09:00:00"/>
+                     <timeOfDay value="21:00:00"/>
+                  </repeat>
+               </timing>
                <route>
                   <coding>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
@@ -809,6 +886,22 @@
                      <display value="oraal"/>
                   </coding>
                </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="5"/>
+                           <unit value="Stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="5"/>
+                     <unit value="Stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
             </dosageInstruction>
          </MedicationDispense>
       </resource>
@@ -952,13 +1045,11 @@
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                   <valueQuantity>
                      <value value="112"/>
-                     <unit value=""/>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                      <code value="245"/>
                   </valueQuantity>
                </extension>
                <value value="112"/>
-               <unit value=""/>
                <system value="http://unitsofmeasure.org"/>
                <code value="1"/>
             </quantity>
