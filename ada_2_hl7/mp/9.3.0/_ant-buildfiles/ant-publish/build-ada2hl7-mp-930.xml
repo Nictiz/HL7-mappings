@@ -641,6 +641,12 @@
             <param name="input.dir" value="../ada_2_hl7/${is.abbreviation}/${is.version}/${usecase.avvv}/validate_hl7_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
+        <!-- nictiz_test -->
+        <antcall target="schematronresults_hl7_930_sub">
+            <param name="result.xml" value="${build.dir}/validate/hl7_nictiz_test.xml"/>
+            <param name="input.dir" value="../ada_2_hl7/${is.abbreviation}/${is.version}/nictiz_test/validate_hl7_instance"/>
+            <param name="input.fileset" value="*.xml"/>
+        </antcall>
         <!-- xml voorbeelden organizer -->
         <antcall target="schematronresults_hl7_930_sub">
             <param name="result.xml" value="${build.dir}/validate/hl7_xml_voorbeelden.xml"/>
@@ -728,6 +734,14 @@
             <param name="xsl.mp" value="${validate.dir}/mp-mp93_vvv.xsl"/>
         </antcall>
 
+        <!-- nictiz_test -->
+        <antcall target="validate_hl7_sub">
+            <param name="sub.build.dir" value="${build.dir}/nictiz_test"/>
+            <param name="xsl.input" value="hl7_instance"/>
+            <param name="xsl.output" value="validate_hl7_instance"/>
+            <param name="xsl.mp" value="${validate.dir}/mp-mp93_mgb.xsl"/>
+        </antcall>
+        
         <!-- xml-voorbeelden -->
         <echo/>
         <echo>${echo.label} xml-voorbeelden hl7_instance</echo>
