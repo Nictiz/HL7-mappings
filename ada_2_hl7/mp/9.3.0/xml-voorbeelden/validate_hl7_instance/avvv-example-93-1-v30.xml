@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <svrl:schematron-output xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
-                        xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                        xmlns:cda="urn:hl7-org:v3"
+                        xmlns:f="http://hl7.org/fhir"
+                        xmlns:hl7="urn:hl7-org:v3"
+                        xmlns:hl7nl="urn:hl7-nl:v3"
+                        xmlns:iso="http://purl.oclc.org/dsdl/schematron"
+                        xmlns:lab="urn:oid:1.3.6.1.4.1.19376.1.3.2"
+                        xmlns:nfu="urn:urn:nictiz-nl:v3/nfu"
+                        xmlns:pharm="urn:ihe:pharm:medication"
                         xmlns:saxon="http://saxon.sf.net/"
                         xmlns:schold="http://www.ascc.net/xml/schematron"
-                        xmlns:iso="http://purl.oclc.org/dsdl/schematron"
-                        xmlns:xhtml="http://www.w3.org/1999/xhtml"
-                        xmlns:hl7="urn:hl7-org:v3"
-                        xmlns:cda="urn:hl7-org:v3"
-                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                        xmlns:hl7nl="urn:hl7-nl:v3"
                         xmlns:sdtc="urn:hl7-org:sdtc"
-                        xmlns:f="http://hl7.org/fhir"
-                        xmlns:pharm="urn:ihe:pharm:medication"
-                        xmlns:nfu="urn:urn:nictiz-nl:v3/nfu"
-                        xmlns:lab="urn:oid:1.3.6.1.4.1.19376.1.3.2"
+                        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+                        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                         title="Schematron file for transaction Sturen antwoord voorstel verstrekkingsverzoek MP9 3.0.0 (2.16.840.1.113883.2.4.3.11.60.20.77.4.404 2022-06-30T00:00:00)"
                         schemaVersion=""><!--   
 		   
@@ -24,10 +24,10 @@
    <svrl:ns-prefix-in-attribute-values uri="urn:hl7-org:v3" prefix="cda"/>
    <svrl:ns-prefix-in-attribute-values uri="http://www.w3.org/2001/XMLSchema-instance" prefix="xsi"/>
    <svrl:ns-prefix-in-attribute-values uri="http://www.w3.org/2001/XMLSchema" prefix="xs"/>
-   <svrl:ns-prefix-in-attribute-values uri="urn:hl7-nl:v3" prefix="hl7nl"/>
-   <svrl:ns-prefix-in-attribute-values uri="urn:hl7-org:sdtc" prefix="sdtc"/>
    <svrl:ns-prefix-in-attribute-values uri="http://hl7.org/fhir" prefix="f"/>
+   <svrl:ns-prefix-in-attribute-values uri="urn:hl7-nl:v3" prefix="hl7nl"/>
    <svrl:ns-prefix-in-attribute-values uri="urn:ihe:pharm:medication" prefix="pharm"/>
+   <svrl:ns-prefix-in-attribute-values uri="urn:hl7-org:sdtc" prefix="sdtc"/>
    <svrl:ns-prefix-in-attribute-values uri="http://www.w3.org/XML/1998/namespace" prefix="xml"/>
    <svrl:ns-prefix-in-attribute-values uri="urn:urn:nictiz-nl:v3/nfu" prefix="nfu"/>
    <svrl:ns-prefix-in-attribute-values uri="urn:oid:1.3.6.1.4.1.19376.1.3.2" prefix="lab"/>
@@ -39,46 +39,46 @@
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9210-2018-04-20T174308"
                         name="Basis Antwoord Voorstel Verstrekkingsverzoek"/>
    <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9211']]"
-                    id="d14624e28-false-d14678e0"
+                    id="d14677e28-false-d14731e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9211']]/hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9211']"
-                    id="d14624e34-false-d14834e0"
+                    id="d14677e34-false-d14887e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9211']]/hl7:id"
-                    id="d14624e39-false-d14853e0"
+                    id="d14677e39-false-d14906e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9211']]/hl7:code[(@code = '158' and @codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4')]"
-                    id="d14624e45-false-d14867e0"
+                    id="d14677e45-false-d14920e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9211']]/hl7:statusCode"
-                    id="d14624e65-false-d14890e0"
+                    id="d14677e65-false-d14943e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9211']]/hl7:recordTarget[hl7:patientRole]"
-                    id="d14912e19-false-d14950e0"
+                    id="d14965e19-false-d15003e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9211']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole"
-                    id="d14912e21-false-d15034e0"
+                    id="d14965e21-false-d15087e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9211']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole/hl7:id"
-                    id="d14912e23-false-d15098e0"
+                    id="d14965e23-false-d15151e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9211']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole/hl7:patient"
-                    id="d14912e94-false-d15517e0"
+                    id="d14965e94-false-d15570e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9211']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole/hl7:patient/hl7:name"
-                    id="d14912e96-false-d15617e0"
+                    id="d14965e96-false-d15670e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9211']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole/hl7:patient/hl7:name/hl7:given[@qualifier='IN']"
-                    id="d15753e358-false-d15828e0"
+                    id="d15806e358-false-d15881e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9211']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole/hl7:patient/hl7:name/hl7:family[@qualifier='BR']"
-                    id="d15753e430-false-d15905e0"
+                    id="d15806e430-false-d15962e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9211']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole/hl7:patient/hl7:administrativeGenderCode[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.0.1.1-2020-09-01T000000.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.40.2.0.1.1-2020-09-01T000000.xml')//valueSet[1]/conceptList/exception/@code]"
-                    id="d14912e115-false-d16030e0"
+                    id="d14965e115-false-d16091e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9211']]/hl7:recordTarget[hl7:patientRole]/hl7:patientRole/hl7:patient/hl7:birthTime"
-                    id="d14912e139-false-d16063e0"
+                    id="d14965e139-false-d16124e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="//hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9211']]/hl7:component[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9212']]]"
                     fpi="RULC-1"/>
@@ -89,16 +89,16 @@
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9212-2018-04-20T174745"
                         name="MP CDA Antwoord VVV"/>
    <svrl:fired-rule context="*[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9212']]]"
-                    id="d40e2650-false-d26086e0"
+                    id="d40e2627-false-d26171e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9212']]]/hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9212']]"
-                    id="d40e2684-false-d26163e0"
+                    id="d40e2661-false-d26248e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9212']]]/hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9212']]/hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9212']"
-                    id="d40e2690-false-d26280e0"
+                    id="d40e2667-false-d26365e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9212']]]/hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9212']]/hl7:code[(@code = '9' and @codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.3')]"
-                    id="d40e2695-false-d26299e0"
+                    id="d40e2672-false-d26384e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9212']]]/hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9212']]/cda:author[hl7:assignedAuthor]"
                     fpi="RULC-1"/>
@@ -134,36 +134,36 @@
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9213-2018-04-20T181642"
                         name="Antwoord voorstel verstrekkingsverzoek"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9213']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9213']]"
-                    id="d40e2754-false-d28007e0"
+                    id="d40e2731-false-d28092e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9213']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9213']]/hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9213']"
-                    id="d40e2760-false-d28075e0"
+                    id="d40e2737-false-d28160e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9213']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9213']]/hl7:code[(@code = '17' and @codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.2')]"
-                    id="d40e2765-false-d28094e0"
+                    id="d40e2742-false-d28179e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9213']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9213']]/hl7:value[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.36-2018-04-12T153353.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.36-2018-04-12T153353.xml')//valueSet[1]/conceptList/exception/@code]"
-                    id="d40e2782-false-d28114e0"
+                    id="d40e2759-false-d28199e0"
                     fpi="RULC-1"/>
    <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/xml-voorbeelden/hl7_instance/avvv-example-93-1-v30.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9214-2018-04-23T130606"
                         name="MP Voorstel Verstrekkingsverzoek identificatie"/>
    <svrl:fired-rule context="*[hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9214']]]"
-                    id="d40e2789-false-d28153e0"
+                    id="d40e2766-false-d28238e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9214']]]/hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9214']]"
-                    id="d40e2814-false-d28176e0"
+                    id="d40e2791-false-d28261e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9214']]]/hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9214']]/hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9214']"
-                    id="d40e2820-false-d28252e0"
+                    id="d40e2797-false-d28337e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9214']]]/hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9214']]/hl7:id"
-                    id="d40e2825-false-d28271e0"
+                    id="d40e2802-false-d28356e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9214']]]/hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9214']]/hl7:code[(@code = '104' and @codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.4')]"
-                    id="d40e2831-false-d28285e0"
+                    id="d40e2808-false-d28370e0"
                     fpi="RULC-1"/>
    <svrl:fired-rule context="*[hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9214']]]/hl7:organizer[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9214']]/hl7:statusCode"
-                    id="d40e2851-false-d28308e0"
+                    id="d40e2828-false-d28393e0"
                     fpi="RULC-1"/>
 </svrl:schematron-output>
