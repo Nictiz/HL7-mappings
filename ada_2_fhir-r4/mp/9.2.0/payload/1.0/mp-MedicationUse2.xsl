@@ -233,12 +233,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </coding>
                             </valueCodeableConcept>
                         </extension>
+                        <type value="MedicationRequest"/>
                         <identifier>
                             <xsl:call-template name="id-to-Identifier">
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
                         </identifier>
-                        <type value="MedicationRequest"/>
                         <display value="relatie naar medicatieafspraak"/>
                     </derivedFrom>
                 </xsl:for-each>
@@ -253,12 +253,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </coding>
                             </valueCodeableConcept>
                         </extension>
+                        <type value="MedicationRequest"/>
                         <identifier>
                             <xsl:call-template name="id-to-Identifier">
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
                         </identifier>
-                        <type value="MedicationDispense"/>
                         <display value="relatie naar toedieningsafspraak"/>
                     </derivedFrom>
                 </xsl:for-each>
@@ -273,12 +273,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </coding>
                             </valueCodeableConcept>
                         </extension>
+                        <type value="MedicationRequest"/>
                         <identifier>
                             <xsl:call-template name="id-to-Identifier">
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
                         </identifier>
-                        <type value="MedicationDispense"/>
                         <display value="relatie naar medicatieverstrekking"/>
                     </derivedFrom>
                 </xsl:for-each>
