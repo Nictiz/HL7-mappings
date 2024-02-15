@@ -244,9 +244,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </afgesproken_hoeveelheid>
                 </xsl:for-each>
                 
-                <!-- volgens_afspraak_indicator -->
-                <xsl:call-template name="uni-volgensAfspraakIndicator"/>
-                
+                <!-- MP-1393, remove volgens_afspraak_indicator / afwijkende_toediening -->
+                  
                 <!-- toedieningsweg -->
                 <xsl:call-template name="routeCode2toedieningsweg"/>
                 

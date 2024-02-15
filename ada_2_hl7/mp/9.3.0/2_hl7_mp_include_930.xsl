@@ -113,12 +113,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </entryRelationship>
                 </xsl:if>
 
-                <!-- volgens_afspraak_indicator -->
-                <xsl:for-each select="volgens_afspraak_indicator[.//(@value | @code)]">
-                    <entryRelationship typeCode="COMP">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9317_20200120141110"/>
-                    </entryRelationship>
-                </xsl:for-each>
+                <!-- MP-1393, remove volgens_afspraak_indicator / afwijkende_toediening -->
 
                 <!-- medicatietoediening_reden_van_afwijken -->
                 <xsl:for-each select="(medicatie_toediening_reden_van_afwijken | medicatietoediening_reden_van_afwijken)[.//(@value | @code)]">
