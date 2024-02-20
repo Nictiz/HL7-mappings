@@ -45,7 +45,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
-
+                
+                <!-- MP-1408 LR: afgesproken_datum_tijd nolonger supported from MP 9.3 beta.3 onwards but kept in stylesheet due to backwards compatibility-->
                 <xsl:for-each select="afgesproken_datum_tijd">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AgreedDateTime">
                         <valueDateTime>

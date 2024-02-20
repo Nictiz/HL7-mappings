@@ -28,6 +28,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<!-- toedienings_datum_tijd -->
 			<xsl:apply-templates select="f:effectiveDateTime" mode="#current"/>
 			<!-- afgesproken_datum_tijd -->
+			<!-- MP-1408 LR: afgesproken_datum_tijd nolonger supported from MP 9.3 beta.3 onwards but kept in stylesheet due to backwards compatibility-->
 			<xsl:apply-templates select="f:extension[@url = $urlExtMedicationAdministration2AgreedDateTime]" mode="#current"/>
 			<!-- geannuleerd_indicator -->
 			<xsl:if test="f:status/@value = 'entered-in-error'">
@@ -271,6 +272,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xd:doc>
 		<xd:desc>Template to convert f:extension with extension url "$extMedicationAdministration2AgreedDateTime" to afgesproken_datum_tijd</xd:desc>
 	</xd:doc>
+	<!-- MP-1408 LR: afgesproken_datum_tijd nolonger supported from MP 9.3 beta.3 onwards but kept in stylesheet due to backwards compatibility-->
 	<xsl:template match="f:extension[@url = $urlExtMedicationAdministration2AgreedDateTime]" mode="mp-MedicationAdministration">
 		<xsl:for-each select="f:valueDateTime">
 			<xsl:call-template name="datetime-to-datetime">
