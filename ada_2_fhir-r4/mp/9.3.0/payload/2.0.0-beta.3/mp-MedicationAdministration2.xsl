@@ -102,6 +102,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- status -->
+                <!-- MP-1392 LR: medicatie_toediening_status nolonger supported from MP 9.3 beta.3 onwards and due to its cardinality in FHIR (1..1) the value for status will therefore always be 'unknown' -->
                 <xsl:choose>
                     <xsl:when test="geannuleerd_indicator[@value = 'true']">
                         <status value="entered-in-error"/>

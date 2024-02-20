@@ -64,6 +64,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<!-- medicatie_toediening_reden_van_afwijken -->
 			<xsl:apply-templates select="f:extension[@url = $urlExtMedicationAdministration2ReasonForDeviation]" mode="#current"/>
 			<!-- medicatie_toediening_status  -->
+			<!-- MP-1392 LR: medicatie_toediening_status nolonger supported from MP 9.3 beta.3 onwards but due to iets cardinality in FHIR (1..1) the value 'unknown' will result in medicatie_toediening_status being absent in ada -->
 			<xsl:apply-templates select="f:status[@value ne 'entered-in-error']" mode="#current"/>
 			<!-- toelichting -->
 			<xsl:apply-templates select="f:note" mode="nl-core-Note"/>
@@ -138,6 +139,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xd:doc>
 		<xd:desc>Template to convert f:status to geannuleerd_indicator. Only the FHIR status value 'entered-in-error' is used in this mapping.</xd:desc>
 	</xd:doc>
+	<!-- MP-1392 LR: medicatie_toediening_status nolonger supported from MP 9.3 beta.3 onwards but due to its cardinality in FHIR (1..1) the value 'unknown' will result in medicatie_toediening_status being absent in ada -->
 	<xsl:template match="f:status" mode="mp-MedicationAdministration">
 		<xsl:choose>
 			<xsl:when test="@value = 'entered-in-error'">
