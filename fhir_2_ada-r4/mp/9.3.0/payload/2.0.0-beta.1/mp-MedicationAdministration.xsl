@@ -38,7 +38,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<!-- afgesproken_hoeveelheid -->
 			<xsl:apply-templates select="f:dosage/f:extension[@url = $urlExtMedicationAdministration2AgreedAmount]/f:valueQuantity" mode="#current"/>
 			<!-- volgens_afspraak_indicator -->
-			<!-- TODO: should be updated in FHIR profile -->
+			<!-- MP-1393 volgens_afspraak nolonger supported in MP9.3.0.0 beta.3 but is kept in the stylesheet to ensure backwards compatibility-->
 			<xsl:apply-templates select="f:extension[@url = $urlExtAsAgreedIndicator]" mode="#current"/>
 			<!-- toedieningsweg -->
 			<xsl:apply-templates select="f:dosage/f:route" mode="nl-core-InstructionsForUse"/>
@@ -72,6 +72,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	<xd:doc>
 		<xd:desc>Template to convert f:extension $urlExtAsAgreedIndicator to volgens_afspraak_indicator element.</xd:desc>
 	</xd:doc>
+	<!-- MP-1393 volgens_afspraak nolonger supported in MP9.3.0.0 beta.3 but is kept in the stylesheet to ensure backwards compatibility-->
 	<xsl:template match="f:extension[@url = $urlExtAsAgreedIndicator]" mode="mp-MedicationAdministration">
 		<volgens_afspraak_indicator>
 			<xsl:call-template name="boolean-to-boolean">

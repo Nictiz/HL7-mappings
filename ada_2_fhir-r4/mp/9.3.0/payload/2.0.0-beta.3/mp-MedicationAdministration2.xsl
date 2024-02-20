@@ -82,7 +82,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </extension>
                 </xsl:for-each>
 
-                <!-- TODO: extension is not yet in profile -->
+                <!-- MP-1393 LR: asAgreedIndicator nolonger support from MP 9.3 beta.3 onwards but in stylesheet due to backwards compatibility-->
                 <xsl:for-each select="volgens_afspraak_indicator">
                     <xsl:call-template name="ext-AsAgreedIndicator"/>
                 </xsl:for-each>
