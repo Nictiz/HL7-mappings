@@ -28,7 +28,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<!-- toedienings_datum_tijd -->
 			<xsl:apply-templates select="f:effectiveDateTime" mode="#current"/>
 			<!-- afgesproken_datum_tijd -->
-			<!-- MP-1408 LR: afgesproken_datum_tijd nolonger supported from MP 9.3 beta.3 onwards but kept in stylesheet due to backwards compatibility-->
+			<!-- MP-1408 LR: afgesproken_datum_tijd no longer part of the transactions from MP 9.3 beta.3 onwards but kept in stylesheet due to backwards compatibility-->
 			<xsl:apply-templates select="f:extension[@url = $urlExtMedicationAdministration2AgreedDateTime]" mode="#current"/>
 			<!-- geannuleerd_indicator -->
 			<xsl:if test="f:status/@value = 'entered-in-error'">
@@ -62,7 +62,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<!-- medicatie_toediening_reden_van_afwijken -->
 			<xsl:apply-templates select="f:extension[@url = $urlExtMedicationAdministration2ReasonForDeviation]" mode="#current"/>
 			<!-- medicatie_toediening_status  -->
-			<!-- MP-1392 LR: medicatie_toediening_status nolonger supported from MP 9.3 beta.3 onwards but due to iets cardinality in FHIR (1..1) the value 'unknown' will result in medicatie_toediening_status being absent in ada -->
+			<!-- MP-1392 LR: medicatie_toediening_status no longer part of the transactions from MP 9.3 beta.3 onwards but kept in stylesheet due to backwards compatibility -->
 			<xsl:apply-templates select="f:status[@value ne 'entered-in-error']" mode="#current"/>
 			<!-- toelichting -->
 			<xsl:apply-templates select="f:note" mode="nl-core-Note"/>

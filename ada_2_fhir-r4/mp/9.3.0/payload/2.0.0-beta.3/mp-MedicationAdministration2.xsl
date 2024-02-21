@@ -46,7 +46,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 
-                <!-- MP-1408 LR: afgesproken_datum_tijd nolonger supported from MP 9.3 beta.3 onwards but kept in stylesheet due to backwards compatibility-->
+                <!-- MP-1408 LR: afgesproken_datum_tijd no longer part of the transactions from MP 9.3 beta.3 onwards but kept in stylesheet due to backwards compatibility-->
                 <xsl:for-each select="afgesproken_datum_tijd">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AgreedDateTime">
                         <valueDateTime>
@@ -102,7 +102,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- status -->
-                <!-- MP-1392 LR: medicatie_toediening_status nolonger supported from MP 9.3 beta.3 onwards and due to its cardinality in FHIR (1..1) the value for status will therefore always be 'unknown' -->
+                <!-- MP-1392 LR: medicatie_toediening_status no longer part of the transactions from MP 9.3 beta.3 onwards but kept in stylesheet due to backwards compatibility -->
                 <xsl:choose>
                     <xsl:when test="geannuleerd_indicator[@value = 'true']">
                         <status value="entered-in-error"/>
