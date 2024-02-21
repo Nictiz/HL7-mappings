@@ -36,8 +36,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			</xsl:if>
 			<!-- toegediende_hoeveelheid -->
 			<xsl:apply-templates select="f:dosage/f:dose" mode="#current"/>
-			<!-- afgesproken_hoeveelheid -->
-			<!-- MP-1395 LR: afgesproken_hoeveelheid removed -->
 			<!-- volgens_afspraak_indicator -->
 			<!-- TODO: should be updated in FHIR profile -->
 			<xsl:apply-templates select="f:extension[@url = $urlExtAsAgreedIndicator]" mode="#current"/>

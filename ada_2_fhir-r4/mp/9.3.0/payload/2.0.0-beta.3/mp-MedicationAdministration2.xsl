@@ -311,9 +311,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <xsl:variable name="dosage">
-                    <!--  afgesproken_hoeveelheid -->
-                    <!-- MP-1395 LR: afgesproken_hoeveelheid removed from MedicationAdministration -->
-
                     <xsl:for-each select="prik_plak_locatie[@value | @nullFlavor]">
                         <site>
                             <text>
