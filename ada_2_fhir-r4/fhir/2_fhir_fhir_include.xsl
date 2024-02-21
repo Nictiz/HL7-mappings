@@ -835,7 +835,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
         <!-- UCUM -->
         <value value="{$adaValue/@value}"/>
-        <xsl:if test="$adaUnit[@codeSystem=$oidGStandaardBST902THES2][@displayName]">
+        <xsl:if test="string-length($adaUnit[@codeSystem=$oidGStandaardBST902THES2]/@displayName) gt 0">
             <unit value="{$adaUnit[@codeSystem=$oidGStandaardBST902THES2]/@displayName}"/>
         </xsl:if>
         <system value="{$oidMap[@oid=$oidUCUM]/@uri}"/>
