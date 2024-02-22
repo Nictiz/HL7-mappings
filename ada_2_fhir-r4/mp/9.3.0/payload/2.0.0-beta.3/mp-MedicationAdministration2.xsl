@@ -45,7 +45,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
-
+                
+                <!-- MP-1408 LR: afgesproken_datum_tijd no longer part of the transactions from MP 9.3 beta.3 onwards but kept in stylesheet due to backwards compatibility-->
                 <xsl:for-each select="afgesproken_datum_tijd">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AgreedDateTime">
                         <valueDateTime>
@@ -101,6 +102,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- status -->
+                <!-- MP-1392 LR: medicatie_toediening_status no longer part of the transactions from MP 9.3 beta.3 onwards but kept in stylesheet due to backwards compatibility -->
                 <xsl:choose>
                     <xsl:when test="geannuleerd_indicator[@value = 'true']">
                         <status value="entered-in-error"/>
@@ -309,18 +311,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <xsl:variable name="dosage">
-                    <!--  afgesproken_hoeveelheid -->
-                    <xsl:for-each select="afgesproken_hoeveelheid">
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AgreedAmount">
-                            <valueQuantity>
-                                <xsl:call-template name="_buildMedicationQuantity">
-                                    <xsl:with-param name="adaValue" select="aantal"/>
-                                    <xsl:with-param name="adaUnit" select="eenheid"/>
-                                </xsl:call-template>
-                            </valueQuantity>
-                        </extension>
-                    </xsl:for-each>
-
                     <xsl:for-each select="prik_plak_locatie[@value | @nullFlavor]">
                         <site>
                             <text>
