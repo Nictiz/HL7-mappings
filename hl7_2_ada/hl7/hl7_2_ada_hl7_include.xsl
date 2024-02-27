@@ -427,7 +427,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="level" select="$logFATAL"/>
                         <xsl:with-param name="terminate" select="true()"/>
                         <xsl:with-param name="msg">Cannot determine the datatype based on @xsi:type, or value not supported: <xsl:value-of select="$xsiType"/>. Calculated QName <xsl:value-of select="$xsiTypeURIName"/></xsl:with-param>
-                    </xsl:call-template>                    
+                    </xsl:call-template>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>
@@ -1029,10 +1029,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                                         </xsl:when>
                                                         <xsl:otherwise>
                                                             <!-- not in value, due to validation errors -->
-                                                      
+
                                                             <xsl:attribute name="displayName" select="$country/text()"/>
                                                         </xsl:otherwise>
-                                                        
+
                                                     </xsl:choose>
                                                 </xsl:if>
                                             </xsl:otherwise>
@@ -1380,7 +1380,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:copy-of select="$codeMap[@inCode = $theCode][@inCodeSystem = $theCodeSystem]"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:copy-of select="."/>
+                        <!-- we don't want the @value if it is there, because in ada this has no significant meaning on a coded element and ada will probably break on negative values, which are possible in hl7 -->
+                        <xsl:copy select=".">
+                            <xsl:copy-of select="@*[name() != 'value']"/>
+                        </xsl:copy>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>

@@ -22,7 +22,7 @@
          <fail>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                 test="hl7:code[@codeSystem=data($GstdCodeSystems)][@code] or hl7:name"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20230217T123829/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9361-2021-06-02T154629.html"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9361-2021-06-02T154629.html"
                                 role="error"
                                 location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][3]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:consumable[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedMaterial[namespace-uri()='urn:hl7-org:v3'][1]">
                <svrl:text>(MPCDAMedicationInformationContents2): Geneesmiddel naam (name) verplicht opnemen wanneer de codering *niet* afdoende is om de samenstelling van het geneesmiddel te achterhalen</svrl:text>
@@ -43,21 +43,21 @@
             </svrl:failed-assert>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                 test="../pharm:ingredient"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20230217T123829/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9360-2021-06-02T150453.html"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9360-2021-06-02T150453.html"
                                 role="warning"
                                 location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][3]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:consumable[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedMaterial[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
                <svrl:text>(MPCDAMedicationCode3): Bij magistraal / eigen bereiding / eigen codering moet er minimaal één - volgens de G-standaard gecodeerd - ingrediënt worden opgenomen.</svrl:text>
             </svrl:failed-assert>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                 test="count(hl7:assignedAuthor/hl7:representedOrganization/hl7:addr[@use='WP']) ge 1"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20230217T123829/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9429-2022-11-22T130054.html"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9429-2022-11-22T130054.html"
                                 role="warning"
                                 location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]">
                <svrl:text>(MPCDAMedicatieAfspraakSchemaInhoud5): Er is minimaal één werkadres van de auteur (hl7:assignedAuthor/hl7:representedOrganization/hl7:addr[@use='WP']) verwacht bij een medicatieafspraak.</svrl:text>
             </svrl:failed-assert>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                                 test="count(hl7:assignedAuthor/hl7:representedOrganization/hl7:addr[@use='WP']) ge 1"
-                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-20230217T123829/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9449-2023-01-06T093041.html"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9449-2023-01-06T093041.html"
                                 role="warning"
                                 location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][2]/*:supply[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]">
                <svrl:text>(MPCDAVerstrekkingsverzoek6): Er is minimaal één werkadres van de auteur verwacht bij een verstrekkingsverzoek.</svrl:text>

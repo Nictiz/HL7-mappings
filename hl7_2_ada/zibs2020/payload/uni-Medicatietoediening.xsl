@@ -157,7 +157,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- medicatie_toediening_reden_van_afwijken -->
                 <xsl:call-template name="handleCV">
                     <xsl:with-param name="in" select="hl7:entryRelationship/hl7:observation[hl7:code[@code = '153631000146105'][@codeSystem = $oidSNOMEDCT]]/hl7:value"/>
-                    <xsl:with-param name="elemName">medicatie_toediening_reden_van_afwijken</xsl:with-param>
+                    <!-- name change in MP9 dataset -->
+                    <xsl:with-param name="elemName">medicatietoediening_reden_van_afwijken</xsl:with-param>
                 </xsl:call-template>
 
                 <!-- medicatie_toediening_status, nullified zit in geannuleerd_indicator -->
@@ -295,8 +296,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </mantelzorger>
                         </xsl:for-each>
                         
+                        <!-- toediener zorgverlener -->
+                        <xsl:for-each select=".[hl7:assignedEntity[hl7:id[not(@nullFlavor)] or hl7:code/@code or hl7:assignedPerson]][not(hl7:assignedEntity/hl7:code[@codeSystem = '2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem = '2.16.840.1.113883.2.4.3.11.60.40.4.23.1'])][not(hl7:assignedEntity[hl7:code/@code = 'ONESELF'])]">
+                            <zorgverlener>
+                                <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.43_20210701">
+                                    <xsl:with-param name="generateId" select="true()"/>
+                                    <xsl:with-param name="in-hl7" select="."/>
+                                </xsl:call-template>
+                            </zorgverlener>
+                        </xsl:for-each>                        
+                        
                         <!-- toediener_is_zorgaanbieder -->
-                        <xsl:for-each select=".[not(hl7:assignedEntity/hl7:code[@codeSystem = '2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem = '2.16.840.1.113883.2.4.3.11.60.40.4.23.1'])][not(hl7:assignedEntity[hl7:code/@code = 'ONESELF'])]">
+                        <xsl:for-each select=".[not(hl7:assignedEntity[hl7:id[not(@nullFlavor)] or hl7:code/@code or hl7:assignedPerson])][not(hl7:assignedEntity/hl7:code[@codeSystem = '2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem = '2.16.840.1.113883.2.4.3.11.60.40.4.23.1'])][not(hl7:assignedEntity[hl7:code/@code = 'ONESELF'])]">
                             <zorgaanbieder>
                                 <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.33_20210701">
                                     <xsl:with-param name="generateId" select="true()"/>
@@ -311,7 +322,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- medicatie_toediening_reden_van_afwijken -->
                 <xsl:call-template name="handleCV">
                     <xsl:with-param name="in" select="hl7:entryRelationship/hl7:observation[hl7:code[@code = '153631000146105'][@codeSystem = $oidSNOMEDCT]]/hl7:value"/>
-                    <xsl:with-param name="elemName">medicatie_toediening_reden_van_afwijken</xsl:with-param>
+                    <!-- name change in MP9 dataset -->                    
+                    <xsl:with-param name="elemName">medicatietoediening_reden_van_afwijken</xsl:with-param>
                 </xsl:call-template>
                 
                 <!-- medicatie_toediening_status, nullified zit in geannuleerd_indicator -->

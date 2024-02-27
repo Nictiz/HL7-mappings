@@ -96,7 +96,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xsl:template>
 
 	<xd:doc>
-		<xd:desc>Template to convert f:extension reason for deviation to medicatie_toediening_reden_van_afwijken element.</xd:desc>
+	    <xd:desc>Template to convert f:extension to kopie_indicator element.</xd:desc>
 	</xd:doc>
 	<xsl:template match="f:extension[@url = $extLaboratoryTestResultCopyIndicator]" mode="nl-core-LaboratoryTestResult">
 		<kopie_indicator value="{f:valueBoolean/@value}"/>

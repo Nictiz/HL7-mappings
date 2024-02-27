@@ -3530,7 +3530,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc> Reden van afwijken medicatietoediening</xd:desc>
     </xd:doc>
-    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9375_20210616173557" match="medicatie_toediening_reden_van_afwijken" mode="HandleMtdRedenVanAfwijken92">
+    <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9375_20210616173557" match="medicatie_toediening_reden_van_afwijken | medicatietoediening_reden_van_afwijken" mode="HandleMtdRedenVanAfwijken92">
         <observation classCode="OBS" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9375"/>
             <code code="153631000146105" displayName="reden voor afwijken in toedienen van medicatie (waarneembare entiteit)" codeSystem="{$oidSNOMEDCT}" codeSystemName="{$oidMap[@oid=$oidSNOMEDCT]/@displayName}"/>

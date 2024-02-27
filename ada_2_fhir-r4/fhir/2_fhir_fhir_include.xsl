@@ -825,7 +825,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                 <valueQuantity>
                     <value value="{$adaValue/@value}"/>
-                    <unit value="{@displayName}"/>
+                    <xsl:if test="string-length(@displayName) gt 0">
+                        <unit value="{@displayName}"/>
+                    </xsl:if>
                     <system value="{concat('urn:oid:', $oidGStandaardBST902THES2)}"/>
                     <code value="{@code}"/>
                 </valueQuantity>
@@ -833,7 +835,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
         <!-- UCUM -->
         <value value="{$adaValue/@value}"/>
-        <unit value="{$adaUnit[@codeSystem=$oidGStandaardBST902THES2]/@displayName}"/>
+        <xsl:if test="string-length($adaUnit[@codeSystem=$oidGStandaardBST902THES2]/@displayName) gt 0">
+            <unit value="{$adaUnit[@codeSystem=$oidGStandaardBST902THES2]/@displayName}"/>
+        </xsl:if>
         <system value="{$oidMap[@oid=$oidUCUM]/@uri}"/>
         <code value="{nf:convertGstdBasiseenheid2UCUM($adaUnit[@codeSystem=$oidGStandaardBST902THES2]/@code)}"/>
 
