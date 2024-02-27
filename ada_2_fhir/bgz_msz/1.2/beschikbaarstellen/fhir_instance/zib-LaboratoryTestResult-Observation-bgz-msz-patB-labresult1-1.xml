@@ -7,21 +7,28 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Observatie/bepaling. Subject: Francisca F. Fransje Gigase Verheul. Id: bgz-msz-patB-labresult2 (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6), Categorie: <span title="bevinding betreffende laboratoriumonderzoek (49581000146104 - SNOMED CT)">bevinding betreffende laboratoriumonderzoek</span>, <span title="serumtest (275711006 - SNOMED CT)">serumtest</span>, Status: definitief</caption>
+            <caption>Observatie/bepaling. Subject: Francisca F. Fransje Gigase Verheul. Id: bgz-msz-patB-labresult1 (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6), Categorie: <span title="bevinding betreffende laboratoriumonderzoek (49581000146104 - SNOMED CT)">bevinding betreffende laboratoriumonderzoek</span>, <span title="hematologisch onderzoek (252275004 - SNOMED CT)">hematologisch onderzoek</span>, Status: definitief</caption>
             <tbody>
                <tr>
                   <th>Bepalingdatum/tijd</th>
-                  <td>${DATE, T, D, +2}T09:00:00+02:00</td>
+                  <td colspan="2">${DATE, T, D, +1}T09:00:00+02:00</td>
                </tr>
                <tr>
                   <th>Code</th>
                   <th>Waarde</th>
+                  <th>Referentiewaarden</th>
                </tr>
                <tr>
                   <td>
-                     <span title="Cancer Ag15-3 SerPl-aCnc (6875-9 - LOINC)">Cancer Ag15-3 SerPl-aCnc</span>
+                     <span title="Monocytes # Bld (26484-6 - LOINC)">Monocytes # Bld</span>
                   </td>
-                  <td>13 k[arb'U]/L</td>
+                  <td>0.43 10*9/L</td>
+                  <td>
+                     <div>
+                        <span title="Normal Range (normal - referencerange-meaning)">Normal Range</span>
+
+0.3 10*9/L - 1.00 10*9/L</div>
+                  </td>
                </tr>
             </tbody>
          </table>
@@ -29,7 +36,7 @@
    </text>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"/>
-      <value value="bgz-msz-patB-labresult2"/>
+      <value value="bgz-msz-patB-labresult1"/>
    </identifier>
    <status value="final">
       <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
@@ -52,26 +59,47 @@
    <category>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="275711006"/>
-         <display value="serumtest"/>
+         <code value="252275004"/>
+         <display value="hematologisch onderzoek"/>
       </coding>
    </category>
    <code>
       <coding>
          <system value="http://loinc.org"/>
-         <code value="6875-9"/>
-         <display value="Cancer Ag15-3 SerPl-aCnc"/>
+         <code value="26484-6"/>
+         <display value="Monocytes # Bld"/>
       </coding>
    </code>
    <subject>
       <reference value="Patient/FRANCISCA-F--FRANSJE-GIGASE-VERHEUL"/>
       <display value="Francisca F. Fransje Gigase Verheul"/>
    </subject>
-   <effectiveDateTime value="${DATE, T, D, +2}T09:00:00+02:00"/>
+   <effectiveDateTime value="${DATE, T, D, +1}T09:00:00+02:00"/>
    <valueQuantity>
-      <value value="13"/>
-      <unit value="k[arb'U]/L"/>
+      <value value="0.43"/>
+      <unit value="10*9/L"/>
       <system value="http://unitsofmeasure.org"/>
-      <code value="k[arb'U]/L"/>
+      <code value="10*9/L"/>
    </valueQuantity>
+   <referenceRange>
+      <low>
+         <value value="0.3"/>
+         <unit value="10*9/L"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="10*9/L"/>
+      </low>
+      <high>
+         <value value="1.00"/>
+         <unit value="10*9/L"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="10*9/L"/>
+      </high>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/referencerange-meaning"/>
+            <code value="normal"/>
+            <display value="Normal Range"/>
+         </coding>
+      </type>
+   </referenceRange>
 </Observation>
