@@ -30,6 +30,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:call-template name="makeTSValue">
             <xsl:with-param name="elemName">time</xsl:with-param>
             <xsl:with-param name="inputValue" select="$theTime/@value"/>
+            <xsl:with-param name="inputNullFlavor" select="$theTime/@nullFlavor"/>
         </xsl:call-template>
 
         <xsl:for-each select="$in">
