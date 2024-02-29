@@ -4,7 +4,7 @@
          created-by="medicatieprocesada"
          last-update-by="medicatieprocesada"
          creation-date="2023-01-09T17:55:39.238+01:00"
-         last-update-date="2023-05-23T14:32:03.242+02:00"/>
+         last-update-date="2024-02-07T12:13:49.096Z"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp93"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -1465,17 +1465,60 @@
             <identificatie value="MBH_300_WDS_aanvullendeinstructie"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
+            <medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.43"
+                               comment="">
+               <identificatie value="MBH_300_WDS_aanvullendeinstructie_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.194"/>
+               <medicatieafspraak_datum_tijd value="T-3D{10:30:00}"
+                                             datatype="datetime"
+                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.83"/>
+               <gebruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.84"
+                                comment="">
+                  <start_datum_tijd value="T-3D{12:00:00}"
+                                    datatype="datetime"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.629"/>
+               </gebruiksperiode>
+               <voorschrijver conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.44"
+                              comment="">
+                  <zorgverlener value="Tanja_de_Bakker"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.45"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.48"
+                                         comment="">
+                  <farmaceutisch_product value="PRK_ACENOCOUMAROL_7323"
+                                         datatype="reference"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.49"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.50"
+                                   comment="">
+                  <omschrijving value="wordt gegenereerd"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.52"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="Oraal"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.54"/>
+                  <aanvullende_instructie originalText="Volgens schema trombosedienst"
+                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.51"
+                                          value="1"
+                                          code="OTH"
+                                          codeSystem="2.16.840.1.113883.5.1008"
+                                          displayName="overig"/>
+               </gebruiksinstructie>
+            </medicatieafspraak>
             <wisselend_doseerschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.632"
                                     comment="">
                <identificatie value="MBH_300_WDS_aanvullendeinstructie_WDS"
                               root="2.16.840.1.113883.2.4.3.11.999.77.632.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.633"/>
-               <wisselend_doseerschema_datum_tijd value="T-5D{13:30:00}"
+               <wisselend_doseerschema_datum_tijd value="T"
                                                   datatype="datetime"
                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.634"/>
                <gebruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.635"
                                 comment="">
-                  <start_datum_tijd value="T-5D{00:00:00}"
+                  <start_datum_tijd value="T"
                                     datatype="datetime"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.636"/>
                   <tijds_duur value="7"
@@ -1604,12 +1647,12 @@
                <identificatie value="MBH_300_WDS_toelichting_WDS"
                               root="2.16.840.1.113883.2.4.3.11.999.77.632.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.633"/>
-               <wisselend_doseerschema_datum_tijd value="T-5D{08:05:00}"
+               <wisselend_doseerschema_datum_tijd value="T"
                                                   datatype="datetime"
                                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.634"/>
                <gebruiksperiode conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.635"
                                 comment="">
-                  <start_datum_tijd value="T-5D{00:00:00}"
+                  <start_datum_tijd value="T"
                                     datatype="datetime"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.636"/>
                   <tijds_duur value="2"

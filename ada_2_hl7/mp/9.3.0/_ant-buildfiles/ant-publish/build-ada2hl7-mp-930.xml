@@ -27,17 +27,10 @@
 
     <target name="setup_mp930" description="Setup subdirectories, schemas, ada instance xml's in ${build.dir} for ${is.name} ${is.version}">
 
-        <!-- nictiz_test copies appropriate ada instances from refs.dir -->
-        <!-- not yet implemented  -->
-        <!--<antcall target="setup_sub_instances">
-            <param name="fileset.dir" value="ada_instance"/>
-            <param name="refs.ada.dir" value="ada_instance"/>
-            <param name="usecase" value="${usecase.nt}"/>
-        </antcall>-->
-        <!-- at the moment only schemas for nictiz test -->
+        <!-- at the moment only schemas for nictiz test, instances are not retrieved from adarefs -->
         <antcall target="setup_sub_schemas">
             <param name="usecase" value="${usecase.nt}"/>
-            <param name="schema.string" value="*medicatie*.xsd"/>
+            <param name="schema.string" value="*${usecase.mg}.xsd"/>
         </antcall>
 
         <!-- beschikbaarstellen_medicatiegegevens copies schemas for project dir and appropriate ada instances from refs.dir for MA-->
@@ -256,12 +249,12 @@
     <target name="convert_ada_2_hl7_930">
 
         <!-- convert nictiz test -->
-        <!-- <antcall target="convert_ada_2_hl7_sub">
+         <antcall target="convert_ada_2_hl7_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.nt}"/>
-            <param name="xsl.name" value="../${usecase.mv}/payload/${usecase.mv}_org.xsl"/>
+            <param name="xsl.name" value="../${usecase.mg}/payload/${usecase.mg}_org.xsl"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="hl7_instance"/>
-        </antcall>-->
+        </antcall>
 
         <!-- convert beschikbaarstellen_medicatiegegevens -->
         <antcall target="convert_ada_2_hl7_sub">

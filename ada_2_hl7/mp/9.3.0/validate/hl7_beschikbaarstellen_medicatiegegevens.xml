@@ -80,7 +80,43 @@
          <pass/>
       </file>
       <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-KWAL-script3-v30.xml">
-         <pass/>
+         <fail>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(.)"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9411-2022-11-18T091239.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][6]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPHL7MedicatiegegevensOrganizer7)/d154637e6-true-d155218e0: dit element 'entryRelationship' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9406'] | cda:id | cda:code[(@code = '18629005' and @codeSystem = '2.16.840.1.113883.6.96')] | cda:statusCode | cda:effectiveTime | cda:routeCode | hl7:approachSiteCode[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.53-2022-03-23T181942.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.53-2022-03-23T181942.xml')//valueSet[1]/conceptList/exception/@code] | hl7:doseQuantity[hl7:center] | hl7:doseQuantity[hl7:low|hl7:high] | cda:rateQuantity | cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]] | hl7:performer[hl7:assignedEntity[hl7:code/@code='ONESELF']] | hl7:performer[hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1']] | hl7:performer[hl7:assignedEntity[hl7:id[not(@nullFlavor)] or hl7:code/@code or hl7:assignedPerson]][not(hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1'])][not(hl7:assignedEntity[hl7:code/@code='ONESELF'])] | hl7:performer[hl7:assignedEntity[not(hl7:id[not(@nullFlavor)] or hl7:code/@code or hl7:assignedPerson)]][not(hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1'])][not(hl7:assignedEntity[hl7:code/@code='ONESELF'])] | cda:author[hl7:assignedAuthor] | cda:entryRelationship[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9375']]] | cda:entryRelationship[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.3.10.0.32']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9384']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9101']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9381']]] | cda:entryRelationship[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9084']]] | hl7:entryRelationship[@typeCode = 'REFR'][hl7:encounter] | hl7:entryRelationship[@typeCode = 'REFR'][hl7:act[hl7:code[@code = 'CONC'][@codeSystem = '2.16.840.1.113883.5.6']]] (rule-reference: d154637e6-true-d155218e0)</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="@nullFlavor or not(hl7:originalText)"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9308-2019-11-25T164730.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][3]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:precondition[namespace-uri()='urn:hl7-org:v3'][1]/*:criterion[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(ZonodigCriterium2): Bij een gecodeerde waarde mag originalText niet gebruikt worden.</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="@nullFlavor or not(hl7:originalText)"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9308-2019-11-25T164730.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][3]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][3]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:precondition[namespace-uri()='urn:hl7-org:v3'][1]/*:criterion[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(ZonodigCriterium2): Bij een gecodeerde waarde mag originalText niet gebruikt worden.</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="@nullFlavor or not(hl7:originalText)"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9308-2019-11-25T164730.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][5]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][4]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:precondition[namespace-uri()='urn:hl7-org:v3'][1]/*:criterion[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(ZonodigCriterium2): Bij een gecodeerde waarde mag originalText niet gebruikt worden.</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:author[hl7:assignedAuthor]) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9406-2022-11-01T091730.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][6]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatietoediening3): element cda:author[hl7:assignedAuthor] is required [min 1x].</svrl:text>
+            </svrl:failed-assert>
+         </fail>
       </file>
       <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-KWAL-script3patient-v30.xml">
          <pass/>
@@ -101,13 +137,162 @@
          <pass/>
       </file>
       <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-TEST-Scenarioset0-v30.xml">
-         <pass/>
+         <fail>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(.)"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9411-2022-11-18T091239.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][6]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPHL7MedicatiegegevensOrganizer7)/d154637e6-true-d155218e0: dit element 'entryRelationship' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9406'] | cda:id | cda:code[(@code = '18629005' and @codeSystem = '2.16.840.1.113883.6.96')] | cda:statusCode | cda:effectiveTime | cda:routeCode | hl7:approachSiteCode[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.53-2022-03-23T181942.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.53-2022-03-23T181942.xml')//valueSet[1]/conceptList/exception/@code] | hl7:doseQuantity[hl7:center] | hl7:doseQuantity[hl7:low|hl7:high] | cda:rateQuantity | cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]] | hl7:performer[hl7:assignedEntity[hl7:code/@code='ONESELF']] | hl7:performer[hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1']] | hl7:performer[hl7:assignedEntity[hl7:id[not(@nullFlavor)] or hl7:code/@code or hl7:assignedPerson]][not(hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1'])][not(hl7:assignedEntity[hl7:code/@code='ONESELF'])] | hl7:performer[hl7:assignedEntity[not(hl7:id[not(@nullFlavor)] or hl7:code/@code or hl7:assignedPerson)]][not(hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1'])][not(hl7:assignedEntity[hl7:code/@code='ONESELF'])] | cda:author[hl7:assignedAuthor] | cda:entryRelationship[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9375']]] | cda:entryRelationship[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.3.10.0.32']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9384']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9101']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9381']]] | cda:entryRelationship[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9084']]] | hl7:entryRelationship[@typeCode = 'REFR'][hl7:encounter] | hl7:entryRelationship[@typeCode = 'REFR'][hl7:act[hl7:code[@code = 'CONC'][@codeSystem = '2.16.840.1.113883.5.6']]] (rule-reference: d154637e6-true-d155218e0)</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(.)"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9411-2022-11-18T091239.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][12]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPHL7MedicatiegegevensOrganizer7)/d154637e6-true-d155218e0: dit element 'entryRelationship' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9406'] | cda:id | cda:code[(@code = '18629005' and @codeSystem = '2.16.840.1.113883.6.96')] | cda:statusCode | cda:effectiveTime | cda:routeCode | hl7:approachSiteCode[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.53-2022-03-23T181942.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.53-2022-03-23T181942.xml')//valueSet[1]/conceptList/exception/@code] | hl7:doseQuantity[hl7:center] | hl7:doseQuantity[hl7:low|hl7:high] | cda:rateQuantity | cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]] | hl7:performer[hl7:assignedEntity[hl7:code/@code='ONESELF']] | hl7:performer[hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1']] | hl7:performer[hl7:assignedEntity[hl7:id[not(@nullFlavor)] or hl7:code/@code or hl7:assignedPerson]][not(hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1'])][not(hl7:assignedEntity[hl7:code/@code='ONESELF'])] | hl7:performer[hl7:assignedEntity[not(hl7:id[not(@nullFlavor)] or hl7:code/@code or hl7:assignedPerson)]][not(hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1'])][not(hl7:assignedEntity[hl7:code/@code='ONESELF'])] | cda:author[hl7:assignedAuthor] | cda:entryRelationship[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9375']]] | cda:entryRelationship[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.3.10.0.32']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9384']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9101']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9381']]] | cda:entryRelationship[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9084']]] | hl7:entryRelationship[@typeCode = 'REFR'][hl7:encounter] | hl7:entryRelationship[@typeCode = 'REFR'][hl7:act[hl7:code[@code = 'CONC'][@codeSystem = '2.16.840.1.113883.5.6']]] (rule-reference: d154637e6-true-d155218e0)</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(.)"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9411-2022-11-18T091239.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][18]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPHL7MedicatiegegevensOrganizer7)/d154637e6-true-d155218e0: dit element 'entryRelationship' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9406'] | cda:id | cda:code[(@code = '18629005' and @codeSystem = '2.16.840.1.113883.6.96')] | cda:statusCode | cda:effectiveTime | cda:routeCode | hl7:approachSiteCode[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.53-2022-03-23T181942.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.53-2022-03-23T181942.xml')//valueSet[1]/conceptList/exception/@code] | hl7:doseQuantity[hl7:center] | hl7:doseQuantity[hl7:low|hl7:high] | cda:rateQuantity | cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]] | hl7:performer[hl7:assignedEntity[hl7:code/@code='ONESELF']] | hl7:performer[hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1']] | hl7:performer[hl7:assignedEntity[hl7:id[not(@nullFlavor)] or hl7:code/@code or hl7:assignedPerson]][not(hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1'])][not(hl7:assignedEntity[hl7:code/@code='ONESELF'])] | hl7:performer[hl7:assignedEntity[not(hl7:id[not(@nullFlavor)] or hl7:code/@code or hl7:assignedPerson)]][not(hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1'])][not(hl7:assignedEntity[hl7:code/@code='ONESELF'])] | cda:author[hl7:assignedAuthor] | cda:entryRelationship[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9375']]] | cda:entryRelationship[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.3.10.0.32']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9384']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9101']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9381']]] | cda:entryRelationship[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9084']]] | hl7:entryRelationship[@typeCode = 'REFR'][hl7:encounter] | hl7:entryRelationship[@typeCode = 'REFR'][hl7:act[hl7:code[@code = 'CONC'][@codeSystem = '2.16.840.1.113883.5.6']]] (rule-reference: d154637e6-true-d155218e0)</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(.)"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9411-2022-11-18T091239.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][24]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPHL7MedicatiegegevensOrganizer7)/d154637e6-true-d155218e0: dit element 'entryRelationship' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9406'] | cda:id | cda:code[(@code = '18629005' and @codeSystem = '2.16.840.1.113883.6.96')] | cda:statusCode | cda:effectiveTime | cda:routeCode | hl7:approachSiteCode[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.53-2022-03-23T181942.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.53-2022-03-23T181942.xml')//valueSet[1]/conceptList/exception/@code] | hl7:doseQuantity[hl7:center] | hl7:doseQuantity[hl7:low|hl7:high] | cda:rateQuantity | cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]] | hl7:performer[hl7:assignedEntity[hl7:code/@code='ONESELF']] | hl7:performer[hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1']] | hl7:performer[hl7:assignedEntity[hl7:id[not(@nullFlavor)] or hl7:code/@code or hl7:assignedPerson]][not(hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1'])][not(hl7:assignedEntity[hl7:code/@code='ONESELF'])] | hl7:performer[hl7:assignedEntity[not(hl7:id[not(@nullFlavor)] or hl7:code/@code or hl7:assignedPerson)]][not(hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1'])][not(hl7:assignedEntity[hl7:code/@code='ONESELF'])] | cda:author[hl7:assignedAuthor] | cda:entryRelationship[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9375']]] | cda:entryRelationship[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.3.10.0.32']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9384']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9101']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9381']]] | cda:entryRelationship[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9084']]] | hl7:entryRelationship[@typeCode = 'REFR'][hl7:encounter] | hl7:entryRelationship[@typeCode = 'REFR'][hl7:act[hl7:code[@code = 'CONC'][@codeSystem = '2.16.840.1.113883.5.6']]] (rule-reference: d154637e6-true-d155218e0)</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(.)"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9411-2022-11-18T091239.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][30]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPHL7MedicatiegegevensOrganizer7)/d154637e6-true-d155218e0: dit element 'entryRelationship' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9406'] | cda:id | cda:code[(@code = '18629005' and @codeSystem = '2.16.840.1.113883.6.96')] | cda:statusCode | cda:effectiveTime | cda:routeCode | hl7:approachSiteCode[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.53-2022-03-23T181942.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.53-2022-03-23T181942.xml')//valueSet[1]/conceptList/exception/@code] | hl7:doseQuantity[hl7:center] | hl7:doseQuantity[hl7:low|hl7:high] | cda:rateQuantity | cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]] | hl7:performer[hl7:assignedEntity[hl7:code/@code='ONESELF']] | hl7:performer[hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1']] | hl7:performer[hl7:assignedEntity[hl7:id[not(@nullFlavor)] or hl7:code/@code or hl7:assignedPerson]][not(hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1'])][not(hl7:assignedEntity[hl7:code/@code='ONESELF'])] | hl7:performer[hl7:assignedEntity[not(hl7:id[not(@nullFlavor)] or hl7:code/@code or hl7:assignedPerson)]][not(hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1'])][not(hl7:assignedEntity[hl7:code/@code='ONESELF'])] | cda:author[hl7:assignedAuthor] | cda:entryRelationship[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9375']]] | cda:entryRelationship[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.3.10.0.32']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9384']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9101']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9381']]] | cda:entryRelationship[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9084']]] | hl7:entryRelationship[@typeCode = 'REFR'][hl7:encounter] | hl7:entryRelationship[@typeCode = 'REFR'][hl7:act[hl7:code[@code = 'CONC'][@codeSystem = '2.16.840.1.113883.5.6']]] (rule-reference: d154637e6-true-d155218e0)</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(.)"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9411-2022-11-18T091239.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][36]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPHL7MedicatiegegevensOrganizer7)/d154637e6-true-d155218e0: dit element 'entryRelationship' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9406'] | cda:id | cda:code[(@code = '18629005' and @codeSystem = '2.16.840.1.113883.6.96')] | cda:statusCode | cda:effectiveTime | cda:routeCode | hl7:approachSiteCode[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.53-2022-03-23T181942.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.53-2022-03-23T181942.xml')//valueSet[1]/conceptList/exception/@code] | hl7:doseQuantity[hl7:center] | hl7:doseQuantity[hl7:low|hl7:high] | cda:rateQuantity | cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]] | hl7:performer[hl7:assignedEntity[hl7:code/@code='ONESELF']] | hl7:performer[hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1']] | hl7:performer[hl7:assignedEntity[hl7:id[not(@nullFlavor)] or hl7:code/@code or hl7:assignedPerson]][not(hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1'])][not(hl7:assignedEntity[hl7:code/@code='ONESELF'])] | hl7:performer[hl7:assignedEntity[not(hl7:id[not(@nullFlavor)] or hl7:code/@code or hl7:assignedPerson)]][not(hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1'])][not(hl7:assignedEntity[hl7:code/@code='ONESELF'])] | cda:author[hl7:assignedAuthor] | cda:entryRelationship[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9375']]] | cda:entryRelationship[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.3.10.0.32']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9384']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9101']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9381']]] | cda:entryRelationship[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9084']]] | hl7:entryRelationship[@typeCode = 'REFR'][hl7:encounter] | hl7:entryRelationship[@typeCode = 'REFR'][hl7:act[hl7:code[@code = 'CONC'][@codeSystem = '2.16.840.1.113883.5.6']]] (rule-reference: d154637e6-true-d155218e0)</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:author[hl7:assignedAuthor]) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9406-2022-11-01T091730.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][6]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatietoediening3): element cda:author[hl7:assignedAuthor] is required [min 1x].</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:author[hl7:assignedAuthor]) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9406-2022-11-01T091730.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][12]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatietoediening3): element cda:author[hl7:assignedAuthor] is required [min 1x].</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:author[hl7:assignedAuthor]) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9406-2022-11-01T091730.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][18]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatietoediening3): element cda:author[hl7:assignedAuthor] is required [min 1x].</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:author[hl7:assignedAuthor]) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9406-2022-11-01T091730.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][24]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatietoediening3): element cda:author[hl7:assignedAuthor] is required [min 1x].</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:author[hl7:assignedAuthor]) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9406-2022-11-01T091730.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][30]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatietoediening3): element cda:author[hl7:assignedAuthor] is required [min 1x].</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:author[hl7:assignedAuthor]) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9406-2022-11-01T091730.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][36]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatietoediening3): element cda:author[hl7:assignedAuthor] is required [min 1x].</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(hl7:time/@value) or matches(string(hl7:time/@value), '^[0-9]{12,12}')"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9412-2022-11-18T130922.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][37]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAWisselendDoseerSchema2): Bij registratiedatum/tijd is het verplicht om de tijd met een minimale precisie van minuten mee te geven</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(hl7:time/@value) or matches(string(hl7:time/@value), '^[0-9]{12,12}')"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9412-2022-11-18T130922.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][38]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAWisselendDoseerSchema2): Bij registratiedatum/tijd is het verplicht om de tijd met een minimale precisie van minuten mee te geven</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(hl7:time/@value) or matches(string(hl7:time/@value), '^[0-9]{12,12}')"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9412-2022-11-18T130922.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][39]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAWisselendDoseerSchema2): Bij registratiedatum/tijd is het verplicht om de tijd met een minimale precisie van minuten mee te geven</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(hl7:time/@value) or matches(string(hl7:time/@value), '^[0-9]{12,12}')"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9412-2022-11-18T130922.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][40]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAWisselendDoseerSchema2): Bij registratiedatum/tijd is het verplicht om de tijd met een minimale precisie van minuten mee te geven</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(hl7:time/@value) or matches(string(hl7:time/@value), '^[0-9]{12,12}')"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9412-2022-11-18T130922.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][41]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAWisselendDoseerSchema2): Bij registratiedatum/tijd is het verplicht om de tijd met een minimale precisie van minuten mee te geven</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="@nullFlavor or string-length(@value)&gt;10"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9019-2016-07-01T155004.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][42]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:effectiveTime[namespace-uri()='urn:hl7-org:v3'][1]/*:high[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(UsablePeriod): Einddatum/tijd minimaal tot op de minuut nauwkeurig meegeven (om verwarring tussen 'tot' en 'tot en met' te voorkomen).</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(hl7:time/@value) or matches(string(hl7:time/@value), '^[0-9]{12,12}')"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9412-2022-11-18T130922.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][42]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAWisselendDoseerSchema2): Bij registratiedatum/tijd is het verplicht om de tijd met een minimale precisie van minuten mee te geven</svrl:text>
+            </svrl:failed-assert>
+         </fail>
       </file>
       <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-TEST-Scenarioset0Patient-v30.xml">
          <pass/>
       </file>
       <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-TEST-Scenarioset1-v30.xml">
-         <pass/>
+         <fail>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(hl7:time/@value) or matches(string(hl7:time/@value), '^[0-9]{12,12}')"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9412-2022-11-18T130922.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][35]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAWisselendDoseerSchema2): Bij registratiedatum/tijd is het verplicht om de tijd met een minimale precisie van minuten mee te geven</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(hl7:time/@value) or matches(string(hl7:time/@value), '^[0-9]{12,12}')"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9412-2022-11-18T130922.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][37]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAWisselendDoseerSchema2): Bij registratiedatum/tijd is het verplicht om de tijd met een minimale precisie van minuten mee te geven</svrl:text>
+            </svrl:failed-assert>
+         </fail>
       </file>
       <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-TEST-Scenarioset10-v30.xml">
          <pass/>
@@ -116,13 +301,155 @@
          <pass/>
       </file>
       <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-TEST-Scenarioset11-v30.xml">
-         <pass/>
+         <fail>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(.)"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9411-2022-11-18T091239.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][9]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPHL7MedicatiegegevensOrganizer7)/d154637e6-true-d155218e0: dit element 'entryRelationship' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9406'] | cda:id | cda:code[(@code = '18629005' and @codeSystem = '2.16.840.1.113883.6.96')] | cda:statusCode | cda:effectiveTime | cda:routeCode | hl7:approachSiteCode[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.53-2022-03-23T181942.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.53-2022-03-23T181942.xml')//valueSet[1]/conceptList/exception/@code] | hl7:doseQuantity[hl7:center] | hl7:doseQuantity[hl7:low|hl7:high] | cda:rateQuantity | cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]] | hl7:performer[hl7:assignedEntity[hl7:code/@code='ONESELF']] | hl7:performer[hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1']] | hl7:performer[hl7:assignedEntity[hl7:id[not(@nullFlavor)] or hl7:code/@code or hl7:assignedPerson]][not(hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1'])][not(hl7:assignedEntity[hl7:code/@code='ONESELF'])] | hl7:performer[hl7:assignedEntity[not(hl7:id[not(@nullFlavor)] or hl7:code/@code or hl7:assignedPerson)]][not(hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1'])][not(hl7:assignedEntity[hl7:code/@code='ONESELF'])] | cda:author[hl7:assignedAuthor] | cda:entryRelationship[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9375']]] | cda:entryRelationship[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.3.10.0.32']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9384']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9101']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9381']]] | cda:entryRelationship[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9084']]] | hl7:entryRelationship[@typeCode = 'REFR'][hl7:encounter] | hl7:entryRelationship[@typeCode = 'REFR'][hl7:act[hl7:code[@code = 'CONC'][@codeSystem = '2.16.840.1.113883.5.6']]] (rule-reference: d154637e6-true-d155218e0)</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(.)"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9411-2022-11-18T091239.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][10]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPHL7MedicatiegegevensOrganizer7)/d154637e6-true-d155218e0: dit element 'entryRelationship' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9406'] | cda:id | cda:code[(@code = '18629005' and @codeSystem = '2.16.840.1.113883.6.96')] | cda:statusCode | cda:effectiveTime | cda:routeCode | hl7:approachSiteCode[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.53-2022-03-23T181942.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.53-2022-03-23T181942.xml')//valueSet[1]/conceptList/exception/@code] | hl7:doseQuantity[hl7:center] | hl7:doseQuantity[hl7:low|hl7:high] | cda:rateQuantity | cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]] | hl7:performer[hl7:assignedEntity[hl7:code/@code='ONESELF']] | hl7:performer[hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1']] | hl7:performer[hl7:assignedEntity[hl7:id[not(@nullFlavor)] or hl7:code/@code or hl7:assignedPerson]][not(hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1'])][not(hl7:assignedEntity[hl7:code/@code='ONESELF'])] | hl7:performer[hl7:assignedEntity[not(hl7:id[not(@nullFlavor)] or hl7:code/@code or hl7:assignedPerson)]][not(hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1'])][not(hl7:assignedEntity[hl7:code/@code='ONESELF'])] | cda:author[hl7:assignedAuthor] | cda:entryRelationship[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9375']]] | cda:entryRelationship[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.3.10.0.32']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9384']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9101']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9381']]] | cda:entryRelationship[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9084']]] | hl7:entryRelationship[@typeCode = 'REFR'][hl7:encounter] | hl7:entryRelationship[@typeCode = 'REFR'][hl7:act[hl7:code[@code = 'CONC'][@codeSystem = '2.16.840.1.113883.5.6']]] (rule-reference: d154637e6-true-d155218e0)</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(.)"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9411-2022-11-18T091239.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][11]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPHL7MedicatiegegevensOrganizer7)/d154637e6-true-d155218e0: dit element 'entryRelationship' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9406'] | cda:id | cda:code[(@code = '18629005' and @codeSystem = '2.16.840.1.113883.6.96')] | cda:statusCode | cda:effectiveTime | cda:routeCode | hl7:approachSiteCode[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.53-2022-03-23T181942.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.53-2022-03-23T181942.xml')//valueSet[1]/conceptList/exception/@code] | hl7:doseQuantity[hl7:center] | hl7:doseQuantity[hl7:low|hl7:high] | cda:rateQuantity | cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]] | hl7:performer[hl7:assignedEntity[hl7:code/@code='ONESELF']] | hl7:performer[hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1']] | hl7:performer[hl7:assignedEntity[hl7:id[not(@nullFlavor)] or hl7:code/@code or hl7:assignedPerson]][not(hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1'])][not(hl7:assignedEntity[hl7:code/@code='ONESELF'])] | hl7:performer[hl7:assignedEntity[not(hl7:id[not(@nullFlavor)] or hl7:code/@code or hl7:assignedPerson)]][not(hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1'])][not(hl7:assignedEntity[hl7:code/@code='ONESELF'])] | cda:author[hl7:assignedAuthor] | cda:entryRelationship[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9375']]] | cda:entryRelationship[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.3.10.0.32']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9384']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9101']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9381']]] | cda:entryRelationship[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9084']]] | hl7:entryRelationship[@typeCode = 'REFR'][hl7:encounter] | hl7:entryRelationship[@typeCode = 'REFR'][hl7:act[hl7:code[@code = 'CONC'][@codeSystem = '2.16.840.1.113883.5.6']]] (rule-reference: d154637e6-true-d155218e0)</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(.)"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9411-2022-11-18T091239.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][12]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPHL7MedicatiegegevensOrganizer7)/d154637e6-true-d155218e0: dit element 'entryRelationship' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9406'] | cda:id | cda:code[(@code = '18629005' and @codeSystem = '2.16.840.1.113883.6.96')] | cda:statusCode | cda:effectiveTime | cda:routeCode | hl7:approachSiteCode[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.53-2022-03-23T181942.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.53-2022-03-23T181942.xml')//valueSet[1]/conceptList/exception/@code] | hl7:doseQuantity[hl7:center] | hl7:doseQuantity[hl7:low|hl7:high] | cda:rateQuantity | cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]] | hl7:performer[hl7:assignedEntity[hl7:code/@code='ONESELF']] | hl7:performer[hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1']] | hl7:performer[hl7:assignedEntity[hl7:id[not(@nullFlavor)] or hl7:code/@code or hl7:assignedPerson]][not(hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1'])][not(hl7:assignedEntity[hl7:code/@code='ONESELF'])] | hl7:performer[hl7:assignedEntity[not(hl7:id[not(@nullFlavor)] or hl7:code/@code or hl7:assignedPerson)]][not(hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1'])][not(hl7:assignedEntity[hl7:code/@code='ONESELF'])] | cda:author[hl7:assignedAuthor] | cda:entryRelationship[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9375']]] | cda:entryRelationship[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.3.10.0.32']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9384']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9101']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9381']]] | cda:entryRelationship[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9084']]] | hl7:entryRelationship[@typeCode = 'REFR'][hl7:encounter] | hl7:entryRelationship[@typeCode = 'REFR'][hl7:act[hl7:code[@code = 'CONC'][@codeSystem = '2.16.840.1.113883.5.6']]] (rule-reference: d154637e6-true-d155218e0)</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:author[hl7:assignedAuthor]) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9406-2022-11-01T091730.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][9]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatietoediening3): element cda:author[hl7:assignedAuthor] is required [min 1x].</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:author[hl7:assignedAuthor]) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9406-2022-11-01T091730.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][10]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatietoediening3): element cda:author[hl7:assignedAuthor] is required [min 1x].</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:author[hl7:assignedAuthor]) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9406-2022-11-01T091730.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][11]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatietoediening3): element cda:author[hl7:assignedAuthor] is required [min 1x].</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:author[hl7:assignedAuthor]) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9406-2022-11-01T091730.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][12]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatietoediening3): element cda:author[hl7:assignedAuthor] is required [min 1x].</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="@nullFlavor or string-length(@value)&gt;10"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9019-2016-07-01T155004.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][2]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:effectiveTime[namespace-uri()='urn:hl7-org:v3'][1]/*:high[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(UsablePeriod): Einddatum/tijd minimaal tot op de minuut nauwkeurig meegeven (om verwarring tussen 'tot' en 'tot en met' te voorkomen).</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(hl7:time/@value) or matches(string(hl7:time/@value), '^[0-9]{12,12}')"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9412-2022-11-18T130922.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][2]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAWisselendDoseerSchema2): Bij registratiedatum/tijd is het verplicht om de tijd met een minimale precisie van minuten mee te geven</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="@nullFlavor or string-length(@value)&gt;10"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9019-2016-07-01T155004.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][3]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:effectiveTime[namespace-uri()='urn:hl7-org:v3'][1]/*:high[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(UsablePeriod): Einddatum/tijd minimaal tot op de minuut nauwkeurig meegeven (om verwarring tussen 'tot' en 'tot en met' te voorkomen).</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(hl7:time/@value) or matches(string(hl7:time/@value), '^[0-9]{12,12}')"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9412-2022-11-18T130922.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][3]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAWisselendDoseerSchema2): Bij registratiedatum/tijd is het verplicht om de tijd met een minimale precisie van minuten mee te geven</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="@nullFlavor or string-length(@value)&gt;10"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9019-2016-07-01T155004.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][4]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:effectiveTime[namespace-uri()='urn:hl7-org:v3'][1]/*:high[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(UsablePeriod): Einddatum/tijd minimaal tot op de minuut nauwkeurig meegeven (om verwarring tussen 'tot' en 'tot en met' te voorkomen).</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(hl7:time/@value) or matches(string(hl7:time/@value), '^[0-9]{12,12}')"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9412-2022-11-18T130922.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][4]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAWisselendDoseerSchema2): Bij registratiedatum/tijd is het verplicht om de tijd met een minimale precisie van minuten mee te geven</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="@nullFlavor or string-length(@value)&gt;10"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9019-2016-07-01T155004.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][5]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:effectiveTime[namespace-uri()='urn:hl7-org:v3'][1]/*:high[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(UsablePeriod): Einddatum/tijd minimaal tot op de minuut nauwkeurig meegeven (om verwarring tussen 'tot' en 'tot en met' te voorkomen).</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(hl7:time/@value) or matches(string(hl7:time/@value), '^[0-9]{12,12}')"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9412-2022-11-18T130922.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][5]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAWisselendDoseerSchema2): Bij registratiedatum/tijd is het verplicht om de tijd met een minimale precisie van minuten mee te geven</svrl:text>
+            </svrl:failed-assert>
+         </fail>
       </file>
       <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-TEST-Scenarioset11Patient-v30.xml">
          <pass/>
       </file>
       <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-TEST-Scenarioset13-v30.xml">
-         <pass/>
+         <fail>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(.)"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9411-2022-11-18T091239.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][7]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPHL7MedicatiegegevensOrganizer7)/d154637e6-true-d155218e0: dit element 'entryRelationship' is niet gedefinieerd, of niet gedefinieerd met deze inhoud. Mogelijk betreft dit het templateId, code, of id. Verwacht in deze context: cda:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9406'] | cda:id | cda:code[(@code = '18629005' and @codeSystem = '2.16.840.1.113883.6.96')] | cda:statusCode | cda:effectiveTime | cda:routeCode | hl7:approachSiteCode[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.53-2022-03-23T181942.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.20.77.11.53-2022-03-23T181942.xml')//valueSet[1]/conceptList/exception/@code] | hl7:doseQuantity[hl7:center] | hl7:doseQuantity[hl7:low|hl7:high] | cda:rateQuantity | cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]] | hl7:performer[hl7:assignedEntity[hl7:code/@code='ONESELF']] | hl7:performer[hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1']] | hl7:performer[hl7:assignedEntity[hl7:id[not(@nullFlavor)] or hl7:code/@code or hl7:assignedPerson]][not(hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1'])][not(hl7:assignedEntity[hl7:code/@code='ONESELF'])] | hl7:performer[hl7:assignedEntity[not(hl7:id[not(@nullFlavor)] or hl7:code/@code or hl7:assignedPerson)]][not(hl7:assignedEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.4.3.11.22.472' or @codeSystem='2.16.840.1.113883.2.4.3.11.60.40.4.23.1'])][not(hl7:assignedEntity[hl7:code/@code='ONESELF'])] | cda:author[hl7:assignedAuthor] | cda:entryRelationship[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9375']]] | cda:entryRelationship[hl7:act[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.3.10.0.32']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9384']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9101']]] | cda:entryRelationship[hl7:substanceAdministration[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9381']]] | cda:entryRelationship[hl7:procedure[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9084']]] | hl7:entryRelationship[@typeCode = 'REFR'][hl7:encounter] | hl7:entryRelationship[@typeCode = 'REFR'][hl7:act[hl7:code[@code = 'CONC'][@codeSystem = '2.16.840.1.113883.5.6']]] (rule-reference: d154637e6-true-d155218e0)</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:author[hl7:assignedAuthor]) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9406-2022-11-01T091730.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][7]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatietoediening3): element cda:author[hl7:assignedAuthor] is required [min 1x].</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="@nullFlavor or string-length(@value)&gt;10"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9019-2016-07-01T155004.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][2]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:effectiveTime[namespace-uri()='urn:hl7-org:v3'][1]/*:high[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(UsablePeriod): Einddatum/tijd minimaal tot op de minuut nauwkeurig meegeven (om verwarring tussen 'tot' en 'tot en met' te voorkomen).</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(hl7:time/@value) or matches(string(hl7:time/@value), '^[0-9]{12,12}')"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9412-2022-11-18T130922.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][2]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAWisselendDoseerSchema2): Bij registratiedatum/tijd is het verplicht om de tijd met een minimale precisie van minuten mee te geven</svrl:text>
+            </svrl:failed-assert>
+         </fail>
       </file>
       <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-TEST-Scenarioset13Patient-v30.xml">
          <pass/>
@@ -134,13 +461,99 @@
          <pass/>
       </file>
       <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-TEST-Scenarioset2-v30.xml">
-         <pass/>
+         <fail>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(hl7:time/@value) or matches(string(hl7:time/@value), '^[0-9]{12,12}')"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9412-2022-11-18T130922.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][24]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAWisselendDoseerSchema2): Bij registratiedatum/tijd is het verplicht om de tijd met een minimale precisie van minuten mee te geven</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(hl7:time/@value) or matches(string(hl7:time/@value), '^[0-9]{12,12}')"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9412-2022-11-18T130922.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][25]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAWisselendDoseerSchema2): Bij registratiedatum/tijd is het verplicht om de tijd met een minimale precisie van minuten mee te geven</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(hl7:assignedAuthor/hl7:representedOrganization/hl7:addr[@use='WP']) ge 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9429-2022-11-22T130054.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][23]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatieAfspraakSchemaInhoud5): Er is minimaal één werkadres van de auteur (hl7:assignedAuthor/hl7:representedOrganization/hl7:addr[@use='WP']) verwacht bij een medicatieafspraak.</svrl:text>
+            </svrl:failed-assert>
+         </fail>
       </file>
       <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-TEST-Scenarioset2Patient-v30.xml">
          <pass/>
       </file>
       <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-TEST-Scenarioset3-v30.xml">
-         <pass/>
+         <fail>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:routeCode) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9415-2022-11-21T070356.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][65]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAToedieningsafspraakSchemaInhoud5): element cda:routeCode is required [min 1x].</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]]) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9415-2022-11-21T070356.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][65]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAToedieningsafspraakSchemaInhoud5): element cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]] is mandatory [min 1x].</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:routeCode) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9416-2022-11-21T074758.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][65]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAToedieningsafspraakSchema6): element cda:routeCode is required [min 1x].</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]]) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9416-2022-11-21T074758.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][65]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAToedieningsafspraakSchema6): element cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]] is mandatory [min 1x].</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:routeCode) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9429-2022-11-22T130054.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][64]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatieAfspraakSchemaInhoud5): element cda:routeCode is required [min 1x].</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]]) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9429-2022-11-22T130054.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][64]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatieAfspraakSchemaInhoud5): element cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]] is mandatory [min 1x].</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(hl7:assignedAuthor/hl7:representedOrganization/hl7:addr[@use='WP']) ge 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9429-2022-11-22T130054.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][64]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatieAfspraakSchemaInhoud5): Er is minimaal één werkadres van de auteur (hl7:assignedAuthor/hl7:representedOrganization/hl7:addr[@use='WP']) verwacht bij een medicatieafspraak.</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:routeCode) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9430-2022-11-22T132432.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][64]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatieAfspraakSchema6): element cda:routeCode is required [min 1x].</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]]) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9430-2022-11-22T132432.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][64]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatieAfspraakSchema6): element cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]] is mandatory [min 1x].</svrl:text>
+            </svrl:failed-assert>
+         </fail>
       </file>
       <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-TEST-Scenarioset3Patient-v30.xml">
          <pass/>
@@ -173,10 +586,40 @@
          <pass/>
       </file>
       <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-TEST-Scenarioset6d-v30.xml">
-         <pass/>
+         <fail>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:author[hl7:assignedAuthor]) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9406-2022-11-01T091730.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][6]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatietoediening3): element cda:author[hl7:assignedAuthor] is required [min 1x].</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="count(cda:author[hl7:assignedAuthor]) &gt;= 1"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9406-2022-11-01T091730.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][12]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatietoediening3): element cda:author[hl7:assignedAuthor] is required [min 1x].</svrl:text>
+            </svrl:failed-assert>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(hl7:time/@value) or matches(string(hl7:time/@value), '^[0-9]{14,14}')"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9429-2022-11-22T130054.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][23]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAMedicatieAfspraakSchemaInhoud5): Bij afspraakdatum is het verplicht om de tijd met een minimale precisie van seconden mee te geven</svrl:text>
+            </svrl:failed-assert>
+         </fail>
       </file>
       <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-TEST-Scenarioset6e-v30.xml">
-         <pass/>
+         <fail>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="not(hl7:time/@value) or matches(string(hl7:time/@value), '^[0-9]{12,12}')"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9412-2022-11-18T130922.html"
+                                role="warning"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][2]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:author[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(MPCDAWisselendDoseerSchema2): Bij registratiedatum/tijd is het verplicht om de tijd met een minimale precisie van minuten mee te geven</svrl:text>
+            </svrl:failed-assert>
+         </fail>
       </file>
       <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-TEST-Scenarioset6Patient-v30.xml">
          <pass/>
