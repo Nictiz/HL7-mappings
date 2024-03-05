@@ -1,0 +1,160 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_laboratoriumresultaten.xsd">
+   <meta status="new"
+         created-by="labuitwisselingada"
+         last-update-by="labuitwisselingada"/>
+   <data>
+      <sturen_laboratoriumresultaten app="lab"
+                                     shortName="sturen_laboratoriumresultaten"
+                                     formName="sturen_laboratoriumresultaten"
+                                     transactionRef="2.16.840.1.113883.2.4.3.11.60.25.4.28"
+                                     transactionEffectiveDate="2022-03-03T00:00:00"
+                                     prefix="lab-"
+                                     language="nl-NL"
+                                     title="Generated from HL7 FHIR sturen_laboratoriumresultaten"
+                                     id="lr-slr-TEST-Scenario1b-1b">
+         <patientgegevens>
+            <patient>
+               <naamgegevens>
+                  <ongestructureerde_naam value="Elise Erelies"/>
+                  <voornamen value="Elise"/>
+                  <geslachtsnaam>
+                     <achternaam value="Erelies"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <identificatienummer value="999999114" root="2.16.840.1.113883.2.4.6.3"/>
+               <geboortedatum value="1950-11-01" datatype="datetime"/>
+               <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            </patient>
+         </patientgegevens>
+         <beschikbaarstellende_partij>
+            <zorgaanbieder id="urn-uuid-dc761ece-262c-11ee-1573-020000000000">
+               <zorgaanbieder_identificatienummer value="00003333" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Klinisch chemisch Lab 't Proefje"/>
+               <contactgegevens>
+                  <telefoonnummers>
+                     <telefoonnummer value="06-11122233"/>
+                     <nummer_soort code="WP"
+                                   codeSystem="2.16.840.1.113883.5.1119"
+                                   displayName="Zakelijk telefoonnummer"/>
+                     <toelichting value="Bel met vragen"/>
+                  </telefoonnummers>
+                  <email_adressen>
+                     <email_adres value="tproefje@lab.nl"/>
+                     <email_soort code="WP"
+                                  codeSystem="2.16.840.1.113883.5.1119"
+                                  displayName="Zakelijk e-mailadres"/>
+                  </email_adressen>
+               </contactgegevens>
+               <adresgegevens>
+                  <straat value="Hoofdstraat"/>
+                  <huisnummer value="23"/>
+                  <postcode value="1234AA"/>
+                  <woonplaats value="Zorgstad"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+               <organisatie_type code="L1"
+                                 codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                 codeSystemName="HL7 RoleCodeNL Care provider type (organizations)"
+                                 codeSystemVersion="2022-09-10T00:00:00"
+                                 displayName="Laboratorium"/>
+            </zorgaanbieder>
+         </beschikbaarstellende_partij>
+         <onderzoeksresultaat>
+            <laboratorium_uitslag>
+               <laboratorium_uitslag_identificatie value="LAR_NierfunctiePanelLOINC"
+                                                   root="2.16.840.1.113883.2.4.3.11.999.25.4296.2"/>
+               <edifact_referentienummer value="111222"/>
+               <kopie_indicator value="true"/>
+               <laboratorium_test>
+                  <test_identificatie value="11111" root="2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
+                  <test_code code="98979-8"
+                             codeSystem="2.16.840.1.113883.6.1"
+                             codeSystemName="LOINC"
+                             displayName="Glomerulaire filtratiesnelheid/1,73 m2.voorspeld [filtratiesnelheid/oppervlakte] in serum of plasma of bloed d.m.v. formule gebaseerd op creatinine (CKD-EPI 2021)"/>
+                  <test_datum_tijd value="T-20D" datatype="datetime"/>
+                  <test_uitslag value="97" unit="mL/min/{1.73_m2}" datatype="quantity"/>
+                  <test_uitslag_status code="final"
+                                       codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
+                                       displayName="Definitief"/>
+                  <referentie_ondergrens value="90" unit="mL/min/{1.73_m2}" datatype="quantity"/>
+                  <uitslag_interpretatie value="Waarde is goed."/>
+               </laboratorium_test>
+               <laboratorium_test>
+                  <test_identificatie value="22222" root="2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
+                  <test_code code="45066-8"
+                             codeSystem="2.16.840.1.113883.6.1"
+                             codeSystemName="LOINC"
+                             displayName="Creatinine [mol/volume] in urine"/>
+                  <testmethode code="258026004"
+                               codeSystem="2.16.840.1.113883.6.96"
+                               codeSystemName="SNOMED CT"
+                               displayName="enzyme method"/>
+                  <test_datum_tijd value="T-20D" datatype="datetime"/>
+                  <test_uitslag value="135" unit="umol/l" datatype="quantity"/>
+                  <test_uitslag_status code="final"
+                                       codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
+                                       displayName="Definitief"/>
+                  <referentie_bovengrens value="134" unit="umol/l" datatype="quantity"/>
+                  <referentie_ondergrens value="62" unit="umol/l" datatype="quantity"/>
+                  <interpretatie_vlaggen code="281302008"
+                                         codeSystem="2.16.840.1.113883.6.96"
+                                         codeSystemName="SNOMED CT"
+                                         displayName="boven referentiebereik"/>
+                  <uitslag_interpretatie value="Creatinine iets hoger dan normaal."/>
+               </laboratorium_test>
+               <monster>
+                  <monsternummer value="123" root="2.16.840.1.113883.2.4.3.11.999.25.4267.2"/>
+                  <monstermateriaal code="119297000"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED CT"
+                                    displayName="Bloed"/>
+                  <afname_datum_tijd value="T-20D" datatype="datetime"/>
+                  <toelichting value="Serum afgenomen bij patiënt."/>
+               </monster>
+               <!--Unhandled FHIR node: f:code-->
+               <resultaat_status code="final"
+                                 codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
+                                 displayName="Definitief"/>
+               <uitvoerder>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatienummer value="00003333" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Klinisch chemisch Lab 't Proefje"/>
+                     <contactgegevens>
+                        <telefoonnummers>
+                           <telefoonnummer value="06-11122233"/>
+                           <nummer_soort code="WP"
+                                         codeSystem="2.16.840.1.113883.5.1119"
+                                         displayName="Zakelijk telefoonnummer"/>
+                           <toelichting value="Bel met vragen"/>
+                        </telefoonnummers>
+                        <email_adressen>
+                           <email_adres value="tproefje@lab.nl"/>
+                           <email_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Zakelijk e-mailadres"/>
+                        </email_adressen>
+                     </contactgegevens>
+                     <adresgegevens>
+                        <straat value="Hoofdstraat"/>
+                        <huisnummer value="23"/>
+                        <postcode value="1234AA"/>
+                        <woonplaats value="Zorgstad"/>
+                        <adres_soort code="WP"
+                                     codeSystem="2.16.840.1.113883.5.1119"
+                                     displayName="Werkadres"/>
+                     </adresgegevens>
+                     <organisatie_type code="L1"
+                                       codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                       codeSystemName="HL7 RoleCodeNL Care provider type (organizations)"
+                                       codeSystemVersion="2022-09-10T00:00:00"
+                                       displayName="Laboratorium"/>
+                  </zorgaanbieder>
+               </uitvoerder>
+            </laboratorium_uitslag>
+         </onderzoeksresultaat>
+      </sturen_laboratoriumresultaten>
+   </data>
+</adaxml>

@@ -26,27 +26,8 @@
    <svrl:fired-rule context="f:extension"/>
    <svrl:fired-rule context="f:extension"/>
    <svrl:fired-rule context="f:extension"/>
-   <svrl:fired-rule context="f:extension"/>
-   <svrl:fired-rule context="f:extension"/>
-   <svrl:fired-rule context="f:extension"/>
    <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_fhir-r4/lab/3.0.0/sturen_laboratoriumresultaten/fhir_instance/lr-slr-KWAL-KC-NHG-Scenario2b-KCNHG2b.xml"
                         name="Global 1"/>
-   <svrl:fired-rule context="f:*"/>
-   <svrl:fired-rule context="f:*"/>
-   <svrl:fired-rule context="f:*"/>
-   <svrl:fired-rule context="f:*"/>
-   <svrl:fired-rule context="f:*"/>
-   <svrl:fired-rule context="f:*"/>
-   <svrl:fired-rule context="f:*"/>
-   <svrl:fired-rule context="f:*"/>
-   <svrl:fired-rule context="f:*"/>
-   <svrl:fired-rule context="f:*"/>
-   <svrl:fired-rule context="f:*"/>
-   <svrl:fired-rule context="f:*"/>
-   <svrl:fired-rule context="f:*"/>
-   <svrl:fired-rule context="f:*"/>
-   <svrl:fired-rule context="f:*"/>
-   <svrl:fired-rule context="f:*"/>
    <svrl:fired-rule context="f:*"/>
    <svrl:fired-rule context="f:*"/>
    <svrl:fired-rule context="f:*"/>
@@ -238,11 +219,6 @@
    <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_fhir-r4/lab/3.0.0/sturen_laboratoriumresultaten/fhir_instance/lr-slr-KWAL-KC-NHG-Scenario2b-KCNHG2b.xml"
                         name="Bundle"/>
    <svrl:fired-rule context="f:Bundle"/>
-   <svrl:failed-assert test="not(f:total) or (f:type/@value = 'searchset') or (f:type/@value = 'history')"
-                       location="/*:Bundle[namespace-uri()='http://hl7.org/fhir'][1]">
-      <svrl:text>bdl-1: total only when a search or history</svrl:text>
-   </svrl:failed-assert>
-   <svrl:fired-rule context="f:Bundle/f:entry"/>
    <svrl:fired-rule context="f:Bundle/f:entry"/>
    <svrl:fired-rule context="f:Bundle/f:entry"/>
    <svrl:fired-rule context="f:Bundle/f:entry"/>
@@ -416,9 +392,13 @@
    <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_fhir-r4/lab/3.0.0/sturen_laboratoriumresultaten/fhir_instance/lr-slr-KWAL-KC-NHG-Scenario2b-KCNHG2b.xml"
                         name="Observation"/>
    <svrl:fired-rule context="f:Observation"/>
+   <svrl:fired-rule context="f:Observation/f:subject"/>
    <svrl:fired-rule context="f:Observation/f:performer"/>
    <svrl:fired-rule context="f:Observation/f:valueQuantity"/>
    <svrl:fired-rule context="f:Observation/f:specimen"/>
+   <svrl:fired-rule context="f:Observation/f:referenceRange"/>
+   <svrl:fired-rule context="f:Observation/f:referenceRange/f:low"/>
+   <svrl:fired-rule context="f:Observation/f:referenceRange/f:high"/>
    <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_fhir-r4/lab/3.0.0/sturen_laboratoriumresultaten/fhir_instance/lr-slr-KWAL-KC-NHG-Scenario2b-KCNHG2b.xml"
                         name="ObservationDefinition"/>
    <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_fhir-r4/lab/3.0.0/sturen_laboratoriumresultaten/fhir_instance/lr-slr-KWAL-KC-NHG-Scenario2b-KCNHG2b.xml"
@@ -427,8 +407,6 @@
                         name="OperationOutcome"/>
    <svrl:active-pattern document="file:/Users/ahenket/Development/GitHub/Nictiz/HL7-mappings/ada_2_fhir-r4/lab/3.0.0/sturen_laboratoriumresultaten/fhir_instance/lr-slr-KWAL-KC-NHG-Scenario2b-KCNHG2b.xml"
                         name="Organization"/>
-   <svrl:fired-rule context="f:Organization"/>
-   <svrl:fired-rule context="f:Organization/f:address"/>
    <svrl:fired-rule context="f:Organization"/>
    <svrl:fired-rule context="f:Organization/f:telecom"/>
    <svrl:fired-rule context="f:Organization/f:address"/>

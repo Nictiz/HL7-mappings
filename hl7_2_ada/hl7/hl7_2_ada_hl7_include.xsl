@@ -123,7 +123,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:otherwise>
                 <!-- let's do a best effort and fall back on vague date time, even though that is unexpected here -->
                 <xsl:value-of select="nf:formatHL72VagueAdaDate($input-hl7-date, $precision)"/>
-                <xsl:message terminate="no">Could not determine a proper xml date (time) from input: '<xsl:value-of select="$input-hl7-date"/>' with precision: '<xsl:value-of select="$precision"/>'. Falling back on vague date time.</xsl:message>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logWARN"/>
+                    <xsl:with-param name="msg">Could not determine a proper xml date (time) from input: '<xsl:value-of select="$input-hl7-date"/>' with precision: '<xsl:value-of select="$precision"/>'. Falling back on vague date time.</xsl:with-param>
+                </xsl:call-template>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
@@ -219,7 +222,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="$input-hl7-date"/>
-                <xsl:message terminate="no">Could not determine xml date from input: '<xsl:value-of select="$input-hl7-date"/>' with precision: '<xsl:value-of select="$precision"/>'.</xsl:message>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logWARN"/>
+                    <xsl:with-param name="msg">Could not determine xml date from input: '<xsl:value-of select="$input-hl7-date"/>' with precision: '<xsl:value-of select="$precision"/>'.</xsl:with-param>
+                </xsl:call-template>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
@@ -410,7 +416,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$xsiTypeURIName = '{urn:hl7-org:v3}:TS' or ($xsiTypeURIName = '{urn:hl7-org:v3}:IVL_TS' and (@value | @nullFlavor))">
                     <xsl:call-template name="handleTS">
                         <xsl:with-param name="in" select="."/>
-
                         <xsl:with-param name="elemName" select="$elemName"/>
                         <xsl:with-param name="datatype">
                             <xsl:if test="$dodatatype">date</xsl:if>
@@ -418,7 +423,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:message terminate="yes">Cannot determine the datatype based on @xsi:type, or value not supported: <xsl:value-of select="$xsiType"/>. Calculated QName <xsl:value-of select="$xsiTypeURIName"/></xsl:message>
+                    <xsl:call-template name="util:logMessage">
+                        <xsl:with-param name="level" select="$logFATAL"/>
+                        <xsl:with-param name="terminate" select="true()"/>
+                        <xsl:with-param name="msg">Cannot determine the datatype based on @xsi:type, or value not supported: <xsl:value-of select="$xsiType"/>. Calculated QName <xsl:value-of select="$xsiTypeURIName"/></xsl:with-param>
+                    </xsl:call-template>                    
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>
@@ -882,7 +891,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:choose>
                         <xsl:when test="*">
                             <xsl:for-each select="*[not(self::hl7:streetName | self::hl7:houseNumber | self::hl7:buildingNumberSuffix | self::hl7:unitID | self::hl7:additionalLocator | self::hl7:postalCode | self::hl7:city | self::hl7:county | self::hl7:country | self::hl7:desc)]">
-                                <xsl:message>WARNING: Address contains unsupported address part: <xsl:value-of select="name()"/></xsl:message>
+                                <xsl:call-template name="util:logMessage">
+                                    <xsl:with-param name="level" select="$logWARN"/>
+                                    <xsl:with-param name="msg">Address contains unsupported address part: <xsl:value-of select="name()"/></xsl:with-param>
+                                </xsl:call-template>
                             </xsl:for-each>
 
                             <xsl:variable name="street" select="hl7:streetName[not(. = '')]"/>
@@ -987,23 +999,46 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:element>
                                 </xsl:if>
                                 <!-- Codes? -->
+                                <!-- country is an element of type code in ada, so do not map an uncoded string to the value attribute, as it will lead to ada validation issue -->
                                 <xsl:if test="$country">
                                     <xsl:element name="{$elmCountry}">
-                                        <xsl:if test="$country/text()">
-                                            <xsl:attribute name="value" select="$country/text()"/>
-                                        </xsl:if>
-                                        <xsl:if test="$country/@code">
-                                            <xsl:copy-of select="$country/@code"/>
-                                            <xsl:copy-of select="$country/@codeSystem"/>
-                                            <xsl:choose>
-                                                <xsl:when test="$country/@displayName">
-                                                    <xsl:attribute name="displayName" select="$country"/>
-                                                </xsl:when>
-                                                <xsl:when test="$country/text()">
-                                                    <xsl:attribute name="displayName" select="$country/text()"/>
-                                                </xsl:when>
-                                            </xsl:choose>
-                                        </xsl:if>
+                                        <xsl:choose>
+                                            <xsl:when test="$country[@*]">
+                                                <xsl:copy-of select="$country/@code"/>
+                                                <xsl:copy-of select="$country/@codeSystem"/>
+                                                <xsl:copy-of select="$country/@codeSystemVersion"/>
+                                                <xsl:copy-of select="$country/@codeSystemName"/>
+                                                <xsl:choose>
+                                                    <xsl:when test="$country/@displayName">
+                                                        <xsl:attribute name="displayName" select="$country/@displayName"/>
+                                                    </xsl:when>
+                                                    <xsl:when test="$country/text()">
+                                                        <xsl:attribute name="displayName" select="$country/text()"/>
+                                                    </xsl:when>
+                                                </xsl:choose>
+                                                <xsl:copy-of select="$country/@originalText"/>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <!-- no coded input, we'll do our best for Netherlands -->
+                                                <xsl:if test="$country/text()">
+                                                    <xsl:choose>
+                                                        <xsl:when test="upper-case(normalize-space($country/text())) = ('NEDERLAND', 'THE NETHERLANDS')">
+                                                            <xsl:attribute name="code">NL</xsl:attribute>
+                                                            <xsl:attribute name="codeSystem">1.0.3166.1.2.2</xsl:attribute>
+                                                            <xsl:attribute name="displayName">Nederland</xsl:attribute>
+                                                        </xsl:when>
+                                                        <xsl:otherwise>
+                                                            <!-- not in value, due to validation errors -->
+                                                      
+                                                            <xsl:attribute name="displayName" select="$country/text()"/>
+                                                        </xsl:otherwise>
+                                                        
+                                                    </xsl:choose>
+                                                </xsl:if>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+
+
                                     </xsl:element>
                                 </xsl:if>
                                 <xsl:if test="$additionalInformation">
@@ -1416,7 +1451,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:if>
         <xsl:for-each select="$in">
             <xsl:if test="@value[not(. = ('true', 'false'))]">
-                <xsl:message terminate="yes">FATAL: Message contains illegal boolean value. Expected 'true' or 'false'. Found: "<xsl:value-of select="$in/@value"/>" </xsl:message>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logFATAL"/>
+                    <xsl:with-param name="msg">Message contains illegal boolean value. Expected 'true' or 'false'. Found: "<xsl:value-of select="$in/@value"/>" </xsl:with-param>
+                    <xsl:with-param name="terminate" select="true()"/>
+                </xsl:call-template>
             </xsl:if>
 
             <xsl:element name="{$elemName}">

@@ -1,0 +1,145 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="DispenseToFHIRConversion-AdministrationAgreement-mp9-00041507004"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-AdministrationAgreement"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>MedicationDispense. Subject: van de XXX Kruk. Categorie: <span title="Provider medication administration instructions (procedure) (422037009 - SNOMED CT)">Provider medication administration instructions (procedure)</span>
+               <span style="display: block;">Uitvoerende: Klatter Apo</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Medicamenteuze behandel-id</th>
+                  <td>00041507004 (urn:oid:2.16.840.1.113883.2.4.3.39.6101.57947.10005159.3)</td>
+               </tr>
+               <tr>
+                  <th>Gemaakt</th>
+                  <td>16 april 2021</td>
+               </tr>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>PARACETAMOL TEVA TABLET 500MG</td>
+               </tr>
+               <tr>
+                  <th>Doseerinstructie</th>
+                  <td>
+                     <div>Tekst: zo nodig 1 maal per week 1 à 2 st, 2 maal per week 1 à 2 st</div>
+                     <div>Timing: <div>eenmalig per week</div>
+                     </div>
+                     <div>Zo nodig: <span title="zo nodig (1137 - nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek)">zo nodig</span>
+                     </div>
+                     <div>Dosering: 1 ST - 2 ST</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Doseerinstructie</th>
+                  <td>
+                     <div>Tekst: zo nodig 1 maal per week 1 à 2 st, 2 maal per week 1 à 2 st</div>
+                     <div>Timing: <div>2 maal per week</div>
+                     </div>
+                     <div>Zo nodig: zo nodig</div>
+                     <div>Dosering: 1 ST - 2 ST</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AdministrationAgreement-AuthoredOn">
+      <valueDateTime value="2021-04-16"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.39.6101.57947.10005159.3"/>
+         <value value="00041507004"/>
+      </valueIdentifier>
+   </extension>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422037009"/>
+         <display value="Provider medication administration instructions (procedure)"/>
+      </coding>
+      <text value="Toedieningsafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/eToFHIRConversion-Product-mp9-2-16-840-1-113883-2-4-4-8-15375641"/>
+      <display value="PARACETAMOL TEVA TABLET 500MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/VAN-DE-XXX-KRUK"/>
+      <display value="van de XXX Kruk"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/seToFHIRConversion-Organization-mp9-2-16-528-1-1007-3-3-00057947"/>
+         <display value="Klatter Apo"/>
+      </actor>
+   </performer>
+   <dosageInstruction>
+      <text value="zo nodig 1 maal per week 1 à 2 st, 2 maal per week 1 à 2 st"/>
+      <timing>
+         <repeat>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="wk"/>
+         </repeat>
+      </timing>
+      <asNeededCodeableConcept>
+         <coding>
+            <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-25-gebruiksvoorschrift#aanvullend-numeriek"/>
+            <code value="1137"/>
+            <display value="zo nodig"/>
+         </coding>
+      </asNeededCodeableConcept>
+      <doseRange>
+         <low>
+            <value value="1"/>
+            <unit value="ST"/>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+            <code value="245"/>
+         </low>
+         <high>
+            <value value="2"/>
+            <unit value="ST"/>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+            <code value="245"/>
+         </high>
+      </doseRange>
+   </dosageInstruction>
+   <dosageInstruction>
+      <text value="zo nodig 1 maal per week 1 à 2 st, 2 maal per week 1 à 2 st"/>
+      <timing>
+         <repeat>
+            <frequency value="2"/>
+            <period value="1"/>
+            <periodUnit value="wk"/>
+         </repeat>
+      </timing>
+      <asNeededCodeableConcept>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/NullFlavor"/>
+            <code value="OTH"/>
+            <display value="overig"/>
+         </coding>
+         <text value="zo nodig"/>
+      </asNeededCodeableConcept>
+      <doseRange>
+         <low>
+            <value value="1"/>
+            <unit value="ST"/>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+            <code value="245"/>
+         </low>
+         <high>
+            <value value="2"/>
+            <unit value="ST"/>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+            <code value="245"/>
+         </high>
+      </doseRange>
+   </dosageInstruction>
+</MedicationDispense>

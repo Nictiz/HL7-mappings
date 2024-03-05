@@ -18,8 +18,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:param name="logLevel" select="$logDEBUG"/>
 
-
-
     <!-- Dit is een conversie van ADA MP9 2.0 beschikbaarstellen_medicatiegegevens naar MP 6.12 verstrekkingen bericht -->
     <xsl:template match="/">
         <xsl:variable name="transaction" select="//beschikbaarstellen_medicatiegegevens"/>

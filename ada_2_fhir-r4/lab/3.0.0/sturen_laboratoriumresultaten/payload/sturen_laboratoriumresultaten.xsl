@@ -24,7 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
     
-    <xsl:import href="../../../../zibs2020/payload/0.6-beta2/all_zibs.xsl"/>
+    <xsl:import href="../../../../zibs2020/payload/zib_latest_package.xsl"/>
     <xsl:import href="../../../../fhir/2_fhir_BundleEntryRequest.xsl"/>
     
     <xd:doc>
@@ -51,11 +51,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:with-param name="in" select="//(
                     sturen_laboratoriumresultaten/onderzoeksresultaat/laboratorium_uitslag |
                     sturen_laboratoriumresultaten/patientgegevens/patient | 
-                    sturen_laboratoriumresultaten/beschikbaarstellende_partij/zorgaanbieder |
                     sturen_laboratoriumresultaten/onderzoeksresultaat/laboratorium_uitslag/uitvoerder/zorgaanbieder |
                     beschikbaarstellen_laboratoriumresultaten/onderzoeksresultaat/laboratorium_uitslag |
                     beschikbaarstellen_laboratoriumresultaten/patientgegevens/patient | 
-                    beschikbaarstellen_laboratoriumresultaten/beschikbaarstellende_partij/zorgaanbieder |
                     beschikbaarstellen_laboratoriumresultaten/onderzoeksresultaat/laboratorium_uitslag/uitvoerder/zorgaanbieder
             )"/>
         </xsl:call-template>
@@ -65,8 +63,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc/>
     </xd:doc>
     <xsl:template match="sturen_laboratoriumresultaten | beschikbaarstellen_laboratoriumresultaten">
-        <!--<xsl:message>Parameter writeOutputToDisk has value = <xsl:value-of select="$writeOutputToDisk"/></xsl:message>
-        <xsl:message>Parameter dateT has value = <xsl:value-of select="$dateT"/></xsl:message>-->
         
         <xsl:variable name="resources" as="element(f:entry)*">
             <xsl:apply-templates select="onderzoeksresultaat"/>
@@ -78,7 +74,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="groupKey" select="current-grouping-key()"/>
                         </xsl:call-template>
                         <resource>
-                            <xsl:call-template name="nl-core-LaboratoryTestResult.Specimen.Source">
+                            <xsl:call-template name="nl-core-LaboratoryTestResult.SpecimenSource">
                                 <xsl:with-param name="in" select="current-group()[1]"/>
                                 <xsl:with-param name="subject" select="../../../../patientgegevens/patient"/>
                             </xsl:call-template>
@@ -97,14 +93,34 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:call-template name="nl-core-LaboratoryTestResult.Specimen">
                                 <xsl:with-param name="in" select="current-group()[1]"/>
                                 <xsl:with-param name="subject" select="../../../patientgegevens/patient"/>
-                                <xsl:with-param name="type" select="microorganisme"/>
+                                <xsl:with-param name="type" select="(microorganisme, monstermateriaal)[1]"/>
                             </xsl:call-template>
                         </resource>
                     </entry>
+                    <xsl:for-each select="current-group()[microorganisme][monstermateriaal]">
+                        <xsl:variable name="monster2" as="element(monster2)">
+                            <xsl:element name="monster2" namespace="">
+                                <xsl:copy-of select="* except microorganisme"/>
+                            </xsl:element>
+                        </xsl:variable>
+                        <entry xmlns="http://hl7.org/fhir">
+                            <xsl:call-template name="_insertFullUrlByGroupKey">
+                                <xsl:with-param name="groupKey" select="current-grouping-key()"/>
+                                <xsl:with-param name="resourceType" select="'Specimen'"/>
+                            </xsl:call-template>
+                            <resource>
+                                <xsl:call-template name="nl-core-LaboratoryTestResult.Specimen">
+                                    <xsl:with-param name="in" select="."/>
+                                    <xsl:with-param name="subject" select="../../../patientgegevens/patient"/>
+                                    <xsl:with-param name="type" select="monstermateriaal"/>
+                                </xsl:call-template>
+                            </resource>
+                        </entry>
+                    </xsl:for-each>
                 </xsl:for-each-group>
             </xsl:variable>
             <xsl:variable name="zorgaanbieders" as="element()*">
-                <xsl:for-each-group select="beschikbaarstellende_partij/zorgaanbieder | onderzoeksresultaat/laboratorium_uitslag/uitvoerder/zorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
+                <xsl:for-each-group select="onderzoeksresultaat/laboratorium_uitslag/uitvoerder/zorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
                     <!--<xsl:if test="afdeling_specialisme">
                         <xsl:call-template name="nl-core-HealthcareProvider">
                             <xsl:with-param name="in" select="current-group()[1]"/>
@@ -151,7 +167,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:when>
                         <xsl:otherwise>
                             <!-- This happens when transforming a non-saved document in Oxygen -->
-                            <xsl:message>Could not output to result-document without Resource.id. Outputting to console instead.</xsl:message>
+                            <xsl:call-template name="util:logMessage">
+                                <xsl:with-param name="level" select="$logWARN"/>
+                                <xsl:with-param name="msg">Could not output to result-document without Resource.id. Outputting to console instead.</xsl:with-param>
+                            </xsl:call-template>
                             <xsl:copy-of select="."/>
                         </xsl:otherwise>
                     </xsl:choose>
@@ -275,10 +294,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="theMetaData" select="$fhirMetadata[nm:logical-id = $fhirId]" as="element()*"/>
         <xsl:choose>
             <xsl:when test="count($theMetaData) = 0">
-                <xsl:message terminate="yes">_insertFullUrlById: Nothing found. (<xsl:value-of select="count($fhirId)"/>)</xsl:message>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logFATAL"/>
+                    <xsl:with-param name="msg">_insertFullUrlById: Nothing found. (<xsl:value-of select="count($fhirId)"/>)</xsl:with-param>
+                    <xsl:with-param name="terminate" select="true()"/>
+                </xsl:call-template>
             </xsl:when>
             <xsl:when test="count($theMetaData) gt 1">
-                <xsl:message terminate="no">_insertFullUrlById: Multiple found (<xsl:value-of select="count($theMetaData)"/>): <xsl:value-of select="$fhirId"/> - <xsl:value-of select="$theMetaData/nm:full-url"/></xsl:message>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logERROR"/>
+                    <xsl:with-param name="msg">_insertFullUrlById: Multiple found (<xsl:value-of select="count($theMetaData)"/>): <xsl:value-of select="$fhirId"/> - <xsl:value-of select="$theMetaData/nm:full-url"/></xsl:with-param>
+                </xsl:call-template>
             </xsl:when>
         </xsl:choose>
         
@@ -302,10 +328,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:choose>
             <xsl:when test="count($theMetaData) = 0">
-                <xsl:message terminate="yes">_insertFullUrlById: Nothing found: <xsl:value-of select="$groupKey"/></xsl:message>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logFATAL"/>
+                    <xsl:with-param name="msg">_insertFullUrlById: Nothing found: <xsl:value-of select="$groupKey"/></xsl:with-param>
+                    <xsl:with-param name="terminate" select="true()"/>
+                </xsl:call-template>
             </xsl:when>
             <xsl:when test="count($theMetaData) gt 1">
-                <xsl:message terminate="no">_insertFullUrlById: Multiple found (<xsl:value-of select="count($theMetaData)"/>): <xsl:value-of select="$groupKey"/> - <xsl:value-of select="$theMetaData/nm:full-url"/></xsl:message>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logERROR"/>
+                    <xsl:with-param name="msg">_insertFullUrlById: Multiple found (<xsl:value-of select="count($theMetaData)"/>): <xsl:value-of select="$groupKey"/> - <xsl:value-of select="$theMetaData/nm:full-url"/></xsl:with-param>
+                </xsl:call-template>
             </xsl:when>
         </xsl:choose>
 

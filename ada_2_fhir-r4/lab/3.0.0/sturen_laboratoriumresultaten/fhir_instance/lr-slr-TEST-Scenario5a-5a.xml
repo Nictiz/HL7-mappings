@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-   
-   
-      <Bundle xmlns="http://hl7.org/fhir">
+<Bundle xmlns="http://hl7.org/fhir">
    <id value="lr-slr-TEST-Scenario5a-5a"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:795d751a-6040-11ed-2357-020000000000"/>
+      <fullUrl value="urn:uuid:b0c6ac1a-b936-11ee-1706-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -37,15 +35,21 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:795d74fc-6040-11ed-2357-020000000000"/>
+               <reference value="urn:uuid:b0c6abc0-b936-11ee-1706-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, Elise Erelies"/>
             </subject>
             <performer>
-               <reference value="urn:uuid:795d7574-6040-11ed-2357-020000000000"/>
+               <reference value="urn:uuid:b0c6abde-b936-11ee-1706-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Klinisch chemisch Lab 't Proefje"/>
             </performer>
+            <valueQuantity>
+               <value value="5.4"/>
+               <unit value="umol/L"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="umol/L"/>
+            </valueQuantity>
          </Observation>
       </resource>
       <request>
@@ -54,56 +58,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:795d7538-6040-11ed-2357-020000000000"/>
-      <resource>
-         <Organization>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
-            </meta>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
-               <value value="00005111"/>
-            </identifier>
-            <type>
-               <coding>
-                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
-                  <version value="2022-07-07T00:00:00"/>
-                  <code value="Z3"/>
-                  <display value="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
-               </coding>
-            </type>
-            <name value="Huisartsenpraktijk Itis"/>
-            <address>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
-                  <valueCodeableConcept>
-                     <coding>
-                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
-                        <code value="WP"/>
-                        <display value="Werkadres"/>
-                     </coding>
-                  </valueCodeableConcept>
-               </extension>
-               <use value="work"/>
-               <line value="Langelaan 1">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
-                     <valueString value="Langelaan"/>
-                  </extension>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
-                     <valueString value="1"/>
-                  </extension>
-               </line>
-               <city value="Onze Stad"/>
-               <postalCode value="1234ZZ"/>
-            </address>
-         </Organization>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Organization"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:795d7574-6040-11ed-2357-020000000000"/>
+      <fullUrl value="urn:uuid:b0c6abde-b936-11ee-1706-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -116,7 +71,7 @@
             <type>
                <coding>
                   <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
-                  <version value="2022-07-07T00:00:00"/>
+                  <version value="2022-09-10T00:00:00"/>
                   <code value="L1"/>
                   <display value="Laboratorium"/>
                </coding>
@@ -155,7 +110,7 @@
                   </extension>
                </line>
                <city value="Zorgstad"/>
-               <postalCode value="1234 AA"/>
+               <postalCode value="1234AA"/>
             </address>
          </Organization>
       </resource>
@@ -165,7 +120,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:795d74fc-6040-11ed-2357-020000000000"/>
+      <fullUrl value="urn:uuid:b0c6abc0-b936-11ee-1706-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -209,4 +164,3 @@
       </request>
    </entry>
 </Bundle>
-   

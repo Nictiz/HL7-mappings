@@ -274,7 +274,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:variable>
 
-           <xsl:apply-templates select="." mode="generateLogicalId">
+        <xsl:apply-templates select="." mode="generateLogicalId">
             <xsl:with-param name="uniqueString" select="string-join($uniqueString, '')"/>
             <xsl:with-param name="profile" select="$profile"/>
         </xsl:apply-templates>
@@ -293,20 +293,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Find the appropriate zorgaanbieder contents in this ada instance and copy those when found</xd:desc>
     </xd:doc>
     <xsl:template match="zorgverlener//zorgaanbieder[@value][not(*)]" mode="resolveAdaZorgaanbieder">
+        <!-- we'll be a bit tolerant, sometimes an undesired space is left behind in the reference -->
+        <xsl:variable name="normalizedRef" select="normalize-space(@value)"/>
+        
         <xsl:choose>
             <!-- assumption zorgaanbieder is found at same level as zorgverlener, which is a reasonable assumption -->
-            <xsl:when test="ancestor::zorgverlener/../zorgaanbieder[@id = current()/@value]">
+            <xsl:when test="ancestor::zorgverlener/../zorgaanbieder[@id = $normalizedRef]">
                 <!-- should be max one found, but defensive programming -->
-                <xsl:copy-of select="(ancestor::zorgverlener/../zorgaanbieder[@id = current()/@value])[1]"/>
+                <xsl:copy-of select="(ancestor::zorgverlener/../zorgaanbieder[@id = $normalizedRef])[1]"/>
             </xsl:when>
             <!-- okay, assumption did not work out, let's search anywhere in the ada instance -->
             <xsl:when test="ancestor::adaxml/data/*//zorgaanbieder[@id = current()/@value]">
                 <!-- should be max one found, but defensive programming -->
-                <xsl:copy-of select="(ancestor::adaxml/data/*//zorgaanbieder[@id = current()/@value])[1]"/>
+                <xsl:copy-of select="(ancestor::adaxml/data/*//zorgaanbieder[@id = $normalizedRef])[1]"/>
             </xsl:when>
             <!-- even that did not work out, the ada instance really let us down. Now we'll have to fallback on whatever was in input -->
             <xsl:otherwise>
-                <xsl:apply-templates select="@* | node()" mode="#current"/>
+                <xsl:call-template name="util:logMessage">
+                    <xsl:with-param name="level" select="$logWARN"/>
+                    <xsl:with-param name="msg">nl-core-HealthProfessional: the ada instance really let us down, we could not resolve the zorgaanbieder with @id: '<xsl:value-of select="current()/@value"/>'. Now we'll have to fallback on whatever was in input and this will not be nice. Please check this! </xsl:with-param>
+                </xsl:call-template>
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="#current"/>
+                </xsl:copy>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>

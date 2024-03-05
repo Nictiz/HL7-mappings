@@ -23,7 +23,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="language">nl-NL</xsl:param>
  
     <xsl:variable name="adaFormname">beschikbaarstellen_icavertaling</xsl:variable>
-    <xsl:variable name="transaction-name">beschikbaarstellen_icavertaling</xsl:variable>
+    <xsl:variable name="transactionName">beschikbaarstellen_icavertaling</xsl:variable>
     <xsl:variable name="transactionOid">2.16.840.1.113883.2.4.3.11.60.26.4.3</xsl:variable>
     <xsl:variable name="transactionEffectiveDate" as="xs:dateTime">2019-08-28T13:33:41</xsl:variable>
     <xsl:variable name="ica612Root" select="//hl7:REPC_IN000024NL"/>
