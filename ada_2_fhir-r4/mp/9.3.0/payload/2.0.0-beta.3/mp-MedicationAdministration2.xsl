@@ -58,6 +58,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueDateTime>
                     </extension>
                 </xsl:for-each>
+                
+                <!-- MP-1406 added registrationdatetime to MA/TA/WDS/MTD -->
+                <xsl:for-each select="registratie_datum_tijd">
+                    <xsl:call-template name="ext-RegistrationDateTime"/>
+                </xsl:for-each>
 
                 <xsl:for-each select="dubbele_controle_uitgevoerd">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.DoubleCheckPerformed">
