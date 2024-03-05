@@ -387,8 +387,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </extension>
                     </xsl:for-each>
                     
-                    <!--NL-CM:0.0.6   Identificatienummer-->
-                    <xsl:for-each select="../(zibroot/identificatienummer | hcimroot/identification_number)[@value]">
+                    <!--NL-CM:0.0.6   Identificatienummer. Use the child identifier (which the zib normally does not have but some datasets have added). If there is no child identifier AND if there is exactly 1 test, AND there is no panel: use the parent identifier. A business identifier can only be used in 1 business object. -->
+                    <xsl:variable name="theIdentifier" as="element()*">
+                        <xsl:choose>
+                            <xsl:when test="(zibroot/identificatienummer | hcimroot/identification_number)[@value]">
+                                <xsl:copy-of select="(zibroot/identificatienummer | hcimroot/identification_number)[@value]"/>
+                            </xsl:when>
+                            <xsl:when test="self::*[empty(preceding-sibling::laboratorium_test | preceding-sibling::laboratory_test | following-sibling::laboratorium_test | following-sibling::laboratory_test | ../onderzoek | ../panel_or_battery)]">
+                                <xsl:copy-of select="../(zibroot/identificatienummer | hcimroot/identification_number)[@value]"/>
+                            </xsl:when>
+                        </xsl:choose>
+                    </xsl:variable>
+                    <xsl:for-each select="$theIdentifier">
                         <identifier>
                             <xsl:call-template name="id-to-Identifier">
                                 <xsl:with-param name="in" select="."/>
