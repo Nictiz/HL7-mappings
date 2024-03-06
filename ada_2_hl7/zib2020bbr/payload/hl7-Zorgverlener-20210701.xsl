@@ -108,8 +108,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
             <!-- assumption for reference use is that zorgverlener and zorgaanbieder are both in same 'bouwstenen' folder in dataset -->
             <xsl:choose>
-                <xsl:when test="../zorgaanbieder[@id = current()//zorgaanbieder[not(zorgaanbieder)]/@value]">
-                    <xsl:for-each select="../zorgaanbieder[@id = current()//zorgaanbieder[not(zorgaanbieder)]/@value]">
+                <xsl:when test="self::zorgverlener/../zorgaanbieder[@id = current()//zorgaanbieder[not(zorgaanbieder)]/@value]">
+                    <xsl:for-each select="self::zorgverlener/../zorgaanbieder[@id = current()//zorgaanbieder[not(zorgaanbieder)]/@value]">
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.33_20210701000000"/>
                     </xsl:for-each>
                 </xsl:when>

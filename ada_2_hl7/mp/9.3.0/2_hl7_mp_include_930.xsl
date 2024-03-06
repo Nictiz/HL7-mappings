@@ -108,6 +108,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:if test="$mtdRegistratieDatumTijd instance of element()">
                     <author>
                         <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.32_20210701000000">
+                            <!-- we don't have an author in MTD, but need an element in $in to make the mandatory xsd elements -->
+                            <xsl:with-param name="in" select="$mtdRegistratieDatumTijd[1]"/>
                             <xsl:with-param name="theTime" select="$mtdRegistratieDatumTijd[1]"/>
                         </xsl:call-template>
                     </author>
