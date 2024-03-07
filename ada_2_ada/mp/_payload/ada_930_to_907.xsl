@@ -405,7 +405,9 @@
     <xd:doc>
         <xd:desc>Handle toelichting, needs to be enriched with non supported stuff in 907</xd:desc>
     </xd:doc>
-    <xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatiegebruik | medicatie_gebruik | verstrekkingsverzoek)/toelichting" mode="ada930_2_907">
+    <!--<xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatiegebruik | medicatie_gebruik | verstrekkingsverzoek)/toelichting" mode="ada930_2_907">-->
+    <!-- Match expression was not XSLT2 compliant. Changed to: -->
+    <xsl:template match="medicatieafspraak/toelichting | toedieningsafspraak/toelichting | medicatiegebruik/toelichting | medicatie_gebruik/toelichting | verstrekkingsverzoek/toelichting" mode="ada930_2_907">
         <xsl:call-template name="_toelichting"/>
     </xsl:template>
 
