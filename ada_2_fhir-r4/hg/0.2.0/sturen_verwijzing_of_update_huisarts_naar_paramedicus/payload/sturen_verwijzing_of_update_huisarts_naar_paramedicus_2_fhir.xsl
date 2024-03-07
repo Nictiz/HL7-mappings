@@ -620,31 +620,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="logicalId">
             <xsl:choose>
                 <xsl:when test="$localName = 'envelop' and $profile = 'hg-ReferralTask'">
-                    <xsl:value-of select="'task-' || (../@id)[1]"/>
+                    <xsl:value-of select="concat('task-', (../@id)[1])"/>
                 </xsl:when>
                 <xsl:when test="$localName = 'envelop' and $profile = 'hg-ReferralServiceRequest'">
-                    <xsl:value-of select="'servicerequest-' || (../@id)[1]"/>
+                    <xsl:value-of select="concat('servicerequest-', (../@id)[1])"/>
                 </xsl:when>
                 <xsl:when test="$localName = 'kern'">
-                    <xsl:value-of select="'composition-' || (../@id)[1]"/>
+                    <xsl:value-of select="concat('composition-', (../@id)[1])"/>
                 </xsl:when>
                 <xsl:when test="$localName = 'patient'">
-                    <xsl:value-of select="'patient-' || string-join((naamgegevens[1]/geslachtsnaam/(voorvoegsels, achternaam)/@value, naamgegevens[1]/geslachtsnaam_partner/(voorvoegsels_partner, achternaam_partner)/@value), '-')"/>
+                    <xsl:value-of select="concat('patient-', string-join((naamgegevens[1]/geslachtsnaam/(voorvoegsels, achternaam)/@value, naamgegevens[1]/geslachtsnaam_partner/(voorvoegsels_partner, achternaam_partner)/@value), '-'))"/>
                 </xsl:when>
                 <xsl:when test="$localName = 'contactpersoon'">
-                    <xsl:value-of select="'contactperson-' || string-join((naamgegevens[1]/geslachtsnaam/(voorvoegsels, achternaam)/@value, naamgegevens[1]/geslachtsnaam_partner/(voorvoegsels_partner, achternaam_partner)/@value), '-')"/>
+                    <xsl:value-of select="concat('contactperson-', string-join((naamgegevens[1]/geslachtsnaam/(voorvoegsels, achternaam)/@value, naamgegevens[1]/geslachtsnaam_partner/(voorvoegsels_partner, achternaam_partner)/@value), '-'))"/>
                 </xsl:when>
                 <xsl:when test="$localName = 'zorgverlener' and $profile = 'nl-core-HealthProfessional-PractitionerRole'">
-                    <xsl:value-of select="'practitionerrole-' || (zorgverlener_identificatienummer/@value, specialisme/(@displayName, @code))[1]"/>
+                    <xsl:value-of select="concat('practitionerrole-', (zorgverlener_identificatienummer/@value, specialisme/(@displayName, @code))[1])"/>
                 </xsl:when>
                 <xsl:when test="$localName = 'zorgverlener' and $profile = 'nl-core-HealthProfessional-Practitioner'">
-                    <xsl:value-of select="'practitioner-' || (zorgverlener_identificatienummer/@value, specialisme/(@displayName, @code))[1]"/>
+                    <xsl:value-of select="concat('practitioner-', (zorgverlener_identificatienummer/@value, specialisme/(@displayName, @code))[1])"/>
                 </xsl:when>
                 <xsl:when test="$localName = 'zorgaanbieder' and $profile = 'nl-core-HealthcareProvider-Organization'">
-                    <xsl:value-of select="'organization-' || string-join((zorgaanbieder_identificatienummer/@value, afdeling_specialisme/@code)[. != ''], '-')"/>
+                    <xsl:value-of select="concat('organization-', string-join((zorgaanbieder_identificatienummer/@value, afdeling_specialisme/@code)[. != ''], '-'))"/>
                 </xsl:when>
                 <xsl:when test="$localName = 'probleem'">
-                    <xsl:value-of select="'problem-' || probleem_naam/@code[1]"/>
+                    <xsl:value-of select="concat('problem-', probleem_naam/@code[1])"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="$localName"/>
