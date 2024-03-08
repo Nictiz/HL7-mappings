@@ -26,10 +26,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <toedieningsafspraak>
             <!-- identificatie -->
             <xsl:apply-templates select="f:identifier" mode="#current"/>
-            <!-- toedieningsafspraak_datum_tijd -->
-            <xsl:apply-templates select="f:extension[@url = $extAdministrationAgreementDateTime]" mode="#current"/>
             <!-- registratiedatumtijd -->
             <xsl:apply-templates select="f:extension[@url = $urlExtRegistrationDateTime]" mode="urlExtRegistrationDateTime"/>
+            <!-- toedieningsafspraak_datum_tijd -->
+            <xsl:apply-templates select="f:extension[@url = $extAdministrationAgreementDateTime]" mode="#current"/>
             <!-- gebruiksperiode -->
             <xsl:if test="f:extension[@url = ($urlExtTimeInterval-Period, $urlExtTimeIntervalPeriod)] or f:extension[@url = ($urlExtTimeInterval-Duration, $urlExtTimeIntervalDuration)]">
                 <gebruiksperiode>

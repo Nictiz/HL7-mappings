@@ -33,6 +33,8 @@ WisselendDoseerschema in beschikbaarstellen_medicatiegegevens_2_ada.xsl boven me
 		<wisselend_doseerschema>
 			<!-- identificatie -->
 			<xsl:apply-templates select="f:identifier" mode="#current"/>
+			<!-- registratiedatumtijd -->
+			<xsl:apply-templates select="f:extension[@url = $urlExtRegistrationDateTime]" mode="urlExtRegistrationDateTime"/>
 			<!-- wisselend_doseerschema_datum_tijd -->
 			<xsl:apply-templates select="f:authoredOn" mode="#current"/>
 			<!-- gebruiksperiode -->

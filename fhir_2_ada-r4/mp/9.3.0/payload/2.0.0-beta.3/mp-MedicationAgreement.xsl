@@ -22,10 +22,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		<medicatieafspraak>
 			<!-- identificatie -->
 			<xsl:apply-templates select=".[f:intent/@value = 'order']/f:identifier" mode="#current"/>
-			<!-- afspraakdatum -->
-			<xsl:apply-templates select=".[f:intent/@value = 'order']/f:authoredOn" mode="#current"/>
 			<!-- registratiedatumtijd -->
 			<xsl:apply-templates select="f:extension[@url = $urlExtRegistrationDateTime]" mode="urlExtRegistrationDateTime"/>
+			<!-- afspraakdatum -->
+			<xsl:apply-templates select=".[f:intent/@value = 'order']/f:authoredOn" mode="#current"/>
 			<!-- gebruiksperiode -->
 			<xsl:if test="f:extension[@url = ($urlExtTimeInterval-Period, $urlExtTimeIntervalPeriod)] or f:extension[@url = ($urlExtTimeInterval-Duration, $urlExtTimeIntervalDuration)]">
 				<gebruiksperiode>
