@@ -22,8 +22,10 @@ The ADA user front-end for Ketenzorg 3.0.2 can be found here:
     https://decor.nictiz.nl/art-decor/ada-data/projects/ketenzorg3.0/views/ketenzorg_30_index.xhtml
 
 ===Release Notes===
+2024-03-08
+* ELZ-186 Improved the logic for Composition.title. Now concatenates all unique diagnoses into the Composition instead of just the first.
 2023-04-25
-*         Protection against a sending system that sends duplicate E-lines
+* ELZ-186 Protection against a sending system that sends duplicate E-lines. All E-lines are preserved, but only the first is used for building the Composition.title
 2021-12-14
 * MM-2740 Fixed handling of organizations with multiple ids (e.g. AGB, UZI)
 2021-12-03
