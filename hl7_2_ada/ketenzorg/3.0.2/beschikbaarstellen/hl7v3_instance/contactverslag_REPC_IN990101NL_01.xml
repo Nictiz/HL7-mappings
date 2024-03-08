@@ -12,7 +12,7 @@
         <soap:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
             <soap:Header/>
             <soap:Body>
-                <REPC_IN990101NL xmlns="urn:hl7-org:v3" xmlns:sd="urn:hl7-org:sdtc" xmlns:ph="urn:ihe:pharm:medication" xmlns:nl="urn:hl7-nl:v3">
+                <REPC_IN990101NL xmlns="urn:hl7-org:v3" xmlns:sd="urn:hl7-org:sdtc" xmlns:ph="urn:ihe:pharm:medication" xmlns:nl="urn:hl7-nl:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                     <id extension="XIS-20190304-1353-49fb42f1-7c0a-4c69-8e7a-ae74cd2e3be6" root="2.16.840.1.113883.2.4.6.6.90000258.1"/>
                     <creationTime value="20190304155253"/>
                     <versionCode code="NICTIZEd2005-Okt"/>
@@ -82,6 +82,152 @@
                                 <component contextControlCode="OP" typeCode="COMP">
                                     <act classCode="ACT" moodCode="EVN">
                                         <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.207"/>
+                                        <id extension="86dec649-49e2-4a01-be3b-f6a99e2cce25" root="2.16.840.1.113883.2.4.3.118.2.8"/>
+                                        <code code="34900-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="General medicine Progress note"/>
+                                        <statusCode code="completed"/>
+                                        <effectiveTime value="20221009000000"/>
+                                        <participant typeCode="RESP">
+                                            <time>
+                                                <low value="201403280000"/>
+                                            </time>
+                                            <participantRole classCode="ASSIGNED">
+                                                <id extension="000138992" root="2.16.528.1.1007.3.1"/>
+                                                <code code="GENRL" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="General"/>
+                                                <addr>
+                                                    <country code="NL" codeSystem="1.0.3166.1.2.2">Nederland</country>
+                                                    <city>ZUTPHEN</city>
+                                                    <streetName>van Dorenborchstraat</streetName>
+                                                    <houseNumber>1</houseNumber>
+                                                    <buildingNumberSuffix>d</buildingNumberSuffix>
+                                                    <postalCode>7203 CA</postalCode>
+                                                </addr>
+                                                <telecom use="WP" value="tel:0620106786"/>
+                                                <playingEntity classCode="PSN" determinerCode="INSTANCE">
+                                                    <code code="01.015" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="Huisarts"/>
+                                                    <name>
+                                                        <given qualifier="BR CL">Lynn</given>
+                                                        <given qualifier="IN">L.J.</given>
+                                                        <prefix qualifier="VV">van der </prefix>
+                                                        <family qualifier="BR">Zanden</family>
+                                                    </name>
+                                                </playingEntity>
+                                                <scopingEntity classCode="ORG" determinerCode="INSTANCE">
+                                                    <id extension="00058156" root="2.16.528.1.1007.3.3"/>
+                                                    <code code="Z3" codeSystem="2.16.840.1.113883.2.4.15.1060" displayName="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
+                                                </scopingEntity>
+                                            </participantRole>
+                                        </participant>
+                                        <entryRelationship typeCode="REFR">
+                                            <encounter classCode="ENC" moodCode="EVN">
+                                                <id extension="d2be8fcc-5432-48b6-a1a7-05cd7e37a202" root="2.16.840.1.113883.2.4.3.118.2.4"/>
+                                            </encounter>
+                                        </entryRelationship>
+                                        <entryRelationship typeCode="REFR">
+                                            <act classCode="ACT" moodCode="EVN">
+                                                <id extension="f1563f9f-b167-4507-939d-f996fa272743" root="2.16.840.1.113883.2.4.3.118.2.9"/>
+                                                <code code="CONC" codeSystem="2.16.840.1.113883.5.6" xsi:type="CV"/>
+                                            </act>
+                                        </entryRelationship>
+                                        <entryRelationship typeCode="COMP">
+                                            <act classCode="ACT" moodCode="EVN">
+                                                <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.208"/>
+                                                <code code="61150-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Subjective Narrative"/>
+                                                <text>Klacht/beloop: binnenloper: mw. is een paar weken geleden in ziekenhuis geweest ivm klaplong. Nu erg veel pijn rechter schouderblad (nu 1/4 uur), hetzelfde als bij klaplong. Lukt nu weer om goed door te ademen, dat was straks moeilijker. Geen PODB&#13;
+                                                    Hulpvraag: meteen naar HAP gekomen&#13;
+                                                    Voorgeschiedenis: klaplong&#13;
+                                                    Medicatie: de pil&#13;
+                                                    Algemeen: na klaplong gestopt met roken</text>
+                                                <statusCode code="completed"/>
+                                            </act>
+                                        </entryRelationship>
+                                        <entryRelationship typeCode="COMP">
+                                            <act classCode="ACT" moodCode="EVN">
+                                                <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.209"/>
+                                                <code code="61149-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Objective Narrative"/>
+                                                <text>2 keer een klaplong gehad.  en sinds +- een uurtje pijn die exact het zelfde is als toen,   re zijde, achter schouderblad. &#13;
+                                                    pulm vag , re boven iets crepiteren?  sat 97 % ahf 14  erg  gespannen. p= 100 RR120/70</text>
+                                                <statusCode code="completed"/>
+                                            </act>
+                                        </entryRelationship>
+                                        <entryRelationship typeCode="COMP">
+                                            <act classCode="ACT" moodCode="EVN">
+                                                <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.210"/>
+                                                <code code="51848-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Evaluation note"/>
+                                                <text>pneumothorax</text>
+                                                <statusCode code="completed"/>
+                                                <entryRelationship typeCode="REFR">
+                                                    <observation classCode="OBS" moodCode="EVN">
+                                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.213"/>
+                                                        <id extension="bfe7d987-812a-41d5-948b-e84d9ac4f84a" root="2.16.840.1.113883.2.4.3.118.2.7"/>
+                                                        <code code="282291009" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnosis"/>
+                                                        <statusCode code="completed"/>
+                                                        <effectiveTime>
+                                                            <low value="201910221349"/>
+                                                        </effectiveTime>
+                                                        <value code="R99.04" codeSystem="2.16.840.1.113883.2.4.4.31.1" codeSystemName="ICPC-1-NL" displayName="Pneumothorax" xsi:type="CD"/>
+                                                        <author typeCode="AUT">
+                                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9066"/>
+                                                            <time value="20191022134930"/>
+                                                            <assignedAuthor classCode="ASSIGNED">
+                                                                <id extension="653264815719592" root="2.16.528.1.1007.3.3.10009958.1"/>
+                                                                <assignedPerson classCode="PSN" determinerCode="INSTANCE">
+                                                                    <name>
+                                                                        <family qualifier="BR">Bosheide</family>
+                                                                    </name>
+                                                                </assignedPerson>
+                                                            </assignedAuthor>
+                                                        </author>
+                                                    </observation>
+                                                </entryRelationship>
+                                            </act>
+                                        </entryRelationship>
+                                        <entryRelationship typeCode="COMP">
+                                            <act classCode="ACT" moodCode="EVN">
+                                                <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.210"/>
+                                                <code code="51848-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Evaluation note"/>
+                                                <text>{DD}?</text>
+                                                <statusCode code="completed"/>
+                                                <entryRelationship typeCode="REFR">
+                                                    <observation classCode="OBS" moodCode="EVN">
+                                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.213"/>
+                                                        <id extension="ef0bf86b-e16b-4509-8a66-86e12a97a35c" root="2.16.840.1.113883.2.4.3.118.2.7"/>
+                                                        <code code="282291009" codeSystem="2.16.840.1.113883.6.96" displayName="Diagnosis"/>
+                                                        <statusCode code="completed"/>
+                                                        <effectiveTime>
+                                                            <low value="201910221349"/>
+                                                        </effectiveTime>
+                                                        <value code="R99.04" codeSystem="2.16.840.1.113883.2.4.4.31.1" codeSystemName="ICPC-1-NL" displayName="Pneumothorax" xsi:type="CD"/>
+                                                        <author typeCode="AUT">
+                                                            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9066"/>
+                                                            <time value="20191022134930"/>
+                                                            <assignedAuthor classCode="ASSIGNED">
+                                                                <id extension="653264815719592" root="2.16.528.1.1007.3.3.10009958.1"/>
+                                                                <assignedPerson classCode="PSN" determinerCode="INSTANCE">
+                                                                    <name>
+                                                                        <family qualifier="BR">Bosheide</family>
+                                                                    </name>
+                                                                </assignedPerson>
+                                                            </assignedAuthor>
+                                                        </author>
+                                                    </observation>
+                                                </entryRelationship>
+                                            </act>
+                                        </entryRelationship>
+                                        <entryRelationship typeCode="COMP">
+                                            <act classCode="ACT" moodCode="EVN">
+                                                <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.211"/>
+                                                <code code="18776-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Plan of treatment (narrative)"/>
+                                                <text>iom seh , doorgestuurd voor een X
+                                                    Verwijsurgentie: U2
+                                                    Verwijsvraag: pneumothorax? / randpneu?</text>
+                                                <statusCode code="completed"/>
+                                            </act>
+                                        </entryRelationship>
+                                    </act>
+                                </component>
+                                <component contextControlCode="OP" typeCode="COMP">
+                                    <act classCode="ACT" moodCode="EVN">
+                                        <templateId root="2.16.840.1.113883.2.4.3.11.60.66.10.207"/>
                                         <id extension="996625" root="2.16.840.1.113883.2.4.6.6.90000258.4.1"/>
                                         <code code="34900-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="General medicine Progress note"/>
                                         <statusCode code="completed"/>
@@ -133,7 +279,7 @@
                                                         <effectiveTime>
                                                             <low value="20190130"/>
                                                         </effectiveTime>
-                                                        <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" code="R95" codeSystem="2.16.840.1.113883.2.4.4.31.1" codeSystemName="ICPC-1-NL" displayName="Emfyseem/COPD" xsi:type="CD"/>
+                                                        <value code="R95" codeSystem="2.16.840.1.113883.2.4.4.31.1" codeSystemName="ICPC-1-NL" displayName="Emfyseem/COPD" xsi:type="CD"/>
                                                     </observation>
                                                 </entryRelationship>
                                             </act>
