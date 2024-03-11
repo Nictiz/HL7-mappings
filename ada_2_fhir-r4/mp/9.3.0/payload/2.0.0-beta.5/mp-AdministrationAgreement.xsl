@@ -21,7 +21,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ADA toedienings_afsrpaak to FHIR MedicationDispense conforming to profile mp-AdministrationAgreement.</xd:desc>
     </xd:doc>
-    
+
     <xsl:variable name="taCode930" select="$taCode[1]"/>
 
     <xd:doc>
@@ -48,10 +48,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                     <xsl:if test="string-length($metaTag) gt 0">
                         <tag>
-                            <system value="http://terminology.hl7.org/CodeSystem/common-tags" />
-                            <code value="{$metaTag}" />
+                            <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
+                            <code value="{$metaTag}"/>
                         </tag>
-                    </xsl:if>                    
+                    </xsl:if>
                 </meta>
 
                 <!-- MP-433: Starting from MP 9.3.0 beta.3 additionalInformation is nolonger supported in the profile AdministrationAgreement
@@ -83,7 +83,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueString>
                     </extension>
                 </xsl:for-each>
-                
+
                 <!-- Issue MP-370 dataset concept type change from string to codelist -->
                 <xsl:for-each select="(reden_afspraak | toedieningsafspraak_reden_wijzigen_of_staken)[@code]">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.ReasonModificationOrDiscontinuation">
@@ -94,8 +94,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueCodeableConcept>
                     </extension>
                 </xsl:for-each>
-                
-                <xsl:for-each select="toedieningsafspraak_datum_tijd">
+
+                <xsl:for-each select="toedieningsafspraak_datum_tijd[@value | @nullFlavor]">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
                         <valueDateTime>
                             <xsl:attribute name="value">
@@ -106,9 +106,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueDateTime>
                     </extension>
                 </xsl:for-each>
-                
+
                 <!-- MP-1406 added registrationdatetime to MA/TA/WDS/MTD -->
-                <xsl:for-each select="registratie_datum_tijd">
+                <xsl:for-each select="registratie_datum_tijd[@value | @nullFlavor]">
                     <xsl:call-template name="ext-RegistrationDateTime"/>
                 </xsl:for-each>
 
@@ -125,12 +125,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- pharmaceuticalTreatmentIdentifier -->
-                <xsl:for-each select="../identificatie">
+                <xsl:for-each select="../identificatie[@value | @root | @nullFlavor]">
                     <xsl:call-template name="ext-PharmaceuticalTreatmentIdentifier">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
                 </xsl:for-each>
-                
+
                 <!-- Issue MP-257: add disribution form to toedieningsafspraak -->
                 <xsl:for-each select="distributievorm[@code]">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.DistributionForm">
@@ -139,7 +139,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueCodeableConcept>
                     </extension>
                 </xsl:for-each>
-                
+
                 <!-- MP-449: add relatie_toedieningsafspraak -->
                 <xsl:for-each select="relatie_toedieningsafspraak/identificatie[@value]">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RelationAdministrationAgreement">
@@ -153,7 +153,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </extension>
                 </xsl:for-each>
 
-                <xsl:for-each select="toedieningsafspraak_stop_type">
+                <xsl:for-each select="toedieningsafspraak_stop_type[@value | @nullFlavor]">
                     <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
                         <valueCodeableConcept>
                             <xsl:call-template name="code-to-CodeableConcept"/>
@@ -166,7 +166,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="ext-InstructionsForUse.RepeatPeriodCyclicalSchedule"/>
                 </xsl:for-each>
 
-                <xsl:for-each select="identificatie[@value | @root]">
+                <xsl:for-each select="identificatie[@value | @root | @nullFlavor]">
                     <identifier>
                         <xsl:call-template name="id-to-Identifier"/>
                     </identifier>
@@ -224,7 +224,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </authorizingPrescription>
                 </xsl:for-each>
 
-                <xsl:for-each select="toelichting">
+                <xsl:for-each select="toelichting[@value]">
                     <note>
                         <text>
                             <xsl:call-template name="string-to-string"/>
