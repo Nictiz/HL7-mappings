@@ -52,7 +52,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- geneesmiddel_bij_toedieningsafspraak -->
             <xsl:apply-templates select="f:medicationReference" mode="#current"/>
             <!-- gebruiksinstructie -->
-            <xsl:call-template name="nl-core-InstructionsForUse"/>
+            <xsl:call-template name="mp-InstructionsForUse"/>
             <!-- distributievorm, added as part of MP-257, borrowed from MedicationDispense -->
             <xsl:apply-templates select="f:extension[@url = $urlExtMedicationMedicationDispenseDistributionForm]" mode="nl-core-MedicationDispense"/>
             <!-- aanvullende_informatie -->
