@@ -42,19 +42,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 
-                <!-- MP-1406 added registrationdatetime to MA/TA/WDS/MTD -->
-                <xsl:for-each select="registratie_datum_tijd">
-                    <xsl:call-template name="ext-RegistrationDateTime"/>
-                </xsl:for-each>
-                
                 <!-- pharmaceuticalTreatmentIdentifier -->
-                <xsl:for-each select="../identificatie">
+                <xsl:for-each select="../identificatie[@value | @root | @nullFlavor]">
                     <xsl:call-template name="ext-PharmaceuticalTreatmentIdentifier">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
                 </xsl:for-each>
 
-                <xsl:for-each select="relatie_zorgepisode/(identificatie | identificatienummer)[@value]">
+                <!-- MP-1406 added registrationdatetime to MA/TA/WDS/MTD -->
+                <xsl:for-each select="registratie_datum_tijd[@value | @nullFlavor]">
+                    <xsl:call-template name="ext-RegistrationDateTime"/>
+                </xsl:for-each>
+                
+                <xsl:for-each select="relatie_zorgepisode/(identificatie | identificatienummer)[@value | @root]">
                     <xsl:call-template name="ext-Context-EpisodeOfCare"/>
                 </xsl:for-each>
 
@@ -71,7 +71,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="ext-InstructionsForUse.RepeatPeriodCyclicalSchedule"/>
                 </xsl:for-each>
 
-                <xsl:for-each select="wisselend_doseerschema_stop_type">
+                <xsl:for-each select="wisselend_doseerschema_stop_type[@value | @nullFlavor]">
                     <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
                         <valueCodeableConcept>
                             <xsl:call-template name="code-to-CodeableConcept"/>
@@ -128,13 +128,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </subject>
                 </xsl:for-each>
 
-                <xsl:for-each select="relatie_contact/(identificatie | identificatienummer)[@value]">
+                <xsl:for-each select="relatie_contact/(identificatie | identificatienummer)[@value | @root | @nullFlavor]">
                     <encounter>
                         <xsl:apply-templates select="." mode="nl-core-Encounter-RefIdentifier"/>
                     </encounter>
                 </xsl:for-each>
                 
-                <xsl:for-each select="wisselend_doseerschema_datum_tijd">
+                <xsl:for-each select="wisselend_doseerschema_datum_tijd[@value | @nullFlavor]">
                     <authoredOn>
                         <xsl:attribute name="value">
                             <xsl:call-template name="format2FHIRDate">
@@ -152,7 +152,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </requester>
                 </xsl:for-each>
 
-                <xsl:for-each select="reden_wijzigen_of_staken">
+                <xsl:for-each select="reden_wijzigen_of_staken[@code]">
                     <reasonCode>
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="treatNullFlavorAsCoding" select="true()"/>
@@ -160,7 +160,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </reasonCode>
                 </xsl:for-each>
 
-                <xsl:for-each select="relatie_medicatieafspraak/identificatie[@value]">
+                <xsl:for-each select="relatie_medicatieafspraak/identificatie[@value | @root | @nullFlavor]">
                     <basedOn>
                         <type value="MedicationRequest"/>
                         <identifier>
@@ -184,7 +184,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:for-each>
                 
-                <xsl:for-each select="relatie_wisselend_doseerschema/identificatie[@value]">
+                <xsl:for-each select="relatie_wisselend_doseerschema/identificatie[@value | @root | @nullFlavor]">
                     <priorPrescription>
                         <type value="MedicationRequest"/>
                         <identifier>
