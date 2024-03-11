@@ -1,0 +1,77 @@
+<ProcedureRequest xmlns="http://hl7.org/fhir">
+   <id value="zib-ProcedureRequest-bgz-msz-patB-procedure32"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ProcedureRequest"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichtingaanvraag. Subject: Francisca F. Fransje Gigase Verheul. Id: bgz-msz-patB-procedure1 (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6), Status: onbekend<span style="display: block;">Intentie: plan</span>
+               <span style="display: block;">Aangevraagd door: Anna A. Anna de Vries Bijns || Huisarts || Huisartsenpraktijk Betrokken</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="intraveneuze trombolyse (77381000146102 - SNOMED CT)">intraveneuze trombolyse</span>
+                  </td>
+                  <td>
+                     <div>Wanneer: ${DATE, T, Y, -14} - ${DATE, T, Y, -4}</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Beoogde uitvoerende</th>
+                  <td>
+                     <div>Ziekenhuis Beterschap</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>palpabele massa van mamma</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"/>
+      <value value="bgz-msz-patB-procedure1"/>
+   </identifier>
+   <status value="unknown"/>
+   <intent value="plan"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="77381000146102"/>
+         <display value="intraveneuze trombolyse"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/FRANCISCA-F--FRANSJE-GIGASE-VERHEUL"/>
+      <display value="Francisca F. Fransje Gigase Verheul"/>
+   </subject>
+   <occurrencePeriod>
+      <start value="${DATE, T, Y, -14}"/>
+      <end value="${DATE, T, Y, -4}"/>
+   </occurrencePeriod>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-bgz-msz-0013131301-01520000004"/>
+               <display value="Anna A. Anna de Vries Bijns || Huisarts || Huisartsenpraktijk Betrokken"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-840-1-113883-2-4-6-1-00131313"/>
+         <display value="Anna A. Anna de Vries Bijns"/>
+      </agent>
+   </requester>
+   <performer>
+      <reference value="Organization/nl-core-organization-bgz-msz-2-16-840-1-113883-2-4-6-1-20000003"/>
+      <display value="Ziekenhuis Beterschap"/>
+   </performer>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-bgz-msz-bgz-msz-patB-problem4"/>
+      <display value="palpabele massa van mamma"/>
+   </reasonReference>
+</ProcedureRequest>
