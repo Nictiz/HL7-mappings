@@ -58,6 +58,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueDateTime>
                     </extension>
                 </xsl:for-each>
+                
+                <!-- MP-1406 added registrationdatetime to MA/TA/WDS/MTD -->
+                <xsl:for-each select="registratie_datum_tijd">
+                    <xsl:call-template name="ext-RegistrationDateTime"/>
+                </xsl:for-each>
 
                 <xsl:for-each select="dubbele_controle_uitgevoerd">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.DoubleCheckPerformed">
@@ -344,7 +349,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:for-each>
                     <!-- toedieningssnelheid nominale waarde -->
                     <xsl:for-each select="toedieningssnelheid[*/nominale_waarde]">
+                        <!-- MP-1367 tijdseenheid is no longer used in toedieningssnelheid from MP 9.3 beta.3 onwards but kept in stylesheet due to backwards compatibility with older versions -->
                         <xsl:choose>
+                            <!-- with tijdseenheid -->
+                            <xsl:when test="tijdseenheid">
+                            <xsl:choose>
                             <xsl:when test="not(tijdseenheid/@value castable as xs:integer)">
                                 <xsl:call-template name="util:logMessage">
                                     <xsl:with-param name="level" select="$logERROR"/>
@@ -373,7 +382,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                             </xsl:otherwise>
                         </xsl:choose>
-
+                        </xsl:when>
+                        <!-- without tijdseenheid (starting from version MP9.3) -->
+                        <xsl:when test="not(tijdseenheid) and eenheid">
+                                <xsl:if test="waarde/nominale_waarde[@value]">
+                                    <rateQuantity>
+                                        <value value="{waarde/nominale_waarde/@value}"/>
+                                        <unit value="{eenheid/@displayName}"/>
+                                        <system value="http://unitsofmeasure.org"/>
+                                        <code value="{eenheid/@code}"/>
+                                    </rateQuantity>
+                                </xsl:if>
+                        </xsl:when>
+                        </xsl:choose>
                     </xsl:for-each>
 
                     <!-- TODO: mapping of zib Range for AdministreringSpeed. Also see https://bits.nictiz.nl/browse/ZIB-815
