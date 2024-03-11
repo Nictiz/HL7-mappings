@@ -114,7 +114,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="ontwikkeling_kind" resource="Observation" profile="nl-core-DevelopmentChild"/>
         <nm:map ada="opleiding" resource="Observation" profile="nl-core-Education"/>
         <nm:map ada="overgevoeligheid" resource="AllergyIntolerance" profile="cio-Hypersensitivity"/>
-        <!--<nm:map ada="overgevoeligheid" resource="Condition" profile="cio-HypersensitivityDisposition"/>-->
+        <nm:map ada="overgevoeligheid" resource="Condition" profile="cio-Condition"/>
         <nm:map ada="participatie_in_maatschappij" resource="Observation" profile="nl-core-ParticipationInSociety"/>
         <nm:map ada="patient" resource="Patient" profile="nl-core-Patient"/>
         <nm:map ada="pijn_score" resource="Observation" profile="nl-core-PainScore"/>
@@ -124,6 +124,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="product" resource="Device" profile="nl-core-HearingFunction.HearingAid.Product"/>
         <nm:map ada="product" resource="Device" profile="nl-core-VisualFunction.VisualAid.Product"/>
         <nm:map ada="reactie" resource="AllergyIntolerance" profile="cio-Reaction"/>
+        <nm:map ada="reactie" resource="Condition" profile="cio-Condition"/>
         <nm:map ada="refractie" resource="Observation" profile="nl-core-Refraction"/>
         <nm:map ada="registratie_gegevens" resource="Provenance" profile="cio-Provenance"/>
         <nm:map ada="schedelomvang" resource="Observation" profile="nl-core-HeadCircumference"/>

@@ -71,12 +71,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="cio-Hypersensitivity">
                         <xsl:with-param name="in" select="current-group()[1]"/>
                     </xsl:call-template>
+                    
+                    <xsl:call-template name="cio-Condition">
+                        <xsl:with-param name="in" select="current-group()[1]"/>
+                    </xsl:call-template>
                 </xsl:for-each-group>
             </xsl:variable>
             
             <xsl:variable name="reacties" as="element()*">
                 <xsl:for-each-group select="geneesmiddelovergevoeligheid/reactie" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="cio-Reaction">
+                        <xsl:with-param name="in" select="current-group()[1]"/>
+                    </xsl:call-template>
+                    
+                    <xsl:call-template name="cio-Condition">
                         <xsl:with-param name="in" select="current-group()[1]"/>
                     </xsl:call-template>
                 </xsl:for-each-group>
@@ -200,9 +208,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:variable name="registrationData" select="../../bouwstenen/registratie_gegevens[@id = current()/registratie_gegevens/@value]"/>
                     <xsl:value-of select="'ov-' || $registrationData/identificatienummer/@value"/>
                 </xsl:when>
+                <xsl:when test="$localName = 'overgevoeligheid' and $profile = 'cio-Condition'">
+                    <xsl:variable name="registrationData" select="../../bouwstenen/registratie_gegevens[@id = current()/registratie_gegevens/@value]"/>
+                    <xsl:value-of select="'ov-cond-' || $registrationData/identificatienummer/@value"/>
+                </xsl:when>
                 <xsl:when test="$localName = 'reactie' and $profile = 'cio-Reaction'">
                     <xsl:variable name="registrationData" select="../../bouwstenen/registratie_gegevens[@id = current()/registratie_gegevens/@value]"/>
                     <xsl:value-of select="'reac-' || $registrationData/identificatienummer/@value"/>
+                </xsl:when>
+                <xsl:when test="$localName = 'reactie' and $profile = 'cio-Condition'">
+                    <xsl:variable name="registrationData" select="../../bouwstenen/registratie_gegevens[@id = current()/registratie_gegevens/@value]"/>
+                    <xsl:value-of select="'reac-cond-' || $registrationData/identificatienummer/@value"/>
                 </xsl:when>
                 <xsl:when test="$localName = 'patient'">
                     <xsl:value-of select="'patient-' || string-join((naamgegevens[1]/geslachtsnaam/(voorvoegsels, achternaam)/@value, naamgegevens[1]/geslachtsnaam_partner/(voorvoegsels_partner, achternaam_partner)/@value), '-')"/>

@@ -16,6 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:import href="../../../zibs2020/payload/0.10.0-beta.1/all_zibs.xsl"/>
 
+    <xsl:import href="cio-Condition.xsl"/>
     <xsl:import href="cio-Hypersensitivity.xsl"/>
     <xsl:import href="cio-MedicationContraIndication.xsl"/>
     <xsl:import href="cio-Reaction.xsl"/>

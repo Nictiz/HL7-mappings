@@ -59,7 +59,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:for-each>
                 
-                <!--TODO: Condition as target-->
+                <xsl:for-each select="$hypersensitivity | $reaction">
+                    <xsl:call-template name="makeReference">
+                        <xsl:with-param name="in" select="."/>
+                        <xsl:with-param name="wrapIn" select="'target'"/>
+                        <xsl:with-param name="profile" select="'cio-Condition'"/>
+                    </xsl:call-template>
+                </xsl:for-each>
                 
                 <xsl:for-each select="$surveillanceDecision/besluit_datum_tijd[@value]">
                     <occurredDateTime>

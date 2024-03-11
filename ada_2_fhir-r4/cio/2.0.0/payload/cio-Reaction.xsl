@@ -83,7 +83,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </extension>
                 </xsl:for-each>
                 
-                <!--TODO: Relatie met Condition-->
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RelationHypersensitivity">
+                    <valueReference>
+                        <xsl:call-template name="makeReference">
+                            <xsl:with-param name="in" select="."/>
+                            <xsl:with-param name="profile" select="'cio-Condition'"/>
+                        </xsl:call-template>
+                    </valueReference>
+                </extension>
                 
                 <xsl:if test="$relationHypersensitivity">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RelationHypersensitivity">
