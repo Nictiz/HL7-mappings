@@ -156,12 +156,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
     </xd:doc>
-    <xsl:template match="(overgevoeligheid | reactie)[parent::geneesmiddelovergevoeligheid]" mode="_generateDisplay">
-        <xsl:variable name="parts" as="item()*">
-            <xsl:text>Aandoening</xsl:text>
-            <xsl:value-of select="diagnose/diagnose_naam/@displayName"/>
-            <xsl:value-of select="concat('diagnosedatum: ', diagnostisch_inzicht_datum/@value)"/>
-        </xsl:variable>
-        <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
-    </xsl:template>
+    <!--Since the Hypersensitivity and Reaction building blocks result in instances of both the cio-Hypersensitivity/Reaction and cio-Condition profiles, the template used for generating a display is only defined in the cio-Hypersensitivity and cio-Reaction stylesheets. Besides the 'profile' variable, there is no other aspect distinguishing both contexts, which means that defining two different templates for generating a display would result in one of them not being used whatsoever. -->
 </xsl:stylesheet>

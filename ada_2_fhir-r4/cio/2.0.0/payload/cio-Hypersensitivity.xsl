@@ -257,11 +257,25 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
     </xd:doc>
     <xsl:template match="overgevoeligheid[parent::geneesmiddelovergevoeligheid]" mode="_generateDisplay">
-        <xsl:variable name="parts" as="item()*">
-            <xsl:text>Overgevoeligheid</xsl:text>
-            <xsl:value-of select="agens/stof/@displayName"/>
-            <xsl:value-of select="concat('diagnosedatum: ', diagnostisch_inzicht_datum/@value)"/>
-        </xsl:variable>
-        <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
+        <xsl:param name="profile" required="yes" as="xs:string"/>
+        
+        <xsl:choose>
+            <xsl:when test="$profile = 'cio-Hypersensitivity'">
+                <xsl:variable name="parts" as="item()*">
+                    <xsl:text>Overgevoeligheid</xsl:text>
+                    <xsl:value-of select="agens/stof/@displayName"/>
+                    <xsl:value-of select="concat('diagnosedatum: ', diagnostisch_inzicht_datum/@value)"/>
+                </xsl:variable>
+                <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
+            </xsl:when>
+            <xsl:when test="$profile = 'cio-Condition'">
+                <xsl:variable name="parts" as="item()*">
+                    <xsl:text>Aandoening</xsl:text>
+                    <xsl:value-of select="diagnose/diagnose_naam/@displayName"/>
+                    <xsl:value-of select="concat('diagnosedatum: ', diagnostisch_inzicht_datum/@value)"/>
+                </xsl:variable>
+                <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
+            </xsl:when>
+        </xsl:choose>
     </xsl:template>
 </xsl:stylesheet>
