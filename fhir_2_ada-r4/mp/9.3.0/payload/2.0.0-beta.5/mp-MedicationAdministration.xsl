@@ -25,13 +25,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<xsl:apply-templates select="f:identifier" mode="#current"/>
 			<!-- toedienings_product -->
 			<xsl:apply-templates select="f:medicationReference" mode="#current"/>
+			<!-- registratiedatumtijd -->
+			<xsl:apply-templates select="f:extension[@url = $urlExtRegistrationDateTime]" mode="urlExtRegistrationDateTime"/>
 			<!-- toedienings_datum_tijd -->
 			<xsl:apply-templates select="f:effectiveDateTime" mode="#current"/>
 			<!-- afgesproken_datum_tijd -->
 			<!-- MP-1408 LR: afgesproken_datum_tijd no longer part of the transactions from MP 9.3 beta.3 onwards but kept in stylesheet due to backwards compatibility-->
 			<xsl:apply-templates select="f:extension[@url = $urlExtMedicationAdministration2AgreedDateTime]" mode="#current"/>
-			<!-- registratiedatumtijd -->
-			<xsl:apply-templates select="f:extension[@url = $urlExtRegistrationDateTime]" mode="urlExtRegistrationDateTime"/>
 			<!-- geannuleerd_indicator -->
 			<xsl:if test="f:status/@value = 'entered-in-error'">
 				<geannuleerd_indicator value="true"/>
