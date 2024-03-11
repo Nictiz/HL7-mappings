@@ -103,6 +103,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9407_20221101101151"/>
                 </xsl:for-each>
 
+                <!-- registratieDatumTijd -->
+                <xsl:variable name="mtdRegistratieDatumTijd" select="registratie_datum_tijd[@value | @nullFlavor]" as="element()*"/>
+                <xsl:if test="$mtdRegistratieDatumTijd instance of element()">
+                    <author>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.32_20210701000000">
+                            <!-- we don't have an author in MTD, but need an element in $in to make the mandatory xsd elements -->
+                            <xsl:with-param name="in" select="$mtdRegistratieDatumTijd[1]"/>
+                            <xsl:with-param name="theTime" select="$mtdRegistratieDatumTijd[1]"/>
+                        </xsl:call-template>
+                    </author>
+                </xsl:if>
+
+
                 <!-- afgesproken_datum_tijd en/of afgesproken_hoeveelheid -->
                 <xsl:if test="afgesproken_datum_tijd[@value] | afgesproken_hoeveelheid[.//(@value | @code | @unit)]">
                     <entryRelationship typeCode="COMP">
@@ -113,12 +126,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </entryRelationship>
                 </xsl:if>
 
-                <!-- volgens_afspraak_indicator -->
-                <xsl:for-each select="volgens_afspraak_indicator[.//(@value | @code)]">
-                    <entryRelationship typeCode="COMP">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9317_20200120141110"/>
-                    </entryRelationship>
-                </xsl:for-each>
+                <!-- MP-1393, remove volgens_afspraak_indicator / afwijkende_toediening -->
 
                 <!-- medicatietoediening_reden_van_afwijken -->
                 <xsl:for-each select="(medicatie_toediening_reden_van_afwijken | medicatietoediening_reden_van_afwijken)[.//(@value | @code)]">
@@ -201,7 +209,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </performer>
             </xsl:for-each>
 
-            <!-- zorgaanbieder is toediener -->
+            <!-- MP-1417, revert changes done bij MP-616, so re-add support for toediener/zorgverlener -->
+            <!-- zorgverlener -->
+            <xsl:for-each select="../../../bouwstenen/zorgverlener[@id = current()//zorgverlener[not(zorgverlener)]/@value]">
+                <performer>
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.43_20210701000000"/>
+                </performer>
+            </xsl:for-each>
+
+            <!-- zorgaanbieder is toediener, even though this is not specified anymore with MP-1417 in beta.3 the mapping still supports this for backward compatibility reasons, 
+                goal is to minimise possible data loss -->
             <xsl:for-each select="../../../bouwstenen/zorgaanbieder[@id = current()//zorgaanbieder[not(zorgaanbieder)]/@value]">
                 <performer>
                     <assignedEntity>
@@ -266,15 +283,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </consumable>
                 </xsl:for-each>
 
+                <xsl:variable name="wdsRegistratieDatumTijd" select="registratie_datum_tijd[@value | @nullFlavor]" as="element()*"/>
+                <!-- give precedence to the new registration date/time, but don't remove support for afspraak datum/tijd if it's there -->
+                <xsl:variable name="wdsDatumTijd" select="
+                        if ($wdsRegistratieDatumTijd instance of element()) then
+                            $wdsRegistratieDatumTijd
+                        else
+                            wisselend_doseerschema_datum_tijd[@value | @nullFlavor]" as="element()*"/>
 
-                <xsl:variable name="wdsDatumTijd" select="wisselend_doseerschema_datum_tijd"/>
-                <xsl:for-each select="../../bouwstenen/zorgverlener[@id = current()/auteur/zorgverlener/@value]">
+                <xsl:variable name="wdsAuthor" select="../../bouwstenen/zorgverlener[@id = current()/auteur/zorgverlener/@value]" as="element()*"/>
+
+                <xsl:if test="$wdsDatumTijd | $wdsAuthor">
                     <author>
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9066_20181205174210">
-                            <xsl:with-param name="authorTime" select="$wdsDatumTijd"/>
+                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.32_20210701000000">
+                            <xsl:with-param name="in" select="$wdsAuthor[1]"/>
+                            <xsl:with-param name="theTime" select="$wdsDatumTijd[1]"/>
                         </xsl:call-template>
                     </author>
-                </xsl:for-each>
+                </xsl:if>
 
                 <!-- stoptype -->
                 <xsl:for-each select="wisselend_doseerschema_stop_type[.//(@value | @code)]">
@@ -297,7 +323,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </entryRelationship>
                 </xsl:for-each>
-                
+
                 <!-- toelichting -->
                 <xsl:for-each select="toelichting[.//(@value | @code)]">
                     <entryRelationship typeCode="SUBJ" inversionInd="true">
@@ -425,13 +451,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:for-each>
 
             <!-- Verstrekker -->
-            <xsl:variable name="theAfspraakdatum" select="(afspraak_datum_tijd | afspraakdatum | toedieningsafspraak_datum_tijd)[@value | @nullFlavor]"/>
+            <xsl:variable name="taRegistratieDatumTijd" select="registratie_datum_tijd[@value | @nullFlavor]" as="element()*"/>
+            <!-- give precedence to the new registration date/time, but don't remove support for afspraak datum/tijd if it's there -->
+            <xsl:variable name="taDatumTijd" select="
+                    if ($taRegistratieDatumTijd instance of element()) then
+                        $taRegistratieDatumTijd
+                    else
+                        (afspraak_datum_tijd | afspraakdatum | toedieningsafspraak_datum_tijd)[@value | @nullFlavor]" as="element()*"/>
+
             <xsl:for-each select="../../bouwstenen/zorgaanbieder[@id = current()/verstrekker/zorgaanbieder/@value]">
                 <author>
                     <xsl:call-template name="makeTSValue">
                         <xsl:with-param name="elemName">time</xsl:with-param>
-                        <xsl:with-param name="inputValue" select="$theAfspraakdatum/@value"/>
-                        <xsl:with-param name="inputNullFlavor" select="$theAfspraakdatum/@nullFlavor"/>
+                        <xsl:with-param name="inputValue" select="$taDatumTijd/@value"/>
+                        <xsl:with-param name="inputNullFlavor" select="$taDatumTijd/@nullFlavor"/>
                     </xsl:call-template>
                     <assignedAuthor>
                         <id nullFlavor="NI"/>
@@ -653,7 +686,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="_handleDoseerinstructie"/>
             </xsl:for-each>
 
-
             <!-- Relatie naar MA -->
             <xsl:for-each select="(relatie_naar_afspraak_of_gebruik | relatie_medicatieafspraak)/identificatie[@value | @nullFlavor]">
                 <entryRelationship typeCode="REFR">
@@ -705,13 +737,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </consumable>
             </xsl:for-each>
 
-            <xsl:variable name="maAfspraakDatumTijd" select="afspraak_datum_tijd | afspraakdatum | medicatieafspraak_datum_tijd" as="element()*"/>
+            <xsl:variable name="maRegistratieDatumTijd" select="registratie_datum_tijd[@value | @nullFlavor]" as="element()*"/>
+            <!-- give precedence to the new registration date/time, but don't remove support for afspraak datum/tijd if it's there -->
+            <xsl:variable name="maDatumTijd" select="
+                    if ($maRegistratieDatumTijd instance of element()) then
+                        $maRegistratieDatumTijd
+                    else
+                        (afspraak_datum_tijd | afspraakdatum | medicatieafspraak_datum_tijd)[@value | @nullFlavor]" as="element()*"/>
             <xsl:variable name="maAuthor" select="../../bouwstenen/zorgverlener[@id = current()/voorschrijver/zorgverlener/@value]" as="element()*"/>
-            <xsl:if test="$maAfspraakDatumTijd | $maAuthor">
+            <xsl:if test="$maDatumTijd | $maAuthor">
                 <author>
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.121.10.32_20210701000000">
                         <xsl:with-param name="in" select="$maAuthor[1]"/>
-                        <xsl:with-param name="theTime" select="$maAfspraakDatumTijd[1]"/>
+                        <xsl:with-param name="theTime" select="$maDatumTijd[1]"/>
                     </xsl:call-template>
                 </author>
             </xsl:if>

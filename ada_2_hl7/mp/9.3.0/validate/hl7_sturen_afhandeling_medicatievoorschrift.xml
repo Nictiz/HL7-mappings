@@ -28,7 +28,15 @@
          <pass/>
       </file>
       <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_afhandeling_medicatievoorschrift/hl7_instance/av-mp-va-kwal-script3-v30.xml">
-         <pass/>
+         <fail>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="@nullFlavor or not(hl7:originalText)"
+                                see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9308-2019-11-25T164730.html"
+                                role="error"
+                                location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:entryRelationship[namespace-uri()='urn:hl7-org:v3'][3]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:precondition[namespace-uri()='urn:hl7-org:v3'][1]/*:criterion[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
+               <svrl:text>(ZonodigCriterium2): Bij een gecodeerde waarde mag originalText niet gebruikt worden.</svrl:text>
+            </svrl:failed-assert>
+         </fail>
       </file>
       <file name="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_afhandeling_medicatievoorschrift/hl7_instance/av-mp-va-kwal-script5-stop-v30.xml">
          <pass/>
