@@ -19,7 +19,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         If a profile is edited in a non-backwards compatible way, a new version of the ada2fhir mapping should be made for that profile. -->
     <xsl:import href="rubriek_18.xsl"/>
 
-
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
