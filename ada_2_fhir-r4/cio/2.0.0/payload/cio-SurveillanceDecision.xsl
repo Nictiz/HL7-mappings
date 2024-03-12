@@ -139,7 +139,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:when>
                                 <xsl:when test="veilig_binnen_onveilige_groep[@code]">
                                     <xsl:text> as treatment for the patient, since this group of substances is unsafe for the patient (with the exception of </xsl:text>
-                                    <xsl:for-each select="veilig_binnen_onveilige_groep[@code]">
+                                    <xsl:for-each select="veilig_binnen_onveilige_groep[@code and following-sibling::veilig_binnen_onveilige_groep[@code]]">
+                                        <xsl:value-of select="concat(@displayName, ' and ')"/>
+                                    </xsl:for-each>
+                                    <xsl:for-each select="veilig_binnen_onveilige_groep[@code and not(following-sibling::veilig_binnen_onveilige_groep[@code])]">
                                         <xsl:value-of select="@displayName"/>
                                     </xsl:for-each>
                                     <xsl:text>).</xsl:text>
