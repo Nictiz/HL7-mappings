@@ -18,6 +18,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         If a bug is found and fixed, this fix should apply to the mapping in all versions of the package that use this mapping.
         If a profile is edited in a non-backwards compatible way, a new version of the ada2fhir mapping should be made for that profile. -->
     <xsl:import href="rubriek_18.xsl"/>
+    <xsl:import href="rubriek_52.xsl"/>
+    <xsl:import href="rubriek_19.xsl"/>
+    <xsl:import href="rubriek_20.xsl"/>
+    <xsl:import href="rubriek_21.xsl"/>
+    <xsl:import href="rubriek_22.xsl"/>
+    <xsl:import href="rubriek_23.xsl"/>
+    <xsl:import href="rubriek_24.xsl"/>
+    <xsl:import href="rubriek_25.xsl"/>
+    <xsl:import href="rubriek_26.xsl"/>
+    <xsl:import href="rubriek_27.xsl"/>
+    <xsl:import href="rubriek_30.xsl"/>
+    <xsl:import href="rubriek_31.xsl"/>
+    <xsl:import href="rubriek_32.xsl"/>
+    <xsl:import href="rubriek_34.xsl"/>
+    <xsl:import href="rubriek_38.xsl"/>
+    <xsl:import href="rubriek_39.xsl"/>
+    <xsl:import href="rubriek_40.xsl"/>
+    <xsl:import href="rubriek_41.xsl"/>
+    <xsl:import href="rubriek_42.xsl"/>
+    <xsl:import href="rubriek_43.xsl"/>
+    <xsl:import href="rubriek_54.xsl"/>
+    <xsl:import href="rubriek_45.xsl"/>
+    <xsl:import href="rubriek_49.xsl"/>
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
