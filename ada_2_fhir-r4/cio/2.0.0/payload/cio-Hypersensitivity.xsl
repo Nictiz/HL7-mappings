@@ -80,7 +80,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </extension>
                 </xsl:for-each>
                 
-                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RelationHypersensitivity">
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RelationCondition">
                     <valueReference>
                         <xsl:call-template name="makeReference">
                             <xsl:with-param name="in" select="."/>

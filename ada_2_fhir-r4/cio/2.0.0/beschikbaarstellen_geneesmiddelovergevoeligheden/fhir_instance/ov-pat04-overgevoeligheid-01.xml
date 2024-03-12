@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AllergyIntolerance xmlns="http://hl7.org/fhir">
-   <id value="reac-pat03-reactie-01"/>
+   <id value="ov-pat04-overgevoeligheid-01"/>
    <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-Reaction"/>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-Hypersensitivity"/>
    </meta>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AllergyIntolerance-Type">
       <valueCodeableConcept>
          <coding>
             <system value="http://snomed.info/sct"/>
-            <code value="281647001"/>
-            <display value="ongewenste reactie"/>
+            <code value="609433001"/>
+            <display value="overgevoeligheid"/>
          </coding>
       </valueCodeableConcept>
    </extension>
    <extension url="http://hl7.org/fhir/StructureDefinition/allergyintolerance-assertedDate">
-      <valueDateTime value="${DATE, T, D, -732}"/>
+      <valueDateTime value="${DATE, T, D, -60}T11:15:46+02:00"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-WayOfDetermination">
       <valueCodeableConcept>
@@ -27,14 +27,14 @@
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RelationCondition">
       <valueReference>
-         <reference value="Condition/reac-cond-pat03-reactie-01"/>
+         <reference value="Condition/ov-cond-pat04-overgevoeligheid-01"/>
          <type value="Condition"/>
-         <display value="Aandoening, overgevoeligheidsreactie (aandoening), diagnosedatum: T-732D"/>
+         <display value="Aandoening, overgevoeligheid voor meerdere geneesmiddelen (aandoening), diagnosedatum: T-60D{11:15:46}"/>
       </valueReference>
    </extension>
    <identifier>
-      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.4"/>
-      <value value="pat03-reactie-01"/>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.3"/>
+      <value value="pat04-overgevoeligheid-01"/>
    </identifier>
    <clinicalStatus>
       <coding>
@@ -60,19 +60,42 @@
          <display value="Suspected (qualifier value)"/>
       </coding>
    </verificationStatus>
+   <category value="medication">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="419511003"/>
+               <display value="geneesmiddelen"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </category>
+   <criticality value="low">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="255604002"/>
+               <display value="Mild (qualifier value)"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </criticality>
    <code>
       <coding>
-         <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-         <code value="642916"/>
-         <display value="NORVASC TABLET 5MG"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.750"/>
+         <code value="40991"/>
+         <display value="FLUCLOXACILLINE"/>
       </coding>
    </code>
    <patient>
-      <reference value="Patient/patient-XXX-Dubbeld"/>
+      <reference value="Patient/patient-XXX-Zwaan"/>
       <type value="Patient"/>
-      <display value="Patient, Erwin XXX_Dubbeld"/>
+      <display value="Patient, Willem XXX_Zwaan"/>
    </patient>
-   <recordedDate value="${DATE, T, D, -730}T09:57:02+02:00"/>
+   <onsetDateTime value="${DATE, T, D, -65}T18:00:00+02:00"/>
+   <recordedDate value="${DATE, T, D, -60}T11:15:46+02:00"/>
    <recorder>
       <reference value="PractitionerRole/pracrole-000001111"/>
       <type value="PractitionerRole"/>
@@ -83,49 +106,7 @@
       <type value="PractitionerRole"/>
       <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
    </asserter>
-   <reaction>
-      <extension url="http://hl7.org/fhir/StructureDefinition/openEHR-exposureDate">
-         <valueDateTime value="${DATE, T, D, -732}"/>
-      </extension>
-      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Reaction.LatencyReaction">
-         <valueDuration>
-            <value value="12"/>
-            <unit value="h"/>
-            <system value="http://unitsofmeasure.org"/>
-            <code value="h"/>
-         </valueDuration>
-      </extension>
-      <extension url="http://hl7.org/fhir/StructureDefinition/allergyintolerance-duration">
-         <valueDuration>
-            <value value="2"/>
-            <unit value="d"/>
-            <system value="http://unitsofmeasure.org"/>
-            <code value="d"/>
-         </valueDuration>
-      </extension>
-      <substance>
-         <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-            <code value="642916"/>
-            <display value="NORVASC TABLET 5MG"/>
-         </coding>
-      </substance>
-      <manifestation>
-         <text value="Invaliderende hoofdpijn bij gebruik amlodipine"/>
-      </manifestation>
-      <manifestation>
-         <text value="Visusklachten"/>
-      </manifestation>
-      <onset value="${DATE, T, D, -732}"/>
-      <exposureRoute>
-         <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-            <code value="9"/>
-            <display value="ORAAL"/>
-         </coding>
-      </exposureRoute>
-      <note>
-         <text value="Toelichtingsveld bij reactie"/>
-      </note>
-   </reaction>
+   <note>
+      <text value="mogelijk sprake van overgevoeligheid op meerdere geneesmiddelen"/>
+   </note>
 </AllergyIntolerance>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AllergyIntolerance xmlns="http://hl7.org/fhir">
-   <id value="ov-pat03-overgevoeligheid-01"/>
+   <id value="ov-pat04-overgevoeligheid-02"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-Hypersensitivity"/>
    </meta>
@@ -14,50 +14,57 @@
       </valueCodeableConcept>
    </extension>
    <extension url="http://hl7.org/fhir/StructureDefinition/allergyintolerance-assertedDate">
-      <valueDateTime value="${DATE, T, D, -50}"/>
+      <valueDateTime value="${DATE, T, D, -60}T11:15:46+02:00"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-WayOfDetermination">
       <valueCodeableConcept>
          <coding>
             <system value="http://snomed.info/sct"/>
-            <code value="14736009"/>
-            <display value="History and physical examination with evaluation and management of patient (procedure)"/>
+            <code value="84100007"/>
+            <display value="History taking (procedure)"/>
          </coding>
       </valueCodeableConcept>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RelationCondition">
       <valueReference>
-         <reference value="Condition/ov-cond-pat03-overgevoeligheid-01"/>
+         <reference value="Condition/ov-cond-pat04-overgevoeligheid-02"/>
          <type value="Condition"/>
-         <display value="Aandoening, overgevoeligheid voor meerdere geneesmiddelen (aandoening), diagnosedatum: T-50D"/>
+         <display value="Aandoening, overgevoeligheid voor meerdere geneesmiddelen (aandoening), diagnosedatum: T-60D{11:15:46}"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RelationHypersensitivity">
+      <valueReference>
+         <reference value="AllergyIntolerance/ov-pat04-overgevoeligheid-01"/>
+         <type value="AllergyIntolerance"/>
+         <display value="Overgevoeligheid, FLUCLOXACILLINE, diagnosedatum: T-60D{11:15:46}"/>
       </valueReference>
    </extension>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.3"/>
-      <value value="pat03-overgevoeligheid-01"/>
+      <value value="pat04-overgevoeligheid-02"/>
    </identifier>
    <clinicalStatus>
       <coding>
          <system value="http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical"/>
-         <code value="active"/>
-         <display value="Active"/>
+         <code value="inactive"/>
+         <display value="Inactive"/>
       </coding>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="410515003"/>
-         <display value="Known present (qualifier value)"/>
+         <code value="410516002"/>
+         <display value="Known absent (qualifier value)"/>
       </coding>
    </clinicalStatus>
    <verificationStatus>
       <coding>
          <system value="http://terminology.hl7.org/CodeSystem/allergyintolerance-verification"/>
-         <code value="confirmed"/>
-         <display value="Confirmed"/>
+         <code value="unconfirmed"/>
+         <display value="Unconfirmed"/>
       </coding>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="410605003"/>
-         <display value="Confirmed present (qualifier value)"/>
+         <code value="415684004"/>
+         <display value="Suspected (qualifier value)"/>
       </coding>
    </verificationStatus>
    <category value="medication">
@@ -71,31 +78,31 @@
          </valueCodeableConcept>
       </extension>
    </category>
-   <criticality value="high">
+   <criticality value="low">
       <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
          <valueCodeableConcept>
             <coding>
                <system value="http://snomed.info/sct"/>
-               <code value="24484000"/>
-               <display value="Severe (severity modifier) (qualifier value)"/>
+               <code value="255604002"/>
+               <display value="Mild (qualifier value)"/>
             </coding>
          </valueCodeableConcept>
       </extension>
    </criticality>
    <code>
       <coding>
-         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.902.122"/>
-         <code value="35"/>
-         <display value="PENICILLINES"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.750"/>
+         <code value="40991"/>
+         <display value="FLUCLOXACILLINE"/>
       </coding>
    </code>
    <patient>
-      <reference value="Patient/patient-XXX-Dubbeld"/>
+      <reference value="Patient/patient-XXX-Zwaan"/>
       <type value="Patient"/>
-      <display value="Patient, Erwin XXX_Dubbeld"/>
+      <display value="Patient, Willem XXX_Zwaan"/>
    </patient>
-   <onsetDateTime value="${DATE, T, D, -105}"/>
-   <recordedDate value="${DATE, T, D, -50}T14:25:30+02:00"/>
+   <onsetDateTime value="${DATE, T, D, -65}T18:00:00+02:00"/>
+   <recordedDate value="${DATE, T, D, -10}T15:55:30+02:00"/>
    <recorder>
       <reference value="PractitionerRole/pracrole-000001111"/>
       <type value="PractitionerRole"/>
@@ -107,6 +114,6 @@
       <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
    </asserter>
    <note>
-      <text value="Vastgesteld middels huidpriktest. Flucloxacilline wordt wel goed verdragen door patiënt."/>
+      <text value="mogelijk sprake van overgevoeligheid op meerdere geneesmiddelen"/>
    </note>
 </AllergyIntolerance>
