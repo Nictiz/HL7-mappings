@@ -87,7 +87,13 @@
             </otherwise>
         </xsl:choose>
 
-        <creationTime xmlns="urn:hl7-org:v3" value="{format-dateTime(current-dateTime(), '[Y0001][M01][D01][H01][m01][s01]')}"/>
+        <creationTime xmlns="urn:hl7-org:v3" value="{format-dateTime(current-dateTime(), '[Y0001][M01]')}"/>
+        <xsl:message terminate="no">
+            Warning: The full creationdate below should be used for production
+        </xsl:message>
+        <!-- The full date below should be used for production -->
+<!--        <creationTime xmlns="urn:hl7-org:v3" value="{format-dateTime(current-dateTime(), '[Y0001][M01][D01][H01][m01][s01]')}"/>-->
+        
         <versionCode xmlns="urn:hl7-org:v3" code="NICTIZEd2005-Okt"/>
         <interactionId xmlns="urn:hl7-org:v3" extension="{$interactionId}" root="{$oidHL7InteractionID}"/>
         <profileId xmlns="urn:hl7-org:v3" extension="810" root="{$oidAORTAProfileID}"/>

@@ -1250,9 +1250,7 @@
         </xsl:choose>
 
         <creationTime xmlns="urn:hl7-org:v3" value="{format-dateTime(current-dateTime(), '[Y0001][M01]')}"/>
-        <xsl:message terminate="no">
-            Warning: The full creationdate below should be used for production
-        </xsl:message>
+        <xsl:message terminate="no">Warning: The full creationdate below should be used for production</xsl:message>
         <!-- The full date below should be used for production -->
 <!--        <creationTime xmlns="urn:hl7-org:v3" value="{format-dateTime(current-dateTime(), '[Y0001][M01][D01][H01][m01][s01]')}"/>-->
         
