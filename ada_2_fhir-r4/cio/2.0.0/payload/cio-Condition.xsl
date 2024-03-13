@@ -111,7 +111,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 
                 <xsl:call-template name="makeReference">
                     <xsl:with-param name="in" select="$subject"/>
-                    <xsl:with-param name="wrapIn" select="'patient'"/>
+                    <xsl:with-param name="wrapIn" select="'subject'"/>
                 </xsl:call-template>
                 
                 <xsl:for-each select="aandoening_begin_datum_tijd[@value]">

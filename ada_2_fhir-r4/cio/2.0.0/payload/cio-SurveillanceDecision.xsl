@@ -151,7 +151,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:variable>
                         
                         <text>
-                            <xsl:value-of select="string-join($parts)"/>
+                            <xsl:attribute name="value">
+                                <xsl:value-of select="string-join($parts)"/>
+                            </xsl:attribute>
                         </text>
                     </code>
                 </xsl:for-each>
