@@ -57,7 +57,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 
                 <xsl:for-each select="diagnostisch_inzicht_datum[@value]">
-                    <extension url="http://hl7.org/fhir/StructureDefinition/allergyintolerance-assertedDate">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/condition-assertedDate">
                         <valueDateTime>
                             <xsl:attribute name="value">
                                 <xsl:call-template name="format2FHIRDate">

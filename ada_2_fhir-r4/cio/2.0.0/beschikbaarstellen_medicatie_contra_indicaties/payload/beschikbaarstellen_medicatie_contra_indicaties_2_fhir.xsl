@@ -94,6 +94,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each-group select="bouwstenen/contactpersoon" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="nl-core-ContactPerson">
                         <xsl:with-param name="in" select="current-group()[1]"/>
+                        <xsl:with-param name="patient" select="../../patient"/>
                     </xsl:call-template>
                 </xsl:for-each-group>
             </xsl:variable>
