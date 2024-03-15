@@ -189,7 +189,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:when test="self::r022_huidhaarnagels">
                                 <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
                                 <pertinentInformation>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11022_20200527000000"/>
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11022"/>
                                 </pertinentInformation>
                             </xsl:when>
                             <xsl:when test="self::r023_hoofdhals">
