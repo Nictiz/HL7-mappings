@@ -23,9 +23,12 @@
     <xsl:variable name="gMotherDOB-dt" select="$gCREATIONDATETIME-dt - xs:yearMonthDuration('P31Y9M')"/>
     <xsl:variable name="gBrotherDOB-dt" select="$gCREATIONDATETIME-dt - xs:yearMonthDuration('P5Y7M')"/>
     
-    <xsl:variable name="gCREATIONDATETIME" select="format-dateTime($gCREATIONDATETIME-dt, '[Y0001][M01][D01][H01][m01][s01]')"/>
-    <xsl:variable name="gSENDDATE" select="format-dateTime($gCREATIONDATETIME-dt, '[Y0001][M01][D01]')"/>
-    <xsl:variable name="gPatientDOB" select="format-dateTime($gPatientDOB-dt,'[Y0001][M01][D01]')"/>
+<!--    <xsl:variable name="gCREATIONDATETIME" select="format-dateTime($gCREATIONDATETIME-dt, '[Y0001][M01][D01][H01][m01][s01]')"/>-->
+<!--    <xsl:variable name="gSENDDATE" select="format-dateTime($gCREATIONDATETIME-dt, '[Y0001][M01][D01]')"/>-->
+<!--    <xsl:variable name="gPatientDOB" select="format-dateTime($gPatientDOB-dt,'[Y0001][M01][D01]')"/>-->
+    <xsl:variable name="gSENDDATE" select="format-dateTime($gCREATIONDATETIME-dt, '[Y0001]')"/>
+    <xsl:variable name="gPatientDOB" select="format-dateTime($gPatientDOB-dt,'[Y0001]')"/>
+    <xsl:variable name="gCREATIONDATETIME" select="format-dateTime($gCREATIONDATETIME-dt, '[Y0001]')"/>
     <xsl:variable name="gREQUESTDATE" select="$gSENDDATE"/>
     <xsl:variable name="gRESPSTART" select="format-dateTime($gPatientDOB-dt + xs:dayTimeDuration('P1D'),'[Y0001][M01][D01]')"/>
     <xsl:variable name="gRESPEND" select="$gREQUESTDATE"/>
