@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns="http://www.w3.org/1999/XSL/Transform" xmlns:hl7="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0">
     <xsl:param name="W0639_HL7_W0646_HL7_W0647_HL7" select="'default'"/>
 
-    <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="template_2.16.840.1.113883.2.4.6.10.100.11034">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11034">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.11034"/>
             <code code="R034" codeSystem="2.16.840.1.113883.2.4.4.40.391">
@@ -29,7 +29,7 @@
         </rubricCluster>
     </xsl:template>
 
-    <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="template_2.16.840.1.113883.2.4.6.10.100.40339">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40339">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40339"/>
             <code code="339" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -54,7 +54,7 @@
         </observation>
     </xsl:template>
 
-    <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="template_2.16.840.1.113883.2.4.6.10.100.40348">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40348">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40348"/>
             <code code="348" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -79,7 +79,7 @@
         </observation>
     </xsl:template>
 
-    <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="template_2.16.840.1.113883.2.4.6.10.100.40349">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40349">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40349"/>
             <code code="349" codeSystem="2.16.840.1.113883.2.4.4.40.267">

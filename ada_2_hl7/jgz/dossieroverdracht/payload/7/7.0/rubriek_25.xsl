@@ -2,7 +2,7 @@
 <xsl:stylesheet xmlns="http://www.w3.org/1999/XSL/Transform" xmlns:hl7="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0">
     <xsl:param name="W0639_HL7_W0646_HL7_W0647_HL7" select="'default'"/>
 
-    <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="template_2.16.840.1.113883.2.4.6.10.100.11025">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11025">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.11025"/>
             <code code="R025" codeSystem="2.16.840.1.113883.2.4.4.40.391">
@@ -116,7 +116,7 @@
         </rubricCluster>
     </xsl:template>
 
-    <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="template_2.16.840.1.113883.2.4.6.10.100.40212">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40212">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40212"/>
             <code code="212" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -141,7 +141,7 @@
         </observation>
     </xsl:template>
 
-    <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="template_2.16.840.1.113883.2.4.6.10.100.40217">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40217">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40217"/>
             <code code="217" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -173,7 +173,7 @@
         </observation>
     </xsl:template>
 
-    <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="template_2.16.840.1.113883.2.4.6.10.100.40218">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40218">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40218"/>
             <code code="218" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -205,7 +205,7 @@
         </observation>
     </xsl:template>
 
-    <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="template_2.16.840.1.113883.2.4.6.10.100.40219">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40219">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40219"/>
             <code code="219" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -237,7 +237,7 @@
         </observation>
     </xsl:template>
 
-    <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="template_2.16.840.1.113883.2.4.6.10.100.40221">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40221">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40221"/>
             <code code="221" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -269,7 +269,7 @@
         </observation>
     </xsl:template>
 
-    <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="template_2.16.840.1.113883.2.4.6.10.100.40223">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40223">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40223"/>
             <code code="223" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -294,7 +294,7 @@
         </observation>
     </xsl:template>
 
-    <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="template_2.16.840.1.113883.2.4.6.10.100.40800">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40800">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40800"/>
             <code code="800" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -320,7 +320,7 @@
         </observation>
     </xsl:template>
 
-    <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="template_2.16.840.1.113883.2.4.6.10.100.40802">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40802">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40802"/>
             <code code="802" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -345,7 +345,7 @@
         </observation>
     </xsl:template>
 
-    <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="template_2.16.840.1.113883.2.4.6.10.100.40804">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40804">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40804"/>
             <code code="804" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -371,7 +371,7 @@
         </observation>
     </xsl:template>
 
-    <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="template_2.16.840.1.113883.2.4.6.10.100.40805">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.40805">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.40805"/>
             <code code="805" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -396,7 +396,7 @@
         </observation>
     </xsl:template>
 
-    <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="template_2.16.840.1.113883.2.4.6.10.100.41425">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41425">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41425"/>
             <code code="1425" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -421,7 +421,7 @@
         </observation>
     </xsl:template>
 
-    <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="template_2.16.840.1.113883.2.4.6.10.100.41426">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41426">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41426"/>
             <code code="1426" codeSystem="2.16.840.1.113883.2.4.4.40.267">
@@ -446,7 +446,7 @@
         </observation>
     </xsl:template>
 
-    <xsl:template xmlns:xsl="http://www.w3.org/1999/XSL/Transform" name="template_2.16.840.1.113883.2.4.6.10.100.41446">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.41446">
         <observation xmlns="urn:hl7-org:v3" classCode="OBS" moodCode="EVN" negationInd="false">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.41446"/>
             <code code="1446" codeSystem="2.16.840.1.113883.2.4.4.40.267">
