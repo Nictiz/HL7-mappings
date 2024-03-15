@@ -17,8 +17,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- If a file imported here exists in a different folder (meaning a different 'package'), this means the profile and therefore its ada2fhir mapping is the same in the current and the imported package version (and all versions in between). 
         If a bug is found and fixed, this fix should apply to the mapping in all versions of the package that use this mapping.
         If a profile is edited in a non-backwards compatible way, a new version of the ada2fhir mapping should be made for that profile. -->
-    <xsl:import href="rubriek_12.xsl"/>
-    <xsl:import href="rubriek_13.xsl"/>
     <xsl:import href="rubriek_18.xsl"/>
     <xsl:import href="rubriek_52.xsl"/>
     <xsl:import href="rubriek_19.xsl"/>
