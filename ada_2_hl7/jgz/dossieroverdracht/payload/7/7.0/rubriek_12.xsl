@@ -4,7 +4,7 @@
     <xsl:param name="W0639_HL7_W0646_HL7_W0647_HL7" select="'default'"/>
     
     <!-- Rubriek 12 Erfelijke belasting en ouderkenmerken -->
-    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11012_20200527000000">
+    <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11012">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
             <templateId root="2.16.840.1.113883.2.4.6.10.100.11012"/>
             <code code="R012" codeSystem="2.16.840.1.113883.2.4.4.40.391">

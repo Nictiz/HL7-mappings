@@ -153,7 +153,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:when test="self::r012_erfelijke_belasting_en_ouderkenmerken">
                                 <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
                                 <pertinentInformation>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11012_20200527000000"/>
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11012"/>
                                 </pertinentInformation>
                             </xsl:when>
                             <xsl:when test="self::r013_bedreigingen_uit_de_directe_omgeving">
