@@ -4,6 +4,8 @@
 
     <xsl:variable name="ExportWithQualificationPlaceholder" select="false()"/>
     
+    <xsl:param name="DOB" select="'default'"/>
+    
     <xd:doc>
         <xd:desc>Formats an ada xml date or an ada vague date or an ada relative Date string to a HL7 formatted date.</xd:desc>
         <xd:param name="dateTime">The dateTime string to be formatted. May be a relative or vague date(time)</xd:param>
