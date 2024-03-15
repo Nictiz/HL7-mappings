@@ -225,7 +225,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:when test="self::r030_psychosociaal_en_cognitief_functioneren">
                                 <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
                                 <pertinentInformation>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11030_20200527000000"/>
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11030"/>
                                 </pertinentInformation>
                             </xsl:when>
                             <xsl:when test="self::r031_motorisch_functioneren">
