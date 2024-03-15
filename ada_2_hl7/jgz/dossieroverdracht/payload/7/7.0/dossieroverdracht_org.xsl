@@ -3351,8 +3351,6 @@
         </attentionLine>
     </xsl:template>
 
-    <!-- Rubriek 12 Erfelijke belasting en ouderkenmerken -->
-
     <!-- Rubriek 19 Terugkerende anamnese -->
     <xsl:template name="template_2.16.840.1.113883.2.4.6.10.100.11019_20200527000000">
         <rubricCluster xmlns="urn:hl7-org:v3" classCode="CLUSTER" moodCode="EVN">
