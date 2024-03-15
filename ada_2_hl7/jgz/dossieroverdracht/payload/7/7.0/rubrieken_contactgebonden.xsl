@@ -267,7 +267,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:when test="self::r041_rijksvaccinatieprogramma_en_andere_vaccinaties/*[not(@conceptId = '2.16.840.1.113883.2.4.3.11.60.100.2.2.76')]">
                                 <xsl:comment><xsl:text> </xsl:text><xsl:value-of select="local-name()"/><xsl:text> </xsl:text></xsl:comment>
                                 <pertinentInformation>
-                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11041_20200527000000"/>
+                                    <xsl:call-template name="template_2.16.840.1.113883.2.4.6.10.100.11041"/>
                                 </pertinentInformation>
                             </xsl:when>
                             <xsl:when test="self::r042_van_wiechen_ontwikkelingsonderzoek">
