@@ -89,12 +89,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <status>
                     <xsl:choose>
                         <!-- When DecisionType is SNOMED 385652002: _active_  -->
-                        <xsl:when test="besluit_type/(@codeSystem = '2.16.840.1.113883.6.96' and @code = '385652002')">
+                        <xsl:when test="besluit_type/(@codeSystem = $oidSNOMEDCT and @code = '385652002')">
                             <xsl:attribute name="value" select="'active'"/>
                         </xsl:when>
                         
                         <!--When DecisionType is SNOMED 410546004: _inactive_  -->
-                        <xsl:when test="besluit_type/(@codeSystem = '2.16.840.1.113883.6.96' and @code = '410546004')">
+                        <xsl:when test="besluit_type/(@codeSystem = $oidSNOMEDCT and @code = '410546004')">
                             <xsl:attribute name="value" select="'inactive'"/>
                         </xsl:when>
                         
@@ -165,7 +165,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 
                 <period>
                     <xsl:choose>
-                        <xsl:when test="besluit_type/(@codeSystem = '2.16.840.1.113883.6.96' and @code = '385652002')">
+                        <xsl:when test="besluit_type/(@codeSystem = $oidSNOMEDCT and @code = '385652002')">
                             <start>
                                 <xsl:attribute name="value">
                                     <xsl:call-template name="format2FHIRDate">
@@ -175,7 +175,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </start>
                         </xsl:when>
                         
-                        <xsl:when test="besluit_type/(@codeSystem = '2.16.840.1.113883.6.96' and @code = '410546004')">
+                        <xsl:when test="besluit_type/(@codeSystem = $oidSNOMEDCT and @code = '410546004')">
                             <start>
                                 <xsl:attribute name="value">
                                     <xsl:call-template name="format2FHIRDate">

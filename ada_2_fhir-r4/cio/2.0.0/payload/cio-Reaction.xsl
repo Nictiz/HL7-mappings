@@ -127,9 +127,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
                             <xsl:with-param name="codeMap" as="element()*">
-                                <map inCode="410515003" inCodeSystem="2.16.840.1.113883.6.96" code="active" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical" displayName="Active"/>
-                                <map inCode="350361000146109" inCodeSystem="2.16.840.1.113883.6.96" code="resolved" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical" displayName="Resolved"/>
-                                <map inCode="410516002" inCodeSystem="2.16.840.1.113883.6.96" code="inactive" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical" displayName="Inactive"/>
+                                <map inCode="410515003" inCodeSystem="{$oidSNOMEDCT}" code="active" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical" displayName="Active"/>
+                                <map inCode="350361000146109" inCodeSystem="{$oidSNOMEDCT}" code="resolved" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical" displayName="Resolved"/>
+                                <map inCode="410516002" inCodeSystem="{$oidSNOMEDCT}" code="inactive" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical" displayName="Inactive"/>
                             </xsl:with-param>
                         </xsl:call-template>
                         
@@ -144,11 +144,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
                             <xsl:with-param name="codeMap" as="element()*">
-                                <map inCode="415684004" inCodeSystem="2.16.840.1.113883.6.96" code="unconfirmed" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-verification" displayName="Unconfirmed"/>
-                                <map inCode="410590009" inCodeSystem="2.16.840.1.113883.6.96" code="unconfirmed" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-verification" displayName="Unconfirmed"/>
-                                <map inCode="410605003" inCodeSystem="2.16.840.1.113883.6.96" code="confirmed" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-verification" displayName="Confirmed"/>
-                                <map inCode="410593006" inCodeSystem="2.16.840.1.113883.6.96" code="unconfirmed" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-verification" displayName="Unconfirmed"/>
-                                <map inCode="410516002" inCodeSystem="2.16.840.1.113883.6.96" code="refuted" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-verification" displayName="Refuted"/>
+                                <map inCode="415684004" inCodeSystem="{$oidSNOMEDCT}" code="unconfirmed" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-verification" displayName="Unconfirmed"/>
+                                <map inCode="410590009" inCodeSystem="{$oidSNOMEDCT}" code="unconfirmed" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-verification" displayName="Unconfirmed"/>
+                                <map inCode="410605003" inCodeSystem="{$oidSNOMEDCT}" code="confirmed" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-verification" displayName="Confirmed"/>
+                                <map inCode="410593006" inCodeSystem="{$oidSNOMEDCT}" code="unconfirmed" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-verification" displayName="Unconfirmed"/>
+                                <map inCode="410516002" inCodeSystem="{$oidSNOMEDCT}" code="refuted" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-verification" displayName="Refuted"/>
                                 <map inCode="UNK" inCodeSystem="2.16.840.1.113883.5.1008" code="unconfirmed" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-verification" displayName="Unconfirmed"/>
                             </xsl:with-param>
                         </xsl:call-template>
