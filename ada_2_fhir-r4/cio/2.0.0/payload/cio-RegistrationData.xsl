@@ -25,7 +25,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     version="2.0">
     
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>Create a cio-RegistrationData instance as a Provenance FHIR instance from the ada element bouwstenen/registratie_gegevens.</xd:desc>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
     <xsl:template name="cio-RegistrationData" as="element(f:Provenance)?">
         <xsl:param name="in" select="." as="element()?"/>

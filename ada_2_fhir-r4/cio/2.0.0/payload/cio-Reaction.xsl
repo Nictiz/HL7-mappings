@@ -25,7 +25,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     version="2.0">
     
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>Create a cio-Reaction instance as an AllergyIntolerance FHIR instance from the ada element geneesmiddelovergevoeligheid/reactie.</xd:desc>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
     <xsl:template name="cio-Reaction" as="element(f:AllergyIntolerance)?">
         <xsl:param name="in" select="." as="element()?"/>
@@ -283,6 +285,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
+        <xd:param name="profile">Parameter to indicate for which target profile a display is to be generated.</xd:param>
     </xd:doc>
     <xsl:template match="reactie[parent::geneesmiddelovergevoeligheid]" mode="_generateDisplay">
         <xsl:param name="profile" required="yes" as="xs:string"/>

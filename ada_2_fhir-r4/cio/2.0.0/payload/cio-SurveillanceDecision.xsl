@@ -25,7 +25,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     version="2.0">
     
     <xd:doc>
-        <xd:desc/>
+        <xd:desc>Create a cio-SurveillanceDecision instance as a Flag FHIR instance from the ada element geneesmiddelovergevoeligheid/bewaking_besluit.</xd:desc>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
     <xsl:template name="cio-SurveillanceDecision" as="element(f:Flag)?">
         <xsl:param name="in" select="." as="element()?"/>
