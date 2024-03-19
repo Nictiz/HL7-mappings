@@ -24,6 +24,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
     
+    <xsl:variable name="profileNameCioSurveillanceDecision">cio-SurveillanceDecision</xsl:variable>
+    
     <xd:doc>
         <xd:desc>Create a cio-SurveillanceDecision instance as a Flag FHIR instance from the ada element geneesmiddelovergevoeligheid/bewaking_besluit.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -43,10 +45,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="relationSurveillanceDecision" select="../../geneesmiddelovergevoeligheid/bewaking_besluit[registratie_gegevens/@value = $relationSurveillanceDecisionRegistrationData/@id]"/>
                 
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'cio-SurveillanceDecision'"/>
+                    <xsl:with-param name="profile" select="$profileNameCioSurveillanceDecision"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-SurveillanceDecision"/>
+                    <profile value="{concat($urlBaseNictizProfile, $profileNameCioSurveillanceDecision)}"/>
                 </meta>
                 
                 <xsl:for-each select="besluit_grond/*">
@@ -56,8 +58,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:with-param name="in" select="."/>
                                 <xsl:with-param name="profile">
                                     <xsl:choose>
-                                        <xsl:when test="self::overgevoeligheid">cio-Hypersensitivity</xsl:when>
-                                        <xsl:when test="self::reactie">cio-Reaction</xsl:when>
+                                        <xsl:when test="self::overgevoeligheid">
+                                            <xsl:value-of select="$profileNameCioHypersensitivity"/>
+                                        </xsl:when>
+                                        <xsl:when test="self::reactie">
+                                            <xsl:value-of select="$profileNameCioReaction"/>
+                                        </xsl:when>
                                     </xsl:choose>
                                 </xsl:with-param>
                             </xsl:call-template>
@@ -70,7 +76,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <valueReference>
                             <xsl:call-template name="makeReference">
                                 <xsl:with-param name="in" select="$relationSurveillanceDecision"/>
-                                <xsl:with-param name="profile" select="'cio-SurveillanceDecision'"/>
+                                <xsl:with-param name="profile" select="$profileNameCioSurveillanceDecision"/>
                             </xsl:call-template>
                         </valueReference>
                     </extension>
@@ -200,7 +206,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="makeReference">
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="wrapIn" select="'author'"/>
-                        <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
+                        <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
                     </xsl:call-template>
                 </xsl:for-each>
             </Flag>

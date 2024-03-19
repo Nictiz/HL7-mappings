@@ -127,7 +127,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="reactie" resource="AllergyIntolerance" profile="cio-Reaction"/>
         <nm:map ada="reactie" resource="Condition" profile="cio-Condition"/>
         <nm:map ada="refractie" resource="Observation" profile="nl-core-Refraction"/>
-        <nm:map ada="registratie_gegevens" resource="Provenance" profile="cio-Provenance"/>
+        <nm:map ada="registratie_gegevens" resource="Provenance" profile="cio-RegistrationData"/>
         <nm:map ada="schedelomvang" resource="Observation" profile="nl-core-HeadCircumference"/>
         <nm:map ada="soepverslag" resource="Composition" profile="nl-core-SOAPReport"/>
         <nm:map ada="soepregel" resource="Observation" profile="nl-core-SOAPReport.SOAPLine"/>

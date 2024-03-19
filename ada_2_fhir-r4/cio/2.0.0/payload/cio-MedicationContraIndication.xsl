@@ -24,6 +24,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
     
+    <xsl:variable name="profileNameCioMedicationContraIndication">cio-MedicationContraIndication</xsl:variable>
+    
     <xd:doc>
         <xd:desc>Create a cio-MedicationContraIndication instance as a Flag FHIR instance from the ada element medicatie_contra_indicatie/alert.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -46,10 +48,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:variable name="endDateTime" select="eind_datum_tijd/@value"/>
                     
                     <xsl:call-template name="insertLogicalId">
-                        <xsl:with-param name="profile" select="'cio-MedicationContraIndication'"/>
+                        <xsl:with-param name="profile" select="$profileNameCioMedicationContraIndication"/>
                     </xsl:call-template>
                     <meta>
-                        <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-MedicationContraIndication"/>
+                        <profile value="{concat($urlBaseNictizProfile, $profileNameCioMedicationContraIndication)}"/>
                     </meta>
                     
                     <xsl:for-each select="reden_beeindiging_alert[@value]">
@@ -67,7 +69,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <valueReference>
                                 <xsl:call-template name="makeReference">
                                     <xsl:with-param name="in" select="$relationAlert"/>
-                                    <xsl:with-param name="profile" select="'cio-MedicationContraIndication'"/>
+                                    <xsl:with-param name="profile" select="$profileNameCioMedicationContraIndication"/>
                                 </xsl:call-template>
                             </valueReference>
                         </extension>
@@ -149,7 +151,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="makeReference">
                             <xsl:with-param name="in" select="."/>
                             <xsl:with-param name="wrapIn" select="'author'"/>
-                            <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
+                            <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
                         </xsl:call-template>
                     </xsl:for-each>
                 </Flag>

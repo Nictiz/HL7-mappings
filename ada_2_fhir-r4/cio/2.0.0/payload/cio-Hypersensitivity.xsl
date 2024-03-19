@@ -24,6 +24,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
     
+    <xsl:variable name="profileNameCioHypersensitivity">cio-Hypersensitivity</xsl:variable>
+    
     <xd:doc>
         <xd:desc>Create a cio-Hypersensitivity instance as an AllergyIntolerance FHIR instance from the ada element geneesmiddelovergevoeligheid/overgevoeligheid.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -44,10 +46,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="relationHypersensitivity" select="../../geneesmiddelovergevoeligheid/overgevoeligheid[registratie_gegevens/@value = $relationHypersensitivityRegistrationData/@id]"/>
                 
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'cio-Hypersensitivity'"/>
+                    <xsl:with-param name="profile" select="$profileNameCioHypersensitivity"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-Hypersensitivity"/>
+                    <profile value="{concat($urlBaseNictizProfile, $profileNameCioHypersensitivity)}"/>
                 </meta>
                 
                 <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AllergyIntolerance-Type">
@@ -86,7 +88,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <valueReference>
                         <xsl:call-template name="makeReference">
                             <xsl:with-param name="in" select="."/>
-                            <xsl:with-param name="profile" select="'cio-Condition'"/>
+                            <xsl:with-param name="profile" select="$profileNameCioCondition"/>
                         </xsl:call-template>
                     </valueReference>
                 </extension>
@@ -96,7 +98,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <valueReference>
                             <xsl:call-template name="makeReference">
                                 <xsl:with-param name="in" select="$relationHypersensitivity"/>
-                                <xsl:with-param name="profile" select="'cio-Hypersensitivity'"/>
+                                <xsl:with-param name="profile" select="$profileNameCioHypersensitivity"/>
                             </xsl:call-template>
                         </valueReference>
                     </extension>
@@ -230,7 +232,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="makeReference">
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="wrapIn" select="'recorder'"/>
-                        <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
+                        <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
                     </xsl:call-template>
                 </xsl:for-each>
                 
@@ -238,7 +240,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="makeReference">
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="wrapIn" select="'asserter'"/>
-                        <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
+                        <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
                     </xsl:call-template>
                 </xsl:for-each>
                 
@@ -263,7 +265,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="profile" required="yes" as="xs:string"/>
         
         <xsl:choose>
-            <xsl:when test="$profile = 'cio-Hypersensitivity'">
+            <xsl:when test="$profile = $profileNameCioHypersensitivity">
                 <xsl:variable name="parts" as="item()*">
                     <xsl:text>Overgevoeligheid</xsl:text>
                     <xsl:value-of select="agens/stof/@displayName"/>
@@ -271,7 +273,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:variable>
                 <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
             </xsl:when>
-            <xsl:when test="$profile = 'cio-Condition'">
+            <xsl:when test="$profile = $profileNameCioCondition">
                 <xsl:variable name="parts" as="item()*">
                     <xsl:text>Aandoening</xsl:text>
                     <xsl:value-of select="diagnose/diagnose_naam/@displayName"/>

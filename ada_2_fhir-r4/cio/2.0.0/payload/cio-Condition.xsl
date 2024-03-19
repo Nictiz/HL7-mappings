@@ -24,6 +24,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
     
+    <xsl:variable name="profileNameCioCondition">cio-Condition</xsl:variable>
+    
     <xd:doc>
         <xd:desc>Create a cio-Condition instance as a Condition FHIR instance from the ada elements geneesmiddelovergevoeligheid/overgevoeligheid and geneesmiddelovergevoeligheid/reactie.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -40,10 +42,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="registrationDateTime" select="$registrationData/registratie_datum_tijd"/>
                 
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'cio-Condition'"/>
+                    <xsl:with-param name="profile" select="$profileNameCioCondition"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-Condition"/>
+                    <profile value="{concat($urlBaseNictizProfile, $profileNameCioCondition)}"/>
                 </meta>
                 
                 <xsl:for-each select="aandoening_status_datum[@value]">
@@ -140,7 +142,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="makeReference">
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="wrapIn" select="'recorder'"/>
-                        <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
+                        <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
                     </xsl:call-template>
                 </xsl:for-each>
                 
@@ -148,7 +150,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="makeReference">
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="wrapIn" select="'asserter'"/>
-                        <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
+                        <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
                     </xsl:call-template>
                 </xsl:for-each>
             </Condition>
