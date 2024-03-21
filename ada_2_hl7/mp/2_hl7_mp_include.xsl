@@ -542,7 +542,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </center>
                 </xsl:when>
             </xsl:choose>
-            
+
         </doseQuantity>
     </xsl:template>
 
@@ -1473,9 +1473,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9150_20160726150449">
         <rateQuantity>
             <xsl:variable name="speedUnit">
-                <xsl:value-of select="nf:convertGstdBasiseenheid2UCUM(eenheid/@code)"/>
-                <xsl:text>/</xsl:text>
-                <xsl:value-of select="nf:convertTime_ADA_unit2UCUM(tijdseenheid/@unit)"/>
+                <xsl:choose>
+                    <xsl:when test="eenheid/@code">
+                        <xsl:value-of select="nf:convertGstdBasiseenheid2UCUM(eenheid/@code)"/>
+                        <xsl:text>/</xsl:text>
+                        <xsl:value-of select="nf:convertTime_ADA_unit2UCUM(tijdseenheid/@unit)"/>
+                    </xsl:when>
+                    <xsl:when test="eenheid/@unit">
+                        <xsl:value-of select="eenheid/@unit"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="eenheid/@value"/>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:variable>
             <xsl:choose>
                 <xsl:when test="waarde/(vaste_waarde | nominale_waarde)/@value">
@@ -3161,10 +3171,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="toedieningsschema[.//(@value | @code)]">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9358_20210517124213"/>
                 </xsl:for-each>
-                <xsl:for-each select="keerdosis[.//(@value | @code )]">
-                        <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9048_20160614145840"/>
-                </xsl:for-each>   
-                <xsl:for-each select="toedieningssnelheid[.//(@value | @code)]">
+                <xsl:for-each select="keerdosis[.//(@value | @code)]">
+                    <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9048_20160614145840"/>
+                </xsl:for-each>
+                <xsl:for-each select="toedieningssnelheid[.//(@value | @code | @unit)]">
                     <xsl:call-template name="template_2.16.840.1.113883.2.4.3.11.60.20.77.10.9150_20160726150449"/>
                 </xsl:for-each>
                 <xsl:for-each select="zo_nodig/maximale_dosering[.//(@value | @code)]">
@@ -3347,7 +3357,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <width>
                             <xsl:call-template name="makeTimePQValueAttribs"/>
                         </width>
-                        
+
                     </expectedUseTime>
                 </xsl:for-each>
 
@@ -3633,7 +3643,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </substanceAdministration>
         </xsl:for-each>
     </xsl:template>
-    
+
     <xd:doc>
         <xd:desc>MP CDA author zorgverlener of patient vanaf 9.0.7. Also compatible with 9 2.0 dataset structure. Used in medicatiegebruik </xd:desc>
         <xd:param name="adaAuteur">Input ada auteur element to be handled</xd:param>
