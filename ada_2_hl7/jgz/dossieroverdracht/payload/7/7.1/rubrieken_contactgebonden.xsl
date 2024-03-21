@@ -17,32 +17,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- If a file imported here exists in a different folder (meaning a different 'package'), this means the profile and therefore its ada2fhir mapping is the same in the current and the imported package version (and all versions in between). 
         If a bug is found and fixed, this fix should apply to the mapping in all versions of the package that use this mapping.
         If a profile is edited in a non-backwards compatible way, a new version of the ada2fhir mapping should be made for that profile. -->
-    <xsl:import href="rubriek_12.xsl"/>
-    <xsl:import href="../7.0/rubriek_13.xsl"/>
-    <xsl:import href="../7.0/rubriek_18.xsl"/>
-    <xsl:import href="rubriek_52.xsl"/>
-    <xsl:import href="rubriek_19.xsl"/>
-    <xsl:import href="../7.0/rubriek_20.xsl"/>
-    <xsl:import href="rubriek_21.xsl"/>
-    <xsl:import href="../7.0/rubriek_22.xsl"/>
-    <xsl:import href="../7.0/rubriek_23.xsl"/>
-    <xsl:import href="../7.0/rubriek_24.xsl"/>
-    <xsl:import href="../7.0/rubriek_25.xsl"/>
-    <xsl:import href="../7.0/rubriek_26.xsl"/>
-    <xsl:import href="rubriek_27.xsl"/>
-    <xsl:import href="../7.0/rubriek_30.xsl"/>
-    <xsl:import href="rubriek_31.xsl"/>
-    <xsl:import href="../7.0/rubriek_32.xsl"/>
-    <xsl:import href="rubriek_34.xsl"/>
-    <xsl:import href="rubriek_38.xsl"/>
-    <xsl:import href="../7.0/rubriek_39.xsl"/>
-    <xsl:import href="../7.0/rubriek_40.xsl"/>
-    <xsl:import href="../7.0/rubriek_41.xsl"/>
-    <xsl:import href="../7.0/rubriek_42.xsl"/>
-    <xsl:import href="../7.0/rubriek_43.xsl"/>
-    <xsl:import href="rubriek_54.xsl"/>
-    <xsl:import href="../7.0/rubriek_45.xsl"/>
-    <xsl:import href="../7.0/rubriek_49.xsl"/>
+    <xsl:import href="../7.0/rubrieken_contactgebonden.xsl"/>
+    <xsl:include href="rubriek_12.xsl"/>
+    <xsl:include href="rubriek_52.xsl"/>
+    <xsl:include href="rubriek_19.xsl"/>
+    <xsl:include href="rubriek_21.xsl"/>
+    <xsl:include href="rubriek_27.xsl"/>
+    <xsl:include href="rubriek_31.xsl"/>
+    <xsl:include href="rubriek_34.xsl"/>
+    <xsl:include href="rubriek_38.xsl"/>
+    <xsl:include href="rubriek_54.xsl"/>
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
