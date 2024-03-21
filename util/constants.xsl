@@ -390,6 +390,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <map oid="{$oidHL7RoleCode}" uri="http://hl7.org/fhir/v3/RoleCode" displayName="HL7 RoleCode"/>
                 <map oid="{$oidQuestionnaireItemUsageMode}" uri="http://hl7.org/fhir/questionnaire-usage-mode" displayName="QuestionnaireItemUsageMode Item UI Control Codes"/>
                 <map uri="http://hl7.org/fhir/v2/0078" displayName="HL7 Version 2 Table 0078 v2 Interpretation Codes"/>
+                <map oid="{$oidHL7V3MaritalStatus}" uri="http://hl7.org/fhir/v3/MaritalStatus" displayName="HL7 MaritalStatus"/>
             </xsl:when>
             <xsl:when test="$fhirVersion = 'R4'">
                 <map oid="{$oidChoiceListOrientation}" uri="http://terminology.hl7.org/CodeSystem/choice-list-orientation" displayName="ChoiceListOrientation"/>
