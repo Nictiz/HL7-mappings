@@ -1,0 +1,80 @@
+<Immunization xmlns="http://hl7.org/fhir">
+   <id value="zib-Vaccination-bgz-msz-patB-vaccin1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Vaccination"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Vaccinatie. Patiënt: Francisca F. Fransje Gigase Verheul. Id: bgz-msz-patB-vaccin (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6), Status: voltooid</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">fietsreis naar Vietnam</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>
+                     <span title="RABIES, GEINACTIVEERD, INTACT VIRUS (J07BG01 - http://www.whocc.no/atc)">RABIES, GEINACTIVEERD, INTACT VIRUS</span>
+                  </th>
+                  <td>
+                     <div>Toegediend: ja (3 januari 2017)</div>
+                     <div>Gemeld door uitvoerende: nee</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Zorgverlener</th>
+                  <td>Huisdokter H. Huisdokter Behulpzaam || Huisarts || Huisartsenpraktijk Betrokken</td>
+               </tr>
+               <tr>
+                  <th>Vaccine Details</th>
+                  <td>
+                     <div>Dosering: 1 mL</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"/>
+      <value value="bgz-msz-patB-vaccin"/>
+   </identifier>
+   <status value="completed"/>
+   <notGiven value="false"/>
+   <vaccineCode>
+      <coding>
+         <system value="http://www.whocc.no/atc"/>
+         <code value="J07BG01"/>
+         <display value="RABIES, GEINACTIVEERD, INTACT VIRUS"/>
+      </coding>
+   </vaccineCode>
+   <patient>
+      <reference value="Patient/FRANCISCA-F--FRANSJE-GIGASE-VERHEUL"/>
+      <display value="Francisca F. Fransje Gigase Verheul"/>
+   </patient>
+   <date value="2017-01-03"/>
+   <primarySource value="false"/>
+   <doseQuantity>
+      <value value="1"/>
+      <unit value="mL"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="mL"/>
+   </doseQuantity>
+   <practitioner>
+      <actor>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-bgz-msz-0013131301-01520000004"/>
+               <display value="Huisdokter H. Huisdokter Behulpzaam || Huisarts || Huisartsenpraktijk Betrokken"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-840-1-113883-2-4-6-1-00131313"/>
+         <display value="Huisdokter H. Huisdokter Behulpzaam"/>
+      </actor>
+   </practitioner>
+   <note>
+      <text value="fietsreis naar Vietnam"/>
+   </note>
+</Immunization>
