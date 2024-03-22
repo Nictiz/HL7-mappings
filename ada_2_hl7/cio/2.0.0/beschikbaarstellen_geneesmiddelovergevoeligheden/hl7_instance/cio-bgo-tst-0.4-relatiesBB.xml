@@ -46,6 +46,36 @@
                               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                   <low value="20231102111546"/>
                </effectiveTime>
+               <performer>
+                  <time value="20231102111546"/>
+                  <assignedEntity>
+                     <id extension="000001111"
+                         root="2.16.840.1.113883.2.4.3.11.999.26.1.139"/>
+                     <code code="0100"
+                           codeSystem="2.16.840.1.113883.2.4.6.7"
+                           displayName="Huisartsen, niet nader gespecificeerd"
+                           codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                           codeSystemVersion="2020-10-23T00:00:00"/>
+                     <assignedPerson>
+                        <name>
+                           <given qualifier="BR">Peter</given>
+                           <prefix qualifier="VV">van </prefix>
+                           <family qualifier="BR">Pulver</family>
+                        </name>
+                     </assignedPerson>
+                     <representedOrganization>
+                        <id extension="00001111"
+                            root="2.16.840.1.113883.2.4.3.11.999.26.1.205"/>
+                        <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                        <addr use="WP">
+                           <streetName>Dorpstraat</streetName>
+                           <houseNumber>1</houseNumber>
+                           <postalCode>1234 AA</postalCode>
+                           <city>Ons Dorp</city>
+                        </addr>
+                     </representedOrganization>
+                  </assignedEntity>
+               </performer>
                <author>
                   <time value="20231102111546"/>
                   <assignedAuthor>
@@ -107,40 +137,10 @@
                      </representedOrganization>
                   </assignedEntity>
                </informant>
-               <performer>
-                  <time value="20231102111546"/>
-                  <assignedEntity>
-                     <id extension="000001111"
-                         root="2.16.840.1.113883.2.4.3.11.999.26.1.139"/>
-                     <code code="0100"
-                           codeSystem="2.16.840.1.113883.2.4.6.7"
-                           displayName="Huisartsen, niet nader gespecificeerd"
-                           codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                           codeSystemVersion="2020-10-23T00:00:00"/>
-                     <assignedPerson>
-                        <name>
-                           <given qualifier="BR">Peter</given>
-                           <prefix qualifier="VV">van </prefix>
-                           <family qualifier="BR">Pulver</family>
-                        </name>
-                     </assignedPerson>
-                     <representedOrganization>
-                        <id extension="00001111"
-                            root="2.16.840.1.113883.2.4.3.11.999.26.1.205"/>
-                        <name>Huisartsenpraktijk Pulver &amp; Partners</name>
-                        <addr use="WP">
-                           <streetName>Dorpstraat</streetName>
-                           <houseNumber>1</houseNumber>
-                           <postalCode>1234 AA</postalCode>
-                           <city>Ons Dorp</city>
-                        </addr>
-                     </representedOrganization>
-                  </assignedEntity>
-               </performer>
                <participant typeCode="CSM">
                   <participantRole classCode="MANU">
                      <playingEntity classCode="MMAT">
-                        <code xsi:type="CD"
+                        <code xsi:type="CE"
                               code="35"
                               codeSystem="2.16.840.1.113883.2.4.4.1.902.122"
                               displayName="PENICILLINES"
@@ -206,7 +206,7 @@
                      <participant typeCode="CSM">
                         <participantRole classCode="MANU">
                            <playingEntity classCode="MMAT">
-                              <code xsi:type="CD"
+                              <code xsi:type="CE"
                                     code="40991"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.750"
                                     displayName="FLUCLOXACILLINE"
@@ -224,7 +224,9 @@
                                  displayName="Datum waarop gezondheidsstatus is gewijzigd (waarneembare entiteit)"
                                  codeSystem="2.16.840.1.113883.6.96"
                                  codeSystemName="SNOMED CT"/>
-                           <value value="20231102111546"/>
+                           <value xsi:type="TS"
+                                  value="20231102111546"
+                                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
                         </observation>
                      </entryRelationship>
                      <entryRelationship typeCode="SUBJ"
@@ -294,7 +296,7 @@
                                         inversionInd="true">
                         <observation classCode="OBS"
                                      moodCode="EVN">
-                           <templateId root=" 2.16.840.1.113883.2.4.3.11.60.26.10.22"/>
+                           <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.22"/>
                            <code code="439401001"
                                  displayName="Diagnose (waarneembare entiteit)"
                                  codeSystem="2.16.840.1.113883.6.96"
@@ -397,36 +399,6 @@
                   <low value="20231102111546"/>
                   <high value="20231222155530"/>
                </effectiveTime>
-               <author>
-                  <time value="20231222155530"/>
-                  <assignedAuthor>
-                     <id extension="000001111"
-                         root="2.16.840.1.113883.2.4.3.11.999.26.1.139"/>
-                     <code code="0100"
-                           codeSystem="2.16.840.1.113883.2.4.6.7"
-                           displayName="Huisartsen, niet nader gespecificeerd"
-                           codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                           codeSystemVersion="2020-10-23T00:00:00"/>
-                     <assignedPerson>
-                        <name>
-                           <given qualifier="BR">Peter</given>
-                           <prefix qualifier="VV">van </prefix>
-                           <family qualifier="BR">Pulver</family>
-                        </name>
-                     </assignedPerson>
-                     <representedOrganization>
-                        <id extension="00001111"
-                            root="2.16.840.1.113883.2.4.3.11.999.26.1.205"/>
-                        <name>Huisartsenpraktijk Pulver &amp; Partners</name>
-                        <addr use="WP">
-                           <streetName>Dorpstraat</streetName>
-                           <houseNumber>1</houseNumber>
-                           <postalCode>1234 AA</postalCode>
-                           <city>Ons Dorp</city>
-                        </addr>
-                     </representedOrganization>
-                  </assignedAuthor>
-               </author>
                <performer>
                   <time value="20231222155530"/>
                   <assignedEntity>
@@ -457,10 +429,40 @@
                      </representedOrganization>
                   </assignedEntity>
                </performer>
+               <author>
+                  <time value="20231222155530"/>
+                  <assignedAuthor>
+                     <id extension="000001111"
+                         root="2.16.840.1.113883.2.4.3.11.999.26.1.139"/>
+                     <code code="0100"
+                           codeSystem="2.16.840.1.113883.2.4.6.7"
+                           displayName="Huisartsen, niet nader gespecificeerd"
+                           codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                           codeSystemVersion="2020-10-23T00:00:00"/>
+                     <assignedPerson>
+                        <name>
+                           <given qualifier="BR">Peter</given>
+                           <prefix qualifier="VV">van </prefix>
+                           <family qualifier="BR">Pulver</family>
+                        </name>
+                     </assignedPerson>
+                     <representedOrganization>
+                        <id extension="00001111"
+                            root="2.16.840.1.113883.2.4.3.11.999.26.1.205"/>
+                        <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                        <addr use="WP">
+                           <streetName>Dorpstraat</streetName>
+                           <houseNumber>1</houseNumber>
+                           <postalCode>1234 AA</postalCode>
+                           <city>Ons Dorp</city>
+                        </addr>
+                     </representedOrganization>
+                  </assignedAuthor>
+               </author>
                <participant typeCode="CSM">
                   <participantRole classCode="MANU">
                      <playingEntity classCode="MMAT">
-                        <code xsi:type="CD"
+                        <code xsi:type="CE"
                               code="35"
                               codeSystem="2.16.840.1.113883.2.4.4.1.902.122"
                               displayName="PENICILLINES"
@@ -526,7 +528,7 @@
                      <participant typeCode="CSM">
                         <participantRole classCode="MANU">
                            <playingEntity classCode="MMAT">
-                              <code xsi:type="CD"
+                              <code xsi:type="CE"
                                     code="40991"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.750"
                                     displayName="FLUCLOXACILLINE"
@@ -543,7 +545,9 @@
                                  displayName="Datum waarop gezondheidsstatus is gewijzigd (waarneembare entiteit)"
                                  codeSystem="2.16.840.1.113883.6.96"
                                  codeSystemName="SNOMED CT"/>
-                           <value value="20231222155530"/>
+                           <value xsi:type="TS"
+                                  value="20231222155530"
+                                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
                         </observation>
                      </entryRelationship>
                      <entryRelationship typeCode="SUBJ"
@@ -613,7 +617,7 @@
                                         inversionInd="true">
                         <observation classCode="OBS"
                                      moodCode="EVN">
-                           <templateId root=" 2.16.840.1.113883.2.4.3.11.60.26.10.22"/>
+                           <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.22"/>
                            <code code="439401001"
                                  displayName="Diagnose (waarneembare entiteit)"
                                  codeSystem="2.16.840.1.113883.6.96"
@@ -689,7 +693,7 @@
                                      moodCode="EVN">
                            <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.17"/>
                            <id extension="pat04-overgevoeligheid-01"
-                               nullFlavor="UNC"/>
+                               root="2.16.840.1.113883.2.4.3.11.999.26.1.3"/>
                            <code code="609433001"
                                  displayName="Overgevoeligheid (bevinding)"
                                  codeSystem="2.16.840.1.113883.6.96"
@@ -715,7 +719,7 @@
                                moodCode="EVN">
                      <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.24"/>
                      <id extension="pat04-BB-01"
-                         nullFlavor="UNC"/>
+                         root="2.16.840.1.113883.2.4.3.11.999.26.1.754"/>
                      <code code="225419007"
                            displayName="Surveillance (regime/therapie)"
                            codeSystem="2.16.840.1.113883.6.96"
@@ -739,36 +743,6 @@
                               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                   <low value="20231222155530"/>
                </effectiveTime>
-               <author>
-                  <time value="20231222155530"/>
-                  <assignedAuthor>
-                     <id extension="000001111"
-                         root="2.16.840.1.113883.2.4.3.11.999.26.1.139"/>
-                     <code code="0100"
-                           codeSystem="2.16.840.1.113883.2.4.6.7"
-                           displayName="Huisartsen, niet nader gespecificeerd"
-                           codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                           codeSystemVersion="2020-10-23T00:00:00"/>
-                     <assignedPerson>
-                        <name>
-                           <given qualifier="BR">Peter</given>
-                           <prefix qualifier="VV">van </prefix>
-                           <family qualifier="BR">Pulver</family>
-                        </name>
-                     </assignedPerson>
-                     <representedOrganization>
-                        <id extension="00001111"
-                            root="2.16.840.1.113883.2.4.3.11.999.26.1.205"/>
-                        <name>Huisartsenpraktijk Pulver &amp; Partners</name>
-                        <addr use="WP">
-                           <streetName>Dorpstraat</streetName>
-                           <houseNumber>1</houseNumber>
-                           <postalCode>1234 AA</postalCode>
-                           <city>Ons Dorp</city>
-                        </addr>
-                     </representedOrganization>
-                  </assignedAuthor>
-               </author>
                <performer>
                   <time value="20231222155530"/>
                   <assignedEntity>
@@ -799,10 +773,40 @@
                      </representedOrganization>
                   </assignedEntity>
                </performer>
+               <author>
+                  <time value="20231222155530"/>
+                  <assignedAuthor>
+                     <id extension="000001111"
+                         root="2.16.840.1.113883.2.4.3.11.999.26.1.139"/>
+                     <code code="0100"
+                           codeSystem="2.16.840.1.113883.2.4.6.7"
+                           displayName="Huisartsen, niet nader gespecificeerd"
+                           codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                           codeSystemVersion="2020-10-23T00:00:00"/>
+                     <assignedPerson>
+                        <name>
+                           <given qualifier="BR">Peter</given>
+                           <prefix qualifier="VV">van </prefix>
+                           <family qualifier="BR">Pulver</family>
+                        </name>
+                     </assignedPerson>
+                     <representedOrganization>
+                        <id extension="00001111"
+                            root="2.16.840.1.113883.2.4.3.11.999.26.1.205"/>
+                        <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                        <addr use="WP">
+                           <streetName>Dorpstraat</streetName>
+                           <houseNumber>1</houseNumber>
+                           <postalCode>1234 AA</postalCode>
+                           <city>Ons Dorp</city>
+                        </addr>
+                     </representedOrganization>
+                  </assignedAuthor>
+               </author>
                <participant typeCode="CSM">
                   <participantRole classCode="MANU">
                      <playingEntity classCode="MMAT">
-                        <code xsi:type="CD"
+                        <code xsi:type="CE"
                               code="35"
                               codeSystem="2.16.840.1.113883.2.4.4.1.902.122"
                               displayName="PENICILLINES"
@@ -898,7 +902,7 @@
                      <participant typeCode="CSM">
                         <participantRole classCode="MANU">
                            <playingEntity classCode="MMAT">
-                              <code xsi:type="CD"
+                              <code xsi:type="CE"
                                     code="35"
                                     codeSystem="2.16.840.1.113883.2.4.4.1.902.122"
                                     displayName="PENICILLINES"
@@ -916,7 +920,9 @@
                                  displayName="Datum waarop gezondheidsstatus is gewijzigd (waarneembare entiteit)"
                                  codeSystem="2.16.840.1.113883.6.96"
                                  codeSystemName="SNOMED CT"/>
-                           <value value="20231222155530"/>
+                           <value xsi:type="TS"
+                                  value="20231222155530"
+                                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
                         </observation>
                      </entryRelationship>
                      <entryRelationship typeCode="SUBJ"
@@ -986,7 +992,7 @@
                                         inversionInd="true">
                         <observation classCode="OBS"
                                      moodCode="EVN">
-                           <templateId root=" 2.16.840.1.113883.2.4.3.11.60.26.10.22"/>
+                           <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.22"/>
                            <code code="439401001"
                                  displayName="Diagnose (waarneembare entiteit)"
                                  codeSystem="2.16.840.1.113883.6.96"
@@ -1076,7 +1082,7 @@
                                moodCode="EVN">
                      <templateId root="2.16.840.1.113883.2.4.3.11.60.26.10.24"/>
                      <id extension="pat04-BB-02"
-                         nullFlavor="UNC"/>
+                         root="2.16.840.1.113883.2.4.3.11.999.26.1.754"/>
                      <code code="225419007"
                            displayName="Surveillance (regime/therapie)"
                            codeSystem="2.16.840.1.113883.6.96"
