@@ -59,8 +59,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <code>
                     <coding>
                         <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                        <code value="363983007"/>
-                        <display value="visus"/>
+                        <code value="260246004" />
+                        <display value="bevinding betreffende visus"/>                      
                     </coding>
                 </code>
                 <xsl:call-template name="makeReference">
@@ -79,6 +79,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="decimale_visus_waarde">
                     <valueQuantity>
                         <value value="{@value}"/>
+                        <unit value="decimale visus"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="1"/>
                     </valueQuantity>
                 </xsl:for-each>
                 <xsl:for-each select="anatomische_locatie[lateraliteit]">
@@ -96,8 +99,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <code>
                             <coding>
                                 <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                                <code value="363983007" />
-                                <display value="visus"/>
+                                <code value="16830007" />
+                                <display value="onderzoek van visus"/>
                             </coding>
                         </code>
                         <valueCodeableConcept>
