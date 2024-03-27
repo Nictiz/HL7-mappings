@@ -1,0 +1,117 @@
+<Encounter xmlns="http://hl7.org/fhir">
+   <id value="zib-Encounter-bgz-msz-patB-encounter3"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Contact. Subject: Francisca F. Fransje Gigase Verheul. Id: bgz-msz-patB-encounter3 (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6), Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <th>Type contact</th>
+                  <td>
+                     <div>
+                        <span title="inpatient encounter (IMP - v3/ActCode)">inpatient encounter</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>${DATE, T, D, -2}T17:00:00+02:00 - ${DATE, T, D, -1}T10:00:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Probleem/Verrichting</th>
+                  <td>incisie en drainage van diep abces</td>
+               </tr>
+               <tr>
+                  <th>Participant</th>
+                  <td>
+                     <div>
+                        <span title="Performer (PRF - v3/ParticipationType)">Performer</span> - Hecht H. Hecht Bekwaam || Chirurg || Ziekenhuis Beterschap</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Zorgaanbieder</th>
+                  <td>Ziekenhuis Beterschap</td>
+               </tr>
+               <tr>
+                  <th>Opnamegegevens</th>
+                  <td>
+                     <ul>
+                        <li>Ontslagwijze: <span title="thuis (264362003 - SNOMED CT)">thuis</span>
+                        </li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"/>
+      <value value="bgz-msz-patB-encounter3"/>
+   </identifier>
+   <status value="finished"/>
+   <class>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActCode"/>
+               <code value="IMP"/>
+               <display value="inpatient encounter"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="http://hl7.org/fhir/v3/ActCode"/>
+      <code value="IMP"/>
+      <display value="inpatient encounter"/>
+   </class>
+   <subject>
+      <reference value="Patient/FRANCISCA-F--FRANSJE-GIGASE-VERHEUL"/>
+      <display value="Francisca F. Fransje Gigase Verheul"/>
+   </subject>
+   <participant>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+            <code value="PRF"/>
+            <display value="Performer"/>
+         </coding>
+      </type>
+      <individual>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-bgz-msz-0015151501-01420000003"/>
+               <display value="Hecht H. Hecht Bekwaam || Chirurg || Ziekenhuis Beterschap"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-840-1-113883-2-4-6-1-00151515"/>
+         <display value="Hecht H. Hecht Bekwaam"/>
+      </individual>
+   </participant>
+   <period>
+      <start value="${DATE, T, D, -2}T17:00:00+02:00"/>
+      <end value="${DATE, T, D, -1}T10:00:00+02:00"/>
+   </period>
+   <diagnosis>
+      <condition>
+         <reference value="Procedure/zib-Procedure-bgz-msz-bgz-msz-patB-procedure4"/>
+         <display value="incisie en drainage van diep abces"/>
+      </condition>
+   </diagnosis>
+   <hospitalization>
+      <dischargeDisposition>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="264362003"/>
+            <display value="thuis"/>
+         </coding>
+      </dischargeDisposition>
+   </hospitalization>
+   <serviceProvider>
+      <reference value="Organization/nl-core-organization-bgz-msz-2-16-840-1-113883-2-4-6-1-20000003"/>
+      <display value="Ziekenhuis Beterschap"/>
+   </serviceProvider>
+</Encounter>

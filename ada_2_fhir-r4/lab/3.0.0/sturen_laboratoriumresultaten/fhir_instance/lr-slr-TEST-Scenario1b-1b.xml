@@ -1,11 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
-   
-   
-      <Bundle xmlns="http://hl7.org/fhir">
+<Bundle xmlns="http://hl7.org/fhir">
    <id value="lr-slr-TEST-Scenario1b-1b"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:77f4d89e-6040-11ed-2530-020000000000"/>
+      <fullUrl value="urn:uuid:b0bd7fdc-b936-11ee-1485-020000000000"/>
+      <resource>
+         <Observation>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+               <valueBoolean value="true"/>
+            </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
+               <valueString value="111222"/>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4296.2"/>
+               <value value="LAR_NierfunctiePanelLOINC"/>
+            </identifier>
+            <status value="final"/>
+            <category>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+                  <code value="laboratory"/>
+                  <display value="Laboratory"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="http://loinc.org"/>
+                  <code value="45066-8"/>
+                  <display value="creatinine &amp; glomerulaire filtratiesnelheid.voorspeld panel"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:b0bd7f46-b936-11ee-1485-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, Elise Erelies"/>
+            </subject>
+            <performer>
+               <reference value="urn:uuid:b0bd7f64-b936-11ee-1485-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Klinisch chemisch Lab 't Proefje"/>
+            </performer>
+            <specimen>
+               <reference value="urn:uuid:b0bd7ffa-b936-11ee-1485-020000000000"/>
+               <type value="Specimen"/>
+               <display value="monster"/>
+            </specimen>
+            <hasMember>
+               <reference value="urn:uuid:b0bd7fa0-b936-11ee-1485-020000000000"/>
+               <type value="Observation"/>
+               <display value="laboratorium_test"/>
+            </hasMember>
+            <hasMember>
+               <reference value="urn:uuid:b0bd7fbe-b936-11ee-1485-020000000000"/>
+               <type value="Observation"/>
+               <display value="laboratorium_test"/>
+            </hasMember>
+         </Observation>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Observation"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:b0bd7fa0-b936-11ee-1485-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -32,18 +94,18 @@
             <code>
                <coding>
                   <system value="http://loinc.org"/>
-                  <code value="62238-1"/>
-                  <display value="Glomerulaire filtratiesnelheid/1,73 m2.voorspeld [filtratiesnelheid/oppervlakte] in serum of plasma of bloed d.m.v. formule gebaseerd op creatinine (CKD-EPI)formule"/>
+                  <code value="98979-8"/>
+                  <display value="Glomerulaire filtratiesnelheid/1,73 m2.voorspeld [filtratiesnelheid/oppervlakte] in serum of plasma of bloed d.m.v. formule gebaseerd op creatinine (CKD-EPI 2021)"/>
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:77f4d862-6040-11ed-2530-020000000000"/>
+               <reference value="urn:uuid:b0bd7f46-b936-11ee-1485-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, Elise Erelies"/>
             </subject>
-            <effectiveDateTime value="${DATE, T, D, -30}"/>
+            <effectiveDateTime value="${DATE, T, D, -20}"/>
             <performer>
-               <reference value="urn:uuid:77f4d952-6040-11ed-2530-020000000000"/>
+               <reference value="urn:uuid:b0bd7f64-b936-11ee-1485-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Klinisch chemisch Lab 't Proefje"/>
             </performer>
@@ -57,7 +119,7 @@
                <text value="Waarde is goed."/>
             </interpretation>
             <specimen>
-               <reference value="urn:uuid:77f4d880-6040-11ed-2530-020000000000"/>
+               <reference value="urn:uuid:b0bd7ffa-b936-11ee-1485-020000000000"/>
                <type value="Specimen"/>
                <display value="monster"/>
             </specimen>
@@ -77,7 +139,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:77f4d8bc-6040-11ed-2530-020000000000"/>
+      <fullUrl value="urn:uuid:b0bd7fbe-b936-11ee-1485-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -104,26 +166,26 @@
             <code>
                <coding>
                   <system value="http://loinc.org"/>
-                  <code value="14683-7"/>
+                  <code value="45066-8"/>
                   <display value="Creatinine [mol/volume] in urine"/>
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:77f4d862-6040-11ed-2530-020000000000"/>
+               <reference value="urn:uuid:b0bd7f46-b936-11ee-1485-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, Elise Erelies"/>
             </subject>
-            <effectiveDateTime value="${DATE, T, D, -30}"/>
+            <effectiveDateTime value="${DATE, T, D, -20}"/>
             <performer>
-               <reference value="urn:uuid:77f4d952-6040-11ed-2530-020000000000"/>
+               <reference value="urn:uuid:b0bd7f64-b936-11ee-1485-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Klinisch chemisch Lab 't Proefje"/>
             </performer>
             <valueQuantity>
                <value value="135"/>
-               <unit value="mmol/l"/>
+               <unit value="umol/l"/>
                <system value="http://unitsofmeasure.org"/>
-               <code value="mmol/l"/>
+               <code value="umol/l"/>
             </valueQuantity>
             <interpretation>
                <coding>
@@ -148,22 +210,22 @@
                </coding>
             </method>
             <specimen>
-               <reference value="urn:uuid:77f4d880-6040-11ed-2530-020000000000"/>
+               <reference value="urn:uuid:b0bd7ffa-b936-11ee-1485-020000000000"/>
                <type value="Specimen"/>
                <display value="monster"/>
             </specimen>
             <referenceRange>
                <low>
                   <value value="62"/>
-                  <unit value="mmol/l"/>
+                  <unit value="umol/l"/>
                   <system value="http://unitsofmeasure.org"/>
-                  <code value="mmol/l"/>
+                  <code value="umol/l"/>
                </low>
                <high>
                   <value value="134"/>
-                  <unit value="mmol/l"/>
+                  <unit value="umol/l"/>
                   <system value="http://unitsofmeasure.org"/>
-                  <code value="mmol/l"/>
+                  <code value="umol/l"/>
                </high>
             </referenceRange>
          </Observation>
@@ -174,150 +236,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:77f4d8da-6040-11ed-2530-020000000000"/>
-      <resource>
-         <Observation>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
-               <valueBoolean value="true"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
-               <valueString value="111222"/>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
-               <value value="33333"/>
-            </identifier>
-            <status value="final"/>
-            <category>
-               <coding>
-                  <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
-                  <code value="laboratory"/>
-                  <display value="Laboratory"/>
-               </coding>
-            </category>
-            <code>
-               <coding>
-                  <system value="http://loinc.org"/>
-                  <code value="30000-4"/>
-                  <display value="Albumine/creatinine [verhouding] in urine d.m.v. detectielimiet &lt;= 20 mg/L"/>
-               </coding>
-            </code>
-            <subject>
-               <reference value="urn:uuid:77f4d862-6040-11ed-2530-020000000000"/>
-               <type value="Patient"/>
-               <display value="Patient, Elise Erelies"/>
-            </subject>
-            <effectiveDateTime value="${DATE, T, D, -30}"/>
-            <performer>
-               <reference value="urn:uuid:77f4d952-6040-11ed-2530-020000000000"/>
-               <type value="Organization"/>
-               <display value="Healthcare provider (organization), Klinisch chemisch Lab 't Proefje"/>
-            </performer>
-            <valueQuantity>
-               <value value="2"/>
-               <unit value="mg/mmol"/>
-               <system value="http://unitsofmeasure.org"/>
-               <code value="mg/mmol"/>
-            </valueQuantity>
-            <interpretation>
-               <text value="Goede uitslag voor een patient van 75 jaar."/>
-            </interpretation>
-            <method>
-               <coding>
-                  <system value="http://snomed.info/sct"/>
-                  <code value="258026004"/>
-                  <display value="enzyme method"/>
-               </coding>
-            </method>
-            <specimen>
-               <reference value="urn:uuid:77f4d880-6040-11ed-2530-020000000000"/>
-               <type value="Specimen"/>
-               <display value="monster"/>
-            </specimen>
-            <referenceRange>
-               <high>
-                  <value value="3"/>
-                  <unit value="mg/mmol"/>
-                  <system value="http://unitsofmeasure.org"/>
-                  <code value="mg/mmol"/>
-               </high>
-            </referenceRange>
-         </Observation>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Observation"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:77f4d8f8-6040-11ed-2530-020000000000"/>
-      <resource>
-         <Observation>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
-            </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
-               <valueBoolean value="true"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
-               <valueString value="111222"/>
-            </extension>
-            <identifier>
-               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4298.2"/>
-               <value value="44444"/>
-            </identifier>
-            <status value="final"/>
-            <category>
-               <coding>
-                  <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
-                  <code value="laboratory"/>
-                  <display value="Laboratory"/>
-               </coding>
-            </category>
-            <code>
-               <coding>
-                  <system value="http://loinc.org"/>
-                  <code value="14957-5"/>
-                  <display value="Albumine [massa/volume] in urine d.m.v. detectielimiet &lt;= 20 mg/L"/>
-               </coding>
-            </code>
-            <subject>
-               <reference value="urn:uuid:77f4d862-6040-11ed-2530-020000000000"/>
-               <type value="Patient"/>
-               <display value="Patient, Elise Erelies"/>
-            </subject>
-            <effectiveDateTime value="${DATE, T, D, -30}"/>
-            <performer>
-               <reference value="urn:uuid:77f4d952-6040-11ed-2530-020000000000"/>
-               <type value="Organization"/>
-               <display value="Healthcare provider (organization), Klinisch chemisch Lab 't Proefje"/>
-            </performer>
-            <valueQuantity>
-               <value value="0"/>
-               <unit value="mg/L"/>
-               <system value="http://unitsofmeasure.org"/>
-               <code value="mg/L"/>
-            </valueQuantity>
-            <interpretation>
-               <text value="Zie ratio voor interpretatie."/>
-            </interpretation>
-            <specimen>
-               <reference value="urn:uuid:77f4d880-6040-11ed-2530-020000000000"/>
-               <type value="Specimen"/>
-               <display value="monster"/>
-            </specimen>
-         </Observation>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Observation"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:77f4d880-6040-11ed-2530-020000000000"/>
+      <fullUrl value="urn:uuid:b0bd7ffa-b936-11ee-1485-020000000000"/>
       <resource>
          <Specimen>
             <meta>
@@ -327,14 +246,23 @@
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4267.2"/>
                <value value="123"/>
             </identifier>
+            <type>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="87612001"/>
+                  <display value="Bloed"/>
+               </coding>
+            </type>
             <subject>
-               <reference value="urn:uuid:77f4d862-6040-11ed-2530-020000000000"/>
+               <reference value="urn:uuid:b0bd7f46-b936-11ee-1485-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, Elise Erelies"/>
             </subject>
-            <receivedTime value="${DATE, T, D, -31}"/>
+            <collection>
+               <collectedDateTime value="${DATE, T, D, -20}"/>
+            </collection>
             <note>
-               <text value="Urine ingeleverd door patiënt."/>
+               <text value="Serum afgenomen bij patiënt."/>
             </note>
          </Specimen>
       </resource>
@@ -344,56 +272,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:77f4d916-6040-11ed-2530-020000000000"/>
-      <resource>
-         <Organization>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
-            </meta>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
-               <value value="00005111"/>
-            </identifier>
-            <type>
-               <coding>
-                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
-                  <version value="2022-07-07T00:00:00"/>
-                  <code value="Z3"/>
-                  <display value="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
-               </coding>
-            </type>
-            <name value="Huisartsenpraktijk Itis"/>
-            <address>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
-                  <valueCodeableConcept>
-                     <coding>
-                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
-                        <code value="WP"/>
-                        <display value="Werkadres"/>
-                     </coding>
-                  </valueCodeableConcept>
-               </extension>
-               <use value="work"/>
-               <line value="Langelaan 1">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
-                     <valueString value="Langelaan"/>
-                  </extension>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
-                     <valueString value="1"/>
-                  </extension>
-               </line>
-               <city value="Onze Stad"/>
-               <postalCode value="1234ZZ"/>
-            </address>
-         </Organization>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Organization"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:77f4d952-6040-11ed-2530-020000000000"/>
+      <fullUrl value="urn:uuid:b0bd7f64-b936-11ee-1485-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -406,7 +285,7 @@
             <type>
                <coding>
                   <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
-                  <version value="2022-07-07T00:00:00"/>
+                  <version value="2022-09-10T00:00:00"/>
                   <code value="L1"/>
                   <display value="Laboratorium"/>
                </coding>
@@ -445,7 +324,7 @@
                   </extension>
                </line>
                <city value="Zorgstad"/>
-               <postalCode value="1234 AA"/>
+               <postalCode value="1234AA"/>
             </address>
          </Organization>
       </resource>
@@ -455,7 +334,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:77f4d862-6040-11ed-2530-020000000000"/>
+      <fullUrl value="urn:uuid:b0bd7f46-b936-11ee-1485-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -499,4 +378,3 @@
       </request>
    </entry>
 </Bundle>
-   

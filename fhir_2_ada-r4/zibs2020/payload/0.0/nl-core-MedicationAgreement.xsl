@@ -44,7 +44,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<!-- geannuleerd_indicator niet voor MA -->
 			<!--			<xsl:apply-templates select="f:status" mode="#current"/>-->
 			<!-- stop_type -->
-			<xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="nl-core-ext-StopType"/>
+			<xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="ext-StopType"/>
 			<!-- relatie medicatieafspraak -->
 			<xsl:apply-templates select="f:priorPrescription" mode="#current"/>
 			<!-- relatie_medicatiegebruik -->
@@ -62,7 +62,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<!-- aanvullende_informatie -->
 			<xsl:apply-templates select="f:extension[@url = $medication-AdditionalInformation]" mode="#current"/>
 			<!-- kopie indicator -->
-			<xsl:apply-templates select="f:extension[@url = $extCopyIndicator] | f:reportedBoolean" mode="ext-CopyIndicator"/>
+			<xsl:apply-templates select="f:extension[@url = $urlExtCopyIndicator] | f:reportedBoolean" mode="ext-CopyIndicator"/>
 			<!-- toelichting -->
 			<xsl:apply-templates select="f:note" mode="nl-core-Note"/>
 		</medicatieafspraak>

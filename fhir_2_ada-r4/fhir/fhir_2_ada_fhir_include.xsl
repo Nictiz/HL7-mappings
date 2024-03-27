@@ -38,9 +38,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:choose>
                 </xsl:variable>
                 <xsl:choose>
-                    <xsl:when test="$resource/f:identifier">
+                    <xsl:when test="$resource/f:*/f:identifier">
                         <xsl:call-template name="Identifier-to-identificatie">
-                            <xsl:with-param name="in" select="$resource/f:identifier"/>
+                            <xsl:with-param name="in" select="$resource/f:*/f:identifier"/>
                         </xsl:call-template>
                     </xsl:when>
                     <xsl:otherwise>
@@ -92,6 +92,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+
 
     <xd:doc>
         <xd:desc>Template to convert FHIR Gstandaard (Simple)Quantity to ada waarde and eenheid elements (no range supported)</xd:desc>
@@ -146,7 +147,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:when>
             <xsl:when test="not(matches($testChar, $NCNameChars)) or ($testChar eq ':')">
                 <!-- ':' part of \i, but NOT part NCName/Letter. So replace it too -->
-                <xsl:value-of select="nf:replaceChar((substring($pelString, 2, string-length($pelString) - 1), replace($finalString, $testChar, '-')))"/>
+                <!-- escape period, *, $, \ in testChar based on the regex function in FHIR Specification 2.3.0.2 Literal References 
+                https://hl7.org/fhir/R4/references.html#regex -->
+                <xsl:variable name="testCharEscaped" as="xs:string">
+                    <xsl:choose>
+                        <xsl:when test="$testChar = '.'">\.</xsl:when>
+                        <xsl:when test="$testChar = '*'">\*</xsl:when>
+                        <xsl:when test="$testChar = '$'">\$</xsl:when>
+                        <xsl:when test="$testChar = '\'">\\</xsl:when>
+                        <xsl:otherwise><xsl:value-of select="$testChar"/></xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:value-of select="nf:replaceChar((substring($pelString, 2, string-length($pelString) - 1), replace($finalString, $testCharEscaped, '-')))"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="nf:replaceChar((substring($pelString, 2, string-length($pelString) - 1), $finalString))"/>
@@ -213,6 +225,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:function name="nf:resolveRefInBundle" as="element(f:resource)*">
         <xsl:param name="in" as="element()?"/>
+        <!-- TODO: add relative url -->
         <xsl:for-each select="$in">
             <!-- find based on reference -->
             <xsl:variable name="resourceRef" select="ancestor::f:Bundle/f:entry[f:fullUrl/@value = current()/f:reference/@value]/f:resource"/>
@@ -228,5 +241,74 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:choose>
         </xsl:for-each>
     </xsl:function>
+
+
+
+    <xd:doc>
+        <xd:desc> 
+            A function which processes the reference:
+            - it checks whether the referenceUrl is a relative url and converts it to an absolute url according to the R4 FHIR Documentation
+            https://hl7.org/fhir/R4/references.html#literal and https://hl7.org/fhir/R4/bundle.html#references
+            - after the reference is resolved to an absolute url it is converted to a NCName
+            - in case of uuid or absolute url the referenceUrl will stay the same
+            
+        </xd:desc>
+        <xd:param name="referenceUrl"/>
+        <xd:param name="fullUrl"/>
+    </xd:doc>
+    <xsl:function name="nf:process-reference-2NCName" as="xs:string">
+        <xsl:param name="referenceUrl"/>
+        <xsl:param name="fullUrl"/>
+        <xsl:value-of select="nf:convert2NCName(nf:process-reference($referenceUrl, $fullUrl))"/>
+    </xsl:function>
+    
+    
+    <xd:doc>
+        <xd:desc> 
+            A function which processes the reference:
+             - it checks whether the referenceUrl is a relative url and converts it to an absolute url according to the R4 FHIR Documentation
+             https://hl7.org/fhir/R4/references.html#literal and https://hl7.org/fhir/R4/bundle.html#references
+            - in case of uuid or absolute url the referenceUrl will stay the same
+        </xd:desc>
+        <xd:param name="referenceUrl"/>
+        <xd:param name="fullUrl"/>
+    </xd:doc>
+    <xsl:function name="nf:process-reference" as="xs:string">
+        <xsl:param name="referenceUrl"/>
+        <xsl:param name="fullUrl"/>
+        
+        <xsl:choose>
+            <xsl:when test="matches($referenceUrl, $restRegexR4) and replace($referenceUrl, $restRegexR4, '$1') = ''">
+                <xsl:choose>
+                    <!-- checken bij Arianne of deze extra check nodig is ivm LSP -->
+                    <xsl:when test="matches($fullUrl, $restRegexR4)">
+                        <xsl:variable name="baseUrl" select="replace($fullUrl, $restRegexR4, '$1')"/>
+                        <xsl:value-of select="concat($baseUrl, $referenceUrl)" />
+                    </xsl:when>
+                     <xsl:otherwise>
+                                <xsl:call-template name="util:logMessage">
+                                    <xsl:with-param name="level" select="$logERROR"/>
+                                    <xsl:with-param name="msg">
+                                        <xsl:text> regarding reference: </xsl:text>
+                                        <xsl:value-of select="$referenceUrl"/>
+                                        <xsl:text> The fullUrl: </xsl:text>
+                                        <xsl:value-of select="$fullUrl"/>
+                                        <xsl:text> is not a RESTful url (see: https://hl7.org/fhir/R4/references.html#regex).</xsl:text>
+                                        <xsl:text> Using relative urls in a reference requires the fullUrl for the bundle entry containing the resource to be a RESTful one. (see: https://hl7.org/fhir/R4/bundle.html#references). Therefore information containing the reference to </xsl:text>
+                                        <xsl:value-of select="$referenceUrl"/>
+                                        <xsl:text> will be lost.</xsl:text>
+                                    </xsl:with-param>
+                                </xsl:call-template>
+                  </xsl:otherwise>
+                </xsl:choose>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$referenceUrl" />
+            </xsl:otherwise>
+            
+        </xsl:choose>
+    </xsl:function>
+    
+
 
 </xsl:stylesheet>

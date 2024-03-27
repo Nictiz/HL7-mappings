@@ -1,0 +1,22 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+   <xs:include schemaLocation="../../lab/3.0.0/sturen_laboratoriumresultaten/ada_schemas/sturen_laboratoriumresultaten.xsd"/>
+   <xs:include schemaLocation="../../mp/9.3.0/sturen_medicatievoorschrift/ada_schemas/sturen_medicatievoorschrift.xsd"/>
+   <xs:include schemaLocation="../../mp/9.3.0/sturen_medicatievoorschrift/ada_schemas/ada_meta.xsd"/>
+   <xs:element name="adaxml">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="meta" type="meta_type"/>
+            <xs:element name="data" maxOccurs="unbounded">
+               <xs:complexType>
+                  <xs:choice>
+                     <xs:element name="sturen_medicatievoorschrift"
+                                 type="sturen_medicatievoorschrift_type"/>
+                     <xs:element name="sturen_laboratoriumresultaten"
+                                 type="sturen_laboratoriumresultaten_type"/>
+                  </xs:choice>
+               </xs:complexType>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+</xs:schema>

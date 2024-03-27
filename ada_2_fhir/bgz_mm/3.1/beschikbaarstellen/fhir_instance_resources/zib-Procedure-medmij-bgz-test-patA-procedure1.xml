@@ -1,0 +1,122 @@
+<Procedure xmlns="http://hl7.org/fhir">
+   <id value="zib-Procedure-medmij-bgz-test-patA-procedure1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichting. Subject: Anouk A. Anouk van XXX_Rijn de XXX_Vries. Id: patA-procedure1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Categorie: <span title="chirurgische ingreep (387713003 - SNOMED CT)">chirurgische ingreep</span>, Status: voltooid<span style="display: block;">Uitvoerende: Ziekenhuis het Hogeland</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="Implantatie van gewrichtsprothese in knie (392238003 - SNOMED CT)">Implantatie van gewrichtsprothese in knie</span>
+                  </td>
+                  <td>
+                     <div>Uitgevoerd: 28 november 2022</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="Chirurgische handeling (129284003 - SNOMED CT)">Chirurgische handeling</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Gebaseerd op</th>
+                  <td>Implantatie van gewrichtsprothese in knie</td>
+               </tr>
+               <tr>
+                  <th>Deel van lichaam</th>
+                  <td>
+                     <span title="Knie (49076000 - SNOMED CT)">Knie</span>
+                     <span title="Right (24028007 - SNOMED CT)">Right</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>Artrose van rechter kniegewricht</td>
+               </tr>
+               <tr>
+                  <th>apparaat</th>
+                  <td>Krukken Verstelbare elleboogkrukken met gesloten manchet</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://hl7.org/fhir/StructureDefinition/procedure-method">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="129284003"/>
+            <display value="Chirurgische handeling"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patA-procedure1"/>
+   </identifier>
+   <basedOn>
+      <reference value="ProcedureRequest/zib-ProcedureRequest-medmij-bgz-test-patA-procedure1"/>
+      <display value="Implantatie van gewrichtsprothese in knie"/>
+   </basedOn>
+   <status value="completed"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="387713003"/>
+         <display value="chirurgische ingreep"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="392238003"/>
+         <display value="Implantatie van gewrichtsprothese in knie"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/medmij-bgz-test-patA"/>
+      <display value="Anouk A. Anouk van XXX_Rijn de XXX_Vries"/>
+   </subject>
+   <performedPeriod>
+      <start value="2022-11-28"/>
+      <end value="2022-11-28"/>
+   </performedPeriod>
+   <performer>
+      <actor>
+         <reference value="Organization/-organization-medmij-bgz-test-2-16-840-1-113883-2-4-6-1-06000001"/>
+         <display value="Ziekenhuis het Hogeland"/>
+      </actor>
+   </performer>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-medmij-bgz-test-patA-problem2"/>
+      <display value="Artrose van rechter kniegewricht"/>
+   </reasonReference>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="24028007"/>
+               <display value="Right"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="49076000"/>
+         <display value="Knie"/>
+      </coding>
+   </bodySite>
+   <focalDevice>
+      <manipulated>
+         <reference value="Device/zib-MedicalDeviceProduct-medmij-bgz-test-patA-medDevice1"/>
+         <display value="Krukken Verstelbare elleboogkrukken met gesloten manchet"/>
+      </manipulated>
+   </focalDevice>
+</Procedure>

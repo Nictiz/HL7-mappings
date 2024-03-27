@@ -1,0 +1,78 @@
+<Procedure xmlns="http://hl7.org/fhir">
+   <id value="zib-Procedure-bgz-msz-bgz-msz-patB-procedure4"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichting. Subject: Francisca F. Fransje Gigase Verheul. Id: bgz-msz-patB-procedure4 (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6), Categorie: , Status: is bezig<span style="display: block;">Uitvoerende: Ziekenhuis Beterschap</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="incisie en drainage van diep abces (103751000146104 - SNOMED CT)">incisie en drainage van diep abces</span>
+                  </td>
+                  <td>
+                     <div>Uitgevoerd: Vanaf ${DATE, T, D, -2}T17:45:00+02:00</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Deel van lichaam</th>
+                  <td>
+                     <span title="structuur van mamma (76752008 - SNOMED CT)">structuur van mamma</span>
+                     <span title="rechts (24028007 - SNOMED CT)">rechts</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"/>
+      <value value="bgz-msz-patB-procedure4"/>
+   </identifier>
+   <status value="in-progress"/>
+   <category>
+      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+         <valueCode value="unknown"/>
+      </extension>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="103751000146104"/>
+         <display value="incisie en drainage van diep abces"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/FRANCISCA-F--FRANSJE-GIGASE-VERHEUL"/>
+      <display value="Francisca F. Fransje Gigase Verheul"/>
+   </subject>
+   <performedPeriod>
+      <start value="${DATE, T, D, -2}T17:45:00+02:00"/>
+   </performedPeriod>
+   <performer>
+      <actor>
+         <reference value="Organization/nl-core-organization-bgz-msz-2-16-840-1-113883-2-4-6-1-20000003"/>
+         <display value="Ziekenhuis Beterschap"/>
+      </actor>
+   </performer>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="24028007"/>
+               <display value="rechts"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="76752008"/>
+         <display value="structuur van mamma"/>
+      </coding>
+   </bodySite>
+</Procedure>

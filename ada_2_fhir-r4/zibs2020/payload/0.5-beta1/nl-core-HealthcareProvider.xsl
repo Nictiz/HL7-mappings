@@ -43,17 +43,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <xsl:for-each select="organisatie_locatie/locatie_naam">
                     <name>
-                        <xsl:attribute name="value">
-                            <xsl:call-template name="string-to-string"/>
-                        </xsl:attribute>
+                        <xsl:call-template name="string-to-string"/>
                     </name>
                 </xsl:for-each>
 
                 <xsl:for-each select="organisatie_locatie/locatie_nummer">
                     <name>
-                        <xsl:attribute name="value">
-                            <xsl:call-template name="string-to-string"/>
-                        </xsl:attribute>
+                        <xsl:call-template name="string-to-string"/>
                     </name>
                 </xsl:for-each>
 
@@ -107,9 +103,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <xsl:for-each select="organisatie_naam">
                     <name>
-                        <xsl:attribute name="value">
-                            <xsl:call-template name="string-to-string"/>
-                        </xsl:attribute>
+                        <xsl:call-template name="string-to-string"/>
                     </name>
                 </xsl:for-each>
 
@@ -154,6 +148,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:variable>
                 <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
             </xsl:when>
+            <xsl:when test="$profile = $profileNameHealthProfessionalPractitionerRole">
+                <xsl:variable name="parts" as="item()*">
+                    <xsl:text>Healthcare provider (organization via PractitionerRole)</xsl:text>
+                    <xsl:value-of select="organisatie_naam/@value"/>
+                    <xsl:if test="not(organisatie_naam/@value)">
+                        <xsl:value-of select="concat('organisation-id ', zorgaanbieder_identificatienummer/@value, ' in system ', zorgaanbieder_identificatienummer/@root)"/>
+                    </xsl:if>
+                </xsl:variable>
+                <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
+            </xsl:when>
         </xsl:choose>
     </xsl:template>
 
@@ -167,7 +171,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="profile" required="yes" as="xs:string"/>
         <xsl:param name="partNumber" as="xs:integer" select="0"/>
         <xsl:param name="fullUrl" tunnel="yes"/>
-        
+
         <xsl:variable name="organizationLocation" select="(organisatie_locatie/locatie_naam/@value[not(. = '')], 'Location')[1]"/>
 
         <!-- we can use zorgaanbieder_identificatienummer as logicalId, from partNumber 2 onwards, we append the partNumber for uniqueness purposes -->
@@ -175,16 +179,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:variable name="uniqueString" as="xs:string*">
             <xsl:choose>
-                  <xsl:when test="$currentZaId[@value | @root]">
-                      <xsl:for-each select="($currentZaId[@value | @root])[1]">
-                          <!-- use append for Organization to also create stable id based on identifier, but make it unique cause Location uses the same -->
-                          <xsl:if test="$profile = $profilenameHealthcareProviderOrganization">Org-</xsl:if>
-                          <!-- we remove '.' in root oid and '_' in extension to enlarge the chance of staying in 64 chars -->
-                          <xsl:value-of select="concat(replace(@root, '\.', ''), '-', replace(@value, '_', ''))"/>
-                          <xsl:if test="$partNumber gt 1">
-                              <xsl:value-of select="concat('-', $partNumber)"/>
-                          </xsl:if>
-                      </xsl:for-each>
+                <xsl:when test="$currentZaId[@value | @root]">
+                    <xsl:for-each select="($currentZaId[@value | @root])[1]">
+                        <!-- use append for Organization to also create stable id based on identifier, but make it unique cause Location uses the same -->
+                        <xsl:if test="$profile = $profilenameHealthcareProviderOrganization">Org-</xsl:if>
+                        <xsl:if test="$profile = $profileNameHealthProfessionalPractitionerRole">PrcRol-</xsl:if>
+                        <!-- we remove '.' in root oid and '_' in extension to enlarge the chance of staying in 64 chars -->
+                        <xsl:value-of select="concat(replace(@root, '\.', ''), '-', replace(@value, '_', ''))"/>
+                        <xsl:if test="$partNumber gt 1">
+                            <xsl:value-of select="concat('-', $partNumber)"/>
+                        </xsl:if>
+                    </xsl:for-each>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:next-match>
@@ -193,7 +198,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-     
+
         <xsl:apply-templates select="." mode="generateLogicalId">
             <xsl:with-param name="uniqueString" select="string-join($uniqueString, '')"/>
             <xsl:with-param name="profile" select="$profile"/>
@@ -219,5 +224,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:function>
 
+    <!--_nl-core-HealthProfessional-PractionerRole_toOrganization-->
+    <xsl:template match="zorgaanbieder" mode="_nl-core-HealthProfessional-PractitionerRole_toOrganization" name="_nl-core-HealthProfessional-PractionerRole_toOrganization" as="element(f:PractitionerRole)?">
+        <xsl:param name="in" select="." as="element()?"/>
+
+        <xsl:for-each select="$in">
+            <PractitionerRole>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
+                </xsl:call-template>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+                </meta>
+
+                <xsl:call-template name="makeReference">
+                    <xsl:with-param name="in" select="$in"/>
+                    <xsl:with-param name="profile">nl-core-HealthcareProvider-Organization</xsl:with-param>
+                    <xsl:with-param name="wrapIn" select="'organization'"/>
+                </xsl:call-template>
+            </PractitionerRole>
+        </xsl:for-each>
+    </xsl:template>
 
 </xsl:stylesheet>

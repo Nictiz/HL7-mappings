@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-   
-   
-      <Bundle xmlns="http://hl7.org/fhir">
+<Bundle xmlns="http://hl7.org/fhir">
    <id value="lr-slr-KWAL-KC-LOINC-Scenario2a-KCLOINC2a"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:75f11bca-6040-11ed-4193-020000000000"/>
+      <fullUrl value="urn:uuid:b09b3c7e-b936-11ee-1122-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -37,18 +35,21 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:75f11b8e-6040-11ed-4193-020000000000"/>
+               <reference value="urn:uuid:b09b3c24-b936-11ee-1122-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, Patricia XXX_Sacht"/>
             </subject>
             <effectiveDateTime value="${DATE, T, D, -10}"/>
             <performer>
-               <reference value="urn:uuid:75f11c24-6040-11ed-4193-020000000000"/>
+               <reference value="urn:uuid:b09b3c42-b936-11ee-1122-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Trombosedienst Ons Dorp"/>
             </performer>
             <valueQuantity>
                <value value="2.3"/>
+               <unit value="{INR}"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="{INR}"/>
             </valueQuantity>
             <interpretation>
                <coding>
@@ -66,10 +67,24 @@
                <text value="Te hoog let op, actie ondernemen."/>
             </interpretation>
             <specimen>
-               <reference value="urn:uuid:75f11bac-6040-11ed-4193-020000000000"/>
+               <reference value="urn:uuid:b09b3cba-b936-11ee-1122-020000000000"/>
                <type value="Specimen"/>
                <display value="monster"/>
             </specimen>
+            <referenceRange>
+               <low>
+                  <value value="0.9"/>
+                  <unit value="{INR}"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="{INR}"/>
+               </low>
+               <high>
+                  <value value="1.1"/>
+                  <unit value="{INR}"/>
+                  <system value="http://unitsofmeasure.org"/>
+                  <code value="{INR}"/>
+               </high>
+            </referenceRange>
          </Observation>
       </resource>
       <request>
@@ -78,7 +93,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:75f11bac-6040-11ed-4193-020000000000"/>
+      <fullUrl value="urn:uuid:b09b3cba-b936-11ee-1122-020000000000"/>
       <resource>
          <Specimen>
             <meta>
@@ -88,8 +103,15 @@
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4267.1"/>
                <value value="#1"/>
             </identifier>
+            <type>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="119361006"/>
+                  <display value="Plasma"/>
+               </coding>
+            </type>
             <subject>
-               <reference value="urn:uuid:75f11b8e-6040-11ed-4193-020000000000"/>
+               <reference value="urn:uuid:b09b3c24-b936-11ee-1122-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, Patricia XXX_Sacht"/>
             </subject>
@@ -113,60 +135,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:75f11be8-6040-11ed-4193-020000000000"/>
-      <resource>
-         <Organization>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
-            </meta>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
-               <value value="00001111"/>
-            </identifier>
-            <type>
-               <coding>
-                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
-                  <version value="2022-07-07T00:00:00"/>
-                  <code value="Z3"/>
-                  <display value="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
-               </coding>
-            </type>
-            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
-            <telecom>
-               <system value="phone"/>
-               <value value="099-12345678"/>
-            </telecom>
-            <address>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
-                  <valueCodeableConcept>
-                     <coding>
-                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
-                        <code value="WP"/>
-                        <display value="Werkadres"/>
-                     </coding>
-                  </valueCodeableConcept>
-               </extension>
-               <use value="work"/>
-               <line value="Dorpsstraat 1">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
-                     <valueString value="Dorpsstraat"/>
-                  </extension>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
-                     <valueString value="1"/>
-                  </extension>
-               </line>
-               <city value="Ons Dorp"/>
-               <postalCode value="1234AA"/>
-            </address>
-         </Organization>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Organization"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:75f11c24-6040-11ed-4193-020000000000"/>
+      <fullUrl value="urn:uuid:b09b3c42-b936-11ee-1122-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -179,7 +148,7 @@
             <type>
                <coding>
                   <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
-                  <version value="2022-07-07T00:00:00"/>
+                  <version value="2022-09-10T00:00:00"/>
                   <code value="TD"/>
                   <display value="Trombosedienst"/>
                </coding>
@@ -222,7 +191,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:75f11b8e-6040-11ed-4193-020000000000"/>
+      <fullUrl value="urn:uuid:b09b3c24-b936-11ee-1122-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -266,4 +235,3 @@
       </request>
    </entry>
 </Bundle>
-   
