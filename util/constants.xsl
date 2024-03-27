@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-Copyright © Nictiz
-
-This program is free software; you can redistribute it and/or modify it under the terms of the
-GNU Lesser General Public License as published by the Free Software Foundation; either version
-2.1 of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-See the GNU Lesser General Public License for more details.
-
-The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
--->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" exclude-result-prefixes="xs xd" version="2.0">
+    <!-- ================================================================== -->
+    <!--
+         Contains any constants we might need. Anticipated are OIDs/URIs, ConceptMaps, ...
+    -->
+    <!-- ================================================================== -->
+    <!--
+        Copyright © Nictiz
+        
+        This program is free software; you can redistribute it and/or modify it under the terms of the
+        GNU Lesser General Public License as published by the Free Software Foundation; either version
+        2.1 of the License, or (at your option) any later version.
+        
+        This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+        without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+        See the GNU Lesser General Public License for more details.
+        
+        The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
+    -->
+    <!-- ================================================================== -->
     <xd:doc scope="stylesheet">
         <xd:desc>
             <xd:p><xd:b>Created on:</xd:b> Oct 16, 2018</xd:p>
@@ -21,7 +27,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xd:desc>
         <xd:param name="fhirVersion">Some constants depend on the FHIR version used, so this parameter can be used to select either 'STU3' (default) or 'R4'.</xd:param>
     </xd:doc>
-
+    
     <xsl:param name="fhirVersion" select="'STU3'"/>
     
     <xsl:variable name="maxLengthFHIRLogicalId" as="xs:integer">64</xsl:variable>
@@ -45,10 +51,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xsl:variable name="ada-unit-druppel" select="('druppel', 'drp', '[drp]', 'druppels', 'drops')"/>
     
+    <xsl:variable name="ada-unit-degrees" select="('deg', 'degrees', 'graden')"/>
     <xsl:variable name="ada-unit-degrees-celsius" select="('Cel', 'graden Celsius', 'graden celsius', 'degrees Celsius', 'degrees celsius', 'Celsius', 'celsius')"/>
     <xsl:variable name="ada-unit-pH" select="('pH', '[pH]')"/>
     <xsl:variable name="ada-unit-mmol-l" select="('mmol/L', 'mmol/l', 'mmol per liter')"/>
     <xsl:variable name="ada-unit-mmHg" select="('mmHg', 'mm[Hg]')"/>
+    <xsl:variable name="ada-unit-diopter" select="('dpt', '[diop]', 'diopter', 'dioptrie')"/>
+    <xsl:variable name="ada-unit-prism-diopter" select="('PD', '[p''diop]', 'prism diopter', 'prisma dioptrie')"/>
 
     <xsl:variable name="oidAGB">2.16.840.1.113883.2.4.6.1</xsl:variable>
     <xsl:variable name="oidAGBSpecialismen">2.16.840.1.113883.2.4.6.7</xsl:variable>
@@ -84,6 +93,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="oidHL7LanguageAbilityProficiency">2.16.840.1.113883.5.61</xsl:variable>
     <xsl:variable name="oidHL7NullFlavor">2.16.840.1.113883.5.1008</xsl:variable>
     <xsl:variable name="oidHL7ObservationInterpretation">2.16.840.1.113883.5.83</xsl:variable>
+    <xsl:variable name="oidHL7SpecimenType">2.16.840.1.113883.5.129</xsl:variable>
     <xsl:variable name="oidHL7ParticipationType">2.16.840.1.113883.5.90</xsl:variable>
     <xsl:variable name="oidHL7RoleCode">2.16.840.1.113883.5.111</xsl:variable>
     <xsl:variable name="oidISO3166">1.0.3166.1.2.2</xsl:variable>
@@ -113,12 +123,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="oidURAOrganizations">2.16.528.1.1007.3.3</xsl:variable>
     <!-- http://www.oid-info.com/get/1.3.6.1.1.16 -->
     <xsl:variable name="oidUUID">1.3.6.1.1.16</xsl:variable>
+    <xsl:variable name="oidVektisCOD472RolCode">2.16.840.1.113883.2.4.3.11.22.472</xsl:variable>
     <xsl:variable name="oidUZIPersons">2.16.528.1.1007.3.1</xsl:variable>
     <xsl:variable name="oidUZISystems">2.16.528.1.1007.3.2</xsl:variable>
     <xsl:variable name="oidUZIRoleCode">2.16.840.1.113883.2.4.15.111</xsl:variable>
     <xsl:variable name="oidUZOVI">2.16.840.1.113883.2.4.6.4</xsl:variable>
+    <xsl:variable name="oidZIBNL-CM-CS">2.16.840.1.113883.2.4.3.11.60.40.4</xsl:variable>
+    <xsl:variable name="oidZIBAanduidingBijNummer">2.16.840.1.113883.2.4.3.11.60.101.5.3</xsl:variable>
+    <xsl:variable name="oidZIBGewichtContextKleding">2.16.840.1.113883.2.4.3.11.60.40.4.8.1</xsl:variable>
+    <xsl:variable name="oidZIBManchetType">2.16.840.1.113883.2.4.3.11.60.40.4.15.1</xsl:variable>
+    <xsl:variable name="oidZIBNaamgebruik">2.16.840.1.113883.2.4.3.11.60.101.5.4</xsl:variable>
     <xsl:variable name="oidZIBLaboratoriumUitslagTestUitslagStatus">2.16.840.1.113883.2.4.3.11.60.40.4.16.1</xsl:variable>
-
+    <xsl:variable name="oidZIBTelecomToestelTypes">2.16.840.1.113883.2.4.3.11.60.40.4.22.1</xsl:variable>
+    <xsl:variable name="oidZIBVerzekeringssoort">2.16.840.1.113883.2.4.3.11.60.101.5.1</xsl:variable>
+    <xsl:variable name="oidZIBWilsverklaringType">2.16.840.1.113883.2.4.3.11.60.40.4.14.1</xsl:variable>
+    <xsl:variable name="oidZIBWoningType">2.16.840.1.113883.2.4.3.11.60.40.4.13.1</xsl:variable>
+    
     <xsl:variable name="oidsGstandaardMedication" as="xs:string*" select="($oidGStandaardSSK, $oidGStandaardSNK, $oidGStandaardGPK, $oidGStandaardPRK, $oidGStandaardHPK, $oidGStandaardZInummer)"/>
 
     <!-- FHIR profile / extension naming -->
@@ -346,6 +366,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <map oid="{$oidGStandaardBST361}" displayName="G-Standaard Bestand 361 a-tabel (eenheid gebruiksadvies)"/>
         <map oid="{$oidGStandaardBST902THES2}" displayName="G-Standaard thesaurus basiseenheden"/>
         <map oid="{$oidGStandaardFarmaceutischeVormen}" displayName="G-Standaard Farmaceutische vormen (tabel 6)"/>
+        <map oid="{$oidGTIN}" uri="https://www.gs1.org/gtin" displayName="GS1 GTIN"/>
         <map oid="{$oidICD10NL-STU3}" uri="http://hl7.org/fhir/sid/icd-10-nl" displayName="ICD-10 NL"/>
         <map oid="{$oidICD10NL-R4}" uri="http://hl7.org/fhir/sid/icd-10-nl" displayName="ICD-10 NL"/>
         <map oid="{$oidICPC1NL}" uri="http://hl7.org/fhir/sid/icpc-1-nl" displayName="ICPC-1NL"/>
@@ -370,6 +391,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <map oid="{$oidUZIRoleCode}" uri="http://fhir.nl/fhir/NamingSystem/uzi-rolcode" displayName="UZI Rolcodes"/>
         <map oid="{$oidUZISystems}" uri="http://fhir.nl/fhir/NamingSystem/uzi-nr-sys" displayName="UZI Systemen"/>
         <map oid="{$oidUZOVI}" uri="http://fhir.nl/fhir/NamingSystem/uzovi" displayName="UZOVI"/>
+        <map oid="{$oidVektisCOD472RolCode}" displayName="Vektis Rolcode COD472-VEKT"/>
+        <map oid="{$oidZIBAanduidingBijNummer}" displayName="ZIB AanduidingBijNummer"/>
+        <map oid="{$oidZIBGewichtContextKleding}" displayName="ZIB ContextKleding"/>
+        <map oid="{$oidZIBLaboratoriumUitslagTestUitslagStatus}" displayName="ZIB Laboratoriumuitslag Testuitslag ResultaatStatus"/>
+        <map oid="{$oidZIBManchetType}" displayName="ZIB ManchetType"/>
+        <map oid="{$oidZIBNaamgebruik}" displayName="ZIB Naamgebruik"/>
+        <map oid="{$oidZIBNL-CM-CS}" displayName="ZIB NL-CM-CS Algemeen"/>
+        <map oid="{$oidZIBTelecomToestelTypes}" displayName="ZIB Telecom ToestelTypes"/>
+        <map oid="{$oidZIBVerzekeringssoort}" displayName="ZIB Verzekeringssoort"/>
+        <map oid="{$oidZIBWilsverklaringType}" displayName="ZIB WilsverklaringType"/>
+        <map oid="{$oidZIBWoningType}" displayName="ZIB WoningType"/>
         <xsl:choose>
             <xsl:when test="$fhirVersion='STU3'">
                 <map oid="{$oidChoiceListOrientation}" uri="http://hl7.org/fhir/choice-list-orientation" displayName="ChoiceListOrientation"/>
@@ -379,12 +411,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <map oid="{$oidHL7AcknowledgementDetailCode}" uri="http://hl7.org/fhir/v3/AcknowledgementDetailCode" displayName="HL7 AcknowledgementDetailCode"/>
                 <map oid="{$oidHL7AdministrativeGender}" uri="http://hl7.org/fhir/v3/AdministrativeGender" displayName="HL7 AdministrativeGender"/>
                 <map oid="{$oidHL7ObservationInterpretation}" uri="http://hl7.org/fhir/v3/ObservationInterpretation" displayName="HL7 ObservationInterpretation"/>
+                <map oid="{$oidHL7SpecimenType}" uri="http://hl7.org/fhir/v3/SpecimenType" displayName="HL7 SpecimenType"/>
                 <map oid="{$oidHL7ParticipationType}" uri="http://hl7.org/fhir/v3/ParticipationType" displayName="HL7 ParticipationType"/>
                 <map oid="{$oidHL7NullFlavor}" uri="http://hl7.org/fhir/v3/NullFlavor" displayName="HL7 NullFlavor"/>
                 <map oid="{$oidHL7AddressUse}" uri="http://hl7.org/fhir/v3/AddressUse" displayName="HL7 AddressUse"/>
                 <map oid="{$oidHL7RoleCode}" uri="http://hl7.org/fhir/v3/RoleCode" displayName="HL7 RoleCode"/>
                 <map oid="{$oidQuestionnaireItemUsageMode}" uri="http://hl7.org/fhir/questionnaire-usage-mode" displayName="QuestionnaireItemUsageMode Item UI Control Codes"/>
                 <map uri="http://hl7.org/fhir/v2/0078" displayName="HL7 Version 2 Table 0078 v2 Interpretation Codes"/>
+                <map oid="{$oidHL7V3MaritalStatus}" uri="http://hl7.org/fhir/v3/MaritalStatus" displayName="HL7 MaritalStatus"/>
             </xsl:when>
             <xsl:when test="$fhirVersion = 'R4'">
                 <map oid="{$oidChoiceListOrientation}" uri="http://terminology.hl7.org/CodeSystem/choice-list-orientation" displayName="ChoiceListOrientation"/>
@@ -397,6 +431,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <map oid="{$oidHL7AdministrativeGender}" uri="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender" displayName="HL7 AdministrativeGender"/>
                 <map oid="{$oidHL7LanguageAbilityProficiency}" uri="http://terminology.hl7.org/CodeSystem/v3-LanguageAbilityProficiency" displayName="HL7 LanguageAbilityProficiency"/>
                 <map oid="{$oidHL7ObservationInterpretation}" uri="http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation" displayName="HL7 ObservationInterpretation"/>
+                <map oid="{$oidHL7SpecimenType}" uri="http://terminology.hl7.org/CodeSystem/v3-SpecimenType" displayName="HL7 SpecimenType"/>
                 <map oid="{$oidHL7ParticipationType}" uri="http://terminology.hl7.org/CodeSystem/v3-ParticipationType" displayName="HL7 ParticipationType"/>
                 <map oid="{$oidHL7NullFlavor}" uri="http://terminology.hl7.org/CodeSystem/v3-NullFlavor" displayName="HL7 NullFlavor"/>
                 <map oid="{$oidHL7AddressUse}" uri="http://terminology.hl7.org/CodeSystem/v3-AddressUse" displayName="HL7 AddressUse"/>
@@ -582,4 +617,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <map xmlns="" dayOfWeek="6" weekday="saturday" fhirDayOfWeek="sat" hl7PIVLPhaseLow="19700606" code="307151009" codeSystem="{$oidSNOMEDCT}" displayName="zaterdag" codeSystemName="SNOMED CT"/>
         <map xmlns="" dayOfWeek="0" weekday="sunday" fhirDayOfWeek="sun" hl7PIVLPhaseLow="19700607" code="307146003" codeSystem="{$oidSNOMEDCT}" displayName="zondag" codeSystemName="SNOMED CT"/>
     </xsl:variable> 
+    
+    <!-- checks https://hl7.org/fhir/R4/references.html#regex -->
+    <xsl:variable name="restRegexR4" as="xs:string">((http|https)://([A-Za-z0-9\-\\\.:%\$]*/)+)?(Account|ActivityDefinition|AdverseEvent|AllergyIntolerance|Appointment|AppointmentResponse|AuditEvent|Basic|Binary|BiologicallyDerivedProduct|BodyStructure|Bundle|CapabilityStatement|CarePlan|CareTeam|CatalogEntry|ChargeItem|ChargeItemDefinition|Claim|ClaimResponse|ClinicalImpression|CodeSystem|Communication|CommunicationRequest|CompartmentDefinition|Composition|ConceptMap|Condition|Consent|Contract|Coverage|CoverageEligibilityRequest|CoverageEligibilityResponse|DetectedIssue|Device|DeviceDefinition|DeviceMetric|DeviceRequest|DeviceUseStatement|DiagnosticReport|DocumentManifest|DocumentReference|EffectEvidenceSynthesis|Encounter|Endpoint|EnrollmentRequest|EnrollmentResponse|EpisodeOfCare|EventDefinition|Evidence|EvidenceVariable|ExampleScenario|ExplanationOfBenefit|FamilyMemberHistory|Flag|Goal|GraphDefinition|Group|GuidanceResponse|HealthcareService|ImagingStudy|Immunization|ImmunizationEvaluation|ImmunizationRecommendation|ImplementationGuide|InsurancePlan|Invoice|Library|Linkage|List|Location|Measure|MeasureReport|Media|Medication|MedicationAdministration|MedicationDispense|MedicationKnowledge|MedicationRequest|MedicationStatement|MedicinalProduct|MedicinalProductAuthorization|MedicinalProductContraindication|MedicinalProductIndication|MedicinalProductIngredient|MedicinalProductInteraction|MedicinalProductManufactured|MedicinalProductPackaged|MedicinalProductPharmaceutical|MedicinalProductUndesirableEffect|MessageDefinition|MessageHeader|MolecularSequence|NamingSystem|NutritionOrder|Observation|ObservationDefinition|OperationDefinition|OperationOutcome|Organization|OrganizationAffiliation|Patient|PaymentNotice|PaymentReconciliation|Person|PlanDefinition|Practitioner|PractitionerRole|Procedure|Provenance|Questionnaire|QuestionnaireResponse|RelatedPerson|RequestGroup|ResearchDefinition|ResearchElementDefinition|ResearchStudy|ResearchSubject|RiskAssessment|RiskEvidenceSynthesis|Schedule|SearchParameter|ServiceRequest|Slot|Specimen|SpecimenDefinition|StructureDefinition|StructureMap|Subscription|Substance|SubstanceNucleicAcid|SubstancePolymer|SubstanceProtein|SubstanceReferenceInformation|SubstanceSourceMaterial|SubstanceSpecification|SupplyDelivery|SupplyRequest|Task|TerminologyCapabilities|TestReport|TestScript|ValueSet|VerificationResult|VisionPrescription)/[A-Za-z0-9\-\.]{1,64}(/_history/[A-Za-z0-9\-\.]{1,64})?</xsl:variable>
+    
+    
 </xsl:stylesheet>

@@ -1,0 +1,72 @@
+<PractitionerRole xmlns="http://hl7.org/fhir">
+   <id value="nl-core-practitionerrole-bgz-msz-0013131301-01520000004"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Zorgverlenerrol. </caption>
+            <tbody>
+               <tr>
+                  <th>Zorgverlener</th>
+                  <td>
+                     <div>Huisdokter H. Huisdokter Behulpzaam</div>
+                     <div>Huisartsenpraktijk Betrokken</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Specialisme</th>
+                  <td>
+                     <span title="Huisarts (01.015 - http://fhir.nl/fhir/NamingSystem/uzi-rolcode)">Huisarts</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <div>
+                        <a href="tel:021-9990003">021-9990003</a> (Vast telefoonnummer Werk)</div>
+                     <div>
+                        <a href="mailto:Bijns.DeVries@HPMolenhoek.nl">Bijns.DeVries@HPMolenhoek.nl</a> (E-mail Werk)</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <practitioner>
+      <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-840-1-113883-2-4-6-1-00131313"/>
+      <display value="Huisdokter H. Huisdokter Behulpzaam"/>
+   </practitioner>
+   <organization>
+      <reference value="Organization/nl-core-organization-bgz-msz-2-16-840-1-113883-2-4-6-1-20000004"/>
+      <display value="Huisartsenpraktijk Betrokken"/>
+   </organization>
+   <specialty>
+      <coding>
+         <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+         <code value="01.015"/>
+         <display value="Huisarts"/>
+      </coding>
+   </specialty>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Land Line"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="021-9990003"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="Bijns.DeVries@HPMolenhoek.nl"/>
+      <use value="work"/>
+   </telecom>
+</PractitionerRole>

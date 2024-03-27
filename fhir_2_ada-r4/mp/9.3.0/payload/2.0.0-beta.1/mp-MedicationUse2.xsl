@@ -30,7 +30,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- volgens_afspraak_indicator -->
             <xsl:apply-templates select="f:extension[@url = $urlExtAsAgreedIndicator]" mode="#current"/>
             <!-- stoptype -->
-            <!-- do not use the nl-core stoptype, outputs a wrongly named ada element, since the IA's chose to update the dataset name in MP9 3.0 -->
+            <!-- do not use the ext-stoptype, outputs a wrongly named ada element, since the IA's chose to update the dataset name in MP9 3.0 -->
             <xsl:apply-templates select="f:modifierExtension[@url = $urlExtStoptype]/f:valueCodeableConcept" mode="#current"/>
             <!-- gebruiksperiode -->
             <xsl:apply-templates select="f:effectivePeriod" mode="#current"/>
@@ -227,7 +227,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:medicationReference" mode="mp-MedicationUse2">
         <gebruiksproduct>
-            <farmaceutisch_product value="{nf:convert2NCName(./f:reference/@value)}" datatype="reference"/>
+            <farmaceutisch_product value="{nf:process-reference-2NCName(f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
         </gebruiksproduct>
     </xsl:template>
 
@@ -235,7 +235,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to convert f:informationSource to informant</xd:desc>
     </xd:doc>
     <xsl:template match="f:informationSource" mode="mp-MedicationUse2">
-        <xsl:variable name="referenceValue" select="f:reference/@value"/>
+        <xsl:variable name="referenceValue" select="nf:process-reference(f:reference/@value, ancestor::f:entry/f:fullUrl/@value)"/>
         <xsl:variable name="referenceValuePractitionerRole" select="f:extension/f:valueReference/f:reference/@value"/>
         <xsl:variable name="resource" select="(ancestor::f:Bundle/f:entry[f:fullUrl/@value = $referenceValue]/f:resource/f:*)[1]"/>
         <informant>
@@ -378,7 +378,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to convert f:extension with extension url ext-MedicationUse.Author to auteur</xd:desc>
     </xd:doc>
     <xsl:template match="f:extension[@url = $urlExtMedicationUseAuthor]" mode="mp-MedicationUse2">
-        <xsl:variable name="referenceValue" select="f:valueReference/f:reference/@value"/>
+        <xsl:variable name="referenceValue" select="nf:process-reference(f:valueReference/f:reference/@value,ancestor::f:entry/f:fullUrl/@value)" as="xs:string"/>
         <xsl:variable name="resource" select="(ancestor::f:Bundle/f:entry[f:fullUrl/@value = $referenceValue]/f:resource/f:*)[1]"/>
         <auteur>
             <xsl:choose>
@@ -389,14 +389,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:when>
                 <xsl:when test="$resource/local-name() = 'Practitioner'">
                     <auteur_is_zorgverlener>
-                        <zorgverlener datatype="reference" value="{nf:convert2NCName(f:valueReference/f:reference/@value)}"/>
+                        <zorgverlener datatype="reference" value="{nf:process-reference-2NCName(f:valueReference/f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}"/>
                     </auteur_is_zorgverlener>
                 </xsl:when>
                 <xsl:when test="$resource/local-name() = 'PractitionerRole'">
                     <auteur_is_zorgverlener>
                         <xsl:variable name="practitionerRole" select="string(f:valueReference/f:reference/@value)"/>
                         <xsl:variable name="practitioner" select="string(/f:Bundle/f:entry[f:fullUrl/@value eq $practitionerRole]/f:resource/f:PractitionerRole/f:practitioner/f:reference/@value)"/>
-                        <zorgverlener datatype="reference" value="{nf:convert2NCName($practitionerRole)}"/>
+                        <zorgverlener datatype="reference" value="{nf:process-reference-2NCName($practitionerRole, ancestor::f:entry/f:fullUrl/@value)}"/>
                     </auteur_is_zorgverlener>
                 </xsl:when>
                 <xsl:when test="$resource/local-name() = 'Organization'">
@@ -405,6 +405,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="organizationIdUnderscore" select="true()" tunnel="yes"/>
                         </xsl:apply-templates>
                     </auteur_is_zorgaanbieder>
+                </xsl:when>
+                <!-- LR: added errormessage for empty $resource -->
+                <xsl:when test="not($resource)">
+                        <xsl:call-template name="util:logMessage">
+                            <xsl:with-param name="level" select="$logERROR"/>
+                            <xsl:with-param name="msg">
+                                <xsl:value-of select="ancestor::f:resource/f:*/local-name()"/>
+                                <xsl:text> with fullUrl '</xsl:text>
+                                <xsl:value-of select="ancestor::f:resource/preceding-sibling::f:fullUrl/@value"/>
+                                <xsl:text>' .</xsl:text>
+                                <xsl:choose>
+                                    <xsl:when test="../parent::f:extension">
+                                        <xsl:value-of select="concat('extensie ', ../parent::f:extension/tokenize(@url, '/')[last()])"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:value-of select="f:*/local-name()"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                                <xsl:text> reference author: </xsl:text>
+                                <xsl:value-of select="$referenceValue"/>
+                                <xsl:text> cannot be resolved within the Bundle. Therefore information will be lost.</xsl:text>
+                            </xsl:with-param>
+                        </xsl:call-template>
                 </xsl:when>
             </xsl:choose>
         </auteur>
@@ -415,7 +438,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:extension[@url = $urlExtMedicationUse2Prescriber]" mode="mp-MedicationUse2">
         <voorschrijver>
-            <zorgverlener value="{nf:convert2NCName(f:valueReference/f:reference/@value)}" datatype="reference"/>
+            <zorgverlener value="{nf:process-reference-2NCName(f:valueReference/f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
         </voorschrijver>
     </xsl:template>
 

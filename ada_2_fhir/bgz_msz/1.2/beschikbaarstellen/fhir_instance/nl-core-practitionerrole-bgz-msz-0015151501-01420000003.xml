@@ -1,0 +1,62 @@
+<PractitionerRole xmlns="http://hl7.org/fhir">
+   <id value="nl-core-practitionerrole-bgz-msz-0015151501-01420000003"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Zorgverlenerrol. </caption>
+            <tbody>
+               <tr>
+                  <th>Zorgverlener</th>
+                  <td>
+                     <div>Hecht H. Hecht Bekwaam</div>
+                     <div>Ziekenhuis Beterschap</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Specialisme</th>
+                  <td>
+                     <span title="Chirurg (01.014 - http://fhir.nl/fhir/NamingSystem/uzi-rolcode)">Chirurg</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <a href="tel:2769">2769</a> (Pieper)</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <practitioner>
+      <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-840-1-113883-2-4-6-1-00151515"/>
+      <display value="Hecht H. Hecht Bekwaam"/>
+   </practitioner>
+   <organization>
+      <reference value="Organization/nl-core-organization-bgz-msz-2-16-840-1-113883-2-4-6-1-20000003"/>
+      <display value="Ziekenhuis Beterschap"/>
+   </organization>
+   <specialty>
+      <coding>
+         <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+         <code value="01.014"/>
+         <display value="Chirurg"/>
+      </coding>
+   </specialty>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="PG"/>
+               <display value="Pager"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="pager"/>
+      <value value="2769"/>
+   </telecom>
+</PractitionerRole>

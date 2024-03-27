@@ -39,7 +39,7 @@
                displayName="voorschrijven van geneesmiddel (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 24 dec 2022, tot en met 28 dec 2022, 1 stuk, Oraal, stopgezet</text>
+         <text mediaType="text/plain">Vanaf 24 dec 2022, tot en met 28 dec 2022, 1 maal per dag 1 stuk, Oraal, stopgezet</text>
          <effectiveTime xsi:type="IVL_TS">
             <low value="20221224000000"/>
             <high value="20221228235959"/>
@@ -122,6 +122,13 @@
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
                <doseQuantity>
                   <center value="1" unit="1">
                      <translation value="1"

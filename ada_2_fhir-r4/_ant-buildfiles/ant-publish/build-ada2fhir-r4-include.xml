@@ -89,7 +89,10 @@
     <!-- from ada2fhir -->
     <target name="convert_ada_2_fhir_sub">
         
-        <fileset id="inputFiles" dir="${xsl.in}" includes="${xsl.in.include}"/>
+        <fileset id="inputFiles" dir="${xsl.in}">
+            <include name="${xsl.in.include}"/>
+            <exclude name="${xsl.in.exclude}" if="xsl.in.exclude"/>            
+        </fileset>
 
         <echo/>
         <echo>${echo.label} input files ${xsl.in}/${xsl.in.include}, to be converted with: ${xsl.convert}</echo>

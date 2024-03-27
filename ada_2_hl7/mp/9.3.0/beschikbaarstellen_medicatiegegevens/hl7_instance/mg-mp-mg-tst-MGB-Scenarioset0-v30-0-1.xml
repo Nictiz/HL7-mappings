@@ -39,10 +39,10 @@
                displayName="bevinding betreffende gedrag met betrekking tot medicatieregime (bevinding)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 12 dec 2022, gedurende 5 dagen, 2 maal per dag 2 stuks, oraal</text>
+         <text mediaType="text/plain">Vanaf 12 dec 2022, tot en met 10 jan 2023, 2 maal per dag 1 stuk, oraal</text>
          <effectiveTime xsi:type="IVL_TS">
             <low value="20221212000000"/>
-            <width value="5" unit="d"/>
+            <high value="20230110235959"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -52,24 +52,24 @@
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9363"/>
                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="665800"
+                  <code code="641898"
                         codeSystem="2.16.840.1.113883.2.4.4.7"
-                        displayName="PARACETAMOL SANDOZ TABLET 500MG"
+                        displayName="IBUPROFEN PCH TABLET 600MG"
                         codeSystemName="G-Standaard HPK">
-                     <translation code="67903"
+                     <translation code="17469"
                                   codeSystem="2.16.840.1.113883.2.4.4.10"
-                                  displayName="PARACETAMOL 500MG TABLET"
+                                  displayName="IBUPROFEN TABLET 600MG"
                                   codeSystemName="G-Standaard PRK"/>
-                     <translation code="2194"
+                     <translation code="42080"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="PARACETAMOL 500MG TABLET"
+                                  displayName="IBUPROFEN TABLET 600MG"
                                   codeSystemName="G-Standaard GPK"/>
                   </code>
                </manufacturedMaterial>
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20221217080000"/>
+            <time value="20221231100423"/>
             <assignedAuthor>
                <id extension="000001111" root="2.16.528.1.1007.3.1"/>
                <code code="0100"
@@ -96,15 +96,6 @@
                </representedOrganization>
             </assignedAuthor>
          </author>
-         <informant>
-            <assignedEntity>
-               <id extension="999901084" root="2.16.840.1.113883.2.4.6.3"/>
-               <code code="ONESELF"
-                     displayName="Self"
-                     codeSystem="2.16.840.1.113883.5.111"
-                     codeSystemName="RoleCode"/>
-            </assignedEntity>
-         </informant>
          <entryRelationship typeCode="COMP">
             <observation classCode="OBS" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9189"/>
@@ -136,8 +127,8 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="2" unit="1">
-                     <translation value="2"
+                  <center value="1" unit="1">
+                     <translation value="1"
                                   code="245"
                                   displayName="stuk"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -188,7 +179,7 @@
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9101"/>
-               <id extension="MBH_300_script0_QA1_TA"
+               <id extension="MBH_300_QA1_TA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                <code displayName="Toedieningsafspraak"
                      code="422037009"
@@ -200,8 +191,7 @@
          <entryRelationship typeCode="COMP" inversionInd="true">
             <procedure classCode="PROC" moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
-               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_script0_QA1"/>
+               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1" extension="MBH_300_QA1"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
