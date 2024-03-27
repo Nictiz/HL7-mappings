@@ -17,6 +17,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
+    
+    <xsl:variable name="mveCode920" select="$mveCode[1]"/>
+    
 
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ADA medicatieverstrekking to FHIR MedicationDispense conforming to profile mp-MedicationDispense</xd:desc>
@@ -100,7 +103,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <category>
                     <coding>
                         <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                        <code value="373784005"/>
+                        <code value="{$mveCode920}"/>
                         <display value="verstrekken van medicatie"/>
                     </coding>
                 </category>

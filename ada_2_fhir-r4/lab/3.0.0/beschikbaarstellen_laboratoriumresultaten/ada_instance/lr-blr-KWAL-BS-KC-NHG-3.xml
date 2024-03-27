@@ -1,6 +1,6 @@
 <adaxml xsi:noNamespaceSchemaLocation="../../sturen_laboratoriumresultaten/ada_schemas/ada_sturen_laboratoriumresultaten.xsd"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-   <!-- == Produced by adarefs2ada build lab/3.0.0/laboratoriumresultaten_met_references-1 at 2023-07-19T14:06:52.8773323+02:00 == -->
+   <!-- == Produced by adarefs2ada build lab/3.0.0/laboratoriumresultaten_met_references-1 at 2024-01-18T09:02:25.131112+02:00 == -->
    <!-- == ADA full xml for subscenario nr: 3 == -->
    <meta status="new"
          created-by="labuitwisselingada"
@@ -22,10 +22,12 @@
                       conceptId="2.16.840.1.113883.2.4.3.11.999.25.2.2.4401.2.1.1"/>
          <screenshot value="Screenshot hoe gegevens opgevoerd zijn aanleveren. "
                      conceptId="2.16.840.1.113883.2.4.3.11.999.25.2.2.4401.5"/>
-         <!--Patient found in instance with id: sl-KWAL-KC-LOINC-v30 and title: KWALIFICATIE REPO ResultatenKlinischChemie_LOINC-->
+         <!--Patient found in instance with id: sl-TEST-Scenarioset1a-v30 and title: TEST REPO Scenarioset 1a (ResultatenKlinischChemie_NHG)-->
          <patientgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4302">
             <patient conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4303">
                <naamgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4304">
+                  <voornamen value="Eduardo"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4305"/>
                   <initialen value="E."
                              conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4306"/>
                   <geslachtsnaam conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4309">
@@ -36,7 +38,7 @@
                <identificatienummer value="999900511"
                                     root="2.16.840.1.113883.2.4.6.3"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4337"/>
-               <geboortedatum value="1963-10-24"
+               <geboortedatum value="1963-10-24T00:00:00"
                               datatype="datetime"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4338"/>
                <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4339"
@@ -48,7 +50,7 @@
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4340"/>
             </patient>
          </patientgegevens>
-         <!--Zorgaanbieder found in instance with id: sl-KWAL-KC-LOINC-v30 and title: KWALIFICATIE REPO ResultatenKlinischChemie_LOINC-->
+         <!--Zorgaanbieder found in instance with id: sl-KWAL-NierfunctieMO-v30 and title: KWAL REPO Nierfunctie MO LOINC en NHG [Kickstart]-->
          <beschikbaarstellende_partij>
             <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4221">
                <zorgaanbieder_identificatienummer value="00001111"
@@ -82,7 +84,7 @@
                                  code="Z3"
                                  codeSystem="2.16.840.1.113883.2.4.15.1060"
                                  codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"
-                                 codeSystemVersion="2022-07-07T00:00:00"
+                                 codeSystemVersion="2022-09-10T00:00:00"
                                  displayName="Huisartspraktijk (zelfstandig of groepspraktijk)"/>
             </zorgaanbieder>
          </beschikbaarstellende_partij>
@@ -289,7 +291,7 @@
                                        code="L1"
                                        codeSystem="2.16.840.1.113883.2.4.15.1060"
                                        codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"
-                                       codeSystemVersion="2022-07-07T00:00:00"
+                                       codeSystemVersion="2022-09-10T00:00:00"
                                        displayName="Laboratorium"/>
                   </zorgaanbieder>
                </uitvoerder>
@@ -317,19 +319,22 @@
                                    datatype="datetime"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4258"/>
                   <test_uitslag value="2.3"
-                                datatype="decimal"
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4259"/>
+                                datatype="quantity"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4259"
+                                unit="{INR}"/>
                   <test_uitslag_status conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4260"
                                        value="3"
                                        code="final"
                                        codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.16.1"
                                        displayName="Definitief"/>
                   <referentie_bovengrens value="1.1"
-                                         datatype="decimal"
-                                         conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4261"/>
+                                         datatype="quantity"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4261"
+                                         unit="{INR}"/>
                   <referentie_ondergrens value="0.9"
-                                         datatype="decimal"
-                                         conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4262"/>
+                                         datatype="quantity"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4262"
+                                         unit="{INR}"/>
                   <interpretatie_vlaggen conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4264"
                                          value="1"
                                          code="281302008"
@@ -391,7 +396,7 @@
                                        code="TD"
                                        codeSystem="2.16.840.1.113883.2.4.15.1060"
                                        codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"
-                                       codeSystemVersion="2022-07-07T00:00:00"
+                                       codeSystemVersion="2022-09-10T00:00:00"
                                        displayName="Trombosedienst"/>
                   </zorgaanbieder>
                </uitvoerder>
@@ -469,7 +474,7 @@
                                        code="L1"
                                        codeSystem="2.16.840.1.113883.2.4.15.1060"
                                        codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"
-                                       codeSystemVersion="2022-07-07T00:00:00"
+                                       codeSystemVersion="2022-09-10T00:00:00"
                                        displayName="Laboratorium"/>
                   </zorgaanbieder>
                </uitvoerder>
@@ -527,7 +532,7 @@
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4267"/>
                   <monstervolgnummer value="2"
                                      conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4268"/>
-                  <monstermateriaal code="119297000"
+                  <monstermateriaal code="87612001"
                                     codeSystem="2.16.840.1.113883.6.96"
                                     codeSystemName="SNOMED Clinical Terms"
                                     displayName="bloed"
@@ -576,7 +581,7 @@
                                        code="L1"
                                        codeSystem="2.16.840.1.113883.2.4.15.1060"
                                        codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"
-                                       codeSystemVersion="2022-07-07T00:00:00"
+                                       codeSystemVersion="2022-09-10T00:00:00"
                                        displayName="Laboratorium"/>
                   </zorgaanbieder>
                </uitvoerder>
@@ -624,7 +629,7 @@
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4267"/>
                   <monstervolgnummer value="6"
                                      conceptId="2.16.840.1.113883.2.4.3.11.60.25.2.2.4268"/>
-                  <monstermateriaal code="119297000"
+                  <monstermateriaal code="87612001"
                                     codeSystem="2.16.840.1.113883.6.96"
                                     codeSystemName="SNOMED Clinical Terms"
                                     displayName="bloed"
@@ -673,7 +678,7 @@
                                        code="L1"
                                        codeSystem="2.16.840.1.113883.2.4.15.1060"
                                        codeSystemName="RoleCodeNL - zorgaanbiedertype (organisaties)"
-                                       codeSystemVersion="2022-07-07T00:00:00"
+                                       codeSystemVersion="2022-09-10T00:00:00"
                                        displayName="Laboratorium"/>
                   </zorgaanbieder>
                </uitvoerder>

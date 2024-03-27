@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flag xmlns="http://hl7.org/fhir">
+   <id value="bb-pat03-BB-01"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-SurveillanceDecision"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
+      <valueString value="Patiënt heeft aangegeven in het verleden allergische reacties te hebben gehad na gebruik penicilline."/>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.754"/>
+      <value value="pat03-BB-01"/>
+   </identifier>
+   <status value="active"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="225419007"/>
+         <display value="surveillance"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.902.122"/>
+         <code value="35"/>
+         <display value="PENICILLINES"/>
+      </coding>
+      <text value="Monitor the use of PENICILLINES as treatment for the patient, since this substance is unsafe for the patient."/>
+   </code>
+   <subject>
+      <reference value="Patient/patient-XXX-Dubbeld"/>
+      <type value="Patient"/>
+      <display value="Patient, Erwin XXX_Dubbeld"/>
+   </subject>
+   <period>
+      <start value="${DATE, T, D, -108}T11:15:46+02:00"/>
+   </period>
+   <author>
+      <reference value="PractitionerRole/pracrole-000001111"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+   </author>
+</Flag>

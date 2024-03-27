@@ -25,8 +25,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="naamgegevens" mode="nl-core-NameInformation" name="nl-core-NameInformation" as="element(f:name)*">
         <xsl:param name="in" select="." as="element()*"/>
+        
         <xsl:for-each select="$in">
-
             <!-- Break the first names and initials string into parts and normalize them. -->
             <xsl:variable name="normalizedFirstNames" select="nf:_normalizeFirstNames(voornamen)" as="xs:string*"/>
             <xsl:variable name="normalizedInitials" select="nf:_normalizeInitials(initialen)" as="xs:string*"/>
@@ -34,7 +34,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- Construct the full given name string and family string -->
             <xsl:variable name="given" as="xs:string?" select="nf:_renderGivenNames($normalizedFirstNames, $normalizedInitials)"/>
             <xsl:variable name="family" as="xs:string?" select="nf:_renderFamilyName(.)"/>
-
+            
             <!-- Create the main .name instance containing all official names -->
             <name>
                 <xsl:if test="naamgebruik">
@@ -46,11 +46,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueCode>
                     </extension>
                 </xsl:if>
-
+                
                 <use value="official"/>
-                <xsl:if test="$given or $family">
-                    <text value="{nf:_renderNameFromParts($given, $family, roepnaam)}"/>
-                </xsl:if>
+                <!-- Add the unstructured name under the assumption that it is the official name-->
+                <!-- there only may be one text in FHIR, give precedence to ada ongestructureerde_naam when it has a value. otherwise use the nameparts that may or may not be available -->
+                <xsl:choose>
+                    <xsl:when test="string-length(ongestructureerde_naam/@value) gt 0">
+                        <text>
+                            <xsl:attribute name="value">
+                                <xsl:call-template name="string-to-string">
+                                    <xsl:with-param name="in" select="ongestructureerde_naam"/>
+                                </xsl:call-template>
+                            </xsl:attribute>
+                        </text>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:if test="$given or $family">
+                            <text value="{nf:_renderNameFromParts($given, $family, roepnaam)}"/>
+                        </xsl:if>                        
+                    </xsl:otherwise>                    
+                </xsl:choose>
 
                 <xsl:if test="$family">
                     <family value="{$family}">

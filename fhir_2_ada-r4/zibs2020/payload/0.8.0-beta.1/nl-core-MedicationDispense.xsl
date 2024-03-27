@@ -121,7 +121,7 @@ TODO
     </xd:doc>
     <xsl:template match="f:medicationReference" mode="nl-core-MedicationDispense">
         <verstrekt_geneesmiddel>
-            <farmaceutisch_product value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
+            <farmaceutisch_product value="{nf:process-reference-2NCName(f:reference/@value,ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
         </verstrekt_geneesmiddel>
     </xsl:template>
 
@@ -142,7 +142,7 @@ TODO
     </xd:doc>
     <xsl:template match="f:performer" mode="nl-core-MedicationDispense">
         <verstrekker>
-            <zorgaanbieder datatype="reference" value="{nf:convert2NCName(f:actor/f:reference/@value)}"/>
+            <zorgaanbieder datatype="reference" value="{nf:process-reference-2NCName(f:actor/f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}"/>
         </verstrekker>
     </xsl:template>
 

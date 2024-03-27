@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flag xmlns="http://hl7.org/fhir">
+   <id value="bb-pat03-BB-03"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/cio-SurveillanceDecision"/>
+   </meta>
+   <extension url="http://hl7.org/fhir/StructureDefinition/flag-detail">
+      <valueReference>
+         <reference value="AllergyIntolerance/ov-pat03-overgevoeligheid-01"/>
+         <type value="AllergyIntolerance"/>
+         <display value="Overgevoeligheid, PENICILLINES, diagnosedatum: T-50D"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.26.1.754"/>
+      <value value="pat03-BB-03"/>
+   </identifier>
+   <status value="active"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="225419007"/>
+         <display value="surveillance"/>
+      </coding>
+   </category>
+   <code>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-SurveillanceDecision.SafeWithinUnsafeGroup">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.4.1.750"/>
+               <code value="40991"/>
+               <display value="FLUCLOXACILLINE"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.902.122"/>
+         <code value="35"/>
+         <display value="PENICILLINES"/>
+      </coding>
+      <text value="Monitor the use of PENICILLINES as treatment for the patient, since this group of substances is unsafe for the patient (with the exception of FLUCLOXACILLINE)."/>
+   </code>
+   <subject>
+      <reference value="Patient/patient-XXX-Dubbeld"/>
+      <type value="Patient"/>
+      <display value="Patient, Erwin XXX_Dubbeld"/>
+   </subject>
+   <period>
+      <start value="${DATE, T, D, -50}T14:25:30+02:00"/>
+   </period>
+   <author>
+      <reference value="PractitionerRole/pracrole-000001111"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+   </author>
+</Flag>

@@ -43,7 +43,7 @@ WisselendDoseerschema in beschikbaarstellen_medicatiegegevens_2_ada.xsl boven me
 				</gebruiksperiode>
 			</xsl:if>
 			<!-- stoptype -->
-			<xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="nl-core-ext-StopType"/>
+			<xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="ext-StopType"/>
 			<!-- reden_wijzigen_of_staken -->
 			<xsl:apply-templates select="f:reasonCode" mode="#current"/>
 			<!-- afgesproken_geneesmiddel -->
@@ -74,7 +74,7 @@ WisselendDoseerschema in beschikbaarstellen_medicatiegegevens_2_ada.xsl boven me
 	</xd:doc>
 	<xsl:template match="f:requester" mode="nl-core-VariableDosingRegimen">
 		<auteur>
-			<zorgverlener value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
+			<zorgverlener value="{nf:process-reference-2NCName(f:reference/@value,ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
 		</auteur>
 	</xsl:template>
 
@@ -147,7 +147,7 @@ WisselendDoseerschema in beschikbaarstellen_medicatiegegevens_2_ada.xsl boven me
 	</xd:doc>
 	<xsl:template match="f:medicationReference" mode="nl-core-VariableDosingRegimen">
 		<afgesproken_geneesmiddel>
-			<farmaceutisch_product value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
+			<farmaceutisch_product value="{nf:process-reference-2NCName(f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
 		</afgesproken_geneesmiddel>
 	</xsl:template>
 

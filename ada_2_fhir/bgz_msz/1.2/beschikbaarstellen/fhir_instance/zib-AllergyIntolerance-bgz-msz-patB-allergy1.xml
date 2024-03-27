@@ -1,0 +1,126 @@
+<AllergyIntolerance xmlns="http://hl7.org/fhir">
+   <id value="zib-AllergyIntolerance-bgz-msz-patB-allergy1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Allergie/intolerantie. Patiënt: Francisca F. Fransje Gigase Verheul. Id: bgz-msz-patB-allergy (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6), Categorie: <span title="allergie voor substantie (419199007 - SNOMED CT)">allergie voor substantie</span>, Status: opgelost / bevestigd</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Patiënt heeft een succesvolle desensibilisatie ondergaan.</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="wespengif (256440004 - SNOMED CT)">wespengif</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Eerste symptomen</th>
+                  <td>1 augustus 1980</td>
+               </tr>
+               <tr>
+                  <th>Meest recente voorkomen</th>
+                  <td>2 augustus 2015</td>
+               </tr>
+               <tr>
+                  <th>Reactie</th>
+                  <td>
+                     <ul>
+                        <li>
+                           <div>
+                              <span title="ernstig (24484000 - SNOMED CT)">ernstig</span>
+                           </div>
+                           <div>
+                              <span title="anafylaxie (39579001 - SNOMED CT)">anafylaxie</span>
+                           </div>
+                           <div>Sterk verlaagde bloeddruk en ademfrequentie.</div>
+                        </li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"/>
+      <value value="bgz-msz-patB-allergy"/>
+   </identifier>
+   <clinicalStatus value="resolved">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActStatus"/>
+               <code value="completed"/>
+               <display value="completed"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <verificationStatus value="confirmed"/>
+   <category value="biologic">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="419199007"/>
+               <display value="allergie voor substantie"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </category>
+   <criticality value="high">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="24484000"/>
+               <display value="ernstig"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </criticality>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="256440004"/>
+         <display value="wespengif"/>
+      </coding>
+   </code>
+   <patient>
+      <reference value="Patient/FRANCISCA-F--FRANSJE-GIGASE-VERHEUL"/>
+      <display value="Francisca F. Fransje Gigase Verheul"/>
+   </patient>
+   <onsetDateTime value="1980-08-01"/>
+   <lastOccurrence value="2015-08-02"/>
+   <note>
+      <text value="Patiënt heeft een succesvolle desensibilisatie ondergaan."/>
+   </note>
+   <reaction>
+      <manifestation>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="39579001"/>
+            <display value="anafylaxie"/>
+         </coding>
+      </manifestation>
+      <description value="Sterk verlaagde bloeddruk en ademfrequentie."/>
+      <severity value="severe">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="24484000"/>
+                  <display value="ernstig"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </severity>
+   </reaction>
+</AllergyIntolerance>

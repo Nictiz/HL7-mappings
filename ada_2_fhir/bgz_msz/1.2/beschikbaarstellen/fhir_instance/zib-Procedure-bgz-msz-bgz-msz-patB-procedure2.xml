@@ -1,0 +1,112 @@
+<Procedure xmlns="http://hl7.org/fhir">
+   <id value="zib-Procedure-bgz-msz-bgz-msz-patB-procedure2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichting. Subject: Francisca F. Fransje Gigase Verheul. Id: bgz-msz-patB-procedure2 (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6), Categorie: , Status: voltooid<span style="display: block;">Uitvoerende (<span title="Performer (PRF - v3/ParticipationType)">Performer</span>): HersenDokter H. HersenDokter Beleving || Neurochirurg || Ziekenhuis Beterschap</span>
+               <span style="display: block;">Uitvoerende: Ziekenhuis Beterschap</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="mechanische trombectomie van linker arteria carotis interna (84581000146105 - SNOMED CT)">mechanische trombectomie van linker arteria carotis interna</span>
+                  </td>
+                  <td>
+                     <div>Uitgevoerd: 2 juli 2010 - 2 juli 2020</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="percutane mechanische trombectomie van sinus durae matris onder röntgendoorlichting (439625002 - SNOMED CT)">percutane mechanische trombectomie van sinus durae matris onder röntgendoorlichting</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Deel van lichaam</th>
+                  <td>
+                     <span title="structuur van intracraniële vasculatuur (281138005 - SNOMED CT)">structuur van intracraniële vasculatuur</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>palpabele massa van mamma</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://hl7.org/fhir/StructureDefinition/procedure-method">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="439625002"/>
+            <display value="percutane mechanische trombectomie van sinus durae matris onder röntgendoorlichting"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"/>
+      <value value="bgz-msz-patB-procedure2"/>
+   </identifier>
+   <status value="completed"/>
+   <category>
+      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+         <valueCode value="unknown"/>
+      </extension>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="84581000146105"/>
+         <display value="mechanische trombectomie van linker arteria carotis interna"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/FRANCISCA-F--FRANSJE-GIGASE-VERHEUL"/>
+      <display value="Francisca F. Fransje Gigase Verheul"/>
+   </subject>
+   <performedPeriod>
+      <start value="2010-07-02"/>
+      <end value="2020-07-02"/>
+   </performedPeriod>
+   <performer>
+      <actor>
+         <reference value="Organization/nl-core-organization-bgz-msz-2-16-840-1-113883-2-4-6-1-20000003"/>
+         <display value="Ziekenhuis Beterschap"/>
+      </actor>
+   </performer>
+   <performer>
+      <role>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+            <code value="PRF"/>
+            <display value="Performer"/>
+         </coding>
+      </role>
+      <actor>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-bgz-msz-0016161601-02520000003"/>
+               <display value="HersenDokter H. HersenDokter Beleving || Neurochirurg || Ziekenhuis Beterschap"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-840-1-113883-2-4-6-1-00161616"/>
+         <display value="HersenDokter H. HersenDokter Beleving"/>
+      </actor>
+   </performer>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-bgz-msz-bgz-msz-patB-problem4"/>
+      <display value="palpabele massa van mamma"/>
+   </reasonReference>
+   <bodySite>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="281138005"/>
+         <display value="structuur van intracraniële vasculatuur"/>
+      </coding>
+   </bodySite>
+</Procedure>

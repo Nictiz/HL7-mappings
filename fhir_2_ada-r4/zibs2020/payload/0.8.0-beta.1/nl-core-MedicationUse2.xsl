@@ -33,7 +33,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- volgens_afspraak_indicator -->
             <xsl:apply-templates select="f:extension[@url = $urlExtAsAgreedIndicator]" mode="#current"/>
             <!-- stoptype -->
-            <xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="nl-core-ext-StopType"/>
+            <xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="ext-StopType"/>
             <!-- gebruiksperiode -->
             <xsl:apply-templates select="f:effectivePeriod" mode="#current"/>
             <!-- gebruiks_product -->
@@ -220,7 +220,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:medicationReference" mode="nl-core-MedicationUse2">
         <gebruiksproduct>
-            <farmaceutisch_product value="{nf:convert2NCName(./f:reference/@value)}" datatype="reference"/>
+            <farmaceutisch_product value="{nf:process-reference-2NCName(f:reference/@value,ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
         </gebruiksproduct>
     </xsl:template>
 
@@ -372,7 +372,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:extension[@url = $extMedicationUseAuthor]" mode="nl-core-MedicationUse2">
         <xsl:variable name="referenceValue" select="f:valueReference/f:reference/@value"/>
-        <xsl:variable name="resource" select="(ancestor::f:Bundle/f:entry[f:fullUrl/@value = $referenceValue]/f:resource/f:*)[1]"/>
+        <xsl:variable name="resource" select="(ancestor::f:Bundle/f:entry[f:fullUrl/@value = nf:process-reference($referenceValue, ancestor::f:entry/f:fullUrl/@value)]/f:resource/f:*)[1]"/>
         <auteur>
             <xsl:choose>
                 <xsl:when test="$resource/local-name() = 'Patient'">
@@ -382,14 +382,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:when>
                 <xsl:when test="$resource/local-name() = 'Practitioner'">
                     <auteur_is_zorgverlener>
-                        <zorgverlener datatype="reference" value="{nf:convert2NCName(f:valueReference/f:reference/@value)}"/>
+                        <zorgverlener datatype="reference" value="{nf:process-reference-2NCName(f:valueReference/f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}"/>
                     </auteur_is_zorgverlener>
                 </xsl:when>
                 <xsl:when test="$resource/local-name() = 'PractitionerRole'">
                     <auteur_is_zorgverlener>
                         <xsl:variable name="practitionerRole" select="string(f:valueReference/f:reference/@value)"/>
+                        <!-- LR: waar dient practitioner variabel voor? -->
                         <xsl:variable name="practitioner" select="string(/f:Bundle/f:entry[f:fullUrl/@value eq $practitionerRole]/f:resource/f:PractitionerRole/f:practitioner/f:reference/@value)"/>
-                        <zorgverlener datatype="reference" value="{nf:convert2NCName($practitionerRole)}"/>
+                        <zorgverlener datatype="reference" value="{nf:process-reference-2NCName($practitionerRole, ancestor::f:entry/f:fullUrl/@value)}"/>
                     </auteur_is_zorgverlener>
                 </xsl:when>
                 <xsl:when test="$resource/local-name() = 'Organization'">
@@ -408,7 +409,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:extension[@url = $extMedicationUse2Prescriber]" mode="nl-core-MedicationUse2">
         <voorschrijver>
-            <zorgverlener value="{nf:convert2NCName(f:valueReference/f:reference/@value)}" datatype="reference"/>
+            <zorgverlener value="{nf:process-reference-2NCName(f:valueReference/f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
         </voorschrijver>
     </xsl:template>
 

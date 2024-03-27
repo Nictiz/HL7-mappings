@@ -8,7 +8,10 @@ Within Nictiz ADA is used for additional purposes, like generating documentation
 
 These mappings are mainly used for demonstration purposes. Nictiz provides no guarantees regarding the accuracy of the transformations.
 
-The XSLT's have been tested with Saxon-HE-9.8.0-15.jar . 
+The XSLT's have been tested with Saxon-HE-9.8.0-15.jar.
+
+## Publications
+2024-03-12 Publications have thusfar been done in this project. For the past year or so we have been working on major restructuring to better separate code from data. We have also replaced most of the ant powered toolchain with a brand new tool we dubbed yatc (Yet Another ToolChain). This repository no longer holds the code it used to. At publication time the yatc tool assembles all required parts for a given use case. Publications then take place in the sibling repository [YATC-public](https://github.com/Nictiz/YATC-public). The publications in this repository will not be moved or copied there. Over time they will just loose relevance as they are superseded by newer releases.
 
 ## Folder structure
 

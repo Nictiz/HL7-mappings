@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<xs:schema elementFormDefault="qualified" targetNamespace="urn:hl7-org:v3" xmlns="urn:hl7-org:v3" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:lab="urn:hl7:lab" xmlns:mif="urn:hl7-org:v3/mif" xmlns:pharm="urn:ihe:pharm:medication" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<xs:schema elementFormDefault="qualified" targetNamespace="urn:hl7-org:v3" xmlns="urn:hl7-org:v3" xmlns:f="http://hl7.org/fhir" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:lab="urn:hl7:lab" xmlns:mif="urn:hl7-org:v3/mif" xmlns:pharm="urn:ihe:pharm:medication" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <xs:annotation>
         <xs:documentation>XML schema for message type POCD_MT000040.</xs:documentation>
-        <xs:documentation>       Copyright (c) 2015 Health Level Seven.       All rights reserved.              Redistribution and use in source and binary forms, with or       without modification, are permitted provided that the following       conditions are met:       1. Redistributions of source code must retain the above       copyright notice, this list of conditions and the following       disclaimer.       2. Redistributions in binary form must reproduce the above       copyright notice, this list of conditions and the following       disclaimer in the documentation and/or other
-            materials       provided with the distribution.       3. All advertising materials mentioning features or use of this       software must display the following acknowledgement:              This product includes software developed by Health Level Seven.              THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS       ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT       NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND       FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT       SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE FOR ANY
-            DIRECT,       INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL       DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE       GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS       INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,       WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING       NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE       OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH       DAMAGE.     </xs:documentation>
+        <xs:documentation>       Copyright (c) 2015 Health Level Seven.       All rights reserved.              Redistribution and use in source and binary forms, with or       without modification, are permitted provided that the following       conditions are met:       1. Redistributions of source code must retain the above       copyright notice, this list of conditions and the following       disclaimer.       2. Redistributions in binary form must reproduce the above       copyright notice, this list of conditions and the following       disclaimer in the documentation and/or other materials       provided with the distribution.       3. All advertising materials mentioning features or use of this       software must display the following acknowledgement:              This product includes software developed by Health Level Seven.              THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS       ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT       NOT
+            LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND       FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT       SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,       INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL       DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE       GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS       INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,       WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING       NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE       OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH       DAMAGE.     </xs:documentation>
         <xs:documentation>       2012-07-06  Created POCD_MT000040_SDTC.xsd (this file) this file is an edited version of POCD_MT000040.xsd that contains the SDTC extensions.     </xs:documentation>
         <xs:documentation>       2012-07-06 Added extensions approved by SDWG prior to 2012-07-06:                      RelatedSubject/sdtc:id,                     SubjectPerson/sdtc:id,                     Patient/sdtc:deceasedInd,                     SubjectPerson/sdtc:deceasedInd,                     Patient/sdtc:deceasedTime,                      SubjectPerson/sdtc:deceasedTime,                     Encounter/sdtc:dischargeDispositionCode,                     Patient/sdtc:raceCode,                     SubjectPerson/sdtc:raceCode,                     PlayingEntity/sdtc:birthTime     </xs:documentation>
         <xs:documentation>       2014-07-14 Added extensions approved by SDWG on xxxx date:                     Authenticator/sdtc:signatureText,                     LegalAuthenticator/sdtc:signatureText     </xs:documentation>
@@ -17,8 +16,10 @@
         <xs:documentation>          2015-06-01 Added extension approved by SDWG on 2014-11-06             EncompassingEncounter/sdtc:admissionReferralSourceCode      </xs:documentation>
     </xs:annotation>
     <xsd:import namespace="urn:hl7-nl:v3" schemaLocation="datatypes-extensions-hl7nl.xsd"/>
+    <xs:import namespace="http://hl7.org/fhir" schemaLocation="hl7fhir_extension.xsd"/>
     <xs:import namespace="urn:ihe:pharm:medication" schemaLocation="COCT_MT230100UV_ext_pharmacy.xsd"/>
     <xs:import namespace="urn:hl7-org:sdtc" schemaLocation="sdtc_extension.xsd"/>
+    <xs:import namespace="urn:hl7-nl:v3" schemaLocation="hl7nl_extension.xsd"/>
     <xs:simpleType name="Classes">
         <xs:annotation>
             <xs:documentation>Necessary only for the pre 2004/2005 schemas</xs:documentation>
@@ -6094,8 +6095,7 @@ etc.) Used for names, symbols, and formal expressions.
     </xsd:simpleType>
     <xsd:complexType name="CD">
         <xsd:annotation>
-            <xsd:documentation> A concept descriptor represents any kind of concept usually by     giving a code defined in a code system. A concept descriptor can contain the     original text or phrase that served as the basis of the coding and one or more     translations into different coding systems. A concept descriptor can also contain     qualifiers to describe, e.g., the concept of a "left foot" as a postcoordinated term     built from the primary code "FOOT" and the qualifier "LEFT". In exceptional cases,     the concept descriptor need not contain a code but only the original text
-                describing     that concept.</xsd:documentation>
+            <xsd:documentation> A concept descriptor represents any kind of concept usually by     giving a code defined in a code system. A concept descriptor can contain the     original text or phrase that served as the basis of the coding and one or more     translations into different coding systems. A concept descriptor can also contain     qualifiers to describe, e.g., the concept of a "left foot" as a postcoordinated term     built from the primary code "FOOT" and the qualifier "LEFT". In exceptional cases,     the concept descriptor need not contain a code but only the original text describing     that concept.</xsd:documentation>
             <xsd:appinfo/>
         </xsd:annotation>
         <xsd:complexContent>
@@ -6512,6 +6512,10 @@ etc.) Used for names, symbols, and formal expressions.
             <xsd:enumeration value="EC"/>
             <xsd:enumeration value="PG"/>
             <xsd:enumeration value="MC"/>
+            <!-- 2021-08-11 https://decor.nictiz.nl/art-decor/decor-issues-\-zib2017bbr-?id=2.16.840.1.113883.2.4.3.11.60.7.6.45&amp;language=nl-NL -->
+            <xsd:enumeration value="TMP"/>
+            <xsd:enumeration value="PUB"/>
+            <xsd:enumeration value="DIR"/>
         </xsd:restriction>
     </xsd:simpleType>
     <xsd:complexType name="TEL">
@@ -7068,16 +7072,14 @@ etc.) Used for names, symbols, and formal expressions.
     </xsd:complexType>
     <xsd:simpleType name="real">
         <xsd:annotation>
-            <xsd:documentation> Fractional numbers. Typically used whenever quantities are measured,     estimated, or computed from other real numbers. The typical representation is     decimal, where the number of significant decimal digits is known as the precision.     Real numbers are needed beyond integers whenever quantities of the real world are     measured, estimated, or computed from other real numbers. The term "Real number" in     this specification is used to mean that fractional values are covered without     necessarily implying the full set of the mathematical real
-                numbers.</xsd:documentation>
+            <xsd:documentation> Fractional numbers. Typically used whenever quantities are measured,     estimated, or computed from other real numbers. The typical representation is     decimal, where the number of significant decimal digits is known as the precision.     Real numbers are needed beyond integers whenever quantities of the real world are     measured, estimated, or computed from other real numbers. The term "Real number" in     this specification is used to mean that fractional values are covered without     necessarily implying the full set of the mathematical real numbers.</xsd:documentation>
             <xsd:appinfo/>
         </xsd:annotation>
         <xsd:union memberTypes="xsd:decimal xsd:double"/>
     </xsd:simpleType>
     <xsd:complexType name="REAL">
         <xsd:annotation>
-            <xsd:documentation> Fractional numbers. Typically used whenever quantities are measured,     estimated, or computed from other real numbers. The typical representation is     decimal, where the number of significant decimal digits is known as the precision.     Real numbers are needed beyond integers whenever quantities of the real world are     measured, estimated, or computed from other real numbers. The term "Real number" in     this specification is used to mean that fractional values are covered without     necessarily implying the full set of the mathematical real
-                numbers.</xsd:documentation>
+            <xsd:documentation> Fractional numbers. Typically used whenever quantities are measured,     estimated, or computed from other real numbers. The typical representation is     decimal, where the number of significant decimal digits is known as the precision.     Real numbers are needed beyond integers whenever quantities of the real world are     measured, estimated, or computed from other real numbers. The term "Real number" in     this specification is used to mean that fractional values are covered without     necessarily implying the full set of the mathematical real numbers.</xsd:documentation>
             <xsd:appinfo>
                 <diff>REAL</diff>
                 <sch:pattern name="validate REAL">
@@ -9245,6 +9247,11 @@ etc.) Used for names, symbols, and formal expressions.
             <xs:element maxOccurs="unbounded" minOccurs="0" name="name" type="PN"/>
             <!-- Begin Extension: (SDTC) -->
             <xs:element minOccurs="0" ref="sdtc:desc"/>
+            <!-- End Extension: (SDTC) -->
+            <!-- Begin Extension: (HL7 NL) -->
+            <xs:element minOccurs="0" ref="hl7nl:administrativeGenderCode"/>
+            <!-- End Extension: (HL7 NL) -->
+            <!-- Begin Extension: (SDTC) -->
             <xs:element minOccurs="0" ref="sdtc:asPatientRelationship"/>
             <!-- End Extension: (SDTC) -->
         </xs:sequence>
@@ -9573,7 +9580,10 @@ etc.) Used for names, symbols, and formal expressions.
             <xs:element minOccurs="0" name="code" type="CD"/>
             <xs:element minOccurs="0" name="text" type="ED"/>
             <xs:element minOccurs="0" name="statusCode" type="CS"/>
-            <xs:element maxOccurs="unbounded" minOccurs="0" name="effectiveTime" type="SXCM_TS"/>
+            <xs:choice maxOccurs="1" minOccurs="0">
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="effectiveTime" type="SXCM_TS"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="f:effectiveTime"/>
+            </xs:choice>
             <xs:element minOccurs="0" name="priorityCode" type="CE"/>
             <xs:element minOccurs="0" name="repeatNumber" type="IVL_INT"/>
             <xs:element minOccurs="0" name="routeCode" type="CE"/>

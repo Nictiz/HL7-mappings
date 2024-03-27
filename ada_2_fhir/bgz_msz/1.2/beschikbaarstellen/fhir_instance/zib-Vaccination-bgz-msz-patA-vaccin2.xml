@@ -1,0 +1,80 @@
+<Immunization xmlns="http://hl7.org/fhir">
+   <id value="zib-Vaccination-bgz-msz-patA-vaccin2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Vaccination"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Vaccinatie. Patiënt: Dennis D. Dennis Janse. Id: bgz-msz-patA-vaccin2 (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6), Status: voltooid</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Reis door Indonesië.</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>
+                     <span title="COMBINATIEPREPARATEN (J07BC20 - http://www.whocc.no/atc)">COMBINATIEPREPARATEN</span>
+                  </th>
+                  <td>
+                     <div>Toegediend: ja (2 maart 2015)</div>
+                     <div>Gemeld door uitvoerende: nee</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Zorgverlener</th>
+                  <td>Huisdokter H. Huisarts Attent || Huisarts || Huisartsenpraktijk van Aanpakken</td>
+               </tr>
+               <tr>
+                  <th>Vaccine Details</th>
+                  <td>
+                     <div>Dosering: 1 mL</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"/>
+      <value value="bgz-msz-patA-vaccin2"/>
+   </identifier>
+   <status value="completed"/>
+   <notGiven value="false"/>
+   <vaccineCode>
+      <coding>
+         <system value="http://www.whocc.no/atc"/>
+         <code value="J07BC20"/>
+         <display value="COMBINATIEPREPARATEN"/>
+      </coding>
+   </vaccineCode>
+   <patient>
+      <reference value="Patient/DENNIS-D--DENNIS-JANSE"/>
+      <display value="Dennis D. Dennis Janse"/>
+   </patient>
+   <date value="2015-03-02"/>
+   <primarySource value="false"/>
+   <doseQuantity>
+      <value value="1"/>
+      <unit value="mL"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="mL"/>
+   </doseQuantity>
+   <practitioner>
+      <actor>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-bgz-msz-1000000101-01520000001"/>
+               <display value="Huisdokter H. Huisarts Attent || Huisarts || Huisartsenpraktijk van Aanpakken"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-840-1-113883-2-4-6-1-10000001"/>
+         <display value="Huisdokter H. Huisarts Attent"/>
+      </actor>
+   </practitioner>
+   <note>
+      <text value="Reis door Indonesië."/>
+   </note>
+</Immunization>
