@@ -99,6 +99,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
+        <xd:desc>remove dots which are not accepted in filenames in Touchstone and also the special characters which are not allowed in FHIR</xd:desc>
+        <xd:param name="in">The input string to be replaced</xd:param>
+    </xd:doc>
+    <xsl:function name="nf:removeSpecialCharsAndDotForTouchstone">
+        <xsl:param name="in" as="xs:string?"/>
+        
+        <xsl:value-of select="replace(nf:removeSpecialCharacters($in), '\.', '-')"/>
+        
+    </xsl:function>
+
+
+    <xd:doc>
         <xd:desc> Generates a timestamp of the amount of 100 nanosecond intervals from 15 October 1582, in UTC time.
         Override this function here to use a stable timestamp in order to create stable uuids</xd:desc>
         <xd:param name="node"/>

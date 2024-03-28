@@ -34,21 +34,21 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_stoppen_parallele_TA_MA_start"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <medicatieafspraak_datum_tijd value="T-15D{09:05:00}" datatype="datetime"/>
+               <medicatieafspraak_datum_tijd value="T+0D{09:05:00}" datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="T-14D{00:00:00}" datatype="datetime"/>
+                  <start_datum_tijd value="T+0D{00:00:00}" datatype="datetime"/>
                   <tijds_duur value="28" unit="dag"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="urn-uuid-c33f17b4-6a95-11ec-0000-020000000000"
+                  <zorgverlener value="urn-uuid-ea3fd558-6ab1-11ec-0000-020000000000"
                                 datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-c33f1582-6a95-11ec-0000-020000000000"
+                  <farmaceutisch_product value="urn-uuid-7d6dcf1d-6b74-11ec-0000-020000000000"
                                          datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf T - 14 dagen, gedurende 28 dagen, 1 maal per dag 1 stuk 's ochtends en Bij pijn 1 maal per dag 1 stuk 's avonds, Oraal"/>
+                  <omschrijving value="Vanaf T, gedurende 28 dagen, 1 maal per dag 1 stuk 's ochtends en Bij pijn 1 maal per dag 1 stuk 's avonds, Oraal"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
@@ -113,9 +113,36 @@
                   </doseerinstructie>
                </gebruiksinstructie>
             </medicatieafspraak>
+            <verstrekkingsverzoek>
+               <identificatie value="MBH_300_stoppen_parallele_TA_VV_start"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <verstrekkingsverzoek_datum_tijd value="T+0D{09:05:00}" datatype="datetime"/>
+               <auteur>
+                  <zorgverlener value="urn-uuid-ea3fd558-6ab1-11ec-0000-020000000000"
+                                datatype="reference"/>
+               </auteur>
+               <te_verstrekken_geneesmiddel>
+                  <farmaceutisch_product value="urn-uuid-7d6dcf1d-6b74-11ec-0000-020000000000"
+                                         datatype="reference"/>
+               </te_verstrekken_geneesmiddel>
+               <te_verstrekken_hoeveelheid>
+                  <aantal value="28"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <beoogd_verstrekker>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-98d231d8-6b0c-11ec-0000-020000000000"/>
+               </beoogd_verstrekker>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_stoppen_parallele_TA_MA_start"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-c33f1582-6a95-11ec-0000-020000000000">
+            <farmaceutisch_product id="urn-uuid-7d6dcf1d-6b74-11ec-0000-020000000000">
                <product_code code="43044"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -126,7 +153,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="PANTOPRAZOL 40MG TABLET MSR"/>
             </farmaceutisch_product>
-            <zorgverlener id="urn-uuid-c33f17b4-6a95-11ec-0000-020000000000">
+            <zorgverlener id="urn-uuid-ea3fd558-6ab1-11ec-0000-020000000000">
                <zorgverlener_identificatienummer value="000002222" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <ongestructureerde_naam value="Jan van Harten"/>
@@ -141,19 +168,22 @@
                             codeSystemName="Vektis AGB-medische specialismen"
                             codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Medisch specialisten, chirurgie"/>
+               <contactgegevens>
+                  <telefoonnummers>
+                     <telefoonnummer value="1634534321"/>
+                     <nummer_soort code="WP"
+                                   codeSystem="2.16.840.1.113883.5.1119"
+                                   displayName="Zakelijk telefoonnummer"/>
+                  </telefoonnummers>
+               </contactgegevens>
                <zorgaanbieder>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-c33f0727-6a95-11ec-0000-020000000000"/>
+                                 value="urn-uuid-f07009d8-6b48-11ec-0000-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="urn-uuid-c33f0727-6a95-11ec-0000-020000000000">
+            <zorgaanbieder id="urn-uuid-f07009d8-6b48-11ec-0000-020000000000">
                <zorgaanbieder_identificatienummer value="00004444" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Ziekenhuis het Gele Hart"/>
-               <afdeling_specialisme code="0601"
-                                     codeSystem="2.16.840.1.113883.2.4.6.7"
-                                     codeSystemName="Vektis AGB-medische specialismen"
-                                     codeSystemVersion="2020-10-23T00:00:00"
-                                     displayName="Ziekenhuizen, algemene ziekenhuizen"/>
                <adresgegevens>
                   <straat value="Groenestraat"/>
                   <huisnummer value="1"/>
@@ -163,6 +193,14 @@
                                codeSystem="2.16.840.1.113883.5.1119"
                                displayName="Werkadres"/>
                </adresgegevens>
+               <organisatie_type code="V4"
+                                 codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                 codeSystemName="HL7 RoleCodeNL Care provider type (organizations)"
+                                 displayName="Ziekenhuis"/>
+            </zorgaanbieder>
+            <zorgaanbieder id="urn-uuid-98d231d8-6b0c-11ec-0000-020000000000">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
             </zorgaanbieder>
          </bouwstenen>
       </sturen_medicatievoorschrift>

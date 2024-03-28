@@ -43,7 +43,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<!-- geannuleerd_indicator niet voor MA -->
 			<!--			<xsl:apply-templates select="f:status" mode="#current"/>-->
 			<!-- stop_type -->
-			<xsl:apply-templates select="f:modifierExtension[@url = $urlExtStoptype]" mode="nl-core-ext-StopType"/>
+			<xsl:apply-templates select="f:modifierExtension[@url = $urlExtStoptype]" mode="ext-StopType"/>
 			<!-- relatie medicatieafspraak -->
 			<xsl:apply-templates select="f:priorPrescription" mode="#current"/>
 			<!-- relatie_medicatiegebruik -->
@@ -86,7 +86,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xd:doc>
 	<xsl:template match="f:extension[@url = $urlExtMedicationAgreementNextPractitioner]" mode="mp-MedicationAgreement">
 		<volgende_behandelaar>
-			<zorgverlener value="{nf:convert2NCName(f:valueReference/f:reference/@value)}" datatype="reference"/>
+			<zorgverlener value="{nf:process-reference-2NCName(f:valueReference/f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
 		</volgende_behandelaar>
 	</xsl:template>
 	
@@ -143,7 +143,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xd:doc>
 	<xsl:template match="f:medicationReference" mode="mp-MedicationAgreement">
 		<afgesproken_geneesmiddel>
-			<farmaceutisch_product value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
+			<farmaceutisch_product value="{nf:process-reference-2NCName(f:reference/@value,ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
 		</afgesproken_geneesmiddel>
 	</xsl:template>
 	
@@ -171,7 +171,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xd:doc>
 	<xsl:template match="f:requester" mode="mp-MedicationAgreement">
 		<voorschrijver>
-			<zorgverlener value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
+			<zorgverlener value="{nf:process-reference-2NCName(f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
 		</voorschrijver>
 	</xsl:template>
 	

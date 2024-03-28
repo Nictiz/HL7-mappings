@@ -554,9 +554,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template name="id-to-id" as="element()?">
         <xsl:param name="in" as="element()?"/>
         <xsl:variable name="theID" select="if ($in[@root = $mask-ids-var] | $in[@nullFlavor]) then () else (string-join(($in/@root, $in/@value), '-'))"/>
-        <xsl:if test="matches($theID, '^[A-Za-z\d\.-]{1,64}$')">
-            <id value="{$theID}"/>
-        </xsl:if>
+        <xsl:variable name="theUUID" select="if ($in[@root = $mask-ids-var] | $in[@nullFlavor]) then () else ($in/@value)"/>
+        <xsl:choose>
+            <xsl:when test="matches($theID, '^[A-Za-z\d\.-]{1,64}$')">
+                <id value="{$theID}"/>
+            </xsl:when>
+            <xsl:when test="matches($theUUID, $UUIDpattern)">
+                <id value="{$theUUID}"/>
+            </xsl:when>
+        </xsl:choose>
     </xsl:template>
     <xd:doc>
         <xd:desc>Transforms ada element to FHIR <xd:a href="http://hl7.org/fhir/STU3/datatypes.html#Identifier">Identifier contents</xd:a>. Masks ids, e.g. Burgerservicenummers, if their @root occurs in <xd:ref name="mask-ids" type="parameter"/></xd:desc>
@@ -807,6 +813,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="ii" select="$adaIdentification[matches(@root, $UUIDpattern)][1]"/>
                 <xsl:value-of select="concat('urn:uuid:', $ii/@root)"/>
             </xsl:when>
+            <!-- root = ? and extension = uuid -->
+            <!--<xsl:when test="$adaIdentification[not(@root = $mask-ids-var)][@value][matches(@value, $UUIDpattern)]">
+                <xsl:variable name="ii" select="$adaIdentification[matches(@value, $UUIDpattern)][1]"/>
+                <xsl:value-of select="concat('urn:uuid:', $ii/@value)"/>
+            </xsl:when>-->
             <!-- give up and do new uuid -->
             <xsl:otherwise>
                 <xsl:value-of select="nf:get-fhir-uuid($adaIdentification[1])"/>
@@ -868,7 +879,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template name="format2FHIRDate">
         <xsl:param name="dateTime" as="xs:string?"/>
-        <xsl:param name="precision">second</xsl:param>
+        <xsl:param name="precision"/>
         <xsl:param name="dateT" as="xs:date?" select="$dateT"/>
 
         <xsl:variable name="picture" as="xs:string?">
@@ -949,10 +960,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:otherwise>
                         <!-- output a relative date for Touchstone -->
                         <xsl:value-of select="concat('${DATE, T, ', $yearMonthDay, ', ', $sign, $amount, '}')"/>
-                        <xsl:if test="$time castable as xs:time">
-                            <!-- we'll assume the timezone (required in FHIR) because there is no way of knowing the T-date -->
-                            <xsl:value-of select="concat('T', $time, '+02:00')"/>
-                        </xsl:if>
+                        <xsl:choose>
+                            <xsl:when test="$time castable as xs:time">
+                                <!-- we'll assume the timezone (required in FHIR) because there is no way of knowing the T-date -->
+                                <xsl:value-of select="concat('T', $time, '+02:00')"/>
+                            </xsl:when>
+                            <xsl:when test="upper-case($precision) = ('SECOND', 'SECONDS', 'SECONDEN', 'SEC', 'S')">
+                                <xsl:value-of select="'T00:00:00+02:00'"/>
+                            </xsl:when>
+                        </xsl:choose>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>

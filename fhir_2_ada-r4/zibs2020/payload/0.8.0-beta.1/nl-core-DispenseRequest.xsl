@@ -33,10 +33,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:apply-templates select="f:dispenseRequest/f:quantity[f:extension/@url = 'http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation']" mode="#current"/>
             <!--aantal_herhalingen-->
             <xsl:apply-templates select="f:dispenseRequest/f:numberOfRepeatsAllowed" mode="#current"/>
-            <!-- verbruiksperiode/tijds_duur -->
-            <xsl:apply-templates select="f:dispenseRequest/f:validityPeriod/f:extension[@url = ($urlExtTimeInterval-Duration, $urlExtTimeIntervalDuration)]" mode="#current"/>
-            <!-- verbruiksperiode/@start_datum_tijd/@value en eind_datum_tijd/@value -->
-            <xsl:apply-templates select="f:dispenseRequest/f:validityPeriod[f:start | f:end]" mode="#current"/>
+            <!-- verbruiksperiode/@start_datum_tijd/@value en eind_datum_tijd/@value en tijds_duur-->
+            <xsl:apply-templates select="f:dispenseRequest/f:validityPeriod[f:start | f:end | f:extension[@url = ($urlExtTimeInterval-Duration, $urlExtTimeIntervalDuration)]]" mode="#current"/>
+            
             <!--geannuleerd_indicator-->
             <xsl:if test="f:status/@value eq 'cancelled'">
                 <geannuleerd_indicator value="true"/>
@@ -61,7 +60,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- geannuleerd_indicator niet voor MA -->
             <!--			<xsl:apply-templates select="f:status" mode="#current"/>-->
             <!-- stop_type -->
-            <xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="nl-core-ext-StopType"/>
+            <xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="ext-StopType"/>
             <!-- relatie_medicatiegebruik -->
             <xsl:apply-templates select="f:extension[@url = $urlExtMedicationAgreementRelationMedicationUse]" mode="#current"/>
             <!-- reden_wijzigen_of_staken -->
@@ -120,7 +119,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:performer" mode="nl-core-DispenseRequest">
         <beoogd_verstrekker>
-            <zorgaanbieder datatype="reference" value="{nf:convert2NCName(f:reference/@value)}"/>
+            <zorgaanbieder datatype="reference" value="{nf:process-reference-2NCName(f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}"/>
         </beoogd_verstrekker>
     </xsl:template>
 
@@ -148,6 +147,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:with-param name="adaElementNameStart">start_datum_tijd</xsl:with-param>
                 <xsl:with-param name="adaElementNameEnd">eind_datum_tijd</xsl:with-param>
                 <xsl:with-param name="adaDatatype" as="xs:string?">datetime</xsl:with-param>
+            </xsl:call-template>
+            <xsl:call-template name="Duration-to-hoeveelheid">
+                <xsl:with-param name="in" select="f:extension[@url = ($urlExtTimeInterval-Duration, $urlExtTimeIntervalDuration)]/f:valueDuration"/>
+                <xsl:with-param name="adaElementName">tijds_duur</xsl:with-param>
             </xsl:call-template>
         </verbruiksperiode>
     </xsl:template>
@@ -179,7 +182,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:requester" mode="nl-core-DispenseRequest">
         <auteur>
-            <zorgverlener value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
+            <zorgverlener value="{nf:process-reference-2NCName(f:reference/@value,ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
         </auteur>
     </xsl:template>
 
@@ -210,7 +213,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:medicationReference" mode="nl-core-DispenseRequest">
         <te_verstrekken_geneesmiddel>
-            <farmaceutisch_product value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
+            <farmaceutisch_product value="{nf:process-reference-2NCName(f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
         </te_verstrekken_geneesmiddel>
     </xsl:template>
 

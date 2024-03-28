@@ -116,7 +116,7 @@
             <xsl:apply-templates select="te_verstrekken_hoeveelheid" mode="#current"/>
             <xsl:apply-templates select="aantal_herhalingen" mode="#current"/>
             <xsl:apply-templates select="te_verstrekken_geneesmiddel" mode="#current"/>
-                        <!-- the rest, except what was already done and the elements not supported in 907, such as relatie_contact/relatie_zorgepisode and financiele_indicatiecode -->
+            <!-- the rest, except what was already done and the elements not supported in 907, such as relatie_contact/relatie_zorgepisode and financiele_indicatiecode -->
             <xsl:apply-templates select="*[not(self::identificatie | self::verstrekkingsverzoek_datum_tijd | self::verstrekkingsverzoek_datum | self::auteur | self::te_verstrekken_hoeveelheid | self::aantal_herhalingen | self::te_verstrekken_geneesmiddel | self::financiele_indicatiecode | self::toelichting | self::relatie_medicatieafspraak | self::relatie_contact | self::relatie_zorgepisode | self::aanvullende_wensen | self::geannuleerd_indicator)]" mode="#current"/>
             <!-- extra waarde in waardelijst: Als de code 4 is, dan tekstuele weergave in toelichting element toevoegen.-->
             <xsl:choose>
@@ -268,7 +268,9 @@
     <xd:doc>
         <xd:desc> afspraakdatumdatum van MP9 3.0 naar 9.0.7 </xd:desc>
     </xd:doc>
-    <xsl:template match="(medicatieafspraak_datum_tijd | toedieningsafspraak_datum_tijd)" mode="ada930_2_907">
+    <!--<xsl:template match="(medicatieafspraak_datum_tijd | toedieningsafspraak_datum_tijd)" mode="ada930_2_907">-->
+    <!-- Match expression was not XSLT2 compliant. Changed to: -->
+    <xsl:template match="medicatieafspraak_datum_tijd | toedieningsafspraak_datum_tijd" mode="ada930_2_907">
         <xsl:element name="afspraakdatum">
             <xsl:apply-templates select="@* | node()" mode="#current"/>
         </xsl:element>
@@ -319,8 +321,8 @@
         </xsl:copy>
     </xsl:template>
 
-  <xd:doc>
-        <xd:desc>Zonodig criterium</xd:desc> 
+    <xd:doc>
+        <xd:desc>Zonodig criterium</xd:desc>
     </xd:doc>
     <xsl:template match="criterium[parent::criterium]" mode="ada930_2_907">
         <xsl:copy>
@@ -370,7 +372,7 @@
     </xsl:template>
 
 
-<!--    <xd:doc>
+    <!--    <xd:doc>
         <xd:desc> stoptype van MP9 3.0 naar 9.0.7 </xd:desc>
     </xd:doc>
     <xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatiegebruik | medicatie_gebruik)/*[contains(replace(local-name(), '_', ''), 'stoptype')]" mode="ada930_2_907">
@@ -384,7 +386,7 @@
     <xd:doc>
         <xd:desc> stoptype van MP9 3.0 naar 9.0.7 </xd:desc>
     </xd:doc>
-    <xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatiegebruik | medicatie_gebruik)/*[contains(replace(local-name(), '_', ''), 'stoptype')]" mode="ada930_2_907">
+    <xsl:template match="medicatieafspraak/*[contains(replace(local-name(), '_', ''), 'stoptype')] | toedieningsafspraak/*[contains(replace(local-name(), '_', ''), 'stoptype')] | medicatiegebruik/*[contains(replace(local-name(), '_', ''), 'stoptype')] | medicatie_gebruik/*[contains(replace(local-name(), '_', ''), 'stoptype')]" mode="ada930_2_907">
         <xsl:choose>
             <xsl:when test=".[@code = '89925002']">
                 <geannuleerd_indicator value="true"/>
@@ -403,7 +405,9 @@
     <xd:doc>
         <xd:desc>Handle toelichting, needs to be enriched with non supported stuff in 907</xd:desc>
     </xd:doc>
-    <xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatiegebruik | medicatie_gebruik | verstrekkingsverzoek)/toelichting" mode="ada930_2_907">
+    <!--<xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatiegebruik | medicatie_gebruik | verstrekkingsverzoek)/toelichting" mode="ada930_2_907">-->
+    <!-- Match expression was not XSLT2 compliant. Changed to: -->
+    <xsl:template match="medicatieafspraak/toelichting | toedieningsafspraak/toelichting | medicatiegebruik/toelichting | medicatie_gebruik/toelichting | verstrekkingsverzoek/toelichting" mode="ada930_2_907">
         <xsl:call-template name="_toelichting"/>
     </xsl:template>
 
@@ -481,13 +485,13 @@
                         <xsl:value-of select="concat('Organisatietype: ', $VolgendeBehandelaarZorgaanbieder/organisatie_type/@displayName)"/>
                     </xsl:if>
                 </xsl:variable>
-                    <xsl:if test="string-length(string-join($VolgendeBehandelaarValue, ' ')) gt 0">
-                        <xsl:variable name="SetVolgendeBehandelaarZorgverlener" select="string-join($VolgendeBehandelaarValue,', ')"/>
-                        <xsl:value-of select="concat('Volgende behandelaar: ',$SetVolgendeBehandelaarZorgverlener)"/>
-                    </xsl:if>
+                <xsl:if test="string-length(string-join($VolgendeBehandelaarValue, ' ')) gt 0">
+                    <xsl:variable name="SetVolgendeBehandelaarZorgverlener" select="string-join($VolgendeBehandelaarValue,', ')"/>
+                    <xsl:value-of select="concat('Volgende behandelaar: ',$SetVolgendeBehandelaarZorgverlener)"/>
                 </xsl:if>
+            </xsl:if>
         </xsl:variable>
-        
+
         <xsl:if test="string-length(string-join($newValue, ' | ')) gt 0">
             <toelichting>
                 <xsl:apply-templates select="toelichting/@*" mode="#current"/>

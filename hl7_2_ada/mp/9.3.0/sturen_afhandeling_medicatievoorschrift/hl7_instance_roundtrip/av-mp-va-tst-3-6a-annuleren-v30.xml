@@ -40,10 +40,10 @@
                displayName="Toedieningsafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 6 jan 2023, tot en met 8 okt 2023, 1 maal per week 1 stuk, Oraal</text>
+         <text mediaType="text/plain">Vanaf 8 jan 2023, tot en met 19 feb 2023, 1 maal per week 1 stuk, Oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20230106000000"/>
-            <high value="20231008235959"/>
+            <low value="20230108000000"/>
+            <high value="20230219000000"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -125,5 +125,74 @@
             </procedure>
          </entryRelationship>
       </substanceAdministration>
+   </component>
+   <component typeCode="COMP">
+      <supply classCode="SPLY" moodCode="EVN">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9364"/>
+         <id extension="MBH_300_annuleren_MVE_starten"
+             root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+         <code displayName="Verstrekking"
+               code="373784005"
+               codeSystem="2.16.840.1.113883.6.96"
+               codeSystemName="SNOMED CT"/>
+         <effectiveTime value="20230101141000"/>
+         <quantity value="42" unit="1">
+            <translation value="42"
+                         code="245"
+                         displayName="stuk"
+                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                         codeSystemName="G-Standaard thesaurus basiseenheden"/>
+         </quantity>
+         <product>
+            <manufacturedProduct>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
+               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                  <code code="602574"
+                        codeSystem="2.16.840.1.113883.2.4.4.7"
+                        displayName="LARIAM TABLET 250MG"
+                        codeSystemName="G-Standaard HPK">
+                     <translation code="25410"
+                                  codeSystem="2.16.840.1.113883.2.4.4.10"
+                                  displayName="MEFLOQUINE TABLET 250MG"
+                                  codeSystemName="G-Standaard PRK"/>
+                     <translation code="66478"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1"
+                                  displayName="MEFLOQUINE TABLET 250MG"
+                                  codeSystemName="G-Standaard GPK"/>
+                  </code>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </product>
+         <performer>
+            <assignedEntity>
+               <id nullFlavor="NI"/>
+               <representedOrganization>
+                  <id extension="01236578" root="2.16.528.1.1007.3.3"/>
+                  <name>Apotheek De Gulle Gaper</name>
+               </representedOrganization>
+            </assignedEntity>
+         </performer>
+         <entryRelationship typeCode="REFR">
+            <supply classCode="SPLY" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9312"/>
+               <id extension="MBH_300_annuleren_VV_starten"
+                   root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <code code="52711000146108"
+                     displayName="Request to dispense medication to patient"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+            </supply>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP" inversionInd="true">
+            <procedure classCode="PROC" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                   extension="MBH_300_annuleren"/>
+               <code code="1"
+                     displayName="Medicamenteuze behandeling"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+            </procedure>
+         </entryRelationship>
+      </supply>
    </component>
 </organizer>

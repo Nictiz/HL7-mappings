@@ -1,10 +1,9 @@
-<adaxml xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_voorstel_medicatieafspraak.xsd"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<adaxml>
    <meta status="new"
          created-by="medicatieprocesada"
          last-update-by="medicatieprocesada"
-         creation-date="2023-01-09T17:43:42.106+01:00"
-         last-update-date="2023-02-14T10:56:10.161+01:00"/>
+         creation-date="2023-07-26T10:25:39.037+02:00"
+         last-update-date="2023-08-01T13:19:51.285+02:00"/>
    <data>
       <sturen_voorstel_medicatieafspraak app="mp-mp93"
                                          shortName="sturen_voorstel_medicatieafspraak"
@@ -170,6 +169,15 @@
                <organisatie_naam value="Huisartsenpraktijk Itis"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.232"/>
             </zorgaanbieder>
+            <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.202"
+                           comment=""
+                           id="Apotheek_De_Gulle_Gaper">
+               <zorgaanbieder_identificatienummer value="01236578"
+                                                  root="2.16.528.1.1007.3.3"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.231"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.232"/>
+            </zorgaanbieder>
             <lichaamslengte comment=""
                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.448">
                <lengte_waarde value="165"
@@ -193,7 +201,7 @@
                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.526">
             <voorstel comment=""
                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.527">
-               <identificatie value="MBH_300_start_eind_VMA"
+               <identificatie value="MBH_300_start_eind_lengte_gewicht_VMA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.2"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.528"/>
                <voorstel_datum value="T+0D{07:10:00}"
@@ -201,17 +209,17 @@
                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.529"/>
                <auteur comment=""
                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.530">
-                  <auteur_is_zorgverlener comment=""
-                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.532">
-                     <zorgverlener value="Marcha_van_Partners"
-                                   datatype="reference"
-                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.533"/>
-                  </auteur_is_zorgverlener>
+                  <auteur_is_zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1366"
+                                           comment="">
+                     <zorgaanbieder value="Apotheek_De_Gulle_Gaper"
+                                    datatype="reference"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1367"/>
+                  </auteur_is_zorgaanbieder>
                </auteur>
                <medicamenteuze_behandeling value="MBH_300_start_eind"
                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.534"
                                            datatype="reference"/>
-               <toelichting value="verhoging dosis"
+               <toelichting value="verhoging dosis vanwege aanhoudende misselijkheid"
                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.538"/>
             </voorstel>
          </voorstel_gegevens>
