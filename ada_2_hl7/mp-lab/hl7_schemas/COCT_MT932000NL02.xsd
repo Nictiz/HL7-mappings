@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:hl7-org:v3"
+   targetNamespace="urn:hl7-org:v3" elementFormDefault="qualified">
+
+   <!-- TDJ 20101117: versie 02, want reeds in gebruik bij Hwg
+                      inhoudelijke verschillen met COCT_MT932000NL:
+                        * Prescription -> prescription
+                        * <confidentialityCode> mag herhalen
+                        * <author> is verplicht, maar...
+                        * <AssignedPerson> is nillable
+                        * <diagnosisEvent><code> is verplicht
+                        * <diagnosisEvent><text> is verdwenen
+                        * <MDR><statusCode> is optioneel geworden                       
+                        * <MAR><id> is optioneel geworden
+                        * <MAR><doseCheckQuantity> is toegevoegd
+                        * <MAR><approachSiteCode> heeft nu datatype CE
+                        * <MAR><obs.Ev.Criterion><code> heeft nu datatype CV
+   -->
+
+   <xs:include schemaLocation="../coreschemas/infrastructureRoot.xsd"/>
+   <xs:include schemaLocation="COCT_MT050000NL.xsd"/>
+   <xs:include schemaLocation="COCT_MT090102.xsd"/>
+   <xs:include schemaLocation="COCT_MT720000NL.xsd"/>
+   <xs:include schemaLocation="COCT_MT940000NL.xsd"/>
+
+   <xs:group name="COCT_MT932000NL02">
+      <xs:sequence>
+         <xs:element name="prescription" type="COCT_MT932000NL02.Prescription"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:complexType name="COCT_MT932000NL02.Prescription">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:element name="id" type="II" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="text" type="ED" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="statusCode" type="CS" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="confidentialityCode" type="CV" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element type="COCT_MT932000NL02.Subject" minOccurs="0" maxOccurs="1" name="subject"/>
+         <xs:element type="COCT_MT932000NL02.Author" minOccurs="1" maxOccurs="1" name="author"/>
+         <xs:element type="COCT_MT932000NL02.DirectTarget" minOccurs="1" maxOccurs="1"
+            name="directTarget"/>
+         <xs:element type="COCT_MT932000NL02.Predecessor" minOccurs="0" maxOccurs="unbounded"
+            name="predecessor"/>
+         <xs:element type="COCT_MT932000NL02.Reason" minOccurs="0" maxOccurs="1" name="reason"/>
+         <xs:element type="COCT_MT932000NL02.Reference" minOccurs="0" maxOccurs="unbounded"
+            name="reference"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="classCode" type="ActClass" use="optional" default="SBADM"/>
+      <xs:attribute name="moodCode" type="ActMood" use="optional" default="RQO"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT932000NL02.Subject">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:group ref="COCT_MT050000NL"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="typeCode" type="ParticipationType" use="optional" default="SBJ"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT932000NL02.Author">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:element name="time" type="TS" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="modeCode" type="CV" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="signatureCode" type="CV" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="signatureText" type="ED" minOccurs="0" maxOccurs="1"/>
+         <!-- CMET referentie aangepast zodat AssignedPerson op 'nil' gezet kan worden bij toepassing in 
+              situaties waar deze overbodig is, maar er toch een <author> element nodig is (vanwege <time>) -->
+         <!-- <xs:group ref="COCT_MT090102"/> -->
+         <xs:element name="AssignedPerson" type="COCT_MT090102.AssignedPerson" nillable="true"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="typeCode" type="ParticipationType" use="optional" default="AUT"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT932000NL02.DirectTarget">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:element type="COCT_MT932000NL02.PrescribedMedication" minOccurs="1" maxOccurs="1"
+            name="prescribedMedication"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="typeCode" type="ParticipationType" use="optional" default="TPA"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT932000NL02.PrescribedMedication">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:group ref="COCT_MT720000NL"/>
+         <xs:element type="COCT_MT932000NL02.Product2" minOccurs="0" maxOccurs="1" name="productOf"/>
+         <xs:element type="COCT_MT932000NL02.TherapeuticAgent" minOccurs="1" maxOccurs="unbounded"
+            name="therapeuticAgentOf"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="classCode" type="RoleClass" use="optional" default="THER"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT932000NL02.Product2">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:element name="substitutionConditionCode" type="CV" minOccurs="0" maxOccurs="1"/>
+         <xs:element type="COCT_MT932000NL02.MedicationDispenseRequest" minOccurs="1" maxOccurs="1"
+            name="medicationDispenseRequest"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="typeCode" type="ParticipationType" use="optional" default="PRD"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT932000NL02.MedicationDispenseRequest">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:element name="id" type="II" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="statusCode" type="CS" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="repeatNumber" type="IVL_INT" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="quantity" type="PQ" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="expectedUseTime" type="IVL_TS" minOccurs="0" maxOccurs="1"/>
+         <xs:element type="COCT_MT932000NL02.Destination" minOccurs="0" maxOccurs="1"
+            name="destination"/>
+         <xs:element type="COCT_MT932000NL02.Performer" minOccurs="0" maxOccurs="1" name="performer"
+         />
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="classCode" type="ActClass" use="optional" default="SPLY"/>
+      <xs:attribute name="moodCode" type="ActMood" use="optional" default="RQO"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT932000NL02.Destination">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:element type="COCT_MT932000NL02.ServiceDeliveryLocation" minOccurs="1" maxOccurs="1"
+            name="serviceDeliveryLocation"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="typeCode" type="ParticipationType" use="optional" default="DST"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT932000NL02.ServiceDeliveryLocation">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:element name="code" type="CV" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="addr" type="AD" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="classCode" type="RoleClass" use="optional" default="SDLOC"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT932000NL02.Performer">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:element type="COCT_MT932000NL02.AssignedPerson" minOccurs="1" maxOccurs="1"
+            name="assignedPerson"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="typeCode" type="ParticipationType" use="optional" default="PRF"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT932000NL02.AssignedPerson">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:element name="id" type="II" minOccurs="0" maxOccurs="1"/>
+         <xs:element type="COCT_MT932000NL02.Organization" minOccurs="1" maxOccurs="1"
+            name="representedOrganization"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="classCode" type="RoleClass" use="optional" default="ASSIGNED"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT932000NL02.Organization">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:element name="id" type="II" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="name" type="ON" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="addr" type="AD" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="classCode" type="EntityClass" use="optional" default="ORG"/>
+      <xs:attribute name="determinerCode" type="EntityDeterminer" use="optional" default="INSTANCE"
+      />
+   </xs:complexType>
+   <xs:complexType name="COCT_MT932000NL02.TherapeuticAgent">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:group ref="COCT_MT940000NL"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="typeCode" type="ParticipationType" use="optional" default="TPA"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT932000NL02.Predecessor">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:element type="COCT_MT932000NL02.PreviousPrescription" minOccurs="1" maxOccurs="1"
+            name="previousPrescription"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="typeCode" type="ActRelationshipType" use="optional" default="PREV"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT932000NL02.PreviousPrescription">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:element name="id" type="II" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="statusCode" type="CS" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="classCode" type="ActClass" use="optional" default="SBADM"/>
+      <xs:attribute name="moodCode" type="ActMood" use="optional" default="RQO"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT932000NL02.Reason">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:element type="COCT_MT932000NL02.DiagnosisEvent" minOccurs="1" maxOccurs="1"
+            name="diagnosisEvent"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="typeCode" type="ActRelationshipType" use="optional" default="RSON"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT932000NL02.DiagnosisEvent">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:element name="id" type="II" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="code" type="CV" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="value" type="CE" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="classCode" type="ActClass" use="optional" default="OBS"/>
+      <xs:attribute name="moodCode" type="ActMood" use="optional" default="EVN"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT932000NL02.Reference">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:element type="COCT_MT932000NL02.PatientCareProvision" minOccurs="1" maxOccurs="1"
+            name="patientCareProvision"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="typeCode" type="ActRelationshipType" use="optional" default="REFR"/>
+   </xs:complexType>
+   <xs:complexType name="COCT_MT932000NL02.PatientCareProvision">
+      <xs:sequence>
+         <xs:group ref="InfrastructureRootElements"/>
+         <xs:element name="id" type="II" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+      <xs:attribute name="classCode" type="ActClass" use="optional" default="PCPR"/>
+      <xs:attribute name="moodCode" type="ActMood" use="optional" default="EVN"/>
+   </xs:complexType>
+</xs:schema>

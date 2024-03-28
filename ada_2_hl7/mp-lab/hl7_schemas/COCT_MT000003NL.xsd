@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns="urn:hl7-org:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="urn:hl7-org:v3" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:documentation>Generated using schema builder version 3.0.5. Stylesheets: HMD was rendered
+      into XML using software provided to HL7 by Beeler Consulting LLC. HMD to MIF Transform: $Id:
+      RoseTreeHmdToMIFStaticModel.xsl,v 1.14 2007/03/20 02:48:48 wbeeler Exp $ Base transform: $Id:
+      ConvertBase.xsl,v 1.4 2007/03/20 02:48:48 wbeeler Exp $ Package Id Conversion: $Id:
+      TransformPackageIds.xsl,v 1.6 2007/03/20 02:48:49 wbeeler Exp $ HTML To MIF markup: $Id:
+      HtmlToMIFMarkup.xsl,v 1.4 2007/03/20 02:48:49 wbeeler Exp $ Flat to Serialization Transform:
+      $Id: MIFStaticModelFlatToSerialization.xsl,v 1.5 2007/03/20 02:48:50 wbeeler Exp $ Fix Names
+      Transform: $Id: FixMifNames.xsl,v 1.8 2007/03/20 02:48:49 wbeeler Exp $ Base transform: $Id:
+      ConvertBase.xsl,v 1.4 2007/03/20 02:48:48 wbeeler Exp $ Package Id Conversion: $Id:
+      TransformPackageIds.xsl,v 1.6 2007/03/20 02:48:49 wbeeler Exp $ StaticMifToXsd.xsl version
+    2.0</xs:documentation>
+  </xs:annotation>
+  <xs:include schemaLocation="../coreschemas/infrastructureRoot.xsd"/>
+  <xs:include schemaLocation="COCT_MT050000NL.xsd"/>
+  <xs:include schemaLocation="COCT_MT090100NL.xsd"/>
+  <xs:include schemaLocation="COCT_MT090102.xsd"/>
+  <xs:include schemaLocation="COCT_MT040200.xsd"/>
+  <xs:include schemaLocation="COCT_MT990002NL.xsd"/>
+  <xs:include schemaLocation="COCT_MT720000NL.xsd"/>
+  <xs:complexType name="COCT_MT000003NL.AdministerableMaterial">
+    <xs:sequence>
+      <xs:group ref="InfrastructureRootElements"/>
+      <xs:choice>
+        <xs:element name="administerableMedicationKind" type="COCT_MT720000NL.MedicationKind"
+          minOccurs="1" maxOccurs="1"/>
+        <xs:element name="administerableMaterialKind" type="COCT_MT000003NL.MaterialKind"
+          minOccurs="1" maxOccurs="1"/>
+      </xs:choice>
+    </xs:sequence>
+    <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+    <xs:attribute name="classCode" type="RoleClass" use="optional" fixed="ADMM"/>
+  </xs:complexType>
+  <xs:complexType name="COCT_MT000003NL.Annotation">
+    <xs:sequence>
+      <xs:group ref="InfrastructureRootElements"/>
+      <xs:element name="text" type="ST" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="statusCode" type="CS" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="author" type="COCT_MT000003NL.Author1" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+    <xs:attribute name="classCode" type="ActClassRoot" use="optional" default="ACT"/>
+    <xs:attribute name="moodCode" type="ActMood" use="optional" fixed="EVN"/>
+  </xs:complexType>
+  <xs:complexType name="COCT_MT000003NL.Concern">
+    <xs:sequence>
+      <xs:group ref="InfrastructureRootElements"/>
+      <xs:element name="id" type="II" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="statusCode" type="CS" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="effectiveTime" type="IVL_TS" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="confidentialityCode" type="CV" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+    <xs:attribute name="classCode" type="ActClassRoot" use="optional" default="CONC"/>
+    <xs:attribute name="moodCode" type="ActMood" use="optional" fixed="EVN"/>
+  </xs:complexType>
+  <xs:complexType name="COCT_MT000003NL.Author1">
+    <xs:sequence>
+      <xs:group ref="InfrastructureRootElements"/>
+      <xs:element name="time" type="TS" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="assignedPerson" type="COCT_MT090100NL.AssignedPerson" minOccurs="1"
+        maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+    <xs:attribute name="typeCode" type="ParticipationType" use="optional" fixed="AUT"/>
+  </xs:complexType>
+  <xs:complexType name="COCT_MT000003NL.Author2">
+    <xs:sequence>
+      <xs:group ref="InfrastructureRootElements"/>
+      <xs:element name="time" type="TS" minOccurs="0" maxOccurs="1"/>
+      <xs:choice>
+        <xs:element name="assignedPerson" type="COCT_MT090102.AssignedPerson" minOccurs="1"
+          maxOccurs="1"/>
+        <xs:element name="patient" type="COCT_MT000003NL.Patient" minOccurs="1" maxOccurs="1"/>
+      </xs:choice>
+    </xs:sequence>
+    <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+    <xs:attribute name="typeCode" type="ParticipationType" use="optional" fixed="AUT"/>
+  </xs:complexType>
+  <xs:complexType name="COCT_MT000003NL.Informant">
+    <xs:sequence>
+      <xs:group ref="InfrastructureRootElements"/>
+      <xs:choice>
+        <xs:element name="assignedPerson" type="COCT_MT090100NL.AssignedPerson" minOccurs="1"
+          maxOccurs="1"/>
+        <xs:element name="patient" type="COCT_MT000003NL.Patient" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="responsibleParty" type="COCT_MT040200.ResponsibleParty" minOccurs="1"
+          maxOccurs="1"/>
+      </xs:choice>
+      </xs:sequence>
+    <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+    <xs:attribute name="typeCode" type="ParticipationType" use="optional" fixed="INF"/>
+  </xs:complexType>
+  <xs:complexType name="COCT_MT000003NL.Condition">
+    <xs:sequence>
+      <xs:group ref="InfrastructureRootElements"/>
+      <xs:element name="id" type="II" minOccurs="1" maxOccurs="unbounded"/>
+      <xs:element name="code" type="CV" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="text" type="ST" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="statusCode" type="CS" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="effectiveTime" type="IVL_TS" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="confidentialityCode" type="CV" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="uncertaintyCode" type="CV" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="value" type="CE" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="subject" type="COCT_MT000003NL.Subject1" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="causativeAgent" type="COCT_MT000003NL.CausativeAgent" minOccurs="0"
+        maxOccurs="1"/>
+      <xs:element name="author" type="COCT_MT000003NL.Author2" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="informant" type="COCT_MT000003NL.Informant"  minOccurs="0"
+        maxOccurs="unbounded"/>
+      <xs:element name="support" type="COCT_MT000003NL.Support"  minOccurs="0"
+        maxOccurs="unbounded"/>
+      <xs:element name="subjectOf1" type="COCT_MT000003NL.Subject2"  minOccurs="0"
+        maxOccurs="1"/>
+      <xs:element name="subjectOf2" type="COCT_MT000003NL.Subject"  minOccurs="0"
+        maxOccurs="unbounded"/>
+      <xs:element name="subjectOf4" type="COCT_MT000003NL.Subject4"  minOccurs="0"
+      maxOccurs="1"/>
+      <xs:element name="predecessor" type="COCT_MT000003NL.Predecessor"  minOccurs="0"
+        maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+    <xs:attribute name="classCode" type="ActClassObservation" use="optional" default="COND"/>
+    <xs:attribute name="moodCode" type="ActMood" use="optional" fixed="EVN"/>
+    <xs:attribute name="negationInd" type="bl" use="optional" default="false"/>
+  </xs:complexType>
+  <xs:complexType name="COCT_MT000003NL.ConditionReference">
+    <xs:sequence>
+      <xs:group ref="InfrastructureRootElements"/>
+      <xs:element name="id" type="II" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+    <xs:attribute name="classCode" type="ActClassRoot" use="optional" default="COND"/>
+    <xs:attribute name="moodCode" type="ActMood" use="optional" fixed="EVN"/>
+  </xs:complexType>
+  <xs:complexType name="COCT_MT000003NL.MaterialKind">
+    <xs:sequence>
+      <xs:group ref="InfrastructureRootElements"/>
+      <xs:element name="code" type="CE" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+    <xs:attribute name="classCode" type="EntityClassMaterial" use="optional" default="MAT"/>
+    <xs:attribute name="determinerCode" type="EntityDeterminerDetermined" use="optional"
+      default="KIND"/>
+  </xs:complexType>
+  <xs:complexType name="COCT_MT000003NL.CausativeAgent">
+    <xs:sequence>
+      <xs:group ref="InfrastructureRootElements"/>
+      <xs:element name="administerableMaterial" type="COCT_MT000003NL.AdministerableMaterial"
+        minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+    <xs:attribute name="typeCode" type="ParticipationType" use="optional" fixed="CAGNT"/>
+  </xs:complexType>
+  <xs:complexType name="COCT_MT000003NL.Patient">
+    <xs:sequence>
+      <xs:group ref="InfrastructureRootElements"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+    <xs:attribute name="classCode" type="RoleClass" use="optional" fixed="PAT"/>
+  </xs:complexType>
+  <xs:complexType name="COCT_MT000003NL.Predecessor">
+    <xs:sequence>
+      <xs:group ref="InfrastructureRootElements"/>
+      <xs:element name="conditionReference" type="COCT_MT000003NL.ConditionReference"
+        minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+    <xs:attribute name="typeCode" type="ActRelationshipSucceeds" use="optional"
+      default="SUCC"/>
+  </xs:complexType>
+  <xs:complexType name="COCT_MT000003NL.SeverityObservation">
+    <xs:sequence>
+      <xs:group ref="InfrastructureRootElements"/>
+      <xs:element name="code" type="CV" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="statusCode" type="CS" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="value" type="CE" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+    <xs:attribute name="classCode" type="ActClassRoot" use="optional" default="OBS"/>
+    <xs:attribute name="moodCode" type="ActMood" use="optional" fixed="EVN"/>
+  </xs:complexType>
+  <xs:complexType name="COCT_MT000003NL.Subject">
+    <xs:sequence>
+      <xs:group ref="InfrastructureRootElements"/>
+      <xs:element name="annotation" type="COCT_MT000003NL.Annotation"  minOccurs="1"
+        maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+    <xs:attribute name="typeCode" type="ActRelationshipType" use="optional" fixed="SUBJ"/>
+  </xs:complexType>
+  <xs:complexType name="COCT_MT000003NL.Subject1">
+    <xs:sequence>
+      <xs:group ref="InfrastructureRootElements"/>
+      <xs:element name="patient" type="COCT_MT050000NL.Patient" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+    <xs:attribute name="typeCode" type="ParticipationTargetDirect" use="optional" default="SBJ"/>
+  </xs:complexType>
+  <xs:complexType name="COCT_MT000003NL.Subject2">
+    <xs:sequence>
+      <xs:group ref="InfrastructureRootElements"/>
+      <xs:element name="severityObservation" type="COCT_MT000003NL.SeverityObservation"
+         minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+    <xs:attribute name="typeCode" type="ActRelationshipType" use="optional" fixed="SUBJ"/>
+  </xs:complexType>
+  <xs:complexType name="COCT_MT000003NL.Subject4">
+    <xs:sequence>
+      <xs:group ref="InfrastructureRootElements"/>
+      <xs:element name="concern" type="COCT_MT000003NL.Concern"  minOccurs="1"
+        maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+    <xs:attribute name="typeCode" type="ActRelationshipType" use="optional" fixed="SUBJ"/>
+  </xs:complexType>
+  <xs:complexType name="COCT_MT000003NL.Support">
+    <xs:sequence>
+      <xs:group ref="InfrastructureRootElements"/>
+      <xs:element name="observationEvent" type="COCT_MT990002NL.ObservationEvent" 
+        minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attributeGroup ref="InfrastructureRootAttributes"/>
+    <xs:attribute name="typeCode" type="x_ActRelationshipExternalReference" use="optional"
+      default="SPRT"/>
+  </xs:complexType>
+</xs:schema>
