@@ -336,12 +336,14 @@
         <xd:param name="start-date">start date of the period</xd:param>
         <xd:param name="periode">duration of the period</xd:param>
         <xd:param name="end-date">end date of the period</xd:param>
+        <xd:param name="criterium">criterium of the period</xd:param>
     </xd:doc>
     <xsl:function name="nf:periode-string" as="xs:string?">
         <xsl:param name="current-bouwsteen"/>
         <xsl:param name="start-date"/>
         <xsl:param name="periode"/>
         <xsl:param name="end-date"/>
+        <xsl:param name="criterium" as="element()?"/>
 
         <xsl:for-each select="$current-bouwsteen">
             <xsl:variable name="waarde" as="xs:string*">
@@ -352,6 +354,7 @@
                 <xsl:if test="$periode/@value">gedurende <xsl:value-of select="concat($periode/@value, ' ', nwf:unit-string($periode/@value, $periode/@unit))"/></xsl:if>
                 <xsl:if test="$end-date[@value]"> tot en met <xsl:value-of select="nf:formatDate(nf:calculate-t-date($end-date/@value, $dateT))"/>
                 </xsl:if>
+                <xsl:if test="$criterium[@value]"> (<xsl:value-of select="$criterium/@value"/>)</xsl:if>
                 <!-- projectgroep wil geen tekst 'tot nader order' in omschrijving, teams app Marijke dd 30 mrt 2020 -->
                 <!--                <xsl:if test="not($periode[@value]) and not($end-date[@value])"><xsl:if test="$start-date[@value]">, </xsl:if>tot nader order</xsl:if>-->
             </xsl:variable>
@@ -376,7 +379,7 @@
             <xsl:variable name="theOmschrijving" as="xs:string*">
 
                 <!-- gebruiksperiode -->
-                <xsl:variable name="periodeString" select="nf:periode-string(., ../(gebruiksperiode_start | gebruiksperiode/start_datum_tijd), ../(gebruiksperiode[@value] | gebruiksperiode/tijds_duur), ../(gebruiksperiode_eind | gebruiksperiode/eind_datum_tijd))"/>
+                <xsl:variable name="periodeString" select="nf:periode-string(., ../(gebruiksperiode_start | gebruiksperiode/start_datum_tijd), ../(gebruiksperiode[@value] | gebruiksperiode/tijds_duur), ../(gebruiksperiode_eind | gebruiksperiode/eind_datum_tijd), ../gebruiksperiode/criterium)"/>
                 <xsl:if test="string-length($periodeString) gt 0">
                     <xsl:value-of select="$periodeString"/>
                 </xsl:if>
