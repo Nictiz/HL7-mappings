@@ -35,7 +35,7 @@
                displayName="voorschrijven van geneesmiddel (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 27 dec 2022, tot en met 16 jan 2023, Bij pijn 1 à 2 mg/dosis , maximaal 3 mg/dosis per dag, 1-2 doses onder de tong, na 5-10 min herhalen, max. 3 opeenvolgende doses. . Bij onvoldoende effect na in totaal 3 doses direct contact opnemen met een arts., oromucosaal</text>
+         <text mediaType="text/plain">Vanaf 27 dec 2022, tot en met 16 jan 2023, 1 à 2 mg/dosis , maximaal 3 mg/dosis per dag, 1-2 doses onder de tong, na 5-10 min herhalen, max. 3 opeenvolgende doses. . Bij onvoldoende effect na in totaal 3 doses direct contact opnemen met een arts., oromucosaal</text>
          <effectiveTime xsi:type="IVL_TS"
                         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <low value="20221227000000"/>
@@ -289,7 +289,7 @@
                displayName="Toedieningsafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 27 dec 2022, tot en met 16 jan 2023, Bij pijn 1 à 2 spray, 1-2 doses onder de tong, na 5-10 min herhalen, max. 3 opeenvolgende doses. . Bij onvoldoende effect na in totaal 3 doses direct contact opnemen met een arts., oromucosaal</text>
+         <text mediaType="text/plain">Vanaf 27 dec 2022, tot en met 16 jan 2023, 1 à 2 spray, 1-2 doses onder de tong, na 5-10 min herhalen, max. 3 opeenvolgende doses. . Bij onvoldoende effect na in totaal 3 doses direct contact opnemen met een arts., oromucosaal</text>
          <effectiveTime xsi:type="IVL_TS"
                         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <low value="20221227000000"/>
@@ -339,17 +339,6 @@
                   <originalText>1-2 doses onder de tong, na 5-10 min herhalen, max. 3 opeenvolgende doses. . Bij onvoldoende effect na in totaal 3 doses direct contact opnemen met een arts.</originalText>
                </code>
             </act>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP">
-            <observation classCode="OBS"
-                         moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9402"/>
-               <code code="12"
-                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"
-                     displayName="Aanvullende informatie Toedieningsafspraak"/>
-               <text xsi:type="ST"
-                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Gebruiksinstructie gegeven</text>
-            </observation>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="1"/>
@@ -501,7 +490,7 @@
                displayName="bevinding betreffende gedrag met betrekking tot medicatieregime (bevinding)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 31 dec 2022, tot en met 31 dec 2022, Bij pijn 2 mg/dosis , maximaal 3 mg/dosis per dag, 1-2 doses onder de tong, na 5-10 min herhalen, max. 3 opeenvolgende doses. Bij onvoldoende effect na in totaal 3 doses direct contact opnemen met een arts., oromucosaal</text>
+         <text mediaType="text/plain">Vanaf 31 dec 2022, tot en met 31 dec 2022, 2 mg/dosis , maximaal 3 mg/dosis per dag, 1-2 doses onder de tong, na 5-10 min herhalen, max. 3 opeenvolgende doses. Bij onvoldoende effect na in totaal 3 doses direct contact opnemen met een arts., oromucosaal</text>
          <effectiveTime xsi:type="IVL_TS"
                         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <low value="20221231000000"/>
@@ -761,51 +750,41 @@
             </manufacturedProduct>
          </consumable>
          <performer>
+            <time nullFlavor="NI"/>
             <assignedEntity>
-               <id nullFlavor="NI"/>
+               <id extension="000001112"
+                   root="2.16.528.1.1007.3.1"/>
+               <code code="0100"
+                     codeSystem="2.16.840.1.113883.2.4.6.7"
+                     displayName="Huisartsen, niet nader gespecificeerd"
+                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <assignedPerson>
+                  <name>
+                     <given qualifier="BR">Bertine</given>
+                     <prefix qualifier="VV">van </prefix>
+                     <family qualifier="BR">Doorn</family>
+                  </name>
+               </assignedPerson>
                <representedOrganization>
-                  <id extension="11112222"
+                  <id extension="00001111"
                       root="2.16.528.1.1007.3.3"/>
-                  <name>Trombosedienst Ons Dorp</name>
-                  <addr>
-                     <streetName>Kerkstraat</streetName>
-                     <houseNumber>28</houseNumber>
-                     <buildingNumberSuffix>d</buildingNumberSuffix>
-                     <postalCode>1332 GH</postalCode>
+                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <addr use="WP">
+                     <streetName>Dorpsstraat</streetName>
+                     <houseNumber>1</houseNumber>
+                     <postalCode>1234 AA</postalCode>
                      <city>Ons Dorp</city>
                   </addr>
-                  <asOrganizationPartOf>
-                     <code code="3400"
-                           codeSystem="2.16.840.1.113883.2.4.6.7"
-                           displayName="Trombosediensten"
-                           codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
-                           codeSystemVersion="2020-10-23T00:00:00"/>
-                  </asOrganizationPartOf>
                </representedOrganization>
             </assignedEntity>
          </performer>
-         <entryRelationship typeCode="COMP">
-            <substanceAdministration classCode="SBADM"
-                                     moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9376"/>
-               <effectiveTime value="20221227091500"/>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-            </substanceAdministration>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP">
-            <observation classCode="OBS"
-                         moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9317"/>
-               <code displayName="patient takes medication as prescribed (finding)"
-                     code="112221000146107"
-                     codeSystem="2.16.840.1.113883.6.96"
-                     codeSystemName="SNOMED CT"/>
-               <value xsi:type="BL"
-                      value="true"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-            </observation>
-         </entryRelationship>
+         <author>
+            <time value="20221227092000"/>
+            <assignedAuthor>
+               <id nullFlavor="NI"/>
+            </assignedAuthor>
+         </author>
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">

@@ -1,0 +1,218 @@
+<adaxml xsi:noNamespaceSchemaLocation="../../../9.3.0/beschikbaarstellen_medicatiegegevens/ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <meta status="new"
+         created-by="medicatieprocesada"
+         last-update-by="medicatieprocesada"
+         creation-date="2024-03-19T14:12:20.542+01:00"
+         last-update-date="2024-03-19T14:12:20.542+01:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp93"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.374"
+                                            transactionEffectiveDate="2022-06-30T00:00:00"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="TEST Medicatiegegevens MTD Scenarioset 6 "
+                                            desc="Toedieningssnelheid en prikplaklocatie met lateraliteit"
+                                            id="mg-mp-mg-tst-MTD-Scenarioset6-v30-6-13">
+         <scenario-nr value="6.13"
+                      conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.2.1.1"/>
+         <systeemrol value="1"
+                     code="1"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.999.77.11.1.19798.6.1.20201207000000"
+                     displayName="Beide"
+                     conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.6"/>
+         <!--Patient found in instance with id: mg-TEST-Scenarioset6Patient-v30 and title: id: TEST REPO Scenarioset 6 ALLEEN PATIENT-->
+         <patient comment=""
+                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1">
+            <naamgegevens comment=""
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.2">
+               <initialen value="M"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.4"/>
+               <naamgebruik value="1"
+                            code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.6"/>
+               <geslachtsnaam comment=""
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.7">
+                  <achternaam value="XXX_Rambaldo"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.9"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900936"
+                                 root="2.16.840.1.113883.2.4.6.3"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.35"/>
+            <geboortedatum value="1985-11-07"
+                           datatype="datetime"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.36"/>
+            <geslacht value="3"
+                      code="F"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      displayName="Vrouw"
+                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.37"/>
+         </patient>
+         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_300_toedieningssnelheid-->
+         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
+            <identificatie value="MBH_300_toedieningssnelheid"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
+            <medicatietoediening conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.419"
+                                 comment="">
+               <identificatie value="MBH_300_toedieningssnelheid_MTD"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.447"/>
+               <toedienings_product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.420"
+                                    comment="">
+                  <farmaceutisch_product value="HPK_MORFINE_2554771"
+                                         datatype="reference"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.421"/>
+               </toedienings_product>
+               <toedienings_datum_tijd value="T+0D{11:49:39}"
+                                       datatype="datetime"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.426"/>
+               <registratie_datum_tijd value="T+0D{11:49:39}"
+                                       datatype="datetime"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1482"/>
+               <toegediende_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.428"
+                                        comment="">
+                  <aantal value="100"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1320"/>
+                  <eenheid codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1321"
+                           code="233"
+                           displayName="milliliter"/>
+               </toegediende_hoeveelheid>
+               <toedieningsweg code="5"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="intraveneus"
+                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.430"/>
+               <toedieningssnelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1330"
+                                    comment="">
+                  <waarde conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1334"
+                          comment="">
+                     <nominale_waarde value="0.3"
+                                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1336"/>
+                  </waarde>
+                  <eenheid value="1"
+                           unit="ml/uur"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1478"/>
+               </toedieningssnelheid>
+               <prik_plak_locatie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.702"
+                                  comment="">
+                  <anatomische_locatie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1374"
+                                       comment="">
+                     <locatie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1375"
+                              value="22"
+                              code="45981001"
+                              codeSystem="2.16.840.1.113883.6.96"
+                              displayName="structuur van huid van anterieur oppervlak van bovenarm"/>
+                     <lateraliteit conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1376"
+                                   value="1"
+                                   code="7771000"
+                                   codeSystem="2.16.840.1.113883.6.96"
+                                   displayName="links"/>
+                  </anatomische_locatie>
+               </prik_plak_locatie>
+               <relatie_toedieningsafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1324"
+                                            comment="">
+                  <identificatie value="MBH_300_toedieningssnelheid_TA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1169"/>
+               </relatie_toedieningsafspraak>
+               <toediener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.437"
+                          comment="">
+                  <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1432"
+                                comment="">
+                     <zorgverlener datatype="reference"
+                                   value="Peter_van_Pulver"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1473"/>
+                  </zorgverlener>
+               </toediener>
+            </medicatietoediening>
+         </medicamenteuze_behandeling>
+         <bouwstenen comment=""
+                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.259">
+            <farmaceutisch_product id="HPK_MORFINE_2554771"
+                                   comment=""
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260">
+               <product_code code="2554771"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="MORFINE HCL 3WATER INFVLST 5MG/ML CASS 100ML AHZ"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="94692"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="MORFINE INFVLST 5MG/ML CAS 100ML"
+                             codeSystemName="G-Standaard PRK"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_code code="134538"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="MORFINE INFVLST 5MG/ML CAS 100ML"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+            </farmaceutisch_product>
+            <zorgverlener id="Peter_van_Pulver"
+                          comment=""
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.92">
+               <zorgverlener_identificatienummer value="000001111"
+                                                 root="2.16.528.1.1007.3.1"
+                                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.132"/>
+               <naamgegevens comment=""
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.133">
+                  <voornamen value="Peter"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.134"/>
+                  <geslachtsnaam comment=""
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.138">
+                     <voorvoegsels value="van "
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.139"/>
+                     <achternaam value="Pulver"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.140"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.145"
+                            value="2"
+                            code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder comment=""
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.168">
+                  <zorgaanbieder datatype="reference"
+                                 value="Huisartsenpraktijk_Pulver_en_Partners"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.846"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="Huisartsenpraktijk_Pulver_en_Partners"
+                           comment=""
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.202">
+               <zorgaanbieder_identificatienummer value="00001111"
+                                                  root="2.16.528.1.1007.3.3"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.231"/>
+               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.232"/>
+               <adresgegevens comment=""
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.243">
+                  <straat value="Dorpsstraat"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.244"/>
+                  <huisnummer value="1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.245"/>
+                  <postcode value="1234AA"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.249"/>
+                  <woonplaats value="Ons Dorp"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.250"/>
+                  <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.254"
+                               value="5"
+                               code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

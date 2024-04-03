@@ -54,10 +54,14 @@
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
                <manufacturedMaterial classCode="MMAT"
                                      determinerCode="KIND">
-                  <code code="7323"
-                        codeSystem="2.16.840.1.113883.2.4.4.10"
-                        displayName="ACENOCOUMAROL TABLET 1MG"
-                        codeSystemName="G-Standaard PRK">
+                  <code code="856126"
+                        codeSystem="2.16.840.1.113883.2.4.4.7"
+                        displayName="ACENOCOUMAROL CF TABLET 1MG"
+                        codeSystemName="G-Standaard HPK">
+                     <translation code="7323"
+                                  codeSystem="2.16.840.1.113883.2.4.4.10"
+                                  displayName="ACENOCOUMAROL TABLET 1MG"
+                                  codeSystemName="G-Standaard PRK"/>
                      <translation code="20303"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
                                   displayName="ACENOCOUMAROL TABLET 1MG"
@@ -67,8 +71,22 @@
             </manufacturedProduct>
          </consumable>
          <performer>
+            <time nullFlavor="NI"/>
             <assignedEntity>
-               <id nullFlavor="NI"/>
+               <id extension="000001111"
+                   root="2.16.528.1.1007.3.1"/>
+               <code code="0100"
+                     codeSystem="2.16.840.1.113883.2.4.6.7"
+                     displayName="Huisartsen, niet nader gespecificeerd"
+                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <assignedPerson>
+                  <name>
+                     <given qualifier="BR">Peter</given>
+                     <prefix qualifier="VV">van </prefix>
+                     <family qualifier="BR">Pulver</family>
+                  </name>
+               </assignedPerson>
                <representedOrganization>
                   <id extension="00001111"
                       root="2.16.528.1.1007.3.3"/>
@@ -82,38 +100,12 @@
                </representedOrganization>
             </assignedEntity>
          </performer>
-         <entryRelationship typeCode="COMP">
-            <substanceAdministration classCode="SBADM"
-                                     moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9376"/>
-               <effectiveTime value="20221212200000"/>
-               <doseQuantity>
-                  <center value="2"
-                          unit="1">
-                     <translation value="2"
-                                  code="245"
-                                  displayName="stuk"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                  </center>
-               </doseQuantity>
-               <consumable xsi:nil="true"
-                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-            </substanceAdministration>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP">
-            <observation classCode="OBS"
-                         moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9317"/>
-               <code displayName="patient takes medication as prescribed (finding)"
-                     code="112221000146107"
-                     codeSystem="2.16.840.1.113883.6.96"
-                     codeSystemName="SNOMED CT"/>
-               <value xsi:type="BL"
-                      value="true"
-                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
-            </observation>
-         </entryRelationship>
+         <author>
+            <time value="20221212203000"/>
+            <assignedAuthor>
+               <id nullFlavor="NI"/>
+            </assignedAuthor>
+         </author>
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM"
                                      moodCode="RQO">

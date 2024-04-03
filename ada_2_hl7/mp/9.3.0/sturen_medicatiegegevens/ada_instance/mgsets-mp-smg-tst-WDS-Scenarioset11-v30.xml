@@ -3,8 +3,8 @@
    <meta status="new"
          created-by="medicatieprocesada"
          last-update-by="medicatieprocesada"
-         creation-date="2023-01-09T17:32:47.044+01:00"
-         last-update-date="2023-01-09T17:32:47.044+01:00"/>
+         creation-date="2024-03-19T14:13:57.263+01:00"
+         last-update-date="2024-03-19T14:13:57.263+01:00"/>
    <data>
       <sturen_medicatiegegevens app="mp-mp93"
                                 shortName="sturen_medicatiegegevens"
@@ -18,7 +18,7 @@
                                 id="mgsets-mp-smg-tst-WDS-Scenarioset11-v30">
          <scenario-nr value="11"
                       conceptId="2.16.840.1.113883.2.4.3.11.999.77.2.4.1.2"/>
-         <!--Patient found in instance with id: mg-TEST-Scenarioset11-v30 and title: id: TEST REPO Scenarioset 11 (WDS MTD)-->
+         <!--Patient found in instance with id: mg-TEST-Scenarioset11-v30 and title: id: TEST REPO Scenarioset 11 (diversen WDS)-->
          <patient comment=""
                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1">
             <naamgegevens comment=""
@@ -58,15 +58,15 @@
                <identificatie value="MBH_300_wdsmtd1_WDS_opstartschema"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.633"
                               root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-               <wisselend_doseerschema_datum_tijd value="T"
-                                                  datatype="datetime"
-                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.634"/>
+               <registratie_datum_tijd value="T-20D{08:00:00}"
+                                       datatype="datetime"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1483"/>
                <gebruiksperiode comment=""
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.635">
-                  <start_datum_tijd value="T"
+                  <start_datum_tijd value="T-20D"
                                     datatype="datetime"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.636"/>
-                  <eind_datum_tijd value="T+5D"
+                  <eind_datum_tijd value="T-15D{23:59:00}"
                                    datatype="datetime"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.637"/>
                </gebruiksperiode>
@@ -132,11 +132,6 @@
                                             unit="dag"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
                            </frequentie>
-                           <toedientijd value="20:00:00"
-                                        datatype="time"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.671"/>
-                           <is_flexibel value="true"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.672"/>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -175,11 +170,6 @@
                                             unit="dag"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
                            </frequentie>
-                           <toedientijd value="20:00:00"
-                                        datatype="time"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.671"/>
-                           <is_flexibel value="true"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.672"/>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -190,15 +180,15 @@
                <identificatie value="MBH_300_wdsmtd1_WDS_trombosedienst"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.633"
                               root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-               <wisselend_doseerschema_datum_tijd value="T"
-                                                  datatype="datetime"
-                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.634"/>
+               <registratie_datum_tijd value="T-15D{14:30:00}"
+                                       datatype="datetime"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1483"/>
                <gebruiksperiode comment=""
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.635">
-                  <start_datum_tijd value="T"
+                  <start_datum_tijd value="T-14D"
                                     datatype="datetime"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.636"/>
-                  <eind_datum_tijd value="T+5D"
+                  <eind_datum_tijd value="T-5D{23:59:00}"
                                    datatype="datetime"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.637"/>
                </gebruiksperiode>
@@ -273,13 +263,6 @@
                                             unit="dag"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
                            </frequentie>
-                           <dagdeel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.670"
-                                    value="3"
-                                    code="3157002"
-                                    codeSystem="2.16.840.1.113883.6.96"
-                                    displayName="'s avonds"/>
-                           <is_flexibel value="true"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.672"/>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -318,13 +301,6 @@
                                             unit="dag"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
                            </frequentie>
-                           <dagdeel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.670"
-                                    value="3"
-                                    code="3157002"
-                                    codeSystem="2.16.840.1.113883.6.96"
-                                    displayName="'s avonds"/>
-                           <is_flexibel value="true"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.672"/>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -363,13 +339,6 @@
                                             unit="dag"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
                            </frequentie>
-                           <dagdeel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.670"
-                                    value="3"
-                                    code="3157002"
-                                    codeSystem="2.16.840.1.113883.6.96"
-                                    displayName="'s avonds"/>
-                           <is_flexibel value="true"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.672"/>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -380,15 +349,15 @@
                <identificatie value="MBH_300_wdsmtd1_WDS_technischestop"
                               root="2.16.840.1.113883.2.4.3.11.999.77.632.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.633"/>
-               <wisselend_doseerschema_datum_tijd value="T"
-                                                  datatype="datetime"
-                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.634"/>
+               <registratie_datum_tijd value="T-7D{10:30:00}"
+                                       datatype="datetime"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1483"/>
                <gebruiksperiode comment=""
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.635">
-                  <start_datum_tijd value="T"
+                  <start_datum_tijd value="T-14D"
                                     datatype="datetime"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.636"/>
-                  <eind_datum_tijd value="T+5D"
+                  <eind_datum_tijd value="T-7D{22:59:00}"
                                    datatype="datetime"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.637"/>
                </gebruiksperiode>
@@ -468,13 +437,6 @@
                                             unit="dag"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
                            </frequentie>
-                           <dagdeel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.670"
-                                    value="3"
-                                    code="3157002"
-                                    codeSystem="2.16.840.1.113883.6.96"
-                                    displayName="'s avonds"/>
-                           <is_flexibel value="true"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.672"/>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -513,13 +475,6 @@
                                             unit="dag"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
                            </frequentie>
-                           <dagdeel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.670"
-                                    value="3"
-                                    code="3157002"
-                                    codeSystem="2.16.840.1.113883.6.96"
-                                    displayName="'s avonds"/>
-                           <is_flexibel value="true"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.672"/>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -558,13 +513,6 @@
                                             unit="dag"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
                            </frequentie>
-                           <dagdeel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.670"
-                                    value="3"
-                                    code="3157002"
-                                    codeSystem="2.16.840.1.113883.6.96"
-                                    displayName="'s avonds"/>
-                           <is_flexibel value="true"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.672"/>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -575,15 +523,15 @@
                <identificatie value="MBH_300_wdsmtd1_WDS_verhoging"
                               root="2.16.840.1.113883.2.4.3.11.999.77.632.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.633"/>
-               <wisselend_doseerschema_datum_tijd value="T"
-                                                  datatype="datetime"
-                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.634"/>
+               <registratie_datum_tijd value="T-7D{10:30:00}"
+                                       datatype="datetime"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1483"/>
                <gebruiksperiode comment=""
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.635">
-                  <start_datum_tijd value="T"
+                  <start_datum_tijd value="T-6D"
                                     datatype="datetime"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.636"/>
-                  <eind_datum_tijd value="T+5D"
+                  <eind_datum_tijd value="T+3D{21:59:00}"
                                    datatype="datetime"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.637"/>
                </gebruiksperiode>
@@ -663,11 +611,6 @@
                                             unit="dag"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
                            </frequentie>
-                           <toedientijd value="19:00:00"
-                                        datatype="time"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.671"/>
-                           <is_flexibel value="true"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.672"/>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -706,11 +649,6 @@
                                             unit="dag"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
                            </frequentie>
-                           <toedientijd value="19:00:00"
-                                        datatype="time"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.671"/>
-                           <is_flexibel value="true"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.672"/>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>

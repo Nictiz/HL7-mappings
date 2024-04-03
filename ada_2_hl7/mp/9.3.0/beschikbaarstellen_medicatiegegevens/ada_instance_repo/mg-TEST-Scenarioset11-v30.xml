@@ -3,8 +3,8 @@
    <meta status="new"
          created-by="medicatieprocesada"
          last-update-by="medicatieprocesada"
-         creation-date="2023-01-09T17:55:45.61+01:00"
-         last-update-date="2024-02-07T12:38:48.924Z"/>
+         creation-date="2024-03-19T15:42:31.886+01:00"
+         last-update-date="2024-03-25T10:17:32.261Z"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp93"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -13,7 +13,7 @@
                                             transactionEffectiveDate="2022-06-30T00:00:00"
                                             prefix="mp-"
                                             language="nl-NL"
-                                            title="TEST REPO Scenarioset 11 (WDS MTD)"
+                                            title="TEST REPO Scenarioset 11 (diversen WDS)"
                                             id="mg-TEST-Scenarioset11-v30">
          <patient comment=""
                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1">
@@ -54,12 +54,12 @@
                <identificatie value="MBH_300_wdsmtd1_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.194"/>
-               <medicatieafspraak_datum_tijd value="T-21D{08:00:00}"
-                                             datatype="datetime"
-                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.83"/>
+               <registratie_datum_tijd value="T-20D{08:00:00}"
+                                       datatype="datetime"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1480"/>
                <gebruiksperiode comment=""
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.84">
-                  <start_datum_tijd value="T-20D{00:00:00}"
+                  <start_datum_tijd value="T-20D"
                                     datatype="datetime"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.629"/>
                </gebruiksperiode>
@@ -86,7 +86,7 @@
                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.54"/>
                   <aanvullende_instructie originalText="Volgens schema trombosedienst"
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.51"
-                                          value="1"
+                                          value="2"
                                           code="OTH"
                                           codeSystem="2.16.840.1.113883.5.1008"
                                           displayName="overig"/>
@@ -97,15 +97,15 @@
                <identificatie value="MBH_300_wdsmtd1_WDS_opstartschema"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.633"
                               root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-               <wisselend_doseerschema_datum_tijd value="T"
-                                                  datatype="datetime"
-                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.634"/>
+               <registratie_datum_tijd value="T-20D{08:00:00}"
+                                       datatype="datetime"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1483"/>
                <gebruiksperiode comment=""
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.635">
-                  <start_datum_tijd value="T"
+                  <start_datum_tijd value="T-20D"
                                     datatype="datetime"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.636"/>
-                  <eind_datum_tijd value="T+5D"
+                  <eind_datum_tijd value="T-15D{23:59:00}"
                                    datatype="datetime"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.637"/>
                </gebruiksperiode>
@@ -171,11 +171,6 @@
                                             unit="dag"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
                            </frequentie>
-                           <toedientijd value="20:00:00"
-                                        datatype="time"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.671"/>
-                           <is_flexibel value="true"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.672"/>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -214,11 +209,6 @@
                                             unit="dag"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
                            </frequentie>
-                           <toedientijd value="20:00:00"
-                                        datatype="time"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.671"/>
-                           <is_flexibel value="true"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.672"/>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -229,15 +219,15 @@
                <identificatie value="MBH_300_wdsmtd1_WDS_trombosedienst"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.633"
                               root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-               <wisselend_doseerschema_datum_tijd value="T"
-                                                  datatype="datetime"
-                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.634"/>
+               <registratie_datum_tijd value="T-15D{14:30:00}"
+                                       datatype="datetime"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1483"/>
                <gebruiksperiode comment=""
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.635">
-                  <start_datum_tijd value="T"
+                  <start_datum_tijd value="T-14D"
                                     datatype="datetime"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.636"/>
-                  <eind_datum_tijd value="T+5D"
+                  <eind_datum_tijd value="T-5D{23:59:00}"
                                    datatype="datetime"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.637"/>
                </gebruiksperiode>
@@ -312,13 +302,6 @@
                                             unit="dag"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
                            </frequentie>
-                           <dagdeel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.670"
-                                    value="3"
-                                    code="3157002"
-                                    codeSystem="2.16.840.1.113883.6.96"
-                                    displayName="'s avonds"/>
-                           <is_flexibel value="true"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.672"/>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -357,13 +340,6 @@
                                             unit="dag"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
                            </frequentie>
-                           <dagdeel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.670"
-                                    value="3"
-                                    code="3157002"
-                                    codeSystem="2.16.840.1.113883.6.96"
-                                    displayName="'s avonds"/>
-                           <is_flexibel value="true"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.672"/>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -402,13 +378,6 @@
                                             unit="dag"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
                            </frequentie>
-                           <dagdeel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.670"
-                                    value="3"
-                                    code="3157002"
-                                    codeSystem="2.16.840.1.113883.6.96"
-                                    displayName="'s avonds"/>
-                           <is_flexibel value="true"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.672"/>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -419,15 +388,15 @@
                <identificatie value="MBH_300_wdsmtd1_WDS_technischestop"
                               root="2.16.840.1.113883.2.4.3.11.999.77.632.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.633"/>
-               <wisselend_doseerschema_datum_tijd value="T"
-                                                  datatype="datetime"
-                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.634"/>
+               <registratie_datum_tijd value="T-7D{10:30:00}"
+                                       datatype="datetime"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1483"/>
                <gebruiksperiode comment=""
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.635">
-                  <start_datum_tijd value="T"
+                  <start_datum_tijd value="T-14D"
                                     datatype="datetime"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.636"/>
-                  <eind_datum_tijd value="T+5D"
+                  <eind_datum_tijd value="T-7D{22:59:00}"
                                    datatype="datetime"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.637"/>
                </gebruiksperiode>
@@ -507,13 +476,6 @@
                                             unit="dag"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
                            </frequentie>
-                           <dagdeel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.670"
-                                    value="3"
-                                    code="3157002"
-                                    codeSystem="2.16.840.1.113883.6.96"
-                                    displayName="'s avonds"/>
-                           <is_flexibel value="true"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.672"/>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -552,13 +514,6 @@
                                             unit="dag"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
                            </frequentie>
-                           <dagdeel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.670"
-                                    value="3"
-                                    code="3157002"
-                                    codeSystem="2.16.840.1.113883.6.96"
-                                    displayName="'s avonds"/>
-                           <is_flexibel value="true"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.672"/>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -597,13 +552,6 @@
                                             unit="dag"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
                            </frequentie>
-                           <dagdeel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.670"
-                                    value="3"
-                                    code="3157002"
-                                    codeSystem="2.16.840.1.113883.6.96"
-                                    displayName="'s avonds"/>
-                           <is_flexibel value="true"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.672"/>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -614,15 +562,15 @@
                <identificatie value="MBH_300_wdsmtd1_WDS_verhoging"
                               root="2.16.840.1.113883.2.4.3.11.999.77.632.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.633"/>
-               <wisselend_doseerschema_datum_tijd value="T"
-                                                  datatype="datetime"
-                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.634"/>
+               <registratie_datum_tijd value="T-7D{10:30:00}"
+                                       datatype="datetime"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1483"/>
                <gebruiksperiode comment=""
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.635">
-                  <start_datum_tijd value="T"
+                  <start_datum_tijd value="T-6D"
                                     datatype="datetime"
                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.636"/>
-                  <eind_datum_tijd value="T+5D"
+                  <eind_datum_tijd value="T+3D{21:59:00}"
                                    datatype="datetime"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.637"/>
                </gebruiksperiode>
@@ -702,11 +650,6 @@
                                             unit="dag"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
                            </frequentie>
-                           <toedientijd value="19:00:00"
-                                        datatype="time"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.671"/>
-                           <is_flexibel value="true"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.672"/>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -745,11 +688,6 @@
                                             unit="dag"
                                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.668"/>
                            </frequentie>
-                           <toedientijd value="19:00:00"
-                                        datatype="time"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.671"/>
-                           <is_flexibel value="true"
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.672"/>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -805,9 +743,9 @@
                <identificatie value="MBH_300_wdsmtd1_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
-               <toedieningsafspraak_datum_tijd value="T-20D{09:00:00}"
-                                               datatype="datetime"
-                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.332"/>
+               <registratie_datum_tijd value="T-20D{09:00:00}"
+                                       datatype="datetime"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1481"/>
                <gebruiksperiode comment=""
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334">
                   <start_datum_tijd value="T-20D{00:00:00}"
@@ -837,7 +775,7 @@
                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.303"/>
                   <aanvullende_instructie originalText="Volgens schema trombosedienst"
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.300"
-                                          value="1"
+                                          value="2"
                                           code="OTH"
                                           codeSystem="2.16.840.1.113883.5.1008"
                                           displayName="overig"/>
@@ -886,262 +824,53 @@
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.564"/>
                </relatie_verstrekkingsverzoek>
             </medicatieverstrekking>
-            <medicatietoediening comment=""
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.419">
-               <identificatie value="MBH_300_wdsmtd1_MTD1"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.447"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
-               <toedienings_product comment=""
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.420">
-                  <farmaceutisch_product value="PRK_ACENOCOUMAROL_7323"
+            <medicatietoediening conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.419"
+                                 comment="">
+               <identificatie value="MBH_300_wdsmtd1_MTD"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.447"/>
+               <toedienings_product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.420"
+                                    comment="">
+                  <farmaceutisch_product value="HPK_ACENOCOUMAROL_856126"
                                          datatype="reference"
                                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.421"/>
                </toedienings_product>
+               <registratie_datum_tijd value="T-20D{20:30:00}"
+                                       datatype="datetime"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1482"/>
                <toedienings_datum_tijd value="T-20D{20:30:00}"
                                        datatype="datetime"
                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.426"/>
-               <afgesproken_datum_tijd value="T-20D{20:00:00}"
-                                       datatype="datetime"
-                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.427"/>
-               <toegediende_hoeveelheid comment=""
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.428">
-                  <aantal value="1"
-                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1320"/>
-                  <eenheid code="245"
-                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                           codeSystemName="G-Standaard thesaurus basiseenheden"
-                           displayName="stuk"
-                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1321"/>
-               </toegediende_hoeveelheid>
-               <afgesproken_hoeveelheid comment=""
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1172">
+               <toegediende_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.428"
+                                        comment="">
                   <aantal value="2"
-                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1323"/>
-                  <eenheid code="245"
-                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                           codeSystemName="G-Standaard thesaurus basiseenheden"
-                           displayName="stuk"
-                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1322"/>
-               </afgesproken_hoeveelheid>
-               <volgens_afspraak_indicator value="true"
-                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.429"/>
-               <toedieningsweg code="9"
-                               codeSystem="2.16.840.1.113883.2.4.4.9"
-                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                               displayName="ORAAL"
-                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.430"/>
-               <relatie_wisselend_doseerschema comment=""
-                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1325">
-                  <identificatie value="MBH_300_wdsmtd1_WDS_opstartschema"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.632.1"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1326"/>
-               </relatie_wisselend_doseerschema>
-               <toediener comment=""
-                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.437">
-                  <mantelzorger comment=""
-                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.442">
-                     <contactpersoon value="Toos_de_Bakker"
-                                     datatype="reference"
-                                     conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.443"/>
-                  </mantelzorger>
-               </toediener>
-            </medicatietoediening>
-            <medicatietoediening comment=""
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.419">
-               <identificatie value="MBH_300_wdsmtd1_MTD2"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.447"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
-               <toedienings_product comment=""
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.420">
-                  <farmaceutisch_product value="PRK_ACENOCOUMAROL_7323"
-                                         datatype="reference"
-                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.421"/>
-               </toedienings_product>
-               <toedienings_datum_tijd value="T-19D{20:00:00}"
-                                       datatype="datetime"
-                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.426"/>
-               <afgesproken_datum_tijd value="T-19D{20:00:00}"
-                                       datatype="datetime"
-                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.427"/>
-               <toegediende_hoeveelheid comment=""
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.428">
-                  <aantal value="1"
                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1320"/>
                   <eenheid code="245"
                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                            codeSystemName="G-Standaard thesaurus basiseenheden"
-                           displayName="stuk"
+                           displayName="stuks"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1321"/>
                </toegediende_hoeveelheid>
-               <afgesproken_hoeveelheid comment=""
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1172">
-                  <aantal value="2"
-                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1323"/>
-                  <eenheid code="245"
-                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                           codeSystemName="G-Standaard thesaurus basiseenheden"
-                           displayName="stuk"
-                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1322"/>
-               </afgesproken_hoeveelheid>
-               <volgens_afspraak_indicator value="false"
-                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.429"/>
                <toedieningsweg code="9"
                                codeSystem="2.16.840.1.113883.2.4.4.9"
                                codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                               displayName="Oraal"
+                               displayName="oraal"
                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.430"/>
-               <relatie_wisselend_doseerschema comment=""
-                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1325">
+               <relatie_wisselend_doseerschema conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1325"
+                                               comment="">
                   <identificatie value="MBH_300_wdsmtd1_WDS_opstartschema"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.632.1"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1326"/>
                </relatie_wisselend_doseerschema>
                <toediener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.437"
                           comment="">
-                  <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1378"
-                                 comment="">
-                     <zorgaanbieder value="Thuiszorg_Om_en_Bij"
-                                    datatype="reference"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1379"/>
-                  </zorgaanbieder>
+                  <zorgverlener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1432"
+                                comment="">
+                     <zorgverlener value="Peter_van_Pulver"
+                                   datatype="reference"
+                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1473"/>
+                  </zorgverlener>
                </toediener>
-               <medicatietoediening_reden_van_afwijken conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.444"
-                                                       value="7"
-                                                       code="406149000"
-                                                       codeSystem="2.16.840.1.113883.6.96"
-                                                       displayName="toediening van medicatie geweigerd"/>
-            </medicatietoediening>
-            <medicatietoediening comment=""
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.419">
-               <identificatie value="MBH_300_wdsmtd1_MTD3"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.447"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
-               <toedienings_product comment=""
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.420">
-                  <farmaceutisch_product value="PRK_ACENOCOUMAROL_7323"
-                                         datatype="reference"
-                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.421"/>
-               </toedienings_product>
-               <toedienings_datum_tijd value="T-17D{20:00:00}"
-                                       datatype="datetime"
-                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.426"/>
-               <afgesproken_datum_tijd value="T-17D{20:00:00}"
-                                       datatype="datetime"
-                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.427"/>
-               <toegediende_hoeveelheid comment=""
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.428">
-                  <aantal value="1"
-                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1320"/>
-                  <eenheid code="245"
-                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                           codeSystemName="G-Standaard thesaurus basiseenheden"
-                           displayName="stuk"
-                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1321"/>
-               </toegediende_hoeveelheid>
-               <afgesproken_hoeveelheid comment=""
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1172">
-                  <aantal value="1"
-                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1323"/>
-                  <eenheid code="245"
-                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                           codeSystemName="G-Standaard thesaurus basiseenheden"
-                           displayName="stuk"
-                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1322"/>
-               </afgesproken_hoeveelheid>
-               <volgens_afspraak_indicator value="false"
-                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.429"/>
-               <toedieningsweg code="9"
-                               codeSystem="2.16.840.1.113883.2.4.4.9"
-                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                               displayName="Oraal"
-                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.430"/>
-               <relatie_wisselend_doseerschema comment=""
-                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1325">
-                  <identificatie value="MBH_300_wdsmtd1_WDS_opstartschema"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.632.1"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1326"/>
-               </relatie_wisselend_doseerschema>
-               <toediener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.437"
-                          comment="">
-                  <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1378"
-                                 comment="">
-                     <zorgaanbieder value="Thuiszorg_Om_en_Bij"
-                                    datatype="reference"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1379"/>
-                  </zorgaanbieder>
-               </toediener>
-               <medicatietoediening_reden_van_afwijken conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.444"
-                                                       value="6"
-                                                       code="408366001"
-                                                       codeSystem="2.16.840.1.113883.6.96"
-                                                       displayName="niet in staat om medicatie te gebruiken"/>
-               <toelichting value="Geprobeerd, maar niet gelukt met de tablet"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.446"/>
-            </medicatietoediening>
-            <medicatietoediening comment=""
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.419">
-               <identificatie value="MBH_300_wdsmtd1_MTD4"
-                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.447"
-                              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
-               <toedienings_product comment=""
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.420">
-                  <farmaceutisch_product value="PRK_ACENOCOUMAROL_7323"
-                                         datatype="reference"
-                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.421"/>
-               </toedienings_product>
-               <toedienings_datum_tijd value="T-16D{20:05:00}"
-                                       datatype="datetime"
-                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.426"/>
-               <afgesproken_datum_tijd value="T-16D{20:00:00}"
-                                       datatype="datetime"
-                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.427"/>
-               <toegediende_hoeveelheid comment=""
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.428">
-                  <aantal value="0"
-                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1320"/>
-                  <eenheid code="245"
-                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                           codeSystemName="G-Standaard thesaurus basiseenheden"
-                           displayName="stuk"
-                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1321"/>
-               </toegediende_hoeveelheid>
-               <afgesproken_hoeveelheid comment=""
-                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1172">
-                  <aantal value="1"
-                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1323"/>
-                  <eenheid code="245"
-                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                           codeSystemName="G-Standaard thesaurus basiseenheden"
-                           displayName="stuk"
-                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1322"/>
-               </afgesproken_hoeveelheid>
-               <volgens_afspraak_indicator value="false"
-                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.429"/>
-               <toedieningsweg code="9"
-                               codeSystem="2.16.840.1.113883.2.4.4.9"
-                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                               displayName="Oraal"
-                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.430"/>
-               <relatie_wisselend_doseerschema comment=""
-                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1325">
-                  <identificatie value="MBH_300_wdsmtd1_WDS_opstartschema"
-                                 root="2.16.840.1.113883.2.4.3.11.999.77.632.1"
-                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1326"/>
-               </relatie_wisselend_doseerschema>
-               <toediener conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.437"
-                          comment="">
-                  <zorgaanbieder conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1378"
-                                 comment="">
-                     <zorgaanbieder value="Thuiszorg_Om_en_Bij"
-                                    datatype="reference"
-                                    conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1379"/>
-                  </zorgaanbieder>
-               </toediener>
-               <medicatietoediening_reden_van_afwijken conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.444"
-                                                       value="8"
-                                                       code="153241000146104"
-                                                       codeSystem="2.16.840.1.113883.6.96"
-                                                       displayName="zorgafnemer niet beschikbaar om medicatie in ontvangst te nemen"/>
             </medicatietoediening>
          </medicamenteuze_behandeling>
          <bouwstenen comment=""

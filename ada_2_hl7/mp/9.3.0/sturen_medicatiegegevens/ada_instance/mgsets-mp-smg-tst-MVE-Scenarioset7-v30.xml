@@ -3,8 +3,8 @@
    <meta status="new"
          created-by="medicatieprocesada"
          last-update-by="medicatieprocesada"
-         creation-date="2023-01-09T17:32:44.103+01:00"
-         last-update-date="2023-01-09T17:32:44.103+01:00"/>
+         creation-date="2024-03-19T14:13:53.914+01:00"
+         last-update-date="2024-03-19T14:13:53.914+01:00"/>
    <data>
       <sturen_medicatiegegevens app="mp-mp93"
                                 shortName="sturen_medicatiegegevens"
@@ -69,7 +69,7 @@
                </verstrekker>
                <verstrekte_hoeveelheid comment=""
                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.358">
-                  <aantal value="100"
+                  <aantal value="50"
                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.700"/>
                   <eenheid code="233"
                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -112,7 +112,7 @@
                </verstrekker>
                <verstrekte_hoeveelheid comment=""
                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.358">
-                  <aantal value="100"
+                  <aantal value="75"
                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.700"/>
                   <eenheid codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                            codeSystemName="G-Standaard thesaurus basiseenheden"
@@ -172,6 +172,49 @@
                <relatie_verstrekkingsverzoek comment=""
                                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.349">
                   <identificatie value="MBH_300_magistraal90miljoennr_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.564"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+         </medicamenteuze_behandeling>
+         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_300_vrijetekstproduct-->
+         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
+            <identificatie value="MBH_300_vrijetekstproduct"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
+            <medicatieverstrekking conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.346"
+                                   comment="">
+               <identificatie value="MBH_300_vrijetekstproduct_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.361"/>
+               <medicatieverstrekkings_datum_tijd value="T-1D{15:50:00}"
+                                                  datatype="datetime"
+                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.353"/>
+               <verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.347"
+                            comment="">
+                  <zorgaanbieder value="Apotheek_De_Gulle_Gaper"
+                                 datatype="reference"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.348"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.358"
+                                       comment="">
+                  <aantal value="4"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.700"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuks"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.701"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.351"
+                                       comment="">
+                  <farmaceutisch_product value="Vrijetekst_Jemperli"
+                                         datatype="reference"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.352"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.349"
+                                             comment="">
+                  <identificatie value="MBH_300_vrijetekstproduct_VV"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.564"/>
                </relatie_verstrekkingsverzoek>
@@ -349,6 +392,22 @@
                         </product_hoeveelheid>
                      </sterkte>
                   </ingredient>
+               </product_specificatie>
+            </farmaceutisch_product>
+            <farmaceutisch_product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260"
+                                   comment=""
+                                   id="Vrijetekst_Jemperli">
+               <product_code code="OTH"
+                             codeSystem="2.16.840.1.113883.5.1008"
+                             codeSystemName="NullFlavor"
+                             displayName="anders"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_specificatie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.262"
+                                     comment="">
+                  <product_naam value="Jemperli 500 mg/ 10 mL"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.264"/>
+                  <omschrijving value="Titel: Jemperli (Dostarlimab-gxly) 500 mg/10 mL"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.265"/>
                </product_specificatie>
             </farmaceutisch_product>
             <zorgaanbieder id="Apotheek_De_Gulle_Gaper"

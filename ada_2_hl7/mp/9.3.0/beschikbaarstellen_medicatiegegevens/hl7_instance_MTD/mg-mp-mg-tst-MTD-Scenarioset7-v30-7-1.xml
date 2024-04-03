@@ -1,0 +1,186 @@
+<organizer classCode="CLUSTER"
+           moodCode="EVN"
+           xmlns="urn:hl7-org:v3"
+           xmlns:pharm="urn:ihe:pharm:medication">
+   <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9411"/>
+   <code code="102"
+         displayName="Medicatiegegevens"
+         codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4"
+         codeSystemName="ART DECOR transacties"/>
+   <statusCode nullFlavor="NI"/>
+   <recordTarget>
+      <patientRole>
+         <id extension="999900948"
+             root="2.16.840.1.113883.2.4.6.3"/>
+         <patient>
+            <name>
+               <given qualifier="IN">M.</given>
+               <prefix qualifier="VV">van de </prefix>
+               <family qualifier="BR">XXX_Rambaran Mishre</family>
+            </name>
+            <administrativeGenderCode code="M"
+                                      codeSystem="2.16.840.1.113883.5.1"
+                                      displayName="Man"/>
+            <birthTime value="19851108"/>
+         </patient>
+      </patientRole>
+   </recordTarget>
+   <component typeCode="COMP">
+      <substanceAdministration classCode="SBADM"
+                               moodCode="EVN">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9406"/>
+         <id extension="MBH_300_magistraalalleingredienten_MTD"
+             root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+         <code code="18629005"
+               displayName="toediening van medicatie (verrichting)"
+               codeSystem="2.16.840.1.113883.6.96"
+               codeSystemName="SNOMED CT"/>
+         <effectiveTime value="20221231140000"/>
+         <routeCode code="53"
+                    codeSystem="2.16.840.1.113883.2.4.4.9"
+                    displayName="cutaan"
+                    codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+         <doseQuantity>
+            <center value="1"
+                    unit="g">
+               <translation value="1"
+                            code="215"
+                            displayName="gram"
+                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                            codeSystemName="G-Standaard thesaurus basiseenheden"/>
+            </center>
+         </doseQuantity>
+         <consumable>
+            <manufacturedProduct>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
+               <manufacturedMaterial classCode="MMAT"
+                                     determinerCode="KIND">
+                  <code nullFlavor="OTH"/>
+                  <name>Ureum 10% in eucerine cum aqua 100gr</name>
+                  <pharm:desc>Titel: Ureum 10% in eucerine cum aqua 100gr           Regel: UREUM 10gr           Regel: EUCERINE MET WATER FAGRON ad 100gr</pharm:desc>
+                  <pharm:ingredient classCode="INGR">
+                     <pharm:quantity>
+                        <numerator xsi:type="PQ"
+                                   value="10"
+                                   unit="g"
+                                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                           <translation value="10"
+                                        code="215"
+                                        displayName="gram"
+                                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </numerator>
+                        <denominator xsi:type="PQ"
+                                     value="100"
+                                     unit="g"
+                                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                           <translation value="100"
+                                        code="215"
+                                        displayName="gram"
+                                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </denominator>
+                     </pharm:quantity>
+                     <pharm:ingredient classCode="MMAT"
+                                       determinerCode="KIND">
+                        <pharm:code code="1042467"
+                                    codeSystem="2.16.840.1.113883.2.4.4.7"
+                                    displayName="UREUM ZALF 10% FAGRON"
+                                    codeSystemName="G-Standaard HPK"/>
+                     </pharm:ingredient>
+                  </pharm:ingredient>
+                  <pharm:ingredient classCode="INGR">
+                     <pharm:quantity>
+                        <numerator xsi:type="PQ"
+                                   value="90"
+                                   unit="g"
+                                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                           <translation value="90"
+                                        code="215"
+                                        displayName="gram"
+                                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </numerator>
+                        <denominator xsi:type="PQ"
+                                     value="100"
+                                     unit="g"
+                                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                           <translation value="100"
+                                        code="215"
+                                        displayName="gram"
+                                        codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                        codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </denominator>
+                     </pharm:quantity>
+                     <pharm:ingredient classCode="MMAT"
+                                       determinerCode="KIND">
+                        <pharm:code code="1516981"
+                                    codeSystem="2.16.840.1.113883.2.4.4.7"
+                                    displayName="EUCERINE MET WATER FAGRON"
+                                    codeSystemName="G-Standaard HPK"/>
+                     </pharm:ingredient>
+                  </pharm:ingredient>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </consumable>
+         <performer>
+            <time nullFlavor="NI"/>
+            <assignedEntity>
+               <id extension="222220000"
+                   root="2.16.528.1.1007.3.1"/>
+               <code code="9100"
+                     codeSystem="2.16.840.1.113883.2.4.6.7"
+                     displayName="Verpleegkundigen, niet nader gespecificeerd"
+                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                     codeSystemVersion="2020-10-23T00:00:00"/>
+               <assignedPerson>
+                  <name>
+                     <given qualifier="BR">Jantien</given>
+                     <family qualifier="BR">Toedien</family>
+                  </name>
+               </assignedPerson>
+               <representedOrganization>
+                  <id extension="11110000"
+                      root="2.16.528.1.1007.3.3"/>
+                  <name>Thuiszorg Om en Bij</name>
+                  <standardIndustryClassCode code="T2"
+                                             codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                             displayName="Thuiszorg"/>
+               </representedOrganization>
+            </assignedEntity>
+         </performer>
+         <author>
+            <time value="20221231140000"/>
+            <assignedAuthor>
+               <id nullFlavor="NI"/>
+            </assignedAuthor>
+         </author>
+         <entryRelationship typeCode="REFR">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9101"/>
+               <id extension="MBH_300_magistraalalleingredienten_TA"
+                   root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <code displayName="Toedieningsafspraak"
+                     code="422037009"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+               <consumable xsi:nil="true"
+                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP"
+                            inversionInd="true">
+            <procedure classCode="PROC"
+                       moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                   extension="MBH_300_magistraalalleingredienten"/>
+               <code code="1"
+                     displayName="Medicamenteuze behandeling"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+            </procedure>
+         </entryRelationship>
+      </substanceAdministration>
+   </component>
+</organizer>
