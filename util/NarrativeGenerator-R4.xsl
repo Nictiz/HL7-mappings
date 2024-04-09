@@ -11080,7 +11080,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </div>
         </text>
     </xsl:template>
-    <!-- TODO ... check changes since STU3 below here except ServiceRequest, Slot and Substance -->
     <xsl:template match="f:Location | f:Organization" mode="createNarrative">
         <xsl:variable name="textLang" select="(f:language/@value, $util:textlangDefault)[1]"/>
         <text xmlns="http://hl7.org/fhir">
@@ -11230,11 +11229,79 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </td>
                             </tr>
                         </xsl:for-each>
+                        <xsl:for-each select="f:hoursOfOperation">
+                            <tr>
+                                <th>
+                                    <xsl:call-template name="util:getLocalizedString">
+                                        <xsl:with-param name="key">Hours of operation</xsl:with-param>
+                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                    </xsl:call-template>
+                                </th>
+                                <td>
+                                    <xsl:if test="f:daysOfWeek">
+                                        <xsl:call-template name="util:getLocalizedString">
+                                            <xsl:with-param name="key">Days</xsl:with-param>
+                                            <xsl:with-param name="textLang" select="$textLang"/>
+                                            <xsl:with-param name="post" select="': '"/>
+                                        </xsl:call-template>
+                                        <xsl:call-template name="getLocalizedDaysOfWeek">
+                                            <xsl:with-param name="in" select="f:daysOfWeek"/>
+                                            <xsl:with-param name="textLang" select="$textLang"/>
+                                        </xsl:call-template>
+                                    </xsl:if>
+                                    <xsl:if test="f:allDay/@value = 'true'">
+                                        <xsl:if test="f:allDay/preceding-sibling::*">
+                                            <xsl:text> - </xsl:text>
+                                        </xsl:if>
+                                        <xsl:call-template name="util:getLocalizedString">
+                                            <xsl:with-param name="key">All Day</xsl:with-param>
+                                            <xsl:with-param name="textLang" select="$textLang"/>
+                                        </xsl:call-template>
+                                    </xsl:if>
+                                    <xsl:if test="f:openingTime">
+                                        <xsl:if test="f:openingTime/preceding-sibling::*">
+                                            <xsl:text> - </xsl:text>
+                                        </xsl:if>
+                                        <xsl:call-template name="util:getLocalizedString">
+                                            <xsl:with-param name="key">from</xsl:with-param>
+                                            <xsl:with-param name="textLang" select="$textLang"/>
+                                            <xsl:with-param name="post" select="' '"/>
+                                        </xsl:call-template>
+                                        <xsl:call-template name="doDT_Time">
+                                            <xsl:with-param name="in" select="f:openingTime"/>
+                                            <xsl:with-param name="textLang" select="$textLang"/>
+                                            <xsl:with-param name="sep">br</xsl:with-param>
+                                        </xsl:call-template>
+                                    </xsl:if>
+                                    <xsl:if test="f:closingTime">
+                                        <xsl:choose>
+                                            <xsl:when test="f:openingTime">
+                                                <xsl:text> </xsl:text>
+                                            </xsl:when>
+                                            <xsl:when test="f:closingTime/preceding-sibling::*">
+                                                <xsl:text> - </xsl:text>
+                                            </xsl:when>
+                                        </xsl:choose>
+                                        <xsl:call-template name="util:getLocalizedString">
+                                            <xsl:with-param name="key">to</xsl:with-param>
+                                            <xsl:with-param name="textLang" select="$textLang"/>
+                                            <xsl:with-param name="post" select="' '"/>
+                                        </xsl:call-template>
+                                        <xsl:call-template name="doDT_Time">
+                                            <xsl:with-param name="in" select="f:closingTime"/>
+                                            <xsl:with-param name="textLang" select="$textLang"/>
+                                            <xsl:with-param name="sep">br</xsl:with-param>
+                                        </xsl:call-template>
+                                    </xsl:if>
+                                </td>
+                            </tr>
+                        </xsl:for-each>
                     </tbody>
                 </table>
             </div>
         </text>
     </xsl:template>
+    <!-- TODO ... check changes since STU3 below here except ServiceRequest, Slot and Substance -->
     <xsl:template match="f:Patient | f:Person | f:Practitioner | f:RelatedPerson" mode="createNarrative">
         <xsl:variable name="textLang" select="(f:language/@value, $util:textlangDefault)[1]"/>
         <text xmlns="http://hl7.org/fhir">
@@ -16862,8 +16929,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <xsl:variable name="str">
                 <xsl:choose>
+                    <!-- Seconds must be provided due to schema type constraints but may be zero-filled and may be ignored at receiver discretion -->
                     <xsl:when test="@value">
-                        <xsl:value-of select="@value"/>
+                        <xsl:value-of select="replace(@value, ':00$', '')"/>
                     </xsl:when>
                     <xsl:when test="f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/data-absent-reason']">
                         <xsl:call-template name="getLocalizedDataAbsentReason">
