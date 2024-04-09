@@ -74,7 +74,7 @@ WisselendDoseerschema in beschikbaarstellen_medicatiegegevens_2_ada.xsl boven me
 	</xd:doc>
 	<xsl:template match="f:requester" mode="nl-core-VariableDosingRegimen">
 		<auteur>
-			<zorgverlener value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
+			<zorgverlener value="{nf:process-reference-2NCName(f:reference/@value,ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
 		</auteur>
 	</xsl:template>
 
@@ -147,7 +147,7 @@ WisselendDoseerschema in beschikbaarstellen_medicatiegegevens_2_ada.xsl boven me
 	</xd:doc>
 	<xsl:template match="f:medicationReference" mode="nl-core-VariableDosingRegimen">
 		<afgesproken_geneesmiddel>
-			<farmaceutisch_product value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
+			<farmaceutisch_product value="{nf:process-reference-2NCName(f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
 		</afgesproken_geneesmiddel>
 	</xsl:template>
 

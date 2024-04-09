@@ -99,14 +99,14 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f3803b3e-6add-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:e2c6232b-6b7d-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 24 dec 2022, tot en met 28 dec 2022, 1 stuk, Oraal, stopgezet"/>
+               <valueString value="Vanaf 24 dec 2022, tot en met 28 dec 2022, 1 maal per dag 1 stuk, Oraal, stopgezet"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -166,6 +166,13 @@
                </coding>
             </reasonCode>
             <dosageInstruction>
+               <timing>
+                  <repeat>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
                <route>
                   <coding>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>

@@ -119,7 +119,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:performer" mode="nl-core-DispenseRequest">
         <beoogd_verstrekker>
-            <zorgaanbieder datatype="reference" value="{nf:convert2NCName(f:reference/@value)}"/>
+            <zorgaanbieder datatype="reference" value="{nf:process-reference-2NCName(f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}"/>
         </beoogd_verstrekker>
     </xsl:template>
 
@@ -182,7 +182,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:requester" mode="nl-core-DispenseRequest">
         <auteur>
-            <zorgverlener value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
+            <zorgverlener value="{nf:process-reference-2NCName(f:reference/@value,ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
         </auteur>
     </xsl:template>
 
@@ -213,7 +213,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:medicationReference" mode="nl-core-DispenseRequest">
         <te_verstrekken_geneesmiddel>
-            <farmaceutisch_product value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
+            <farmaceutisch_product value="{nf:process-reference-2NCName(f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
         </te_verstrekken_geneesmiddel>
     </xsl:template>
 

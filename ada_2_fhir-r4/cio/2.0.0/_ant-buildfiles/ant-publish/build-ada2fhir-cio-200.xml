@@ -27,49 +27,51 @@
 
     <property name="build.dir" value="."/>
     <property name="dummy.output.dir" value="dummy"/>
-    <property name="project.source.dir" value="../../../../art_decor/projects/cio"/>
+    <property name="project.source.dir" value="../../../../art_decor/projects/cio-2.0"/>
     <property name="prodinst.dir" value="../../../../art_decor/production-ada-instances/cio/2.0.0/data"/>
 
-    <property name="usecase.bsci" value="beschikbaarstellen_contraindicatie"/>
-    <property name="usecase.bsov" value="beschikbaarstellen_overgevoeligheid"/> 
+    <property name="usecase.bsmci" value="beschikbaarstellen_medicatie_contra_indicaties"/>
+    <property name="usecase.bsgo" value="beschikbaarstellen_geneesmiddelovergevoeligheden"/> 
 
     <target name="setup" description="Setup subdirectories in ${build.dir}">
         <!-- copies schemas for project dir -->
         <antcall target="setup_sub_schemas">
-            <param name="build.dir" value="${build.dir}/${usecase.bsci}"/>
-            <param name="schema.string" value="*${usecase.bsci}.*"/>
+            <param name="build.dir" value="${build.dir}/${usecase.bsmci}"/>
+            <param name="schema.string" value="*${usecase.bsmci}.*"/>
         </antcall>
 
         <antcall target="setup_sub_schemas">
-            <param name="build.dir" value="${build.dir}/${usecase.bsov}"/>
-            <param name="schema.string" value="*${usecase.bsov}.*"/>
+            <param name="build.dir" value="${build.dir}/${usecase.bsgo}"/>
+            <param name="schema.string" value="*${usecase.bsgo}.*"/>
         </antcall>
        
-        <!-- copy cio instances beschikbaarstellen_contraindicatie-->
-        <echo>CiO instances from ${prodinst.dir} to ${build.dir}/${usecase.bsci}/ada_instance</echo>
-        <mkdir dir="${build.dir}/${usecase.bsci}/ada_instance"/>
+        <!-- copy cio instances beschikbaarstellen_medicatie_contraindicaties -->
+        <echo>CiO instances from ${prodinst.dir} to ${build.dir}/${usecase.bsmci}/ada_instance</echo>
+        <mkdir dir="${build.dir}/${usecase.bsmci}/ada_instance"/>
         <delete>
-            <fileset dir="${build.dir}/${usecase.bsci}/ada_instance">
+            <fileset dir="${build.dir}/${usecase.bsmci}/ada_instance">
                 <include name="*.xml"/>
             </fileset>
         </delete>
-        <copy todir="${build.dir}/${usecase.bsci}/ada_instance" failonerror="true">
+        <copy todir="${build.dir}/${usecase.bsmci}/ada_instance" failonerror="true">
             <fileset dir="${prodinst.dir}">
-                <include name="bci-tst-*.xml"/>
+                <include name="cio-bmci-tst*.xml"/>
+                <exclude name="cio-bmci-tst-0.1-geenMCi.xml"/>
             </fileset>
         </copy>
 
-        <!-- copy cio instances beschikbaarstellen_overgevoeligheid -->
-        <echo>CiO instances from ${prodinst.dir} to ${build.dir}/${usecase.bsov}/ada_instance</echo>
-        <mkdir dir="${build.dir}/${usecase.bsov}/ada_instance"/>
+        <!-- copy cio instances beschikbaarstellen_geneesmiddelovergevoeligheden -->
+        <echo>CiO instances from ${prodinst.dir} to ${build.dir}/${usecase.bsgo}/ada_instance</echo>
+        <mkdir dir="${build.dir}/${usecase.bsgo}/ada_instance"/>
         <delete>
-            <fileset dir="${build.dir}/${usecase.bsov}/ada_instance">
+            <fileset dir="${build.dir}/${usecase.bsgo}/ada_instance">
                 <include name="*.xml"/>
             </fileset>
         </delete>
-        <copy todir="${build.dir}/${usecase.bsov}/ada_instance" failonerror="true">
+        <copy todir="${build.dir}/${usecase.bsgo}/ada_instance" failonerror="true">
             <fileset dir="${prodinst.dir}">
-                <include name="cio-bov-tst-*.xml"/>
+                <include name="cio-bgo-tst*.xml"/>
+                <exclude name="cio-bgo-tst-0.1-geenBB.xml"/>
             </fileset>
         </copy>
 
@@ -97,13 +99,13 @@
     <target name="convert_ada_2_fhir">
 
         <antcall target="convert_ada_2_fhir_sub">
-            <param name="build.dir" value="${usecase.bsci}"/>
+            <param name="build.dir" value="${usecase.bsmci}"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="fhir_instance"/>
         </antcall>
 
         <antcall target="convert_ada_2_fhir_sub">
-            <param name="build.dir" value="${usecase.bsov}"/>
+            <param name="build.dir" value="${usecase.bsgo}"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="fhir_instance"/>
         </antcall>
