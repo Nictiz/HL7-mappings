@@ -4,8 +4,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2024-02-15T16:08:37.423+01:00"
-         last-update-date="2024-02-15T16:08:37.423+01:00"/>
+         creation-date="2024-04-09T17:11:21.546+02:00"
+         last-update-date="2024-04-09T17:11:21.546+02:00"/>
    <data><!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
       <sturen_medicatiegegevens app="mp-mp93"
                                 shortName="sturen_medicatiegegevens"
@@ -37,26 +37,17 @@
                <identificatie value="MBH_300_contactepisode_MTD1"
                               root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
                <toedienings_product>
-                  <farmaceutisch_product value="d3510e62" datatype="reference"/>
+                  <farmaceutisch_product value="d5925e62" datatype="reference"/>
                </toedienings_product>
+               <registratie_datum_tijd datatype="datetime" value="2022-12-12T20:30:00"/>
                <toedienings_datum_tijd datatype="datetime" value="2022-12-12T20:30:00"/>
-               <afgesproken_datum_tijd datatype="datetime" value="2022-12-12T20:00:00"/>
                <toegediende_hoeveelheid>
                   <aantal value="2"/>
-                  <eenheid value="2"
-                           code="245"
+                  <eenheid code="245"
                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                            codeSystemName="G-Standaard thesaurus basiseenheden"
                            displayName="stuk"/>
                </toegediende_hoeveelheid>
-               <afgesproken_hoeveelheid>
-                  <aantal value="2"/>
-                  <eenheid value="2"
-                           code="245"
-                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                           codeSystemName="G-Standaard thesaurus basiseenheden"
-                           displayName="stuk"/>
-               </afgesproken_hoeveelheid>
                <toedieningsweg code="9"
                                codeSystem="2.16.840.1.113883.2.4.4.9"
                                codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
@@ -73,14 +64,18 @@
                                        root="2.16.840.1.113883.2.4.3.11.999.66.9200"/>
                </relatie_zorgepisode>
                <toediener>
-                  <zorgaanbieder>
-                     <zorgaanbieder value="d3510e78" datatype="reference"/>
-                  </zorgaanbieder>
+                  <zorgverlener>
+                     <zorgverlener value="d5925e78" datatype="reference"/>
+                  </zorgverlener>
                </toediener>
             </medicatietoediening>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d3510e62">
+            <farmaceutisch_product id="d5925e62">
+               <product_code code="856126"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="ACENOCOUMAROL CF TABLET 1MG"/>
                <product_code code="7323"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -90,7 +85,28 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="ACENOCOUMAROL TABLET 1MG"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="d3510e78">
+            <zorgverlener id="d5925e78">
+               <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Peter"/>
+                  <naamgebruik code="NL1"
+                               codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                               displayName="Eigen geslachtsnaam"/>
+                  <geslachtsnaam>
+                     <voorvoegsels value="van "/>
+                     <achternaam value="Pulver"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder value="d5925e99" datatype="reference"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="d5925e99">
                <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>

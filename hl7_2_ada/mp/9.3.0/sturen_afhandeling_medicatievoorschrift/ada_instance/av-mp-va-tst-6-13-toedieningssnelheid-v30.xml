@@ -4,8 +4,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2024-02-15T16:08:38.81+01:00"
-         last-update-date="2024-02-15T16:08:38.81+01:00"/>
+         creation-date="2024-04-09T17:11:23.146+02:00"
+         last-update-date="2024-04-09T17:11:23.146+02:00"/>
    <data>
       <sturen_afhandeling_medicatievoorschrift app="mp-mp93"
                                                shortName="sturen_afhandeling_medicatievoorschrift"
@@ -37,23 +37,23 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_toedieningssnelheid_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <toedieningsafspraak_datum_tijd datatype="datetime" value="2023-01-01T09:47:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2023-01-01T09:47:00"/>
                <gebruiksperiode>
                   <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00"/>
                   <eind_datum_tijd datatype="datetime" value="2023-01-09T23:59:59"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d442e85" datatype="reference"/>
+                  <zorgaanbieder value="d817e84" datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d442e65" datatype="reference"/>
+                  <farmaceutisch_product value="d817e64" datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 1 jan 2023, tot en met 9 jan 2023, toedieningssnelheid: 0.2 à 0.5 ml per uur, parenteraal"/>
-                  <toedieningsweg code="10"
+                  <omschrijving value="Vanaf 1 jan 2023, tot en met 9 jan 2023, toedieningssnelheid: 0.2 à 0.5 per, Intraveneus"/>
+                  <toedieningsweg code="5"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen"
-                                  displayName="parenteraal"/>
+                                  displayName="Intraveneus"/>
                   <doseerinstructie>
                      <volgnummer value="1"/>
                      <dosering>
@@ -62,11 +62,7 @@
                               <minimum_waarde value="0.2"/>
                               <maximum_waarde value="0.5"/>
                            </waarde>
-                           <eenheid code="233"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"
-                                    displayName="milliliter"/>
-                           <tijdseenheid value="1" unit="uur"/>
+                           <eenheid value="1" unit="ml/uur"/>
                         </toedieningssnelheid>
                      </dosering>
                   </doseerinstructie>
@@ -81,18 +77,17 @@
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
                <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-01-01T09:47:00"/>
                <verstrekker>
-                  <zorgaanbieder value="d442e85" datatype="reference"/>
+                  <zorgaanbieder value="d817e84" datatype="reference"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
                   <aantal value="100"/>
-                  <eenheid value="100"
-                           code="233"
+                  <eenheid code="233"
                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                            codeSystemName="G-Standaard thesaurus basiseenheden"
                            displayName="milliliter"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="d442e65" datatype="reference"/>
+                  <farmaceutisch_product value="d817e64" datatype="reference"/>
                </verstrekt_geneesmiddel>
                <relatie_verstrekkingsverzoek>
                   <identificatie value="MBH_300_toedieningssnelheid_VV"
@@ -101,11 +96,11 @@
             </medicatieverstrekking>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d442e65">
-               <product_code code="779288"
+            <farmaceutisch_product id="d817e64">
+               <product_code code="2554771"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
-                             displayName="MORFINEHYDROCHLORIDE 1ML= 5MG EPI CAS 100ML FNA MR"/>
+                             displayName="MORFINE HCL 3WATER INFVLST 5MG/ML CASS 100ML AHZ"/>
                <product_code code="94692"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -115,7 +110,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="MORFINE INFVLST 5MG/ML CAS 100ML"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="d442e85">
+            <zorgaanbieder id="d817e84">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek de Gulle Gaper"/>
             </zorgaanbieder>

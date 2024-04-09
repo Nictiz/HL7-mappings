@@ -1,14 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xmlns:hl7nl="urn:hl7-nl:v3"
-           xmlns:pharm="urn:ihe:pharm:medication"
-           xmlns:f="http://hl7.org/fhir"
-           xmlns:sdtc="urn:hl7-org:sdtc"
-           xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+<organizer classCode="CLUSTER"
+           moodCode="EVN"
            xmlns="urn:hl7-org:v3"
-           classCode="CLUSTER"
-           moodCode="EVN">
+           xmlns:pharm="urn:ihe:pharm:medication">
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9411"/>
    <code code="102"
          displayName="Medicatiegegevens"
@@ -17,21 +10,25 @@
    <statusCode nullFlavor="NI"/>
    <recordTarget>
       <patientRole>
-         <id extension="999900870" root="2.16.840.1.113883.2.4.6.3"/>
+         <id extension="999900870"
+             root="2.16.840.1.113883.2.4.6.3"/>
          <patient>
             <name>
                <given qualifier="IN">M.</given>
                <family qualifier="BR">XXX_Pherai</family>
             </name>
-            <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            <administrativeGenderCode code="F"
+                                      codeSystem="2.16.840.1.113883.5.1"
+                                      displayName="Vrouw"/>
             <birthTime value="19851101"/>
          </patient>
       </patientRole>
    </recordTarget>
    <component typeCode="COMP">
-      <substanceAdministration classCode="SBADM" moodCode="EVN">
+      <substanceAdministration classCode="SBADM"
+                               moodCode="EVN">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9406"/>
-         <id extension="MBH_300_wdsmtd1_MTD1"
+         <id extension="MBH_300_wdsmtd1_MTD"
              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
          <code code="18629005"
                displayName="toediening van medicatie (verrichting)"
@@ -40,13 +37,14 @@
          <effectiveTime value="20221212203000"/>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
-                    displayName="ORAAL"
+                    displayName="oraal"
                     codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
          <doseQuantity>
-            <center value="1" unit="1">
-               <translation value="1"
+            <center value="2"
+                    unit="1">
+               <translation value="2"
                             code="245"
-                            displayName="stuk"
+                            displayName="stuks"
                             codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                             codeSystemName="G-Standaard thesaurus basiseenheden"/>
             </center>
@@ -54,11 +52,16 @@
          <consumable>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="7323"
-                        codeSystem="2.16.840.1.113883.2.4.4.10"
-                        displayName="ACENOCOUMAROL TABLET 1MG"
-                        codeSystemName="G-Standaard PRK">
+               <manufacturedMaterial classCode="MMAT"
+                                     determinerCode="KIND">
+                  <code code="856126"
+                        codeSystem="2.16.840.1.113883.2.4.4.7"
+                        displayName="ACENOCOUMAROL CF TABLET 1MG"
+                        codeSystemName="G-Standaard HPK">
+                     <translation code="7323"
+                                  codeSystem="2.16.840.1.113883.2.4.4.10"
+                                  displayName="ACENOCOUMAROL TABLET 1MG"
+                                  codeSystemName="G-Standaard PRK"/>
                      <translation code="20303"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
                                   displayName="ACENOCOUMAROL TABLET 1MG"
@@ -70,285 +73,42 @@
          <performer>
             <time nullFlavor="NI"/>
             <assignedEntity>
-               <id nullFlavor="NI"/>
-               <code code="100001"
-                     codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.23.1"
-                     displayName="Mantelzorger"/>
+               <id extension="000001111"
+                   root="2.16.528.1.1007.3.1"/>
+               <code code="0100"
+                     codeSystem="2.16.840.1.113883.2.4.6.7"
+                     displayName="Huisartsen, niet nader gespecificeerd"
+                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                     codeSystemVersion="2020-10-23T00:00:00"/>
                <assignedPerson>
                   <name>
-                     <given qualifier="BR">Toos</given>
-                     <prefix qualifier="VV">de </prefix>
-                     <family qualifier="BR">Bakker</family>
+                     <given qualifier="BR">Peter</given>
+                     <prefix qualifier="VV">van </prefix>
+                     <family qualifier="BR">Pulver</family>
                   </name>
                </assignedPerson>
-            </assignedEntity>
-         </performer>
-         <entryRelationship typeCode="COMP">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9376"/>
-               <effectiveTime value="20221212200000"/>
-               <doseQuantity>
-                  <center value="2" unit="1">
-                     <translation value="2"
-                                  code="245"
-                                  displayName="stuk"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                  </center>
-               </doseQuantity>
-               <consumable xsi:nil="true"/>
-            </substanceAdministration>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP">
-            <observation classCode="OBS" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9317"/>
-               <code displayName="patient takes medication as prescribed (finding)"
-                     code="112221000146107"
-                     codeSystem="2.16.840.1.113883.6.96"
-                     codeSystemName="SNOMED CT"/>
-               <value xsi:type="BL" value="true"/>
-            </observation>
-         </entryRelationship>
-         <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9381"/>
-               <id extension="MBH_300_wdsmtd1_WDS_opstartschema"
-                   root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-               <code code="395067002"
-                     displayName="optimaliseren van dosering van medicatie (verrichting)"
-                     codeSystem="2.16.840.1.113883.6.96"
-                     codeSystemName="SNOMED CT"/>
-               <consumable xsi:nil="true"/>
-            </substanceAdministration>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
-               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_wdsmtd1"/>
-               <code code="1"
-                     displayName="Medicamenteuze behandeling"
-                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
-            </procedure>
-         </entryRelationship>
-      </substanceAdministration>
-   </component>
-   <component typeCode="COMP">
-      <substanceAdministration classCode="SBADM" moodCode="EVN">
-         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9406"/>
-         <id extension="MBH_300_wdsmtd1_MTD2"
-             root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
-         <code code="18629005"
-               displayName="toediening van medicatie (verrichting)"
-               codeSystem="2.16.840.1.113883.6.96"
-               codeSystemName="SNOMED CT"/>
-         <effectiveTime value="20221213200000"/>
-         <routeCode code="9"
-                    codeSystem="2.16.840.1.113883.2.4.4.9"
-                    displayName="Oraal"
-                    codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
-         <doseQuantity>
-            <center value="1" unit="1">
-               <translation value="1"
-                            code="245"
-                            displayName="stuk"
-                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                            codeSystemName="G-Standaard thesaurus basiseenheden"/>
-            </center>
-         </doseQuantity>
-         <consumable>
-            <manufacturedProduct>
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="7323"
-                        codeSystem="2.16.840.1.113883.2.4.4.10"
-                        displayName="ACENOCOUMAROL TABLET 1MG"
-                        codeSystemName="G-Standaard PRK">
-                     <translation code="20303"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="ACENOCOUMAROL TABLET 1MG"
-                                  codeSystemName="G-Standaard GPK"/>
-                  </code>
-               </manufacturedMaterial>
-            </manufacturedProduct>
-         </consumable>
-         <performer>
-            <assignedEntity>
-               <id nullFlavor="NI"/>
                <representedOrganization>
-                  <id extension="11110000" root="2.16.528.1.1007.3.3"/>
-                  <name>Thuiszorg Om en Bij</name>
-                  <standardIndustryClassCode code="T2"
-                                             codeSystem="2.16.840.1.113883.2.4.15.1060"
-                                             displayName="Thuiszorg"/>
+                  <id extension="00001111"
+                      root="2.16.528.1.1007.3.3"/>
+                  <name>Huisartsenpraktijk Pulver &amp; Partners</name>
+                  <addr use="WP">
+                     <streetName>Dorpsstraat</streetName>
+                     <houseNumber>1</houseNumber>
+                     <postalCode>1234 AA</postalCode>
+                     <city>Ons Dorp</city>
+                  </addr>
                </representedOrganization>
             </assignedEntity>
          </performer>
-         <entryRelationship typeCode="COMP">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9376"/>
-               <effectiveTime value="20221213200000"/>
-               <doseQuantity>
-                  <center value="2" unit="1">
-                     <translation value="2"
-                                  code="245"
-                                  displayName="stuk"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                  </center>
-               </doseQuantity>
-               <consumable xsi:nil="true"/>
-            </substanceAdministration>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP">
-            <observation classCode="OBS" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9317"/>
-               <code displayName="patient takes medication as prescribed (finding)"
-                     code="112221000146107"
-                     codeSystem="2.16.840.1.113883.6.96"
-                     codeSystemName="SNOMED CT"/>
-               <value xsi:type="BL" value="false"/>
-            </observation>
-         </entryRelationship>
-         <entryRelationship typeCode="RSON">
-            <observation classCode="OBS" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9375"/>
-               <code code="153631000146105"
-                     displayName="reden voor afwijken in toedienen van medicatie (waarneembare entiteit)"
-                     codeSystem="2.16.840.1.113883.6.96"
-                     codeSystemName="SNOMED CT"/>
-               <value xsi:type="CE"
-                      code="406149000"
-                      codeSystem="2.16.840.1.113883.6.96"
-                      displayName="toediening van medicatie geweigerd"/>
-            </observation>
-         </entryRelationship>
-         <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9381"/>
-               <id extension="MBH_300_wdsmtd1_WDS_opstartschema"
-                   root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-               <code code="395067002"
-                     displayName="optimaliseren van dosering van medicatie (verrichting)"
-                     codeSystem="2.16.840.1.113883.6.96"
-                     codeSystemName="SNOMED CT"/>
-               <consumable xsi:nil="true"/>
-            </substanceAdministration>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
-               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_wdsmtd1"/>
-               <code code="1"
-                     displayName="Medicamenteuze behandeling"
-                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
-            </procedure>
-         </entryRelationship>
-      </substanceAdministration>
-   </component>
-   <component typeCode="COMP">
-      <substanceAdministration classCode="SBADM" moodCode="EVN">
-         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9406"/>
-         <id extension="MBH_300_wdsmtd1_MTD3"
-             root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
-         <code code="18629005"
-               displayName="toediening van medicatie (verrichting)"
-               codeSystem="2.16.840.1.113883.6.96"
-               codeSystemName="SNOMED CT"/>
-         <effectiveTime value="20221215200000"/>
-         <routeCode code="9"
-                    codeSystem="2.16.840.1.113883.2.4.4.9"
-                    displayName="Oraal"
-                    codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
-         <doseQuantity>
-            <center value="1" unit="1">
-               <translation value="1"
-                            code="245"
-                            displayName="stuk"
-                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                            codeSystemName="G-Standaard thesaurus basiseenheden"/>
-            </center>
-         </doseQuantity>
-         <consumable>
-            <manufacturedProduct>
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="7323"
-                        codeSystem="2.16.840.1.113883.2.4.4.10"
-                        displayName="ACENOCOUMAROL TABLET 1MG"
-                        codeSystemName="G-Standaard PRK">
-                     <translation code="20303"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="ACENOCOUMAROL TABLET 1MG"
-                                  codeSystemName="G-Standaard GPK"/>
-                  </code>
-               </manufacturedMaterial>
-            </manufacturedProduct>
-         </consumable>
-         <performer>
-            <assignedEntity>
+         <author>
+            <time value="20221212203000"/>
+            <assignedAuthor>
                <id nullFlavor="NI"/>
-               <representedOrganization>
-                  <id extension="11110000" root="2.16.528.1.1007.3.3"/>
-                  <name>Thuiszorg Om en Bij</name>
-                  <standardIndustryClassCode code="T2"
-                                             codeSystem="2.16.840.1.113883.2.4.15.1060"
-                                             displayName="Thuiszorg"/>
-               </representedOrganization>
-            </assignedEntity>
-         </performer>
-         <entryRelationship typeCode="COMP">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9376"/>
-               <effectiveTime value="20221215200000"/>
-               <doseQuantity>
-                  <center value="1" unit="1">
-                     <translation value="1"
-                                  code="245"
-                                  displayName="stuk"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                  </center>
-               </doseQuantity>
-               <consumable xsi:nil="true"/>
-            </substanceAdministration>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP">
-            <observation classCode="OBS" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9317"/>
-               <code displayName="patient takes medication as prescribed (finding)"
-                     code="112221000146107"
-                     codeSystem="2.16.840.1.113883.6.96"
-                     codeSystemName="SNOMED CT"/>
-               <value xsi:type="BL" value="false"/>
-            </observation>
-         </entryRelationship>
-         <entryRelationship typeCode="RSON">
-            <observation classCode="OBS" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9375"/>
-               <code code="153631000146105"
-                     displayName="reden voor afwijken in toedienen van medicatie (waarneembare entiteit)"
-                     codeSystem="2.16.840.1.113883.6.96"
-                     codeSystemName="SNOMED CT"/>
-               <value xsi:type="CE"
-                      code="408366001"
-                      codeSystem="2.16.840.1.113883.6.96"
-                      displayName="niet in staat om medicatie te gebruiken"/>
-            </observation>
-         </entryRelationship>
-         <entryRelationship typeCode="SUBJ" inversionInd="true">
-            <act classCode="ACT" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
-               <code code="48767-8"
-                     codeSystem="2.16.840.1.113883.6.1"
-                     codeSystemName="LOINC"
-                     displayName="Annotation comment"/>
-               <text mediaType="text/plain">Geprobeerd, maar niet gelukt met de tablet</text>
-            </act>
-         </entryRelationship>
+            </assignedAuthor>
+         </author>
          <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9381"/>
                <id extension="MBH_300_wdsmtd1_WDS_opstartschema"
                    root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
@@ -356,125 +116,14 @@
                      displayName="optimaliseren van dosering van medicatie (verrichting)"
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"/>
-               <consumable xsi:nil="true"/>
+               <consumable xsi:nil="true"
+                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
             </substanceAdministration>
          </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
-               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
-                   extension="MBH_300_wdsmtd1"/>
-               <code code="1"
-                     displayName="Medicamenteuze behandeling"
-                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
-            </procedure>
-         </entryRelationship>
-      </substanceAdministration>
-   </component>
-   <component typeCode="COMP">
-      <substanceAdministration classCode="SBADM" moodCode="EVN">
-         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9406"/>
-         <id extension="MBH_300_wdsmtd1_MTD4"
-             root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
-         <code code="18629005"
-               displayName="toediening van medicatie (verrichting)"
-               codeSystem="2.16.840.1.113883.6.96"
-               codeSystemName="SNOMED CT"/>
-         <effectiveTime value="20221216200500"/>
-         <routeCode code="9"
-                    codeSystem="2.16.840.1.113883.2.4.4.9"
-                    displayName="Oraal"
-                    codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
-         <doseQuantity>
-            <center value="0" unit="1">
-               <translation value="0"
-                            code="245"
-                            displayName="stuk"
-                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                            codeSystemName="G-Standaard thesaurus basiseenheden"/>
-            </center>
-         </doseQuantity>
-         <consumable>
-            <manufacturedProduct>
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="7323"
-                        codeSystem="2.16.840.1.113883.2.4.4.10"
-                        displayName="ACENOCOUMAROL TABLET 1MG"
-                        codeSystemName="G-Standaard PRK">
-                     <translation code="20303"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="ACENOCOUMAROL TABLET 1MG"
-                                  codeSystemName="G-Standaard GPK"/>
-                  </code>
-               </manufacturedMaterial>
-            </manufacturedProduct>
-         </consumable>
-         <performer>
-            <assignedEntity>
-               <id nullFlavor="NI"/>
-               <representedOrganization>
-                  <id extension="11110000" root="2.16.528.1.1007.3.3"/>
-                  <name>Thuiszorg Om en Bij</name>
-                  <standardIndustryClassCode code="T2"
-                                             codeSystem="2.16.840.1.113883.2.4.15.1060"
-                                             displayName="Thuiszorg"/>
-               </representedOrganization>
-            </assignedEntity>
-         </performer>
-         <entryRelationship typeCode="COMP">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9376"/>
-               <effectiveTime value="20221216200000"/>
-               <doseQuantity>
-                  <center value="1" unit="1">
-                     <translation value="1"
-                                  code="245"
-                                  displayName="stuk"
-                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
-                  </center>
-               </doseQuantity>
-               <consumable xsi:nil="true"/>
-            </substanceAdministration>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP">
-            <observation classCode="OBS" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9317"/>
-               <code displayName="patient takes medication as prescribed (finding)"
-                     code="112221000146107"
-                     codeSystem="2.16.840.1.113883.6.96"
-                     codeSystemName="SNOMED CT"/>
-               <value xsi:type="BL" value="false"/>
-            </observation>
-         </entryRelationship>
-         <entryRelationship typeCode="RSON">
-            <observation classCode="OBS" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9375"/>
-               <code code="153631000146105"
-                     displayName="reden voor afwijken in toedienen van medicatie (waarneembare entiteit)"
-                     codeSystem="2.16.840.1.113883.6.96"
-                     codeSystemName="SNOMED CT"/>
-               <value xsi:type="CE"
-                      code="153241000146104"
-                      codeSystem="2.16.840.1.113883.6.96"
-                      displayName="zorgafnemer niet beschikbaar om medicatie in ontvangst te nemen"/>
-            </observation>
-         </entryRelationship>
-         <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9381"/>
-               <id extension="MBH_300_wdsmtd1_WDS_opstartschema"
-                   root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-               <code code="395067002"
-                     displayName="optimaliseren van dosering van medicatie (verrichting)"
-                     codeSystem="2.16.840.1.113883.6.96"
-                     codeSystemName="SNOMED CT"/>
-               <consumable xsi:nil="true"/>
-            </substanceAdministration>
-         </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
+         <entryRelationship typeCode="COMP"
+                            inversionInd="true">
+            <procedure classCode="PROC"
+                       moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                    extension="MBH_300_wdsmtd1"/>

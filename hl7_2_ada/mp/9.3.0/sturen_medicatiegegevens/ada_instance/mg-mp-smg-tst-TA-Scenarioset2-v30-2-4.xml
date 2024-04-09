@@ -4,8 +4,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2024-02-15T16:08:36.986+01:00"
-         last-update-date="2024-02-15T16:08:36.986+01:00"/>
+         creation-date="2024-04-09T17:11:21.192+02:00"
+         last-update-date="2024-04-09T17:11:21.192+02:00"/>
    <data><!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
       <sturen_medicatiegegevens app="mp-mp93"
                                 shortName="sturen_medicatiegegevens"
@@ -36,19 +36,19 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_aanvullendeinformatiewensen_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <toedieningsafspraak_datum_tijd datatype="datetime" value="2022-12-27T09:06:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2022-12-27T09:06:00"/>
                <gebruiksperiode>
                   <start_datum_tijd datatype="datetime" value="2022-12-28T00:00:00"/>
                   <eind_datum_tijd datatype="datetime" value="2023-01-06T23:59:59"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d1799e84" datatype="reference"/>
+                  <zorgaanbieder value="d3066e84" datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d1799e64" datatype="reference"/>
+                  <farmaceutisch_product value="d3066e64" datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 28 dec 2022, tot en met 6 jan 2023, 3 maal per dag 1 stuk, Oraal"/>
+                  <omschrijving value="Vanaf 28 dec 2022, tot en met 6 jan 2023, elke dag om 19:00 1 stuk - let op, tijden exact aanhouden, Oraal"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen"
@@ -66,17 +66,13 @@
                                     codeSystemName="G-Standaardthesaurus basiseenheden"/>
                         </keerdosis>
                         <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="3"/>
-                              </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
-                           </frequentie>
+                           <toedientijd value="19:00:00" datatype="time"/>
+                           <is_flexibel value="false"/>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-               <toedieningsafspraak_aanvullende_informatie value="Bijwerking besproken"/>
+               <toelichting value="Bijwerking besproken"/>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_aanvullendeinformatiewensen_MA"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -84,7 +80,7 @@
             </toedieningsafspraak>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d1799e64">
+            <farmaceutisch_product id="d3066e64">
                <product_code code="425087"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -98,7 +94,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="FENETICILLINE 500MG CAPSULE"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="d1799e84">
+            <zorgaanbieder id="d3066e84">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
             </zorgaanbieder>

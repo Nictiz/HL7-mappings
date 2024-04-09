@@ -4,8 +4,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2024-02-15T16:08:36.394+01:00"
-         last-update-date="2024-02-15T16:08:36.394+01:00"/>
+         creation-date="2024-04-09T17:11:20.487+02:00"
+         last-update-date="2024-04-09T17:11:20.487+02:00"/>
    <data><!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
       <sturen_medicatiegegevens app="mp-mp93"
                                 shortName="sturen_medicatiegegevens"
@@ -35,13 +35,13 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_SCRIPT1_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <medicatieafspraak_datum_tijd datatype="datetime" value="2022-12-22T11:20:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2022-12-22T11:20:00"/>
                <gebruiksperiode>
                   <start_datum_tijd datatype="datetime" value="2022-12-22T00:00:00"/>
                   <tijds_duur value="21" unit="week"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d31e75" datatype="reference"/>
+                  <zorgverlener value="d31e78" datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
                   <farmaceutisch_product value="d31e64" datatype="reference"/>
@@ -78,7 +78,7 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_SCRIPT1_MA_WIJZIGING"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <medicatieafspraak_datum_tijd datatype="datetime" value="2023-01-08T11:20:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2023-01-08T11:20:00"/>
                <gebruiksperiode>
                   <start_datum_tijd datatype="datetime" value="2023-01-14T00:00:00"/>
                   <tijds_duur value="18" unit="week"/>
@@ -88,7 +88,7 @@
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                </relatie_medicatieafspraak>
                <voorschrijver>
-                  <zorgverlener value="d31e75" datatype="reference"/>
+                  <zorgverlener value="d31e78" datatype="reference"/>
                </voorschrijver>
                <reden_wijzigen_of_staken code="112251000146103"
                                          codeSystem="2.16.840.1.113883.6.96"
@@ -128,7 +128,7 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_SCRIPT1_MA_STOP"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <medicatieafspraak_datum_tijd datatype="datetime" value="2023-01-08T11:20:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2023-01-08T11:20:00"/>
                <gebruiksperiode>
                   <start_datum_tijd datatype="datetime" value="2022-12-22T00:00:00"/>
                   <eind_datum_tijd datatype="datetime" value="2023-01-08T23:59:59"/>
@@ -141,10 +141,38 @@
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                </relatie_medicatieafspraak>
                <voorschrijver>
-                  <zorgverlener value="d31e75" datatype="reference"/>
+                  <zorgverlener value="d31e78" datatype="reference"/>
                </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product value="d31e64" datatype="reference"/>
+               </afgesproken_geneesmiddel>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 22 dec 2022, tot en met 8 jan 2023, stopgezet"/>
+                  <omschrijving value="Vanaf 22 dec 2022, tot en met 8 jan 2023, cyclus van 21 dagen: steeds gedurende 14 dagen elke dag om 09:00 en 21:00 4 stuks, oraal, stopgezet"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="oraal"/>
+                  <herhaalperiode_cyclisch_schema value="21" unit="dag"/>
+                  <doseerinstructie>
+                     <doseerduur value="14" unit="dag"/>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="4"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <toedientijd value="09:00:00" datatype="time"/>
+                           <toedientijd value="21:00:00" datatype="time"/>
+                           <is_flexibel value="true"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
                </gebruiksinstructie>
             </medicatieafspraak>
          </medicamenteuze_behandeling>
@@ -154,8 +182,12 @@
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
                              displayName="CAPECITABINE TABLET FO 500MG"/>
+               <product_code code="112984"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="CAPECITABINE TABLET FO 500MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="d31e75">
+            <zorgverlener id="d31e78">
                <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Peter"/>
@@ -170,10 +202,10 @@
                             codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
-                  <zorgaanbieder value="d31e96" datatype="reference"/>
+                  <zorgaanbieder value="d31e99" datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d31e96">
+            <zorgaanbieder id="d31e99">
                <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>

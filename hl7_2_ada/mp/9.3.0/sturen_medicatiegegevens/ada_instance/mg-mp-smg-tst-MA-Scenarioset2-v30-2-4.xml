@@ -4,8 +4,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2024-02-15T16:08:36.568+01:00"
-         last-update-date="2024-02-15T16:08:36.568+01:00"/>
+         creation-date="2024-04-09T17:11:20.643+02:00"
+         last-update-date="2024-04-09T17:11:20.643+02:00"/>
    <data><!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
       <sturen_medicatiegegevens app="mp-mp93"
                                 shortName="sturen_medicatiegegevens"
@@ -36,19 +36,19 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_aanvullendeinformatiewensen_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <medicatieafspraak_datum_tijd datatype="datetime" value="2022-12-27T08:06:00"/>
+               <registratie_datum_tijd datatype="datetime" value="2022-12-27T08:06:00"/>
                <gebruiksperiode>
                   <start_datum_tijd datatype="datetime" value="2022-12-28T00:00:00"/>
                   <eind_datum_tijd datatype="datetime" value="2023-01-06T23:59:59"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="d585e78" datatype="reference"/>
+                  <zorgverlener value="d842e78" datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="d585e64" datatype="reference"/>
+                  <farmaceutisch_product value="d842e64" datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf 28 dec 2022, tot en met 6 jan 2023, 3 maal per dag 1 stuk, Oraal"/>
+                  <omschrijving value="Vanaf 28 dec 2022, tot en met 6 jan 2023, elke dag om 19:00 1 stuk - let op, tijden exact aanhouden, Oraal"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen"
@@ -66,12 +66,8 @@
                                     codeSystemName="G-Standaardthesaurus basiseenheden"/>
                         </keerdosis>
                         <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="3"/>
-                              </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
-                           </frequentie>
+                           <toedientijd value="19:00:00" datatype="time"/>
+                           <is_flexibel value="false"/>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
@@ -82,7 +78,7 @@
             </medicatieafspraak>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="d585e64">
+            <farmaceutisch_product id="d842e64">
                <product_code code="17205"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -92,7 +88,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="FENETICILLINE 500MG CAPSULE"/>
             </farmaceutisch_product>
-            <zorgverlener id="d585e78">
+            <zorgverlener id="d842e78">
                <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Bertine"/>
@@ -107,10 +103,10 @@
                             codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
-                  <zorgaanbieder value="d585e99" datatype="reference"/>
+                  <zorgaanbieder value="d842e99" datatype="reference"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="d585e99">
+            <zorgaanbieder id="d842e99">
                <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>

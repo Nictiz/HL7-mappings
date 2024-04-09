@@ -1,0 +1,105 @@
+<!--Generated from HL7v3 instance.-->
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2024-04-09T17:11:21.064+02:00"
+         last-update-date="2024-04-09T17:11:21.064+02:00"/>
+   <data><!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
+      <sturen_medicatiegegevens app="mp-mp93"
+                                shortName="sturen_medicatiegegevens"
+                                formName="medicatiegegevens"
+                                transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.376"
+                                transactionEffectiveDate="2022-06-30T00:00:00"
+                                prefix="mp-"
+                                language="nl-NL"
+                                title="mg-mp-smg-tst-MTD-Scenarioset16-v30-16-4"
+                                id="mg-mp-smg-tst-MTD-Scenarioset16-v30-16-4">
+         <patient>
+            <naamgegevens>
+               <voornamen value="J"/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Dezentje"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <adresgegevens>
+               <straat value="Knolweg"/>
+               <huisnummer value="1003"/>
+               <postcode value="9999 ZA"/>
+               <gemeente value="STITSWERD"/>
+               <adres_soort code="PHYS"
+                            codeSystem="2.16.840.1.113883.5.1119"
+                            displayName="Woon-/verblijfadres"/>
+            </adresgegevens>
+            <identificatienummer value="999911077" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime" value="1964-07-25"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_300_afwijkendeToediener"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatietoediening>
+               <identificatie value="MBH_300_afwijkendeToediener_MTD_Mantelzorger"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+               <toedienings_product>
+                  <farmaceutisch_product value="d2510e77" datatype="reference"/>
+               </toedienings_product>
+               <registratie_datum_tijd datatype="datetime" value="2022-12-31T20:00:00"/>
+               <toedienings_datum_tijd datatype="datetime" value="2022-12-31T20:00:00"/>
+               <toegediende_hoeveelheid>
+                  <aantal value="1"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuks"/>
+               </toegediende_hoeveelheid>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="Oraal"/>
+               <relatie_toedieningsafspraak>
+                  <identificatie value="MBH_300_afwijkendeToediener_TA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_toedieningsafspraak>
+               <toediener>
+                  <mantelzorger>
+                     <contactpersoon value="d2510e93" datatype="reference"/>
+                  </mantelzorger>
+               </toediener>
+            </medicatietoediening>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <contactpersoon id="d2510e93">
+               <naamgegevens>
+                  <voornamen value="Toos"/>
+                  <geslachtsnaam>
+                     <voorvoegsels value="de "/>
+                     <achternaam value="Bakker"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <rol code="100001"
+                    codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.23.1"
+                    displayName="Mantelzorger"/>
+            </contactpersoon>
+            <farmaceutisch_product id="d2510e77">
+               <product_code code="1680862"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="MIRTAZAPINE MYLAN TABLET 15MG"/>
+               <product_code code="75221 "
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="MIRTAZAPINE TABLET 15MG"/>
+               <product_code code="93521"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="MIRTAZAPINE TABLET 15MG"/>
+            </farmaceutisch_product>
+         </bouwstenen>
+      </sturen_medicatiegegevens>
+   </data>
+</adaxml>

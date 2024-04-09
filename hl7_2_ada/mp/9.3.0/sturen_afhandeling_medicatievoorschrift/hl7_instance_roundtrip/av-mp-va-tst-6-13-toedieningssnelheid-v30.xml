@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--Generated from ada instance with title: "av-mp-va-tst-6-13-toedieningssnelheid-v30" and id: "av-mp-va-tst-6-13-toedieningssnelheid-v30".-->
-<organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xmlns="urn:hl7-org:v3"
-           xmlns:cda="urn:hl7-org:v3"
-           xmlns:hl7nl="urn:hl7-nl:v3"
-           xmlns:pharm="urn:ihe:pharm:medication"
-           xmlns:sdtc="urn:hl7-org:sdtc"
-           xmlns:hl7="urn:hl7-org:v3"
-           xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd"
+<organizer xmlns="urn:hl7-org:v3"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            classCode="CLUSTER"
-           moodCode="EVN">
+           moodCode="EVN"
+           xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd">
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9420"/>
    <code code="131"
          displayName="Afhandelen voorschrift"
@@ -39,22 +34,22 @@
                displayName="Toedieningsafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 1 jan 2023, tot en met 9 jan 2023, toedieningssnelheid: 0.2 à 0.5 ml per uur, parenteraal</text>
+         <text mediaType="text/plain">Vanaf 1 jan 2023, tot en met 9 jan 2023, toedieningssnelheid: 0.2 à 0.5 per, Intraveneus</text>
          <effectiveTime xsi:type="IVL_TS">
             <low value="20230101000000"/>
             <high value="20230109235959"/>
          </effectiveTime>
-         <routeCode code="10"
+         <routeCode code="5"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
-                    displayName="parenteraal"
+                    displayName="Intraveneus"
                     codeSystemName="G-Standaard Toedieningswegen"/>
          <consumable>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="779288"
+                  <code code="2554771"
                         codeSystem="2.16.840.1.113883.2.4.4.7"
-                        displayName="MORFINEHYDROCHLORIDE 1ML= 5MG EPI CAS 100ML FNA MR"
+                        displayName="MORFINE HCL 3WATER INFVLST 5MG/ML CASS 100ML AHZ"
                         codeSystemName="G-Standaard HPK">
                      <translation code="94692"
                                   codeSystem="2.16.840.1.113883.2.4.4.10"
@@ -83,8 +78,8 @@
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <rateQuantity>
-                  <low value="0.2" unit="ml/h"/>
-                  <high value="0.5" unit="ml/h"/>
+                  <low value="0.2" unit="ml/uur"/>
+                  <high value="0.5" unit="ml/uur"/>
                </rateQuantity>
                <consumable xsi:nil="true"/>
             </substanceAdministration>
@@ -134,9 +129,9 @@
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="779288"
+                  <code code="2554771"
                         codeSystem="2.16.840.1.113883.2.4.4.7"
-                        displayName="MORFINEHYDROCHLORIDE 1ML= 5MG EPI CAS 100ML FNA MR"
+                        displayName="MORFINE HCL 3WATER INFVLST 5MG/ML CASS 100ML AHZ"
                         codeSystemName="G-Standaard HPK">
                      <translation code="94692"
                                   codeSystem="2.16.840.1.113883.2.4.4.10"

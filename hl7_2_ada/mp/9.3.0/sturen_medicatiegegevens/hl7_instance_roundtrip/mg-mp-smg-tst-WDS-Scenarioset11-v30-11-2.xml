@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model phase="#ALL" href="file:/C:/SVN/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_mgb.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xmlns:hl7nl="urn:hl7-nl:v3"
-           xmlns:pharm="urn:ihe:pharm:medication"
-           xmlns:f="http://hl7.org/fhir"
-           xmlns:sdtc="urn:hl7-org:sdtc"
-           xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+<organizer xmlns:pharm="urn:ihe:pharm:medication"
            xmlns="urn:hl7-org:v3"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            classCode="CLUSTER"
            moodCode="EVN"
            xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd">
@@ -39,10 +34,10 @@
                displayName="optimaliseren van dosering van medicatie (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 18 dec 2022, tot en met 27 dec 2022, cyclus van 5 dagen: steeds eerst gedurende 2 dagen 1 maal per dag 2 stuks 's avonds, dan gedurende 2 dagen 1 maal per dag 2 stuks 's avonds, dan gedurende 1 dag 1 maal per dag 0 stuks 's avonds, Oraal</text>
+         <text mediaType="text/plain">Vanaf 18 dec 2022, tot en met 27 dec 2022, cyclus van 5 dagen: steeds eerst gedurende 2 dagen 1 maal per dag 2 stuks, dan gedurende 2 dagen 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 0 stuks, Oraal</text>
          <effectiveTime xsi:type="IVL_TS">
-            <low value="20221218000000"/>
-            <high value="20221227235959"/>
+            <low value="20221218"/>
+            <high value="20221227235900"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -114,9 +109,6 @@
                      </valueDuration>
                   </modifierExtension>
                   <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean value="false"/>
-                     </extension>
                      <boundsDuration>
                         <value value="2"/>
                         <unit value="dag"/>
@@ -126,7 +118,6 @@
                      <frequency value="1"/>
                      <period value="1"/>
                      <periodUnit value="d"/>
-                     <when value="EVE"/>
                   </repeat>
                </effectiveTime>
                <doseQuantity>
@@ -155,9 +146,6 @@
                      </valueDuration>
                   </modifierExtension>
                   <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean value="false"/>
-                     </extension>
                      <boundsDuration>
                         <value value="2"/>
                         <unit value="dag"/>
@@ -167,7 +155,6 @@
                      <frequency value="1"/>
                      <period value="1"/>
                      <periodUnit value="d"/>
-                     <when value="EVE"/>
                   </repeat>
                </effectiveTime>
                <doseQuantity>
@@ -196,9 +183,6 @@
                      </valueDuration>
                   </modifierExtension>
                   <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean value="false"/>
-                     </extension>
                      <boundsDuration>
                         <value value="1"/>
                         <unit value="dag"/>
@@ -208,7 +192,6 @@
                      <frequency value="1"/>
                      <period value="1"/>
                      <periodUnit value="d"/>
-                     <when value="EVE"/>
                   </repeat>
                </effectiveTime>
                <doseQuantity>
