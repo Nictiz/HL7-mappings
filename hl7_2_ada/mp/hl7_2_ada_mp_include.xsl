@@ -163,7 +163,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test=".[@nullFlavor]">
                     <xsl:attribute name="code" select="./@nullFlavor"/>
                     <xsl:attribute name="codeSystem" select="$oidHL7NullFlavor"/>
-                    <xsl:attribute name="displayName" select="$hl7NullFlavorMap[@hl7NullFlavor = @nullFlavor]/@displayName"/>
+                    <xsl:attribute name="displayName" select="$hl7NullFlavorMap[@hl7NullFlavor = current()/@nullFlavor]/@displayName"/>
                     <xsl:for-each select="hl7:originalText">
                         <xsl:attribute name="originalText" select="."/>
                     </xsl:for-each>
