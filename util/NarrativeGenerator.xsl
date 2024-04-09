@@ -7774,7 +7774,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             </xsl:call-template>
                                             <xsl:text>)</xsl:text>
                                         </xsl:when>
-                                        <xsl:when test="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-AsAgreedIndicator']/valueBoolean/@value = 'falsse'">
+                                        <xsl:when test="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-AsAgreedIndicator']/valueBoolean/@value = 'false'">
                                             <xsl:text> (</xsl:text>
                                             <xsl:call-template name="util:getLocalizedString">
                                                 <xsl:with-param name="key">Not Taken As Agreed</xsl:with-param>
