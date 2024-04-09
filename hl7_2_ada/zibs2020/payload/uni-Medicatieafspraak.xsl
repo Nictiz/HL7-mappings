@@ -418,12 +418,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 
     <xd:doc>
-        <xd:desc>Convert hl7:author/hl7:time into ada medicatieafspraak_datum_tijd</xd:desc>
+        <xd:desc>Convert hl7:author/hl7:time into ada registratie_datum_tijd</xd:desc>
     </xd:doc>
     <xsl:template match="hl7:author/hl7:time" mode="uni-Medicatieafspraak">
         <xsl:call-template name="handleTS">
             <xsl:with-param name="in" select="."/>
-            <xsl:with-param name="elemName">medicatieafspraak_datum_tijd</xsl:with-param>
+            <!-- vanaf mp9 3.0-beta.3 naamswijziging -->
+            <xsl:with-param name="elemName">registratie_datum_tijd</xsl:with-param>
             <xsl:with-param name="vagueDate" select="true()"/>
             <xsl:with-param name="datatype">datetime</xsl:with-param>
         </xsl:call-template>

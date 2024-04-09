@@ -48,8 +48,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="vagueDate" select="true()"/>
                         <xsl:with-param name="datatype">datetime</xsl:with-param>
                     </xsl:call-template>
-                </xsl:for-each>
-
+                </xsl:for-each>                
+                
                 <!-- gebruiksperiode -->
                 <xsl:variable name="IVL_TS" select="hl7:effectiveTime[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-org:v3', 'IVL_TS')]"/>
                 <xsl:call-template name="mp92-gebruiksperiode">
@@ -158,15 +158,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:for-each>
 
-                <!-- afspraak_datum_tijd -->
+                <!-- registratie_datum_tijd -->
                 <xsl:for-each select="hl7:author/hl7:time">
                     <xsl:call-template name="handleTS">
                         <xsl:with-param name="in" select="."/>
-                        <xsl:with-param name="elemName">toedieningsafspraak_datum_tijd</xsl:with-param>
+                        <!-- vanaf mp9 3.0-beta.3 naamswijziging -->
+                        <xsl:with-param name="elemName">registratie_datum_tijd</xsl:with-param>
                         <xsl:with-param name="vagueDate" select="true()"/>
                         <xsl:with-param name="datatype">datetime</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
+
 
                 <!-- gebruiksperiode -->
                 <xsl:variable name="IVL_TS" select="hl7:effectiveTime[resolve-QName(xs:string(@xsi:type), .) = QName('urn:hl7-org:v3', 'IVL_TS')]"/>
