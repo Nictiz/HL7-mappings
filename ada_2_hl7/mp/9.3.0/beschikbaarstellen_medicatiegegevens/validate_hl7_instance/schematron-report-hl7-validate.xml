@@ -1,8 +1,8 @@
-<validation-results detection-count="46"
+<validation-results detection-count="52"
                     validation-step-name="schematron-validate-hl7-beschikbaarstellen_medicatiegegevens"
                     href-schema="YATC-internal/ada-2-hl7/env/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_mgb.sch"
                     validation-type="schematron"
-                    timestamp="2024-04-03T14:44:53.39+02:00">
+                    timestamp="2024-04-08T16:37:04.25+02:00">
    <validation detection-count="0"
                href="HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-CONS-Scenarioset12-v30.xml">
       <svrl:schematron-output title="Schematron file for transaction Beschikbaarstellen medicatiegegevens MP9 3.0.0 (2.16.840.1.113883.2.4.3.11.60.20.77.4.374 2022-06-30T00:00:00)"
@@ -690,7 +690,7 @@
                               xmlns:nfu="urn:urn:nictiz-nl:v3/nfu"
                               xmlns:pharm="urn:ihe:pharm:medication"/>
    </validation>
-   <validation detection-count="15"
+   <validation detection-count="21"
                href="HL7-mappings/ada_2_hl7/mp/9.3.0/beschikbaarstellen_medicatiegegevens/hl7_instance_repo/mg-TEST-Scenarioset3-v30.xml">
       <svrl:schematron-output title="Schematron file for transaction Beschikbaarstellen medicatiegegevens MP9 3.0.0 (2.16.840.1.113883.2.4.3.11.60.20.77.4.374 2022-06-30T00:00:00)"
                               xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
@@ -757,41 +757,77 @@
                                  test="matches(@displayName,'[\r\n\t]')">
             <svrl:text>dtr1-15-CD: it looks like there are formatting instructions in attribute @displayName. Please note that this may lead to interoperability problems.</svrl:text>
          </svrl:successful-report>
-         <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[81]/Q{urn:hl7-org:v3}substanceAdministration[1]"
+         <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[80]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}consumable[1]/Q{urn:hl7-org:v3}manufacturedProduct[1]/Q{urn:hl7-org:v3}manufacturedMaterial[1]"
                              role="error"
-                             see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9406-2022-11-01T091730.html"
-                             test="count(cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]]) &gt;= 1">
-            <svrl:text>(MPCDAMedicatietoediening3): element cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]] is mandatory [min 1x].</svrl:text>
+                             see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9361-2021-06-02T154629.html"
+                             test="hl7:code[@codeSystem=data($GstdCodeSystems)][@code] or hl7:name">
+            <svrl:text>(MPCDAMedicationInformationContents2): Geneesmiddel naam (name) verplicht opnemen wanneer de codering *niet* afdoende is om de samenstelling van het geneesmiddel te achterhalen</svrl:text>
          </svrl:failed-assert>
-         <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[82]/Q{urn:hl7-org:v3}substanceAdministration[1]"
+         <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[80]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}consumable[1]/Q{urn:hl7-org:v3}manufacturedProduct[1]/Q{urn:hl7-org:v3}manufacturedMaterial[1]/Q{urn:hl7-org:v3}code[1]"
                              role="error"
-                             see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9406-2022-11-01T091730.html"
-                             test="count(cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]]) &gt;= 1">
-            <svrl:text>(MPCDAMedicatietoediening3): element cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]] is mandatory [min 1x].</svrl:text>
+                             see="https://art-decor.org/mediawiki/index.php?title=DTr1_CD"
+                             test="@codeSystem or not(@code)">
+            <svrl:text>dtr1-2-CD: code requires codeSystem</svrl:text>
          </svrl:failed-assert>
-         <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[80]/Q{urn:hl7-org:v3}substanceAdministration[1]"
+         <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[80]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}consumable[1]/Q{urn:hl7-org:v3}manufacturedProduct[1]/Q{urn:hl7-org:v3}manufacturedMaterial[1]/Q{urn:hl7-org:v3}code[1]"
                              role="error"
-                             see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9415-2022-11-21T070356.html"
-                             test="count(cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]]) &gt;= 1">
-            <svrl:text>(MPCDAToedieningsafspraakSchemaInhoud5): element cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]] is mandatory [min 1x].</svrl:text>
+                             see="https://art-decor.org/mediawiki/index.php?title=DTr1_CD"
+                             test="@codeSystem or not(@codeSystemName)">
+            <svrl:text>dtr1-3-CD: codeSystemName only if codeSystem</svrl:text>
          </svrl:failed-assert>
-         <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[80]/Q{urn:hl7-org:v3}substanceAdministration[1]"
-                             role="error"
-                             see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9416-2022-11-21T074758.html"
-                             test="count(cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]]) &gt;= 1">
-            <svrl:text>(MPCDAToedieningsafspraakSchema6): element cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]] is mandatory [min 1x].</svrl:text>
+         <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[80]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}consumable[1]/Q{urn:hl7-org:v3}manufacturedProduct[1]/Q{urn:hl7-org:v3}manufacturedMaterial[1]/Q{urn:hl7-org:v3}code[1]"
+                             role="warning"
+                             see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9360-2021-06-02T150453.html"
+                             test="../pharm:ingredient">
+            <svrl:text>(MPCDAMedicationCode3): Bij magistraal / eigen bereiding / eigen codering moet er minimaal één - volgens de G-standaard gecodeerd - ingrediënt worden opgenomen.</svrl:text>
          </svrl:failed-assert>
-         <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[79]/Q{urn:hl7-org:v3}substanceAdministration[1]"
+         <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[81]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}consumable[1]/Q{urn:hl7-org:v3}manufacturedProduct[1]/Q{urn:hl7-org:v3}manufacturedMaterial[1]"
                              role="error"
-                             see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9429-2022-11-22T130054.html"
-                             test="count(cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]]) &gt;= 1">
-            <svrl:text>(MPCDAMedicatieAfspraakSchemaInhoud5): element cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]] is mandatory [min 1x].</svrl:text>
+                             see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9361-2021-06-02T154629.html"
+                             test="hl7:code[@codeSystem=data($GstdCodeSystems)][@code] or hl7:name">
+            <svrl:text>(MPCDAMedicationInformationContents2): Geneesmiddel naam (name) verplicht opnemen wanneer de codering *niet* afdoende is om de samenstelling van het geneesmiddel te achterhalen</svrl:text>
          </svrl:failed-assert>
-         <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[79]/Q{urn:hl7-org:v3}substanceAdministration[1]"
+         <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[81]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}consumable[1]/Q{urn:hl7-org:v3}manufacturedProduct[1]/Q{urn:hl7-org:v3}manufacturedMaterial[1]/Q{urn:hl7-org:v3}code[1]"
                              role="error"
-                             see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9430-2022-11-22T132432.html"
-                             test="count(cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]]) &gt;= 1">
-            <svrl:text>(MPCDAMedicatieAfspraakSchema6): element cda:consumable[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]] is mandatory [min 1x].</svrl:text>
+                             see="https://art-decor.org/mediawiki/index.php?title=DTr1_CD"
+                             test="@codeSystem or not(@code)">
+            <svrl:text>dtr1-2-CD: code requires codeSystem</svrl:text>
+         </svrl:failed-assert>
+         <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[81]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}consumable[1]/Q{urn:hl7-org:v3}manufacturedProduct[1]/Q{urn:hl7-org:v3}manufacturedMaterial[1]/Q{urn:hl7-org:v3}code[1]"
+                             role="error"
+                             see="https://art-decor.org/mediawiki/index.php?title=DTr1_CD"
+                             test="@codeSystem or not(@codeSystemName)">
+            <svrl:text>dtr1-3-CD: codeSystemName only if codeSystem</svrl:text>
+         </svrl:failed-assert>
+         <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[81]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}consumable[1]/Q{urn:hl7-org:v3}manufacturedProduct[1]/Q{urn:hl7-org:v3}manufacturedMaterial[1]/Q{urn:hl7-org:v3}code[1]"
+                             role="warning"
+                             see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9360-2021-06-02T150453.html"
+                             test="../pharm:ingredient">
+            <svrl:text>(MPCDAMedicationCode3): Bij magistraal / eigen bereiding / eigen codering moet er minimaal één - volgens de G-standaard gecodeerd - ingrediënt worden opgenomen.</svrl:text>
+         </svrl:failed-assert>
+         <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[82]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}consumable[1]/Q{urn:hl7-org:v3}manufacturedProduct[1]/Q{urn:hl7-org:v3}manufacturedMaterial[1]"
+                             role="error"
+                             see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9361-2021-06-02T154629.html"
+                             test="hl7:code[@codeSystem=data($GstdCodeSystems)][@code] or hl7:name">
+            <svrl:text>(MPCDAMedicationInformationContents2): Geneesmiddel naam (name) verplicht opnemen wanneer de codering *niet* afdoende is om de samenstelling van het geneesmiddel te achterhalen</svrl:text>
+         </svrl:failed-assert>
+         <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[82]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}consumable[1]/Q{urn:hl7-org:v3}manufacturedProduct[1]/Q{urn:hl7-org:v3}manufacturedMaterial[1]/Q{urn:hl7-org:v3}code[1]"
+                             role="error"
+                             see="https://art-decor.org/mediawiki/index.php?title=DTr1_CD"
+                             test="@codeSystem or not(@code)">
+            <svrl:text>dtr1-2-CD: code requires codeSystem</svrl:text>
+         </svrl:failed-assert>
+         <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[82]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}consumable[1]/Q{urn:hl7-org:v3}manufacturedProduct[1]/Q{urn:hl7-org:v3}manufacturedMaterial[1]/Q{urn:hl7-org:v3}code[1]"
+                             role="error"
+                             see="https://art-decor.org/mediawiki/index.php?title=DTr1_CD"
+                             test="@codeSystem or not(@codeSystemName)">
+            <svrl:text>dtr1-3-CD: codeSystemName only if codeSystem</svrl:text>
+         </svrl:failed-assert>
+         <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[82]/Q{urn:hl7-org:v3}substanceAdministration[1]/Q{urn:hl7-org:v3}consumable[1]/Q{urn:hl7-org:v3}manufacturedProduct[1]/Q{urn:hl7-org:v3}manufacturedMaterial[1]/Q{urn:hl7-org:v3}code[1]"
+                             role="warning"
+                             see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9360-2021-06-02T150453.html"
+                             test="../pharm:ingredient">
+            <svrl:text>(MPCDAMedicationCode3): Bij magistraal / eigen bereiding / eigen codering moet er minimaal één - volgens de G-standaard gecodeerd - ingrediënt worden opgenomen.</svrl:text>
          </svrl:failed-assert>
          <svrl:failed-assert location="/Q{urn:hl7-org:v3}organizer[1]/Q{urn:hl7-org:v3}component[67]/Q{urn:hl7-org:v3}supply[1]/Q{urn:hl7-org:v3}author[1]"
                              role="warning"
