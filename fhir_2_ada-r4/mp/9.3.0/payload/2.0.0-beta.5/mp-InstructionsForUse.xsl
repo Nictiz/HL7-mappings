@@ -365,18 +365,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Template to convert f:asNeededCodeableConcept to criterium with code and omschrijving children</xd:desc>
+        <xd:desc>Template to convert f:asNeededCodeableConcept to criterium with code</xd:desc>
     </xd:doc>
     <xsl:template match="f:asNeededCodeableConcept" mode="mp-InstructionsForUse">
-        <criterium>
+
             <xsl:call-template name="CodeableConcept-to-code">
                 <xsl:with-param name="adaElementName">criterium</xsl:with-param>
             </xsl:call-template>
-            <!-- criterium heeft een ./omschrijving als uitzondering. -->
-            <xsl:if test="f:text/@value">
-                <omschrijving value="{f:text/@value}"/>
-            </xsl:if>
-        </criterium>
+        
     </xsl:template>
 
     <xd:doc>
