@@ -104,7 +104,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	
 	
 	
-	<!--	<xd:doc>
+	<xd:doc>
 		<xd:desc>Template to resolve f:modifierExtension ext-Medication-stop-type.</xd:desc>
 	</xd:doc>
 	<xsl:template match="f:modifierExtension[@url = $extStoptype]" mode="mp-MedicationAgreement">
@@ -120,7 +120,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:with-param name="adaElementName" select="'medicatieafspraak_stop_type'"/>
         </xsl:call-template>
     </xsl:template>
-    -->
+    
 	<xd:doc>
 		<xd:desc>Template to resolve priorPrescription.</xd:desc>
 	</xd:doc>
