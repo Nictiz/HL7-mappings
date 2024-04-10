@@ -173,6 +173,7 @@ WisselendDoseerschema in beschikbaarstellen_medicatiegegevens_2_ada.xsl boven me
 		<xsl:call-template name="CodeableConcept-to-code">
 			<xsl:with-param name="in" select="."/>
 			<xsl:with-param name="adaElementName" select="'reden_wijzigen_of_staken'"/>
+			<xsl:with-param name="originalText" select="./f:text/@value"/>
 		</xsl:call-template>
 	</xsl:template>
 
