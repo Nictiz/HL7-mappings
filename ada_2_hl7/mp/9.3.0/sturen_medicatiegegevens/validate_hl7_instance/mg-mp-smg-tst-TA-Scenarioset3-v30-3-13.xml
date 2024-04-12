@@ -178,33 +178,15 @@
    <svrl:fired-rule context="*[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]]/hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]/hl7:manufacturedMaterial"
                     id="d36078e112-false-d36097e0"
                     fpi="RULC-1"/>
-   <svrl:failed-assert test="hl7:code[@codeSystem=data($GstdCodeSystems)][@code] or hl7:name"
-                       see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9361-2021-06-02T154629.html"
-                       role="error"
-                       location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:consumable[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedMaterial[namespace-uri()='urn:hl7-org:v3'][1]">
-      <svrl:text>(MPCDAMedicationInformationContents2): Geneesmiddel naam (name) verplicht opnemen wanneer de codering *niet* afdoende is om de samenstelling van het geneesmiddel te achterhalen</svrl:text>
-   </svrl:failed-assert>
-   <svrl:fired-rule context="*[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]]/hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]/hl7:manufacturedMaterial/hl7:code[not(@codeSystem=('2.16.840.1.113883.2.4.4.1.750','2.16.840.1.113883.2.4.4.1.725','2.16.840.1.113883.2.4.4.1','2.16.840.1.113883.2.4.4.10','2.16.840.1.113883.2.4.4.7','2.16.840.1.113883.2.4.4.8', '2.16.840.1.113883.6.73', '1.3.160'))]"
-                    id="d36176e100-false-d36239e0"
+   <svrl:fired-rule context="*[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]]/hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]/hl7:manufacturedMaterial/hl7:code[@codeSystem=('2.16.840.1.113883.2.4.4.1','2.16.840.1.113883.2.4.4.10','2.16.840.1.113883.2.4.4.7','2.16.840.1.113883.2.4.4.8')]"
+                    id="d36176e40-false-d36185e0"
                     fpi="RULC-1"/>
-   <svrl:failed-assert test="@codeSystem or not(@code)"
-                       see="https://art-decor.org/mediawiki/index.php?title=DTr1_CD"
-                       role="error"
-                       location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:consumable[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedMaterial[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
-      <svrl:text>dtr1-2-CD: code requires codeSystem</svrl:text>
-   </svrl:failed-assert>
-   <svrl:failed-assert test="@codeSystem or not(@codeSystemName)"
-                       see="https://art-decor.org/mediawiki/index.php?title=DTr1_CD"
-                       role="error"
-                       location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:consumable[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedMaterial[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
-      <svrl:text>dtr1-3-CD: codeSystemName only if codeSystem</svrl:text>
-   </svrl:failed-assert>
-   <svrl:failed-assert test="../pharm:ingredient"
-                       see="http://decor.nictiz.nl/pub/medicatieproces/mp-html-develop/tmp-2.16.840.1.113883.2.4.3.11.60.20.77.10.9360-2021-06-02T150453.html"
-                       role="warning"
-                       location="/*:organizer[namespace-uri()='urn:hl7-org:v3'][1]/*:component[namespace-uri()='urn:hl7-org:v3'][1]/*:substanceAdministration[namespace-uri()='urn:hl7-org:v3'][1]/*:consumable[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedProduct[namespace-uri()='urn:hl7-org:v3'][1]/*:manufacturedMaterial[namespace-uri()='urn:hl7-org:v3'][1]/*:code[namespace-uri()='urn:hl7-org:v3'][1]">
-      <svrl:text>(MPCDAMedicationCode3): Bij magistraal / eigen bereiding / eigen codering moet er minimaal één - volgens de G-standaard gecodeerd - ingrediënt worden opgenomen.</svrl:text>
-   </svrl:failed-assert>
+   <svrl:fired-rule context="*[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]]/hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]/hl7:manufacturedMaterial/hl7:code[@codeSystem=('2.16.840.1.113883.2.4.4.1','2.16.840.1.113883.2.4.4.10','2.16.840.1.113883.2.4.4.7','2.16.840.1.113883.2.4.4.8')]/hl7:translation"
+                    id="d36176e63-false-d36228e0"
+                    fpi="RULC-1"/>
+   <svrl:fired-rule context="*[hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]]/hl7:manufacturedProduct[hl7:templateId[@root = '2.16.840.1.113883.2.4.3.11.60.20.77.10.9362']]/hl7:manufacturedMaterial/hl7:code[@codeSystem=('2.16.840.1.113883.2.4.4.1','2.16.840.1.113883.2.4.4.10','2.16.840.1.113883.2.4.4.7','2.16.840.1.113883.2.4.4.8')]/hl7:translation"
+                    id="d36176e63-false-d36228e0"
+                    fpi="RULC-1"/>
    <svrl:active-pattern document="file:/C:/SourceTree/GitHub/Nictiz/HL7-mappings/ada_2_hl7/mp/9.3.0/sturen_medicatiegegevens/hl7_instance/mg-mp-smg-tst-TA-Scenarioset3-v30-3-13.xml"
                         id="template-2.16.840.1.113883.2.4.3.11.60.20.77.10.9363-2021-06-02T155855"
                         name="MP CDA Medication Information Proposal Statement"/>
