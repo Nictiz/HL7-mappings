@@ -28,7 +28,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:if>
             <!-- product_code -->
             <xsl:apply-templates select="f:code" mode="#current"/>
-            <xsl:if test="f:extension | f:form | f:ingredient or (f:code/f:extension/@url = $urlExtHL7NullFlavor and (f:extension | f:form | f:ingredient))">
+            <xsl:if test="f:extension | f:form | f:ingredient 
+                or (f:code/f:coding/f:system/@value = 'http://terminology.hl7.org/CodeSystem/v3-NullFlavor' and f:code/f:text) 
+                or (f:code/f:extension/@url = $urlExtHL7NullFlavor and (f:extension | f:form | f:ingredient))">
                 <!-- product_specificatie -->
                 <product_specificatie>
                     <!-- product_naam -->
