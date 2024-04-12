@@ -83,6 +83,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="functionele_of_mentale_status" resource="Observation" profile="nl-core-FunctionalOrMentalStatus"/>
         <nm:map ada="glasgow_coma_scale" resource="Observation" profile="nl-core-GlasgowComaScale"/>
         <nm:map ada="hartfrequentie" resource="Observation" profile="nl-core-HeartRate"/>
+        <nm:map ada="hartslag_regelmatigheid" resource="Observation" profile="nl-core-HeartRate.HeartbeatRegularity"/>
+        <nm:map ada="interpretatie_frequentie" resource="Observation" profile="nl-core-HeartRate.InterpretationHeartRate"/>
         <nm:map ada="huidaandoening" resource="Condition" profile="nl-core-SkinDisorder"/>
         <nm:map ada="hulp_van_anderen" resource="CarePlan" profile="nl-core-HelpFromOthers"/>
         <nm:map ada="juridische_situatie" resource="Condition" profile="nl-core-LegalSituation-LegalStatus"/>
@@ -273,6 +275,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 $in//zien_hulpmiddel/medisch_hulpmiddel,
                 $in//product[parent::medisch_hulpmiddel],
                 $in//visueel_resultaat[parent::tekst_uitslag],
+                $in//hartslag_regelmatigheid[parent::hartfrequentie],
+                $in//interpretatie_frequentie[parent::hartfrequentie],
                 $in//soepregel[parent::soepverslag],
                 $in//monster[parent::laboratorium_uitslag],
               $in//bron_monster[parent::monster],

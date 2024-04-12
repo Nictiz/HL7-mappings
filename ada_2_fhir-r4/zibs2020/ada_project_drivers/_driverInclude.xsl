@@ -394,6 +394,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="$in" mode="nl-core-HeartRate">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
+                <xsl:for-each select="hartslag_regelmatigheid">
+                    <xsl:call-template name="nl-core-HeartRate.HeartbeatRegularity">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="interpretatie_frequentie">
+                    <xsl:call-template name="nl-core-HeartRate.InterpretationHeartRate">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
             </xsl:when>
             <xsl:when test="$localName = 'hulp_van_anderen'">
                 <xsl:apply-templates select="$in" mode="nl-core-HelpFromOthers">
