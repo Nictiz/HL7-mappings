@@ -1,0 +1,370 @@
+<!--Generated from HL7v3 instance.-->
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2024-04-12T14:51:25.793+02:00"
+         last-update-date="2024-04-12T14:51:25.793+02:00"/>
+   <data><!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
+      <beschikbaarstellen_medicatiegegevens app="mp-mp93"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.374"
+                                            transactionEffectiveDate="2022-06-30T00:00:00"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="mg-KWAL-script3-v30"
+                                            id="mg-KWAL-script3-v30">
+         <patient>
+            <naamgegevens>
+               <initialen value="H."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Kerkhoff"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900687" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime" value="1963-11-09"/>
+            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_300_script3" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak>
+               <identificatie value="MBH_300_script3_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <registratie_datum_tijd datatype="datetime" value="2022-12-27T08:15:00"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime" value="2022-12-27T00:00:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2023-01-16T23:59:00"/>
+               </gebruiksperiode>
+               <voorschrijver>
+                  <zorgverlener value="d1137e78" datatype="reference"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product value="d1137e64" datatype="reference"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf 27 dec 2022, tot en met 16 jan 2023, Bij pijn 1 à 2 mg , maximaal 3 mg/dosis per dag, 1-2 doses onder de tong, na 5-10 min herhalen, max. 3 opeenvolgende doses. . Bij onvoldoende effect na in totaal 3 doses direct contact opnemen met een arts., oromucosaal"/>
+                  <toedieningsweg code="34"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="oromucosaal"/>
+                  <aanvullende_instructie code="OTH"
+                                          codeSystem="2.16.840.1.113883.5.1008"
+                                          displayName="overig"
+                                          originalText="1-2 doses onder de tong, na 5-10 min herhalen, max. 3 opeenvolgende doses. . Bij onvoldoende effect na in totaal 3 doses direct contact opnemen met een arts."/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <minimum_waarde value="1"/>
+                              <maximum_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="303"
+                                    displayName="mg"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <zo_nodig>
+                           <criterium code="1028"
+                                      codeSystem="2.16.840.1.113883.2.4.4.5"
+                                      displayName="Bij pijn"/>
+                           <maximale_dosering>
+                              <aantal value="3"/>
+                              <eenheid code="303"
+                                       displayName="mg/dosis"
+                                       codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                       codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </maximale_dosering>
+                        </zo_nodig>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <aanvullende_informatie code="3"
+                                       codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050"
+                                       displayName="Bewust afwijkende toedieningsweg"/>
+            </medicatieafspraak>
+            <verstrekkingsverzoek>
+               <identificatie value="MBH_300_script3_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <verstrekkingsverzoek_datum_tijd datatype="datetime" value="2022-12-27T08:15:00"/>
+               <auteur>
+                  <zorgverlener value="d1137e78" datatype="reference"/>
+               </auteur>
+               <te_verstrekken_geneesmiddel>
+                  <farmaceutisch_product value="d1137e64" datatype="reference"/>
+               </te_verstrekken_geneesmiddel>
+               <te_verstrekken_hoeveelheid>
+                  <aantal value="1"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <beoogd_verstrekker>
+                  <zorgaanbieder value="d1137e247" datatype="reference"/>
+               </beoogd_verstrekker>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_script3_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak>
+               <identificatie value="MBH_300_script3_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <registratie_datum_tijd datatype="datetime" value="2022-12-27T09:15:00"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime" value="2022-12-27T00:00:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2023-01-16T23:59:00"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder value="d1137e247" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d1137e366" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf 27 dec 2022, tot en met 16 jan 2023, Bij pijn 1 à 2 spray, 1-2 doses onder de tong, na 5-10 min herhalen, max. 3 opeenvolgende doses. . Bij onvoldoende effect na in totaal 3 doses direct contact opnemen met een arts., oromucosaal"/>
+                  <toedieningsweg code="34"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="oromucosaal"/>
+                  <aanvullende_instructie code="OTH"
+                                          codeSystem="2.16.840.1.113883.5.1008"
+                                          displayName="overig"
+                                          originalText="1-2 doses onder de tong, na 5-10 min herhalen, max. 3 opeenvolgende doses. . Bij onvoldoende effect na in totaal 3 doses direct contact opnemen met een arts."/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <minimum_waarde value="1"/>
+                              <maximum_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="303"
+                                    displayName="Spray"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <zo_nodig>
+                           <criterium code="1028"
+                                      codeSystem="2.16.840.1.113883.2.4.4.5"
+                                      displayName="Bij pijn"/>
+                        </zo_nodig>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_script3_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+            <medicatieverstrekking>
+               <identificatie value="MBH_300_script3_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2022-12-27T09:15:00"/>
+               <verstrekker>
+                  <zorgaanbieder value="d1137e247" datatype="reference"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid>
+                  <aantal value="1"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product value="d1137e366" datatype="reference"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek>
+                  <identificatie value="MBH_300_script3_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+            <medicatiegebruik>
+               <identificatie value="MBH_300_script3_MGB"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <medicatiegebruik_datum_tijd datatype="datetime" value="2023-01-02T09:15:00"/>
+               <gebruik_indicator value="true"/>
+               <volgens_afspraak_indicator value="true"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime" value="2022-12-31T00:00:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2022-12-31T23:59:59"/>
+               </gebruiksperiode>
+               <gebruiksproduct>
+                  <farmaceutisch_product value="d1137e366" datatype="reference"/>
+               </gebruiksproduct>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf 31 dec 2022, tot en met 31 dec 2022, Bij pijn 2 mg/dosis , maximaal 3 mg/dosis per dag, 1-2 doses onder de tong, na 5-10 min herhalen, max. 3 opeenvolgende doses. Bij onvoldoende effect na in totaal 3 doses direct contact opnemen met een arts., oromucosaal"/>
+                  <toedieningsweg code="34"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="oromucosaal"/>
+                  <aanvullende_instructie code="OTH"
+                                          codeSystem="2.16.840.1.113883.5.1008"
+                                          displayName="overig"
+                                          originalText="1-2 doses onder de tong, na 5-10 min herhalen, max. 3 opeenvolgende doses. Bij onvoldoende effect na in totaal 3 doses direct contact opnemen met een arts."/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="303"
+                                    displayName="mg/dosis"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <zo_nodig>
+                           <criterium code="1028"
+                                      codeSystem="2.16.840.1.113883.2.4.4.5"
+                                      displayName="Bij pijn"/>
+                           <maximale_dosering>
+                              <aantal value="3"/>
+                              <eenheid code="303"
+                                       displayName="mg/dosis"
+                                       codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                       codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </maximale_dosering>
+                        </zo_nodig>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_script3_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+               <voorschrijver>
+                  <zorgverlener value="d1137e78" datatype="reference"/>
+               </voorschrijver>
+               <informant>
+                  <informant_is_patient value="true"/>
+               </informant>
+               <auteur>
+                  <auteur_is_zorgverlener>
+                     <zorgverlener value="d1137e78" datatype="reference"/>
+                  </auteur_is_zorgverlener>
+               </auteur>
+            </medicatiegebruik>
+            <medicatietoediening>
+               <identificatie value="MBH_300_script3_MTD"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+               <toedienings_product>
+                  <farmaceutisch_product value="d1137e366" datatype="reference"/>
+               </toedienings_product>
+               <registratie_datum_tijd datatype="datetime" value="2022-12-27T09:20:00"/>
+               <toedienings_datum_tijd datatype="datetime" value="2022-12-27T09:20:00"/>
+               <toegediende_hoeveelheid>
+                  <aantal value="1"/>
+                  <eenheid code="303"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="mg"/>
+               </toegediende_hoeveelheid>
+               <toedieningsweg code="34"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="oromucosaal"/>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_script3_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+               <toediener>
+                  <zorgverlener>
+                     <zorgverlener value="d1137e865" datatype="reference"/>
+                  </zorgverlener>
+               </toediener>
+            </medicatietoediening>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="d1137e64">
+               <product_code code="72206"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="NITROGLYCERINE SPRAY SUBLING. 0,4MG/DO"/>
+               <product_code code="119431"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="NITROGLYCERINE SPRAY SUBLING. 0,4MG/DO"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="d1137e366">
+               <product_code code="1822454"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="NITROGLYCERINE SDZ OROMUC SPRAY "/>
+               <product_code code="72206"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="NITROGLYCERINE SPRAY SUBLING. 0,4MG/DO "/>
+               <product_code code="119431"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="NITROGLYCERINE SPRAY SUBLING. 0,4MG/DO"/>
+            </farmaceutisch_product>
+            <zorgverlener id="d1137e78">
+               <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Bertine"/>
+                  <geslachtsnaam>
+                     <voorvoegsels value="van "/>
+                     <achternaam value="Doorn"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder value="d1137e99" datatype="reference"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgverlener id="d1137e865">
+               <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Bertine"/>
+                  <naamgebruik code="NL1"
+                               codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                               displayName="Eigen geslachtsnaam"/>
+                  <geslachtsnaam>
+                     <voorvoegsels value="van "/>
+                     <achternaam value="Doorn"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder value="d1137e99" datatype="reference"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="d1137e99">
+               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="1"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+            <zorgaanbieder id="d1137e247">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

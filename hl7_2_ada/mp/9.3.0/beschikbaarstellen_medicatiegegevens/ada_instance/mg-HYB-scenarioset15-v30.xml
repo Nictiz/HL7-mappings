@@ -4,8 +4,8 @@
    <meta status="new"
          created-by="generated"
          last-update-by="generated"
-         creation-date="2024-04-09T17:11:19.204+02:00"
-         last-update-date="2024-04-09T17:11:19.204+02:00"/>
+         creation-date="2024-04-12T14:51:07.516+02:00"
+         last-update-date="2024-04-12T14:51:07.516+02:00"/>
    <data><!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
       <beschikbaarstellen_medicatiegegevens app="mp-mp93"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -116,7 +116,7 @@
                            displayName="Stuk"/>
                </te_verstrekken_hoeveelheid>
                <beoogd_verstrekker>
-                  <zorgaanbieder value="d632e244" datatype="reference"/>
+                  <zorgaanbieder value="d632e259" datatype="reference"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_hybride_voorschrift_MA"
@@ -134,10 +134,10 @@
                   <eind_datum_tijd datatype="datetime" nullFlavor="NI"/>
                </gebruiksperiode>
                <verstrekker>
-                  <zorgaanbieder value="d632e244" datatype="reference"/>
+                  <zorgaanbieder value="d632e259" datatype="reference"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
-                  <farmaceutisch_product value="d632e350" datatype="reference"/>
+                  <farmaceutisch_product value="d632e380" datatype="reference"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
                   <omschrijving value="Vanaf 18 okt 2017, 2 maal per dag 1 stuk, Oraal"/>
@@ -185,11 +185,19 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="TRIMETHOPRIM TABLET 300MG"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="d632e350">
+            <farmaceutisch_product id="d632e380">
                <product_code code="1089838"
-                             codeSystem=""
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
                              displayName="TRIMETHOPRIM CF TABLET 300MG"/>
+               <product_code code="16020"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="TRIMETHOPRIM TABLET "/>
+               <product_code code="39136"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="TRIMETHOPRIM TABLET 300MG"/>
             </farmaceutisch_product>
             <zorgverlener id="d632e99">
                <zorgverlener_identificatienummer value="000004449" root="2.16.528.1.1007.3.1"/>
@@ -216,8 +224,17 @@
                                      codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
                                      codeSystemVersion="2020-10-23T00:00:00"
                                      displayName="Huisartsen, niet nader gespecificeerd"/>
+               <adresgegevens>
+                  <straat value="Rechteweg"/>
+                  <huisnummer value="1000"/>
+                  <postcode value="9991 ZZ"/>
+                  <woonplaats value="Ons Stad"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="d632e244">
+            <zorgaanbieder id="d632e259">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
             </zorgaanbieder>

@@ -21,8 +21,8 @@
         <antcall target="setup_sub_schemas">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
             <param name="schema.string" value="*${usecase.mg}.xsd"/>
-        </antcall>        
-        
+        </antcall>
+
         <!-- sturen_medicatiegegevens -->
         <antcall target="setup_sub_schemas">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mg.st}"/>
@@ -84,7 +84,7 @@
         <!-- sturen_medicatiegegevens -->
         <echo/>
         <echo>Setup ${build.dir}/${usecase.mg.st} containing refreshed hl7 instances</echo>
-        
+
         <mkdir dir="${build.dir}/${usecase.mg.st}/hl7_instance"/>
         <delete>
             <fileset dir="${build.dir}/${usecase.mg.st}/hl7_instance" includes="*.xml"/>
@@ -94,8 +94,8 @@
                 <include name="*.xml"/>
             </fileset>
         </copy>
-        
-        
+
+
         <!-- sturen_medicatievoorschrift -->
         <echo/>
         <echo>Setup ${build.dir}/${usecase.mv} containing refreshed hl7 instances</echo>
@@ -191,7 +191,7 @@
             <param name="xsl.in" value="hl7_instance"/>
             <param name="xsl.out" value="ada_instance"/>
         </antcall>
-        
+
         <!-- convert sturen_medicatiegegevens -->
         <antcall target="convert_hl7_2_ada_sub_930">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mg.st}"/>
@@ -216,21 +216,21 @@
             <param name="xsl.out" value="ada_instance"/>
         </antcall>
 
-             <!-- convert sturen_voorstel_medicatieafspraak -->
+        <!-- convert sturen_voorstel_medicatieafspraak -->
         <antcall target="convert_hl7_2_ada_sub_930">
             <param name="sub.build.dir" value="${build.dir}/${usecase.vma}"/>
             <param name="xsl.name" value="payload/${usecase.vma}_hl7_2_ada.xsl"/>
             <param name="xsl.in" value="hl7_instance"/>
             <param name="xsl.out" value="ada_instance"/>
         </antcall>
-        
+
         <!-- convert sturen_antwoord_voorstel_medicatieafspraak -->
         <antcall target="convert_hl7_2_ada_sub_930">
             <param name="sub.build.dir" value="${build.dir}/${usecase.avma}"/>
             <param name="xsl.name" value="payload/${usecase.avma}_hl7_2_ada.xsl"/>
             <param name="xsl.in" value="hl7_instance"/>
             <param name="xsl.out" value="ada_instance"/>
-        </antcall>  
+        </antcall>
 
         <!-- convert sturen_voorstel_verstrekkingsverzoek -->
         <antcall target="convert_hl7_2_ada_sub_930">
@@ -239,15 +239,15 @@
             <param name="xsl.in" value="hl7_instance"/>
             <param name="xsl.out" value="ada_instance"/>
         </antcall>
-        
+
         <!-- convert sturen_antwoord_voorstel_verstrekkingsverzoek -->
         <antcall target="convert_hl7_2_ada_sub_930">
             <param name="sub.build.dir" value="${build.dir}/${usecase.avvv}"/>
             <param name="xsl.name" value="payload/${usecase.avvv}_hl7_2_ada.xsl"/>
             <param name="xsl.in" value="hl7_instance"/>
             <param name="xsl.out" value="ada_instance"/>
-        </antcall>        
- 
+        </antcall>
+
         <!-- convert 6.12_2_beschikbaarstellen_medicatiegegevens -->
         <antcall target="convert_hl7_2_ada_sub_930">
             <param name="sub.build.dir" value="${build.dir}/6.12_2_beschikbaarstellen_medicatiegegevens"/>
@@ -255,8 +255,77 @@
             <param name="xsl.in" value="hl7_instance"/>
             <param name="xsl.out" value="ada_instance"/>
         </antcall>
- 
+
     </target>
+
+    <target name="double_roundtrip_hl7_2_ada_930">
+        
+        <!-- convert beschikbaarstellen_medicatiegegevens -->
+        <antcall target="convert_hl7_2_ada_sub_930">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
+            <param name="xsl.name" value="payload/${usecase.mg}_hl7_2_ada.xsl"/>
+            <param name="xsl.in" value="hl7_instance_roundtrip"/>
+            <param name="xsl.out" value="ada_instance_roundtrip"/>
+        </antcall>
+        
+        <!-- convert sturen_medicatiegegevens -->
+        <antcall target="convert_hl7_2_ada_sub_930">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mg.st}"/>
+            <param name="xsl.name" value="payload/${usecase.mg.st}_hl7_2_ada.xsl"/>
+            <param name="xsl.in" value="hl7_instance_roundtrip"/>
+            <param name="xsl.out" value="ada_instance_roundtrip"/>
+        </antcall>
+        
+        <!-- convert medicatievoorschrift -->
+        <antcall target="convert_hl7_2_ada_sub_930">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.mv}"/>
+            <param name="xsl.name" value="payload/${usecase.mv}_hl7_2_ada.xsl"/>
+            <param name="xsl.in" value="hl7_instance_roundtrip"/>
+            <param name="xsl.out" value="ada_instance_roundtrip"/>
+        </antcall>
+        
+        <!-- convert sturen_afhandeling_medicatievoorschrift -->
+        <antcall target="convert_hl7_2_ada_sub_930">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.av}"/>
+            <param name="xsl.name" value="payload/${usecase.av}_hl7_2_ada.xsl"/>
+            <param name="xsl.in" value="hl7_instance_roundtrip"/>
+            <param name="xsl.out" value="ada_instance_roundtrip"/>
+        </antcall>
+        
+        <!-- convert sturen_voorstel_medicatieafspraak -->
+        <antcall target="convert_hl7_2_ada_sub_930">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.vma}"/>
+            <param name="xsl.name" value="payload/${usecase.vma}_hl7_2_ada.xsl"/>
+            <param name="xsl.in" value="hl7_instance_roundtrip"/>
+            <param name="xsl.out" value="ada_instance_roundtrip"/>
+        </antcall>
+        
+        <!-- convert sturen_antwoord_voorstel_medicatieafspraak -->
+        <antcall target="convert_hl7_2_ada_sub_930">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.avma}"/>
+            <param name="xsl.name" value="payload/${usecase.avma}_hl7_2_ada.xsl"/>
+            <param name="xsl.in" value="hl7_instance_roundtrip"/>
+            <param name="xsl.out" value="ada_instance_roundtrip"/>
+        </antcall>
+        
+        <!-- convert sturen_voorstel_verstrekkingsverzoek -->
+        <antcall target="convert_hl7_2_ada_sub_930">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.vvv}"/>
+            <param name="xsl.name" value="payload/${usecase.vvv}_hl7_2_ada.xsl"/>
+            <param name="xsl.in" value="hl7_instance_roundtrip"/>
+            <param name="xsl.out" value="ada_instance_roundtrip"/>
+        </antcall>
+        
+        <!-- convert sturen_antwoord_voorstel_verstrekkingsverzoek -->
+        <antcall target="convert_hl7_2_ada_sub_930">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.avvv}"/>
+            <param name="xsl.name" value="payload/${usecase.avvv}_hl7_2_ada.xsl"/>
+            <param name="xsl.in" value="hl7_instance_roundtrip"/>
+            <param name="xsl.out" value="ada_instance_roundtrip"/>
+        </antcall>
+        
+    </target>
+    
 
     <target name="convert_hl7_2_ada_sub_930">
 
@@ -278,16 +347,19 @@
             <echo>${echo.label} ${xsl.hl72ada} input dir ${xsl.input}</echo>
             <xslt force="true" style="${xsl.hl72ada}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
                 <fileset refid="inputfilesMP"/>
+                <!-- hl7_2_ada param -->
                 <param name="outputSchemaRef" expression="${output.ada.schemaref}" if="output.ada.schemaref"/>
-                <param name="deduplicateAdaBouwstenen" expression="true"/>
-                <param name="addAdaConceptId" expression="true"/>
+                <param name="deduplicateAdaBouwstenen" expression="true" type="BOOLEAN"/>
+                <param name="addAdaConceptId" expression="true" type="BOOLEAN"/>
+                <!-- ada_2_hl7 param -->
+                <param name="schematronRef" expression="false"/>
                 <factory name="${xsl.saxon.class}"/>
                 <classpath location="${xsl.saxon}"/>
             </xslt>
         </sequential>
     </target>
 
-     
+
 
     <target name="roundtrip_hl7_2_ada_930">
 
@@ -296,6 +368,9 @@
 
         <!-- roundtrip -->
         <antcall target="roundtrip_ada_2_hl7_930_sub"/>
+        
+        <!-- double roundtrip ada again -->
+        <antcall target="double_roundtrip_hl7_2_ada_930"/>
 
     </target>
 
@@ -317,8 +392,8 @@
             <param name="xsl.out" value="hl7_instance_roundtrip"/>
         </antcall>
 
-             <!-- let's start the roundtrip for beschikbaarstellen_medicatiegegevens, so ada 2 hl7, use hl7_2_ada sub, but with an ada_2_hl7 xsl! -->
-        <antcall target="convert_hl7_2_ada_sub">
+        <!-- let's start the roundtrip for beschikbaarstellen_medicatiegegevens, so ada 2 hl7, use hl7_2_ada sub, but with an ada_2_hl7 xsl! -->
+        <antcall target="convert_hl7_2_ada_sub_930">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mg}"/>
             <param name="xsl.name" value="../../../../../Yatc-internal/ada-2-hl7/env/mp/${is.version}/${usecase.mg}/payload/${usecase.mg}_org.xsl"/>
             <param name="xsl.in" value="ada_instance"/>
@@ -326,53 +401,53 @@
         </antcall>
 
         <!-- let's start the roundtrip for sturen_medicatiegegevens, so ada 2 hl7, use hl7_2_ada sub, but with an ada_2_hl7 xsl! -->
-        <antcall target="convert_hl7_2_ada_sub">
+        <antcall target="convert_hl7_2_ada_sub_930">
             <param name="sub.build.dir" value="${build.dir}/${usecase.mg.st}"/>
             <param name="xsl.name" value="../../../../../Yatc-internal/ada-2-hl7/env/mp/${is.version}/${usecase.mg.st}/payload/${usecase.mg.st}_org.xsl"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="hl7_instance_roundtrip"/>
         </antcall>
-        
-          <!-- let's start the roundtrip for sturen_voorstel_medicatieafspraak, so ada 2 hl7, use hl7_2_ada sub, but with an ada_2_hl7 xsl! -->
-        <antcall target="convert_hl7_2_ada_sub">
+
+        <!-- let's start the roundtrip for sturen_voorstel_medicatieafspraak, so ada 2 hl7, use hl7_2_ada sub, but with an ada_2_hl7 xsl! -->
+        <antcall target="convert_hl7_2_ada_sub_930">
             <param name="sub.build.dir" value="${build.dir}/${usecase.vma}"/>
             <param name="xsl.name" value="../../../../../Yatc-internal/ada-2-hl7/env/mp/${is.version}/${usecase.vma}/payload/${usecase.vma}_org.xsl"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="hl7_instance_roundtrip"/>
         </antcall>
-        
+
         <!-- let's start the roundtrip for sturen_antwoord_voorstel_medicatieafspraak, so ada 2 hl7, use hl7_2_ada sub, but with an ada_2_hl7 xsl! -->
-        <antcall target="convert_hl7_2_ada_sub">
+        <antcall target="convert_hl7_2_ada_sub_930">
             <param name="sub.build.dir" value="${build.dir}/${usecase.avma}"/>
             <param name="xsl.name" value="../../../../../Yatc-internal/ada-2-hl7/env/mp/${is.version}/${usecase.avma}/payload/${usecase.avma}_org.xsl"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="hl7_instance_roundtrip"/>
         </antcall>
-        
+
         <!-- let's start the roundtrip for sturen_voorstel_verstrekkingsverzoek, so ada 2 hl7, use hl7_2_ada sub, but with an ada_2_hl7 xsl! -->
-        <antcall target="convert_hl7_2_ada_sub">
+        <antcall target="convert_hl7_2_ada_sub_930">
             <param name="sub.build.dir" value="${build.dir}/${usecase.vvv}"/>
             <param name="xsl.name" value="../../../../../Yatc-internal/ada-2-hl7/env/mp/${is.version}/${usecase.vvv}/payload/${usecase.vvv}_org.xsl"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="hl7_instance_roundtrip"/>
         </antcall>
-        
+
         <!-- let's start the roundtrip for sturen_antwoord_voorstel_verstrekkingsverzoek, so ada 2 hl7, use hl7_2_ada sub, but with an ada_2_hl7 xsl! -->
-        <antcall target="convert_hl7_2_ada_sub">
+        <antcall target="convert_hl7_2_ada_sub_930">
             <param name="sub.build.dir" value="${build.dir}/${usecase.avvv}"/>
             <param name="xsl.name" value="../../../../../Yatc-internal/ada-2-hl7/env/mp/${is.version}/${usecase.avvv}/payload/${usecase.avvv}_org.xsl"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="hl7_instance_roundtrip"/>
         </antcall>
-        
+
         <!-- let's start the roundtrip for 6.12_2_beschikbaarstellen_medicatiegegevens, so ada 2 hl7, use hl7_2_ada sub, but with an ada_2_hl7 xsl for usecase.mg! -->
-        <antcall target="convert_hl7_2_ada_sub">
+        <antcall target="convert_hl7_2_ada_sub_930">
             <param name="sub.build.dir" value="${build.dir}/6.12_2_beschikbaarstellen_medicatiegegevens"/>
             <param name="xsl.name" value="../../../../../Yatc-internal/ada-2-hl7/env/mp/6.12/opleveren_verstrekkingenlijst/payload/opleveren_verstrekkingenlijst_2_612.xsl"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="hl7_instance_roundtrip"/>
         </antcall>
-        
+
     </target>
 
 

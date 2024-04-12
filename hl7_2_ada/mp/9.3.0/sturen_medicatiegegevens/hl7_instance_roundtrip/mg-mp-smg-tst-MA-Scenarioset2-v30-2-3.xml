@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model phase="#ALL" href="file:/C:/SVN/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_mgb.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <organizer xmlns:pharm="urn:ihe:pharm:medication"
            xmlns="urn:hl7-org:v3"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            classCode="CLUSTER"
-           moodCode="EVN"
-           xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd">
+           moodCode="EVN">
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9411"/>
    <code code="102"
          displayName="Medicatiegegevens"
@@ -36,7 +33,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 19 dec 2022, tot en met 15 jan 2023, 1 maal per week 5 stuks, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS">
+         <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
             <low value="20221219000000"/>
             <high value="20230115235959"/>
          </effectiveTime>
@@ -95,7 +92,8 @@
                <code code="282291009"
                      displayName="Diagnose"
                      codeSystem="2.16.840.1.113883.6.96"/>
-               <value xsi:type="CD"
+               <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                      xsi:type="CD"
                       code="L88.01"
                       codeSystem="2.16.840.1.113883.2.4.4.31.1"
                       displayName="Reumatoide artritis"
@@ -109,7 +107,9 @@
                            displayName="Diagnosis status"
                            codeSystem="2.16.840.1.113883.6.1"
                            codeSystemName="LOINC"/>
-                     <value xsi:type="CD" nullFlavor="NI"/>
+                     <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                            xsi:type="CD"
+                            nullFlavor="NI"/>
                   </observation>
                </entryRelationship>
             </observation>
@@ -118,7 +118,9 @@
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
                   <repeat>
                      <frequency value="1"/>
                      <period value="1"/>
@@ -134,7 +136,7 @@
                                   codeSystemName="G-Standaardthesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">
