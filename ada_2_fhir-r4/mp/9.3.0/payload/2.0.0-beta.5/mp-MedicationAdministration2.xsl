@@ -388,9 +388,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:if test="waarde/nominale_waarde[@value]">
                                     <rateQuantity>
                                         <value value="{waarde/nominale_waarde/@value}"/>
-                                        <unit value="{eenheid/@displayName}"/>
+                                        <unit value="{eenheid/@unit}"/>
                                         <system value="http://unitsofmeasure.org"/>
-                                        <code value="{eenheid/@code}"/>
+                                        <code value="{eenheid/@unit}"/>
                                     </rateQuantity>
                                 </xsl:if>
                         </xsl:when>
