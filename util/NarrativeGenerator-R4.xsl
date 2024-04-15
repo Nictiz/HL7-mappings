@@ -12705,7 +12705,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </div>
         </text>
     </xsl:template>
-    <!-- didn't and doesn't do enableWhen or extensions ... -->
     <xsl:template match="f:Questionnaire" mode="createNarrative">
         <xsl:variable name="textLang" select="(f:language/@value, $util:textlangDefault)[1]"/>
         <text xmlns="http://hl7.org/fhir">
@@ -13131,6 +13130,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="f:item" mode="createNarrative">
         <xsl:variable name="textLang" select="(f:language/@value, $util:textlangDefault)[1]"/>
         <li id="_{string-join((../f:identifier[1]/f:value/@value, f:linkId/@value), '--')}" xmlns="http://www.w3.org/1999/xhtml">
+            <xsl:if test="f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/questionnaire-hidden']/f:valueBoolean/@value = 'true'">
+                <div>
+                    <xsl:call-template name="util:getLocalizedString">
+                        <xsl:with-param name="key">Hidden from display</xsl:with-param>
+                        <xsl:with-param name="textLang" select="$textLang"/>
+                    </xsl:call-template>
+                </div>
+            </xsl:if>
             <xsl:if test="f:text | f:code">
                 <xsl:choose>
                     <xsl:when test="f:text">
@@ -13154,7 +13161,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="textLang" select="$textLang"/>
                     </xsl:call-template>
                     <xsl:text>: </xsl:text>
-                    <xsl:call-template name="doDT_Code">
+                    <xsl:call-template name="getLocalizedQuestionnaireItemType">
                         <xsl:with-param name="in" select="f:type"/>
                         <xsl:with-param name="textLang" select="$textLang"/>
                     </xsl:call-template>
@@ -13198,6 +13205,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </div>
             </xsl:if>
+            <xsl:if test="f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/minLength']">
+                <div>
+                    <xsl:call-template name="util:getLocalizedString">
+                        <xsl:with-param name="key">Min length</xsl:with-param>
+                        <xsl:with-param name="textLang" select="$textLang"/>
+                        <xsl:with-param name="post" select="': '"/>
+                    </xsl:call-template>
+                    <xsl:call-template name="doDT_Integer">
+                        <xsl:with-param name="in" select="f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/minLength']/f:valueInteger"/>
+                        <xsl:with-param name="textLang" select="$textLang"/>
+                    </xsl:call-template>
+                </div>
+            </xsl:if>
             <xsl:if test="f:maxLength">
                 <div>
                     <xsl:call-template name="util:getLocalizedString">
@@ -13208,6 +13228,48 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="doDT_Integer">
                         <xsl:with-param name="in" select="f:maxLength"/>
                         <xsl:with-param name="textLang" select="$textLang"/>
+                    </xsl:call-template>
+                </div>
+            </xsl:if>
+            <xsl:if test="f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/minValue']">
+                <div>
+                    <xsl:call-template name="util:getLocalizedString">
+                        <xsl:with-param name="key">Min value</xsl:with-param>
+                        <xsl:with-param name="textLang" select="$textLang"/>
+                        <xsl:with-param name="post" select="': '"/>
+                    </xsl:call-template>
+                    <xsl:call-template name="doDT">
+                        <xsl:with-param name="in" select="f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/minValue']/f:*[starts-with(local-name(), 'value')]"/>
+                        <xsl:with-param name="textLang" select="$textLang"/>
+                        <xsl:with-param name="allowDiv" select="true()"/>
+                    </xsl:call-template>
+                </div>
+            </xsl:if>
+            <xsl:if test="f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/maxValue']">
+                <div>
+                    <xsl:call-template name="util:getLocalizedString">
+                        <xsl:with-param name="key">Max value</xsl:with-param>
+                        <xsl:with-param name="textLang" select="$textLang"/>
+                        <xsl:with-param name="post" select="': '"/>
+                    </xsl:call-template>
+                    <xsl:call-template name="doDT">
+                        <xsl:with-param name="in" select="f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/maxValue']/f:*[starts-with(local-name(), 'value')]"/>
+                        <xsl:with-param name="textLang" select="$textLang"/>
+                        <xsl:with-param name="allowDiv" select="true()"/>
+                    </xsl:call-template>
+                </div>
+            </xsl:if>
+            <xsl:if test="f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/maxDecimalPlaces']">
+                <div>
+                    <xsl:call-template name="util:getLocalizedString">
+                        <xsl:with-param name="key">Max decimals</xsl:with-param>
+                        <xsl:with-param name="textLang" select="$textLang"/>
+                        <xsl:with-param name="post" select="': '"/>
+                    </xsl:call-template>
+                    <xsl:call-template name="doDT">
+                        <xsl:with-param name="in" select="f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/maxDecimalPlaces']/f:*[starts-with(local-name(), 'value')]"/>
+                        <xsl:with-param name="textLang" select="$textLang"/>
+                        <xsl:with-param name="allowDiv" select="true()"/>
                     </xsl:call-template>
                 </div>
             </xsl:if>
@@ -13254,7 +13316,32 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="pre" select="'('"/>
                                     <xsl:with-param name="post" select="') '"/>
                                 </xsl:call-template>
-                                <xsl:call-template name="doDT_Uri">
+                                <xsl:choose>
+                                    <xsl:when test="starts-with(@value, 'http')">
+                                        <a href="{@value}">
+                                            <xsl:call-template name="doDT_Uri">
+                                                <xsl:with-param name="in" select="."/>
+                                                <xsl:with-param name="textLang" select="$textLang"/>
+                                            </xsl:call-template>
+                                        </a>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:call-template name="doDT_Uri">
+                                            <xsl:with-param name="in" select="."/>
+                                            <xsl:with-param name="textLang" select="$textLang"/>
+                                        </xsl:call-template>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </li>
+                        </xsl:for-each>
+                        <xsl:for-each select="f:extension[@url = 'http://hl7.org/fhir/StructureDefinition/ordinalValue']/f:*[starts-with(local-name(), 'value')]">
+                            <li>
+                                <xsl:call-template name="util:getLocalizedString">
+                                    <xsl:with-param name="key">Ordinal</xsl:with-param>
+                                    <xsl:with-param name="textLang" select="$textLang"/>
+                                    <xsl:with-param name="post" select="': '"/>
+                                </xsl:call-template>
+                                <xsl:call-template name="doDT_Decimal">
                                     <xsl:with-param name="in" select="."/>
                                     <xsl:with-param name="textLang" select="$textLang"/>
                                 </xsl:call-template>
@@ -13300,6 +13387,81 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:copy-of select="$contents/node()"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </div>
+            </xsl:if>
+            <xsl:if test="f:enableWhen">
+                <div>
+                    <xsl:call-template name="util:getLocalizedString">
+                        <xsl:with-param name="key">Enable when</xsl:with-param>
+                        <xsl:with-param name="textLang" select="$textLang"/>
+                    </xsl:call-template>
+                    <!-- enableBehavior is only useful when more than 1 enableWhen exists -->
+                    <xsl:if test="f:enableBehavior and count(f:enableWhen) gt 1">
+                        <xsl:text> (</xsl:text>
+                        <xsl:call-template name="getLocalizedEnableWhenBehavior">
+                            <xsl:with-param name="in" select="f:enableBehavior"/>
+                            <xsl:with-param name="textLang" select="$textLang"/>
+                        </xsl:call-template>
+                        <xsl:text>)</xsl:text>
+                    </xsl:if>
+                    <xsl:text>: </xsl:text>
+                    <xsl:variable name="contents" as="element()*">
+                        <xsl:for-each select="f:enableWhen">
+                            <xsl:variable name="theQuestionId" select="f:question/@value"/>
+                            <xsl:variable name="theQuestionItem" select="ancestor::f:Questionnaire//f:item[f:linkId/@value = $theQuestionId]" as="element(f:item)*"/>
+                            <xsl:variable name="theQuestion">
+                                <xsl:choose>
+                                    <xsl:when test="$theQuestionItem/f:text">
+                                        <xsl:value-of select="string-join(($theQuestionItem/f:prefix/@value, $theQuestionItem/f:text/@value), ' ')"/>
+                                    </xsl:when>
+                                    <xsl:when test="$theQuestionItem/f:definition">
+                                        <xsl:value-of select="string-join(($theQuestionItem/f:prefix/@value, $theQuestionItem/f:definition/@value), ' ')"/>
+                                    </xsl:when>
+                                    <xsl:when test="$theQuestionItem/f:code">
+                                        <xsl:value-of select="string-join(($theQuestionItem/f:prefix/@value, $theQuestionItem/f:code/(f:text/@value, f:coding/f:display/@value, f:coding/f:code/@value)[1]), ' ')"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:value-of select="$theQuestionId"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:variable>
+                            
+                            <li>
+                                <xsl:call-template name="util:getLocalizedString">
+                                    <xsl:with-param name="key">Question</xsl:with-param>
+                                    <xsl:with-param name="textLang" select="$textLang"/>
+                                    <xsl:with-param name="post" select="': '"/>
+                                </xsl:call-template>
+                                <a href="#{f:question/@value}" title="{$theQuestion}">
+                                    <xsl:value-of select="$theQuestion"/>
+                                </a>
+                                <xsl:text> </xsl:text>
+                                <xsl:call-template name="getLocalizedQuestionnaireItemOperator">
+                                    <xsl:with-param name="in" select="f:operator"/>
+                                    <xsl:with-param name="textLang" select="$textLang"/>
+                                </xsl:call-template>
+                                <xsl:text> </xsl:text>
+                                <xsl:call-template name="doDT">
+                                    <xsl:with-param name="baseName">answer</xsl:with-param>
+                                    <xsl:with-param name="in" select="f:*[starts-with(local-name(), 'answer')]"/>
+                                    <xsl:with-param name="textLang" select="$textLang"/>
+                                    <xsl:with-param name="allowDiv" select="true()"/>
+                                </xsl:call-template>
+                            </li>
+                        </xsl:for-each>
+                    </xsl:variable>
+                    <xsl:choose>
+                        <xsl:when test="$contents[2]">
+                            <ul>
+                                <xsl:copy-of select="$contents"/>
+                            </ul>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <div>
+                                <xsl:copy-of select="$contents/node()"/>
+                            </div>
                         </xsl:otherwise>
                     </xsl:choose>
                 </div>
@@ -14166,7 +14328,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </div>
         </text>
     </xsl:template>
-    <!-- TODO ... check changes since STU3 below here except ServiceRequest, Slot and Substance -->
     <xsl:template match="f:Task" mode="createNarrative">
         <xsl:variable name="textLang" select="(f:language/@value, $util:textlangDefault)[1]"/>
         <text xmlns="http://hl7.org/fhir">
@@ -15977,8 +16138,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="textLang" as="xs:string" required="yes"/>
         <xsl:param name="sep" select="', '" as="xs:string?"/>
         <xsl:for-each select="$in">
-            <xsl:variable name="i18n_system">
+            <xsl:variable name="i18n_system" as="xs:string?">
                 <xsl:choose>
+                    <xsl:when test="f:system/@value = ('http://snomed.info/sct', 'urn:oid:2.16.840.1.113883.6.96')">SNOMED CT</xsl:when>
+                    <xsl:when test="f:system/@value = ('http://loinc.org', 'urn:oid:2.16.840.1.113883.6.1')">LOINC</xsl:when>
                     <xsl:when test="starts-with(f:system/@value, 'urn:uuid:')">
                         <xsl:value-of select="replace(f:system/@value, 'urn:uuid:', '')"/>
                     </xsl:when>
@@ -15996,16 +16159,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:when test="starts-with(f:system/@value, 'http://hl7.org/fhir/')">
                         <xsl:value-of select="substring-after(f:system/@value, 'http://hl7.org/fhir/')"/>
                     </xsl:when>
-                    <xsl:when test="f:system/@value = 'http://snomed.info/sct'">SNOMED CT</xsl:when>
-                    <xsl:when test="f:system/@value = 'http://loinc.org'">LOINC</xsl:when>
-                    <xsl:when test="f:system/@value = 'http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical'">HL7 AllergyIntoleranceClinical</xsl:when>
-                    <xsl:when test="f:system/@value = 'http://terminology.hl7.org/CodeSystem/allergyintolerance-verification'">HL7 AllergyIntoleranceVerification</xsl:when>
-                    <xsl:when test="f:system/@value = 'http://terminology.hl7.org/CodeSystem/v3-ParticipationType'">HL7 ParticipationType</xsl:when>
-                    <xsl:when test="f:system/@value = 'http://terminology.hl7.org/CodeSystem/v3-ActReason'">HL7 ActReason</xsl:when>
-                    <xsl:when test="f:system/@value = 'http://terminology.hl7.org/CodeSystem/v3-ActCode'">HL7 ActCode</xsl:when>
-                    <xsl:otherwise>
+                    <xsl:when test="starts-with(f:system/@value, 'http://terminology.hl7.org/CodeSystem/')">
+                        <xsl:value-of select="concat('HL7 ', substring-after(f:system/@value, 'http://terminology.hl7.org/CodeSystem/'))"/>
+                    </xsl:when>
+                    <xsl:when test="f:system/@value">
                         <xsl:value-of select="f:system/@value"/>
-                    </xsl:otherwise>
+                    </xsl:when>
                 </xsl:choose>
             </xsl:variable>
             <xsl:variable name="str">
@@ -16063,7 +16222,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:value-of select="$theDisplay"/>
                             </xsl:otherwise>
                         </xsl:choose>
-                        <xsl:value-of select="concat( ' (', $i18n_system, ')')"/>
+                        <xsl:if test="not(empty($i18n_system))">
+                            <xsl:value-of select="concat(' (', $i18n_system, ')')"/>
+                        </xsl:if>
                     </xsl:when>
                     <xsl:when test="f:system/@value = 'http://terminology.hl7.org/CodeSystem/v3-ParticipationType'">
                         <xsl:variable name="theDisplay" as="xs:string?">
@@ -16080,10 +16241,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:value-of select="$theDisplay"/>
                             </xsl:otherwise>
                         </xsl:choose>
-                        <xsl:value-of select="concat( ' (', $i18n_system, ')')"/>
+                        <xsl:if test="not(empty($i18n_system))">
+                            <xsl:value-of select="concat(' (', $i18n_system, ')')"/>
+                        </xsl:if>
+                    </xsl:when>
+                    <xsl:when test="f:code and not(empty($i18n_system))">
+                        <xsl:value-of select="concat(f:code/@value, ' (', $i18n_system, ')')"/>
                     </xsl:when>
                     <xsl:when test="f:code">
-                        <xsl:value-of select="concat(f:code/@value, ' (', $i18n_system, ')')"/>
+                        <xsl:value-of select="f:code/@value"/>
                     </xsl:when>
                 </xsl:choose>
             </xsl:variable>
@@ -18300,7 +18466,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    <!--http://hl7.org/fhir/R4/valueset-document-relationship-type.html-->
+    <!-- https://hl7.org/fhir/R4/valueset-document-relationship-type.html -->
     <xsl:template name="getLocalizedDocumentRelationshipType">
         <xsl:param name="in" as="element()?"/>
         <xsl:param name="textLang" as="xs:string" required="yes"/>
@@ -18326,6 +18492,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$in/@value = 'appends'">
                 <xsl:call-template name="util:getLocalizedString">
                     <xsl:with-param name="key">2.16.840.1.113883.5.1002-APND</xsl:with-param>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:call-template name="doDT_Code">
+                    <xsl:with-param name="in" select="$in"/>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    <!-- https://hl7.org/fhir/R4/valueset-questionnaire-enable-behavior.html -->
+    <xsl:template name="getLocalizedEnableWhenBehavior">
+        <xsl:param name="in" as="element()?"/>
+        <xsl:param name="textLang" as="xs:string" required="yes"/>
+        <xsl:choose>
+            <xsl:when test="$in/@value = 'all'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">EnableWhenBehavior-all</xsl:with-param>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$in/@value = 'any'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">EnableWhenBehavior-any</xsl:with-param>
                     <xsl:with-param name="textLang" select="$textLang"/>
                 </xsl:call-template>
             </xsl:when>
@@ -18901,6 +19092,44 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$in/@value = ('deny', 'permit')">
                 <xsl:call-template name="util:getLocalizedString">
                     <xsl:with-param name="key" select="concat('consentprovisiontype-', $in/@value)"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:call-template name="doDT_Code">
+                    <xsl:with-param name="in" select="$in"/>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    <!-- https://hl7.org/fhir/r4/valueset-questionnaire-enable-operator.html -->
+    <xsl:template name="getLocalizedQuestionnaireItemOperator">
+        <xsl:param name="in" as="element()?"/>
+        <xsl:param name="textLang" as="xs:string" required="yes"/>
+        <xsl:choose>
+            <xsl:when test="$in/@value = 'exists'">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">QuestionnaireItemOperator-exists</xsl:with-param>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:call-template name="doDT_Code">
+                    <xsl:with-param name="in" select="$in"/>
+                    <xsl:with-param name="textLang" select="$textLang"/>
+                </xsl:call-template>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    <!-- https://hl7.org/fhir/r4/valueset-item-type.html -->
+    <xsl:template name="getLocalizedQuestionnaireItemType">
+        <xsl:param name="in" as="element()?"/>
+        <xsl:param name="textLang" as="xs:string" required="yes"/>
+        <xsl:choose>
+            <xsl:when test="$in/@value = ('group', 'display', 'question', 'boolean', 'decimal', 'integer', 'date', 'dateTime', 'time', 'string', 'text', 'url', 'choice', 'open-choice', 'attachment', 'reference', 'quantity')">
+                <xsl:call-template name="util:getLocalizedString">
+                    <xsl:with-param name="key">QuestionnaireItemType-<xsl:value-of select="$in/@value"/></xsl:with-param>
+                    <xsl:with-param name="textLang" select="$textLang"/>
                 </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
