@@ -41,7 +41,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<!-- TODO: should be updated in FHIR profile -->
 			<xsl:apply-templates select="f:extension[@url = $urlExtAsAgreedIndicator]" mode="#current"/>
 			<!-- toedieningsweg -->
-			<xsl:apply-templates select="f:dosage/f:route" mode="nl-core-InstructionsForUse"/>
+			<xsl:apply-templates select="f:dosage/f:route" mode="mp-InstructionsForUse"/>
 			<!-- toedieningssnelheid -->
 			<xsl:apply-templates select="f:dosage/f:rateQuantity" mode="#current"/>
 			<!-- prik_plak_locatie -->
@@ -218,7 +218,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 	</xd:doc>
 	<xsl:template match="f:rateQuantity" mode="mp-MedicationAdministration">
 		<toedieningssnelheid>
-			<xsl:apply-templates select="." mode="nl-core-InstructionsForUse"/>
+			<xsl:apply-templates select="." mode="mp-InstructionsForUse"/>
 		</toedieningssnelheid>
 	</xsl:template>
 

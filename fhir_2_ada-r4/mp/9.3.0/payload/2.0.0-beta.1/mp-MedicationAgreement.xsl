@@ -57,7 +57,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<!-- afgesproken_geneesmiddel -->
 			<xsl:apply-templates select="f:medicationReference" mode="#current"/>
 			<!-- gebruiksinstructie -->
-			<xsl:call-template name="nl-core-InstructionsForUse"/>
+			<xsl:call-template name="mp-InstructionsForUse"/>
 			<!-- volgende behandelaar -->
 			<xsl:apply-templates select="f:extension[@url = $urlExtMedicationAgreementNextPractitioner]" mode="#current"/>
 			<!-- aanvullende_informatie -->
