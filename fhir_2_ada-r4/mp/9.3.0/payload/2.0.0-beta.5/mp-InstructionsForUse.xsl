@@ -416,10 +416,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <maximum_waarde value="{f:high/f:value/@value}"/>
         </waarde>
         <eenheid
-            code="{$code}"
-            codeSystem="{(*/f:system/@value)[1]}"
-            codeSystemName="{local:getDisplayName($oidUCUM)}"
-            displayName="{(*/f:unit/@value)[1]}"/>
+            value="1"
+            unit="{$code}"/>
     </xsl:template>
 
     <xd:doc>
@@ -431,10 +429,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <nominale_waarde value="{f:value/@value}"/>
         </waarde>
         <eenheid
-            code="{f:code/@value}"
-            codeSystem="{f:system/@value}"
-            codeSystemName="{local:getDisplayName($oidUCUM)}"
-            displayName="{f:unit/@value}"/>
+            value="1"
+            unit="{f:code/@value}"/>
     </xsl:template>
 
 </xsl:stylesheet>
