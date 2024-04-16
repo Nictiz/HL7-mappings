@@ -70,7 +70,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </extension>
         </xsl:for-each>
         <xsl:choose>
-            <xsl:when test="$profile = 'nl-core-HearingFunction.HearingAid'">
+            <xsl:when test="$profile = $profileNameHearingFunctionHearingAid">
                 <xsl:for-each select="hulpmiddel_anatomische_locatie">
                     <xsl:call-template name="code-to-CodeableConcept">
                         <xsl:with-param name="in" select="."/>

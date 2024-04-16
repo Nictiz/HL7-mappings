@@ -366,7 +366,6 @@
         <map oid="{$oidGStandaardBST361}" displayName="G-Standaard Bestand 361 a-tabel (eenheid gebruiksadvies)"/>
         <map oid="{$oidGStandaardBST902THES2}" displayName="G-Standaard thesaurus basiseenheden"/>
         <map oid="{$oidGStandaardFarmaceutischeVormen}" displayName="G-Standaard Farmaceutische vormen (tabel 6)"/>
-        <map oid="{$oidGTIN}" uri="https://www.gs1.org/gtin" displayName="GS1 GTIN"/>
         <map oid="{$oidICD10NL-STU3}" uri="http://hl7.org/fhir/sid/icd-10-nl" displayName="ICD-10 NL"/>
         <map oid="{$oidICD10NL-R4}" uri="http://hl7.org/fhir/sid/icd-10-nl" displayName="ICD-10 NL"/>
         <map oid="{$oidICPC1NL}" uri="http://hl7.org/fhir/sid/icpc-1-nl" displayName="ICPC-1NL"/>
@@ -406,6 +405,7 @@
             <xsl:when test="$fhirVersion='STU3'">
                 <map oid="{$oidChoiceListOrientation}" uri="http://hl7.org/fhir/choice-list-orientation" displayName="ChoiceListOrientation"/>
                 <map oid="{$oidFHIRObservationCategory}" uri="http://hl7.org/fhir/observation-category" displayName="ObservationCategory"/>
+                <map oid="{$oidGTIN}" uri="https://www.gs1.org/gtin" displayName="GS1 GTIN"/>
                 <map oid="{$oidHL7ActCode}" uri="http://hl7.org/fhir/v3/ActCode" displayName="HL7 ActCode"/>
                 <map oid="{$oidHL7ActStatus}" uri="http://hl7.org/fhir/v3/ActStatus" displayName="HL7 ActStatus"/>
                 <map oid="{$oidHL7AcknowledgementDetailCode}" uri="http://hl7.org/fhir/v3/AcknowledgementDetailCode" displayName="HL7 AcknowledgementDetailCode"/>

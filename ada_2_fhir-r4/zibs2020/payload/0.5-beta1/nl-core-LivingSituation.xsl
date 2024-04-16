@@ -32,6 +32,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ADA woonsituatie to FHIR Observation conforming to profile nl-core-LivingSituation</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameLivingSituation">nl-core-LivingSituation</xsl:variable>
+    
     <xd:doc>
         <xd:desc>Create an nl-core-LivingSituation instance as an Observation FHIR instance from ADA woonsituatie.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -43,9 +45,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Observation>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNameLivingSituation"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LivingSituation"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 
@@ -113,7 +117,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to generate a unique id to identify this instance.</xd:desc>
     </xd:doc>
     <xsl:template match="woonsituatie" mode="_generateId">
-        <xsl:value-of select="concat('nl-core-LivingSituation-', position())"/>
+        <xsl:value-of select="concat($profileNameLivingSituation, position())"/>
     </xsl:template>
     
     <xd:doc>

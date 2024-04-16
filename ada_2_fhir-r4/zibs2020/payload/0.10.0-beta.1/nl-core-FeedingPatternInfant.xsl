@@ -31,6 +31,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada voedingspatroon_zuigeling to FHIR Observation conforming to profile nl-core-FeedingPatternInfant</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameFeedingPatternInfant">nl-core-FeedingPatternInfant</xsl:variable>
+    
     <xd:doc>
         <xd:desc>Create an nl-core-FeedingPatternInfant instance as an Observation FHIR instance from ada voedingspatroon_zuigeling element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -42,16 +44,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Observation>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNameFeedingPatternInfant"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-FeedingPatternInfant"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 
                 <xsl:for-each select="voedingsadvies">
                     <basedOn>
                         <xsl:call-template name="makeReference">
                             <xsl:with-param name="in" select="voedingsadvies"/>
-                            <xsl:with-param name="profile" select="'nl-core-NutritionAdvice'"/>
+                            <xsl:with-param name="profile" select="$profileNameNutritionAdvice"/>
                         </xsl:call-template>
                     </basedOn>
                 </xsl:for-each>
@@ -60,7 +64,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 
                 <code>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="289145007"/>
                         <display value="bevinding betreffende voedingspatroon van zuigeling"/>
                     </coding>
@@ -93,7 +97,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="373453009"/>
                                 <display value="voedingssupplement"/>
                             </coding>
@@ -110,7 +114,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="364653007"/>
                                 <display value="frequentie van voeding van zuigeling"/>
                             </coding>
@@ -137,7 +141,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="109021000146107"/>
                                 <display value="soort zuigelingenvoeding"/>
                             </coding>

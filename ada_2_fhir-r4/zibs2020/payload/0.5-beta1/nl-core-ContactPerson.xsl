@@ -25,7 +25,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="profileNameContactPerson">nl-core-ContactPerson</xsl:variable>
 
     <xd:doc>
-        <xd:desc>Create a nl-core-Contactperson as a RelatedPerson FHIR instance from ada Contactpersoon.</xd:desc>
+        <xd:desc>Create an nl-core-Contactperson as a RelatedPerson FHIR instance from ada Contactpersoon.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="patient">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
@@ -35,9 +35,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:for-each select="$in">
             <RelatedPerson>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNameContactPerson"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ContactPerson"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
 
                 <xsl:call-template name="makeReference">
@@ -77,7 +79,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Create a nl-core-Contactperson FHIR instance emmbedded in the Patient instance from ada Contactpersoon. Since it is embedded in the Patient no Resource.id is needed.</xd:desc>
+        <xd:desc>Create an nl-core-Contactperson FHIR instance emmbedded in the Patient instance from ada Contactpersoon. Since it is embedded in the Patient no Resource.id is needed.</xd:desc>
         <xd:param name="in">Node to consider in the creation of a Patient.contact element.</xd:param>
     </xd:doc>
     <xsl:template match="contactpersoon" name="nl-core-ContactPerson-embedded" mode="nl-core-ContactPerson-embedded" as="element(f:contact)?">

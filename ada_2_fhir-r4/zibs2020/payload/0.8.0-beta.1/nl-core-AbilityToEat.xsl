@@ -31,6 +31,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada vermogen_tot_eten to FHIR Observation conforming to profile nl-core-AbilityToEat</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameAbilityToEat">nl-core-AbilityToEat</xsl:variable>
+    
     <xd:doc>
         <xd:desc>Create an nl-core-AbilityToEat instance as an Observation FHIR instance from ada vermogen_tot_eten element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -42,14 +44,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Observation>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNameAbilityToEat"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AbilityToEat"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <code>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="288883002"/>
                         <display value="vermogen tot eten"/>
                     </coding>
@@ -69,7 +73,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="288843005"/>
                                 <display value="vaardigheid betreffende eten"/>
                             </coding>

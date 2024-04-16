@@ -23,6 +23,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ADA vrijheidsbeperkende_interventie to FHIR Procedure conforming to profile nl-core-FreedomRestrictingIntervention</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameFreedomRestrictingIntervention">nl-core-FreedomRestrictingIntervention</xsl:variable>
+    
     <xd:doc>
         <xd:desc>Create an nl-core-FreedomRestrictingIntervention instance as a Procedure FHIR instance from ADA vrijheidsbeperkende_interventie.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -34,9 +36,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Procedure>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNameFreedomRestrictingIntervention"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-FreedomRestrictingIntervention"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>               
                 <xsl:if test="wilsbekwaam | wilsbekwaam_toelichting">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-FreedomRestrictingIntervention.LegallyCapable">
@@ -130,13 +134,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:when test="nf:resolveAdaInstance(juridische_situatie, $in)[vertegenwoordiging]">
                                 <xsl:call-template name="makeReference">
                                     <xsl:with-param name="in" select="juridische_situatie"/>
-                                    <xsl:with-param name="profile" select="'nl-core-LegalSituation-Representation'"/>
+                                    <xsl:with-param name="profile" select="$profileNameLegalSituationRepresentation"/>
                                 </xsl:call-template>
                             </xsl:when>
                             <xsl:when test="nf:resolveAdaInstance(juridische_situatie, $in)[juridische_status]">
                                 <xsl:call-template name="makeReference">
                                     <xsl:with-param name="in" select="juridische_situatie"/>
-                                    <xsl:with-param name="profile" select="'nl-core-LegalSituation-LegalStatus'"/>
+                                    <xsl:with-param name="profile" select="$profileNameLegalSituationLegalStatus"/>
                                 </xsl:call-template>
                             </xsl:when>
                         </xsl:choose>

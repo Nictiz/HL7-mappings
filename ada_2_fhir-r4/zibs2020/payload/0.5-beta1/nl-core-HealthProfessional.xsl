@@ -54,7 +54,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+                    <profile value="{concat($urlBaseNictizProfile, $profileNameHealthProfessionalPractitionerRole)}"/>
                 </meta>
                 <xsl:if test="zorgverlener_identificatienummer | naamgegevens | geslacht | adresgegevens">
                     <practitioner>
@@ -66,7 +66,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <xsl:call-template name="makeReference">
                     <xsl:with-param name="in" select="zorgaanbieder"/>
-                    <xsl:with-param name="profile">nl-core-HealthcareProvider-Organization</xsl:with-param>
+                    <xsl:with-param name="profile" select="$profileNameHealthcareProviderOrganization"/>
                     <xsl:with-param name="wrapIn" select="'organization'"/>
                 </xsl:call-template>
 
@@ -115,10 +115,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <Practitioner>
                 <xsl:call-template name="insertLogicalId">
                     <xsl:with-param name="in" select="."/>
-                    <xsl:with-param name="profile" select="'nl-core-HealthProfessional-Practitioner'"/>
+                    <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitioner"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
+                    <profile value="{concat($urlBaseNictizProfile, $profileNameHealthProfessionalPractitioner)}"/>
                 </meta>
                 <xsl:for-each select="zorgverlener_identificatienummer">
                     <identifier>

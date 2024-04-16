@@ -21,6 +21,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ada darmfunctie to FHIR Observation conforming to profile nl-core-BowelFunction</xd:desc>
     </xd:doc>
+    
+    <xsl:variable name="profileNameBowelFunction">nl-core-BowelFunction</xsl:variable>
 
     <xd:doc>
         <xd:desc>Create an nl-core-BowelFunction as an Observation FHIR instance from ada darmfunctie element.</xd:desc>
@@ -34,10 +36,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <Observation>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'nl-core-BowelFunction'"/>
+                    <xsl:with-param name="profile" select="$profileNameBowelFunction"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BowelFunction"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 
                 <xsl:for-each select="stoma">
@@ -45,7 +47,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <valueReference>
                             <xsl:call-template name="makeReference">
                                 <xsl:with-param name="in" select="stoma"/>
-                                <xsl:with-param name="profile" select="'nl-core-Stoma'"/>
+                                <xsl:with-param name="profile" select="$profileNameStoma"/>
                             </xsl:call-template>
                         </valueReference>
                     </extension>
@@ -55,7 +57,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 
                 <code>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="111989001"/>
                         <display value="defecatie"/>
                     </coding>
@@ -80,7 +82,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="129008009"/>
                                 <display value="darmcontrole"/>
                             </coding>
@@ -97,7 +99,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="162098000"/>
                                 <display value="frequentie van defecatie"/>
                             </coding>
@@ -114,7 +116,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="443172007"/>
                                 <display value="score op Bristol Stoelgangschaal"/>
                             </coding>
@@ -131,7 +133,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://loinc.org"/>
+                                <system value="{$oidMap[@oid=$oidLOINC]/@uri}"/>
                                 <code value="9397-1"/>
                                 <display value="Color of Stool"/>
                             </coding>

@@ -31,6 +31,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada strong_kids_score to FHIR Observation conforming to profile nl-core-StrongKidsScore</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameStrongKidsScore">nl-core-StrongKidsScore</xsl:variable>
+    
     <xd:doc>
         <xd:desc>Create an nl-core-StrongKidsScore instance as an Observation FHIR instance from ada strong_kids_score element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -43,16 +45,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <Observation>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'nl-core-StrongKidsScore'"/>
+                    <xsl:with-param name="profile" select="$profileNameStrongKidsScore"/>
                 </xsl:call-template>
                 
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-StrongKidsScore"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <code>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="108341000146107"/>
                         <display value="STRONGkids-screeningsinstrument"/>
                     </coding>

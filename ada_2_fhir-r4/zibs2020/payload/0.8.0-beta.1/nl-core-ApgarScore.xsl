@@ -32,6 +32,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada apgar_score to FHIR Observation conforming to profiles nl-core-ApgarScore-1Minute, nl-core-ApgarScore-5Minute and nl-core-ApgarScore-10Minute</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameApgarScore1Minute">nl-core-ApgarScore-1Minute</xsl:variable>
+    <xsl:variable name="profileNameApgarScore5Minute">nl-core-ApgarScore-5Minute</xsl:variable>
+    <xsl:variable name="profileNameApgarScore10Minute">nl-core-ApgarScore-10Minute</xsl:variable>
+    
     <xd:doc>
         <xd:desc>Create an nl-core-ApgarScore instance as an Observation FHIR instance from ada apgar_score element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -41,160 +45,160 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="apgar_score" name="nl-core-ApgarScore" mode="nl-core-ApgarScore" as="element(f:Observation)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
-        <xsl:param name="profile" select="'nl-core-ApgarScore-1Minute'" as="xs:string"/>
+        <xsl:param name="profile" select="$profileNameApgarScore1Minute" as="xs:string"/>
         
         <xsl:variable name="apgarScoreCode">
             <xsl:choose>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-1Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore1Minute">
                     <xsl:value-of select="'9272-6'"/>
                 </xsl:when>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-5Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore5Minute">
                     <xsl:value-of select="'9274-2'"/>
                 </xsl:when>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-10Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore10Minute">
                     <xsl:value-of select="'9271-8'"/>
                 </xsl:when>
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="apgarScoreCodeDisplay">
             <xsl:choose>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-1Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore1Minute">
                     <xsl:value-of select="'1 minute Apgar Score'"/>
                 </xsl:when>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-5Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore5Minute">
                     <xsl:value-of select="'5 minute Apgar Score'"/>
                 </xsl:when>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-10Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore10Minute">
                     <xsl:value-of select="'10 minute Apgar Score'"/>
                 </xsl:when>
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="apgarRespiratoryScoreCode">
             <xsl:choose>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-1Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore1Minute">
                     <xsl:value-of select="'32410-3'"/>
                 </xsl:when>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-5Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore5Minute">
                     <xsl:value-of select="'32415-2'"/>
                 </xsl:when>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-10Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore10Minute">
                     <xsl:value-of select="'32405-3'"/>
                 </xsl:when>
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="apgarRespiratoryScoreCodeDisplay">
             <xsl:choose>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-1Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore1Minute">
                     <xsl:value-of select="'1 minute Apgar Respiratory effort'"/>
                 </xsl:when>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-5Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore5Minute">
                     <xsl:value-of select="'5 minute Apgar Respiratory effort'"/>
                 </xsl:when>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-10Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore10Minute">
                     <xsl:value-of select="'10 minute Apgar Respiratory effort'"/>
                 </xsl:when>
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="apgarAppearanceScoreCode">
             <xsl:choose>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-1Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore1Minute">
                     <xsl:value-of select="'32406-1'"/>
                 </xsl:when>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-5Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore5Minute">
                     <xsl:value-of select="'32411-1'"/>
                 </xsl:when>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-10Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore10Minute">
                     <xsl:value-of select="'32401-2'"/>
                 </xsl:when>
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="apgarAppearanceScoreCodeDisplay">
             <xsl:choose>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-1Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore1Minute">
                     <xsl:value-of select="'1 minute Apgar Color'"/>
                 </xsl:when>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-5Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore5Minute">
                     <xsl:value-of select="'5 minute Apgar Color'"/>
                 </xsl:when>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-10Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore10Minute">
                     <xsl:value-of select="'10 minute Apgar Color'"/>
                 </xsl:when>
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="apgarPulseScoreCode">
             <xsl:choose>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-1Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore1Minute">
                     <xsl:value-of select="'32407-9'"/>
                 </xsl:when>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-5Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore5Minute">
                     <xsl:value-of select="'32412-9'"/>
                 </xsl:when>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-10Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore10Minute">
                     <xsl:value-of select="'32402-0'"/>
                 </xsl:when>
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="apgarPulseScoreCodeDisplay">
             <xsl:choose>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-1Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore1Minute">
                     <xsl:value-of select="'1 minute Apgar Heart rate'"/>
                 </xsl:when>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-5Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore5Minute">
                     <xsl:value-of select="'5 minute Apgar Heart rate'"/>
                 </xsl:when>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-10Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore10Minute">
                     <xsl:value-of select="'10 minute Apgar Heart rate'"/>
                 </xsl:when>
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="apgarGrimaceScoreCode">
             <xsl:choose>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-1Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore1Minute">
                     <xsl:value-of select="'32409-5'"/>
                 </xsl:when>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-5Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore5Minute">
                     <xsl:value-of select="'32414-5'"/>
                 </xsl:when>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-10Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore10Minute">
                     <xsl:value-of select="'32404-6'"/>
                 </xsl:when>
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="apgarGrimaceScoreCodeDisplay">
             <xsl:choose>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-1Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore1Minute">
                     <xsl:value-of select="'1 minute Apgar Reflex irritability'"/>
                 </xsl:when>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-5Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore5Minute">
                     <xsl:value-of select="'5 minute Apgar Reflex irritability'"/>
                 </xsl:when>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-10Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore10Minute">
                     <xsl:value-of select="'10 minute Apgar Reflex irritability'"/>
                 </xsl:when>
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="apgarMuscleToneScoreCode">
             <xsl:choose>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-1Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore1Minute">
                     <xsl:value-of select="'32408-7'"/>
                 </xsl:when>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-5Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore5Minute">
                     <xsl:value-of select="'32413-7'"/>
                 </xsl:when>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-10Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore10Minute">
                     <xsl:value-of select="'32403-8'"/>
                 </xsl:when>
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="apgarMuscleToneScoreCodeDisplay">
             <xsl:choose>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-1Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore1Minute">
                     <xsl:value-of select="'1 minute Apgar Muscle tone'"/>
                 </xsl:when>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-5Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore5Minute">
                     <xsl:value-of select="'5 minute Apgar Muscle tone'"/>
                 </xsl:when>
-                <xsl:when test="$profile = 'nl-core-ApgarScore-10Minute'">
+                <xsl:when test="$profile = $profileNameApgarScore10Minute">
                     <xsl:value-of select="'10 minute Apgar Muscle tone'"/>
                 </xsl:when>
             </xsl:choose>
@@ -206,14 +210,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="profile" select="$profile"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/{$profile}"/>
+                    <profile value="{concat($urlBaseNictizProfile, $profile)}"/>
                 </meta>
                 
                 <status value="final"/>
                 
                 <code>
                     <coding>
-                        <system value="http://loinc.org"/>
+                        <system value="{$oidMap[@oid=$oidLOINC]/@uri}"/>
                         <code value="{$apgarScoreCode}"/>
                         <display value="{$apgarScoreCodeDisplay}"/>
                     </coding>
@@ -254,7 +258,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://loinc.org"/>
+                                <system value="{$oidMap[@oid=$oidLOINC]/@uri}"/>
                                 <code value="{$apgarRespiratoryScoreCode}"/>
                                 <display value="{$apgarRespiratoryScoreCodeDisplay}"/>
                             </coding>
@@ -271,7 +275,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://loinc.org"/>
+                                <system value="{$oidMap[@oid=$oidLOINC]/@uri}"/>
                                 <code value="{$apgarAppearanceScoreCode}"/>
                                 <display value="{$apgarAppearanceScoreCodeDisplay}"/>
                             </coding>
@@ -288,7 +292,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://loinc.org"/>
+                                <system value="{$oidMap[@oid=$oidLOINC]/@uri}"/>
                                 <code value="{$apgarPulseScoreCode}"/>
                                 <display value="{$apgarPulseScoreCodeDisplay}"/>
                             </coding>
@@ -305,7 +309,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://loinc.org"/>
+                                <system value="{$oidMap[@oid=$oidLOINC]/@uri}"/>
                                 <code value="{$apgarGrimaceScoreCode}"/>
                                 <display value="{$apgarGrimaceScoreCodeDisplay}"/>
                             </coding>
@@ -322,7 +326,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://loinc.org"/>
+                                <system value="{$oidMap[@oid=$oidLOINC]/@uri}"/>
                                 <code value="{$apgarMuscleToneScoreCode}"/>
                                 <display value="{$apgarMuscleToneScoreCodeDisplay}"/>
                             </coding>

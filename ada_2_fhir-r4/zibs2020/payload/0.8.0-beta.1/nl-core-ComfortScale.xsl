@@ -31,6 +31,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada comfort_score to FHIR Observation conforming to profile nl-core-ComfortScale</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameComfortScale">nl-core-ComfortScale</xsl:variable>
+    
     <xd:doc>
         <xd:desc>Create an nl-core-ComfortScale instance as an Observation FHIR instance from ada comfort_score element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -43,16 +45,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <Observation>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'nl-core-ComfortScale'"/>
+                    <xsl:with-param name="profile" select="$profileNameComfortScale"/>
                 </xsl:call-template>
                 
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ComfortScale"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <code>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="108301000146109"/>
                         <display value="COMFORT scale"/>
                     </coding>

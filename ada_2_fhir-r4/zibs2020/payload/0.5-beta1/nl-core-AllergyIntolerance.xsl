@@ -31,8 +31,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ADA [...] to FHIR [...] conforming to profile [...]</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameAllergyIntolerance">nl-core-AllergyIntolerance</xsl:variable>
+    
     <xd:doc>
-        <xd:desc>Create a nl-core-AllergyIntolerance instance as a AllergyIntolerance FHIR instance from ADA allergie_intolerantie.</xd:desc>
+        <xd:desc>Create an nl-core-AllergyIntolerance instance as a AllergyIntolerance FHIR instance from ADA allergie_intolerantie.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">The AllergyIntolerance.patient as ADA element or reference.</xd:param>
     </xd:doc>
@@ -42,10 +44,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <AllergyIntolerance>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNameAllergyIntolerance"/>
+                </xsl:call-template>
                 
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AllergyIntolerance"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
          
                 <xsl:for-each select="allergie_status">
@@ -210,7 +214,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="allergie_intolerantie" mode="_generateId">
         <xsl:variable name="parts">
-            <xsl:text>AllergyIntollerance</xsl:text>
+            <xsl:text>AllergyIntolerance</xsl:text>
             <xsl:value-of select="veroorzakende_stof/@displayName"/>
             <xsl:value-of select="allergie_categorie/@displayName"/>
             <xsl:value-of select="allergie_status/@displayName"/>

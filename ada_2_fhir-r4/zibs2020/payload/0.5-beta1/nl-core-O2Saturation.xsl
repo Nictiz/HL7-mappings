@@ -24,8 +24,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ADA o2saturatie to FHIR Observation conforming to profile nl-core-o2saturation</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameO2Saturation">nl-core-O2Saturation</xsl:variable>
+    
     <xd:doc>
-        <xd:desc>Create a nl-core-O2Saturation instance as a Observation FHIR instance from ADA o2saturatie.</xd:desc>
+        <xd:desc>Create an nl-core-O2Saturation instance as a Observation FHIR instance from ADA o2saturatie.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">The subject as ADA element or reference.</xd:param>
     </xd:doc>
@@ -35,9 +37,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Observation>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNameO2Saturation"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-O2Saturation"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>      
                 <status value="final"/>
                 <category>
@@ -49,12 +53,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </category>
                 <code>
                     <coding>
-                        <system value="http://loinc.org"/>
+                        <system value="{$oidMap[@oid=$oidLOINC]/@uri}"/>
                         <code value="2708-6"/>
                         <display value="Oxygen saturation in Arterial blood"/>
                     </coding>
                     <coding>
-                        <system value="http://loinc.org"/>
+                        <system value="{$oidMap[@oid=$oidLOINC]/@uri}"/>
                         <code value="59408-5"/>
                         <display value="Oxygen saturation in Arterial blood by Pulse oximetry"/>
                     </coding>

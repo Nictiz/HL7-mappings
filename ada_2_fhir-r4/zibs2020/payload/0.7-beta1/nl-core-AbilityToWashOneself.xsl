@@ -31,6 +31,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada vermogen_tot_zich_wassen to FHIR Observation conforming to profile nl-core-AbilityToWashOneself.</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameAbilityToWashOneself">nl-core-AbilityToWashOneself</xsl:variable>
+    
     <xd:doc>
         <xd:desc>Create an nl-core-AbilityToWashOneself instance as an Observation FHIR instance from ada vermogen_tot_zich_wassen element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -42,14 +44,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Observation>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNameAbilityToWashOneself"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AbilityToWashOneself"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <code>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="284785009"/>
                         <display value="vermogen om zich te wassen"/>
                     </coding>
@@ -69,7 +73,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="38866009"/>
                                 <display value="structuur van lichaamsdeel"/>
                             </coding>

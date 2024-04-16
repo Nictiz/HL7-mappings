@@ -21,9 +21,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ada medicatie_contra_indicatie element to FHIR resource conforming to profile nl-core-MedicationContraIndication</xd:desc>
     </xd:doc>
+    
+    <xsl:variable name="profileNameMedicationContraIndication">nl-core-MedicationContraIndication</xsl:variable>
 
     <xd:doc>
-        <xd:desc>Create a nl-core-MedicationContraIndication FHIR Flag resource from ada medicatie_contra_indicatie element.</xd:desc>
+        <xd:desc>Create an nl-core-MedicationContraIndication FHIR Flag resource from ada medicatie_contra_indicatie element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
@@ -36,10 +38,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <Flag>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'nl-core-MedicationContraIndication'"/>
+                    <xsl:with-param name="profile" select="$profileNameMedicationContraIndication"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MedicationContraIndication"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
 
                 <xsl:for-each select="reden_van_afsluiten">
@@ -105,7 +107,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="makeReference">
                     <xsl:with-param name="in" select="$author"/>
                     <xsl:with-param name="wrapIn" select="'author'"/>
-                    <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
+                    <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
                 </xsl:call-template>
             </Flag>
         </xsl:for-each>

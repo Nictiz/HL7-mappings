@@ -20,9 +20,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ADA farmaceutisch_product to FHIR Medication conforming to profile nl-core-PharmaceuticalProduct.</xd:desc>
     </xd:doc>
+    
+    <xsl:variable name="profileNamePharmaceuticalProduct">nl-core-PharmaceuticalProduct</xsl:variable>
 
     <xd:doc>
-        <xd:desc>Create a nl-core-PharmaceuticalProduct instance as a Medication FHIR instance from ADA farmaceutisch_product.</xd:desc>
+        <xd:desc>Create an nl-core-PharmaceuticalProduct instance as a Medication FHIR instance from ADA farmaceutisch_product.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
     <xsl:template match="farmaceutisch_product" name="nl-core-PharmaceuticalProduct" mode="nl-core-PharmaceuticalProduct" as="element(f:Medication)">
@@ -30,7 +32,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:for-each select="$in">
             <Medication>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNamePharmaceuticalProduct"/>
+                </xsl:call-template>
                 <meta>
                     <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>

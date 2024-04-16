@@ -28,8 +28,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ADA tabak_gebruik to FHIR resource conforming to profile nl-core-TobaccoUse</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameTobaccoUse">nl-core-TobaccoUse</xsl:variable>
+    
     <xd:doc>
-        <xd:desc>Create a nl-core-TobaccoUse instance as a Observation FHIR instance from ADA tabak_gebruik.</xd:desc>
+        <xd:desc>Create an nl-core-TobaccoUse instance as a Observation FHIR instance from ADA tabak_gebruik.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
@@ -39,9 +41,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Observation>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNameTobaccoUse"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TobaccoUse"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <code>

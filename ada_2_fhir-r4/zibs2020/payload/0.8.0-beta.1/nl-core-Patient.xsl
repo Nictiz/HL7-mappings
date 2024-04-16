@@ -21,10 +21,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
+    
+    <xsl:variable name="profileNamePatient">nl-core-Patient</xsl:variable>
 
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada patient to FHIR resource conforming to profile
-            nl-core-Patient</xd:desc>
+        <xd:desc>Converts ada patient to FHIR resource conforming to profile nl-core-Patient</xd:desc>
     </xd:doc>
 
     <xd:doc>
@@ -64,7 +65,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:for-each select="$in">
             <Patient>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNamePatient"/>
+                </xsl:call-template>
                 <meta>
                     <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>

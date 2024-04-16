@@ -31,8 +31,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada hartfrequentie to FHIR Observation conforming to profile nl-core-HeartRate</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameHeartRate">nl-core-HeartRate</xsl:variable>
+    
     <xd:doc>
-        <xd:desc>Create an nl-core-nl-core-HeartRate as a Observation FHIR instance from ada hartfrequentie element.</xd:desc>
+        <xd:desc>Create an nl-core-HeartRate as a Observation FHIR instance from ada hartfrequentie element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
@@ -42,9 +44,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Observation>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNameHeartRate"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HeartRate"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <category>
@@ -56,7 +60,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </category>
                 <code>
                     <coding>
-                        <system value="http://loinc.org"/>
+                        <system value="{$oidMap[@oid=$oidLOINC]/@uri}"/>
                         <code value="8867-4"/>
                         <display value="Heart rate"/>
                     </coding>

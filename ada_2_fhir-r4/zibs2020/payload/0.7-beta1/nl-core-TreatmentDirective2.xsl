@@ -31,6 +31,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada behandel_aanwijzing to FHIR Consent resource conforming to profile nl-core-TreatmentDirective2.</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameTreatmentDirective">nl-core-TreatmentDirective2</xsl:variable>
+    
     <xd:doc>
         <xd:desc>Converts ada behandel_aanwijzing to FHIR Consent resource conforming to profile nl-core-TreatmentDirective2.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -44,9 +46,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Consent>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNameTreatmentDirective"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-TreatmentDirective2"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <xsl:for-each select="toelichting">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
@@ -107,7 +111,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </scope>
                 <category>
                     <coding>
-                        <system value="http://snomed.info/sct" />
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="129125009"/>
                         <display value="verrichting met expliciete context"/>
                     </coding>
@@ -180,7 +184,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:when test=".[self::zorgverlener]">
                                             <xsl:call-template name="makeReference">
                                                 <xsl:with-param name="in" select="."/>
-                                                <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
+                                                <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
                                             </xsl:call-template>
                                         </xsl:when>
                                         <xsl:otherwise>

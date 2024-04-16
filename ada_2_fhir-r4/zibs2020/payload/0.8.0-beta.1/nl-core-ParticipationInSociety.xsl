@@ -31,6 +31,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada participatie_in_maatschappij to FHIR Observation conforming to profile nl-core-ParticipationInSociety</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameParticipationInSociety">nl-core-ParticipationInSociety</xsl:variable>
+    
     <xd:doc>
         <xd:desc>Create an nl-core-ParticipationInSociety instance as an Observation FHIR instance from ada participatie_in_maatschappij element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -42,14 +44,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Observation>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNameParticipationInSociety"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-ParticipationInSociety"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <code>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="314845004"/>
                         <display value="status van participatie van patiënt"/>
                     </coding>
@@ -71,7 +75,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="365469004"/>
                                 <display value="bevinding betreffende netwerk van gezin, familie en ondersteuners"/>
                             </coding>
@@ -87,7 +91,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="405081003"/>
                                 <display value="vrijetijdsgedrag"/>
                             </coding>
@@ -103,7 +107,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="364703007"/>
                                 <display value="arbeidssituatie"/>
                             </coding>

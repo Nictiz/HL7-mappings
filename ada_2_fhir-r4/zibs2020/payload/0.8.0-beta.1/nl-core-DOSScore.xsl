@@ -28,6 +28,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ADA dosscore to FHIR resource conforming to profile nl-core-DOSScore</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameDOSScore">nl-core-DOSScore</xsl:variable>
+    
     <xd:doc>
         <xd:desc>Create an nl-core-DOSScore instance as an Observation FHIR instance from ADA dosscore.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -38,16 +40,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Observation>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNameDOSScore"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-DOSScore"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 
                 <status value="final"/>
                 
                 <code>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="160591000146109"/>
                         <display value="'Delirium observation screening'-beoordelingsschaal"/>
                     </coding>

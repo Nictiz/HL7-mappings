@@ -31,6 +31,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada polsfrequentie to FHIR Observation conforming to profile nl-core-PulseRate</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNamePulseRate">nl-core-PulseRate</xsl:variable>
+    
     <xd:doc>
         <xd:desc>Create an nl-core-PulseRate as an Observation FHIR instance from ada polsfrequentie element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -42,9 +44,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Observation>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNamePulseRate"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PulseRate"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <category>
@@ -56,7 +60,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </category>
                 <code>
                     <coding>
-                        <system value="http://loinc.org"/>
+                        <system value="{$oidMap[@oid=$oidLOINC]/@uri}"/>
                         <code value="8893-0"/>
                         <display value="Heart rate Peripheral artery by palpation"/>
                     </coding>

@@ -68,7 +68,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:variable name="logicalIdStartString" as="xs:string*">
             <xsl:choose>
-                <xsl:when test="$profile = ($profilenameHealthcareProvider, $profilenameHealthcareProviderOrganization)">
+                <xsl:when test="$profile = ($profileNameHealthcareProvider, $profileNameHealthcareProviderOrganization)">
                     <xsl:value-of select="replace(replace(replace($profile, 'HealthcareProvider', 'HPrv'), 'Organization', 'Org'), 'Location', 'Loc')"/>
                 </xsl:when>
                 <xsl:when test="$profile = ($profileNameHealthProfessionalPractitioner, $profileNameHealthProfessionalPractitionerRole)">

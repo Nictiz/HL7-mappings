@@ -31,6 +31,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada vermogen_tot_toiletgang to FHIR Observation conforming to profile nl-core-AbilityToUseToilet</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameAbilityToUseToilet">nl-core-AbilityToUseToilet</xsl:variable>
+    
     <xd:doc>
         <xd:desc>Create an nl-core-AbilityToUseToilet instance as an Observation FHIR instance from ada vermogen_tot_toiletgang element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -42,14 +44,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Observation>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNameAbilityToUseToilet"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AbilityToUseToilet"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <code>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="284779002"/>
                         <display value="vermogen om activiteit voor persoonlijke hygiëne uit te voeren"/>
                     </coding>
@@ -62,7 +66,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="284899001"/>
                                 <display value="vermogen om activiteit voor toiletgang uit te voeren"/>
                             </coding>
@@ -78,7 +82,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="284955009"/>
                                 <display value="vermogen om activiteit voor menstruatiehygiëne uit te voeren"/>
                             </coding>

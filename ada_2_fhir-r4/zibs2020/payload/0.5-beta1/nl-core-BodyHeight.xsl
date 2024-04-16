@@ -21,6 +21,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ada lichaamslengte to FHIR Observation conforming to profile nl-core-BodyHeight</xd:desc>
     </xd:doc>
+    
+    <xsl:variable name="profileNameBodyHeight">nl-core-BodyHeight</xsl:variable>
 
     <xd:doc>
         <xd:desc>Create an nl-core-BodyHeight as a Observation FHIR instance from ada lichaamslengte element.</xd:desc>
@@ -33,9 +35,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:for-each select="$in">
             <Observation>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNameBodyHeight"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BodyHeight"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <xsl:for-each select="identificatie[@value | @root | @nullFlavor]">
                     <identifier>
@@ -52,7 +56,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </category>
                 <code>
                     <coding>
-                        <system value="http://loinc.org"/>
+                        <system value="{$oidMap[@oid=$oidLOINC]/@uri}"/>
                         <code value="8302-2"/>
                         <display value="Body height"/>
                     </coding>

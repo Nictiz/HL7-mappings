@@ -18,9 +18,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ada contact to FHIR Encounter resource conforming to profile nl-core-Encounter</xd:desc>
     </xd:doc>
+    
+    <xsl:variable name="profileNameEncounter">nl-core-Encounter</xsl:variable>
 
     <xd:doc>
-        <xd:desc>Create a nl-core-Contactperson as a RelatedPerson FHIR instance from ada Contactpersoon.</xd:desc>
+        <xd:desc>Create an nl-core-Contactperson as a RelatedPerson FHIR instance from ada Contactpersoon.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
     <xsl:template match="contact" name="nl-core-Encounter" mode="nl-core-Encounter" as="element(f:Encounter)?">
@@ -30,9 +32,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:for-each select="$in">
             <Encounter>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNameEncounter"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Encounter"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <xsl:comment>.status: Dependent on outcome of https://github.com/Nictiz/Nictiz-R4-zib2020/issues/45</xsl:comment>
                 <status value="unknown"/>
@@ -48,7 +52,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <individual>
                             <xsl:call-template name="makeReference">
                                 <xsl:with-param name="in" select="zorgverlener"/>
-                                <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
+                                <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
                             </xsl:call-template>
                         </individual>
                     </participant>
@@ -107,13 +111,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:for-each select="probleem">
                             <xsl:call-template name="makeReference">
                                 <xsl:with-param name="in" select="."/>
-                                <xsl:with-param name="profile" select="'nl-core-Problem'"/>
+                                <xsl:with-param name="profile" select="$profileNameProblem"/>
                             </xsl:call-template>
                         </xsl:for-each>
                         <xsl:for-each select="verrichting">
                             <xsl:call-template name="makeReference">
                                 <xsl:with-param name="in" select="."/>
-                                <xsl:with-param name="profile" select="'nl-core-Procedure'"/>
+                                <xsl:with-param name="profile" select="$profileNameProcedureEvent"/>
                             </xsl:call-template>
                         </xsl:for-each>
                     </reasonReference>
@@ -141,7 +145,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <location>
                             <xsl:call-template name="makeReference">
                                 <xsl:with-param name="in" select="zorgaanbieder"/>
-                                <xsl:with-param name="profile" select="'nl-core-HealthcareProvider'"/>
+                                <xsl:with-param name="profile" select="$profileNameHealthcareProvider"/>
                             </xsl:call-template>
                         </location>
                     </location>

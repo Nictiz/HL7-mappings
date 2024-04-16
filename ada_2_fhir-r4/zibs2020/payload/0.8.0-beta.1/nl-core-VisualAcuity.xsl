@@ -31,6 +31,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada visus to FHIR Observation conforming to profile nl-core-VisualAcuity</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameVisualAcuity">nl-core-VisualAcuity</xsl:variable>
+    
     <xd:doc>
         <xd:desc>Create a FHIR Observation instance conforming to profile nl-core-VisualAcuity from ada visus element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -42,9 +44,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Observation>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNameVisualAcuity"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-VisualAcuity"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <xsl:for-each select="visus_meet_hulpmiddel">
                     <extension url="http://hl7.org/fhir/StructureDefinition/observation-deviceCode">

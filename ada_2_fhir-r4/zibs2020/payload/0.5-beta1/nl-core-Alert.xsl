@@ -31,8 +31,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ADA alert to FHIR resource conforming to profile nl-core-Alert</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameAlert">nl-core-Alert</xsl:variable>
+    
     <xd:doc>
-        <xd:desc>Create a nl-core-Alert instance as a Flag FHIR instance from ADA alert.</xd:desc>
+        <xd:desc>Create an nl-core-Alert instance as a Flag FHIR instance from ADA alert.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">The subject as ADA element or reference.</xd:param>
     </xd:doc>
@@ -42,16 +44,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Flag>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNameAlert"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Alert"/>
+                    <profile value="{concat($urlBaseNictizProfile, $profileNameAlert)}"/>
                 </meta>
                 
                 <xsl:for-each select="conditie/probleem">
                     <extension url="http://hl7.org/fhir/StructureDefinition/flag-detail">
                         <valueReference>
                             <xsl:call-template name="makeReference">
-                                <xsl:with-param name="profile" select="'nl-core-Problem'"/>
+                                <xsl:with-param name="profile" select="$profileNameProblem"/>
                             </xsl:call-template>
                         </valueReference>
                     </extension>

@@ -31,6 +31,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ADA betaler to FHIR Coverage, Patient and Organization resources conforming to profile nl-core-Payer, nl-core-Patient and nl-core-Payer-Organization</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNamePayerInsuranceCompany">nl-core-Payer.InsuranceCompany</xsl:variable>
+    <xsl:variable name="profileNamePayerPayerPerson">nl-core-Payer.PayerPerson</xsl:variable>
+    <xsl:variable name="profileNamePayerOrganization">nl-core-Payer-Organization</xsl:variable>
+    
     <xd:doc>
         <xd:desc>Create an nl-core-Payer instance as a Coverage FHIR instance from ADA betaler.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -46,11 +50,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="endDate" select="verzekeraar/verzekering/eind_datum_tijd/@value"/>
                 
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'nl-core-Payer.InsuranceCompany'"/>
+                    <xsl:with-param name="profile" select="$profileNamePayerInsuranceCompany"/>
                 </xsl:call-template>
                 
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Payer.InsuranceCompany"/>
+                    <profile value="{concat($urlBaseNictizProfile, $profileNamePayerInsuranceCompany)}"/>
                 </meta>
                 <status>
                     <xsl:choose>
@@ -131,10 +135,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <Coverage>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'nl-core-Payer.PayerPerson'"/>
+                    <xsl:with-param name="profile" select="$profileNamePayerPayerPerson"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Payer.PayerPerson"/>
+                    <profile value="{concat($urlBaseNictizProfile, $profileNamePayerPayerPerson)}"/>
                 </meta>
                 <xsl:for-each select="betaler_persoon/bankgegevens">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Payer.BankInformation">
@@ -172,7 +176,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- We cannot know for sure if this betaler_persoon truly is an Organization, but ADA currently does not allow a reference to a Patient or ContactPerson -->
                 <xsl:if test="betaler_persoon/betaler_naam or adresgegevens or contactgegevens">
                     <xsl:call-template name="makeReference">
-                        <xsl:with-param name="profile" select="'nl-core-Payer-Organization'"/>
+                        <xsl:with-param name="profile" select="$profileNamePayerOrganization"/>
                         <xsl:with-param name="wrapIn">payor</xsl:with-param>
                     </xsl:call-template>
                 </xsl:if>
@@ -189,10 +193,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <Organization>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'nl-core-Payer-Organization'"/>
+                    <xsl:with-param name="profile" select="$profileNamePayerOrganization"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Payer-Organization"/>
+                    <profile value="{concat($urlBaseNictizProfile, $profileNamePayerOrganization)}"/>
                 </meta>
                 
                 <xsl:for-each select="verzekeraar/identificatie_nummer">
@@ -231,18 +235,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="parts" as="item()*">
             
             <xsl:choose>
-                <xsl:when test="$profile = 'nl-core-Payer.InsuranceCompany'">
+                <xsl:when test="$profile = $profileNamePayerInsuranceCompany">
                     <xsl:text>Payer as InsuranceCompany</xsl:text>
                     <xsl:value-of select="verzekeraar/organisatie_naam/@value"/>
                     <xsl:if test="verzekerde_nummer/@value">
                         <xsl:value-of select="concat('nummer: ',verzekerde_nummer/@value)"/>
                     </xsl:if>
                 </xsl:when>
-                <xsl:when test="$profile = 'nl-core-Payer.PayerPerson'">
+                <xsl:when test="$profile = $profileNamePayerPayerPerson">
                     <xsl:text>Payer as PayerPerson</xsl:text>
                     <xsl:value-of select="betaler_persoon/betaler_naam/@value"/>
                 </xsl:when>
-                <xsl:when test="$profile = 'nl-core-Payer-Organization'">
+                <xsl:when test="$profile = $profileNamePayerOrganization">
                     <xsl:text>Payer-Organization</xsl:text>
                     <xsl:value-of select="verzekeraar/organisatie_naam/@value"/>
                     <xsl:value-of select="betaler_persoon/betaler_naam/@value"/>

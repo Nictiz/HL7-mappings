@@ -31,6 +31,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada wilsverklaring to FHIR Consent resource conforming to profile nl-core-AdvanceDirective.</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameAdvanceDirective">nl-core-AdvanceDirective</xsl:variable>
+    
     <xd:doc>
         <xd:desc>Converts ada wilsverklaring to FHIR Consent resource conforming to profile nl-core-AdvanceDirective.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -44,9 +46,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Consent>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNameAdvanceDirective"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AdvanceDirective"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <xsl:for-each select="$disorder">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdvanceDirective.Disorder">

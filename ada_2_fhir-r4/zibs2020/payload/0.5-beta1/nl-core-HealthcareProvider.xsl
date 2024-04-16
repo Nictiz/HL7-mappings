@@ -38,7 +38,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="profile" select="$profileNameHealthcareProvider"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider"/>
+                    <profile value="{concat($urlBaseNictizProfile, $profileNameHealthcareProvider)}"/>
                 </meta>
 
                 <xsl:for-each select="organisatie_locatie/locatie_naam">
@@ -63,7 +63,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
                 <xsl:call-template name="makeReference">
                     <xsl:with-param name="in" select="."/>
-                    <xsl:with-param name="profile" select="'nl-core-HealthcareProvider-Organization'"/>
+                    <xsl:with-param name="profile" select="$profileNameHealthcareProviderOrganization"/>
                     <xsl:with-param name="wrapIn" select="'managingOrganization'"/>
                 </xsl:call-template>
             </Location>
@@ -83,7 +83,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="profile" select="$profileNameHealthcareProviderOrganization"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+                    <profile value="{concat($urlBaseNictizProfile, $profileNameHealthcareProviderOrganization)}"/>
                 </meta>
                 <xsl:for-each select="zorgaanbieder_identificatienummer[@value]">
                     <identifier>
@@ -224,7 +224,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:choose>
     </xsl:function>
 
-    <!--_nl-core-HealthProfessional-PractionerRole_toOrganization-->
     <xsl:template match="zorgaanbieder" mode="_nl-core-HealthProfessional-PractitionerRole_toOrganization" name="_nl-core-HealthProfessional-PractionerRole_toOrganization" as="element(f:PractitionerRole)?">
         <xsl:param name="in" select="." as="element()?"/>
 
@@ -234,12 +233,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+                    <profile value="{concat($urlBaseNictizProfile, $profileNameHealthProfessionalPractitionerRole)}"/>
                 </meta>
 
                 <xsl:call-template name="makeReference">
                     <xsl:with-param name="in" select="$in"/>
-                    <xsl:with-param name="profile">nl-core-HealthcareProvider-Organization</xsl:with-param>
+                    <xsl:with-param name="profile" select="$profileNameHealthcareProviderOrganization"/>
                     <xsl:with-param name="wrapIn" select="'organization'"/>
                 </xsl:call-template>
             </PractitionerRole>

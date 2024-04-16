@@ -31,6 +31,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada vermogen_tot_uiterlijke_verzorging to FHIR Observation conforming to profile nl-core-AbilityToGroom</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameAbilityToGroom">nl-core-AbilityToGroom</xsl:variable>
+    
     <xd:doc>
         <xd:desc>Create an nl-core-AbilityToGroom instance as an Observation FHIR instance from ada vermogen_tot_uiterlijke_verzorging element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -43,16 +45,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <Observation>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'nl-core-AbilityToGroom'"/>
+                    <xsl:with-param name="profile" select="$profileNameAbilityToGroom"/>
                 </xsl:call-template>
                 
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AbilityToGroom"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <code>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="704434006"/>
                         <display value="vermogen tot uiterlijke verzorging"/>
                     </coding>

@@ -31,8 +31,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada mobiliteit to FHIR Observation conforming to profile nl-core-Mobility</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameMobility">nl-core-Mobility</xsl:variable>
+    
     <xd:doc>
-        <xd:desc>Create an nl-core-nl-core-Mobility instance as an Observation FHIR instance from ada mobiliteit element.</xd:desc>
+        <xd:desc>Create an nl-core-Mobility instance as an Observation FHIR instance from ada mobiliteit element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
@@ -43,16 +45,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <Observation>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'nl-core-Mobility'"/>
+                    <xsl:with-param name="profile" select="$profileNameMobility"/>
                 </xsl:call-template>
                 
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Mobility"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <code>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="301438001"/>
                         <display value="vermogen tot mobiliteit"/>
                     </coding>
@@ -74,7 +76,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="282097004"/>
                                 <display value="loopvermogen"/>
                             </coding>
@@ -90,7 +92,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="301587001"/>
                                 <display value="vermogen tot traplopen"/>
                             </coding>
@@ -106,7 +108,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="282869009"/>
                                 <display value="vermogen om van houding te veranderen"/>
                             </coding>
@@ -122,7 +124,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="249868004"/>
                                 <display value="vermogen om positie aan te houden"/>
                             </coding>
@@ -138,7 +140,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="364666007"/>
                                 <display value="vermogen om te verplaatsen"/>
                             </coding>

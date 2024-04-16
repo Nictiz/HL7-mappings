@@ -31,6 +31,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada bloeddruk to FHIR Observation conforming to profile nl-core-BloodPressure</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameBloodPressure">nl-core-BloodPressure</xsl:variable>
+    
     <xd:doc>
         <xd:desc>Create an nl-core-BloodPressure as a Observation FHIR instance from ada bloeddruk element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -42,9 +44,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Observation>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNameBloodPressure"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-BloodPressure"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <xsl:for-each select="houding">
                     <extension url="http://hl7.org/fhir/StructureDefinition/observation-bodyPosition">
@@ -65,7 +69,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </category>
                 <code>
                     <coding>
-                        <system value="http://loinc.org"/>
+                        <system value="{$oidMap[@oid=$oidLOINC]/@uri}"/>
                         <code value="85354-9"/>
                         <display value="Blood pressure panel with all children optional"/>
                     </coding>
@@ -108,7 +112,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://loinc.org"/>
+                                <system value="{$oidMap[@oid=$oidLOINC]/@uri}"/>
                                 <code value="8480-6"/>
                                 <display value="Systolic blood pressure"/>
                             </coding>
@@ -124,7 +128,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://loinc.org"/>
+                                <system value="{$oidMap[@oid=$oidLOINC]/@uri}"/>
                                 <code value="8462-4"/>
                                 <display value="Diastolic blood pressure"/>
                             </coding>

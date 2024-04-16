@@ -31,6 +31,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada vaccination to FHIR Immunization or ImmunizationRequest conforming to profile nl-core-Vaccination-event or nl-core-Vaccination-request respectively</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameVaccinationRequest">nl-core-Vaccination-request</xsl:variable>
+    <xsl:variable name="profileNameVaccinationEvent">nl-core-Vaccination-event</xsl:variable>
+    
     <xd:doc>
         <xd:desc>Create an nl-core-Vaccination-event instance as an Immunization FHIR instance from ada vaccinatie element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -43,10 +46,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <Immunization>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'nl-core-Vaccination-event'"/>
+                    <xsl:with-param name="profile" select="$profileNameVaccinationEvent"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Vaccination-event"/>
+                    <profile value="{concat($urlBaseNictizProfile, $profileNameVaccinationEvent)}"/>
                 </meta>
                 <status value="completed"/>
                 <xsl:for-each select="product_code">
@@ -85,7 +88,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <actor>
                             <xsl:call-template name="makeReference">
                                 <xsl:with-param name="in" select="zorgverlener"/>
-                                <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
+                                <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
                             </xsl:call-template>
                         </actor>
                     </performer>
@@ -115,10 +118,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <ImmunizationRecommendation>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'nl-core-Vaccination-request'"/>
+                    <xsl:with-param name="profile" select="$profileNameVaccinationRequest"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Vaccination-request"/>
+                    <profile value="{concat($urlBaseNictizProfile, $profileNameVaccinationRequest)}"/>
                 </meta>
                 <xsl:call-template name="makeReference">
                     <xsl:with-param name="in" select="$patient"/>
@@ -151,7 +154,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <code>
                                     <coding>
                                         <!--Based on the zib it's not possible to deduce the value of dateCriterion.code with full certainty. The LOINC code 30980-7 (Date vaccin due) seems to be the most suited default.-->
-                                        <system value="http://loinc.org" />
+                                        <system value="{$oidMap[@oid=$oidLOINC]/@uri}"/>
                                         <code value="30980-7" />
                                     </coding>
                                 </code>

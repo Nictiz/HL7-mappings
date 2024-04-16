@@ -31,6 +31,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada soepverslag to FHIR Composition conforming to profile nl-core-SOAPReport and FHIR Observation conforming to profile nl-core-SOAPReport.SOAPLine</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameSOAPReport">nl-core-SOAPReport</xsl:variable>
+    <xsl:variable name="profileNameSOAPReportSOAPLine">nl-core-SOAPReport.SOAPLine</xsl:variable>
+    
     <xd:doc>
         <xd:desc>Create a FHIR Composition instance conforming to profile nl-core-SOAPReport from ada soepverslag element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -44,15 +47,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Composition>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNameSOAPReport"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-SOAPReport"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <!--Unless the status is explicitly recorded it is expected that only _final_ reports are exchanged.-->
                 <status value="final"/>
                 <type>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="11591000146107"/>
                         <display value="patiëntcontactverslag"/>
                     </coding>
@@ -72,7 +77,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
                 <xsl:for-each select="auteur/*">
                     <xsl:call-template name="makeReference">
-                        <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
+                        <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
                         <xsl:with-param name="wrapIn" select="'author'"/>
                     </xsl:call-template>
                 </xsl:for-each>
@@ -128,9 +133,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Observation>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNameSOAPReportSOAPLine"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-SOAPReport.SOAPLine"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <xsl:for-each select="soepregel_code">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-SOAPReport.SOAPLineCode">

@@ -26,8 +26,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA verrichting to FHIR Procedure conforming to profile nl-core-Procedure</xd:desc>
+        <xd:desc>Converts ADA verrichting to FHIR Procedure or ServiceRequest conforming to profile nl-core-Procedure-event or nl-core-Procedure-request, respectively</xd:desc>
     </xd:doc>
+    
+    <xsl:variable name="profileNameProcedureEvent">nl-core-Procedure-event</xsl:variable>
+    <xsl:variable name="profileNameProcedureRequest">nl-core-Procedure-request</xsl:variable>
 
     <xd:doc>
         <xd:desc>Create an nl-core-Procedure-event as a Procedure FHIR instance from ada verrichting element.</xd:desc>
@@ -45,10 +48,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="startDate" select="verrichting_start_datum"/>
                 <xsl:variable name="endDate" select="verrichting_eind_datum"/>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'nl-core-Procedure-event'"/>
+                    <xsl:with-param name="profile" select="$profileNameProcedureEvent"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-event"/>
+                    <profile value="{concat($urlBaseNictizProfile, $profileNameProcedureEvent)}"/>
                 </meta>
                 <xsl:for-each select="verrichting_methode">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Procedure.ProcedureMethod">
@@ -63,7 +66,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <basedOn>
                         <xsl:call-template name="makeReference">
                             <xsl:with-param name="in" select="$in"/>
-                            <xsl:with-param name="profile" select="'nl-core-Procedure-request'"/>
+                            <xsl:with-param name="profile" select="$profileNameProcedureRequest"/>
                         </xsl:call-template>
                     </basedOn>
                 </xsl:for-each>
@@ -119,7 +122,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <actor>
                             <xsl:call-template name="makeReference">
                                 <xsl:with-param name="in" select="zorgverlener"/>
-                                <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
+                                <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
                             </xsl:call-template>
                         </actor>
                     </performer>
@@ -128,7 +131,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <location>
                         <xsl:call-template name="makeReference">
                             <xsl:with-param name="in" select="zorgaanbieder"/>
-                            <xsl:with-param name="profile" select="'nl-core-HealthcareProvider'"/>
+                            <xsl:with-param name="profile" select="$profileNameHealthcareProvider"/>
                         </xsl:call-template>
                     </location>
                 </xsl:for-each>
@@ -136,7 +139,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <reasonReference>
                         <xsl:call-template name="makeReference">
                             <xsl:with-param name="in" select="probleem"/>
-                            <xsl:with-param name="profile" select="'nl-core-Problem'"/>
+                            <xsl:with-param name="profile" select="$profileNameProblem"/>
                         </xsl:call-template>
                     </reasonReference>
                 </xsl:for-each>
@@ -149,7 +152,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="$report">
                     <xsl:call-template name="makeReference">
                         <xsl:with-param name="in" select="."/>
-                        <xsl:with-param name="profile" select="'nl-core-TextResult'"/>
+                        <xsl:with-param name="profile" select="$profileNameTextResult"/>
                         <xsl:with-param name="wrapIn" select="'report'"/>
                     </xsl:call-template>
                 </xsl:for-each>
@@ -171,10 +174,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="startDate" select="verrichting_start_datum"/>
                 <xsl:variable name="endDate" select="verrichting_eind_datum"/>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'nl-core-Procedure-request'"/>
+                    <xsl:with-param name="profile" select="$profileNameProcedureRequest"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Procedure-request"/>
+                    <profile value="{concat($urlBaseNictizProfile, $profileNameProcedureRequest)}"/>
                 </meta>
                 <status>
                     <!--    
@@ -239,7 +242,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <requester>
                         <xsl:call-template name="makeReference">
                             <xsl:with-param name="in" select="zorgverlener"/>
-                            <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
+                            <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
                         </xsl:call-template>
                     </requester>
                 </xsl:for-each>
@@ -250,7 +253,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <performer>
                             <xsl:call-template name="makeReference">
                                 <xsl:with-param name="in" select="zorgverlener"/>
-                                <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
+                                <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
                             </xsl:call-template>
                     </performer>
                 </xsl:for-each>
@@ -258,7 +261,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <locationReference>
                         <xsl:call-template name="makeReference">
                             <xsl:with-param name="in" select="zorgaanbieder"/>
-                            <xsl:with-param name="profile" select="'nl-core-HealthcareProvider'"/>
+                            <xsl:with-param name="profile" select="$profileNameHealthcareProvider"/>
                         </xsl:call-template>
                     </locationReference>
                 </xsl:for-each>
@@ -266,7 +269,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <reasonReference>
                         <xsl:call-template name="makeReference">
                             <xsl:with-param name="in" select="probleem"/>
-                            <xsl:with-param name="profile" select="'nl-core-Problem'"/>
+                            <xsl:with-param name="profile" select="$profileNameProblem"/>
                         </xsl:call-template>
                     </reasonReference>
                 </xsl:for-each>

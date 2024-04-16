@@ -31,6 +31,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada functie_horen to FHIR Observation conforming to profile nl-core-HearingFunction, FHIR DeviceUseStatement conforming to profile nl-core-HearingFunction.HearingAid and FHIR Device conforming to profile nl-core-HearingFunction.HearingAid.Product</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameHearingFunction">nl-core-HearingFunction</xsl:variable>
+    <xsl:variable name="profileNameHearingFunctionHearingAid">nl-core-HearingFunction.HearingAid</xsl:variable>
+    <xsl:variable name="profileNameHearingFunctionHearingAidProduct">nl-core-HearingFunction.HearingAid.Product</xsl:variable>
+    
     <xd:doc>
         <xd:desc>Create an nl-core-HearingFunction instance as an Observation FHIR instance from ada functie_horen element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -43,16 +47,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <Observation>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'nl-core-HearingFunction'"/>
+                    <xsl:with-param name="profile" select="$profileNameHearingFunction"/>
                 </xsl:call-template>
                     
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HearingFunction"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <code>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="47078008"/>
                         <display value="gehoorfunctie"/>
                     </coding>
@@ -94,7 +98,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:call-template name="nl-core-MedicalDevice">
             <xsl:with-param name="subject" select="$subject"/>
-            <xsl:with-param name="profile" select="'nl-core-HearingFunction.HearingAid'"/>
+            <xsl:with-param name="profile" select="$profileNameHearingFunctionHearingAid"/>
             <xsl:with-param name="reasonReference" select="$reasonReference"/>
         </xsl:call-template>
     </xsl:template>
@@ -110,7 +114,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:call-template name="nl-core-MedicalDevice.Product">
             <xsl:with-param name="subject" select="$subject"/>
-            <xsl:with-param name="profile" select="'nl-core-HearingFunction.HearingAid.Product'"/>
+            <xsl:with-param name="profile" select="$profileNameHearingFunctionHearingAidProduct"/>
         </xsl:call-template>
     </xsl:template>
 

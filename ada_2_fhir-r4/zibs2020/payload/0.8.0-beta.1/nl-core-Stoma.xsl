@@ -18,6 +18,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ada stoma to FHIR Condition conforming to profile nl-core-Stoma</xd:desc>
     </xd:doc>
+    
+    <xsl:variable name="profileNameStoma">nl-core-Stoma</xsl:variable>
 
     <xd:doc>
         <xd:desc>Create an nl-core-Stoma as a Condition FHIR instance from ada stoma element.</xd:desc>
@@ -31,15 +33,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <Condition>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'nl-core-Stoma'"/>
+                    <xsl:with-param name="profile" select="$profileNameStoma"/>
                 </xsl:call-template>
                 
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Stoma"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <category>
                     <coding> 
-                        <system value="http://snomed.info/sct"/> 
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/> 
                         <code value="245857005"/> 
                         <display value="stoma"/> 
                     </coding> 

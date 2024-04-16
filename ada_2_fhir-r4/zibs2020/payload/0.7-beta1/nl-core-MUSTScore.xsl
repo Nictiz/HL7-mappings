@@ -31,6 +31,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada mustscore to FHIR Observation conforming to profile nl-core-MUSTScore</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameMUSTScore">nl-core-MUSTScore</xsl:variable>
+    
     <xd:doc>
         <xd:desc>Create an nl-core-MUSTScore instance as an Observation FHIR instance from ada mustscore element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -43,16 +45,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <Observation>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'nl-core-MUSTScore'"/>
+                    <xsl:with-param name="profile" select="$profileNameMUSTScore"/>
                 </xsl:call-template>
                 
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-MUSTScore"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <code>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="414648004"/>
                         <display value="Malnutrition Universal Screening Tool"/>
                     </coding>

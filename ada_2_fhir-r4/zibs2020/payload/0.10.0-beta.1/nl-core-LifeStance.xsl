@@ -31,6 +31,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada levensovertuiging_rc to FHIR Observation conforming to profile nl-core-LifeStance</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameLifeStance">nl-core-LifeStance</xsl:variable>
+    
     <xd:doc>
         <xd:desc>Create an nl-core-LifeStance instance as an Observation FHIR instance from ada levensovertuiging_rc element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -42,14 +44,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Observation>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNameLifeStance"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LifeStance"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <code>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="160538000"/>
                         <display value="geloofsovertuiging"/>
                     </coding>

@@ -31,6 +31,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada hulp_van_anderen to FHIR CarePlan conforming to profile nl-core-HelpFromOthers.</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameHelpFromOthers">nl-core-HelpFromOthers</xsl:variable>
+    
     <xd:doc>
         <xd:desc>Create an nl-core-HelpFromOthers instance as an Observation FHIR instance from ada hulp_van_anderen element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -42,9 +44,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <CarePlan>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNameHelpFromOthers"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HelpFromOthers"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 
                 <status value="active"/>
@@ -52,7 +56,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 
                 <category>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="243114000"/>
                         <display value="ondersteuning"/>
                     </coding>
@@ -87,15 +91,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <performer>
                                 <xsl:call-template name="makeReference">
                                     <xsl:with-param name="in" select="zorgverlener"/>
-                                    <xsl:with-param name="profile" select="'nl-core-HealthProfessional-PractitionerRole'"/>
-                                </xsl:call-template>                            
+                                    <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
+                                </xsl:call-template>
                             </performer>
                         </xsl:for-each>
                         <xsl:for-each select="hulpverlener/mantelzorger">
                             <performer>
                                 <xsl:call-template name="makeReference">
                                     <xsl:with-param name="in" select="contactpersoon"/>
-                                    <xsl:with-param name="profile" select="'nl-core-ContactPerson'"/>
+                                    <xsl:with-param name="profile" select="$profileNameContactPerson"/>
                                 </xsl:call-template>
                             </performer>
                         </xsl:for-each>
@@ -103,7 +107,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <performer>
                                 <xsl:call-template name="makeReference">
                                     <xsl:with-param name="in" select="zorgaanbieder"/>
-                                    <xsl:with-param name="profile" select="'nl-core-HealthcareProvider-Organization'"/>
+                                    <xsl:with-param name="profile" select="$profileNameHealthcareProviderOrganization"/>
                                 </xsl:call-template>
                             </performer>
                         </xsl:for-each>
@@ -124,7 +128,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:call-template name="string-to-string">
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
-                        </text>                        
+                        </text>
                     </note>
                 </xsl:for-each>
             </CarePlan>
@@ -144,7 +148,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:value-of select="frequentie/@value"/>
             </xsl:if>
         </xsl:variable>
-        <xsl:value-of select="string-join($parts, ', ')"/>     
+        <xsl:value-of select="string-join($parts, ', ')"/>
     </xsl:template>
     
 </xsl:stylesheet>

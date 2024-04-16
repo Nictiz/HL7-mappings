@@ -18,6 +18,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ada zwangerschap to FHIR Condition conforming to profile nl-core-Pregnancy</xd:desc>
     </xd:doc>
+    
+    <xsl:variable name="profileNamePregnancy">nl-core-Pregnancy</xsl:variable>
+    <xsl:variable name="profileNamePregnancyPregnancyDuration">nl-core-Pregnancy.PregnancyDuration</xsl:variable>
+    <xsl:variable name="profileNamePregnancyParity">nl-core-Pregnancy.Parity</xsl:variable>
+    <xsl:variable name="profileNamePregnancyGravidity">nl-core-Pregnancy.Gravidity</xsl:variable>
+    <xsl:variable name="profileNamePregnancyEstimatedDateOfDelivery">nl-core-Pregnancy.EstimatedDateOfDelivery</xsl:variable>
+    <xsl:variable name="profileNamePregnancyDateLastMenstruation">nl-core-Pregnancy.DateLastMenstruation</xsl:variable>
 
     <xd:doc>
         <xd:desc>Create an nl-core-Pregnancy as a Condition FHIR instance from ada zwangerschap element.</xd:desc>
@@ -30,7 +37,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:for-each select="$in">
             <Condition>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNamePregnancy"/>
+                </xsl:call-template>
                 <meta>
                     <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
@@ -67,9 +76,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Observation>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNamePregnancyPregnancyDuration"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.PregnancyDuration"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <code>
@@ -107,9 +118,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Observation>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNamePregnancyParity"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.Parity"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <code>
@@ -147,9 +160,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Observation>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNamePregnancyGravidity"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.Gravidity"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <code>
@@ -187,9 +202,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Observation>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNamePregnancyEstimatedDateOfDelivery"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.EstimatedDateOfDelivery"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <code>
@@ -243,9 +260,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Observation>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNamePregnancyDateLastMenstruation"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Pregnancy.DateLastMenstruation"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <code>

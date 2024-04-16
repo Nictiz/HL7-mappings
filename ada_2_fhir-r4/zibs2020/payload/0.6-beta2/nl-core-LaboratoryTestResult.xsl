@@ -30,6 +30,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ADA [...] to FHIR [...] conforming to profile [...]</xd:desc>
     </xd:doc>
+    
+    <xsl:variable name="profileNameLaboratoryTestResult">nl-core-LaboratoryTestResult</xsl:variable>
+    <xsl:variable name="profileNameLaboratoryTestResultSpecimen">nl-core-LaboratoryTestResult.Specimen</xsl:variable>
+    <xsl:variable name="profileNameLaboratoryTestResultSpecimenSource">nl-core-LaboratoryTestResult.Specimen.Source</xsl:variable>
 
     <xd:doc>
         <xd:desc>Create a single nl-core-LaboratoryTestResult instance as an Observation FHIR instance from ADA laboratorium_uitslag for a singlular test, that is, when it contains a single laboratorium_test.</xd:desc>
@@ -56,9 +60,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="subject" select="$in/../../patientgegevens/patient" as="element()?"/>
         
         <Observation>
-            <xsl:call-template name="insertLogicalId"/>
+            <xsl:call-template name="insertLogicalId">
+                <xsl:with-param name="profile" select="$profileNameLaboratoryTestResult"/>
+            </xsl:call-template>
             <meta>
-                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
+                <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
             </meta>
             <xsl:for-each select="$in/kopie_indicator[@value = 'true']">
                 <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
@@ -126,21 +132,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
             <xsl:for-each select="$in/uitvoerder">
                 <performer>
-                    <!--<xsl:choose>
-                        <xsl:when test="afdeling_specialisme">
-                            <xsl:call-template name="makeReference">
-                                <xsl:with-param name="profile" select="'nl-core-HealthcareProvider'"/>
-                            </xsl:call-template>
-                        </xsl:when>
-                        <xsl:otherwise>-->
-                            <xsl:call-template name="makeReference">
-                                <xsl:with-param name="profile" select="'nl-core-HealthcareProvider-Organization'"/>
-                            </xsl:call-template>
-                        <!--</xsl:otherwise>
-                    </xsl:choose>-->
+                    <xsl:call-template name="makeReference">
+                        <xsl:with-param name="profile" select="$profileNameHealthcareProviderOrganization"/>
+                    </xsl:call-template>
                 </performer>
             </xsl:for-each>
-                        
+            
             <xsl:for-each select="$in/toelichting">
                 <note>
                     <text>
@@ -152,7 +149,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="$in/monster">
                 <xsl:call-template name="makeReference">
                     <xsl:with-param name="wrapIn">specimen</xsl:with-param>
-                    <xsl:with-param name="profile" select="'nl-core-LaboratoryTestResult.Specimen'"/>
+                    <xsl:with-param name="profile" select="$profileNameLaboratoryTestResultSpecimen"/>
                 </xsl:call-template>
             </xsl:for-each>
             
@@ -168,7 +165,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     
     <xd:doc>
         <xd:desc>
-            <xd:p>Helper template to create a nl-core-LaboratoryTestResult instance representing a single LaboratoryTest (depending on the situation, this might be one of the tests within a panel or the entire zib).</xd:p>
+            <xd:p>Helper template to create an nl-core-LaboratoryTestResult instance representing a single LaboratoryTest (depending on the situation, this might be one of the tests within a panel or the entire zib).</xd:p>
             <xd:p>Note that the match is on laboratorium_test, not on laboratorium_uitslag, but that it's assumed that it is passed as part of a laboratorium_uitslag. This mechanism is needed to distinguish different laboratorium_test's withing a single laboratorium_uitslag. This helper template shouldn't be used directly; instead, the public-facing templates should be used.</xd:p>
         </xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -179,13 +176,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="subject" select="$in/parent::laboratorium_uitslag/patient/*" as="element()?"/>
         
         <!-- The Observation partially represents the root concept of zib LaboratoryTestResult and partially the
-             LaboratoryTest concept. Even when multiple instances are used (in a panel sitution), some data from the
+             LaboratoryTest concept. Even when multiple instances are used (in a panel situation), some data from the
              root is represented in all instances. -->
         <xsl:variable name="parent" select="$in/parent::laboratorium_uitslag"/>
         <Observation>
-            <xsl:call-template name="insertLogicalId"/>
+            <xsl:call-template name="insertLogicalId">
+                <xsl:with-param name="profile" select="$profileNameLaboratoryTestResult"/>
+            </xsl:call-template>
             <meta>
-                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
+                <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
             </meta>
             <xsl:for-each select="$parent/kopie_indicator[@value = 'true']">
                 <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
@@ -270,12 +269,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:choose>
                         <xsl:when test="afdeling_specialisme">
                             <xsl:call-template name="makeReference">
-                                <xsl:with-param name="profile" select="'nl-core-HealthcareProvider'"/>
+                                <xsl:with-param name="profile" select="$profileNameHealthcareProvider"/>
                             </xsl:call-template>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:call-template name="makeReference">
-                                <xsl:with-param name="profile" select="'nl-core-HealthcareProvider-Organization'"/>
+                                <xsl:with-param name="profile" select="$profileNameHealthcareProviderOrganization"/>
                             </xsl:call-template>
                         </xsl:otherwise>
                     </xsl:choose>
@@ -334,7 +333,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:for-each select="$parent/monster">
                 <xsl:call-template name="makeReference">
                     <xsl:with-param name="wrapIn">specimen</xsl:with-param>
-                    <xsl:with-param name="profile" select="'nl-core-LaboratoryTestResult.Specimen'"/>
+                    <xsl:with-param name="profile" select="$profileNameLaboratoryTestResultSpecimen"/>
                 </xsl:call-template>
             </xsl:for-each>
             
@@ -359,7 +358,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Helper template to create a nl-core-LaboratoryTestResult.Specimen instance as Specimen FHIR instance from ADA laboratorium_uitslag/monster. This template can result in two slightly different outputs based on the type parameter:
+        <xd:desc>Helper template to create an nl-core-LaboratoryTestResult.Specimen instance as Specimen FHIR instance from ADA laboratorium_uitslag/monster. This template can result in two slightly different outputs based on the type parameter:
         * if type contains ADA element monstermateriaal, `Specimen.type` will contain that code.
         * if type contains ADA element microorgansime, `Specimen.type` will contain that code. If in contains monstermateriaal, that instance will be referred using `Specimen.parent`.
         </xd:desc>
@@ -375,10 +374,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <Specimen>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'nl-core-LaboratoryTestResult.Specimen'"/>
+                    <xsl:with-param name="profile" select="$profileNameLaboratoryTestResultSpecimen"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 
                 <xsl:for-each select="$in/monsternummer">
@@ -398,7 +397,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:for-each select="$in/bron_monster">
                             <xsl:call-template name="makeReference">
                                 <xsl:with-param name="wrapIn">subject</xsl:with-param>
-                                <xsl:with-param name="profile">nl-core-LaboratoryTestResult.Specimen.Source</xsl:with-param>
+                                <xsl:with-param name="profile" select="$profileNameLaboratoryTestResultSpecimenSource"/>
                             </xsl:call-template>
                         </xsl:for-each>
                     </xsl:when>
@@ -413,7 +412,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="$in/monster">
                     <xsl:call-template name="makeReference">
                         <xsl:with-param name="wrapIn">specimen</xsl:with-param>
-                        <xsl:with-param name="profile" select="'nl-core-LaboratoryTestResult.Specimen'"/>
+                        <xsl:with-param name="profile" select="$profileNameLaboratoryTestResultSpecimen"/>
                     </xsl:call-template>
                 </xsl:for-each>
                 
@@ -433,7 +432,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:if test="$type[self::microorganisme] and $in/monstermateriaal">
                     <parent>
                         <xsl:call-template name="makeReference">
-                            <xsl:with-param name="profile">nl-core-LaboratoryTestResult.Specimen</xsl:with-param>
+                            <xsl:with-param name="profile" select="$profileNameLaboratoryTestResultSpecimen"/>
                         </xsl:call-template>
                     </parent>
                 </xsl:if>
@@ -518,7 +517,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Helper template to create a nl-core-LaboratoryTestResult.Specimen.Source instance as Device FHIR instance from ADA laboratorium_uitslag/monster/bron_monster.</xd:desc>
+        <xd:desc>Helper template to create an nl-core-LaboratoryTestResult.Specimen.Source instance as Device FHIR instance from ADA laboratorium_uitslag/monster/bron_monster.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">ADA patient element. Has no default</xd:param>
     </xd:doc>
@@ -529,10 +528,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <Device>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile">nl-core-LaboratoryTestResult.Specimen.Source</xsl:with-param>
+                    <xsl:with-param name="profile" select="$profileNameLaboratoryTestResultSpecimenSource"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen.Source"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 
                 <deviceName>
