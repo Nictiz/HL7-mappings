@@ -24,7 +24,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
     
-    <xsl:import href="../../../../zibs2020/payload/0.8.0-beta.1/all_zibs.xsl"/>
+    <xsl:import href="../../payload/all_profiles.xsl"/>
     
     <xd:doc>
         <xd:desc>If true, write all generated resources to disk in the fhir_instance directory. Otherwise, return all the output in a FHIR Bundle.</xd:desc>
@@ -62,8 +62,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc/>
     </xd:doc>
     <xsl:template match="sturen_verwijzing_of_update_huisarts_naar_paramedicus">
-        <!--<xsl:message>Parameter writeOutputToDisk has value = <xsl:value-of select="$writeOutputToDisk"/></xsl:message>
-        <xsl:message>Parameter dateT has value = <xsl:value-of select="$dateT"/></xsl:message>-->
         
         <xsl:variable name="resources" as="element(f:entry)*">
             <xsl:variable name="patient" as="element()?">
@@ -177,461 +175,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template name="hg-ReferralTask" as="element(f:Task)?">
-        <xsl:param name="subject" select="patientgegevens/patient" as="element()?"/>
-        <xsl:param name="requester" select="verzender/*" as="element()?"/>
-        <xsl:param name="owner" select="ontvanger/*" as="element()?"/>
-        
-        <Task>
-            <xsl:call-template name="insertLogicalId">
-                <xsl:with-param name="profile" select="'hg-ReferralTask'"/>
-            </xsl:call-template>
-            <meta>
-                <profile value="http://nictiz.nl/fhir/StructureDefinition/hg-ReferralTask"/>
-            </meta>
-            
-            <xsl:for-each select="..[@id]">
-                <identifier>
-                    <value>
-                        <xsl:attribute name="value">
-                            <xsl:value-of select="@id"/>
-                        </xsl:attribute>
-                    </value>
-                </identifier>
-            </xsl:for-each>
-            
-            <status value="requested"/>
-            <intent value="order"/>
-            
-            <code>
-                <coding>
-                    <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                    <code value="3457005"/>
-                    <display value="verwijzen van patiënt"/>
-                </coding>
-            </code>
-            
-            <xsl:call-template name="makeReference">
-                <xsl:with-param name="in" select="."/>
-                <xsl:with-param name="wrapIn" select="'focus'"/>
-                <xsl:with-param name="profile" select="'hg-ReferralServiceRequest'"/>
-            </xsl:call-template>
-            
-            <xsl:call-template name="makeReference">
-                <xsl:with-param name="in" select="$subject"/>
-                <xsl:with-param name="wrapIn" select="'for'"/>
-            </xsl:call-template>
-            
-            <xsl:for-each select="datum_tijd_verzenden[@value]">
-                <authoredOn>
-                    <xsl:call-template name="date-to-datetime">
-                        <xsl:with-param name="in" select="."/>
-                    </xsl:call-template>
-                </authoredOn>
-            </xsl:for-each>
-            
-            <xsl:for-each select="$requester">
-                <xsl:call-template name="makeReference">
-                    <xsl:with-param name="in" select="."/>
-                    <xsl:with-param name="wrapIn" select="'requester'"/>
-                    <xsl:with-param name="profile">
-                        <xsl:choose>
-                            <xsl:when test="self::zorgverlener">
-                                <xsl:value-of select="$profileNameHealthProfessionalPractitionerRole"/>
-                            </xsl:when>
-                            <xsl:when test="self::zorgaanbieder">
-                                <xsl:value-of select="$profileNameHealthcareProviderOrganization"/>
-                            </xsl:when>
-                        </xsl:choose>
-                    </xsl:with-param>
-                </xsl:call-template>
-            </xsl:for-each>
-            
-            <xsl:for-each select="$owner">
-                <xsl:call-template name="makeReference">
-                    <xsl:with-param name="in" select="."/>
-                    <xsl:with-param name="wrapIn" select="'owner'"/>
-                    <xsl:with-param name="profile">
-                        <xsl:choose>
-                            <xsl:when test="self::zorgverlener">
-                                <xsl:value-of select="$profileNameHealthProfessionalPractitionerRole"/>
-                            </xsl:when>
-                            <xsl:when test="self::zorgaanbieder">
-                                <xsl:value-of select="$profileNameHealthcareProviderOrganization"/>
-                            </xsl:when>
-                        </xsl:choose>
-                    </xsl:with-param>
-                </xsl:call-template>
-            </xsl:for-each>
-        </Task>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc/>
-    </xd:doc>
-    <xsl:template name="hg-ReferralServiceRequest" as="element(f:ServiceRequest)?">
-        <xsl:param name="subject" select="patientgegevens/patient" as="element()?"/>
-        <xsl:param name="requester" select="verzender/*" as="element()?"/>
-        <xsl:param name="performer" select="ontvanger/*" as="element()?"/>
-        
-            <ServiceRequest>
-                <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="'hg-ReferralServiceRequest'"/>
-                </xsl:call-template>
-                <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/hg-ReferralServiceRequest"/>
-                </meta>
-                
-                <xsl:for-each select="..[@id]">
-                    <identifier>
-                        <value>
-                            <xsl:attribute name="value">
-                                <xsl:value-of select="@id"/>
-                            </xsl:attribute>
-                        </value>
-                    </identifier>
-                </xsl:for-each>
-                
-                <status value="completed"/>
-                <intent value="order"/>
-                
-                <xsl:for-each select="type_bericht[@code]">
-                    <category>
-                        <xsl:call-template name="code-to-CodeableConcept">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </category>
-                </xsl:for-each>
-                
-                <xsl:for-each select="urgentie[@code]">
-                    <priority>
-                        <xsl:call-template name="code-to-code">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </priority>
-                </xsl:for-each>
-                
-                <xsl:call-template name="makeReference">
-                    <xsl:with-param name="in" select="$subject"/>
-                    <xsl:with-param name="wrapIn" select="'subject'"/>
-                </xsl:call-template>
-                
-                <xsl:for-each select="datum_tijd_verzenden[@value]">
-                    <authoredOn>
-                        <xsl:call-template name="date-to-datetime">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </authoredOn>
-                </xsl:for-each>
-                
-                <xsl:for-each select="$requester">
-                    <xsl:call-template name="makeReference">
-                        <xsl:with-param name="in" select="."/>
-                        <xsl:with-param name="wrapIn" select="'requester'"/>
-                        <xsl:with-param name="profile">
-                            <xsl:choose>
-                                <xsl:when test="self::zorgverlener">
-                                    <xsl:value-of select="$profileNameHealthProfessionalPractitionerRole"/>
-                                </xsl:when>
-                                <xsl:when test="self::zorgaanbieder">
-                                    <xsl:value-of select="$profileNameHealthcareProviderOrganization"/>
-                                </xsl:when>
-                            </xsl:choose>
-                        </xsl:with-param>
-                    </xsl:call-template>
-                </xsl:for-each>
-                
-                <xsl:for-each select="$performer">
-                    <xsl:call-template name="makeReference">
-                        <xsl:with-param name="in" select="."/>
-                        <xsl:with-param name="wrapIn" select="'performer'"/>
-                        <xsl:with-param name="profile">
-                            <xsl:choose>
-                                <xsl:when test="self::zorgverlener">
-                                    <xsl:value-of select="$profileNameHealthProfessionalPractitionerRole"/>
-                                </xsl:when>
-                                <xsl:when test="self::zorgaanbieder">
-                                    <xsl:value-of select="$profileNameHealthcareProviderOrganization"/>
-                                </xsl:when>
-                            </xsl:choose>
-                        </xsl:with-param>
-                    </xsl:call-template>
-                </xsl:for-each>
-                
-                <xsl:call-template name="makeReference">
-                    <xsl:with-param name="in" select="../kern"/>
-                    <xsl:with-param name="wrapIn" select="'supportingInfo'"/>
-                    <xsl:with-param name="profile" select="'hg-ReferralComposition'"/>
-                </xsl:call-template>
-            </ServiceRequest>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc/>
-    </xd:doc>
-    <xsl:template name="hg-ReferralComposition" as="element(f:Composition)?">
-        <xsl:param name="subject" select="../envelop/patientgegevens/patient" as="element()?"/>
-        <xsl:param name="author" select="../envelop/verzender/*" as="element()?"/>
-        
-        <Composition>
-            <xsl:call-template name="insertLogicalId">
-                <xsl:with-param name="profile" select="'hg-ReferralComposition'"/>
-            </xsl:call-template>
-            <meta>
-                <profile value="http://nictiz.nl/fhir/StructureDefinition/hg-ReferralComposition"/>
-            </meta>
-            
-            <xsl:for-each select="..[@id]">
-                <identifier>
-                    <value>
-                        <xsl:attribute name="value">
-                            <xsl:value-of select="@id"/>
-                        </xsl:attribute>
-                    </value>
-                </identifier>
-            </xsl:for-each>
-            
-            <status value="final"/>
-            
-            <type>
-                <coding>
-                    <system value="{$oidMap[@oid=$oidLOINC]/@uri}"/>
-                    <code value="57133-1"/>
-                    <display value="Referral note"/>
-                </coding>
-            </type>
-            
-            <xsl:call-template name="makeReference">
-                <xsl:with-param name="in" select="$subject"/>
-                <xsl:with-param name="wrapIn" select="'subject'"/>
-            </xsl:call-template>
-            
-            <xsl:for-each select="../envelop/datum_tijd_verzenden[@value]">
-                <date>
-                    <xsl:call-template name="date-to-datetime">
-                        <xsl:with-param name="in" select="."/>
-                    </xsl:call-template>
-                </date>
-            </xsl:for-each>
-            
-            <xsl:for-each select="$author">
-                <xsl:call-template name="makeReference">
-                    <xsl:with-param name="in" select="."/>
-                    <xsl:with-param name="wrapIn" select="'author'"/>
-                    <xsl:with-param name="profile">
-                        <xsl:choose>
-                            <xsl:when test="self::zorgverlener">
-                                <xsl:value-of select="$profileNameHealthProfessionalPractitionerRole"/>
-                            </xsl:when>
-                            <xsl:when test="self::zorgaanbieder">
-                                <xsl:value-of select="$profileNameHealthcareProviderOrganization"/>
-                            </xsl:when>
-                        </xsl:choose>
-                    </xsl:with-param>
-                </xsl:call-template>
-            </xsl:for-each>
-            
-            <title value="Referral note"/>
-            
-            <xsl:if test="../envelop/(zorgpad[@value] | voorzieningen_nodig_bij_consult[@value])">
-                <section>
-                    <title value="Envelop"/>
-                    <code>
-                        <coding>
-                            <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                            <code value="405624007"/>
-                            <display value="administratieve documentatie"/>
-                        </coding>
-                    </code>
-                    
-                    <xsl:for-each select="../envelop/zorgpad[@value]">
-                        <section>
-                            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TextValue">
-                                <valueString>
-                                    <xsl:call-template name="string-to-string">
-                                        <xsl:with-param name="in" select="."/>
-                                    </xsl:call-template>
-                                </valueString>
-                            </extension>
-                            <title value="Zorgpad"/>
-                            <code>
-                                <coding>
-                                    <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                                    <code value="370858005"/>
-                                    <display value="volgen van klinisch zorgpad"/>
-                                </coding>
-                            </code>
-                            <text>
-                                <status value="extensions"/>
-                                <div xmlns="http://www.w3.org/1999/xhtml">
-                                    <xsl:value-of select="concat('Zorgpad: ', @value)"/>
-                                </div>
-                            </text>
-                        </section>
-                    </xsl:for-each>
-                    
-                    <xsl:for-each select="../envelop/voorzieningen_nodig_bij_consult[@value]">
-                        <section>
-                            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TextValue">
-                                <valueString>
-                                    <xsl:call-template name="string-to-string">
-                                        <xsl:with-param name="in" select="."/>
-                                    </xsl:call-template>
-                                </valueString>
-                            </extension>
-                            <title value="Voorzieningen nodig bij consult"/>
-                            <code>
-                                <coding>
-                                    <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                                    <code value="230211000146109"/>
-                                    <display value="faciliteiten benodigd bij consult"/>
-                                </coding>
-                            </code>
-                            <text>
-                                <status value="extensions"/>
-                                <div xmlns="http://www.w3.org/1999/xhtml">
-                                    <xsl:value-of select="concat('Voorzieningen nodig bij consult: ', @value)"/>
-                                </div>
-                            </text>
-                        </section>
-                    </xsl:for-each>
-                </section>
-            </xsl:if>
-            
-            <xsl:if test="reden_bericht/context[@value] | reden_bericht/probleem | ingestelde_behandeling[@value] | procedure_voorstel[@value] | verder_van_belang[@value]">
-                <section>
-                    <title value="Kern"/>
-                    <code>
-                        <coding>
-                            <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                            <code value="406550009"/>
-                            <display value="samenvatting van zorgvraag"/>
-                        </coding>
-                    </code>
-                    
-                    <xsl:for-each select="reden_bericht">
-                        <section>
-                            <xsl:for-each select="context[@value]">
-                                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TextValue">
-                                    <valueString>
-                                        <xsl:call-template name="string-to-string">
-                                            <xsl:with-param name="in" select="."/>
-                                        </xsl:call-template>
-                                    </valueString>
-                                </extension>
-                            </xsl:for-each>
-                            
-                            <title value="Reden bericht"/>
-                            <code>
-                                <coding>
-                                    <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                                    <code value="440378000"/>
-                                    <display value="verwijzing voor"/>
-                                </coding>
-                            </code>
-                            <text>
-                                <status value="extensions"/>
-                                <div xmlns="http://www.w3.org/1999/xhtml">
-                                    <xsl:value-of select="concat('Reden bericht: ', if (probleem/probleem_naam/@displayName) then concat(probleem/probleem_naam/@displayName, ', ') else '', context/@value)"/>
-                                </div>
-                            </text>
-                            
-                            <xsl:for-each select="probleem">
-                                <entry>
-                                    <xsl:call-template name="makeReference">
-                                        <xsl:with-param name="in" select="."/>
-                                        <xsl:with-param name="profile" select="$profileNameProblem"/>
-                                    </xsl:call-template>
-                                </entry>
-                            </xsl:for-each>
-                        </section>
-                    </xsl:for-each>
-                    
-                    <xsl:for-each select="ingestelde_behandeling[@value]">
-                        <section>
-                            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TextValue">
-                                <valueString>
-                                    <xsl:call-template name="string-to-string">
-                                        <xsl:with-param name="in" select="."/>
-                                    </xsl:call-template>
-                                </valueString>
-                            </extension>
-                            <title value="Ingestelde behandeling"/>
-                            <code>
-                                <coding>
-                                    <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                                    <code value="108631000146107"/>
-                                    <display value="behandeling lopende"/>
-                                </coding>
-                            </code>
-                            <text>
-                                <status value="extensions"/>
-                                <div xmlns="http://www.w3.org/1999/xhtml">
-                                    <xsl:value-of select="concat('Ingestelde behandeling: ', @value)"/>
-                                </div>
-                            </text>
-                        </section>
-                    </xsl:for-each>
-                    
-                    <xsl:for-each select="procedure_voorstel[@value]">
-                        <section>
-                            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TextValue">
-                                <valueString>
-                                    <xsl:call-template name="string-to-string">
-                                        <xsl:with-param name="in" select="."/>
-                                    </xsl:call-template>
-                                </valueString>
-                            </extension>
-                            <title value="Procedurevoorstel"/>
-                            <code>
-                                <coding>
-                                    <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                                    <code value="240471000146100"/>
-                                    <display value="toelichting op aard van verwijzing"/>
-                                </coding>
-                            </code>
-                            <text>
-                                <status value="extensions"/>
-                                <div xmlns="http://www.w3.org/1999/xhtml">
-                                    <xsl:value-of select="concat('Procedurevoorstel: ', @value)"/>
-                                </div>
-                            </text>
-                        </section>
-                    </xsl:for-each>
-                    
-                    <xsl:for-each select="verder_van_belang[@value]">
-                        <section>
-                            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TextValue">
-                                <valueString>
-                                    <xsl:call-template name="string-to-string">
-                                        <xsl:with-param name="in" select="."/>
-                                    </xsl:call-template>
-                                </valueString>
-                            </extension>
-                            <title value="Verder van belang"/>
-                            <code>
-                                <coding>
-                                    <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                                    <code value="159121000146100"/>
-                                    <display value="toelichting op voorgesteld beleid"/>
-                                </coding>
-                            </code>
-                            <text>
-                                <status value="extensions"/>
-                                <div xmlns="http://www.w3.org/1999/xhtml">
-                                    <xsl:value-of select="concat('Verder van belang: ', @value)"/>
-                                </div>
-                            </text>
-                        </section>
-                    </xsl:for-each>
-                </section>
-            </xsl:if>
-        </Composition>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc/>
-    </xd:doc>
     <xsl:template match="*" mode="_generateId" priority="2">
         <xsl:param name="profile" as="xs:string" required="yes"/>
         <xsl:variable name="id" select="replace(tokenize(base-uri(), '/')[last()], '.xml', '')"/>
@@ -639,10 +182,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="localName" select="local-name()"/>
         <xsl:variable name="logicalId">
             <xsl:choose>
-                <xsl:when test="$localName = 'envelop' and $profile = 'hg-ReferralTask'">
+                <xsl:when test="$localName = 'envelop' and $profile = $profileNameHgReferralTask">
                     <xsl:value-of select="concat('task-', (../@id)[1])"/>
                 </xsl:when>
-                <xsl:when test="$localName = 'envelop' and $profile = 'hg-ReferralServiceRequest'">
+                <xsl:when test="$localName = 'envelop' and $profile = $profileNameHgReferralServiceRequest">
                     <xsl:value-of select="concat('servicerequest-', (../@id)[1])"/>
                 </xsl:when>
                 <xsl:when test="$localName = 'kern'">
@@ -651,7 +194,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$localName = 'patient'">
                     <xsl:value-of select="concat('patient-', string-join((naamgegevens[1]/geslachtsnaam/(voorvoegsels, achternaam)/@value, naamgegevens[1]/geslachtsnaam_partner/(voorvoegsels_partner, achternaam_partner)/@value), '-'))"/>
                 </xsl:when>
-                <xsl:when test="$localName = 'contactpersoon'">
+                <xsl:when test="$localName = 'contactpersoon' and $profile = $profileNameContactPerson">
                     <xsl:value-of select="concat('contactperson-', string-join((naamgegevens[1]/geslachtsnaam/(voorvoegsels, achternaam)/@value, naamgegevens[1]/geslachtsnaam_partner/(voorvoegsels_partner, achternaam_partner)/@value), '-'))"/>
                 </xsl:when>
                 <xsl:when test="$localName = 'zorgverlener' and $profile = $profileNameHealthProfessionalPractitionerRole">
@@ -663,7 +206,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$localName = 'zorgaanbieder' and $profile = $profileNameHealthcareProviderOrganization">
                     <xsl:value-of select="concat('organization-', string-join((zorgaanbieder_identificatienummer/@value, afdeling_specialisme/@code)[. != ''], '-'))"/>
                 </xsl:when>
-                <xsl:when test="$localName = 'probleem'">
+                <xsl:when test="$localName = 'probleem' and $profile = $profileNameProblem">
                     <xsl:value-of select="concat('problem-', probleem_naam/@code[1])"/>
                 </xsl:when>
                 <xsl:otherwise>
@@ -699,16 +242,5 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:if test="string-length($fullUrl) gt 0">
             <fullUrl value="{$fullUrl}"/>
         </xsl:if>
-    </xsl:template>
-    
-    <xd:doc>
-        <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
-    </xd:doc>
-    <xsl:template match="kern" mode="_generateDisplay">
-        <xsl:variable name="parts" as="item()*">
-            <xsl:text>Referral note</xsl:text>
-            <xsl:value-of select="../envelop/patientgegevens/patient/@value"/>
-        </xsl:variable>
-        <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
     </xsl:template>
 </xsl:stylesheet>
