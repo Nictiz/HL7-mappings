@@ -290,7 +290,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="iso21090Qualifier" as="xs:string"/>
 
         <given value="{$value}">
-            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+            <extension url="{$urlExtIso21090ENqualifier}">
                 <valueCode value="{$iso21090Qualifier}"/>
             </extension>
         </given>

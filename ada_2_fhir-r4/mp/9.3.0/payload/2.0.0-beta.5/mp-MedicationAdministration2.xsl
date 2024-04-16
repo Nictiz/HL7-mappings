@@ -45,7 +45,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <meta>
                     <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
-                
+
                 <!-- MP-1408 LR: afgesproken_datum_tijd no longer part of the transactions from MP 9.3 beta.3 onwards but kept in stylesheet due to backwards compatibility-->
                 <xsl:for-each select="afgesproken_datum_tijd">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AgreedDateTime">
@@ -58,7 +58,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </valueDateTime>
                     </extension>
                 </xsl:for-each>
-                
+
+                <!-- prik_plak_locatie/anatomische_locatie/* -->
+                <xsl:for-each select="prik_plak_locatie/anatomische_locatie[(locatie | lateraliteit)[@code]]">
+                    <extension url="{$urlExtMedicationAdministration2InjectionPatchSite}">
+                        <valueCodeableConcept>
+                            <xsl:for-each select="(lateraliteit[@code])[1]">
+                                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+                                    <valueCodeableConcept>
+                                        <xsl:call-template name="code-to-CodeableConcept"/>                                        
+                                    </valueCodeableConcept>
+                                </extension>
+                            </xsl:for-each>
+                            <xsl:for-each select="(locatie[@code])[1]">
+                                <xsl:call-template name="code-to-CodeableConcept"/>                                        
+                            </xsl:for-each>
+                        </valueCodeableConcept>
+                    </extension>
+                </xsl:for-each>
+
+
+
                 <!-- MP-1406 added registrationdatetime to MA/TA/WDS/MTD -->
                 <xsl:for-each select="registratie_datum_tijd">
                     <xsl:call-template name="ext-RegistrationDateTime"/>
@@ -251,7 +271,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- request -->
-                <!-- relatie_medicatieafspraak -->                
+                <!-- relatie_medicatieafspraak -->
                 <!-- relatie_wisselend_doseerschema -->
                 <xsl:choose>
                     <xsl:when test="relatie_medicatieafspraak/identificatie[@value]">
@@ -259,7 +279,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:for-each select="relatie_medicatieafspraak/identificatie[@value]">
                             <request>
                                 <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
-                                     <valueCodeableConcept>
+                                    <valueCodeableConcept>
                                         <coding>
                                             <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                             <code value="{$maCodeMP920}"/>
@@ -316,13 +336,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <xsl:variable name="dosage">
-                    <xsl:for-each select="prik_plak_locatie[@value | @nullFlavor]">
-                        <site>
-                            <text>
-                                <xsl:call-template name="string-to-string"/>
-                            </text>
-                        </site>
-                    </xsl:for-each>
+                    <!-- legacy dataset prik_plak_locatie, left here for backwards compatibility reasons -->
+                    <xsl:if test="prik_plak_locatie[@value | @nullFlavor]">
+                        <xsl:for-each select="prik_plak_locatie[@value | @nullFlavor]">
+                            <site>
+                                <text>
+                                    <xsl:call-template name="string-to-string"/>
+                                </text>
+                            </site>
+                        </xsl:for-each>
+                    </xsl:if>
                     <xsl:for-each select="toedieningsweg[@code]">
                         <route>
                             <xsl:call-template name="code-to-CodeableConcept"/>
@@ -353,38 +376,38 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:choose>
                             <!-- with tijdseenheid -->
                             <xsl:when test="tijdseenheid">
-                            <xsl:choose>
-                            <xsl:when test="not(tijdseenheid/@value castable as xs:integer)">
-                                <xsl:call-template name="util:logMessage">
-                                    <xsl:with-param name="level" select="$logERROR"/>
-                                    <xsl:with-param name="msg">Encountered a toedieningssnelheid/tijdseenheid/@value which is not castable as integer, cannot output rate.</xsl:with-param>
-                                </xsl:call-template>
+                                <xsl:choose>
+                                    <xsl:when test="not(tijdseenheid/@value castable as xs:integer)">
+                                        <xsl:call-template name="util:logMessage">
+                                            <xsl:with-param name="level" select="$logERROR"/>
+                                            <xsl:with-param name="msg">Encountered a toedieningssnelheid/tijdseenheid/@value which is not castable as integer, cannot output rate.</xsl:with-param>
+                                        </xsl:call-template>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:variable name="ucum-tijdseenheid-value">
+                                            <xsl:if test="xs:integer(tijdseenheid/@value) ne 1">
+                                                <xsl:value-of select="concat(tijdseenheid/@value, '.')"/>
+                                            </xsl:if>
+                                        </xsl:variable>
+                                        <!-- we cannot use the G-standaard unit in this case, can only be communicated in FHIR using UCUM -->
+                                        <!-- let's determine the right UCUM for the rate (toedieningssnelheid) -->
+                                        <xsl:variable name="UCUM-rate" select="concat(nf:convertGstdBasiseenheid2UCUM(eenheid/@code), '/', $ucum-tijdseenheid-value, nf:convertTime_ADA_unit2UCUM_FHIR(tijdseenheid/@unit))"/>
+
+                                        <xsl:if test="waarde/nominale_waarde[@value]">
+                                            <rateQuantity>
+                                                <value value="{waarde/nominale_waarde/@value}"/>
+                                                <unit value="{$UCUM-rate}"/>
+                                                <system value="http://unitsofmeasure.org"/>
+                                                <code value="{$UCUM-rate}"/>
+                                            </rateQuantity>
+                                        </xsl:if>
+
+
+                                    </xsl:otherwise>
+                                </xsl:choose>
                             </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:variable name="ucum-tijdseenheid-value">
-                                    <xsl:if test="xs:integer(tijdseenheid/@value) ne 1">
-                                        <xsl:value-of select="concat(tijdseenheid/@value, '.')"/>
-                                    </xsl:if>
-                                </xsl:variable>
-                                <!-- we cannot use the G-standaard unit in this case, can only be communicated in FHIR using UCUM -->
-                                <!-- let's determine the right UCUM for the rate (toedieningssnelheid) -->
-                                <xsl:variable name="UCUM-rate" select="concat(nf:convertGstdBasiseenheid2UCUM(eenheid/@code), '/', $ucum-tijdseenheid-value, nf:convertTime_ADA_unit2UCUM_FHIR(tijdseenheid/@unit))"/>
-
-                                <xsl:if test="waarde/nominale_waarde[@value]">
-                                    <rateQuantity>
-                                        <value value="{waarde/nominale_waarde/@value}"/>
-                                        <unit value="{$UCUM-rate}"/>
-                                        <system value="http://unitsofmeasure.org"/>
-                                        <code value="{$UCUM-rate}"/>
-                                    </rateQuantity>
-                                </xsl:if>
-
-
-                            </xsl:otherwise>
-                        </xsl:choose>
-                        </xsl:when>
-                        <!-- without tijdseenheid (starting from version MP9.3) -->
-                        <xsl:when test="not(tijdseenheid) and eenheid">
+                            <!-- without tijdseenheid (starting from version MP9.3) -->
+                            <xsl:when test="not(tijdseenheid) and eenheid">
                                 <xsl:if test="waarde/nominale_waarde[@value]">
                                     <rateQuantity>
                                         <value value="{waarde/nominale_waarde/@value}"/>
@@ -393,7 +416,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <code value="{eenheid/@unit}"/>
                                     </rateQuantity>
                                 </xsl:if>
-                        </xsl:when>
+                            </xsl:when>
                         </xsl:choose>
                     </xsl:for-each>
 
