@@ -25,13 +25,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA drugs_gebruik to FHIR resource conforming to profile nl-core-DrugUse</xd:desc>
+        <xd:desc>Converts ADA drugs_gebruik to FHIR Observation resource conforming to profile nl-core-DrugUse.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameDrugUse">nl-core-DrugUse</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-DrugUse instance as a Observation FHIR instance from ADA drugs_gebruik.</xd:desc>
+        <xd:desc>Creates an nl-core-DrugUse instance as an Observation FHIR instance from ADA drugs_gebruik element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
     <xsl:template match="drugs_gebruik" name="nl-core-DrugUse" mode="nl-core-DrugUse" as="element(f:Observation)">

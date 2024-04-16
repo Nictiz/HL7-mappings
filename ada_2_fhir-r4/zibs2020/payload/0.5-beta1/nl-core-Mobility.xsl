@@ -28,13 +28,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada mobiliteit to FHIR Observation conforming to profile nl-core-Mobility</xd:desc>
+        <xd:desc>Converts ADA mobiliteit to FHIR Observation resource conforming to profile nl-core-Mobility.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameMobility">nl-core-Mobility</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-Mobility instance as an Observation FHIR instance from ada mobiliteit element.</xd:desc>
+        <xd:desc>Creates an nl-core-Mobility instance as an Observation FHIR instance from ADA mobiliteit element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>

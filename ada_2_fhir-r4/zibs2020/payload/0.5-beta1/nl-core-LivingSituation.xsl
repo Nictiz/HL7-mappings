@@ -29,13 +29,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA woonsituatie to FHIR Observation conforming to profile nl-core-LivingSituation</xd:desc>
+        <xd:desc>Converts ADA woonsituatie to FHIR Observation resource conforming to profile nl-core-LivingSituation.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameLivingSituation">nl-core-LivingSituation</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-LivingSituation instance as an Observation FHIR instance from ADA woonsituatie.</xd:desc>
+        <xd:desc>Creates an nl-core-LivingSituation instance as an Observation FHIR instance from ADA woonsituatie element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">The subject as ADA element or reference.</xd:param>
     </xd:doc>

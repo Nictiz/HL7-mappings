@@ -28,13 +28,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada voedingspatroon_zuigeling to FHIR Observation conforming to profile nl-core-FeedingPatternInfant</xd:desc>
+        <xd:desc>Converts ADA voedingspatroon_zuigeling to FHIR Observation resource conforming to profile nl-core-FeedingPatternInfant.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameFeedingPatternInfant">nl-core-FeedingPatternInfant</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-FeedingPatternInfant instance as an Observation FHIR instance from ada voedingspatroon_zuigeling element.</xd:desc>
+        <xd:desc>Creates an nl-core-FeedingPatternInfant instance as an Observation FHIR instance from ADA voedingspatroon_zuigeling element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="patient">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>

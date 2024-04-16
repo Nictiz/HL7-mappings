@@ -29,7 +29,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada apgar_score to FHIR Observation conforming to profiles nl-core-ApgarScore-1Minute, nl-core-ApgarScore-5Minute and nl-core-ApgarScore-10Minute</xd:desc>
+        <xd:desc>Converts ADA apgar_score to FHIR Observation resource conforming to profiles nl-core-ApgarScore-1Minute, nl-core-ApgarScore-5Minute and nl-core-ApgarScore-10Minute.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameApgarScore1Minute">nl-core-ApgarScore-1Minute</xsl:variable>
@@ -37,7 +37,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="profileNameApgarScore10Minute">nl-core-ApgarScore-10Minute</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-ApgarScore instance as an Observation FHIR instance from ada apgar_score element.</xd:desc>
+        <xd:desc>Creates an nl-core-ApgarScore instance as an Observation FHIR instance from ADA apgar_score element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
         <xd:param name="profile">Optional string that represents the profile of which a FHIR resource should be created. Defaults to 'nl-core-ApgarScore-1Minute'.</xd:param>

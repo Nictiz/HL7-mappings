@@ -28,13 +28,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada wilsverklaring to FHIR Consent resource conforming to profile nl-core-AdvanceDirective.</xd:desc>
+        <xd:desc>Converts ADA wilsverklaring to FHIR Consent resource conforming to profile nl-core-AdvanceDirective.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameAdvanceDirective">nl-core-AdvanceDirective</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Converts ada wilsverklaring to FHIR Consent resource conforming to profile nl-core-AdvanceDirective.</xd:desc>
+        <xd:desc>Creates an nl-core-AdvanceDirective instance as a Consent FHIR instance from ADA wilsverklaring element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>

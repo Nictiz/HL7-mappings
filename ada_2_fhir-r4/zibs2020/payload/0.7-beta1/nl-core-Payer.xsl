@@ -28,7 +28,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA betaler to FHIR Coverage, Patient and Organization resources conforming to profile nl-core-Payer, nl-core-Patient and nl-core-Payer-Organization</xd:desc>
+        <xd:desc>Converts ADA betaler to FHIR Coverage resource conforming to profile nl-core-Payer.InsuranceCompany, FHIR Coverage resource conforming to profile nl-core-Payer.PayerPerson and FHIR Organization resource conforming to profile nl-core-Payer-Organization.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNamePayerInsuranceCompany">nl-core-Payer.InsuranceCompany</xsl:variable>
@@ -36,7 +36,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="profileNamePayerOrganization">nl-core-Payer-Organization</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-Payer instance as a Coverage FHIR instance from ADA betaler.</xd:desc>
+        <xd:desc>Creates an nl-core-Payer.InsuranceCompany instance as a Coverage FHIR instance from ADA betaler element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="beneficiary">Optional ADA instance or ADA reference element for the beneficiary, usually the patient.</xd:param>
     </xd:doc>
@@ -124,7 +124,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-Payer instance as a Coverage FHIR instance from ADA betaler.</xd:desc>
+        <xd:desc>Creates an nl-core-Payer.PayerPerson instance as a Coverage FHIR instance from ADA betaler element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="beneficiary">Optional ADA instance or ADA reference element for the beneficiary, usually the patient.</xd:param>
     </xd:doc>
@@ -185,7 +185,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-Payer-Organization instance as an Organization FHIR instance from ADA betaler.</xd:desc>
+        <xd:desc>Creates an nl-core-Payer-Organization instance as an Organization FHIR instance from ADA betaler element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
     <xsl:template match="betaler" name="nl-core-Payer-Organization" mode="nl-core-Payer-Organization" as="element(f:Organization)">

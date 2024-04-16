@@ -19,13 +19,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
 
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada darmfunctie to FHIR Observation conforming to profile nl-core-BowelFunction</xd:desc>
+        <xd:desc>Converts ADA darmfunctie to FHIR Observation resource conforming to profile nl-core-BowelFunction.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameBowelFunction">nl-core-BowelFunction</xsl:variable>
 
     <xd:doc>
-        <xd:desc>Create an nl-core-BowelFunction as an Observation FHIR instance from ada darmfunctie element.</xd:desc>
+        <xd:desc>Creates an nl-core-BowelFunction instance as an Observation FHIR instance from ADA darmfunctie element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>

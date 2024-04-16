@@ -16,7 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
 
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada zwangerschap to FHIR Condition conforming to profile nl-core-Pregnancy</xd:desc>
+        <xd:desc>Converts ADA zwangerschap to FHIR Condition resource conforming to profile nl-core-Pregnancy.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNamePregnancy">nl-core-Pregnancy</xsl:variable>
@@ -27,7 +27,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="profileNamePregnancyDateLastMenstruation">nl-core-Pregnancy.DateLastMenstruation</xsl:variable>
 
     <xd:doc>
-        <xd:desc>Create an nl-core-Pregnancy as a Condition FHIR instance from ada zwangerschap element.</xd:desc>
+        <xd:desc>Creates an nl-core-Pregnancy instance as a Condition FHIR instance from ADA zwangerschap element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>

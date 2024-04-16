@@ -29,14 +29,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada medisch_hulpmiddel to FHIR DeviceUseStatement conforming to profile nl-core-MedicalDevice and FHIR Device conforming to profile nl-core-MedicalDevice.Product</xd:desc>
+        <xd:desc>Converts ADA medisch_hulpmiddel to FHIR DeviceUseStatement resource conforming to profile nl-core-MedicalDevice and FHIR Device resource conforming to profile nl-core-MedicalDevice.Product.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameMedicalDevice">nl-core-MedicalDevice</xsl:variable>
     <xsl:variable name="profileNameMedicalDeviceProduct">nl-core-MedicalDevice.Product</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-MedicalDevice instance as a DeviceUseStatement FHIR instance from ada medisch_hulpmiddel element.</xd:desc>
+        <xd:desc>Creates an nl-core-MedicalDevice instance as a DeviceUseStatement FHIR instance from ADA medisch_hulpmiddel element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
         <xd:param name="profile">Optional string that represents the (derived) profile of which a FHIR resource should be created. Defaults to 'nl-core-MedicalDevice'. Other uses are 'nl-core-HearingFunction.HearingAid' and 'nl-core-VisualFunction.VisualAid'.</xd:param>
@@ -176,7 +176,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Create an nl-core-MedicalDevice.Product instance as a Device FHIR instance from ada medisch_hulpmiddel element.</xd:desc>
+        <xd:desc>Creates an nl-core-MedicalDevice.Product instance as a Device FHIR instance from ADA product element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
         <xd:param name="profile">Optional string that represents the (derived) profile of which a FHIR resource should be created. Defaults to 'nl-core-MedicalDevice.Product'. Other uses are 'nl-core-HearingFunction.HearingAid.Product' and 'nl-core-VisualFunction.VisualAid.Product'.</xd:param>

@@ -28,13 +28,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada strong_kids_score to FHIR Observation conforming to profile nl-core-StrongKidsScore</xd:desc>
+        <xd:desc>Converts ADA strong_kids_score to FHIR Observation resource conforming to profile nl-core-StrongKidsScore.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameStrongKidsScore">nl-core-StrongKidsScore</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-StrongKidsScore instance as an Observation FHIR instance from ada strong_kids_score element.</xd:desc>
+        <xd:desc>Creates an nl-core-StrongKidsScore instance as an Observation FHIR instance from ADA strong_kids_score element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="patient">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>

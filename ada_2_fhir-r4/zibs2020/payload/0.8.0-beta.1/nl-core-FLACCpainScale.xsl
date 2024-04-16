@@ -28,13 +28,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada flaccpijn_score to FHIR Observation conforming to profile nl-core-FLACCpainScale</xd:desc>
+        <xd:desc>Converts ADA flaccpijn_score to FHIR Observation resource conforming to profile nl-core-FLACCpainScale.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameFLACCPainScale">nl-core-FLACCpainScale</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-FLACCpainScale instance as an Observation FHIR instance from ada flaccpijn_score element.</xd:desc>
+        <xd:desc>Creates an nl-core-FLACCpainScale instance as an Observation FHIR instance from ADA flaccpijn_score element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="patient">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>

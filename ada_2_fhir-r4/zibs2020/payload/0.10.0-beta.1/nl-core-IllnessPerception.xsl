@@ -28,13 +28,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada ziektebeleving to FHIR Observation conforming to profile nl-core-IllnessPerception</xd:desc>
+        <xd:desc>Converts ADA ziektebeleving to FHIR Observation resource conforming to profile nl-core-IllnessPerception.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameIllnessPerception">nl-core-IllnessPerception</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-IllnessPerception instance as an Observation FHIR instance from ada ziektebeleving element.</xd:desc>
+        <xd:desc>Creates an nl-core-IllnessPerception instance as an Observation FHIR instance from ADA ziektebeleving element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>

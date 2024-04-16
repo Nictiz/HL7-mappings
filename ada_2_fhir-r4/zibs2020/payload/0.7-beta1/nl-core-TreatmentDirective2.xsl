@@ -28,13 +28,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada behandel_aanwijzing to FHIR Consent resource conforming to profile nl-core-TreatmentDirective2.</xd:desc>
+        <xd:desc>Converts ADA behandel_aanwijzing to FHIR Consent resource conforming to profile nl-core-TreatmentDirective2.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameTreatmentDirective">nl-core-TreatmentDirective2</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Converts ada behandel_aanwijzing to FHIR Consent resource conforming to profile nl-core-TreatmentDirective2.</xd:desc>
+        <xd:desc>Creates an nl-core-TreatmentDirective2 instance as a Consent FHIR instance from ADA behandel_aanwijzing element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>

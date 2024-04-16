@@ -19,13 +19,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
 
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada lichaamslengte to FHIR Observation conforming to profile nl-core-BodyHeight</xd:desc>
+        <xd:desc>Converts ADA lichaamslengte to FHIR Observation resource conforming to profile nl-core-BodyHeight.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameBodyHeight">nl-core-BodyHeight</xsl:variable>
 
     <xd:doc>
-        <xd:desc>Create an nl-core-BodyHeight as a Observation FHIR instance from ada lichaamslengte element.</xd:desc>
+        <xd:desc>Creates an nl-core-BodyHeight instance as an Observation FHIR instance from ADA lichaamslengte element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>

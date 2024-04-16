@@ -25,13 +25,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA barthel_index to FHIR resource conforming to profile nl-core-BarthelADLIndex</xd:desc>
+        <xd:desc>Converts ADA barthel_index to FHIR Observation resource conforming to profile nl-core-BarthelADLIndex.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameBarthelADLIndex">nl-core-BarthelADLIndex</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-BarthelADLIndex instance as an Observation FHIR instance from ADA barthel_index.</xd:desc>
+        <xd:desc>Creates an nl-core-BarthelADLIndex instance as an Observation FHIR instance from ADA barthel_index element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
     <xsl:template match="barthel_index" name="nl-core-BarthelADLIndex" mode="nl-core-BarthelADLIndex" as="element(f:Observation)">

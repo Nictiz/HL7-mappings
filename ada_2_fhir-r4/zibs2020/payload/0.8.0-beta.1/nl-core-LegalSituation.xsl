@@ -29,14 +29,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada juridische_situatie to FHIR Condition conforming to either profile nl-core-LegalSituation-LegalStatus or nl-core-LegalSituation-Representation</xd:desc>
+        <xd:desc>Converts ADA juridische_situatie to FHIR Condition resource conforming to profile nl-core-LegalSituation-LegalStatus or nl-core-LegalSituation-Representation.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameLegalSituationLegalStatus">nl-core-LegalSituation-LegalStatus</xsl:variable>
     <xsl:variable name="profileNameLegalSituationRepresentation">nl-core-LegalSituation-Representation</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-LegalSituation-LegalStatus FHIR instance from an ada juridische_situatie element.</xd:desc>
+        <xd:desc>Creates an nl-core-LegalSituation-LegalStatus instance as a Condition FHIR instance from ADA juridische_situatie element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">The subject as ADA element or reference.</xd:param>
     </xd:doc>
@@ -102,7 +102,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-LegalSituation-Representation FHIR instance from an ada juridische_situatie element.</xd:desc>
+        <xd:desc>Creates an nl-core-LegalSituation-Representation instance as a Condition FHIR instance from ADA juridische_situatie element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>

@@ -28,13 +28,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada participatie_in_maatschappij to FHIR Observation conforming to profile nl-core-ParticipationInSociety</xd:desc>
+        <xd:desc>Converts ADA participatie_in_maatschappij to FHIR Observation resource conforming to profile nl-core-ParticipationInSociety.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameParticipationInSociety">nl-core-ParticipationInSociety</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-ParticipationInSociety instance as an Observation FHIR instance from ada participatie_in_maatschappij element.</xd:desc>
+        <xd:desc>Creates an nl-core-ParticipationInSociety instance as an Observation FHIR instance from ADA participatie_in_maatschappij element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>

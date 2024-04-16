@@ -25,7 +25,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xd:doc scope="stylesheet">
         <xd:desc>
-            <xd:p>Converts ADA TimeInterval to FHIR datetype Period or Duration, depending on the
+            <xd:p>Converts ADA TimeInterval to FHIR datatype Period or Duration, depending on the
                 situation and conforming to different profiles. See the documentation on the
                 templates.</xd:p>
         </xd:desc>

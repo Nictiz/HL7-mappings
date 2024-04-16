@@ -28,14 +28,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada tekst_uitslag to FHIR DiagnosticReport and Media conforming to profile nl-core-TextResult and nl-core-TextResult.VisualResult.</xd:desc>
+        <xd:desc>Converts ADA tekst_uitslag to FHIR DiagnosticReport resource conforming to profile nl-core-TextResult and FHIR Media resource conforming to profile nl-core-TextResult.VisualResult.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameTextResult">nl-core-TextResult</xsl:variable>
     <xsl:variable name="profileNameTextResultVisualResult">nl-core-TextResult.VisualResult</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Create a FHIR DiagnosticReport instance conforming to profile nl-core-TextResult from ada tekst_uitslag element.</xd:desc>
+        <xd:desc>Creates a FHIR DiagnosticReport instance conforming to profile nl-core-TextResult from ADA tekst_uitslag element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
@@ -109,7 +109,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Create a FHIR Media instance conforming to profile nl-core-TextResult.VisualResult from ada tekst_uitslag element.</xd:desc>
+        <xd:desc>Creates a FHIR Media instance conforming to profile nl-core-TextResult.VisualResult from ADA tekst_uitslag element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>

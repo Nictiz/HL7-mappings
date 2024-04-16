@@ -28,13 +28,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada refractie to FHIR Observation conforming to profile nl-core-Refraction</xd:desc>
+        <xd:desc>Converts ADA refractie to FHIR Observation resource conforming to profile nl-core-Refraction.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameRefraction">nl-core-Refraction</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-Refraction as a Observation FHIR instance from ada refractie element.</xd:desc>
+        <xd:desc>Creates an nl-core-Refraction instance as an Observation FHIR instance from ADA refractie element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>

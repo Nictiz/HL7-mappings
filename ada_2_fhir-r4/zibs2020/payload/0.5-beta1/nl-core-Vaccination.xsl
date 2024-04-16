@@ -28,14 +28,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada vaccination to FHIR Immunization or ImmunizationRequest conforming to profile nl-core-Vaccination-event or nl-core-Vaccination-request respectively</xd:desc>
+        <xd:desc>Converts ADA vaccination to FHIR Immunization resource conforming to profile nl-core-Vaccination-event or FHIR ImmunizationRecommendation resource conforming to profile nl-core-Vaccination-request.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameVaccinationRequest">nl-core-Vaccination-request</xsl:variable>
     <xsl:variable name="profileNameVaccinationEvent">nl-core-Vaccination-event</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-Vaccination-event instance as an Immunization FHIR instance from ada vaccinatie element.</xd:desc>
+        <xd:desc>Creates an nl-core-Vaccination-event instance as an Immunization FHIR instance from ADA vaccinatie element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="patient">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
@@ -107,7 +107,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-Vaccination-request instance as an ImmunizationRecommendation FHIR instance from ada vaccinatie element.</xd:desc>
+        <xd:desc>Creates an nl-core-Vaccination-request instance as an ImmunizationRecommendation FHIR instance from ADA vaccinatie element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="patient">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>

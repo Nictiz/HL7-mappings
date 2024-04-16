@@ -28,7 +28,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
       
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada functie_horen to FHIR Observation conforming to profile nl-core-HearingFunction, FHIR DeviceUseStatement conforming to profile nl-core-HearingFunction.HearingAid and FHIR Device conforming to profile nl-core-HearingFunction.HearingAid.Product</xd:desc>
+        <xd:desc>Converts ADA functie_horen to FHIR Observation resource conforming to profile nl-core-HearingFunction, FHIR DeviceUseStatement resource conforming to profile nl-core-HearingFunction.HearingAid and FHIR Device resource conforming to profile nl-core-HearingFunction.HearingAid.Product.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameHearingFunction">nl-core-HearingFunction</xsl:variable>
@@ -36,7 +36,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="profileNameHearingFunctionHearingAidProduct">nl-core-HearingFunction.HearingAid.Product</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-HearingFunction instance as an Observation FHIR instance from ada functie_horen element.</xd:desc>
+        <xd:desc>Creates an nl-core-HearingFunction instance as an Observation FHIR instance from ADA functie_horen element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
@@ -86,7 +86,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-HearingFunction.HearingAid instance as a DeviceUseStatement FHIR instance from ada horen_hulpmiddel/medisch_hulpmiddel element.</xd:desc>
+        <xd:desc>Creates an nl-core-HearingFunction.HearingAid instance as a DeviceUseStatement FHIR instance from ADA horen_hulpmiddel/medisch_hulpmiddel element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
         <xd:param name="reasonReference">ADA instance used to populate the reasonReference element in the MedicalDevice.</xd:param>
@@ -104,7 +104,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Create an nl-core-HearingFunction.HearingAid.Product instance as a Device FHIR instance from ada product element.</xd:desc>
+        <xd:desc>Creates an nl-core-HearingFunction.HearingAid.Product instance as a Device FHIR instance from ADA product element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>

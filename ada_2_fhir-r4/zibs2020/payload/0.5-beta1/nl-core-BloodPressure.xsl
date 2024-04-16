@@ -28,13 +28,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada bloeddruk to FHIR Observation conforming to profile nl-core-BloodPressure</xd:desc>
+        <xd:desc>Converts ADA bloeddruk to FHIR Observation resource conforming to profile nl-core-BloodPressure.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameBloodPressure">nl-core-BloodPressure</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-BloodPressure as a Observation FHIR instance from ada bloeddruk element.</xd:desc>
+        <xd:desc>Creates an nl-core-BloodPressure instance as an Observation FHIR instance from ADA bloeddruk element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>

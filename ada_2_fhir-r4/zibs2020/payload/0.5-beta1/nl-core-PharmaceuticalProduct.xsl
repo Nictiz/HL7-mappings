@@ -18,13 +18,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
 
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA farmaceutisch_product to FHIR Medication conforming to profile nl-core-PharmaceuticalProduct.</xd:desc>
+        <xd:desc>Converts ADA farmaceutisch_product to FHIR Medication resource conforming to profile nl-core-PharmaceuticalProduct.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNamePharmaceuticalProduct">nl-core-PharmaceuticalProduct</xsl:variable>
 
     <xd:doc>
-        <xd:desc>Create an nl-core-PharmaceuticalProduct instance as a Medication FHIR instance from ADA farmaceutisch_product.</xd:desc>
+        <xd:desc>Creates an nl-core-PharmaceuticalProduct instance as a Medication FHIR instance from ADA farmaceutisch_product element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
     <xsl:template match="farmaceutisch_product" name="nl-core-PharmaceuticalProduct" mode="nl-core-PharmaceuticalProduct" as="element(f:Medication)">

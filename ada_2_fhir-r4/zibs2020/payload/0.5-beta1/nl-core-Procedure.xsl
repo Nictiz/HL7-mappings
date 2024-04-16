@@ -26,14 +26,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA verrichting to FHIR Procedure or ServiceRequest conforming to profile nl-core-Procedure-event or nl-core-Procedure-request, respectively</xd:desc>
+        <xd:desc>Converts ADA verrichting to FHIR Procedure resource conforming to profile nl-core-Procedure-event or FHIR ServiceRequest resource conforming to profile nl-core-Procedure-request.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameProcedureEvent">nl-core-Procedure-event</xsl:variable>
     <xsl:variable name="profileNameProcedureRequest">nl-core-Procedure-request</xsl:variable>
 
     <xd:doc>
-        <xd:desc>Create an nl-core-Procedure-event as a Procedure FHIR instance from ada verrichting element.</xd:desc>
+        <xd:desc>Creates an nl-core-Procedure-event instance as a Procedure FHIR instance from ADA verrichting element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
         <xd:param name="report">The Report concept as ADA 'tekst_uitslag' element or reference.</xd:param>
@@ -161,7 +161,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-Procedure-request as a ServiceRequest FHIR instance from ada verrichting element.</xd:desc>
+        <xd:desc>Creates an nl-core-Procedure-request instance as a ServiceRequest FHIR instance from ADA verrichting element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>

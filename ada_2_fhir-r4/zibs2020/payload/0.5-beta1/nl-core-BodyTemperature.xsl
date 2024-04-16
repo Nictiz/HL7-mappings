@@ -28,13 +28,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada lichaamstemperatuur to FHIR Observation conforming to profile nl-core-BodyTemperature</xd:desc>
+        <xd:desc>Converts ADA lichaamstemperatuur to FHIR Observation resource conforming to profile nl-core-BodyTemperature.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameBodyTemperature">nl-core-BodyTemperature</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-BodyTemperature as a Observation FHIR instance from ada lichaamstemperatuur element.</xd:desc>
+        <xd:desc>Creates an nl-core-BodyTemperature instance as an Observation FHIR instance from ADA lichaamstemperatuur element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>

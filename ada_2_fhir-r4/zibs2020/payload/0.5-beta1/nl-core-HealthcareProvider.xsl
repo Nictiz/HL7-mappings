@@ -19,14 +19,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
 
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada zorgaanbieder to FHIR resource conforming to profile nl-core-HealthcareProvider</xd:desc>
+        <xd:desc>Converts ADA zorgaanbieder to FHIR Location resource conforming to profile nl-core-HealthcareProvider and FHIR Organization resource conforming to profile nl-core-HealthcareProvider-Organization.</xd:desc>
     </xd:doc>
 
     <xsl:variable name="profileNameHealthcareProvider">nl-core-HealthcareProvider</xsl:variable>
     <xsl:variable name="profileNameHealthcareProviderOrganization">nl-core-HealthcareProvider-Organization</xsl:variable>
 
     <xd:doc>
-        <xd:desc>Produces a Location resource based on nl-core-HealthcareProvider</xd:desc>
+        <xd:desc>Creates an nl-core-HealthcareProvider instance as a Location FHIR instance from ADA zorgaanbieder element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
     <xsl:template match="zorgaanbieder[not(zorgaanbieder)]" mode="nl-core-HealthcareProvider" name="nl-core-HealthcareProvider" as="element(f:Location)?">
@@ -71,7 +71,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Produces an Organization resource based on nl-core-HealthcareProvider-Organization</xd:desc>
+        <xd:desc>Creates an nl-core-HealthcareProvider-Organization instance as an Organization FHIR instance from ADA zorgaanbieder element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
     <xsl:template match="zorgaanbieder[not(zorgaanbieder)]" mode="nl-core-HealthcareProvider-Organization" name="nl-core-HealthcareProvider-Organization" as="element(f:Organization)?">

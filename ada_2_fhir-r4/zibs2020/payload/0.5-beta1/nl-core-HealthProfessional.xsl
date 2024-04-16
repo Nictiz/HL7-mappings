@@ -17,14 +17,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
 
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada zorgverlener to FHIR resource conforming to profile nl-core-HealthProfessional-PractitionerRole</xd:desc>
+        <xd:desc>Converts ADA zorgverlener to FHIR PractitionerRole resource conforming to profile nl-core-HealthProfessional-PractitionerRole and FHIR Practitioner resource conforming to profile nl-core-HealthProfessional-Practitioner.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameHealthProfessionalPractitionerRole">nl-core-HealthProfessional-PractitionerRole</xsl:variable>
     <xsl:variable name="profileNameHealthProfessionalPractitioner">nl-core-HealthProfessional-Practitioner</xsl:variable>
 
     <xd:doc>
-        <xd:desc>Creates an nl-core-HealthProfessional-PractitionerRole FHIR instance from an ada 'zorgverlener' element. Please note that following the zib2020 R4 profiling guidelines, a PractitionerRole that references a Practitioner is considered more meaningful than directly referencing a Practitioner.</xd:desc>
+        <xd:desc>Creates an nl-core-HealthProfessional-PractitionerRole instance as a PractitionerRole FHIR instance from ADA zorgverlener element. Please note that following the zib2020 R4 profiling guidelines, a PractitionerRole that references a Practitioner is considered more meaningful than directly referencing a Practitioner.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
     <xsl:template match="zorgverlener" mode="nl-core-HealthProfessional-PractitionerRole" name="nl-core-HealthProfessional-PractitionerRole" as="element(f:PractitionerRole)?">
@@ -86,7 +86,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Creates an nl-core-HealthProfessional-Practitioner FHIR instance from an ada 'zorgverlener' element.</xd:desc>
+        <xd:desc>Creates an nl-core-HealthProfessional-Practitioner instance as a Practitioner FHIR instance from ADA zorgverlener element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
     <xsl:template match="zorgverlener" mode="nl-core-HealthProfessional-Practitioner" name="nl-core-HealthProfessional-Practitioner" as="element(f:Practitioner)*">

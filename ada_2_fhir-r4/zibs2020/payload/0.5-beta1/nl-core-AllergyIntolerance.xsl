@@ -28,13 +28,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA [...] to FHIR [...] conforming to profile [...]</xd:desc>
+        <xd:desc>Converts ADA allergie_intolerantie to FHIR AllergyIntolerance resource conforming to profile nl-core-AllergyIntolerance.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameAllergyIntolerance">nl-core-AllergyIntolerance</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-AllergyIntolerance instance as a AllergyIntolerance FHIR instance from ADA allergie_intolerantie.</xd:desc>
+        <xd:desc>Creates an nl-core-AllergyIntolerance instance as an AllergyIntolerance FHIR instance from ADA allergie_intolerantie element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">The AllergyIntolerance.patient as ADA element or reference.</xd:param>
     </xd:doc>

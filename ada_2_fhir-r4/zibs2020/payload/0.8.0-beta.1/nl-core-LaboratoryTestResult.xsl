@@ -28,7 +28,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA [...] to FHIR [...] conforming to profile [...]</xd:desc>
+        <xd:desc>Converts ADA laboratorium_uitslag to FHIR Observation resource conforming to profile nl-core-LaboratoryTestResult, FHIR Specimen resource conforming to profile nl-core-LaboratoryTestResult.Specimen and FHIR Device resource conforming to profile nl-core-LaboratoryTestResult.Specimen.Source.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameLaboratoryTestResult">nl-core-LaboratoryTestResult</xsl:variable>
@@ -36,7 +36,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="profileNameLaboratoryTestResultSpecimenSource">nl-core-LaboratoryTestResult.Specimen.Source</xsl:variable>
 
     <xd:doc>
-        <xd:desc>Create a single nl-core-LaboratoryTestResult instance as an Observation FHIR instance from ADA laboratorium_uitslag for a singlular test, that is, when it contains a single laboratorium_test.</xd:desc>
+        <xd:desc>Creates a single nl-core-LaboratoryTestResult instance as an Observation FHIR instance from ADA laboratorium_uitslag for a singlular test, that is, when it contains a single laboratorium_test.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">ADA patient element. Defaults to patient/*</xd:param>
     </xd:doc>
@@ -51,7 +51,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Create a hierarchy of nl-core-LaboratoryTestResult instances as Observation FHIR instances from ADA laboratorium_uitslag for a panel test, that is, when a single laboratoriunm_uitslag contains multiple laboratorium_test's.</xd:desc>
+        <xd:desc>Creates a hierarchy of nl-core-LaboratoryTestResult instances as Observation FHIR instances from ADA laboratorium_uitslag for a panel test, that is, when a single laboratoriunm_uitslag contains multiple laboratorium_test's.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">ADA patient element. Defaults to patient/*</xd:param>
     </xd:doc>
@@ -426,7 +426,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </receivedTime>
                 </xsl:for-each>
                 
-                <!-- If this instance should represent the microorganisme concept, but there's aslo monstermateriaal
+                <!-- If this instance should represent the microorganisme concept, but there's also monstermateriaal
                      defined, refer the monstermateriaal instance through .parent. The input is this very instance of
                      the monster element. -->
                 <xsl:if test="$type[self::microorganisme] and $in/monstermateriaal">

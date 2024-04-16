@@ -28,7 +28,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada functie_zien to FHIR Observation conforming to profile nl-core-VisualFunction, FHIR DeviceUseStatement conforming to profile nl-core-VisualFunction.VisualAid and FHIR Device conforming to profile nl-core-VisualFunction.VisualAid.Product</xd:desc>
+        <xd:desc>Converts ADA functie_zien to FHIR Observation resource conforming to profile nl-core-VisualFunction, FHIR DeviceUseStatement resource conforming to profile nl-core-VisualFunction.VisualAid and FHIR Device resource conforming to profile nl-core-VisualFunction.VisualAid.Product.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameVisualFunction">nl-core-VisualFunction</xsl:variable>
@@ -36,7 +36,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="profileNameVisualFunctionVisualAidProduct">nl-core-VisualFunction.VisualAid.Product</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-VisualFunction instance as an Observation FHIR instance from ada functie_zien element.</xd:desc>
+        <xd:desc>Creates an nl-core-VisualFunction instance as an Observation FHIR instance from ADA functie_zien element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
@@ -86,7 +86,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-VisualFunction.VisualAid instance as a DeviceUseStatement FHIR instance from ada zien_hulpmiddel/medisch_hulpmiddel element.</xd:desc>
+        <xd:desc>Creates an nl-core-VisualFunction.VisualAid instance as a DeviceUseStatement FHIR instance from ADA zien_hulpmiddel/medisch_hulpmiddel element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
         <xd:param name="reasonReference">ADA instance used to populate the reasonReference element in the MedicalDevice.</xd:param>
@@ -104,7 +104,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Create an nl-core-VisualFunction.VisualAid.Product instance as a Device FHIR instance from ada product element.</xd:desc>
+        <xd:desc>Creates an nl-core-VisualFunction.VisualAid.Product instance as a Device FHIR instance from ADA product element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>

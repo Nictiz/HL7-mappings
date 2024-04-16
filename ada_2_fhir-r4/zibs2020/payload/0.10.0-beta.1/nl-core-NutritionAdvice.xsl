@@ -28,7 +28,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada voedingsadvies to FHIR NutritionOrder conforming to profile nl-core-NutritionAdvice</xd:desc>
+        <xd:desc>Converts ada voedingsadvies to FHIR NutritionOrder resource conforming to profile nl-core-NutritionAdvice.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameNutritionAdvice">nl-core-NutritionAdvice</xsl:variable>

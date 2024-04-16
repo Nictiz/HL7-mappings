@@ -19,13 +19,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
 
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada medicatie_contra_indicatie element to FHIR resource conforming to profile nl-core-MedicationContraIndication</xd:desc>
+        <xd:desc>Converts ADA medicatie_contra_indicatie to FHIR Flag resource conforming to profile nl-core-MedicationContraIndication.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameMedicationContraIndication">nl-core-MedicationContraIndication</xsl:variable>
 
     <xd:doc>
-        <xd:desc>Create an nl-core-MedicationContraIndication FHIR Flag resource from ada medicatie_contra_indicatie element.</xd:desc>
+        <xd:desc>Creates an nl-core-MedicationContraIndication instance as a Flag FHIR instance from ADA medicatie_contra_indicatie element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>

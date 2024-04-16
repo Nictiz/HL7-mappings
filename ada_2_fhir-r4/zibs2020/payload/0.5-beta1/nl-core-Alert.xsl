@@ -28,13 +28,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA alert to FHIR resource conforming to profile nl-core-Alert</xd:desc>
+        <xd:desc>Converts ADA alert to FHIR Flag resource conforming to profile nl-core-Alert.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameAlert">nl-core-Alert</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-Alert instance as a Flag FHIR instance from ADA alert.</xd:desc>
+        <xd:desc>Creates an nl-core-Alert instance as a Flag FHIR instance from ADA alert element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">The subject as ADA element or reference.</xd:param>
     </xd:doc>

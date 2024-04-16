@@ -16,13 +16,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
 
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada stoma to FHIR Condition conforming to profile nl-core-Stoma</xd:desc>
+        <xd:desc>Converts ADA stoma to FHIR Condition resource conforming to profile nl-core-Stoma.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameStoma">nl-core-Stoma</xsl:variable>
 
     <xd:doc>
-        <xd:desc>Create an nl-core-Stoma as a Condition FHIR instance from ada stoma element.</xd:desc>
+        <xd:desc>Creates an nl-core-Stoma instance as a Condition FHIR instance from ADA stoma element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>

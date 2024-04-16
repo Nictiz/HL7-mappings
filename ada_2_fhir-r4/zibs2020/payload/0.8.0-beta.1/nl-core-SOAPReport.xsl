@@ -28,14 +28,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada soepverslag to FHIR Composition conforming to profile nl-core-SOAPReport and FHIR Observation conforming to profile nl-core-SOAPReport.SOAPLine</xd:desc>
+        <xd:desc>Converts ADA soepverslag to FHIR Composition resource conforming to profile nl-core-SOAPReport and FHIR Observation resource conforming to profile nl-core-SOAPReport.SOAPLine.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameSOAPReport">nl-core-SOAPReport</xsl:variable>
     <xsl:variable name="profileNameSOAPReportSOAPLine">nl-core-SOAPReport.SOAPLine</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Create a FHIR Composition instance conforming to profile nl-core-SOAPReport from ada soepverslag element.</xd:desc>
+        <xd:desc>Creates a FHIR Composition instance conforming to profile nl-core-SOAPReport from ADA soepverslag element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
         <xd:param name="author">Optional ADA instance or ADA reference element for the author.</xd:param>

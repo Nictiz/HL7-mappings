@@ -28,13 +28,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada polsfrequentie to FHIR Observation conforming to profile nl-core-PulseRate</xd:desc>
+        <xd:desc>Converts ADA polsfrequentie to FHIR Observation resource conforming to profile nl-core-PulseRate.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNamePulseRate">nl-core-PulseRate</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-PulseRate as an Observation FHIR instance from ada polsfrequentie element.</xd:desc>
+        <xd:desc>Creates an nl-core-PulseRate instance as an Observation FHIR instance from ADA polsfrequentie element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>

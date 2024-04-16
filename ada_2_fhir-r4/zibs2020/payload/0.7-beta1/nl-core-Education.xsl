@@ -25,13 +25,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA opleiding to FHIR resource conforming to profile nl-core-Education</xd:desc>
+        <xd:desc>Converts ADA opleiding to FHIR Observation resource conforming to profile nl-core-Education.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameEducation">nl-core-Education</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-Education instance as an Observation FHIR instance from ADA opleiding.</xd:desc>
+        <xd:desc>Creates an nl-core-Education instance as an Observation FHIR instance from ADA opleiding element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
     <xsl:template match="opleiding" name="nl-core-Education" mode="nl-core-Education" as="element(f:Observation)">

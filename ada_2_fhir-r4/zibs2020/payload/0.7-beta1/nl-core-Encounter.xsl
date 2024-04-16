@@ -16,13 +16,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
 
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada contact to FHIR Encounter resource conforming to profile nl-core-Encounter</xd:desc>
+        <xd:desc>Converts ADA contact to FHIR Encounter resource conforming to profile nl-core-Encounter.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameEncounter">nl-core-Encounter</xsl:variable>
 
     <xd:doc>
-        <xd:desc>Create an nl-core-Contactperson as a RelatedPerson FHIR instance from ada Contactpersoon.</xd:desc>
+        <xd:desc>Creates an nl-core-Encounter instance as an Encounter FHIR instance from ADA contact element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
     <xsl:template match="contact" name="nl-core-Encounter" mode="nl-core-Encounter" as="element(f:Encounter)?">

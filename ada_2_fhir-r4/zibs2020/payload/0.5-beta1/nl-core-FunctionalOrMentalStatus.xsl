@@ -21,15 +21,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA functionele_of_mentale_status to FHIR Observation conforming to profile nl-core-FunctionalOrMentalStatus</xd:desc>
+        <xd:desc>Converts ADA functionele_of_mentale_status to FHIR Observation resource conforming to profile nl-core-FunctionalOrMentalStatus.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameFunctionalOrMentalStatus">nl-core-FunctionalOrMentalStatus</xsl:variable>
     
     <xd:doc>
         <xd:desc>
-            <xd:p>Create an nl-core-FunctionalOrMentalStatus instance as an Observation FHIR instance from ADA functionele_of_mentale_status.</xd:p>
-            <xd:p>The zib doesn't provide enough information to determine if the Observation.category code should be SNOMED code 118228005 or 384821006 (BITS ticket zib-1549). Therefore SNOMED code 118228005 is hard coded which may not be the right category for the information that is transformed.</xd:p>
+            <xd:desc>Creates an nl-core-FunctionalOrMentalStatus instance as an Observation FHIR instance from ADA functionele_of_mentale_status element.</xd:desc>
+            <xd:desc>The zib doesn't provide enough information to determine if the Observation.category code should be SNOMED code 118228005 or 384821006 (BITS ticket zib-1549). Therefore SNOMED code 118228005 is hard coded which may not be the right category for the information that is transformed.</xd:desc>
             </xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>

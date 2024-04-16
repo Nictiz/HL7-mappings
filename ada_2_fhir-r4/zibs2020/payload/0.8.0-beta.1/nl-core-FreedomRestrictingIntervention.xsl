@@ -20,13 +20,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA vrijheidsbeperkende_interventie to FHIR Procedure conforming to profile nl-core-FreedomRestrictingIntervention</xd:desc>
+        <xd:desc>Converts ADA vrijheidsbeperkende_interventie to FHIR Procedure resource conforming to profile nl-core-FreedomRestrictingIntervention.</xd:desc>
     </xd:doc>
     
     <xsl:variable name="profileNameFreedomRestrictingIntervention">nl-core-FreedomRestrictingIntervention</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Create an nl-core-FreedomRestrictingIntervention instance as a Procedure FHIR instance from ADA vrijheidsbeperkende_interventie.</xd:desc>
+        <xd:desc>Creates an nl-core-FreedomRestrictingIntervention instance as a Procedure FHIR instance from ADA vrijheidsbeperkende_interventie element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">The subject as ADA element or reference.</xd:param>
     </xd:doc>
