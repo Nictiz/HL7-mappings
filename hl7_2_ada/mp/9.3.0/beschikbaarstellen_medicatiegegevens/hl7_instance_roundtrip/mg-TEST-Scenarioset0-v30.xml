@@ -4398,7 +4398,7 @@
                displayName="optimaliseren van dosering van medicatie (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 1 jan 2023, gedurende 1 week, cyclus van 3 dagen: steeds eerst gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, Oraal</text>
+         <text mediaType="text/plain">Vanaf 1 jan 2023, gedurende 1 week, eerst gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, Oraal</text>
          <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
             <low value="20230101"/>
             <width value="1" unit="wk"/>
@@ -4424,7 +4424,7 @@
             </manufacturedProduct>
          </consumable>
          <author>
-            <time value="20221230080000"/>
+            <time value="20221231080000"/>
             <assignedAuthor>
                <id extension="222221111" root="2.16.528.1.1007.3.1"/>
                <code code="3400"
@@ -4476,14 +4476,6 @@
                <effectiveTime xmlns="http://hl7.org/fhir"
                               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xsi:type="Timing">
-                  <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-RepeatPeriodCyclicalSchedule">
-                     <valueDuration>
-                        <value value="3"/>
-                        <unit value="dag"/>
-                        <system value="http://unitsofmeasure.org"/>
-                        <code value="d"/>
-                     </valueDuration>
-                  </modifierExtension>
                   <repeat>
                      <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                         <valueBoolean value="false"/>
@@ -4518,14 +4510,40 @@
                <effectiveTime xmlns="http://hl7.org/fhir"
                               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xsi:type="Timing">
-                  <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-RepeatPeriodCyclicalSchedule">
-                     <valueDuration>
-                        <value value="3"/>
+                  <repeat>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="false"/>
+                     </extension>
+                     <boundsDuration>
+                        <value value="1"/>
                         <unit value="dag"/>
                         <system value="http://unitsofmeasure.org"/>
                         <code value="d"/>
-                     </valueDuration>
-                  </modifierExtension>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="3" unit="1">
+                     <translation value="3"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="3"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
                   <repeat>
                      <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                         <valueBoolean value="false"/>
@@ -4545,7 +4563,143 @@
                   <center value="2" unit="1">
                      <translation value="2"
                                   code="245"
-                                  displayName="stuk"
+                                  displayName="stuks"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="4"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
+                  <repeat>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="false"/>
+                     </extension>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="3" unit="1">
+                     <translation value="3"
+                                  code="245"
+                                  displayName="stuks"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="5"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
+                  <repeat>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="false"/>
+                     </extension>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="2" unit="1">
+                     <translation value="2"
+                                  code="245"
+                                  displayName="stuks"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="6"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
+                  <repeat>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="false"/>
+                     </extension>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="3" unit="1">
+                     <translation value="3"
+                                  code="245"
+                                  displayName="stuks"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="7"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
+                  <repeat>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="false"/>
+                     </extension>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="2" unit="1">
+                     <translation value="2"
+                                  code="245"
+                                  displayName="stuks"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
@@ -5446,10 +5600,10 @@
                displayName="optimaliseren van dosering van medicatie (verrichting)"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 1 jan 2023, tot en met 6 jan 2023, cyclus van 7 dagen: steeds eerst gedurende 2 dagen 1 maal per dag 5 stuks, dan gedurende 5 dagen 1 maal per dag 4 stuks, Oraal</text>
+         <text mediaType="text/plain">Vanaf 31 dec 2022, gedurende 2 weken, eerst gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 uur 1 maal per dag 2 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, dan gedurende 1 dag 1 maal per dag 3 stuks, Oraal</text>
          <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
-            <low value="20230101"/>
-            <high value="20230106235959"/>
+            <low value="20221231090000"/>
+            <width value="2" unit="wk"/>
          </effectiveTime>
          <routeCode code="9"
                     codeSystem="2.16.840.1.113883.2.4.4.9"
@@ -5524,20 +5678,12 @@
                <effectiveTime xmlns="http://hl7.org/fhir"
                               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xsi:type="Timing">
-                  <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-RepeatPeriodCyclicalSchedule">
-                     <valueDuration>
-                        <value value="7"/>
-                        <unit value="dag"/>
-                        <system value="http://unitsofmeasure.org"/>
-                        <code value="d"/>
-                     </valueDuration>
-                  </modifierExtension>
                   <repeat>
                      <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                         <valueBoolean value="false"/>
                      </extension>
                      <boundsDuration>
-                        <value value="2"/>
+                        <value value="1"/>
                         <unit value="dag"/>
                         <system value="http://unitsofmeasure.org"/>
                         <code value="d"/>
@@ -5548,10 +5694,10 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="5" unit="1">
-                     <translation value="5"
+                  <center value="3" unit="1">
+                     <translation value="3"
                                   code="245"
-                                  displayName="stuk"
+                                  displayName="stuks"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
@@ -5566,20 +5712,12 @@
                <effectiveTime xmlns="http://hl7.org/fhir"
                               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xsi:type="Timing">
-                  <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-RepeatPeriodCyclicalSchedule">
-                     <valueDuration>
-                        <value value="7"/>
-                        <unit value="dag"/>
-                        <system value="http://unitsofmeasure.org"/>
-                        <code value="d"/>
-                     </valueDuration>
-                  </modifierExtension>
                   <repeat>
                      <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
                         <valueBoolean value="false"/>
                      </extension>
                      <boundsDuration>
-                        <value value="5"/>
+                        <value value="1"/>
                         <unit value="dag"/>
                         <system value="http://unitsofmeasure.org"/>
                         <code value="d"/>
@@ -5590,10 +5728,418 @@
                   </repeat>
                </effectiveTime>
                <doseQuantity>
-                  <center value="4" unit="1">
-                     <translation value="4"
+                  <center value="3" unit="1">
+                     <translation value="3"
                                   code="245"
                                   displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="3"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
+                  <repeat>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="false"/>
+                     </extension>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="2" unit="1">
+                     <translation value="2"
+                                  code="245"
+                                  displayName="stuks"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="4"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
+                  <repeat>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="false"/>
+                     </extension>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="3" unit="1">
+                     <translation value="3"
+                                  code="245"
+                                  displayName="stuks"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="5"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
+                  <repeat>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="false"/>
+                     </extension>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="2" unit="1">
+                     <translation value="2"
+                                  code="245"
+                                  displayName="stuks"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="6"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
+                  <repeat>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="false"/>
+                     </extension>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="3" unit="1">
+                     <translation value="3"
+                                  code="245"
+                                  displayName="stuks"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="7"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
+                  <repeat>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="false"/>
+                     </extension>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="2" unit="1">
+                     <translation value="2"
+                                  code="245"
+                                  displayName="stuks"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="8"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
+                  <repeat>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="false"/>
+                     </extension>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="3" unit="1">
+                     <translation value="3"
+                                  code="245"
+                                  displayName="stuks"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="9"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
+                  <repeat>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="false"/>
+                     </extension>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="3" unit="1">
+                     <translation value="3"
+                                  code="245"
+                                  displayName="stuks"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="10"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
+                  <repeat>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="false"/>
+                     </extension>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="2" unit="1">
+                     <translation value="2"
+                                  code="245"
+                                  displayName="stuks"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="11"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
+                  <repeat>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="false"/>
+                     </extension>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="3" unit="1">
+                     <translation value="3"
+                                  code="245"
+                                  displayName="stuks"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="12"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
+                  <repeat>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="false"/>
+                     </extension>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="uur"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="h"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="2" unit="1">
+                     <translation value="2"
+                                  code="245"
+                                  displayName="stuks"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="13"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
+                  <repeat>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="false"/>
+                     </extension>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="3" unit="1">
+                     <translation value="3"
+                                  code="245"
+                                  displayName="stuks"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                  codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                  </center>
+               </doseQuantity>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="14"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
+                  <repeat>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="false"/>
+                     </extension>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="3" unit="1">
+                     <translation value="3"
+                                  code="245"
+                                  displayName="stuks"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
