@@ -179,8 +179,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="makeReference">
                             <xsl:with-param name="profile">
                                 <xsl:choose>
-                                    <xsl:when test="self::zorgverlener">nl-core-HealthProfessional-PractitionerRole</xsl:when>
-                                    <xsl:when test="self::zorgaanbieder">nl-core-HealthcareProvider-Organization</xsl:when>
+                                    <xsl:when test="self::zorgverlener">
+                                        <xsl:value-of select="$profileNameHealthProfessionalPractitionerRole"/>
+                                    </xsl:when>
+                                    <xsl:when test="self::zorgaanbieder">
+                                        <xsl:value-of select="$profileNameHealthcareProviderOrganization"/>
+                                    </xsl:when>
                                 </xsl:choose>
                             </xsl:with-param>
                         </xsl:call-template>
@@ -190,7 +194,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="$performer">
                     <performer>
                         <xsl:call-template name="makeReference">
-                            <xsl:with-param name="profile" select="$profilenameHealthcareProviderOrganization"/>
+                            <xsl:with-param name="profile" select="$profileNameHealthcareProviderOrganization"/>
                         </xsl:call-template>
                     </performer>
                 </xsl:for-each>

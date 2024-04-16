@@ -23,7 +23,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
 
     <xd:doc>
-        <xd:desc>Create a mp-MedicationAgreement instance as a MedicationRequest FHIR instance from ADA medicatieafspraak.</xd:desc>
+        <xd:desc>Create an mp-MedicationAgreement instance as a MedicationRequest FHIR instance from ADA medicatieafspraak.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="metaTag">The meta tag to be added. Optional. Typical use case is 'actionable' for prescriptions or proposals. Empty for informational purposes.</xd:param>
         <xd:param name="subject">The MedicationRequest.subject as ADA element or reference.</xd:param>
@@ -92,7 +92,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.NextPractitioner">
                         <valueReference>
                             <xsl:call-template name="makeReference">
-                                <xsl:with-param name="profile">nl-core-HealthProfessional-PractitionerRole</xsl:with-param>
+                                <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
                             </xsl:call-template>
                         </valueReference>
                     </extension>
@@ -179,8 +179,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="makeReference">
                             <xsl:with-param name="profile">
                                 <xsl:choose>
-                                    <xsl:when test="self::zorgverlener">nl-core-HealthProfessional-PractitionerRole</xsl:when>
-                                    <xsl:when test="self::zorgaanbieder">nl-core-HealthcareProvider-Organization</xsl:when>
+                                    <xsl:when test="self::zorgverlener">
+                                        <xsl:value-of select="$profileNameHealthProfessionalPractitionerRole"/>
+                                    </xsl:when>
+                                    <xsl:when test="self::zorgaanbieder">
+                                        <xsl:value-of select="$profileNameHealthcareProviderOrganization"/>
+                                    </xsl:when>
                                 </xsl:choose>
                             </xsl:with-param>
                         </xsl:call-template>

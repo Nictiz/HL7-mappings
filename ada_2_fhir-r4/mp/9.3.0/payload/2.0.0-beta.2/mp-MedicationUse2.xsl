@@ -52,7 +52,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
                         <valueReference>
                             <xsl:call-template name="makeReference">
-                                <xsl:with-param name="profile">nl-core-HealthProfessional-PractitionerRole</xsl:with-param>
+                                <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
                             </xsl:call-template>
                         </valueReference>
                     </extension>
@@ -93,7 +93,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:when test="ancestor::data/*//zorgaanbieder[@id = current()/auteur_is_zorgaanbieder/zorgaanbieder/@value]">
                                     <xsl:call-template name="makeReference">
                                         <xsl:with-param name="in" select="ancestor::data/*//zorgaanbieder[@id = current()/auteur_is_zorgaanbieder/zorgaanbieder/@value]"/>
-                                        <xsl:with-param name="profile" select="$profilenameHealthcareProvider"/>
+                                        <xsl:with-param name="profile" select="$profileNameHealthcareProvider"/>
                                     </xsl:call-template>
                                 </xsl:when>
                             </xsl:choose>

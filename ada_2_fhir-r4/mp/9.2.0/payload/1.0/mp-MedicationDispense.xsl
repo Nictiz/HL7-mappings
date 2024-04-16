@@ -124,7 +124,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <performer>
                         <actor>
                             <xsl:call-template name="makeReference">
-                                <xsl:with-param name="profile">nl-core-HealthcareProvider-Organization</xsl:with-param>
+                                <xsl:with-param name="profile" select="$profileNameHealthcareProviderOrganization"/>
                             </xsl:call-template>
                         </actor>
                     </performer>

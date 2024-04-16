@@ -22,7 +22,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
 
     <xd:doc>
-        <xd:desc>Create a mp-PharmaceuticalProduct instance as a Medication FHIR instance from ADA farmaceutisch_product.</xd:desc>
+        <xd:desc>Create an mp-PharmaceuticalProduct instance as a Medication FHIR instance from ADA farmaceutisch_product.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
     <xsl:template match="farmaceutisch_product" name="mp-PharmaceuticalProduct" mode="mp-PharmaceuticalProduct" as="element(f:Medication)">
