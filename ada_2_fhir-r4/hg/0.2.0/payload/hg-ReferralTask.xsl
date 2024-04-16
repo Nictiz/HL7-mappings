@@ -30,6 +30,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Create an hg-ReferralTask instance as a Task FHIR instance from the ada element envelop.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
+        <xd:param name="requester">Optional ADA instance or ADA reference element for the requester (sender).</xd:param>
+        <xd:param name="owner">Optional ADA instance or ADA reference element for the owner (receiver).</xd:param>
     </xd:doc>
     <xsl:template name="hg-ReferralTask" as="element(f:Task)?">
         <xsl:param name="subject" select="patientgegevens/patient" as="element()?"/>

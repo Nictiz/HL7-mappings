@@ -29,6 +29,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create an hg-ReferralComposition instance as a Composition FHIR instance from the ada element kern.</xd:desc>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
+        <xd:param name="author">Optional ADA instance or ADA reference element for the author.</xd:param>
     </xd:doc>
     <xsl:template name="hg-ReferralComposition" as="element(f:Composition)?">
         <xsl:param name="subject" select="../envelop/patientgegevens/patient" as="element()?"/>

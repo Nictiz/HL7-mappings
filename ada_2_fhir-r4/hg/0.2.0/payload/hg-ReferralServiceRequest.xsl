@@ -29,6 +29,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create an hg-ReferralServiceRequest instance as a ServiceRequest FHIR instance from the ada element envelop.</xd:desc>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
+        <xd:param name="requester">Optional ADA instance or ADA reference element for the requester (sender).</xd:param>
+        <xd:param name="performer">Optional ADA instance or ADA reference element for the performer (receiver).</xd:param>
     </xd:doc>
     <xsl:template name="hg-ReferralServiceRequest" as="element(f:ServiceRequest)?">
         <xsl:param name="subject" select="patientgegevens/patient" as="element()?"/>
