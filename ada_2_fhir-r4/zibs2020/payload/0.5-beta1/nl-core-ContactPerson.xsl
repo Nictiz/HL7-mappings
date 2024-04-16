@@ -19,8 +19,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
 
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada patient to FHIR resource conforming to profile nl-core-Patient</xd:desc>
+        <xd:desc>Converts ada contactpersoon to FHIR resource conforming to profile nl-core-ContactPerson</xd:desc>
     </xd:doc>
+    
+    <xsl:variable name="profileNameContactPerson">nl-core-ContactPerson</xsl:variable>
 
     <xd:doc>
         <xd:desc>Create a nl-core-Contactperson as a RelatedPerson FHIR instance from ada Contactpersoon.</xd:desc>

@@ -22,8 +22,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada zorgaanbieder to FHIR resource conforming to profile nl-core-HealthcareProvider</xd:desc>
     </xd:doc>
 
-    <xsl:variable name="profilenameHealthcareProvider">nl-core-HealthcareProvider</xsl:variable>
-    <xsl:variable name="profilenameHealthcareProviderOrganization">nl-core-HealthcareProvider-Organization</xsl:variable>
+    <xsl:variable name="profileNameHealthcareProvider">nl-core-HealthcareProvider</xsl:variable>
+    <xsl:variable name="profileNameHealthcareProviderOrganization">nl-core-HealthcareProvider-Organization</xsl:variable>
 
     <xd:doc>
         <xd:desc>Produces a Location resource based on nl-core-HealthcareProvider</xd:desc>
@@ -35,7 +35,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <Location>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="$profilenameHealthcareProvider"/>
+                    <xsl:with-param name="profile" select="$profileNameHealthcareProvider"/>
                 </xsl:call-template>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider"/>
@@ -80,7 +80,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <Organization>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="$profilenameHealthcareProviderOrganization"/>
+                    <xsl:with-param name="profile" select="$profileNameHealthcareProviderOrganization"/>
                 </xsl:call-template>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
@@ -126,7 +126,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="profile" required="yes" as="xs:string"/>
 
         <xsl:choose>
-            <xsl:when test="$profile = $profilenameHealthcareProvider">
+            <xsl:when test="$profile = $profileNameHealthcareProvider">
                 <xsl:variable name="parts" as="item()*">
                     <xsl:text>Healthcare provider (location)</xsl:text>
                     <xsl:value-of select="organisatie_naam/@value"/>
@@ -138,7 +138,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:variable>
                 <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
             </xsl:when>
-            <xsl:when test="$profile = $profilenameHealthcareProviderOrganization">
+            <xsl:when test="$profile = $profileNameHealthcareProviderOrganization">
                 <xsl:variable name="parts" as="item()*">
                     <xsl:text>Healthcare provider (organization)</xsl:text>
                     <xsl:value-of select="organisatie_naam/@value"/>
@@ -182,7 +182,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$currentZaId[@value | @root]">
                     <xsl:for-each select="($currentZaId[@value | @root])[1]">
                         <!-- use append for Organization to also create stable id based on identifier, but make it unique cause Location uses the same -->
-                        <xsl:if test="$profile = $profilenameHealthcareProviderOrganization">Org-</xsl:if>
+                        <xsl:if test="$profile = $profileNameHealthcareProviderOrganization">Org-</xsl:if>
                         <xsl:if test="$profile = $profileNameHealthProfessionalPractitionerRole">PrcRol-</xsl:if>
                         <!-- we remove '.' in root oid and '_' in extension to enlarge the chance of staying in 64 chars -->
                         <xsl:value-of select="concat(replace(@root, '\.', ''), '-', replace(@value, '_', ''))"/>

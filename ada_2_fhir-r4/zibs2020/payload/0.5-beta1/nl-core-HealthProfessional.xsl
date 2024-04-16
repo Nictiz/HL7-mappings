@@ -16,12 +16,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
+    <xd:doc scope="stylesheet">
+        <xd:desc>Converts ada zorgverlener to FHIR resource conforming to profile nl-core-HealthProfessional-PractitionerRole</xd:desc>
+    </xd:doc>
+    
     <xsl:variable name="profileNameHealthProfessionalPractitionerRole">nl-core-HealthProfessional-PractitionerRole</xsl:variable>
     <xsl:variable name="profileNameHealthProfessionalPractitioner">nl-core-HealthProfessional-Practitioner</xsl:variable>
-
-    <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada zorgverlener_rol to FHIR resource conforming to profile nl-core-HealthProfessional-PractitionerRole</xd:desc>
-    </xd:doc>
 
     <xd:doc>
         <xd:desc>Creates an nl-core-HealthProfessional-PractitionerRole FHIR instance from an ada 'zorgverlener' element. Please note that following the zib2020 R4 profiling guidelines, a PractitionerRole that references a Practitioner is considered more meaningful than directly referencing a Practitioner.</xd:desc>

@@ -18,6 +18,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ada probleem to FHIR Condition conforming to profile nl-core-Problem</xd:desc>
     </xd:doc>
+    
+    <xsl:variable name="profileNameProblem">nl-core-Problem</xsl:variable>
 
     <xd:doc>
         <xd:desc>Create an nl-core-Problem as a Condition FHIR instance from ada probleem element.</xd:desc>
@@ -142,7 +144,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:with-param name="uniqueString" select="$uniqueString"/>
         </xsl:call-template>
     </xsl:template>
-
 
     <xd:doc>
         <xd:desc>Template to generate a display that can be shown when referencing this instance.</xd:desc>
