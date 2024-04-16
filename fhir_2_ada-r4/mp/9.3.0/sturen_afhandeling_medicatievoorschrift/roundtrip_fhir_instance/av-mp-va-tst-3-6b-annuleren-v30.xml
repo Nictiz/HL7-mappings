@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="av-mp-va-tst-3-6b-annuleren-v30"/>
+   <id value="0e66ac15-fc06-11ee-1401-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f169f-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:0e66ad04-fc06-11ee-1401-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -15,16 +15,16 @@
                   <code value="actionable"/>
                </tag>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
-               <valueDateTime value="${DATE, T, D, -1}T14:10:00+02:00"/>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="2023-01-01T14:10:00+01:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T + 7 dagen om 14:10 uur, tot en met T + 7 dagen om 14:10 uur, 1 maal per week 1 stuk, Oraal, geannuleerd"/>
+               <valueString value="Wordt gegenereerd"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="${DATE, T, D, +7}T14:10:00+02:00"/>
-                  <end value="${DATE, T, D, +7}T14:10:00+02:00"/>
+                  <start value="2023-01-07T00:00:00+01:00"/>
+                  <end value="2023-01-07T00:00:00+01:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -43,15 +43,6 @@
                   <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_annuleren_TA_starten || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                </valueReference>
             </extension>
-            <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
-               <valueCodeableConcept>
-                  <coding>
-                     <system value="http://snomed.info/sct"/>
-                     <code value="89925002"/>
-                     <display value="geannuleerd"/>
-                  </coding>
-               </valueCodeableConcept>
-            </modifierExtension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                <value value="MBH_300_annuleren_TA_geannuleerd"/>
@@ -65,18 +56,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f1b92-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:0e66ad22-fc06-11ee-1401-020000000000"/>
                <type value="Medication"/>
                <display value="LARIAM TABLET 250MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f22ca-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:0e66ac8c-fc06-11ee-1401-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:c33f1aa8-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:0e66acc8-fc06-11ee-1401-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -85,9 +76,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBG_300_annuleren_MA_geannuleerd"/>
+                  <value value="MBH_300_annuleren_MA_geannuleerd"/>
                </identifier>
-               <display value="relatie naar medicatieafspraak met identificatie: MBG_300_annuleren_MA_geannuleerd || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_annuleren_MA_geannuleerd || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </authorizingPrescription>
             <dosageInstruction>
                <timing>
@@ -129,7 +120,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f22ca-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:0e66ac8c-fc06-11ee-1401-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -179,7 +170,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1aa8-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:0e66acc8-fc06-11ee-1401-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -198,7 +189,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1b92-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:0e66ad22-fc06-11ee-1401-020000000000"/>
       <resource>
          <Medication>
             <meta>

@@ -11,10 +11,9 @@
                                    prefix="mp-"
                                    language="nl-NL"
                                    title="Generated from HL7 FHIR sturen_medicatievoorschrift"
-                                   id="mv-mp-vo-tst-1-5-eenheid-dosis-stuks-v30">
+                                   id="645c2b8f-fc02-11ee-1137-020000000000">
          <patient>
             <naamgegevens>
-               <ongestructureerde_naam value="C. XXX_Brugge"/>
                <initialen value="C."/>
                <naamgebruik code="NL1"
                             codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
@@ -33,21 +32,21 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_dosis_stuks_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <medicatieafspraak_datum_tijd value="T+0D{11:35:00}" datatype="datetime"/>
+               <registratie_datum_tijd value="2023-01-01T11:35:00+01:00" datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="T+0D{00:00:00}" datatype="datetime"/>
-                  <eind_datum_tijd value="T+29D{23:59:59}" datatype="datetime"/>
+                  <start_datum_tijd value="2023-01-01T00:00:00+01:00" datatype="datetime"/>
+                  <eind_datum_tijd value="2023-01-30T23:59:59+01:00" datatype="datetime"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="urn-uuid-7af79824-6ac8-11ec-0000-020000000000"
+                  <zorgverlener value="urn-uuid-645c2c2e-fc02-11ee-1137-020000000000"
                                 datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-501c9f1d-6b1e-11ec-0000-020000000000"
+                  <farmaceutisch_product value="urn-uuid-645c2d6e-fc02-11ee-1137-020000000000"
                                          datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf T, tot en met T + 29 dagen, 2 maal per dag 1 dosis, inhalatie"/>
+                  <omschrijving value="Vanaf &lt;T-130D{00:00:00}&gt; t/m &lt;T-101D{00:00:00}&gt;, 2 maal per dag 1 inhalatie, inhalatie"/>
                   <toedieningsweg code="62"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
@@ -78,13 +77,13 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_dosis_stuks_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd value="T+0D{11:35:00}" datatype="datetime"/>
+               <verstrekkingsverzoek_datum_tijd value="2023-01-01T11:35:00+01:00" datatype="datetime"/>
                <auteur>
-                  <zorgverlener value="urn-uuid-7af79824-6ac8-11ec-0000-020000000000"
+                  <zorgverlener value="urn-uuid-645c2c2e-fc02-11ee-1137-020000000000"
                                 datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-501c9f1d-6b1e-11ec-0000-020000000000"
+                  <farmaceutisch_product value="urn-uuid-645c2d6e-fc02-11ee-1137-020000000000"
                                          datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid>
@@ -95,7 +94,7 @@
                </te_verstrekken_hoeveelheid>
                <beoogd_verstrekker>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-98d231d8-6b0c-11ec-0000-020000000000"/>
+                                 value="urn-uuid-645c2cf6-fc02-11ee-1137-020000000000"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_dosis_stuks_MA"
@@ -104,7 +103,7 @@
             </verstrekkingsverzoek>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-501c9f1d-6b1e-11ec-0000-020000000000">
+            <farmaceutisch_product id="urn-uuid-645c2d6e-fc02-11ee-1137-020000000000">
                <product_code code="45624"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -115,10 +114,9 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="FLUTICASON INHALATIEPOEDER 100UG/DO"/>
             </farmaceutisch_product>
-            <zorgverlener id="urn-uuid-7af79824-6ac8-11ec-0000-020000000000">
+            <zorgverlener id="urn-uuid-645c2c2e-fc02-11ee-1137-020000000000">
                <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
-                  <ongestructureerde_naam value="Peter van Pulver"/>
                   <voornamen value="Peter"/>
                   <geslachtsnaam>
                      <voorvoegsels value="van"/>
@@ -140,10 +138,10 @@
                </contactgegevens>
                <zorgaanbieder>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-7fa869d8-6b44-11ec-0000-020000000000"/>
+                                 value="urn-uuid-645c2c9c-fc02-11ee-1137-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="urn-uuid-7fa869d8-6b44-11ec-0000-020000000000">
+            <zorgaanbieder id="urn-uuid-645c2c9c-fc02-11ee-1137-020000000000">
                <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
@@ -156,7 +154,7 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="urn-uuid-98d231d8-6b0c-11ec-0000-020000000000">
+            <zorgaanbieder id="urn-uuid-645c2cf6-fc02-11ee-1137-020000000000">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
             </zorgaanbieder>

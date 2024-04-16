@@ -10,10 +10,9 @@
                                             prefix="mp-"
                                             language="nl-NL"
                                             title="Generated from HL7 FHIR medicatiegegevens"
-                                            id="mg-mgrp-999900961-ALL">
+                                            id="63229ac9-fc02-11ee-1023-020000000000">
          <patient>
             <naamgegevens>
-               <ongestructureerde_naam value="M. van de XXX_Tewarie"/>
                <initialen value="M."/>
                <naamgebruik code="NL1"
                             codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
@@ -33,22 +32,22 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_logistiekeverbruiksperiode_start_eind_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd value="T+0D{11:00:00}" datatype="datetime"/>
+               <verstrekkingsverzoek_datum_tijd value="2023-01-01T11:00:00+01:00" datatype="datetime"/>
                <auteur>
-                  <zorgverlener value="urn-uuid-4560482e-6aec-11ec-0000-020000000000"
+                  <zorgverlener value="urn-uuid-63229b22-fc02-11ee-1023-020000000000"
                                 datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-a07ec504-6ac4-11ec-0000-020000000000"
+                  <farmaceutisch_product value="urn-uuid-63229dac-fc02-11ee-1023-020000000000"
                                          datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <verbruiksperiode>
-                  <start_datum_tijd value="T+0D{00:00:00}" datatype="datetime"/>
-                  <eind_datum_tijd value="T+12M{23:59:59}" datatype="datetime"/>
+                  <start_datum_tijd value="2023-01-01T00:00:00+01:00" datatype="datetime"/>
+                  <eind_datum_tijd value="2024-01-01T23:59:59+01:00" datatype="datetime"/>
                </verbruiksperiode>
                <beoogd_verstrekker>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-98d231d8-6b0c-11ec-0000-020000000000"/>
+                                 value="urn-uuid-63229b90-fc02-11ee-1023-020000000000"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_logistiekeverbruiksperiode_start_eind_MA"
@@ -62,13 +61,13 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_herhalingen_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd value="T-50D{11:05:00}" datatype="datetime"/>
+               <verstrekkingsverzoek_datum_tijd value="2022-11-12T11:05:00+01:00" datatype="datetime"/>
                <auteur>
-                  <zorgverlener value="urn-uuid-4560482e-6aec-11ec-0000-020000000000"
+                  <zorgverlener value="urn-uuid-63229b22-fc02-11ee-1023-020000000000"
                                 datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-097956e9-6aa6-11ec-0000-020000000000"
+                  <farmaceutisch_product value="urn-uuid-63229dca-fc02-11ee-1023-020000000000"
                                          datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid>
@@ -80,13 +79,82 @@
                <aantal_herhalingen value="5"/>
                <beoogd_verstrekker>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-98d231d8-6b0c-11ec-0000-020000000000"/>
+                                 value="urn-uuid-63229b90-fc02-11ee-1023-020000000000"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_herhalingen_MA"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                </relatie_medicatieafspraak>
             </verstrekkingsverzoek>
+            <medicatieverstrekking>
+               <identificatie value="MBH_300_herhalingen_MVE1"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2022-11-12T12:05:00+01:00"/>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-63229b90-fc02-11ee-1023-020000000000"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid>
+                  <aantal value="30"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product value="urn-uuid-63229e42-fc02-11ee-1023-020000000000"
+                                         datatype="reference"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek>
+                  <identificatie value="MBH_300_herhalingen_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+            <medicatieverstrekking>
+               <identificatie value="MBH_300_herhalingen_MVE2"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2022-12-12T10:24:05+01:00"/>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-63229b90-fc02-11ee-1023-020000000000"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid>
+                  <aantal value="30"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product value="urn-uuid-63229e42-fc02-11ee-1023-020000000000"
+                                         datatype="reference"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek>
+                  <identificatie value="MBH_300_herhalingen_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+            <medicatieverstrekking>
+               <identificatie value="MBH_300_herhalingen_MVE3"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-01-11T09:46:48+01:00"/>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-63229b90-fc02-11ee-1023-020000000000"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid>
+                  <aantal value="30"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product value="urn-uuid-63229e42-fc02-11ee-1023-020000000000"
+                                         datatype="reference"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek>
+                  <identificatie value="MBH_300_herhalingen_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
          </medicamenteuze_behandeling>
          <medicamenteuze_behandeling>
             <identificatie value="MBH_300_afleverlocatie"
@@ -94,13 +162,13 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_afleverlocatie_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd value="T+0D{11:07:00}" datatype="datetime"/>
+               <verstrekkingsverzoek_datum_tijd value="2023-01-01T11:07:00+01:00" datatype="datetime"/>
                <auteur>
-                  <zorgverlener value="urn-uuid-4560482e-6aec-11ec-0000-020000000000"
+                  <zorgverlener value="urn-uuid-63229b22-fc02-11ee-1023-020000000000"
                                 datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-ebaaab1d-6b29-11ec-0000-020000000000"
+                  <farmaceutisch_product value="urn-uuid-63229e9c-fc02-11ee-1023-020000000000"
                                          datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid>
@@ -111,7 +179,7 @@
                </te_verstrekken_hoeveelheid>
                <beoogd_verstrekker>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-98d231d8-6b0c-11ec-0000-020000000000"/>
+                                 value="urn-uuid-63229b90-fc02-11ee-1023-020000000000"/>
                </beoogd_verstrekker>
                <afleverlocatie value="Dorpsrand 200,1256ZZ Ons Dorp"/>
                <relatie_medicatieafspraak>
@@ -122,11 +190,11 @@
             <medicatieverstrekking>
                <identificatie value="MBH_300_afleverlocatie_MVE"
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime" value="T+0D{12:07:00}"/>
-               <aanschrijf_datum datatype="datetime" value="T+0D{11:07:00}"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-01-01T12:07:00+01:00"/>
+               <aanschrijf_datum datatype="datetime" value="2023-01-01T11:07:00+01:00"/>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-98d231d8-6b0c-11ec-0000-020000000000"/>
+                                 value="urn-uuid-63229b90-fc02-11ee-1023-020000000000"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
                   <aantal value="30"/>
@@ -135,7 +203,7 @@
                            displayName="stuk"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-c8dcf604-6b6b-11ec-0000-020000000000"
+                  <farmaceutisch_product value="urn-uuid-63229eba-fc02-11ee-1023-020000000000"
                                          datatype="reference"/>
                </verstrekt_geneesmiddel>
                <afleverlocatie value="Dorpsrand 200,1256ZZ Ons Dorp"/>
@@ -151,21 +219,21 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_logistiekeverbruiksperiode_eind_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd value="T-9D{11:01:00}" datatype="datetime"/>
+               <verstrekkingsverzoek_datum_tijd value="2022-12-23T11:01:00+01:00" datatype="datetime"/>
                <auteur>
-                  <zorgverlener value="urn-uuid-4560482e-6aec-11ec-0000-020000000000"
+                  <zorgverlener value="urn-uuid-63229b22-fc02-11ee-1023-020000000000"
                                 datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-4afaae04-6ac4-11ec-0000-020000000000"
+                  <farmaceutisch_product value="urn-uuid-63229de8-fc02-11ee-1023-020000000000"
                                          datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <verbruiksperiode>
-                  <eind_datum_tijd value="T+200D{23:59:59}" datatype="datetime"/>
+                  <eind_datum_tijd value="2023-07-20T23:59:59+02:00" datatype="datetime"/>
                </verbruiksperiode>
                <beoogd_verstrekker>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-98d231d8-6b0c-11ec-0000-020000000000"/>
+                                 value="urn-uuid-63229b90-fc02-11ee-1023-020000000000"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_logistiekeverbruiksperiode_eind_MA"
@@ -175,10 +243,10 @@
             <medicatieverstrekking>
                <identificatie value="MBH_300_logistiekeverbruiksperiode_eind_MVE"
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime" value="T-9D{12:01:00}"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2022-12-23T12:01:00+01:00"/>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-98d231d8-6b0c-11ec-0000-020000000000"/>
+                                 value="urn-uuid-63229b90-fc02-11ee-1023-020000000000"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
                   <aantal value="100"/>
@@ -187,7 +255,7 @@
                            displayName="stuk"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-65ff631d-6b39-11ec-0000-020000000000"
+                  <farmaceutisch_product value="urn-uuid-63229e06-fc02-11ee-1023-020000000000"
                                          datatype="reference"/>
                </verstrekt_geneesmiddel>
                <distributievorm code="1"
@@ -205,13 +273,13 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_logistiekeverbruiksperiode_duur_dagen_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd value="T+0D{11:02:00}" datatype="datetime"/>
+               <verstrekkingsverzoek_datum_tijd value="2023-01-01T11:02:00+01:00" datatype="datetime"/>
                <auteur>
-                  <zorgverlener value="urn-uuid-4560482e-6aec-11ec-0000-020000000000"
+                  <zorgverlener value="urn-uuid-63229b22-fc02-11ee-1023-020000000000"
                                 datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-cfa3aee9-6b5c-11ec-0000-020000000000"
+                  <farmaceutisch_product value="urn-uuid-63229e24-fc02-11ee-1023-020000000000"
                                          datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <verbruiksperiode>
@@ -219,7 +287,7 @@
                </verbruiksperiode>
                <beoogd_verstrekker>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-98d231d8-6b0c-11ec-0000-020000000000"/>
+                                 value="urn-uuid-63229b90-fc02-11ee-1023-020000000000"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_logistiekeverbruiksperiode_duur_dagen_MA"
@@ -229,10 +297,10 @@
             <medicatieverstrekking>
                <identificatie value="MBH_300_logistiekeverbruiksperiode_duur_dagen_MVE"
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime" value="T+0D{12:02:00}"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-01-01T12:02:00+01:00"/>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-98d231d8-6b0c-11ec-0000-020000000000"/>
+                                 value="urn-uuid-63229b90-fc02-11ee-1023-020000000000"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
                   <aantal value="100"/>
@@ -241,7 +309,7 @@
                            displayName="stuk"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-9270a11d-6b35-11ec-0000-020000000000"
+                  <farmaceutisch_product value="urn-uuid-63229e60-fc02-11ee-1023-020000000000"
                                          datatype="reference"/>
                </verstrekt_geneesmiddel>
                <verbruiksduur value="50" unit="dag"/>
@@ -257,13 +325,13 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_financiele_indicatiecode_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd value="T+0D{11:35:00}" datatype="datetime"/>
+               <verstrekkingsverzoek_datum_tijd value="2023-01-01T11:35:00+01:00" datatype="datetime"/>
                <auteur>
-                  <zorgverlener value="urn-uuid-4560482e-6aec-11ec-0000-020000000000"
+                  <zorgverlener value="urn-uuid-63229b22-fc02-11ee-1023-020000000000"
                                 datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-f516151d-6aaf-11ec-0000-020000000000"
+                  <farmaceutisch_product value="urn-uuid-63229e7e-fc02-11ee-1023-020000000000"
                                          datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid>
@@ -274,7 +342,7 @@
                </te_verstrekken_hoeveelheid>
                <beoogd_verstrekker>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-98d231d8-6b0c-11ec-0000-020000000000"/>
+                                 value="urn-uuid-63229b90-fc02-11ee-1023-020000000000"/>
                </beoogd_verstrekker>
                <financiele_indicatiecode code="OTH" codeSystem="2.16.840.1.113883.5.1008" originalText="B2"/>
                <relatie_medicatieafspraak>
@@ -284,7 +352,7 @@
             </verstrekkingsverzoek>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-a07ec504-6ac4-11ec-0000-020000000000">
+            <farmaceutisch_product id="urn-uuid-63229dac-fc02-11ee-1023-020000000000">
                <product_code code="49484"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -295,7 +363,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="Acetylsalicylzuur tabletmsr 100mg"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-097956e9-6aa6-11ec-0000-020000000000">
+            <farmaceutisch_product id="urn-uuid-63229dca-fc02-11ee-1023-020000000000">
                <product_code code="5967"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -306,33 +374,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="FUROSEMIDE 40MG TABLET"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-ebaaab1d-6b29-11ec-0000-020000000000">
-               <product_code code="17205"
-                             codeSystem="2.16.840.1.113883.2.4.4.10"
-                             codeSystemName="G-Standaard PRK"
-                             displayName="FENETICILLINE CAPSULE 500MG"
-                             preferred="true"/>
-               <product_code code="41092"
-                             codeSystem="2.16.840.1.113883.2.4.4.1"
-                             codeSystemName="G-Standaard GPK"
-                             displayName="FENETICILLINE 500MG CAPSULE"/>
-            </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-c8dcf604-6b6b-11ec-0000-020000000000">
-               <product_code code="425087"
-                             codeSystem="2.16.840.1.113883.2.4.4.7"
-                             codeSystemName="G-Standaard HPK"
-                             displayName="BROXIL CAPSULE 500MG"
-                             preferred="true"/>
-               <product_code code="17205"
-                             codeSystem="2.16.840.1.113883.2.4.4.10"
-                             codeSystemName="G-Standaard PRK"
-                             displayName="FENETICILLINE CAPSULE 500MG"/>
-               <product_code code="41092"
-                             codeSystem="2.16.840.1.113883.2.4.4.1"
-                             codeSystemName="G-Standaard GPK"
-                             displayName="FENETICILLINE 500MG CAPSULE"/>
-            </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-4afaae04-6ac4-11ec-0000-020000000000">
+            <farmaceutisch_product id="urn-uuid-63229de8-fc02-11ee-1023-020000000000">
                <product_code code="48291"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -343,7 +385,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="MIZOLASTINE TABLET MGA  10MG"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-65ff631d-6b39-11ec-0000-020000000000">
+            <farmaceutisch_product id="urn-uuid-63229e06-fc02-11ee-1023-020000000000">
                <product_code code="1101099"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -358,7 +400,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="MIZOLASTINE TABLET MGA  10MG"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-cfa3aee9-6b5c-11ec-0000-020000000000">
+            <farmaceutisch_product id="urn-uuid-63229e24-fc02-11ee-1023-020000000000">
                <product_code code="67903"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -369,7 +411,22 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="PARACETAMOL 500MG TABLET"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-9270a11d-6b35-11ec-0000-020000000000">
+            <farmaceutisch_product id="urn-uuid-63229e42-fc02-11ee-1023-020000000000">
+               <product_code code="1127047"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="FUROSEMIDE APOTEX TABLET 40MG"
+                             preferred="true"/>
+               <product_code code="5967"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="FUROSEMIDE 40MG TABLET"/>
+               <product_code code="16810"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="FUROSEMIDE 40MG TABLET"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="urn-uuid-63229e60-fc02-11ee-1023-020000000000">
                <product_code code="768901"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -384,7 +441,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="PARACETAMOL 500MG TABLET"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-f516151d-6aaf-11ec-0000-020000000000">
+            <farmaceutisch_product id="urn-uuid-63229e7e-fc02-11ee-1023-020000000000">
                <product_code code="353"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -395,10 +452,35 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="OXAZEPAM TABLET  10MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="urn-uuid-4560482e-6aec-11ec-0000-020000000000">
+            <farmaceutisch_product id="urn-uuid-63229e9c-fc02-11ee-1023-020000000000">
+               <product_code code="199311"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="MODAFINIL TABLET 200MG"
+                             preferred="true"/>
+               <product_code code="179051"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="MODAFINIL TABLET 200MG"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="urn-uuid-63229eba-fc02-11ee-1023-020000000000">
+               <product_code code="2842246"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="MODAFINIL FOCUS TABLET 200MG"
+                             preferred="true"/>
+               <product_code code="199311"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="MODAFINIL TABLET 200MG"/>
+               <product_code code="179051"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="MODAFINIL TABLET 200MG"/>
+            </farmaceutisch_product>
+            <zorgverlener id="urn-uuid-63229b22-fc02-11ee-1023-020000000000">
                <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
-                  <ongestructureerde_naam value="Bertine van Doorn"/>
                   <voornamen value="Bertine"/>
                   <geslachtsnaam>
                      <voorvoegsels value="van"/>
@@ -412,14 +494,14 @@
                             displayName="Huisartsen, niet nader gespecificeerd"/>
                <zorgaanbieder>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-7fa869d8-6b44-11ec-0000-020000000000"/>
+                                 value="urn-uuid-63229bea-fc02-11ee-1023-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="urn-uuid-98d231d8-6b0c-11ec-0000-020000000000">
+            <zorgaanbieder id="urn-uuid-63229b90-fc02-11ee-1023-020000000000">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
             </zorgaanbieder>
-            <zorgaanbieder id="urn-uuid-7fa869d8-6b44-11ec-0000-020000000000">
+            <zorgaanbieder id="urn-uuid-63229bea-fc02-11ee-1023-020000000000">
                <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>

@@ -11,10 +11,9 @@
                                                prefix="mp-"
                                                language="nl-NL"
                                                title="Generated from HL7 FHIR sturen_afhandeling_medicatievoorschrift"
-                                               id="av-mp-va-tst-6-13-toedieningssnelheid-v30">
+                                               id="65011d4d-fc02-11ee-1998-020000000000">
          <patient>
             <naamgegevens>
-               <ongestructureerde_naam value="G. XXX_Hemsbergen"/>
                <initialen value="G."/>
                <naamgebruik code="NL1"
                             codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
@@ -33,25 +32,25 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_toedieningssnelheid_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <toedieningsafspraak_datum_tijd value="T+0D{09:47:00}" datatype="datetime"/>
+               <registratie_datum_tijd value="2023-01-01T09:47:00+01:00" datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="T+0D{00:00:00}" datatype="datetime"/>
-                  <eind_datum_tijd value="T+8D{23:59:59}" datatype="datetime"/>
+                  <start_datum_tijd value="2023-01-01T00:00:00+01:00" datatype="datetime"/>
+                  <eind_datum_tijd value="2023-01-09T23:59:59+01:00" datatype="datetime"/>
                </gebruiksperiode>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-98d231d8-6b0c-11ec-0000-020000000000"/>
+                                 value="urn-uuid-65011e00-fc02-11ee-1998-020000000000"/>
                </verstrekker>
                <geneesmiddel_bij_toedieningsafspraak>
                   <farmaceutisch_product datatype="reference"
-                                         value="urn-uuid-c388a6e9-6b31-11ec-0000-020000000000"/>
+                                         value="urn-uuid-65011e78-fc02-11ee-1998-020000000000"/>
                </geneesmiddel_bij_toedieningsafspraak>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf T, tot en met T + 8 dagen, toedieningssnelheid: 0.2 à 0.5 ml per uur, parenteraal"/>
-                  <toedieningsweg code="10"
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+8D{23:59:59}&gt;, 0.2 a 0.5 ml per uur parenteraal"/>
+                  <toedieningsweg code="5"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
-                                  displayName="parenteraal"/>
+                                  displayName="Intraveneus"/>
                   <doseerinstructie>
                      <dosering>
                         <toedieningssnelheid>
@@ -59,11 +58,7 @@
                               <minimum_waarde value="0.2"/>
                               <maximum_waarde value="0.5"/>
                            </waarde>
-                           <eenheid code="233"
-                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
-                                    codeSystemName="G-Standaard thesaurus basiseenheden"
-                                    displayName="milliliter"/>
-                           <tijdseenheid value="1" unit="uur"/>
+                           <eenheid value="1" unit="ml/h"/>
                         </toedieningssnelheid>
                      </dosering>
                   </doseerinstructie>
@@ -76,10 +71,10 @@
             <medicatieverstrekking>
                <identificatie value="MBH_300_toedieningssnelheid_MVE"
                               root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
-               <medicatieverstrekkings_datum_tijd datatype="datetime" value="T+0D{09:47:00}"/>
+               <medicatieverstrekkings_datum_tijd datatype="datetime" value="2023-01-01T09:47:00+01:00"/>
                <verstrekker>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-98d231d8-6b0c-11ec-0000-020000000000"/>
+                                 value="urn-uuid-65011e00-fc02-11ee-1998-020000000000"/>
                </verstrekker>
                <verstrekte_hoeveelheid>
                   <aantal value="100"/>
@@ -88,7 +83,7 @@
                            displayName="milliliter"/>
                </verstrekte_hoeveelheid>
                <verstrekt_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-c388a6e9-6b31-11ec-0000-020000000000"
+                  <farmaceutisch_product value="urn-uuid-65011e78-fc02-11ee-1998-020000000000"
                                          datatype="reference"/>
                </verstrekt_geneesmiddel>
                <relatie_verstrekkingsverzoek>
@@ -98,11 +93,11 @@
             </medicatieverstrekking>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-c388a6e9-6b31-11ec-0000-020000000000">
-               <product_code code="779288"
+            <farmaceutisch_product id="urn-uuid-65011e78-fc02-11ee-1998-020000000000">
+               <product_code code="2554771"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
-                             displayName="MORFINEHYDROCHLORIDE 1ML= 5MG EPI CAS 100ML FNA MR"
+                             displayName="MORFINE HCL 3WATER INFVLST 5MG/ML CASS 100ML AHZ"
                              preferred="true"/>
                <product_code code="94692"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
@@ -113,7 +108,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="MORFINE INFVLST 5MG/ML CAS 100ML"/>
             </farmaceutisch_product>
-            <zorgaanbieder id="urn-uuid-98d231d8-6b0c-11ec-0000-020000000000">
+            <zorgaanbieder id="urn-uuid-65011e00-fc02-11ee-1998-020000000000">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek de Gulle Gaper"/>
             </zorgaanbieder>

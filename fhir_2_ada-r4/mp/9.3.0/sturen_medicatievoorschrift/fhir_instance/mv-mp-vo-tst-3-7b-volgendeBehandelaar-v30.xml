@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="mv-mp-vo-tst-3-7b-volgendeBehandelaar-v30"/>
+   <id value="647b4d67-fc02-11ee-9918-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:dd7ebb9b-6ac2-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:647b4eb0-fc02-11ee-9918-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -15,13 +15,16 @@
                   <code value="actionable"/>
                </tag>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="2023-01-01T13:00:00+01:00"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 49 dagen, tot en met T, 1 maal per dag 1 stuk, Oraal, onderbroken"/>
+               <valueString value="wordt automatisch gegenereerd"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="${DATE, T, D, -49}T00:00:00+02:00"/>
-                  <end value="${DATE, T, D, +0}T23:59:59+02:00"/>
+                  <start value="2022-11-13T00:00:00+01:00"/>
+                  <end value="2023-01-01T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -53,18 +56,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:86a337e9-6aaf-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:647b4ece-fc02-11ee-9918-020000000000"/>
                <type value="Medication"/>
                <display value="APIXABAN TABLET 5MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:1c84b21e-6b37-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:647b4dde-fc02-11ee-9918-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
-            <authoredOn value="${DATE, T, D, +0}T13:00:00+02:00"/>
             <requester>
-               <reference value="urn:uuid:ea3fd558-6ab1-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:647b4e06-fc02-11ee-9918-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Jan van Harten, Medisch specialisten, chirurgie, Ziekenhuis het Gele Hart"/>
             </requester>
@@ -123,7 +125,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:1c84b21e-6b37-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:647b4dde-fc02-11ee-9918-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -173,19 +175,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea3fd558-6ab1-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:647b4e06-fc02-11ee-9918-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:dbada42e-6af2-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:647b4e2e-fc02-11ee-9918-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Jan van Harten"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:f07009d8-6b48-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:647b4e74-fc02-11ee-9918-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Ziekenhuis het Gele Hart"/>
             </organization>
@@ -210,7 +212,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dbada42e-6af2-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:647b4e2e-fc02-11ee-9918-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -250,7 +252,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f07009d8-6b48-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:647b4e74-fc02-11ee-9918-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -298,7 +300,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:86a337e9-6aaf-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:647b4ece-fc02-11ee-9918-020000000000"/>
       <resource>
          <Medication>
             <meta>

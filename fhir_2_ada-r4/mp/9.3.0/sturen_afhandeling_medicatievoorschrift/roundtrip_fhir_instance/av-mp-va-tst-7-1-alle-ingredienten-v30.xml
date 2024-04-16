@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="av-mp-va-tst-7-1-alle-ingredienten-v30"/>
+   <id value="0e786013-fc06-11ee-4000-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f18a4-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:0e786102-fc06-11ee-4000-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -15,16 +15,16 @@
                   <code value="actionable"/>
                </tag>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
-               <valueDateTime value="${DATE, T, D, +0}T13:00:00+02:00"/>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="2023-01-01T13:00:00+01:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T, tot en met T + 31 dagen, Zo nodig, cutaan"/>
+               <valueString value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+31D{23:59:59}&gt; zo nodig, cutaan"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
-                  <end value="${DATE, T, D, +31}T23:59:59+02:00"/>
+                  <start value="2023-01-01T00:00:00+01:00"/>
+                  <end value="2023-02-01T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -46,18 +46,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f074e-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:0e78613e-fc06-11ee-4000-020000000000"/>
                <type value="Medication"/>
                <display value="overig"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f20f0-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:0e78608a-fc06-11ee-4000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hess"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:c33f1aa8-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:0e7860c6-fc06-11ee-4000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -94,7 +94,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f00dc-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:0e786120-fc06-11ee-4000-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -123,18 +123,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f074e-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:0e78613e-fc06-11ee-4000-020000000000"/>
                <type value="Medication"/>
                <display value="overig"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f20f0-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:0e78608a-fc06-11ee-4000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hess"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:c33f1aa8-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:0e7860c6-fc06-11ee-4000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -150,18 +150,18 @@
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                   <valueQuantity>
-                     <value value="100"/>
+                     <value value="50"/>
                      <unit value="milliliter"/>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                      <code value="233"/>
                   </valueQuantity>
                </extension>
-               <value value="100"/>
+               <value value="50"/>
                <unit value="milliliter"/>
                <system value="http://unitsofmeasure.org"/>
                <code value="ml"/>
             </quantity>
-            <whenHandedOver value="${DATE, T, D, +0}T13:00:00+02:00"/>
+            <whenHandedOver value="2023-01-01T13:00:00+01:00"/>
          </MedicationDispense>
       </resource>
       <request>
@@ -170,7 +170,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f20f0-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:0e78608a-fc06-11ee-4000-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -217,7 +217,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1aa8-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:0e7860c6-fc06-11ee-4000-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -236,7 +236,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f074e-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:0e78613e-fc06-11ee-4000-020000000000"/>
       <resource>
          <Medication>
             <meta>

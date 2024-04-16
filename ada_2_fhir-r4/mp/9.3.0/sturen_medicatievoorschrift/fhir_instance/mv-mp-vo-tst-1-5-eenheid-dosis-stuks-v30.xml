@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="mv-mp-vo-tst-1-5-eenheid-dosis-stuks-v30"/>
+   <id value="645c2b8f-fc02-11ee-1137-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:5ff6bacb-6ada-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:645c2d32-fc02-11ee-1137-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -15,8 +15,11 @@
                   <code value="actionable"/>
                </tag>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="2023-01-01T11:35:00+01:00"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 1 jan 2023, tot en met 30 jan 2023, 2 maal per dag 1 dosis, inhalatie"/>
+               <valueString value="Vanaf &lt;T-130D{00:00:00}&gt; t/m &lt;T-101D{00:00:00}&gt;, 2 maal per dag 1 inhalatie, inhalatie"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -44,18 +47,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:501c9f1d-6b1e-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:645c2d6e-fc02-11ee-1137-020000000000"/>
                <type value="Medication"/>
                <display value="FLUTICASON INHALATIEPOEDER 100UG/DO 60DO DISKUS"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:5faee092-6b61-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:645c2c06-fc02-11ee-1137-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
-            <authoredOn value="2023-01-01T11:35:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:7af79824-6ac8-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:645c2c2e-fc02-11ee-1137-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -99,7 +101,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:56ccca89-6b68-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:645c2d50-fc02-11ee-1137-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -129,23 +131,23 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:501c9f1d-6b1e-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:645c2d6e-fc02-11ee-1137-020000000000"/>
                <type value="Medication"/>
                <display value="FLUTICASON INHALATIEPOEDER 100UG/DO 60DO DISKUS"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:5faee092-6b61-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:645c2c06-fc02-11ee-1137-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Brugge"/>
             </subject>
             <authoredOn value="2023-01-01T11:35:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:7af79824-6ac8-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:645c2c2e-fc02-11ee-1137-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:645c2cf6-fc02-11ee-1137-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -181,7 +183,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5faee092-6b61-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:645c2c06-fc02-11ee-1137-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -228,19 +230,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7af79824-6ac8-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:645c2c2e-fc02-11ee-1137-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:b3d44558-6acf-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:645c2c56-fc02-11ee-1137-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:7fa869d8-6b44-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:645c2c9c-fc02-11ee-1137-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -265,7 +267,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b3d44558-6acf-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:645c2c56-fc02-11ee-1137-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -305,7 +307,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7fa869d8-6b44-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:645c2c9c-fc02-11ee-1137-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -346,7 +348,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:645c2cf6-fc02-11ee-1137-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -365,7 +367,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:501c9f1d-6b1e-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:645c2d6e-fc02-11ee-1137-020000000000"/>
       <resource>
          <Medication>
             <meta>
