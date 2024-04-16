@@ -230,10 +230,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$localName = 'zorgverlener' and $profile = $profileNameHealthProfessionalPractitioner">
                     <xsl:value-of select="concat('prac-', (zorgverlener_identificatienummer/@value, specialisme/(@displayName, @code))[1])"/>
                 </xsl:when>
-                <xsl:when test="$localName = 'zorgaanbieder' and $profile = 'nl-core-HealthcareProvider-Organization'">
+                <xsl:when test="$localName = 'zorgaanbieder' and $profile = $profileNameHealthcareProviderOrganization">
                     <xsl:value-of select="concat('org-', string-join((zorgaanbieder_identificatienummer/@value, afdeling_specialisme/@code)[. != ''], '-'))"/>
                 </xsl:when>
-                <xsl:when test="$localName = 'contactpersoon' and $profile = 'nl-core-ContactPerson'">
+                <xsl:when test="$localName = 'contactpersoon' and $profile = $profileNameContactPerson">
                     <xsl:value-of select="concat('cp-', string-join((naamgegevens[1]/geslachtsnaam/(voorvoegsels, achternaam)/@value, naamgegevens[1]/geslachtsnaam_partner/(voorvoegsels_partner, achternaam_partner)/@value), '-'))"/>
                 </xsl:when>
                 <xsl:when test="$localName = 'registratie_gegevens' and $profile = $profileNameCioRegistrationData">
