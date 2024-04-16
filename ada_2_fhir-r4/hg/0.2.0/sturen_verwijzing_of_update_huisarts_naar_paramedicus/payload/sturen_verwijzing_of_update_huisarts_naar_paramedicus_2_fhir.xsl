@@ -236,8 +236,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="wrapIn" select="'requester'"/>
                     <xsl:with-param name="profile">
                         <xsl:choose>
-                            <xsl:when test="self::zorgverlener">nl-core-HealthProfessional-PractitionerRole</xsl:when>
-                            <xsl:when test="self::zorgaanbieder">nl-core-HealthcareProvider-Organization</xsl:when>
+                            <xsl:when test="self::zorgverlener">
+                                <xsl:value-of select="$profileNameHealthProfessionalPractitionerRole"/>
+                            </xsl:when>
+                            <xsl:when test="self::zorgaanbieder">
+                                <xsl:value-of select="$profileNameHealthcareProviderOrganization"/>
+                            </xsl:when>
                         </xsl:choose>
                     </xsl:with-param>
                 </xsl:call-template>
@@ -249,8 +253,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="wrapIn" select="'owner'"/>
                     <xsl:with-param name="profile">
                         <xsl:choose>
-                            <xsl:when test="self::zorgverlener">nl-core-HealthProfessional-PractitionerRole</xsl:when>
-                            <xsl:when test="self::zorgaanbieder">nl-core-HealthcareProvider-Organization</xsl:when>
+                            <xsl:when test="self::zorgverlener">
+                                <xsl:value-of select="$profileNameHealthProfessionalPractitionerRole"/>
+                            </xsl:when>
+                            <xsl:when test="self::zorgaanbieder">
+                                <xsl:value-of select="$profileNameHealthcareProviderOrganization"/>
+                            </xsl:when>
                         </xsl:choose>
                     </xsl:with-param>
                 </xsl:call-template>
@@ -322,8 +330,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="wrapIn" select="'requester'"/>
                         <xsl:with-param name="profile">
                             <xsl:choose>
-                                <xsl:when test="self::zorgverlener">nl-core-HealthProfessional-PractitionerRole</xsl:when>
-                                <xsl:when test="self::zorgaanbieder">nl-core-HealthcareProvider-Organization</xsl:when>
+                                <xsl:when test="self::zorgverlener">
+                                    <xsl:value-of select="$profileNameHealthProfessionalPractitionerRole"/>
+                                </xsl:when>
+                                <xsl:when test="self::zorgaanbieder">
+                                    <xsl:value-of select="$profileNameHealthcareProviderOrganization"/>
+                                </xsl:when>
                             </xsl:choose>
                         </xsl:with-param>
                     </xsl:call-template>
@@ -335,8 +347,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="wrapIn" select="'performer'"/>
                         <xsl:with-param name="profile">
                             <xsl:choose>
-                                <xsl:when test="self::zorgverlener">nl-core-HealthProfessional-PractitionerRole</xsl:when>
-                                <xsl:when test="self::zorgaanbieder">nl-core-HealthcareProvider-Organization</xsl:when>
+                                <xsl:when test="self::zorgverlener">
+                                    <xsl:value-of select="$profileNameHealthProfessionalPractitionerRole"/>
+                                </xsl:when>
+                                <xsl:when test="self::zorgaanbieder">
+                                    <xsl:value-of select="$profileNameHealthcareProviderOrganization"/>
+                                </xsl:when>
                             </xsl:choose>
                         </xsl:with-param>
                     </xsl:call-template>
@@ -404,8 +420,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="wrapIn" select="'author'"/>
                     <xsl:with-param name="profile">
                         <xsl:choose>
-                            <xsl:when test="self::zorgverlener">nl-core-HealthProfessional-PractitionerRole</xsl:when>
-                            <xsl:when test="self::zorgaanbieder">nl-core-HealthcareProvider-Organization</xsl:when>
+                            <xsl:when test="self::zorgverlener">
+                                <xsl:value-of select="$profileNameHealthProfessionalPractitionerRole"/>
+                            </xsl:when>
+                            <xsl:when test="self::zorgaanbieder">
+                                <xsl:value-of select="$profileNameHealthcareProviderOrganization"/>
+                            </xsl:when>
                         </xsl:choose>
                     </xsl:with-param>
                 </xsl:call-template>
@@ -520,7 +540,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <entry>
                                     <xsl:call-template name="makeReference">
                                         <xsl:with-param name="in" select="."/>
-                                        <xsl:with-param name="profile" select="'nl-core-Problem'"/>
+                                        <xsl:with-param name="profile" select="$profileNameProblem"/>
                                     </xsl:call-template>
                                 </entry>
                             </xsl:for-each>
@@ -634,13 +654,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$localName = 'contactpersoon'">
                     <xsl:value-of select="concat('contactperson-', string-join((naamgegevens[1]/geslachtsnaam/(voorvoegsels, achternaam)/@value, naamgegevens[1]/geslachtsnaam_partner/(voorvoegsels_partner, achternaam_partner)/@value), '-'))"/>
                 </xsl:when>
-                <xsl:when test="$localName = 'zorgverlener' and $profile = 'nl-core-HealthProfessional-PractitionerRole'">
+                <xsl:when test="$localName = 'zorgverlener' and $profile = $profileNameHealthProfessionalPractitionerRole">
                     <xsl:value-of select="concat('practitionerrole-', (zorgverlener_identificatienummer/@value, specialisme/(@displayName, @code))[1])"/>
                 </xsl:when>
-                <xsl:when test="$localName = 'zorgverlener' and $profile = 'nl-core-HealthProfessional-Practitioner'">
+                <xsl:when test="$localName = 'zorgverlener' and $profile = $profileNameHealthProfessionalPractitioner">
                     <xsl:value-of select="concat('practitioner-', (zorgverlener_identificatienummer/@value, specialisme/(@displayName, @code))[1])"/>
                 </xsl:when>
-                <xsl:when test="$localName = 'zorgaanbieder' and $profile = 'nl-core-HealthcareProvider-Organization'">
+                <xsl:when test="$localName = 'zorgaanbieder' and $profile = $profileNameHealthcareProviderOrganization">
                     <xsl:value-of select="concat('organization-', string-join((zorgaanbieder_identificatienummer/@value, afdeling_specialisme/@code)[. != ''], '-'))"/>
                 </xsl:when>
                 <xsl:when test="$localName = 'probleem'">
