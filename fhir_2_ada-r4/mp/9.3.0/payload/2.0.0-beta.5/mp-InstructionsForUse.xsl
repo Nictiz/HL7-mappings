@@ -50,7 +50,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- omschrijving -->
                 <xsl:apply-templates select="../f:extension[@url = $ext-RenderedDosageInstruction]" mode="#current"/>
                 <!-- toedieningsweg -->
-                <xsl:apply-templates select="f:route" mode="#current"/>
+                 <xsl:if test="f:route">
+                    <xsl:apply-templates select="f:route" mode="#current"/>
+                </xsl:if>
+                <xsl:if test="not(f:route)">
+                    <xsl:variable name="nullFlavorDisplayName" select="$hl7NullFlavorMap[@hl7NullFlavor = 'NI']/@displayName"/>
+                    <xsl:element name="toedieningsweg">
+                        <xsl:call-template name="Coding-to-code">
+                            <xsl:with-param name="in" as="element()">
+                                <f:coding>
+                                    <f:system value="{$oidHL7NullFlavor}"/>
+                                    <f:code value="NI"/>
+                                    <f:display value="{$nullFlavorDisplayName}"/>
+                                </f:coding>
+                            </xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:element>
+                </xsl:if>
                 <!-- aanvullende_instructie -->
                 <xsl:apply-templates select="f:additionalInstruction" mode="#current"/>
                 <!-- TODO, check for MA herhaalperiode_cyclisch_schema -->
@@ -113,6 +129,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:extension[@url = $ext-RenderedDosageInstruction]" mode="mp-InstructionsForUse">
         <omschrijving value="{f:valueString/@value}"/>
+      <xsl:if test="not(./following-sibling::f:dosageInstruction)">
+            <xsl:variable name="nullFlavorDisplayName" select="$hl7NullFlavorMap[@hl7NullFlavor = 'NI']/@displayName"/>
+            <xsl:element name="toedieningsweg">
+                <xsl:call-template name="Coding-to-code">
+                    <xsl:with-param name="in" as="element()">
+                        <f:coding>
+                            <f:system value="{$oidHL7NullFlavor}"/>
+                            <f:code value="NI"/>
+                            <f:display value="{$nullFlavorDisplayName}"/>
+                        </f:coding>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:element>
+        </xsl:if>
     </xsl:template>
 
     <xd:doc>

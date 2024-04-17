@@ -143,9 +143,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                             </xsl:for-each>
 
                                             <xsl:for-each select="$route">
-                                                <route>
-                                                    <xsl:call-template name="code-to-CodeableConcept"/>
-                                                </route>
+                                                <xsl:if test="not($route[@codeSystem = $oidHL7NullFlavor])">
+                                                    <route>
+                                                      <xsl:call-template name="code-to-CodeableConcept"/>
+                                                    </route>
+                                                </xsl:if>
                                             </xsl:for-each>
 
                                             <xsl:variable name="dose" as="element()?">
@@ -420,10 +422,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </additionalInstruction>
                             </xsl:for-each>
                             <xsl:for-each select="$route">
+                                <xsl:if test="not($route[@codeSystem = $oidHL7NullFlavor])">
                                 <route>
                                     <xsl:call-template name="code-to-CodeableConcept"/>
                                 </route>
+                                </xsl:if>
                             </xsl:for-each>
+
                         </content>
                     </xsl:otherwise>
                 </xsl:choose>
