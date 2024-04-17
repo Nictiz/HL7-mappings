@@ -71,7 +71,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="ext-InstructionsForUse.RepeatPeriodCyclicalSchedule"/>
                 </xsl:for-each>
 
-                <xsl:for-each select="wisselend_doseerschema_stop_type[@value | @nullFlavor]">
+                <xsl:for-each select="wisselend_doseerschema_stop_type[@code]">
                     <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
                         <valueCodeableConcept>
                             <xsl:call-template name="code-to-CodeableConcept"/>

@@ -153,7 +153,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </extension>
                 </xsl:for-each>
 
-                <xsl:for-each select="toedieningsafspraak_stop_type[@value | @nullFlavor]">
+                <xsl:for-each select="toedieningsafspraak_stop_type[@code]">
                     <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
                         <valueCodeableConcept>
                             <xsl:call-template name="code-to-CodeableConcept"/>

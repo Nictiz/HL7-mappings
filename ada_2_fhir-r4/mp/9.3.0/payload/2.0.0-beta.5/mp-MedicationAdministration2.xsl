@@ -80,11 +80,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 
                 <!-- MP-1406 added registrationdatetime to MA/TA/WDS/MTD -->
-                <xsl:for-each select="registratie_datum_tijd">
+                <xsl:for-each select="registratie_datum_tijd[@value | @nullFlavor]">
                     <xsl:call-template name="ext-RegistrationDateTime"/>
                 </xsl:for-each>
 
-                <xsl:for-each select="dubbele_controle_uitgevoerd">
+                <xsl:for-each select="dubbele_controle_uitgevoerd[@value | @nullFlavor]">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.DoubleCheckPerformed">
                         <valueBoolean>
                             <xsl:call-template name="boolean-to-boolean"/>
@@ -92,7 +92,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </extension>
                 </xsl:for-each>
 
-                <xsl:for-each select="afwijkende_toediening">
+                <xsl:for-each select="afwijkende_toediening[@value | @nullFlavor]">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.DeviatingAdministration">
                         <valueBoolean>
                             <xsl:call-template name="boolean-to-boolean"/>
@@ -100,7 +100,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </extension>
                 </xsl:for-each>
 
-                <xsl:for-each select="(medicatie_toediening_reden_van_afwijken, medicatietoediening_reden_van_afwijken)">
+                <xsl:for-each select="(medicatie_toediening_reden_van_afwijken, medicatietoediening_reden_van_afwijken)[@code]">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.ReasonForDeviation">
                         <valueCodeableConcept>
                             <xsl:call-template name="code-to-CodeableConcept"/>
@@ -109,12 +109,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- MP-1393 LR: asAgreedIndicator nolonger support from MP 9.3 beta.3 onwards but in stylesheet due to backwards compatibility-->
-                <xsl:for-each select="volgens_afspraak_indicator">
+                <xsl:for-each select="volgens_afspraak_indicator[@value | @nullFlavor]">
                     <xsl:call-template name="ext-AsAgreedIndicator"/>
                 </xsl:for-each>
 
                 <!-- pharmaceuticalTreatmentIdentifier -->
-                <xsl:for-each select="../identificatie">
+                <xsl:for-each select="../identificatie[@value | @root | @nullFlavor]">
                     <xsl:call-template name="ext-PharmaceuticalTreatmentIdentifier">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
@@ -175,10 +175,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
 
                 <!-- relatie_contact relatie_zorgepisode in context -->
-                <xsl:for-each select="relatie_contact/(identificatie | identificatienummer)[@value]">
+                <xsl:for-each select="relatie_contact/(identificatie | identificatienummer)[@value | @root | @nullFlavor]">
                     <context>
                         <!-- relatie_episode -->
-                        <xsl:for-each select="../../relatie_zorgepisode/(identificatie | identificatienummer)[@value]">
+                        <xsl:for-each select="../../relatie_zorgepisode/(identificatie | identificatienummer)[@value | @root | @nullFlavor]">
                             <xsl:call-template name="ext-Context-EpisodeOfCare"/>
                         </xsl:for-each>
                         <!-- relatie_contact -->
@@ -187,29 +187,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
 
                 <!-- relatie_episode when there is no relatie_contact -->
-                <xsl:if test="relatie_zorgepisode/(identificatie | identificatienummer)[@value] and not(relatie_contact/(identificatie | identificatienummer)[@value])">
+                <xsl:if test="relatie_zorgepisode/(identificatie | identificatienummer)[@value | @root | @nullFlavor] and not(relatie_contact/(identificatie | identificatienummer)[@value | @root | @nullFlavor])">
                     <context>
-                        <xsl:if test="count(relatie_zorgepisode[(identificatie | identificatienummer)[@value]]) gt 1">
-                            <xsl:for-each select="relatie_zorgepisode[(identificatie | identificatienummer)[@value]][position() gt 1]">
+                        <xsl:if test="count(relatie_zorgepisode[(identificatie | identificatienummer)[@value | @root | @nullFlavor]]) gt 1">
+                            <xsl:for-each select="relatie_zorgepisode[(identificatie | identificatienummer)[@value | @root | @nullFlavor]][position() gt 1]">
                                 <xsl:call-template name="ext-Context-EpisodeOfCare">
                                     <xsl:with-param name="in" select="identificatie | identificatienummer"/>
                                 </xsl:call-template>
                             </xsl:for-each>
                         </xsl:if>
 
-                        <xsl:apply-templates select="relatie_zorgepisode[(identificatie | identificatienummer)[@value]][position() = 1]/(identificatie | identificatienummer)" mode="nl-core-EpisodeOfCare-RefIdentifier"/>
+                        <xsl:apply-templates select="relatie_zorgepisode[(identificatie | identificatienummer)[@value | @root | @nullFlavor]][position() = 1]/(identificatie | identificatienummer)" mode="nl-core-EpisodeOfCare-RefIdentifier"/>
                     </context>
                 </xsl:if>
 
                 <!-- relatie_toedieningsafspraak -->
                 <xsl:choose>
                     <!-- mp9 dataset -->
-                    <xsl:when test="relatie_toedieningsafspraak/identificatie[@value]">
+                    <xsl:when test="relatie_toedieningsafspraak/identificatie[@value | @root | @nullFlavor]">
                         <supportingInformation>
                             <type value="MedicationDispense"/>
                             <identifier>
                                 <xsl:call-template name="id-to-Identifier">
-                                    <xsl:with-param name="in" select="relatie_toedieningsafspraak/identificatie[@value]"/>
+                                    <xsl:with-param name="in" select="relatie_toedieningsafspraak/identificatie[@value | @root | @nullFlavor]"/>
                                 </xsl:call-template>
                             </identifier>
                             <display value="relatie naar toedieningsafspraak met identificatie: {string-join((@value, @root), ' || ')}"/>
@@ -274,9 +274,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- relatie_medicatieafspraak -->
                 <!-- relatie_wisselend_doseerschema -->
                 <xsl:choose>
-                    <xsl:when test="relatie_medicatieafspraak/identificatie[@value]">
+                    <xsl:when test="relatie_medicatieafspraak/identificatie[@value | @root | @nullFlavor]">
                         <!-- MP9 dataset -->
-                        <xsl:for-each select="relatie_medicatieafspraak/identificatie[@value]">
+                        <xsl:for-each select="relatie_medicatieafspraak/identificatie[@value | @root | @nullFlavor]">
                             <request>
                                 <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
                                     <valueCodeableConcept>
@@ -295,9 +295,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </request>
                         </xsl:for-each>
                     </xsl:when>
-                    <xsl:when test="relatie_wisselend_doseerschema/identificatie[@value]">
+                    <xsl:when test="relatie_wisselend_doseerschema/identificatie[@value | @root | @nullFlavor]">
                         <!-- MP9 dataset -->
-                        <xsl:for-each select="relatie_wisselend_doseerschema/identificatie[@value]">
+                        <xsl:for-each select="relatie_wisselend_doseerschema/identificatie[@value | @root | @nullFlavor]">
                             <request>
                                 <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ResourceCategory">
                                     <valueCodeableConcept>
@@ -327,7 +327,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:otherwise>
                 </xsl:choose>
 
-                <xsl:for-each select="toelichting">
+                <xsl:for-each select="toelichting[@value]">
                     <note>
                         <text>
                             <xsl:call-template name="string-to-string"/>
