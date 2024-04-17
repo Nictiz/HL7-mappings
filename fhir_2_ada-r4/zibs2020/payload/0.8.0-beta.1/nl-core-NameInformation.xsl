@@ -49,8 +49,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="count($theNamesInFHIR) = 1"/>
                 <xsl:when test="count($theNamesInFHIR[f:use/@value = 'official']) = 1"/>
                 <xsl:when test="count($theNamesInFHIR[f:use/@value = 'official']) gt 1 and count($theNamesInFHIR[f:use/@value = 'official'][f:given[f:extension[@url = $urlExtIso21090ENqualifier]/f:valueCode/@value = 'IN']][not(f:family | f:prefix | f:suffix)]) = 1">
-                    <xsl:sequence select="$theNamesInFHIR[f:use/@value = 'official'][f:given[f:extension[@url = $urlExtIso21090ENqualifier]/f:valueCode/@value = 'IN']][not(f:family | f:prefix | f:suffix)]"/>
-                </xsl:when>
+                    <!-- we don't want to convert that strange loose name element with just initials from which it is not clear how they relate to the first names, so we will ignore them as the profile says that receivers may do -->
+                    <!--                    <xsl:sequence select="$theNamesInFHIR[f:use/@value = 'official'][f:given[f:extension[@url = $urlExtIso21090ENqualifier]/f:valueCode/@value = 'IN']][not(f:family | f:prefix | f:suffix)]"/>-->
+                    <xsl:call-template name="util:logMessage">
+                        <xsl:with-param name="msg">Found a name with only initials, will ignore it as the profile states a receiver may do.</xsl:with-param>
+                        <xsl:with-param name="level" select="$logINFO"/>
+                        <xsl:with-param name="terminate" select="false()"/>
+                    </xsl:call-template> </xsl:when>
                 <xsl:when test="count($theNamesInFHIR[f:use/@value = 'official']) gt 1 and count($theNamesInFHIR[f:use/@value = 'official'][f:given[f:extension[@url = $urlExtIso21090ENqualifier]/f:valueCode/@value = 'IN']][not(f:family | f:prefix | f:suffix)]) != 1">
                     <xsl:call-template name="util:logMessage">
                         <xsl:with-param name="msg">There is more than one official name (found <xsl:value-of select="count($theNamesInFHIR[f:use/@value = 'official'])"/>, but did not find a name with only initials. At least one official name will be ignored.</xsl:with-param>
