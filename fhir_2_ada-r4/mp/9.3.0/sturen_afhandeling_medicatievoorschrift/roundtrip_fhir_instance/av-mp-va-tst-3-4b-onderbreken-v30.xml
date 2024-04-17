@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="0e63128f-fc06-11ee-8913-020000000000"/>
+   <id value="7bc97c8f-fcc2-11ee-8106-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:0e63137e-fc06-11ee-8913-020000000000"/>
+      <fullUrl value="urn:uuid:7bc97d7e-fcc2-11ee-8106-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -43,6 +43,15 @@
                   <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_onderbreken_TA_start || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                </valueReference>
             </extension>
+            <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="385655000"/>
+                     <display value="onderbroken"/>
+                  </coding>
+               </valueCodeableConcept>
+            </modifierExtension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                <value value="MBH_300_onderbreken_TA_onderbreken"/>
@@ -56,18 +65,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:0e63139c-fc06-11ee-8913-020000000000"/>
+               <reference value="urn:uuid:7bc97d9c-fcc2-11ee-8106-020000000000"/>
                <type value="Medication"/>
                <display value="BROXIL CAPSULE 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:0e631306-fc06-11ee-8913-020000000000"/>
+               <reference value="urn:uuid:7bc97d06-fcc2-11ee-8106-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:0e631342-fc06-11ee-8913-020000000000"/>
+                  <reference value="urn:uuid:7bc97d42-fcc2-11ee-8106-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek Jansen en Co"/>
                </actor>
@@ -120,7 +129,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0e631306-fc06-11ee-8913-020000000000"/>
+      <fullUrl value="urn:uuid:7bc97d06-fcc2-11ee-8106-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -170,7 +179,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0e631342-fc06-11ee-8913-020000000000"/>
+      <fullUrl value="urn:uuid:7bc97d42-fcc2-11ee-8106-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -189,7 +198,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0e63139c-fc06-11ee-8913-020000000000"/>
+      <fullUrl value="urn:uuid:7bc97d9c-fcc2-11ee-8106-020000000000"/>
       <resource>
          <Medication>
             <meta>

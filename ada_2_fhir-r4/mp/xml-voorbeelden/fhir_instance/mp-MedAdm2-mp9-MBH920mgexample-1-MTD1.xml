@@ -3,8 +3,8 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAdministration2"/>
    </meta>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AgreedDateTime">
-      <valueDateTime value="2022-12-16T20:00:00+01:00"/>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+      <valueDateTime value="2022-12-16T20:05:00+01:00"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.ReasonForDeviation">
       <valueCodeableConcept>
@@ -14,9 +14,6 @@
             <display value="zorgafnemer niet beschikbaar om medicatie in ontvangst te nemen"/>
          </coding>
       </valueCodeableConcept>
-   </extension>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator">
-      <valueBoolean value="false"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
       <valueIdentifier>
@@ -67,9 +64,9 @@
    <effectiveDateTime value="2022-12-16T20:05:00+01:00"/>
    <performer>
       <actor>
-         <reference value="PractitionerRole/nl-core-HPrf-PracRol-mp9-PrcRol-2165281100733-00001111"/>
+         <reference value="PractitionerRole/nl-core-HPrf-PracRol-mp9-PrcRol-2165281100731-000001111"/>
          <type value="PractitionerRole"/>
-         <display value="Healthcare provider (organization via PractitionerRole), Huisartsenpraktijk Pulver &amp; Partners"/>
+         <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
       </actor>
    </performer>
    <request>
@@ -93,22 +90,6 @@
       <text value="voorbeeld toelichting in vrije tekst"/>
    </note>
    <dosage>
-      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AgreedAmount">
-         <valueQuantity>
-            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
-               <valueQuantity>
-                  <value value="1"/>
-                  <unit value="stuk"/>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                  <code value="245"/>
-               </valueQuantity>
-            </extension>
-            <value value="1"/>
-            <unit value="stuk"/>
-            <system value="http://unitsofmeasure.org"/>
-            <code value="1"/>
-         </valueQuantity>
-      </extension>
       <route>
          <coding>
             <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>

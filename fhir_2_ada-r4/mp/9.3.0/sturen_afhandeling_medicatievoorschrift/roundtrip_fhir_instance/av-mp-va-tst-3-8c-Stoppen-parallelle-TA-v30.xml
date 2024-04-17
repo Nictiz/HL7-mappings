@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="0e692d7d-fc06-11ee-7694-020000000000"/>
+   <id value="7bd1452d-fcc2-11ee-7867-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:0e692e6c-fc06-11ee-7694-020000000000"/>
+      <fullUrl value="urn:uuid:7bd1461c-fcc2-11ee-7867-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -52,6 +52,15 @@
                   <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_stoppen_parallele_TA_TA_start_zonodig || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                </valueReference>
             </extension>
+            <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="410546004"/>
+                     <display value="stopgezet"/>
+                  </coding>
+               </valueCodeableConcept>
+            </modifierExtension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                <value value="MBH_300_stoppen_parallele_TA_TA_stop_zonodig"/>
@@ -65,18 +74,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:0e692e8a-fc06-11ee-7694-020000000000"/>
+               <reference value="urn:uuid:7bd1463a-fcc2-11ee-7867-020000000000"/>
                <type value="Medication"/>
                <display value="PANTOZOL TABLET MSR 40MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:0e692df4-fc06-11ee-7694-020000000000"/>
+               <reference value="urn:uuid:7bd145a4-fcc2-11ee-7867-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:0e692e30-fc06-11ee-7694-020000000000"/>
+                  <reference value="urn:uuid:7bd145e0-fcc2-11ee-7867-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -134,7 +143,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0e692df4-fc06-11ee-7694-020000000000"/>
+      <fullUrl value="urn:uuid:7bd145a4-fcc2-11ee-7867-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -184,7 +193,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0e692e30-fc06-11ee-7694-020000000000"/>
+      <fullUrl value="urn:uuid:7bd145e0-fcc2-11ee-7867-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -203,7 +212,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0e692e8a-fc06-11ee-7694-020000000000"/>
+      <fullUrl value="urn:uuid:7bd1463a-fcc2-11ee-7867-020000000000"/>
       <resource>
          <Medication>
             <meta>

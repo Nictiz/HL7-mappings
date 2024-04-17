@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="0dd5dda7-fc06-11ee-6201-020000000000"/>
+   <id value="7b23b697-fcc2-11ee-1307-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:0dd5def0-fc06-11ee-6201-020000000000"/>
+      <fullUrl value="urn:uuid:7b23b7e0-fcc2-11ee-1307-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -33,6 +33,15 @@
                   <value value="MBH_300_annuleren"/>
                </valueIdentifier>
             </extension>
+            <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="89925002"/>
+                     <display value="geannuleerd"/>
+                  </coding>
+               </valueCodeableConcept>
+            </modifierExtension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <value value="MBH_300_annuleren_MA_geannuleerd"/>
@@ -47,17 +56,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:0dd5df0e-fc06-11ee-6201-020000000000"/>
+               <reference value="urn:uuid:7b23b7fe-fcc2-11ee-1307-020000000000"/>
                <type value="Medication"/>
                <display value="MEFLOQUINE TABLET 250MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:0dd5de1e-fc06-11ee-6201-020000000000"/>
+               <reference value="urn:uuid:7b23b70e-fcc2-11ee-1307-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <requester>
-               <reference value="urn:uuid:0dd5de46-fc06-11ee-6201-020000000000"/>
+               <reference value="urn:uuid:7b23b736-fcc2-11ee-1307-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -116,7 +125,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0dd5de1e-fc06-11ee-6201-020000000000"/>
+      <fullUrl value="urn:uuid:7b23b70e-fcc2-11ee-1307-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -166,19 +175,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0dd5de46-fc06-11ee-6201-020000000000"/>
+      <fullUrl value="urn:uuid:7b23b736-fcc2-11ee-1307-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:0dd5de6e-fc06-11ee-6201-020000000000"/>
+               <reference value="urn:uuid:7b23b75e-fcc2-11ee-1307-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Bertine van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:0dd5deb4-fc06-11ee-6201-020000000000"/>
+               <reference value="urn:uuid:7b23b7a4-fcc2-11ee-1307-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -203,7 +212,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0dd5de6e-fc06-11ee-6201-020000000000"/>
+      <fullUrl value="urn:uuid:7b23b75e-fcc2-11ee-1307-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -243,7 +252,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0dd5deb4-fc06-11ee-6201-020000000000"/>
+      <fullUrl value="urn:uuid:7b23b7a4-fcc2-11ee-1307-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -284,7 +293,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:0dd5df0e-fc06-11ee-6201-020000000000"/>
+      <fullUrl value="urn:uuid:7b23b7fe-fcc2-11ee-1307-020000000000"/>
       <resource>
          <Medication>
             <meta>
