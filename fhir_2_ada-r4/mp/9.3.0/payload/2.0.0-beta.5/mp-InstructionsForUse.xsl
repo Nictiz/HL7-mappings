@@ -53,7 +53,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                  <xsl:if test="f:route">
                     <xsl:apply-templates select="f:route" mode="#current"/>
                 </xsl:if>
-                <xsl:if test="not(f:route)">
+                <xsl:if test="not(f:route) and not(exists(../f:extension[@url = $ext-RenderedDosageInstruction]))">
                     <xsl:variable name="nullFlavorDisplayName" select="$hl7NullFlavorMap[@hl7NullFlavor = 'NI']/@displayName"/>
                     <xsl:element name="toedieningsweg">
                         <xsl:call-template name="Coding-to-code">
@@ -129,7 +129,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:extension[@url = $ext-RenderedDosageInstruction]" mode="mp-InstructionsForUse">
         <omschrijving value="{f:valueString/@value}"/>
-      <xsl:if test="not(./following-sibling::f:dosageInstruction)">
+      <xsl:if test="not(./following-sibling::f:dosageInstruction) and not(exists(following-sibling::*/f:route))">
             <xsl:variable name="nullFlavorDisplayName" select="$hl7NullFlavorMap[@hl7NullFlavor = 'NI']/@displayName"/>
             <xsl:element name="toedieningsweg">
                 <xsl:call-template name="Coding-to-code">
