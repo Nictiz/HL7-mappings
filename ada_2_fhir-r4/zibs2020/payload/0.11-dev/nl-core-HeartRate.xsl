@@ -138,7 +138,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <valueCodeableConcept>
                     <xsl:call-template name="code-to-CodeableConcept"/>
                 </valueCodeableConcept>
-                <xsl:for-each select="hartslag_meet_methode">
+                <xsl:for-each select="$context/hartslag_meet_methode">
                     <method>
                         <xsl:call-template name="code-to-CodeableConcept"/>
                     </method>
@@ -184,7 +184,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <valueCodeableConcept>
                     <xsl:call-template name="code-to-CodeableConcept"/>
                 </valueCodeableConcept>
-                <xsl:for-each select="hartslag_meet_methode">
+                <xsl:for-each select="$context/hartslag_meet_methode">
                     <method>
                         <xsl:call-template name="code-to-CodeableConcept"/>
                     </method>
