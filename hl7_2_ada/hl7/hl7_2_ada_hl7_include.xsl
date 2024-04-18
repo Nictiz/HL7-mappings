@@ -1381,9 +1381,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:when>
                     <xsl:otherwise>
                         <!-- we don't want the @value if it is there, because in ada this has no significant meaning on a coded element and ada will probably break on negative values, which are possible in hl7 -->
-                        <xsl:copy select=".">
+                        <!-- MP-1567 so not use xsl:copy/@select -->
+                        <xsl:element name="{local-name()}">
                             <xsl:copy-of select="@*[name() != 'value']"/>
-                        </xsl:copy>
+                        </xsl:element>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
