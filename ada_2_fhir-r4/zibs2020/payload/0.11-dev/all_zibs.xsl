@@ -38,6 +38,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../0.5-beta1/nl-core-BodyWeight.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-BodyTemperature.xsl"/>
     <xsl:import href="../0.10.0-beta.1/nl-core-BowelFunction.xsl"/>
+    <xsl:import href="nl-core-Burnwound.xsl" />
     <xsl:import href="../0.5-beta1/nl-core-CareTeam.xsl"/>
     <xsl:import href="../0.10.0-beta.1/nl-core-ChecklistPainBehavior.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-ComfortScale.xsl"/>
@@ -79,6 +80,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../0.7-beta1/nl-core-Payer.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-PharmaceuticalProduct.xsl"/>
     <xsl:import href="../0.10.0-beta.1/nl-core-Pregnancy.xsl"/>
+    <xsl:import href="nl-core-PressureUlcer.xml"/>
     <xsl:import href="../0.5-beta1/nl-core-Problem.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-Procedure.xsl"/>
     <xsl:import href="../0.9.0-beta.1/nl-core-PulseRate.xsl"/>
@@ -93,6 +95,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../0.5-beta1/nl-core-Vaccination.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-VisualAcuity.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-VisualFunction.xsl"/>
+    <xsl:import href="nl-core-Wound.xsl" />
     <xsl:import href="../0.5-beta1/ext-CodeSpecification.xsl"/>
     <xsl:import href="../0.5-beta1/ext-Comment.xsl"/>
     <xsl:import href="../0.5-beta1/ext-CopyIndicator.xsl"/>

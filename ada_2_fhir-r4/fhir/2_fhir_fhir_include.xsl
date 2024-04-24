@@ -64,6 +64,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="barthel_index" resource="Observation" profile="nl-core-BarthelADLIndex"/>
         <nm:map ada="behandel_aanwijzing" resource="Consent" profile="nl-core-TreatmentDirective2"/>
         <nm:map ada="bloeddruk" resource="Observation" profile="nl-core-BloodPressure"/>
+        <nm:map ada="brandwond" resource="Condition" profile="nl-core-Burnwound"/>
+        <nm:map ada="uitgebreidheid" resource="Observation" profile="nl-core-Burnwound.Extent"/>
         <nm:map ada="comfort_score" resource="Observation" profile="nl-core-ComfortScale"/>
         <nm:map ada="betaler" resource="Coverage" profile="nl-core-Payer.InsuranceCompany"/>
         <nm:map ada="betaler" resource="Coverage" profile="nl-core-Payer.PayerPerson"/>
@@ -72,6 +74,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="contact" resource="Encounter" profile="nl-core-Encounter"/>
         <nm:map ada="contactpersoon" resource="RelatedPerson" profile="nl-core-ContactPerson"/>
         <nm:map ada="darmfunctie" resource="Observation" profile="nl-core-BowelFunction"/>
+        <nm:map ada="decubitus_wond" resource="Condition" profile="nl-core-PressureUlcer"/>
         <nm:map ada="dosscore" resource="Observation" profile="nl-core-DOSScore"/>
         <nm:map ada="drugs_gebruik" resource="Observation" profile="nl-core-DrugUse"/>
         <nm:map ada="envelop" resource="ServiceRequest" profile="hg-ReferralServiceRequest"/>
@@ -164,6 +167,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="vrijheidsbeperkende_interventie" resource="Procedure" profile="nl-core-FreedomRestrictingIntervention"/>
         <nm:map ada="wilsverklaring" resource="Consent" profile="nl-core-AdvanceDirective"/>
         <nm:map ada="wisselend_doseerschema" resource="MedicationRequest" profile="mp-VariableDosingRegimen"/>
+        <nm:map ada="wond" resource="Condition" profile="nl-core-Wound"/>
+        <nm:map ada="wond_weefsel" resource="Observation" profile="nl-core-Wound.WoundTissue"/>
+        <nm:map ada="wond_infectie" resource="Observation" profile="nl-core-Wound.WoundInfection"/>
+        <nm:map ada="wond_vochtigheid" resource="Observation" profile="nl-core-Wound.WoundMoisture"/>
+        <nm:map ada="wond_rand" resource="Observation" profile="nl-core-Wound.WoundEdge"/>
         <nm:map ada="woonsituatie" resource="Observation" profile="nl-core-LivingSituation"/>
         <nm:map ada="ziektebeleving" resource="Observation" profile="nl-core-IllnessPerception"/>
         <nm:map ada="zorgaanbieder" resource="Organization" profile="nl-core-HealthcareProvider-Organization"/>
@@ -178,6 +186,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="graviditeit" resource="Observation" profile="nl-core-Pregnancy.Gravidity"/>
         <nm:map ada="aterme_datum_items" resource="Observation" profile="nl-core-Pregnancy.EstimatedDateOfDelivery"/>
         <nm:map ada="datum_laatste_menstruatie" resource="Observation" profile="nl-core-Pregnancy.DateLastMenstruation"/>
+        <!-- Concepts for Brandwond (Burnwound), DecubitusWond (PressureUlcer) and/or Wond (Wound) -->
+        <nm:map ada="wondlengte" resource="Observation" profile="nl-core-wounds.WoundLength"/>
+        <nm:map ada="wondbreedte" resource="Observation" profile="nl-core-wounds.WoundWidth"/>
+        <nm:map ada="wonddiepte" resource="Observation" profile="nl-core-wounds.WoundDepth"/>
+        <nm:map ada="datum_laatste_verbandwissel" resource="Observation" profile="nl-core-wounds.DateOfLastDressingChange"/>
+        <nm:map ada="wond_foto" resource="DocumentReference" profile="nl-core-wounds.WoundImage"/>
     </xsl:variable>
 
     <xsl:variable name="zib2020Oid" select="'2.16.840.1.113883.2.4.3.11.60.40.1'"/>
@@ -275,12 +289,22 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 $in//visueel_resultaat[parent::tekst_uitslag],
                 $in//soepregel[parent::soepverslag],
                 $in//monster[parent::laboratorium_uitslag],
-              $in//bron_monster[parent::monster],
-              $in//zwangerschapsduur[parent::zwangerschap],
-              $in//pariteit[parent::zwangerschap],
-              $in//graviditeit[parent::zwangerschap],
-              $in//aterme_datum_items[parent::zwangerschap],
-              $in//datum_laatste_menstruatie[parent::aterme_datum_items/parent::zwangerschap]
+                $in//bron_monster[parent::monster],
+                $in//zwangerschapsduur[parent::zwangerschap],
+                $in//pariteit[parent::zwangerschap],
+                $in//graviditeit[parent::zwangerschap],
+                $in//aterme_datum_items[parent::zwangerschap],
+                $in//datum_laatste_menstruatie[parent::aterme_datum_items/parent::zwangerschap]
+                $in//wond_weefsel[parent::wond],
+                $in//wond_infectie[parent::wond],
+                $in//wond_vochtigheid[parent::wond],
+                $in//wond_rand[parent::wond],
+                $in//wondlengte[parent::wond or parent::decubitus_wond],
+                $in//wondbreedte[parent::wond or parent::decubitus_wond],
+                $in//wonddiepte[parent::wond or parent::decubitus_wond],
+                $in//wondfoto[parent::wond or parent::decubitus_wond or parent::brandwond],
+                $in//datum_laatste_verband_wissel[parent::wond or parent::decubitus_wond],
+                $in//uitgebreidheid[parent::brandwond]
                 )[.//(@value | @code | @nullFlavor)]" group-by="local-name()">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <xsl:call-template name="_buildFhirMetadataForAdaEntry">
