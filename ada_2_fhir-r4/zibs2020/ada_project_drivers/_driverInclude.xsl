@@ -135,6 +135,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:text>-</xsl:text>
                     <xsl:value-of select="format-number($partNumber, '00')"/>
                 </xsl:when>
+                <xsl:when test="$localName = ('wondlengte','wondbreedte','wonddiepte','datum_laatste_verbandwissel')">
+                    <xsl:value-of select="$id"/>
+                    <xsl:text>-</xsl:text>
+                    <xsl:value-of select="tokenize($profile, '\.')[last()]"/>
+                    <xsl:text>-</xsl:text>
+                    <xsl:value-of select="format-number($partNumber, '00')"/>
+                </xsl:when>
                 <xsl:when test="$localName = 'laboratorium_test'">
                     <xsl:value-of select="$baseId"/>
                     <xsl:value-of select="substring-after($profile, $baseId)"/>
