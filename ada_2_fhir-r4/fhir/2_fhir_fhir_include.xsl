@@ -294,7 +294,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 $in//pariteit[parent::zwangerschap],
                 $in//graviditeit[parent::zwangerschap],
                 $in//aterme_datum_items[parent::zwangerschap],
-                $in//datum_laatste_menstruatie[parent::aterme_datum_items/parent::zwangerschap]
+                $in//datum_laatste_menstruatie[parent::aterme_datum_items/parent::zwangerschap],
                 $in//wond_weefsel[parent::wond],
                 $in//wond_infectie[parent::wond],
                 $in//wond_vochtigheid[parent::wond],

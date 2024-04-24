@@ -24,8 +24,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
     
-    <xsl:import href="nl-core-wounds.WoundCharacteristics.xsl"/>
-
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     
@@ -61,7 +59,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </coding>
                 </xsl:for-each>
                 <xsl:for-each select="anatomische_locatie">
-                    <xsl:call-template name="nl-core-AnatomicalLocation"/>
+                    <bodySite>
+                        <xsl:call-template name="nl-core-AnatomicalLocation"/>
+                    </bodySite>
                 </xsl:for-each>
                 <xsl:for-each select="$subject">
                     <xsl:call-template name="makeReference">
@@ -121,7 +121,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="in" select="$subject"/>
                     <xsl:with-param name="wrapIn" select="'subject'"/>
                 </xsl:call-template>
-                <valueQuantity>
+                <valueCodeableConcept>
                     <xsl:call-template name="hoeveelheid-to-Quantity"/>
                 </valueCodeableConcept>
             </Observation>

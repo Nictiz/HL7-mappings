@@ -19,6 +19,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- If a file imported here exists in a different folder (meaning a different 'package'), this means the profile and therefore its ada2fhir mapping is the same in the current and the imported package version (and all versions in between). 
         If a bug is found and fixed, this fix should apply to the mapping in all versions of the package that use this mapping.
         If a profile is edited in a non-backwards compatible way, a new version of the ada2fhir mapping should be made for that profile. -->
+    <xsl:import href="nl-core-wounds.WoundCharacteristics.xsl"/>
     <xsl:import href="../0.7-beta1/nl-core-AbilityToDressOneself.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-AbilityToDrink.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-AbilityToEat.xsl"/>
@@ -80,7 +81,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../0.7-beta1/nl-core-Payer.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-PharmaceuticalProduct.xsl"/>
     <xsl:import href="../0.10.0-beta.1/nl-core-Pregnancy.xsl"/>
-    <xsl:import href="nl-core-PressureUlcer.xml"/>
+    <xsl:import href="nl-core-PressureUlcer.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-Problem.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-Procedure.xsl"/>
     <xsl:import href="../0.9.0-beta.1/nl-core-PulseRate.xsl"/>

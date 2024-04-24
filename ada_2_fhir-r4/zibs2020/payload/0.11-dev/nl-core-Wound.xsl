@@ -24,8 +24,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
     
-    <xsl:import href="nl-core-wounds.WoundCharacteristics.xsl"/>
-
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     
@@ -55,13 +53,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <display value="verwonding"/>
                     </coding>
                 </category>
-                <xsl:for-each select="wond_type">
+                <xsl:for-each select="wond_soort">
                     <coding>
                         <xsl:call-template name="code-to-CodeableConcept"/>
                     </coding>
                 </xsl:for-each>
                 <xsl:for-each select="anatomische_locatie">
-                    <xsl:call-template name="nl-core-AnatomicalLocation"/>
+                    <bodySite>
+                        <xsl:call-template name="nl-core-AnatomicalLocation"/>
+                    </bodySite>
                 </xsl:for-each>
                 <xsl:for-each select="$subject">
                     <xsl:call-template name="makeReference">
