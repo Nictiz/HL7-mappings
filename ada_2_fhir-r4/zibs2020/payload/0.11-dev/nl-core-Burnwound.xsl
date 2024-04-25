@@ -36,7 +36,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
-    <xsl:template match="brandwond" name="nl-core-BurnWound" mode="nl-core-BurnWound" as="element()+">
+    <xsl:template match="brandwond" name="nl-core-Burnwound" mode="nl-core-Burnwound" as="element()+">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
 
@@ -57,7 +57,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
-    <xsl:template match="wond" name="_nl-core-Burnwound" mode="_nl-core-Burnwound" as="element(f:Condition)">
+    <xsl:template match="brandwond" name="_nl-core-Burnwound" mode="_nl-core-Burnwound" as="element(f:Condition)">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         
