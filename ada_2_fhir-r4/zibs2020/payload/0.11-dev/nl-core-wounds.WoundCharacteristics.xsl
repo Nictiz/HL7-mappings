@@ -246,4 +246,52 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </DocumentReference>
         </xsl:for-each>
     </xsl:template>
+
+    <xsl:template match="(brandwond | decubitus_wond | wond)[wond_weefsel/@value or wond_infectie/@value or wond_vochtigheid/@value or wond_rand/@value or wondlengte/@value or wondbreedte/@value or wonddiepte/@value or datum_laatste_verbandwissel/@value]"  mode="_generateDisplay">
+        <xsl:text>Bevinding betreffende verwonding</xsl:text>
+    </xsl:template>
+
+    <xsl:template match="wondlengte" mode="_generateDisplay">
+        <xsl:variable name="parts" as="item()*">
+            <xsl:text>Wondlengte</xsl:text>
+            <xsl:if test=".[@value and @unit]">
+                <xsl:value-of select="concat(./@value, ' ', ./@unit)"/>
+            </xsl:if>
+        </xsl:variable>
+        <xsl:value-of select="string-join($parts, ': ')"/>
+    </xsl:template>
+
+    <xsl:template match="wondbreedte" mode="_generateDisplay">
+        <xsl:variable name="parts" as="item()*">
+            <xsl:text>Wondbreedte</xsl:text>
+            <xsl:if test=".[@value and @unit]">
+                <xsl:value-of select="concat(./@value, ' ', ./@unit)"/>
+            </xsl:if>
+        </xsl:variable>
+        <xsl:value-of select="string-join($parts, ': ')"/>
+    </xsl:template>
+
+    <xsl:template match="wonddiepte" mode="_generateDisplay">
+        <xsl:variable name="parts" as="item()*">
+            <xsl:text>Wonddiepte</xsl:text>
+            <xsl:if test=".[@value and @unit]">
+                <xsl:value-of select="concat(./@value, ' ', ./@unit)"/>
+            </xsl:if>
+        </xsl:variable>
+        <xsl:value-of select="string-join($parts, ': ')"/>
+    </xsl:template>
+
+    <xsl:template match="datum_laatste_verbandwissel" mode="_generateDisplay">
+        <xsl:variable name="parts" as="item()*">
+            <xsl:text>Datum laatste verbandwissel</xsl:text>
+            <xsl:if test=".[@value]">
+                <xsl:value-of select="./@value"/>
+            </xsl:if>
+        </xsl:variable>
+        <xsl:value-of select="string-join($parts, ': ')"/>
+    </xsl:template>
+
+    <xsl:template match="wond_foto" mode="_generateDisplay">
+        <xsl:text>Wondfoto</xsl:text>
+    </xsl:template>
 </xsl:stylesheet>

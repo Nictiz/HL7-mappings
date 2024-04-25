@@ -140,7 +140,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:text>-WoundCharacteristics-</xsl:text>
                     <xsl:value-of select="format-number($partNumber, '00')"/>
                 </xsl:when>
-                <xsl:when test="$localName = ('wondlengte','wondbreedte','wonddiepte','datum_laatste_verbandwissel')">
+                <xsl:when test="$localName = ('wondlengte','wondbreedte','wonddiepte','datum_laatste_verbandwissel', 'wond_rand', 'wond_infectie', 'wond_vochtigheid', 'wond_weefsel')">
                     <xsl:value-of select="$id"/>
                     <xsl:text>-</xsl:text>
                     <xsl:value-of select="tokenize($profile, '\.')[last()]"/>

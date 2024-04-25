@@ -161,105 +161,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
-    <xd:doc>
-        <xd:desc>TODO</xd:desc>
-        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
-    </xd:doc>
-    <xsl:template match="wond_infectie" name="nl-core-Wound.WoundInfection" mode="nl-core-Wound.WoundInfection" as="element(f:Observation)?">
-        <xsl:param name="in" select="." as="element()?"/>
-        <xsl:param name="subject" select="patient/*" as="element()?"/>
-        
-        <xsl:for-each select="$in">
-            <Observation>
-                <xsl:call-template name="insertLogicalId"/>
-                <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Wound.WoundInfection"/>
-                </meta>
-                <status value="final"/>
-                <code>
-                    <coding>
-                        <system value="http://snomed.info/sct"/>
-                        <code value="405009004"/>
-                        <display value="infectiestatus"/>
-                    </coding>
-                </code>
-                <xsl:call-template name="makeReference">
-                    <xsl:with-param name="in" select="$subject"/>
-                    <xsl:with-param name="wrapIn" select="'subject'"/>
-                </xsl:call-template>
-                <valueBoolean>
-                    <xsl:call-template name="boolean-to-boolean"/>
-                </valueBoolean>
-            </Observation>
-        </xsl:for-each>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>TODO</xd:desc>
-        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
-    </xd:doc>
-    <xsl:template match="wond_vochtigheid" name="nl-core-Wound.WoundMoisture" mode="nl-core-Wound.WoundMoisture" as="element(f:Observation)?">
-        <xsl:param name="in" select="." as="element()?"/>
-        <xsl:param name="subject" select="patient/*" as="element()?"/>
-        
-        <xsl:for-each select="$in">
-            <Observation>
-                <xsl:call-template name="insertLogicalId"/>
-                <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Wound.WoundMoisture"/>
-                </meta>
-                <status value="final"/>
-                <code>
-                    <coding>
-                        <system value="http://snomed.info/sct"/>
-                        <code value="301112006"/>
-                        <display value="vochtigheid van verwonding"/>
-                    </coding>
-                </code>
-                <xsl:call-template name="makeReference">
-                    <xsl:with-param name="in" select="$subject"/>
-                    <xsl:with-param name="wrapIn" select="'subject'"/>
-                </xsl:call-template>
-                <valueCodeableConcept>
-                    <xsl:call-template name="code-to-CodeableConcept"/>
-                </valueCodeableConcept>
-            </Observation>
-        </xsl:for-each>
-    </xsl:template>
-
-    <xd:doc>
-        <xd:desc>TODO</xd:desc>
-        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
-    </xd:doc>
-    <xsl:template match="wond_rand" name="nl-core-Wound.WoundEdge" mode="nl-core-Wound.WoundEdge" as="element(f:Observation)?">
-        <xsl:param name="in" select="." as="element()?"/>
-        <xsl:param name="subject" select="patient/*" as="element()?"/>
-        
-        <xsl:for-each select="$in">
-            <Observation>
-                <xsl:call-template name="insertLogicalId"/>
-                <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Wound.WoundEdge"/>
-                </meta>
-                <status value="final"/>
-                <code>
-                    <coding>
-                        <system value="http://snomed.info/sct"/>
-                        <code value="449747006"/>
-                        <display value="bevinding betreffende rand van wond"/>
-                    </coding>
-                </code>
-                <xsl:call-template name="makeReference">
-                    <xsl:with-param name="in" select="$subject"/>
-                    <xsl:with-param name="wrapIn" select="'subject'"/>
-                </xsl:call-template>
-                <valueCodeableConcept>
-                    <xsl:call-template name="code-to-CodeableConcept"/>
-                </valueCodeableConcept>
-            </Observation>
-        </xsl:for-each>
+    <xsl:template match="uitgebreidheid" mode="_generateDisplay">
+        <xsl:variable name="parts" as="item()*">
+            <xsl:text>Uitgebreidheid</xsl:text>
+            <xsl:if test=".[@value and @unit]">
+                <xsl:value-of select="concat(./@value, ' ', ./@unit)"/>
+            </xsl:if>
+        </xsl:variable>
+        <xsl:value-of select="string-join($parts, ': ')"/>
     </xsl:template>
 </xsl:stylesheet>

@@ -264,4 +264,48 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </Observation>
         </xsl:for-each>
     </xsl:template>
+
+    <xsl:template match="wond_weefsel" mode="_generateDisplay">
+        <xsl:variable name="parts" as="item()*">
+            <xsl:text>Wondweefsel</xsl:text>
+            <xsl:if test=".[@displayName]">
+                <xsl:value-of select="./@displayName"/>
+            </xsl:if>
+        </xsl:variable>
+        <xsl:value-of select="string-join($parts, ': ')"/>
+    </xsl:template>
+
+    <xsl:template match="wond_infectie" mode="_generateDisplay">
+        <xsl:variable name="parts" as="item()*">
+            <xsl:text>Wondinfectie</xsl:text>
+            <xsl:choose>
+                <xsl:when test="./@value = 'true'">
+                    <xsl:text>geïnfecteerd</xsl:text>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:text>niet geïnfecteerd</xsl:text>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:value-of select="string-join($parts, ': ')"/>   </xsl:template>
+
+    <xsl:template match="wond_vochtigheid" mode="_generateDisplay">
+        <xsl:variable name="parts" as="item()*">
+            <xsl:text>Wondvochtigheid</xsl:text>
+            <xsl:if test=".[@displayName]">
+                <xsl:value-of select="./@displayName"/>
+            </xsl:if>
+        </xsl:variable>
+        <xsl:value-of select="string-join($parts, ': ')"/>
+    </xsl:template>
+
+    <xsl:template match="wond_rand" mode="_generateDisplay">
+        <xsl:variable name="parts" as="item()*">
+            <xsl:text>Wondrand</xsl:text>
+            <xsl:if test=".[@displayName]">
+                <xsl:value-of select="./@displayName"/>
+            </xsl:if>
+        </xsl:variable>
+        <xsl:value-of select="string-join($parts, ': ')"/>
+    </xsl:template>
 </xsl:stylesheet>
