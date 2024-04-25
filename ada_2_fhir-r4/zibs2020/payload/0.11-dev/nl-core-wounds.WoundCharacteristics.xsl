@@ -36,6 +36,44 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
+    <xsl:template match="(brandwond | decubitus_wond | wond)[wond_weefsel/@value or wond_infectie/@value or wond_vochtigheid/@value or wond_rand/@value or wondlengte/@value or wondbreedte/@value or wonddiepte/@value or datum_laatste_verbandwissel/@value]" name="nl-core-wounds.WoundCharacteristics" mode="nl-core-wounds.WoundCharacteristics" as="element(f:Observation)?">
+        <xsl:param name="in" select="." as="element()?"/>
+        <xsl:param name="subject" select="patient/*" as="element()?"/>
+        
+        <xsl:for-each select="$in">
+            <Observation>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile">nl-core-wounds.WoundCharacteristics</xsl:with-param>
+                </xsl:call-template>
+                <meta>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-wounds.WoundLength"/>
+                </meta>
+                <status value="final"/>
+                <code>
+                    <coding>
+                        <system value="http://snomed.info/sct"/>
+                        <code value="225552003"/>
+                        <display value="bevinding betreffende verwonding"/>
+                    </coding>
+                </code>
+                <xsl:call-template name="makeReference">
+                    <xsl:with-param name="in" select="$subject"/>
+                    <xsl:with-param name="wrapIn" select="'subject'"/>
+                </xsl:call-template>
+                <xsl:for-each select="./(wond_weefsel, wond_infectie, wond_vochtigheid, wond_rand, wondlengte, wondbreedte, wonddiepte, datum_laatste_verbandwissel, uitgebreidheid)">
+                    <hasMember>
+                        <xsl:call-template name="makeReference"/>
+                    </hasMember>
+                </xsl:for-each>
+            </Observation>
+        </xsl:for-each>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>TODO</xd:desc>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
+    </xd:doc>
     <xsl:template match="wondlengte" name="nl-core-wounds.WoundLength" mode="nl-core-wounds.WoundLength" as="element(f:Observation)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
@@ -197,6 +235,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="blob-to-attachment"/>
                     </attachment>
                 </content>
+                <context>
+                    <related>
+                        <xsl:call-template name="makeReference">
+                            <xsl:with-param name="in" select="parent::*"/>
+                            <xsl:with-param name="profile">nl-core-wounds.WoundCharacteristics</xsl:with-param>
+                        </xsl:call-template>
+                    </related>
+                </context>
             </DocumentReference>
         </xsl:for-each>
     </xsl:template>

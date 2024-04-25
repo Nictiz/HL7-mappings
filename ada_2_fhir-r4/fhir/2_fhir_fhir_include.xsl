@@ -65,6 +65,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="behandel_aanwijzing" resource="Consent" profile="nl-core-TreatmentDirective2"/>
         <nm:map ada="bloeddruk" resource="Observation" profile="nl-core-BloodPressure"/>
         <nm:map ada="brandwond" resource="Condition" profile="nl-core-Burnwound"/>
+        <nm:map ada="brandwond" resource="Observation" profile="nl-core-wounds.WoundCharacteristics"/>
         <nm:map ada="uitgebreidheid" resource="Observation" profile="nl-core-Burnwound.Extent"/>
         <nm:map ada="comfort_score" resource="Observation" profile="nl-core-ComfortScale"/>
         <nm:map ada="betaler" resource="Coverage" profile="nl-core-Payer.InsuranceCompany"/>
@@ -75,6 +76,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="contactpersoon" resource="RelatedPerson" profile="nl-core-ContactPerson"/>
         <nm:map ada="darmfunctie" resource="Observation" profile="nl-core-BowelFunction"/>
         <nm:map ada="decubitus_wond" resource="Condition" profile="nl-core-PressureUlcer"/>
+        <nm:map ada="decubitus_wond" resource="Observation" profile="nl-core-wounds.WoundCharacteristics"/>
         <nm:map ada="dosscore" resource="Observation" profile="nl-core-DOSScore"/>
         <nm:map ada="drugs_gebruik" resource="Observation" profile="nl-core-DrugUse"/>
         <nm:map ada="envelop" resource="ServiceRequest" profile="hg-ReferralServiceRequest"/>
@@ -168,6 +170,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="wilsverklaring" resource="Consent" profile="nl-core-AdvanceDirective"/>
         <nm:map ada="wisselend_doseerschema" resource="MedicationRequest" profile="mp-VariableDosingRegimen"/>
         <nm:map ada="wond" resource="Condition" profile="nl-core-Wound"/>
+        <nm:map ada="wond" resource="Observation" profile="nl-core-wounds.WoundCharacteristics"/>
         <nm:map ada="wond_weefsel" resource="Observation" profile="nl-core-Wound.WoundTissue"/>
         <nm:map ada="wond_infectie" resource="Observation" profile="nl-core-Wound.WoundInfection"/>
         <nm:map ada="wond_vochtigheid" resource="Observation" profile="nl-core-Wound.WoundMoisture"/>

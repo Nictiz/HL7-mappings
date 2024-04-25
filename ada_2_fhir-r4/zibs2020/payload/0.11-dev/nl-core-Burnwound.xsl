@@ -36,13 +36,36 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
-    <xsl:template match="wond" name="nl-core-Burnwound" mode="nl-core-Burnwound" as="element(f:Condition)">
+    <xsl:template match="brandwond" name="nl-core-BurnWound" mode="nl-core-BurnWound" as="element()+">
+        <xsl:param name="in" as="element()?" select="."/>
+        <xsl:param name="subject" select="patient/*" as="element()?"/>
+
+        <xsl:for-each select="$in">
+            <xsl:call-template name="_nl-core-Burnwound">
+                <xsl:with-param name="subject" select="$subject"/>
+            </xsl:call-template>
+            <xsl:if test="$in[uitgebreidheid/@value or datum_laatste_verbandwissel/@value]">
+                <xsl:call-template name="nl-core-wounds.WoundCharacteristics">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:call-template>
+            </xsl:if>
+        </xsl:for-each>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>TODO</xd:desc>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
+    </xd:doc>
+    <xsl:template match="wond" name="_nl-core-Burnwound" mode="_nl-core-Burnwound" as="element(f:Condition)">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         
         <xsl:for-each select="$in">
             <Condition>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile">nl-core-Burnwound</xsl:with-param>
+                </xsl:call-template>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Burnwound"/>
                 </meta>                
@@ -81,6 +104,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </summary>
                     </stage>
                 </xsl:for-each>
+                <xsl:if test="$in[uitgebreidheid/@value or datum_laatste_verbandwissel/@value]">
+                    <evidence>
+                        <detail>
+                            <xsl:call-template name="makeReference">
+                                <xsl:with-param name="in" select="."/>
+                                <xsl:with-param name="profile">nl-core-wounds.WoundCharacteristics</xsl:with-param>
+                            </xsl:call-template>
+                        </detail>
+                    </evidence>
+                </xsl:if>
                 <xsl:for-each select="toelichting">
                     <note>
                         <text>
