@@ -390,6 +390,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
             </xsl:when>
+            <xsl:when test="$localName = 'glasgow_coma_scale'">
+                <xsl:apply-templates select="$in" mode="nl-core-GlasgowComaScale">
+                    <xsl:with-param name="subject" select="$subject"/>
+                </xsl:apply-templates>
+            </xsl:when>
             <xsl:when test="$localName = 'hulp_van_anderen'">
                 <xsl:apply-templates select="$in" mode="nl-core-HelpFromOthers">
                     <xsl:with-param name="subject" select="$subject"/>
