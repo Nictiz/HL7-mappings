@@ -28,8 +28,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada voedingsadvies to FHIR NutritionOrder conforming to profile nl-core-NutritionAdvice</xd:desc>
+        <xd:desc>Converts ada voedingsadvies to FHIR NutritionOrder resource conforming to profile nl-core-NutritionAdvice.</xd:desc>
     </xd:doc>
+    
+    <xsl:variable name="profileNameNutritionAdvice">nl-core-NutritionAdvice</xsl:variable>
     
     <xd:doc>
         <xd:desc>Create an nl-core-NutritionAdvice instance as a NutritionOrder FHIR instance from ada voedingsadvies element.</xd:desc>
@@ -42,16 +44,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <NutritionOrder>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNameNutritionAdvice"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-NutritionAdvice"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <xsl:for-each select="indicatie">
                     <extension url="http://hl7.org/fhir/StructureDefinition/workflow-reasonReference">
                         <valueReference>
                             <xsl:call-template name="makeReference">
                                 <xsl:with-param name="in" select="probleem"/>
-                                <xsl:with-param name="profile" select="'nl-core-Problem'"/>
+                                <xsl:with-param name="profile" select="$profileNameProblem"/>
                             </xsl:call-template>
                         </valueReference>
                     </extension>

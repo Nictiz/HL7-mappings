@@ -18,11 +18,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
 
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada adresgegevens to FHIR resource conforming to profile nl-core-AddressInformation</xd:desc>
+        <xd:desc>Converts ADA adresgegevens to FHIR Address datatype conforming to profile nl-core-AddressInformation.</xd:desc>
     </xd:doc>
 
     <xd:doc>
-        <xd:desc>Produces FHIR Address datatypes with address elements.</xd:desc>
+        <xd:desc>Creates FHIR Address datatype from ADA adresgegevens element.</xd:desc>
         <xd:param name="in">Ada 'adresgegevens' element containing the zib data</xd:param>
     </xd:doc>
     <xsl:template match="adresgegevens" mode="nl-core-AddressInformation" name="nl-core-AddressInformation" as="element(f:address)*">

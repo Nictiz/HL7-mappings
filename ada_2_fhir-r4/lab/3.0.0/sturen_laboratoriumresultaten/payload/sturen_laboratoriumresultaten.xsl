@@ -248,19 +248,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$localName = 'monster' and $profile = 'nl-core-LaboratoryTestResult.Specimen.asMicroorganism'">
                     <xsl:value-of select="concat('organism-' ,  (@displayName, @code)[1])"/>
                 </xsl:when>
-                <xsl:when test="$localName = 'monster' and $profile = 'nl-core-LaboratoryTestResult.Specimen'">
+                <xsl:when test="$localName = 'monster' and $profile = $profileNameLaboratoryTestResultSpecimen">
                     <xsl:value-of select="concat('monster-' ,  string-join((monsternummer/@value, monstervolgnummer/@value, monstermateriaal/@code), '-'))"/>
                 </xsl:when>
-                <xsl:when test="$localName = 'bron_monster' and $profile = 'nl-core-LaboratoryTestResult.Specimen.Source'">
+                <xsl:when test="$localName = 'bron_monster' and $profile = $profileNameLaboratoryTestResultSpecimenSource">
                     <xsl:value-of select="concat('bron-' ,  @value)"/>
                 </xsl:when>
                 <xsl:when test="$localName = 'patient'">
                     <xsl:value-of select="concat('patient-' ,  string-join((naamgegevens[1]/geslachtsnaam/(voorvoegsels, achternaam)/@value, naamgegevens[1]/geslachtsnaam_partner/(voorvoegsels_partner, achternaam_partner)/@value), '-'))"/>
                 </xsl:when>
-                <xsl:when test="$localName = 'zorgaanbieder' and $profile = 'nl-core-HealthcareProvider'">
+                <xsl:when test="$localName = 'zorgaanbieder' and $profile = $profileNameHealthcareProvider">
                     <xsl:value-of select="concat('loc-' ,  (organisatie_locatie/(locatie_nummer, locatie_naam)[1]/@value, afdeling_specialisme/(@displayName, @code))[1] ,  ((zorgaanbieder_identificatienummer, organisatie_naam)/@value, organisatie_type/(@displayName, @code))[1])"/>
                 </xsl:when>
-                <xsl:when test="$localName = 'zorgaanbieder' and $profile = 'nl-core-HealthcareProvider-Organization'">
+                <xsl:when test="$localName = 'zorgaanbieder' and $profile = $profileNameHealthcareProviderOrganization">
                     <xsl:value-of select="concat('org-' ,  ((zorgaanbieder_identificatienummer, organisatie_naam)/@value, organisatie_type/(@displayName, @code))[1])"/>
                 </xsl:when>
                 <xsl:otherwise>
