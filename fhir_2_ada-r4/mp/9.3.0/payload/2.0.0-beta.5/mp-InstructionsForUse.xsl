@@ -64,8 +64,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                  <xsl:choose>
                     <xsl:when test="f:route">
                     <xsl:apply-templates select="f:route" mode="#current"/>
-                </xsl:when>
-                <xsl:otherwise>
+                    </xsl:when>
+                 <xsl:otherwise>
                         <xsl:element name="toedieningsweg">
                             <xsl:call-template name="Coding-to-code">
                                 <xsl:with-param name="in" as="element()">
@@ -79,21 +79,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:element>
                     </xsl:otherwise>
                 </xsl:choose>              
-
-                <xsl:if test="not(./following-sibling::f:dosageInstruction) and not(exists(following-sibling::*/f:route))">
-                    <xsl:variable name="nullFlavorDisplayName" select="$hl7NullFlavorMap[@hl7NullFlavor = 'NI']/@displayName"/>
-                    <xsl:element name="toedieningsweg">
-                        <xsl:call-template name="Coding-to-code">
-                            <xsl:with-param name="in" as="element()">
-                                <f:coding>
-                                    <f:system value="{$oidHL7NullFlavor}"/>
-                                    <f:code value="NI"/>
-                                    <f:display value="{$nullFlavorDisplayName}"/>
-                                </f:coding>
-                            </xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:element>
-                </xsl:if>
+                
                 <!-- aanvullende_instructie -->
                 <xsl:apply-templates select="f:additionalInstruction" mode="#current"/>
                 <!-- TODO, check for MA herhaalperiode_cyclisch_schema -->
