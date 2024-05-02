@@ -1,27 +1,21 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="517c2ac7-fcc2-11ee-1012-020000000000"/>
-   <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-ProposalMedicationAgreement-Bundle"/>
-   </meta>
-   <type value="transaction"/>
+   <id value="102c0e45-06e3-11ef-2966-020000000000"/>
+   <type value="searchset"/>
+   <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:517c2bc0-fcc2-11ee-1012-020000000000"/>
+      <fullUrl value="urn:uuid:102c0ef8-06e3-11ef-2966-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
-               <tag>
-                  <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
-                  <code value="actionable"/>
-               </tag>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
                <valueString value="wordt gegenereerd"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="2022-12-12T00:00:00+01:00"/>
-                  <end value="2023-01-10T23:59:59+01:00"/>
+                  <start value="${DATE, T, D, -20}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, +9}T23:59:59+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Comment">
@@ -41,18 +35,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:517c2bde-fcc2-11ee-1012-020000000000"/>
+               <reference value="urn:uuid:102c0f16-06e3-11ef-2966-020000000000"/>
                <type value="Medication"/>
                <display value="OXAZEPAM TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:517c2b48-fcc2-11ee-1012-020000000000"/>
+               <reference value="urn:uuid:102c0e80-06e3-11ef-2966-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, S. XXX_Jankie"/>
             </subject>
-            <authoredOn value="2023-01-01T11:59:00+01:00"/>
+            <authoredOn value="${DATE, T, D, +0}T11:59:00+02:00"/>
             <requester>
-               <reference value="urn:uuid:517c2b84-fcc2-11ee-1012-020000000000"/>
+               <reference value="urn:uuid:102c0ebc-06e3-11ef-2966-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
             </requester>
@@ -93,13 +87,12 @@
             </dosageInstruction>
          </MedicationRequest>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationRequest"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:517c2b48-fcc2-11ee-1012-020000000000"/>
+      <fullUrl value="urn:uuid:102c0e80-06e3-11ef-2966-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -107,7 +100,11 @@
             </meta>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-               <value value="999910437"/>
+               <value>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                     <valueCode value="masked"/>
+                  </extension>
+               </value>
             </identifier>
             <name>
                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
@@ -140,13 +137,12 @@
             <birthDate value="1954-05-08"/>
          </Patient>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Patient"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:517c2b84-fcc2-11ee-1012-020000000000"/>
+      <fullUrl value="urn:uuid:102c0ebc-06e3-11ef-2966-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -184,13 +180,12 @@
             </address>
          </Organization>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Organization"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:517c2bde-fcc2-11ee-1012-020000000000"/>
+      <fullUrl value="urn:uuid:102c0f16-06e3-11ef-2966-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -212,13 +207,12 @@
             </code>
          </Medication>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:517c2c06-fcc2-11ee-1012-020000000000"/>
+      <fullUrl value="urn:uuid:102c0f3e-06e3-11ef-2966-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -240,11 +234,11 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:517c2b48-fcc2-11ee-1012-020000000000"/>
+               <reference value="urn:uuid:102c0e80-06e3-11ef-2966-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, S. XXX_Jankie"/>
             </subject>
-            <effectiveDateTime value="2023-01-01T07:05:00+01:00"/>
+            <effectiveDateTime value="${DATE, T, D, +0}T07:05:00+02:00"/>
             <valueQuantity>
                <value value="165"/>
                <unit value="cm"/>
@@ -253,13 +247,12 @@
             </valueQuantity>
          </Observation>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Observation"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:517c2c2e-fcc2-11ee-1012-020000000000"/>
+      <fullUrl value="urn:uuid:102c0f66-06e3-11ef-2966-020000000000"/>
       <resource>
          <Observation>
             <meta>
@@ -281,11 +274,11 @@
                </coding>
             </code>
             <subject>
-               <reference value="urn:uuid:517c2b48-fcc2-11ee-1012-020000000000"/>
+               <reference value="urn:uuid:102c0e80-06e3-11ef-2966-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, S. XXX_Jankie"/>
             </subject>
-            <effectiveDateTime value="2023-01-01T07:05:00+01:00"/>
+            <effectiveDateTime value="${DATE, T, D, +0}T07:05:00+02:00"/>
             <valueQuantity>
                <value value="75"/>
                <unit value="kg"/>
@@ -294,9 +287,8 @@
             </valueQuantity>
          </Observation>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Observation"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
 </Bundle>

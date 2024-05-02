@@ -1,19 +1,13 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="50ccf9b2-fcc2-11ee-1884-020000000000"/>
-   <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-ReplyProposalDispenseRequest-Bundle-Bundle"/>
-   </meta>
-   <type value="transaction"/>
+   <id value="0d954075-06e3-11ef-1559-020000000000"/>
+   <type value="searchset"/>
+   <total value="1"/>
    <entry>
-      <fullUrl value="urn:uuid:50ccf9b2-fcc2-11ee-1884-020000000000"/>
+      <fullUrl value="urn:uuid:0d9561a6-06e3-11ef-1559-020000000000"/>
       <resource>
          <Communication>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-ReplyProposalDispenseRequest"/>
-               <tag>
-                  <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
-                  <code value="actionable"/>
-               </tag>
             </meta>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.777.540.1"/>
@@ -29,13 +23,13 @@
             </basedOn>
             <status value="completed"/>
             <subject>
-               <reference value="urn:uuid:50ccdb48-fcc2-11ee-1884-020000000000"/>
+               <reference value="urn:uuid:0d954380-06e3-11ef-1559-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, S. XXX_Jankie"/>
             </subject>
-            <sent value="2023-01-01T12:30:00+01:00"/>
+            <sent value="${DATE, T, D, +0}T12:30:00+02:00"/>
             <sender>
-               <reference value="urn:uuid:50ccdb70-fcc2-11ee-1884-020000000000"/>
+               <reference value="urn:uuid:0d9543a8-06e3-11ef-1559-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </sender>
@@ -54,13 +48,12 @@
             </payload>
          </Communication>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Communication"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:50ccdb48-fcc2-11ee-1884-020000000000"/>
+      <fullUrl value="urn:uuid:0d954380-06e3-11ef-1559-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -68,7 +61,11 @@
             </meta>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-               <value value="999910437"/>
+               <value>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                     <valueCode value="masked"/>
+                  </extension>
+               </value>
             </identifier>
             <name>
                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
@@ -101,25 +98,24 @@
             <birthDate value="1954-05-08"/>
          </Patient>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Patient"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:50ccdb70-fcc2-11ee-1884-020000000000"/>
+      <fullUrl value="urn:uuid:0d9543a8-06e3-11ef-1559-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:50ccdb98-fcc2-11ee-1884-020000000000"/>
+               <reference value="urn:uuid:0d9543d0-06e3-11ef-1559-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:50ccdbde-fcc2-11ee-1884-020000000000"/>
+               <reference value="urn:uuid:0d954416-06e3-11ef-1559-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -133,13 +129,12 @@
             </specialty>
          </PractitionerRole>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="PractitionerRole"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:50ccdb98-fcc2-11ee-1884-020000000000"/>
+      <fullUrl value="urn:uuid:0d9543d0-06e3-11ef-1559-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -168,13 +163,12 @@
             </name>
          </Practitioner>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Practitioner"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:50ccdbde-fcc2-11ee-1884-020000000000"/>
+      <fullUrl value="urn:uuid:0d954416-06e3-11ef-1559-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -209,13 +203,12 @@
             </address>
          </Organization>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Organization"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:50ccdc38-fcc2-11ee-1884-020000000000"/>
+      <fullUrl value="urn:uuid:0d954470-06e3-11ef-1559-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -228,9 +221,8 @@
             <name value="Apotheek De Gulle Gaper"/>
          </Organization>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Organization"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
 </Bundle>

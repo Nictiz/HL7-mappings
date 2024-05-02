@@ -1,8 +1,8 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="dccf69cd-fcc1-11ee-1743-020000000000"/>
+   <id value="6ea4da75-06e2-11ef-1157-020000000000"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:dccf6b16-fcc1-11ee-1743-020000000000"/>
+      <fullUrl value="urn:uuid:6ea4dbbe-06e2-11ef-1157-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -47,17 +47,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:dccf6b34-fcc1-11ee-1743-020000000000"/>
+               <reference value="urn:uuid:6ea4dbdc-06e2-11ef-1157-020000000000"/>
                <type value="Medication"/>
-               <display value="FENPRCOUMON TABLET 3MG"/>
+               <display value="FENPROCOUMON TABLET 3MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:dccf6a44-fcc1-11ee-1743-020000000000"/>
+               <reference value="urn:uuid:6ea4daec-06e2-11ef-1157-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Niesing"/>
             </subject>
             <requester>
-               <reference value="urn:uuid:dccf6a6c-fcc1-11ee-1743-020000000000"/>
+               <reference value="urn:uuid:6ea4db14-06e2-11ef-1157-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Tanja de Bakker, Trombosediensten, Trombosedienst Ons Dorp"/>
             </requester>
@@ -158,7 +158,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dccf6a44-fcc1-11ee-1743-020000000000"/>
+      <fullUrl value="urn:uuid:6ea4daec-06e2-11ef-1157-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -205,19 +205,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dccf6a6c-fcc1-11ee-1743-020000000000"/>
+      <fullUrl value="urn:uuid:6ea4db14-06e2-11ef-1157-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:dccf6a94-fcc1-11ee-1743-020000000000"/>
+               <reference value="urn:uuid:6ea4db3c-06e2-11ef-1157-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Tanja de Bakker"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:dccf6ada-fcc1-11ee-1743-020000000000"/>
+               <reference value="urn:uuid:6ea4db82-06e2-11ef-1157-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Trombosedienst Ons Dorp"/>
             </organization>
@@ -237,7 +237,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dccf6a94-fcc1-11ee-1743-020000000000"/>
+      <fullUrl value="urn:uuid:6ea4db3c-06e2-11ef-1157-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -272,7 +272,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dccf6ada-fcc1-11ee-1743-020000000000"/>
+      <fullUrl value="urn:uuid:6ea4db82-06e2-11ef-1157-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -292,7 +292,17 @@
             </type>
             <name value="Trombosedienst Ons Dorp"/>
             <address>
-               <line value="Kerkstraat 28 d">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Kerkstraat  28 d">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
                      <valueString value="Kerkstraat"/>
                   </extension>
@@ -314,7 +324,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dccf6b34-fcc1-11ee-1743-020000000000"/>
+      <fullUrl value="urn:uuid:6ea4dbdc-06e2-11ef-1157-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -324,15 +334,15 @@
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
                   <code value="1783"/>
-                  <display value="FENPRCOUMON TABLET 3MG"/>
+                  <display value="FENPROCOUMON TABLET 3MG"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
                   <code value="6637"/>
-                  <display value="FENPRCOUMON TABLET 3MG"/>
+                  <display value="FENPROCOUMON TABLET 3MG"/>
                </coding>
-               <text value="FENPRCOUMON TABLET 3MG"/>
+               <text value="FENPROCOUMON TABLET 3MG"/>
             </code>
          </Medication>
       </resource>
