@@ -1,8 +1,8 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="7a9a8bdd-fcc2-11ee-1760-020000000000"/>
+   <id value="5fc36a87-063b-11ef-3450-020000000000"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:7a9a8d26-fcc2-11ee-1760-020000000000"/>
+      <fullUrl value="urn:uuid:5fc36bd0-063b-11ef-3450-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -47,17 +47,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:7a9a8d62-fcc2-11ee-1760-020000000000"/>
+               <reference value="urn:uuid:5fc36c2a-063b-11ef-3450-020000000000"/>
                <type value="Medication"/>
                <display value="ACENOCOUMAROL TABLET 1MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:7a9a8c54-fcc2-11ee-1760-020000000000"/>
+               <reference value="urn:uuid:5fc36afe-063b-11ef-3450-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
             <requester>
-               <reference value="urn:uuid:7a9a8c7c-fcc2-11ee-1760-020000000000"/>
+               <reference value="urn:uuid:5fc36b26-063b-11ef-3450-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Tanja de Bakker, Trombosediensten, Trombosedienst Ons Dorp"/>
             </requester>
@@ -171,7 +171,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7a9a8d44-fcc2-11ee-1760-020000000000"/>
+      <fullUrl value="urn:uuid:5fc36bee-063b-11ef-3450-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -224,17 +224,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:7a9a8d80-fcc2-11ee-1760-020000000000"/>
+               <reference value="urn:uuid:5fc36c0c-063b-11ef-3450-020000000000"/>
                <type value="Medication"/>
-               <display value="FENPRCOUMON TABLET 3MG"/>
+               <display value="FENPROCOUMON TABLET 3MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:7a9a8c54-fcc2-11ee-1760-020000000000"/>
+               <reference value="urn:uuid:5fc36afe-063b-11ef-3450-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
             <requester>
-               <reference value="urn:uuid:7a9a8c7c-fcc2-11ee-1760-020000000000"/>
+               <reference value="urn:uuid:5fc36b26-063b-11ef-3450-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Tanja de Bakker, Trombosediensten, Trombosedienst Ons Dorp"/>
             </requester>
@@ -335,7 +335,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7a9a8c54-fcc2-11ee-1760-020000000000"/>
+      <fullUrl value="urn:uuid:5fc36afe-063b-11ef-3450-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -382,19 +382,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7a9a8c7c-fcc2-11ee-1760-020000000000"/>
+      <fullUrl value="urn:uuid:5fc36b26-063b-11ef-3450-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:7a9a8ca4-fcc2-11ee-1760-020000000000"/>
+               <reference value="urn:uuid:5fc36b4e-063b-11ef-3450-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Tanja de Bakker"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:7a9a8cea-fcc2-11ee-1760-020000000000"/>
+               <reference value="urn:uuid:5fc36b94-063b-11ef-3450-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Trombosedienst Ons Dorp"/>
             </organization>
@@ -414,7 +414,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7a9a8ca4-fcc2-11ee-1760-020000000000"/>
+      <fullUrl value="urn:uuid:5fc36b4e-063b-11ef-3450-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -449,7 +449,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7a9a8cea-fcc2-11ee-1760-020000000000"/>
+      <fullUrl value="urn:uuid:5fc36b94-063b-11ef-3450-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -469,6 +469,16 @@
             </type>
             <name value="Trombosedienst Ons Dorp"/>
             <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
                <line value="Kerkstraat 28 d">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
                      <valueString value="Kerkstraat"/>
@@ -491,7 +501,35 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7a9a8d62-fcc2-11ee-1760-020000000000"/>
+      <fullUrl value="urn:uuid:5fc36c0c-063b-11ef-3450-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="1783"/>
+                  <display value="FENPROCOUMON TABLET 3MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="6637"/>
+                  <display value="FENPROCOUMON TABLET 3MG"/>
+               </coding>
+               <text value="FENPROCOUMON TABLET 3MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:5fc36c2a-063b-11ef-3450-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -510,34 +548,6 @@
                   <display value="ACENOCOUMAROL TABLET 1MG"/>
                </coding>
                <text value="ACENOCOUMAROL TABLET 1MG"/>
-            </code>
-         </Medication>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:7a9a8d80-fcc2-11ee-1760-020000000000"/>
-      <resource>
-         <Medication>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="1783"/>
-                  <display value="FENPRCOUMON TABLET 3MG"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="6637"/>
-                  <display value="FENPRCOUMON TABLET 3MG"/>
-               </coding>
-               <text value="FENPRCOUMON TABLET 3MG"/>
             </code>
          </Medication>
       </resource>
