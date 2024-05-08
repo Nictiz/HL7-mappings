@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2">
-   <title>Schematron file for transaction Opleveren Vaccinatiestatus 413 (2.16.840.1.113883.2.4.3.11.60.100.4.43 2020-05-27T00:00:00)</title>
+   <title>Schematron file for transaction Opleveren Vaccinatiestatus 402 (2.16.840.1.113883.2.4.3.11.60.100.4.43 2020-05-27T00:00:00)</title>
    <ns uri="urn:hl7-org:v3" prefix="hl7"/>
    <ns uri="urn:hl7-org:v3" prefix="cda"/>
    <ns uri="http://www.w3.org/2001/XMLSchema-instance" prefix="xsi"/>
@@ -141,24 +141,24 @@
       <rule fpi="RUL-EXPEL" context="/">
          <assert role="warning"
                  test="descendant-or-self::hl7:REPC_IN002171NL[hl7:interactionId[@root = '2.16.840.1.113883.1.6']]"
-                 see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20240426T081156/tmp-2.16.840.1.113883.2.4.6.10.100.17-2024-04-25T000000.html">(OpleverenVaccinatiestatus): In de instance werd het volgende element verwacht: descendant-or-self::hl7:REPC_IN002171NL[hl7:interactionId[@root = '2.16.840.1.113883.1.6']]</assert>
+                 see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20230613T223721/tmp-2.16.840.1.113883.2.4.6.10.100.17-2012-10-01T000000.html">(OpleverenVaccinatiestatus): In de instance werd het volgende element verwacht: descendant-or-self::hl7:REPC_IN002171NL[hl7:interactionId[@root = '2.16.840.1.113883.1.6']]</assert>
       </rule>
    </pattern>
-   <include href="include/2.16.840.1.113883.2.4.6.10.100.17-2024-04-25T000000.sch"/>
-   <include href="include/2.16.840.1.113883.2.4.6.10.100.17-2024-04-25T000000-closed.sch"/>
+   <include href="include/2.16.840.1.113883.2.4.6.10.100.17-2012-10-01T000000.sch"/>
+   <include href="include/2.16.840.1.113883.2.4.6.10.100.17-2012-10-01T000000-closed.sch"/>
    <!-- Include schematrons from templates with explicit * or ** context (but no representing templates), only those used in scenario template -->
    <!-- activitiesComponent1NonBDSData -->
-   <include href="include/2.16.840.1.113883.2.4.6.10.100.10028-2020-05-27T000000.sch"/>
+   <include href="include/2.16.840.1.113883.2.4.6.10.100.10028-2012-08-01T000000.sch"/>
    <!-- activitiesComponent2MetaData -->
-   <include href="include/2.16.840.1.113883.2.4.6.10.100.10029-2020-05-27T000000.sch"/>
+   <include href="include/2.16.840.1.113883.2.4.6.10.100.10029-2012-08-01T000000.sch"/>
    <!-- R_PatientNL-BRP-identified-confirmable -->
-   <include href="include/2.16.840.1.113883.2.4.6.10.100.102-2024-04-25T000000.sch"/>
+   <include href="include/2.16.840.1.113883.2.4.6.10.100.102-2012-08-01T000000.sch"/>
    <!-- A_Rijksvaccinatie-informational-all -->
    <include href="include/2.16.840.1.113883.2.4.6.10.100.123-2012-10-01T000000.sch"/>
    <!-- R_AssignedEntityNL-confirmable -->
    <include href="include/2.16.840.1.113883.2.4.6.10.100.125-2012-08-01T000000.sch"/>
    <!-- OpleverenVaccinatiestatus-payload -->
-   <include href="include/2.16.840.1.113883.2.4.6.10.100.182-2024-04-25T000000.sch"/>
+   <include href="include/2.16.840.1.113883.2.4.6.10.100.182-2012-09-01T000000.sch"/>
    <!-- obsElement1584 -->
-   <include href="include/2.16.840.1.113883.2.4.6.10.100.41584-2024-04-25T000000.sch"/>
+   <include href="include/2.16.840.1.113883.2.4.6.10.100.41584-2019-11-28T000000.sch"/>
 </schema>

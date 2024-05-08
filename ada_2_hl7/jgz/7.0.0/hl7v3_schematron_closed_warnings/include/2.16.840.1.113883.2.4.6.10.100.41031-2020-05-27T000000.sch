@@ -16,12 +16,12 @@ Item: (obsElement1031)
 -->
    <rule fpi="RULC-1"
          context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100.41031']]]"
-         id="d40e58087-false-d702284e0">
+         id="d41e107855-false-d1733805e0">
       <assert role="error"
-              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20240426T081156/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
+              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20230613T223721/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
               test="count(hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100.41031']]) &gt;= 1">(obsElement1031): element hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100.41031']] is mandatory [min 1x].</assert>
       <assert role="error"
-              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20240426T081156/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
+              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20230613T223721/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
               test="count(hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100.41031']]) &lt;= 1">(obsElement1031): element hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100.41031']] komt te vaak voor [max 1x].</assert>
    </rule>
    <!--
@@ -31,33 +31,33 @@ Item: (obsElement1031)
 -->
    <rule fpi="RULC-1"
          context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100.41031']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100.41031']]"
-         id="d40e58095-false-d702311e0">
+         id="d41e107863-false-d1733832e0">
       <assert role="error"
-              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20240426T081156/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
+              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20230613T223721/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
               test="string(@classCode) = ('OBS') or not(@classCode)">(obsElement1031): de waarde van classCode MOET 'OBS' zijn. Gevonden: "<value-of select="@classCode"/>"</assert>
       <assert role="error"
-              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20240426T081156/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
+              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20230613T223721/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
               test="string(@moodCode) = ('EVN') or not(@moodCode)">(obsElement1031): de waarde van moodCode MOET 'EVN' zijn. Gevonden: "<value-of select="@moodCode"/>"</assert>
       <assert role="error"
-              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20240426T081156/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
+              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20230613T223721/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
               test="string(@negationInd) = ('false') or not(@negationInd)">(obsElement1031): de waarde van negationInd MOET 'false' zijn. Gevonden: "<value-of select="@negationInd"/>"</assert>
       <assert role="error"
-              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20240426T081156/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
+              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20230613T223721/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
               test="count(hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100.41031']) &gt;= 1">(obsElement1031): element hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100.41031'] is mandatory [min 1x].</assert>
       <assert role="error"
-              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20240426T081156/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
+              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20230613T223721/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
               test="count(hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100.41031']) &lt;= 1">(obsElement1031): element hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100.41031'] komt te vaak voor [max 1x].</assert>
       <assert role="error"
-              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20240426T081156/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
+              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20230613T223721/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
               test="count(hl7:code[(@code = '1031' and @codeSystem = '2.16.840.1.113883.2.4.4.40.267')]) &gt;= 1">(obsElement1031): element hl7:code[(@code = '1031' and @codeSystem = '2.16.840.1.113883.2.4.4.40.267')] is mandatory [min 1x].</assert>
       <assert role="error"
-              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20240426T081156/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
+              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20230613T223721/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
               test="count(hl7:code[(@code = '1031' and @codeSystem = '2.16.840.1.113883.2.4.4.40.267')]) &lt;= 1">(obsElement1031): element hl7:code[(@code = '1031' and @codeSystem = '2.16.840.1.113883.2.4.4.40.267')] komt te vaak voor [max 1x].</assert>
       <assert role="error"
-              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20240426T081156/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
+              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20230613T223721/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
               test="count(hl7:value[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.100.11.2.546-2012-05-21T012654.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor]) &gt;= 1">(obsElement1031): element hl7:value[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.100.11.2.546-2012-05-21T012654.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor] is required [min 1x].</assert>
       <assert role="error"
-              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20240426T081156/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
+              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20230613T223721/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
               test="count(hl7:value[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.100.11.2.546-2012-05-21T012654.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor]) &lt;= 1">(obsElement1031): element hl7:value[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.100.11.2.546-2012-05-21T012654.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor] komt te vaak voor [max 1x].</assert>
    </rule>
    <!--
@@ -67,13 +67,13 @@ Item: (obsElement1031)
 -->
    <rule fpi="RULC-1"
          context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100.41031']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100.41031']]/hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100.41031']"
-         id="d40e58121-false-d702395e0">
+         id="d41e107889-false-d1733916e0">
       <extends rule="II"/>
       <assert role="error"
-              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20240426T081156/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
+              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20230613T223721/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
               test="empty(@xsi:type) or resolve-QName(@xsi:type, .) = QName('urn:hl7-org:v3', 'II')">(obsElement1031): indien er een @xsi:type instructie aanwezig is MOET deze de waarde "{urn:hl7-org:v3}:II" bevatten. Gevonden "{<value-of select="namespace-uri-from-QName(resolve-QName(@xsi:type,.))"/>}:<value-of select="local-name-from-QName(resolve-QName(@xsi:type,.))"/>"</assert>
       <assert role="error"
-              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20240426T081156/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
+              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20230613T223721/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
               test="string(@root) = ('2.16.840.1.113883.2.4.6.10.100.41031')">(obsElement1031): de waarde van root MOET '2.16.840.1.113883.2.4.6.10.100.41031' zijn. Gevonden: "<value-of select="@root"/>"</assert>
    </rule>
    <!--
@@ -83,13 +83,13 @@ Item: (obsElement1031)
 -->
    <rule fpi="RULC-1"
          context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100.41031']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100.41031']]/hl7:code[(@code = '1031' and @codeSystem = '2.16.840.1.113883.2.4.4.40.267')]"
-         id="d40e58131-false-d702414e0">
+         id="d41e107899-false-d1733935e0">
       <extends rule="CV"/>
       <assert role="error"
-              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20240426T081156/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
+              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20230613T223721/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
               test="empty(@xsi:type) or resolve-QName(@xsi:type, .) = QName('urn:hl7-org:v3', 'CV')">(obsElement1031): indien er een @xsi:type instructie aanwezig is MOET deze de waarde "{urn:hl7-org:v3}:CV" bevatten. Gevonden "{<value-of select="namespace-uri-from-QName(resolve-QName(@xsi:type,.))"/>}:<value-of select="local-name-from-QName(resolve-QName(@xsi:type,.))"/>"</assert>
       <assert role="error"
-              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20240426T081156/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
+              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20230613T223721/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
               test="@nullFlavor or (@code='1031' and @codeSystem='2.16.840.1.113883.2.4.4.40.267')">(obsElement1031): de elementwaarde MOET een zijn van 'code '1031' codeSystem '2.16.840.1.113883.2.4.4.40.267''.</assert>
    </rule>
    <!--
@@ -99,18 +99,18 @@ Item: (obsElement1031)
 -->
    <rule fpi="RULC-1"
          context="*[hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100.41031']]]/hl7:observation[hl7:templateId[@root = '2.16.840.1.113883.2.4.6.10.100.41031']]/hl7:value[concat(@code, @codeSystem) = doc('include/voc-2.16.840.1.113883.2.4.3.11.60.100.11.2.546-2012-05-21T012654.xml')//valueSet[1]/conceptList/concept/concat(@code, @codeSystem) or @nullFlavor]"
-         id="d40e58141-false-d702436e0">
+         id="d41e107909-false-d1733957e0">
       <extends rule="CV"/>
       <let name="theCode" value="@code"/>
       <let name="theCodeSystem" value="@codeSystem"/>
       <assert role="error"
-              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20240426T081156/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
+              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20230613T223721/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
               test="@nullFlavor or exists(doc('include/voc-2.16.840.1.113883.2.4.3.11.60.100.11.2.546-2012-05-21T012654.xml')//valueSet[1][conceptList/concept[@code = $theCode][@codeSystem = $theCodeSystem]])">(obsElement1031): de elementwaarde MOET een zijn van '2.16.840.1.113883.2.4.3.11.60.100.11.2.546 W0546 Hinkelen - kwantiteit (HL7) (2012-05-21T01:26:54)'.</assert>
       <assert role="error"
-              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20240426T081156/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
+              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20230613T223721/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
               test="@xsi:type">(obsElement1031): attribute @xsi:type MOET aanwezig zijn.</assert>
       <assert role="error"
-              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20240426T081156/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
+              see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20230613T223721/tmp-2.16.840.1.113883.2.4.6.10.100.41031-2020-05-27T000000.html"
               test="not(@xsi:type) or (string-length(@xsi:type) &gt; 0 and not(matches(@xsi:type,'\s')))">(obsElement1031): attribuut @xsi:type MOET datatype 'cs' hebben  - '<value-of select="@xsi:type"/>'</assert>
    </rule>
    <!--

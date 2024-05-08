@@ -4,25 +4,24 @@
              id="2.16.840.1.113883.2.4.3.11.60.100.11.2.422"
              name="W0422_HL7"
              displayName="W0422 Soort vaccinatie (HL7)"
-             effectiveDate="2016-12-09T00:00:00"
-             statusCode="final"
-             versionLabel="323">
-      <desc language="nl-NL">Soort vaccinatie. Alleen het codesysteem voor validatie.</desc>
+             effectiveDate="2018-09-05T00:00:00"
+             statusCode="final">
       <sourceCodeSystem id="2.16.840.1.113883.2.4.4.40.76"
                         identifierName="Soort vaccinatie"
                         canonicalUri="urn:oid:2.16.840.1.113883.2.4.4.40.76"
                         canonicalUriDSTU2="urn:oid:2.16.840.1.113883.2.4.4.40.76"
                         canonicalUriSTU3="urn:oid:2.16.840.1.113883.2.4.4.40.76"
                         canonicalUriR4="urn:oid:2.16.840.1.113883.2.4.4.40.76"
-                        canonicalUriR4B="urn:oid:2.16.840.1.113883.2.4.4.40.76"
-                        canonicalUriR5="urn:oid:2.16.840.1.113883.2.4.4.40.76"
-                        context="projects/jgz-/RIVMSoortVaccinatie-2.16.840.1.113883.2.4.4.40.76"/>
-      <publishingAuthority name="Nictiz" inherited="project">
-         <addrLine>Oude Middenweg 55</addrLine>
-         <addrLine>2491 AC Den Haag</addrLine>
-         <addrLine type="phone">070-3173450</addrLine>
-         <addrLine>http://www.nictiz.nl</addrLine>
-      </publishingAuthority>
+                        context="projects/jgz-"/>
+      <sourceCodeSystem id="2.16.840.1.113883.5.1008"
+                        identifierName="Null Flavor"
+                        canonicalUri="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"
+                        canonicalUriDSTU2="http://hl7.org/fhir/v3/NullFlavor"
+                        canonicalUriSTU3="http://hl7.org/fhir/v3/NullFlavor"
+                        canonicalUriR4="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"
+                        hl7v2table0396="NULLFL"
+                        context="external/hl7"/>
+      <publishingAuthority name="RIVM"/>
       <conceptList>
          <concept code="01"
                   codeSystem="2.16.840.1.113883.2.4.4.40.76"
@@ -328,6 +327,13 @@
             <designation displayName="MatGriep" type="preferred" language="nl-NL"/>
             <desc language="en-US">Maternale griep</desc>
          </concept>
+         <exception code="OTH"
+                    codeSystem="2.16.840.1.113883.5.1008"
+                    displayName="other"
+                    level="0"
+                    type="L">
+            <designation language="nl-NL" type="preferred" displayName="anders"/>
+         </exception>
       </conceptList>
    </valueSet>
 </valueSets>

@@ -141,7 +141,7 @@
       <rule fpi="RUL-EXPEL" context="/">
          <assert role="warning"
                  test="descendant-or-self::hl7:REPC_IN002170NL[hl7:interactionId[@root = '2.16.840.1.113883.1.6']]"
-                 see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20240426T081156/tmp-2.16.840.1.113883.2.4.6.10.100.16-2012-10-01T000000.html">(OpvragenVaccinatiestatus): In de instance werd het volgende element verwacht: descendant-or-self::hl7:REPC_IN002170NL[hl7:interactionId[@root = '2.16.840.1.113883.1.6']]</assert>
+                 see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20230613T223721/tmp-2.16.840.1.113883.2.4.6.10.100.16-2012-10-01T000000.html">(OpvragenVaccinatiestatus): In de instance werd het volgende element verwacht: descendant-or-self::hl7:REPC_IN002170NL[hl7:interactionId[@root = '2.16.840.1.113883.1.6']]</assert>
       </rule>
    </pattern>
    <include href="include/2.16.840.1.113883.2.4.6.10.100.16-2012-10-01T000000.sch"/>

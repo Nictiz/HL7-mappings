@@ -141,7 +141,7 @@
       <rule fpi="RUL-EXPEL" context="/">
          <assert role="warning"
                  test="descendant-or-self::hl7:MCCI_IN000002[hl7:interactionId[@root = '2.16.840.1.113883.1.6']]"
-                 see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20240426T081156/tmp-2.16.840.1.113883.2.4.3.11.60.102.10.0-2014-07-15T000000.html">(MCCI_IN000002): In de instance werd het volgende element verwacht: descendant-or-self::hl7:MCCI_IN000002[hl7:interactionId[@root = '2.16.840.1.113883.1.6']]</assert>
+                 see="http://decor.nictiz.nl/pub/jeugdgezondheidszorg/jgz-html-20230613T223721/tmp-2.16.840.1.113883.2.4.3.11.60.102.10.0-2014-07-15T000000.html">(MCCI_IN000002): In de instance werd het volgende element verwacht: descendant-or-self::hl7:MCCI_IN000002[hl7:interactionId[@root = '2.16.840.1.113883.1.6']]</assert>
       </rule>
    </pattern>
    <include href="include/2.16.840.1.113883.2.4.3.11.60.102.10.0-2014-07-15T000000.sch"/>
