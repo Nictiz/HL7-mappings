@@ -5,8 +5,7 @@ export wdxml=${wd}/../xml-JGZ
 export wdutil=${wd}/../xsl/sch-utils
 export wdxmlsvrloutput=${wd}/../xml-JGZ_svrl
 
-export dirSaxon=${wd}/lib/saxon-9
-export dirSaxon6=${wd}/lib/saxon-6
+export saxon=${wd}/../../../../YATC-tools/saxon/saxon.jar
 
 export xmlFiles=${wdxml}/*
 
@@ -53,33 +52,59 @@ then
 fi
 
 #echo "Validate version(s) ${folders_version[@]}"
-
+d_version_svrls=()
+d_version_usecases=()
 # Get all the SVRL and use case directories
 for f_version in "${folders_version[@]}"
 do
     #echo get files in $f_version
     # check if the SVRLs are present
-    d_svrl=()
+    echo Transforming files of JGZ $(basename -- "$f_version") ...
+    d_svrls=()
+    d_usecases=()
     for version_content in $wd/$f_version/*
     do
         DIRECTORY=$version_content
         d_content=$(basename -- "$DIRECTORY")
-        if [[ $d_content == hl7*_svrl ]] ;then
-            d_svrl+=($d_content)
+        if [[ $d_content == hl7*_closed_warnings_svrl ]] ;then
+            d_svrls+=($version_content)
         fi
         if [[ -d $version_content/hl7_instance ]]; then
-            echo usecase: $d_content 
-            d_usecase=$version_content
+            #echo usecase: $d_content 
+            d_usecases+=($version_content)
         fi
     done
-    echo SVRLs: ${d_svrl[@]}
+
+    #echo SVRLs: ${d_svrls[@]}
+
+    for d_usecase in $d_usecases
+    do
+        export FOLDER=$d_usecase
+        export name_usecase=$(basename -- "$FOLDER")
+
+        if [[ "$name_usecase" == "dossieroverdracht" ]]; then
+            #echo "do dossieroverdracht"
+            rm -r ${d_usecase}/hl7_instance_svrl/*
+            mkdir -p ${d_usecase}/hl7_instance_svrl
+            for hl7_instance in $d_usecase/hl7_instance/*
+            do
+                for d_svrl in ${d_svrls[@]}
+                do
+                    if [ -f $d_svrl/jgz-versturenDossieroverdrachtbericht-03.xsl ]; then
+                        name_hl7_instance=$(basename -- "$hl7_instance")
+                        #echo hl7_instance: $hl7_instance, svlr: $d_svrl/jgz-versturenDossieroverdrachtbericht-03.xsl
+                        echo $name_hl7_instance
+                        
+                        java -jar ${saxon} -xsl:${d_svrl}/jgz-versturenDossieroverdrachtbericht-03.xsl -s:${hl7_instance} -o:${d_usecase}/hl7_instance_svrl/${name_hl7_instance}
+                        #echo "`date` ($f) convert svrl to html"
+                        java -jar ${saxon} -xsl:${wd}/svrl2html.xsl -s:${d_usecase}/hl7_instance_svrl/${name_hl7_instance} -o:${d_usecase}/hl7_instance_svrl/${name_hl7_instance%.*}.html
+                        rm -f ${d_usecase}/hl7_instance_svrl/${name_hl7_instance}
+                    fi
+                done
+            done
+        fi
+    done
 done
-
-# Get the svrl files
-
-# Get the HL7 instances
-
-# Validate the HL7 instances with the corresponding svrl and convert to HTML
 
 
 
