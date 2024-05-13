@@ -7954,7 +7954,7 @@
       <ID>peri32-dataelement-3407</ID>
       <naam>Consanguïniteit (Observatie)</naam>
       <mapping/>
-      <profile/>
+      <profile>bc-MaternalObservation</profile>
       <in/>
       <zib/>
       <example/>
@@ -7964,7 +7964,7 @@
       <ID>peri32-dataelement-3500</ID>
       <naam>ConsanguïniteitDatumTijd</naam>
       <mapping/>
-      <profile/>
+      <profile>bc-MaternalObservation</profile>
       <in/>
       <zib/>
       <example/>
@@ -7974,7 +7974,7 @@
       <ID>peri32-dataelement-3499</ID>
       <naam>ConsanguïniteitWaarde</naam>
       <mapping/>
-      <profile/>
+      <profile>bc-MaternalObservation</profile>
       <in/>
       <zib/>
       <example/>
@@ -11264,6 +11264,16 @@
       <ID>peri32-dataelement-4143</ID>
       <naam>Toelichting</naam>
       <mapping>Observation.comment</mapping>
+      <profile>bc-BirthObservation</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-10247</ID>
+      <naam>DuurUitdrijvingWaarde</naam>
+      <mapping></mapping>
       <profile>bc-BirthObservation</profile>
       <in/>
       <zib/>
@@ -15651,7 +15661,7 @@
       <ID>peri32-dataelement-3525</ID>
       <naam>ACPercentielWaarde</naam>
       <mapping/>
-      <profile/>
+      <profile>IHE.MHD.Minimal.DocumentReference</profile>
       <in/>
       <zib/>
       <example/>
@@ -16341,7 +16351,7 @@
       <ID>peri32-dataelement-2437</ID>
       <naam>PlacentaLokalisatie (Observatie)</naam>
       <mapping>Observation</mapping>
-      <profile>bc-FetusObservation</profile>
+      <profile>bc-PlacentaLocalization</profile>
       <in>false</in>
       <zib/>
       <example/>
@@ -16351,8 +16361,18 @@
       <ID>peri32-dataelement-2438</ID>
       <naam>Datum/Tijd</naam>
       <mapping>Observation.effectiveDateTime</mapping>
-      <profile>bc-FetusObservation</profile>
+      <profile>bc-PlacentaLocalization</profile>
       <in>false</in>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-7867</ID>
+      <naam>SectioLittekenWaarde</naam>
+      <mapping/>
+      <profile>bc-PlacentaLocalization</profile>
+      <in/>
       <zib/>
       <example/>
       <searchurl/>
@@ -21257,6 +21277,16 @@
       <example/>
       <searchurl/>
    </record>
+<!--   <record>
+      <ID>peri32-dataelement-7948</ID>
+      <naam>AnticonceptieWaarde</naam>
+      <mapping>Observation</mapping>
+      <profile>bc-MaternalObservation</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>-->
    <record>
       <ID>peri32-dataelement-4330</ID>
       <naam>ObservatieDatumTijd</naam>
@@ -23540,31 +23570,31 @@
    <record>
       <ID>peri32-dataelement-1667</ID>
       <naam>Lichaamslengte</naam>
-      <mapping/>
-      <profile/>
-      <in/>
+      <mapping>Observation</mapping>
+      <profile>zib-BodyHeight</profile>
+      <in>true</in>
       <zib/>
-      <example/>
+      <example>https://simplifier.net/geboortezorg-stu3/observation-example-duplicate-186</example>
       <searchurl/>
    </record>
    <record>
       <ID>peri32-dataelement-1668</ID>
       <naam>LengteWaarde</naam>
-      <mapping/>
-      <profile/>
-      <in/>
+      <mapping>Observation.valueQuantity</mapping>
+      <profile>zib-BodyHeight</profile>
+      <in>true</in>
       <zib/>
-      <example/>
+      <example>https://simplifier.net/geboortezorg-stu3/observation-example-duplicate-186</example>
       <searchurl/>
    </record>
    <record>
       <ID>peri32-dataelement-1669</ID>
       <naam>LengteDatumTijd</naam>
-      <mapping/>
-      <profile/>
-      <in/>
-      <zib/>
-      <example/>
+      <mapping>Observation.effectiveDateTime</mapping>
+      <profile>zib-BodyHeight</profile>
+      <in>true</in>
+      <zib>NL-CM-12.2.4</zib>
+      <example>https://simplifier.net/geboortezorg-stu3/observation-example-duplicate-186</example>
       <searchurl/>
    </record>
    <record>
@@ -23772,6 +23802,415 @@
       <naam>Toelichting</naam>
       <mapping/>
       <profile/>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+<!--   navelstreng (observatie)-->
+   <record>
+      <ID>peri32-dataelement-7790</ID>
+      <naam>Navelstreng (Observatie)</naam>
+      <mapping/>
+      <profile>bc-UmbilicalCord</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>   
+   <record>
+      <ID>peri32-dataelement-7791</ID>
+      <naam>NavelstrengDatumTijd</naam>
+      <mapping/>
+      <profile>bc-UmbilicalCord</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-7846</ID>
+      <naam>NavelstrengWaarde</naam>
+      <mapping/>
+      <profile>bc-UmbilicalCord</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-7793</ID>
+      <naam>NavelstrengVatenWaarde</naam>
+      <mapping/>
+      <profile>bc-UmbilicalCord</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-7794</ID>
+      <naam>ObservatieMethode</naam>
+      <mapping/>
+      <profile>bc-UmbilicalCord</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-7799</ID>
+      <naam>Toelichting</naam>
+      <mapping/>
+      <profile>bc-UmbilicalCord</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+<!--   menstruatie (observatie)-->
+   <record>
+      <ID>peri32-dataelement-7983</ID>
+      <naam>Menstruatie (Observatie)</naam>
+      <mapping/>
+      <profile>bc-MaternalObservation</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-7984</ID>
+      <naam>ObservatieDatumTijd</naam>
+      <mapping/>
+      <profile>bc-MaternalObservation</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-7986</ID>
+      <naam>MenstruatieWaarde</naam>
+      <mapping/>
+      <profile>bc-MaternalObservation</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <!--   vloeien (observatie)-->
+   <record>
+      <ID>peri32-dataelement-7973</ID>
+      <naam> Vloeien (Observatie)</naam>
+      <mapping/>
+      <profile>bc-MaternalObservation</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-7974</ID>
+      <naam>ObservatieDatumTijd</naam>
+      <mapping/>
+      <profile>bc-MaternalObservation</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-7976</ID>
+      <naam>VloeienWaarde</naam>
+      <mapping/>
+      <profile>bc-MaternalObservation</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+<!--  sectiowond  -->
+   <record>
+      <ID>peri32-dataelement-7960</ID>
+      <naam>Sectiowond (Observatie)</naam>
+      <mapping/>
+      <profile>bc-MaternalObservation</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-7961</ID>
+      <naam>ObservatieDatumTijd</naam>
+      <mapping/>
+      <profile>bc-MaternalObservation</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-7962</ID>
+      <naam>SectiowondWaarde</naam>
+      <mapping/>
+      <profile>bc-MaternalObservation</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-7963</ID>
+      <naam>ObservatieMethode</naam>
+      <mapping/>
+      <profile>bc-MaternalObservation</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-7969</ID>
+      <naam>Toelichting</naam>
+      <mapping/>
+      <profile>bc-MaternalObservation</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+<!--   anticonceptie-->
+   <record>
+      <ID>peri32-dataelement-4329</ID>
+      <naam>Anticonceptie (Observatie)</naam>
+      <mapping/>
+      <profile>bbc-BirthControl</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-4330</ID>
+      <naam>ObservatieDatumTijd</naam>
+      <mapping/>
+      <profile>bc-BirthControl</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-7948</ID>
+      <naam>AnticonceptieWaarde</naam>
+      <mapping/>
+      <profile>bc-BirthControl</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-4332</ID>
+      <naam>GebruikAnticonceptieWaarde</naam>
+      <mapping/>
+      <profile>bc-BirthControl</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-4333</ID>
+      <naam>ObservatieMethode</naam>
+      <mapping/>
+      <profile>bc-BirthControl</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-4340</ID>
+      <naam>Toelichting</naam>
+      <mapping/>
+      <profile>bc-BirthControl</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+<!--   trisomie in de anamnese? (Observatie)-->
+   <record>
+      <ID>peri32-dataelement-10270</ID>
+      <naam>Trisomie in de anamnese? (Observatie)</naam>
+      <mapping/>
+      <profile>bc-MaternalObservation</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-10271</ID>
+      <naam>ObservatieDatumTijd</naam>
+      <mapping/>
+      <profile>bc-MaternalObservation</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-10273</ID>
+      <naam>TrisomieAnamneseWaarde</naam>
+      <mapping/>
+      <profile>bc-MaternalObservation</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-10274</ID>
+      <naam>ObservatieMethode</naam>
+      <mapping/>
+      <profile>bc-MaternalObservation</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-10279</ID>
+      <naam>Toelichting</naam>
+      <mapping/>
+      <profile>bc-MaternalObservation</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+<!--   Zorg voor kind (Observatie-->
+   <record>
+      <ID>peri32-dataelement-9982</ID>
+      <naam>ZorgVoorKind (Observatie)</naam>
+      <mapping/>
+      <profile>bc-AbilityToTakeCareOfChild</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-9983</ID>
+      <naam>ObservatieDatumTijd</naam>
+      <mapping/>
+      <profile>bc-AbilityToTakeCareOfChild</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-9985</ID>
+      <naam>OnzekerheidWaarde</naam>
+      <mapping/>
+      <profile>bc-AbilityToTakeCareOfChild</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-9992</ID>
+      <naam>VaardigheidWaarde</naam>
+      <mapping/>
+      <profile>bc-AbilityToTakeCareOfChild</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-9986</ID>
+      <naam>ObservatieMethode</naam>
+      <mapping/>
+      <profile>bc-AbilityToTakeCareOfChild</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-9991</ID>
+      <naam>Toelichting</naam>
+      <mapping/>
+      <profile>bc-AbilityToTakeCareOfChild</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+<!--   Conditie perineum (Observatie)-->
+   <record>
+      <ID>peri32-dataelement-7950</ID>
+      <naam>Conditie perineum (Observatie)</naam>
+      <mapping/>
+      <profile>bc-MaternalObservation</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-7951</ID>
+      <naam>ObservatieDatumTijd</naam>
+      <mapping/>
+      <profile>bc-MaternalObservation</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-7953</ID>
+      <naam>ConditiePerineumWaarde</naam>
+      <mapping/>
+      <profile>bc-MaternalObservation</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-7954</ID>
+      <naam>ObservatieMethode</naam>
+      <mapping/>
+      <profile>bc-MaternalObservation</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+   <record>
+      <ID>peri32-dataelement-7959</ID>
+      <naam>Toelichting</naam>
+      <mapping/>
+      <profile>bc-MaternalObservation</profile>
+      <in/>
+      <zib/>
+      <example/>
+      <searchurl/>
+   </record>
+<!--echografische bevindingen algemeen (Observatie)-->
+   <record>
+      <ID>peri32-dataelement-8921</ID>
+      <naam>ConclusieWaarde</naam>
+      <mapping/>
+      <profile>bc-PregnancyUltraSoundGeneralFindings</profile>
       <in/>
       <zib/>
       <example/>

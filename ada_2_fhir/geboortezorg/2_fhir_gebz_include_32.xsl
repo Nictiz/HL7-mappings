@@ -40,32 +40,32 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- dateT may be given for relative dates, only applicable for test instances -->
     <xsl:param name="dateT" as="xs:date?"/>
     
-    <xsl:param name="vrouwId" select="med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/vrouw/demografische_gegevens/patient/@value"/><!-- alleen voor 3.2 -->
-    <xsl:param name="kindId" select="med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/kind/demografische_gegevens/patient/@value"/><!-- alleen voor 3.2 -->
+    <xsl:param name="vrouwId" select="//med_mij_uitbreiding_verloskunde_beschikbaarstellen/vrouw/demografische_gegevens/patient/@value"/><!-- alleen voor 3.2 -->
+    <xsl:param name="kindId" select="//med_mij_uitbreiding_verloskunde_beschikbaarstellen/kind/demografische_gegevens/patient/@value"/><!-- alleen voor 3.2 -->
 
     <!-- ada instances -->
     <xsl:param name="patient-ada" as="element()*">
-        <xsl:copy-of select="med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/administratief/patient[@id=$vrouwId]"/>        
+        <xsl:copy-of select="//med_mij_uitbreiding_verloskunde_beschikbaarstellen/administratief/patient[@id=$vrouwId]"/>        
     </xsl:param>
 
     <xsl:param name="partner-ada" as="element()*">
-        <xsl:copy-of select="med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/administratief/patient[@id='partner']"></xsl:copy-of><!-- todo: filter op partner -->
+        <xsl:copy-of select="//med_mij_uitbreiding_verloskunde_beschikbaarstellen/administratief/patient[@id='partner']"></xsl:copy-of><!-- todo: filter op partner -->
     </xsl:param>
 
     <xsl:variable name="kind-ada" as="element()*">
-        <xsl:copy-of select="med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/administratief/patient[@id=$kindId]"></xsl:copy-of>
+        <xsl:copy-of select="//med_mij_uitbreiding_verloskunde_beschikbaarstellen/administratief/patient[@id=$kindId]"></xsl:copy-of>
     </xsl:variable>
 
     <xsl:param name="zorginstelling-ada" as="element()*">
-        <xsl:copy-of select="med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/administratief/zorgaanbieder"></xsl:copy-of>
+        <xsl:copy-of select="//med_mij_uitbreiding_verloskunde_beschikbaarstellen/administratief/zorgaanbieder"></xsl:copy-of>
      </xsl:param>
     
     <xsl:param name="verwijzing-zorginstelling-ada" as="element()*">
-<!--        <xsl:copy-of select="med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/administratief/...."></xsl:copy-of>-->
+<!--        <xsl:copy-of select="med_mij_uitbreiding_verloskunde_beschikbaarstellen/administratief/...."></xsl:copy-of>-->
     </xsl:param>
 
     <xsl:param name="zorgverlener-ada" as="element()*">
-         <xsl:copy-of select="med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/administratief/zorgverlener"></xsl:copy-of>
+         <xsl:copy-of select="//med_mij_uitbreiding_verloskunde_beschikbaarstellen/administratief/zorgverlener"></xsl:copy-of>
     </xsl:param>
     
     <!-- unieke related persons -->
@@ -92,7 +92,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- pregnancyId -->
     <!-- TODO: ophalen uit ada transactie (nu nog niet beschikbaar) -->
     <xsl:variable name="pregnancyId">
-        <xsl:for-each select="//med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/zwangerschapsgegevens/zwangerschap">
+        <xsl:for-each select="//med_mij_uitbreiding_verloskunde_beschikbaarstellen/zwangerschapsgegevens/zwangerschap">
             <xsl:value-of select="graviditeit/@value | a_terme_datum/@value | definitieve_a_terme_datum/@value"/>
         </xsl:for-each>
     </xsl:variable>
@@ -151,7 +151,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- hier hele pad, omdat anders dubbele resource, want komt op meerdere plekken voor in input file
             filter op reference werkt hier niet, want datatype reference zit in naamgegevens in input file en niet op zorgverlener niveau
             ada zorgverlener gebruiken werkt hier ook niet, dan foutmelding dat het geen document node is -->
-        <xsl:variable name="healthProfessional" select="med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart/administratief/zorgverlener"/>
+        <xsl:variable name="healthProfessional" select="//med_mij_uitbreiding_verloskunde_beschikbaarstellen/administratief/zorgverlener"/>
         
         <!-- Zorgverleners in PractitionerRoles -->
         <!-- AWE: the commented out version makes two different groups when @value and @root are in different order in the ada xml -->
@@ -356,7 +356,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="elementName" select="name(.)"/>
             <!-- need this later to create context element (ada context will be lost at that time) -->
             <xsl:variable name="context">
-                <xsl:for-each select="(ancestor::med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart)/zorgverlening/zorg_episode">
+                <xsl:for-each select="(ancestor::med_mij_uitbreiding_verloskunde_beschikbaarstellen)/zorgverlening/zorg_episode">
                     <context xmlns="http://hl7.org/fhir">
                         <xsl:apply-templates select="." mode="doMaternalRecordReference"/>  
                     </context>
@@ -444,7 +444,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
    
     <!-- Composition (nu alleen nog prio1) -->
     <xsl:variable name="composition" as="element(f:Composition)*">
-        <xsl:for-each select="//prio1_huidige_zwangerschap | //prio1_vorige_zwangerschap | //bevallingsgegevens_23 | //med_mij_01_beschikbaarstellen_integrale_zwangerschapskaart">
+        <xsl:for-each select="//prio1_huidige_zwangerschap | //prio1_vorige_zwangerschap | //bevallingsgegevens_23 | //med_mij_uitbreiding_verloskunde_beschikbaarstellen">
             <xsl:call-template name="bc-composition">
                 <xsl:with-param name="logicalId">
                     <xsl:value-of select="concat('samenvatting-zwangerschap', $pregnancyId, '-', $vrouwId)"/>
