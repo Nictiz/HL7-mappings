@@ -28,11 +28,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>TODO</xd:desc>
+        <xd:desc>Converts ADA decubitus_wond to FHIR Condition resource conforming to profile nl-core-PressureUlcer, and Observation and DocumentReference resources conforming to the profiles for the different wound characteristics, alle grouped using an Observation conforming to profile nl-core-wounds.WoundCharacteristics.</xd:desc>
     </xd:doc>
     
     <xd:doc>
-        <xd:desc>TODO</xd:desc>
+        <xd:desc>Entry template for ADA decubitus_wond. Creates the nl-core-PressureUlcer instance plus all relevant Observation resources for the wound characteristics.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
@@ -57,7 +57,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>TODO</xd:desc>
+        <xd:desc>Creates an nl-core-PressureUlcer instance as a Condition FHIR instance from ADA decubitus_wond element. This template is marked as 'internal' with an underscore for the name and mode, because it is not the entry point for the transformation of the ADA brandwond element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
@@ -77,7 +77,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <coding>
                         <system value="http://snomed.info/sct"/>
                         <code value="399912005"/>
-                        <display value="doorligwond"/>
+                        <display value="Pressure ulcer"/>
                     </coding>
                 </code>
                 <xsl:for-each select="anatomische_locatie">

@@ -28,11 +28,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>TODO</xd:desc>
+        <xd:desc>Helper stylesheet for the common components in zibs Burnwound, PressureUlcer and Wound. Converts ADA instances for these common components to the FHIR Observation and FHIR DocumentReference resources conforming to their respective profiles, and groups them in an Observation conforming to profile nl-core-wounds.WoundCharacteristics.</xd:desc>
     </xd:doc>
         
     <xd:doc>
-        <xd:desc>TODO</xd:desc>
+        <xd:desc>Creates an nl-core-wounds.WoundCharacteristics instance as an Observation FHIR instance from ADA brandwond, decubitus_wond or wond elements, if they contain characteristics that need to be expressed as Observations or DocumentReference resources.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
@@ -53,7 +53,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <coding>
                         <system value="http://snomed.info/sct"/>
                         <code value="225552003"/>
-                        <display value="bevinding betreffende verwonding"/>
+                        <display value="Wound finding"/>
                     </coding>
                 </code>
                 <xsl:call-template name="makeReference">
@@ -70,11 +70,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>TODO</xd:desc>
+        <xd:desc>Creates an nl-core-wounds.WoundLength instance as an Observation FHIR instance from ADA wondlengte element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
-    <xsl:template match="wondlengte" name="nl-core-wounds.WoundLength" mode="nl-core-wounds.WoundLength" as="element(f:Observation)?">
+    <xsl:template match="wondlengte[parent::decubitus_wond or parent::wond]" name="nl-core-wounds.WoundLength" mode="nl-core-wounds.WoundLength" as="element(f:Observation)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         
@@ -89,7 +89,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <coding>
                         <system value="http://loinc.org"/>
                         <code value="39126-8"/>
-                        <display value="Lengte [afmeting] in wond"/>
+                        <display value="Length of Wound"/>
                     </coding>
                 </code>
                 <xsl:call-template name="makeReference">
@@ -104,11 +104,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>TODO</xd:desc>
+        <xd:desc>Creates an nl-core-wounds.WoundWidth instance as an Observation FHIR instance from ADA wondbreedte element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
-    <xsl:template match="wondbreedte" name="nl-core-wounds.WoundWidth" mode="nl-core-wounds.WoundWidth" as="element(f:Observation)?">
+    <xsl:template match="wondbreedte[parent::decubitus_wond or parent::wond]" name="nl-core-wounds.WoundWidth" mode="nl-core-wounds.WoundWidth" as="element(f:Observation)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         
@@ -123,7 +123,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <coding>
                         <system value="http://loinc.org"/>
                         <code value="39125-0"/>
-                        <display value="Breedte [afmeting] in wond"/>
+                        <display value="Width of Wound"/>
                     </coding>
                 </code>
                 <xsl:call-template name="makeReference">
@@ -138,11 +138,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>TODO</xd:desc>
+        <xd:desc>Creates an nl-core-wounds.WoundDepth instance as an Observation FHIR instance from ADA wonddiepte element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
-    <xsl:template match="wonddiepte" name="nl-core-wounds.WoundDepth" mode="nl-core-wounds.WoundDepth" as="element(f:Observation)?">
+    <xsl:template match="wonddiepte[parent::decubitus_wond or parent::wond]" name="nl-core-wounds.WoundDepth" mode="nl-core-wounds.WoundDepth" as="element(f:Observation)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         
@@ -157,7 +157,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <coding>
                         <system value="http://loinc.org"/>
                         <code value="39127-6"/>
-                        <display value="Diepte [afmeting] in wond"/>
+                        <display value="Depth of Wound"/>
                     </coding>
                 </code>
                 <xsl:call-template name="makeReference">
@@ -172,11 +172,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>TODO</xd:desc>
+        <xd:desc>Creates an nl-core-wounds.DateOfLastDressingChange instance as an Observation FHIR instance from ADA datum_laatste_verbandwissel element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
-    <xsl:template match="datum_laatste_verbandwissel" name="nl-core-wounds.DateOfLastDressingChange" mode="nl-core-wounds.DateOfLastDressingChange" as="element(f:Observation)?">
+    <xsl:template match="datum_laatste_verbandwissel[parent::brandwond or parent::decubitus_wond or parent::wond]" name="nl-core-wounds.DateOfLastDressingChange" mode="nl-core-wounds.DateOfLastDressingChange" as="element(f:Observation)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         
@@ -190,8 +190,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <code>
                     <coding>
                         <system value="http://snomed.info/sct"/>
-                        <code value="360541000146109-6"/>
-                        <display value="datum van laatste verbandwissel"/>
+                        <code value="360541000146109"/>
+                        <display value="Date of last change of wound dressing"/>
                     </coding>
                 </code>
                 <xsl:call-template name="makeReference">
@@ -206,11 +206,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>TODO</xd:desc>
+        <xd:desc>Creates an nl-core-wounds.WoundImage instance as a DocumentReference FHIR instance from ADA wond_foto element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
-    <xsl:template match="wond_foto" name="nl-core-wounds.WoundImage" mode="nl-core-wounds.WoundImage" as="element(f:DocumentReference)?">
+    <xsl:template match="wond_foto[parent::brandwond or parent::decubitus_wond or parent::wond]" name="nl-core-wounds.WoundImage" mode="nl-core-wounds.WoundImage" as="element(f:DocumentReference)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         
@@ -248,12 +248,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xsl:template match="(brandwond | decubitus_wond | wond)[wond_weefsel/@value or wond_infectie/@value or wond_vochtigheid/@value or wond_rand/@value or wondlengte/@value or wondbreedte/@value or wonddiepte/@value or datum_laatste_verbandwissel/@value]"  mode="_generateDisplay">
-        <xsl:text>Bevinding betreffende verwonding</xsl:text>
+        <xsl:text>Wound finding</xsl:text>
     </xsl:template>
 
     <xsl:template match="wondlengte" mode="_generateDisplay">
         <xsl:variable name="parts" as="item()*">
-            <xsl:text>Wondlengte</xsl:text>
+            <xsl:text>Wound length</xsl:text>
             <xsl:if test=".[@value and @unit]">
                 <xsl:value-of select="concat(./@value, ' ', ./@unit)"/>
             </xsl:if>
@@ -263,7 +263,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:template match="wondbreedte" mode="_generateDisplay">
         <xsl:variable name="parts" as="item()*">
-            <xsl:text>Wondbreedte</xsl:text>
+            <xsl:text>Wound width</xsl:text>
             <xsl:if test=".[@value and @unit]">
                 <xsl:value-of select="concat(./@value, ' ', ./@unit)"/>
             </xsl:if>
@@ -273,7 +273,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:template match="wonddiepte" mode="_generateDisplay">
         <xsl:variable name="parts" as="item()*">
-            <xsl:text>Wonddiepte</xsl:text>
+            <xsl:text>Wound depth</xsl:text>
             <xsl:if test=".[@value and @unit]">
                 <xsl:value-of select="concat(./@value, ' ', ./@unit)"/>
             </xsl:if>
@@ -283,7 +283,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:template match="datum_laatste_verbandwissel" mode="_generateDisplay">
         <xsl:variable name="parts" as="item()*">
-            <xsl:text>Datum laatste verbandwissel</xsl:text>
+            <xsl:text>Date of last dressing change</xsl:text>
             <xsl:if test=".[@value]">
                 <xsl:value-of select="./@value"/>
             </xsl:if>
@@ -292,6 +292,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xsl:template match="wond_foto" mode="_generateDisplay">
-        <xsl:text>Wondfoto</xsl:text>
+        <xsl:text>Wound image</xsl:text>
     </xsl:template>
 </xsl:stylesheet>

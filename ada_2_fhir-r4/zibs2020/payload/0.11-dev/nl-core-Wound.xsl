@@ -28,11 +28,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>TODO</xd:desc>
+        <xd:desc>Converts ADA wond to FHIR Condition resource conforming to profile nl-core-Wound, and Observation and DocumentReference resources conforming to the profiles for the different wound characteristics, alle grouped using an Observation conforming to profile nl-core-wounds.WoundCharacteristics.</xd:desc>
     </xd:doc>
     
     <xd:doc>
-        <xd:desc>TODO</xd:desc>
+        <xd:desc>Entry template for ADA wond. Creates the nl-core-Wound instance plus all relevant Observation resources for the wound characteristics.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
@@ -60,6 +60,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
+    <xd:doc>
+        <xd:desc>Creates an nl-core-Wound instance as a Condition FHIR instance from ADA wond element. This template is marked as 'internal' with an underscore for the name and mode, because it is not the entry point for the transformation of the ADA brandwond element.</xd:desc>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
+    </xd:doc>
     <xsl:template match="wond" name="_nl-core-Wound" mode="_nl-core-Wound" as="element(f:Condition)">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
@@ -130,11 +135,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>TODO</xd:desc>
+        <xd:desc>Creates an nl-core-Wound.WoundTissue instance as an Observation FHIR instance from ADA wond_weefsel element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
-    <xsl:template match="wond_weefsel" name="nl-core-Wound.WoundTissue" mode="nl-core-Wound.WoundTissue" as="element(f:Observation)?">
+    <xsl:template match="wond_weefsel[parent::wond]" name="nl-core-Wound.WoundTissue" mode="nl-core-Wound.WoundTissue" as="element(f:Observation)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         
@@ -164,11 +169,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>TODO</xd:desc>
+        <xd:desc>Creates an nl-core-Wound.WoundInfection instance as an Observation FHIR instance from ADA wond_infectie element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
-    <xsl:template match="wond_infectie" name="nl-core-Wound.WoundInfection" mode="nl-core-Wound.WoundInfection" as="element(f:Observation)?">
+    <xsl:template match="wond_infectie[parent::wond]" name="nl-core-Wound.WoundInfection" mode="nl-core-Wound.WoundInfection" as="element(f:Observation)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         
@@ -198,11 +203,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>TODO</xd:desc>
+        <xd:desc>Creates an nl-core-Wound.WoundMoisture instance as an Observation FHIR instance from ADA wond_vochtigheid element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
-    <xsl:template match="wond_vochtigheid" name="nl-core-Wound.WoundMoisture" mode="nl-core-Wound.WoundMoisture" as="element(f:Observation)?">
+    <xsl:template match="wond_vochtigheid[parent::wond]" name="nl-core-Wound.WoundMoisture" mode="nl-core-Wound.WoundMoisture" as="element(f:Observation)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         
@@ -232,11 +237,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>TODO</xd:desc>
+        <xd:desc><xd:desc>Creates an nl-core-Wound.WoundEdge instance as an Observation FHIR instance from ADA wond_rand element.</xd:desc></xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
-    <xsl:template match="wond_rand" name="nl-core-Wound.WoundEdge" mode="nl-core-Wound.WoundEdge" as="element(f:Observation)?">
+    <xsl:template match="wond_rand[parent::wond]" name="nl-core-Wound.WoundEdge" mode="nl-core-Wound.WoundEdge" as="element(f:Observation)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="patient/*" as="element()?"/>
         
@@ -265,9 +270,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         </xsl:for-each>
     </xsl:template>
 
-    <xsl:template match="wond_weefsel" mode="_generateDisplay">
+    <xsl:template match="wond_weefsel[parent::wond]" mode="_generateDisplay">
         <xsl:variable name="parts" as="item()*">
-            <xsl:text>Wondweefsel</xsl:text>
+            <xsl:text>Wound tissue</xsl:text>
             <xsl:if test=".[@displayName]">
                 <xsl:value-of select="./@displayName"/>
             </xsl:if>
@@ -275,23 +280,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:value-of select="string-join($parts, ': ')"/>
     </xsl:template>
 
-    <xsl:template match="wond_infectie" mode="_generateDisplay">
+    <xsl:template match="wond_infectie[parent::wond]" mode="_generateDisplay">
         <xsl:variable name="parts" as="item()*">
-            <xsl:text>Wondinfectie</xsl:text>
+            <xsl:text>Wound infection</xsl:text>
             <xsl:choose>
                 <xsl:when test="./@value = 'true'">
-                    <xsl:text>geïnfecteerd</xsl:text>
+                    <xsl:text>infected</xsl:text>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:text>niet geïnfecteerd</xsl:text>
+                    <xsl:text>not infected</xsl:text>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
         <xsl:value-of select="string-join($parts, ': ')"/>   </xsl:template>
 
-    <xsl:template match="wond_vochtigheid" mode="_generateDisplay">
+    <xsl:template match="wond_vochtigheid[parent::wond]" mode="_generateDisplay">
         <xsl:variable name="parts" as="item()*">
-            <xsl:text>Wondvochtigheid</xsl:text>
+            <xsl:text>Wound moisture</xsl:text>
             <xsl:if test=".[@displayName]">
                 <xsl:value-of select="./@displayName"/>
             </xsl:if>
@@ -299,9 +304,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:value-of select="string-join($parts, ': ')"/>
     </xsl:template>
 
-    <xsl:template match="wond_rand" mode="_generateDisplay">
+    <xsl:template match="wond_rand[parent::wond]" mode="_generateDisplay">
         <xsl:variable name="parts" as="item()*">
-            <xsl:text>Wondrand</xsl:text>
+            <xsl:text>Wound edge</xsl:text>
             <xsl:if test=".[@displayName]">
                 <xsl:value-of select="./@displayName"/>
             </xsl:if>
