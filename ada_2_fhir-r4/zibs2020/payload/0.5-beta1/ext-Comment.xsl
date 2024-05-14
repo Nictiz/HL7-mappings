@@ -28,7 +28,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada string to FHIR extension conforming to profile ext-Comment</xd:desc>
+        <xd:desc>Converts ADA string to FHIR extension conforming to profile ext-Comment.</xd:desc>
     </xd:doc>
     
     <xd:doc>

@@ -41,7 +41,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- geannuleerd_indicator  -->
             <xsl:apply-templates select="f:status" mode="#current"/>
             <!-- toedieningsafspraak_stop_type -->
-            <xsl:apply-templates select="f:modifierExtension[@url = $urlExtStoptype]" mode="nl-core-ext-StopType"/>
+            <xsl:apply-templates select="f:modifierExtension[@url = $urlExtStoptype]" mode="ext-StopType"/>
             <!-- verstrekker -->
             <xsl:apply-templates select="f:performer" mode="#current"/>
             <!-- reden_afspraak -->
@@ -50,7 +50,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- geneesmiddel_bij_toedieningsafspraak -->
             <xsl:apply-templates select="f:medicationReference" mode="#current"/>
             <!-- gebruiksinstructie -->
-            <xsl:call-template name="nl-core-InstructionsForUse"/>
+            <xsl:call-template name="mp-InstructionsForUse"/>
             <!-- distributievorm, added as part of MP-257, borrowed from MedicationDispense -->
             <xsl:apply-templates select="f:extension[@url = $urlExtMedicationMedicationDispenseDistributionForm]" mode="nl-core-MedicationDispense"/>
             <!-- aanvullende_informatie -->
@@ -80,7 +80,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="f:medicationReference" mode="mp-AdministrationAgreement">
         <xsl:variable name="referenceValue" select="f:reference/@value"/>
         <geneesmiddel_bij_toedieningsafspraak>
-            <farmaceutisch_product datatype="reference" value="{nf:convert2NCName(f:reference/@value)}"/>
+            <farmaceutisch_product datatype="reference" value="{nf:process-reference-2NCName(f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}"/>
         </geneesmiddel_bij_toedieningsafspraak>
     </xsl:template>
 
@@ -139,7 +139,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:performer" mode="mp-AdministrationAgreement">
         <verstrekker>
-            <zorgaanbieder datatype="reference" value="{nf:convert2NCName(f:actor[f:type/@value='Organization']/f:reference/@value)}"/>
+            <zorgaanbieder datatype="reference" value="{nf:process-reference-2NCName(f:actor[f:type/@value='Organization']/f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}"/>
         </verstrekker>
     </xsl:template>
 

@@ -23,7 +23,7 @@
 
     <!-- local version of schematron, since we need the svrl xsl -->
     <property name="validate.dir" value="${build.dir}/fhir-xsd/R4-sch"/>
-    <property name="xsl.validate.svrl" value="${build.dir}/../../../validate/validate-svrl-output.xsl"/>
+    <property name="xsl.validate.svrl" value="${build.dir}/../../../util/validate-svrl-output.xsl"/>
 
     <target name="setup_30">
         <!-- beschikbaarstellen_medicatiegegevens -->
@@ -142,7 +142,7 @@
         <!--  bundles for beschikbaarstellen_medicatiegegevens -->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="usecase" value="${usecase.mg}"/>
-            <param name="xsl.convert" value="${build.dir}/Touchstone/${usecase.fhir.fixtures}/payload/${usecase.mg}_2_fhir.xsl"/>
+            <param name="xsl.convert" value="${build.dir}/touchstone/${usecase.fhir.fixtures}/payload/${usecase.mg}_2_fhir.xsl"/>
             <param name="xsl.in" value="${xsl.input.mg}"/>
             <param name="xsl.in.include" value="*.xml"/>
             <!-- the xsl will write it's resources using the output.dir, but ant xslt still needs an output dir -->
@@ -688,7 +688,7 @@
 
         <echo/>
         <echo>${echo.label} ${xsl.validate.svrl} make recap of validation in ${result.xml}</echo>
-        <xslt force="true" style="${xsl.validate.svrl}" in="${build.dir}/../../../validate/default_input.xml" out="${result.xml}">
+        <xslt force="true" style="${xsl.validate.svrl}" in="${xsl.validate.svrl}" out="${result.xml}">
             <factory name="${xsl.saxon.class}"/>
             <classpath location="${xsl.saxon}"/>
             <param name="inputDir" expression="${input.dir}"/>

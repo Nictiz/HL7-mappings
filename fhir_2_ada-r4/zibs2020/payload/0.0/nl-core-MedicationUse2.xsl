@@ -33,7 +33,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- volgens_afspraak_indicator -->
             <xsl:apply-templates select="f:extension[@url = $urlExtAsAgreedIndicator]" mode="#current"/>
             <!-- stoptype -->
-            <xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="nl-core-ext-StopType"/>
+            <xsl:apply-templates select="f:modifierExtension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-StopType']" mode="ext-StopType"/>
             <!-- gebruiksperiode -->
             <xsl:apply-templates select="f:effectivePeriod" mode="#current"/>
             <!-- gebruiks_product -->

@@ -81,7 +81,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:if>
                 <xsl:copy>
-                    <xsl:apply-templates select="@* | node()" mode="#current"/>
+                    <xsl:apply-templates select="@* | node()" mode="addNarrative"/>
                 </xsl:copy>
             </xsl:otherwise>
         </xsl:choose>

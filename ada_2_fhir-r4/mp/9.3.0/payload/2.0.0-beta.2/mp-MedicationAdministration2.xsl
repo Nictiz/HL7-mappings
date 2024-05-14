@@ -146,7 +146,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="in" select="$subject"/>
                     <xsl:with-param name="wrapIn">subject</xsl:with-param>
                 </xsl:call-template>
-                
+
                 <!-- relatie_contact relatie_zorgepisode in context -->
                 <xsl:for-each select="relatie_contact/(identificatie | identificatienummer)[@value]">
                     <context>
@@ -162,7 +162,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- relatie_episode when there is no relatie_contact -->
                 <xsl:if test="relatie_zorgepisode/(identificatie | identificatienummer)[@value] and not(relatie_contact/(identificatie | identificatienummer)[@value])">
                     <context>
-                        <xsl:apply-templates select="relatie_zorgepisode/identificatienummer[@value]" mode="nl-core-EpisodeOfCare-RefIdentifier"/>
+                        <xsl:if test="count(relatie_zorgepisode[(identificatie | identificatienummer)[@value]]) gt 1">
+                            <xsl:for-each select="relatie_zorgepisode[(identificatie | identificatienummer)[@value]][position() gt 1]">
+                                <xsl:call-template name="ext-Context-EpisodeOfCare">
+                                    <xsl:with-param name="in" select="identificatie | identificatienummer"/>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                        </xsl:if>
+
+                        <xsl:apply-templates select="relatie_zorgepisode[(identificatie | identificatienummer)[@value]][position() = 1]/(identificatie | identificatienummer)" mode="nl-core-EpisodeOfCare-RefIdentifier"/>
                     </context>
                 </xsl:if>
 

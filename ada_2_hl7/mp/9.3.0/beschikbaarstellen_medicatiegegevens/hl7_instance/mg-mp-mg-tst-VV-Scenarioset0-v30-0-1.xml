@@ -1,14 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xmlns:hl7nl="urn:hl7-nl:v3"
-           xmlns:pharm="urn:ihe:pharm:medication"
-           xmlns:f="http://hl7.org/fhir"
-           xmlns:sdtc="urn:hl7-org:sdtc"
-           xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+<organizer classCode="CLUSTER"
+           moodCode="EVN"
            xmlns="urn:hl7-org:v3"
-           classCode="CLUSTER"
-           moodCode="EVN">
+           xmlns:pharm="urn:ihe:pharm:medication">
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9411"/>
    <code code="102"
          displayName="Medicatiegegevens"
@@ -17,20 +10,24 @@
    <statusCode nullFlavor="NI"/>
    <recordTarget>
       <patientRole>
-         <id extension="999901084" root="2.16.840.1.113883.2.4.6.3"/>
+         <id extension="999901084"
+             root="2.16.840.1.113883.2.4.6.3"/>
          <patient>
             <name>
                <given qualifier="IN">R.</given>
                <prefix qualifier="VV">van </prefix>
                <family qualifier="BR">XXX_Sonnenberg</family>
             </name>
-            <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+            <administrativeGenderCode code="M"
+                                      codeSystem="2.16.840.1.113883.5.1"
+                                      displayName="Man"/>
             <birthTime value="19851120"/>
          </patient>
       </patientRole>
    </recordTarget>
    <component typeCode="COMP">
-      <supply classCode="SPLY" moodCode="RQO">
+      <supply classCode="SPLY"
+              moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9449"/>
          <id extension="MBH_300_QA1_VV"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
@@ -38,7 +35,8 @@
                displayName="Verstrekkingsverzoek"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <quantity value="60" unit="1">
+         <quantity value="60"
+                   unit="1">
             <translation value="60"
                          code="245"
                          displayName="stuk"
@@ -48,7 +46,8 @@
          <product>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+               <manufacturedMaterial classCode="MMAT"
+                                     determinerCode="KIND">
                   <code code="17469"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
                         displayName="IBUPROFEN TABLET 600MG"
@@ -65,7 +64,8 @@
             <assignedEntity>
                <id nullFlavor="NI"/>
                <representedOrganization>
-                  <id extension="01236578" root="2.16.528.1.1007.3.3"/>
+                  <id extension="01236578"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Apotheek De Gulle Gaper</name>
                </representedOrganization>
             </assignedEntity>
@@ -73,7 +73,8 @@
          <author>
             <time value="20221212080000"/>
             <assignedAuthor>
-               <id extension="000001111" root="2.16.528.1.1007.3.1"/>
+               <id extension="000001111"
+                   root="2.16.528.1.1007.3.1"/>
                <code code="0100"
                      codeSystem="2.16.840.1.113883.2.4.6.7"
                      displayName="Huisartsen, niet nader gespecificeerd"
@@ -87,7 +88,8 @@
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                  <id extension="00001111"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Huisartsenpraktijk Pulver &amp; Partners</name>
                   <addr use="WP">
                      <streetName>Dorpsstraat</streetName>
@@ -99,7 +101,8 @@
             </assignedAuthor>
          </author>
          <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
                <id extension="MBH_300_QA1_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -107,13 +110,17 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"/>
+               <consumable xsi:nil="true"
+                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
             </substanceAdministration>
          </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
+         <entryRelationship typeCode="COMP"
+                            inversionInd="true">
+            <procedure classCode="PROC"
+                       moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
-               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1" extension="MBH_300_QA1"/>
+               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                   extension="MBH_300_QA1"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -122,7 +129,8 @@
       </supply>
    </component>
    <component typeCode="COMP">
-      <supply classCode="SPLY" moodCode="RQO">
+      <supply classCode="SPLY"
+              moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9449"/>
          <id extension="MBH_300_QA2_VV"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
@@ -130,7 +138,8 @@
                displayName="Verstrekkingsverzoek"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <quantity value="300" unit="ml">
+         <quantity value="300"
+                   unit="ml">
             <translation value="300"
                          code="233"
                          displayName="milliliter"
@@ -140,7 +149,8 @@
          <product>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+               <manufacturedMaterial classCode="MMAT"
+                                     determinerCode="KIND">
                   <code code="3379"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
                         displayName="SENNOSIDEN A+B STROOP 2MG/ML"
@@ -157,7 +167,8 @@
             <assignedEntity>
                <id nullFlavor="NI"/>
                <representedOrganization>
-                  <id extension="01236578" root="2.16.528.1.1007.3.3"/>
+                  <id extension="01236578"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Apotheek De Gulle Gaper</name>
                </representedOrganization>
             </assignedEntity>
@@ -165,7 +176,8 @@
          <author>
             <time value="20220923080400"/>
             <assignedAuthor>
-               <id extension="000001111" root="2.16.528.1.1007.3.1"/>
+               <id extension="000001111"
+                   root="2.16.528.1.1007.3.1"/>
                <code code="0100"
                      codeSystem="2.16.840.1.113883.2.4.6.7"
                      displayName="Huisartsen, niet nader gespecificeerd"
@@ -179,7 +191,8 @@
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                  <id extension="00001111"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Huisartsenpraktijk Pulver &amp; Partners</name>
                   <addr use="WP">
                      <streetName>Dorpsstraat</streetName>
@@ -191,7 +204,8 @@
             </assignedAuthor>
          </author>
          <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
                <id extension="MBH_300_QA2_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -199,13 +213,17 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"/>
+               <consumable xsi:nil="true"
+                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
             </substanceAdministration>
          </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
+         <entryRelationship typeCode="COMP"
+                            inversionInd="true">
+            <procedure classCode="PROC"
+                       moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
-               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1" extension="MBH_300_QA2"/>
+               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                   extension="MBH_300_QA2"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -214,7 +232,8 @@
       </supply>
    </component>
    <component typeCode="COMP">
-      <supply classCode="SPLY" moodCode="RQO">
+      <supply classCode="SPLY"
+              moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9449"/>
          <id extension="MBH_300_QA3_VV"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
@@ -222,7 +241,8 @@
                displayName="Verstrekkingsverzoek"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <quantity value="4000" unit="ml">
+         <quantity value="4000"
+                   unit="ml">
             <translation value="4000"
                          code="233"
                          displayName="milliliter"
@@ -232,7 +252,8 @@
          <product>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+               <manufacturedMaterial classCode="MMAT"
+                                     determinerCode="KIND">
                   <code code="88749"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
                         displayName="VLOEIBARE VOEDING MET O.A. VITAMINE K"
@@ -249,7 +270,8 @@
             <assignedEntity>
                <id nullFlavor="NI"/>
                <representedOrganization>
-                  <id extension="01236578" root="2.16.528.1.1007.3.3"/>
+                  <id extension="01236578"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Apotheek De Gulle Gaper</name>
                </representedOrganization>
             </assignedEntity>
@@ -257,7 +279,8 @@
          <author>
             <time value="20221112081000"/>
             <assignedAuthor>
-               <id extension="000001111" root="2.16.528.1.1007.3.1"/>
+               <id extension="000001111"
+                   root="2.16.528.1.1007.3.1"/>
                <code code="0100"
                      codeSystem="2.16.840.1.113883.2.4.6.7"
                      displayName="Huisartsen, niet nader gespecificeerd"
@@ -271,7 +294,8 @@
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                  <id extension="00001111"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Huisartsenpraktijk Pulver &amp; Partners</name>
                   <addr use="WP">
                      <streetName>Dorpsstraat</streetName>
@@ -283,7 +307,8 @@
             </assignedAuthor>
          </author>
          <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
                <id extension="MBH_300_QA3_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -291,13 +316,17 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"/>
+               <consumable xsi:nil="true"
+                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
             </substanceAdministration>
          </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
+         <entryRelationship typeCode="COMP"
+                            inversionInd="true">
+            <procedure classCode="PROC"
+                       moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
-               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1" extension="MBH_300_QA3"/>
+               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                   extension="MBH_300_QA3"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -306,7 +335,8 @@
       </supply>
    </component>
    <component typeCode="COMP">
-      <supply classCode="SPLY" moodCode="RQO">
+      <supply classCode="SPLY"
+              moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9449"/>
          <id extension="MBH_300_QA4_VV"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
@@ -314,7 +344,8 @@
                displayName="Verstrekkingsverzoek"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <quantity value="30" unit="1">
+         <quantity value="30"
+                   unit="1">
             <translation value="30"
                          code="245"
                          displayName="stuk"
@@ -324,7 +355,8 @@
          <product>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+               <manufacturedMaterial classCode="MMAT"
+                                     determinerCode="KIND">
                   <code code="3956"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
                         displayName="ACETYLSALICYLZUUR TABLET 100MG"
@@ -341,7 +373,8 @@
             <assignedEntity>
                <id nullFlavor="NI"/>
                <representedOrganization>
-                  <id extension="01236578" root="2.16.528.1.1007.3.3"/>
+                  <id extension="01236578"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Apotheek De Gulle Gaper</name>
                </representedOrganization>
             </assignedEntity>
@@ -349,7 +382,8 @@
          <author>
             <time value="20221222081200"/>
             <assignedAuthor>
-               <id extension="000001111" root="2.16.528.1.1007.3.1"/>
+               <id extension="000001111"
+                   root="2.16.528.1.1007.3.1"/>
                <code code="0100"
                      codeSystem="2.16.840.1.113883.2.4.6.7"
                      displayName="Huisartsen, niet nader gespecificeerd"
@@ -363,7 +397,8 @@
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                  <id extension="00001111"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Huisartsenpraktijk Pulver &amp; Partners</name>
                   <addr use="WP">
                      <streetName>Dorpsstraat</streetName>
@@ -375,7 +410,8 @@
             </assignedAuthor>
          </author>
          <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
                <id extension="MBH_300_QA4_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -383,13 +419,17 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"/>
+               <consumable xsi:nil="true"
+                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
             </substanceAdministration>
          </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
+         <entryRelationship typeCode="COMP"
+                            inversionInd="true">
+            <procedure classCode="PROC"
+                       moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
-               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1" extension="MBH_300_QA4"/>
+               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                   extension="MBH_300_QA4"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -398,7 +438,8 @@
       </supply>
    </component>
    <component typeCode="COMP">
-      <supply classCode="SPLY" moodCode="RQO">
+      <supply classCode="SPLY"
+              moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9449"/>
          <id extension="MBH_300_QA5_VV"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
@@ -406,7 +447,8 @@
                displayName="Verstrekkingsverzoek"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <quantity value="56" unit="1">
+         <quantity value="56"
+                   unit="1">
             <translation value="56"
                          code="245"
                          displayName="stuk"
@@ -416,7 +458,8 @@
          <product>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+               <manufacturedMaterial classCode="MMAT"
+                                     determinerCode="KIND">
                   <code code="67903"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
                         displayName="PARACETAMOL 500MG TABLET"
@@ -433,7 +476,8 @@
             <assignedEntity>
                <id nullFlavor="NI"/>
                <representedOrganization>
-                  <id extension="01236578" root="2.16.528.1.1007.3.3"/>
+                  <id extension="01236578"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Apotheek De Gulle Gaper</name>
                </representedOrganization>
             </assignedEntity>
@@ -441,7 +485,8 @@
          <author>
             <time value="20221112081500"/>
             <assignedAuthor>
-               <id extension="000001111" root="2.16.528.1.1007.3.1"/>
+               <id extension="000001111"
+                   root="2.16.528.1.1007.3.1"/>
                <code code="0100"
                      codeSystem="2.16.840.1.113883.2.4.6.7"
                      displayName="Huisartsen, niet nader gespecificeerd"
@@ -455,7 +500,8 @@
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                  <id extension="00001111"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Huisartsenpraktijk Pulver &amp; Partners</name>
                   <addr use="WP">
                      <streetName>Dorpsstraat</streetName>
@@ -467,7 +513,8 @@
             </assignedAuthor>
          </author>
          <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
                <id extension="MBH_300_QA5_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -475,13 +522,17 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"/>
+               <consumable xsi:nil="true"
+                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
             </substanceAdministration>
          </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
+         <entryRelationship typeCode="COMP"
+                            inversionInd="true">
+            <procedure classCode="PROC"
+                       moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
-               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1" extension="MBH_300_QA5"/>
+               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                   extension="MBH_300_QA5"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
@@ -490,7 +541,8 @@
       </supply>
    </component>
    <component typeCode="COMP">
-      <supply classCode="SPLY" moodCode="RQO">
+      <supply classCode="SPLY"
+              moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9449"/>
          <id extension="MBH_300_QA6_VV"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
@@ -498,7 +550,8 @@
                displayName="Verstrekkingsverzoek"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <quantity value="21" unit="1">
+         <quantity value="21"
+                   unit="1">
             <translation value="21"
                          code="245"
                          displayName="stuks"
@@ -508,7 +561,8 @@
          <product>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+               <manufacturedMaterial classCode="MMAT"
+                                     determinerCode="KIND">
                   <code code="353"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
                         displayName="OXAZEPAM TABLET 10MG"
@@ -525,7 +579,8 @@
             <assignedEntity>
                <id nullFlavor="NI"/>
                <representedOrganization>
-                  <id extension="01236578" root="2.16.528.1.1007.3.3"/>
+                  <id extension="01236578"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Apotheek De Gulle Gaper</name>
                </representedOrganization>
             </assignedEntity>
@@ -533,7 +588,8 @@
          <author>
             <time value="20221227081800"/>
             <assignedAuthor>
-               <id extension="000001111" root="2.16.528.1.1007.3.1"/>
+               <id extension="000001111"
+                   root="2.16.528.1.1007.3.1"/>
                <code code="0100"
                      codeSystem="2.16.840.1.113883.2.4.6.7"
                      displayName="Huisartsen, niet nader gespecificeerd"
@@ -547,7 +603,8 @@
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                  <id extension="00001111"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Huisartsenpraktijk Pulver &amp; Partners</name>
                   <addr use="WP">
                      <streetName>Dorpsstraat</streetName>
@@ -559,7 +616,8 @@
             </assignedAuthor>
          </author>
          <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
                <id extension="MBH_300_QA6_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -567,13 +625,17 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"/>
+               <consumable xsi:nil="true"
+                           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
             </substanceAdministration>
          </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
+         <entryRelationship typeCode="COMP"
+                            inversionInd="true">
+            <procedure classCode="PROC"
+                       moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
-               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1" extension="MBH_300_QA6"/>
+               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                   extension="MBH_300_QA6"/>
                <code code="1"
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>

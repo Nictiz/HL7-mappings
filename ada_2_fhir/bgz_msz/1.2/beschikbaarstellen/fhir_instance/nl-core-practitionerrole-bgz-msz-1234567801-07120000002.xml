@@ -1,0 +1,76 @@
+<PractitionerRole xmlns="http://hl7.org/fhir">
+   <id value="nl-core-practitionerrole-bgz-msz-1234567801-07120000002"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-practitionerrole"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Zorgverlenerrol. Id: bgz-msz-patA-healthProf3 (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6)</caption>
+            <tbody>
+               <tr>
+                  <th>Zorgverlener</th>
+                  <td>
+                     <div>Acute SpoedDokter A.S. SpoedDokter Attent</div>
+                     <div>Ziekenhuis de Aandacht</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Specialisme</th>
+                  <td>
+                     <span title="Spoedeisende hulp arts (01.071 - http://fhir.nl/fhir/NamingSystem/uzi-rolcode)">Spoedeisende hulp arts</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Contactgegevens</th>
+                  <td>
+                     <div>
+                        <a href="tel:06-99990007">06-99990007</a> (Mobiel Werk)</div>
+                     <div>
+                        <a href="mailto:a.b.bakker@hospital.nl">a.b.bakker@hospital.nl</a> (E-mail Werk)</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"/>
+      <value value="bgz-msz-patA-healthProf3"/>
+   </identifier>
+   <practitioner>
+      <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-840-1-113883-2-4-6-1-12345678"/>
+      <display value="Acute SpoedDokter A.S. SpoedDokter Attent"/>
+   </practitioner>
+   <organization>
+      <reference value="Organization/nl-core-organization-bgz-msz-2-16-840-1-113883-2-4-6-1-20000002"/>
+      <display value="Ziekenhuis de Aandacht"/>
+   </organization>
+   <specialty>
+      <coding>
+         <system value="http://fhir.nl/fhir/NamingSystem/uzi-rolcode"/>
+         <code value="01.071"/>
+         <display value="Spoedeisende hulp arts"/>
+      </coding>
+   </specialty>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="MC"/>
+               <display value="Mobile Phone"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="06-99990007"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="a.b.bakker@hospital.nl"/>
+      <use value="work"/>
+   </telecom>
+</PractitionerRole>

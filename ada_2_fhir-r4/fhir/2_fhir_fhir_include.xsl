@@ -56,13 +56,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:variable name="ada2resourceType">
         <nm:map ada="alcohol_gebruik" resource="Observation" profile="nl-core-AlcoholUse"/>
-        <nm:map ada="alert" resource="Flag" profile="nl-core-alert"/>
+        <nm:map ada="alert" resource="Flag" profile="nl-core-Alert"/>
+        <nm:map ada="alert" resource="Flag" profile="cio-MedicationContraIndication"/>
         <nm:map ada="allergie_intolerantie" resource="AllergyIntolerance" profile="nl-core-AllergyIntolerance"/>
         <nm:map ada="apgar_score" resource="Observation" profile="nl-core-ApgarScore-1Minute"/>
         <nm:map ada="apgar_score" resource="Observation" profile="nl-core-ApgarScore-5Minute"/>
         <nm:map ada="apgar_score" resource="Observation" profile="nl-core-ApgarScore-10Minute"/>
         <nm:map ada="barthel_index" resource="Observation" profile="nl-core-BarthelADLIndex"/>
         <nm:map ada="behandel_aanwijzing" resource="Consent" profile="nl-core-TreatmentDirective2"/>
+        <nm:map ada="bewaking_besluit" resource="Flag" profile="cio-SurveillanceDecision"/>
         <nm:map ada="bloeddruk" resource="Observation" profile="nl-core-BloodPressure"/>
         <nm:map ada="brandwond" resource="Condition" profile="nl-core-Burnwound"/>
         <nm:map ada="brandwond" resource="Observation" profile="nl-core-wounds.WoundCharacteristics"/>
@@ -118,8 +120,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="o2saturatie" resource="Observation" profile="nl-core-O2Saturation"/>
         <nm:map ada="ontwikkeling_kind" resource="Observation" profile="nl-core-DevelopmentChild"/>
         <nm:map ada="opleiding" resource="Observation" profile="nl-core-Education"/>
-        <nm:map ada="overgevoeligheid" resource="AllergyIntolerance" profile="cio-HypersensitivityDispositionReaction"/>
-        <nm:map ada="overgevoeligheid" resource="Condition" profile="cio-HypersensitivityDisposition"/>
+        <nm:map ada="overgevoeligheid" resource="AllergyIntolerance" profile="cio-Hypersensitivity"/>
+        <nm:map ada="overgevoeligheid" resource="Condition" profile="cio-Condition"/>
         <nm:map ada="participatie_in_maatschappij" resource="Observation" profile="nl-core-ParticipationInSociety"/>
         <nm:map ada="patient" resource="Patient" profile="nl-core-Patient"/>
         <nm:map ada="pijn_score" resource="Observation" profile="nl-core-PainScore"/>
@@ -128,8 +130,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="product" resource="Device" profile="nl-core-MedicalDevice.Product"/>
         <nm:map ada="product" resource="Device" profile="nl-core-HearingFunction.HearingAid.Product"/>
         <nm:map ada="product" resource="Device" profile="nl-core-VisualFunction.VisualAid.Product"/>
-        <nm:map ada="reactie" resource="Observation" profile="cio-Reaction"/>
+        <nm:map ada="reactie" resource="AllergyIntolerance" profile="cio-Reaction"/>
+        <nm:map ada="reactie" resource="Condition" profile="cio-Condition"/>
         <nm:map ada="refractie" resource="Observation" profile="nl-core-Refraction"/>
+        <nm:map ada="registratie_gegevens" resource="Provenance" profile="cio-RegistrationData"/>
         <nm:map ada="schedelomvang" resource="Observation" profile="nl-core-HeadCircumference"/>
         <nm:map ada="soepverslag" resource="Composition" profile="nl-core-SOAPReport"/>
         <nm:map ada="soepregel" resource="Observation" profile="nl-core-SOAPReport.SOAPLine"/>

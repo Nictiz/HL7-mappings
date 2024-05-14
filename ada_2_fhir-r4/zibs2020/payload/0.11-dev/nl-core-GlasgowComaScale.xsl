@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 Copyright © Nictiz
-
 This program is free software; you can redistribute it and/or modify it under the terms of the
 GNU Lesser General Public License as published by the Free Software Foundation; either version
 2.1 of the License, or (at your option) any later version.
-
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
 without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 See the GNU Lesser General Public License for more details.
-
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 
@@ -45,21 +42,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-GlasgowComaScale"/>
-                </meta>                
-                <status value="final"/>                
+                </meta>
+                <status value="final"/>
                 <code>
                     <coding>
                         <system value="http://loinc.org"/>
                         <code value="35088-4"/>
                         <display value="Glasgow coma scale"/>
                     </coding>
-                </code>                
+                </code>
                 <xsl:for-each select="$subject">
                     <xsl:call-template name="makeReference">
                         <xsl:with-param name="in" select="$subject"/>
                         <xsl:with-param name="wrapIn" select="'subject'"/>
                     </xsl:call-template>
-                </xsl:for-each>                
+                </xsl:for-each>
                 <xsl:for-each select="glasgow_coma_scale_datum_tijd">
                     <effectiveDateTime>
                         <xsl:call-template name="date-to-datetime">
@@ -82,7 +79,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </text>
                     </note>
-                </xsl:for-each>               
+                </xsl:for-each>
                 <xsl:for-each select="gcs_eyes">
                     <component>
                         <code>
@@ -146,7 +143,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </valueCodeableConcept>
                     </component>
-                </xsl:for-each>  
+                </xsl:for-each>
             </Observation>
         </xsl:for-each>
     </xsl:template>

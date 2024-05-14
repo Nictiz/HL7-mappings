@@ -21,14 +21,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
-
+    
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada patient to FHIR resource conforming to profile
-            nl-core-Patient</xd:desc>
+        <xd:desc>Converts ADA patient to FHIR Patient resource conforming to profile nl-core-Patient.</xd:desc>
     </xd:doc>
 
+    <xsl:variable name="profileNamePatient">nl-core-Patient</xsl:variable>
+
     <xd:doc>
-        <xd:desc>Create an nl-core-Patient FHIR instance from the following ada parts: <xd:ul>
+        <xd:desc>Creates an nl-core-Patient instance as a Patient FHIR instance from the following ada parts: 
+            <xd:ul>
                 <xd:li>zib Patient</xd:li>
                 <xd:li>zib Nationality</xd:li>
                 <xd:li>zib LifeStance</xd:li>
@@ -40,15 +42,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xd:li>zib AddressInformation</xd:li>
             </xd:ul>
         </xd:desc>
-        <xd:param name="in">ADA element as input. Defaults to self.</xd:param> The following
-        components need to be passed as ada instances; although the zibs themselves are not related
-        to a patient, the translation to FHIR is specific to the Patient resource: <xd:param
-            name="nationality">Optional ada instance of zib Nationality</xd:param>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        
+        The following components need to be passed as ada instances; although the zibs themselves are not related to a patient, the translation to FHIR is specific to the Patient resource:
+        <xd:param name="nationality">Optional ada instance of zib Nationality</xd:param>
         <xd:param name="maritalStatus">Optional ada instance of zib MaritalStatus</xd:param>
-        <xd:param name="languageProficiency">Optional ada instances of zib
-            LanguageProficiency</xd:param>
-        <xd:param name="contactPersons">Optional ada instances of zib ContactPerson that need to be
-            mapped to Patient.contact in FHIR (this is not always the case).</xd:param>
+        <xd:param name="languageProficiency">Optional ada instances of zib LanguageProficiency</xd:param>
+        <xd:param name="contactPersons">Optional ada instances of zib ContactPerson that need to be mapped to Patient.contact in FHIR (this is not always the case).</xd:param>
     </xd:doc>
     <xsl:template match="patient" mode="nl-core-Patient" name="nl-core-Patient"
         as="element(f:Patient)">
@@ -64,7 +64,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
         <xsl:for-each select="$in">
             <Patient>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNamePatient"/>
+                </xsl:call-template>
                 <meta>
                     <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
