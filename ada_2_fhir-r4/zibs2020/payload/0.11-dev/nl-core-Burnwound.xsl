@@ -30,7 +30,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ADA brandwond to FHIR Condition resource conforming to profile nl-core-Burnwound, and Observation and DocumentReference resources conforming to the profiles for the different wound characteristics, alle grouped using an Observation conforming to profile nl-core-wounds.WoundCharacteristics.</xd:desc>
     </xd:doc>
-    
+
     <xd:doc>
         <xd:desc>Entry template for ADA brandwond. Creates the nl-core-Burnwound instance plus all relevant Observation resources for the wound characteristics.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -67,7 +67,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="profile">nl-core-Burnwound</xsl:with-param>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Burnwound"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>                
                 <category>
                     <coding>
@@ -140,7 +140,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <Observation>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Wound.WoundTissue"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <code>

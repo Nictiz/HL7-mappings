@@ -71,7 +71,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="profile">nl-core-PressureUlcer</xsl:with-param>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-PressureUlcer"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>                
                 <code>
                     <coding>

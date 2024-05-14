@@ -30,7 +30,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc scope="stylesheet">
         <xd:desc>Helper stylesheet for the common components in zibs Burnwound, PressureUlcer and Wound. Converts ADA instances for these common components to the FHIR Observation and FHIR DocumentReference resources conforming to their respective profiles, and groups them in an Observation conforming to profile nl-core-wounds.WoundCharacteristics.</xd:desc>
     </xd:doc>
-        
+
+    <xsl:variable name="profileNameWoundCharacteristics">nl-core-wounds.WoundCharacteristics</xsl:variable>
     <xd:doc>
         <xd:desc>Creates an nl-core-wounds.WoundCharacteristics instance as an Observation FHIR instance from ADA brandwond, decubitus_wond or wond elements, if they contain characteristics that need to be expressed as Observations or DocumentReference resources.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -43,10 +44,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:for-each select="$in">
             <Observation>
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile">nl-core-wounds.WoundCharacteristics</xsl:with-param>
+                    <xsl:with-param name="profile" select="$profileNameWoundCharacteristics"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-wounds.WoundLength"/>
+                    <profile value="{concat($urlBaseNictizProfile, $profileNameWoundCharacteristics)}"/>
                 </meta>
                 <status value="final"/>
                 <code>
@@ -82,7 +83,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <Observation>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-wounds.WoundLength"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <code>
@@ -116,7 +117,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <Observation>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-wounds.WoundWidth"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <code>
@@ -150,7 +151,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <Observation>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-wounds.WoundDepth"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <code>
@@ -184,7 +185,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <Observation>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-wounds.DateOfLastDressingChange"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <code>
@@ -218,7 +219,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <DocumentReference>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-wounds.WoundImage"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="current"/>
                 <type>

@@ -74,7 +74,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="profile">nl-core-Wound</xsl:with-param>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Wound"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>                
                 <category>
                     <coding>
@@ -147,7 +147,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <Observation>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Wound.WoundTissue"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <code>
@@ -181,7 +181,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <Observation>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Wound.WoundInfection"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <code>
@@ -215,7 +215,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <Observation>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Wound.WoundMoisture"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <code>
@@ -249,7 +249,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <Observation>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Wound.WoundEdge"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <code>
