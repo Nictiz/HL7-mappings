@@ -12010,6 +12010,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:with-param>
                         </xsl:call-template>
                         <xsl:value-of select="concat(local-name(), ' TODO')"/>
+                        <xsl:text> - </xsl:text>
+                        <xsl:value-of select="string-join(ancestor-or-self::*/local-name(), '/')"/>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
