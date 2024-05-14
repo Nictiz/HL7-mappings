@@ -78,7 +78,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </meta>                
                 <category>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="416462003"/>
                         <display value="verwonding"/>
                     </coding>
@@ -152,7 +152,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <status value="final"/>
                 <code>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="301112006"/>
                         <display value="observatie betreffende wondweefsel"/>
                     </coding>
@@ -186,7 +186,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <status value="final"/>
                 <code>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="405009004"/>
                         <display value="infectiestatus"/>
                     </coding>
@@ -220,7 +220,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <status value="final"/>
                 <code>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="301112006"/>
                         <display value="vochtigheid van verwonding"/>
                     </coding>
@@ -254,7 +254,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <status value="final"/>
                 <code>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="449747006"/>
                         <display value="bevinding betreffende rand van wond"/>
                     </coding>

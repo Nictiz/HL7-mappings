@@ -71,7 +71,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </meta>                
                 <category>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="125666000"/>
                         <display value="Burn"/>
                     </coding>
@@ -145,7 +145,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <status value="final"/>
                 <code>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="360531000146101"/>
                         <display value="Extent of burn"/>
                     </coding>

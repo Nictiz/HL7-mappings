@@ -52,7 +52,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <status value="final"/>
                 <code>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="225552003"/>
                         <display value="Wound finding"/>
                     </coding>
@@ -88,7 +88,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <status value="final"/>
                 <code>
                     <coding>
-                        <system value="http://loinc.org"/>
+                        <system value="{$oidMap[@oid=$oidLOINC]/@uri}"/>
                         <code value="39126-8"/>
                         <display value="Length of Wound"/>
                     </coding>
@@ -122,7 +122,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <status value="final"/>
                 <code>
                     <coding>
-                        <system value="http://loinc.org"/>
+                        <system value="{$oidMap[@oid=$oidLOINC]/@uri}"/>
                         <code value="39125-0"/>
                         <display value="Width of Wound"/>
                     </coding>
@@ -156,7 +156,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <status value="final"/>
                 <code>
                     <coding>
-                        <system value="http://loinc.org"/>
+                        <system value="{$oidMap[@oid=$oidLOINC]/@uri}"/>
                         <code value="39127-6"/>
                         <display value="Depth of Wound"/>
                     </coding>
@@ -190,7 +190,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <status value="final"/>
                 <code>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="360541000146109"/>
                         <display value="Date of last change of wound dressing"/>
                     </coding>
@@ -225,7 +225,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <type>
                     <coding>
                         <code>
-                            <system value="http://loinc.org"/>
+                            <system value="{$oidMap[@oid=$oidLOINC]/@uri}"/>
                             <code value="72170-4"/>
                             <display value="Photographic image"/>
                         </code>
