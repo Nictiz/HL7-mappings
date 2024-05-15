@@ -81,11 +81,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="code-to-CodeableConcept"/>
                     </coding>
                 </xsl:for-each>
-                <xsl:for-each select="anatomische_locatie">
+
+                <!-- Zib Burnwound contains a bug where Laterality is still defined as a separate concept, while it is
+                     also present in zib AnatomicalLocation, so we have to account for the situation where Location is
+                     present as part of AnatomicalLocation and where Location is seperate. -->
+                <xsl:if test=".[anatomische_locatie or lateraliteit]">
                     <bodySite>
-                        <xsl:call-template name="nl-core-AnatomicalLocation"/>
+                        <xsl:for-each select="lateraliteit">
+                            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+                                <valueCodeableConcept>
+                                    <xsl:call-template name="code-to-CodeableConcept">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>
+                                </valueCodeableConcept>
+                            </extension>
+                        </xsl:for-each>
+                        <xsl:for-each select="anatomische_locatie">
+                            <xsl:call-template name="nl-core-AnatomicalLocation"/>
+                        </xsl:for-each>
                     </bodySite>
-                </xsl:for-each>
+                </xsl:if>
+
                 <xsl:for-each select="$subject">
                     <xsl:call-template name="makeReference">
                         <xsl:with-param name="in" select="$subject"/>
