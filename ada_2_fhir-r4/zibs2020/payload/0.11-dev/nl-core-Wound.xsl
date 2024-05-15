@@ -31,6 +31,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ADA wond to FHIR Condition resource conforming to profile nl-core-Wound, and Observation and DocumentReference resources conforming to the profiles for the different wound characteristics, alle grouped using an Observation conforming to profile nl-core-wounds.WoundCharacteristics.</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameWound">nl-core-Wound</xsl:variable>
+    <xsl:variable name="profileNameWoundDrain">nl-core-Wound.Drain</xsl:variable>
+    <xsl:variable name="profileNameWoundDrainProduct">nl-core-Wound.Drain.Product</xsl:variable>
+
     <xd:doc>
         <xd:desc>Entry template for ADA wond. Creates the nl-core-Wound instance plus all relevant Observation resources for the wound characteristics.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -268,6 +272,40 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </valueCodeableConcept>
             </Observation>
         </xsl:for-each>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Creates an nl-core-Wound.Drain instance as a DeviceUseStatement FHIR instance from ADA wond/drain element.</xd:desc>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
+        <xd:param name="reasonReference">ADA instance used to populate the reasonReference element in the MedicalDevice.</xd:param>
+    </xd:doc>
+    <xsl:template match="drain/medisch_hulpmiddel" name="nl-core-Wound.Drain" mode="nl-core-Wound.Drain" as="element(f:DeviceUseStatement)?">
+        <xsl:param name="in" select="." as="element()?"/>
+        <xsl:param name="subject" select="patient/*" as="element()?"/>
+        <xsl:param name="reasonReference" select="ancestor::wond"/>
+        
+        <xsl:call-template name="nl-core-MedicalDevice">
+            <xsl:with-param name="subject" select="$subject"/>
+            <xsl:with-param name="profile" select="$profileNameWoundDrain"/>
+            <xsl:with-param name="reasonReference" select="$reasonReference"/>
+            <xsl:with-param name="reasonReferenceProfile" select="$profileNameWound"/>
+        </xsl:call-template>
+    </xsl:template>
+
+    <xd:doc>
+        <xd:desc>Creates an nl-core-Wound.Drain.Product instance as a Device FHIR instance from ADA product element.</xd:desc>
+        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
+    </xd:doc>
+    <xsl:template match="product" name="nl-core-Wound.Drain.Product" mode="nl-core-Wound.Drain.Product" as="element(f:Device)?">
+        <xsl:param name="in" select="." as="element()?"/>
+        <xsl:param name="subject" select="patient/*" as="element()?"/>
+        
+        <xsl:call-template name="nl-core-MedicalDevice.Product">
+            <xsl:with-param name="subject" select="$subject"/>
+            <xsl:with-param name="profile" select="$profileNameWoundDrainProduct"/>
+        </xsl:call-template>
     </xsl:template>
 
     <xsl:template match="wond_weefsel[parent::wond]" mode="_generateDisplay">

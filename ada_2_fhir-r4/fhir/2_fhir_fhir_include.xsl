@@ -112,6 +112,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-MedicalDevice"/>
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-HearingFunction.HearingAid"/>
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-VisualFunction.VisualAid"/>
+        <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-Wound.Drain"/>
         <nm:map ada="mobiliteit" resource="Observation" profile="nl-core-Mobility"/>
         <nm:map ada="monster" resource="Specimen" profile="nl-core-LaboratoryTestResult.Specimen"/>
         <nm:map ada="monster2" resource="Specimen" profile="nl-core-LaboratoryTestResult.Specimen"/>
@@ -130,6 +131,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="product" resource="Device" profile="nl-core-MedicalDevice.Product"/>
         <nm:map ada="product" resource="Device" profile="nl-core-HearingFunction.HearingAid.Product"/>
         <nm:map ada="product" resource="Device" profile="nl-core-VisualFunction.VisualAid.Product"/>
+        <nm:map ada="product" resource="Device" profile="nl-core-Wound.Drain.Product"/>
         <nm:map ada="reactie" resource="AllergyIntolerance" profile="cio-Reaction"/>
         <nm:map ada="reactie" resource="Condition" profile="cio-Condition"/>
         <nm:map ada="refractie" resource="Observation" profile="nl-core-Refraction"/>
@@ -292,6 +294,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 $in[not(self::patient or self::zorgverlener or self::zorgaanbieder)],
                 $in//horen_hulpmiddel/medisch_hulpmiddel,
                 $in//zien_hulpmiddel/medisch_hulpmiddel,
+                $in//drain/medisch_hulpmiddel,
                 $in//product[parent::medisch_hulpmiddel],
                 $in//visueel_resultaat[parent::tekst_uitslag],
                 $in//soepregel[parent::soepverslag],

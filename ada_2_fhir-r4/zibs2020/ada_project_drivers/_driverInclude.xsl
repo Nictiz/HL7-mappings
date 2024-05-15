@@ -791,6 +791,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="subject" select="$subject" as="element()"/>
                     </xsl:call-template>
                 </xsl:for-each>
+                <xsl:for-each select="nf:resolveAdaInstance(drain/medisch_hulpmiddel,$in)">
+                    <xsl:call-template name="nl-core-Wound.Drain">
+                        <xsl:with-param name="subject" select="$subject"/>
+                        <xsl:with-param name="reasonReference" select="$in"/>
+                    </xsl:call-template>
+                    <xsl:for-each select="product">
+                        <xsl:call-template name="nl-core-Wound.Drain.Product">
+                            <xsl:with-param name="subject" select="$subject"/>
+                        </xsl:call-template>    
+                    </xsl:for-each>
+                </xsl:for-each>
             </xsl:when>
             <xsl:when test="$localName = 'woonsituatie'">
                 <xsl:apply-templates select="$in" mode="nl-core-LivingSituation">
