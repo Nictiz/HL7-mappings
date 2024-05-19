@@ -82,6 +82,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:apply-templates select="node() except (f:id | f:meta | f:implicitRules | f:language | f:text | f:id/preceding-sibling::node() | f:meta/preceding-sibling::node() | f:implicitRules/preceding-sibling::node() | f:language/preceding-sibling::node() | f:text/preceding-sibling::node())" mode="addNarrative"/>
                 </xsl:copy>
             </xsl:when>
+            <xsl:when test="self::f:Bundle">
+                <xsl:copy>
+                    <xsl:apply-templates select="@* | node()" mode="addNarrative"/>
+                </xsl:copy>
+            </xsl:when>
             <!-- This is any other element. It might be a resource or a child of one that potentially leads to a supported resource like in a Bundle or List. Must be a FHIR resource or element to throw a warning. -->
             <xsl:otherwise>
                 <xsl:if test="matches(local-name(), '^[A-Z]') and not(local-name() = ('Bundle', 'Binary')) and namespace-uri() = 'http://hl7.org/fhir'">
@@ -17293,6 +17298,79 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="sep" select="$sep"/>
                         </xsl:call-template>
                     </xsl:when>
+                    <xsl:when test="f:reference[starts-with(@value, 'urn:uuid:') or starts-with(@value, 'urn:oid:')]">
+                        <xsl:variable name="targetId" select="f:reference/@value"/>
+                        <xsl:variable name="targetResource" select="ancestor::f:Bundle/f:entry[f:fullUrl/@value = $targetId]/f:resource/*" as="element()*"/>
+                        <xsl:variable name="processedResource" as="element()?">
+                            <xsl:choose>
+                                <xsl:when test="$targetResource/self::f:Patient[f:name] | $targetResource/self::f:Practitioner[f:name] | $targetResource/self::f:RelatedPerson[f:name]">
+                                    <xsl:element name="{$targetResource[1]/local-name()}" namespace="http://hl7.org/fhir">
+                                        <xsl:element name="text" namespace="http://hl7.org/fhir">
+                                            <div>
+                                                <xsl:call-template name="doDT_HumanName">
+                                                    <xsl:with-param name="in" select="($targetResource/f:name)[1]"/>
+                                                    <xsl:with-param name="textLang" select="$textLang"/>
+                                                    <xsl:with-param name="allowDiv" select="false()"/>
+                                                </xsl:call-template>
+                                            </div>
+                                        </xsl:element>
+                                    </xsl:element>
+                                </xsl:when>
+                                <xsl:when test="$targetResource/self::f:PractitionerRole">
+                                    <xsl:element name="{$targetResource[1]/local-name()}" namespace="http://hl7.org/fhir">
+                                        <xsl:element name="text" namespace="http://hl7.org/fhir">
+                                            <div>
+                                                <xsl:call-template name="doDT_CodeableConcept">
+                                                    <xsl:with-param name="in" select="($targetResource/f:specialty, $targetResource/f:code)[1]"/>
+                                                    <xsl:with-param name="textLang" select="$textLang"/>
+                                                </xsl:call-template>
+                                                <xsl:text> </xsl:text>
+                                                <xsl:call-template name="doDT_Reference">
+                                                    <xsl:with-param name="in" select="($targetResource/f:practitioner)[1]"/>
+                                                    <xsl:with-param name="textLang" select="$textLang"/>
+                                                    <xsl:with-param name="allowDiv" select="false()"/>
+                                                </xsl:call-template>
+                                                <xsl:if test="$targetResource/f:organization">
+                                                    <xsl:text> </xsl:text>
+                                                    <xsl:call-template name="doDT_Reference">
+                                                        <xsl:with-param name="in" select="($targetResource/f:organization)[1]"/>
+                                                        <xsl:with-param name="textLang" select="$textLang"/>
+                                                        <xsl:with-param name="allowDiv" select="false()"/>
+                                                    </xsl:call-template>
+                                                </xsl:if>
+                                            </div>
+                                        </xsl:element>
+                                    </xsl:element>
+                                </xsl:when>
+                                <xsl:when test="$targetResource/self::f:Organization[f:name]">
+                                    <xsl:element name="{$targetResource[1]/local-name()}" namespace="http://hl7.org/fhir">
+                                        <xsl:element name="text" namespace="http://hl7.org/fhir">
+                                            <div>
+                                                <xsl:call-template name="doDT_String">
+                                                    <xsl:with-param name="in" select="($targetResource/f:name)[1]"/>
+                                                    <xsl:with-param name="textLang" select="$textLang"/>
+                                                </xsl:call-template>
+                                            </div>
+                                        </xsl:element>
+                                    </xsl:element>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <!-- Skip contents ... -->
+                                    <xsl:copy/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:variable>
+                        <xsl:copy-of select="(local-name($targetResource[1]), $type)[1]"/>
+                        <xsl:text> </xsl:text>
+                        <xsl:choose>
+                            <xsl:when test="$processedResource/f:text">
+                                <xsl:copy-of select="$processedResource/f:text/*:div/node()"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="f:reference/@value"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:when>
                     <xsl:when test="f:reference[starts-with(@value, '#')]">
                         <xsl:variable name="targetId" select="substring-after(f:reference/@value, '#')"/>
                         <xsl:variable name="targetResource" select="ancestor::*/f:contained/*[f:id/@value = $targetId]" as="element()*"/>
@@ -17315,6 +17393,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:when>
                     <xsl:when test="f:reference">
                         <xsl:copy-of select="$type"/>
+                        <xsl:text> </xsl:text>
                         <xsl:call-template name="doDT_String">
                             <xsl:with-param name="in" select="f:reference"/>
                             <xsl:with-param name="textLang" select="$textLang"/>
