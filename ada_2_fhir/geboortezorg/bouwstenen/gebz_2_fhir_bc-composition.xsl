@@ -43,7 +43,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <coding> 
                     <system value="http://loinc.org"/> 
                     <code value="15508-5"/> 
-                    <display value="Labor and delivery records"/> 
+                    <display value="Dossier zwangerschap en bevalling [bevinding] (document)"/> 
                 </coding> 
             </type> 
             <xsl:for-each select="$adaPatient">

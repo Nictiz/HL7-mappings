@@ -38,16 +38,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <laboratory_test>
                 <xsl:choose>
                     <xsl:when test="$elementName=('bloedgroep_vrouw','laboratorium_test_bloedgroep')"> 
-                        <test_code code="883-9" codeSystem="2.16.840.1.113883.6.1" displayName="ABO group [Type] in Blood"/>
+                        <test_code code="883-9" codeSystem="2.16.840.1.113883.6.1" displayName="AB0-bloedgroep [type] in bloed"/>
                     </xsl:when>
                     <xsl:when test="$elementName=('rhesus_d_factor_vrouw','laboratorium_test_rhesus_d')">
-                        <test_code code="1305-2" codeSystem="2.16.840.1.113883.6.1" displayName="D Ag [Presence] in Blood"/>
+                        <test_code code="1305-2" codeSystem="2.16.840.1.113883.6.1" displayName="D Ag [aanwezigheid] in bloed"/>
                     </xsl:when>
                     <xsl:when test="$elementName=('rhesus_c_factor','laboratorium_test_rhesus_c')">
-                        <test_code code="1159-3" codeSystem="2.16.840.1.113883.6.1" displayName="little c Ag [Presence] on Red Blood Cells"/>
+                        <test_code code="1159-3" codeSystem="2.16.840.1.113883.6.1" displayName="Kleine c Ag [aanwezigheid] in erytrocyten"/>
                     </xsl:when>
                     <xsl:when test="$elementName='hb'">
-                        <test_code code="718-7" codeSystem="2.16.840.1.113883.6.1" displayName="Hemoglobin (Bld) [Mass/Vol]"/>
+                        <test_code code="718-7" codeSystem="2.16.840.1.113883.6.1" displayName="Hemoglobine [massa/volume] in bloed"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <!-- todo: testen of bovenstaande regels eruit kunnen, onderstaand zou altijd moeten werken (wellicht niet voor 2.3)-->

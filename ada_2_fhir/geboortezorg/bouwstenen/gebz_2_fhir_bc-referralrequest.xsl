@@ -126,7 +126,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <coding> 
                         <system value="http://snomed.info/sct"/> 
                         <code value="308292007"/> 
-                        <display value="Transfer of care (procedure)"/> 
+                        <display value="overdracht van zorg (verrichting)"/> 
                     </coding> 
                 </type>
                 <xsl:for-each select="$adaPatient">

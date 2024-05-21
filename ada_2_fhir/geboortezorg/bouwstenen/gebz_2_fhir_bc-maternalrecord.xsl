@@ -128,7 +128,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <coding>
                         <system value="http://snomed.info/sct"/>
                         <code value="364320009"/>
-                        <display value="Pregnancy observable (observable entity)"/>
+                        <display value="observatie betreffende zwangerschap (waarneembare entiteit)"/>
                     </coding>
                 </type>
                 <!-- voor 2.3 wordt eoc vanuit zwangerschap gevuld, voor 3.2 vanuit zorg_episode -->

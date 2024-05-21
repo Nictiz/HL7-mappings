@@ -54,7 +54,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <coding>
                             <system value="http://snomed.info/sct"/>
                             <code value="173300003"/>
-                            <display value="Disorder of pregnancy (disorder)"/>
+                            <display value="zwangerschapsstoornis (aandoening)"/>
                         </coding>
                     </category>
                 </xsl:when>
@@ -63,7 +63,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <coding>
                             <system value="http://snomed.info/sct"/>
                             <code value="362972006"/>
-                            <display value="Disorder of labor / delivery (disorder)"/>
+                            <display value="aandoening durante partu (aandoening)"/>
                         </coding>
                     </category>
                 </xsl:when>
@@ -72,7 +72,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <coding>
                             <system value="http://snomed.info/sct"/>
                             <code value="362973001"/>
-                            <display value="Postpartum disorder"/>
+                            <display value="aandoening tijdens kraamperiode (aandoening)"/>
                         </coding>
                     </category>
                 </xsl:when>
@@ -81,7 +81,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <coding>
                             <system value="http://snomed.info/sct"/>
                             <code value="414025005"/>
-                            <display value="Disorder of fetus or newborn (disorder)"/>
+                            <display value="aandoening van foetus of neonaat (aandoening)"/>
                         </coding>
                     </category>
                  </xsl:when>  
@@ -108,7 +108,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <coding>
                     <system value="http://loinc.org"/>
                     <code value="8352-7"/>
-                    <display value="Clothing worn during measure"/>
+                    <display value="Kleding gedragen tijdens meting [type]"/>
                 </coding>                   
             </xsl:when>
             <xsl:when test="@conceptId='2.16.840.1.113883.2.4.3.11.60.90.77.2.12.4099'">

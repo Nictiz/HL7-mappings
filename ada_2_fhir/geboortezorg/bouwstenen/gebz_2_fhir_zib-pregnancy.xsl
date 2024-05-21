@@ -122,7 +122,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <coding>
                         <system value="http://snomed.info/sct" />
                         <code value="364320009" />
-                        <display value="Pregnancy observable (observable entity)"/>
+                        <display value="observatie betreffende zwangerschap (waarneembare entiteit)"/>
                     </coding>
                 </code>
                 <xsl:for-each select="$adaPatient">
