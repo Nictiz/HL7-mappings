@@ -144,6 +144,7 @@
     <!-- FHIR profile / extension naming -->
     <xsl:variable name="urlBaseNictizProfile">http://nictiz.nl/fhir/StructureDefinition/</xsl:variable>
     <xsl:variable name="urlExtAdministrationAgreementAdditionalInformation"><xsl:value-of select="$urlBaseNictizProfile"/>ext-AdministrationAgreement.AdditionalInformation</xsl:variable>
+    <xsl:variable name="urlExtAnatomicalLocationLaterality"><xsl:value-of select="$urlBaseNictizProfile"/>ext-AnatomicalLocation.Laterality</xsl:variable>
     <xsl:variable name="urlExtAsAgreedIndicator"><xsl:value-of select="$urlBaseNictizProfile"/>ext-AsAgreedIndicator</xsl:variable>
     <xsl:variable name="urlExtComment"><xsl:value-of select="$urlBaseNictizProfile"/>ext-Comment</xsl:variable>
     <xsl:variable name="urlExtCommunicationPayloadContentCodeableConcept"><xsl:value-of select="$urlBaseNictizProfile"/>ext-Communication.Payload.ContentCodeableConcept</xsl:variable>
@@ -152,10 +153,12 @@
     <xsl:variable name="urlExtNLCodeSpecification"><xsl:value-of select="$urlBaseNictizProfile"/>code-specification</xsl:variable>
     <xsl:variable name="urlExtNLMissingTypeReference"><xsl:value-of select="$urlBaseNictizProfile"/>missing-type-reference</xsl:variable>
     <xsl:variable name="urlExtNLPractitionerRoleReference"><xsl:value-of select="$urlBaseNictizProfile"/>practitionerrole-reference</xsl:variable>
+    <xsl:variable name="urlExtIso21090ENqualifier">http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier</xsl:variable>
     <xsl:variable name="urlExtHL7DataAbsentReason">http://hl7.org/fhir/StructureDefinition/data-absent-reason</xsl:variable>
     <xsl:variable name="urlExtHL7NullFlavor">http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor</xsl:variable>
     <xsl:variable name="urlExtMedicationAdministration2AgreedDateTime"><xsl:value-of select="$urlBaseNictizProfile"/>ext-MedicationAdministration2.AgreedDateTime</xsl:variable>
     <xsl:variable name="urlExtMedicationAdministration2AgreedAmount"><xsl:value-of select="$urlBaseNictizProfile"/>ext-MedicationAdministration2.AgreedAmount</xsl:variable>
+    <xsl:variable name="urlExtMedicationAdministration2InjectionPatchSite"><xsl:value-of select="$urlBaseNictizProfile"/>ext-MedicationAdministration2.InjectionPatchSite</xsl:variable>
     <xsl:variable name="urlExtMedicationAdministration2ReasonForDeviation"><xsl:value-of select="$urlBaseNictizProfile"/>ext-MedicationAdministration2.ReasonForDeviation</xsl:variable>
     <xsl:variable name="urlExtMedicationAgreementAdditionalInformation"><xsl:value-of select="$urlBaseNictizProfile"/>ext-MedicationAgreement.MedicationAgreementAdditionalInformation</xsl:variable>
     <xsl:variable name="urlExtMedicationAgreementNextPractitioner"><xsl:value-of select="$urlBaseNictizProfile"/>ext-MedicationAgreement.NextPractitioner</xsl:variable>
@@ -169,6 +172,7 @@
     <xsl:variable name="urlExtRepeatPeriodCyclical"><xsl:value-of select="$urlBaseNictizProfile"/>zib-Medication-RepeatPeriodCyclicalSchedule</xsl:variable>
     <xsl:variable name="urlExtResourceCategory"><xsl:value-of select="$urlBaseNictizProfile"/>ext-ResourceCategory</xsl:variable>
     <xsl:variable name="urlExtStoptype"><xsl:value-of select="$urlBaseNictizProfile"/>ext-StopType</xsl:variable>
+    <xsl:variable name="urlExtRegistrationDateTime"><xsl:value-of select="$urlBaseNictizProfile"/>ext-RegistrationDateTime</xsl:variable>
     <!-- MP9 2.0.0-bèta version -->
     <xsl:variable name="urlExtTimeInterval-Period"><xsl:value-of select="$urlBaseNictizProfile"/>ext-TimeInterval-Period</xsl:variable>
     <xsl:variable name="urlExtTimeInterval-Duration"><xsl:value-of select="$urlBaseNictizProfile"/>ext-TimeInterval-Duration</xsl:variable>

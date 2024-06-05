@@ -222,10 +222,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="farmaceutisch_product" mode="_generateDisplay">
         <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)" as="element(product_code)?"/>
         <xsl:choose>
-            <xsl:when test="$most-specific-product-code[@displayName]">
+            <xsl:when test="$most-specific-product-code[not(@codeSystem = $oidHL7NullFlavor)][@displayName]">
                 <xsl:value-of select="normalize-space($most-specific-product-code/@displayName)"/>
             </xsl:when>
-            <xsl:when test="product_code[@displayName]">
+            <xsl:when test="product_code[not(@codeSystem = $oidHL7NullFlavor)][@displayName]">
                 <xsl:value-of select="normalize-space((product_code/@displayName)[1])"/>
             </xsl:when>
             <xsl:when test="product_specificatie[product_naam/@value]">

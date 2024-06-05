@@ -83,7 +83,8 @@ TODO
     </xd:doc>
     <xsl:template match="f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.MedicationDispenseAdditionalInformation']" mode="nl-core-MedicationDispense">
         <xsl:call-template name="CodeableConcept-to-code">
-            <xsl:with-param name="adaElementName" select="'medicatieverstrekking_aanvullende_informatie'"> </xsl:with-param>
+            <xsl:with-param name="in" select="f:valueCodeableConcept"/>
+            <xsl:with-param name="adaElementName" select="'medicatieverstrekking_aanvullende_informatie'"/>
         </xsl:call-template>
     </xsl:template>
 

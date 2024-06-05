@@ -127,11 +127,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="elemName">identificatie</xsl:with-param>
                 </xsl:call-template>
                 
-                <!-- wds_datum_tijd -->
+                <!-- registratie_datum_tijd -->
                 <xsl:call-template name="handleTS">
                     <xsl:with-param name="in" select="hl7:author/hl7:time"/>
-                    <xsl:with-param name="elemName">wisselend_doseerschema_datum_tijd</xsl:with-param>
-                    <xsl:with-param name="vagueDate" select="true()"/>
+                    <!-- vanaf mp9 3.0-beta.3 naamswijziging -->
+                    <xsl:with-param name="elemName">registratie_datum_tijd</xsl:with-param>
+                     <xsl:with-param name="vagueDate" select="true()"/>
                     <xsl:with-param name="datatype">datetime</xsl:with-param>
                 </xsl:call-template>
                 

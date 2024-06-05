@@ -24,30 +24,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:variable name="templateId-redenWijzigenOfStaken" as="xs:string*" select="'2.16.840.1.113883.2.4.3.11.60.20.77.10.9438', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9370', '2.16.840.1.113883.2.4.3.11.60.20.77.10.9270'"/>
 
     <xd:doc>
-        <xd:desc>Creates ada attributes taking a hl7 code element as input</xd:desc>
-        <xd:param name="current-hl7-code">The hl7 code element for which to create the attributes</xd:param>
-    </xd:doc>
-    <xsl:template name="mp9-code-attribs">
-        <xsl:param name="current-hl7-code" as="element()?" select="."/>
-
-        <xsl:for-each select="$current-hl7-code">
-            <xsl:choose>
-                <xsl:when test=".[@code]">
-                    <xsl:copy-of select="@code | @codeSystem | @codeSystemName | @codeSystemVersion | @displayName"/>
-                </xsl:when>
-                <xsl:when test=".[@nullFlavor]">
-                    <xsl:attribute name="code" select="./@nullFlavor"/>
-                    <xsl:attribute name="codeSystem" select="$oidHL7NullFlavor"/>
-                    <xsl:attribute name="displayName" select="$hl7NullFlavorMap[@hl7NullFlavor = @nullFlavor]/@displayName"/>
-                    <xsl:for-each select="hl7:originalText">
-                        <xsl:attribute name="originalText" select="."/>
-                    </xsl:for-each>
-                </xsl:when>
-            </xsl:choose>
-        </xsl:for-each>
-    </xsl:template>
-
-    <xd:doc>
         <xd:desc>Helper template for the relatie medicatieafspraak</xd:desc>
         <xd:param name="in">The hl7 building block which has the relations in entryRelationships. Defaults to context.</xd:param>
     </xd:doc>
@@ -418,12 +394,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 
     <xd:doc>
-        <xd:desc>Convert hl7:author/hl7:time into ada medicatieafspraak_datum_tijd</xd:desc>
+        <xd:desc>Convert hl7:author/hl7:time into ada registratie_datum_tijd</xd:desc>
     </xd:doc>
     <xsl:template match="hl7:author/hl7:time" mode="uni-Medicatieafspraak">
         <xsl:call-template name="handleTS">
             <xsl:with-param name="in" select="."/>
-            <xsl:with-param name="elemName">medicatieafspraak_datum_tijd</xsl:with-param>
+            <!-- vanaf mp9 3.0-beta.3 naamswijziging -->
+            <xsl:with-param name="elemName">registratie_datum_tijd</xsl:with-param>
             <xsl:with-param name="vagueDate" select="true()"/>
             <xsl:with-param name="datatype">datetime</xsl:with-param>
         </xsl:call-template>

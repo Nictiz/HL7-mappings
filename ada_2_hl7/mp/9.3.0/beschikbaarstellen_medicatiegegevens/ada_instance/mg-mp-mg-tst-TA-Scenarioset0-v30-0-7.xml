@@ -1,11 +1,10 @@
-<!--ada full xml for subscenario nr: 0-7-->
 <adaxml xsi:noNamespaceSchemaLocation="../../../9.3.0/beschikbaarstellen_medicatiegegevens/ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <meta status="new"
          created-by="medicatieprocesada"
          last-update-by="medicatieprocesada"
-         creation-date="2023-01-09T17:16:11.858+01:00"
-         last-update-date="2023-06-09T09:13:16.799+02:00"/>
+         creation-date="2024-03-19T14:12:22.917+01:00"
+         last-update-date="2024-03-19T14:12:22.917+01:00"/>
    <data>
       <beschikbaarstellen_medicatiegegevens app="mp-mp93"
                                             shortName="beschikbaarstellen_medicatiegegevens"
@@ -31,11 +30,11 @@
                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.2">
                <initialen value="R."
                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.4"/>
-               <naamgebruik value="1"
+               <naamgebruik conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.6"
+                            value="1"
                             code="NL1"
                             codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
-                            displayName="Eigen geslachtsnaam"
-                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.6"/>
+                            displayName="Eigen geslachtsnaam"/>
                <geslachtsnaam comment=""
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.7">
                   <voorvoegsels value="van"
@@ -44,17 +43,42 @@
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.9"/>
                </geslachtsnaam>
             </naamgegevens>
+            <adresgegevens conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.14"
+                           comment="">
+               <straat value="krommeweg"
+                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.15"/>
+               <huisnummer value="1001"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.16"/>
+               <huisnummerletter value="A"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.17"/>
+               <postcode value="1234QQ"
+                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.20"/>
+               <woonplaats value="Ons Dorp"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.21"/>
+               <land conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.23"
+                     value="157"
+                     code="NL"
+                     codeSystem="1.0.3166.1.2.2"
+                     codeSystemName="ISO 3166-1 (alpha-2)"
+                     codeSystemVersion="2020-10-26T00:00:00"
+                     displayName="Nederland"/>
+               <adres_soort conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.25"
+                            value="3"
+                            code="PHYS"
+                            codeSystem="2.16.840.1.113883.5.1119"
+                            displayName="Woon-/verblijfadres"/>
+            </adresgegevens>
             <identificatienummer value="999901084"
                                  root="2.16.840.1.113883.2.4.6.3"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.35"/>
             <geboortedatum value="1985-11-20"
                            datatype="datetime"
                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.36"/>
-            <geslacht value="2"
+            <geslacht conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.37"
+                      value="2"
                       code="M"
                       codeSystem="2.16.840.1.113883.5.1"
-                      displayName="Man"
-                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.37"/>
+                      displayName="Man"/>
          </patient>
          <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_300_QA1-->
          <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
@@ -66,9 +90,9 @@
                <identificatie value="MBH_300_QA1_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
-               <toedieningsafspraak_datum_tijd value="T-20D{09:00:00}"
-                                               datatype="datetime"
-                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.332"/>
+               <registratie_datum_tijd value="T-20D{09:00:00}"
+                                       datatype="datetime"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1481"/>
                <gebruiksperiode comment=""
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334">
                   <start_datum_tijd value="T-20D{00:00:00}"

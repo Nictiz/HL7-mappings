@@ -93,10 +93,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Template to convert f:name to naamgegevens</xd:desc>
+        <xd:desc>Template to convert f:name to naamgegevens, only the first occurance. The rest is handled in nl-core-NameInformation</xd:desc>
     </xd:doc>
-    <xsl:template match="f:name" mode="nl-core-Patient">
+    <xsl:template match="f:name[not(preceding-sibling::f:name)]" mode="nl-core-Patient">
         <xsl:apply-templates select="." mode="nl-core-NameInformation"/>
     </xsl:template>
+    <xd:doc>
+        <xd:desc>Do nothing for the name following the first name</xd:desc>
+    </xd:doc>
+    <xsl:template match="f:name[preceding-sibling::f:name]" mode="nl-core-Patient"/>
 
 </xsl:stylesheet>

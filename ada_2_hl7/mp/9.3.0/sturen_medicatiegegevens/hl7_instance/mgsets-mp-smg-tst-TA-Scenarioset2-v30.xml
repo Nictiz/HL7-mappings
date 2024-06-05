@@ -383,7 +383,7 @@
                displayName="Toedieningsafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 28 dec 2022, tot en met 6 jan 2023, 3 maal per dag 1 stuk, Oraal</text>
+         <text mediaType="text/plain">Vanaf 28 dec 2022, tot en met 6 jan 2023, elke dag om 19:00 1 stuk - let op, tijden exact aanhouden, Oraal</text>
          <effectiveTime xsi:type="IVL_TS"
                         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <low value="20221228000000"/>
@@ -425,16 +425,17 @@
                </representedOrganization>
             </assignedAuthor>
          </author>
-         <entryRelationship typeCode="COMP">
-            <observation classCode="OBS"
-                         moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9402"/>
-               <code code="12"
-                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"
-                     displayName="Aanvullende informatie Toedieningsafspraak"/>
-               <text xsi:type="ST"
-                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Bijwerking besproken</text>
-            </observation>
+         <entryRelationship typeCode="SUBJ"
+                            inversionInd="true">
+            <act classCode="ACT"
+                 moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
+               <code code="48767-8"
+                     codeSystem="2.16.840.1.113883.6.1"
+                     codeSystemName="LOINC"
+                     displayName="Annotation comment"/>
+               <text mediaType="text/plain">Bijwerking besproken</text>
+            </act>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="1"/>
@@ -445,9 +446,10 @@
                               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                               xmlns="http://hl7.org/fhir">
                   <repeat>
-                     <frequency value="3"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="true"/>
+                     </extension>
+                     <timeOfDay value="19:00:00"/>
                   </repeat>
                </effectiveTime>
                <doseQuantity>
@@ -554,16 +556,17 @@
                </code>
             </act>
          </entryRelationship>
-         <entryRelationship typeCode="COMP">
-            <observation classCode="OBS"
-                         moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9402"/>
-               <code code="12"
-                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"
-                     displayName="Aanvullende informatie Toedieningsafspraak"/>
-               <text xsi:type="ST"
-                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Gebruiksinstructie gegeven</text>
-            </observation>
+         <entryRelationship typeCode="SUBJ"
+                            inversionInd="true">
+            <act classCode="ACT"
+                 moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
+               <code code="48767-8"
+                     codeSystem="2.16.840.1.113883.6.1"
+                     codeSystemName="LOINC"
+                     displayName="Annotation comment"/>
+               <text mediaType="text/plain">Gebruiksinstructie gegeven</text>
+            </act>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="1"/>

@@ -1,16 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-model phase="#ALL" href="file:/C:/SVN/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_mgb.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xmlns:hl7nl="urn:hl7-nl:v3"
-           xmlns:pharm="urn:ihe:pharm:medication"
-           xmlns:f="http://hl7.org/fhir"
-           xmlns:sdtc="urn:hl7-org:sdtc"
-           xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+<organizer xmlns:pharm="urn:ihe:pharm:medication"
            xmlns="urn:hl7-org:v3"
            classCode="CLUSTER"
-           moodCode="EVN"
-           xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd">
+           moodCode="EVN">
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9411"/>
    <code code="102"
          displayName="Medicatiegegevens"
@@ -41,7 +32,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 1 jan 2023, tot en met 1 jan 2024, 1 maal per dag 1 stuk, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS">
+         <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
             <low value="20230101000000"/>
             <high value="20240101235959"/>
          </effectiveTime>
@@ -97,7 +88,9 @@
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
                   <repeat>
                      <frequency value="1"/>
                      <period value="1"/>
@@ -113,7 +106,7 @@
                                   codeSystemName="G-Standaardthesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">
@@ -203,7 +196,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">
@@ -229,7 +222,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 1 jan 2023, tot en met 1 jan 2024, 1 maal per dag 1 stuk, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS">
+         <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
             <low value="20230101000000"/>
             <high value="20240101235959"/>
          </effectiveTime>
@@ -271,7 +264,9 @@
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
                   <repeat>
                      <frequency value="1"/>
                      <period value="1"/>
@@ -287,7 +282,7 @@
                                   codeSystemName="G-Standaardthesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -299,7 +294,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">
@@ -394,7 +389,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 12 nov 2022, 1 maal per dag 1 stuk, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS">
+         <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
             <low value="20221112000000"/>
             <high nullFlavor="NI"/>
          </effectiveTime>
@@ -450,7 +445,9 @@
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
                   <repeat>
                      <frequency value="1"/>
                      <period value="1"/>
@@ -466,7 +463,7 @@
                                   codeSystemName="G-Standaardthesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">
@@ -560,7 +557,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">
@@ -586,7 +583,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 12 nov 2022, 1 maal per dag 1 stuk, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS">
+         <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
             <low value="20221112000000"/>
             <high nullFlavor="NI"/>
          </effectiveTime>
@@ -628,7 +625,9 @@
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
                   <repeat>
                      <frequency value="1"/>
                      <period value="1"/>
@@ -644,7 +643,7 @@
                                   codeSystemName="G-Standaardthesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -656,7 +655,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">
@@ -674,13 +673,151 @@
    <component typeCode="COMP">
       <supply classCode="SPLY" moodCode="EVN">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9364"/>
-         <id extension="MBH_300_herhalingen_MVE"
+         <id extension="MBH_300_herhalingen_MVE1"
              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
          <code displayName="Verstrekking"
                code="373784005"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <effectiveTime value="20221112120500"/>
+         <quantity value="30" unit="1">
+            <translation value="30"
+                         code="245"
+                         displayName="stuk"
+                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                         codeSystemName="G-Standaard thesaurus basiseenheden"/>
+         </quantity>
+         <product>
+            <manufacturedProduct>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
+               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                  <code code="1127047"
+                        codeSystem="2.16.840.1.113883.2.4.4.7"
+                        displayName="FUROSEMIDE APOTEX TABLET 40MG"
+                        codeSystemName="G-Standaard HPK">
+                     <translation code="5967"
+                                  codeSystem="2.16.840.1.113883.2.4.4.10"
+                                  displayName="FUROSEMIDE 40MG TABLET"
+                                  codeSystemName="G-Standaard PRK"/>
+                     <translation code="16810"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1"
+                                  displayName="FUROSEMIDE 40MG TABLET"
+                                  codeSystemName="G-Standaard GPK"/>
+                  </code>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </product>
+         <performer>
+            <assignedEntity>
+               <id nullFlavor="NI"/>
+               <representedOrganization>
+                  <id extension="01236578" root="2.16.528.1.1007.3.3"/>
+                  <name>Apotheek De Gulle Gaper</name>
+               </representedOrganization>
+            </assignedEntity>
+         </performer>
+         <entryRelationship typeCode="REFR">
+            <supply classCode="SPLY" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9312"/>
+               <id extension="MBH_300_herhalingen_VV"
+                   root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <code code="52711000146108"
+                     displayName="Request to dispense medication to patient"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+            </supply>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP" inversionInd="true">
+            <procedure classCode="PROC" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                   extension="MBH_300_herhalingen"/>
+               <code code="1"
+                     displayName="Medicamenteuze behandeling"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+            </procedure>
+         </entryRelationship>
+      </supply>
+   </component>
+   <component typeCode="COMP">
+      <supply classCode="SPLY" moodCode="EVN">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9364"/>
+         <id extension="MBH_300_herhalingen_MVE2"
+             root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+         <code displayName="Verstrekking"
+               code="373784005"
+               codeSystem="2.16.840.1.113883.6.96"
+               codeSystemName="SNOMED CT"/>
+         <effectiveTime value="20221212102405"/>
+         <quantity value="30" unit="1">
+            <translation value="30"
+                         code="245"
+                         displayName="stuk"
+                         codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                         codeSystemName="G-Standaard thesaurus basiseenheden"/>
+         </quantity>
+         <product>
+            <manufacturedProduct>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
+               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                  <code code="1127047"
+                        codeSystem="2.16.840.1.113883.2.4.4.7"
+                        displayName="FUROSEMIDE APOTEX TABLET 40MG"
+                        codeSystemName="G-Standaard HPK">
+                     <translation code="5967"
+                                  codeSystem="2.16.840.1.113883.2.4.4.10"
+                                  displayName="FUROSEMIDE 40MG TABLET"
+                                  codeSystemName="G-Standaard PRK"/>
+                     <translation code="16810"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1"
+                                  displayName="FUROSEMIDE 40MG TABLET"
+                                  codeSystemName="G-Standaard GPK"/>
+                  </code>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </product>
+         <performer>
+            <assignedEntity>
+               <id nullFlavor="NI"/>
+               <representedOrganization>
+                  <id extension="01236578" root="2.16.528.1.1007.3.3"/>
+                  <name>Apotheek De Gulle Gaper</name>
+               </representedOrganization>
+            </assignedEntity>
+         </performer>
+         <entryRelationship typeCode="REFR">
+            <supply classCode="SPLY" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9312"/>
+               <id extension="MBH_300_herhalingen_VV"
+                   root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <code code="52711000146108"
+                     displayName="Request to dispense medication to patient"
+                     codeSystem="2.16.840.1.113883.6.96"
+                     codeSystemName="SNOMED CT"/>
+            </supply>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP" inversionInd="true">
+            <procedure classCode="PROC" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                   extension="MBH_300_herhalingen"/>
+               <code code="1"
+                     displayName="Medicamenteuze behandeling"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+            </procedure>
+         </entryRelationship>
+      </supply>
+   </component>
+   <component typeCode="COMP">
+      <supply classCode="SPLY" moodCode="EVN">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9364"/>
+         <id extension="MBH_300_herhalingen_MVE3"
+             root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+         <code displayName="Verstrekking"
+               code="373784005"
+               codeSystem="2.16.840.1.113883.6.96"
+               codeSystemName="SNOMED CT"/>
+         <effectiveTime value="20230111094648"/>
          <quantity value="30" unit="1">
             <translation value="30"
                          code="245"
@@ -751,7 +888,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 2 jan 2023, tot en met 11 jan 2023, 3 maal per dag 1 stuk, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS">
+         <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
             <low value="20230102000000"/>
             <high value="20230111235959"/>
          </effectiveTime>
@@ -763,13 +900,13 @@
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="17205"
+                  <code code="199311"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
-                        displayName="FENETICILLINE CAPSULE 500MG"
+                        displayName="MODAFINIL TABLET 200MG"
                         codeSystemName="G-Standaard PRK">
-                     <translation code="41092"
+                     <translation code="179051"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="FENETICILLINE 500MG CAPSULE"
+                                  displayName="MODAFINIL TABLET 200MG"
                                   codeSystemName="G-Standaard GPK"/>
                   </code>
                </manufacturedMaterial>
@@ -807,7 +944,9 @@
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
                   <repeat>
                      <frequency value="3"/>
                      <period value="1"/>
@@ -823,7 +962,7 @@
                                   codeSystemName="G-Standaardthesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">
@@ -858,13 +997,13 @@
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="17205"
+                  <code code="199311"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
-                        displayName="FENETICILLINE CAPSULE 500MG"
+                        displayName="MODAFINIL TABLET 200MG"
                         codeSystemName="G-Standaard PRK">
-                     <translation code="41092"
+                     <translation code="179051"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="FENETICILLINE 500MG CAPSULE"
+                                  displayName="MODAFINIL TABLET 200MG"
                                   codeSystemName="G-Standaard GPK"/>
                   </code>
                </manufacturedMaterial>
@@ -924,7 +1063,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">
@@ -950,7 +1089,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 2 jan 2023, tot en met 11 jan 2023, 3 maal per dag 1 stuk, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS">
+         <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
             <low value="20230102000000"/>
             <high value="20230111235959"/>
          </effectiveTime>
@@ -962,17 +1101,17 @@
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="425087"
+                  <code code="2842246"
                         codeSystem="2.16.840.1.113883.2.4.4.7"
-                        displayName="BROXIL CAPSULE 500MG"
+                        displayName="MODAFINIL FOCUS TABLET 200MG"
                         codeSystemName="G-Standaard HPK">
-                     <translation code="17205"
+                     <translation code="199311"
                                   codeSystem="2.16.840.1.113883.2.4.4.10"
-                                  displayName="FENETICILLINE CAPSULE 500MG"
+                                  displayName="MODAFINIL TABLET 200MG"
                                   codeSystemName="G-Standaard PRK"/>
-                     <translation code="41092"
+                     <translation code="179051"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="FENETICILLINE 500MG CAPSULE"
+                                  displayName="MODAFINIL TABLET 200MG"
                                   codeSystemName="G-Standaard GPK"/>
                   </code>
                </manufacturedMaterial>
@@ -992,7 +1131,9 @@
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
                   <repeat>
                      <frequency value="3"/>
                      <period value="1"/>
@@ -1008,7 +1149,7 @@
                                   codeSystemName="G-Standaardthesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -1020,7 +1161,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">
@@ -1056,17 +1197,17 @@
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
                <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
-                  <code code="425087"
+                  <code code="2842246"
                         codeSystem="2.16.840.1.113883.2.4.4.7"
-                        displayName="BROXIL CAPSULE 500MG"
+                        displayName="MODAFINIL FOCUS TABLET 200MG"
                         codeSystemName="G-Standaard HPK">
-                     <translation code="17205"
+                     <translation code="199311"
                                   codeSystem="2.16.840.1.113883.2.4.4.10"
-                                  displayName="FENETICILLINE CAPSULE 500MG"
+                                  displayName="MODAFINIL TABLET 200MG"
                                   codeSystemName="G-Standaard PRK"/>
-                     <translation code="41092"
+                     <translation code="179051"
                                   codeSystem="2.16.840.1.113883.2.4.4.1"
-                                  displayName="FENETICILLINE 500MG CAPSULE"
+                                  displayName="MODAFINIL TABLET 200MG"
                                   codeSystemName="G-Standaard GPK"/>
                   </code>
                </manufacturedMaterial>
@@ -1085,7 +1226,9 @@
             <participantRole classCode="SDLOC">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9091"/>
                <addr>
-                  <desc>Dorpsrand 200,1256ZZ Ons Dorp</desc>
+                  <desc>
+                   Dorpsrand 200,1256ZZ Ons Dorp 
+               </desc>
                </addr>
             </participantRole>
          </participant>
@@ -1096,7 +1239,9 @@
                      displayName="Aanschrijfdatum"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"
                      codeSystemName="MP Observaties"/>
-               <value xsi:type="TS" value="20230101110700"/>
+               <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                      xsi:type="TS"
+                      value="20230101110700"/>
             </observation>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -1133,7 +1278,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 23 dec 2022, tot en met 20 jul 2023, 1 maal per dag 1 stuk, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS">
+         <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
             <low value="20221223000000"/>
             <high value="20230720235959"/>
          </effectiveTime>
@@ -1189,7 +1334,9 @@
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
                   <repeat>
                      <frequency value="1"/>
                      <period value="1"/>
@@ -1205,7 +1352,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">
@@ -1294,7 +1441,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">
@@ -1320,7 +1467,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 23 dec 2022, tot en met 20 jul 2023, 1 maal per dag 1 stuk, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS">
+         <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
             <low value="20221223000000"/>
             <high value="20230720235959"/>
          </effectiveTime>
@@ -1370,7 +1517,9 @@
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
                   <repeat>
                      <frequency value="1"/>
                      <period value="1"/>
@@ -1386,7 +1535,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -1398,7 +1547,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">
@@ -1501,7 +1650,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 1 jan 2023, tot en met 31 mei 2023, 1 maal per dag 1 stuk, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS">
+         <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
             <low value="20230101000000"/>
             <high value="20230531235959"/>
          </effectiveTime>
@@ -1557,7 +1706,9 @@
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
                   <repeat>
                      <frequency value="1"/>
                      <period value="1"/>
@@ -1573,7 +1724,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">
@@ -1662,7 +1813,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">
@@ -1688,7 +1839,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 1 jan 2023, tot en met 31 mei 2023, 1 maal per dag 1 stuk, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS">
+         <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
             <low value="20230101000000"/>
             <high value="20230531235959"/>
          </effectiveTime>
@@ -1730,7 +1881,9 @@
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
                   <repeat>
                      <frequency value="1"/>
                      <period value="1"/>
@@ -1746,7 +1899,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -1758,7 +1911,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">
@@ -1856,7 +2009,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 1 jan 2023, tot en met 14 jan 2023, 4 maal per dag 1 stuk, oraal</text>
-         <effectiveTime xsi:type="IVL_TS">
+         <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
             <low value="20230101000000"/>
             <high value="20230114235959"/>
          </effectiveTime>
@@ -1912,7 +2065,9 @@
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
                   <repeat>
                      <frequency value="4"/>
                      <period value="1"/>
@@ -1928,7 +2083,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">
@@ -2019,7 +2174,9 @@
                      codeSystemName="SNOMED CT"
                      code="153931000146103"
                      codeSystem="2.16.840.1.113883.6.96"/>
-               <value xsi:type="CE" nullFlavor="OTH">
+               <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                      xsi:type="CE"
+                      nullFlavor="OTH">
                   <originalText>B2</originalText>
                </value>
             </observation>
@@ -2033,7 +2190,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">

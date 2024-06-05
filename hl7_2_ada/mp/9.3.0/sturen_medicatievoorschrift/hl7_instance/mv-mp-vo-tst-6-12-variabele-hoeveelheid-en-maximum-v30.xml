@@ -1,15 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--Generated from ada instance with title: "TEST Scenarioset 6 Variabele hoeveelheid en maximum" and id: "mv-mp-vo-tst-6-12-variabele-hoeveelheid-en-maximum-v30".-->
-<organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xmlns="urn:hl7-org:v3"
-           xmlns:cda="urn:hl7-org:v3"
-           xmlns:hl7nl="urn:hl7-nl:v3"
-           xmlns:pharm="urn:ihe:pharm:medication"
-           xmlns:sdtc="urn:hl7-org:sdtc"
-           xmlns:hl7="urn:hl7-org:v3"
+<organizer classCode="CLUSTER"
+           moodCode="EVN"
            xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd"
-           classCode="CLUSTER"
-           moodCode="EVN">
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="urn:hl7-org:v3">
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9433"/>
    <code code="95"
          displayName="Voorschrift"
@@ -18,19 +11,23 @@
    <statusCode nullFlavor="NI"/>
    <recordTarget>
       <patientRole>
-         <id extension="999900602" root="2.16.840.1.113883.2.4.6.3"/>
+         <id extension="999900602"
+             root="2.16.840.1.113883.2.4.6.3"/>
          <patient>
             <name>
                <given qualifier="IN">G.</given>
                <family qualifier="BR">XXX_Hemsbergen</family>
             </name>
-            <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            <administrativeGenderCode code="F"
+                                      codeSystem="2.16.840.1.113883.5.1"
+                                      displayName="Vrouw"/>
             <birthTime value="19631102"/>
          </patient>
       </patientRole>
    </recordTarget>
    <component typeCode="COMP">
-      <substanceAdministration classCode="SBADM" moodCode="RQO">
+      <substanceAdministration classCode="SBADM"
+                               moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9430"/>
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9429"/>
          <id extension="MBH_300_variabelehoeveelheidenmaximum_MA"
@@ -51,7 +48,8 @@
          <consumable>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+               <manufacturedMaterial classCode="MMAT"
+                                     determinerCode="KIND">
                   <code code="42773"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
                         displayName="CODEINE TABLET 10MG (FOSFAAT)"
@@ -67,13 +65,15 @@
          <author>
             <time value="20230101084500"/>
             <assignedAuthor>
-               <id extension="000001111" root="2.16.528.1.1007.3.1"/>
+               <id extension="000001111"
+                   root="2.16.528.1.1007.3.1"/>
                <code code="0100"
                      codeSystem="2.16.840.1.113883.2.4.6.7"
                      displayName="Huisartsen, niet nader gespecificeerd"
                      codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
                      codeSystemVersion="2020-10-23T00:00:00"/>
-               <telecom use="WP" value="tel:1645645000"/>
+               <telecom use="WP"
+                        value="tel:1645645000"/>
                <assignedPerson>
                   <name>
                      <given qualifier="BR">Peter</given>
@@ -82,7 +82,8 @@
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                  <id extension="00001111"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Huisartsenpraktijk Pulver &amp; Partners</name>
                   <addr use="WP">
                      <streetName>Dorpsstraat</streetName>
@@ -95,17 +96,20 @@
          </author>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="1"/>
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
                <doseQuantity>
-                  <low value="1" unit="1">
+                  <low value="1"
+                       unit="1">
                      <translation value="1"
                                   code="245"
                                   displayName="stuk"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </low>
-                  <high value="2" unit="1">
+                  <high value="2"
+                        unit="1">
                      <translation value="2"
                                   code="245"
                                   displayName="stuk"
@@ -114,14 +118,16 @@
                   </high>
                </doseQuantity>
                <maxDoseQuantity>
-                  <numerator value="6" unit="1">
+                  <numerator value="6"
+                             unit="1">
                      <translation value="6"
                                   code="245"
                                   displayName="stuk"
                                   codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </numerator>
-                  <denominator value="1" unit="d"/>
+                  <denominator value="1"
+                               unit="d"/>
                </maxDoseQuantity>
                <consumable xsi:nil="true"/>
                <precondition>
@@ -133,8 +139,10 @@
                </precondition>
             </substanceAdministration>
          </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
+         <entryRelationship typeCode="COMP"
+                            inversionInd="true">
+            <procedure classCode="PROC"
+                       moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                    extension="MBH_300_variabelehoeveelheidenmaximum"/>
@@ -146,7 +154,8 @@
       </substanceAdministration>
    </component>
    <component typeCode="COMP">
-      <supply classCode="SPLY" moodCode="RQO">
+      <supply classCode="SPLY"
+              moodCode="RQO">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9449"/>
          <id extension="MBH_300_variabelehoeveelheidenmaximum_VV"
              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
@@ -154,7 +163,8 @@
                displayName="Verstrekkingsverzoek"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <quantity value="120" unit="1">
+         <quantity value="120"
+                   unit="1">
             <translation value="120"
                          code="245"
                          displayName="stuk"
@@ -164,7 +174,8 @@
          <product>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+               <manufacturedMaterial classCode="MMAT"
+                                     determinerCode="KIND">
                   <code code="42773"
                         codeSystem="2.16.840.1.113883.2.4.4.10"
                         displayName="CODEINE TABLET 10MG (FOSFAAT)"
@@ -181,7 +192,8 @@
             <assignedEntity>
                <id nullFlavor="NI"/>
                <representedOrganization>
-                  <id extension="01236578" root="2.16.528.1.1007.3.3"/>
+                  <id extension="01236578"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Apotheek de Gulle Gaper</name>
                </representedOrganization>
             </assignedEntity>
@@ -189,13 +201,15 @@
          <author>
             <time value="20230101084500"/>
             <assignedAuthor>
-               <id extension="000001111" root="2.16.528.1.1007.3.1"/>
+               <id extension="000001111"
+                   root="2.16.528.1.1007.3.1"/>
                <code code="0100"
                      codeSystem="2.16.840.1.113883.2.4.6.7"
                      displayName="Huisartsen, niet nader gespecificeerd"
                      codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
                      codeSystemVersion="2020-10-23T00:00:00"/>
-               <telecom use="WP" value="tel:1645645000"/>
+               <telecom use="WP"
+                        value="tel:1645645000"/>
                <assignedPerson>
                   <name>
                      <given qualifier="BR">Peter</given>
@@ -204,7 +218,8 @@
                   </name>
                </assignedPerson>
                <representedOrganization>
-                  <id extension="00001111" root="2.16.528.1.1007.3.3"/>
+                  <id extension="00001111"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Huisartsenpraktijk Pulver &amp; Partners</name>
                   <addr use="WP">
                      <streetName>Dorpsstraat</streetName>
@@ -216,7 +231,8 @@
             </assignedAuthor>
          </author>
          <entryRelationship typeCode="REFR">
-            <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <substanceAdministration classCode="SBADM"
+                                     moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
                <id extension="MBH_300_variabelehoeveelheidenmaximum_MA"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
@@ -227,8 +243,10 @@
                <consumable xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
+         <entryRelationship typeCode="COMP"
+                            inversionInd="true">
+            <procedure classCode="PROC"
+                       moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                    extension="MBH_300_variabelehoeveelheidenmaximum"/>

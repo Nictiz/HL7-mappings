@@ -375,7 +375,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 
                 <!-- reden_gebruik -->
-                <xsl:for-each select="hl7:entryRelationship/hl7:observation[hl7:code[@code = '6'][@codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.2']]/hl7:text">
+                <xsl:for-each select="hl7:entryRelationship/hl7:observation[hl7:code[(@code = '6' and @codeSystem = '2.16.840.1.113883.2.4.3.11.60.20.77.5.2') or (@code='11611000146100' and @codeSystem=$oidSNOMEDCT)]]/hl7:text">
                     <reden_gebruik>
                         <xsl:attribute name="value" select="./text()"/>
                     </reden_gebruik>

@@ -3,8 +3,8 @@
    <meta status="new"
          created-by="medicatieprocesada"
          last-update-by="medicatieprocesada"
-         creation-date="2023-01-09T17:32:46.366+01:00"
-         last-update-date="2023-01-09T17:32:46.366+01:00"/>
+         creation-date="2024-03-19T14:13:55.759+01:00"
+         last-update-date="2024-03-19T14:13:55.759+01:00"/>
    <data>
       <sturen_medicatiegegevens app="mp-mp93"
                                 shortName="sturen_medicatiegegevens"
@@ -75,7 +75,7 @@
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid comment=""
                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.285">
-                  <aantal value="100"
+                  <aantal value="50"
                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.562"/>
                   <eenheid code="233"
                            codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
@@ -124,7 +124,7 @@
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid comment=""
                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.285">
-                  <aantal value="100"
+                  <aantal value="75"
                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.562"/>
                   <eenheid codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
                            codeSystemName="G-Standaard thesaurus basiseenheden"
@@ -190,6 +190,55 @@
                <relatie_medicatieafspraak comment=""
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.292">
                   <identificatie value="MBH_300_magistraal90miljoennr_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.293"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
+         </medicamenteuze_behandeling>
+         <!--Medicamenteuze behandeling 2.16.840.1.113883.2.4.3.11.999.77.1.1-MBH_300_vrijetekstproduct-->
+         <medicamenteuze_behandeling conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.41">
+            <identificatie value="MBH_300_vrijetekstproduct"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.42"/>
+            <verstrekkingsverzoek conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.274"
+                                  comment="">
+               <identificatie value="MBH_300_vrijetekstproduct_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"
+                              conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.289"/>
+               <verstrekkingsverzoek_datum_tijd value="T-1D{14:52:00}"
+                                                datatype="datetime"
+                                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.279"/>
+               <auteur conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.290"
+                       comment="">
+                  <zorgverlener value="Peter_van_Pulver"
+                                datatype="reference"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.291"/>
+               </auteur>
+               <te_verstrekken_geneesmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.277"
+                                            comment="">
+                  <farmaceutisch_product value="Vrijetekst_Jemperli"
+                                         datatype="reference"
+                                         conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.278"/>
+               </te_verstrekken_geneesmiddel>
+               <te_verstrekken_hoeveelheid conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.285"
+                                           comment="">
+                  <aantal value="4"
+                          conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.562"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuks"
+                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.563"/>
+               </te_verstrekken_hoeveelheid>
+               <beoogd_verstrekker conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.275"
+                                   comment="">
+                  <zorgaanbieder value="Apotheek_De_Gulle_Gaper"
+                                 datatype="reference"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.276"/>
+               </beoogd_verstrekker>
+               <relatie_medicatieafspraak conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.292"
+                                          comment="">
+                  <identificatie value="MBH_300_vrijetekstproduct_MA"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.293"/>
                </relatie_medicatieafspraak>
@@ -367,6 +416,22 @@
                         </product_hoeveelheid>
                      </sterkte>
                   </ingredient>
+               </product_specificatie>
+            </farmaceutisch_product>
+            <farmaceutisch_product conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.260"
+                                   comment=""
+                                   id="Vrijetekst_Jemperli">
+               <product_code code="OTH"
+                             codeSystem="2.16.840.1.113883.5.1008"
+                             codeSystemName="NullFlavor"
+                             displayName="anders"
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.261"/>
+               <product_specificatie conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.262"
+                                     comment="">
+                  <product_naam value="Jemperli 500 mg/ 10 mL"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.264"/>
+                  <omschrijving value="Titel: Jemperli (Dostarlimab-gxly) 500 mg/10 mL"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.265"/>
                </product_specificatie>
             </farmaceutisch_product>
             <zorgverlener id="Peter_van_Pulver"

@@ -159,7 +159,7 @@
                     <xsl:otherwise>
                         <xsl:for-each select="dosering">
                             <xsl:variable name="zo-nodig" as="xs:string*">
-                                <xsl:value-of select="zo_nodig/criterium/(code | criterium)/@displayName"/>
+                                <xsl:value-of select="zo_nodig/(criterium | criterium/(code | criterium))/@displayName"/>
                             </xsl:variable>
                             <xsl:variable name="frequentie" select="toedieningsschema/frequentie[.//(@value | @code)]"/>
                             <xsl:variable name="frequentie-string" as="xs:string*">

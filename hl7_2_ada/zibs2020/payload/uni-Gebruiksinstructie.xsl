@@ -85,10 +85,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Helper template for toedieningsweg for MP 9 2.0</xd:desc>
+        <xd:desc>Helper template for toedieningsweg for MP 9</xd:desc>
         <xd:param name="inHl7">The HL7 element which contains the toedieningsweg, typically rateQuantity</xd:param>
     </xd:doc>
-    <xsl:template name="toedieningssnelheid92">
+    <xsl:template name="toedieningssnelheid9">
         <xsl:param name="inHl7" as="element()*" select="."/>
         <xsl:for-each select="$inHl7">
             <xsl:variable name="ucum-rate-eenheden" select="./*/@unit"/>
@@ -113,16 +113,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <maximum_waarde value="{@value}"/>
                             </xsl:for-each>
                         </waarde>
-                        <xsl:variable name="ucum-eenheid" select="substring-before($ucum-rate-eenheid, '/')"/>
+                        <!-- mp9 3.0-beta.3 simplified dataset structure, we now use ucum directly in ada -->
+                        <eenheid value="1" unit="{$ucum-rate-eenheid}"/>
+                        
+                        <!-- legacy implementation pre mp9 3.0-beta.3-->
+                        <!--<xsl:variable name="ucum-eenheid" select="substring-before($ucum-rate-eenheid, '/')"/>
                         <eenheid>
                             <xsl:call-template name="UCUM2GstdBasiseenheid">
                                 <xsl:with-param name="UCUM" select="$ucum-eenheid"/>
                             </xsl:call-template>
                         </eenheid>
                         <xsl:variable name="ucum-tijdseenheid" select="substring-after($ucum-rate-eenheid, '/')"/>
-                        <!-- tijdseenheid is usually of a format like: ml/h -->
-                        <!-- however, a format like ml/2.h (milliliter per 2 hours) is also allowed in UCUM and the datamodel -->
-                        <!-- however, all the occurences of rate unit (min and max) must be equal to one another -->
+                        <!-\- tijdseenheid is usually of a format like: ml/h -\->
+                        <!-\- however, a format like ml/2.h (milliliter per 2 hours) is also allowed in UCUM and the datamodel -\->
+                        <!-\- however, all the occurences of rate unit (min and max) must be equal to one another -\->
                         <xsl:variable name="firstChar" select="substring(translate($ucum-tijdseenheid, '0123456789.', ''), 1, 1)"/>
                         <xsl:variable name="beforeFirstChar" select="substring-before($ucum-tijdseenheid, $firstChar)"/>
                         <xsl:variable name="ucum-tijdseenheid-value">
@@ -134,7 +138,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:choose>
                         </xsl:variable>
                         <xsl:variable name="ucum-tijdseenheid-unit" select="concat($firstChar, substring-after($ucum-tijdseenheid, $firstChar))"/>
-                        <tijdseenheid value="{$ucum-tijdseenheid-value}" unit="{nf:convertTime_UCUM2ADA_unit($ucum-tijdseenheid-unit)}"/>
+                        <tijdseenheid value="{$ucum-tijdseenheid-value}" unit="{nf:convertTime_UCUM2ADA_unit($ucum-tijdseenheid-unit)}"/>-->
                     </toedieningssnelheid>
                 </xsl:when>
                 <xsl:otherwise>
@@ -150,7 +154,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>gebruiksinstructie mp9 2.0</xd:desc>
+        <xd:desc>gebruiksinstructie mp9</xd:desc>
         <xd:param name="in">input hl7 component, such as the hl7 MA/TA/MGB/WDS</xd:param>
     </xd:doc>
     <xsl:template name="mp92-gebruiksinstructie-from-mp9" match="hl7:*" mode="HandleInstructionsforuse">
@@ -315,14 +319,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:if test="(hl7:precondition/hl7:criterion/hl7:code | hl7:maxDoseQuantity)[.//(@code | @nullFlavor | @value | @unit)]">
                                     <zo_nodig>
                                         <xsl:for-each select="hl7:precondition/hl7:criterion/hl7:code">
-                                            <criterium>
+                                            <!-- from mp9 3.0 beta.3 no more double nesting -->
+<!--                                            <criterium>-->
                                                 <criterium>
                                                     <xsl:call-template name="mp9-code-attribs">
                                                         <xsl:with-param name="current-hl7-code" select="."/>
                                                     </xsl:call-template>
                                                 </criterium>
                                                 <!-- no use case for omschrijving, omschrijving is in code/@originalText -->
-                                            </criterium>
+                                            <!--</criterium>-->
                                         </xsl:for-each>
                                         <xsl:for-each select="hl7:maxDoseQuantity[.//(@value | @unit)]">
                                             <maximale_dosering>
@@ -344,7 +349,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:if>
                                 
                                 <!-- toedieningssnelheid -->
-                                <xsl:call-template name="toedieningssnelheid92">
+                                <xsl:call-template name="toedieningssnelheid9">
                                     <xsl:with-param name="inHl7" select="hl7:rateQuantity"/>
                                 </xsl:call-template>
                                 

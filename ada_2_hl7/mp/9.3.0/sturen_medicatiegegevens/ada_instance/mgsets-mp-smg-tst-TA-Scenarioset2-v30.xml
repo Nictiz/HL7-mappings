@@ -3,8 +3,8 @@
    <meta status="new"
          created-by="medicatieprocesada"
          last-update-by="medicatieprocesada"
-         creation-date="2023-01-09T17:32:44.934+01:00"
-         last-update-date="2023-01-09T17:32:44.934+01:00"/>
+         creation-date="2024-03-19T14:13:54.67+01:00"
+         last-update-date="2024-03-19T14:13:54.67+01:00"/>
    <data>
       <sturen_medicatiegegevens app="mp-mp93"
                                 shortName="sturen_medicatiegegevens"
@@ -58,9 +58,9 @@
                <identificatie value="MBH_300_aanvullendeinstructie_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
-               <toedieningsafspraak_datum_tijd value="T-4M{09:00:00}"
-                                               datatype="datetime"
-                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.332"/>
+               <registratie_datum_tijd value="T-4M{09:00:00}"
+                                       datatype="datetime"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1481"/>
                <gebruiksperiode comment=""
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334">
                   <start_datum_tijd value="T-4M{00:00:00}"
@@ -93,7 +93,7 @@
                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.303"/>
                   <aanvullende_instructie originalText="Bij het eten innemen"
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.300"
-                                          value="1"
+                                          value="2"
                                           code="OTH"
                                           codeSystem="2.16.840.1.113883.5.1008"
                                           displayName="overig"/>
@@ -149,9 +149,9 @@
                <identificatie value="MBH_300_toelichting_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
-               <toedieningsafspraak_datum_tijd value="T-21D{09:02:00}"
-                                               datatype="datetime"
-                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.332"/>
+               <registratie_datum_tijd value="T-21D{09:02:00}"
+                                       datatype="datetime"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1481"/>
                <gebruiksperiode comment=""
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334">
                   <start_datum_tijd value="T-21D{00:00:00}"
@@ -233,9 +233,9 @@
                <identificatie value="MBH_300_redenvanvoorschrijven_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
-               <toedieningsafspraak_datum_tijd value="T-13D{09:05:00}"
-                                               datatype="datetime"
-                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.332"/>
+               <registratie_datum_tijd value="T-13D{09:05:00}"
+                                       datatype="datetime"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1481"/>
                <gebruiksperiode comment=""
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334">
                   <start_datum_tijd value="T-13D{00:00:00}"
@@ -318,9 +318,9 @@
                <identificatie value="MBH_300_aanvullendeinformatiewensen_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
-               <toedieningsafspraak_datum_tijd value="T-5D{09:06:00}"
-                                               datatype="datetime"
-                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.332"/>
+               <registratie_datum_tijd value="T-5D{09:06:00}"
+                                       datatype="datetime"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1481"/>
                <gebruiksperiode comment=""
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334">
                   <start_datum_tijd value="T-4D{00:00:00}"
@@ -370,23 +370,17 @@
                         </keerdosis>
                         <toedieningsschema comment=""
                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.323">
-                           <frequentie comment=""
-                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.324">
-                              <aantal comment=""
-                                      conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.578">
-                                 <nominale_waarde value="3"
-                                                  conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.327"/>
-                              </aantal>
-                              <tijdseenheid unit="dag"
-                                            value="1"
-                                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.579"/>
-                           </frequentie>
+                           <toedientijd value="19:00:00"
+                                        datatype="time"
+                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.330"/>
+                           <is_flexibel value="false"
+                                        conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.580"/>
                         </toedieningsschema>
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-               <toedieningsafspraak_aanvullende_informatie value="Bijwerking besproken"
-                                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.342"/>
+               <toelichting value="Bijwerking besproken"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.343"/>
                <relatie_medicatieafspraak comment=""
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.338">
                   <identificatie value="MBH_300_aanvullendeinformatiewensen_MA"
@@ -405,9 +399,9 @@
                <identificatie value="MBH_300_Toedieningsweg_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.344"/>
-               <toedieningsafspraak_datum_tijd value="T-5D{09:15:00}"
-                                               datatype="datetime"
-                                               conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.332"/>
+               <registratie_datum_tijd value="T-5D{09:15:00}"
+                                       datatype="datetime"
+                                       conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.1481"/>
                <gebruiksperiode comment=""
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.334">
                   <start_datum_tijd value="T-5D{00:00:00}"
@@ -440,7 +434,7 @@
                                   conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.303"/>
                   <aanvullende_instructie originalText="In het rechter oog"
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.300"
-                                          value="1"
+                                          value="2"
                                           code="OTH"
                                           codeSystem="2.16.840.1.113883.5.1008"
                                           displayName="overig"/>
@@ -478,8 +472,8 @@
                      </dosering>
                   </doseerinstructie>
                </gebruiksinstructie>
-               <toedieningsafspraak_aanvullende_informatie value="Gebruiksinstructie gegeven"
-                                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.342"/>
+               <toelichting value="Gebruiksinstructie gegeven"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.343"/>
                <relatie_medicatieafspraak comment=""
                                           conceptId="2.16.840.1.113883.2.4.3.11.60.20.77.2.4.338">
                   <identificatie value="MBH_300_Toedieningsweg_MA"

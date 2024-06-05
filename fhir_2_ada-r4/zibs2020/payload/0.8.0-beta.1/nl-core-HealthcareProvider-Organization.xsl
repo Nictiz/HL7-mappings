@@ -15,7 +15,48 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" exclude-result-prefixes="#all" version="2.0">
 
     <xd:doc>
+        <xd:desc>Template to convert f:Location to ADA zorgaanbieder</xd:desc>
+        <xd:param name="doAdaId">whether to output id attribute in ada</xd:param>
+    </xd:doc>
+    <xsl:template match="f:Location" mode="nl-core-HealthcareProvider-Organization">
+        <xsl:param name="doAdaId" select="true()" as="xs:boolean"/>
+        <xsl:variable name="entryFullURrlAtValue" select="../../f:fullUrl/@value"/>
+
+        <xsl:variable name="theManagingOrganization" select="nf:resolveRefInBundle(f:managingOrganization)/f:Organization"/>
+
+        <zorgaanbieder>
+            <xsl:if test="$doAdaId">
+                <xsl:attribute name="id" select="nf:convert2NCName($entryFullURrlAtValue)"/>
+            </xsl:if>
+            <!-- zorgaanbieder_identificatienummer -->
+            <xsl:apply-templates select="$theManagingOrganization/f:identifier" mode="#current"/>
+            <!-- organisatie_naam -->
+            <xsl:apply-templates select="$theManagingOrganization/f:name" mode="#current"/>
+            <!-- afdeling_specialisme -->
+            <xsl:apply-templates select="f:type[f:coding/f:system[@value = concat('urn:oid:', $oidAGBSpecialismen) or @value = $oidMap[@oid = $oidAGBSpecialismen]/@uri]]" mode="#current"/>
+            <!-- contactgegevens -->
+            <xsl:if test="f:telecom">
+                <contactgegevens>
+                    <xsl:apply-templates select="f:telecom" mode="nl-core-ContactInformation"/>
+                </contactgegevens>
+            </xsl:if>
+            <!-- adresgegevens -->
+            <xsl:apply-templates select="f:address" mode="nl-core-AddressInformation"/>
+            <!-- organisatie_type -->
+            <xsl:apply-templates select="f:type[f:coding/f:system[@value = concat('urn:oid:', $oidRoleCodeNLOrganizations) or @value = $oidMap[@oid = $oidRoleCodeNLOrganizations]/@uri]]" mode="#current"/>
+            <!-- organisatie_locatie-->
+            <xsl:if test="f:name[@value]">
+                <!-- both locatie_naam and _nummer end up in f:name, we don't know which is which, simply append in one name -->
+                <organisatie_locatie>
+                    <locatie_naam value="{string-join(f:name/@value, ' - ')}"/>
+                </organisatie_locatie>
+            </xsl:if>
+        </zorgaanbieder>
+    </xsl:template>
+
+    <xd:doc>
         <xd:desc>Template to convert f:Organization to ADA zorgaanbieder</xd:desc>
+        <xd:param name="doAdaId">whether to output id attribute in ada</xd:param>
     </xd:doc>
     <xsl:template match="f:Organization" mode="nl-core-HealthcareProvider-Organization">
         <xsl:param name="doAdaId" select="true()" as="xs:boolean"/>
@@ -29,7 +70,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- organisatie_naam -->
             <xsl:apply-templates select="f:name" mode="#current"/>
             <!-- afdeling_specialisme -->
-            <xsl:apply-templates select="f:type[f:coding/f:system[@value = concat('urn:oid:', $oidAGBSpecialismen) or @value=$oidMap[@oid=$oidAGBSpecialismen]/@uri]]" mode="#current"/>
+            <xsl:apply-templates select="f:type[f:coding/f:system[@value = concat('urn:oid:', $oidAGBSpecialismen) or @value = $oidMap[@oid = $oidAGBSpecialismen]/@uri]]" mode="#current"/>
             <!-- contactgegevens -->
             <xsl:if test="f:telecom">
                 <contactgegevens>
@@ -39,7 +80,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- adresgegevens -->
             <xsl:apply-templates select="f:address" mode="nl-core-AddressInformation"/>
             <!-- organisatie_type -->
-            <xsl:apply-templates select="f:type[f:coding/f:system[@value = concat('urn:oid:', $oidRoleCodeNLOrganizations) or @value=$oidMap[@oid=$oidRoleCodeNLOrganizations]/@uri]]" mode="#current"/>
+            <xsl:apply-templates select="f:type[f:coding/f:system[@value = concat('urn:oid:', $oidRoleCodeNLOrganizations) or @value = $oidMap[@oid = $oidRoleCodeNLOrganizations]/@uri]]" mode="#current"/>
             <!-- organisatie_locatie TODO -->
         </zorgaanbieder>
     </xsl:template>
@@ -73,14 +114,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:type" mode="nl-core-HealthcareProvider-Organization">
         <xsl:choose>
-            <xsl:when test="f:coding/f:system[@value = concat('urn:oid:', $oidAGBSpecialismen) or @value=$oidMap[@oid=$oidAGBSpecialismen]/@uri]">
+            <xsl:when test="f:coding/f:system[@value = concat('urn:oid:', $oidAGBSpecialismen) or @value = $oidMap[@oid = $oidAGBSpecialismen]/@uri]">
                 <afdeling_specialisme>
                     <xsl:call-template name="Coding-to-code">
                         <xsl:with-param name="in" select="f:coding"/>
                     </xsl:call-template>
                 </afdeling_specialisme>
             </xsl:when>
-            <xsl:when test="f:coding/f:system[@value = concat('urn:oid:', $oidRoleCodeNLOrganizations) or @value=$oidMap[@oid=$oidRoleCodeNLOrganizations]/@uri]">
+            <xsl:when test="f:coding/f:system[@value = concat('urn:oid:', $oidRoleCodeNLOrganizations) or @value = $oidMap[@oid = $oidRoleCodeNLOrganizations]/@uri]">
                 <organisatie_type>
                     <xsl:call-template name="Coding-to-code">
                         <xsl:with-param name="in" select="f:coding"/>
