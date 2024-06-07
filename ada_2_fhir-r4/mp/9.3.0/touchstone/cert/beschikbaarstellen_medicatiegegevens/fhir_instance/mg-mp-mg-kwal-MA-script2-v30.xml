@@ -8,6 +8,9 @@
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, -40}T10:31:00+02:00"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
                <valueString value="Vanaf T - 40 dagen, Volgens schema trombosedienst, Oraal"/>
             </extension>
@@ -45,7 +48,6 @@
                <type value="Patient"/>
                <display value="Patient, M. XXX_Oorschot"/>
             </subject>
-            <authoredOn value="${DATE, T, D, -40}T10:31:00+02:00"/>
             <requester>
                <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
