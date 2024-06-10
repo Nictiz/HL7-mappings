@@ -68,7 +68,34 @@
             </then>
         </if>
     </target>
-        
+    
+    <target name="select-stylesheet">
+        <if>
+            <equals arg1="${fhir.version}" arg2="R4"/>
+            <then>
+                <property name="stylesheet" value="addNarratives-R4.xsl"/>
+            </then>
+            <elseif>
+                <equals arg1="${fhir.version}" arg2="STU3"/>
+                <then>
+                    <property name="stylesheet" value="addNarratives.xsl"/>
+                </then>
+            </elseif>
+            <elseif>
+                <not>
+                    <isset property="fhir.version"/>
+                </not>
+                <then>
+                    <echo message="'fhir.version' property not set, defaulting to STU3"/>
+                    <property name="stylesheet" value="addNarratives.xsl"/>
+                </then>
+            </elseif>
+            <else>
+                <fail message="Invalid fhir.version '${fhir.version}': should be 'STU3' or 'R4'"/>
+            </else>
+        </if>
+    </target>
+
     <macrodef name="run-narrative-generator">
         <attribute name="in.dir.absolute"/>
         
@@ -80,10 +107,11 @@
             <tempfile property="temp.dir"/>
             <mkdir dir="${temp.dir}"/>
             
-            <xslt force="true" style="${narrativegenerator.dir}/addNarratives.xsl" destdir="${temp.dir}" useImplicitFileset="false" failOnNoResources="false">
+            <xslt force="true" style="${narrativegenerator.dir}/${stylesheet}" destdir="${temp.dir}" useImplicitFileset="false" failOnNoResources="false">
                 <factory name="net.sf.saxon.TransformerFactoryImpl"/>
                 <classpath location="${Saxon-HE.jar}"/>
                 <param name="override" expression="true"/>
+                <param name="fhirVersion" expression="${fhir.version}"/>
                 <outputproperty name="method" value="xml"/>
                 <outputproperty name="omit-xml-declaration" value="yes"/>
                 <outputproperty name="indent" value="yes"/>
@@ -102,7 +130,7 @@
         </sequential>
     </macrodef>
         
-    <target name="build" depends="load-dependencies, get-input-files">
+    <target name="build" depends="load-dependencies, get-input-files, select-stylesheet">
         <for param="curr.dir">
             <path>
                 <dirset refid="in.dirs"/>
