@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project basedir="." xmlns:ivy="antlib:org.apache.ivy.ant" name="generateNarratives" default="build">
-    <property name="in.dir.absolute" location="${in.dir}"/>
-
     <dirname property="narrativegenerator.dir" file="${ant.file.generateNarratives}"/>
 
     <property name="ivy.install.version" value="2.5.0-rc1" />
@@ -58,44 +56,23 @@
     <target name="get-input-files">
         <if>
             <not>
-                <or>
-                    <isset property="in.dir"/>
-                    <resourcecount refid="in.dirs" when="greater" count="0"/>
-                </or>
+                <isreference refid="in.dirs"/>
             </not>
             <then>
-                <input message="Please enter the folder with XML files (may also be given using '-Din.dir=/path/to/xml/files')" addproperty="project"/>
+                <if>
+                    <not>
+                        <isset property="in.dir"/>
+                    </not>
+                    <then>
+                        <input message="Please enter the folder with XML files (may also be given using '-Din.dir=/path/to/xml/files')" addproperty="project"/>
+                    </then>
+                </if>
+                <property name="in.dir.absolute" location="${in.dir}"/>
+                <dirset id="in.dirs" dir="${in.dir.absolute}"/>
             </then>
         </if>
     </target>
-    
-    <target name="select-stylesheet">
-        <if>
-            <equals arg1="${fhir.version}" arg2="R4"/>
-            <then>
-                <property name="stylesheet" value="addNarratives-R4.xsl"/>
-            </then>
-            <elseif>
-                <equals arg1="${fhir.version}" arg2="STU3"/>
-                <then>
-                    <property name="stylesheet" value="addNarratives.xsl"/>
-                </then>
-            </elseif>
-            <elseif>
-                <not>
-                    <isset property="fhir.version"/>
-                </not>
-                <then>
-                    <echo message="'fhir.version' property not set, defaulting to STU3"/>
-                    <property name="stylesheet" value="addNarratives.xsl"/>
-                </then>
-            </elseif>
-            <else>
-                <fail message="Invalid fhir.version '${fhir.version}': should be 'STU3' or 'R4'"/>
-            </else>
-        </if>
-    </target>
-
+        
     <macrodef name="run-narrative-generator">
         <attribute name="in.dir.absolute"/>
         
@@ -107,11 +84,10 @@
             <tempfile property="temp.dir"/>
             <mkdir dir="${temp.dir}"/>
             
-            <xslt force="true" style="${narrativegenerator.dir}/${stylesheet}" destdir="${temp.dir}" useImplicitFileset="false" failOnNoResources="false">
+            <xslt force="true" style="${narrativegenerator.dir}/addNarratives.xsl" destdir="${temp.dir}" useImplicitFileset="false" failOnNoResources="false">
                 <factory name="net.sf.saxon.TransformerFactoryImpl"/>
                 <classpath location="${Saxon-HE.jar}"/>
                 <param name="override" expression="true"/>
-                <param name="fhirVersion" expression="${fhir.version}"/>
                 <outputproperty name="method" value="xml"/>
                 <outputproperty name="omit-xml-declaration" value="yes"/>
                 <outputproperty name="indent" value="yes"/>
@@ -130,7 +106,7 @@
         </sequential>
     </macrodef>
         
-    <target name="build" depends="load-dependencies, get-input-files, select-stylesheet">
+    <target name="build" depends="load-dependencies, get-input-files">
         <for param="curr.dir">
             <path>
                 <dirset refid="in.dirs"/>
