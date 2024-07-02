@@ -25,6 +25,20 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- If the desired output is to be a Bundle, then a self link string of type url is required. 
          See: https://www.hl7.org/fhir/R4/search.html#conformance -->
     <xsl:param name="bundleSelfLink" as="xs:string?"/>
+    
+    <!-- the dataset is in a beta phase, not clear what to do with the separate locatie/adresgegevens and contactgegevens, 
+                as a workaround we move adresgegevens and contactgegevens in the zorgaanbieder
+                ask the IA's for current status when in doubt! -->
+    <xsl:variable name="locatieZorgaanbieder" as="element()*">
+        <xsl:for-each select="/adaxml/data/beschikbaarstellen_immunisatiegegevens/vaccinatie/locatie/zorgaanbieder">
+            <xsl:copy>
+                <xsl:copy-of select="@*"/>
+                <xsl:copy-of select="*[not(self::organisatie_type | self::organisatie_locatie)]"/>
+                <xsl:copy-of select="../(contactgegevens | adresgegevens)"/>
+                <xsl:copy-of select="organisatie_type | organisatie_locatie"/>
+            </xsl:copy>
+        </xsl:for-each>
+    </xsl:variable>
 
     <!-- Generate metadata for all ADA instances -->
     <xsl:param name="fhirMetadata" as="element()*">
@@ -33,8 +47,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:with-param name="in" select="
                     //(
                     beschikbaarstellen_immunisatiegegevens/bundel/patient |
-                    beschikbaarstellen_immunisatiegegevens/vaccinatie/(locatie | toediener)/zorgaanbieder |
-                    beschikbaarstellen_immunisatiegegevens/vaccinatie/toediener/zorgverlener | 
+                    beschikbaarstellen_immunisatiegegevens/vaccinatie/(toediener | locatie)/zorgaanbieder | $locatieZorgaanbieder |
+                    beschikbaarstellen_immunisatiegegevens/vaccinatie/toediener/zorgverlener |
                     beschikbaarstellen_immunisatiegegevens/vaccinatie)"/>
         </xsl:call-template>
     </xsl:param>
@@ -53,22 +67,39 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:variable>
 
             <xsl:variable name="zorgaanbieder" as="element()*">
-                <xsl:for-each select="vaccinatie/(locatie | toediener)/zorgaanbieder">
-                    <xsl:call-template name="nl-core-HealthcareProvider"/>
+                <xsl:variable name="managingOrg" select="vaccinatie/locatie/zorgaanbieder"/>
+                <xsl:for-each-group select="vaccinatie/toediener/zorgaanbieder | $locatieZorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
+                    <xsl:choose>
+                        <xsl:when test="current-group()[1]/@conceptId">
+                            <xsl:call-template name="nl-core-HealthcareProvider">
+                                <xsl:with-param name="managingOrganization" select="$managingOrg"/>
+                            </xsl:call-template>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:call-template name="nl-core-HealthcareProvider"/>                                
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:for-each-group>
+            </xsl:variable>
+            
+            <!-- the organization locatie/zorgaanbieder: we use the original because we don't want duplication of adresgegevens and contactgegevens -->
+            <xsl:variable name="zorgaanbiederOrg" as="element()*">
+                <xsl:for-each-group select="vaccinatie/(toediener | locatie)/zorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="nl-core-HealthcareProvider-Organization"/>
-                </xsl:for-each>
+                </xsl:for-each-group>
             </xsl:variable>
 
             <xsl:variable name="zorgverlener" as="element()*">
                 <!-- let's resolve the zorgaanbieder ín the zorgverlener, to make sure deduplication also works for duplicated zorgaanbieders -->
                 <xsl:variable name="zorgverlenerWithResolvedZorgaanbieder" as="element(zorgverlener)*">
-                    <xsl:apply-templates select="vaccinatie/toediener/zorgverlener" mode="resolveAdaZorgaanbieder"/>                
+                    <xsl:apply-templates select="vaccinatie/toediener/zorgverlener" mode="resolveAdaZorgaanbieder"/>
                 </xsl:variable>
-                <xsl:for-each select="$zorgverlenerWithResolvedZorgaanbieder">
-                    <xsl:call-template name="nl-core-HealthProfessional-PractitionerRole"/>                    
-                </xsl:for-each>
+                <xsl:for-each-group select="$zorgverlenerWithResolvedZorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
+                    <xsl:call-template name="nl-core-HealthProfessional-PractitionerRole"/>
+                    <xsl:call-template name="nl-core-HealthProfessional-Practitioner"/>
+                </xsl:for-each-group>
             </xsl:variable>
-            
+
             <xsl:variable name="vaccinatie" as="element()*">
                 <xsl:for-each select="vaccinatie">
                     <xsl:call-template name="nl-core-Vaccination-event"/>
@@ -77,7 +108,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
 
             <!-- TODO, add zorgverlener/vaccinatie and debug logicalId -->
-            <xsl:for-each select="$patient | $zorgaanbieder ">
+            <xsl:for-each select="$patient | $zorgaanbieder | $zorgaanbiederOrg | $zorgverlener">
                 <entry xmlns="http://hl7.org/fhir">
                     <xsl:call-template name="_insertFullUrlById"/>
                     <resource>
@@ -136,62 +167,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
 
-    <xd:doc>
-        <xd:desc/>
-        <xd:param name="profile"/>
-    </xd:doc>
-    <xsl:template match="*" mode="_generateId" priority="2">
-        <xsl:param name="profile" as="xs:string" required="yes"/>
-        <xsl:variable name="id" select="replace(tokenize(base-uri(), '/')[last()], '.xml', '')"/>
-        <xsl:variable name="baseId" select="replace($id, '-[0-9]{2}$', '')"/>
-        <xsl:variable name="localName" select="local-name()"/>
-        <xsl:variable name="logicalId">
-            <xsl:choose>
-                <xsl:when test="$localName = 'laboratorium_uitslag'">
-                    <xsl:variable name="kopie_indicator" select="
-                            if (kopie_indicator/@value[. = 'true']) then
-                                '-C'
-                            else
-                                ()" as="xs:string?"/>
-
-                    <xsl:value-of select="concat('labresult-', (laboratorium_uitslag_identificatie/@value, format-number(count(preceding-sibling::laboratorium_uitslag) + 1, '00'))[1], $kopie_indicator)"/>
-                </xsl:when>
-                <xsl:when test="$localName = 'laboratorium_test'">
-                    <!-- The copy-indicator lives at panel level -->
-                    <xsl:variable name="kopie_indicator" select="
-                            if (../kopie_indicator/@value[. = 'true']) then
-                                '-C'
-                            else
-                                ()" as="xs:string?"/>
-
-                    <xsl:value-of select="concat('labtest-', ../laboratorium_uitslag_identificatie/@value, '-', test_identificatie/@value, $kopie_indicator)"/>
-                </xsl:when>
-                <xsl:when test="$localName = 'monster' and $profile = 'nl-core-LaboratoryTestResult.Specimen.asMicroorganism'">
-                    <xsl:value-of select="concat('organism-', (@displayName, @code)[1])"/>
-                </xsl:when>
-                <xsl:when test="$localName = 'monster' and $profile = 'nl-core-LaboratoryTestResult.Specimen'">
-                    <xsl:value-of select="concat('monster-', string-join((monsternummer/@value, monstervolgnummer/@value, monstermateriaal/@code), '-'))"/>
-                </xsl:when>
-                <xsl:when test="$localName = 'bron_monster' and $profile = 'nl-core-LaboratoryTestResult.Specimen.Source'">
-                    <xsl:value-of select="concat('bron-', @value)"/>
-                </xsl:when>
-                <xsl:when test="$localName = 'patient'">
-                    <xsl:value-of select="concat('patient-', string-join((naamgegevens[1]/geslachtsnaam/(voorvoegsels, achternaam)/@value, naamgegevens[1]/geslachtsnaam_partner/(voorvoegsels_partner, achternaam_partner)/@value), '-'))"/>
-                </xsl:when>
-                <xsl:when test="$localName = 'zorgaanbieder' and $profile = 'nl-core-HealthcareProvider'">
-                    <xsl:value-of select="concat('loc-', (organisatie_locatie/(locatie_nummer, locatie_naam)[1]/@value, afdeling_specialisme/(@displayName, @code))[1], ((zorgaanbieder_identificatienummer, organisatie_naam)/@value, organisatie_type/(@displayName, @code))[1])"/>
-                </xsl:when>
-                <xsl:when test="$localName = 'zorgaanbieder' and $profile = 'nl-core-HealthcareProvider-Organization'">
-                    <xsl:value-of select="concat('org-', ((zorgaanbieder_identificatienummer, organisatie_naam)/@value, organisatie_type/(@displayName, @code))[1])"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="$localName"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <!-- Failsafe, ids can get quite long -->
-        <xsl:value-of select="nf:assure-logicalid-length(nf:removeSpecialCharacters($logicalId))"/>
-    </xsl:template>
 
     <xd:doc>
         <xd:desc/>
