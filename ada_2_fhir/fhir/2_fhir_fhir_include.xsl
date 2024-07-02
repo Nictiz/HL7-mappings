@@ -768,17 +768,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>If possible generates an uri based on oid or uuid from input. If not possible generates an uri based on gerenated uuid making use of input element</xd:desc>
         <xd:param name="adaIdentification">input element for which uri is needed</xd:param>
     </xd:doc>
-    <xsl:function name="nf:getUriFromAdaId" as="xs:string">
+ <!--   <xsl:function name="nf:getUriFromAdaId" as="xs:string">
         <xsl:param name="adaIdentification" as="element()"/>
         <xsl:value-of select="nf:getUriFromAdaId($adaIdentification, (), ())"/>
-    </xsl:function>
+    </xsl:function>-->
     <xd:doc>
         <xd:desc>Requires param adaIdentification or resourceId. If possible generates a uri based on oid or uuid from input. If not possible generates an uri based on generated uuid making use of input element</xd:desc>
         <xd:param name="adaIdentification">input element for which uri is needed</xd:param>
         <xd:param name="resourceType">if a resourceId was created before we should reuse that, but for that we need a baseUrl + resource type like https://myserver/fhir/Observation to create [base]/resourceId</xd:param>
         <xd:param name="reference">If true creates a fullUrl otherwise a relative reference</xd:param>
     </xd:doc>
-    <xsl:function name="nf:getUriFromAdaId" as="xs:string">
+ <!--   <xsl:function name="nf:getUriFromAdaId" as="xs:string">
         <xsl:param name="adaIdentification" as="element()?"/>
         <xsl:param name="resourceType" as="xs:string?"/>
         <xsl:param name="reference" as="xs:boolean?"/>
@@ -793,38 +793,38 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="not($referById) and (string-length($baseUrl) gt 0 or $reference) and string-length($resourceType) gt 0 and string-length($resourceId/@value) gt 0">
                 <xsl:value-of select="concat(if ($reference) then () else concat(replace($baseUrl, '/+$', '/'), '/'), $resourceType, '/', $resourceId/@value)"/>
             </xsl:when>
-            <!-- root = oid and extension = numeric -->
+            <!-\- root = oid and extension = numeric -\->
             <xsl:when test="$adaIdentification[not(@root = $mask-ids-var)][@value][matches(@root, $OIDpattern)][matches(@value, '^\d+$')]">
                 <xsl:variable name="ii" select="$adaIdentification[matches(@root, $OIDpattern)][matches(@value, '^\d+$')][1]"/>
                 <xsl:value-of select="concat('urn:oid:', $ii/string-join((@root, replace(@value, '^0+', '')[not(. = '')]), '.'))"/>
             </xsl:when>
-            <!-- root = oid and no extension -->
+            <!-\- root = oid and no extension -\->
             <xsl:when test="$adaIdentification[not(@root = $mask-ids-var)][@value][matches(@root, $OIDpattern)][not(@value)]">
                 <xsl:variable name="ii" select="$adaIdentification[matches(@root, $OIDpattern)][not(@value)][1]"/>
                 <xsl:value-of select="concat('urn:oid:', $ii/string-join((@root, replace(@value, '^0+', '')[not(. = '')]), '.'))"/>
             </xsl:when>
-            <!-- root = 'not important' and extension = uuid -->
+            <!-\- root = 'not important' and extension = uuid -\->
             <xsl:when test="$adaIdentification[not(@root = $mask-ids-var)][@value][matches(@value, $UUIDpattern)]">
                 <xsl:variable name="ii" select="$adaIdentification[matches(@value, $UUIDpattern)][1]"/>
                 <xsl:value-of select="concat('urn:uuid:', $ii/@value)"/>
             </xsl:when>
-            <!-- root = uuid and extension = 'not important' -->
+            <!-\- root = uuid and extension = 'not important' -\->
             <xsl:when test="$adaIdentification[not(@root = $mask-ids-var)][@value][matches(@root, $UUIDpattern)]">
                 <xsl:variable name="ii" select="$adaIdentification[matches(@root, $UUIDpattern)][1]"/>
                 <xsl:value-of select="concat('urn:uuid:', $ii/@root)"/>
             </xsl:when>
-            <!-- root = ? and extension = uuid -->
-            <!--<xsl:when test="$adaIdentification[not(@root = $mask-ids-var)][@value][matches(@value, $UUIDpattern)]">
+            <!-\- root = ? and extension = uuid -\->
+            <!-\-<xsl:when test="$adaIdentification[not(@root = $mask-ids-var)][@value][matches(@value, $UUIDpattern)]">
                 <xsl:variable name="ii" select="$adaIdentification[matches(@value, $UUIDpattern)][1]"/>
                 <xsl:value-of select="concat('urn:uuid:', $ii/@value)"/>
-            </xsl:when>-->
-            <!-- give up and do new uuid -->
+            </xsl:when>-\->
+            <!-\- give up and do new uuid -\->
             <xsl:otherwise>
                 <xsl:value-of select="nf:get-fhir-uuid($adaIdentification[1])"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
-    
+-->    
     <xd:doc>
         <xd:desc>Removed special characters to comply with certain rules for id's. Touchstone also does not like . (period) in fixture id.</xd:desc>
         <xd:param name="in"/>
