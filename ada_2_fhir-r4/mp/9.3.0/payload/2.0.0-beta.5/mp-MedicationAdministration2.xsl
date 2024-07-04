@@ -103,7 +103,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="(medicatie_toediening_reden_van_afwijken, medicatietoediening_reden_van_afwijken)[@code]">
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.ReasonForDeviation">
                         <valueCodeableConcept>
-                            <xsl:call-template name="code-to-CodeableConcept"/>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="treatNullFlavorAsCoding" select="true()"/>
+                            </xsl:call-template>
                         </valueCodeableConcept>
                     </extension>
                 </xsl:for-each>
@@ -212,7 +214,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:with-param name="in" select="relatie_toedieningsafspraak/identificatie[@value | @root | @nullFlavor]"/>
                                 </xsl:call-template>
                             </identifier>
-                            <display value="relatie naar toedieningsafspraak met identificatie: {string-join((@value, @root), ' || ')}"/>
+                            <display value="relatie naar toedieningsafspraak met identificatie: {string-join((relatie_toedieningsafspraak/identificatie/@value, relatie_toedieningsafspraak/identificatie/@root), ' || ')}"/>
                         </supportingInformation>
                     </xsl:when>
                     <!-- zib dataset -->
