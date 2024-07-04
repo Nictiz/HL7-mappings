@@ -262,6 +262,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:with-param name="profile" select="$ada2resourceType/nm:map[@ada = current()/local-name()][@resource = 'PractitionerRole']/@profile"/>
                                     </xsl:call-template>
                                 </xsl:when>
+                                <xsl:when test="self::toediener_is_patient">
+                                    <xsl:call-template name="makeReference">
+                                        <xsl:with-param name="in" select="$subject"/>
+                                    </xsl:call-template>
+                                </xsl:when>
                                 <xsl:otherwise>
                                     <xsl:call-template name="makeReference"/>
                                 </xsl:otherwise>
