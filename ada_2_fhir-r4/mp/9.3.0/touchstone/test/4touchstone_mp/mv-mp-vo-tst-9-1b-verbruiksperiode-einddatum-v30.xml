@@ -5,7 +5,7 @@
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:ed35d15d-6af7-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:5d64075d-6b0a-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -15,6 +15,9 @@
                   <code value="actionable"/>
                </tag>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, +0}T11:01:00+02:00"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
                <valueString value="Vanaf T, tot en met T + 200 dagen, 1 maal per dag 1 stuk, Oraal"/>
             </extension>
@@ -27,12 +30,12 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_logistiekeverbruiksperiode_eind"/>
+                  <value value="MBH_300_distributievorm_GDS"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <value value="MBH_300_logistiekeverbruiksperiode_eind_MA"/>
+               <value value="MBH_300_distributievorm_GDS_MA"/>
             </identifier>
             <status value="active"/>
             <intent value="order"/>
@@ -53,7 +56,6 @@
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
-            <authoredOn value="${DATE, T, D, +0}T11:01:00+02:00"/>
             <requester>
                <reference value="urn:uuid:fbd0582e-6b5a-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
@@ -99,7 +101,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a2b230a1-6b3f-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:230140a1-6b6f-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -112,12 +114,12 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_logistiekeverbruiksperiode_eind"/>
+                  <value value="MBH_300_distributievorm_GDS"/>
                </valueIdentifier>
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <value value="MBH_300_logistiekeverbruiksperiode_eind_VV"/>
+               <value value="MBH_300_distributievorm_GDS_VV"/>
             </identifier>
             <status value="active"/>
             <intent value="order"/>
@@ -145,7 +147,7 @@
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:63e19d6e-6b1b-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -153,9 +155,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_300_logistiekeverbruiksperiode_eind_MA"/>
+                  <value value="MBH_300_distributievorm_GDS_MA"/>
                </identifier>
-               <display value="relatie naar medicatieafspraak  met identificatie: MBH_300_logistiekeverbruiksperiode_eind_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <display value="relatie naar medicatieafspraak  met identificatie: MBH_300_distributievorm_GDS_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </basedOn>
             <dispenseRequest>
                <validityPeriod>
@@ -335,7 +337,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:63e19d6e-6b1b-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -346,6 +348,31 @@
                <value value="01236578"/>
             </identifier>
             <name value="Apotheek De Gulle Gaper"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="krommeweg 11 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="krommeweg"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="11"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AB"/>
+            </address>
          </Organization>
       </resource>
       <request>

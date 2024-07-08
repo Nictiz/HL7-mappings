@@ -15,6 +15,9 @@
                   <code value="actionable"/>
                </tag>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, +0}T11:07:00+02:00"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
                <valueString value="Vanaf T + 1 dag, tot en met T + 10 dagen, 3 maal per dag 1 stuk, Oraal"/>
             </extension>
@@ -44,16 +47,15 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ebaaab1d-6b29-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:9c6bf6e9-6b7a-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="FENETICILLINE CAPSULE 500MG"/>
+               <display value="MODAFINIL TABLET 200MG"/>
             </medicationReference>
             <subject>
                <reference value="urn:uuid:eb74c70e-6ab7-11ec-0000-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
-            <authoredOn value="${DATE, T, D, +0}T11:07:00+02:00"/>
             <requester>
                <reference value="urn:uuid:fbd0582e-6b5a-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
@@ -99,7 +101,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:90b116dd-6ad0-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:9f59f6dd-6aed-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -129,9 +131,9 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ebaaab1d-6b29-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:9c6bf6e9-6b7a-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="FENETICILLINE CAPSULE 500MG"/>
+               <display value="MODAFINIL TABLET 200MG"/>
             </medicationReference>
             <subject>
                <reference value="urn:uuid:eb74c70e-6ab7-11ec-0000-020000000000"/>
@@ -145,7 +147,7 @@
                <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:63e19d6e-6b1b-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -353,7 +355,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:63e19d6e-6b1b-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -364,6 +366,31 @@
                <value value="01236578"/>
             </identifier>
             <name value="Apotheek De Gulle Gaper"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="krommeweg 11 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="krommeweg"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="11"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AB"/>
+            </address>
          </Organization>
       </resource>
       <request>
@@ -372,7 +399,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ebaaab1d-6b29-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:9c6bf6e9-6b7a-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -381,16 +408,16 @@
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="17205"/>
-                  <display value="FENETICILLINE CAPSULE 500MG"/>
+                  <code value="199311"/>
+                  <display value="MODAFINIL TABLET 200MG"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="41092"/>
-                  <display value="FENETICILLINE 500MG CAPSULE"/>
+                  <code value="179051"/>
+                  <display value="MODAFINIL TABLET 200MG"/>
                </coding>
-               <text value="FENETICILLINE CAPSULE 500MG"/>
+               <text value="MODAFINIL TABLET 200MG"/>
             </code>
          </Medication>
       </resource>

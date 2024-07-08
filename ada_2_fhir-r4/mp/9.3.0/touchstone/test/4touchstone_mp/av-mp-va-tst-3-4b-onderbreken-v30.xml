@@ -15,7 +15,7 @@
                   <code value="actionable"/>
                </tag>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="${DATE, T, D, +0}T19:12:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
@@ -76,7 +76,7 @@
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:ed21e864-6b45-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:e23d6864-6af1-11ec-0000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek Jansen en Co"/>
                </actor>
@@ -179,7 +179,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ed21e864-6b45-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:e23d6864-6af1-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -190,6 +190,28 @@
                <value value="99901111"/>
             </identifier>
             <name value="Apotheek Jansen en Co"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="bomenstraat 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="bomenstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Bcoude"/>
+               <postalCode value="9898ZZ"/>
+            </address>
          </Organization>
       </resource>
       <request>
@@ -219,7 +241,7 @@
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
                   <code value="41092"/>
-                  <display value="FENETICILLINE 500MG CAPSULE"/>
+                  <display value="FENETICILLINE CAPSULE 500MG"/>
                </coding>
                <text value="BROXIL CAPSULE 500MG"/>
             </code>

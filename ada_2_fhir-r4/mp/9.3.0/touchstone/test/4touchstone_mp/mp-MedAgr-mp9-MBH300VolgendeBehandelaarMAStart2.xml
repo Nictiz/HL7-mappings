@@ -3,6 +3,9 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
    </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+      <valueDateTime value="${DATE, T, D, -1}T13:00:00+02:00"/>
+   </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
       <valueString value="Vanaf T + 3 dagen, tot en met T + 50 dagen, 1 maal per dag 1 stuk, Oraal"/>
    </extension>
@@ -20,7 +23,7 @@
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.NextPractitioner">
       <valueReference>
-         <reference value="PractitionerRole/nl-core-HPrf-PracRol-mp9-PrcRol-2165281100731-000001112"/>
+         <reference value="PractitionerRole/nl-core-HPrf-PracRol-mp9-PrcRol-2165281100731-000001112-2"/>
          <type value="PractitionerRole"/>
          <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
       </valueReference>
@@ -48,7 +51,6 @@
       <type value="Patient"/>
       <display value="Patient, C. XXX_Dongen"/>
    </subject>
-   <authoredOn value="${DATE, T, D, -1}T13:00:00+02:00"/>
    <requester>
       <reference value="PractitionerRole/nl-core-HPrf-PracRol-mp9-PrcRol-2165281100731-000002222"/>
       <type value="PractitionerRole"/>

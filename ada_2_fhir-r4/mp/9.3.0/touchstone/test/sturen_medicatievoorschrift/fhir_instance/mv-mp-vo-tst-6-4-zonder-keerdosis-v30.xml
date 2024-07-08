@@ -15,6 +15,9 @@
                   <code value="actionable"/>
                </tag>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, +0}T08:12:00+02:00"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
                <valueString value="Vanaf T, tot en met T + 28 dagen, 3 maal per dag, aanbrengen, cutaan"/>
             </extension>
@@ -53,7 +56,6 @@
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
-            <authoredOn value="${DATE, T, D, +0}T08:12:00+02:00"/>
             <requester>
                <reference value="urn:uuid:7af79824-6ac8-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
@@ -90,7 +92,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:1711f289-6b4f-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:0f2390a1-6aa3-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -152,16 +154,16 @@
                <quantity>
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                      <valueQuantity>
-                        <value value="1"/>
+                        <value value="100"/>
                         <unit value="stuk"/>
                         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                        <code value="245"/>
+                        <code value="215"/>
                      </valueQuantity>
                   </extension>
-                  <value value="1"/>
+                  <value value="100"/>
                   <unit value="stuk"/>
                   <system value="http://unitsofmeasure.org"/>
-                  <code value="1"/>
+                  <code value="g"/>
                </quantity>
             </dispenseRequest>
          </MedicationRequest>
