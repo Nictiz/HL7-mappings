@@ -15,7 +15,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:f="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nm="http://www.nictiz.nl/mappings" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 
     <xsl:import href="../../../../zibs2020/payload/0.10.0-beta.1/all_zibs.xsl"/>
-
+    <xsl:import href="../../payload/imm-Vaccination-event.xsl"/>
+    <xsl:import href="../../../../mp/9.3.0/payload/2.0.0-beta.2/mp-PharmaceuticalProduct.xsl"/>
+    
     <xd:doc>
         <xd:desc>If true, write all generated resources to disk in the fhir_instance directory. Otherwise, return all the output in a FHIR Bundle.</xd:desc>
     </xd:doc>
@@ -49,7 +51,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     beschikbaarstellen_immunisatiegegevens/bundel/patient |
                     beschikbaarstellen_immunisatiegegevens/vaccinatie/(toediener | locatie)/zorgaanbieder | $locatieZorgaanbieder |
                     beschikbaarstellen_immunisatiegegevens/vaccinatie/toediener/zorgverlener |
-                    beschikbaarstellen_immunisatiegegevens/vaccinatie)"/>
+                    beschikbaarstellen_immunisatiegegevens/vaccinatie |
+                    beschikbaarstellen_immunisatiegegevens/vaccinatie/farmaceutisch_product)"/>
         </xsl:call-template>
     </xsl:param>
 
@@ -102,13 +105,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
             <xsl:variable name="vaccinatie" as="element()*">
                 <xsl:for-each select="vaccinatie">
-                    <xsl:call-template name="nl-core-Vaccination-event"/>
+                    <xsl:call-template name="imm-Vaccination-event"/>
+                </xsl:for-each>
+            </xsl:variable>
+            
+            <xsl:variable name="farmaceutischProduct" as="element()*">
+                <xsl:for-each select="vaccinatie/farmaceutisch_product">
+                    <xsl:call-template name="mp-PharmaceuticalProduct"/>
                 </xsl:for-each>
             </xsl:variable>
 
 
             <!-- TODO, add zorgverlener/vaccinatie and debug logicalId -->
-            <xsl:for-each select="$patient | $zorgaanbieder | $zorgaanbiederOrg | $zorgverlener">
+            <xsl:for-each select="$patient | $zorgaanbieder | $zorgaanbiederOrg | $zorgverlener | $vaccinatie | $farmaceutischProduct">
                 <entry xmlns="http://hl7.org/fhir">
                     <xsl:call-template name="_insertFullUrlById"/>
                     <resource>

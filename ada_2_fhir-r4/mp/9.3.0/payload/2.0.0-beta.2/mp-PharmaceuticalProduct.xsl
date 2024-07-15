@@ -65,15 +65,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:otherwise>
                                 </xsl:choose>
                             </xsl:for-each>
-                            <xsl:for-each select="$most-specific-product-code[@displayName]">
-                                <!-- MP-1295, call string function to get rid of leading/trailing spaces which FHIR does not appreciate -->
-                                <text>
-                                    <xsl:call-template name="string-to-string">
-                                        <xsl:with-param name="in" select="."/>
-                                        <xsl:with-param name="inAttributeName">displayName</xsl:with-param>
-                                    </xsl:call-template>
-                                </text>
-                            </xsl:for-each>
+                            <!-- Gemaakt om product_naam te kunnen toevoegen in code.text -->
+                            <xsl:choose>
+                                <xsl:when test="product_specificatie/product_naam">
+                                    <xsl:for-each select="product_specificatie/product_naam">
+                                        <text value="{@value}"/>
+                                    </xsl:for-each>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:for-each select="$most-specific-product-code[@displayName]">
+                                        <!-- MP-1295, call string function to get rid of leading/trailing spaces which FHIR does not appreciate -->
+                                        <text>
+                                            <xsl:call-template name="string-to-string">
+                                                <xsl:with-param name="in" select="."/>
+                                                <xsl:with-param name="inAttributeName">displayName</xsl:with-param>
+                                            </xsl:call-template>
+                                        </text>
+                                    </xsl:for-each>
+                                </xsl:otherwise>
+                            </xsl:choose>
+
                         </code>
                     </xsl:when>
                     <!-- magistraal -->
@@ -183,6 +194,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </ingredient>
                     </xsl:if>
                 </xsl:for-each>
+                <xsl:if test="batchnummer">
+                    <batch>
+                        <lotNumber value="{batchnummer/@value}"/>
+                    </batch>
+                </xsl:if>
             </Medication>
         </xsl:for-each>
     </xsl:template>
