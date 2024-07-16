@@ -236,7 +236,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:medicationReference" mode="mp-MedicationUse2">
         <gebruiksproduct>
-            <farmaceutisch_product value="{nf:convert2NCName(./f:reference/@value)}" datatype="reference"/>
+            <farmaceutisch_product value="{nf:process-reference-2NCName(f:reference/@value,ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
         </gebruiksproduct>
     </xsl:template>
 
