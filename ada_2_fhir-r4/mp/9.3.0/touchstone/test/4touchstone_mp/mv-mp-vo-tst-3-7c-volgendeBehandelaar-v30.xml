@@ -15,6 +15,9 @@
                   <code value="actionable"/>
                </tag>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, +0}T13:00:00+02:00"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
                <valueString value="Vanaf T + 4 dagen, tot en met T + 51 dagen, 1 maal per dag 1 stuk, Oraal"/>
             </extension>
@@ -32,7 +35,7 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.NextPractitioner">
                <valueReference>
-                  <reference value="urn:uuid:4560482e-6aec-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:a41b8558-6a99-11ec-0000-020000000000"/>
                   <type value="PractitionerRole"/>
                   <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
@@ -60,7 +63,6 @@
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
-            <authoredOn value="${DATE, T, D, +0}T13:00:00+02:00"/>
             <requester>
                <reference value="urn:uuid:ea3fd558-6ab1-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
@@ -167,7 +169,7 @@
                <display value="Healthcare professional (role), Jan van Harten, Medisch specialisten, chirurgie, Ziekenhuis het Gele Hart"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:63e19d6e-6b1b-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -330,19 +332,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4560482e-6aec-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:a41b8558-6a99-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:a57e4824-6aa3-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:4297d42e-6b7b-11ec-0000-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Bertine van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:7fa869d8-6b44-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:66640464-6b73-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -362,7 +364,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a57e4824-6aa3-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:4297d42e-6b7b-11ec-0000-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -445,7 +447,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7fa869d8-6b44-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:66640464-6b73-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -456,6 +458,25 @@
                <value value="00001111"/>
             </identifier>
             <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:63e19d6e-6b1b-11ec-0000-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="01236578"/>
+            </identifier>
+            <name value="Apotheek De Gulle Gaper"/>
             <address>
                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
                   <valueCodeableConcept>
@@ -467,36 +488,20 @@
                   </valueCodeableConcept>
                </extension>
                <use value="work"/>
-               <line value="Dorpsstraat 1">
+               <line value="krommeweg 11 A">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
-                     <valueString value="Dorpsstraat"/>
+                     <valueString value="krommeweg"/>
                   </extension>
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
-                     <valueString value="1"/>
+                     <valueString value="11"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
                   </extension>
                </line>
                <city value="Ons Dorp"/>
-               <postalCode value="1234AA"/>
+               <postalCode value="1234AB"/>
             </address>
-         </Organization>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Organization"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
-      <resource>
-         <Organization>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
-            </meta>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
-               <value value="01236578"/>
-            </identifier>
-            <name value="Apotheek De Gulle Gaper"/>
          </Organization>
       </resource>
       <request>
