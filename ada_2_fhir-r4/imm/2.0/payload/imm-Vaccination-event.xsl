@@ -91,6 +91,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:call-template>
                     </occurrenceDateTime>
                 </xsl:for-each>
+                <xsl:for-each select="locatie">
+                    <xsl:call-template name="makeReference">
+                        <xsl:with-param name="in" select="./*"/>
+                        <xsl:with-param name="profile" select="'nl-core-HealthcareProvider'"/>
+                        <xsl:with-param name="wrapIn" select="'location'"/>
+                    </xsl:call-template>
+                </xsl:for-each>
                 <xsl:for-each select="dosis">
                     <doseQuantity>
                         <xsl:call-template name="hoeveelheid-to-Quantity">
