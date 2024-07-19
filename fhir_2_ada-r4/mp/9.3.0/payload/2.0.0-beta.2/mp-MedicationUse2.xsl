@@ -244,7 +244,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to convert f:informationSource to informant</xd:desc>
     </xd:doc>
     <xsl:template match="f:informationSource" mode="mp-MedicationUse2">
-        <xsl:variable name="referenceValue" select="nf:process-reference(f:reference/@value,ancestor::f:entry/f:fullUrl/@value)"/>
+        <xsl:variable name="referenceValue" select="f:reference/@value"/>
         <xsl:variable name="referenceValuePractitionerRole" select="f:extension/f:valueReference/f:reference/@value"/>
         <xsl:variable name="resource" select="(ancestor::f:Bundle/f:entry[f:fullUrl/@value = $referenceValue]/f:resource/f:*)[1]"/>
         <informant>
@@ -256,18 +256,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:when>
                 <xsl:when test="$resource/local-name() = 'Practitioner'">
                     <informant_is_zorgverlener>
-                        <zorgverlener datatype="reference" value="{nf:process-reference-2NCName($referenceValue, ancestor::f:entry/f:fullUrl/@value)}"/>
+                        <zorgverlener datatype="reference" value="{nf:convert2NCName(f:reference/@value)}"/>
                     </informant_is_zorgverlener>
                 </xsl:when>
                 <xsl:when test="$resource/local-name() = 'PractitionerRole'">
                     <informant_is_zorgverlener>
                         <xsl:variable name="practitionerRole" select="string(f:reference/@value)"/>
-                        <zorgverlener datatype="reference" value="{nf:process-reference-2NCName($practitionerRole, ancestor::f:entry/f:fullUrl/@value)}"/>
+                        <zorgverlener datatype="reference" value="{nf:convert2NCName($practitionerRole)}"/>
                     </informant_is_zorgverlener>
                 </xsl:when>
                 <xsl:when test="$resource/local-name() = 'RelatedPerson'">
                     <persoon>
-                        <contactpersoon datatype="reference" value="{nf:process-reference-2NCName(f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}"/>
+                        <contactpersoon datatype="reference" value="{nf:convert2NCName(f:reference/@value)}"/>
                     </persoon>
                 </xsl:when>
             </xsl:choose>
@@ -374,7 +374,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to convert f:extension with extension url ext-MedicationUse.Author to auteur</xd:desc>
     </xd:doc>
     <xsl:template match="f:extension[@url = $urlExtMedicationUseAuthor]" mode="mp-MedicationUse2">
-        <xsl:variable name="referenceValue" select="nf:process-reference(f:valueReference/f:reference/@value, ancestor::f:entry/f:fullUrl/@value)"/>
+        <xsl:variable name="referenceValue" select="f:valueReference/f:reference/@value"/>
         <xsl:variable name="resource" select="(ancestor::f:Bundle/f:entry[f:fullUrl/@value = $referenceValue]/f:resource/f:*)[1]"/>
         <auteur>
             <xsl:choose>
@@ -385,12 +385,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:when>
                 <xsl:when test="$resource/local-name() = ('PractitionerRole', 'Practitioner')">
                     <auteur_is_zorgverlener>
-                        <zorgverlener datatype="reference" value="{nf:process-reference-2NCName($referenceValue, ancestor::f:entry/f:fullUrl/@value)}"/>
+                        <zorgverlener datatype="reference" value="{nf:convert2NCName(f:valueReference/f:reference/@value)}"/>
                     </auteur_is_zorgverlener>
                 </xsl:when>
                 <xsl:when test="$resource/local-name() = ('Organization', 'Location')">
                     <auteur_is_zorgaanbieder>
-                        <zorgaanbieder datatype="reference" value="{nf:process-reference-2NCName($referenceValue, ancestor::f:entry/f:fullUrl/@value)}"/> 
+                        <zorgaanbieder datatype="reference" value="{nf:convert2NCName(f:valueReference/f:reference/@value)}"/> 
                     </auteur_is_zorgaanbieder>
                 </xsl:when>
             </xsl:choose>
@@ -402,7 +402,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="f:extension[@url = $urlExtMedicationUse2Prescriber]" mode="mp-MedicationUse2">
         <voorschrijver>
-            <zorgverlener value="{nf:process-reference-2NCName(f:valueReference/f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
+            <zorgverlener value="{nf:convert2NCName(f:valueReference/f:reference/@value)}" datatype="reference"/>
         </voorschrijver>
     </xsl:template>
 
