@@ -42,7 +42,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 				<auteur>
 					<xsl:choose>
 						<xsl:when test="$resolvedElement/(f:PractitionerRole | f:Practitioner) or f:type/@value = ('PractitionerRole', 'Practitioner')">
-							<zorgverlener value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
+							<zorgverlener value="{nf:process-reference-2NCName(f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
 						</xsl:when>
 						<xsl:when test="$resolvedElement/(f:Organization | f:Location) or f:type/@value = ('Organization', 'Location')">
 							<xsl:call-template name="util:logMessage">

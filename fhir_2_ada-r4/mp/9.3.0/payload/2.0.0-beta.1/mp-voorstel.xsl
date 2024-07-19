@@ -35,12 +35,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					<xsl:choose>
 						<xsl:when test="$resolvedRequester/(f:PractitionerRole | f:Practitioner) or f:type/@value = ('PractitionerRole', 'Practitioner')">
 							<auteur_is_zorgverlener>
-								<zorgverlener value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
+								<zorgverlener value="{nf:process-reference-2NCName(f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
 							</auteur_is_zorgverlener>
 						</xsl:when>
 						<xsl:when test="$resolvedRequester/(f:Organization | f:Location) or f:type/@value = ('Organization', 'Location')">
 							<auteur_is_zorgaanbieder>
-								<zorgaanbieder value="{nf:convert2NCName(f:reference/@value)}" datatype="reference"/>
+								<zorgaanbieder value="{nf:process-reference-2NCName(f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
 							</auteur_is_zorgaanbieder>
 						</xsl:when>
 						<xsl:when test="$resolvedRequester/f:Patient or f:type/@value = 'Patient'">

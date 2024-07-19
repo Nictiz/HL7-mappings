@@ -1,0 +1,971 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bundle xmlns="http://hl7.org/fhir">
+    <id value="86d0e8eb-037c-4780-ad5b-f43f9434e7c8" />
+    <meta>
+        <lastUpdated value="2024-07-04T11:55:56.5016545+00:00" />
+    </meta>
+    <type value="searchset" />
+    <entry>
+        <fullUrl
+            value="https://ca-fhir-r4-service.calmbush-47cd73b8.westeurope.azurecontainerapps.io/MedicationStatement/c0bddb42-6cc9-4bb2-a051-54d2cd485472" />
+        <resource>
+            <MedicationStatement>
+                <id value="c0bddb42-6cc9-4bb2-a051-54d2cd485472" />
+                <meta>
+                    <versionId value="1" />
+                    <lastUpdated value="2024-06-18T08:37:52.934+00:00" />
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2" />
+                </meta>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
+                    <valueReference>
+                        <reference value="PractitionerRole/95991" />
+                        <type value="PractitionerRole"/>
+                        <display value="Healthcare professional (role), Marcha van Partners, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Itis"/>
+                    </valueReference>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator">
+                    <valueBoolean value="false" />
+                </extension>
+                <extension
+                    url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+                    <valueIdentifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.61.2" />
+                        <value value="67903" />
+                    </valueIdentifier>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
+                    <valueReference>
+                        <reference value="PractitionerRole/95991" />
+                        <type value="PractitionerRole" />
+                        <identifier>
+                            <system value="PractitionerRole" />
+                            <value value="95991" />
+                        </identifier>
+                        <display value="CC Verpleegkundige" />
+                    </valueReference>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+                    <valueBoolean value="false" />
+                </extension>
+                <extension
+                    url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+                    <valueString
+                        value="Vanaf 18-06-2024 00:00 t/m 22-06-2024 23:59, 3 maal per dag 2 stuks, oraal" />
+                </extension>
+                <identifier>
+                    <use value="official" />
+                    <system value="http://ncare.nl/fhir/NamingSystem/localid" />
+                    <value value="ad75dd0e-7e5c-42ee-a051-45d76115a948" />
+                </identifier>
+                <status value="active" />
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct" />
+                        <code value="422979000" />
+                        <display
+                            value="bevinding betreffende gedrag met betrekking tot medicatieregime" />
+                    </coding>
+                </category>
+                <medicationReference>
+                    <reference value="Medication/PRK.67903" />
+                    <type value="Medication" />
+                    <identifier>
+                        <system value="Medication" />
+                        <value value="67903" />
+                    </identifier>
+                    <display value="PARACETAMOL TABLET 500MG" />
+                </medicationReference>
+                <subject>
+                    <reference value="Patient/20421998" />
+                    <type value="Patient" />
+                    <identifier>
+                        <system value="Patient" />
+                        <value value="20421998" />
+                    </identifier>
+                    <display value="Zon (999993112), W" />
+                </subject>
+                <effectivePeriod>
+                    <start value="2024-06-17T22:00:00+00:00" />
+                    <end value="2024-06-22T21:59:59.99+00:00" />
+                </effectivePeriod>
+                <dateAsserted value="2024-06-18T08:37:51.5628088+00:00" />
+                <informationSource>
+                    <reference value="Patient/20421998" />
+                    <type value="Patient" />
+                    <identifier>
+                        <system value="Patient" />
+                        <value value="20421998" />
+                    </identifier>
+                    <display value="Zon (999993112), W" />
+                </informationSource>
+                <reasonCode>
+                    <text value="Hoofdpijn" />
+                </reasonCode>
+                <dosage>
+                    <extension
+                        url="http://ncare.nl/fhir/StructureDefinition/prescription-schema-type">
+                        <valueCodeableConcept>
+                            <coding>
+                                <system
+                                    value="http://ncare.nl/fhir/CodeSystem/prescription-schema-type" />
+                                <code value="0" />
+                            </coding>
+                            <text value="Unknown" />
+                        </valueCodeableConcept>
+                    </extension>
+                    <timing>
+                        <repeat>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                <valueBoolean value="false" />
+                            </extension>
+                            <frequency value="3" />
+                            <period value="1" />
+                            <periodUnit value="d" />
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9" />
+                            <code value="9" />
+                        </coding>
+                        <text value="ORAAL" />
+                    </route>
+                    <doseAndRate>
+                        <doseQuantity>
+                            <extension
+                                url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                                <valueQuantity>
+                                    <value value="2" />
+                                    <unit value="STUK" />
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2" />
+                                    <code value="245" />
+                                </valueQuantity>
+                            </extension>
+                        </doseQuantity>
+                    </doseAndRate>
+                </dosage>
+            </MedicationStatement>
+        </resource>
+        <search>
+            <mode value="match" />
+        </search>
+    </entry>
+    <entry>
+        <fullUrl
+            value="https://ca-fhir-r4-service.calmbush-47cd73b8.westeurope.azurecontainerapps.io/MedicationStatement/38440a78-6fa1-4c07-83c1-f74622cf2d2c" />
+        <resource>
+            <MedicationStatement>
+                <id value="38440a78-6fa1-4c07-83c1-f74622cf2d2c" />
+                <meta>
+                    <versionId value="1" />
+                    <lastUpdated value="2024-07-02T07:35:24.958+00:00" />
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationUse2" />
+                </meta>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator">
+                    <valueBoolean value="false" />
+                </extension>
+                <extension
+                    url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+                    <valueIdentifier>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.3.11.61.2" />
+                        <value value="47392" />
+                    </valueIdentifier>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Author">
+                    <valueReference>
+                        <reference value="PractitionerRole/95991" />
+                        <type value="PractitionerRole" />
+                        <identifier>
+                            <system value="PractitionerRole" />
+                            <value value="95991" />
+                        </identifier>
+                        <display value="CC Verpleegkundige" />
+                    </valueReference>
+                </extension>
+                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CopyIndicator">
+                    <valueBoolean value="false" />
+                </extension>
+                <extension
+                    url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+                    <valueString value="Vanaf 02-07-2024 00:00, 1 maal per dag 1 stuk, oraal" />
+                </extension>
+                <identifier>
+                    <use value="official" />
+                    <system value="http://ncare.nl/fhir/NamingSystem/localid" />
+                    <value value="c654acc4-70f1-4e92-855e-d599a2ad781a" />
+                </identifier>
+                <status value="active" />
+                <category>
+                    <coding>
+                        <system value="http://snomed.info/sct" />
+                        <code value="422979000" />
+                        <display
+                            value="bevinding betreffende gedrag met betrekking tot medicatieregime" />
+                    </coding>
+                </category>
+                <medicationReference>
+                    <reference value="Medication/HPK.1872761" />
+                    <type value="Medication" />
+                    <identifier>
+                        <system value="Medication" />
+                        <value value="1872761" />
+                    </identifier>
+                    <display value="SINT JANSKRUID LAMBERTS EEN PER DAG TABLET" />
+                </medicationReference>
+                <subject>
+                    <reference value="Patient/20421998" />
+                    <type value="Patient" />
+                    <identifier>
+                        <system value="Patient" />
+                        <value value="20421998" />
+                    </identifier>
+                    <display value="Zon (999993112), W" />
+                </subject>
+                <effectivePeriod>
+                    <start value="2024-07-01T22:00:00+00:00" />
+                </effectivePeriod>
+                <dateAsserted value="2024-07-02T07:35:24.4174199+00:00" />
+                <informationSource>
+       <!--             <reference value="Patient/20421998" />
+                    <type value="Patient" />
+                    <identifier>
+                        <system value="Patient" />
+                        <value value="20421998" />
+                    </identifier>
+                    <display value="Zon (999993112), W" />-->
+                    <reference value="PractitionerRole/95991" />
+                    <type value="PractitionerRole" />
+                    <identifier>
+                        <system value="PractitionerRole" />
+                        <value value="95991" />
+                    </identifier>
+                    <display value="CC Verpleegkundige" />
+                </informationSource>
+                <reasonCode>
+                    <text value="depressief" />
+                </reasonCode>
+                <dosage>
+                    <extension
+                        url="http://ncare.nl/fhir/StructureDefinition/prescription-schema-type">
+                        <valueCodeableConcept>
+                            <coding>
+                                <system
+                                    value="http://ncare.nl/fhir/CodeSystem/prescription-schema-type" />
+                                <code value="0" />
+                            </coding>
+                            <text value="Unknown" />
+                        </valueCodeableConcept>
+                    </extension>
+                    <timing>
+                        <repeat>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                                <valueBoolean value="false" />
+                            </extension>
+                            <frequency value="1" />
+                            <period value="1" />
+                            <periodUnit value="d" />
+                        </repeat>
+                    </timing>
+                    <route>
+                        <coding>
+                            <system value="urn:oid:2.16.840.1.113883.2.4.4.9" />
+                            <code value="9" />
+                        </coding>
+                        <text value="ORAAL" />
+                    </route>
+                    <doseAndRate>
+                        <doseQuantity>
+                            <extension
+                                url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                                <valueQuantity>
+                                    <value value="1" />
+                                    <unit value="STUK" />
+                                    <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2" />
+                                    <code value="245" />
+                                </valueQuantity>
+                            </extension>
+                        </doseQuantity>
+                    </doseAndRate>
+                </dosage>
+            </MedicationStatement>
+        </resource>
+        <search>
+            <mode value="match" />
+        </search>
+    </entry>
+    <entry>
+        <fullUrl
+            value="https://ca-fhir-r4-service.calmbush-47cd73b8.westeurope.azurecontainerapps.io/Patient/20421998" />
+        <resource>
+            <Patient>
+                <id value="20421998" />
+                <meta>
+                    <versionId value="1" />
+                    <lastUpdated value="2024-06-18T08:12:18.703+00:00" />
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+                </meta>
+                <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-preferred-pharmacy">
+                    <valueReference>
+                        <extension url="phonenumber">
+                            <valueString value="0102020202" />
+                        </extension>
+                        <reference value="Organization/Pharmacy.18494" />
+                        <type value="Organization" />
+                        <identifier>
+                            <system value="http://fhir.nl/fhir/NamingSystem/agb-z" />
+                            <value value="99999981" />
+                        </identifier>
+                        <display value="LSP Apotheek" />
+                    </valueReference>
+                </extension>
+                <identifier>
+                    <use value="official" />
+                    <system value="http://fhir.nl/fhir/NamingSystem/bsn" />
+                    <value value="999993112" />
+                </identifier>
+                <identifier>
+                    <use value="official" />
+                    <system value="http://ncare.nl/fhir/NamingSystem/localid" />
+                    <value value="20421998" />
+                </identifier>
+                <identifier>
+                    <use value="secondary" />
+                    <system value="http://ncare.nl/fhir/NamingSystem/clientadditionalinfo" />
+                    <value value="73891" />
+                </identifier>
+                <active value="true" />
+                <name>
+                    <extension
+                        url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                        <valueCode value="NL3" />
+                    </extension>
+                    <use value="official" />
+                    <text value="Zon (999993112)" />
+                    <family value="Zon (999993112)" />
+                    <given value="W">
+                        <extension
+                            url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                            <valueCode value="IN" />
+                        </extension>
+                    </given>
+                </name>
+                <gender value="female" />
+                <birthDate value="2000-01-01" />
+                <deceasedBoolean value="false" />
+                <address>
+                    <extension
+                        url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                        <valueCodeableConcept>
+                            <coding>
+                                <system value="http://hl7.org/fhir/v3/AddressUse" />
+                                <code value="HP" />
+                            </coding>
+                            <text value="Officieel adres" />
+                        </valueCodeableConcept>
+                    </extension>
+                    <use value="home" />
+                </address>
+                <managingOrganization>
+                    <reference value="Organization/Organization.59150" />
+                    <type value="Organization" />
+                    <identifier>
+                        <system value="http://fhir.nl/fhir/NamingSystem/agb-z" />
+                        <value value="42420098" />
+                    </identifier>
+                    <display value="CareConnections" />
+                </managingOrganization>
+            </Patient>
+        </resource>
+        <search>
+            <mode value="include" />
+        </search>
+    </entry>
+    <entry>
+        <fullUrl
+            value="https://ca-fhir-r4-service.calmbush-47cd73b8.westeurope.azurecontainerapps.io/Patient/20421998" />
+        <resource>
+            <Patient>
+                <id value="20421998" />
+                <meta>
+                    <versionId value="1" />
+                    <lastUpdated value="2024-06-18T08:12:18.703+00:00" />
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient" />
+                </meta>
+                <extension url="http://fhir.nl/fhir/StructureDefinition/nl-core-preferred-pharmacy">
+                    <valueReference>
+                        <extension url="phonenumber">
+                            <valueString value="0102020202" />
+                        </extension>
+                        <reference value="Organization/Pharmacy.18494" />
+                        <type value="Organization" />
+                        <identifier>
+                            <system value="http://fhir.nl/fhir/NamingSystem/agb-z" />
+                            <value value="99999981" />
+                        </identifier>
+                        <display value="LSP Apotheek" />
+                    </valueReference>
+                </extension>
+                <identifier>
+                    <use value="official" />
+                    <system value="http://fhir.nl/fhir/NamingSystem/bsn" />
+                    <value value="999993112" />
+                </identifier>
+                <identifier>
+                    <use value="official" />
+                    <system value="http://ncare.nl/fhir/NamingSystem/localid" />
+                    <value value="20421998" />
+                </identifier>
+                <identifier>
+                    <use value="secondary" />
+                    <system value="http://ncare.nl/fhir/NamingSystem/clientadditionalinfo" />
+                    <value value="73891" />
+                </identifier>
+                <active value="true" />
+                <name>
+                    <extension
+                        url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
+                        <valueCode value="NL3" />
+                    </extension>
+                    <use value="official" />
+                    <text value="Zon (999993112)" />
+                    <family value="Zon (999993112)" />
+                    <given value="W">
+                        <extension
+                            url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                            <valueCode value="IN" />
+                        </extension>
+                    </given>
+                </name>
+                <gender value="female" />
+                <birthDate value="2000-01-01" />
+                <deceasedBoolean value="false" />
+                <address>
+                    <extension
+                        url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                        <valueCodeableConcept>
+                            <coding>
+                                <system value="http://hl7.org/fhir/v3/AddressUse" />
+                                <code value="HP" />
+                            </coding>
+                            <text value="Officieel adres" />
+                        </valueCodeableConcept>
+                    </extension>
+                    <use value="home" />
+                </address>
+                <managingOrganization>
+                    <reference value="Organization/Organization.59150" />
+                    <type value="Organization" />
+                    <identifier>
+                        <system value="http://fhir.nl/fhir/NamingSystem/agb-z" />
+                        <value value="42420098" />
+                    </identifier>
+                    <display value="CareConnections" />
+                </managingOrganization>
+            </Patient>
+        </resource>
+        <search>
+            <mode value="include" />
+        </search>
+    </entry>
+    <entry>
+        <fullUrl
+            value="https://ca-fhir-r4-service.calmbush-47cd73b8.westeurope.azurecontainerapps.io/Medication/PRK.67903" />
+        <resource>
+            <Medication>
+                <id value="PRK.67903" />
+                <meta>
+                    <versionId value="ticks/638556909564335216" />
+                    <lastUpdated value="2024-07-04T11:55:56.4918158+00:00" />
+                    <profile
+                        value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct" />
+                </meta>
+                <extension url="http://ncare.nl/fhir/StructureDefinition/medication-canprescribe">
+                    <valueBoolean value="true" />
+                </extension>
+                <extension
+                    url="http://ncare.nl/fhir/StructureDefinition/medication-preferredFrequencyUnit">
+                    <valueCodeableConcept>
+                        <extension
+                            url="http://ncare.nl/fhir/StructureDefinition/medication-conversionFactorToDays">
+                            <valueDecimal value="0" />
+                        </extension>
+                        <coding>
+                            <system value="http://snomed.info/sct" />
+                            <code value="19" />
+                            <display value="per dag" />
+                        </coding>
+                        <text value="D" />
+                    </valueCodeableConcept>
+                </extension>
+                <extension
+                    url="http://ncare.nl/fhir/StructureDefinition/medication-preferredDosageUnit">
+                    <valueCodeableConcept>
+                        <extension
+                            url="http://ncare.nl/fhir/StructureDefinition/medication-dosageUnitIsBaseUnit">
+                            <valueBoolean value="false" />
+                        </extension>
+                        <extension
+                            url="http://ncare.nl/fhir/StructureDefinition/medication-dosageUnitDescriptionPlural">
+                            <valueString value="stuks" />
+                        </extension>
+                        <coding>
+                            <system value="http://snomed.info/sct" />
+                            <code value="89" />
+                            <display value="stuk" />
+                        </coding>
+                        <text value="SK" />
+                    </valueCodeableConcept>
+                </extension>
+                <code>
+                    <coding>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.10" />
+                        <code value="67903" />
+                        <display value="PARACETAMOL TABLET 500MG" />
+                        <userSelected value="true" />
+                    </coding>
+                    <coding>
+                        <system value="urn:oid:2.16.840.1.113883.6.73" />
+                        <code value="N02BE01" />
+                        <display value="N02BE01" />
+                    </coding>
+                </code>
+                <status value="inactive" />
+            </Medication>
+        </resource>
+        <search>
+            <mode value="include" />
+        </search>
+    </entry>
+    <entry>
+        <fullUrl
+            value="https://ca-fhir-r4-service.calmbush-47cd73b8.westeurope.azurecontainerapps.io/Medication/HPK.1872761" />
+        <resource>
+            <Medication>
+                <id value="HPK.1872761" />
+                <meta>
+                    <versionId value="ticks/638556909564372597" />
+                    <lastUpdated value="2024-07-04T11:55:56.493176+00:00" />
+                    <profile
+                        value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct" />
+                </meta>
+                <extension url="http://ncare.nl/fhir/StructureDefinition/medication-canprescribe">
+                    <valueBoolean value="true" />
+                </extension>
+                <extension url="http://fhir.nl/fhir/StructureDefinition/Medication">
+                    <valueReference id="PRK.47392">
+                        <reference value="http://fhir.nl/fhir/StructureDefinition/Medication" />
+                    </valueReference>
+                </extension>
+                <extension
+                    url="http://ncare.nl/fhir/StructureDefinition/medication-preferredFrequencyUnit">
+                    <valueCodeableConcept>
+                        <extension
+                            url="http://ncare.nl/fhir/StructureDefinition/medication-conversionFactorToDays">
+                            <valueDecimal value="0" />
+                        </extension>
+                        <coding>
+                            <system value="http://snomed.info/sct" />
+                            <code value="19" />
+                            <display value="per dag" />
+                        </coding>
+                        <text value="D" />
+                    </valueCodeableConcept>
+                </extension>
+                <extension
+                    url="http://ncare.nl/fhir/StructureDefinition/medication-preferredDosageUnit">
+                    <valueCodeableConcept>
+                        <extension
+                            url="http://ncare.nl/fhir/StructureDefinition/medication-dosageUnitIsBaseUnit">
+                            <valueBoolean value="false" />
+                        </extension>
+                        <extension
+                            url="http://ncare.nl/fhir/StructureDefinition/medication-dosageUnitDescriptionPlural">
+                            <valueString value="stuks" />
+                        </extension>
+                        <coding>
+                            <system value="http://snomed.info/sct" />
+                            <code value="89" />
+                            <display value="stuk" />
+                        </coding>
+                        <text value="SK" />
+                    </valueCodeableConcept>
+                </extension>
+                <code>
+                    <coding>
+                        <system value="urn:oid:2.16.840.1.113883.2.4.4.7" />
+                        <code value="1872761" />
+                        <display value="SINT JANSKRUID LAMBERTS EEN PER DAG TABLET" />
+                        <userSelected value="true" />
+                    </coding>
+                    <coding>
+                        <system value="urn:oid:2.16.840.1.113883.6.73" />
+                        <code value="N06AX25" />
+                        <display value="N06AX25" />
+                    </coding>
+                </code>
+                <status value="inactive" />
+            </Medication>
+        </resource>
+        <search>
+            <mode value="include" />
+        </search>
+    </entry>
+    <entry>
+        <fullUrl value="https://ca-fhir-r4-service.calmbush-47cd73b8.westeurope.azurecontainerapps.io/PractitionerRole/95991"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+            </meta>
+            <practitioner>
+                <reference value="Practitioner/000001111"/>
+               <type value="Practitioner"/>
+               <display value="Healthcare professional (person), Peter van Pulver"/>
+            </practitioner>
+            <organization>
+                <reference value="https://ca-fhir-r4-service.calmbush-47cd73b8.westeurope.azurecontainerapps.io/Organization/00001111"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2020-10-23T00:00:00"/>
+                  <code value="0100"/>
+                  <display value="Huisartsen, niet nader gespecificeerd"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+       <fullUrl value="https://ca-fhir-r4-service.calmbush-47cd73b8.westeurope.azurecontainerapps.io/Practitioner/000001111"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+               <value value="000001111"/>
+            </identifier>
+            <name>
+               <use value="official"/>
+               <text value="Peter van Pulver"/>
+               <family value="van Pulver">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Pulver"/>
+                  </extension>
+               </family>
+               <given value="Peter">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2e3b9998-063b-11ef-7515-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+            </meta>
+            <practitioner>
+               <reference value="urn:uuid:2e3b99c0-063b-11ef-7515-020000000000"/>
+               <type value="Practitioner"/>
+               <display value="Healthcare professional (person), Jan van Harten"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:uuid:2e3b9b6e-063b-11ef-7515-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Ziekenhuis het Gele Hart"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2020-10-23T00:00:00"/>
+                  <code value="0303"/>
+                  <display value="Medisch specialisten, chirurgie"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2e3b99c0-063b-11ef-7515-020000000000"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+               <value value="000002222"/>
+            </identifier>
+            <name>
+               <use value="official"/>
+               <text value="Jan van Harten"/>
+               <family value="van Harten">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Harten"/>
+                  </extension>
+               </family>
+               <given value="Jan">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2e3b99f2-063b-11ef-7515-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+            </meta>
+            <practitioner>
+               <reference value="urn:uuid:2e3b9a1a-063b-11ef-7515-020000000000"/>
+               <type value="Practitioner"/>
+               <display value="Healthcare professional (person), Marcha van Partners"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:uuid:2e3b9bc8-063b-11ef-7515-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Huisartsenpraktijk Itis"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2020-10-23T00:00:00"/>
+                  <code value="0100"/>
+                  <display value="Huisartsen, niet nader gespecificeerd"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2e3b9a1a-063b-11ef-7515-020000000000"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+               <value value="000001115"/>
+            </identifier>
+            <name>
+               <use value="official"/>
+               <text value="Marcha van Partners"/>
+               <family value="van Partners">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Partners"/>
+                  </extension>
+               </family>
+               <given value="Marcha">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2e3b9a60-063b-11ef-7515-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00001111"/>
+            </identifier>
+            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2e3b9aba-063b-11ef-7515-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="01236578"/>
+            </identifier>
+            <name value="Apotheek De Gulle Gaper"/>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2e3b9b14-063b-11ef-7515-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="99901111"/>
+            </identifier>
+            <name value="Apotheek Jansen en Co"/>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2e3b9b6e-063b-11ef-7515-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00004444"/>
+            </identifier>
+            <type>
+               <coding>
+                  <system value="http://nictiz.nl/fhir/NamingSystem/organization-type"/>
+                  <code value="V4"/>
+                  <display value="Ziekenhuis"/>
+               </coding>
+            </type>
+            <name value="Ziekenhuis het Gele Hart"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Groenestraat 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Groenestraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Hartstad"/>
+               <postalCode value="1200AA"/>
+            </address>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:2e3b9bc8-063b-11ef-7515-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00005111"/>
+            </identifier>
+            <name value="Huisartsenpraktijk Itis"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Langelaan 1">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Langelaan"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="1"/>
+                  </extension>
+               </line>
+               <city value="Onze Stad"/>
+               <postalCode value="1234ZZ"/>
+            </address>
+         </Organization>
+      </resource>
+      <search>
+         <mode value="include"/>
+      </search>
+   </entry>
+</Bundle>
