@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="mv-mp-vo-kwal-script4-v30"/>
+   <id value="mv-mp-vo-kwal-script4b-v30"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:f2d02a5d-6b76-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:5e69af2b-6afb-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -16,10 +16,10 @@
                </tag>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
-               <valueDateTime value="${DATE, T, D, +0}T11:30:00+02:00"/>
+               <valueDateTime value="${DATE, T, D, -6}T11:30:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T, gedurende 10 dagen, eerst gedurende 3 dagen 3 maal per dag 1 stuk, dan gedurende 7 dagen 2 maal per dag 1 stuk, vóór het eten, oraal"/>
+               <valueString value="Vanaf T - 6 dagen om 11:30 uur, gedurende 10 dagen, eerst gedurende 3 dagen 3 maal per dag 1 stuk, dan gedurende 7 dagen 2 maal per dag 1 stuk, vóór het eten, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -31,7 +31,7 @@
                         <code value="d"/>
                      </valueDuration>
                   </extension>
-                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
+                  <start value="${DATE, T, D, -6}T11:30:00+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -170,7 +170,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:1a2d4e7d-6b4d-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:c842ea7d-6aca-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -209,14 +209,14 @@
                <type value="Patient"/>
                <display value="Patient, H. XXX_Smit"/>
             </subject>
-            <authoredOn value="${DATE, T, D, +0}T11:30:00+02:00"/>
+            <authoredOn value="${DATE, T, D, -6}T11:30:00+02:00"/>
             <requester>
                <reference value="urn:uuid:7af79824-6ac8-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:63e19d6e-6b1b-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -417,7 +417,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:63e19d6e-6b1b-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -428,6 +428,31 @@
                <value value="01236578"/>
             </identifier>
             <name value="Apotheek De Gulle Gaper"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="krommeweg 11 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="krommeweg"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="11"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AB"/>
+            </address>
          </Organization>
       </resource>
       <request>
