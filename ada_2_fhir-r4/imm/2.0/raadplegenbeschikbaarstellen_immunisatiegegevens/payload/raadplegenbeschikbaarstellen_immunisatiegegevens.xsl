@@ -49,7 +49,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:with-param name="in" select="
                     //(
                     beschikbaarstellen_immunisatiegegevens/bundel/patient |
-                    beschikbaarstellen_immunisatiegegevens/vaccinatie/(toediener | locatie)/zorgaanbieder | $locatieZorgaanbieder |
+                    beschikbaarstellen_immunisatiegegevens/vaccinatie/(toediener)/zorgaanbieder | $locatieZorgaanbieder |
                     beschikbaarstellen_immunisatiegegevens/vaccinatie/toediener/zorgverlener |
                     beschikbaarstellen_immunisatiegegevens/vaccinatie |
                     beschikbaarstellen_immunisatiegegevens/vaccinatie/farmaceutisch_product)"/>
@@ -87,7 +87,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
             <!-- the organization locatie/zorgaanbieder: we use the original because we don't want duplication of adresgegevens and contactgegevens -->
             <xsl:variable name="zorgaanbiederOrg" as="element()*">
-                <xsl:for-each-group select="vaccinatie/(toediener | locatie)/zorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
+                <xsl:for-each-group select="vaccinatie/toediener/zorgaanbieder | $locatieZorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="nl-core-HealthcareProvider-Organization"/>
                 </xsl:for-each-group>
             </xsl:variable>

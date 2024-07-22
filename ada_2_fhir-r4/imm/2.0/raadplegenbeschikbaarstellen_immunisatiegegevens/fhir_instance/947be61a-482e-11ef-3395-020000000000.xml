@@ -1,37 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Immunization xmlns="http://hl7.org/fhir">
-   <id value="e6a6f3d2-42af-11ef-7743-020000000000"/>
+   <id value="947be61a-482e-11ef-3395-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Vaccination-event"/>
    </meta>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-imm-Vaccination.PharmaceuticalProduct">
       <valueReference>
-         <reference value="Medication/21684011138832447-2978636"/>
+         <reference value="Medication/21684011138832447-2925508"/>
          <type value="Medication"/>
-         <display value="COVID-19 VACCIN MODERNA INJVLST 0,25ML"/>
+         <display value="COVID-19 VACCIN ASTRAZENECA INJVLST"/>
       </valueReference>
    </extension>
    <identifier>
       <system value="2.16.840.1.113883.2.4.3.11.60.131.2"/>
-      <value value="e6a97583-42af-11ef-7743-020000000000"/>
+      <value value="947f5b5b-482e-11ef-3395-020000000000"/>
    </identifier>
    <status value="completed"/>
    <vaccineCode>
       <coding>
          <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-         <code value="2978636"/>
-         <display value="COVID-19 VACCIN MODERNA INJVLST 0,25ML"/>
+         <code value="2925508"/>
+         <display value="COVID-19 VACCIN ASTRAZENECA INJVLST"/>
       </coding>
    </vaccineCode>
    <patient>
       <identifier>
          <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.131.2"/>
-         <value value="Door het systeem gegenereerd nummer"/>
+         <value value="Door systeem gegenereerd nummer"/>
       </identifier>
    </patient>
-   <occurrenceDateTime value="T-4Y"/>
+   <occurrenceDateTime value="T-3Y"/>
+   <location>
+      <reference value="Location/2165281100733-10000006"/>
+      <type value="Location"/>
+      <display value="Healthcare provider (location), GGD test 06, GGD test 06 West"/>
+   </location>
    <doseQuantity>
-      <value value="0.25"/>
+      <value value="0.5"/>
       <unit value="ml"/>
       <system value="http://unitsofmeasure.org"/>
       <code value="ml"/>
@@ -44,9 +49,12 @@
          </coding>
       </function>
       <actor>
-         <reference value="PractitionerRole/PrcRol-21684011138832461-75131313"/>
+         <reference value="PractitionerRole/PrcRol-2165281100731-02020202"/>
          <type value="PractitionerRole"/>
-         <display value="Healthcare professional (role), De Groot, Huisartsen, niet nader gespecificeerd, Jong Florence"/>
+         <display value="Healthcare professional (role), Peter (Peer) de Appel, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk test 06"/>
       </actor>
    </performer>
+   <note>
+      <text value="Geen bijzonderheden"/>
+   </note>
 </Immunization>

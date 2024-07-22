@@ -31,6 +31,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Converts ada vaccination to FHIR Immunization or ImmunizationRequest conforming to profile nl-core-Vaccination-event or nl-core-Vaccination-request respectively</xd:desc>
     </xd:doc>
     
+    <!-- TODO: documenteren! -->
+    <xsl:variable name="locatieZorgaanbieder" as="element()*"/>
+  
     <xd:doc>
         <xd:desc>Create an nl-core-Vaccination-event instance as an Immunization FHIR instance from ada vaccinatie element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -93,7 +96,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 <xsl:for-each select="locatie">
                     <xsl:call-template name="makeReference">
-                        <xsl:with-param name="in" select="./*"/>
+                        <xsl:with-param name="in" as="element()*">
+                            <xsl:choose>
+                                <xsl:when test="$locatieZorgaanbieder">
+                                    <xsl:sequence select="$locatieZorgaanbieder"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:sequence select="zorgaanbieder"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:with-param>
                         <xsl:with-param name="profile" select="'nl-core-HealthcareProvider'"/>
                         <xsl:with-param name="wrapIn" select="'location'"/>
                     </xsl:call-template>
