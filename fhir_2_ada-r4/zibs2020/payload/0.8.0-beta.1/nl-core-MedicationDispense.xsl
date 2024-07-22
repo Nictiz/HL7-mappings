@@ -13,15 +13,6 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 
-<!--
-mode = nl-core-MedicationDispense
-alle  ZZZNEW templates gaan mee
-TODO
-
--->
-
-
-
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" exclude-result-prefixes="#all" version="2.0">
 
     <xd:doc>
@@ -60,7 +51,6 @@ TODO
 
 
     <xd:doc>
-        <!--ZZZNEW-->
         <xd:desc>Template to f:extension[@url eq $urlExtPharmaceuticalTreatmentIdentifier] to identificatie indirect</xd:desc>
     </xd:doc>
     <xsl:template match="f:extension[@url eq $urlExtPharmaceuticalTreatmentIdentifier]" mode="nl-core-MedicationDispense">
@@ -68,17 +58,15 @@ TODO
     </xsl:template>
 
     <xd:doc>
-        <!--ZZZNEW-->
-        <xd:desc>Template to convert f:authorizingPrescription to relatie_verstrekkingsverzoek</xd:desc>
+        <xd:desc>Template to convert f:authorizingPrescription to relatie_medicatieafspraak</xd:desc>
     </xd:doc>
     <xsl:template match="f:authorizingPrescription" mode="nl-core-MedicationDispense">
-        <relatie_verstrekkingsverzoek>
-            <identificatie value="{f:identifier/f:value/@value}" root="{replace(f:identifier/f:system/@value, 'urn:oid:', '')}"/>
-        </relatie_verstrekkingsverzoek>
+        <relatie_medicatieafspraak>
+            <xsl:call-template name="Reference-to-identificatie"/>
+        </relatie_medicatieafspraak>
     </xsl:template>
 
     <xd:doc>
-        <!--ZZZNEW-->
         <xd:desc>Template to convert f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.MedicationDispenseAdditionalInformation'] to aanvullende_informatie</xd:desc>
     </xd:doc>
     <xsl:template match="f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.MedicationDispenseAdditionalInformation']" mode="nl-core-MedicationDispense">
@@ -89,7 +77,6 @@ TODO
     </xsl:template>
 
     <xd:doc>
-        <!--ZZZNEW-->
         <xd:desc>Template to convert f:extension[@url eq 'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.DistributionForm' to distributievorm</xd:desc>
     </xd:doc>
     <xsl:template match="f:extension[@url = $urlExtMedicationMedicationDispenseDistributionForm]" mode="nl-core-MedicationDispense">
@@ -105,11 +92,10 @@ TODO
     </xd:doc>
     <xsl:template match="f:destination/f:reference" mode="nl-core-MedicationDispense">
         <xsl:variable name="resource" select="nf:resolveRefInBundle(..)"/>
-        <afleverlocatie value="{$resource/f:*/f:name/@value}"/>        
+        <afleverlocatie value="{$resource/f:*/f:name/@value}"/>
     </xsl:template>
 
     <xd:doc>
-        <!--ZZZNEW-->
         <xd:desc>Template to f:daysSupply convert to verbruiksduur</xd:desc>
     </xd:doc>
     <xsl:template match="f:daysSupply" mode="nl-core-MedicationDispense">
@@ -117,7 +103,6 @@ TODO
     </xsl:template>
 
     <xd:doc>
-        <!--ZZZNEW-->
         <xd:desc>Template to convert f:medicationReference to verstrekt_geneesmiddel</xd:desc>
     </xd:doc>
     <xsl:template match="f:medicationReference" mode="nl-core-MedicationDispense">
@@ -127,8 +112,7 @@ TODO
     </xsl:template>
 
     <xd:doc>
-        <!--ZZZNEW-->
-        <xd:desc>Template to convert  to verstrekte_hoeveelheid</xd:desc>
+        <xd:desc>Template to convert to verstrekte_hoeveelheid</xd:desc>
     </xd:doc>
     <xsl:template match="f:quantity[f:extension/@url = 'http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation']" mode="nl-core-MedicationDispense">
         <verstrekte_hoeveelheid>
@@ -138,7 +122,6 @@ TODO
     </xsl:template>
 
     <xd:doc>
-        <!--ZZZNEW-->
         <xd:desc>Template to convert f:performer to verstrekker/zorgaanbieder </xd:desc>
     </xd:doc>
     <xsl:template match="f:performer" mode="nl-core-MedicationDispense">
@@ -148,7 +131,6 @@ TODO
     </xsl:template>
 
     <xd:doc>
-        <!--ZZZNEW-->
         <xd:desc>Template to convert f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.RequestDate']/f:valueDateTime to aanschrijf_datum</xd:desc>
     </xd:doc>
     <xsl:template match="f:extension[@url = 'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.RequestDate']/f:valueDateTime" mode="nl-core-MedicationDispense">
@@ -163,7 +145,6 @@ TODO
 
 
     <xd:doc>
-        <!--ZZZNEW-->
         <xd:desc>Template to convert f:whenHandedOver to medicatieverstrekkings_datum_tijd</xd:desc>
     </xd:doc>
     <xsl:template match="f:whenHandedOver" mode="nl-core-MedicationDispense">
@@ -177,19 +158,6 @@ TODO
     </xsl:template>
 
     <xd:doc>
-        <!-- ZZZNEW -->
-        <xd:desc>Template to resolve priorPrescription.</xd:desc>
-    </xd:doc>
-    <xd:doc>
-        <xd:desc>Template to convert f:authorizingPrescription to relatie_medicatieafspraak</xd:desc>
-    </xd:doc>
-    <xsl:template match="f:priorPrescription" mode="XXXXXXXXXXXXXXX">
-        <relatie_medicatieafspraak>
-            <xsl:call-template name="Reference-to-identificatie"/>
-        </relatie_medicatieafspraak>
-    </xsl:template>
-    <xd:doc>
-        <!-- ZZZNEW -->
         <xd:desc>Template to convert f:identifier to identificatie</xd:desc>
     </xd:doc>
     <xsl:template match="f:identifier" mode="nl-core-MedicationDispense">

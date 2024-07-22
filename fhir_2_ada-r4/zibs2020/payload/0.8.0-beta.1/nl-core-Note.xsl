@@ -16,7 +16,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
 
     <xd:doc>
-        <!--ZZZNEW-->
         <xd:desc>Template to convert f:note to Toelichting</xd:desc>
     </xd:doc>
     <xsl:template match="f:note" mode="nl-core-Note">

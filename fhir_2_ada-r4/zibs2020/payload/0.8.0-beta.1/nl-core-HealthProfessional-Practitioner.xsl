@@ -25,7 +25,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:param name="organizationReference">Optional reference to the Organization the Practitioner belongs to e.g. the ADA zorgaanbieder</xd:param>
         <xd:param name="specialtyReference">Optional reference to the PractitionerRole the Practitioner belongs to e.g. the ADA specialisme</xd:param>
     </xd:doc>
-    <!-- XXXwim f:Practitioner met hoofdletter?-->
     <xsl:template match="f:Practitioner" mode="nl-core-HealthProfessional-Practitioner">
         <xsl:param name="organizationReference"/>
         <xsl:param name="specialtyReference"/>
@@ -50,8 +49,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:if test="not($specialtyReference = '')">
                 <xsl:apply-templates select="ancestor::f:Bundle/f:entry[f:fullUrl/@value = $specialtyReference]/f:resource/f:PractitionerRole" mode="nl-core-HealthProfessional-PractitionerRole"/>
             </xsl:if>
-            <!-- geslacht TODO -->
-            
+            <!-- geslacht, we re-use the patient implementation, patient xsl should always be in scope -->
+            <xsl:apply-templates select="f:gender" mode="nl-core-Patient"/>            
             <!-- adresgegevens -->
             <xsl:apply-templates select="f:address" mode="nl-core-AddressInformation"/>
             <!-- contactgegevens -->
@@ -89,10 +88,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Template to convert f:name to naamgegevens</xd:desc>
+        <xd:desc>Template to convert f:name to naamgegevens, we re-use the patient implementation, patient xsl should always be in scope</xd:desc>
     </xd:doc>
     <xsl:template match="f:name" mode="nl-core-HealthProfessional-Practitioner">
-        <xsl:apply-templates select="." mode="nl-core-NameInformation"/>
+        <xsl:apply-templates select="." mode="nl-core-Patient"/>
     </xsl:template>
 
 </xsl:stylesheet>

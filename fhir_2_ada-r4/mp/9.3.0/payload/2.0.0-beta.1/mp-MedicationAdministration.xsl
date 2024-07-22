@@ -204,7 +204,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					<!-- From version MP9 3.0 beta3, performer is mapped to zorgverlener -->
 					<xsl:when test="f:type/@value = ('Practitioner') or $resource[f:Practitioner | f:PractitionerRole[f:practitioner | f:specialty]]">
 						<zorgverlener>
-							<!-- LR: TODO de regex is obv R4, kunnen we hier de regex ook toepassen voor relatieve urls? Aangezien dit pre MP9 3.0 is?-->
+							<!-- de regex is obv R4, dit kunnen we hier de regex ook toepassen aangezien dit een r4 implemementatie is: fhir_2_ada-r4-->
 							<zorgverlener value="{nf:process-reference-2NCName(f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
 						</zorgverlener>
 					</xsl:when>
