@@ -6,7 +6,10 @@
    <text>
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
-         <div>Id 111111121 (UZI-NR-PERS), A.B. Comenius</div>
+         <div>Id 111111121 (UZI-NR-PERS), <span title="Naamsamenstelling: Eigennaam">A.B. Comenius</span>
+         </div>
+         <div>
+            <a href="tel:+3143321654">+3143321654</a> (Vast telefoonnummer Werk), <a href="mailto:comenius@hpdetest.nl">comenius@hpdetest.nl</a> (E-mail Werk)</div>
       </div>
    </text>
    <identifier>
@@ -34,4 +37,23 @@
          </extension>
       </given>
    </name>
+   <telecom>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-ContactInformation-TelecomType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.22.1"/>
+               <code value="LL"/>
+               <display value="Vast telefoonnummer"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="phone"/>
+      <value value="+3143321654"/>
+      <use value="work"/>
+   </telecom>
+   <telecom>
+      <system value="email"/>
+      <value value="comenius@hpdetest.nl"/>
+      <use value="work"/>
+   </telecom>
 </Practitioner>

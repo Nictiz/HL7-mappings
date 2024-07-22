@@ -15,7 +15,7 @@
                   <code value="actionable"/>
                </tag>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="${DATE, T, D, +0}T13:00:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
@@ -48,7 +48,7 @@
             <medicationReference>
                <reference value="urn:uuid:3f743d1d-6ae4-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="overig"/>
+               <display value="Ureum 10% in eucerine cum aqua 100gr"/>
             </medicationReference>
             <subject>
                <reference value="urn:uuid:abfa2efe-6b61-11ec-0000-020000000000"/>
@@ -57,7 +57,7 @@
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:63e19d6e-6b1b-11ec-0000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -94,7 +94,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f55e71a7-6adb-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:ecbe33dd-6aba-11ec-0000-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -125,7 +125,7 @@
             <medicationReference>
                <reference value="urn:uuid:3f743d1d-6ae4-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="overig"/>
+               <display value="Ureum 10% in eucerine cum aqua 100gr"/>
             </medicationReference>
             <subject>
                <reference value="urn:uuid:abfa2efe-6b61-11ec-0000-020000000000"/>
@@ -134,7 +134,7 @@
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:63e19d6e-6b1b-11ec-0000-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -150,13 +150,13 @@
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                   <valueQuantity>
-                     <value value="100"/>
+                     <value value="50"/>
                      <unit value="milliliter"/>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                      <code value="233"/>
                   </valueQuantity>
                </extension>
-               <value value="100"/>
+               <value value="50"/>
                <unit value="milliliter"/>
                <system value="http://unitsofmeasure.org"/>
                <code value="ml"/>
@@ -217,7 +217,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:63e19d6e-6b1b-11ec-0000-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -228,6 +228,31 @@
                <value value="01236578"/>
             </identifier>
             <name value="Apotheek De Gulle Gaper"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="krommeweg 11 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="krommeweg"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="11"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AB"/>
+            </address>
          </Organization>
       </resource>
       <request>

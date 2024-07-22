@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="mv-mp-vo-tst-3-8-Stoppen-parallelle-TA-v30"/>
+   <id value="2fee32f1-063b-11ef-5752-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:f465f55d-6b1e-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:2fee3494-063b-11ef-5752-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -15,8 +15,11 @@
                   <code value="actionable"/>
                </tag>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="2023-01-01T09:05:00+01:00"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T, gedurende 28 dagen, 1 maal per dag 1 stuk 's ochtends en Bij pijn 1 maal per dag 1 stuk 's avonds, Oraal"/>
+               <valueString value="wordt automatisch gevuld"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -28,7 +31,7 @@
                         <code value="d"/>
                      </valueDuration>
                   </extension>
-                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
+                  <start value="2023-01-01T00:00:00+01:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -51,18 +54,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:7d6dcf1d-6b74-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:2fee34d0-063b-11ef-5752-020000000000"/>
                <type value="Medication"/>
                <display value="PANTOPRAZOL 40MG TABLET MSR"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:1c84b21e-6b37-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:2fee3368-063b-11ef-5752-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
-            <authoredOn value="${DATE, T, D, +0}T09:05:00+02:00"/>
             <requester>
-               <reference value="urn:uuid:ea3fd558-6ab1-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:2fee3390-063b-11ef-5752-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Jan van Harten, Medisch specialisten, chirurgie, Ziekenhuis het Gele Hart"/>
             </requester>
@@ -70,9 +72,6 @@
                <sequence value="1"/>
                <timing>
                   <repeat>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
                      <when value="MORN"/>
                   </repeat>
                </timing>
@@ -104,9 +103,6 @@
                <sequence value="1"/>
                <timing>
                   <repeat>
-                     <frequency value="1"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
                      <when value="EVE"/>
                   </repeat>
                </timing>
@@ -149,7 +145,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a08248a1-6b09-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:2fee34b2-063b-11ef-5752-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -179,23 +175,23 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:7d6dcf1d-6b74-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:2fee34d0-063b-11ef-5752-020000000000"/>
                <type value="Medication"/>
                <display value="PANTOPRAZOL 40MG TABLET MSR"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:1c84b21e-6b37-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:2fee3368-063b-11ef-5752-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
-            <authoredOn value="${DATE, T, D, +0}T09:05:00+02:00"/>
+            <authoredOn value="2023-01-01T09:05:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:ea3fd558-6ab1-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:2fee3390-063b-11ef-5752-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Jan van Harten, Medisch specialisten, chirurgie, Ziekenhuis het Gele Hart"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:2fee3458-063b-11ef-5752-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -231,7 +227,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:1c84b21e-6b37-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:2fee3368-063b-11ef-5752-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -281,19 +277,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ea3fd558-6ab1-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:2fee3390-063b-11ef-5752-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:dbada42e-6af2-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:2fee33b8-063b-11ef-5752-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Jan van Harten"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:f07009d8-6b48-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:2fee33fe-063b-11ef-5752-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Ziekenhuis het Gele Hart"/>
             </organization>
@@ -305,11 +301,6 @@
                   <display value="Medisch specialisten, chirurgie"/>
                </coding>
             </specialty>
-            <telecom>
-               <system value="phone"/>
-               <value value="1634534321"/>
-               <use value="work"/>
-            </telecom>
          </PractitionerRole>
       </resource>
       <request>
@@ -318,7 +309,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dbada42e-6af2-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:2fee33b8-063b-11ef-5752-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -345,11 +336,6 @@
                   </extension>
                </given>
             </name>
-            <telecom>
-               <system value="phone"/>
-               <value value="1634534321"/>
-               <use value="work"/>
-            </telecom>
          </Practitioner>
       </resource>
       <request>
@@ -358,7 +344,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:f07009d8-6b48-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:2fee33fe-063b-11ef-5752-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -406,7 +392,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:2fee3458-063b-11ef-5752-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -425,7 +411,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7d6dcf1d-6b74-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:2fee34d0-063b-11ef-5752-020000000000"/>
       <resource>
          <Medication>
             <meta>

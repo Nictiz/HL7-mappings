@@ -30,7 +30,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 					<xsl:apply-templates select="f:extension[@url = ($urlExtTimeInterval-Period, $urlExtTimeIntervalPeriod)]" mode="urlExtTimeInterval-Period"/>
 					<!-- MP9 2.0.0-bèta version -->
 					<xsl:apply-templates select="f:extension[@url = ($urlExtTimeInterval-Duration, $urlExtTimeIntervalDuration)]" mode="urlExtTimeInterval-Duration"/>
-					<!-- MP9 2.0.0 version -->
+					<!-- MP9 2.0.0 version (and higher) -->
 					<xsl:apply-templates select="f:extension[@url = ($urlExtTimeInterval-Period, $urlExtTimeIntervalPeriod)]/f:valuePeriod/f:extension[@url = ($urlExtTimeInterval-Duration, $urlExtTimeIntervalDuration)]" mode="urlExtTimeInterval-Duration"/>
 					<!-- criterium -->
 					<xsl:apply-templates select="f:extension[@url = ($urlExtTimeInterval-Period, $urlExtTimeIntervalPeriod)]/f:valuePeriod/f:extension[@url = $urlExtMedicationAgreementPeriodOfUseCondition]" mode="urlExtMedicationAgreementPeriodOfUseCondition"/>
@@ -57,7 +57,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 			<!-- afgesproken_geneesmiddel -->
 			<xsl:apply-templates select="f:medicationReference" mode="#current"/>
 			<!-- gebruiksinstructie -->
-			<xsl:call-template name="nl-core-InstructionsForUse"/>
+			<xsl:call-template name="mp-InstructionsForUse"/>
 			<!-- volgende behandelaar -->
 			<xsl:apply-templates select="f:extension[@url = $urlExtMedicationAgreementNextPractitioner]" mode="#current"/>
 			<!-- aanvullende_informatie -->

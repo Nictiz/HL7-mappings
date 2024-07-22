@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="av-mp-va-tst-9-3-afleverlocatie-v30"/>
+   <id value="6f627df5-06e2-11ef-1603-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:1aabab88-6b12-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6f627ee4-06e2-11ef-1603-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -15,11 +15,11 @@
                   <code value="actionable"/>
                </tag>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="2023-01-01T12:07:00+01:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 2 jan 2023, tot en met 11 jan 2023, 3 maal per dag 1 stuk, Oraal"/>
+               <valueString value="Vanaf &lt;T+1D{00:00:00}&gt; t/m &lt;T+10D{23:59:59}&gt;, 3 maal per dag 1 stuk, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -46,18 +46,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c8dcf604-6b6b-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6f627f3e-06e2-11ef-1603-020000000000"/>
                <type value="Medication"/>
-               <display value="BROXIL CAPSULE 500MG"/>
+               <display value="MODAFINIL FOCUS TABLET 200MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:eb74c70e-6ab7-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6f627e6c-06e2-11ef-1603-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:6f627ea8-06e2-11ef-1603-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -110,7 +110,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a619cbdd-6b76-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6f627f02-06e2-11ef-1603-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -142,18 +142,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c8dcf604-6b6b-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6f627f3e-06e2-11ef-1603-020000000000"/>
                <type value="Medication"/>
-               <display value="BROXIL CAPSULE 500MG"/>
+               <display value="MODAFINIL FOCUS TABLET 200MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:eb74c70e-6ab7-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6f627e6c-06e2-11ef-1603-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Nederveen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:6f627ea8-06e2-11ef-1603-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -182,7 +182,7 @@
             </quantity>
             <whenHandedOver value="2023-01-01T12:07:00+01:00"/>
             <destination>
-               <reference value="urn:uuid:c3deabb0-6b34-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6f627f20-06e2-11ef-1603-020000000000"/>
                <type value="Location"/>
                <display value="afleverlocatie"/>
             </destination>
@@ -194,7 +194,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:eb74c70e-6ab7-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6f627e6c-06e2-11ef-1603-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -241,7 +241,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6f627ea8-06e2-11ef-1603-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -260,7 +260,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c8dcf604-6b6b-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6f627f3e-06e2-11ef-1603-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -269,21 +269,21 @@
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="425087"/>
-                  <display value="BROXIL CAPSULE 500MG"/>
+                  <code value="2842246"/>
+                  <display value="MODAFINIL FOCUS TABLET 200MG"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="17205"/>
-                  <display value="FENETICILLINE CAPSULE 500MG"/>
+                  <code value="199311"/>
+                  <display value="MODAFINIL TABLET 200MG"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="41092"/>
-                  <display value="FENETICILLINE 500MG CAPSULE"/>
+                  <code value="179051"/>
+                  <display value="MODAFINIL TABLET 200MG"/>
                </coding>
-               <text value="BROXIL CAPSULE 500MG"/>
+               <text value="MODAFINIL FOCUS TABLET 200MG"/>
             </code>
          </Medication>
       </resource>
@@ -293,7 +293,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c3deabb0-6b34-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6f627f20-06e2-11ef-1603-020000000000"/>
       <resource>
          <Location>
             <meta>

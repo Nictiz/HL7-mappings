@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="av-mp-va-tst-6-7a-tijdstippen-flexibel-v30"/>
+   <id value="305295c5-063b-11ef-3020-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:07509f0d-6af7-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:305296b4-063b-11ef-3020-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -15,16 +15,16 @@
                   <code value="actionable"/>
                </tag>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
-               <valueDateTime value="${DATE, T, D, +0}T09:24:00+02:00"/>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="2023-01-01T09:24:00+01:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T, tot en met T + 14 dagen, elke dag om 08:00, 14:00 en 20:00 1 stuk, oraal"/>
+               <valueString value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+14D{23:59:59}&gt;, 3 maal daags 1 tablet, (8:00, 14:00, 20:00) oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
-                  <end value="${DATE, T, D, +14}T23:59:59+02:00"/>
+                  <start value="2023-01-01T00:00:00+01:00"/>
+                  <end value="2023-01-15T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -46,18 +46,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:97818ae9-6ab8-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:305296f0-063b-11ef-3020-020000000000"/>
                <type value="Medication"/>
                <display value="METFORMINE HCL PCH TABLET 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:839f5efe-6b41-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:3052963c-063b-11ef-3020-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:30529678-063b-11ef-3020-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
                </actor>
@@ -113,7 +113,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ff62fcfe-6b76-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:305296d2-063b-11ef-3020-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -142,18 +142,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:97818ae9-6ab8-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:305296f0-063b-11ef-3020-020000000000"/>
                <type value="Medication"/>
                <display value="METFORMINE HCL PCH TABLET 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:839f5efe-6b41-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:3052963c-063b-11ef-3020-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:30529678-063b-11ef-3020-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
                </actor>
@@ -180,7 +180,7 @@
                <system value="http://unitsofmeasure.org"/>
                <code value="1"/>
             </quantity>
-            <whenHandedOver value="${DATE, T, D, +0}T09:24:00+02:00"/>
+            <whenHandedOver value="2023-01-01T09:24:00+01:00"/>
          </MedicationDispense>
       </resource>
       <request>
@@ -189,7 +189,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:839f5efe-6b41-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:3052963c-063b-11ef-3020-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -236,7 +236,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:30529678-063b-11ef-3020-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -255,7 +255,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:97818ae9-6ab8-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:305296f0-063b-11ef-3020-020000000000"/>
       <resource>
          <Medication>
             <meta>

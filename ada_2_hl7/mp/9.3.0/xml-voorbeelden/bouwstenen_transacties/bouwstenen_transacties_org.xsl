@@ -43,9 +43,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
             <xsl:if test="$schematronRef">
                 <xsl:processing-instruction name="nictiz">status="example"</xsl:processing-instruction>
-                <xsl:processing-instruction name="xml-model">phase="#ALL" href="file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210921/mp-xml-20210921T194523/schematron_closed_warnings/mp-mp92_mg_ma.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
+                <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../../../../../../../SVN/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_mg_ma.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"</xsl:processing-instruction>
             </xsl:if>
-            <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd" classCode="CLUSTER" moodCode="EVN">
+            <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" classCode="CLUSTER" moodCode="EVN">
+                <xsl:if test="$schematronRef">
+                    <xsl:attribute name="xsi:schemaLocation">urn:hl7-org:v3 ../../../../../../../../SVN/aorta/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd</xsl:attribute>
+                </xsl:if>
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9432"/>
                 <code code="419891008" displayName="Gegevensobject" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
                 <statusCode code="completed"/>
@@ -80,9 +83,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
             <xsl:if test="$schematronRef">
                 <xsl:processing-instruction name="nictiz">status="example"</xsl:processing-instruction>
-                <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../../../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210921/mp-xml-20210921T194523/schematron_closed_warnings/mp-mp92-mg-wds.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
+                <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../../../../../../../SVN/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_mg_wds.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
             </xsl:if>
-            <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd" classCode="CLUSTER" moodCode="EVN">
+            <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" classCode="CLUSTER" moodCode="EVN">
+                <xsl:if test="$schematronRef">
+                    <xsl:attribute name="xsi:schemaLocation">urn:hl7-org:v3 ../../../../../../../../SVN/aorta/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd</xsl:attribute>
+                </xsl:if>            
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9413"/>
                 <code code="419891008" displayName="Gegevensobject" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
                 <statusCode code="completed"/>
@@ -111,9 +117,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
             <xsl:if test="$schematronRef">
                 <xsl:processing-instruction name="nictiz">status="example"</xsl:processing-instruction>
-                <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../../../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210921/mp-xml-20210921T194523/schematron_closed_warnings/mp-mp92_mg_vv.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
+                <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../../../../../../../SVN/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_mg_vv.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
             </xsl:if>
-            <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd" classCode="CLUSTER" moodCode="EVN">
+            <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" classCode="CLUSTER" moodCode="EVN">
+                <xsl:if test="$schematronRef">
+                    <xsl:attribute name="xsi:schemaLocation">urn:hl7-org:v3 ../../../../../../../../SVN/aorta/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd</xsl:attribute>
+                </xsl:if>            
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9450"/>
                 <code code="419891008" displayName="Gegevensobject" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
                 <statusCode code="completed"/>
@@ -142,9 +151,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
             <xsl:if test="$schematronRef">
                 <xsl:processing-instruction name="nictiz">status="example"</xsl:processing-instruction>
-                <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../../../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210921/mp-xml-20210921T194523/schematron_closed_warnings/mp-mp92_mg_ta.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
+                <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../../../../../../../SVN/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_mg_ta.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
             </xsl:if>
-            <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd" classCode="CLUSTER" moodCode="EVN">
+            <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" classCode="CLUSTER" moodCode="EVN">
+                <xsl:if test="$schematronRef">
+                    <xsl:attribute name="xsi:schemaLocation">urn:hl7-org:v3 ../../../../../../../../SVN/aorta/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd</xsl:attribute>
+                </xsl:if>            
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9418"/>
                 <code code="419891008" displayName="Gegevensobject" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
                 <statusCode code="completed"/>
@@ -177,9 +189,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
             <xsl:if test="$schematronRef">
                 <xsl:processing-instruction name="nictiz">status="example"</xsl:processing-instruction>
-                <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../../../../../../../../SVN/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp92_mg_mve.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
+                <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../../../../../../../SVN/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_mg_mve.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
             </xsl:if>
-            <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd" classCode="CLUSTER" moodCode="EVN">
+            <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" classCode="CLUSTER" moodCode="EVN">
+                <xsl:if test="$schematronRef">
+                    <xsl:attribute name="xsi:schemaLocation">urn:hl7-org:v3 ../../../../../../../../SVN/aorta/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd</xsl:attribute>
+                </xsl:if>            
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9365"/>
                 <code code="419891008" displayName="Gegevensobject" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
                 <statusCode code="completed"/>
@@ -207,9 +222,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
             <xsl:if test="$schematronRef">
                 <xsl:processing-instruction name="nictiz">status="example"</xsl:processing-instruction>
-                <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../../../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210921/mp-xml-20210921T194523/schematron_closed_warnings/mp-mp92_mg_mgb.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
+                <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../../../../../../../SVN/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_mg_mgb.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
             </xsl:if>
-            <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd" classCode="CLUSTER" moodCode="EVN">
+            <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" classCode="CLUSTER" moodCode="EVN">
+                <xsl:if test="$schematronRef">
+                    <xsl:attribute name="xsi:schemaLocation">urn:hl7-org:v3 ../../../../../../../../SVN/aorta/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd</xsl:attribute>
+                </xsl:if>            
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9445"/>
                 <code code="419891008" displayName="Gegevensobject" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
                 <statusCode code="completed"/>
@@ -242,9 +260,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             
             <xsl:if test="$schematronRef">
                 <xsl:processing-instruction name="nictiz">status="example"</xsl:processing-instruction>
-                <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../../../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210921/mp-xml-20210921T194523/schematron_closed_warnings/mp-mp92-mg-mtd.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
+                <xsl:processing-instruction name="xml-model">phase="#ALL" href="../../../../../../../../SVN/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_mg_mtd.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"</xsl:processing-instruction>
             </xsl:if>
-            <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd" classCode="CLUSTER" moodCode="EVN">
+            <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:pharm="urn:ihe:pharm:medication" classCode="CLUSTER" moodCode="EVN">
+                <xsl:if test="$schematronRef">
+                    <xsl:attribute name="xsi:schemaLocation">urn:hl7-org:v3 ../../../../../../../../SVN/aorta/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd</xsl:attribute>
+                </xsl:if>
                 <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9408"/>
                 <code code="419891008" displayName="Gegevensobject" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
                 <statusCode code="completed"/>

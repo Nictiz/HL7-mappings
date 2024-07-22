@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="av-mp-va-tst-2-2-toelichting-v30"/>
+   <id value="303ddd79-063b-11ef-1531-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:09f49f0d-6b7d-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:303dde68-063b-11ef-1531-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -15,15 +15,15 @@
                   <code value="actionable"/>
                </tag>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
-               <valueDateTime value="${DATE, T, D, +0}T09:02:00+02:00"/>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="2023-01-01T09:02:00+01:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T, 1 maal per dag 1 stuk, Oraal"/>
+               <valueString value="Vanaf &lt;T-21D{00:00:00}&gt;, 1 maal daags 1 stuk, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
+                  <start value="2023-01-01T00:00:00+01:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -45,18 +45,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ff75311d-6b1a-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:303ddea4-063b-11ef-1531-020000000000"/>
                <type value="Medication"/>
                <display value="FUROSEMIDE SANDOZ TABLET 40MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:a5f60932-6aac-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:303dddf0-063b-11ef-1531-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:303dde2c-063b-11ef-1531-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -112,7 +112,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:92c1a9fe-6ab5-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:303dde86-063b-11ef-1531-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -141,18 +141,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ff75311d-6b1a-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:303ddea4-063b-11ef-1531-020000000000"/>
                <type value="Medication"/>
                <display value="FUROSEMIDE SANDOZ TABLET 40MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:a5f60932-6aac-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:303dddf0-063b-11ef-1531-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:303dde2c-063b-11ef-1531-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -179,7 +179,7 @@
                <system value="http://unitsofmeasure.org"/>
                <code value="1"/>
             </quantity>
-            <whenHandedOver value="${DATE, T, D, +0}T09:02:00+02:00"/>
+            <whenHandedOver value="2023-01-01T09:02:00+01:00"/>
             <note>
                <text value="Extra verstrekkingsverzoek omdat patient medicatie is kwijtgeraakt"/>
             </note>
@@ -191,7 +191,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a5f60932-6aac-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:303dddf0-063b-11ef-1531-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -238,7 +238,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:303dde2c-063b-11ef-1531-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -257,7 +257,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ff75311d-6b1a-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:303ddea4-063b-11ef-1531-020000000000"/>
       <resource>
          <Medication>
             <meta>

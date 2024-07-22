@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model phase="#ALL" href="file:/C:/SVN/AORTA/trunk/Zorgtoepassing/Medicatieproces/DECOR/mp-runtime-develop/mp-mp93_mgb.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xmlns:hl7nl="urn:hl7-nl:v3"
-           xmlns:pharm="urn:ihe:pharm:medication"
-           xmlns:f="http://hl7.org/fhir"
-           xmlns:sdtc="urn:hl7-org:sdtc"
-           xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+<organizer xmlns:pharm="urn:ihe:pharm:medication"
            xmlns="urn:hl7-org:v3"
            classCode="CLUSTER"
-           moodCode="EVN"
-           xsi:schemaLocation="urn:hl7-org:v3 file:/C:/SVN/AORTA/branches/Onderhoud_Mp_v90/XML/schemas/organizer.xsd">
+           moodCode="EVN">
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9411"/>
    <code code="102"
          displayName="Medicatiegegevens"
@@ -41,7 +33,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 1 sep 2022, tot en met 1 sep 2023, 1 maal per dag 1 stuk, Bij het eten innemen, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS">
+         <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
             <low value="20220901000000"/>
             <high value="20230901235959"/>
          </effectiveTime>
@@ -91,7 +83,9 @@
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
                   <repeat>
                      <frequency value="1"/>
                      <period value="1"/>
@@ -107,7 +101,7 @@
                                   codeSystemName="G-Standaardthesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -119,7 +113,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">
@@ -145,7 +139,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 11 dec 2022, 1 maal per dag 1 stuk, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS">
+         <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
             <low value="20221211000000"/>
             <high nullFlavor="NI"/>
          </effectiveTime>
@@ -197,7 +191,9 @@
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
                   <repeat>
                      <frequency value="1"/>
                      <period value="1"/>
@@ -213,7 +209,7 @@
                                   codeSystemName="G-Standaardthesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -225,7 +221,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">
@@ -251,7 +247,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 19 dec 2022, tot en met 15 jan 2023, 1 maal per week 5 stuks, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS">
+         <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
             <low value="20221219000000"/>
             <high value="20230115235959"/>
          </effectiveTime>
@@ -293,7 +289,9 @@
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
                   <repeat>
                      <frequency value="1"/>
                      <period value="1"/>
@@ -309,7 +307,7 @@
                                   codeSystemName="G-Standaardthesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -321,7 +319,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">
@@ -346,8 +344,8 @@
                displayName="Toedieningsafspraak"
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
-         <text mediaType="text/plain">Vanaf 28 dec 2022, tot en met 6 jan 2023, 3 maal per dag 1 stuk, Oraal</text>
-         <effectiveTime xsi:type="IVL_TS">
+         <text mediaType="text/plain">Vanaf 28 dec 2022, tot en met 6 jan 2023, elke dag om 19:00 1 stuk - let op, tijden exact aanhouden, Oraal</text>
+         <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
             <low value="20221228000000"/>
             <high value="20230106235959"/>
          </effectiveTime>
@@ -385,24 +383,28 @@
                </representedOrganization>
             </assignedAuthor>
          </author>
-         <entryRelationship typeCode="COMP">
-            <observation classCode="OBS" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9402"/>
-               <code code="12"
-                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"
-                     displayName="Aanvullende informatie Toedieningsafspraak"/>
-               <text xsi:type="ST">Bijwerking besproken</text>
-            </observation>
+         <entryRelationship typeCode="SUBJ" inversionInd="true">
+            <act classCode="ACT" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
+               <code code="48767-8"
+                     codeSystem="2.16.840.1.113883.6.1"
+                     codeSystemName="LOINC"
+                     displayName="Annotation comment"/>
+               <text mediaType="text/plain">Bijwerking besproken</text>
+            </act>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
                   <repeat>
-                     <frequency value="3"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="true"/>
+                     </extension>
+                     <timeOfDay value="19:00:00"/>
                   </repeat>
                </effectiveTime>
                <doseQuantity>
@@ -414,7 +416,7 @@
                                   codeSystemName="G-Standaardthesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -426,7 +428,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">
@@ -452,7 +454,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <text mediaType="text/plain">Vanaf 27 dec 2022, tot en met 3 jan 2023, 2 maal per dag 1 druppel, In het rechter oog, oculair</text>
-         <effectiveTime xsi:type="IVL_TS">
+         <effectiveTime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="IVL_TS">
             <low value="20221227000000"/>
             <high value="20230103235959"/>
          </effectiveTime>
@@ -498,20 +500,23 @@
                </code>
             </act>
          </entryRelationship>
-         <entryRelationship typeCode="COMP">
-            <observation classCode="OBS" moodCode="EVN">
-               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9402"/>
-               <code code="12"
-                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"
-                     displayName="Aanvullende informatie Toedieningsafspraak"/>
-               <text xsi:type="ST">Gebruiksinstructie gegeven</text>
-            </observation>
+         <entryRelationship typeCode="SUBJ" inversionInd="true">
+            <act classCode="ACT" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
+               <code code="48767-8"
+                     codeSystem="2.16.840.1.113883.6.1"
+                     codeSystemName="LOINC"
+                     displayName="Annotation comment"/>
+               <text mediaType="text/plain">Gebruiksinstructie gegeven</text>
+            </act>
          </entryRelationship>
          <entryRelationship typeCode="COMP">
             <sequenceNumber value="1"/>
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9359"/>
-               <effectiveTime xmlns="http://hl7.org/fhir" xsi:type="Timing">
+               <effectiveTime xmlns="http://hl7.org/fhir"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:type="Timing">
                   <repeat>
                      <frequency value="2"/>
                      <period value="1"/>
@@ -527,7 +532,7 @@
                                   codeSystemName="G-Standaard thesaurus basiseenheden"/>
                   </center>
                </doseQuantity>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
@@ -539,7 +544,7 @@
                      codeSystem="2.16.840.1.113883.6.96"
                      codeSystemName="SNOMED CT"
                      displayName="Medicatieafspraak"/>
-               <consumable xsi:nil="true"/>
+               <consumable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
             </substanceAdministration>
          </entryRelationship>
          <entryRelationship typeCode="COMP" inversionInd="true">

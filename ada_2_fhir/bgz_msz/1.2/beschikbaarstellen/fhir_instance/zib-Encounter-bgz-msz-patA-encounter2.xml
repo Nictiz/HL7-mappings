@@ -1,0 +1,117 @@
+<Encounter xmlns="http://hl7.org/fhir">
+   <id value="zib-Encounter-bgz-msz-patA-encounter2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Contact. Subject: Dennis D. Dennis Janse. Id: bgz-msz-patA-encounter2 (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6), Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <th>Type contact</th>
+                  <td>
+                     <div>
+                        <span title="Inpatient (IMP - v3/ActCode)">Inpatient</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>${DATE, T, D, -44}T13:30:00+02:00 - ${DATE, T, D, -43}T12:00:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Probleem/Verrichting</th>
+                  <td>externe fixatie van fractuur van malleolus</td>
+               </tr>
+               <tr>
+                  <th>Participant</th>
+                  <td>
+                     <div>
+                        <span title="Attender (ATND - v3/ParticipationType)">Attender</span> - Acute SpoedDokter A.S. SpoedDokter Attent || Spoedeisende hulp arts || Ziekenhuis de Aandacht</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Zorgaanbieder</th>
+                  <td>Ziekenhuis de Aandacht</td>
+               </tr>
+               <tr>
+                  <th>Opnamegegevens</th>
+                  <td>
+                     <ul>
+                        <li>Ontslagwijze: <span title="Rehabilitation hospital (80522000 - SNOMED CT)">Rehabilitation hospital</span>
+                        </li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"/>
+      <value value="bgz-msz-patA-encounter2"/>
+   </identifier>
+   <status value="finished"/>
+   <class>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActCode"/>
+               <code value="IMP"/>
+               <display value="Inpatient"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="http://hl7.org/fhir/v3/ActCode"/>
+      <code value="IMP"/>
+      <display value="Inpatient"/>
+   </class>
+   <subject>
+      <reference value="Patient/DENNIS-D--DENNIS-JANSE"/>
+      <display value="Dennis D. Dennis Janse"/>
+   </subject>
+   <participant>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+            <code value="ATND"/>
+            <display value="Attender"/>
+         </coding>
+      </type>
+      <individual>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-bgz-msz-1234567801-07120000002"/>
+               <display value="Acute SpoedDokter A.S. SpoedDokter Attent || Spoedeisende hulp arts || Ziekenhuis de Aandacht"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-840-1-113883-2-4-6-1-12345678"/>
+         <display value="Acute SpoedDokter A.S. SpoedDokter Attent"/>
+      </individual>
+   </participant>
+   <period>
+      <start value="${DATE, T, D, -44}T13:30:00+02:00"/>
+      <end value="${DATE, T, D, -43}T12:00:00+02:00"/>
+   </period>
+   <diagnosis>
+      <condition>
+         <reference value="Procedure/zib-Procedure-bgz-msz-bgz-msz-patA-procedure1"/>
+         <display value="externe fixatie van fractuur van malleolus"/>
+      </condition>
+   </diagnosis>
+   <hospitalization>
+      <dischargeDisposition>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="80522000"/>
+            <display value="Rehabilitation hospital"/>
+         </coding>
+      </dischargeDisposition>
+   </hospitalization>
+   <serviceProvider>
+      <reference value="Organization/nl-core-organization-bgz-msz-2-16-840-1-113883-2-4-6-1-20000002"/>
+      <display value="Ziekenhuis de Aandacht"/>
+   </serviceProvider>
+</Encounter>

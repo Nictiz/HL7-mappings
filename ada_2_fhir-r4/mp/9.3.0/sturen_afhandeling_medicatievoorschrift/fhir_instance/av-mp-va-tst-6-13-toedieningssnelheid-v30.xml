@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="av-mp-va-tst-6-13-toedieningssnelheid-v30"/>
+   <id value="6f54dd5d-06e2-11ef-6756-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:a8c1df0d-6acc-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6f54de4c-06e2-11ef-6756-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -15,11 +15,11 @@
                   <code value="actionable"/>
                </tag>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="2023-01-01T09:47:00+01:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 1 jan 2023, tot en met 9 jan 2023, toedieningssnelheid: 0.2 à 0.5 ml per uur, parenteraal"/>
+               <valueString value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+8D{23:59:59}&gt;, 0.2 a 0.5 ml per uur parenteraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -46,18 +46,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c388a6e9-6b31-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6f54de88-06e2-11ef-6756-020000000000"/>
                <type value="Medication"/>
-               <display value="MORFINEHYDROCHLORIDE 1ML= 5MG EPI CAS 100ML FNA MR"/>
+               <display value="MORFINE HCL 3WATER INFVLST 5MG/ML CASS 100ML AHZ"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:839f5efe-6b41-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6f54ddd4-06e2-11ef-6756-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:6f54de10-06e2-11ef-6756-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
                </actor>
@@ -74,8 +74,8 @@
                <route>
                   <coding>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-                     <code value="10"/>
-                     <display value="parenteraal"/>
+                     <code value="5"/>
+                     <display value="Intraveneus"/>
                   </coding>
                </route>
                <doseAndRate>
@@ -103,7 +103,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:45a353a7-6abf-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6f54de6a-06e2-11ef-6756-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -132,18 +132,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c388a6e9-6b31-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6f54de88-06e2-11ef-6756-020000000000"/>
                <type value="Medication"/>
-               <display value="MORFINEHYDROCHLORIDE 1ML= 5MG EPI CAS 100ML FNA MR"/>
+               <display value="MORFINE HCL 3WATER INFVLST 5MG/ML CASS 100ML AHZ"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:839f5efe-6b41-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6f54ddd4-06e2-11ef-6756-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:6f54de10-06e2-11ef-6756-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
                </actor>
@@ -179,7 +179,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:839f5efe-6b41-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6f54ddd4-06e2-11ef-6756-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -226,7 +226,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6f54de10-06e2-11ef-6756-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -245,7 +245,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c388a6e9-6b31-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6f54de88-06e2-11ef-6756-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -254,8 +254,8 @@
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-                  <code value="779288"/>
-                  <display value="MORFINEHYDROCHLORIDE 1ML= 5MG EPI CAS 100ML FNA MR"/>
+                  <code value="2554771"/>
+                  <display value="MORFINE HCL 3WATER INFVLST 5MG/ML CASS 100ML AHZ"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
@@ -268,7 +268,7 @@
                   <code value="134538"/>
                   <display value="MORFINE INFVLST 5MG/ML CAS 100ML"/>
                </coding>
-               <text value="MORFINEHYDROCHLORIDE 1ML= 5MG EPI CAS 100ML FNA MR"/>
+               <text value="MORFINE HCL 3WATER INFVLST 5MG/ML CASS 100ML AHZ"/>
             </code>
          </Medication>
       </resource>

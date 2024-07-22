@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="av-mp-va-tst-2-4-aanvullendeinformatie-v30"/>
+   <id value="605fcda5-063b-11ef-2890-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:c33f25c8-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:605fce94-063b-11ef-2890-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -15,19 +15,16 @@
                   <code value="actionable"/>
                </tag>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdditionalInformation">
-               <valueString value="Bijwerking besproken"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
-               <valueDateTime value="${DATE, T, D, -5}T09:06:00+02:00"/>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="2022-12-27T09:06:00+01:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 4 dagen, tot en met T + 5 dagen, 3 maal per dag 1 stuk, Oraal"/>
+               <valueString value="Vanaf &lt;T-4D{00:00:00}&gt; t/m &lt;T+5D{23:59:59}&gt;, 3 maal per dag 1 stuk, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="${DATE, T, D, -4}T00:00:00+02:00"/>
-                  <end value="${DATE, T, D, +5}T23:59:59+02:00"/>
+                  <start value="2022-12-28T00:00:00+01:00"/>
+                  <end value="2023-01-06T23:59:59+01:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -49,18 +46,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f1b88-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:605fced0-063b-11ef-2890-020000000000"/>
                <type value="Medication"/>
                <display value="BROXIL CAPSULE 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f21ea-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:605fce1c-063b-11ef-2890-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:c33f1aa8-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:605fce58-063b-11ef-2890-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -73,12 +70,16 @@
                </identifier>
                <display value="relatie naar medicatieafspraak met identificatie: MBH_300_aanvullendeinformatiewensen_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </authorizingPrescription>
+            <note>
+               <text value="Bijwerking besproken"/>
+            </note>
             <dosageInstruction>
                <timing>
                   <repeat>
-                     <frequency value="3"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="true"/>
+                     </extension>
+                     <timeOfDay value="19:00:00"/>
                   </repeat>
                </timing>
                <route>
@@ -113,7 +114,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f01a2-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:605fceb2-063b-11ef-2890-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -123,6 +124,15 @@
                   <code value="actionable"/>
                </tag>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.MedicationDispenseAdditionalInformation">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2052"/>
+                     <code value="1"/>
+                     <display value="Aantal bewust gewijzigd"/>
+                  </coding>
+               </valueCodeableConcept>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
@@ -142,18 +152,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:c33f1b88-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:605fced0-063b-11ef-2890-020000000000"/>
                <type value="Medication"/>
                <display value="BROXIL CAPSULE 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:c33f21ea-6a95-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:605fce1c-063b-11ef-2890-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:c33f1aa8-6a95-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:605fce58-063b-11ef-2890-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -169,18 +179,18 @@
             <quantity>
                <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                   <valueQuantity>
-                     <value value="30"/>
+                     <value value="40"/>
                      <unit value="stuk"/>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                      <code value="245"/>
                   </valueQuantity>
                </extension>
-               <value value="30"/>
+               <value value="40"/>
                <unit value="stuk"/>
                <system value="http://unitsofmeasure.org"/>
                <code value="1"/>
             </quantity>
-            <whenHandedOver value="${DATE, T, D, -5}T09:06:00+02:00"/>
+            <whenHandedOver value="2022-12-27T09:06:00+01:00"/>
          </MedicationDispense>
       </resource>
       <request>
@@ -189,7 +199,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f21ea-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:605fce1c-063b-11ef-2890-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -236,7 +246,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1aa8-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:605fce58-063b-11ef-2890-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -255,7 +265,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:c33f1b88-6a95-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:605fced0-063b-11ef-2890-020000000000"/>
       <resource>
          <Medication>
             <meta>

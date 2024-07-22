@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="mv-mp-vo-tst-6-2-interval-v30"/>
+   <id value="6eff4389-06e2-11ef-1183-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:a6f12b3e-6b32-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6eff452c-06e2-11ef-1183-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -15,8 +15,11 @@
                   <code value="actionable"/>
                </tag>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="2023-01-01T08:04:00+01:00"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 1 jan 2023, iedere 8 uur 1 stuk - gelijke tussenpozen aanhouden, Oraal"/>
+               <valueString value="Vanaf &lt;T+0D{00:00:00}&gt;, exact iedere 8 uur 1 stuks, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -43,18 +46,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:4ed0fa04-6b2a-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6eff4568-06e2-11ef-1183-020000000000"/>
                <type value="Medication"/>
                <display value="AMOXICILLINE DISPERTABLET 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:839f5efe-6b41-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6eff4400-06e2-11ef-1183-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
-            <authoredOn value="2023-01-01T08:04:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:7af79824-6ac8-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6eff4428-06e2-11ef-1183-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -101,7 +103,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:35d35e89-6ab3-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6eff454a-06e2-11ef-1183-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -131,23 +133,23 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:4ed0fa04-6b2a-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6eff4568-06e2-11ef-1183-020000000000"/>
                <type value="Medication"/>
                <display value="AMOXICILLINE DISPERTABLET 500MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:839f5efe-6b41-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6eff4400-06e2-11ef-1183-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <authoredOn value="2023-01-01T08:04:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:7af79824-6ac8-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6eff4428-06e2-11ef-1183-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6eff44f0-06e2-11ef-1183-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
             </performer>
@@ -183,7 +185,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:839f5efe-6b41-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6eff4400-06e2-11ef-1183-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -230,19 +232,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7af79824-6ac8-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6eff4428-06e2-11ef-1183-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:b3d44558-6acf-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6eff4450-06e2-11ef-1183-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:7fa869d8-6b44-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6eff4496-06e2-11ef-1183-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -267,7 +269,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:b3d44558-6acf-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6eff4450-06e2-11ef-1183-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -307,7 +309,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7fa869d8-6b44-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6eff4496-06e2-11ef-1183-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -348,7 +350,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6eff44f0-06e2-11ef-1183-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -367,7 +369,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4ed0fa04-6b2a-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6eff4568-06e2-11ef-1183-020000000000"/>
       <resource>
          <Medication>
             <meta>

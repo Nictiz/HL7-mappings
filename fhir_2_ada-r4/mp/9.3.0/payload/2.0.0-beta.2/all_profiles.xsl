@@ -22,6 +22,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../2.0.0-beta.1/mp-MedicationAdministration.xsl"/>
     <xsl:import href="../2.0.0-beta.1/mp-MedicationAgreement.xsl"/>
     <xsl:import href="mp-MedicationUse2.xsl"/>
+    <xsl:import href="mp-InstructionsForUse.xsl"/>
     <xsl:import href="../2.0.0-beta.1/mp-voorstel.xsl"/>
     <xsl:import href="../2.0.0-beta.1/mp-antwoord.xsl"/>    
     

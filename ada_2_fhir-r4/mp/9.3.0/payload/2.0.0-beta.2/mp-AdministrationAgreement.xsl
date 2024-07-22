@@ -21,6 +21,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ADA toedienings_afsrpaak to FHIR MedicationDispense conforming to profile mp-AdministrationAgreement.</xd:desc>
     </xd:doc>
+    
+    <xsl:variable name="taCode930" select="$taCode[1]"/>
 
     <xd:doc>
         <xd:desc>Create an mp-AdministrationAgreement instance as a MedicationDispense FHIR instance from ADA toedienings_afspraak.</xd:desc>
@@ -52,6 +54,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:if>                    
                 </meta>
 
+                <!-- MP-433: Starting from MP 9.3.0 beta.3 additionalInformation is nolonger supported in the profile AdministrationAgreement
+                        however to ensure backwards compatibility, handling this extension is kept in the mapping -->
                 <xsl:for-each select="toedieningsafspraak_aanvullende_informatie[@code | @value | @nullFlavor]">
                     <extension url="{$urlExtAdministrationAgreementAdditionalInformation}">
                         <!-- Issue MP-536 change from code to free text -->
@@ -169,7 +173,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <category>
                     <coding>
                         <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                        <code value="422037009"/>
+                        <code value="{$taCode930}"/>
                         <display value="toedieningsafspraak"/>
                     </coding>
                 </category>

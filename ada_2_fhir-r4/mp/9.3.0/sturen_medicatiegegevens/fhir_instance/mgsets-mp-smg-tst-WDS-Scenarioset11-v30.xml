@@ -1,8 +1,8 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="mgsets-mp-smg-tst-WDS-Scenarioset11-v30"/>
+   <id value="6e9feab5-06e2-11ef-9867-020000000000"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:d0b672b0-6b6b-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6e9fecb2-06e2-11ef-9867-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -14,13 +14,16 @@
                   <value value="MBH_300_wdsmtd1"/>
                </valueIdentifier>
             </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="2022-12-12T08:00:00+01:00"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 12 dec 2022, tot en met 17 dec 2022, eerst gedurende 3 dagen 1 maal per dag om 20:00 2 stuks, dan gedurende 3 dagen 1 maal per dag om 20:00 1 stuk, Oraal"/>
+               <valueString value="wordt gegenereerd"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="2022-12-12T00:00:00+01:00"/>
-                  <end value="2022-12-17T23:59:59+01:00"/>
+                  <start value="2022-12-12"/>
+                  <end value="2022-12-17T23:59:00+01:00"/>
                </valuePeriod>
             </extension>
             <identifier>
@@ -37,18 +40,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ca0c3ae9-6aff-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6e9fed2a-06e2-11ef-9867-020000000000"/>
                <type value="Medication"/>
                <display value="ACENOCOUMAROL TABLET 1MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:7075a13e-6b4a-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6e9feb2c-06e2-11ef-9867-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Pherai"/>
             </subject>
-            <authoredOn value="2022-12-12T08:00:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6e9feb54-06e2-11ef-9867-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -64,9 +66,6 @@
                <sequence value="1"/>
                <timing>
                   <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean value="false"/>
-                     </extension>
                      <boundsDuration>
                         <value value="3"/>
                         <unit value="dag"/>
@@ -76,7 +75,6 @@
                      <frequency value="1"/>
                      <period value="1"/>
                      <periodUnit value="d"/>
-                     <timeOfDay value="20:00:00"/>
                   </repeat>
                </timing>
                <route>
@@ -107,9 +105,6 @@
                <sequence value="2"/>
                <timing>
                   <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean value="false"/>
-                     </extension>
                      <boundsDuration>
                         <value value="3"/>
                         <unit value="dag"/>
@@ -119,7 +114,6 @@
                      <frequency value="1"/>
                      <period value="1"/>
                      <periodUnit value="d"/>
-                     <timeOfDay value="20:00:00"/>
                   </repeat>
                </timing>
                <route>
@@ -154,7 +148,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:81f59e2d-6ae3-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6e9fecd0-06e2-11ef-9867-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -166,13 +160,16 @@
                   <value value="MBH_300_wdsmtd1"/>
                </valueIdentifier>
             </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="2022-12-17T14:30:00+01:00"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 18 dec 2022, tot en met 27 dec 2022, cyclus van 5 dagen: steeds eerst gedurende 2 dagen 1 maal per dag 2 stuks 's avonds, dan gedurende 2 dagen 1 maal per dag 2 stuks 's avonds, dan gedurende 1 dag 1 maal per dag 0 stuks 's avonds, Oraal"/>
+               <valueString value="wordt gegenereerd"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="2022-12-18T00:00:00+01:00"/>
-                  <end value="2022-12-27T23:59:59+01:00"/>
+                  <start value="2022-12-18"/>
+                  <end value="2022-12-27T23:59:00+01:00"/>
                </valuePeriod>
             </extension>
             <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule">
@@ -197,18 +194,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ca0c3ae9-6aff-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6e9fed2a-06e2-11ef-9867-020000000000"/>
                <type value="Medication"/>
                <display value="ACENOCOUMAROL TABLET 1MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:7075a13e-6b4a-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6e9feb2c-06e2-11ef-9867-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Pherai"/>
             </subject>
-            <authoredOn value="2022-12-17T14:30:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:8d3d1824-6aeb-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6e9febae-06e2-11ef-9867-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Tanja de Bakker, Trombosediensten, Trombosedienst Ons Dorp"/>
             </requester>
@@ -224,9 +220,6 @@
                <sequence value="1"/>
                <timing>
                   <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean value="false"/>
-                     </extension>
                      <boundsDuration>
                         <value value="2"/>
                         <unit value="dag"/>
@@ -236,7 +229,6 @@
                      <frequency value="1"/>
                      <period value="1"/>
                      <periodUnit value="d"/>
-                     <when value="EVE"/>
                   </repeat>
                </timing>
                <route>
@@ -267,9 +259,6 @@
                <sequence value="2"/>
                <timing>
                   <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean value="false"/>
-                     </extension>
                      <boundsDuration>
                         <value value="2"/>
                         <unit value="dag"/>
@@ -279,7 +268,6 @@
                      <frequency value="1"/>
                      <period value="1"/>
                      <periodUnit value="d"/>
-                     <when value="EVE"/>
                   </repeat>
                </timing>
                <route>
@@ -310,9 +298,6 @@
                <sequence value="3"/>
                <timing>
                   <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean value="false"/>
-                     </extension>
                      <boundsDuration>
                         <value value="1"/>
                         <unit value="dag"/>
@@ -322,7 +307,6 @@
                      <frequency value="1"/>
                      <period value="1"/>
                      <periodUnit value="d"/>
-                     <when value="EVE"/>
                   </repeat>
                </timing>
                <route>
@@ -365,7 +349,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:8bb4f32d-6b74-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6e9fecee-06e2-11ef-9867-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -377,13 +361,16 @@
                   <value value="MBH_300_wdsmtd1"/>
                </valueIdentifier>
             </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="2022-12-25T10:30:00+01:00"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 18 dec 2022, tot en met 25 dec 2022, cyclus van 5 dagen: steeds eerst gedurende 2 dagen 1 maal per dag 2 stuks 's avonds, dan gedurende 2 dagen 1 maal per dag 2 stuks 's avonds, dan gedurende 1 dag 1 maal per dag 0 stuks 's avonds, Oraal, stopgezet"/>
+               <valueString value="wordt gegenereerd"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="2022-12-18T00:00:00+01:00"/>
-                  <end value="2022-12-25T23:59:59+01:00"/>
+                  <start value="2022-12-18"/>
+                  <end value="2022-12-25T22:59:00+01:00"/>
                </valuePeriod>
             </extension>
             <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule">
@@ -417,18 +404,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ca0c3ae9-6aff-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6e9fed2a-06e2-11ef-9867-020000000000"/>
                <type value="Medication"/>
                <display value="ACENOCOUMAROL TABLET 1MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:7075a13e-6b4a-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6e9feb2c-06e2-11ef-9867-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Pherai"/>
             </subject>
-            <authoredOn value="2022-12-25T10:30:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:8d3d1824-6aeb-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6e9febae-06e2-11ef-9867-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Tanja de Bakker, Trombosediensten, Trombosedienst Ons Dorp"/>
             </requester>
@@ -444,9 +430,6 @@
                <sequence value="1"/>
                <timing>
                   <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean value="false"/>
-                     </extension>
                      <boundsDuration>
                         <value value="2"/>
                         <unit value="dag"/>
@@ -456,7 +439,6 @@
                      <frequency value="1"/>
                      <period value="1"/>
                      <periodUnit value="d"/>
-                     <when value="EVE"/>
                   </repeat>
                </timing>
                <route>
@@ -487,9 +469,6 @@
                <sequence value="2"/>
                <timing>
                   <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean value="false"/>
-                     </extension>
                      <boundsDuration>
                         <value value="2"/>
                         <unit value="dag"/>
@@ -499,7 +478,6 @@
                      <frequency value="1"/>
                      <period value="1"/>
                      <periodUnit value="d"/>
-                     <when value="EVE"/>
                   </repeat>
                </timing>
                <route>
@@ -530,9 +508,6 @@
                <sequence value="3"/>
                <timing>
                   <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean value="false"/>
-                     </extension>
                      <boundsDuration>
                         <value value="1"/>
                         <unit value="dag"/>
@@ -542,7 +517,6 @@
                      <frequency value="1"/>
                      <period value="1"/>
                      <periodUnit value="d"/>
-                     <when value="EVE"/>
                   </repeat>
                </timing>
                <route>
@@ -585,7 +559,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:1566762d-6b75-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6e9fed0c-06e2-11ef-9867-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -597,13 +571,16 @@
                   <value value="MBH_300_wdsmtd1"/>
                </valueIdentifier>
             </extension>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="2022-12-25T10:30:00+01:00"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 26 dec 2022, tot en met 4 jan 2023, cyclus van 5 dagen: steeds eerst gedurende 3 dagen 1 maal per dag om 19:00 2 stuks, dan gedurende 2 dagen 1 maal per dag om 19:00 1 stuk, oraal"/>
+               <valueString value="wordt gegenereerd"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="2022-12-26T00:00:00+01:00"/>
-                  <end value="2023-01-04T23:59:59+01:00"/>
+                  <start value="2022-12-26"/>
+                  <end value="2023-01-04T21:59:00+01:00"/>
                </valuePeriod>
             </extension>
             <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-InstructionsForUse.RepeatPeriodCyclicalSchedule">
@@ -628,18 +605,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ca0c3ae9-6aff-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6e9fed2a-06e2-11ef-9867-020000000000"/>
                <type value="Medication"/>
                <display value="ACENOCOUMAROL TABLET 1MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:7075a13e-6b4a-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6e9feb2c-06e2-11ef-9867-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Pherai"/>
             </subject>
-            <authoredOn value="2022-12-25T10:30:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:8d3d1824-6aeb-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6e9febae-06e2-11ef-9867-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Tanja de Bakker, Trombosediensten, Trombosedienst Ons Dorp"/>
             </requester>
@@ -665,9 +641,6 @@
                <sequence value="1"/>
                <timing>
                   <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean value="false"/>
-                     </extension>
                      <boundsDuration>
                         <value value="3"/>
                         <unit value="dag"/>
@@ -677,7 +650,6 @@
                      <frequency value="1"/>
                      <period value="1"/>
                      <periodUnit value="d"/>
-                     <timeOfDay value="19:00:00"/>
                   </repeat>
                </timing>
                <route>
@@ -708,9 +680,6 @@
                <sequence value="2"/>
                <timing>
                   <repeat>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-                        <valueBoolean value="false"/>
-                     </extension>
                      <boundsDuration>
                         <value value="2"/>
                         <unit value="dag"/>
@@ -720,7 +689,6 @@
                      <frequency value="1"/>
                      <period value="1"/>
                      <periodUnit value="d"/>
-                     <timeOfDay value="19:00:00"/>
                   </repeat>
                </timing>
                <route>
@@ -763,7 +731,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7075a13e-6b4a-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6e9feb2c-06e2-11ef-9867-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -810,19 +778,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6e9feb54-06e2-11ef-9867-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:4a573558-6ad5-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6e9feb7c-06e2-11ef-9867-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:7fa869d8-6b44-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6e9fec1c-06e2-11ef-9867-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -842,7 +810,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4a573558-6ad5-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6e9feb7c-06e2-11ef-9867-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -877,19 +845,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:8d3d1824-6aeb-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6e9febae-06e2-11ef-9867-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:7cac7558-6b5d-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6e9febd6-06e2-11ef-9867-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Tanja de Bakker"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:5bc4856e-6b7b-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:6e9fec76-06e2-11ef-9867-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Trombosedienst Ons Dorp"/>
             </organization>
@@ -909,7 +877,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7cac7558-6b5d-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6e9febd6-06e2-11ef-9867-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -944,7 +912,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7fa869d8-6b44-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6e9fec1c-06e2-11ef-9867-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -985,7 +953,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:5bc4856e-6b7b-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6e9fec76-06e2-11ef-9867-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -1005,7 +973,17 @@
             </type>
             <name value="Trombosedienst Ons Dorp"/>
             <address>
-               <line value="Kerkstraat 28 d">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Kerkstraat  28 d">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
                      <valueString value="Kerkstraat"/>
                   </extension>
@@ -1027,7 +1005,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ca0c3ae9-6aff-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:6e9fed2a-06e2-11ef-9867-020000000000"/>
       <resource>
          <Medication>
             <meta>

@@ -11,10 +11,9 @@
                                    prefix="mp-"
                                    language="nl-NL"
                                    title="Generated from HL7 FHIR sturen_medicatievoorschrift"
-                                   id="mv-mp-vo-tst-3-8-Stoppen-parallelle-TA-v30">
+                                   id="2fee32f1-063b-11ef-5752-020000000000">
          <patient>
             <naamgegevens>
-               <ongestructureerde_naam value="J. de XXX_Luzac"/>
                <initialen value="J."/>
                <naamgebruik code="NL1"
                             codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
@@ -34,21 +33,21 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_stoppen_parallele_TA_MA_start"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-               <medicatieafspraak_datum_tijd value="T+0D{09:05:00}" datatype="datetime"/>
+               <registratie_datum_tijd value="2023-01-01T09:05:00+01:00" datatype="datetime"/>
                <gebruiksperiode>
-                  <start_datum_tijd value="T+0D{00:00:00}" datatype="datetime"/>
+                  <start_datum_tijd value="2023-01-01T00:00:00+01:00" datatype="datetime"/>
                   <tijds_duur value="28" unit="dag"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="urn-uuid-ea3fd558-6ab1-11ec-0000-020000000000"
+                  <zorgverlener value="urn-uuid-2fee3390-063b-11ef-5752-020000000000"
                                 datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-7d6dcf1d-6b74-11ec-0000-020000000000"
+                  <farmaceutisch_product value="urn-uuid-2fee34d0-063b-11ef-5752-020000000000"
                                          datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
-                  <omschrijving value="Vanaf T, gedurende 28 dagen, 1 maal per dag 1 stuk 's ochtends en Bij pijn 1 maal per dag 1 stuk 's avonds, Oraal"/>
+                  <omschrijving value="wordt automatisch gevuld"/>
                   <toedieningsweg code="9"
                                   codeSystem="2.16.840.1.113883.2.4.4.9"
                                   codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
@@ -66,12 +65,6 @@
                                     codeSystemName="G-Standaard thesaurus basiseenheden"/>
                         </keerdosis>
                         <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="1"/>
-                              </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
-                           </frequentie>
                            <dagdeel code="73775008"
                                     codeSystem="2.16.840.1.113883.6.96"
                                     displayName="'s ochtends"/>
@@ -91,23 +84,15 @@
                                     codeSystemName="G-Standaard thesaurus basiseenheden"/>
                         </keerdosis>
                         <toedieningsschema>
-                           <frequentie>
-                              <aantal>
-                                 <nominale_waarde value="1"/>
-                              </aantal>
-                              <tijdseenheid value="1" unit="dag"/>
-                           </frequentie>
                            <dagdeel code="3157002"
                                     codeSystem="2.16.840.1.113883.6.96"
                                     displayName="'s avonds"/>
                         </toedieningsschema>
                         <zo_nodig>
-                           <criterium>
-                              <criterium code="1028"
-                                         codeSystem="2.16.840.1.113883.2.4.4.5"
-                                         codeSystemName="NHG Tabel 25 B Codes (numeriek)"
-                                         displayName="Bij pijn"/>
-                           </criterium>
+                           <criterium code="1028"
+                                      codeSystem="2.16.840.1.113883.2.4.4.5"
+                                      codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                      displayName="Bij pijn"/>
                         </zo_nodig>
                      </dosering>
                   </doseerinstructie>
@@ -116,13 +101,13 @@
             <verstrekkingsverzoek>
                <identificatie value="MBH_300_stoppen_parallele_TA_VV_start"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
-               <verstrekkingsverzoek_datum_tijd value="T+0D{09:05:00}" datatype="datetime"/>
+               <verstrekkingsverzoek_datum_tijd value="2023-01-01T09:05:00+01:00" datatype="datetime"/>
                <auteur>
-                  <zorgverlener value="urn-uuid-ea3fd558-6ab1-11ec-0000-020000000000"
+                  <zorgverlener value="urn-uuid-2fee3390-063b-11ef-5752-020000000000"
                                 datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-7d6dcf1d-6b74-11ec-0000-020000000000"
+                  <farmaceutisch_product value="urn-uuid-2fee34d0-063b-11ef-5752-020000000000"
                                          datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid>
@@ -133,7 +118,7 @@
                </te_verstrekken_hoeveelheid>
                <beoogd_verstrekker>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-98d231d8-6b0c-11ec-0000-020000000000"/>
+                                 value="urn-uuid-2fee3458-063b-11ef-5752-020000000000"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_stoppen_parallele_TA_MA_start"
@@ -142,7 +127,7 @@
             </verstrekkingsverzoek>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-7d6dcf1d-6b74-11ec-0000-020000000000">
+            <farmaceutisch_product id="urn-uuid-2fee34d0-063b-11ef-5752-020000000000">
                <product_code code="43044"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -153,10 +138,9 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="PANTOPRAZOL 40MG TABLET MSR"/>
             </farmaceutisch_product>
-            <zorgverlener id="urn-uuid-ea3fd558-6ab1-11ec-0000-020000000000">
+            <zorgverlener id="urn-uuid-2fee3390-063b-11ef-5752-020000000000">
                <zorgverlener_identificatienummer value="000002222" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
-                  <ongestructureerde_naam value="Jan van Harten"/>
                   <voornamen value="Jan"/>
                   <geslachtsnaam>
                      <voorvoegsels value="van"/>
@@ -168,20 +152,12 @@
                             codeSystemName="Vektis AGB-medische specialismen"
                             codeSystemVersion="2020-10-23T00:00:00"
                             displayName="Medisch specialisten, chirurgie"/>
-               <contactgegevens>
-                  <telefoonnummers>
-                     <telefoonnummer value="1634534321"/>
-                     <nummer_soort code="WP"
-                                   codeSystem="2.16.840.1.113883.5.1119"
-                                   displayName="Zakelijk telefoonnummer"/>
-                  </telefoonnummers>
-               </contactgegevens>
                <zorgaanbieder>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-f07009d8-6b48-11ec-0000-020000000000"/>
+                                 value="urn-uuid-2fee33fe-063b-11ef-5752-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="urn-uuid-f07009d8-6b48-11ec-0000-020000000000">
+            <zorgaanbieder id="urn-uuid-2fee33fe-063b-11ef-5752-020000000000">
                <zorgaanbieder_identificatienummer value="00004444" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Ziekenhuis het Gele Hart"/>
                <adresgegevens>
@@ -198,7 +174,7 @@
                                  codeSystemName="HL7 RoleCodeNL Care provider type (organizations)"
                                  displayName="Ziekenhuis"/>
             </zorgaanbieder>
-            <zorgaanbieder id="urn-uuid-98d231d8-6b0c-11ec-0000-020000000000">
+            <zorgaanbieder id="urn-uuid-2fee3458-063b-11ef-5752-020000000000">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
             </zorgaanbieder>

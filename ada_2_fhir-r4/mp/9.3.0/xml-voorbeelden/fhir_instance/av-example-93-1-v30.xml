@@ -1,23 +1,14 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="av-example-93-1-v30"/>
-   <meta>
-      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
-   </meta>
-   <type value="transaction"/>
+   <id value="0b621ba7-06e3-11ef-1025-020000000000"/>
+   <type value="searchset"/>
+   <total value="2"/>
    <entry>
-      <fullUrl value="urn:uuid:67208f0d-6ac8-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:0b621c5a-06e3-11ef-1025-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
-               <tag>
-                  <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
-                  <code value="actionable"/>
-               </tag>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdditionalInformation">
-               <valueString value="voorbeeld: aanvullend informatie bij TA in vrije tekst"/>
-            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.ReasonModificationOrDiscontinuation">
                <valueCodeableConcept>
                   <coding>
@@ -27,16 +18,16 @@
                   </coding>
                </valueCodeableConcept>
             </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
-               <valueDateTime value="2023-01-01T12:20:00+01:00"/>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, +0}T12:20:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 1 jan 2023, tot en met 6 jan 2023, 1 maal per dag 1 stuk, Oraal"/>
+               <valueString value="Wordt gegenereerd"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
-                  <start value="2023-01-01T00:00:00+01:00"/>
-                  <end value="2023-01-06T23:59:59+01:00"/>
+                  <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
+                  <end value="${DATE, T, D, +5}T23:59:59+02:00"/>
                </valuePeriod>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -67,18 +58,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:dac2cb1d-6aa3-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:0b621cb4-06e3-11ef-1025-020000000000"/>
                <type value="Medication"/>
                <display value="METOCLOPRAMIDE HCL PCH TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:02eb1278-6ac3-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:0b621be2-06e3-11ef-1025-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, A. van de XXX_Boschman"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:0b621c1e-06e3-11ef-1025-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -128,21 +119,16 @@
             </dosageInstruction>
          </MedicationDispense>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationDispense"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:31b85bdd-6ac2-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:0b621c78-06e3-11ef-1025-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationDispense"/>
-               <tag>
-                  <system value="http://terminology.hl7.org/CodeSystem/common-tags"/>
-                  <code value="actionable"/>
-               </tag>
             </meta>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.MedicationDispenseAdditionalInformation">
                <valueCodeableConcept>
@@ -154,7 +140,7 @@
                </valueCodeableConcept>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.RequestDate">
-               <valueDateTime value="2023-01-01T09:20:00+01:00"/>
+               <valueDateTime value="${DATE, T, D, +0}T09:20:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.DistributionForm">
                <valueCodeableConcept>
@@ -184,18 +170,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:dac2cb1d-6aa3-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:0b621cb4-06e3-11ef-1025-020000000000"/>
                <type value="Medication"/>
                <display value="METOCLOPRAMIDE HCL PCH TABLET 10MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:02eb1278-6ac3-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:0b621be2-06e3-11ef-1025-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, A. van de XXX_Boschman"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:0b621c1e-06e3-11ef-1025-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -228,9 +214,9 @@
                <system value="http://unitsofmeasure.org"/>
                <code value="dag"/>
             </daysSupply>
-            <whenHandedOver value="2023-01-01T12:20:00+01:00"/>
+            <whenHandedOver value="${DATE, T, D, +0}T12:20:00+02:00"/>
             <destination>
-               <reference value="urn:uuid:d55c90ce-6b3f-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:0b621c96-06e3-11ef-1025-020000000000"/>
                <type value="Location"/>
                <display value="afleverlocatie"/>
             </destination>
@@ -239,13 +225,12 @@
             </note>
          </MedicationDispense>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="MedicationDispense"/>
-      </request>
+      <search>
+         <mode value="match"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:02eb1278-6ac3-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:0b621be2-06e3-11ef-1025-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -253,7 +238,11 @@
             </meta>
             <identifier>
                <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
-               <value value="999912100"/>
+               <value>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                     <valueCode value="masked"/>
+                  </extension>
+               </value>
             </identifier>
             <name>
                <extension url="http://hl7.org/fhir/StructureDefinition/humanname-assembly-order">
@@ -289,13 +278,12 @@
             <birthDate value="1964-01-08"/>
          </Patient>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Patient"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:0b621c1e-06e3-11ef-1025-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -308,13 +296,12 @@
             <name value="Apotheek De Gulle Gaper"/>
          </Organization>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Organization"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:dac2cb1d-6aa3-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:0b621cb4-06e3-11ef-1025-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -341,13 +328,12 @@
             </code>
          </Medication>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d55c90ce-6b3f-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:0b621c96-06e3-11ef-1025-020000000000"/>
       <resource>
          <Location>
             <meta>
@@ -356,9 +342,8 @@
             <name value="bij patiënt thuis - bij de buren afgeven mag ook"/>
          </Location>
       </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Location"/>
-      </request>
+      <search>
+         <mode value="include"/>
+      </search>
    </entry>
 </Bundle>

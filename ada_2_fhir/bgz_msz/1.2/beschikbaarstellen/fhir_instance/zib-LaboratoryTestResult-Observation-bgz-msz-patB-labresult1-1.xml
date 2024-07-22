@@ -1,0 +1,101 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="zib-LaboratoryTestResult-Observation-bgz-msz-patB-labresult1-1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Francisca F. Fransje Gigase Verheul. Categorie: <span title="bevinding betreffende laboratoriumonderzoek (49581000146104 - SNOMED CT)">bevinding betreffende laboratoriumonderzoek</span>, <span title="Hematology (252275004 - SNOMED CT)">Hematology</span>, Status: definitief</caption>
+            <tbody>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td colspan="2">${DATE, T, D, -3}T09:00:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+                  <th>Referentiewaarden</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="Monocytes # Bld (26484-6 - LOINC)">Monocytes # Bld</span>
+                  </td>
+                  <td>0.43 10*9/L</td>
+                  <td>
+                     <div>
+                        <span title="Normal Range (normal - referencerange-meaning)">Normal Range</span>
+
+0.3 10*9/L - 1.00 10*9/L</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <status value="final">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.16.1"/>
+               <code value="final"/>
+               <display value="Final"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </status>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="49581000146104"/>
+         <display value="bevinding betreffende laboratoriumonderzoek"/>
+      </coding>
+   </category>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="252275004"/>
+         <display value="Hematology"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="26484-6"/>
+         <display value="Monocytes # Bld"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/FRANCISCA-F--FRANSJE-GIGASE-VERHEUL"/>
+      <display value="Francisca F. Fransje Gigase Verheul"/>
+   </subject>
+   <effectiveDateTime value="${DATE, T, D, -3}T09:00:00+02:00"/>
+   <valueQuantity>
+      <value value="0.43"/>
+      <unit value="10*9/L"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="10*9/L"/>
+   </valueQuantity>
+   <referenceRange>
+      <low>
+         <value value="0.3"/>
+         <unit value="10*9/L"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="10*9/L"/>
+      </low>
+      <high>
+         <value value="1.00"/>
+         <unit value="10*9/L"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="10*9/L"/>
+      </high>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/referencerange-meaning"/>
+            <code value="normal"/>
+            <display value="Normal Range"/>
+         </coding>
+      </type>
+   </referenceRange>
+</Observation>

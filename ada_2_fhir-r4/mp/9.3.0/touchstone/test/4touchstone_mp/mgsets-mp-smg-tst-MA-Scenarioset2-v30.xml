@@ -8,6 +8,9 @@
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, M, -4}T08:00:00+02:00"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
                <valueString value="Vanaf T - 4 maanden, tot en met T + 8 maanden, 1 maal per dag 1 stuk, Bij het eten innemen, Oraal"/>
             </extension>
@@ -46,7 +49,6 @@
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
-            <authoredOn value="${DATE, T, M, -4}T08:00:00+02:00"/>
             <requester>
                <reference value="urn:uuid:4560482e-6aec-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
@@ -106,6 +108,9 @@
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, -21}T08:02:00+02:00"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
                <valueString value="Vanaf T - 21 dagen, 1 maal per dag 1 stuk, Oraal"/>
             </extension>
@@ -143,7 +148,6 @@
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
-            <authoredOn value="${DATE, T, D, -21}T08:02:00+02:00"/>
             <requester>
                <reference value="urn:uuid:4560482e-6aec-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
@@ -198,6 +202,9 @@
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, -13}T08:05:00+02:00"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
                <valueString value="Vanaf T - 13 dagen, tot en met T + 14 dagen, 1 maal per week 5 stuks, Oraal"/>
             </extension>
@@ -236,7 +243,6 @@
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
-            <authoredOn value="${DATE, T, D, -13}T08:05:00+02:00"/>
             <requester>
                <reference value="urn:uuid:4560482e-6aec-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
@@ -287,12 +293,15 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e283ff6b-6ae0-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:31039c5d-6acb-11ec-0000-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, -5}T08:06:00+02:00"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.MedicationAgreementAdditionalInformation">
                <valueCodeableConcept>
                   <coding>
@@ -303,7 +312,7 @@
                </valueCodeableConcept>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf T - 4 dagen, tot en met T + 5 dagen, 3 maal per dag 1 stuk, Oraal"/>
+               <valueString value="Vanaf T - 4 dagen, tot en met T + 5 dagen, elke dag om 19:00 1 stuk - let op, tijden exact aanhouden, Oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -340,7 +349,6 @@
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
-            <authoredOn value="${DATE, T, D, -5}T08:06:00+02:00"/>
             <requester>
                <reference value="urn:uuid:4560482e-6aec-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
@@ -349,9 +357,10 @@
             <dosageInstruction>
                <timing>
                   <repeat>
-                     <frequency value="3"/>
-                     <period value="1"/>
-                     <periodUnit value="d"/>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+                        <valueBoolean value="true"/>
+                     </extension>
+                     <timeOfDay value="19:00:00"/>
                   </repeat>
                </timing>
                <route>
@@ -392,6 +401,9 @@
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, -5}T08:15:00+02:00"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.MedicationAgreementAdditionalInformation">
                <valueCodeableConcept>
                   <coding>
@@ -439,7 +451,6 @@
                <type value="Patient"/>
                <display value="Patient, C. XXX_Coenen"/>
             </subject>
-            <authoredOn value="${DATE, T, D, -5}T08:15:00+02:00"/>
             <requester>
                <reference value="urn:uuid:4560482e-6aec-11ec-0000-020000000000"/>
                <type value="PractitionerRole"/>
@@ -648,34 +659,6 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:9f01ff1d-6afd-11ec-0000-020000000000"/>
-      <resource>
-         <Medication>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="80691"/>
-                  <display value="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="79804"/>
-                  <display value="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
-               </coding>
-               <text value="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
-            </code>
-         </Medication>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
-   </entry>
-   <entry>
       <fullUrl value="urn:uuid:a07ec504-6ac4-11ec-0000-020000000000"/>
       <resource>
          <Medication>
@@ -732,6 +715,34 @@
       </request>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:ebaaab1d-6b29-11ec-0000-020000000000"/>
+      <resource>
+         <Medication>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
+            </meta>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="17205"/>
+                  <display value="FENETICILLINE CAPSULE 500MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="41092"/>
+                  <display value="FENETICILLINE CAPSULE 500MG"/>
+               </coding>
+               <text value="FENETICILLINE CAPSULE 500MG"/>
+            </code>
+         </Medication>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Medication"/>
+      </request>
+   </entry>
+   <entry>
       <fullUrl value="urn:uuid:c58f9604-6b3a-11ec-0000-020000000000"/>
       <resource>
          <Medication>
@@ -760,7 +771,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ebaaab1d-6b29-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:9f01ff1d-6afd-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -769,16 +780,16 @@
             <code>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="17205"/>
-                  <display value="FENETICILLINE CAPSULE 500MG"/>
+                  <code value="80691"/>
+                  <display value="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
                   <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="41092"/>
-                  <display value="FENETICILLINE 500MG CAPSULE"/>
+                  <code value="79804"/>
+                  <display value="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
                </coding>
-               <text value="FENETICILLINE CAPSULE 500MG"/>
+               <text value="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
             </code>
          </Medication>
       </resource>
