@@ -1,8 +1,8 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="6e9efdb7-06e2-11ef-8197-020000000000"/>
+   <id value="dc17aaf9-4807-11ef-3902-020000000000"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:6e9eff00-06e2-11ef-8197-020000000000"/>
+      <fullUrl value="urn:uuid:dc17ac42-4807-11ef-3902-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -47,17 +47,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:6e9eff1e-06e2-11ef-8197-020000000000"/>
+               <reference value="urn:uuid:dc17ac60-4807-11ef-3902-020000000000"/>
                <type value="Medication"/>
                <display value="MARCOUMAR TABLET 3MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:6e9efe2e-06e2-11ef-8197-020000000000"/>
+               <reference value="urn:uuid:dc17ab70-4807-11ef-3902-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Niesing"/>
             </subject>
             <requester>
-               <reference value="urn:uuid:6e9efe56-06e2-11ef-8197-020000000000"/>
+               <reference value="urn:uuid:dc17ab98-4807-11ef-3902-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -74,7 +74,7 @@
                <timing>
                   <repeat>
                      <boundsDuration>
-                        <value value="3"/>
+                        <value value="1"/>
                         <unit value="dag"/>
                         <system value="http://unitsofmeasure.org"/>
                         <code value="d"/>
@@ -95,13 +95,13 @@
                   <doseQuantity>
                      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                         <valueQuantity>
-                           <value value="0.5"/>
+                           <value value="1"/>
                            <unit value="stuk"/>
                            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                            <code value="245"/>
                         </valueQuantity>
                      </extension>
-                     <value value="0.5"/>
+                     <value value="1"/>
                      <unit value="stuk"/>
                      <system value="http://unitsofmeasure.org"/>
                      <code value="1"/>
@@ -134,13 +134,13 @@
                   <doseQuantity>
                      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                         <valueQuantity>
-                           <value value="0"/>
+                           <value value="1"/>
                            <unit value="stuk"/>
                            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                            <code value="245"/>
                         </valueQuantity>
                      </extension>
-                     <value value="0"/>
+                     <value value="1"/>
                      <unit value="stuk"/>
                      <system value="http://unitsofmeasure.org"/>
                      <code value="1"/>
@@ -152,7 +152,7 @@
                <timing>
                   <repeat>
                      <boundsDuration>
-                        <value value="2"/>
+                        <value value="1"/>
                         <unit value="dag"/>
                         <system value="http://unitsofmeasure.org"/>
                         <code value="d"/>
@@ -173,13 +173,13 @@
                   <doseQuantity>
                      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                         <valueQuantity>
-                           <value value="0.5"/>
+                           <value value="1"/>
                            <unit value="stuk"/>
                            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                            <code value="245"/>
                         </valueQuantity>
                      </extension>
-                     <value value="0.5"/>
+                     <value value="1"/>
                      <unit value="stuk"/>
                      <system value="http://unitsofmeasure.org"/>
                      <code value="1"/>
@@ -212,13 +212,130 @@
                   <doseQuantity>
                      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                         <valueQuantity>
-                           <value value="0"/>
+                           <value value="2"/>
                            <unit value="stuk"/>
                            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                            <code value="245"/>
                         </valueQuantity>
                      </extension>
-                     <value value="0"/>
+                     <value value="2"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+            <dosageInstruction>
+               <sequence value="5"/>
+               <timing>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="1"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="1"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+            <dosageInstruction>
+               <sequence value="6"/>
+               <timing>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="1"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="1"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+            <dosageInstruction>
+               <sequence value="7"/>
+               <timing>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <frequency value="1"/>
+                     <period value="1"/>
+                     <periodUnit value="d"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="2"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="2"/>
                      <unit value="stuk"/>
                      <system value="http://unitsofmeasure.org"/>
                      <code value="1"/>
@@ -233,7 +350,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6e9efe2e-06e2-11ef-8197-020000000000"/>
+      <fullUrl value="urn:uuid:dc17ab70-4807-11ef-3902-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -280,19 +397,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6e9efe56-06e2-11ef-8197-020000000000"/>
+      <fullUrl value="urn:uuid:dc17ab98-4807-11ef-3902-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:6e9efe7e-06e2-11ef-8197-020000000000"/>
+               <reference value="urn:uuid:dc17abc0-4807-11ef-3902-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:6e9efec4-06e2-11ef-8197-020000000000"/>
+               <reference value="urn:uuid:dc17ac06-4807-11ef-3902-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -312,7 +429,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6e9efe7e-06e2-11ef-8197-020000000000"/>
+      <fullUrl value="urn:uuid:dc17abc0-4807-11ef-3902-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -347,7 +464,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6e9efec4-06e2-11ef-8197-020000000000"/>
+      <fullUrl value="urn:uuid:dc17ac06-4807-11ef-3902-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -388,7 +505,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6e9eff1e-06e2-11ef-8197-020000000000"/>
+      <fullUrl value="urn:uuid:dc17ac60-4807-11ef-3902-020000000000"/>
       <resource>
          <Medication>
             <meta>
