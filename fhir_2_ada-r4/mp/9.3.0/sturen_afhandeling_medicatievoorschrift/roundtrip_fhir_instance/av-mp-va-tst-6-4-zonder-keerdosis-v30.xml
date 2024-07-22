@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="606d8f21-063b-11ef-3128-020000000000"/>
+   <id value="852334bf-4835-11ef-2129-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:606d9010-063b-11ef-3128-020000000000"/>
+      <fullUrl value="urn:uuid:852335ae-4835-11ef-2129-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -46,18 +46,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:606d904c-063b-11ef-3128-020000000000"/>
+               <reference value="urn:uuid:852335ea-4835-11ef-2129-020000000000"/>
                <type value="Medication"/>
                <display value="CETOMACROGOLCREME MET 10% VASELINE FAGRON"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:606d8f98-063b-11ef-3128-020000000000"/>
+               <reference value="urn:uuid:85233536-4835-11ef-2129-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:606d8fd4-063b-11ef-3128-020000000000"/>
+                  <reference value="urn:uuid:85233572-4835-11ef-2129-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
                </actor>
@@ -101,7 +101,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:606d902e-063b-11ef-3128-020000000000"/>
+      <fullUrl value="urn:uuid:852335cc-4835-11ef-2129-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -130,18 +130,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:606d904c-063b-11ef-3128-020000000000"/>
+               <reference value="urn:uuid:852335ea-4835-11ef-2129-020000000000"/>
                <type value="Medication"/>
                <display value="CETOMACROGOLCREME MET 10% VASELINE FAGRON"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:606d8f98-063b-11ef-3128-020000000000"/>
+               <reference value="urn:uuid:85233536-4835-11ef-2129-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:606d8fd4-063b-11ef-3128-020000000000"/>
+                  <reference value="urn:uuid:85233572-4835-11ef-2129-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
                </actor>
@@ -177,7 +177,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:606d8f98-063b-11ef-3128-020000000000"/>
+      <fullUrl value="urn:uuid:85233536-4835-11ef-2129-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -224,7 +224,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:606d8fd4-063b-11ef-3128-020000000000"/>
+      <fullUrl value="urn:uuid:85233572-4835-11ef-2129-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -235,6 +235,31 @@
                <value value="01236578"/>
             </identifier>
             <name value="Apotheek de Gulle Gaper"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 12 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="12"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
          </Organization>
       </resource>
       <request>
@@ -243,7 +268,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:606d904c-063b-11ef-3128-020000000000"/>
+      <fullUrl value="urn:uuid:852335ea-4835-11ef-2129-020000000000"/>
       <resource>
          <Medication>
             <meta>

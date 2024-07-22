@@ -13,15 +13,6 @@ See the GNU Lesser General Public License for more details.
 The full text of the license is available at http://www.gnu.org/copyleft/lesser.html
 -->
 
-<!--
-mode = mp-VariableDosingRegimen
-alle  ZZZNEW templates gaan mee
-TODO
-WisselendDoseerschema in beschikbaarstellen_medicatiegegevens_2_ada.xsl boven medicatieafspraak inbrengen
--->
-
-
-
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:f="http://hl7.org/fhir" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:util="urn:hl7:utilities" exclude-result-prefixes="#all" version="2.0">
 
 	<xsl:variable name="variableDosingRegimen" select="'http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.RelatedMedicationUse'"/>
@@ -118,11 +109,10 @@ WisselendDoseerschema in beschikbaarstellen_medicatiegegevens_2_ada.xsl boven me
     </xsl:template>
     -->
 	<xd:doc>
-		<!-- ZZZNEW -->
 		<xd:desc>Template to resolve priorPrescription.</xd:desc>
 	</xd:doc>
 	<xd:doc>
-		<xd:desc>Template to convert f:f:basedOn to relatie_medicatieafspraak</xd:desc>
+		<xd:desc>Template to convert f:basedOn to relatie_medicatieafspraak</xd:desc>
 	</xd:doc>
 	<xsl:template match="f:basedOn" mode="mp-VariableDosingRegimen">
 		<relatie_medicatieafspraak>
@@ -131,7 +121,7 @@ WisselendDoseerschema in beschikbaarstellen_medicatiegegevens_2_ada.xsl boven me
 	</xsl:template>
 	
 	<xd:doc>
-		<xd:desc>Template to convert f:f:priorPrescription to relatie_wisselend_doseerschema</xd:desc>
+		<xd:desc>Template to convert f:priorPrescription to relatie_wisselend_doseerschema</xd:desc>
 	</xd:doc>
 	<xsl:template match="f:priorPrescription" mode="mp-VariableDosingRegimen">
 		<relatie_wisselend_doseerschema>
@@ -140,7 +130,6 @@ WisselendDoseerschema in beschikbaarstellen_medicatiegegevens_2_ada.xsl boven me
 	</xsl:template>
 
 	<xd:doc>
-		<!-- ZZZNEW -->
 		<xd:desc>Template to convert f:identifier to identificatie</xd:desc>
 	</xd:doc>
 	<xsl:template match="f:identifier" mode="mp-VariableDosingRegimen">

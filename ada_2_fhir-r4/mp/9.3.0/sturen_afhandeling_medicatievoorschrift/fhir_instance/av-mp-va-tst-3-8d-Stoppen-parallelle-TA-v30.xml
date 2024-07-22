@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="6f517951-06e2-11ef-4558-020000000000"/>
+   <id value="dd267fa1-4807-11ef-2093-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:6f517a40-06e2-11ef-4558-020000000000"/>
+      <fullUrl value="urn:uuid:dd268090-4807-11ef-2093-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -72,18 +72,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:6f517a7c-06e2-11ef-4558-020000000000"/>
+               <reference value="urn:uuid:dd2680cc-4807-11ef-2093-020000000000"/>
                <type value="Medication"/>
                <display value="PANTOZOL TABLET MSR 20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:6f5179c8-06e2-11ef-4558-020000000000"/>
+               <reference value="urn:uuid:dd268018-4807-11ef-2093-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:6f517a04-06e2-11ef-4558-020000000000"/>
+                  <reference value="urn:uuid:dd268054-4807-11ef-2093-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -141,7 +141,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6f517a5e-06e2-11ef-4558-020000000000"/>
+      <fullUrl value="urn:uuid:dd2680ae-4807-11ef-2093-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -170,18 +170,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:6f517a7c-06e2-11ef-4558-020000000000"/>
+               <reference value="urn:uuid:dd2680cc-4807-11ef-2093-020000000000"/>
                <type value="Medication"/>
                <display value="PANTOZOL TABLET MSR 20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:6f5179c8-06e2-11ef-4558-020000000000"/>
+               <reference value="urn:uuid:dd268018-4807-11ef-2093-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:6f517a04-06e2-11ef-4558-020000000000"/>
+                  <reference value="urn:uuid:dd268054-4807-11ef-2093-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -217,7 +217,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6f5179c8-06e2-11ef-4558-020000000000"/>
+      <fullUrl value="urn:uuid:dd268018-4807-11ef-2093-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -267,7 +267,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6f517a04-06e2-11ef-4558-020000000000"/>
+      <fullUrl value="urn:uuid:dd268054-4807-11ef-2093-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -278,6 +278,31 @@
                <value value="01236578"/>
             </identifier>
             <name value="Apotheek De Gulle Gaper"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 12 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="12"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
          </Organization>
       </resource>
       <request>
@@ -286,7 +311,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6f517a7c-06e2-11ef-4558-020000000000"/>
+      <fullUrl value="urn:uuid:dd2680cc-4807-11ef-2093-020000000000"/>
       <resource>
          <Medication>
             <meta>

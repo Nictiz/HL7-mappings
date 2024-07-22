@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="6071667d-063b-11ef-1957-020000000000"/>
+   <id value="852a353f-4835-11ef-8635-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:6071676c-063b-11ef-1957-020000000000"/>
+      <fullUrl value="urn:uuid:852a362e-4835-11ef-8635-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -45,18 +45,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:607167a8-063b-11ef-1957-020000000000"/>
+               <reference value="urn:uuid:852a366a-4835-11ef-8635-020000000000"/>
                <type value="Medication"/>
                <display value="INEGY TABLET 10/20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:607166f4-063b-11ef-1957-020000000000"/>
+               <reference value="urn:uuid:852a35b6-4835-11ef-8635-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:60716730-063b-11ef-1957-020000000000"/>
+                  <reference value="urn:uuid:852a35f2-4835-11ef-8635-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
                </actor>
@@ -107,7 +107,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:6071678a-063b-11ef-1957-020000000000"/>
+      <fullUrl value="urn:uuid:852a364c-4835-11ef-8635-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -136,18 +136,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:607167a8-063b-11ef-1957-020000000000"/>
+               <reference value="urn:uuid:852a366a-4835-11ef-8635-020000000000"/>
                <type value="Medication"/>
                <display value="INEGY TABLET 10/20MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:607166f4-063b-11ef-1957-020000000000"/>
+               <reference value="urn:uuid:852a35b6-4835-11ef-8635-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, G. XXX_Hemsbergen"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:60716730-063b-11ef-1957-020000000000"/>
+                  <reference value="urn:uuid:852a35f2-4835-11ef-8635-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek de Gulle Gaper"/>
                </actor>
@@ -183,7 +183,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:607166f4-063b-11ef-1957-020000000000"/>
+      <fullUrl value="urn:uuid:852a35b6-4835-11ef-8635-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -230,7 +230,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:60716730-063b-11ef-1957-020000000000"/>
+      <fullUrl value="urn:uuid:852a35f2-4835-11ef-8635-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -241,6 +241,31 @@
                <value value="01236578"/>
             </identifier>
             <name value="Apotheek de Gulle Gaper"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 12 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="12"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
          </Organization>
       </resource>
       <request>
@@ -249,7 +274,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:607167a8-063b-11ef-1957-020000000000"/>
+      <fullUrl value="urn:uuid:852a366a-4835-11ef-8635-020000000000"/>
       <resource>
          <Medication>
             <meta>

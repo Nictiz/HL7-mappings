@@ -13,7 +13,6 @@
                                             id="MTD-toedieningssnelheid-zondertijdseenheid">
          <patient>
             <naamgegevens>
-               <ongestructureerde_naam value="M. XXX_Rambaldo"/>
                <initialen value="M."/>
                <naamgebruik code="NL1"
                             codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
@@ -185,8 +184,8 @@
                </informant>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener datatype="reference"
-                                   value="urn-uuid-36322824-6aed-11ec-0000-020000000000"/>
+                     <zorgverlener value="urn-uuid-36322824-6aed-11ec-0000-020000000000"
+                                   datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
             </medicatiegebruik>
@@ -325,8 +324,8 @@
                </informant>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener datatype="reference"
-                                   value="urn-uuid-36322824-6aed-11ec-0000-020000000000"/>
+                     <zorgverlener value="urn-uuid-36322824-6aed-11ec-0000-020000000000"
+                                   datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
             </medicatiegebruik>
@@ -383,7 +382,7 @@
             <toedieningsafspraak>
                <identificatie value="MBH_300_variabelehoeveelheid_TA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
-               <toedieningsafspraak_datum_tijd value="2023-01-01T09:10:00+01:00" datatype="datetime"/>
+               <registratie_datum_tijd value="2023-01-01T09:10:00+01:00" datatype="datetime"/>
                <gebruiksperiode>
                   <start_datum_tijd value="2023-01-01T00:00:00+01:00" datatype="datetime"/>
                   <eind_datum_tijd value="2023-01-29T23:59:59+01:00" datatype="datetime"/>
@@ -486,8 +485,8 @@
                </informant>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener datatype="reference"
-                                   value="urn-uuid-36322824-6aed-11ec-0000-020000000000"/>
+                     <zorgverlener value="urn-uuid-36322824-6aed-11ec-0000-020000000000"
+                                   datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
             </medicatiegebruik>
@@ -629,8 +628,8 @@
                </informant>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener datatype="reference"
-                                   value="urn-uuid-36322824-6aed-11ec-0000-020000000000"/>
+                     <zorgverlener value="urn-uuid-36322824-6aed-11ec-0000-020000000000"
+                                   datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
             </medicatiegebruik>
@@ -784,8 +783,8 @@
                </voorschrijver>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener datatype="reference"
-                                   value="urn-uuid-36322824-6aed-11ec-0000-020000000000"/>
+                     <zorgverlener value="urn-uuid-36322824-6aed-11ec-0000-020000000000"
+                                   datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
             </medicatiegebruik>
@@ -969,8 +968,8 @@
                </informant>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener datatype="reference"
-                                   value="urn-uuid-36322824-6aed-11ec-0000-020000000000"/>
+                     <zorgverlener value="urn-uuid-36322824-6aed-11ec-0000-020000000000"
+                                   datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
             </medicatiegebruik>
@@ -999,10 +998,7 @@
                   <waarde>
                      <nominale_waarde value="10"/>
                   </waarde>
-                  <eenheid code="ml/2.h"
-                           codeSystem="http://unitsofmeasure.org"
-                           codeSystemName="UCUM"
-                           displayName="ml/2.u"/>
+                  <eenheid value="1" unit="ml/2.h"/>
                </toedieningssnelheid>
                <relatie_wisselend_doseerschema>
                   <identificatie value="MBH_300_wdsmtd1_WDS_opstartschema"
@@ -1014,10 +1010,10 @@
                                     datatype="reference"/>
                   </zorgaanbieder>
                </toediener>
-               <medicatie_toediening_reden_van_afwijken code="406149000"
-                                                        codeSystem="2.16.840.1.113883.6.96"
-                                                        codeSystemName="SNOMED CT"
-                                                        displayName="toediening van medicatie geweigerd"/>
+               <medicatietoediening_reden_van_afwijken code="406149000"
+                                                       codeSystem="2.16.840.1.113883.6.96"
+                                                       codeSystemName="SNOMED CT"
+                                                       displayName="toediening van medicatie geweigerd"/>
             </medicatietoediening>
             <medicatietoediening>
                <identificatie value="MBH_300_wdsmtd1Q_MTD2"
@@ -1044,10 +1040,7 @@
                   <waarde>
                      <nominale_waarde value="10"/>
                   </waarde>
-                  <eenheid code="ml/h"
-                           codeSystem="http://unitsofmeasure.org"
-                           codeSystemName="UCUM"
-                           displayName="ml/u"/>
+                  <eenheid value="1" unit="ml/h"/>
                </toedieningssnelheid>
                <relatie_wisselend_doseerschema>
                   <identificatie value="MBH_300_wdsmtd1_WDS_opstartschema"
@@ -1059,10 +1052,10 @@
                                     datatype="reference"/>
                   </zorgaanbieder>
                </toediener>
-               <medicatie_toediening_reden_van_afwijken code="406149000"
-                                                        codeSystem="2.16.840.1.113883.6.96"
-                                                        codeSystemName="SNOMED CT"
-                                                        displayName="toediening van medicatie geweigerd"/>
+               <medicatietoediening_reden_van_afwijken code="406149000"
+                                                       codeSystem="2.16.840.1.113883.6.96"
+                                                       codeSystemName="SNOMED CT"
+                                                       displayName="toediening van medicatie geweigerd"/>
             </medicatietoediening>
          </medicamenteuze_behandeling>
          <medicamenteuze_behandeling>
@@ -1174,6 +1167,10 @@
                </gebruiksproduct>
                <gebruiksinstructie>
                   <omschrijving value="Vanaf 1 jan 2023, tot en met 8 jan 2023, elke dag om 09:00, 12:00 en 15:00 1 stuk - let op, tijden exact aanhouden"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  codeSystemName="HL7 NullFlavor"
+                                  displayName="geen informatie"/>
                   <doseerinstructie>
                      <dosering>
                         <keerdosis>
@@ -1207,8 +1204,8 @@
                </informant>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener datatype="reference"
-                                   value="urn-uuid-36322824-6aed-11ec-0000-020000000000"/>
+                     <zorgverlener value="urn-uuid-36322824-6aed-11ec-0000-020000000000"
+                                   datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
             </medicatiegebruik>
@@ -1370,8 +1367,8 @@
                </informant>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener datatype="reference"
-                                   value="urn-uuid-36322824-6aed-11ec-0000-020000000000"/>
+                     <zorgverlener value="urn-uuid-36322824-6aed-11ec-0000-020000000000"
+                                   datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
             </medicatiegebruik>
@@ -1516,8 +1513,8 @@
                </informant>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener datatype="reference"
-                                   value="urn-uuid-36322824-6aed-11ec-0000-020000000000"/>
+                     <zorgverlener value="urn-uuid-36322824-6aed-11ec-0000-020000000000"
+                                   datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
             </medicatiegebruik>
@@ -1678,8 +1675,8 @@
                </informant>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener datatype="reference"
-                                   value="urn-uuid-36322824-6aed-11ec-0000-020000000000"/>
+                     <zorgverlener value="urn-uuid-36322824-6aed-11ec-0000-020000000000"
+                                   datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
             </medicatiegebruik>
@@ -1980,8 +1977,8 @@
                </informant>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener datatype="reference"
-                                   value="urn-uuid-36322824-6aed-11ec-0000-020000000000"/>
+                     <zorgverlener value="urn-uuid-36322824-6aed-11ec-0000-020000000000"
+                                   datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
             </medicatiegebruik>
@@ -2024,12 +2021,10 @@
                                     codeSystemName="G-Standaard thesaurus basiseenheden"/>
                         </keerdosis>
                         <zo_nodig>
-                           <criterium>
-                              <criterium code="1387"
-                                         codeSystem="2.16.840.1.113883.2.4.4.5"
-                                         codeSystemName="NHG Tabel 25 B Codes (numeriek)"
-                                         displayName="Bij hoest"/>
-                           </criterium>
+                           <criterium code="1387"
+                                      codeSystem="2.16.840.1.113883.2.4.4.5"
+                                      codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                      displayName="Bij hoest"/>
                            <maximale_dosering>
                               <aantal value="6"/>
                               <eenheid code="245"
@@ -2078,12 +2073,10 @@
                                     codeSystemName="G-Standaard thesaurus basiseenheden"/>
                         </keerdosis>
                         <zo_nodig>
-                           <criterium>
-                              <criterium code="1387"
-                                         codeSystem="2.16.840.1.113883.2.4.4.5"
-                                         codeSystemName="NHG Tabel 25 B Codes (numeriek)"
-                                         displayName="Bij hoest"/>
-                           </criterium>
+                           <criterium code="1387"
+                                      codeSystem="2.16.840.1.113883.2.4.4.5"
+                                      codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                      displayName="Bij hoest"/>
                            <maximale_dosering>
                               <aantal value="6"/>
                               <eenheid code="245"
@@ -2134,12 +2127,10 @@
                                     codeSystemName="G-Standaard thesaurus basiseenheden"/>
                         </keerdosis>
                         <zo_nodig>
-                           <criterium>
-                              <criterium code="1387"
-                                         codeSystem="2.16.840.1.113883.2.4.4.5"
-                                         codeSystemName="NHG Tabel 25 B Codes (numeriek)"
-                                         displayName="Bij hoest"/>
-                           </criterium>
+                           <criterium code="1387"
+                                      codeSystem="2.16.840.1.113883.2.4.4.5"
+                                      codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                      displayName="Bij hoest"/>
                            <maximale_dosering>
                               <aantal value="6"/>
                               <eenheid code="245"
@@ -2165,8 +2156,8 @@
                </informant>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener datatype="reference"
-                                   value="urn-uuid-36322824-6aed-11ec-0000-020000000000"/>
+                     <zorgverlener value="urn-uuid-36322824-6aed-11ec-0000-020000000000"
+                                   datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
             </medicatiegebruik>
@@ -2212,10 +2203,7 @@
                               <minimum_waarde value="0.2"/>
                               <maximum_waarde value="0.5"/>
                            </waarde>
-                           <eenheid code="ml/h"
-                                    codeSystem="http://unitsofmeasure.org"
-                                    codeSystemName="UCUM"
-                                    displayName="ml/u"/>
+                           <eenheid value="1" unit="ml/h"/>
                         </toedieningssnelheid>
                      </dosering>
                   </doseerinstructie>
@@ -2250,10 +2238,7 @@
                               <minimum_waarde value="0.2"/>
                               <maximum_waarde value="0.5"/>
                            </waarde>
-                           <eenheid code="ml/2.h"
-                                    codeSystem="http://unitsofmeasure.org"
-                                    codeSystemName="UCUM"
-                                    displayName="ml/2.u"/>
+                           <eenheid value="1" unit="ml/2.h"/>
                         </toedieningssnelheid>
                      </dosering>
                   </doseerinstructie>
@@ -2289,10 +2274,7 @@
                            <waarde>
                               <nominale_waarde value="0.2"/>
                            </waarde>
-                           <eenheid code="ml/h"
-                                    codeSystem="http://unitsofmeasure.org"
-                                    codeSystemName="UCUM"
-                                    displayName="ml/u"/>
+                           <eenheid value="1" unit="ml/h"/>
                         </toedieningssnelheid>
                      </dosering>
                   </doseerinstructie>
@@ -2310,8 +2292,8 @@
                </informant>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener datatype="reference"
-                                   value="urn-uuid-36322824-6aed-11ec-0000-020000000000"/>
+                     <zorgverlener value="urn-uuid-36322824-6aed-11ec-0000-020000000000"
+                                   datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
             </medicatiegebruik>
@@ -2474,8 +2456,8 @@
                </informant>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener datatype="reference"
-                                   value="urn-uuid-36322824-6aed-11ec-0000-020000000000"/>
+                     <zorgverlener value="urn-uuid-36322824-6aed-11ec-0000-020000000000"
+                                   datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
             </medicatiegebruik>
@@ -2524,12 +2506,10 @@
                            </frequentie>
                         </toedieningsschema>
                         <zo_nodig>
-                           <criterium>
-                              <criterium code="1137"
-                                         codeSystem="2.16.840.1.113883.2.4.4.5"
-                                         codeSystemName="NHG Tabel 25 B Codes (numeriek)"
-                                         displayName="Zo nodig"/>
-                           </criterium>
+                           <criterium code="1137"
+                                      codeSystem="2.16.840.1.113883.2.4.4.5"
+                                      codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                      displayName="Zo nodig"/>
                         </zo_nodig>
                      </dosering>
                   </doseerinstructie>
@@ -2577,12 +2557,10 @@
                            </frequentie>
                         </toedieningsschema>
                         <zo_nodig>
-                           <criterium>
-                              <criterium code="1137"
-                                         codeSystem="2.16.840.1.113883.2.4.4.5"
-                                         codeSystemName="NHG Tabel 25 B Codes (numeriek)"
-                                         displayName="Zo nodig"/>
-                           </criterium>
+                           <criterium code="1137"
+                                      codeSystem="2.16.840.1.113883.2.4.4.5"
+                                      codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                      displayName="Zo nodig"/>
                         </zo_nodig>
                      </dosering>
                   </doseerinstructie>
@@ -2632,12 +2610,10 @@
                            </frequentie>
                         </toedieningsschema>
                         <zo_nodig>
-                           <criterium>
-                              <criterium code="1137"
-                                         codeSystem="2.16.840.1.113883.2.4.4.5"
-                                         codeSystemName="NHG Tabel 25 B Codes (numeriek)"
-                                         displayName="Zo nodig"/>
-                           </criterium>
+                           <criterium code="1137"
+                                      codeSystem="2.16.840.1.113883.2.4.4.5"
+                                      codeSystemName="NHG Tabel 25 B Codes (numeriek)"
+                                      displayName="Zo nodig"/>
                         </zo_nodig>
                      </dosering>
                   </doseerinstructie>
@@ -2655,8 +2631,8 @@
                </informant>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener datatype="reference"
-                                   value="urn-uuid-36322824-6aed-11ec-0000-020000000000"/>
+                     <zorgverlener value="urn-uuid-36322824-6aed-11ec-0000-020000000000"
+                                   datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
             </medicatiegebruik>
@@ -2667,6 +2643,7 @@
             <medicatieafspraak>
                <identificatie value="MBH_300_tijdstippen_flexibel_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <registratie_datum_tijd value="2023-01-01T08:24:00+01:00" datatype="datetime"/>
                <medicatieafspraak_datum_tijd value="2023-01-01T08:24:00+01:00" datatype="datetime"/>
                <gebruiksperiode>
                   <start_datum_tijd value="2023-01-01T00:00:00+01:00" datatype="datetime"/>
@@ -2807,8 +2784,8 @@
                </informant>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener datatype="reference"
-                                   value="urn-uuid-36322824-6aed-11ec-0000-020000000000"/>
+                     <zorgverlener value="urn-uuid-36322824-6aed-11ec-0000-020000000000"
+                                   datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
             </medicatiegebruik>
@@ -2948,10 +2925,7 @@
                            <waarde>
                               <nominale_waarde value="0.2"/>
                            </waarde>
-                           <eenheid code="ml/2.h"
-                                    codeSystem="http://unitsofmeasure.org"
-                                    codeSystemName="UCUM"
-                                    displayName="ml/2.u"/>
+                           <eenheid value="1" unit="ml/2.h"/>
                         </toedieningssnelheid>
                      </dosering>
                   </doseerinstructie>
@@ -3360,7 +3334,6 @@
             <zorgverlener id="urn-uuid-36322824-6aed-11ec-0000-020000000000">
                <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
-                  <ongestructureerde_naam value="Peter van Pulver"/>
                   <voornamen value="Peter"/>
                   <geslachtsnaam>
                      <voorvoegsels value="van"/>
@@ -3380,7 +3353,6 @@
             <zorgverlener id="urn-uuid-8d3d1824-6aeb-11ec-0000-020000000000">
                <zorgverlener_identificatienummer value="222221111" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
-                  <ongestructureerde_naam value="Tanja de Bakker"/>
                   <voornamen value="Tanja"/>
                   <geslachtsnaam>
                      <voorvoegsels value="de"/>

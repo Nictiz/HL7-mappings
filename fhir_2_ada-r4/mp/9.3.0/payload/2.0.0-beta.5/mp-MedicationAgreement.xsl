@@ -102,12 +102,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 		</relatie_medicatiegebruik>
 	</xsl:template>
 	
-	
-	
 	<xd:doc>
 		<xd:desc>Template to resolve f:modifierExtension ext-Medication-stop-type.</xd:desc>
 	</xd:doc>
-	<xsl:template match="f:modifierExtension[@url = $extStoptype]" mode="mp-MedicationAgreement">
+    <xsl:template match="f:modifierExtension[@url = $urlExtStoptype]" mode="mp-MedicationAgreement">
 		<xsl:apply-templates select="f:valueCodeableConcept" mode="#current"/>
 	</xsl:template>
 

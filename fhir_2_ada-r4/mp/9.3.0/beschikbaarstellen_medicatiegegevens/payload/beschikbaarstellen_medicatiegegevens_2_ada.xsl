@@ -63,7 +63,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </identificatie>
                             <!-- medicatieafspraak -->
                             <xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value = $maCode]" mode="mp-MedicationAgreement"/>
-                            <!--WisselendDoseerschema in f:MedicationRequest-->
+                            <!--wisselendDoseerschema in f:MedicationRequest-->
                             <xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value = $wdsCode]" mode="mp-VariableDosingRegimen"/>
                             <!-- verstrekkingsverzoek -->
                             <xsl:apply-templates select="current-group()[self::f:MedicationRequest/f:category/f:coding/f:code/@value = $vvCode]" mode="nl-core-DispenseRequest"/>

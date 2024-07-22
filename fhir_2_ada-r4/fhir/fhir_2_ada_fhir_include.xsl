@@ -225,10 +225,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:function name="nf:resolveRefInBundle" as="element(f:resource)*">
         <xsl:param name="in" as="element()?"/>
-        <!-- TODO: add relative url -->
         <xsl:for-each select="$in">
             <!-- find based on reference -->
-            <xsl:variable name="resourceRef" select="ancestor::f:Bundle/f:entry[f:fullUrl/@value = current()/f:reference/@value]/f:resource"/>
+            <xsl:variable name="referenceValue" select="nf:process-reference(current()/f:reference/@value, ancestor::f:entry/f:fullUrl/@value)"/>
+            <xsl:variable name="resourceRef" select="ancestor::f:Bundle/f:entry[f:fullUrl/@value = $referenceValue]/f:resource"/>
 
             <xsl:choose>
                 <xsl:when test="$resourceRef[*]">
