@@ -1547,6 +1547,9 @@
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="2023-01-01T08:24:00+01:00"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
                <valueString value="Vanaf 1 jan 2023, tot en met 15 jan 2023, elke dag om 08:00, 14:00 en 20:00 1 stuk, oraal"/>
             </extension>
@@ -1878,7 +1881,7 @@
                   </doseQuantity>
                   <rateQuantity>
                      <value value="0.2"/>
-                     <unit value="ml/2.u"/>
+                     <unit value="ml/2.h"/>
                      <system value="http://unitsofmeasure.org"/>
                      <code value="ml/2.h"/>
                   </rateQuantity>
@@ -2103,7 +2106,7 @@
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="2023-01-01T09:10:00+01:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
@@ -3351,13 +3354,13 @@
                   <rateRange>
                      <low>
                         <value value="0.2"/>
-                        <unit value="ml/2.u"/>
+                        <unit value="ml/2.h"/>
                         <system value="http://unitsofmeasure.org"/>
                         <code value="ml/2.h"/>
                      </low>
                      <high>
                         <value value="0.5"/>
-                        <unit value="ml/2.u"/>
+                        <unit value="ml/2.h"/>
                         <system value="http://unitsofmeasure.org"/>
                         <code value="ml/2.h"/>
                      </high>
@@ -5896,7 +5899,7 @@
                </dose>
                <rateQuantity>
                   <value value="10"/>
-                  <unit value="ml/2.u"/>
+                  <unit value="ml/2.h"/>
                   <system value="http://unitsofmeasure.org"/>
                   <code value="ml/2.h"/>
                </rateQuantity>
@@ -6007,7 +6010,7 @@
                </dose>
                <rateQuantity>
                   <value value="10"/>
-                  <unit value="ml/u"/>
+                  <unit value="ml/h"/>
                   <system value="http://unitsofmeasure.org"/>
                   <code value="ml/h"/>
                </rateQuantity>

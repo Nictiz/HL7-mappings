@@ -11,7 +11,7 @@
                                    prefix="mp-"
                                    language="nl-NL"
                                    title="Generated from HL7 FHIR sturen_medicatievoorschrift"
-                                   id="3004db0f-063b-11ef-1052-020000000000">
+                                   id="dcb5c833-4807-11ef-1039-020000000000">
          <patient>
             <naamgegevens>
                <initialen value="M."/>
@@ -27,10 +27,10 @@
             <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
          </patient>
          <medicamenteuze_behandeling>
-            <identificatie value="MBH_300_logistiekeverbruiksperiode_eind"
+            <identificatie value="MBH_300_distributievorm_GDS"
                            root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
             <medicatieafspraak>
-               <identificatie value="MBH_300_logistiekeverbruiksperiode_eind_MA"
+               <identificatie value="MBH_300_distributievorm_GDS_MA"
                               root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <registratie_datum_tijd value="2023-01-01T11:01:00+01:00" datatype="datetime"/>
                <gebruiksperiode>
@@ -38,11 +38,11 @@
                   <eind_datum_tijd value="2023-07-20T23:59:59+02:00" datatype="datetime"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="urn-uuid-3004dbae-063b-11ef-1052-020000000000"
+                  <zorgverlener value="urn-uuid-dcb5c8d2-4807-11ef-1039-020000000000"
                                 datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-3004dcee-063b-11ef-1052-020000000000"
+                  <farmaceutisch_product value="urn-uuid-dcb5ca12-4807-11ef-1039-020000000000"
                                          datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
@@ -75,15 +75,15 @@
                </gebruiksinstructie>
             </medicatieafspraak>
             <verstrekkingsverzoek>
-               <identificatie value="MBH_300_logistiekeverbruiksperiode_eind_VV"
+               <identificatie value="MBH_300_distributievorm_GDS_VV"
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
                <verstrekkingsverzoek_datum_tijd value="2023-01-01T11:01:00+01:00" datatype="datetime"/>
                <auteur>
-                  <zorgverlener value="urn-uuid-3004dbae-063b-11ef-1052-020000000000"
+                  <zorgverlener value="urn-uuid-dcb5c8d2-4807-11ef-1039-020000000000"
                                 datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-3004dcee-063b-11ef-1052-020000000000"
+                  <farmaceutisch_product value="urn-uuid-dcb5ca12-4807-11ef-1039-020000000000"
                                          datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <verbruiksperiode>
@@ -91,16 +91,16 @@
                </verbruiksperiode>
                <beoogd_verstrekker>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-3004dc76-063b-11ef-1052-020000000000"/>
+                                 value="urn-uuid-dcb5c99a-4807-11ef-1039-020000000000"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
-                  <identificatie value="MBH_300_logistiekeverbruiksperiode_eind_MA"
+                  <identificatie value="MBH_300_distributievorm_GDS_MA"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                </relatie_medicatieafspraak>
             </verstrekkingsverzoek>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-3004dcee-063b-11ef-1052-020000000000">
+            <farmaceutisch_product id="urn-uuid-dcb5ca12-4807-11ef-1039-020000000000">
                <product_code code="48291"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -111,7 +111,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="MIZOLASTINE TABLET MGA  10MG"/>
             </farmaceutisch_product>
-            <zorgverlener id="urn-uuid-3004dbae-063b-11ef-1052-020000000000">
+            <zorgverlener id="urn-uuid-dcb5c8d2-4807-11ef-1039-020000000000">
                <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Bertine"/>
@@ -135,10 +135,10 @@
                </contactgegevens>
                <zorgaanbieder>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-3004dc1c-063b-11ef-1052-020000000000"/>
+                                 value="urn-uuid-dcb5c940-4807-11ef-1039-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="urn-uuid-3004dc1c-063b-11ef-1052-020000000000">
+            <zorgaanbieder id="urn-uuid-dcb5c940-4807-11ef-1039-020000000000">
                <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
@@ -151,9 +151,19 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="urn-uuid-3004dc76-063b-11ef-1052-020000000000">
+            <zorgaanbieder id="urn-uuid-dcb5c99a-4807-11ef-1039-020000000000">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>
       </sturen_medicatievoorschrift>

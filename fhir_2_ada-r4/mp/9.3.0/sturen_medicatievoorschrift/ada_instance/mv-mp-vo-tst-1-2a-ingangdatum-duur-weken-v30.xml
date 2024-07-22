@@ -11,7 +11,7 @@
                                    prefix="mp-"
                                    language="nl-NL"
                                    title="Generated from HL7 FHIR sturen_medicatievoorschrift"
-                                   id="2fd27b79-063b-11ef-1754-020000000000">
+                                   id="dc64db03-4807-11ef-1870-020000000000">
          <patient>
             <naamgegevens>
                <initialen value="C."/>
@@ -37,11 +37,11 @@
                   <tijds_duur value="3" unit="week"/>
                </gebruiksperiode>
                <voorschrijver>
-                  <zorgverlener value="urn-uuid-2fd27c18-063b-11ef-1754-020000000000"
+                  <zorgverlener value="urn-uuid-dc64dba2-4807-11ef-1870-020000000000"
                                 datatype="reference"/>
                </voorschrijver>
                <afgesproken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-2fd27d58-063b-11ef-1754-020000000000"
+                  <farmaceutisch_product value="urn-uuid-dc64dce2-4807-11ef-1870-020000000000"
                                          datatype="reference"/>
                </afgesproken_geneesmiddel>
                <gebruiksinstructie>
@@ -78,11 +78,11 @@
                               root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
                <verstrekkingsverzoek_datum_tijd value="2023-01-01T11:30:00+01:00" datatype="datetime"/>
                <auteur>
-                  <zorgverlener value="urn-uuid-2fd27c18-063b-11ef-1754-020000000000"
+                  <zorgverlener value="urn-uuid-dc64dba2-4807-11ef-1870-020000000000"
                                 datatype="reference"/>
                </auteur>
                <te_verstrekken_geneesmiddel>
-                  <farmaceutisch_product value="urn-uuid-2fd27d76-063b-11ef-1754-020000000000"
+                  <farmaceutisch_product value="urn-uuid-dc64dd00-4807-11ef-1870-020000000000"
                                          datatype="reference"/>
                </te_verstrekken_geneesmiddel>
                <te_verstrekken_hoeveelheid>
@@ -93,7 +93,7 @@
                </te_verstrekken_hoeveelheid>
                <beoogd_verstrekker>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-2fd27ce0-063b-11ef-1754-020000000000"/>
+                                 value="urn-uuid-dc64dc6a-4807-11ef-1870-020000000000"/>
                </beoogd_verstrekker>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_start_duur_MA"
@@ -102,7 +102,7 @@
             </verstrekkingsverzoek>
          </medicamenteuze_behandeling>
          <bouwstenen>
-            <farmaceutisch_product id="urn-uuid-2fd27d58-063b-11ef-1754-020000000000">
+            <farmaceutisch_product id="urn-uuid-dc64dce2-4807-11ef-1870-020000000000">
                <product_code code="26638"
                              codeSystem="2.16.840.1.113883.2.4.4.10"
                              codeSystemName="G-Standaard PRK"
@@ -113,7 +113,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="LISINOPRIL 10MG TABLET"/>
             </farmaceutisch_product>
-            <farmaceutisch_product id="urn-uuid-2fd27d76-063b-11ef-1754-020000000000">
+            <farmaceutisch_product id="urn-uuid-dc64dd00-4807-11ef-1870-020000000000">
                <product_code code="1506773"
                              codeSystem="2.16.840.1.113883.2.4.4.7"
                              codeSystemName="G-Standaard HPK"
@@ -128,7 +128,7 @@
                              codeSystemName="G-Standaard GPK"
                              displayName="LISINOPRIL 10MG TABLET"/>
             </farmaceutisch_product>
-            <zorgverlener id="urn-uuid-2fd27c18-063b-11ef-1754-020000000000">
+            <zorgverlener id="urn-uuid-dc64dba2-4807-11ef-1870-020000000000">
                <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
                   <voornamen value="Peter"/>
@@ -152,10 +152,10 @@
                </contactgegevens>
                <zorgaanbieder>
                   <zorgaanbieder datatype="reference"
-                                 value="urn-uuid-2fd27c86-063b-11ef-1754-020000000000"/>
+                                 value="urn-uuid-dc64dc10-4807-11ef-1870-020000000000"/>
                </zorgaanbieder>
             </zorgverlener>
-            <zorgaanbieder id="urn-uuid-2fd27c86-063b-11ef-1754-020000000000">
+            <zorgaanbieder id="urn-uuid-dc64dc10-4807-11ef-1870-020000000000">
                <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
                <adresgegevens>
@@ -168,9 +168,19 @@
                                displayName="Werkadres"/>
                </adresgegevens>
             </zorgaanbieder>
-            <zorgaanbieder id="urn-uuid-2fd27ce0-063b-11ef-1754-020000000000">
+            <zorgaanbieder id="urn-uuid-dc64dc6a-4807-11ef-1870-020000000000">
                <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
                <organisatie_naam value="Apotheek De Gulle Gaper"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="12"/>
+                  <huisnummerletter value="A"/>
+                  <postcode value="1234AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
             </zorgaanbieder>
          </bouwstenen>
       </sturen_medicatievoorschrift>

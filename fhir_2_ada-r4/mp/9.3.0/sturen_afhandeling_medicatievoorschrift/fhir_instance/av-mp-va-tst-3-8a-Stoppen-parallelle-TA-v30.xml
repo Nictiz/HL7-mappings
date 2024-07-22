@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="30478a77-063b-11ef-7298-020000000000"/>
+   <id value="dd23618b-4807-11ef-7999-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescriptionProcessing-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:30478b66-063b-11ef-7298-020000000000"/>
+      <fullUrl value="urn:uuid:dd23627a-4807-11ef-7999-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -62,18 +62,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:30478ba2-063b-11ef-7298-020000000000"/>
+               <reference value="urn:uuid:dd2362b6-4807-11ef-7999-020000000000"/>
                <type value="Medication"/>
                <display value="PANTOZOL TABLET MSR 40MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:30478aee-063b-11ef-7298-020000000000"/>
+               <reference value="urn:uuid:dd236202-4807-11ef-7999-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:30478b2a-063b-11ef-7298-020000000000"/>
+                  <reference value="urn:uuid:dd23623e-4807-11ef-7999-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -124,7 +124,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:30478b84-063b-11ef-7298-020000000000"/>
+      <fullUrl value="urn:uuid:dd236298-4807-11ef-7999-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -134,6 +134,15 @@
                   <code value="actionable"/>
                </tag>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationDispense.DistributionForm">
+               <valueCodeableConcept>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3.8"/>
+                     <code value="1"/>
+                     <display value="GDS"/>
+                  </coding>
+               </valueCodeableConcept>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
@@ -153,18 +162,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:30478ba2-063b-11ef-7298-020000000000"/>
+               <reference value="urn:uuid:dd2362b6-4807-11ef-7999-020000000000"/>
                <type value="Medication"/>
                <display value="PANTOZOL TABLET MSR 40MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:30478aee-063b-11ef-7298-020000000000"/>
+               <reference value="urn:uuid:dd236202-4807-11ef-7999-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, J. de XXX_Luzac"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:30478b2a-063b-11ef-7298-020000000000"/>
+                  <reference value="urn:uuid:dd23623e-4807-11ef-7999-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -200,7 +209,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:30478aee-063b-11ef-7298-020000000000"/>
+      <fullUrl value="urn:uuid:dd236202-4807-11ef-7999-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -250,7 +259,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:30478b2a-063b-11ef-7298-020000000000"/>
+      <fullUrl value="urn:uuid:dd23623e-4807-11ef-7999-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -261,6 +270,31 @@
                <value value="01236578"/>
             </identifier>
             <name value="Apotheek De Gulle Gaper"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 12 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="12"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
          </Organization>
       </resource>
       <request>
@@ -269,7 +303,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:30478ba2-063b-11ef-7298-020000000000"/>
+      <fullUrl value="urn:uuid:dd2362b6-4807-11ef-7999-020000000000"/>
       <resource>
          <Medication>
             <meta>

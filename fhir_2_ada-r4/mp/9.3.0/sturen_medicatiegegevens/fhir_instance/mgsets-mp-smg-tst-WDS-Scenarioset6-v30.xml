@@ -1,8 +1,8 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="2f9e896d-063b-11ef-1157-020000000000"/>
+   <id value="dc20e565-4807-11ef-8566-020000000000"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:2f9e8ab6-063b-11ef-1157-020000000000"/>
+      <fullUrl value="urn:uuid:dc20e6ae-4807-11ef-8566-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -11,7 +11,7 @@
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_WDS_weekdagen"/>
+                  <value value="MBH_300_WDS_dagdeel"/>
                </valueIdentifier>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
@@ -24,7 +24,7 @@
                <valuePeriod>
                   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
                      <valueDuration>
-                        <value value="6"/>
+                        <value value="8"/>
                         <unit value="dag"/>
                         <system value="http://unitsofmeasure.org"/>
                         <code value="d"/>
@@ -35,7 +35,7 @@
             </extension>
             <identifier>
                <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
-               <value value="MBH_300_WDS_weekdagen_wds"/>
+               <value value="MBH_300_WDS_dagdeel_wds"/>
             </identifier>
             <status value="unknown"/>
             <intent value="order"/>
@@ -47,17 +47,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:2f9e8ad4-063b-11ef-1157-020000000000"/>
+               <reference value="urn:uuid:dc20e6cc-4807-11ef-8566-020000000000"/>
                <type value="Medication"/>
                <display value="FENPROCOUMON TABLET 3MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:2f9e89e4-063b-11ef-1157-020000000000"/>
+               <reference value="urn:uuid:dc20e5dc-4807-11ef-8566-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Niesing"/>
             </subject>
             <requester>
-               <reference value="urn:uuid:2f9e8a0c-063b-11ef-1157-020000000000"/>
+               <reference value="urn:uuid:dc20e604-4807-11ef-8566-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Tanja de Bakker, Trombosediensten, Trombosedienst Ons Dorp"/>
             </requester>
@@ -65,9 +65,9 @@
                <type value="MedicationRequest"/>
                <identifier>
                   <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
-                  <value value="MBH_300_WDS_weekdagen_MA"/>
+                  <value value="MBH_300_WDS_dagdeel_MA"/>
                </identifier>
-               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_WDS_weekdagen_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <display value="relatie naar medicatieafspraak met identificatie: MBH_300_WDS_dagdeel_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
             </basedOn>
             <note>
                <text value="INR-Waarde: 1,8"/>
@@ -82,7 +82,7 @@
                         <system value="http://unitsofmeasure.org"/>
                         <code value="d"/>
                      </boundsDuration>
-                     <dayOfWeek value="mon"/>
+                     <when value="EVE"/>
                   </repeat>
                </timing>
                <route>
@@ -114,16 +114,12 @@
                <timing>
                   <repeat>
                      <boundsDuration>
-                        <value value="5"/>
+                        <value value="1"/>
                         <unit value="dag"/>
                         <system value="http://unitsofmeasure.org"/>
                         <code value="d"/>
                      </boundsDuration>
-                     <dayOfWeek value="tue"/>
-                     <dayOfWeek value="wed"/>
-                     <dayOfWeek value="thu"/>
-                     <dayOfWeek value="fri"/>
-                     <dayOfWeek value="sat"/>
+                     <when value="EVE"/>
                   </repeat>
                </timing>
                <route>
@@ -137,13 +133,235 @@
                   <doseQuantity>
                      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
                         <valueQuantity>
-                           <value value="1.5"/>
+                           <value value="2"/>
                            <unit value="stuk"/>
                            <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
                            <code value="245"/>
                         </valueQuantity>
                      </extension>
-                     <value value="1.5"/>
+                     <value value="2"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+            <dosageInstruction>
+               <sequence value="3"/>
+               <timing>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <when value="EVE"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="2"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="2"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+            <dosageInstruction>
+               <sequence value="4"/>
+               <timing>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <when value="EVE"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="2"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="2"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+            <dosageInstruction>
+               <sequence value="5"/>
+               <timing>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="uur"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="h"/>
+                     </boundsDuration>
+                     <when value="EVE"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="2"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="2"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+            <dosageInstruction>
+               <sequence value="6"/>
+               <timing>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <when value="EVE"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="2"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="2"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+            <dosageInstruction>
+               <sequence value="7"/>
+               <timing>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <when value="EVE"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="2"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="2"/>
+                     <unit value="stuk"/>
+                     <system value="http://unitsofmeasure.org"/>
+                     <code value="1"/>
+                  </doseQuantity>
+               </doseAndRate>
+            </dosageInstruction>
+            <dosageInstruction>
+               <sequence value="8"/>
+               <timing>
+                  <repeat>
+                     <boundsDuration>
+                        <value value="1"/>
+                        <unit value="dag"/>
+                        <system value="http://unitsofmeasure.org"/>
+                        <code value="d"/>
+                     </boundsDuration>
+                     <when value="EVE"/>
+                  </repeat>
+               </timing>
+               <route>
+                  <coding>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+                     <code value="9"/>
+                     <display value="Oraal"/>
+                  </coding>
+               </route>
+               <doseAndRate>
+                  <doseQuantity>
+                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+                        <valueQuantity>
+                           <value value="2"/>
+                           <unit value="stuk"/>
+                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                           <code value="245"/>
+                        </valueQuantity>
+                     </extension>
+                     <value value="2"/>
                      <unit value="stuk"/>
                      <system value="http://unitsofmeasure.org"/>
                      <code value="1"/>
@@ -158,7 +376,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2f9e89e4-063b-11ef-1157-020000000000"/>
+      <fullUrl value="urn:uuid:dc20e5dc-4807-11ef-8566-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -205,19 +423,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2f9e8a0c-063b-11ef-1157-020000000000"/>
+      <fullUrl value="urn:uuid:dc20e604-4807-11ef-8566-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:2f9e8a34-063b-11ef-1157-020000000000"/>
+               <reference value="urn:uuid:dc20e62c-4807-11ef-8566-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Tanja de Bakker"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:2f9e8a7a-063b-11ef-1157-020000000000"/>
+               <reference value="urn:uuid:dc20e672-4807-11ef-8566-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Trombosedienst Ons Dorp"/>
             </organization>
@@ -237,7 +455,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2f9e8a34-063b-11ef-1157-020000000000"/>
+      <fullUrl value="urn:uuid:dc20e62c-4807-11ef-8566-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -272,7 +490,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2f9e8a7a-063b-11ef-1157-020000000000"/>
+      <fullUrl value="urn:uuid:dc20e672-4807-11ef-8566-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -302,7 +520,7 @@
                   </valueCodeableConcept>
                </extension>
                <use value="work"/>
-               <line value="Kerkstraat  28 d">
+               <line value="Kerkstraat 28 d">
                   <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
                      <valueString value="Kerkstraat"/>
                   </extension>
@@ -324,7 +542,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2f9e8ad4-063b-11ef-1157-020000000000"/>
+      <fullUrl value="urn:uuid:dc20e6cc-4807-11ef-8566-020000000000"/>
       <resource>
          <Medication>
             <meta>
