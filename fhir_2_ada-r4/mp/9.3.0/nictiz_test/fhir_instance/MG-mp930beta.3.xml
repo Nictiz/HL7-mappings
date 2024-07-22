@@ -103,15 +103,15 @@
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-VariableDosingRegimen"/>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+                 <valueIdentifier>
+                     <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+                     <value value="MBH_300_QA7"/>
+                 </valueIdentifier>
+             </extension>
+             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
                <valueDateTime value="${DATE, T, D, -100}T08:00:00+02:00"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
-               <valueIdentifier>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
-                  <value value="MBH_300_QA7"/>
-               </valueIdentifier>
-            </extension>
+            </extension>        
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
                <valueString value="wordt gegenereerd"/>
             </extension>
@@ -624,7 +624,7 @@
                <actor>
                   <reference value="urn:uuid:f385d9cc-dae2-11ee-6384-020000000000"/>
                   <type value="Patient"/>
-                  <display value="Patient,"/>
+                  <display value="Patient, B. XXX_Blik"/>
                </actor>
             </performer>
             <request>

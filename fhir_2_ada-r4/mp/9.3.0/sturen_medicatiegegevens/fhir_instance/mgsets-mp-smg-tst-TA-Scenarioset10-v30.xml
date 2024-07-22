@@ -1,8 +1,8 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="2f83d22b-063b-11ef-1647-020000000000"/>
+   <id value="dbfb91b1-4807-11ef-1891-020000000000"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:2f83d31a-063b-11ef-1647-020000000000"/>
+      <fullUrl value="urn:uuid:dbfb92a0-4807-11ef-1891-020000000000"/>
       <resource>
          <MedicationDispense>
             <meta>
@@ -39,18 +39,18 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:2f83d338-063b-11ef-1647-020000000000"/>
+               <reference value="urn:uuid:dbfb92be-4807-11ef-1891-020000000000"/>
                <type value="Medication"/>
                <display value="INDAPAMIDE PCH TABET OMHULD 2,5MG"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:2f83d2a2-063b-11ef-1647-020000000000"/>
+               <reference value="urn:uuid:dbfb9228-4807-11ef-1891-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, M. XXX_Niesing"/>
             </subject>
             <performer>
                <actor>
-                  <reference value="urn:uuid:2f83d2de-063b-11ef-1647-020000000000"/>
+                  <reference value="urn:uuid:dbfb9264-4807-11ef-1891-020000000000"/>
                   <type value="Organization"/>
                   <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
                </actor>
@@ -103,7 +103,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2f83d2a2-063b-11ef-1647-020000000000"/>
+      <fullUrl value="urn:uuid:dbfb9228-4807-11ef-1891-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -150,7 +150,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2f83d2de-063b-11ef-1647-020000000000"/>
+      <fullUrl value="urn:uuid:dbfb9264-4807-11ef-1891-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -161,6 +161,31 @@
                <value value="01236578"/>
             </identifier>
             <name value="Apotheek De Gulle Gaper"/>
+            <address>
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AddressInformation.AddressType">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AddressUse"/>
+                        <code value="WP"/>
+                        <display value="Werkadres"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+               <use value="work"/>
+               <line value="Dorpsstraat 12 A">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                     <valueString value="Dorpsstraat"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                     <valueString value="12"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+                     <valueString value="A"/>
+                  </extension>
+               </line>
+               <city value="Ons Dorp"/>
+               <postalCode value="1234AA"/>
+            </address>
          </Organization>
       </resource>
       <request>
@@ -169,7 +194,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:2f83d338-063b-11ef-1647-020000000000"/>
+      <fullUrl value="urn:uuid:dbfb92be-4807-11ef-1891-020000000000"/>
       <resource>
          <Medication>
             <meta>

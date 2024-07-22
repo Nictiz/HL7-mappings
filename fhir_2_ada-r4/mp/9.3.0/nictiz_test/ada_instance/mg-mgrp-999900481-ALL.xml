@@ -13,7 +13,6 @@
                                             id="mg-mgrp-999900481-ALL">
          <patient>
             <naamgegevens>
-               <ongestructureerde_naam value="D. XXX_Dixhoorn"/>
                <initialen value="D."/>
                <naamgebruik code="NL1"
                             codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
@@ -294,7 +293,7 @@
                   <eind_datum_tijd value="T-1D{23:59:59}" datatype="datetime"/>
                </gebruiksperiode>
                <gebruiksproduct>
-                  <farmaceutisch_product value="Medication-ff75311d-6b1a-11ec-0000-020000000000"
+                  <farmaceutisch_product value="https---example-org-Medication-ff75311d-6b1a-11ec-0000-020000000000"
                                          datatype="reference"/>
                </gebruiksproduct>
                <gebruiksinstructie>
@@ -331,7 +330,7 @@
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                </relatie_medicatieafspraak>
                <voorschrijver>
-                  <zorgverlener value="PractitionerRole-4560482e-6aec-11ec-0000-020000000000"
+                  <zorgverlener value="https---example-org-PractitionerRole-4560482e-6aec-11ec-0000-020000000000"
                                 datatype="reference"/>
                </voorschrijver>
                <informant>
@@ -339,8 +338,8 @@
                </informant>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener datatype="reference"
-                                   value="PractitionerRole-4560482e-6aec-11ec-0000-020000000000"/>
+                     <zorgverlener value="https---example-org-PractitionerRole-4560482e-6aec-11ec-0000-020000000000"
+                                   datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
                <toelichting value="In verband met bijwerking de afgelopen week minder vaak genomen"/>
@@ -467,18 +466,22 @@
                   <eind_datum_tijd value="T-2D{23:59:59}" datatype="datetime"/>
                </gebruiksperiode>
                <gebruiksproduct>
-                  <farmaceutisch_product value="Medication-c58f9604-6b3a-11ec-0000-020000000000"
+                  <farmaceutisch_product value="https---example-org-Medication-c58f9604-6b3a-11ec-0000-020000000000"
                                          datatype="reference"/>
                </gebruiksproduct>
                <gebruiksinstructie>
                   <omschrijving value="Vanaf T - 5 dagen, tot en met T - 2 dagen, geneesmiddel niet in gebruik, onderbroken"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  codeSystemName="HL7 NullFlavor"
+                                  displayName="geen informatie"/>
                </gebruiksinstructie>
                <relatie_medicatieafspraak>
                   <identificatie value="MBH_300_redenvanvoorschrijven_MA"
                                  root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                </relatie_medicatieafspraak>
                <voorschrijver>
-                  <zorgverlener value="PractitionerRole-4560482e-6aec-11ec-0000-020000000000"
+                  <zorgverlener value="https---example-org-PractitionerRole-4560482e-6aec-11ec-0000-020000000000"
                                 datatype="reference"/>
                </voorschrijver>
                <informant>
@@ -486,8 +489,8 @@
                </informant>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener datatype="reference"
-                                   value="PractitionerRole-4560482e-6aec-11ec-0000-020000000000"/>
+                     <zorgverlener value="https---example-org-PractitionerRole-4560482e-6aec-11ec-0000-020000000000"
+                                   datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
                <reden_wijzigen_of_stoppen_gebruik code="405613005"
@@ -771,6 +774,7 @@
                <wisselend_doseerschema_datum_tijd value="T-5D{13:30:00}" datatype="datetime"/>
                <gebruiksperiode>
                   <start_datum_tijd value="T-5D{00:00:00}" datatype="datetime"/>
+                  <tijds_duur value="7" unit="dag"/>
                </gebruiksperiode>
                <afgesproken_geneesmiddel>
                   <farmaceutisch_product value="https---example-org-Medication-ca0c3ae9-6aff-11ec-0000-020000000000"
@@ -853,6 +857,7 @@
                <wisselend_doseerschema_datum_tijd value="T-5D{08:05:00}" datatype="datetime"/>
                <gebruiksperiode>
                   <start_datum_tijd value="T-5D{00:00:00}" datatype="datetime"/>
+                  <tijds_duur value="2" unit="week"/>
                </gebruiksperiode>
                <afgesproken_geneesmiddel>
                   <farmaceutisch_product value="https---example-org-Medication-4c6ca204-6b1b-11ec-0000-020000000000"
@@ -1079,7 +1084,6 @@
             <zorgverlener id="https---example-org-PractitionerRole-8d3d1824-6aeb-11ec-0000-020000000000">
                <zorgverlener_identificatienummer value="222221111" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
-                  <ongestructureerde_naam value="Tanja de Bakker"/>
                   <voornamen value="Tanja"/>
                   <geslachtsnaam>
                      <voorvoegsels value="de"/>
@@ -1099,7 +1103,6 @@
             <zorgverlener id="https---example-org-PractitionerRole-4560482e-6aec-11ec-0000-020000000000">
                <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
-                  <ongestructureerde_naam value="Bertine van Doorn"/>
                   <voornamen value="Bertine"/>
                   <geslachtsnaam>
                      <voorvoegsels value="van"/>

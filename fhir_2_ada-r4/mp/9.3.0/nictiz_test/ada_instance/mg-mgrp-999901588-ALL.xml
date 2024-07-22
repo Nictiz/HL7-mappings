@@ -13,7 +13,6 @@
                                             id="mg-mgrp-999901588-ALL">
          <patient>
             <naamgegevens>
-               <ongestructureerde_naam value="J. XXX_Bree"/>
                <initialen value="J."/>
                <naamgebruik code="NL1"
                             codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
@@ -110,7 +109,7 @@
                   <eind_datum_tijd value="T+0D{23:59:59}" datatype="datetime"/>
                </gebruiksperiode>
                <gebruiksproduct>
-                  <farmaceutisch_product value="Medication-66088204" datatype="reference"/>
+                  <farmaceutisch_product value="https---example-org-Medication-66088204" datatype="reference"/>
                </gebruiksproduct>
                <gebruiksinstructie>
                   <omschrijving value="Vanaf T, tot en met T, 1 maal per dag 1 stuk, oraal"/>
@@ -145,14 +144,16 @@
                                  root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                </relatie_toedieningsafspraak>
                <voorschrijver>
-                  <zorgverlener value="PractitionerRole-36322824" datatype="reference"/>
+                  <zorgverlener value="https---example-org-PractitionerRole-36322824"
+                                datatype="reference"/>
                </voorschrijver>
                <informant>
                   <informant_is_patient value="true"/>
                </informant>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener datatype="reference" value="PractitionerRole-36322824"/>
+                     <zorgverlener value="https---example-org-PractitionerRole-36322824"
+                                   datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
             </medicatiegebruik>
@@ -315,7 +316,7 @@
                   <eind_datum_tijd value="T+0D{23:59:59}" datatype="datetime"/>
                </gebruiksperiode>
                <gebruiksproduct>
-                  <farmaceutisch_product value="Medication-b48b051d-6afe-11ec-0000-020000000000"
+                  <farmaceutisch_product value="https---example-org-Medication-b48b051d-6afe-11ec-0000-020000000000"
                                          datatype="reference"/>
                </gebruiksproduct>
                <gebruiksinstructie>
@@ -351,14 +352,16 @@
                                  root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
                </relatie_toedieningsafspraak>
                <voorschrijver>
-                  <zorgverlener value="PractitionerRole-36322824" datatype="reference"/>
+                  <zorgverlener value="https---example-org-PractitionerRole-36322824"
+                                datatype="reference"/>
                </voorschrijver>
                <informant>
                   <informant_is_patient value="true"/>
                </informant>
                <auteur>
                   <auteur_is_zorgverlener>
-                     <zorgverlener datatype="reference" value="PractitionerRole-36322824"/>
+                     <zorgverlener value="https---example-org-PractitionerRole-36322824"
+                                   datatype="reference"/>
                   </auteur_is_zorgverlener>
                </auteur>
             </medicatiegebruik>
@@ -371,6 +374,7 @@
                <wisselend_doseerschema_datum_tijd value="T-3D{16:25:00}" datatype="datetime"/>
                <gebruiksperiode>
                   <start_datum_tijd value="T-3D{00:00:00}" datatype="datetime"/>
+                  <tijds_duur value="7" unit="dag"/>
                </gebruiksperiode>
                <afgesproken_geneesmiddel>
                   <farmaceutisch_product value="https---example-org-Medication-cb861f04-6b55-11ec-0000-020000000000"
@@ -538,7 +542,6 @@
             <zorgverlener id="https---example-org-PractitionerRole-36322824">
                <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
                <naamgegevens>
-                  <ongestructureerde_naam value="Peter van Pulver"/>
                   <voornamen value="Peter"/>
                   <geslachtsnaam>
                      <voorvoegsels value="van"/>
