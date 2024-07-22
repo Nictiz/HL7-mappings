@@ -135,9 +135,16 @@
             <param name="xsl.in" value="fhir_instance"/>
             <param name="xsl.out" value="ada_instance"/>
         </antcall>
-
         
-    </target>
+        <!-- nictiz_test -->
+        <antcall target="convert_fhir_2_ada_sub">
+            <param name="usecase" value="${usecase.mg}"/>
+            <param name="build.dir" value="${build.dir}"/>
+            <param name="xsl.in" value="../nictiz_test/fhir_instance"/>
+            <param name="xsl.out" value="../nictiz_test/ada_instance"/>
+        </antcall>
+        
+      </target>
 
     <target name="convert_fhir_2_ada_sub">
         <property name="xsl_mp" value="${build.dir}/${usecase}/payload/${usecase}_2_ada.xsl"/>
@@ -173,6 +180,18 @@
         <!-- roundtrip -->
         <antcall target="roundtrip_ada_2_fhir"/>
 
+    </target>
+    
+    <target name="roundtrip_fhir_2_ada_again">
+        
+        <!-- fhir 2 ada again -->
+        <!-- nictiz_test -->
+        <antcall target="convert_fhir_2_ada_sub">
+            <param name="usecase" value="${usecase.mg}"/>
+            <param name="build.dir" value="${build.dir}"/>
+            <param name="xsl.in" value="../nictiz_test/roundtrip_fhir_instance"/>
+            <param name="xsl.out" value="../nictiz_test/roundtrip_ada_instance"/>
+        </antcall>   
     </target>
 
     <target name="roundtrip_ada_2_fhir">
@@ -323,8 +342,26 @@
             <param name="include.files" value="*.xml"/>
         </antcall>
         
+        <!-- nictiz_test schemas -->
+        <echo/>
+        <echo>Setup ${build.dir}/nictiz_test/ada_schemas containing refreshed ada schemas (${schema.string})</echo>
         
+        <mkdir dir="${build.dir}/nictiz_test/ada_schemas"/>
+        <delete>
+            <fileset dir="${build.dir}/nictiz_test/ada_schemas" includes="*.xsd"/>
+        </delete>
         
+        <copy todir="${build.dir}/nictiz_test/ada_schemas" failonerror="true">
+            <fileset dir="${ada.project.source.dir}/schemas">
+                <include name="*${usecase.mg}.xsd"/>
+                <include name="ada_meta.xsd"/>
+            </fileset>
+        </copy>
+        <copy todir="${build.dir}/nictiz_test/ada_schemas" failonerror="true">
+            <fileset dir="${ada.project.source.dir}/schemas">
+                <include name="*${usecase.mv}.xsd"/>
+            </fileset>
+        </copy>       
 
     </target>
 

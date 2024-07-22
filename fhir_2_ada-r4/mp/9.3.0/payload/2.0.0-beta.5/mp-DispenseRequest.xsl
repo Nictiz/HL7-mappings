@@ -68,7 +68,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- reden_van_voorschrijven -->
             <xsl:apply-templates select="f:reasonReference" mode="#current"/>
             <!-- gebruiksinstructie -->
-            <xsl:call-template name="nl-core-InstructionsForUse"/>
+            <xsl:call-template name="mp-InstructionsForUse"/>
         </verstrekkingsverzoek>
     </xsl:template>
 

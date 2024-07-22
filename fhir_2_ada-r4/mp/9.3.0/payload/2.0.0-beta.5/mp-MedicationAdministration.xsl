@@ -65,7 +65,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:apply-templates select="f:context[f:reference | f:identifier]" mode="contextContactEpisodeOfCare"/>
             <!-- toediener -->
             <xsl:apply-templates select="f:performer" mode="#current"/>
-            <!-- medicatie_toediening_reden_van_afwijken -->
+            <!-- medicatietoediening_reden_van_afwijken -->
             <xsl:apply-templates select="f:extension[@url = $urlExtMedicationAdministration2ReasonForDeviation]" mode="#current"/>
             <!-- medicatie_toediening_status  -->
             <!-- MP-1392 LR: medicatie_toediening_status no longer part of the transactions from MP 9.3 beta.3 onwards but kept in stylesheet due to backwards compatibility -->
@@ -114,7 +114,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="f:extension[@url = $urlExtMedicationAdministration2ReasonForDeviation]" mode="mp-MedicationAdministration">
         <xsl:call-template name="CodeableConcept-to-code">
             <xsl:with-param name="in" select="f:valueCodeableConcept"/>
-            <xsl:with-param name="adaElementName">medicatie_toediening_reden_van_afwijken</xsl:with-param>
+            <xsl:with-param name="adaElementName">medicatietoediening_reden_van_afwijken</xsl:with-param>
             <xsl:with-param name="originalText" select="f:valueCodeableConcept/f:text/@value"/>
         </xsl:call-template>
     </xsl:template>
@@ -208,11 +208,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </patient>
                     </xsl:when>
                     <xsl:when test="$resource[f:PractitionerRole[not(f:practitioner | f:specialty)]]">
-                        <!-- should be either organization or location, we'll select the first one found regardless -->
-                        <!--						<xsl:variable name="resourceProvider" select="nf:resolveRefInBundle(($resource/f:PractitionerRole/(f:organization|f:location)[f:reference])[1])"/>-->
+                        <!-- pre MP9 3.0 beta3 it was possible to convey zorgaanbieder -->
                         <zorgaanbieder>
-                            <!-- pre MP9 3.0 beta3 it was possible to convey zorgaanbieder -->
-                            <zorgaanbieder value="{nf:convert2NCName(($resource/f:PractitionerRole/(f:organization|f:location)[f:reference])[1]/f:reference/@value)}" datatype="reference"/>
+                            <zorgaanbieder value="{nf:process-reference-2NCName(($resource/f:PractitionerRole/(f:organization|f:location)[f:reference])[1]/f:reference/@value, ancestor::f:entry/f:fullUrl/@value)}" datatype="reference"/>
                         </zorgaanbieder>
                     </xsl:when>
                     <xsl:when test="f:type/@value = ('RelatedPerson') or $resource[f:RelatedPerson]">

@@ -61,9 +61,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Template to convert f:authorizingPrescription to relatie_medicatieafspraak</xd:desc>
     </xd:doc>
     <xsl:template match="f:authorizingPrescription" mode="nl-core-MedicationDispense">
-        <relatie_medicatieafspraak>
+        <relatie_verstrekkingsverzoek>
             <xsl:call-template name="Reference-to-identificatie"/>
-        </relatie_medicatieafspraak>
+        </relatie_verstrekkingsverzoek>
     </xsl:template>
 
     <xd:doc>
