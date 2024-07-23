@@ -71,7 +71,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
             <xsl:variable name="zorgaanbieder" as="element()*">
                 <xsl:variable name="managingOrg" select="vaccinatie/locatie/zorgaanbieder"/>
-                <xsl:for-each-group select="vaccinatie/toediener/zorgaanbieder | $locatieZorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
+                <xsl:for-each-group select="vaccinatie[not(locatie/zorgaanbieder)]/toediener/zorgaanbieder | $locatieZorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:choose>
                         <xsl:when test="current-group()[1]/@conceptId">
                             <xsl:call-template name="nl-core-HealthcareProvider">

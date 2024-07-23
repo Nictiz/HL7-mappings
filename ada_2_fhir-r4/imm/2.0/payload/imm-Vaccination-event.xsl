@@ -110,6 +110,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="wrapIn" select="'location'"/>
                     </xsl:call-template>
                 </xsl:for-each>
+                <xsl:for-each select="anatomische_locatie">
+                    <site>
+                        <xsl:call-template name="nl-core-AnatomicalLocation"/>
+                    </site>
+                </xsl:for-each>
+                <xsl:for-each select="toedieningsweg">
+                    <route>
+                        <xsl:call-template name="code-to-CodeableConcept"/>
+                    </route>
+                </xsl:for-each>
                 <xsl:for-each select="dosis">
                     <doseQuantity>
                         <xsl:call-template name="hoeveelheid-to-Quantity">
@@ -141,6 +151,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </text>
                     </note>
+                </xsl:for-each>
+                <xsl:for-each select="vaccinatie_indicatie">
+                    <reasonCode>
+                        <xsl:call-template name="code-to-CodeableConcept"/>
+                    </reasonCode>
+                </xsl:for-each>
+                <xsl:for-each select="vaccinatie_aanleiding">
+                    <reasonCode>
+                        <xsl:call-template name="code-to-CodeableConcept"/>
+                    </reasonCode>
+                </xsl:for-each>
+                <xsl:for-each select="ziekte_waar_tegen_gevaccineerd_wordt">
+                    <protocolApplied>
+                        <targetDisease>
+                            <xsl:call-template name="code-to-CodeableConcept"/>
+                        </targetDisease>
+                    </protocolApplied>
                 </xsl:for-each>
             </Immunization>
         </xsl:for-each>
