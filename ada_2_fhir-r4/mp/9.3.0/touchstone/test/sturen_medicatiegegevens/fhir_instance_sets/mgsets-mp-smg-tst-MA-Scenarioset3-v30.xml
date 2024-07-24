@@ -1481,7 +1481,7 @@
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAgreement.NextPractitioner">
                <valueReference>
-                  <reference value="urn:uuid:a41b8558-6a99-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:4560482e-6aec-11ec-0000-020000000000"/>
                   <type value="PractitionerRole"/>
                   <display value="Healthcare professional (role), Bertine van Doorn, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
                </valueReference>
@@ -2244,73 +2244,6 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4560482e-6aec-11ec-0000-020000000000"/>
-      <resource>
-         <PractitionerRole>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
-            </meta>
-            <practitioner>
-               <reference value="urn:uuid:a57e4824-6aa3-11ec-0000-020000000000"/>
-               <type value="Practitioner"/>
-               <display value="Healthcare professional (person), Bertine van Doorn"/>
-            </practitioner>
-            <organization>
-               <reference value="urn:uuid:7fa869d8-6b44-11ec-0000-020000000000"/>
-               <type value="Organization"/>
-               <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
-            </organization>
-            <specialty>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
-                  <version value="2020-10-23T00:00:00"/>
-                  <code value="0100"/>
-                  <display value="Huisartsen, niet nader gespecificeerd"/>
-               </coding>
-            </specialty>
-         </PractitionerRole>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="PractitionerRole"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:a57e4824-6aa3-11ec-0000-020000000000"/>
-      <resource>
-         <Practitioner>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
-            </meta>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
-               <value value="000001112"/>
-            </identifier>
-            <name>
-               <use value="official"/>
-               <text value="Bertine van Doorn"/>
-               <family value="van Doorn">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
-                     <valueString value="van"/>
-                  </extension>
-                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
-                     <valueString value="Doorn"/>
-                  </extension>
-               </family>
-               <given value="Bertine">
-                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
-                     <valueCode value="BR"/>
-                  </extension>
-               </given>
-            </name>
-         </Practitioner>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Practitioner"/>
-      </request>
-   </entry>
-   <entry>
       <fullUrl value="urn:uuid:2df71558-6b6c-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
@@ -2378,19 +2311,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:a41b8558-6a99-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:4560482e-6aec-11ec-0000-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:4297d42e-6b7b-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:a57e4824-6aa3-11ec-0000-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Bertine van Doorn"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:66640464-6b73-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:7fa869d8-6b44-11ec-0000-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -2410,7 +2343,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4297d42e-6b7b-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:a57e4824-6aa3-11ec-0000-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -2534,22 +2467,31 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:66640464-6b73-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:661c3b1d-6b30-11ec-0000-020000000000"/>
       <resource>
-         <Organization>
+         <Medication>
             <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
             </meta>
-            <identifier>
-               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
-               <value value="00001111"/>
-            </identifier>
-            <name value="Huisartsenpraktijk Pulver &amp; Partners"/>
-         </Organization>
+            <code>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+                  <code value="42293"/>
+                  <display value="FERROFUMARAAT TABLET 200MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
+                  <code value="15342"/>
+                  <display value="FERROFUMARAAT TABLET 200MG"/>
+               </coding>
+               <text value="FERROFUMARAAT TABLET 200MG"/>
+            </code>
+         </Medication>
       </resource>
       <request>
          <method value="POST"/>
-         <url value="Organization"/>
+         <url value="Medication"/>
       </request>
    </entry>
    <entry>
@@ -2609,34 +2551,6 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:661c3b1d-6b30-11ec-0000-020000000000"/>
-      <resource>
-         <Medication>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-PharmaceuticalProduct"/>
-            </meta>
-            <code>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
-                  <code value="42293"/>
-                  <display value="FERROFUMARAAT TABLET 200MG"/>
-                  <userSelected value="true"/>
-               </coding>
-               <coding>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
-                  <code value="15342"/>
-                  <display value="FERROFUMARAAT TABLET 200MG"/>
-               </coding>
-               <text value="FERROFUMARAAT TABLET 200MG"/>
-            </code>
-         </Medication>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="Medication"/>
-      </request>
-   </entry>
-   <entry>
       <fullUrl value="urn:uuid:ebaaab1d-6b29-11ec-0000-020000000000"/>
       <resource>
          <Medication>
@@ -2653,7 +2567,7 @@
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
                   <code value="41092"/>
-                  <display value="FENETICILLINE CAPSULE 500MG"/>
+                  <display value="FENETICILLINE 500MG CAPSULE"/>
                </coding>
                <text value="FENETICILLINE CAPSULE 500MG"/>
             </code>
