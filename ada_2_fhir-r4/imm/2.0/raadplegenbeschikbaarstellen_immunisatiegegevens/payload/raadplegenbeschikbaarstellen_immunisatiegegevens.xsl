@@ -17,7 +17,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../../../../zibs2020/payload/0.10.0-beta.1/all_zibs.xsl"/>
     <xsl:import href="../../payload/imm-Vaccination-event.xsl"/>
     <xsl:import href="../../../../mp/9.3.0/payload/2.0.0-beta.2/mp-PharmaceuticalProduct.xsl"/>
-    
+
     <xd:doc>
         <xd:desc>If true, write all generated resources to disk in the fhir_instance directory. Otherwise, return all the output in a FHIR Bundle.</xd:desc>
     </xd:doc>
@@ -27,7 +27,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- If the desired output is to be a Bundle, then a self link string of type url is required. 
          See: https://www.hl7.org/fhir/R4/search.html#conformance -->
     <xsl:param name="bundleSelfLink" as="xs:string?"/>
-    
+
     <!-- the dataset is in a beta phase, not clear what to do with the separate locatie/adresgegevens and contactgegevens, 
                 as a workaround we move adresgegevens and contactgegevens in the zorgaanbieder
                 ask the IA's for current status when in doubt! -->
@@ -70,21 +70,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:variable>
 
             <xsl:variable name="zorgaanbieder" as="element()*">
-                <xsl:variable name="managingOrg" select="vaccinatie/locatie/zorgaanbieder"/>
                 <xsl:for-each-group select="vaccinatie[not(locatie/zorgaanbieder)]/toediener/zorgaanbieder | $locatieZorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
-                    <xsl:choose>
-                        <xsl:when test="current-group()[1]/@conceptId">
-                            <xsl:call-template name="nl-core-HealthcareProvider">
-                                <xsl:with-param name="managingOrganization" select="$managingOrg"/>
-                            </xsl:call-template>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:call-template name="nl-core-HealthcareProvider"/>                                
-                        </xsl:otherwise>
-                    </xsl:choose>
+                    <xsl:call-template name="nl-core-HealthcareProvider"/>
                 </xsl:for-each-group>
             </xsl:variable>
-            
+
             <!-- the organization locatie/zorgaanbieder: we use the original because we don't want duplication of adresgegevens and contactgegevens -->
             <xsl:variable name="zorgaanbiederOrg" as="element()*">
                 <xsl:for-each-group select="vaccinatie/toediener/zorgaanbieder | $locatieZorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
@@ -108,7 +98,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:call-template name="imm-Vaccination-event"/>
                 </xsl:for-each>
             </xsl:variable>
-            
+
             <xsl:variable name="farmaceutischProduct" as="element()*">
                 <xsl:for-each select="vaccinatie/farmaceutisch_product">
                     <xsl:call-template name="mp-PharmaceuticalProduct"/>
