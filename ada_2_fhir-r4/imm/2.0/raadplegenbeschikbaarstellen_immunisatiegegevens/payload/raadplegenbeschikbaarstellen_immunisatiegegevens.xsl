@@ -17,6 +17,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../../../../zibs2020/payload/0.10.0-beta.1/all_zibs.xsl"/>
     <xsl:import href="../../payload/imm-Vaccination-event.xsl"/>
     <xsl:import href="../../../../mp/9.3.0/payload/2.0.0-beta.2/mp-PharmaceuticalProduct.xsl"/>
+    <xsl:import href="../../../../fhir/2_fhir_fixtures.xsl"/>
 
     <xd:doc>
         <xd:desc>If true, write all generated resources to disk in the fhir_instance directory. Otherwise, return all the output in a FHIR Bundle.</xd:desc>
