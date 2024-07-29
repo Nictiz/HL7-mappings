@@ -28,6 +28,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <!-- If the desired output is to be a Bundle, then a self link string of type url is required. 
          See: https://www.hl7.org/fhir/R4/search.html#conformance -->
     <xsl:param name="bundleSelfLink" as="xs:string?"/>
+    
+    <xsl:param name="mask-ids" as="xs:string?" select="$oidBurgerservicenummer"/>
 
     <!-- the dataset is in a beta phase, not clear what to do with the separate locatie/adresgegevens and contactgegevens, 
                 as a workaround we move adresgegevens and contactgegevens in the zorgaanbieder
