@@ -41,7 +41,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="vaccinatie" name="imm-Vaccination-event" mode="imm-Vaccination-event" as="element(f:Immunization)?">
         <xsl:param name="in" select="." as="element()?"/>
-        <xsl:param name="patient" select="patient/*" as="element()?"/>
+        <xsl:param name="patient" select="../bundel/patient" as="element()?"/>
         
         <xsl:for-each select="$in">
             <Immunization>
