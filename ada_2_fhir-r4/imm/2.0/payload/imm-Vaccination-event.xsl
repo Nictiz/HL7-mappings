@@ -36,7 +36,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
   
     <xd:doc>
         <xd:desc>Create an nl-core-Vaccination-event instance as an Immunization FHIR instance from ada vaccinatie element.</xd:desc>
-        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="in">ADA element as input. Defaultsl to self.</xd:param>
         <xd:param name="patient">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
     <xsl:template match="vaccinatie" name="imm-Vaccination-event" mode="imm-Vaccination-event" as="element(f:Immunization)?">
