@@ -29,6 +29,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
          See: https://www.hl7.org/fhir/R4/search.html#conformance -->
     <xsl:param name="bundleSelfLink" as="xs:string?"/>
     
+    <xsl:param name="dateT" as="xs:date?"/>
+    
     <xsl:param name="mask-ids" as="xs:string?" select="$oidBurgerservicenummer"/>
 
     <!-- the dataset is in a beta phase, not clear what to do with the separate locatie/adresgegevens and contactgegevens, 

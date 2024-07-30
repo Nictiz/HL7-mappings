@@ -89,9 +89,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:call-template>
                 <xsl:for-each select="vaccinatie_datum">
                     <occurrenceDateTime>
-                        <xsl:call-template name="date-to-datetime">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
+                        <xsl:attribute name="value">
+                            <xsl:call-template name="format2FHIRDate">
+                                <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                            </xsl:call-template>
+                        </xsl:attribute>
                     </occurrenceDateTime>
                 </xsl:for-each>
                 <xsl:for-each select="locatie">
