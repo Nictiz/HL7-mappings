@@ -16,7 +16,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
     <xsl:import href="../../../../zibs2020/payload/0.10.0-beta.1/all_zibs.xsl"/>
     <xsl:import href="../../payload/imm-Vaccination-event.xsl"/>
-    <xsl:import href="../../../../mp/9.3.0/payload/2.0.0-beta.2/mp-PharmaceuticalProduct.xsl"/>
+    <xsl:import href="../../payload/imm-PharmaceuticalProduct.xsl"/>
     <xsl:import href="../../../../fhir/2_fhir_fixtures.xsl"/>
 
     <xd:doc>
@@ -110,7 +110,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
             <xsl:variable name="farmaceutischProduct" as="element()*">
                 <xsl:for-each select="vaccinatie/farmaceutisch_product">
-                    <xsl:call-template name="mp-PharmaceuticalProduct"/>
+                    <xsl:call-template name="imm-PharmaceuticalProduct"/>
                 </xsl:for-each>
             </xsl:variable>
 
