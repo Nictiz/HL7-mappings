@@ -76,13 +76,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 
                 <status value="completed"/>
-                <xsl:for-each select="farmaceutisch_product/product_code">
-                    <vaccineCode>
-                        <xsl:call-template name="code-to-CodeableConcept">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </vaccineCode>
-                </xsl:for-each>
+                <vaccineCode>
+                    <xsl:for-each select="farmaceutisch_product/product_code">
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                    </xsl:for-each>
+                </vaccineCode>
                 <xsl:call-template name="makeReference">
                     <xsl:with-param name="in" select="$patient"/>
                     <xsl:with-param name="wrapIn" select="'patient'"/>
