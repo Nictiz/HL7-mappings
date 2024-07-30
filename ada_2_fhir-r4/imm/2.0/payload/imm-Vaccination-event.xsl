@@ -49,7 +49,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="profile" select="'nl-core-Vaccination-event'"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Vaccination-event"/>
+                    <profile value="http://nictiz.nl/fhir/StructureDefinition/imm-Vaccination-event"/>
                 </meta>
                 <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-imm-Vaccination.PharmaceuticalProduct">
                     <valueReference>
