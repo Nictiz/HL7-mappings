@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?nictiz status="example"?> 
+<?xml-model href="../schematron_closed_warnings/mp-medverslstresp.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<QURX_IN990113NL xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3">
+    <id extension="0123456789" root="2.16.840.1.113883.2.4.6.6.1.1"/>
+    <creationTime value="20080701090549"/>
+    <versionCode code="NICTIZEd2005-Okt"/>
+    <interactionId extension="QURX_IN990113NL" root="2.16.840.1.113883.1.6"/>
+    <profileId root="2.16.840.1.113883.2.4.3.11.1" extension="810"/>
+    <processingCode code="P"/>
+    <processingModeCode code="T"/>
+    <acceptAckCode code="NE"/>
+    <acknowledgement typeCode="AA">
+        <targetMessage>
+            <id extension="0123456789" root="2.16.528.1.1007.3.3.1234567.1"/>
+        </targetMessage>
+    </acknowledgement>
+    <receiver>
+        <device>
+            <id extension="01234567" root="2.16.840.1.113883.2.4.6.6"/>
+            <!-- EVS van ziekenhuis Medisch Centrum Oost o.b.v. landelijke applicatie ID -->
+        </device>
+    </receiver>
+    <sender>
+        <device>
+            <id extension="1" root="2.16.840.1.113883.2.4.6.6"/>
+            <!-- LSP -->
+        </device>
+    </sender>
+    <ControlActProcess moodCode="EVN">
+        <authorOrPerformer typeCode="AUT">
+            <participant>
+                <AssignedDevice>
+                    <id extension="009876543" root="2.16.528.1.1007.3.2"/>
+                    <!-- AIS van openbare apotheek De Gulle Gaper (UZI services certificaat) -->
+                    <id extension="00765432" root="2.16.840.1.113883.2.4.6.6"/>
+                    <!-- AIS van openbare apotheek De Gulle Gaper (landelijke applicatie ID) -->
+                    <Organization>
+                        <id extension="01234567" root="2.16.528.1.1007.3.3"/>
+                        <name>Apotheek De Gulle Gaper</name>
+                        <!-- openbare apotheek De Gulle Gaper (UZI Register Abonnee nr.) -->
+                    </Organization>
+                </AssignedDevice>
+            </participant>
+        </authorOrPerformer>
+        <subject>
+            <MedicationDispenseList>
+                <code codeSystem="2.16.840.1.113883.5.4" code="MEDLIST"/>
+                <subject>
+                    <Patient>
+                        <id extension="012345672" root="2.16.840.1.113883.2.4.6.3"/>
+                        <addr use="HP">
+                            <streetName>Boerhaavelaan</streetName>
+                            <houseNumber>24</houseNumber>
+                            <postalCode>2035 RC</postalCode>
+                            <city>HAARLEM</city>
+                        </addr>
+                        <statusCode code="active"/>
+                        <Person>
+                            <name use="L">
+                                <given qualifier="IN">J.J.</given>
+                                <prefix qualifier="VV">le </prefix>
+                                <family qualifier="BR">Noble</family>
+                                <prefix qualifier="VV">van </prefix>
+                                <family qualifier="SP">Son</family>
+                            </name>
+                            <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1"/>
+                            <birthTime value="19721218"/>
+                        </Person>
+                    </Patient>
+                </subject>
+                <!-- added component for MP-178 -->
+                <component>
+                    <medicationDispenseEvent>
+                        <id root="2.16.840.1.113883.2.4.3.39.6101.23639.10000972.3" extension="00240703301"/>
+                        <statusCode code="completed"/>
+                        <effectiveTime value="20190628"/>
+                        <quantity value="16.0000">
+                            <translation code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="ST" value="16.0000"/>
+                        </quantity>
+                        <expectedUseTime>
+                            <width value="16" unit="d"/>
+                        </expectedUseTime>
+                        <performer>
+                            <assignedPerson>
+                                <id nullFlavor="MSK"/>
+                                <representedOrganization>
+                                    <id root="2.16.528.1.1007.3.3" extension="00023639"/>
+                                    <name>Kringapotheek Asten</name>
+                                    <addr>
+                                        <city>Asten</city>
+                                    </addr>
+                                </representedOrganization>
+                            </assignedPerson>
+                        </performer>
+                        <product>
+                            <dispensedMedication>
+                                <MedicationKind>
+                                    <code code="14899337" codeSystem="2.16.840.1.113883.2.4.4.8" displayName="TRAMADOL HCL SANDOZ RETARD TABLET MGA 100MG">
+                                        <translation code="1632108" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                                        <translation code="50431" codeSystem="2.16.840.1.113883.2.4.4.10"/>
+                                        <translation code="104213" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+                                    </code>
+                                </MedicationKind>
+                                <directTargetOf>
+                                    <prescription>
+                                        <id nullFlavor="UNK"/>
+                                        <statusCode code="active"/>
+                                        <author>
+                                            <time nullFlavor="UNK"/>
+                                            <AssignedPerson>
+                                                <id root="2.16.840.1.113883.2.4.6.1" extension="01027774"/>
+                                            </AssignedPerson>
+                                        </author>
+                                    </prescription>
+                                </directTargetOf>
+                                <therapeuticAgentOf>
+                                    <medicationAdministrationRequest>
+                                        <id root="2.16.840.1.113883.2.4.3.39.6101.23639.10000972.14" extension="0024070330100000"/>
+                                        <text>1 maal per dag 1 tablet 's avonds</text>
+                                        <statusCode code="active"/>
+                                        <effectiveTime xsi:type="PIVL_TS">
+                                            <phase>
+                                                <center value="201906282100"/>
+                                            </phase>
+                                            <period value="1" unit="d"/>
+                                        </effectiveTime>
+                                        <doseQuantity>
+                                            <center value="1">
+                                                <translation code="100" codeSystem="2.16.840.1.113883.2.4.4.1.361" displayName="tablet" value="1"/>
+                                                <translation code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="ST" value="1"/>
+                                            </center>
+                                        </doseQuantity>
+                                    </medicationAdministrationRequest>
+                                </therapeuticAgentOf>
+                            </dispensedMedication>
+                        </product>
+                        <responsibleParty>
+                            <assignedCareProvider>
+                                <id root="2.16.528.1.1007.3.1" extension="000025867"/>
+                                <code code="17.000" codeSystem="2.16.840.1.113883.2.4.15.111" displayName="Apotheker"/>
+                                <representedOrganization>
+                                    <id root="2.16.528.1.1007.3.3" extension="00023639"/>
+                                    <name>Kringapotheek Asten</name>
+                                    <addr>
+                                        <city>Asten</city>
+                                    </addr>
+                                </representedOrganization>
+                            </assignedCareProvider>
+                        </responsibleParty>
+                    </medicationDispenseEvent>
+                </component>                
+            </MedicationDispenseList>
+        </subject>
+        <queryAck>
+            <queryId extension="0123456789" root="2.16.528.1.1007.3.3.1234567.2"/>
+            <queryResponseCode code="OK"/>
+            <resultTotalQuantity value="1"/>
+            <resultCurrentQuantity value="1"/>
+            <resultRemainingQuantity value="0"/>
+        </queryAck>
+    </ControlActProcess>
+</QURX_IN990113NL>

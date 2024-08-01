@@ -1,0 +1,149 @@
+<!--Generated from HL7v3 instance.-->
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatievoorschrift.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2023-11-02T15:23:33.676137+01:00"
+         last-update-date="2023-11-02T15:23:33.676137+01:00"/>
+   <data>
+      <sturen_medicatievoorschrift app="mp-mp93"
+                                   shortName="sturen_medicatievoorschrift"
+                                   formName="sturen_medicatievoorschrift"
+                                   transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.395"
+                                   transactionEffectiveDate="2022-06-30T00:00:00"
+                                   versionDate=""
+                                   prefix="mp-"
+                                   language="nl-NL"
+                                   title="mv-mp-vo-tst-3-4b-onderbreken-v30"
+                                   id="mv-mp-vo-tst-3-4b-onderbreken-v30">
+         <patient>
+            <naamgegevens>
+               <initialen value="J."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <voorvoegsels value="de "/>
+                  <achternaam value="XXX_Luzac"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900778" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime" value="1985-10-24"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_300_onderbreken"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak>
+               <identificatie value="MBH_300_onderbreken_MA_onderbreken"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <medicatieafspraak_datum_tijd datatype="datetime" value="2023-01-01T18:12:00"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2023-01-01T15:00:00"/>
+               </gebruiksperiode>
+               <medicatieafspraak_stop_type code="385655000"
+                                            codeSystem="2.16.840.1.113883.6.96"
+                                            displayName="onderbroken"/>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_onderbreken_MA_start"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+               <voorschrijver>
+                  <zorgverlener value="d725e39" datatype="reference"/>
+               </voorschrijver>
+               <reden_wijzigen_of_staken code="405613005"
+                                         codeSystem="2.16.840.1.113883.6.96"
+                                         displayName="verrichting gepland"/>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product value="d725e34" datatype="reference"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf 1 jan 2023, tot en met 1 jan 2023, 3 maal per dag 1 stuk, Oraal, onderbroken"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="Oraal"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="3"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="d725e34">
+               <product_code code="17205"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="FENETICILLINE CAPSULE 500MG"/>
+               <product_code code="41092"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="FENETICILLINE 500MG CAPSULE"/>
+            </farmaceutisch_product>
+            <zorgverlener id="d725e39">
+               <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Bertine"/>
+                  <geslachtsnaam>
+                     <voorvoegsels value="van "/>
+                     <achternaam value="Doorn"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <contactgegevens>
+                  <telefoonnummers>
+                     <telefoonnummer value="1634534000"/>
+                     <telecom_type code="UNK"
+                                   codeSystem="2.16.840.1.113883.5.1008"
+                                   displayName="unknown"/>
+                     <nummer_soort code="WP"
+                                   codeSystem="2.16.840.1.113883.5.1119"
+                                   displayName="Work place"/>
+                  </telefoonnummers>
+               </contactgegevens>
+               <zorgaanbieder>
+                  <zorgaanbieder value="d725e51" datatype="reference"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="d725e51">
+               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="1"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+         </bouwstenen>
+      </sturen_medicatievoorschrift>
+   </data>
+</adaxml>

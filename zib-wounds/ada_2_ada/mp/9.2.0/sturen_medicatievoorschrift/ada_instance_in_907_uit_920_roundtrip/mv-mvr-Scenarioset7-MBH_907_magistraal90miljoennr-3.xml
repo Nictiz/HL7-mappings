@@ -1,0 +1,231 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../9.2.0/sturen_medicatievoorschrift/ada_schemas/ada_sturen_medicatievoorschrift.xsd">
+   <meta status="new"
+         created-by="medicatieprocesada"
+         last-update-by="medicatieprocesada"
+         creation-date="2020-03-21T00:00:00.000+01:00"
+         last-update-date="2020-04-09T15:15:46.731+02:00"/>
+   <data>
+      <sturen_medicatievoorschrift app="mp-mp92"
+                                   shortName="sturen_medicatievoorschrift"
+                                   formName="sturen_medicatievoorschrift"
+                                   transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.322"
+                                   transactionEffectiveDate="2022-02-07T00:00:00"
+                                   versionDate=""
+                                   prefix="mp-"
+                                   language="nl-NL"
+                                   title="MP KWALIFICATIE Medicatievoorschriften Scenarioset 7 (Magistraal) - MBH_907_magistraal90miljoennr"
+                                   desc="&lt;div&gt;&lt;span style=&#34;font-family: sans-serif; font-size: 14px; background-color: #ffffff;&#34;&gt;90 miljoen nummer&lt;/span&gt;&lt;/div&gt;"
+                                   id="mv-mvr-Scenarioset7-MBH_907_magistraal90miljoennr-3">
+         <patient comment="">
+            <naamgegevens comment="">
+               <initialen value="S. "/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam comment="">
+                  <achternaam value="XXX_Jankie"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999910437" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1954-05-08" datatype="datetime"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_907_magistraal90miljoennr-JNK"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak comment="">
+               <identificatie root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"
+                              value="MBH_907_magistraal90miljoennr_MA-JNK"/>
+               <medicatieafspraak_datum_tijd value="T{12:08:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T+0D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T+30D{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <voorschrijver>
+                  <zorgverlener datatype="reference" value="ada2ada_zorgverlener_1"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="ada2ada_product_1"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+30D{23:59:59}&gt;, 1x per dag, cutaan"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  code="53"
+                                  displayName="cutaan"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <verstrekkingsverzoek comment="">
+               <identificatie value="MBH_907_magistraal90miljoennr_VV-JNK"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <verstrekkingsverzoek_datum_tijd value="T{12:08:00}" datatype="datetime"/>
+               <auteur>
+                  <zorgverlener datatype="reference" value="ada2ada_zorgverlener_2"/>
+               </auteur>
+               <te_verstrekken_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="ada2ada_product_2"/>
+               </te_verstrekken_geneesmiddel>
+               <te_verstrekken_hoeveelheid comment="">
+                  <aantal value="100"/>
+                  <eenheid codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           code="215"
+                           displayName="gram"/>
+               </te_verstrekken_hoeveelheid>
+               <beoogd_verstrekker>
+                  <zorgaanbieder datatype="reference" value="ada2ada_zorgaanbieder_3"/>
+               </beoogd_verstrekker>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="MBH_907_magistraal90miljoennr_MA-JNK"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </verstrekkingsverzoek>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="ada2ada_product_1">
+               <product_code code="90000001"
+                             codeSystem="2.16.840.1.113883.2.4.3.11.9999.77.90000000.1.1111"
+                             codeSystemName="2.16.840.1.113883.2.4.3.11.9999.77.90000000.1.1111"
+                             displayName="Eigen artikel: ureumzalf"/>
+               <product_specificatie comment="">
+                  <product_naam value="Ureum 10% in eucerine cum aqua 100gr"/>
+                  <omschrijving value="Titel: Ureum 10% in eucerine cum aqua 100gr           Regel: UREUM 10gr           Regel: EUCERINE MET WATER FAGRON ad 100gr"/>
+                  <ingredient>
+                     <ingredient_code code="15219127"
+                                      codeSystem="2.16.840.1.113883.2.4.4.7"
+                                      codeSystemName="G-Standaard HPK"
+                                      displayName="UREUM"/>
+                     <sterkte comment="">
+                        <ingredient_hoeveelheid comment="">
+                           <waarde value="10"/>
+                           <eenheid code="215"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="gram"/>
+                        </ingredient_hoeveelheid>
+                        <product_hoeveelheid comment="">
+                           <waarde value="100"/>
+                           <eenheid code="215"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="gram"/>
+                        </product_hoeveelheid>
+                     </sterkte>
+                  </ingredient>
+               </product_specificatie>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="ada2ada_product_2">
+               <product_code code="90000001"
+                             codeSystem="2.16.840.1.113883.2.4.3.11.9999.77.90000000.1.1111"
+                             codeSystemName="2.16.840.1.113883.2.4.3.11.9999.77.90000000.1.1111"
+                             displayName="Eigen artikel: ureumzalf"/>
+               <product_specificatie comment="">
+                  <product_naam value="Ureum 10% in eucerine cum aqua 100gr"/>
+                  <omschrijving value="Titel: Ureum 10% in eucerine cum aqua 100gr           Regel: UREUM 10gr           Regel: EUCERINE MET WATER FAGRON ad 100gr"/>
+                  <ingredient>
+                     <ingredient_code code="15219127"
+                                      codeSystem="2.16.840.1.113883.2.4.4.7"
+                                      codeSystemName="G-Standaard HPK"
+                                      displayName="UREUM"/>
+                     <sterkte comment="">
+                        <ingredient_hoeveelheid comment="">
+                           <waarde value="10"/>
+                           <eenheid codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    code="215"
+                                    displayName="gram"/>
+                        </ingredient_hoeveelheid>
+                        <product_hoeveelheid comment="">
+                           <waarde value="100"/>
+                           <eenheid codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    code="215"
+                                    displayName="gram"/>
+                        </product_hoeveelheid>
+                     </sterkte>
+                  </ingredient>
+               </product_specificatie>
+            </farmaceutisch_product>
+            <zorgverlener id="ada2ada_zorgverlener_1">
+               <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Peter"/>
+                  <geslachtsnaam comment="">
+                     <voorvoegsels value="van"/>
+                     <achternaam value="Pulver"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                            codeSystemVersion="2017-12-14T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder datatype="reference" value="ada2ada_zorgaanbieder_1"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgverlener id="ada2ada_zorgverlener_2">
+               <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Peter"/>
+                  <geslachtsnaam comment="">
+                     <voorvoegsels value="van"/>
+                     <achternaam value="Pulver"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                            codeSystemVersion="2017-12-14T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder datatype="reference" value="ada2ada_zorgaanbieder_2"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="ada2ada_zorgaanbieder_1">
+               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+               <adresgegevens comment="">
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="1"/>
+                  <postcode value="1234AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+            <zorgaanbieder id="ada2ada_zorgaanbieder_2">
+               <zorgaanbieder_identificatienummer root="2.16.528.1.1007.3.3" value="00001111"/>
+               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+               <adresgegevens comment="">
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="1"/>
+                  <postcode value="1234AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+            <zorgaanbieder id="ada2ada_zorgaanbieder_3">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </sturen_medicatievoorschrift>
+   </data>
+</adaxml>

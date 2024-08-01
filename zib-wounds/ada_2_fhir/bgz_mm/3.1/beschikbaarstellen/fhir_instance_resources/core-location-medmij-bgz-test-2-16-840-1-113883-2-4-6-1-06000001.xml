@@ -1,0 +1,74 @@
+<Location xmlns="http://hl7.org/fhir">
+   <id value="core-location-medmij-bgz-test-2-16-840-1-113883-2-4-6-1-06000001"/>
+   <meta>
+      <profile value="http://fhir.nl/fhir/StructureDefinition/nl-core-location"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Locatie. Id: PatA-HealthcareProvider2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), 06000001 (AGB-Z)</caption>
+            <tbody>
+               <tr>
+                  <th>Naam</th>
+                  <td/>
+               </tr>
+               <tr>
+                  <th>Adres</th>
+                  <td>Knolweg 11 A-G, 9999ZA Stitswerd Het Hogeland, NLD (Bezoek)</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="PatA-HealthcareProvider2"/>
+   </identifier>
+   <identifier>
+      <system value="http://fhir.nl/fhir/NamingSystem/agb-z"/>
+      <value value="06000001"/>
+   </identifier>
+   <address>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-AddressInformation-AddressType">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/AddressUse"/>
+               <code value="PHYS"/>
+               <display value="Woon-/verblijfadres"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <use value="home"/>
+      <type value="physical"/>
+      <line value="Knolweg 11 A-G">
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+            <valueString value="Knolweg"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+            <valueString value="11"/>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-buildingNumberSuffix">
+            <valueString value="A-G"/>
+         </extension>
+      </line>
+      <city value="Stitswerd"/>
+      <district value="Het Hogeland"/>
+      <postalCode value="9999ZA"/>
+      <country value="NLD">
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+            <valueCodeableConcept>
+               <coding>
+                  <system value="urn:iso:std:iso:3166"/>
+                  <code value="NLD"/>
+                  <display value="Nederland"/>
+               </coding>
+            </valueCodeableConcept>
+         </extension>
+      </country>
+   </address>
+   <managingOrganization>
+      <reference value="Organization/-organization-medmij-bgz-test-2-16-840-1-113883-2-4-6-1-06000001"/>
+      <display value="Ziekenhuis het Hogeland"/>
+   </managingOrganization>
+</Location>

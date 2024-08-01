@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:hl7nl="urn:hl7-nl:v3"
+           xmlns:pharm="urn:ihe:pharm:medication"
+           xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="urn:hl7-org:v3"
+           classCode="CLUSTER"
+           moodCode="EVN">
+    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9239"/>
+    <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>
+    <statusCode nullFlavor="NI"/>
+    <recordTarget>
+        <patientRole>
+            <id root="2.16.840.1.113883.2.4.6.3" extension="012345672"/>
+            <patient>
+                <name>
+                    <given qualifier="BR">Joris</given>
+                    <family qualifier="BR">Hansman</family>
+                </name>
+                <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1"/>
+                <birthTime value="19840512"/>
+                <!-- meerlingindicator -->
+                <multipleBirthInd xmlns="urn:hl7-org:sdtc" value="false"/>
+            </patient>
+        </patientRole>
+    </recordTarget>
+    <!-- Medicatieafspraak -->
+    <component typeCode="COMP">
+        <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9235"/>
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9233"/>
+            <!-- identificatie -->
+            <id extension="#MB_03k1#MA_01" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <code code="16076005" displayName="Medicatieafspraak" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+            <!-- mp-9581 Omschrijving -->
+            <text mediaType="text/plain">Vanaf 23 juni 2016, Gedurende 90 dagen, per dag 1 inhalatie</text>
+            <!-- Gebruiksperiode -->
+            <effectiveTime xsi:type="IVL_TS">
+                <low value="20160623"/>
+                <width value="90" unit="d"/>
+            </effectiveTime>
+            <!-- 19941 Toedieningsweg -->
+            <routeCode code="62" displayName="INHALATIE" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard tabel voor toedieningswegen: subtabel 0007"/>
+            <!-- Afgesproken geneesmiddel -->
+            <consumable>
+                <manufacturedProduct>
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
+                    <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                        <code code="59919" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="G-Standaard PRK" displayName="Tiotropium inhalatiecapsule 18ug">
+                            <translation code="115371" displayName="TIOTROPIUM INHALATIECAPSULE 18UG" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="G-Standaard GPK"/>
+                        </code>
+                    </manufacturedMaterial>
+                </manufacturedProduct>
+            </consumable>
+            <!-- voorschrijver -->
+            <author>
+                <!-- Afspraakdatum -->
+                <time value="20160623134516"/>
+                <assignedAuthor>
+                    <!-- Zorgverlener identificatie -->
+                    <id root="2.16.528.1.1007.3.1" extension="012345678"/>
+                    <!-- Specialisme -->
+                    <code code="01.016" displayName="Internist" codeSystem="2.16.840.1.113883.2.4.15.111" codeSystemName="RoleCodeNL - zorgverlenertype (natuurlijke personen)"/>
+                    <assignedPerson>
+                        <!-- ZorgverlenerNaam -->
+                        <name>Dr Jansen</name>
+                    </assignedPerson>
+                    <!-- Zorgaanbieder -->
+                    <representedOrganization>
+                        <!-- Zorgaanbieder identificatie -->
+                        <id root="1.2.3.4" extension="URAnummer"/>
+                        <name>Ziekenhuis zus en zo</name>
+                        <addr use="WP">
+                            <streetName>Dorpsstraat</streetName>
+                            <houseNumber>10</houseNumber>
+                            <postalCode>1111 AA</postalCode>
+                            <city>Ons Dorp</city>
+                        </addr>
+                    </representedOrganization>
+                </assignedAuthor>
+            </author>
+            <!-- Reden afspraak -->
+            <!--Doseerinstructie-->
+            <entryRelationship typeCode="COMP">
+                <sequenceNumber value="1"/>
+                <substanceAdministration classCode="SBADM" moodCode="RQO">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
+                    <effectiveTime xsi:type="hl7nl:PIVL_TS" isFlexible="true" operator="A">
+                        <hl7nl:frequency>
+                            <hl7nl:numerator xsi:type="hl7nl:INT" value="1"/>
+                            <hl7nl:denominator xsi:type="hl7nl:PQ" value="1" unit="d"/>
+                        </hl7nl:frequency>
+                    </effectiveTime>
+                    <doseQuantity>
+                        <center value="1" unit="1">
+                            <translation value="1" code="208" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Dosis"/>
+                        </center>
+                    </doseQuantity>
+                    <consumable xsi:nil="true"/>
+                </substanceAdministration>
+            </entryRelationship>
+            <!--Relatie naar medicamenteuze behandeling-->
+            <entryRelationship typeCode="COMP" inversionInd="true">
+                <procedure classCode="PROC" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+                    <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1" extension="#MB_03k1"/>
+                    <code code="1" displayName="Medicamenteuze behandeling" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                </procedure>
+            </entryRelationship>
+        </substanceAdministration>
+    </component>
+    <!-- Verstrekkingsverzoek -->
+    <component typeCode="COMP">
+        <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9235"/>
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9233"/>
+            <!-- identificatie -->
+            <id extension="#MB_03k1#MA_02" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+            <code code="16076005" displayName="Medicatieafspraak" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+            <!-- mp-9581 Omschrijving -->
+            <text mediaType="text/plain">Vanaf 23 juli 2016, Tijdelijk (tot nader order) onderbreken</text>
+            <!-- Gebruiksperiode -->
+            <effectiveTime xsi:type="IVL_TS">
+                <low value="20160623"/>
+                <high value="201607230000"/>
+            </effectiveTime>
+            <!-- 19941 Toedieningsweg -->
+            <routeCode code="62" displayName="INHALATIE" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard tabel voor toedieningswegen: subtabel 0007"/>
+            <!-- Afgesproken geneesmiddel -->
+            <consumable>
+                <manufacturedProduct>
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
+                    <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                        <code code="59919" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="G-Standaard PRK" displayName="Tiotropium inhalatiecapsule 18ug">
+                            <translation code="115371" displayName="TIOTROPIUM INHALATIECAPSULE 18UG" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="G-Standaard GPK"/>
+                        </code>
+                    </manufacturedMaterial>
+                </manufacturedProduct>
+            </consumable>
+            <!-- voorschrijver -->
+            <author>
+                <!-- Afspraakdatum -->
+                <time value="20160722141356"/>
+                <assignedAuthor>
+                    <!-- Zorgverlener identificatie -->
+                    <id root="2.16.528.1.1007.3.1" extension="012345678"/>
+                    <!-- Specialisme -->
+                    <code code="01.016" displayName="Internist" codeSystem="2.16.840.1.113883.2.4.15.111" codeSystemName="RoleCodeNL - zorgverlenertype (natuurlijke personen)"/>
+                    <assignedPerson>
+                        <!-- ZorgverlenerNaam -->
+                        <name>Dr Jansen</name>
+                    </assignedPerson>
+                    <!-- Zorgaanbieder -->
+                    <representedOrganization>
+                        <!-- Zorgaanbieder identificatie -->
+                        <id root="1.2.3.4" extension="URAnummer"/>
+                        <name>Ziekenhuis zus en zo</name>
+                        <addr use="WP">
+                            <streetName>Dorpsstraat</streetName>
+                            <houseNumber>10</houseNumber>
+                            <postalCode>1111 AA</postalCode>
+                            <city>Ons Dorp</city>
+                        </addr>
+                    </representedOrganization>
+                </assignedAuthor>
+            </author>
+            <!-- Stoptype -->
+            <entryRelationship typeCode="COMP">
+                <observation classCode="OBS" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9067"/>
+                    <code code="1" displayName="Stoptype" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties"/>
+                    <value xsi:type="CE" code="1" displayName="Tijdelijk onderbreken" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"/>
+                </observation>
+            </entryRelationship>
+            <!-- Reden afspraak -->
+            <entryRelationship typeCode="RSON">
+                <observation classCode="OBS" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9270"/>
+                    <code code="2" displayName="Reden medicatieafspraak" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
+                    <value xsi:type="CE" code="6" displayName="Te sterk effect" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"/>
+                </observation>
+            </entryRelationship>
+            <!-- Relatie naar medicatieafspraak -->
+            <entryRelationship typeCode="REFR">
+                <substanceAdministration classCode="SBADM" moodCode="RQO">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
+                    <id extension="#MB_03k1#MA_01" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                    <code code="16076005" displayName="Medicatieafspraak" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                    <consumable xsi:nil="true"/>
+                </substanceAdministration>
+            </entryRelationship>
+            <!--Relatie naar medicamenteuze behandeling-->
+            <entryRelationship typeCode="COMP" inversionInd="true">
+                <procedure classCode="PROC" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+                    <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1" extension="#MB_03k1"/>
+                    <code code="1" displayName="Medicamenteuze behandeling" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                </procedure>
+            </entryRelationship>
+        </substanceAdministration>
+    </component>
+    <!-- Verstrekkingsverzoek -->
+    <component typeCode="COMP">
+        <supply classCode="SPLY" moodCode="RQO">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9257"/>
+            <!-- identificatie -->
+            <id extension="#MB_03k1#VV_01" root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+            <code codeSystemName="SNOMED CT" displayName="Verstrekkingsverzoek" code="52711000146108" codeSystem="2.16.840.1.113883.6.96"/>
+            <!-- te verstrekken hoeveelheid -->
+            <quantity value="40" unit="1">
+                <translation value="40" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="stuk"/>
+            </quantity>
+            <!-- Te verstrekken geneesmiddel -->
+            <product>
+                <manufacturedProduct>
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
+                    <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                        <code code="59919" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="G-Standaard PRK" displayName="Tiotropium inhalatiecapsule 18ug">
+                            <translation code="115371" displayName="TIOTROPIUM INHALATIECAPSULE 18UG" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="G-Standaard GPK"/>
+                        </code>
+                    </manufacturedMaterial>
+                </manufacturedProduct>
+            </product>
+            <!-- beoogd verstrekker -->
+            <performer>
+                <assignedEntity>
+                    <id nullFlavor="NI"/>
+                    <representedOrganization>
+                        <id root="2.16.528.1.1007.3.3" extension="01234578"/>
+                        <name>Apotheek De Gulle Gaper</name>
+                    </representedOrganization>
+                </assignedEntity>
+            </performer>
+            <!-- Auteur / zorgverlener -->
+            <author>
+                <!-- datum verstrekkingsverzoek -->
+                <time value="20160623165423"/>
+                <assignedAuthor>
+                    <!-- identificatie -->
+                    <id extension="006797896" root="2.16.528.1.1007.3.1"/>
+                    <!-- specialisme -->
+                    <code code="01.016" displayName="Internist" codeSystem="2.16.840.1.113883.2.4.15.111" codeSystemName="RoleCodeNL - zorgverlenertype (natuurlijke personen)"/>
+                    <assignedPerson>
+                        <!-- Naam -->
+                        <name>
+                            <given qualifier="IN">J.</given>
+                            <prefix qualifier="VV">van </prefix>
+                            <family qualifier="BR">Beek</family>
+                        </name>
+                    </assignedPerson>
+                    <representedOrganization>
+                        <id root="1.2.3.999" extension="0126423"/>
+                        <name>Ziekenhuis Dorpstraat</name>
+                        <addr use="WP">
+                            <streetName>Dorpsstraat</streetName>
+                            <houseNumber>10</houseNumber>
+                            <postalCode>1111 AA</postalCode>
+                            <city>Ons Dorp</city>
+                        </addr>
+                    </representedOrganization>
+                </assignedAuthor>
+            </author>
+            <entryRelationship typeCode="COMP" inversionInd="true">
+                <procedure classCode="PROC" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+                    <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1" extension="#MB_03k1"/>
+                    <code code="1" displayName="Medicamenteuze behandeling" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                </procedure>
+            </entryRelationship>
+        </supply>
+    </component>
+    <!-- Toedieningsafspraak -->
+    <component typeCode="COMP">
+        <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9259"/>
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9256"/>
+            <!-- identificatie -->
+            <id extension="#MB_03k1#MA01#TA_01" root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            <code code="422037009" displayName="Toedieningsafspraak" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+            <!-- mp-9581 Omschrijving -->
+            <text mediaType="text/plain">Vanaf 23 juni 2016, Gedurende 90 dagen, per dag 1 inhalatie</text>
+            <!-- Gebruiksperiode -->
+            <effectiveTime xsi:type="IVL_TS">
+                <low value="20160623"/>
+                <width value="90" unit="d"/>
+            </effectiveTime>
+            <!-- 19941 Toedieningsweg -->
+            <routeCode code="62" displayName="INHALATIE" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard tabel voor toedieningswegen: subtabel 0007"/>
+            <!-- Afgesproken geneesmiddel -->
+            <consumable>
+                <manufacturedProduct>
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
+                    <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                        <code code="15758001" codeSystem="2.16.840.1.113883.2.4.4.8" codeSystemName="G-Standaard Artikel" displayName="SPIRIVA INHALPDR 18MCG">
+                            <translation code="1476866" displayName="SPIRIVA INHALPDR 18MCG" codeSystem="2.16.840.1.113883.2.4.4.7" codeSystemName="G-Standaard HPK"/>
+                            <translation code="59919" displayName="TIOTROPIUM INHALATIECAPSULE 18UG" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="G-Standaard PRK"/>
+                            <translation code="115371" displayName="TIOTROPIUM INHALATIECAPSULE 18UG" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="G-Standaard GPK"/>
+                        </code>
+                    </manufacturedMaterial>
+                </manufacturedProduct>
+            </consumable>
+            <!-- verstrekker -->
+            <author>
+                <!-- Afspraakdatum -->
+                <time value="20160623165412"/>
+                <assignedAuthor>
+                    <id nullFlavor="NI"/>
+                    <!-- Zorgaanbieder -->
+                    <representedOrganization>
+                        <!-- Zorgaanbieder identificatie -->
+                        <id root="2.16.528.1.1007.3.3" extension="22343221"/>
+                        <name>Apotheek Boomsma</name>
+                    </representedOrganization>
+                </assignedAuthor>
+            </author>
+            <!-- Reden afspraak -->
+            <entryRelationship typeCode="RSON">
+                <observation classCode="OBS" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9083"/>
+                    <code code="3" displayName="Reden toedieningsafspraak" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
+                    <text>Starten behandeling</text>
+                </observation>
+            </entryRelationship>
+            <!-- Relatie naar medicatieafspraak -->
+            <entryRelationship typeCode="COMP">
+                <sequenceNumber value="1"/>
+                <substanceAdministration classCode="SBADM" moodCode="RQO">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
+                    <effectiveTime xsi:type="hl7nl:PIVL_TS" isFlexible="true" operator="A">
+                        <hl7nl:frequency>
+                            <hl7nl:numerator xsi:type="hl7nl:INT" value="1"/>
+                            <hl7nl:denominator xsi:type="hl7nl:PQ" value="1" unit="d"/>
+                        </hl7nl:frequency>
+                    </effectiveTime>
+                    <doseQuantity>
+                        <center value="1" unit="1">
+                            <translation value="1" code="208" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Dosis"/>
+                        </center>
+                    </doseQuantity>
+                    <consumable xsi:nil="true"/>
+                </substanceAdministration>
+            </entryRelationship>
+            <!-- Relatie naar medicatieafspraak -->
+            <entryRelationship typeCode="REFR">
+                <substanceAdministration classCode="SBADM" moodCode="RQO">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
+                    <id extension="#MB_03k1#MA_01" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                    <code code="16076005" displayName="Medicatieafspraak" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                    <consumable xsi:nil="true"/>
+                </substanceAdministration>
+            </entryRelationship>
+            <!--Doseerinstructie-->
+            <entryRelationship typeCode="COMP" inversionInd="true">
+                <procedure classCode="PROC" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+                    <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1" extension="#MB_03k1"/>
+                    <code code="1" displayName="Medicamenteuze behandeling" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                    </procedure>
+            </entryRelationship>
+            <!--Relatie naar medicamenteuze behandeling-->
+            </substanceAdministration>
+    </component>
+    <!-- Verstrekking -->
+    <component typeCode="COMP">
+        <substanceAdministration classCode="SBADM" moodCode="RQO">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9259"/>
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9256"/>
+            <!-- identificatie -->
+            <id extension="#MB_03k1#MA_02#TA_01" root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            <code code="422037009" displayName="Toedieningsafspraak" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+            <!-- mp-9581 Omschrijving -->
+            <text mediaType="text/plain">Vanaf 23 juli 2016, Tijdelijk (tot nader order) onderbreken</text>
+            <!-- Gebruiksperiode -->
+            <effectiveTime xsi:type="IVL_TS">
+                <low value="20160623"/>
+                <high value="201607230000"/>
+            </effectiveTime>
+            <!-- 19941 Toedieningsweg -->
+            <routeCode code="62" displayName="INHALATIE" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard tabel voor toedieningswegen: subtabel 0007"/>
+            <!-- Afgesproken geneesmiddel -->
+            <consumable>
+                <manufacturedProduct>
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
+                    <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                        <code code="15758001" codeSystem="2.16.840.1.113883.2.4.4.8" codeSystemName="G-Standaard Artikel" displayName="SPIRIVA INHALPDR 18MCG">
+                            <translation code="1476866" displayName="SPIRIVA INHALPDR 18MCG" codeSystem="2.16.840.1.113883.2.4.4.7" codeSystemName="G-Standaard HPK"/>
+                            <translation code="59919" displayName="TIOTROPIUM INHALATIECAPSULE 18UG" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="G-Standaard PRK"/>
+                            <translation code="115371" displayName="TIOTROPIUM INHALATIECAPSULE 18UG" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="G-Standaard GPK"/>
+                        </code>
+                    </manufacturedMaterial>
+                </manufacturedProduct>
+            </consumable>
+            <!-- verstrekker -->
+            <author>
+                <!-- Afspraakdatum -->
+                <time value="20160723095412"/>
+                <assignedAuthor>
+                    <id nullFlavor="NI"/>
+                    <!-- Zorgaanbieder -->
+                    <representedOrganization>
+                        <!-- Zorgaanbieder identificatie -->
+                        <id root="2.16.528.1.1007.3.3" extension="22343221"/>
+                        <name>Apotheek Boomsma</name>
+                    </representedOrganization>
+                </assignedAuthor>
+            </author>
+            <!-- Stoptype -->
+            <entryRelationship typeCode="COMP">
+                <observation classCode="OBS" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9067"/>
+                    <code code="1" displayName="Stoptype" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties"/>
+                    <value xsi:type="CE" code="1" displayName="Tijdelijk onderbreken" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"/>
+                </observation>
+            </entryRelationship>
+            <!-- Relatie naar medicatieafspraak -->
+            <entryRelationship typeCode="REFR">
+                <substanceAdministration classCode="SBADM" moodCode="RQO">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
+                    <id extension="#MB_03k1#MA_02" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                    <code code="16076005" displayName="Medicatieafspraak" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                    <consumable xsi:nil="true"/>
+                </substanceAdministration>
+            </entryRelationship>
+            <!--Relatie naar medicamenteuze behandeling-->
+            <entryRelationship typeCode="COMP" inversionInd="true">
+                <procedure classCode="PROC" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+                    <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1" extension="#MB_03k1"/>
+                    <code code="1" displayName="Medicamenteuze behandeling" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                </procedure>
+            </entryRelationship>
+        </substanceAdministration>
+    </component>
+    <!-- Verstrekking -->
+    <component typeCode="COMP">
+        <supply moodCode="EVN" classCode="SPLY">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9255"/>
+            <id root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1" extension="8698769df987-789fffE"/>
+            <code displayName="Verstrekking" code="373784005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+            <effectiveTime value="20160624114723"/>
+            <quantity value="40" unit="1">
+                <translation value="40" code="245" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="stuk"/>
+            </quantity>
+            <expectedUseTime>
+                <width unit="d" value="40"/>
+            </expectedUseTime>
+            <product>
+                <manufacturedProduct>
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
+                    <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                        <code code="15758001" codeSystem="2.16.840.1.113883.2.4.4.8" codeSystemName="G-Standaard Artikel" displayName="SPIRIVA INHALPDR 18MCG">
+                            <translation code="1476866" displayName="SPIRIVA INHALPDR 18MCG" codeSystem="2.16.840.1.113883.2.4.4.7" codeSystemName="G-Standaard HPK"/>
+                            <translation code="59919" displayName="TIOTROPIUM INHALATIECAPSULE 18UG" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="G-Standaard PRK"/>
+                            <translation code="115371" displayName="TIOTROPIUM INHALATIECAPSULE 18UG" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="G-Standaard GPK"/>
+                        </code>
+                    </manufacturedMaterial>
+                </manufacturedProduct>
+            </product>
+            <performer>
+                <assignedEntity>
+                    <id nullFlavor="NI"/>
+                    <!-- Zorgaanbieder -->
+                    <representedOrganization>
+                        <!-- Zorgaanbieder identificatie -->
+                        <id root="2.16.528.1.1007.3.3" extension="22343221"/>
+                        <name>Apotheek Boomsma</name>
+                    </representedOrganization>
+                </assignedEntity>
+            </performer>
+            <participant typeCode="DST">
+                <participantRole classCode="SDLOC">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9091"/>
+                    <addr>
+                        <desc>Prikstraat 12 Amsterdam</desc>
+                        </addr>
+                </participantRole>
+            </participant>
+            <entryRelationship typeCode="COMP">
+                <observation classCode="OBS" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9095"/>
+                    <code code="4" displayName="Aanschrijfdatum" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="MP Observaties"/>
+                    <value xsi:type="TS" value="20160623195702"/>
+                </observation>
+            </entryRelationship>
+            <!-- Toelichting -->
+            <entryRelationship typeCode="SUBJ" inversionInd="true">
+                <act classCode="ACT" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9069"/>
+                    <code code="48767-8" displayName="Toelichting" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+                    <text>Tekstuele toelichting</text>
+                </act>
+            </entryRelationship>
+            <!-- Relatie naar Vertrekkingsverzoek -->
+            <entryRelationship typeCode="REFR">
+                <supply classCode="SPLY" moodCode="RQO">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9096"/>
+                    <id extension="#MB_03k1#VV_01" root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+                    <code code="3" displayName="Verstrekkingsverzoek" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3" codeSystemName="Medicatieproces acts"/>
+                </supply>
+            </entryRelationship>
+            <entryRelationship typeCode="COMP" inversionInd="true">
+                <procedure classCode="PROC" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+                    <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1" extension="#MB_03k1"/>
+                    <code code="1" displayName="Medicamenteuze behandeling" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                </procedure>
+            </entryRelationship>
+        </supply>
+    </component>
+    <!-- Gebruik -->
+    <component typeCode="COMP">
+        <substanceAdministration classCode="SBADM" moodCode="EVN" negationInd="false">
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9246"/>
+            <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9250"/>
+            <!-- identificatie -->
+            <id extension="#MB_03k1#GE_01" root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+            <code code="6" displayName="Medicatiegebruik" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3" codeSystemName="Medicatieproces acts"/>
+            <!-- mp-9581 Omschrijving -->
+            <text mediaType="text/plain">Vanaf 24 juni 2016, Per 2 dagen 1 inhalatie</text>
+            <!-- Gebruiksperiode -->
+            <effectiveTime xsi:type="IVL_TS">
+                <low value="20160624"/>
+            <high nullFlavor="NI"/>
+            </effectiveTime>
+            <!-- 19941 Toedieningsweg -->
+            <routeCode code="62" displayName="INHALATIE" codeSystem="2.16.840.1.113883.2.4.4.9" codeSystemName="G-Standaard tabel voor toedieningswegen: subtabel 0007"/>
+            <!-- Afgesproken geneesmiddel -->
+            <consumable>
+                <manufacturedProduct classCode="MANU">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9263"/>
+                    <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                        <code code="15758001" codeSystem="2.16.840.1.113883.2.4.4.8" codeSystemName="G-Standaard Artikel" displayName="SPIRIVA INHALPDR 18MCG">
+                            <translation code="1476866" displayName="SPIRIVA INHALPDR 18MCG" codeSystem="2.16.840.1.113883.2.4.4.7" codeSystemName="G-Standaard HPK"/>
+                            <translation code="59919" displayName="TIOTROPIUM INHALATIECAPSULE 18UG" codeSystem="2.16.840.1.113883.2.4.4.10" codeSystemName="G-Standaard PRK"/>
+                            <translation code="115371" displayName="TIOTROPIUM INHALATIECAPSULE 18UG" codeSystem="2.16.840.1.113883.2.4.4.1" codeSystemName="G-Standaard GPK"/>
+                        </code>
+                    </manufacturedMaterial>
+                </manufacturedProduct>
+            </consumable>
+            <!-- auteur is zorgverlener -->
+            <author>
+                <time value="20160720"/>
+                <assignedAuthor>
+                    <id extension="006797896" root="2.16.528.1.1007.3.1"/>
+                    <!-- Specialisme -->
+                    <code code="01.016" displayName="Internist" codeSystem="2.16.840.1.113883.2.4.15.111" codeSystemName="RoleCodeNL - zorgverlenertype (natuurlijke personen)"/>
+                    <assignedPerson>
+                        <name>
+                            <given qualifier="IN">J.</given>
+                            <prefix qualifier="VV">van </prefix>
+                            <family qualifier="BR">Beek</family>
+                        </name>
+                    </assignedPerson>
+                    <representedOrganization>
+                        <id extension="54598578" root="2.16.528.1.1007.3.3"/>
+                        <name>Zorginstelling X</name>
+                    </representedOrganization>
+                </assignedAuthor>
+            </author>
+            <!-- informant is patiënt -->
+            <informant>
+                <assignedEntity>
+                    <id root="2.16.840.1.113883.2.4.6.3" extension="012345672"/>
+                    <code code="ONESELF" displayName="Self" codeSystem="2.16.840.1.113883.5.111" codeSystemName="RoleCode"/>
+                </assignedEntity>
+            </informant>
+            <!-- Reden wijzigen -->
+            <entryRelationship xmlns:hl7="urn:hl7-org:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" typeCode="COMP">
+                <observation classCode="OBS" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9189"/>
+                    <code displayName="Gebruikindicator" code="15" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2"/>
+                    <value xsi:type="BL" value="true"/>
+                </observation>
+            </entryRelationship>
+            <entryRelationship typeCode="RSON">
+                <observation classCode="OBS" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9271"/>
+                    <code code="7" displayName="Reden stoppen/wijzigen medicatiegebruik" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2" codeSystemName="Medicatieproces observaties"/>
+                    <value xsi:type="CE" code="6" displayName="Te sterk effect" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"/>
+                </observation>
+            </entryRelationship>
+            <!-- Relatie naar medicatieafspraak -->
+            <entryRelationship typeCode="COMP">
+                <sequenceNumber value="1"/>
+                <substanceAdministration classCode="SBADM" moodCode="RQO">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
+                    <effectiveTime xsi:type="hl7nl:PIVL_TS" isFlexible="true" operator="A">
+                        <hl7nl:frequency>
+                            <hl7nl:numerator xsi:type="hl7nl:INT" value="1"/>
+                            <hl7nl:denominator xsi:type="hl7nl:PQ" value="2" unit="d"/>
+                        </hl7nl:frequency>
+                    </effectiveTime>
+                    <doseQuantity>
+                        <center value="1" unit="1">
+                            <translation value="1" code="208" codeSystem="2.16.840.1.113883.2.4.4.1.900.2" displayName="Dosis"/>
+                        </center>
+                    </doseQuantity>
+                    <consumable xsi:nil="true"/>
+                </substanceAdministration>
+            </entryRelationship>
+            <!--Relatie naar medicamenteuze behandeling-->
+            <entryRelationship typeCode="REFR">
+                <substanceAdministration classCode="SBADM" moodCode="RQO">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9086"/>
+                    <id extension="#MB_03k1#MA_01" root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+                    <code code="16076005" displayName="Medicatieafspraak" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                <consumable xsi:nil="true"/>
+                </substanceAdministration>
+            </entryRelationship>
+        <entryRelationship typeCode="COMP" inversionInd="true">
+                <procedure classCode="PROC" moodCode="EVN">
+                    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+                    <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1" extension="#MB_03k1"/>
+                    <code code="1" displayName="Medicamenteuze behandeling" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+                </procedure>
+            </entryRelationship>
+        </substanceAdministration>
+    </component>
+    <!-- Medicatieafspraak stop-->
+    </organizer>

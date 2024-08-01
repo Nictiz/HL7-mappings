@@ -1,0 +1,135 @@
+<!--Generated from HL7v3 instance.-->
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2023-11-02T15:23:33.135381+01:00"
+         last-update-date="2023-11-02T15:23:33.135381+01:00"/>
+   <data><!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
+      <sturen_medicatiegegevens app="mp-mp93"
+                                shortName="sturen_medicatiegegevens"
+                                formName="medicatiegegevens"
+                                transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.376"
+                                transactionEffectiveDate="2022-06-30T00:00:00"
+                                prefix="mp-"
+                                language="nl-NL"
+                                title="mg-mp-smg-tst-MA-Scenarioset6-v30-6-6"
+                                id="mg-mp-smg-tst-MA-Scenarioset6-v30-6-6">
+         <patient>
+            <naamgegevens>
+               <initialen value="G."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Hemsbergen"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900602" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime" value="1963-11-02"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_300_variabelehoeveelheid2"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak>
+               <identificatie value="MBH_300_variabelehoeveelheid2_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <medicatieafspraak_datum_tijd datatype="datetime" value="2023-01-01T08:18:00"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2023-01-29T23:59:59"/>
+               </gebruiksperiode>
+               <voorschrijver>
+                  <zorgverlener value="d890e36" datatype="reference"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product value="d890e31" datatype="reference"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf 1 jan 2023, tot en met 29 jan 2023, 2 maal per dag 10 à 15 ml, Eerst oplossen in water, mond spoelen, daarna uitspugen, OROMUCOSAAL"/>
+                  <toedieningsweg code="34"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen"
+                                  displayName="OROMUCOSAAL"/>
+                  <aanvullende_instructie code="27"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"
+                                          displayName="Eerst oplossen in water"/>
+                  <aanvullende_instructie code="69"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          codeSystemName="NHG tabel 25 aanvullende tekst"
+                                          displayName="mond spoelen, daarna uitspugen"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <minimum_waarde value="10"/>
+                              <maximum_waarde value="15"/>
+                           </aantal>
+                           <eenheid code="233"
+                                    displayName="milliliter"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="d890e31">
+               <product_code code="72664"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="WATERSTOFPEROXIDE CONC VOOR MONDSPOELING 30MG/ML"/>
+               <product_code code="119903"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="WATERSTOFPEROXIDE CONC VOOR MONDSPOELING 30MG/ML"/>
+            </farmaceutisch_product>
+            <zorgverlener id="d890e36">
+               <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Peter"/>
+                  <geslachtsnaam>
+                     <voorvoegsels value="van "/>
+                     <achternaam value="Pulver"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder value="d890e47" datatype="reference"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="d890e47">
+               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="1"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+         </bouwstenen>
+      </sturen_medicatiegegevens>
+   </data>
+</adaxml>

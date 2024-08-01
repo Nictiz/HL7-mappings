@@ -1,0 +1,194 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../9.2.0/sturen_medicatievoorschrift/ada_schemas/ada_sturen_medicatievoorschrift.xsd">
+   <meta status="new"
+         created-by="medicatieprocesada"
+         last-update-by="medicatieprocesada"
+         creation-date="2022-02-18T09:22:41.544+01:00"
+         last-update-date="2022-03-08T10:15:48.428+01:00"/>
+   <data>
+      <sturen_medicatievoorschrift app="mp-mp92"
+                                   shortName="sturen_medicatievoorschrift"
+                                   formName="sturen_medicatievoorschrift"
+                                   transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.322"
+                                   transactionEffectiveDate="2022-02-07T00:00:00"
+                                   versionDate=""
+                                   prefix="mp-"
+                                   language="nl-NL"
+                                   title="TEST Scenarioset 3 Wijzigen (verlaging)"
+                                   desc="&lt;div&gt;&lt;span style=&#34;font-family: sans-serif; font-size: 14px; background-color: #ffffff;&#34;&gt;Wijziging medicatieafspraak, met reden wijziging (stop-ma + nieuwe ma) zonder VV&lt;/span&gt;&lt;br style=&#34;font-family: sans-serif; font-size: 14px; background-color: #ffffff;&#34;&gt;&lt;span style=&#34;font-family: sans-serif; font-size: 14px; background-color: #ffffff; color: #ff0000;&#34;&gt;LET OP: wijziging medicatieafspraak van scenario 3.3a&lt;/span&gt;&lt;/div&gt;"
+                                   id="mv-mp-vo-tst-3-3b-wijzigen-verlaging-v20">
+         <patient comment="">
+            <naamgegevens comment="">
+               <initialen value="J. "/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam comment="">
+                  <voorvoegsels value="de "/>
+                  <achternaam value="XXX_Luzac"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900778" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1985-10-24" datatype="datetime"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_200_wijzigen_verlaging"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak comment="">
+               <identificatie value="MBH_200_wijzigen_verlaging_MA_wijzigingzonderVV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <medicatieafspraak_datum_tijd value="T{08:10:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T+6D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T+14D{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_200_wijzigen_verlaging_MA_start"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+               <voorschrijver>
+                  <zorgverlener datatype="reference" value="Bertine_van_Doorn"/>
+               </voorschrijver>
+               <reden_wijzigen_of_staken code="112251000146103"
+                                         codeSystem="2.16.840.1.113883.6.96"
+                                         displayName="te sterk effect van medicatie"
+                                         codeSystemName="SNOMED CT"/>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="PRK_FERROFUMARAAT_42293"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T-1D{00:00:00}&gt; t/m &lt;T+14D{23:59:59}&gt;, 1 maal per week 4 stuks, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaardthesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="week"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <medicatieafspraak comment="">
+               <identificatie value="MBH_200_wijzigen_verlaging_MA_techstaken"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <medicatieafspraak_datum_tijd value="T{08:10:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T+0D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T+6D{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <medicatieafspraak_stop_type code="113371000146109"
+                                            codeSystem="2.16.840.1.113883.6.96"
+                                            displayName="definitief gestopt met medicatie"/>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_200_wijzigen_verlaging_MA_start"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+               <voorschrijver>
+                  <zorgverlener datatype="reference" value="Bertine_van_Doorn"/>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="PRK_FERROFUMARAAT_42293"/>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T-13D{00:00:00}&gt; t/m &lt;T-2D{23:59:59}&gt;, 1 maal per week 5 stuks, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  code="9"
+                                  displayName="Oraal"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    code="245"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid unit="week" value="1"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="PRK_FERROFUMARAAT_42293">
+               <product_code code="42293"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="FERROFUMARAAT TABLET 200MG"
+                             codeSystemName="G-Standaard PRK"/>
+               <product_code code="15342"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="FERROFUMARAAT TABLET 200MG"/>
+            </farmaceutisch_product>
+            <zorgverlener id="Bertine_van_Doorn">
+               <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Bertine"/>
+                  <geslachtsnaam comment="">
+                     <voorvoegsels value="van "/>
+                     <achternaam value="Doorn"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <contactgegevens>
+                  <telefoonnummers>
+                     <telefoonnummer value="1634534000"/>
+                     <nummer_soort code="WP"
+                                   codeSystem="2.16.840.1.113883.5.1119"
+                                   codeSystemName="Address Use"
+                                   displayName="Zakelijk telefoonnummer"/>
+                  </telefoonnummers>
+               </contactgegevens>
+               <zorgaanbieder>
+                  <zorgaanbieder datatype="reference" value="Huisartsenpraktijk_Pulver_en_Partners"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="Huisartsenpraktijk_Pulver_en_Partners">
+               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+               <adresgegevens comment="">
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="1"/>
+                  <postcode value="1234AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+         </bouwstenen>
+      </sturen_medicatievoorschrift>
+   </data>
+</adaxml>

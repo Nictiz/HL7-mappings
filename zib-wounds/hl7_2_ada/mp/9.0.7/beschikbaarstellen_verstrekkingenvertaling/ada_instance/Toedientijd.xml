@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Generated from HL7v3 verstrekkingenlijst 6.12 xml with message id (QURX_IN990113NL/id) root: 2.16.840.1.113883.2.4.6.6.1.1 and extension: 0123456789.-->
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_verstrekkingenvertaling.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2022-08-23T14:00:10.100178+02:00"
+         last-update-date="2022-08-23T14:00:10.100178+02:00"/>
+   <data>
+      <beschikbaarstellen_verstrekkingenvertaling app="mp-mp907"
+                                                  shortName="beschikbaarstellen_verstrekkingenvertaling"
+                                                  formName="uitwisselen_verstrekkingenvertaling"
+                                                  transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.102"
+                                                  transactionEffectiveDate="2016-03-23T16:32:43"
+                                                  prefix="mp-"
+                                                  language="nl-NL"
+                                                  title="Generated from HL7v3 verstrekkingenlijst 6.12 xml"
+                                                  id="Toedientijd.xml">
+         <patient>
+            <naamgegevens>
+               <initialen value="J.J."/>
+               <naamgebruik value="3"
+                            code="NL3"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Geslachtsnaam partner gevolgd door eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <voorvoegsels value="le "/>
+                  <achternaam value="Noble"/>
+               </geslachtsnaam>
+               <geslachtsnaam_partner>
+                  <voorvoegsels_partner value="van "/>
+                  <achternaam_partner value="Son"/>
+               </geslachtsnaam_partner>
+            </naamgegevens>
+            <identificatienummer root="2.16.840.1.113883.2.4.6.3" value="012345672"/>
+            <geboortedatum value="1972-12-18"/>
+            <geslacht code="F"
+                      codeSystem="2.16.840.1.113883.5.1"
+                      codeSystemName="AdministrativeGender"
+                      displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling><!--MBH id copied from 6.12 dispense identifier-->
+            <identificatie value="00240703301"
+                           root="2.16.840.1.113883.2.4.3.39.6101.23639.10000972.3"/>
+            <toedieningsafspraak><!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <afspraakdatum value="2019-06-28"/>
+               <verstrekker>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="00023639" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Kringapotheek Asten"/>
+                     <adresgegevens>
+                        <woonplaats value="Asten"/>
+                     </adresgegevens>
+                  </zorgaanbieder>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <product>
+                     <product_code code="14899337"
+                                   codeSystem="2.16.840.1.113883.2.4.4.8"
+                                   displayName="TRAMADOL HCL SANDOZ RETARD TABLET MGA 100MG"/>
+                     <product_code code="1632108" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                     <product_code code="50431" codeSystem="2.16.840.1.113883.2.4.4.10"/>
+                     <product_code code="104213" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+                  </product>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-2-->
+               <gebruiksinstructie>
+                  <omschrijving value="1 maal per dag 1 tablet 's avonds"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  displayName="geen informatie"/>
+                  <!--mp9-doseerinstructie-from-mp612-tijden-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis-->
+                        <keerdosis>
+                           <aantal>
+                              <vaste_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    displayName="ST"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <toedientijd value="2019-06-28T21:00"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </toedieningsafspraak>
+            <verstrekking>
+               <identificatie root="2.16.840.1.113883.2.4.3.39.6101.23639.10000972.3"
+                              value="00240703301"/>
+               <datum nullFlavor="NI"/>
+               <aanschrijfdatum value="2019-06-28"/>
+               <verstrekker>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="00023639" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Kringapotheek Asten"/>
+                     <adresgegevens>
+                        <woonplaats value="Asten"/>
+                     </adresgegevens>
+                  </zorgaanbieder>
+               </verstrekker>
+               <verstrekte_hoeveelheid>
+                  <aantal value="16.0000"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           displayName="ST"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <product>
+                     <product_code code="14899337"
+                                   codeSystem="2.16.840.1.113883.2.4.4.8"
+                                   displayName="TRAMADOL HCL SANDOZ RETARD TABLET MGA 100MG"/>
+                     <product_code code="1632108" codeSystem="2.16.840.1.113883.2.4.4.7"/>
+                     <product_code code="50431" codeSystem="2.16.840.1.113883.2.4.4.10"/>
+                     <product_code code="104213" codeSystem="2.16.840.1.113883.2.4.4.1"/>
+                  </product>
+               </verstrekt_geneesmiddel>
+               <verbruiksduur value="16" unit="dag"/>
+            </verstrekking>
+         </medicamenteuze_behandeling>
+      </beschikbaarstellen_verstrekkingenvertaling>
+   </data>
+</adaxml>

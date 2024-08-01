@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Apache ANT build file that sets up (target = setup) or by default converts all input to output (target = convert_hl7v3_2_ada)
+    Apache ANT is based on Java and may be found here: https://ant.apache.org/
+    run on command line: 
+        ant [-f build.xml] [target]
+        
+    If you just run ant, it expects a build.xml in the working dir and runs the default target.
+-->
+<project basedir="../../hl7_2_ada/ketenzorg/3.0.2" default="convert_hl7v3_2_ada" name="hl7v3_2_ada_${project.prefix}" xmlns:if="ant:if" xmlns:unless="ant:unless">
+    <ant antfile="../../../_ant-buildfiles/ant-include/ant.ivy.xml" inheritall="true" usenativebasedir="true"/>
+    <property name="xsl.saxon" value="${saxon.path}"/>
+    <property name="xsl.saxon.class" value="net.sf.saxon.TransformerFactoryImpl"/>
+    
+    <property name="echo.label.in" value="HL7v3"/>
+    <property name="echo.label.out" value="ADA"/>
+    <property name="echo.label" value="${echo.label.in} to ${echo.label.out}"/>
+
+    <property name="project.title" value="${echo.label} for Ketenzorg 3.0.2"/>
+    <property name="project.version" value="1.0.0"/>
+    <property name="project.prefix" value="ketenzorg_3.0.2"/>
+    <property name="project.description" value="Contains all relevant materials to convert valid ${echo.label.in} instances for Ketenzorg building blocks to valid ${echo.label.out} instances"/>
+    <property name="project.author" value="Nictiz"/>
+    <property name="project.website" value="http://www.nictiz.nl/"/>
+    <property name="project.status" value="beta"/>
+    <property name="project.license" value="GNU-LGPL"/>
+    <property name="project.copyright" value="true"/>
+    
+    <property name="build.dir" value="beschikbaarstellen"/>
+    <property name="project.source.dir" value="${build.dir}/../../../../../projects/ketenzorg3.0"/>
+    
+    <target name="convert_hl7v3_2_ada">
+        <property name="xsl_allergyintolerance" value="${build.dir}/payload/beschikbaarstellen_allergieintoleranties_2_ada.xsl"/>
+        <property name="xsl_episodes" value="${build.dir}/payload/beschikbaarstellen_episodes_2_ada.xsl"/>
+        <property name="xsl_contactverslagen" value="${build.dir}/payload/beschikbaarstellen_contactverslagen_2_ada.xsl"/>
+        <property name="xsl_diagnbepalingen" value="${build.dir}/payload/beschikbaarstellen_diagnostische_bepalingen_2_ada.xsl"/>
+        <property name="xsl_labbepalingen" value="${build.dir}/payload/beschikbaarstellen_labbepalingen_2_ada.xsl"/>
+        <property name="xsl_algemene_bepalingen" value="${build.dir}/payload/beschikbaarstellen_algemene_bepalingen_2_ada.xsl"/>
+        <property name="xsl_alerts" value="${build.dir}/payload/beschikbaarstellen_alerts_2_ada.xsl"/>
+        <property name="xsl_encounters" value="${build.dir}/payload/beschikbaarstellen_contactmomenten_2_ada.xsl"/>
+        <property name="xsl_medicationagreements" value="${build.dir}/payload/beschikbaarstellen_medicatieafspraken907_2_ada.xsl"/>
+        
+        <property name="xsl.input" value="${build.dir}/hl7v3_instance"/>
+        <property name="xsl.output" value="${build.dir}/ada_instance"/>
+        
+        <echo>Deleting previous results, if any</echo>
+        <delete dir="${xsl.output}"/>
+        
+        <sequential>
+            <fileset id="inputfilesAllergieIntoleranties" dir="${xsl.input}" includes="*allergieintoleranties*.xml"/>
+            <fileset id="inputfilesEpisodes" dir="${xsl.input}" includes="*episodes*.xml"/>
+            <fileset id="inputfilesContactverslagen" dir="${xsl.input}" includes="*contactverslag*.xml"/>
+            <fileset id="inputfilesDiagnBepalingen" dir="${xsl.input}" includes="*diagnostische_bepalingen*.xml"/>
+            <fileset id="inputfilesLabBepalingen" dir="${xsl.input}" includes="*labbepalingen*.xml"/>
+            <fileset id="inputfilesAlgemeneBepalingen" dir="${xsl.input}" includes="*algemene_bepalingen*.xml"/>
+            <fileset id="inputfilesAlerts" dir="${xsl.input}" includes="*alerts*.xml"/>
+            <fileset id="inputfilesEncounters" dir="${xsl.input}" includes="*contactmomenten*.xml"/>
+            <fileset id="inputfilesMedicationAgreements" dir="${xsl.input}" includes="*medicatieafspraken*.xml"/>
+            
+            <echo/>
+            <echo>${echo.label} ${xsl_allergyintolerance}</echo>
+            <xslt force="true" style="${xsl_allergyintolerance}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputfilesAllergieIntoleranties"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <echo/>
+            <echo>${echo.label} ${xsl_episodes}</echo>
+            <xslt force="true" style="${xsl_episodes}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputfilesEpisodes"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <echo/>
+            <echo>${echo.label} ${xsl_contactverslagen}</echo>
+            <xslt force="true" style="${xsl_contactverslagen}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputfilesContactverslagen"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <echo/>
+            <echo>${echo.label} ${xsl_diagnbepalingen}</echo>
+            <xslt force="true" style="${xsl_diagnbepalingen}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputfilesDiagnBepalingen"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <echo/>
+            <echo>${echo.label} ${xsl_labbepalingen}</echo>
+            <xslt force="true" style="${xsl_labbepalingen}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputfilesLabBepalingen"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <echo/>
+            <echo>${echo.label} ${xsl_algemene_bepalingen}</echo>
+            <xslt force="true" style="${xsl_algemene_bepalingen}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputfilesAlgemeneBepalingen"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <echo/>
+            <echo>${echo.label} ${xsl_alerts}</echo>
+            <xslt force="true" style="${xsl_alerts}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputfilesAlerts"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <echo/>
+            <echo>${echo.label} ${xsl_encounters}</echo>
+            <xslt force="true" style="${xsl_encounters}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputfilesEncounters"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+            
+            <echo/>
+            <echo>${echo.label} ${xsl_medicationagreements}</echo>
+            <xslt force="true" style="${xsl_medicationagreements}" destdir="${xsl.output}" extension=".xml" useImplicitFileset="false">
+                <fileset refid="inputfilesMedicationAgreements"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
+    </target>
+    
+    <target name="setup" description="Setup ${build.dir} containing the new/schemas folder from the original ADA project">
+        <mkdir dir="${build.dir}"/>
+        
+        <!--<delete dir="${build.dir}/ada_new"/>
+        <delete dir="${build.dir}/ada_schemas"/>
+        
+        <copy todir="${build.dir}/ada_new" failonerror="true">
+            <fileset dir="${project.source.dir}/new">
+                <include name="**"/>
+            </fileset>
+        </copy>
+        <copy todir="${build.dir}/ada_schemas" failonerror="true">
+            <fileset dir="${project.source.dir}/schemas">
+                <include name="**"/>
+            </fileset>
+        </copy>-->
+        
+        <mkdir dir="${build.dir}/ada_instance"/>
+        <mkdir dir="${build.dir}/hl7v3_instance"/>
+        <mkdir dir="${build.dir}/payload"/>
+    </target>
+</project>

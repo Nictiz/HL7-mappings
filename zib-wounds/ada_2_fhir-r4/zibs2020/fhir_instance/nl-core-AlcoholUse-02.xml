@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="nl-core-AlcoholUse-02"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AlcoholUse"/>
+   </meta>
+   <status value="final"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="228273003"/>
+         <display value="bevinding betreffende alcoholgebruik"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/nl-core-Patient-01"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria (Jo) van Putten-van der Giessen"/>
+   </subject>
+   <effectivePeriod>
+      <start value="1995-01-01"/>
+   </effectivePeriod>
+   <valueCodeableConcept>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="219006"/>
+         <display value="Drinkt alcohol"/>
+      </coding>
+   </valueCodeableConcept>
+   <component>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="897148007"/>
+            <display value="inname van alcoholische drank"/>
+         </coding>
+      </code>
+      <valueQuantity>
+         <value value="3"/>
+         <unit value="eenheden per dag"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="{eenheden per dag}"/>
+      </valueQuantity>
+   </component>
+</Observation>

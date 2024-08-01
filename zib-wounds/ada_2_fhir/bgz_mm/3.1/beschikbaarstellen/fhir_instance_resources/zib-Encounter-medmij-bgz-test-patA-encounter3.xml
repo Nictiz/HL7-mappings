@@ -1,0 +1,123 @@
+<Encounter xmlns="http://hl7.org/fhir">
+   <id value="zib-Encounter-medmij-bgz-test-patA-encounter3"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Contact. Subject: Anouk A. Anouk van XXX_Rijn de XXX_Vries. Id: patA-encounter3 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <th>Type contact</th>
+                  <td>
+                     <div>
+                        <span title="Inpatient (IMP - v3/ActCode)">Inpatient</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>30 november 2022</td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>Nabloeding</td>
+               </tr>
+               <tr>
+                  <th>Participant</th>
+                  <td>
+                     <div>
+                        <span title="Performer (PRF - v3/ParticipationType)">Performer</span> - Olivier Ruben O.R. Olivier de Rijcke || Orthopedisch chirurg || Ziekenhuis het Hogeland</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Zorgaanbieder</th>
+                  <td>Ziekenhuis het Hogeland</td>
+               </tr>
+               <tr>
+                  <th>Opnamegegevens</th>
+                  <td>
+                     <ul>
+                        <li>Opname vanuit: <span title="Home (264362003 - SNOMED CT)">Home</span>
+                        </li>
+                        <li>Ontslagwijze: <span title="Home (264362003 - SNOMED CT)">Home</span>
+                        </li>
+                     </ul>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patA-encounter3"/>
+   </identifier>
+   <status value="finished"/>
+   <class>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActCode"/>
+               <code value="IMP"/>
+               <display value="Inpatient"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="http://hl7.org/fhir/v3/ActCode"/>
+      <code value="IMP"/>
+      <display value="Inpatient"/>
+   </class>
+   <subject>
+      <reference value="Patient/medmij-bgz-test-patA"/>
+      <display value="Anouk A. Anouk van XXX_Rijn de XXX_Vries"/>
+   </subject>
+   <participant>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+            <code value="PRF"/>
+            <display value="Performer"/>
+         </coding>
+      </type>
+      <individual>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-medmij-bgz-test-0300000101-03206000001"/>
+               <display value="Olivier Ruben O.R. Olivier de Rijcke || Orthopedisch chirurg || Ziekenhuis het Hogeland"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/-practitioner-medmij-bgz-test-2-16-840-1-113883-2-4-6-1-03000001"/>
+         <display value="Olivier Ruben O.R. Olivier de Rijcke"/>
+      </individual>
+   </participant>
+   <period>
+      <start value="2022-11-30"/>
+      <end value="2022-11-30"/>
+   </period>
+   <reason>
+      <text value="Nabloeding"/>
+   </reason>
+   <hospitalization>
+      <admitSource>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="264362003"/>
+            <display value="Home"/>
+         </coding>
+      </admitSource>
+      <dischargeDisposition>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="264362003"/>
+            <display value="Home"/>
+         </coding>
+      </dischargeDisposition>
+   </hospitalization>
+   <serviceProvider>
+      <reference value="Organization/-organization-medmij-bgz-test-2-16-840-1-113883-2-4-6-1-06000001"/>
+      <display value="Ziekenhuis het Hogeland"/>
+   </serviceProvider>
+</Encounter>

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Generated from HL7v3 verstrekkingenlijst 6.12 xml with message id (QURX_IN990113NL/id) root: 2.16.840.1.113883.2.4.6.6.1.1 and extension: 0123456789.-->
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../beschikbaarstellen_medicatiegegevens/ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2023-12-13T17:12:04.15637+01:00"
+         last-update-date="2023-12-13T17:12:04.15637+01:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp93"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.301"
+                                            transactionEffectiveDate="2022-02-07T00:00:00"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="Generated from HL7v3 verstrekkingenlijst 6.12 xml"
+                                            id="QURX_EX990113NL_02_gebruiksperiode.xml">
+         <patient>
+            <naamgegevens>
+               <initialen value="J.J."/>
+               <naamgebruik code="NL4"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam gevolgd door geslachtsnaam partner"/>
+               <geslachtsnaam>
+                  <voorvoegsels value="le "/>
+                  <achternaam value="Noble"/>
+               </geslachtsnaam>
+               <geslachtsnaam_partner>
+                  <voorvoegsels_partner value="van "/>
+                  <achternaam_partner value="Son"/>
+               </geslachtsnaam_partner>
+            </naamgegevens>
+            <adresgegevens>
+               <straat value="Boerhaavelaan"/>
+               <huisnummer value="24"/>
+               <postcode value="2035 RC"/>
+               <woonplaats value="HAARLEM"/>
+               <adres_soort code="HP"
+                            codeSystem="2.16.840.1.113883.5.1119"
+                            displayName="Officieel adres"/>
+            </adresgegevens>
+            <identificatienummer value="012345672" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1972-12-18"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="mag07"
+                           root="1.3.6.1.4.1.58606.1.2.2.16.528.1.1007.3.3.1234567.3"/>
+            <toedieningsafspraak><!--The toedieningsafspraak/id is converted from the medicationDispenseEvent/id. root preconcatenated, extension copied.-->
+               <identificatie root="1.3.6.1.4.1.58606.1.1.2.16.528.1.1007.3.3.1234567.3"
+                              value="mag07"/>
+               <!--Afspraakdatum is benaderd met de verstrekkingsdatum (medicationDispenseEvent/effectiveTime)-->
+               <toedieningsafspraak_datum_tijd value="2016-03-03"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="2017-06-14"/>
+                  <tijds_duur value="100" unit="dag"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder value="d983e144" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d983e80" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <!--mp9-gebruiksinstructie-from-mp612-->
+               <gebruiksinstructie>
+                  <omschrijving value="gebruik volgens schema"/>
+                  <toedieningsweg code="NI"
+                                  codeSystem="2.16.840.1.113883.5.1008"
+                                  displayName="geen informatie"/>
+                  <aanvullende_instructie code="1131"
+                                          codeSystem="2.16.840.1.113883.2.4.4.5"
+                                          displayName="gebruik volgens schema"/>
+                  <!--mp9-doseerinstructie-from-mp612-freq-->
+                  <doseerinstructie>
+                     <dosering><!--mp9-keerdosis-->
+                        <keerdosis>
+                           <aantal>
+                              <minimum_waarde value="1">
+                                 <adaextension>
+                                    <translation value="1"
+                                                 code="121"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="zakje"/>
+                                 </adaextension>
+                              </minimum_waarde>
+                              <maximum_waarde value="61">
+                                 <adaextension>
+                                    <translation value="61"
+                                                 code="121"
+                                                 codeSystem="2.16.840.1.113883.2.4.4.1.361"
+                                                 displayName="zakje"/>
+                                 </adaextension>
+                              </maximum_waarde>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    displayName="Stuk"/>
+                        </keerdosis>
+                        <toedieningsschema><!--mp9-vaste-frequentie-from-mp-612--><!--geen frequentie in input--></toedieningsschema>
+                        <zo_nodig><!--maximale dosering-->
+                           <maximale_dosering>
+                              <aantal value="4"/>
+                              <eenheid code="245"
+                                       codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                       displayName="Stuk"/>
+                              <tijdseenheid value="7" unit="dag"/>
+                           </maximale_dosering>
+                        </zo_nodig>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="UNK" root="2.16.840.1.113883.5.1008"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="d983e80">
+               <product_code code="OTH"
+                             codeSystem="2.16.840.1.113883.5.1008"
+                             displayName=""
+                             originalText="Easyspump penicilline g 18me"/>
+               <product_specificatie>
+                  <product_naam value="Easyspump penicilline g 18me"/>
+                  <omschrijving value=" Titel: Easyspump penicilline g 18me Regel: Water v inject ampul 5ml Regel: injpdr penincil.g na 1milj e Regel: Infnacl 0,9% fl 100ml Regel: Easypump lt 125-24 5ml/uur "/>
+                  <ingredient>
+                     <ingredient_code code="2558092"
+                                      codeSystem="2.16.840.1.113883.2.4.4.7"
+                                      displayName="PENICILLIN G-NA SANDOZ INJPDR FLACON  1 MEGA IE"/>
+                     <ingredient_code code="18872"
+                                      codeSystem="2.16.840.1.113883.2.4.4.1"
+                                      displayName="BENZYLPENICILLINE INJPDR  1.000.000IE (NATRIUM)"/>
+                     <sterkte>
+                        <ingredient_hoeveelheid>
+                           <waarde value="18"/>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </ingredient_hoeveelheid>
+                        <product_hoeveelheid>
+                           <waarde value="1"/>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </product_hoeveelheid>
+                     </sterkte>
+                  </ingredient>
+                  <ingredient>
+                     <ingredient_code code="2257602"
+                                      codeSystem="2.16.840.1.113883.2.4.4.7"
+                                      displayName="WATER VOOR INJECTIE CF FLACON  5ML"/>
+                     <ingredient_code code="88730"
+                                      codeSystem="2.16.840.1.113883.2.4.4.1"
+                                      displayName="WATER OPLOSMIDDEL PARENTERAAL"/>
+                     <sterkte>
+                        <ingredient_hoeveelheid>
+                           <waarde value="5"/>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </ingredient_hoeveelheid>
+                        <product_hoeveelheid>
+                           <waarde value="1"/>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </product_hoeveelheid>
+                     </sterkte>
+                  </ingredient>
+                  <ingredient>
+                     <ingredient_code code="598968"
+                                      codeSystem="2.16.840.1.113883.2.4.4.7"
+                                      displayName="INFVLST NACL 9MG/ML ZAK  100ML"/>
+                     <ingredient_code code="19100"
+                                      codeSystem="2.16.840.1.113883.2.4.4.1"
+                                      displayName="NATRIUMCHLORIDE INFVLST  9MG/ML"/>
+                     <sterkte>
+                        <ingredient_hoeveelheid>
+                           <waarde value="1"/>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </ingredient_hoeveelheid>
+                        <product_hoeveelheid>
+                           <waarde value="1"/>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </product_hoeveelheid>
+                     </sterkte>
+                  </ingredient>
+                  <ingredient>
+                     <ingredient_code code="15760839"
+                                      codeSystem="2.16.840.1.113883.2.4.4.8"
+                                      displayName="EASYPUMP II LT 125- 25 S 5ML/UUR 125ML"/>
+                     <sterkte>
+                        <ingredient_hoeveelheid>
+                           <waarde value="1"/>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </ingredient_hoeveelheid>
+                        <product_hoeveelheid>
+                           <waarde value="1"/>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </product_hoeveelheid>
+                     </sterkte>
+                  </ingredient>
+               </product_specificatie>
+            </farmaceutisch_product>
+            <zorgaanbieder id="d983e144">
+               <zorgaanbieder_identificatienummer value="01234567" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam nullFlavor="NI"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

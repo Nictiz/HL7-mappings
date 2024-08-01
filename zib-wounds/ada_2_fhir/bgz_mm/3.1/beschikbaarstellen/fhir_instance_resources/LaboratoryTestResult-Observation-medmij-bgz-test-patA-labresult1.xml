@@ -1,0 +1,108 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="LaboratoryTestResult-Observation-medmij-bgz-test-patA-labresult1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Anouk A. Anouk van XXX_Rijn de XXX_Vries. Id: patA-labResult1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Categorie: <span title="bevinding betreffende laboratoriumonderzoek (49581000146104 - SNOMED CT)">bevinding betreffende laboratoriumonderzoek</span>, <span title="Chemistry (275711006 - SNOMED CT)">Chemistry</span>, Status: definitief</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Staphylococcus aureus aangetroffen</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td>08:50:00, 12 mei 2019</td>
+               </tr>
+               <tr>
+                  <th>Specimen</th>
+                  <td>Bloed</td>
+               </tr>
+               <tr>
+                  <th>Gerelateerd</th>
+                  <td>
+                     <ul>
+                        <li>has-member - Hemoglobine [mol/volume] in bloed</li>
+                        <li>has-member - Ferritine [massa/volume] in bloed</li>
+                     </ul>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="Hemoglobin [Mass/volume] in Venous blood (30350-3 - LOINC)">Hemoglobin [Mass/volume] in Venous blood</span>
+                  </td>
+                  <td/>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patA-labResult1"/>
+   </identifier>
+   <status value="final">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.16.1"/>
+               <code value="final"/>
+               <display value="Final"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </status>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="49581000146104"/>
+         <display value="bevinding betreffende laboratoriumonderzoek"/>
+      </coding>
+   </category>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="275711006"/>
+         <display value="Chemistry"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="30350-3"/>
+         <display value="Hemoglobin [Mass/volume] in Venous blood"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/medmij-bgz-test-patA"/>
+      <display value="Anouk A. Anouk van XXX_Rijn de XXX_Vries"/>
+   </subject>
+   <effectiveDateTime value="2019-05-12T08:50:00+02:00"/>
+   <comment value="Staphylococcus aureus aangetroffen"/>
+   <specimen>
+      <reference value="Specimen/oryTestResult-Specimen-Isolate-medmij-bgz-test-patA-labresult1-1"/>
+      <display value="Bloed"/>
+   </specimen>
+   <related>
+      <type value="has-member"/>
+      <target>
+         <reference value="Observation/boratoryTestResult-Observation-medmij-bgz-test-patA-labresult1-1"/>
+         <display value="Hemoglobine [mol/volume] in bloed"/>
+      </target>
+   </related>
+   <related>
+      <type value="has-member"/>
+      <target>
+         <reference value="Observation/boratoryTestResult-Observation-medmij-bgz-test-patA-labresult1-2"/>
+         <display value="Ferritine [massa/volume] in bloed"/>
+      </target>
+   </related>
+</Observation>

@@ -1,0 +1,147 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../9.2.0/sturen_afhandeling_medicatievoorschrift/ada_schemas/ada_sturen_afhandeling_medicatievoorschrift.xsd">
+   <meta status="new"
+         created-by="medicatieprocesada"
+         last-update-by="medicatieprocesada"
+         creation-date="2020-10-13T09:48:12.747+02:00"
+         last-update-date="2020-10-13T09:50:20.872+02:00"/>
+   <data>
+      <sturen_afhandeling_medicatievoorschrift app="mp-mp92"
+                                               shortName="sturen_afhandeling_medicatievoorschrift"
+                                               formName="afhandelen_medicatievoorschrift"
+                                               transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.334"
+                                               transactionEffectiveDate="2022-02-07T00:00:00"
+                                               versionDate=""
+                                               prefix="mp-"
+                                               language="nl-NL"
+                                               title="MP KWALIFICATIE Afhandelen Voorschrift Scenarioset 1-1-2a"
+                                               desc="Afhandelen medicatievoorschrift met een toediedingsafspraak gebruiksperiode ingangsdatum en duur (weken)"
+                                               id="av-var-Scenarioset1-1-2a">
+         <patient comment="">
+            <naamgegevens comment="">
+               <initialen value="A. "/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam comment="">
+                  <voorvoegsels value="van de "/>
+                  <achternaam value="XXX_Boschman"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999912100" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1964-01-08" datatype="datetime"/>
+            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_907_start_duur-BSC"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <toedieningsafspraak comment="">
+               <identificatie value="MBH_907_start_duur_TA-BSC"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <toedieningsafspraak_datum_tijd value="T+0D{12:30:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T+0D{00:00:00}" datatype="datetime"/>
+                  <tijds_duur unit="week" value="3"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference" value="ada2ada_zorgaanbieder_1"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product datatype="reference" value="ada2ada_product_1"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt;, gedurende 3 weken, 1 maal per dag 1 stuk, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <nominale_waarde value="1"/>
+                           </aantal>
+                           <eenheid codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    displayName="stuk"
+                                    code="245"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid unit="dag" value="1"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak comment="">
+                  <identificatie value="MBH_907_start_duur_MA-BSC"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+            <medicatieverstrekking comment="">
+               <identificatie value="MBH_907_start_duur_MVE-BSC"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <medicatieverstrekkings_datum_tijd value="T+0D{12:30:00}" datatype="datetime"/>
+               <verstrekker>
+                  <zorgaanbieder datatype="reference" value="ada2ada_zorgaanbieder_2"/>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="21"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <farmaceutisch_product datatype="reference" value="ada2ada_product_2"/>
+               </verstrekt_geneesmiddel>
+               <relatie_verstrekkingsverzoek comment="">
+                  <identificatie value="MBH_907_start_duur_VV-BSC"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_verstrekkingsverzoek>
+            </medicatieverstrekking>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="ada2ada_product_1">
+               <product_code code="26638"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="LISINOPRIL 10MG TABLET"
+                             codeSystemName="G-Standaard PRK"/>
+               <product_code code="71587"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="LISINOPRIL 10MG TABLET"/>
+               <product_code code="1506773"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaar HPK"
+                             displayName="LISINOPRIL SANDOZ TABLET 10MG"/>
+            </farmaceutisch_product>
+            <farmaceutisch_product id="ada2ada_product_2">
+               <product_code code="26638"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             displayName="LISINOPRIL 10MG TABLET"
+                             codeSystemName="G-Standaard PRK"/>
+               <product_code code="71587"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="LISINOPRIL 10MG TABLET"/>
+               <product_code code="1506773"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             displayName="LISINOPRIL SANDOZ TABLET 10MG"/>
+            </farmaceutisch_product>
+            <zorgaanbieder id="ada2ada_zorgaanbieder_1">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+            </zorgaanbieder>
+            <zorgaanbieder id="ada2ada_zorgaanbieder_2">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </sturen_afhandeling_medicatievoorschrift>
+   </data>
+</adaxml>

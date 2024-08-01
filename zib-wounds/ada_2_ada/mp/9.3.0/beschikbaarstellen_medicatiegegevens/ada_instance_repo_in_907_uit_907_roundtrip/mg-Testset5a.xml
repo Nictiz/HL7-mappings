@@ -1,0 +1,303 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../9.0.7/beschikbaarstellen_medicatiegegevens/ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="medicatieprocesada"
+         last-update-by="medicatieprocesada"
+         creation-date="2020-10-01T15:28:21.777+02:00"
+         last-update-date="2020-10-23T14:33:43.586+02:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp907"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="uitwisselen_medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.102"
+                                            transactionEffectiveDate="2016-03-23T16:32:43"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="TESTSUITE Medicatiegegevens Testset 5a (Nierfunctie)"
+                                            id="mg-Testset5a">
+         <patient comment="">
+            <naamgegevens comment="">
+               <initialen value="C. "/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam comment="">
+                  <achternaam value="XXX-CSC-Smoketest-A"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999990020" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1950-02-03" datatype="datetime"/>
+            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+         </patient>
+         <medicamenteuze_behandeling comment="">
+            <identificatie value="MBH_907_Nierfunctie"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak comment="">
+               <gebruiksperiode_start value="T+0D{00:00:00}" datatype="datetime"/>
+               <identificatie value="MBH_907_Nierfunctie_MA_1"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <afspraakdatum value="T+0D{07:00:00}" datatype="datetime"/>
+               <voorschrijver>
+                  <zorgverlener>
+                     <zorgverlener_identificatienummer value="000001116" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Pieter"/>
+                           <geslachtsnaam comment="">
+                              <achternaam value="Plat"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                                  codeSystemVersion="2017-12-14T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatienummer value="00001116" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Staden"/>
+                        <adresgegevens comment="">
+                           <straat value="Kerkstraat"/>
+                           <huisnummer value="4"/>
+                           <postcode value="1234AB"/>
+                           <woonplaats value="Onze Stad"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="ada2ada_zorgaanbieder_1"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="ada2ada_zorgverlener_1"/>
+                     </adaextension>
+                  </zorgverlener>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <product>
+                     <product_code displayName="LEVOFLOXACINE TABLET OMHULD 500MG"
+                                   code="48763"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="103934"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   displayName="LEVOFLOXACINE TABLET OMHULD 500MG"
+                                   codeSystemName="G-Standaard GPK"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_product_1"/>
+                     </adaextension>
+                  </product>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt;, tot nader orde, 3 maal per week 1 stuk, oraal "/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  code="9"
+                                  displayName="Oraal"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="3"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="week"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <verstrekkingsverzoek comment="">
+               <identificatie root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"
+                              value="MBH_907_Nierfunctie_VV_1"/>
+               <datum value="T+0D{07:00:00}" datatype="datetime"/>
+               <auteur>
+                  <zorgverlener>
+                     <zorgverlener_identificatie_nummer value="000001116" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Pieter"/>
+                           <geslachtsnaam comment="">
+                              <achternaam value="Plat"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                                  codeSystemVersion="2017-12-14T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatie_nummer value="00001116" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Staden"/>
+                        <adresgegevens comment="">
+                           <straat value="Kerkstraat"/>
+                           <huisnummer value="4"/>
+                           <postcode value="1234AB"/>
+                           <woonplaats value="Onze Stad"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="ada2ada_zorgaanbieder_2"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="ada2ada_zorgverlener_2"/>
+                     </adaextension>
+                  </zorgverlener>
+               </auteur>
+               <te_verstrekken_hoeveelheid comment="">
+                  <aantal value="36"/>
+                  <eenheid codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           code="245"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <te_verstrekken_geneesmiddel>
+                  <product>
+                     <product_code code="48763"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="LEVOFLOXACINE TABLET OMHULD 500MG"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="103934"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   displayName="LEVOFLOXACINE TABLET OMHULD 500MG"
+                                   codeSystemName="G-Standaard GPK"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_product_2"/>
+                     </adaextension>
+                  </product>
+               </te_verstrekken_geneesmiddel>
+               <beoogd_verstrekker>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatienummer value="01236579" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek De Sleutel"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_zorgaanbieder_3"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </beoogd_verstrekker>
+               <relatie_naar_medicatieafspraak comment="">
+                  <identificatie value="MBH_907_Nierfunctie_MA_1"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_naar_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak comment="">
+               <gebruiksperiode_start value="T+0D{00:00:00}" datatype="datetime"/>
+               <identificatie value="MBH_907_Nierfunctie_TA_1"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <afspraakdatum value="T+0D{08:00:00}" datatype="datetime"/>
+               <verstrekker>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01236579" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek De Sleutel"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_zorgaanbieder_4"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <product>
+                     <product_code displayName="LEVOFLOXACINE TABLET OMHULD 500MG"
+                                   code="48763"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="103934"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   displayName="LEVOFLOXACINE TABLET OMHULD 500MG"
+                                   codeSystemName="G-Standaard GPK"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_product_3"/>
+                     </adaextension>
+                  </product>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt;, tot nader orde, 3 maal per week 1 stuk, oraal "/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  code="9"
+                                  displayName="Oraal"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="3"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="week"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_naar_medicatieafspraak comment="">
+                  <identificatie value="MBH_907_Nierfunctie_MA_1"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               </relatie_naar_medicatieafspraak>
+            </toedieningsafspraak>
+            <verstrekking comment="">
+               <identificatie value="MBH_907_Nierfunctie_MVE_1"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <datum value="T+0D{08:00:00}" datatype="datetime"/>
+               <verstrekker>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01236579" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek De Sleutel"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_zorgaanbieder_5"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="36"/>
+                  <eenheid codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           code="245"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <product>
+                     <product_code code="48763"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="LEVOFLOXACINE TABLET OMHULD 500MG"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="103934"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   displayName="LEVOFLOXACINE TABLET OMHULD 500MG"
+                                   codeSystemName="G-Standaard GPK"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_product_4"/>
+                     </adaextension>
+                  </product>
+               </verstrekt_geneesmiddel>
+               <relatie_naar_verstrekkingsverzoek comment="">
+                  <identificatie value="MBH_907_Nierfunctie_VV_1"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_naar_verstrekkingsverzoek>
+            </verstrekking>
+         </medicamenteuze_behandeling>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

@@ -1,0 +1,114 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="zib-MedicationAgreement-mp9-tsMBH-907-bijzonderekeerdosis-MA-GSB"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationAgreement"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Medicatieafspraak. Subject: F. XXX-GBZ-Smoketest-B. Id: tsMBH_907_bijzonderekeerdosis_MA-GSB (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1), Categorie: <span title="Prescription (procedure) (16076005 - SNOMED CT)">Prescription (procedure)</span>, <span style="display: block;">Intentie: aanvraag</span>
+               <span style="display: block;">Aangevraagd door: Pieter de Plat || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Staden</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Medicamenteuze behandel-id</th>
+                  <td>tsMBH_907_bijzonderekeerdosis-GSB (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+               </tr>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>CINNARIZINE/CHLOORCYCLIZINE TABLET 12,5/25MG</td>
+               </tr>
+               <tr>
+                  <th>Gemaakt</th>
+                  <td>${DATE, T, D, +0}T08:15:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Gebruiksduur</th>
+                  <td>${DATE, T, D, +0}T00:00:00+02:00 - ${DATE, T, D, +5}T23:59:59+02:00</td>
+               </tr>
+               <tr>
+                  <th>Doseerinstructie</th>
+                  <td>
+                     <div>Tekst: Vanaf T, tot en met T + 5 dagen, 3 maal per dag 0.5 stuk, oraal</div>
+                     <div>Timing: <div>3 maal per dag</div>
+                     </div>
+                     <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
+                     </div>
+                     <div>Dosering: 0.5 stuk</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-PeriodOfUse">
+      <valuePeriod>
+         <start value="${DATE, T, D, +0}T00:00:00+02:00"/>
+         <end value="${DATE, T, D, +5}T23:59:59+02:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="tsMBH_907_bijzonderekeerdosis-GSB"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      <value value="tsMBH_907_bijzonderekeerdosis_MA-GSB"/>
+   </identifier>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="16076005"/>
+         <display value="Prescription (procedure)"/>
+      </coding>
+      <text value="Medicatieafspraak"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/zib-Product-mp9-2-16-840-1-113883-2-4-4-10-86"/>
+      <display value="CINNARIZINE/CHLOORCYCLIZINE TABLET 12,5/25MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/F-XXX-GBZ-SMOKETEST-B"/>
+      <display value="F. XXX-GBZ-Smoketest-B"/>
+   </subject>
+   <authoredOn value="${DATE, T, D, +0}T08:15:00+02:00"/>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-mp9-000001116010000001116"/>
+               <display value="Pieter de Plat || Huisartsen, niet nader gespecificeerd || Huisartsenpraktijk Staden"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-mp9-2-16-528-1-1007-3-1-000001116"/>
+         <display value="Pieter de Plat"/>
+      </agent>
+   </requester>
+   <dosageInstruction>
+      <text value="Vanaf T, tot en met T + 5 dagen, 3 maal per dag 0.5 stuk, oraal"/>
+      <timing>
+         <repeat>
+            <frequency value="3"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="oraal"/>
+         </coding>
+      </route>
+      <doseQuantity>
+         <value value="0.5"/>
+         <unit value="stuk"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="245"/>
+      </doseQuantity>
+   </dosageInstruction>
+</MedicationRequest>

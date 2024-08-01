@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Generated from HL7v3 instance.-->
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:nf="http://www.nictiz.nl/functions"
+        xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
+        xmlns:sdtc="urn:hl7-org:sdtc"
+        xmlns:pharm="urn:ihe:pharm:medication"
+        xmlns:hl7="urn:hl7-org:v3"
+        xmlns:hl7nl="urn:hl7-nl:v3"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2022-08-23T14:00:04.112389+02:00"
+         last-update-date="2022-08-23T14:00:04.112389+02:00"/>
+   <data><!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
+      <beschikbaarstellen_medicatiegegevens app="mp-mp907"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="uitwisselen_medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.102"
+                                            transactionEffectiveDate="2016-03-23T16:32:43"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="MP90_Medicatiegegevens_03f_MA_vasteTijden"
+                                            id="MP90_Medicatiegegevens_03f_MA_vasteTijden">
+         <patient>
+            <naamgegevens>
+               <voornamen value="Joris"/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="Hansman"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="012345672" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1984-05-12"/>
+            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1"/>
+            <meerling_indicator value="false"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="#MB_03f" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak>
+               <gebruiksperiode_start value="2017-04-28"/>
+               <identificatie value="#MB_03f#MA_01"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <afspraakdatum value="2016-06-23"/>
+               <gebruiksperiode value="60" unit="dag"/>
+               <voorschrijver>
+                  <zorgverlener>
+                     <zorgverlener_identificatienummer value="012345678" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <ongestructureerde_naam value="Dr Jansen"/>
+                           <geslachtsnaam>
+                              <achternaam nullFlavor="NI"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="01.016"
+                                  codeSystem="2.16.840.1.113883.2.4.15.111"
+                                  codeSystemName="RoleCodeNL - zorgverlenertype (natuurlijke personen)"
+                                  displayName="Internist"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatienummer value="URAnummer" root="1.2.3.4"/>
+                        <organisatie_naam value="Ziekenhuis zus en zo"/>
+                        <adresgegevens>
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="10"/>
+                           <postcode value="1111 AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                     </zorgaanbieder>
+                  </zorgverlener>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <product>
+                     <product_code code="5509"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   codeSystemName="G-Standaard PRK"
+                                   displayName="Metformine HCL CF tablet 850 mg"/>
+                     <product_code code="15865"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="METFORMINE TABLET 850MG"/>
+                  </product>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf 28 april 2017, Gedurende 60 dagen, Elke dag om precies 08:00, 14:00 en 20:00 uur 1 STUK"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard tabel voor toedieningswegen: subtabel 0007"
+                                  displayName="ORAAL"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <vaste_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    displayName="Stuk"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <is_flexibel value="false"/>
+                           <toedientijd value="2016-06-26T08:00"/>
+                           <toedientijd value="2016-06-26T14:00"/>
+                           <toedientijd value="2016-06-26T20:00"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+         </medicamenteuze_behandeling>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

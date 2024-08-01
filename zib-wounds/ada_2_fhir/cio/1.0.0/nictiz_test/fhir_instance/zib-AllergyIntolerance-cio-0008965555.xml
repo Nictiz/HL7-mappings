@@ -1,0 +1,79 @@
+<AllergyIntolerance xmlns="http://hl7.org/fhir">
+   <id value="zib-AllergyIntolerance-cio-0008965555"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-AllergyIntolerance"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Allergie/intolerantie. Patiënt: de Groot. Id: 0008965555 (urn:oid:2.16.528.1.1007.3.3.123451.1.432), Categorie: <span title="neiging tot ongewenste reactie op geneesmiddel (419511003 - SNOMED CT)">neiging tot ongewenste reactie op geneesmiddel</span>, Status: actief / bevestigd<span style="display: block;">Ingevoerd door: Persoonsidentificatie: 000001111 (uit codesysteem UZI Personen ).</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Code</th>
+                  <td>
+                     <span title="TETRACYCLINE (48712 - G-Standaard Bestand 750)">TETRACYCLINE</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Informant</th>
+                  <td>de Groot</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.528.1.1007.3.3.123451.1.432"/>
+      <value value="0008965555"/>
+   </identifier>
+   <clinicalStatus value="active">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActStatus"/>
+               <code value="active"/>
+               <display value="active"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </clinicalStatus>
+   <verificationStatus value="confirmed"/>
+   <category value="medication">
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="419511003"/>
+               <display value="neiging tot ongewenste reactie op geneesmiddel"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+   </category>
+   <code>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.750"/>
+         <code value="48712"/>
+         <display value="TETRACYCLINE"/>
+      </coding>
+   </code>
+   <patient>
+      <reference value="Patient/DEGROOT"/>
+      <display value="de Groot"/>
+   </patient>
+   <recorder>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+         <valueReference>
+            <reference value="PractitionerRole/nl-core-practitionerrole-cio-000001111"/>
+            <display value="Persoonsidentificatie: 000001111 (uit codesysteem UZI Personen )."/>
+         </valueReference>
+      </extension>
+      <reference value="Practitioner/nl-core-practitioner-cio-2-16-528-1-1007-3-1-000001111"/>
+      <display value="000001111"/>
+   </recorder>
+   <asserter>
+      <reference value="Patient/DEGROOT"/>
+      <display value="de Groot"/>
+   </asserter>
+</AllergyIntolerance>

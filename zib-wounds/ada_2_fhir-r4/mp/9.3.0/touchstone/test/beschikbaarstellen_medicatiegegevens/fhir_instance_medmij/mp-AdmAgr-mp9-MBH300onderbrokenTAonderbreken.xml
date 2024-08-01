@@ -1,0 +1,112 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="mp-AdmAgr-mp9-MBH300onderbrokenTAonderbreken"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
+      <valueDateTime value="${DATE, T, D, -100}T19:12:00+02:00"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="Vanaf T - 153 dagen, tot en met T - 100 dagen, 1 maal per dag 1 stuk, Oraal, onderbroken"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+      <valuePeriod>
+         <start value="${DATE, T, D, -153}T00:00:00+02:00"/>
+         <end value="${DATE, T, D, -100}T23:59:59+02:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_300_onderbroken"/>
+      </valueIdentifier>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RelationAdministrationAgreement">
+      <valueReference>
+         <type value="MedicationDispense"/>
+         <identifier>
+            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+            <value value="MBH_300_onderbroken_TA"/>
+         </identifier>
+         <display value="relatie naar toedieningsafspraak met identificatie: MBH_300_onderbroken_TA || 2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+      </valueReference>
+   </extension>
+   <modifierExtension url="http://nictiz.nl/fhir/StructureDefinition/ext-StopType">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="385655000"/>
+            <display value="onderbroken"/>
+         </coding>
+      </valueCodeableConcept>
+   </modifierExtension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+      <value value="MBH_300_onderbroken_TA_onderbreken"/>
+   </identifier>
+   <status value="unknown"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422037009"/>
+         <display value="toedieningsafspraak"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/mp-PhPrd-mp9-21684011138832447-1099469"/>
+      <type value="Medication"/>
+      <display value="FUROSEMIDE CF TABLET 20MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-C-XXX-Dijk"/>
+      <type value="Patient"/>
+      <display value="Patient, C. XXX_Dijk"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/nl-core-HPrv-Org-mp9-Org-2165281100733-01236578"/>
+         <type value="Organization"/>
+         <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
+      </actor>
+   </performer>
+   <authorizingPrescription>
+      <type value="MedicationRequest"/>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <value value="MBH_300_onderbroken_MA_onderbreken"/>
+      </identifier>
+      <display value="relatie naar medicatieafspraak met identificatie: MBH_300_onderbroken_MA_onderbreken || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+   </authorizingPrescription>
+   <dosageInstruction>
+      <timing>
+         <repeat>
+            <frequency value="1"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+      <doseAndRate>
+         <doseQuantity>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+               <valueQuantity>
+                  <value value="1"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </valueQuantity>
+            </extension>
+            <value value="1"/>
+            <unit value="stuk"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="1"/>
+         </doseQuantity>
+      </doseAndRate>
+   </dosageInstruction>
+</MedicationDispense>

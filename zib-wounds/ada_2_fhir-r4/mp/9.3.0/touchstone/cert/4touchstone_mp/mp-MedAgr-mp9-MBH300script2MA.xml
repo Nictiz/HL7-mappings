@@ -1,0 +1,69 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="mp-MedAgr-mp9-MBH300script2MA"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="Vanaf T - 40 dagen, Volgens schema trombosedienst, Oraal"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+      <valuePeriod>
+         <start value="${DATE, T, D, -40}T00:00:00+02:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_300_script2"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      <value value="MBH_300_script2_MA"/>
+   </identifier>
+   <status value="unknown"/>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="33633005"/>
+         <display value="voorschrijven van geneesmiddel"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/mp-PhPrd-mp9-216840111388324410-7323"/>
+      <type value="Medication"/>
+      <display value="ACENOCOUMAROL TABLET 1MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-MXXX-Oorschot"/>
+      <type value="Patient"/>
+      <display value="Patient, M. XXX_Oorschot"/>
+   </subject>
+   <authoredOn value="${DATE, T, D, -40}T10:31:00+02:00"/>
+   <requester>
+      <reference value="PractitionerRole/nl-core-HPrf-PracRol-mp9-PrcRol-2165281100731-000001111"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+   </requester>
+   <note>
+      <text value="INR range: 2,0 - 3,0"/>
+   </note>
+   <dosageInstruction>
+      <additionalInstruction>
+         <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+            <code value="OTH"/>
+            <display value="overig"/>
+         </coding>
+         <text value="Volgens schema trombosedienst"/>
+      </additionalInstruction>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+   </dosageInstruction>
+</MedicationRequest>

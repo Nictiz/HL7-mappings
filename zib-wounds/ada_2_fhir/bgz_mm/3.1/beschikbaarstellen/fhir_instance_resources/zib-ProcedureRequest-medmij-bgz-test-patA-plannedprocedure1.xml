@@ -1,0 +1,100 @@
+<ProcedureRequest xmlns="http://hl7.org/fhir">
+   <id value="zib-ProcedureRequest-medmij-bgz-test-patA-plannedprocedure1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ProcedureRequest"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichtingaanvraag. Subject: Anouk A. Anouk van XXX_Rijn de XXX_Vries. Id: patA-procedure2 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Status: actief<span style="display: block;">Intentie: plan</span>
+               <span style="display: block;">Aangevraagd door: Franciscus Dominicus Antonius F.D.A. Frans Pleijster || Huisarts || Huisartsenpraktijk het Hogeland</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="Implantatie van gewrichtsprothese in knie (392238003 - SNOMED CT)">Implantatie van gewrichtsprothese in knie</span>
+                  </td>
+                  <td>
+                     <div>Wanneer: ${DATE, T, D, +11} - ${DATE, T, D, +11}</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Beoogde uitvoerende</th>
+                  <td>
+                     <div>Ziekenhuis het Hogeland</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>Artrose van linker kniegewricht</td>
+               </tr>
+               <tr>
+                  <td>Deel van lichaam</td>
+                  <td>
+                     <span title="Knie (49076000 - SNOMED CT)">Knie</span>
+                     <span title="Left (7771000 - SNOMED CT)">Left</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patA-procedure2"/>
+   </identifier>
+   <status value="active"/>
+   <intent value="plan"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="392238003"/>
+         <display value="Implantatie van gewrichtsprothese in knie"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/medmij-bgz-test-patA"/>
+      <display value="Anouk A. Anouk van XXX_Rijn de XXX_Vries"/>
+   </subject>
+   <occurrencePeriod>
+      <start value="${DATE, T, D, +11}"/>
+      <end value="${DATE, T, D, +11}"/>
+   </occurrencePeriod>
+   <requester>
+      <agent>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-medmij-bgz-test-0100000201-01501000001"/>
+               <display value="Franciscus Dominicus Antonius F.D.A. Frans Pleijster || Huisarts || Huisartsenpraktijk het Hogeland"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/-practitioner-medmij-bgz-test-2-16-840-1-113883-2-4-6-1-01000002"/>
+         <display value="Franciscus Dominicus Antonius F.D.A. Frans Pleijster"/>
+      </agent>
+   </requester>
+   <performer>
+      <reference value="Organization/-organization-medmij-bgz-test-2-16-840-1-113883-2-4-6-1-06000001"/>
+      <display value="Ziekenhuis het Hogeland"/>
+   </performer>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-medmij-bgz-test-patA-problem5"/>
+      <display value="Artrose van linker kniegewricht"/>
+   </reasonReference>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="Left"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="49076000"/>
+         <display value="Knie"/>
+      </coding>
+   </bodySite>
+</ProcedureRequest>

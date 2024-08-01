@@ -1,0 +1,115 @@
+<Procedure xmlns="http://hl7.org/fhir">
+   <id value="zib-Procedure-bgz-msz-bgz-msz-patA-procedure1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichting. Subject: Dennis D. Dennis Janse. Id: bgz-msz-patA-procedure1 (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6), Categorie: , Status: voltooid<span style="display: block;">Uitvoerende (<span title="Responsible Party (RESP - v3/ParticipationType)">Responsible Party</span>): Beendokter B. Beendokter Aangenaam || Orthopedisch chirurg || Ziekenhuis de Aandacht</span>
+               <span style="display: block;">Uitvoerende: Ziekenhuis de Aandacht</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="externe fixatie van fractuur van malleolus (111501000146106 - SNOMED CT)">externe fixatie van fractuur van malleolus</span>
+                  </td>
+                  <td>
+                     <div>Uitgevoerd: ${DATE, T, D, -45}T14:00:00+02:00 - ${DATE, T, D, -45}T15:00:00+02:00</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Gebaseerd op</th>
+                  <td>externe fixatie van fractuur van malleolus</td>
+               </tr>
+               <tr>
+                  <th>Deel van lichaam</th>
+                  <td>
+                     <span title="structuur van enkelgewricht (70258002 - SNOMED CT)">structuur van enkelgewricht</span>
+                     <span title="Left (7771000 - SNOMED CT)">Left</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Reden</th>
+                  <td>fractuur van enkel</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"/>
+      <value value="bgz-msz-patA-procedure1"/>
+   </identifier>
+   <basedOn>
+      <reference value="ProcedureRequest/zib-ProcedureRequest-bgz-msz-bgz-msz-patA-procedure1"/>
+      <display value="externe fixatie van fractuur van malleolus"/>
+   </basedOn>
+   <status value="completed"/>
+   <category>
+      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+         <valueCode value="unknown"/>
+      </extension>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="111501000146106"/>
+         <display value="externe fixatie van fractuur van malleolus"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/DENNIS-D--DENNIS-JANSE"/>
+      <display value="Dennis D. Dennis Janse"/>
+   </subject>
+   <performedPeriod>
+      <start value="${DATE, T, D, -45}T14:00:00+02:00"/>
+      <end value="${DATE, T, D, -45}T15:00:00+02:00"/>
+   </performedPeriod>
+   <performer>
+      <actor>
+         <reference value="Organization/nl-core-organization-bgz-msz-2-16-840-1-113883-2-4-6-1-20000002"/>
+         <display value="Ziekenhuis de Aandacht"/>
+      </actor>
+   </performer>
+   <performer>
+      <role>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+            <code value="RESP"/>
+            <display value="Responsible Party"/>
+         </coding>
+      </role>
+      <actor>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-bgz-msz-4567891201-03220000002"/>
+               <display value="Beendokter B. Beendokter Aangenaam || Orthopedisch chirurg || Ziekenhuis de Aandacht"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-840-1-113883-2-4-6-1-45678912"/>
+         <display value="Beendokter B. Beendokter Aangenaam"/>
+      </actor>
+   </performer>
+   <reasonReference>
+      <reference value="Condition/zib-Problem-bgz-msz-bgz-msz-patA-problem5"/>
+      <display value="fractuur van enkel"/>
+   </reasonReference>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="Left"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="70258002"/>
+         <display value="structuur van enkelgewricht"/>
+      </coding>
+   </bodySite>
+</Procedure>

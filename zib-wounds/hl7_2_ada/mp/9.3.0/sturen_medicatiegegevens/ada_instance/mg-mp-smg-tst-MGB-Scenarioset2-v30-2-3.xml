@@ -1,0 +1,120 @@
+<!--Generated from HL7v3 instance.-->
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2023-11-02T15:23:33.168629+01:00"
+         last-update-date="2023-11-02T15:23:33.168629+01:00"/>
+   <data><!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
+      <sturen_medicatiegegevens app="mp-mp93"
+                                shortName="sturen_medicatiegegevens"
+                                formName="medicatiegegevens"
+                                transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.376"
+                                transactionEffectiveDate="2022-06-30T00:00:00"
+                                prefix="mp-"
+                                language="nl-NL"
+                                title="mg-mp-smg-tst-MGB-Scenarioset2-v30-2-3"
+                                id="mg-mp-smg-tst-MGB-Scenarioset2-v30-2-3">
+         <patient>
+            <naamgegevens>
+               <initialen value="C."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Coenen"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900420" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime" value="1963-10-17"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_300_redenvanvoorschrijven"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatiegebruik>
+               <identificatie value="MBH_300_redenvanvoorschrijven_MGB"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <medicatiegebruik_datum_tijd datatype="datetime" value="2023-01-01T15:05:00"/>
+               <gebruik_indicator value="false"/>
+               <volgens_afspraak_indicator value="false"/>
+               <medicatiegebruik_stop_type code="385655000"
+                                           codeSystem="2.16.840.1.113883.6.96"
+                                           displayName="onderbroken"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime" value="2022-12-27T00:00:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2022-12-30T23:59:59"/>
+               </gebruiksperiode>
+               <gebruiksproduct>
+                  <farmaceutisch_product value="d1161e30" datatype="reference"/>
+               </gebruiksproduct>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf 27 dec 2022, tot en met 30 dec 2022, geneesmiddel niet in gebruik, onderbroken"/>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_redenvanvoorschrijven_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+               <voorschrijver>
+                  <zorgverlener value="d1161e86" datatype="reference"/>
+               </voorschrijver>
+               <informant>
+                  <informant_is_patient value="true"/>
+               </informant>
+               <auteur>
+                  <auteur_is_zorgverlener>
+                     <zorgverlener value="d1161e86" datatype="reference"/>
+                  </auteur_is_zorgverlener>
+               </auteur>
+               <reden_wijzigen_of_stoppen_gebruik code="405613005"
+                                                  codeSystem="2.16.840.1.113883.6.96"
+                                                  displayName="verrichting gepland"/>
+            </medicatiegebruik>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="d1161e30">
+               <product_code code="141631"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="Methotrexaat tablet 2,5mg"/>
+               <product_code code="16918"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="Methotrexaat tablet 2,5mg"/>
+            </farmaceutisch_product>
+            <zorgverlener id="d1161e86">
+               <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Bertine"/>
+                  <geslachtsnaam>
+                     <voorvoegsels value="van "/>
+                     <achternaam value="Doorn"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="0100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Huisartsen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder value="d1161e97" datatype="reference"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="d1161e97">
+               <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+               <adresgegevens>
+                  <straat value="Dorpsstraat"/>
+                  <huisnummer value="1"/>
+                  <postcode value="1234 AA"/>
+                  <woonplaats value="Ons Dorp"/>
+                  <adres_soort code="WP"
+                               codeSystem="2.16.840.1.113883.5.1119"
+                               displayName="Werkadres"/>
+               </adresgegevens>
+            </zorgaanbieder>
+         </bouwstenen>
+      </sturen_medicatiegegevens>
+   </data>
+</adaxml>

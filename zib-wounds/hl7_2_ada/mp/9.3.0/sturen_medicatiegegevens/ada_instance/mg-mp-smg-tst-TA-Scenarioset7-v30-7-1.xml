@@ -1,0 +1,136 @@
+<!--Generated from HL7v3 instance.-->
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2023-11-02T15:23:33.259698+01:00"
+         last-update-date="2023-11-02T15:23:33.259698+01:00"/>
+   <data><!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
+      <sturen_medicatiegegevens app="mp-mp93"
+                                shortName="sturen_medicatiegegevens"
+                                formName="medicatiegegevens"
+                                transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.376"
+                                transactionEffectiveDate="2022-06-30T00:00:00"
+                                prefix="mp-"
+                                language="nl-NL"
+                                title="mg-mp-smg-tst-TA-Scenarioset7-v30-7-1"
+                                id="mg-mp-smg-tst-TA-Scenarioset7-v30-7-1">
+         <patient>
+            <naamgegevens>
+               <initialen value="G."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Hess"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900614" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum datatype="datetime" value="1963-11-03"/>
+            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_300_magistraalalleingredienten"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <toedieningsafspraak>
+               <identificatie value="MBH_300_magistraalalleingredienten_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <toedieningsafspraak_datum_tijd datatype="datetime" value="2023-01-01T13:00:00"/>
+               <gebruiksperiode>
+                  <start_datum_tijd datatype="datetime" value="2023-01-01T00:00:00"/>
+                  <eind_datum_tijd datatype="datetime" value="2023-02-01T23:59:59"/>
+               </gebruiksperiode>
+               <verstrekker>
+                  <zorgaanbieder value="d2022e55" datatype="reference"/>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <farmaceutisch_product value="d2022e31" datatype="reference"/>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf 1 jan 2023, tot en met 1 feb 2023, Zo nodig, cutaan"/>
+                  <toedieningsweg code="53"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen"
+                                  displayName="cutaan"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <zo_nodig>
+                           <criterium>
+                              <criterium code="1137"
+                                         codeSystem="2.16.840.1.113883.2.4.4.5"
+                                         displayName="Zo nodig"/>
+                           </criterium>
+                        </zo_nodig>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_magistraalalleingredienten_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="d2022e31">
+               <product_code code="OTH"
+                             codeSystem="2.16.840.1.113883.5.1008"
+                             displayName="overig"/>
+               <product_specificatie>
+                  <product_naam value="Ureum 10% in eucerine cum aqua 100gr"/>
+                  <omschrijving value="Titel: Ureum 10% in eucerine cum aqua 100gr           Regel: UREUM 10gr           Regel: EUCERINE MET WATER FAGRON ad 100gr"/>
+                  <ingredient>
+                     <ingredient_code code="1042467"
+                                      codeSystem="2.16.840.1.113883.2.4.4.7"
+                                      codeSystemName="G-Standaard HPK"
+                                      displayName="UREUM ZALF 10% FAGRON"/>
+                     <sterkte>
+                        <ingredient_hoeveelheid>
+                           <waarde value="10"/>
+                           <eenheid code="215"
+                                    displayName="gram"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </ingredient_hoeveelheid>
+                        <product_hoeveelheid>
+                           <waarde value="100"/>
+                           <eenheid code="215"
+                                    displayName="gram"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </product_hoeveelheid>
+                     </sterkte>
+                  </ingredient>
+                  <ingredient>
+                     <ingredient_code code="1516981"
+                                      codeSystem="2.16.840.1.113883.2.4.4.7"
+                                      codeSystemName="G-Standaard HPK"
+                                      displayName="EUCERINE MET WATER FAGRON"/>
+                     <sterkte>
+                        <ingredient_hoeveelheid>
+                           <waarde value="90"/>
+                           <eenheid code="215"
+                                    displayName="gram"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </ingredient_hoeveelheid>
+                        <product_hoeveelheid>
+                           <waarde value="100"/>
+                           <eenheid code="215"
+                                    displayName="gram"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </product_hoeveelheid>
+                     </sterkte>
+                  </ingredient>
+               </product_specificatie>
+            </farmaceutisch_product>
+            <zorgaanbieder id="d2022e55">
+               <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Apotheek De Gulle Gaper"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </sturen_medicatiegegevens>
+   </data>
+</adaxml>

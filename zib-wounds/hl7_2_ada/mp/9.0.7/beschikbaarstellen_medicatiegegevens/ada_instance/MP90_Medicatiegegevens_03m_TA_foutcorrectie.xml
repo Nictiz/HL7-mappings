@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Generated from HL7v3 instance.-->
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:nf="http://www.nictiz.nl/functions"
+        xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
+        xmlns:sdtc="urn:hl7-org:sdtc"
+        xmlns:pharm="urn:ihe:pharm:medication"
+        xmlns:hl7="urn:hl7-org:v3"
+        xmlns:hl7nl="urn:hl7-nl:v3"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2022-08-23T14:00:04.182202+02:00"
+         last-update-date="2022-08-23T14:00:04.182202+02:00"/>
+   <data><!--Generated from HL7v3 organizer instance with: <code code="102" displayName="Medicatiegegevens" codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4" codeSystemName="ART DECOR transacties"/>-->
+      <beschikbaarstellen_medicatiegegevens app="mp-mp907"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="uitwisselen_medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.102"
+                                            transactionEffectiveDate="2016-03-23T16:32:43"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="MP90_Medicatiegegevens_03m_TA_foutcorrectie"
+                                            id="MP90_Medicatiegegevens_03m_TA_foutcorrectie">
+         <patient>
+            <naamgegevens>
+               <voornamen value="Joris"/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="Hansman"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="012345672" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1984-05-12"/>
+            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1"/>
+            <meerling_indicator value="false"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="#MB_03m1" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <toedieningsafspraak>
+               <gebruiksperiode_start value="2017-07-14"/>
+               <identificatie value="#MB_03m1#MA_03m1#TA_03m1"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <afspraakdatum value="2016-06-23T16:54:12"/>
+               <gebruiksperiode value="90" unit="dag"/>
+               <geannuleerd_indicator value="true"/>
+               <verstrekker>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="22343221" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek Boomsma"/>
+                  </zorgaanbieder>
+               </verstrekker>
+               <reden_afspraak value="Starten behandeling"/>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <product>
+                     <product_code code="15758001"
+                                   codeSystem="2.16.840.1.113883.2.4.4.8"
+                                   codeSystemName="G-Standaard Artikel"
+                                   displayName="SPIRIVA INHALPDR 18MCG"/>
+                     <product_code code="1476866"
+                                   codeSystem="2.16.840.1.113883.2.4.4.7"
+                                   codeSystemName="G-Standaard HPK"
+                                   displayName="SPIRIVA INHALPDR 18MCG"/>
+                     <product_code code="59919"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   codeSystemName="G-Standaard PRK"
+                                   displayName="TIOTROPIUM INHALATIECAPSULE 18UG"/>
+                     <product_code code="115371"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="TIOTROPIUM INHALATIECAPSULE 18UG"/>
+                  </product>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf 14 juli 2017, Gedurende 90 dagen, per dag 1 inhalatie"/>
+                  <toedieningsweg code="62"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard tabel voor toedieningswegen: subtabel 0007"
+                                  displayName="INHALATIE"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <vaste_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="208"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    displayName="Dosis"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <vaste_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_naar_medicatieafspraak>
+                  <identificatie value="#MB_03m1#MA_03m1"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_naar_medicatieafspraak>
+            </toedieningsafspraak>
+         </medicamenteuze_behandeling>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

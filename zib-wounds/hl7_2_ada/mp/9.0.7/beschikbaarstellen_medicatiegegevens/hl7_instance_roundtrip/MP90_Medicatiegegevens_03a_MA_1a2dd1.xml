@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:hl7nl="urn:hl7-nl:v3"
+           xmlns:pharm="urn:ihe:pharm:medication"
+           xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="urn:hl7-org:v3"
+           classCode="CLUSTER"
+           moodCode="EVN">
+   <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9239"/>
+   <code code="102"
+         displayName="Medicatiegegevens"
+         codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.4"
+         codeSystemName="ART DECOR transacties"/>
+   <statusCode nullFlavor="NI"/>
+   <recordTarget>
+      <patientRole>
+         <id extension="012345672" root="2.16.840.1.113883.2.4.6.3"/>
+         <patient>
+            <name>
+               <given qualifier="BR">Joris</given>
+               <family qualifier="BR">Hansman</family>
+            </name>
+            <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1"/>
+            <birthTime value="19840512"/>
+            <sdtc:multipleBirthInd xmlns:sdtc="urn:hl7-org:sdtc" value="false"/>
+         </patient>
+      </patientRole>
+   </recordTarget>
+   <component typeCode="COMP">
+      <substanceAdministration classCode="SBADM" moodCode="RQO">
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9235"/>
+         <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9233"/>
+         <id extension="#MB_03a#MA_03"
+             root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <code code="16076005"
+               displayName="Medicatieafspraak"
+               codeSystem="2.16.840.1.113883.6.96"
+               codeSystemName="SNOMED CT"/>
+         <text mediaType="text/plain">Vanaf 25 juli 2017, Gedurende 60 dagen, 1 tot 2 maal per dag 1 tablet</text>
+         <effectiveTime xsi:type="IVL_TS">
+            <low value="20170725"/>
+            <width value="60" unit="d"/>
+         </effectiveTime>
+         <routeCode code="9"
+                    codeSystem="2.16.840.1.113883.2.4.4.9"
+                    displayName="ORAAL"
+                    codeSystemName="G-Standaard tabel voor toedieningswegen: subtabel 0007"/>
+         <consumable>
+            <manufacturedProduct>
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9254"/>
+               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+                  <code code="49484"
+                        codeSystem="2.16.840.1.113883.2.4.4.10"
+                        displayName="Acetylsalicylzuur tabletmsr 100mg"
+                        codeSystemName="G-Standaard PRK">
+                     <translation code="103039"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1"
+                                  displayName="ACETYLSALICYLZUUR TABLETMSR 100MG"
+                                  codeSystemName="G-Standaard GPK"/>
+                  </code>
+               </manufacturedMaterial>
+            </manufacturedProduct>
+         </consumable>
+         <author>
+            <time value="20160623"/>
+            <assignedAuthor>
+               <id extension="012345678" root="2.16.528.1.1007.3.1"/>
+               <code code="01.016"
+                     codeSystem="2.16.840.1.113883.2.4.15.111"
+                     displayName="Internist"
+                     codeSystemName="RoleCodeNL - zorgverlenertype (natuurlijke personen)"/>
+               <assignedPerson>
+                  <name>Dr Jansen</name>
+               </assignedPerson>
+               <representedOrganization>
+                  <id extension="URAnummer" root="1.2.3.4"/>
+                  <name>Ziekenhuis zus en zo</name>
+                  <addr use="WP">
+                     <streetName>Dorpsstraat</streetName>
+                     <houseNumber>10</houseNumber>
+                     <postalCode>1111 AA</postalCode>
+                     <city>Ons Dorp</city>
+                  </addr>
+               </representedOrganization>
+            </assignedAuthor>
+         </author>
+         <entryRelationship typeCode="COMP">
+            <sequenceNumber value="1"/>
+            <substanceAdministration classCode="SBADM" moodCode="RQO">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9149"/>
+               <effectiveTime xsi:type="hl7nl:PIVL_TS" operator="A" isFlexible="true">
+                  <hl7nl:frequency>
+                     <hl7nl:numerator xsi:type="hl7nl:INT">
+                        <hl7nl:uncertainRange>
+                           <hl7nl:low xsi:type="hl7nl:INT" value="1"/>
+                           <hl7nl:high xsi:type="hl7nl:INT" value="2"/>
+                        </hl7nl:uncertainRange>
+                     </hl7nl:numerator>
+                     <hl7nl:denominator xsi:type="hl7nl:PQ" value="1" unit="d"/>
+                  </hl7nl:frequency>
+               </effectiveTime>
+               <doseQuantity>
+                  <center value="1" unit="1">
+                     <translation value="1"
+                                  code="245"
+                                  displayName="stuk"
+                                  codeSystem="2.16.840.1.113883.2.4.4.1.900.2"/>
+                  </center>
+               </doseQuantity>
+               <consumable xsi:nil="true"/>
+            </substanceAdministration>
+         </entryRelationship>
+         <entryRelationship typeCode="COMP" inversionInd="true">
+            <procedure classCode="PROC" moodCode="EVN">
+               <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
+               <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1" extension="#MB_03a"/>
+               <code code="1"
+                     displayName="Medicamenteuze behandeling"
+                     codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+            </procedure>
+         </entryRelationship>
+      </substanceAdministration>
+   </component>
+</organizer>

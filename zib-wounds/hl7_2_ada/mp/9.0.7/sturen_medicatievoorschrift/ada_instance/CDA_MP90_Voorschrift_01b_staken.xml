@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Generated from HL7v3 instance.-->
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:nf="http://www.nictiz.nl/functions"
+        xmlns:sdtc="urn:hl7-org:sdtc"
+        xmlns:pharm="urn:ihe:pharm:medication"
+        xmlns:hl7="urn:hl7-org:v3"
+        xmlns:hl7nl="urn:hl7-nl:v3"
+        xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatievoorschrift.xsd">
+   <meta status="new"
+         created-by="generated"
+         last-update-by="generated"
+         creation-date="2022-08-23T14:00:07.531934+02:00"
+         last-update-date="2022-08-23T14:00:07.531934+02:00"/>
+   <data>
+      <sturen_medicatievoorschrift app="mp-mp9"
+                                   shortName="sturen_medicatievoorschrift"
+                                   formName="sturen_voorschrift"
+                                   transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.95"
+                                   transactionEffectiveDate="2015-12-01T10:32:15"
+                                   versionDate=""
+                                   prefix="mp-"
+                                   language="nl-NL"
+                                   title="testbericht ADA conversie"
+                                   id="cd1badfb-2076-4c6f-b08e-bddbc7972340">
+         <patient>
+            <naamgegevens>
+               <voornamen value="Joris"/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="Hansman"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="012345672" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1984-05-12"/>
+            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1"/>
+            <meerling_indicator value="false"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_VS_01b_ST" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak>
+               <gebruiksperiode_eind value="2016-06-30T00:00"/>
+               <identificatie value="MBH_VS_01b_ST#MA_01"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <afspraakdatum value="2016-06-13T08:00:00"/>
+               <geannuleerd_indicator value="true"/>
+               <stoptype code="2"
+                         codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.1"
+                         displayName="Definitief staken"/>
+               <voorschrijver>
+                  <zorgverlener>
+                     <zorgverlener_identificatienummer value="006797896" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <initialen value="J."/>
+                           <naamgebruik code="NL1"
+                                        codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                                        displayName="Eigen geslachtsnaam"/>
+                           <geslachtsnaam>
+                              <voorvoegsels value="van "/>
+                              <achternaam value="Beek"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="01.016"
+                                  codeSystem="2.16.840.1.113883.2.4.15.111"
+                                  codeSystemName="RoleCodeNL - zorgverlenertype (natuurlijke personen)"
+                                  displayName="Internist"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatienummer value="URAnummer" root="1.2.3.4"/>
+                        <organisatie_naam value="Ziekenhuis zus en zo"/>
+                        <adresgegevens>
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="10"/>
+                           <postcode value="1111 AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                     </zorgaanbieder>
+                  </zorgverlener>
+               </voorschrijver>
+               <reden_wijzigen_of_staken code="5"
+                                         codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.2"
+                                         codeSystemName="Medicatieafspraak reden"
+                                         displayName="Geen of onvoldoende effect"/>
+               <afgesproken_geneesmiddel>
+                  <product>
+                     <product_code code="15516873"
+                                   codeSystem="2.16.840.1.113883.2.4.4.8"
+                                   codeSystemName="G-Standaard Artikel"
+                                   displayName="NUTRIDRINK AARDBEI"/>
+                     <product_code code="710695"
+                                   codeSystem="2.16.840.1.113883.2.4.4.7"
+                                   codeSystemName="G-Standaard HPK"
+                                   displayName="NUTRIDRINK AARDBEI"/>
+                     <product_code code="88749"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   codeSystemName="G-Standaard PRK"
+                                   displayName="NUTRIDRINK AARDBEI"/>
+                     <product_code code="130575"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="VLOEIBARE VOEDING MET O.A. VITAMINE K"/>
+                  </product>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf 30 juni gebruik staken."/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard tabel voor toedieningswegen: subtabel 0007"
+                                  displayName="oraal"/>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+         </medicamenteuze_behandeling>
+      </sturen_medicatievoorschrift>
+   </data>
+</adaxml>

@@ -1,0 +1,89 @@
+<Immunization xmlns="http://hl7.org/fhir">
+   <id value="zib-Vaccination-medmij-bgz-test-patA-vaccin1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Vaccination"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Vaccinatie. Patiënt: Anouk A. Anouk van XXX_Rijn de XXX_Vries. Id: patA-vaccin1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.7), Status: voltooid</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Rondreis door Afrika</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>
+                     <span title="Hepatitis B vaccin (92975 - G-Standaard PRK)">Hepatitis B vaccin</span>
+                  </th>
+                  <td>
+                     <div>Toegediend: ja (26 april 2022)</div>
+                     <div>Gemeld door uitvoerende: nee</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>
+                     <span title="Referrer (REF - v3/ParticipationType)">Referrer</span>
+                  </th>
+                  <td>Franciscus Dominicus Antonius F.D.A. Frans Pleijster || Huisarts || Huisartsenpraktijk het Hogeland</td>
+               </tr>
+               <tr>
+                  <th>Vaccine Details</th>
+                  <td>
+                     <div>Dosering: 1 ml, 20 mcg HBsAg/ml</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patA-vaccin1"/>
+   </identifier>
+   <status value="completed"/>
+   <notGiven value="false"/>
+   <vaccineCode>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
+         <code value="92975"/>
+         <display value="Hepatitis B vaccin"/>
+      </coding>
+   </vaccineCode>
+   <patient>
+      <reference value="Patient/medmij-bgz-test-patA"/>
+      <display value="Anouk A. Anouk van XXX_Rijn de XXX_Vries"/>
+   </patient>
+   <date value="2022-04-26"/>
+   <primarySource value="false"/>
+   <doseQuantity>
+      <value value="1"/>
+      <unit value="ml, 20 mcg HBsAg/ml"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="{ml, 20 mcg HBsAg/ml}"/>
+   </doseQuantity>
+   <practitioner>
+      <role>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+            <code value="REF"/>
+            <display value="Referrer"/>
+         </coding>
+      </role>
+      <actor>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-medmij-bgz-test-0100000201-01501000001"/>
+               <display value="Franciscus Dominicus Antonius F.D.A. Frans Pleijster || Huisarts || Huisartsenpraktijk het Hogeland"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/-practitioner-medmij-bgz-test-2-16-840-1-113883-2-4-6-1-01000002"/>
+         <display value="Franciscus Dominicus Antonius F.D.A. Frans Pleijster"/>
+      </actor>
+   </practitioner>
+   <note>
+      <text value="Rondreis door Afrika"/>
+   </note>
+</Immunization>

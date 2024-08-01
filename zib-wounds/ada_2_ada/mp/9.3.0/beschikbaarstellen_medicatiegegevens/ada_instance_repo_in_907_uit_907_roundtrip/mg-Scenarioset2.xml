@@ -1,0 +1,1479 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../9.0.7/beschikbaarstellen_medicatiegegevens/ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="medicatieprocesada"
+         last-update-by="medicatieprocesada"
+         creation-date="2020-10-01T15:28:20.475+02:00"
+         last-update-date="2020-10-22T16:33:09.701+02:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp907"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="uitwisselen_medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.102"
+                                            transactionEffectiveDate="2016-03-23T16:32:43"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="MP KWALIFICATIE Medicatiegegevens Scenarioset 2"
+                                            id="mg-Scenarioset2">
+         <patient comment="">
+            <naamgegevens comment="">
+               <initialen value="C. "/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam comment="">
+                  <achternaam value="XXX_Vonker"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999910401" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1954-02-08" datatype="datetime"/>
+            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+         </patient>
+         <medicamenteuze_behandeling comment="">
+            <identificatie value="MBH_907_aanvullendeinstructie"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak comment="">
+               <gebruiksperiode_start value="T-4M{00:00:00}" datatype="datetime"/>
+               <gebruiksperiode_eind value="T+8M{23:59:59}" datatype="datetime"/>
+               <identificatie value="MBH_907_aanvullendeinstructie_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <afspraakdatum value="T-4M{08:00:00}" datatype="datetime"/>
+               <voorschrijver>
+                  <zorgverlener>
+                     <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Bertine"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van "/>
+                              <achternaam value="Doorn"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                                  codeSystemVersion="2017-12-14T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="ada2ada_zorgaanbieder_1"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="ada2ada_zorgverlener_1"/>
+                     </adaextension>
+                  </zorgverlener>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <product>
+                     <product_code code="49484"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="Acetylsalicylzuur tabletmsr 100mg"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="103039"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="Acetylsalicylzuur tabletmsr 100mg"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_product_1"/>
+                     </adaextension>
+                  </product>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T-4M{00:00:00}&gt; t/m &lt;T+8M{23:59:59}&gt;, 1 maal per dag 1 stuk, Bij het eten innemen, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <aanvullende_instructie originalText="Bij het eten innemen"
+                                          code="OTH"
+                                          codeSystem="2.16.840.1.113883.5.1008"
+                                          displayName="overig"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaardthesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid unit="dag" value="1"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <verstrekkingsverzoek comment="">
+               <identificatie value="MBH_907_aanvullendeinstructie_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <datum value="T-4M{08:00:00}" datatype="datetime"/>
+               <auteur>
+                  <zorgverlener>
+                     <zorgverlener_identificatie_nummer value="000001112" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Bertine"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van"/>
+                              <achternaam value="Doorn"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                                  codeSystemVersion="2017-12-14T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatie_nummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="ada2ada_zorgaanbieder_2"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="ada2ada_zorgverlener_2"/>
+                     </adaextension>
+                  </zorgverlener>
+               </auteur>
+               <te_verstrekken_hoeveelheid comment="">
+                  <aantal value="180"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <te_verstrekken_geneesmiddel>
+                  <product>
+                     <product_code code="49484"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   codeSystemName="G-Standaard PRK"
+                                   displayName="Acetylsalicylzuur tabletmsr 100mg"/>
+                     <product_code code="103039"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="Acetylsalicylzuur tabletmsr 100mg"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_product_2"/>
+                     </adaextension>
+                  </product>
+               </te_verstrekken_geneesmiddel>
+               <beoogd_verstrekker>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek De Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_zorgaanbieder_3"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </beoogd_verstrekker>
+               <relatie_naar_medicatieafspraak comment="">
+                  <identificatie value="MBH_907_aanvullendeinstructie_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_naar_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak comment="">
+               <gebruiksperiode_start value="T-4M{00:00:00}" datatype="datetime"/>
+               <gebruiksperiode_eind value="T+8M{23:59:59}" datatype="datetime"/>
+               <identificatie value="MBH_907_aanvullendeinstructie_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <afspraakdatum value="T-4M{09:00:00}" datatype="datetime"/>
+               <verstrekker>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek De Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_zorgaanbieder_4"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <product>
+                     <product_code code="49484"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="Acetylsalicylzuur tabletmsr 100mg"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="103039"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="Acetylsalicylzuur tabletmsr 100mg"/>
+                     <product_code code="1110837"
+                                   codeSystem="2.16.840.1.113883.2.4.4.7"
+                                   displayName="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_product_3"/>
+                     </adaextension>
+                  </product>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T-4M{00:00:00}&gt; t/m &lt;T+8M{23:59:59}&gt;, 1 maal per dag 1 stuk, Bij het eten innemen, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <aanvullende_instructie originalText="Bij het eten innemen"
+                                          code="OTH"
+                                          codeSystem="2.16.840.1.113883.5.1008"
+                                          displayName="overig"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaardthesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid unit="dag" value="1"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_naar_medicatieafspraak comment="">
+                  <identificatie value="MBH_907_aanvullendeinstructie_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               </relatie_naar_medicatieafspraak>
+            </toedieningsafspraak>
+            <verstrekking comment="">
+               <identificatie value="MBH_907_aanvullendeinstructie_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <datum value="T-4M{09:00:00}" datatype="datetime"/>
+               <verstrekker>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek De Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_zorgaanbieder_5"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="180"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <product>
+                     <product_code code="49484"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   codeSystemName="G-Standaard PRK"
+                                   displayName="Acetylsalicylzuur tabletmsr 100mg"/>
+                     <product_code code="103039"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="Acetylsalicylzuur tabletmsr 100mg"/>
+                     <product_code code="1110837"
+                                   codeSystem="2.16.840.1.113883.2.4.4.7"
+                                   displayName="ASPIRINE PROTECT EC TABLET MSR 100MG"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_product_4"/>
+                     </adaextension>
+                  </product>
+               </verstrekt_geneesmiddel>
+               <relatie_naar_verstrekkingsverzoek comment="">
+                  <identificatie value="MBH_907_aanvullendeinstructie_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_naar_verstrekkingsverzoek>
+            </verstrekking>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling comment="">
+            <identificatie value="MBH_907_toelichting"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak comment="">
+               <gebruiksperiode_start value="T-21D{00:00:00}" datatype="datetime"/>
+               <identificatie value="MBH_907_toelichting_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <afspraakdatum value="T-21D{08:02:00}" datatype="datetime"/>
+               <voorschrijver>
+                  <zorgverlener>
+                     <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Bertine"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van "/>
+                              <achternaam value="Doorn"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                                  codeSystemVersion="2017-12-14T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="ada2ada_zorgaanbieder_6"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="ada2ada_zorgverlener_3"/>
+                     </adaextension>
+                  </zorgverlener>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <product>
+                     <product_code code="5967"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="FUROSEMIDE 40MG TABLET"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="16810"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="FUROSEMIDE 40MG TABLET"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_product_5"/>
+                     </adaextension>
+                  </product>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T-21D{00:00:00}&gt;, 1 maal daags 1 stuk, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaardthesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <toelichting value="In overleg met specialist"/>
+            </medicatieafspraak>
+            <verstrekkingsverzoek comment="">
+               <identificatie value="MBH_907_toelichting_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <datum value="T-21D{08:02:00}" datatype="datetime"/>
+               <auteur>
+                  <zorgverlener>
+                     <zorgverlener_identificatie_nummer value="000001112" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Bertine"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van "/>
+                              <achternaam value="Doorn"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                                  codeSystemVersion="2017-12-14T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatie_nummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="ada2ada_zorgaanbieder_7"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="ada2ada_zorgverlener_4"/>
+                     </adaextension>
+                  </zorgverlener>
+               </auteur>
+               <te_verstrekken_hoeveelheid comment="">
+                  <aantal value="30"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <te_verstrekken_geneesmiddel>
+                  <product>
+                     <product_code code="5967"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="FUROSEMIDE 40MG TABLET"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="16810"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="FUROSEMIDE 40MG TABLET"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_product_6"/>
+                     </adaextension>
+                  </product>
+               </te_verstrekken_geneesmiddel>
+               <beoogd_verstrekker>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek De Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_zorgaanbieder_8"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </beoogd_verstrekker>
+               <toelichting value="Extra verstrekkingsverzoek omdat patient medicatie is kwijtgeraakt"/>
+               <relatie_naar_medicatieafspraak comment="">
+                  <identificatie value="MBH_907_toelichting_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_naar_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak comment="">
+               <gebruiksperiode_start value="T-21D{00:00:00}" datatype="datetime"/>
+               <identificatie value="MBH_907_toelichting_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <afspraakdatum value="T-21D{09:02:00}" datatype="datetime"/>
+               <verstrekker>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek De Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_zorgaanbieder_9"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <product>
+                     <product_code code="5967"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="FUROSEMIDE 40MG TABLET"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="16810"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="FUROSEMIDE 40MG TABLET"/>
+                     <product_code code="220515"
+                                   codeSystem="2.16.840.1.113883.2.4.4.7"
+                                   codeSystemName="G-Standaard HPK"
+                                   displayName="LASIX TABLET 40MG"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_product_7"/>
+                     </adaextension>
+                  </product>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T-21D{00:00:00}&gt;, 1 maal daags 1 stuk, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaardthesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <toelichting value="In overleg met specialist"/>
+               <relatie_naar_medicatieafspraak comment="">
+                  <identificatie value="MBH_907_toelichting_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               </relatie_naar_medicatieafspraak>
+            </toedieningsafspraak>
+            <verstrekking comment="">
+               <identificatie value="MBH_907_toelichting_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <datum value="T-21D{09:02:00}" datatype="datetime"/>
+               <verstrekker>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek De Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_zorgaanbieder_10"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="30"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <product>
+                     <product_code code="5967"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="FUROSEMIDE 40MG TABLET"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="16810"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="FUROSEMIDE 40MG TABLET"/>
+                     <product_code code="220515"
+                                   codeSystem="2.16.840.1.113883.2.4.4.7"
+                                   codeSystemName="G-Standaard HPK"
+                                   displayName="LASIX TABLET 40MG"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_product_8"/>
+                     </adaextension>
+                  </product>
+               </verstrekt_geneesmiddel>
+               <toelichting value="Extra verstrekkingsverzoek omdat patient medicatie is kwijtgeraakt"/>
+               <relatie_naar_verstrekkingsverzoek comment="">
+                  <identificatie value="MBH_907_toelichting_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_naar_verstrekkingsverzoek>
+            </verstrekking>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling comment="">
+            <identificatie value="MBH_907_redenvanvoorschrijven"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak comment="">
+               <gebruiksperiode_start value="T-13D{00:00:00}" datatype="datetime"/>
+               <gebruiksperiode_eind value="T+14D{23:59:59}" datatype="datetime"/>
+               <identificatie value="MBH_907_redenvanvoorschrijven_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <afspraakdatum value="T-13D{08:05:00}" datatype="datetime"/>
+               <voorschrijver>
+                  <zorgverlener>
+                     <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Bertine"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van "/>
+                              <achternaam value="Doorn"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                                  codeSystemVersion="2017-12-14T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="ada2ada_zorgaanbieder_11"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="ada2ada_zorgverlener_5"/>
+                     </adaextension>
+                  </zorgverlener>
+               </voorschrijver>
+               <reden_van_voorschrijven comment="">
+                  <probleem comment="">
+                     <probleem_naam code="OTH"
+                                    codeSystem="2.16.840.1.113883.5.1008"
+                                    originalText="Reumatoide artritis"
+                                    displayName="overig"/>
+                  </probleem>
+               </reden_van_voorschrijven>
+               <afgesproken_geneesmiddel>
+                  <product>
+                     <product_code code="141631"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="Methotrexaat tablet 2,5mg"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="16918"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="Methotrexaat tablet 2,5mg"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_product_9"/>
+                     </adaextension>
+                  </product>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T-13D{00:00:00}&gt; t/m &lt;T+14D{23:59:59}&gt;, 1 maal per week 5 stuks, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="5"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaardthesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="week"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <verstrekkingsverzoek comment="">
+               <identificatie value="MBH_907_redenvanvoorschrijven_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <datum value="T-13D{08:05:00}" datatype="datetime"/>
+               <auteur>
+                  <zorgverlener>
+                     <zorgverlener_identificatie_nummer root="2.16.528.1.1007.3.1" value="000001112"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Bertine"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van"/>
+                              <achternaam value="Doorn"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                                  codeSystemVersion="2017-12-14T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatie_nummer root="2.16.528.1.1007.3.3" value="00001111"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="ada2ada_zorgaanbieder_12"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="ada2ada_zorgverlener_6"/>
+                     </adaextension>
+                  </zorgverlener>
+               </auteur>
+               <te_verstrekken_hoeveelheid comment="">
+                  <aantal value="20"/>
+                  <eenheid codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           code="245"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <te_verstrekken_geneesmiddel>
+                  <product>
+                     <product_code code="141631"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   codeSystemName="G-Standaard PRK"
+                                   displayName="Methotrexaat tablet 2,5mg"/>
+                     <product_code code="16918"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="Methotrexaat tablet 2,5mg"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_product_10"/>
+                     </adaextension>
+                  </product>
+               </te_verstrekken_geneesmiddel>
+               <beoogd_verstrekker>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatienummer root="2.16.528.1.1007.3.3" value="01236578"/>
+                     <organisatie_naam value="Apotheek De Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_zorgaanbieder_13"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </beoogd_verstrekker>
+               <relatie_naar_medicatieafspraak comment="">
+                  <identificatie value="MBH_907_redenvanvoorschrijven_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_naar_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak comment="">
+               <gebruiksperiode_start value="T-13D{00:00:00}" datatype="datetime"/>
+               <gebruiksperiode_eind value="T+14D{23:59:59}" datatype="datetime"/>
+               <identificatie value="MBH_907_redenvanvoorschrijven_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <afspraakdatum value="T-13D{09:05:00}" datatype="datetime"/>
+               <verstrekker>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer root="2.16.528.1.1007.3.3" value="01236578"/>
+                     <organisatie_naam value="Apotheek De Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_zorgaanbieder_14"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <product>
+                     <product_code code="6009"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="Methotrexaat tablet 2,5mg"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="42609"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="Methotrexaat tablet 2,5mg"/>
+                     <product_code code="1421778"
+                                   codeSystem="2.16.840.1.113883.2.4.4.7"
+                                   codeSystemName="G-Standaard HPK"
+                                   displayName="METHOTREXAAT PCH TABLET 2,5MG"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_product_11"/>
+                     </adaextension>
+                  </product>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T-13D{00:00:00}&gt; t/m &lt;T+14D{23:59:59}&gt;, 1 maal per week 5 stuks, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="5"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaardthesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="week"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_naar_medicatieafspraak comment="">
+                  <identificatie value="MBH_907_redenvanvoorschrijven_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               </relatie_naar_medicatieafspraak>
+            </toedieningsafspraak>
+            <verstrekking comment="">
+               <identificatie value="MBH_907_redenvanvoorschrijven_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <datum value="T-13D{09:05:00}" datatype="datetime"/>
+               <verstrekker>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer root="2.16.528.1.1007.3.3" value="01236578"/>
+                     <organisatie_naam value="Apotheek De Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_zorgaanbieder_15"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="20"/>
+                  <eenheid codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           code="245"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <product>
+                     <product_code code="6009"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   codeSystemName="G-Standaard PRK"
+                                   displayName="Methotrexaat tablet 2,5mg"/>
+                     <product_code code="42609"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="Methotrexaat tablet 2,5mg"/>
+                     <product_code code="1421778"
+                                   codeSystem="2.16.840.1.113883.2.4.4.7"
+                                   codeSystemName="G-Standaard HPK"
+                                   displayName="METHOTREXAAT PCH TABLET 2,5MG"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_product_12"/>
+                     </adaextension>
+                  </product>
+               </verstrekt_geneesmiddel>
+               <relatie_naar_verstrekkingsverzoek comment="">
+                  <identificatie value="MBH_907_redenvanvoorschrijven_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_naar_verstrekkingsverzoek>
+            </verstrekking>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling comment="">
+            <identificatie value="MBH_907_aanvullendeinformatiewensen"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak comment="">
+               <gebruiksperiode_start value="T-4D{00:00:00}" datatype="datetime"/>
+               <gebruiksperiode_eind value="T+5D{23:59:59}" datatype="datetime"/>
+               <identificatie value="MBH_907_aanvullendeinformatiewensen_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <afspraakdatum value="T-5D{08:06:00}" datatype="datetime"/>
+               <voorschrijver>
+                  <zorgverlener>
+                     <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Bertine"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van "/>
+                              <achternaam value="Doorn"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                                  codeSystemVersion="2017-12-14T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="ada2ada_zorgaanbieder_16"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="ada2ada_zorgverlener_7"/>
+                     </adaextension>
+                  </zorgverlener>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <product>
+                     <product_code displayName="FENETICILLINE CAPSULE 500MG"
+                                   code="17205"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="41092"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="FENETICILLINE 500MG CAPSULE"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_product_13"/>
+                     </adaextension>
+                  </product>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T-4D{00:00:00}&gt; t/m &lt;T+5D{23:59:59}&gt;, 3 maal per dag 1 stuk, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaardthesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="3"/>
+                              </aantal>
+                              <tijdseenheid unit="dag" value="1"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <aanvullende_informatie code="1"
+                                       codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050"
+                                       displayName="Bewust hoge dosering"/>
+            </medicatieafspraak>
+            <verstrekkingsverzoek comment="">
+               <identificatie value="MBH_907_aanvullendeinformatiewensen_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <datum value="T-5D{08:06:00}" datatype="datetime"/>
+               <auteur>
+                  <zorgverlener>
+                     <zorgverlener_identificatie_nummer value="000001112" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Bertine"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van "/>
+                              <achternaam value="Doorn"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                                  codeSystemVersion="2017-12-14T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatie_nummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="ada2ada_zorgaanbieder_17"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="ada2ada_zorgverlener_8"/>
+                     </adaextension>
+                  </zorgverlener>
+               </auteur>
+               <te_verstrekken_hoeveelheid comment="">
+                  <aantal value="30"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <te_verstrekken_geneesmiddel>
+                  <product>
+                     <product_code displayName="FENETICILLINE CAPSULE 500MG"
+                                   code="17205"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="41092"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="FENETICILLINE 500MG CAPSULE"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_product_14"/>
+                     </adaextension>
+                  </product>
+               </te_verstrekken_geneesmiddel>
+               <beoogd_verstrekker>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek De Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_zorgaanbieder_18"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </beoogd_verstrekker>
+               <aanvullende_wensen code="3"
+                                   codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2051"
+                                   displayName="Bezorgen"/>
+               <relatie_naar_medicatieafspraak comment="">
+                  <identificatie value="MBH_907_aanvullendeinformatiewensen_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_naar_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak comment="">
+               <gebruiksperiode_start value="T-4D{00:00:00}" datatype="datetime"/>
+               <gebruiksperiode_eind value="T+5D{23:59:59}" datatype="datetime"/>
+               <identificatie value="MBH_907_aanvullendeinformatiewensen_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <afspraakdatum value="T-5D{09:06:00}" datatype="datetime"/>
+               <verstrekker>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek De Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_zorgaanbieder_19"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <product>
+                     <product_code displayName="FENETICILLINE CAPSULE 500MG"
+                                   code="17205"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="41092"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="FENETICILLINE 500MG CAPSULE"/>
+                     <product_code code="425087"
+                                   codeSystem="2.16.840.1.113883.2.4.4.7"
+                                   codeSystemName="G-Standaard HPK"
+                                   displayName="BROXIL CAPSULE 500MG"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_product_15"/>
+                     </adaextension>
+                  </product>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T-4D{00:00:00}&gt; t/m &lt;T+5D{23:59:59}&gt;, 3 maal per dag 1 stuk, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="Oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaardthesaurus basiseenheden"
+                                    displayName="stuk"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="3"/>
+                              </aantal>
+                              <tijdseenheid unit="dag" value="1"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <aanvullende_informatie code="OTH"
+                                       codeSystem="2.16.840.1.113883.5.1008"
+                                       displayName="overig"
+                                       originalText="Bewust hoge dosering"/>
+               <relatie_naar_medicatieafspraak comment="">
+                  <identificatie value="MBH_907_aanvullendeinformatiewensen_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               </relatie_naar_medicatieafspraak>
+            </toedieningsafspraak>
+            <verstrekking comment="">
+               <identificatie value="MBH_907_aanvullendeinformatiewensen_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <datum value="T-5D{09:06:00}" datatype="datetime"/>
+               <verstrekker>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek De Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_zorgaanbieder_20"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="30"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <product>
+                     <product_code displayName="FENETICILLINE CAPSULE 500MG"
+                                   code="17205"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="41092"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="FENETICILLINE 500MG CAPSULE"/>
+                     <product_code code="425087"
+                                   codeSystem="2.16.840.1.113883.2.4.4.7"
+                                   codeSystemName="G-Standaard HPK"
+                                   displayName="BROXIL CAPSULE 500MG"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_product_16"/>
+                     </adaextension>
+                  </product>
+               </verstrekt_geneesmiddel>
+               <relatie_naar_verstrekkingsverzoek comment="">
+                  <identificatie value="MBH_907_aanvullendeinformatiewensen_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_naar_verstrekkingsverzoek>
+            </verstrekking>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling comment="">
+            <identificatie value="MBH_907_Toedieningsweg"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak comment="">
+               <gebruiksperiode_start value="T-5D{00:00:00}" datatype="datetime"/>
+               <gebruiksperiode_eind value="T+2D{23:59:59}" datatype="datetime"/>
+               <identificatie value="MBH_907_Toedieningsweg_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <afspraakdatum value="T-5D{08:15:00}" datatype="datetime"/>
+               <voorschrijver>
+                  <zorgverlener>
+                     <zorgverlener_identificatienummer value="000001112" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Bertine"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van"/>
+                              <achternaam value="Doorn"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="ada2ada_zorgaanbieder_21"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="ada2ada_zorgverlener_9"/>
+                     </adaextension>
+                  </zorgverlener>
+               </voorschrijver>
+               <afgesproken_geneesmiddel>
+                  <product>
+                     <product_code code="80691"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   codeSystemName="G-Standaard PRK"
+                                   displayName="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
+                     <product_code code="79804"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_product_17"/>
+                     </adaextension>
+                  </product>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T-5D{00:00:00}&gt; t/m &lt;T+2D{23:59:59}&gt;, 2 maal per dag 1 druppel, In het rechter oog, oculair"/>
+                  <toedieningsweg code="7"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="oculair"/>
+                  <aanvullende_instructie originalText="In het rechter oog"
+                                          code="OTH"
+                                          codeSystem="2.16.840.1.113883.5.1008"
+                                          displayName="overig"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="303"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="Druppel"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <aanvullende_informatie code="3"
+                                       codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.2.14.2050"
+                                       displayName="Bewust afwijkende toedieningsweg"/>
+            </medicatieafspraak>
+            <verstrekkingsverzoek comment="">
+               <identificatie value="MBH_907_Toedieningsweg_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <datum value="T-5D{08:15:00}" datatype="datetime"/>
+               <auteur>
+                  <zorgverlener>
+                     <zorgverlener_identificatie_nummer value="000001112" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Bertine"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van "/>
+                              <achternaam value="Doorn"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT (Vektis Zorgverlenersspecificatie (subberoepsgroep))"
+                                  codeSystemVersion="2017-12-14T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatie_nummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="ada2ada_zorgaanbieder_22"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="ada2ada_zorgverlener_10"/>
+                     </adaextension>
+                  </zorgverlener>
+               </auteur>
+               <te_verstrekken_hoeveelheid comment="">
+                  <aantal value="1"/>
+                  <eenheid code="233"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="Milliliter"/>
+               </te_verstrekken_hoeveelheid>
+               <te_verstrekken_geneesmiddel>
+                  <product>
+                     <product_code code="80691"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
+                     <product_code code="79804"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_product_18"/>
+                     </adaextension>
+                  </product>
+               </te_verstrekken_geneesmiddel>
+               <beoogd_verstrekker>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek De Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_zorgaanbieder_23"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </beoogd_verstrekker>
+               <relatie_naar_medicatieafspraak comment="">
+                  <identificatie value="MBH_907_Toedieningsweg_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_naar_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak comment="">
+               <gebruiksperiode_start value="T-5D{00:00:00}" datatype="datetime"/>
+               <gebruiksperiode_eind value="T+2D{23:59:59}" datatype="datetime"/>
+               <identificatie value="MBH_907_Toedieningsweg_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <afspraakdatum value="T-5D{09:15:00}" datatype="datetime"/>
+               <verstrekker>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek De Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_zorgaanbieder_24"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak>
+                  <product>
+                     <product_code code="80691"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   codeSystemName="G-Standaard PRK"
+                                   displayName="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
+                     <product_code code="79804"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
+                     <product_code code="644781"
+                                   codeSystem="2.16.840.1.113883.2.4.4.7"
+                                   codeSystemName="G-Standaard HPK"
+                                   displayName="SOFRADEX OORDRUPPELS"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_product_19"/>
+                     </adaextension>
+                  </product>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T-5D{00:00:00}&gt; t/m &lt;T+2D{23:59:59}&gt;, 2 maal per dag 1 druppel, In het rechter oog, oculair"/>
+                  <toedieningsweg code="7"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="oculair"/>
+                  <aanvullende_instructie originalText="In het rechter oog"
+                                          code="OTH"
+                                          codeSystem="2.16.840.1.113883.5.1008"
+                                          displayName="overig"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="303"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"
+                                    displayName="Druppel"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="2"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <aanvullende_informatie code="OTH"
+                                       codeSystem="2.16.840.1.113883.5.1008"
+                                       displayName="overig"
+                                       originalText="Bewust afwijkende toedieningsweg"/>
+               <relatie_naar_medicatieafspraak comment="">
+                  <identificatie value="MBH_907_Toedieningsweg_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               </relatie_naar_medicatieafspraak>
+            </toedieningsafspraak>
+            <verstrekking comment="">
+               <identificatie value="MBH_907_Toedieningsweg_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <datum value="T-5D{09:15:00}" datatype="datetime"/>
+               <verstrekker>
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek De Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_zorgaanbieder_25"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="1"/>
+                  <eenheid code="245"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel>
+                  <product>
+                     <product_code code="80691"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
+                     <product_code code="79804"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="DEXAMETHASON/FRAMYCETINE/GRAMICIDINE OORDR"/>
+                     <product_code code="644781"
+                                   codeSystem="2.16.840.1.113883.2.4.4.7"
+                                   codeSystemName="G-Standaard HPK"
+                                   displayName="SOFRADEX OORDRUPPELS"/>
+                     <adaextension>
+                        <reference_id value="ada2ada_product_20"/>
+                     </adaextension>
+                  </product>
+               </verstrekt_geneesmiddel>
+               <relatie_naar_verstrekkingsverzoek comment="">
+                  <identificatie value="MBH_907_Toedieningsweg_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_naar_verstrekkingsverzoek>
+            </verstrekking>
+         </medicamenteuze_behandeling>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

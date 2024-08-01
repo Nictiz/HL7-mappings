@@ -1,0 +1,347 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new" created-by="generated" last-update-by="generated"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp93"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.374"
+                                            transactionEffectiveDate="2022-06-30T00:00:00"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="Generated from HL7 FHIR medicatiegegevens"
+                                            id="mg-mp-mg-tst-WDS-Scenarioset3-v30">
+         <patient>
+            <naamgegevens>
+               <ongestructureerde_naam value="C. XXX_Dongen"/>
+               <initialen value="C."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Dongen"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900493" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1963-10-23" datatype="datetime"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_300_WDSwijziging_0dosering"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <wisselend_doseerschema>
+               <identificatie value="MBH_300_WDSwijziging_0dosering_startWDS"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+               <wisselend_doseerschema_datum_tijd value="T-5D{13:45:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T-5D{00:00:00}" datatype="datetime"/>
+               </gebruiksperiode>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product value="urn-uuid-ca0c3ae9-6aff-11ec-0000-020000000000"
+                                         datatype="reference"/>
+               </afgesproken_geneesmiddel>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_WDSwijziging_0dosering_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+               <auteur>
+                  <zorgverlener value="urn-uuid-8d3d1824-6aeb-11ec-0000-020000000000"
+                                datatype="reference"/>
+               </auteur>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf T - 5 dagen, gedurende 2 weken, cyclus van 7 dagen: steeds eerst gedurende 5 dagen 1 maal per dag 2 stuks, dan gedurende 2 dagen 1 maal per dag 3 stuks, Oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="Oraal"/>
+                  <herhaalperiode_cyclisch_schema value="7" unit="dag"/>
+                  <doseerinstructie>
+                     <doseerduur value="5" unit="dag"/>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie>
+                     <doseerduur value="2" unit="dag"/>
+                     <volgnummer value="2"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="3"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <toelichting value="gemeten INR waarde: 2.4"/>
+            </wisselend_doseerschema>
+            <wisselend_doseerschema>
+               <identificatie value="MBH_300_WDSwijziging_0dosering_wijzigingWDS"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+               <wisselend_doseerschema_datum_tijd value="T-1D{15:11:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T-1D{00:00:00}" datatype="datetime"/>
+               </gebruiksperiode>
+               <reden_wijzigen_of_staken code="OTH"
+                                         codeSystem="2.16.840.1.113883.5.1008"
+                                         codeSystemName="HL7 NullFlavor"
+                                         displayName="Overig"/>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product value="urn-uuid-ca0c3ae9-6aff-11ec-0000-020000000000"
+                                         datatype="reference"/>
+               </afgesproken_geneesmiddel>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_WDSwijziging_0dosering_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+               <relatie_wisselend_doseerschema>
+                  <identificatie value="MBH_300_WDSwijziging_0dosering_startWDS"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+               </relatie_wisselend_doseerschema>
+               <auteur>
+                  <zorgverlener value="urn-uuid-8d3d1824-6aeb-11ec-0000-020000000000"
+                                datatype="reference"/>
+               </auteur>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf T - 1 dag, gedurende 7 dagen, eerst gedurende 3 dagen 1 maal per dag 0 stuks, dan gedurende 2 dagen 1 maal per dag 4 stuks, dan gedurende 2 dagen 1 maal per dag 2 stuks, Oraal"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="Oraal"/>
+                  <doseerinstructie>
+                     <doseerduur value="3" unit="dag"/>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="0"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie>
+                     <doseerduur value="2" unit="dag"/>
+                     <volgnummer value="2"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="4"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie>
+                     <doseerduur value="2" unit="dag"/>
+                     <volgnummer value="3"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </wisselend_doseerschema>
+            <wisselend_doseerschema>
+               <identificatie value="MBH_300_WDSwijziging_0dosering_techstopWDS"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+               <wisselend_doseerschema_datum_tijd value="T-1D{15:11:00}" datatype="datetime"/>
+               <gebruiksperiode>
+                  <start_datum_tijd value="T-5D{00:00:00}" datatype="datetime"/>
+                  <eind_datum_tijd value="T-2D{23:59:59}" datatype="datetime"/>
+               </gebruiksperiode>
+               <wisselend_doseerschema_stop_type code="410546004"
+                                                 codeSystem="2.16.840.1.113883.6.96"
+                                                 codeSystemName="SNOMED CT"
+                                                 displayName="stopgezet"/>
+               <afgesproken_geneesmiddel>
+                  <farmaceutisch_product value="urn-uuid-ca0c3ae9-6aff-11ec-0000-020000000000"
+                                         datatype="reference"/>
+               </afgesproken_geneesmiddel>
+               <relatie_medicatieafspraak>
+                  <identificatie value="MBH_300_WDSwijziging_0dosering_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_medicatieafspraak>
+               <relatie_wisselend_doseerschema>
+                  <identificatie value="MBH_300_WDSwijziging_0dosering_startWDS"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
+               </relatie_wisselend_doseerschema>
+               <auteur>
+                  <zorgverlener value="urn-uuid-8d3d1824-6aeb-11ec-0000-020000000000"
+                                datatype="reference"/>
+               </auteur>
+               <gebruiksinstructie>
+                  <omschrijving value="Vanaf T - 5 dagen, tot en met T - 2 dagen, cyclus van 7 dagen: steeds eerst gedurende 5 dagen 1 maal per dag 2 stuks, dan gedurende 2 dagen 1 maal per dag 3 stuks, Oraal, stopgezet"/>
+                  <toedieningsweg code="9"
+                                  codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                                  displayName="Oraal"/>
+                  <herhaalperiode_cyclisch_schema value="7" unit="dag"/>
+                  <doseerinstructie>
+                     <doseerduur value="5" unit="dag"/>
+                     <volgnummer value="1"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie>
+                     <doseerduur value="2" unit="dag"/>
+                     <volgnummer value="2"/>
+                     <dosering>
+                        <keerdosis>
+                           <aantal>
+                              <nominale_waarde value="3"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema>
+                           <frequentie>
+                              <aantal>
+                                 <nominale_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <toelichting value="gemeten INR waarde: 2.4"/>
+            </wisselend_doseerschema>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="urn-uuid-ca0c3ae9-6aff-11ec-0000-020000000000">
+               <product_code code="7323"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="ACENOCOUMAROL TABLET 1MG"
+                             preferred="true"/>
+               <product_code code="20303"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="ACENOCOUMAROL TABLET 1MG"/>
+            </farmaceutisch_product>
+            <zorgverlener id="urn-uuid-8d3d1824-6aeb-11ec-0000-020000000000">
+               <zorgverlener_identificatienummer value="222221111" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <ongestructureerde_naam value="Tanja de Bakker"/>
+                  <voornamen value="Tanja"/>
+                  <geslachtsnaam>
+                     <voorvoegsels value="de"/>
+                     <achternaam value="Bakker"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="3400"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="Vektis AGB-medische specialismen"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Trombosediensten"/>
+               <zorgaanbieder>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-5bc4856e-6b7b-11ec-0000-020000000000"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="urn-uuid-5bc4856e-6b7b-11ec-0000-020000000000">
+               <zorgaanbieder_identificatienummer value="11112222" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Trombosedienst Ons Dorp"/>
+               <afdeling_specialisme code="3400"
+                                     codeSystem="2.16.840.1.113883.2.4.6.7"
+                                     codeSystemName="Vektis AGB-medische specialismen"
+                                     codeSystemVersion="2020-10-23T00:00:00"
+                                     displayName="Trombosediensten"/>
+               <adresgegevens>
+                  <straat value="Kerkstraat"/>
+                  <huisnummer value="28"/>
+                  <huisnummerletter value="d"/>
+                  <postcode value="1332GH"/>
+                  <woonplaats value="Ons Dorp"/>
+               </adresgegevens>
+            </zorgaanbieder>
+         </bouwstenen>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

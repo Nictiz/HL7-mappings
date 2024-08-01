@@ -1,0 +1,89 @@
+<MedicationRequest xmlns="http://hl7.org/fhir">
+   <id value="mp-MedAgr-mp9-MBH300ToekomstigEnNieuweMAstartMA"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="Vanaf T - 98 dagen, gedurende 50 dagen, 2 maal per dag 2 stuks, oraal"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+      <valuePeriod>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Duration">
+            <valueDuration>
+               <value value="50"/>
+               <unit value="dag"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="d"/>
+            </valueDuration>
+         </extension>
+         <start value="${DATE, T, D, -98}T00:00:00+02:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_300_ToekomstigEnNieuweMA"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+      <value value="MBH_300_ToekomstigEnNieuweMA_startMA"/>
+   </identifier>
+   <status value="unknown"/>
+   <intent value="order"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="33633005"/>
+         <display value="voorschrijven van geneesmiddel"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/mp-PhPrd-mp9-216840111388324410-60054"/>
+      <type value="Medication"/>
+      <display value="OMEPRAZOL CAPSULE MSR 10MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-C-XXX-Dijk"/>
+      <type value="Patient"/>
+      <display value="Patient, C. XXX_Dijk"/>
+   </subject>
+   <authoredOn value="${DATE, T, D, -98}T15:11:00+02:00"/>
+   <requester>
+      <reference value="PractitionerRole/nl-core-HPrf-PracRol-mp9-PrcRol-2165281100731-000001111"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
+   </requester>
+   <dosageInstruction>
+      <timing>
+         <repeat>
+            <frequency value="2"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="oraal"/>
+         </coding>
+      </route>
+      <doseAndRate>
+         <doseQuantity>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+               <valueQuantity>
+                  <value value="2"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </valueQuantity>
+            </extension>
+            <value value="2"/>
+            <unit value="stuk"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="1"/>
+         </doseQuantity>
+      </doseAndRate>
+   </dosageInstruction>
+</MedicationRequest>

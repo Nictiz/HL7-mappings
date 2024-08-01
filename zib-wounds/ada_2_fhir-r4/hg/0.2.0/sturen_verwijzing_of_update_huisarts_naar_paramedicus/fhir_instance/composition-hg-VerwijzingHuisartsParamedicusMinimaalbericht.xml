@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composition xmlns="http://hl7.org/fhir">
+   <id value="composition-hg-VerwijzingHuisartsParamedicusMinimaalbericht"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/hg-ReferralComposition"/>
+   </meta>
+   <identifier>
+      <value value="hg-VerwijzingHuisartsParamedicusMinimaalbericht"/>
+   </identifier>
+   <status value="final"/>
+   <type>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="57133-1"/>
+         <display value="Referral note"/>
+      </coding>
+   </type>
+   <subject>
+      <reference value="Patient/patient-XXX-Andrioli"/>
+      <type value="Patient"/>
+      <display value="Patient, XXX_Andrioli"/>
+   </subject>
+   <date value="T"/>
+   <author>
+      <reference value="PractitionerRole/practitionerrole-000001111"/>
+      <type value="PractitionerRole"/>
+      <display value="Healthcare professional (role)"/>
+   </author>
+   <title value="Referral note"/>
+   <section>
+      <title value="Kern"/>
+      <code>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="406550009"/>
+            <display value="samenvatting van zorgvraag"/>
+         </coding>
+      </code>
+      <section>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TextValue">
+            <valueString value="rugklachten"/>
+         </extension>
+         <title value="Reden bericht"/>
+         <code>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="440378000"/>
+               <display value="verwijzing voor"/>
+            </coding>
+         </code>
+         <text>
+            <status value="extensions"/>
+            <div xmlns="http://www.w3.org/1999/xhtml">Reden bericht: rugklachten</div>
+         </text>
+      </section>
+      <section>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TextValue">
+            <valueString value="oefentherapie"/>
+         </extension>
+         <title value="Ingestelde behandeling"/>
+         <code>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="108631000146107"/>
+               <display value="behandeling lopende"/>
+            </coding>
+         </code>
+         <text>
+            <status value="extensions"/>
+            <div xmlns="http://www.w3.org/1999/xhtml">Ingestelde behandeling: oefentherapie</div>
+         </text>
+      </section>
+   </section>
+</Composition>

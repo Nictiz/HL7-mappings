@@ -1,0 +1,131 @@
+<MedicationStatement xmlns="http://hl7.org/fhir">
+   <id value="zib-MedicationUse-mp9-MBH-MO-123-1-MGB-1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>MedicationStatement. Subject: I. XXX_Jangi. Id: MBH_MO_123_1_MGB_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1), Categorie: <span title="Medicatiegebruik (6 - 2.16.840.1.113883.2.4.3.11.60.20.77.5.3)">Medicatiegebruik</span>, Status: actief<span style="display: block;">Auteur: I. XXX_Jangi</span>
+            </caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Pijn</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th colspan="2">Deze informatie is gekopieerd van een derde partij</th>
+               </tr>
+               <tr>
+                  <th>Medicamenteuze behandel-id</th>
+                  <td>MBH_MO_123_1 (urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1)</td>
+               </tr>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>Ibuprofen</td>
+               </tr>
+               <tr>
+                  <th>Datum/tijd</th>
+                  <td>Vanaf ${DATE, T, D, -3}T00:00:00+02:00, 3 dag</td>
+               </tr>
+               <tr>
+                  <th>Informant</th>
+                  <td>${DATE, T, D, +0}T10:57:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Dosering</th>
+                  <td>
+                     <div>Tekst: Vanaf T - 3 dagen, gedurende 3 dagen, 4 maal per dag 1 stuk, oraal</div>
+                     <div>Timing: <div>4 maal per dag</div>
+                     </div>
+                     <div>Toedieningsweg: <span title="oraal (9 - G-Standaard thesaurus subtabel 0007)">oraal</span>
+                     </div>
+                     <div>Dosering: 1 stuk</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Medicatie gebruikt</th>
+                  <td>ja</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Author">
+      <valueReference>
+         <reference value="Patient/XXX-JANGI"/>
+         <display value="I. XXX_Jangi"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_MO_123_1"/>
+      </valueIdentifier>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-CopyIndicator">
+      <valueBoolean value="true"/>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+      <value value="MBH_MO_123_1_MGB_1"/>
+   </identifier>
+   <status value="active"/>
+   <category>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
+         <code value="6"/>
+         <display value="Medicatiegebruik"/>
+      </coding>
+      <text value="Medicatiegebruik"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/zib-Product-mp9-IBUPROFEN"/>
+      <display value="Ibuprofen"/>
+   </medicationReference>
+   <effectivePeriod>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicationUse-Duration">
+         <valueDuration>
+            <value value="3"/>
+            <unit value="dag"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="d"/>
+         </valueDuration>
+      </extension>
+      <start value="${DATE, T, D, -3}T00:00:00+02:00"/>
+   </effectivePeriod>
+   <dateAsserted value="${DATE, T, D, +0}T10:57:00+02:00"/>
+   <subject>
+      <reference value="Patient/XXX-JANGI"/>
+      <display value="I. XXX_Jangi"/>
+   </subject>
+   <taken value="y"/>
+   <note>
+      <text value="Pijn"/>
+   </note>
+   <dosage>
+      <text value="Vanaf T - 3 dagen, gedurende 3 dagen, 4 maal per dag 1 stuk, oraal"/>
+      <timing>
+         <repeat>
+            <frequency value="4"/>
+            <period value="1"/>
+            <periodUnit value="d"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="oraal"/>
+         </coding>
+      </route>
+      <doseQuantity>
+         <value value="1"/>
+         <unit value="stuk"/>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+         <code value="245"/>
+      </doseQuantity>
+   </dosage>
+</MedicationStatement>

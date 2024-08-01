@@ -1,0 +1,77 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="mp-AdmAgr-mp9-MBH300script2TA"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
+      <valueDateTime value="${DATE, T, D, -40}T15:23:00+02:00"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
+      <valueString value="Vanaf T - 40 dagen, Volgens schema trombosedienst, Oraal"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
+      <valuePeriod>
+         <start value="${DATE, T, D, -40}T00:00:00+02:00"/>
+      </valuePeriod>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+         <value value="MBH_300_script2"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+      <value value="MBH_300_script2_TA"/>
+   </identifier>
+   <status value="unknown"/>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="422037009"/>
+         <display value="toedieningsafspraak"/>
+      </coding>
+   </category>
+   <medicationReference>
+      <reference value="Medication/mp-PhPrd-mp9-21684011138832447-856126"/>
+      <type value="Medication"/>
+      <display value="ACENOCOUMAROL CF TABLET 1MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/nl-core-Patient-mp9-MXXX-Oorschot"/>
+      <type value="Patient"/>
+      <display value="Patient, M. XXX_Oorschot"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/nl-core-HPrv-Org-mp9-Org-2165281100733-01236578"/>
+         <type value="Organization"/>
+         <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
+      </actor>
+   </performer>
+   <authorizingPrescription>
+      <type value="MedicationRequest"/>
+      <identifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+         <value value="MBH_300_script2_MA"/>
+      </identifier>
+      <display value="relatie naar medicatieafspraak met identificatie: MBH_300_script2_MA || 2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+   </authorizingPrescription>
+   <dosageInstruction>
+      <additionalInstruction>
+         <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
+            <code value="OTH"/>
+            <display value="overig"/>
+         </coding>
+         <text value="Volgens schema trombosedienst"/>
+      </additionalInstruction>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+   </dosageInstruction>
+</MedicationDispense>
