@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Immunization xmlns="http://hl7.org/fhir">
-   <id value="06d8ad1e-6b71-11ec-0000-020000000000"/>
+   <id value="f0fda91e-6b33-11ec-0000-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/imm-Vaccination-event"/>
    </meta>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-imm-Vaccination.PharmaceuticalProduct">
       <valueReference>
-         <reference value="Medication/nl-core-PhPrd--21684011138832447-2925508"/>
+         <reference value="Medication/nl-core-PhPrd--21684011138832447-2978636"/>
          <type value="Medication"/>
-         <display value="COVID-19 VACCIN ASTRAZENECA INJVLST"/>
+         <display value="COVID-19 VACCIN MODERNA INJVLST 0,25ML"/>
       </valueReference>
    </extension>
    <identifier>
       <system value="2.16.840.1.113883.2.4.3.11.60.131.2"/>
-      <value value="d899e15"/>
+      <value value="d339e43"/>
    </identifier>
    <status value="completed"/>
    <vaccineCode>
       <coding>
          <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
-         <code value="2925508"/>
-         <display value="COVID-19 VACCIN ASTRAZENECA INJVLST"/>
+         <code value="2978636"/>
+         <display value="COVID-19 VACCIN MODERNA INJVLST 0,25ML"/>
       </coding>
    </vaccineCode>
    <patient>
-      <reference value="Patient/nl-core-Patient--AntoonvandeXXX-Bergge"/>
+      <reference value="Patient/nl-core-Patient--2464835d-6b1e-11ec-0000-020000000000"/>
       <type value="Patient"/>
-      <display value="Patient, Antoon van de XXX_Bergge"/>
+      <display value="Patient, Annemarie (Anna) van de XXX_Bevers"/>
    </patient>
    <occurrenceDateTime value="${DATE, T, Y, -3}"/>
    <location>
-      <reference value="Location/nl-core-HPrv--2165281100733-10000006"/>
+      <reference value="Location/nl-core-HPrv--2165281100733-10000003"/>
       <type value="Location"/>
-      <display value="Healthcare provider (location), GGD test 06, GGD test 06 West"/>
+      <display value="Healthcare provider (location), GGD test 03, GGD test 03 zuid"/>
    </location>
    <site>
       <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
@@ -46,8 +46,8 @@
       </extension>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="40983000"/>
-         <display value="bovenarm"/>
+         <code value="68367000"/>
+         <display value="Bovenbeen"/>
       </coding>
    </site>
    <route>
@@ -58,7 +58,7 @@
       </coding>
    </route>
    <doseQuantity>
-      <value value="0.5"/>
+      <value value="0.25"/>
       <unit value="ml"/>
       <system value="http://unitsofmeasure.org"/>
       <code value="ml"/>
@@ -71,19 +71,16 @@
          </coding>
       </function>
       <actor>
-         <reference value="PractitionerRole/nl-core-HPrf-PracRol--PrcRol-2165281100731-02020202"/>
+         <reference value="PractitionerRole/nl-core-HPrf-PracRol--PrcRol-21684011138832461-75131313"/>
          <type value="PractitionerRole"/>
-         <display value="Healthcare professional (role), Peter (Peer) de Appel, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk test 06"/>
+         <display value="Healthcare professional (role), Willem (Willem) de Wever, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk test 03"/>
       </actor>
    </performer>
-   <note>
-      <text value="Geen bijzonderheden"/>
-   </note>
    <reasonCode>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="404904002"/>
-         <display value="Kwetsbare oudere (bevinding)"/>
+         <code value="238131007"/>
+         <display value="Overgewicht (bevinding)"/>
       </coding>
    </reasonCode>
    <reasonCode>
