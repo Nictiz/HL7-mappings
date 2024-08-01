@@ -99,7 +99,11 @@
             <param name="param.outputDir" value="fhir_instance"/>
         </antcall>
         
+        <!-- Nasty hack to delete the empty copies by name from ada_instance that should not be generated in the first place -->
         <delete dir="${build.dir}/${usecase.bs.imm}/t"/>
+        <delete>
+            <fileset dir="${build.dir}/${usecase.examples.imm}/fhir_instance" includes="imm-*voorbeeld*.xml"/>
+        </delete>
         <delete dir="${build.dir}/${usecase.examples.imm}/t"/>
 
     </target>
