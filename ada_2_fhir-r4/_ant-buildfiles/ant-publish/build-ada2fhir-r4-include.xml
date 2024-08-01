@@ -100,6 +100,8 @@
             <fileset refid="inputFiles"/>
             <param name="dateT" expression="${param.tdate}" if="param.tdate"/>
             <param name="writeOutputToDisk" expression="${param.writeOutputToDisk}" if="param.writeOutputToDisk"/>
+            <!-- option to override output directory from fhir_instance to e.g. fhir_instance_test -->
+            <param name="outputDir" expression="${param.outputDir}" if="param.outputDir"/>
             <!-- whether to generate the textual instruction for use based on structured data, 
                     typically true for test/example instances 
                     typically false for production -->
