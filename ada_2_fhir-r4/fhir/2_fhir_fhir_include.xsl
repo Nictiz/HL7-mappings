@@ -116,6 +116,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="overgevoeligheid" resource="AllergyIntolerance" profile="cio-Hypersensitivity"/>
         <nm:map ada="overgevoeligheid" resource="Condition" profile="cio-Condition"/>
         <nm:map ada="participatie_in_maatschappij" resource="Observation" profile="nl-core-ParticipationInSociety"/>
+        <nm:map ada="sociaal_netwerk" resource="Observation" profile="nl-core-ParticipationInSociety.SocialNetwork"/>
+        <nm:map ada="vrijetijdsbesteding" resource="Observation" profile="nl-core-ParticipationInSociety.Hobby"/>
+        <nm:map ada="arbeidssituatie" resource="Observation" profile="nl-core-ParticipationInSociety.WorkSituation"/>
         <nm:map ada="patient" resource="Patient" profile="nl-core-Patient"/>
         <nm:map ada="pijn_score" resource="Observation" profile="nl-core-PainScore"/>
         <nm:map ada="polsfrequentie" resource="Observation" profile="nl-core-PulseRate"/>
@@ -282,7 +285,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 $in//pariteit[parent::zwangerschap],
                 $in//graviditeit[parent::zwangerschap],
                 $in//aterme_datum_items[parent::zwangerschap],
-                $in//datum_laatste_menstruatie[parent::aterme_datum_items/parent::zwangerschap]
+                $in//datum_laatste_menstruatie[parent::aterme_datum_items/parent::zwangerschap],
+                $in//sociaal_netwerk[parent::participatie_in_maatschappij],
+                $in//vrijetijdsbesteding[parent::participatie_in_maatschappij],
+                $in//arbeidssituatie[parent::participatie_in_maatschappij]
                 )[.//(@value | @code | @nullFlavor)]" group-by="local-name()">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <xsl:call-template name="_buildFhirMetadataForAdaEntry">
