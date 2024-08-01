@@ -24,15 +24,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc>Create a imm-PharmaceuticalProduct instance as a Medication FHIR instance from ADA farmaceutisch_product.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
+        <xd:param name="profile">The ADA-element name may or may not be enough to determine the profile from. For Immunization it is not, so allow explicit setting of the profile</xd:param>
     </xd:doc>
     <xsl:template match="farmaceutisch_product" name="imm-PharmaceuticalProduct" mode="mp-PharmaceuticalProduct" as="element(f:Medication)">
         <xsl:param name="in" as="element()?" select="."/>
+        <xsl:param name="profile" as="xs:string?"/>
 
         <xsl:for-each select="$in">
             <Medication>
                 <xsl:call-template name="insertLogicalId"/>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/imm-PharmaceuticalProduct"/>
+                    <xsl:choose>
+                        <xsl:when test="empty($profile)">
+                            <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <profile value="{$profile}"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </meta>
 
                 <xsl:for-each select="product_specificatie/omschrijving">
