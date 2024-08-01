@@ -66,7 +66,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <!-- TODO: test of data type een string is -->
                             <xsl:when test="true()">
                                 <!-- In de ada instance staat 'Door het systeem gegenereerd nummer' -->
-                                <value value="{uuid:get-uuid(.)}"/> 
+                                <value value="{generate-id(.)}"/> 
                             </xsl:when>
                             <xsl:otherwise>
                                 <value value="{@value}"/>
