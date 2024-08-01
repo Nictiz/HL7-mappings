@@ -1,0 +1,3 @@
+echo ant imm 2.0 ada2fhir-r4 setup ...
+ant -f _ant-buildfiles/ant-publish/build-ada2fhir-imm-20.xml setup >ant-setup.log
+echo Done
