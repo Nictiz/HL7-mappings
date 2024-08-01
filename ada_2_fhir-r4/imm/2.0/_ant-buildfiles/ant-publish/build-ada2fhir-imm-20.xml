@@ -32,12 +32,30 @@
     
     <target name="setup" description="Setup subdirectories, schemas, ada instance xml's in ${build.dir} for ${is.name} ${is.version}">
 
-        <!-- beschikbaarstellen_immunisatiegegevens-->
+        <!-- beschikbaarstellen_immunisatiegegevens kwalificatie-->
         <antcall target="setup_sub_imm">
             <param name="sub.build.dir" value="${build.dir}/${usecase.bs.imm}"/>
             <param name="schema.string" value="*beschikbaarstellen_immunisatiegegevens.xsd"/>
+            <param name="fileset.dir" value="ada_instance_kwal"/>
+            <param name="fileset.include" value="imm-*-kwa-*.xml"/>
+            <param name="refs.dir" value="${refs.dir}/data"/>
+        </antcall>
+        
+        <!-- beschikbaarstellen_immunisatiegegevens test-->
+        <antcall target="setup_sub_imm">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.bs.imm}"/>
+            <param name="schema.string" value="*beschikbaarstellen_immunisatiegegevens.xsd"/>
+            <param name="fileset.dir" value="ada_instance_test"/>
+            <param name="fileset.include" value="imm-*-test-*.xml"/>
+            <param name="refs.dir" value="${refs.dir}/data"/>
+        </antcall>
+        
+        <!-- xml-voorbeelden-->
+        <antcall target="setup_sub_imm">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.examples.imm}"/>
+            <param name="schema.string" value="*beschikbaarstellen_immunisatiegegevens.xsd"/>
             <param name="fileset.dir" value="ada_instance"/>
-            <param name="fileset.include" value="*.xml"/>
+            <param name="fileset.include" value="*voorbeeld*.xml"/>
             <param name="refs.dir" value="${refs.dir}/data"/>
         </antcall>
         
@@ -45,22 +63,64 @@
 
     <target name="convert_ada_2_fhir">
         
-        <!-- convert beschikbaarstellen_immunisatiegegevens -->
+        <!-- convert beschikbaarstellen_immunisatiegegevens kwalificatie-->
         <antcall target="convert_ada_2_fhir_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.bs.imm}"/>
-            <param name="xsl.convert" value="${build.dir}/${usecase.bs.imm}/payload/${usecase.bs.imm}.xsl"/>
-            <param name="xsl.in" value="${build.dir}/${usecase.bs.imm}/ada_instance"/>
+            <param name="xsl.convert" value="${build.dir}/payload/${usecase.bs.imm}.xsl"/>
+            <param name="xsl.in" value="${build.dir}/${usecase.bs.imm}/ada_instance_kwal"/>
             <param name="xsl.in.include" value="*.xml"/>
-            <param name="xsl.out" value="${build.dir}/${usecase.bs.imm}/fhir_instance"/>
+            <param name="xsl.out" value="${build.dir}/${usecase.bs.imm}/t"/>
             <!--<param name="param.tdate" value="${date.T}}"/>-->
             <param name="param.writeOutputToDisk" value="true"/>
+            <param name="param.outputDir" value="fhir_instance_kwal"/>
         </antcall>
+        
+        <!-- convert beschikbaarstellen_immunisatiegegevens test-->
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.bs.imm}"/>
+            <param name="xsl.convert" value="${build.dir}/payload/${usecase.bs.imm}.xsl"/>
+            <param name="xsl.in" value="${build.dir}/${usecase.bs.imm}/ada_instance_test"/>
+            <param name="xsl.in.include" value="*.xml"/>
+            <param name="xsl.out" value="${build.dir}/${usecase.bs.imm}/t"/>
+            <!--<param name="param.tdate" value="${date.T}}"/>-->
+            <param name="param.writeOutputToDisk" value="true"/>
+            <param name="param.outputDir" value="fhir_instance_test"/>
+        </antcall>
+        
+        <!-- convert xml-voorbeelden -->
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.examples.imm}"/>
+            <param name="xsl.convert" value="${build.dir}/payload/${usecase.bs.imm}.xsl"/>
+            <param name="xsl.in" value="${build.dir}/${usecase.examples.imm}/ada_instance"/>
+            <param name="xsl.in.include" value="*.xml"/>
+            <param name="xsl.out" value="${build.dir}/${usecase.examples.imm}/t"/>
+            <!--<param name="param.tdate" value="${date.T}}"/>-->
+            <param name="param.writeOutputToDisk" value="true"/>
+            <param name="param.outputDir" value="fhir_instance"/>
+        </antcall>
+        
+        <delete dir="${build.dir}/${usecase.bs.imm}/t"/>
+        <delete dir="${build.dir}/${usecase.examples.imm}/t"/>
 
     </target>
 
  
     <target name="schemavalidate_fhir_300">
 
+        <!-- all use cases fhir_instance-->
+        <antcall target="schemavalidate_fhir_sub">
+            <param name="fileset.include" value="**/fhir_instance_kwal/*.xml"/>
+            <param name="fileset.exclude" value="nictiz_test/**/*"/>
+            <param name="validate.schema" value="${schema.fhir}"/>
+        </antcall>
+        
+        <!-- all use cases fhir_instance-->
+        <antcall target="schemavalidate_fhir_sub">
+            <param name="fileset.include" value="**/fhir_instance_test/*.xml"/>
+            <param name="fileset.exclude" value="nictiz_test/**/*"/>
+            <param name="validate.schema" value="${schema.fhir}"/>
+        </antcall>
+        
         <!-- all use cases fhir_instance-->
         <antcall target="schemavalidate_fhir_sub">
             <param name="fileset.include" value="**/fhir_instance/*.xml"/>
