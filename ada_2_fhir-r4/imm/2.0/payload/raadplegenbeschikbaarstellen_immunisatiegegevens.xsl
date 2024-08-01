@@ -14,17 +14,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:f="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nm="http://www.nictiz.nl/mappings" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 
-    <xsl:import href="../../../../zibs2020/payload/0.10.0-beta.1/all_zibs.xsl"/>
-    <xsl:import href="../../payload/imm-Vaccination-event.xsl"/>
+    <xsl:import href="../../../zibs2020/payload/0.10.0-beta.1/all_zibs.xsl"/>
+    <xsl:import href="imm-Vaccination-event.xsl"/>
     <!-- We would like to work from the source XSL, but as long as this is all beta that feels too shaky. TODO -->
-    <xsl:import href="../../payload/imm-PharmaceuticalProduct.xsl"/>
-    <!--<xsl:import href="../../../../mp/9.3.0/payload/2.0.0-beta.2/mp-PharmaceuticalProduct.xsl"/>-->
-    <xsl:import href="../../../../fhir/2_fhir_fixtures.xsl"/>
+    <xsl:import href="imm-PharmaceuticalProduct.xsl"/>
+    <!--<xsl:import href="../../mp/9.3.0/payload/2.0.0-beta.2/mp-PharmaceuticalProduct.xsl"/>-->
+    <xsl:import href="../../../fhir/2_fhir_fixtures.xsl"/>
 
     <xd:doc>
         <xd:desc>If true, write all generated resources to disk in the fhir_instance directory. Otherwise, return all the output in a FHIR Bundle.</xd:desc>
     </xd:doc>
     <xsl:param name="writeOutputToDisk" select="true()" as="xs:boolean"/>
+    
+    <xsl:param name="outputDir" as="xs:string">fhir_instance</xsl:param>
 
     <xsl:param name="referencingStrategy" select="'logicalId'" as="xs:string"/>
     <!-- If the desired output is to be a Bundle, then a self link string of type url is required. 
@@ -135,7 +137,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="$resources/f:resource/*">
                     <xsl:choose>
                         <xsl:when test="string-length(f:id/@value) gt 0">
-                            <xsl:result-document href="../fhir_instance/{f:id/@value}.xml">
+                            <xsl:result-document href="../{$outputDir}/{f:id/@value}.xml">
                                 <xsl:copy-of select="."/>
                             </xsl:result-document>
                         </xsl:when>
