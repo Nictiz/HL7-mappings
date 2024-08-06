@@ -63,21 +63,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <code>
                             <!--Temporary fix for imm. TODO: fix this xsl:for-each to include SNOMED CT as used in imm-->
                             <!--<xsl:for-each select="product_code[@codeSystem = $oidsGstandaardMedication][@code]">-->
-                            <xsl:for-each select="product_code">
-                                <xsl:choose>
-                                    <xsl:when test="@codeSystem = $most-specific-product-code/@codeSystem">
-                                        <xsl:call-template name="code-to-CodeableConcept">
-                                            <xsl:with-param name="in" select="."/>
-                                            <xsl:with-param name="userSelected">true</xsl:with-param>
-                                        </xsl:call-template>
-                                    </xsl:when>
-                                    <xsl:otherwise>
-                                        <xsl:call-template name="code-to-CodeableConcept">
-                                            <xsl:with-param name="in" select="."/>
-                                        </xsl:call-template>
-                                    </xsl:otherwise>
-                                </xsl:choose>
-                            </xsl:for-each>
+                            <xsl:variable name="codingsAndText" as="node()*">
+                                <xsl:for-each select="product_code">
+                                    <xsl:choose>
+                                        <xsl:when test="@codeSystem = $most-specific-product-code/@codeSystem">
+                                            <xsl:call-template name="code-to-CodeableConcept">
+                                                <xsl:with-param name="in" select="."/>
+                                                <xsl:with-param name="userSelected">true</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:call-template name="code-to-CodeableConcept">
+                                                <xsl:with-param name="in" select="."/>
+                                            </xsl:call-template>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                </xsl:for-each>
+                            </xsl:variable>
+                            <!-- Prevent 2 text nodes when the code is a nullFlavor -->
+                            <!-- This should have worked but doesn't hence the next line  -->
+                            <!--<xsl:copy-of select="$codingsAndText except f:text"/>-->
+                            <xsl:copy-of select="for $n in $codingsAndText[not(self::f:text)] return $n"/>
                             <!-- Gemaakt om product_naam te kunnen toevoegen in code.text -->
                             <xsl:choose>
                                 <xsl:when test="product_specificatie/product_naam">
@@ -86,22 +92,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:for-each>
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <xsl:for-each select="$most-specific-product-code[@displayName]">
+                                    <xsl:for-each select="$most-specific-product-code[@displayName[not(. = '')] | @originalText[not(. = '')]][1]">
                                         <!-- MP-1295, call string function to get rid of leading/trailing spaces which FHIR does not appreciate -->
                                         <text>
                                             <xsl:call-template name="string-to-string">
                                                 <xsl:with-param name="in" select="."/>
-                                                <xsl:with-param name="inAttributeName">displayName</xsl:with-param>
+                                                <xsl:with-param name="inAttributeName">
+                                                    <xsl:choose>
+                                                        <xsl:when test="empty(@originalText[not(. = '')])">displayName</xsl:when>
+                                                        <xsl:otherwise>originalText</xsl:otherwise>
+                                                    </xsl:choose>
+                                                </xsl:with-param>
                                             </xsl:call-template>
                                         </text>
                                     </xsl:for-each>
                                 </xsl:otherwise>
                             </xsl:choose>
-
                         </code>
                     </xsl:when>
                     <!-- magistraal -->
+                    <!-- Dit deel is niet bereikbaar door de eerste xsl:when -->
                     <xsl:when test="product_code[@codeSystem = $oidHL7NullFlavor]">
+                        <xsl:message terminate="yes">Template farmaceutisch_product - fix this code for duplicate text elements fore using!</xsl:message>
+                        
                         <code>
                             <xsl:call-template name="code-to-CodeableConcept">
                                 <xsl:with-param name="in" select="product_code"/>
@@ -114,7 +127,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </code>
                     </xsl:when>
                     <!-- 90 miljoen -->
+                    <!-- Dit deel is niet bereikbaar door de eerste xsl:when en kan dubbele f:text elementen leveren -->
                     <xsl:when test="product_code[not(@codeSystem = ($oidHL7NullFlavor, $oidsGstandaardMedication))]">
+                        <xsl:message terminate="yes">Template farmaceutisch_product - fix this code for duplicate text elements fore using!</xsl:message>
+                        
                         <code>
                             <xsl:call-template name="code-to-CodeableConcept">
                                 <!-- do not input @originalText -->
@@ -136,11 +152,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:when>
                     <xsl:when test="product_specificatie/product_naam[@value]">
                         <code>
-                            <coding>
+                            <extension url="{$urlExtHL7NullFlavor}">
+                                <valueCode value="OTH"/>
+                            </extension>
+                            <!--<coding>
                                 <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
                                 <code value="OTH"/>
                                 <display value="overig"/>
-                            </coding>
+                            </coding>-->
                             <text value="{product_specificatie/product_naam/@value}"/>
                         </code>
                     </xsl:when>
@@ -207,9 +226,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </ingredient>
                     </xsl:if>
                 </xsl:for-each>
+                <!-- 1..1 R ADA better have a nullFlavor if unknown ... -->
                 <xsl:if test="batchnummer">
                     <batch>
-                        <lotNumber value="{batchnummer/@value}"/>
+                        <lotNumber>
+                            <xsl:call-template name="string-to-string">
+                                <xsl:with-param name="in" select="batchnummer"/>
+                            </xsl:call-template>
+                        </lotNumber>
                     </batch>
                 </xsl:if>
             </Medication>
