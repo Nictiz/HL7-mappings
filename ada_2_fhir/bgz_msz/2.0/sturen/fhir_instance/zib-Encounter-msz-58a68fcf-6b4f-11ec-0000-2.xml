@@ -1,0 +1,63 @@
+<Encounter xmlns="http://hl7.org/fhir">
+   <id value="zib-Encounter-msz-58a68fcf-6b4f-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Contact. Subject: Dennis D. Dennis Janse. Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <th>Type contact</th>
+                  <td>
+                     <div>
+                        <span title="Klinisch (IMP - v3/ActCode)">Klinisch</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>${DATE, T, D, -45}T13:30:00+02:00 - ${DATE, T, D, -43}T12:00:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Zorgaanbieder</th>
+                  <td>Ziekenhuis de Aandacht</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="f3634bd3-6b3a-11ec-0000-2"/>
+   </identifier>
+   <status value="finished"/>
+   <class>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActCode"/>
+               <code value="IMP"/>
+               <display value="Klinisch"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="http://hl7.org/fhir/v3/ActCode"/>
+      <code value="IMP"/>
+      <display value="Klinisch"/>
+   </class>
+   <subject>
+      <reference value="Patient/DENNIS-D--DENNIS-JANSE"/>
+      <display value="Dennis D. Dennis Janse"/>
+   </subject>
+   <period>
+      <start value="${DATE, T, D, -45}T13:30:00+02:00"/>
+      <end value="${DATE, T, D, -43}T12:00:00+02:00"/>
+   </period>
+   <serviceProvider>
+      <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000002"/>
+      <display value="Ziekenhuis de Aandacht"/>
+   </serviceProvider>
+</Encounter>

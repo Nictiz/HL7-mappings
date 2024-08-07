@@ -1,0 +1,70 @@
+<Procedure xmlns="http://hl7.org/fhir">
+   <id value="zib-Procedure-msz-ef827219-6aa6-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verrichting. Subject: Dennis D. Dennis Janse. Categorie: , Status: voltooid</caption>
+            <tbody>
+               <tr>
+                  <td>
+                     <span title="externe fixatie van fractuur van malleolus (111501000146106 - SNOMED CT)">externe fixatie van fractuur van malleolus</span>
+                  </td>
+                  <td>
+                     <div>Uitgevoerd: ${DATE, T, D, -45}T14:00:00+02:00 - ${DATE, T, D, -45}T15:00:00+02:00</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Gebaseerd op</th>
+                  <td>externe fixatie van fractuur van malleolus</td>
+               </tr>
+               <tr>
+                  <th>Deel van lichaam</th>
+                  <td>
+                     <span title="structuur van enkelgewricht (70258002 - SNOMED CT)">structuur van enkelgewricht</span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="54de9191-6afe-11ec-0000-2"/>
+   </identifier>
+   <basedOn>
+      <reference value="ProcedureRequest/zib-ProcedureRequest-msz-ef827219-6aa6-11ec-0000-2"/>
+      <display value="externe fixatie van fractuur van malleolus"/>
+   </basedOn>
+   <status value="completed"/>
+   <category>
+      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+         <valueCode value="unknown"/>
+      </extension>
+   </category>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="111501000146106"/>
+         <display value="externe fixatie van fractuur van malleolus"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/DENNIS-D--DENNIS-JANSE"/>
+      <display value="Dennis D. Dennis Janse"/>
+   </subject>
+   <performedPeriod>
+      <start value="${DATE, T, D, -45}T14:00:00+02:00"/>
+      <end value="${DATE, T, D, -45}T15:00:00+02:00"/>
+   </performedPeriod>
+   <bodySite>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="70258002"/>
+         <display value="structuur van enkelgewricht"/>
+      </coding>
+   </bodySite>
+</Procedure>
