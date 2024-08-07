@@ -61,17 +61,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </extension>
                 <xsl:for-each select="identificatienummer">
                     <identifier>
-                        <system value="{@root}"/>
-                        <xsl:choose>
-                            <!-- TODO: test of data type een string is -->
-                            <xsl:when test="true()">
-                                <!-- In de ada instance staat 'Door het systeem gegenereerd nummer' -->
-                                <value value="{generate-id(.)}"/> 
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <value value="{@value}"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
+                        <xsl:call-template name="id-to-Identifier">
+                            <xsl:with-param name="in" as="element()">
+                                <xsl:choose>
+                                    <!-- In de ada instance staat 'Door het systeem gegenereerd nummer' -->
+                                    <xsl:when test="matches(@value, '\s')">
+                                        <identificatienummer>
+                                            <xsl:copy-of select="@*"/>
+                                            <xsl:attribute name="value" select="generate-id(.)"/>
+                                            <xsl:copy-of select="node()"/>
+                                        </identificatienummer>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:copy-of select="."/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:with-param>
+                        </xsl:call-template>
                     </identifier>
                 </xsl:for-each>
                 
