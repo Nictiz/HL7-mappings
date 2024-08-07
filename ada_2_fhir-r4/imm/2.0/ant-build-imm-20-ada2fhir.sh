@@ -1,3 +1,3 @@
 echo ant imm 2.0 ada2fhir-r4 build ...
-ant -f _ant-buildfiles/ant-publish/build-ada2fhir-imm-20.xml >ant-build.log
+ant -f `dirname "$0"`/_ant-buildfiles/ant-publish/build-ada2fhir-imm-20.xml >`dirname "$0"`ant-build.log
 echo Done
