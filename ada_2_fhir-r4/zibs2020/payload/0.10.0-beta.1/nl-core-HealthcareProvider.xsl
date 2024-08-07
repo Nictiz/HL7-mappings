@@ -46,13 +46,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- TODO: hier moet een besluit over komen, 2 name elementen zijn in FHIR niet toegestaan -->
                 <!-- Willen we locatie_nummer alleen mappen als de naam ontbreekt, of willen we deze dan
                 elders mappen, bijvoorbeeld in het alias element -->
-                <xsl:for-each select="(organisatie_locatie/locatie_naam | organisatie_locatie/locatie_nummer)[1]">
+                <xsl:for-each select="(organisatie_locatie/locatie_naam, organisatie_locatie/locatie_nummer)[1]">
                     <name>
                         <xsl:call-template name="string-to-string"/>
                     </name>
                 </xsl:for-each>
 
-<!--                <xsl:for-each select="organisatie_locatie/locatie_nummer">
+                <!--<xsl:for-each select="organisatie_locatie/locatie_nummer">
                     <name>
                         <xsl:call-template name="string-to-string"/>
                     </name>
@@ -112,11 +112,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </name>
                 </xsl:for-each>
 
+                <!-- In the presence of location, both address and contact data are of the location, not of the organization -->
                 <xsl:call-template name="nl-core-ContactInformation">
+                    <!--<xsl:with-param name="in" select=".[not(organisatie_locatie)]/contactgegevens"/>-->
                     <xsl:with-param name="in" select="contactgegevens"/>
                 </xsl:call-template>
 
                 <xsl:call-template name="nl-core-AddressInformation">
+                    <!--<xsl:with-param name="in" select=".[not(organisatie_locatie)]/adresgegevens"/>-->
                     <xsl:with-param name="in" select="adresgegevens"/>
                 </xsl:call-template>
             </Organization>
