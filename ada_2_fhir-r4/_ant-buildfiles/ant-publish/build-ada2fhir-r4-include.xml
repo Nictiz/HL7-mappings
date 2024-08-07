@@ -93,7 +93,12 @@
             <include name="${xsl.in.include}"/>
             <exclude name="${xsl.in.exclude}" if="xsl.in.exclude"/>            
         </fileset>
-
+        
+        <!-- delete previous results, if any -->
+        <delete failonerror="true">
+            <fileset dir="${sub.build.dir}/${param.outputDir}" includes="*.xml"/>
+        </delete>
+        
         <echo/>
         <echo>${echo.label} input files ${xsl.in}/${xsl.in.include}, to be converted with: ${xsl.convert}</echo>
         <xslt force="true" style="${xsl.convert}" destdir="${xsl.out}" extension=".xml" useImplicitFileset="false">
