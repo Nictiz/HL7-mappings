@@ -145,6 +145,37 @@
                               <code code="R019"
                                     codeSystem="2.16.840.1.113883.2.4.4.40.391"
                                     displayName="Terugkerende anamnese"/>
+                              <component>
+                                 <observation classCode="OBS"
+                                              moodCode="EVN"
+                                              negationInd="false">
+                                    <templateId root="2.16.840.1.113883.2.4.6.10.100.40748"/>
+                                    <code code="748"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                          displayName="Anamnese"/>
+                                    <value xsi:type="ST">placeholder</value>
+                                 </observation>
+                              </component>
+                              <component>
+                                 <groupCluster>
+                                    <code code="G087"
+                                          codeSystem="2.16.840.1.113883.2.4.4.40.393"
+                                          displayName="Opname ziekenhuis"/>
+                                    <component>
+                                       <observation classCode="OBS"
+                                                    moodCode="EVN"
+                                                    negationInd="false">
+                                          <templateId root="2.16.840.1.113883.2.4.6.10.100.40149"/>
+                                          <code code="149"
+                                                codeSystem="2.16.840.1.113883.2.4.4.40.267"
+                                                displayName="Duur opname ziekenhuis"/>
+                                          <value xsi:type="PQ"
+                                                 unit="d"
+                                                 nullFlavor="UNK"/>
+                                       </observation>
+                                    </component>
+                                 </groupCluster>
+                              </component>
                            </rubricCluster>
                         </pertinentInformation>
                      </encounter>
