@@ -107,6 +107,29 @@
         <delete dir="${build.dir}/${usecase.examples.imm}/t"/>
 
     </target>
+    
+    <target name="copy_result_to_testscripts">
+        
+        <property name="imm.testcript.dir" value="${build.dir}/../../../../Nictiz-testscripts/src/Immunization-2-0"/>
+        
+        <delete>
+            <fileset dir="${imm.testcript.dir}/Cert/_reference/resources/" includes="*.*"/>
+        </delete>
+        <copy todir="${imm.testcript.dir}/Cert/_reference/resources/" failonerror="true">
+            <fileset dir="${build.dir}/${usecase.bs.imm}/fhir_instance_kwal">
+                <include name="*.xml"/>
+            </fileset>
+        </copy>
+        
+        <delete>
+            <fileset dir="${imm.testcript.dir}/Test/_reference/resources/" includes="*.*"/>
+        </delete>
+        <copy todir="${imm.testcript.dir}/Test/_reference/resources/" failonerror="true">
+            <fileset dir="${build.dir}/${usecase.bs.imm}/fhir_instance_test">
+                <include name="*.xml"/>
+            </fileset>
+        </copy>
+    </target>
 
  
     <target name="schemavalidate_fhir_300">
