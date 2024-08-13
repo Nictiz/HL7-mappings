@@ -139,8 +139,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <performer>
                         <function>
                             <coding>
-                                <system value="http://terminology.hl7.org/CodeSystem/v2-0443" />
-                                <code value="AP" />
+                                <system value="http://terminology.hl7.org/CodeSystem/v2-0443"/>
+                                <code value="AP"/>
+                                <display value="Administering Provider"/>
                             </coding>
                         </function>
                         <actor>
