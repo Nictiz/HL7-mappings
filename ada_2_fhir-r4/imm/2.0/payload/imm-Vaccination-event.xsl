@@ -181,10 +181,19 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </reasonCode>
                 </xsl:for-each>
                 <xsl:for-each select="ziekte_waar_tegen_gevaccineerd_wordt">
+                    <!-- doseNumber is verplicht in R4/R5 verwacht optioneel vanaf R6
+                         https://nictiz.atlassian.net/browse/VI-62
+                    -->
                     <protocolApplied>
                         <targetDisease>
                             <xsl:call-template name="code-to-CodeableConcept"/>
                         </targetDisease>
+                        <!--<doseNumberString>
+                            <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+                                <valueCode value="unknown"/>
+                            </extension>
+                        </doseNumberString>-->
+                        <doseNumberString value="n/a"/>
                     </protocolApplied>
                 </xsl:for-each>
             </Immunization>
