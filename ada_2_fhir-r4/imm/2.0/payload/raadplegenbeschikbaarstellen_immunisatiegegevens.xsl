@@ -45,7 +45,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 as a workaround we move adresgegevens and contactgegevens in the zorgaanbieder
                 ask the IA's for current status when in doubt! -->
     <xsl:variable name="locatieZorgaanbieder" as="element()*">
-        <xsl:for-each select="/adaxml/data/beschikbaarstellen_immunisatiegegevens/vaccinatie/locatie/zorgaanbieder">
+        <xsl:for-each select="//adaxml/data/beschikbaarstellen_immunisatiegegevens/vaccinatie/locatie/zorgaanbieder">
             <xsl:copy>
                 <xsl:copy-of select="@*"/>
                 <xsl:copy-of select="*[not(self::organisatie_type | self::organisatie_locatie)]"/>
@@ -60,37 +60,59 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:call-template name="buildFhirMetadata">
             <!-- ADA instances for this project start with $zib2020Oid and end in .1, or in 9.*.* in the case of the medication related zibs -->
             <xsl:with-param name="in" select="
-                    //(
-                    beschikbaarstellen_immunisatiegegevens/bundel/patient |
-                    beschikbaarstellen_immunisatiegegevens/vaccinatie/(toediener)/zorgaanbieder | $locatieZorgaanbieder |
-                    beschikbaarstellen_immunisatiegegevens/vaccinatie/toediener/zorgverlener |
-                    beschikbaarstellen_immunisatiegegevens/vaccinatie |
-                    beschikbaarstellen_immunisatiegegevens/vaccinatie/farmaceutisch_product)"/>
+                //beschikbaarstellen_immunisatiegegevens/(
+                    bundel/patient |
+                    vaccinatie/toediener/zorgaanbieder |
+                    vaccinatie/toediener/zorgverlener |
+                    vaccinatie/farmaceutisch_product
+                    ) | $locatieZorgaanbieder"/>
+        </xsl:call-template>
+        <!-- vaccinatie apart ... we krijgen anders mogelijk 2x dezelfde uuid eruit als er 2x met hetzelfde vaccin uit dezelfde batch etc is geprikt, 
+            we voegen dus een virtueel verschil in, dat ook zo wordt toegepast in imm-Vaccination-event bij het maken van de Resource.id -->
+        <xsl:call-template name="buildFhirMetadata">
+            <!-- ADA instances for this project start with $zib2020Oid and end in .1, or in 9.*.* in the case of the medication related zibs -->
+            <xsl:with-param name="in" as="element()*">
+                <xsl:for-each select="//beschikbaarstellen_immunisatiegegevens/vaccinatie">
+                    <xsl:element name="{name()}">
+                        <xsl:copy-of select="@*"/>
+                        <xsl:attribute name="value" select="count(preceding::vaccinatie)"/>
+                        <xsl:copy-of select="node()"/>
+                    </xsl:element>
+                </xsl:for-each>
+            </xsl:with-param>
         </xsl:call-template>
     </xsl:param>
 
     <xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template match="beschikbaarstellen_immunisatiegegevens">
+    <xsl:template match="/">
+
+<xsl:variable name="fff">
+    <x>
+        <xsl:for-each select="$fhirMetadata[nm:resource-type = 'Immunization']">
+            <y><xsl:value-of select="nm:logical-id"/></y>
+        </xsl:for-each>
+    </x>
+</xsl:variable>
 
         <xsl:variable name="resources" as="element(f:entry)*">
 
-            <xsl:variable name="patient" as="element()?">
-                <xsl:for-each select="bundel/patient">
+            <xsl:variable name="patient" as="element()*">
+                <xsl:for-each select="//beschikbaarstellen_immunisatiegegevens/bundel/patient">
                     <xsl:call-template name="nl-core-Patient"/>
                 </xsl:for-each>
             </xsl:variable>
 
             <xsl:variable name="zorgaanbieder" as="element()*">
-                <xsl:for-each-group select="vaccinatie[not(locatie/zorgaanbieder)]/toediener/zorgaanbieder | $locatieZorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
+                <xsl:for-each-group select="//beschikbaarstellen_immunisatiegegevens/vaccinatie[not(locatie/zorgaanbieder)]/toediener/zorgaanbieder | $locatieZorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="nl-core-HealthcareProvider"/>
                 </xsl:for-each-group>
             </xsl:variable>
 
             <!-- the organization locatie/zorgaanbieder: we use the original because we don't want duplication of adresgegevens and contactgegevens -->
             <xsl:variable name="zorgaanbiederOrg" as="element()*">
-                <xsl:for-each-group select="vaccinatie/toediener/zorgaanbieder | $locatieZorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
+                <xsl:for-each-group select="//beschikbaarstellen_immunisatiegegevens/vaccinatie/toediener/zorgaanbieder | $locatieZorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="nl-core-HealthcareProvider-Organization"/>
                 </xsl:for-each-group>
             </xsl:variable>
@@ -98,7 +120,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:variable name="zorgverlener" as="element()*">
                 <!-- let's resolve the zorgaanbieder ín the zorgverlener, to make sure deduplication also works for duplicated zorgaanbieders -->
                 <xsl:variable name="zorgverlenerWithResolvedZorgaanbieder" as="element(zorgverlener)*">
-                    <xsl:apply-templates select="vaccinatie/toediener/zorgverlener" mode="resolveAdaZorgaanbieder"/>
+                    <xsl:apply-templates select="//beschikbaarstellen_immunisatiegegevens/vaccinatie/toediener/zorgverlener" mode="resolveAdaZorgaanbieder"/>
                 </xsl:variable>
                 <xsl:for-each-group select="$zorgverlenerWithResolvedZorgaanbieder" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="nl-core-HealthProfessional-PractitionerRole"/>
@@ -107,19 +129,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:variable>
 
             <xsl:variable name="vaccinatie" as="element()*">
-                <xsl:for-each select="vaccinatie">
+                <xsl:for-each select="//beschikbaarstellen_immunisatiegegevens/vaccinatie">
                     <xsl:call-template name="imm-Vaccination-event"/>
                 </xsl:for-each>
             </xsl:variable>
 
             <xsl:variable name="farmaceutischProduct" as="element()*">
-                <xsl:for-each select="vaccinatie/farmaceutisch_product">
+                <xsl:for-each select="//beschikbaarstellen_immunisatiegegevens/vaccinatie/farmaceutisch_product">
                     <xsl:call-template name="imm-PharmaceuticalProduct">
                         <xsl:with-param name="profile">http://nictiz.nl/fhir/StructureDefinition/imm-PharmaceuticalProduct</xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
             </xsl:variable>
-
 
             <!-- TODO, add zorgverlener/vaccinatie and debug logicalId -->
             <xsl:for-each select="$patient | $zorgaanbieder | $zorgaanbiederOrg | $zorgverlener | $vaccinatie | $farmaceutischProduct">
@@ -157,7 +178,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <id value="{nf:assure-logicalid-length(nf:removeSpecialCharacters(@id))}"/>
                     <type value="searchset"/>
                     <!-- What should we count? -->
-                    <total value="TODO"/>
+                    <total value="{count($resources/f:resource/f:Immunization)}"/>
                     <!--<total value="{count($resources/f:resource/*)}"/>-->
                     <xsl:choose>
                         <xsl:when test="$bundleSelfLink[not(. = '')]">
@@ -179,8 +200,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-
-
 
     <xd:doc>
         <xd:desc/>

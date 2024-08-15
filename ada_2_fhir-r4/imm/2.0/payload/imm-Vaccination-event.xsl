@@ -44,13 +44,36 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:param name="patient" select="../bundel/patient" as="element()?"/>
         
         <xsl:for-each select="$in">
+            <xsl:variable name="updatedToPleaseTheUuidAlgorithm" as="element()">
+                <xsl:element name="{name()}">
+                    <xsl:copy-of select="@*"/>
+                    <xsl:attribute name="value" select="count(preceding::vaccinatie)"/>
+                    <xsl:copy-of select="node()"/>
+                </xsl:element>
+            </xsl:variable>
+            
             <Immunization>
                 <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="in" select="$updatedToPleaseTheUuidAlgorithm"/>
                     <xsl:with-param name="profile" select="'nl-core-Vaccination-event'"/>
                 </xsl:call-template>
                 <meta>
                     <profile value="http://nictiz.nl/fhir/StructureDefinition/imm-Vaccination-event"/>
                 </meta>
+                <xsl:for-each select="locatie[empty(zorgaanbieder)]">
+                    <contained>
+                        <Location>
+                            <id value="_locatie1"/>
+                            <xsl:call-template name="nl-core-ContactInformation">
+                                <xsl:with-param name="in" select="contactgegevens"/>
+                            </xsl:call-template>
+                            
+                            <xsl:call-template name="nl-core-AddressInformation">
+                                <xsl:with-param name="in" select="adresgegevens"/>
+                            </xsl:call-template>
+                        </Location>
+                    </contained>
+                </xsl:for-each>
                 <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-imm-Vaccination.PharmaceuticalProduct">
                     <valueReference>
                         <xsl:call-template name="makeReference">
@@ -103,20 +126,50 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </occurrenceDateTime>
                 </xsl:for-each>
                 <xsl:for-each select="locatie">
-                    <xsl:call-template name="makeReference">
-                        <xsl:with-param name="in" as="element()*">
-                            <xsl:choose>
-                                <xsl:when test="$locatieZorgaanbieder">
-                                    <xsl:sequence select="$locatieZorgaanbieder"/>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:sequence select="zorgaanbieder"/>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:with-param>
-                        <xsl:with-param name="profile" select="'nl-core-HealthcareProvider'"/>
-                        <xsl:with-param name="wrapIn" select="'location'"/>
-                    </xsl:call-template>
+                    <xsl:choose>
+                        <xsl:when test="zorgaanbieder">
+                            <xsl:call-template name="makeReference">
+                                <xsl:with-param name="in" as="element()*">
+                                    <xsl:for-each select="zorgaanbieder">
+                                        <xsl:copy>
+                                            <xsl:copy-of select="@*"/>
+                                            <xsl:copy-of select="*[not(self::organisatie_type | self::organisatie_locatie)]"/>
+                                            <xsl:copy-of select="../(contactgegevens | adresgegevens)"/>
+                                            <xsl:copy-of select="organisatie_type | organisatie_locatie"/>
+                                        </xsl:copy>
+                                    </xsl:for-each>
+                                </xsl:with-param>
+                                <xsl:with-param name="profile" select="'nl-core-HealthcareProvider'"/>
+                                <xsl:with-param name="wrapIn" select="'location'"/>
+                            </xsl:call-template>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <location>
+                                <reference value="#_locatie1"/>
+                                <type value="Location"/>
+                                <display>
+                                    <xsl:attribute name="value">
+                                        <xsl:variable name="theDisplay">
+                                            <xsl:if test="adresgegevens">
+                                                <xsl:text>Adres: </xsl:text>
+                                                <xsl:value-of select="string-join(adresgegevens[1]/*/(@displayName, @code, @value)[1], ' ')"/>
+                                                <xsl:text>.</xsl:text>
+                                            </xsl:if>
+                                            <xsl:if test="adresgegevens and contactgegevens">
+                                                <xsl:text> </xsl:text>
+                                            </xsl:if>
+                                            <xsl:if test="contactgegevens">
+                                                <xsl:text>Contact: </xsl:text>
+                                                <xsl:value-of select="string-join(contactgegevens[1]/*/*/(@displayName, @code, @value)[1], ' ')"/>
+                                                <xsl:text>.</xsl:text>
+                                            </xsl:if>
+                                        </xsl:variable>
+                                        <xsl:value-of select="normalize-space($theDisplay)"/>
+                                    </xsl:attribute>
+                                </display>
+                            </location>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </xsl:for-each>
                 <xsl:for-each select="anatomische_locatie">
                     <site>
