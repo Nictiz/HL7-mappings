@@ -63,7 +63,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:for-each select="locatie[empty(zorgaanbieder)]">
                     <contained>
                         <Location>
-                            <id value="_locatie1"/>
+                            <id value="locatie1"/>
                             <xsl:call-template name="nl-core-ContactInformation">
                                 <xsl:with-param name="in" select="contactgegevens"/>
                             </xsl:call-template>
@@ -145,7 +145,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </xsl:when>
                         <xsl:otherwise>
                             <location>
-                                <reference value="#_locatie1"/>
+                                <reference value="#locatie1"/>
                                 <type value="Location"/>
                                 <display>
                                     <xsl:attribute name="value">
