@@ -88,14 +88,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="/">
 
-<xsl:variable name="fff">
-    <x>
-        <xsl:for-each select="$fhirMetadata[nm:resource-type = 'Immunization']">
-            <y><xsl:value-of select="nm:logical-id"/></y>
-        </xsl:for-each>
-    </x>
-</xsl:variable>
-
         <xsl:variable name="resources" as="element(f:entry)*">
 
             <xsl:variable name="patient" as="element()*">
@@ -135,11 +127,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:variable>
 
             <xsl:variable name="farmaceutischProduct" as="element()*">
-                <xsl:for-each select="//beschikbaarstellen_immunisatiegegevens/vaccinatie/farmaceutisch_product">
+                <xsl:for-each-group select="//beschikbaarstellen_immunisatiegegevens/vaccinatie/farmaceutisch_product" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="imm-PharmaceuticalProduct">
+                        <xsl:with-param name="in" select="current-group()[1]"/>
                         <xsl:with-param name="profile">http://nictiz.nl/fhir/StructureDefinition/imm-PharmaceuticalProduct</xsl:with-param>
                     </xsl:call-template>
-                </xsl:for-each>
+                </xsl:for-each-group>
             </xsl:variable>
 
             <!-- TODO, add zorgverlener/vaccinatie and debug logicalId -->
