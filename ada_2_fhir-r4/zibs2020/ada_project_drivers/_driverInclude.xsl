@@ -129,7 +129,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:variable>
                     <xsl:value-of select="string-join(($id, $ada2resourceType/*[@profile = $profile]/@resource, format-number($position, '00')), '-')"/>
                 </xsl:when>
-                <xsl:when test="$localName = ('soepregel','visueel_resultaat','monster','sociaal_netwerk','hobby','arbeidssituatie')">
+                <xsl:when test="$localName = ('soepregel','visueel_resultaat','monster','sociaal_netwerk','hobby','arbeidssituatie', 'lopen', 'traplopen', 'houding_veranderen', 'houding_handhaven', 'uitvoeren_transfer')">
                     <xsl:value-of select="$baseId"/>
                     <xsl:value-of select="substring-after($profile, $baseId)"/>
                     <xsl:text>-</xsl:text>
@@ -492,6 +492,31 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="$in" mode="nl-core-Mobility">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
+                <xsl:for-each select="lopen">
+                    <xsl:call-template name="nl-core-Mobility.Walking">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="traplopen">
+                    <xsl:call-template name="nl-core-Mobility.ClimbingStairs">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="houding_veranderen">
+                    <xsl:call-template name="nl-core-Mobility.ChangingPosition">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="houding_handhaven">
+                    <xsl:call-template name="nl-core-Mobility.MaintainingPosition">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="uitvoeren_transfer">
+                    <xsl:call-template name="nl-core-Mobility.Transfer">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
             </xsl:when>
             <xsl:when test="$localName = 'mustscore'">
                 <xsl:apply-templates select="$in" mode="nl-core-MUSTScore">

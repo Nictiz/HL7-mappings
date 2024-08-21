@@ -106,6 +106,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-HearingFunction.HearingAid"/>
         <nm:map ada="medisch_hulpmiddel" resource="DeviceUseStatement" profile="nl-core-VisualFunction.VisualAid"/>
         <nm:map ada="mobiliteit" resource="Observation" profile="nl-core-Mobility"/>
+        <nm:map ada="lopen" resource="Observation" profile="nl-core-Mobility.Walking"/>
+        <nm:map ada="traplopen" resource="Observation" profile="nl-core-Mobility.ClimbingStairs"/>
+        <nm:map ada="houding_veranderen" resource="Observation" profile="nl-core-Mobility.MaintainingPosition"/>
+        <nm:map ada="houding_handhaven" resource="Observation" profile="nl-core-Mobility.ChangingPosition"/>
+        <nm:map ada="uitvoeren_transfer" resource="Observation" profile="nl-core-Mobility.Transfer"/>
         <nm:map ada="monster" resource="Specimen" profile="nl-core-LaboratoryTestResult.Specimen"/>
         <nm:map ada="monster2" resource="Specimen" profile="nl-core-LaboratoryTestResult.Specimen"/>
         <nm:map ada="bron_monster" resource="Device" profile="nl-core-LaboratoryTestResult.SpecimenSource"/>
@@ -288,7 +293,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 $in//datum_laatste_menstruatie[parent::aterme_datum_items/parent::zwangerschap],
                 $in//sociaal_netwerk[parent::participatie_in_maatschappij],
                 $in//vrijetijdsbesteding[parent::participatie_in_maatschappij],
-                $in//arbeidssituatie[parent::participatie_in_maatschappij]
+                $in//arbeidssituatie[parent::participatie_in_maatschappij],
+                $in//lopen[parent::mobiliteit],
+                $in//traplopen[parent::mobiliteit],
+                $in//houding_veranderen[parent::mobiliteit],
+                $in//houding_handhaven[parent::mobiliteit],
+                $in//uitvoeren_transfer[parent::mobiliteit]      
                 )[.//(@value | @code | @nullFlavor)]" group-by="local-name()">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <xsl:call-template name="_buildFhirMetadataForAdaEntry">
