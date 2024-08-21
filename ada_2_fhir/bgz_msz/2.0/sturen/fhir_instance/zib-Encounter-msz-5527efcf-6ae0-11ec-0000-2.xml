@@ -1,5 +1,5 @@
 <Encounter xmlns="http://hl7.org/fhir">
-   <id value="zib-Encounter-msz-dca281a1-6b1a-11ec-0000-2"/>
+   <id value="zib-Encounter-msz-5527efcf-6ae0-11ec-0000-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
    </meta>
@@ -7,23 +7,32 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Contact. Subject: Dennis D. Dennis Janse. Status: onbekend</caption>
+            <caption>Contact. Subject: Dennis D. Dennis Janse. Status: voltooid</caption>
             <tbody>
                <tr>
                   <th>Type contact</th>
                   <td>
                      <div>
-                        <span title="Poliklinisch (AMB - v3/ActCode)">Poliklinisch</span>
+                        <span title="Klinisch (IMP - v3/ActCode)">Klinisch</span>
                      </div>
                   </td>
                </tr>
                <tr>
                   <th>Periode</th>
-                  <td>Vanaf ${DATE, T, D, -1}T09:00:00+02:00</td>
+                  <td>${DATE, T, D, -45}T13:30:00+02:00 - ${DATE, T, D, -43}T12:00:00+02:00</td>
                </tr>
                <tr>
                   <th>Zorgaanbieder</th>
                   <td>Ziekenhuis de Aandacht</td>
+               </tr>
+               <tr>
+                  <th>Opnamegegevens</th>
+                  <td>
+                     <ul>
+                        <li>Ontslagwijze: <span title="Instelling voor revalidatie (80522000 - SNOMED CT)">Instelling voor revalidatie</span>
+                        </li>
+                     </ul>
+                  </td>
                </tr>
             </tbody>
          </table>
@@ -31,30 +40,31 @@
    </text>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="f1054e0f-6ae4-11ec-0000-2"/>
+      <value value="56d83ba0-6b55-11ec-0000-2"/>
    </identifier>
-   <status value="unknown"/>
+   <status value="finished"/>
    <class>
-      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
-         <valueCodeableConcept>
-            <coding>
-               <system value="http://hl7.org/fhir/v3/ActCode"/>
-               <code value="AMB"/>
-               <display value="Poliklinisch"/>
-            </coding>
-         </valueCodeableConcept>
-      </extension>
       <system value="http://hl7.org/fhir/v3/ActCode"/>
-      <code value="AMB"/>
-      <display value="Poliklinisch"/>
+      <code value="IMP"/>
+      <display value="Klinisch"/>
    </class>
    <subject>
       <reference value="Patient/DENNIS-D--DENNIS-JANSE"/>
       <display value="Dennis D. Dennis Janse"/>
    </subject>
    <period>
-      <start value="${DATE, T, D, -1}T09:00:00+02:00"/>
+      <start value="${DATE, T, D, -45}T13:30:00+02:00"/>
+      <end value="${DATE, T, D, -43}T12:00:00+02:00"/>
    </period>
+   <hospitalization>
+      <dischargeDisposition>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="80522000"/>
+            <display value="Instelling voor revalidatie"/>
+         </coding>
+      </dischargeDisposition>
+   </hospitalization>
    <serviceProvider>
       <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000002"/>
       <display value="Ziekenhuis de Aandacht"/>

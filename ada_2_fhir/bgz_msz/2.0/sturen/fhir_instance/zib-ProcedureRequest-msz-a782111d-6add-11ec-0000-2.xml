@@ -1,5 +1,5 @@
 <ProcedureRequest xmlns="http://hl7.org/fhir">
-   <id value="zib-ProcedureRequest-msz-ef827219-6aa6-11ec-0000-2"/>
+   <id value="zib-ProcedureRequest-msz-a782111d-6add-11ec-0000-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-ProcedureRequest"/>
    </meta>
@@ -12,10 +12,10 @@
             <tbody>
                <tr>
                   <td>
-                     <span title="externe fixatie van fractuur van malleolus (111501000146106 - SNOMED CT)">externe fixatie van fractuur van malleolus</span>
+                     <span title="aanleggen van loopgips voor onderbeen (122531000146102 - SNOMED CT)">aanleggen van loopgips voor onderbeen</span>
                   </td>
                   <td>
-                     <div>Wanneer: ${DATE, T, D, -45}T14:00:00+02:00 - ${DATE, T, D, -45}T15:00:00+02:00</div>
+                     <div>Wanneer: Vanaf ${DATE, T, D, -44}T09:30:00+02:00</div>
                   </td>
                </tr>
                <tr>
@@ -26,6 +26,7 @@
                   <td>Deel van lichaam</td>
                   <td>
                      <span title="structuur van enkelgewricht (70258002 - SNOMED CT)">structuur van enkelgewricht</span>
+                     <span title="Links (7771000 - SNOMED CT)">Links</span>
                   </td>
                </tr>
             </tbody>
@@ -34,15 +35,15 @@
    </text>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="fbb250ba-6b5b-11ec-0000-2"/>
+      <value value="c135f9f9-6b17-11ec-0000-2"/>
    </identifier>
    <status value="unknown"/>
    <intent value="plan"/>
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="111501000146106"/>
-         <display value="externe fixatie van fractuur van malleolus"/>
+         <code value="122531000146102"/>
+         <display value="aanleggen van loopgips voor onderbeen"/>
       </coding>
    </code>
    <subject>
@@ -50,10 +51,18 @@
       <display value="Dennis D. Dennis Janse"/>
    </subject>
    <occurrencePeriod>
-      <start value="${DATE, T, D, -45}T14:00:00+02:00"/>
-      <end value="${DATE, T, D, -45}T15:00:00+02:00"/>
+      <start value="${DATE, T, D, -44}T09:30:00+02:00"/>
    </occurrencePeriod>
    <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="Links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
       <coding>
          <system value="http://snomed.info/sct"/>
          <code value="70258002"/>

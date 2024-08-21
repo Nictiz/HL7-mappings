@@ -1,5 +1,5 @@
 <Condition xmlns="http://hl7.org/fhir">
-   <id value="zib-Problem-msz-81d47fe5-6aed-11ec-0000-2"/>
+   <id value="zib-Problem-msz-2e979dcf-6b2f-11ec-0000-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
    </meta>
@@ -7,22 +7,22 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Aandoening. Subject: Dennis D. Dennis Janse. Status: actief / bevestigd</caption>
+            <caption>Aandoening. Subject: Dennis D. Dennis Janse. Categorie: <span title="Diagnose (282291009 - SNOMED CT)">Diagnose</span>, Status: actief</caption>
             <tfoot>
                <tr>
-                  <td colspan="2">Kortademig</td>
+                  <td colspan="2">Op een bal gaan staan tijdens het voetballen.</td>
                </tr>
             </tfoot>
             <tbody>
                <tr>
                   <th>Code</th>
                   <td>
-                     <span title="astma (195967001 - SNOMED CT)">astma</span>
+                     <span title="fractuur van enkel (16114001 - SNOMED CT)">fractuur van enkel</span>
                   </td>
                </tr>
                <tr>
                   <th>Eerste symptomen</th>
-                  <td>2000</td>
+                  <td>${DATE, T, D, -45}</td>
                </tr>
             </tbody>
          </table>
@@ -30,7 +30,7 @@
    </text>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="c7019c51-6aa8-11ec-0000-2"/>
+      <value value="05489321-6b68-11ec-0000-2"/>
    </identifier>
    <clinicalStatus value="active">
       <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
@@ -43,37 +43,42 @@
          </valueCodeableConcept>
       </extension>
    </clinicalStatus>
-   <verificationStatus value="confirmed">
-      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
-         <valueCodeableConcept>
-            <coding>
-               <system value="http://snomed.info/sct"/>
-               <code value="410605003"/>
-               <display value="Bevestigd"/>
-            </coding>
-         </valueCodeableConcept>
-      </extension>
-   </verificationStatus>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="282291009"/>
+         <display value="Diagnose"/>
+      </coding>
+   </category>
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="195967001"/>
-         <display value="astma"/>
+         <code value="16114001"/>
+         <display value="fractuur van enkel"/>
       </coding>
    </code>
    <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="Links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="181216001"/>
-         <display value="gehele long"/>
+         <code value="70258002"/>
+         <display value="structuur van enkelgewricht"/>
       </coding>
    </bodySite>
    <subject>
       <reference value="Patient/DENNIS-D--DENNIS-JANSE"/>
       <display value="Dennis D. Dennis Janse"/>
    </subject>
-   <onsetDateTime value="2000"/>
+   <onsetDateTime value="${DATE, T, D, -45}"/>
    <note>
-      <text value="Kortademig"/>
+      <text value="Op een bal gaan staan tijdens het voetballen."/>
    </note>
 </Condition>

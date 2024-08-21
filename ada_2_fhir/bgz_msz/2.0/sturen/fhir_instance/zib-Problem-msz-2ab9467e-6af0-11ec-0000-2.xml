@@ -1,5 +1,5 @@
 <Condition xmlns="http://hl7.org/fhir">
-   <id value="zib-Problem-msz-aea497cf-6ac6-11ec-0000-2"/>
+   <id value="zib-Problem-msz-2ab9467e-6af0-11ec-0000-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Problem"/>
    </meta>
@@ -7,22 +7,17 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Aandoening. Subject: Dennis D. Dennis Janse. Status: actief / bevestigd</caption>
-            <tfoot>
-               <tr>
-                  <td colspan="2">Op een bal gaan staan tijdens het voetballen.</td>
-               </tr>
-            </tfoot>
+            <caption>Aandoening. Subject: Francisca F. Fransje Gigase Verheul. Categorie: <span title="Diagnose (282291009 - SNOMED CT)">Diagnose</span>, Status: actief / bevestigd</caption>
             <tbody>
                <tr>
                   <th>Code</th>
                   <td>
-                     <span title="fractuur van enkel (16114001 - SNOMED CT)">fractuur van enkel</span>
+                     <span title="Kwaadaardige tumor in de borst. (254837009 - SNOMED CT)">Kwaadaardige tumor in de borst.</span>
                   </td>
                </tr>
                <tr>
                   <th>Eerste symptomen</th>
-                  <td>${DATE, T, D, -45}</td>
+                  <td>${DATE, T, D, -14}</td>
                </tr>
             </tbody>
          </table>
@@ -30,7 +25,7 @@
    </text>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="2c8a2e22-6b59-11ec-0000-2"/>
+      <value value="9553ffae-6b7d-11ec-0000-2"/>
    </identifier>
    <clinicalStatus value="active">
       <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
@@ -54,11 +49,18 @@
          </valueCodeableConcept>
       </extension>
    </verificationStatus>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="282291009"/>
+         <display value="Diagnose"/>
+      </coding>
+   </category>
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="16114001"/>
-         <display value="fractuur van enkel"/>
+         <code value="254837009"/>
+         <display value="Kwaadaardige tumor in de borst."/>
       </coding>
    </code>
    <bodySite>
@@ -66,23 +68,20 @@
          <valueCodeableConcept>
             <coding>
                <system value="http://snomed.info/sct"/>
-               <code value="7771000"/>
-               <display value="Links"/>
+               <code value="24028007"/>
+               <display value="Rechts"/>
             </coding>
          </valueCodeableConcept>
       </extension>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="70258002"/>
-         <display value="structuur van enkelgewricht"/>
+         <code value="73056007"/>
+         <display value="structuur van rechter mamma"/>
       </coding>
    </bodySite>
    <subject>
-      <reference value="Patient/DENNIS-D--DENNIS-JANSE"/>
-      <display value="Dennis D. Dennis Janse"/>
+      <reference value="Patient/FRANCISCA-F--FRANSJE-GIGASE-VERHEUL"/>
+      <display value="Francisca F. Fransje Gigase Verheul"/>
    </subject>
-   <onsetDateTime value="${DATE, T, D, -45}"/>
-   <note>
-      <text value="Op een bal gaan staan tijdens het voetballen."/>
-   </note>
+   <onsetDateTime value="${DATE, T, D, -14}"/>
 </Condition>

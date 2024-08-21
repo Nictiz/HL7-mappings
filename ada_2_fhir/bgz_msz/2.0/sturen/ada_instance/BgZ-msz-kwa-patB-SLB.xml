@@ -4,7 +4,7 @@
          created-by="zibsada"
          last-update-by="zibsada"
          creation-date="2024-04-26T07:23:55.772Z"
-         last-update-date="2024-06-11T06:45:27.373Z"/>
+         last-update-date="2024-08-19T20:40:16.289Z"/>
    <data>
       <sturen app="bgz2017-2.0"
               shortName="sturen"
@@ -15,7 +15,7 @@
               prefix="bgz2017-"
               language="nl-NL"
               title="BgZ msz sturen patiënt B - laatst bekende gegevens"
-              desc=""
+              desc="&lt;div&gt;Kwalificatie materiaal&lt;/div&gt;"
               id="BgZ-msz-kwa-patB-SLB">
          <demografie_en_identificatie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.48">
             <patient conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.74"
@@ -239,7 +239,23 @@
                                        code="NEE"
                                        codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4"
                                        displayName="Nee"/>
+               <wilsverklaring conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.241">
+                  <wilsverklaring value="bgz-msz-patB-advdir"
+                                  datatype="reference"
+                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.562"/>
+               </wilsverklaring>
             </behandel_aanwijzing>
+            <wilsverklaring conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.243"
+                            id="bgz-msz-patB-advdir">
+               <wilsverklaring_type conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.244"
+                                    value="1"
+                                    code="NR"
+                                    codeSystem="2.16.840.1.113883.2.4.3.11.60.40.4.14.1"
+                                    displayName="Niet reanimeren verklaring"/>
+               <wilsverklaring_datum value="2007-07-07"
+                                     datatype="datetime"
+                                     conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.245"/>
+            </wilsverklaring>
          </behandelrestricties>
          <contactpersonen conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.228">
             <contactpersoon conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.252">
@@ -328,11 +344,12 @@
          </contactpersonen>
          <functionelementale_status conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.229">
             <functionele_of_mentale_status conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.356">
-               <zibroot>
-                  <onderwerp>
-                     <patient>
+               <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1.356">
+                  <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11.356">
+                     <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12.356">
                         <patient value="bgz-msz-patB"
-                                 datatype="reference"/>
+                                 datatype="reference"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146.356"/>
                      </patient>
                   </onderwerp>
                </zibroot>
@@ -347,6 +364,13 @@
                <status_datum value="2010-01-01"
                              datatype="datetime"
                              conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.359"/>
+               <toelichting value="krachtsvermindering rechterarm na CVA"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.360"/>
+               <hulpmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.361">
+                  <medisch_hulpmiddel value="bgz-msz-patB-medDevice1"
+                                      datatype="reference"
+                                      conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.480"/>
+               </hulpmiddel>
             </functionele_of_mentale_status>
          </functionelementale_status>
          <klachten_en_diagnoses conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.49">
@@ -370,7 +394,7 @@
                               codeSystem="2.16.840.1.113883.6.96"
                               displayName="hypertensieve aandoening"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.135"/>
-               <probleem_begin_datum value="2004-01-01"
+               <probleem_begin_datum value="2004"
                                      datatype="datetime"
                                      conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.136"/>
                <probleem_status conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.138"
@@ -404,7 +428,7 @@
                               codeSystem="2.16.840.1.113883.6.96"
                               displayName="BRCA1-genmutatie positief"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.135"/>
-               <probleem_begin_datum value="2005-01-01"
+               <probleem_begin_datum value="2005"
                                      datatype="datetime"
                                      conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.136"/>
                <probleem_status conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.138"
@@ -473,14 +497,24 @@
                      </patient>
                   </onderwerp>
                </zibroot>
-               <probleem_anatomische_locatie code="73056007"
+               <probleem_anatomische_locatie code="110496004"
                                              codeSystem="2.16.840.1.113883.6.96"
                                              codeSystemName="SNOMED Clinical Terms"
                                              displayName="structuur van rechter mamma"
                                              conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.132"/>
+               <probleem_lateraliteit conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.133"
+                                      value="2"
+                                      code="24028007"
+                                      codeSystem="2.16.840.1.113883.6.96"
+                                      displayName="Rechts"/>
+               <probleem_type conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.134"
+                              value="3"
+                              code="409586006"
+                              codeSystem="2.16.840.1.113883.6.96"
+                              displayName="Klacht"/>
                <probleem_naam code="2271000146103"
                               codeSystem="2.16.840.1.113883.6.96"
-                              displayName="palpabele massa van mamma"
+                              displayName="laterale bovenkwadrant van rechter borst"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.135"/>
                <probleem_begin_datum value="T-38D"
                                      datatype="datetime"
@@ -495,6 +529,8 @@
                                    code="415684004"
                                    codeSystem="2.16.840.1.113883.6.96"
                                    displayName="Werk"/>
+               <toelichting value="Borst voelde voor patiënt anders aan dan normaal."
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.140"/>
             </probleem>
             <probleem conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.131"
                       id="bgz-msz-patB-problem5">
@@ -512,6 +548,11 @@
                                              codeSystemName="SNOMED Clinical Terms"
                                              displayName="structuur van rechter mamma"
                                              conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.132"/>
+               <probleem_lateraliteit conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.133"
+                                      value="2"
+                                      code="24028007"
+                                      codeSystem="2.16.840.1.113883.6.96"
+                                      displayName="Rechts"/>
                <probleem_type conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.134"
                               value="1"
                               code="282291009"
@@ -519,7 +560,7 @@
                               displayName="Diagnose"/>
                <probleem_naam code="254837009"
                               codeSystem="2.16.840.1.113883.6.96"
-                              displayName="maligne neoplasma van mamma"
+                              displayName="Kwaadaardige tumor in de borst."
                               conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.135"/>
                <probleem_begin_datum value="T-14D"
                                      datatype="datetime"
@@ -615,6 +656,11 @@
                               codeSystem="2.16.840.1.113883.6.96"
                               displayName="gesloten fractuur van olecranon"
                               conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.135"/>
+               <probleem_status conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.138"
+                                value="1"
+                                code="55561003"
+                                codeSystem="2.16.840.1.113883.6.96"
+                                displayName="Actueel"/>
             </probleem>
          </klachten_en_diagnoses>
          <sociale_anamnese conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.202">
@@ -801,7 +847,8 @@
             </allergie_intolerantie>
          </allergieen>
          <medische_hulpmiddelen conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.205">
-            <medisch_hulpmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.331">
+            <medisch_hulpmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.331"
+                                id="bgz-msz-patB-medDevice1">
                <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1.331">
                   <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11.331">
                      <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12.331">
@@ -850,6 +897,30 @@
                                 conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.478"/>
                </zorgverlener>
             </medisch_hulpmiddel>
+            <medisch_hulpmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.331"
+                                id="bgz-msz-patB-medDevice2">
+               <zibroot conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.1.331">
+                  <onderwerp conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.11.331">
+                     <patient conceptId="2.16.840.1.113883.2.4.3.11.60.40.1.0.0.12.331">
+                        <patient value="bgz-msz-patB"
+                                 datatype="reference"
+                                 conceptId="2.16.840.1.113883.2.4.3.11.60.7.2.146.331"/>
+                     </patient>
+                  </onderwerp>
+               </zibroot>
+               <product conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.332">
+                  <product_type code="258646005"
+                                codeSystem="2.16.840.1.113883.6.96"
+                                codeSystemName="SNOMED Clinical Terms"
+                                displayName="wonddrain"
+                                conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.334"/>
+               </product>
+               <anatomische_locatie code="73056007"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED Clinical Terms"
+                                    displayName="structuur van rechter mamma"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.340"/>
+            </medisch_hulpmiddel>
          </medische_hulpmiddelen>
          <vaccinaties conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.206">
             <vaccinatie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.347">
@@ -864,7 +935,8 @@
                </zibroot>
                <product_code code="J07BG01"
                              codeSystem="2.16.840.1.113883.6.73"
-                             conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.348"/>
+                             conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.348"
+                             displayName="rabiësvaccin"/>
                <dosis value="1"
                       unit="mL"
                       conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.349"/>
@@ -927,7 +999,8 @@
                   </onderwerp>
                </zibroot>
                <gewicht_waarde value="54"
-                               conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.376"/>
+                               conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.376"
+                               unit="kg"/>
                <gewicht_datum_tijd value="T-3D{07:30}"
                                    datatype="datetime"
                                    conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.378"/>
@@ -1204,6 +1277,11 @@
                                          codeSystem="2.16.840.1.113883.6.96"
                                          displayName="Rechts"/>
                <indicatie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.392">
+                  <probleem value="bgz-msz-patB-problem4"
+                            datatype="reference"
+                            conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.431"/>
+               </indicatie>
+               <indicatie conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.392">
                   <probleem value="bgz-msz-patB-problem5"
                             datatype="reference"
                             conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.431"/>
@@ -1263,6 +1341,16 @@
                                  codeSystemName="SNOMED Clinical Terms"
                                  displayName="incisie en drainage van diep abces"
                                  conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.394"/>
+               <verrichting_methode code="129287005"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED Clinical Terms"
+                                    displayName="incisie"
+                                    conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.395"/>
+               <medisch_hulpmiddel conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.396">
+                  <medisch_hulpmiddel value="bgz-msz-patB-medDevice2"
+                                      datatype="reference"
+                                      conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.432"/>
+               </medisch_hulpmiddel>
             </verrichting>
             <verrichting conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.387"
                          id="bgz-msz-patB-procedure5">
@@ -1450,6 +1538,12 @@
                                conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.471"/>
                   </probleem>
                </reden_contact>
+               <herkomst originalText="Vakantie adres"
+                         conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.420"
+                         value="8"
+                         code="OTH"
+                         codeSystem="2.16.840.1.113883.5.1008"
+                         displayName="Overig"/>
             </contact>
          </contacten>
          <zorgsetting conceptId="2.16.840.1.113883.2.4.3.11.60.42.2.50">

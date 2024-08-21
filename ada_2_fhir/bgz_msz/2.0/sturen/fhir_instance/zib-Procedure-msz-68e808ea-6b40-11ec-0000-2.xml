@@ -1,5 +1,5 @@
 <Procedure xmlns="http://hl7.org/fhir">
-   <id value="zib-Procedure-msz-6e015e6f-6b61-11ec-0000-2"/>
+   <id value="zib-Procedure-msz-68e808ea-6b40-11ec-0000-2"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Procedure"/>
    </meta>
@@ -7,20 +7,26 @@
       <status value="extensions"/>
       <div xmlns="http://www.w3.org/1999/xhtml">
          <table>
-            <caption>Verrichting. Subject: Dennis D. Dennis Janse. Categorie: , Status: is bezig<span style="display: block;">Uitvoerende: Ziekenhuis de Aandacht</span>
+            <caption>Verrichting. Subject: Dennis D. Dennis Janse. Categorie: , Status: voltooid<span style="display: block;">Uitvoerende: Ziekenhuis de Aandacht</span>
             </caption>
             <tbody>
                <tr>
                   <td>
-                     <span title="aanleggen van loopgips voor onderbeen (122531000146102 - SNOMED CT)">aanleggen van loopgips voor onderbeen</span>
+                     <span title="externe fixatie van fractuur van malleolus (111501000146106 - SNOMED CT)">externe fixatie van fractuur van malleolus</span>
                   </td>
                   <td>
-                     <div>Uitgevoerd: Vanaf ${DATE, T, D, -44}T09:30:00+02:00</div>
+                     <div>Uitgevoerd: ${DATE, T, D, -45}T14:00:00+02:00 - ${DATE, T, D, -45}T15:00:00+02:00</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Methode</th>
+                  <td>
+                     <span title="immobilisatie (129371009 - SNOMED CT)">immobilisatie</span>
                   </td>
                </tr>
                <tr>
                   <th>Gebaseerd op</th>
-                  <td>	aanleggen van loopgips voor onderbeen</td>
+                  <td>externe fixatie van fractuur van malleolus</td>
                </tr>
                <tr>
                   <th>Deel van lichaam</th>
@@ -33,15 +39,24 @@
          </table>
       </div>
    </text>
+   <extension url="http://hl7.org/fhir/StructureDefinition/procedure-method">
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://snomed.info/sct"/>
+            <code value="129371009"/>
+            <display value="immobilisatie"/>
+         </coding>
+      </valueCodeableConcept>
+   </extension>
    <identifier>
       <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
-      <value value="11615a71-6a9e-11ec-0000-2"/>
+      <value value="7340db31-6b0c-11ec-0000-2"/>
    </identifier>
    <basedOn>
-      <reference value="ProcedureRequest/zib-ProcedureRequest-msz-6e015e6f-6b61-11ec-0000-2"/>
-      <display value="&#x9;aanleggen van loopgips voor onderbeen"/>
+      <reference value="ProcedureRequest/zib-ProcedureRequest-msz-68e808ea-6b40-11ec-0000-2"/>
+      <display value="externe fixatie van fractuur van malleolus"/>
    </basedOn>
-   <status value="in-progress"/>
+   <status value="completed"/>
    <category>
       <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
          <valueCode value="unknown"/>
@@ -50,8 +65,8 @@
    <code>
       <coding>
          <system value="http://snomed.info/sct"/>
-         <code value="122531000146102"/>
-         <display value="aanleggen van loopgips voor onderbeen"/>
+         <code value="111501000146106"/>
+         <display value="externe fixatie van fractuur van malleolus"/>
       </coding>
    </code>
    <subject>
@@ -59,7 +74,8 @@
       <display value="Dennis D. Dennis Janse"/>
    </subject>
    <performedPeriod>
-      <start value="${DATE, T, D, -44}T09:30:00+02:00"/>
+      <start value="${DATE, T, D, -45}T14:00:00+02:00"/>
+      <end value="${DATE, T, D, -45}T15:00:00+02:00"/>
    </performedPeriod>
    <performer>
       <actor>
