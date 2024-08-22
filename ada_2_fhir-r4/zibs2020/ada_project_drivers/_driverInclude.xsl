@@ -129,7 +129,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:variable>
                     <xsl:value-of select="string-join(($id, $ada2resourceType/*[@profile = $profile]/@resource, format-number($position, '00')), '-')"/>
                 </xsl:when>
-                <xsl:when test="$localName = ('soepregel','visueel_resultaat','monster','sociaal_netwerk','hobby','arbeidssituatie', 'lopen', 'traplopen', 'houding_veranderen', 'houding_handhaven', 'uitvoeren_transfer')">
+                <xsl:when test="$localName = ('soepregel','visueel_resultaat','monster',
+                    'sociaal_netwerk','hobby','arbeidssituatie', 
+                    'lopen', 'traplopen', 'houding_veranderen','houding_handhaven', 'uitvoeren_transfer',
+                    'ziekte_inzicht_van_patient','omgaan_met_ziekteproces_door_patient','omgaan_met_ziekteproces_door_naasten')">
                     <xsl:value-of select="$baseId"/>
                     <xsl:value-of select="substring-after($profile, $baseId)"/>
                     <xsl:text>-</xsl:text>
@@ -734,6 +737,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="$in" mode="nl-core-IllnessPerception">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
+                <xsl:for-each select="ziekte_inzicht_van_patient">
+                    <xsl:call-template name="nl-core-IllnessPerception.PatientIllnessInsight">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="omgaan_met_ziekteproces_door_patient">
+                    <xsl:call-template name="nl-core-IllnessPerception.CopingWithIllnessByPatient">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="omgaan_met_ziekteproces_door_naasten">
+                    <xsl:call-template name="nl-core-IllnessPerception.CopingWithIllnessByFamily">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
             </xsl:when>
             <xsl:when test="$localName = 'zorgaanbieder'">
                 <!-- Ideally, we would only create HealthcareProviders based on the following logic, but because there is no way to know if the Location or Organization is being referenced, we always output both: -->

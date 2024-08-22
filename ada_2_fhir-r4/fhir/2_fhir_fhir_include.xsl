@@ -176,6 +176,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="wisselend_doseerschema" resource="MedicationRequest" profile="mp-VariableDosingRegimen"/>
         <nm:map ada="woonsituatie" resource="Observation" profile="nl-core-LivingSituation"/>
         <nm:map ada="ziektebeleving" resource="Observation" profile="nl-core-IllnessPerception"/>
+        <nm:map ada="ziekte_inzicht_van_patient" resource="Observation" profile="nl-core-IllnessPerception.PatientIllnessInsight"/>
+        <nm:map ada="omgaan_met_ziekteproces_door_patient" resource="Observation" profile="nl-core-IllnessPerception.CopingWithIllnessByPatient"/>
+        <nm:map ada="omgaan_met_ziekteproces_door_naasten" resource="Observation" profile="nl-core-IllnessPerception.CopingWithIllnessByFamily"/>
         <nm:map ada="zorgaanbieder" resource="Organization" profile="nl-core-HealthcareProvider-Organization"/>
         <nm:map ada="zorgaanbieder" resource="Location" profile="nl-core-HealthcareProvider"/>
         <nm:map ada="zorg_episode" resource="EpisodeOfCare" profile="nl-core-EpisodeOfCare"/>
@@ -298,7 +301,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 $in//traplopen[parent::mobiliteit],
                 $in//houding_veranderen[parent::mobiliteit],
                 $in//houding_handhaven[parent::mobiliteit],
-                $in//uitvoeren_transfer[parent::mobiliteit]      
+                $in//uitvoeren_transfer[parent::mobiliteit],
+                $in//ziekte_inzicht_van_patient[parent::ziektebeleving],
+                $in//omgaan_met_ziekteproces_door_patient[parent::ziektebeleving],
+                $in//omgaan_met_ziekteproces_door_naasten[parent::ziektebeleving] 
                 )[.//(@value | @code | @nullFlavor)]" group-by="local-name()">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <xsl:call-template name="_buildFhirMetadataForAdaEntry">
