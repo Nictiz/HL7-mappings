@@ -104,7 +104,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </name>
                 </xsl:for-each>
 
-                <!-- In the presence of location, both address and contact data are of the location, not of the organization -->
+                <!-- FOR DISCUSSION: In the presence of location, both address and contact data are of the location, not of the organization -->
                 <xsl:call-template name="nl-core-ContactInformation">
                     <!--<xsl:with-param name="in" select=".[not(organisatie_locatie)]/contactgegevens"/>-->
                     <xsl:with-param name="in" select="contactgegevens"/>
