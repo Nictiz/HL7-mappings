@@ -103,7 +103,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
 
     <xd:doc>
-        <xd:desc>Creates an nl-core-ParticipationInSociety.SocialNetwork instance as an Observation FHIR instance from ADA social_netwerk element.</xd:desc>
+        <xd:desc>Creates an nl-core-ParticipationInSociety.SocialNetwork instance as an Observation FHIR instance from ADA sociaal_netwerk element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
