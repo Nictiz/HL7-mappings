@@ -132,7 +132,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$localName = ('soepregel','visueel_resultaat','monster',
                     'sociaal_netwerk','hobby','arbeidssituatie', 
                     'lopen', 'traplopen', 'houding_veranderen','houding_handhaven', 'uitvoeren_transfer',
-                    'ziekte_inzicht_van_patient','omgaan_met_ziekteproces_door_patient','omgaan_met_ziekteproces_door_naasten')">
+                    'ziekte_inzicht_van_patient','omgaan_met_ziekteproces_door_patient','omgaan_met_ziekteproces_door_naasten',
+                    'toiletgebruik','zorg_bij_menstruatie')">
                     <xsl:value-of select="$baseId"/>
                     <xsl:value-of select="substring-after($profile, $baseId)"/>
                     <xsl:text>-</xsl:text>
@@ -661,7 +662,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:when test="$localName = 'vermogen_tot_toiletgang'">
                 <xsl:apply-templates select="$in" mode="nl-core-AbilityToUseToilet">
                     <xsl:with-param name="subject" select="$subject"/>
-                </xsl:apply-templates>
+                </xsl:apply-templates>        
+                <xsl:for-each select="toiletgebruik">
+                    <xsl:call-template name="nl-core-AbilityToUseToilet.ToiletUse">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="zorg_bij_menstruatie">
+                    <xsl:call-template name="nl-core-AbilityToUseToilet.MenstrualCare">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
             </xsl:when>
             <xsl:when test="$localName = 'vermogen_tot_zich_wassen'">
                 <xsl:apply-templates select="$in" mode="nl-core-AbilityToWashOneself">

@@ -160,6 +160,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="vermogen_tot_drinken" resource="Observation" profile="nl-core-AbilityToDrink"/>
         <nm:map ada="vermogen_tot_eten" resource="Observation" profile="nl-core-AbilityToEat"/>
         <nm:map ada="vermogen_tot_toiletgang" resource="Observation" profile="nl-core-AbilityToUseToilet"/>
+        <nm:map ada="toiletgebruik" resource="Observation" profile="nl-core-AbilityToUseToilet.ToiletUse"/>
+        <nm:map ada="zorg_bij_menstruatie" resource="Observation" profile="nl-core-AbilityToUseToilet.MenstrualCare"/>
         <nm:map ada="vermogen_tot_uiterlijke_verzorging" resource="Observation" profile="nl-core-AbilityToGroom"/>
         <nm:map ada="vermogen_tot_zich_kleden" resource="Observation" profile="nl-core-AbilityToDressOneself"/>
         <nm:map ada="vermogen_tot_zich_wassen" resource="Observation" profile="nl-core-AbilityToWashOneself"/>
@@ -304,7 +306,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 $in//uitvoeren_transfer[parent::mobiliteit],
                 $in//ziekte_inzicht_van_patient[parent::ziektebeleving],
                 $in//omgaan_met_ziekteproces_door_patient[parent::ziektebeleving],
-                $in//omgaan_met_ziekteproces_door_naasten[parent::ziektebeleving] 
+                $in//omgaan_met_ziekteproces_door_naasten[parent::ziektebeleving],
+                $in//toiletgebruik[parent::vermogen_tot_toiletgang], 
+                $in//zorg_bij_menstruatie[parent::vermogen_tot_toiletgang]
                 )[.//(@value | @code | @nullFlavor)]" group-by="local-name()">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <xsl:call-template name="_buildFhirMetadataForAdaEntry">
