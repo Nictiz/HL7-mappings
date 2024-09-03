@@ -20,67 +20,24 @@
    <note>
       <text value="Patiënt was vanmorgen incontinent."/>
    </note>
-   <component>
-      <code>
-         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="129008009"/>
-            <display value="darmcontrole"/>
-         </coding>
-      </code>
-      <valueCodeableConcept>
-         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="165230005"/>
-            <display value="incidenteel ontlastingsverlies"/>
-         </coding>
-      </valueCodeableConcept>
-   </component>
-   <component>
-      <code>
-         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="162098000"/>
-            <display value="frequentie van defecatie"/>
-         </coding>
-      </code>
-      <valueQuantity>
-         <value value="4"/>
-         <unit value="/d"/>
-         <system value="http://unitsofmeasure.org"/>
-         <code value="/d"/>
-      </valueQuantity>
-   </component>
-   <component>
-      <code>
-         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="443172007"/>
-            <display value="score op Bristol Stoelgangschaal"/>
-         </coding>
-      </code>
-      <valueCodeableConcept>
-         <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.4.3.1"/>
-            <code value="Type 6"/>
-            <display value="Zachte stukjes met gehavende randen"/>
-         </coding>
-      </valueCodeableConcept>
-   </component>
-   <component>
-      <code>
-         <coding>
-            <system value="http://loinc.org"/>
-            <code value="9397-1"/>
-            <display value="Color of Stool"/>
-         </coding>
-      </code>
-      <valueCodeableConcept>
-         <coding>
-            <system value="http://snomed.info/sct"/>
-            <code value="267056008"/>
-            <display value="grijswitte feces"/>
-         </coding>
-      </valueCodeableConcept>
-   </component>
+   <hasMember>
+      <reference value="Observation/nl-core-BowelFunction.FecalContinence-01"/>
+      <type value="Observation"/>
+      <display value="Feces continentie: incidenteel ontlastingsverlies"/>
+   </hasMember>
+   <hasMember>
+      <reference value="Observation/nl-core-BowelFunction.Frequency-01"/>
+      <type value="Observation"/>
+      <display value="Frequentie: 4/d"/>
+   </hasMember>
+   <hasMember>
+      <reference value="Observation/nl-core-BowelFunction.DefecationConsistency-01"/>
+      <type value="Observation"/>
+      <display value="Defecatie consistentie: Zachte stukjes met gehavende randen"/>
+   </hasMember>
+   <hasMember>
+      <reference value="Observation/nl-core-BowelFunction.DefecationColor-01"/>
+      <type value="Observation"/>
+      <display value="Defecatie kleur: grijswitte feces"/>
+   </hasMember>
 </Observation>

@@ -133,7 +133,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     'sociaal_netwerk','hobby','arbeidssituatie', 
                     'lopen', 'traplopen', 'houding_veranderen','houding_handhaven', 'uitvoeren_transfer',
                     'ziekte_inzicht_van_patient','omgaan_met_ziekteproces_door_patient','omgaan_met_ziekteproces_door_naasten',
-                    'toiletgebruik','zorg_bij_menstruatie')">
+                    'toiletgebruik','zorg_bij_menstruatie','feces_continentie','frequentie','defecatie_consistentie','defecatie_kleur')">
                     <xsl:value-of select="$baseId"/>
                     <xsl:value-of select="substring-after($profile, $baseId)"/>
                     <xsl:text>-</xsl:text>
@@ -333,6 +333,26 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="$in" mode="nl-core-BowelFunction">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
+                <xsl:for-each select="feces_continentie">
+                    <xsl:call-template name="nl-core-BowelFunction.FecalContinence">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="frequentie">
+                    <xsl:call-template name="nl-core-BowelFunction.Frequency">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="defecatie_consistentie">
+                    <xsl:call-template name="nl-core-BowelFunction.DefecationConsistency">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="defecatie_kleur">
+                    <xsl:call-template name="nl-core-BowelFunction.DefecationColor">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
             </xsl:when>
             <xsl:when test="$localName = 'dosscore'">
                 <xsl:apply-templates select="$in" mode="nl-core-DOSScore">

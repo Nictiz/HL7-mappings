@@ -74,6 +74,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="contact" resource="Encounter" profile="nl-core-Encounter"/>
         <nm:map ada="contactpersoon" resource="RelatedPerson" profile="nl-core-ContactPerson"/>
         <nm:map ada="darmfunctie" resource="Observation" profile="nl-core-BowelFunction"/>
+        <nm:map ada="feces_continentie" resource="Observation" profile="nl-core-BowelFunction.FecalContinence"/>
+        <nm:map ada="frequentie" resource="Observation" profile="nl-core-BowelFunction.Frequency"/>
+        <nm:map ada="defecatie_consistentie" resource="Observation" profile="nl-core-BowelFunction.DefecationConsistency"/>
+        <nm:map ada="defecatie_kleur" resource="Observation" profile="nl-core-BowelFunction.DefecationColor"/>
         <nm:map ada="dosscore" resource="Observation" profile="nl-core-DOSScore"/>
         <nm:map ada="drugs_gebruik" resource="Observation" profile="nl-core-DrugUse"/>
         <nm:map ada="envelop" resource="ServiceRequest" profile="hg-ReferralServiceRequest"/>
@@ -308,7 +312,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 $in//omgaan_met_ziekteproces_door_patient[parent::ziektebeleving],
                 $in//omgaan_met_ziekteproces_door_naasten[parent::ziektebeleving],
                 $in//toiletgebruik[parent::vermogen_tot_toiletgang], 
-                $in//zorg_bij_menstruatie[parent::vermogen_tot_toiletgang]
+                $in//zorg_bij_menstruatie[parent::vermogen_tot_toiletgang],
+                $in//feces_continentie[parent::darmfunctie],
+                $in//frequentie[parent::darmfunctie],
+                $in//defecatie_consistentie[parent::darmfunctie],
+                $in//defecatie_kleur[parent::darmfunctie]
                 )[.//(@value | @code | @nullFlavor)]" group-by="local-name()">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <xsl:call-template name="_buildFhirMetadataForAdaEntry">
