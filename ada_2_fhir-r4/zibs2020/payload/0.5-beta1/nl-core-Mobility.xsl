@@ -32,11 +32,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     
     <xsl:variable name="profileNameMobility">nl-core-Mobility</xsl:variable>
-    <xsl:variable name="profileNameMobilityWalking">nl-core-Mobility.Walking</xsl:variable>
-    <xsl:variable name="profileNameMobilityClimbingStairs">nl-core-Mobility.ClimbingStairs</xsl:variable>
-    <xsl:variable name="profileNameMobilityChangingPosition">nl-core-Mobility.ChangingPosition</xsl:variable>
-    <xsl:variable name="profileNameMobilityMaintainingPosition">nl-core-Mobility.MaintainingPosition</xsl:variable>
-    <xsl:variable name="profileNameMobilityTransfer">nl-core-Mobility.Transfer</xsl:variable>
     
     <xd:doc>
         <xd:desc>Creates an nl-core-Mobility instance as an Observation FHIR instance from ADA mobiliteit element.</xd:desc>
@@ -78,68 +73,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </note>
                 </xsl:for-each>
                 <xsl:for-each select="lopen">
-                    <hasMember>
-                        <xsl:call-template name="makeReference">
-                            <xsl:with-param name="in" select="."/>
-                            <xsl:with-param name="profile" select="$profileNameMobilityWalking"/>
-                        </xsl:call-template>
-                    </hasMember>
-                </xsl:for-each>
-                <xsl:for-each select="traplopen">
-                    <hasMember>
-                        <xsl:call-template name="makeReference">
-                            <xsl:with-param name="in" select="."/>
-                            <xsl:with-param name="profile" select="$profileNameMobilityClimbingStairs"/>
-                        </xsl:call-template>
-                    </hasMember>
-                </xsl:for-each>
-                <xsl:for-each select="houding_veranderen">
-                    <hasMember>
-                        <xsl:call-template name="makeReference">
-                            <xsl:with-param name="in" select="."/>
-                            <xsl:with-param name="profile" select="$profileNameMobilityChangingPosition"/>
-                        </xsl:call-template>
-                    </hasMember>
-                </xsl:for-each>
-                <xsl:for-each select="houding_handhaven">
-                    <hasMember>
-                        <xsl:call-template name="makeReference">
-                            <xsl:with-param name="in" select="."/>
-                            <xsl:with-param name="profile" select="$profileNameMobilityMaintainingPosition"/>
-                        </xsl:call-template>
-                    </hasMember>
-                </xsl:for-each>
-                <xsl:for-each select="uitvoeren_transfer">
-                    <hasMember>
-                        <xsl:call-template name="makeReference">
-                            <xsl:with-param name="in" select="."/>
-                            <xsl:with-param name="profile" select="$profileNameMobilityTransfer"/>
-                        </xsl:call-template>
-                    </hasMember>
-                </xsl:for-each>                
-        </Observation>
-        </xsl:for-each>
-    </xsl:template>                
-                
-                
-    <xd:doc>
-        <xd:desc>Creates an nl-core-Mobility.Walking instance as an Observation FHIR instance from ADA social_netwerk element.</xd:desc>
-        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
-    </xd:doc>
-    <xsl:template match="lopen[parent::mobiliteit]" name="nl-core-Mobility.Walking" mode="nl-core-Mobility.Walking" as="element(f:Observation)?">
-        <xsl:param name="in" select="." as="element()?"/>
-        <xsl:param name="subject" select="patient/*" as="element()?"/>
-        
-        <xsl:for-each select="$in">
-            <Observation>
-                <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="$profileNameMobilityWalking"/>
-                </xsl:call-template>
-                <meta>
-                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
-                </meta>
-                <status value="final"/>
+                    <component>
                 <code>
                     <coding>
                         <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
@@ -147,37 +81,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <display value="loopvermogen"/>
                     </coding>
                 </code>
-                <xsl:call-template name="makeReference">
-                    <xsl:with-param name="in" select="$subject"/>
-                    <xsl:with-param name="wrapIn" select="'subject'"/>
-                </xsl:call-template>
                 <valueCodeableConcept>
                     <xsl:call-template name="code-to-CodeableConcept">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
                 </valueCodeableConcept>
-            </Observation>
+                    </component>
         </xsl:for-each>
-    </xsl:template>
-                
-    <xd:doc>
-        <xd:desc>Creates an nl-core-Mobility.ClimbingStairs instance as an Observation FHIR instance from ADA social_netwerk element.</xd:desc>
-        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
-    </xd:doc>
-    <xsl:template match="traplopen[parent::mobiliteit]" name="nl-core-Mobility.ClimbingStairs" mode="nl-core-Mobility.ClimbingStairs" as="element(f:Observation)?">
-        <xsl:param name="in" select="." as="element()?"/>
-        <xsl:param name="subject" select="patient/*" as="element()?"/>
-        
-        <xsl:for-each select="$in">
-            <Observation>
-                <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="$profileNameMobilityClimbingStairs"/>
-                </xsl:call-template>
-                <meta>
-                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
-                </meta>
-                <status value="final"/>
+                <xsl:for-each select="traplopen">
+                    <component>
                 <code>
                     <coding>
                         <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
@@ -185,37 +97,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <display value="vermogen tot traplopen"/>
                     </coding>
                 </code>
-                <xsl:call-template name="makeReference">
-                    <xsl:with-param name="in" select="$subject"/>
-                    <xsl:with-param name="wrapIn" select="'subject'"/>
-                </xsl:call-template>
                 <valueCodeableConcept>
                     <xsl:call-template name="code-to-CodeableConcept">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
                 </valueCodeableConcept>
-            </Observation>
+                    </component>
         </xsl:for-each>
-    </xsl:template>                
-
-    <xd:doc>
-        <xd:desc>Creates an nl-core-Mobility.ChangingPosition instance as an Observation FHIR instance from ADA social_netwerk element.</xd:desc>
-        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
-    </xd:doc>
-    <xsl:template match="houding_veranderen[parent::mobiliteit]" name="nl-core-Mobility.ChangingPosition" mode="nl-core-Mobility.ChangingPosition" as="element(f:Observation)?">
-        <xsl:param name="in" select="." as="element()?"/>
-        <xsl:param name="subject" select="patient/*" as="element()?"/>
-        
-        <xsl:for-each select="$in">
-            <Observation>
-                <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="$profileNameMobilityChangingPosition"/>
-                </xsl:call-template>
-                <meta>
-                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
-                </meta>
-                <status value="final"/>
+                <xsl:for-each select="houding_veranderen">
+                    <component>
                 <code>
                     <coding>
                         <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
@@ -223,37 +113,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <display value="vermogen om van houding te veranderen"/>
                     </coding>
                 </code>
-                <xsl:call-template name="makeReference">
-                    <xsl:with-param name="in" select="$subject"/>
-                    <xsl:with-param name="wrapIn" select="'subject'"/>
-                </xsl:call-template>
                 <valueCodeableConcept>
                     <xsl:call-template name="code-to-CodeableConcept">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
                 </valueCodeableConcept>
-            </Observation>
+                    </component>
         </xsl:for-each>
-    </xsl:template>          
-
-    <xd:doc>
-        <xd:desc>Creates an nl-core-Mobility.MaintainingPosition instance as an Observation FHIR instance from ADA social_netwerk element.</xd:desc>
-        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
-    </xd:doc>
-    <xsl:template match="houding_handhaven[parent::mobiliteit]" name="nl-core-Mobility.MaintainingPosition" mode="nl-core-Mobility.MaintainingPosition" as="element(f:Observation)?">
-        <xsl:param name="in" select="." as="element()?"/>
-        <xsl:param name="subject" select="patient/*" as="element()?"/>
-        
-        <xsl:for-each select="$in">
-            <Observation>
-                <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="$profileNameMobilityMaintainingPosition"/>
-                </xsl:call-template>
-                <meta>
-                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
-                </meta>
-                <status value="final"/>
+                <xsl:for-each select="houding_handhaven">
+                    <component>
                 <code>
                     <coding>
                         <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
@@ -261,44 +129,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <display value="vermogen om positie aan te houden"/>
                     </coding>
                 </code>
-                <code>
-                    <coding>
-                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                        <code value="364666007"/>
-                        <display value="vermogen om te verplaatsen"/>
-                    </coding>
-                </code>
-                <xsl:call-template name="makeReference">
-                    <xsl:with-param name="in" select="$subject"/>
-                    <xsl:with-param name="wrapIn" select="'subject'"/>
-                </xsl:call-template>
                 <valueCodeableConcept>
                     <xsl:call-template name="code-to-CodeableConcept">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
                 </valueCodeableConcept>
-            </Observation>
+                    </component>
         </xsl:for-each>
-    </xsl:template>    
-
-    <xd:doc>
-        <xd:desc>Creates an nl-core-Mobility.Transfer instance as an Observation FHIR instance from ADA social_netwerk element.</xd:desc>
-        <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
-        <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
-    </xd:doc>
-    <xsl:template match="uitvoeren_transfer[parent::mobiliteit]" name="nl-core-Mobility.Transfer" mode="nl-core-Mobility.Transfer" as="element(f:Observation)?">
-        <xsl:param name="in" select="." as="element()?"/>
-        <xsl:param name="subject" select="patient/*" as="element()?"/>
-        
-        <xsl:for-each select="$in">
-            <Observation>
-                <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="$profileNameMobilityTransfer"/>
-                </xsl:call-template>
-                <meta>
-                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
-                </meta>
-                <status value="final"/>
+                <xsl:for-each select="uitvoeren_transfer">
+                    <component>
                 <code>
                     <coding>
                         <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
@@ -306,15 +145,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <display value="vermogen om te verplaatsen"/>
                     </coding>
                 </code>
-                <xsl:call-template name="makeReference">
-                    <xsl:with-param name="in" select="$subject"/>
-                    <xsl:with-param name="wrapIn" select="'subject'"/>
-                </xsl:call-template>
                 <valueCodeableConcept>
                     <xsl:call-template name="code-to-CodeableConcept">
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
                 </valueCodeableConcept>
+                    </component>
+                </xsl:for-each>
             </Observation>
         </xsl:for-each>
     </xsl:template>    
@@ -330,53 +167,4 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
     </xsl:template>
     
-    
-    <xsl:template match="lopen[parent::mobiliteit]" mode="_generateDisplay">
-        <xsl:variable name="parts" as="item()*">
-            <xsl:text>Lopen</xsl:text>
-            <xsl:if test=".[@value]">
-                <xsl:value-of select="./@displayName"/>
-            </xsl:if>
-        </xsl:variable>
-        <xsl:value-of select="string-join($parts, ': ')"/>
-    </xsl:template>
-    
-    <xsl:template match="traplopen[parent::mobiliteit]" mode="_generateDisplay">
-        <xsl:variable name="parts" as="item()*">
-            <xsl:text>Traplopen</xsl:text>
-            <xsl:if test=".[@value]">
-                <xsl:value-of select="./@displayName"/>
-            </xsl:if>
-        </xsl:variable>
-        <xsl:value-of select="string-join($parts, ': ')"/>   </xsl:template>
-    
-    <xsl:template match="houding_veranderen[parent::mobiliteit]" mode="_generateDisplay">
-        <xsl:variable name="parts" as="item()*">
-            <xsl:text>Houding veranderen</xsl:text>
-            <xsl:if test=".[@value]">
-                <xsl:value-of select="./@displayName"/>
-            </xsl:if>
-        </xsl:variable>
-        <xsl:value-of select="string-join($parts, ': ')"/>
-    </xsl:template>
-    
-    <xsl:template match="houding_handhaven[parent::mobiliteit]" mode="_generateDisplay">
-        <xsl:variable name="parts" as="item()*">
-            <xsl:text>Houding handhaven</xsl:text>
-            <xsl:if test=".[@value]">
-                <xsl:value-of select="./@displayName"/>
-            </xsl:if>
-        </xsl:variable>
-        <xsl:value-of select="string-join($parts, ': ')"/>
-    </xsl:template>
-    
-    <xsl:template match="uitvoeren_transfer[parent::mobiliteit]" mode="_generateDisplay">
-        <xsl:variable name="parts" as="item()*">
-            <xsl:text>Uitvoeren transfer</xsl:text>
-            <xsl:if test=".[@value]">
-                <xsl:value-of select="./@displayName"/>
-            </xsl:if>
-        </xsl:variable>
-        <xsl:value-of select="string-join($parts, ': ')"/>
-    </xsl:template>
 </xsl:stylesheet>
