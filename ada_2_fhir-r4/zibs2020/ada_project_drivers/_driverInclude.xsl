@@ -133,7 +133,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     'sociaal_netwerk','hobby','arbeidssituatie', 
                     'lopen', 'traplopen', 'houding_veranderen','houding_handhaven', 'uitvoeren_transfer',
                     'ziekte_inzicht_van_patient','omgaan_met_ziekteproces_door_patient','omgaan_met_ziekteproces_door_naasten',
-                    'toiletgebruik','zorg_bij_menstruatie','feces_continentie','frequentie','defecatie_consistentie','defecatie_kleur')">
+                    'toiletgebruik','zorg_bij_menstruatie',
+                    'feces_continentie','frequentie','defecatie_consistentie','defecatie_kleur', 'zindelijkheid_urine','zindelijkheid_feces','leeftijd_eerste_menstruatie','ontwikkeling_motoriek','ontwikkeling_sociaal','ontwikkeling_taal','ontwikkeling_verstandelijk',
+                    'vocht_totaal_in','vocht_totaal_uit')">
                     <xsl:value-of select="$baseId"/>
                     <xsl:value-of select="substring-after($profile, $baseId)"/>
                     <xsl:text>-</xsl:text>
@@ -556,6 +558,41 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="$in" mode="nl-core-DevelopmentChild">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
+                <xsl:for-each select="zindelijkheid_urine">
+                    <xsl:call-template name="nl-core-DevelopmentChild.ToiletTrainednessUrine">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="zindelijkheid_feces">
+                    <xsl:call-template name="nl-core-DevelopmentChild.ToiletTrainednessFeces">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="leeftijd_eerste_menstruatie">
+                    <xsl:call-template name="nl-core-DevelopmentChild.AgeFirstMenstruation">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="ontwikkeling_motoriek">
+                    <xsl:call-template name="nl-core-DevelopmentChild.DevelopmentLocomotion">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="ontwikkeling_sociaal">
+                    <xsl:call-template name="nl-core-DevelopmentChild.DevelopmentSocial">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="ontwikkeling_taal">
+                    <xsl:call-template name="nl-core-DevelopmentChild.DevelopmentLinguistics">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="ontwikkeling_verstandelijk">
+                    <xsl:call-template name="nl-core-DevelopmentChild.DevelopmentCognition">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
             </xsl:when>
             <xsl:when test="$localName = 'opleiding'">
                 <xsl:apply-templates select="$in" mode="nl-core-Education">
@@ -738,6 +775,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="$in" mode="nl-core-FluidBalance">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
+                <xsl:for-each select="vocht_totaal_in">
+                    <xsl:call-template name="nl-core-FluidBalance.FluidTotalIn">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="vocht_totaal_uit">
+                    <xsl:call-template name="nl-core-FluidBalance.FluidTotalOut">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
             </xsl:when>
             <xsl:when test="$localName = 'voedingsadvies'">
                 <xsl:apply-templates select="$in" mode="nl-core-NutritionAdvice">

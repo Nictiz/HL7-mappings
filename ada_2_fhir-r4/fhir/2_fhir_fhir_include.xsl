@@ -121,6 +121,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="mustscore" resource="Observation" profile="nl-core-MUSTScore"/>
         <nm:map ada="o2saturatie" resource="Observation" profile="nl-core-O2Saturation"/>
         <nm:map ada="ontwikkeling_kind" resource="Observation" profile="nl-core-DevelopmentChild"/>
+        <nm:map ada="zindelijkheid_urine" resource="Observation" profile="nl-core-DevelopmentChild.ToiletTrainednessUrine"/>
+        <nm:map ada="zindelijkheid_feces" resource="Observation" profile="nl-core-DevelopmentChild.ToiletTrainednessFeces"/>
+        <nm:map ada="leeftijd_eerste_menstruatie" resource="Observation" profile="nl-core-DevelopmentChild.AgeFirstMenstruation"/>
+        <nm:map ada="ontwikkeling_motoriek" resource="Observation" profile="nl-core-DevelopmentChild.DevelopmentLocomotion"/>
+        <nm:map ada="ontwikkeling_sociaal" resource="Observation" profile="nl-core-DevelopmentChild.DevelopmentSocial"/>
+        <nm:map ada="ontwikkeling_taal" resource="Observation" profile="nl-core-DevelopmentChild.DevelopmentLinguistics"/>
+        <nm:map ada="ontwikkeling_verstandelijk" resource="Observation" profile="nl-core-DevelopmentChild.DevelopmentCognition"/>
         <nm:map ada="opleiding" resource="Observation" profile="nl-core-Education"/>
         <nm:map ada="overgevoeligheid" resource="AllergyIntolerance" profile="cio-Hypersensitivity"/>
         <nm:map ada="overgevoeligheid" resource="Condition" profile="cio-Condition"/>
@@ -175,6 +182,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="visueel_resultaat" resource="Media" profile="nl-core-TextResult-Media"/>
         <nm:map ada="visus" resource="Observation" profile="nl-core-VisualAcuity"/>
         <nm:map ada="vochtbalans" resource="Observation" profile="nl-core-FluidBalance"/>
+        <nm:map ada="vocht_totaal_in" resource="Observation" profile="nl-core-FluidBalance.FluidTotalIn"/>
+        <nm:map ada="vocht_totaal_uit" resource="Observation" profile="nl-core-FluidBalance.FluidTotalOut"/>
         <nm:map ada="voedingsadvies" resource="NutritionOrder" profile="nl-core-NutritionAdvice"/>
         <nm:map ada="voedingspatroon_zuigeling" resource="Observation" profile="nl-core-FeedingPatternInfant"/>
         <nm:map ada="vrijheidsbeperkende_interventie" resource="Procedure" profile="nl-core-FreedomRestrictingIntervention"/>
@@ -316,7 +325,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 $in//feces_continentie[parent::darmfunctie],
                 $in//frequentie[parent::darmfunctie],
                 $in//defecatie_consistentie[parent::darmfunctie],
-                $in//defecatie_kleur[parent::darmfunctie]
+                $in//defecatie_kleur[parent::darmfunctie],
+                $in//zindelijkheid_urine[parent::ontwikkeling_kind],
+                $in//zindelijkheid_feces[parent::ontwikkeling_kind],
+                $in//leeftijd_eerste_menstruatie[parent::ontwikkeling_kind],
+                $in//ontwikkeling_motoriek[parent::ontwikkeling_kind],
+                $in//ontwikkeling_sociaal[parent::ontwikkeling_kind],
+                $in//ontwikkeling_taal[parent::ontwikkeling_kind],
+                $in//ontwikkeling_verstandelijk[parent::ontwikkeling_kind],
+                $in//vocht_totaal_in[parent::vochtbalans],
+                $in//vocht_totaal_uit[parent::vochtbalans]
                 )[.//(@value | @code | @nullFlavor)]" group-by="local-name()">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <xsl:call-template name="_buildFhirMetadataForAdaEntry">
