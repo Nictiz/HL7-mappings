@@ -24,30 +24,33 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
     
-    <xsl:variable name="profileNameCioRegistrationData">cio-RegistrationData</xsl:variable>
+    <xsl:variable name="profileNameCioRegistrationInformation">cio-RegistrationInformation</xsl:variable>
     
     <xd:doc>
-        <xd:desc>Create a cio-RegistrationData instance as a Provenance FHIR instance from the ada element bouwstenen/registratie_gegevens.</xd:desc>
+        <xd:desc>Create a cio-RegistrationInformation instance as a Provenance FHIR instance from the ada element bouwstenen/registratie_informatie.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
-    <xsl:template name="cio-RegistrationData" as="element(f:Provenance)?">
+    <xsl:template name="cio-RegistrationInformation" as="element(f:Provenance)?">
         <xsl:param name="in" select="." as="element()?"/>
         
         <xsl:for-each select="$in">
             <Provenance>
-                <xsl:variable name="medicationContraIndication" select="../../medicatie_contra_indicatie/alert[registratie_gegevens/@value = current()/@id]"/>
-                <xsl:variable name="surveillanceDecision" select="../../geneesmiddelovergevoeligheid/bewaking_besluit[registratie_gegevens/@value = current()/@id]"/>
-                <xsl:variable name="hypersensitivity" select="../../geneesmiddelovergevoeligheid/overgevoeligheid[registratie_gegevens/@value = current()/@id]"/>
-                <xsl:variable name="reaction" select="../../geneesmiddelovergevoeligheid/reactie[registratie_gegevens/@value = current()/@id]"/>
+                <xsl:variable name="medicationContraIndication" select="../../medicatie_contra_indicatie/alert[registratie_informatie/@value = current()/@id]"/>
+                <xsl:variable name="surveillanceDecision" select="../../geneesmiddelovergevoeligheid/bewaking_besluit[registratie_informatie/@value = current()/@id]"/>
+                <xsl:variable name="hypersensitivityIntolerance" select="../../geneesmiddelovergevoeligheid/overgevoeligheid_intolerantie[registratie_informatie/@value = current()/@id]"/>
+                <xsl:variable name="reaction" select="../../geneesmiddelovergevoeligheid/reactie[registratie_informatie/@value = current()/@id]"/>
+                <xsl:variable name="condition" select="../../geneesmiddelovergevoeligheid/aandoening_of_gesteldheid[registratie_informatie/@value = current()/@id]"/>
+                <xsl:variable name="symptom" select="../../geneesmiddelovergevoeligheid/symptoom[registratie_informatie/@value = current()/@id]"/>
+                <xsl:variable name="replyProposalContraIndication" select="../../voorstel_gegevens/antwoord_voorstel_contra_indicatie[registratie_informatie/@value = current()/@id]"/>
                 
                 <xsl:call-template name="insertLogicalId">
-                    <xsl:with-param name="profile" select="$profileNameCioRegistrationData"/>
+                    <xsl:with-param name="profile" select="$profileNameCioRegistrationInformation"/>
                 </xsl:call-template>
                 <meta>
-                    <profile value="{concat($urlBaseNictizProfile, $profileNameCioRegistrationData)}"/>
+                    <profile value="{concat($urlBaseNictizProfile, $profileNameCioRegistrationInformation)}"/>
                 </meta>
                 
-                <xsl:for-each select="$medicationContraIndication | $surveillanceDecision | $hypersensitivity | $reaction">
+                <xsl:for-each select="$medicationContraIndication | $surveillanceDecision | $hypersensitivityIntolerance | $reaction | $condition | $symptom | $replyProposalContraIndication">
                     <xsl:call-template name="makeReference">
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="wrapIn" select="'target'"/>
@@ -59,36 +62,35 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:when test="self::bewaking_besluit">
                                     <xsl:value-of select="$profileNameCioSurveillanceDecision"/>
                                 </xsl:when>
-                                <xsl:when test="self::overgevoeligheid">
-                                    <xsl:value-of select="$profileNameCioHypersensitivity"/>
+                                <xsl:when test="self::overgevoeligheid_intolerantie">
+                                    <xsl:value-of select="$profileNameCioHypersensitivityIntolerance"/>
                                 </xsl:when>
                                 <xsl:when test="self::reactie">
                                     <xsl:value-of select="$profileNameCioReaction"/>
+                                </xsl:when>
+                                <xsl:when test="self::aandoening_of_gesteldheid">
+                                    <xsl:value-of select="$profileNameCioCondition"/>
+                                </xsl:when>
+                                <xsl:when test="self::symptoom">
+                                    <xsl:value-of select="$profileNameCioSymptom"/>
+                                </xsl:when>
+                                <xsl:when test="self::antwoord_voorstel_contra_indicatie">
+                                    <xsl:value-of select="$profileNameCioReplyProposalContraIndication"/>
                                 </xsl:when>
                             </xsl:choose>
                         </xsl:with-param>
                     </xsl:call-template>
                 </xsl:for-each>
                 
-                <xsl:for-each select="$hypersensitivity | $reaction">
+                <!--<xsl:for-each select="$hypersensitivity | $reaction">
                     <xsl:call-template name="makeReference">
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="wrapIn" select="'target'"/>
                         <xsl:with-param name="profile" select="$profileNameCioCondition"/>
                     </xsl:call-template>
-                </xsl:for-each>
+                </xsl:for-each>-->
                 
-                <xsl:for-each select="$surveillanceDecision/besluit_datum_tijd[@value]">
-                    <occurredDateTime>
-                        <xsl:attribute name="value">
-                            <xsl:call-template name="format2FHIRDate">
-                                <xsl:with-param name="dateTime" select="xs:string(@value)"/>
-                            </xsl:call-template>
-                        </xsl:attribute>
-                    </occurredDateTime>
-                </xsl:for-each>
-                
-                <xsl:for-each select="registratie_datum_tijd[@value]">
+                <xsl:for-each select="ontstaans_datum_tijd[@value]">
                     <recorded>
                         <xsl:attribute name="value">
                             <xsl:call-template name="format2FHIRDate">

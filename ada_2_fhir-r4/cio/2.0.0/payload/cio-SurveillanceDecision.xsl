@@ -37,12 +37,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Flag>
-                <xsl:variable name="registrationData" select="../../bouwstenen/registratie_gegevens[@id = current()/registratie_gegevens/@value]"/>
-                <xsl:variable name="identificationNumber" select="$registrationData/identificatienummer"/>
-                <xsl:variable name="author" select="$registrationData/auteur/*"/>
+                <xsl:variable name="registrationInformation" select="../../bouwstenen/registratie_informatie[@id = current()/registratie_informatie/@value]"/>
+                <xsl:variable name="identificationNumber" select="$registrationInformation/identificatienummer"/>
+                <xsl:variable name="author" select="$registrationInformation/auteur/*"/>
                 
-                <xsl:variable name="relationSurveillanceDecisionRegistrationData" select="../../bouwstenen/registratie_gegevens[identificatienummer/@value = current()/relatie_bewaking_besluit/identificatie/@value]"/>
-                <xsl:variable name="relationSurveillanceDecision" select="../../geneesmiddelovergevoeligheid/bewaking_besluit[registratie_gegevens/@value = $relationSurveillanceDecisionRegistrationData/@id]"/>
+                <xsl:variable name="relationSurveillanceDecisionRegistrationInformation" select="../../bouwstenen/registratie_informatie[identificatienummer/@value = current()/relatie_bewaking_besluit/identificatie/@value]"/>
+                <xsl:variable name="relationSurveillanceDecision" select="../../geneesmiddelovergevoeligheid/bewaking_besluit[registratie_informatie/@value = $relationSurveillanceDecisionRegistrationInformation/@id]"/>
                 
                 <xsl:call-template name="insertLogicalId">
                     <xsl:with-param name="profile" select="$profileNameCioSurveillanceDecision"/>
@@ -58,8 +58,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:with-param name="in" select="."/>
                                 <xsl:with-param name="profile">
                                     <xsl:choose>
-                                        <xsl:when test="self::overgevoeligheid">
-                                            <xsl:value-of select="$profileNameCioHypersensitivity"/>
+                                        <xsl:when test="self::overgevoeligheid_intolerantie">
+                                            <xsl:value-of select="$profileNameCioHypersensitivityIntolerance"/>
                                         </xsl:when>
                                         <xsl:when test="self::reactie">
                                             <xsl:value-of select="$profileNameCioReaction"/>
@@ -84,6 +84,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 
                 <xsl:for-each select="toelichting[@value]">
                     <xsl:call-template name="ext-Comment"/>
+                </xsl:for-each>
+                
+                <!-- medicationHypersensitivityIdentifier -->
+                <xsl:for-each select="../identificatie_gmo">
+                    <xsl:call-template name="ext-MedicationHypersensitivityIdentifier">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                
+                <xsl:for-each select="besluit_grond/besluit_reden[@code]">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-SurveillanceDecision.SurveillanceDecision">
+                        <valueCodeableConcept>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </valueCodeableConcept>
+                    </extension>
                 </xsl:for-each>
                 
                 <xsl:for-each select="$identificationNumber[@value]">

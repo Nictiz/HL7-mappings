@@ -30,19 +30,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xd:desc>Create a cio-MedicationContraIndication instance as a Flag FHIR instance from the ada element medicatie_contra_indicatie/alert.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
+        <xd:param name="relationMedicationAgreement">ProposalContraIndication element</xd:param>
+        <xd:param name="proposalComment">ProposalContraIndication element</xd:param>
     </xd:doc>
     <xsl:template name="cio-MedicationContraIndication" as="element(f:Flag)?">
         <xsl:param name="in" select="." as="element()?"/>
         <xsl:param name="subject" select="../../patient" as="element()?"/>
+        <xsl:param name="relationMedicationAgreement" as="element()?"/>
+        <xsl:param name="proposalComment" as="element()?"/>
         
             <xsl:for-each select="$in">
                 <Flag>
-                    <xsl:variable name="registrationData" select="../../bouwstenen/registratie_gegevens[@id = current()/registratie_gegevens/@value]"/>
-                    <xsl:variable name="identificationNumber" select="$registrationData/identificatienummer"/>
-                    <xsl:variable name="author" select="$registrationData/auteur/*"/>
+                    <xsl:variable name="registrationInformation" select="../../bouwstenen/registratie_informatie[@id = current()/registratie_informatie/@value]"/>
+                    <xsl:variable name="identificationNumber" select="$registrationInformation/identificatienummer"/>
+                    <xsl:variable name="author" select="$registrationInformation/auteur/*"/>
                     
-                    <xsl:variable name="relationAlertRegistrationData" select="../../bouwstenen/registratie_gegevens[identificatienummer/@value = current()/relatie_alert/identificatie/@value]"/>
-                    <xsl:variable name="relationAlert" select="../../medicatie_contra_indicatie/alert[registratie_gegevens/@value = $relationAlertRegistrationData/@id]"/>
+                    <xsl:variable name="relationAlertRegistrationInformation" select="../../bouwstenen/registratie_informatie[identificatienummer/@value = current()/relatie_alert/identificatie/@value]"/>
+                    <xsl:variable name="relationAlert" select="../../medicatie_contra_indicatie/alert[registratie_informatie/@value = $relationAlertRegistrationInformation/@id]"/>
                     
                     <xsl:variable name="startDateTime" select="begin_datum_tijd/@value"/>
                     <xsl:variable name="endDateTime" select="eind_datum_tijd/@value"/>
@@ -53,16 +57,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <meta>
                         <profile value="{concat($urlBaseNictizProfile, $profileNameCioMedicationContraIndication)}"/>
                     </meta>
-                    
-                    <xsl:for-each select="reden_beeindiging_alert[@value]">
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationContraIndication.ReasonForEndingAlert">
-                            <valueString>
-                                <xsl:call-template name="string-to-string">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
-                            </valueString>
-                        </extension>
-                    </xsl:for-each>
                     
                     <xsl:if test="$relationAlert">
                         <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationContraIndication.RelationAlert">
@@ -77,6 +71,30 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     
                     <xsl:for-each select="toelichting[@value]">
                         <xsl:call-template name="ext-Comment"/>
+                    </xsl:for-each>
+                    
+                    <xsl:for-each select="$proposalComment[@value]">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-ProposalContraIndication.ProposalComment">
+                            <valueString>
+                                <xsl:call-template name="string-to-string">
+                                    <xsl:with-param name="in" select="."/>
+                                </xsl:call-template>
+                            </valueString>
+                        </extension>
+                    </xsl:for-each>
+                    
+                    <xsl:for-each select="$relationMedicationAgreement/identificatie[@value | @root | @nullFlavor]">
+                        <extension url="http://hl7.org/fhir/StructureDefinition/flag-detail">
+                            <valueReference>
+                                <type value="MedicationRequest"/>
+                                <identifier>
+                                    <xsl:call-template name="id-to-Identifier">
+                                        <xsl:with-param name="in" select="."/>
+                                    </xsl:call-template>   
+                                </identifier>
+                                <display value="Relatie naar medicatieafspraak: {string-join((@value, @root), ' || ')}"/>
+                            </valueReference>
+                        </extension>
                     </xsl:for-each>
                     
                     <xsl:for-each select="$identificationNumber[@value]">

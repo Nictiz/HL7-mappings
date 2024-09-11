@@ -45,7 +45,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 beschikbaarstellen_medicatie_contra_indicaties/bouwstenen/zorgverlener |
                 beschikbaarstellen_medicatie_contra_indicaties/bouwstenen/zorgaanbieder |
                 beschikbaarstellen_medicatie_contra_indicaties/bouwstenen/contactpersoon |
-                beschikbaarstellen_medicatie_contra_indicaties/bouwstenen/registratie_gegevens
+                beschikbaarstellen_medicatie_contra_indicaties/bouwstenen/registratie_informatie
                 )"/>
         </xsl:call-template>
     </xsl:param>
@@ -99,15 +99,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each-group>
             </xsl:variable>
             
-            <xsl:variable name="registratiegegevens" as="element()*">
-                <xsl:for-each-group select="bouwstenen/registratie_gegevens" group-by="nf:getGroupingKeyDefault(.)">
-                    <xsl:call-template name="cio-RegistrationData">
+            <xsl:variable name="registratieinformaties" as="element()*">
+                <xsl:for-each-group select="bouwstenen/registratie_informatie" group-by="nf:getGroupingKeyDefault(.)">
+                    <xsl:call-template name="cio-RegistrationInformation">
                         <xsl:with-param name="in" select="current-group()[1]"/>
                     </xsl:call-template>
                 </xsl:for-each-group>
             </xsl:variable>
             
-            <xsl:for-each select="$medicatiecontraindicaties | $patient | $zorgverleners | $zorgaanbieders | $contactpersonen | $registratiegegevens">
+            <xsl:for-each select="$medicatiecontraindicaties | $patient | $zorgverleners | $zorgaanbieders | $contactpersonen | $registratieinformaties">
                 <entry xmlns="http://hl7.org/fhir">
                     <xsl:call-template name="_insertFullUrlById"/>
                     <resource>
@@ -176,8 +176,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="logicalId">
             <xsl:choose>
                 <xsl:when test="$localName = 'alert' and $profile = $profileNameCioMedicationContraIndication">
-                    <xsl:variable name="registrationData" select="../../bouwstenen/registratie_gegevens[@id = current()/registratie_gegevens/@value]"/>
-                    <xsl:value-of select="concat('mci-', $registrationData/identificatienummer/@value)"/>
+                    <xsl:variable name="registrationInformation" select="../../bouwstenen/registratie_informatie[@id = current()/registratie_informatie/@value]"/>
+                    <xsl:value-of select="concat('mci-', $registrationInformation/identificatienummer/@value)"/>
                 </xsl:when>
                 <xsl:when test="$localName = 'patient'">
                     <xsl:value-of select="concat('patient-', string-join((naamgegevens[1]/geslachtsnaam/(voorvoegsels, achternaam)/@value, naamgegevens[1]/geslachtsnaam_partner/(voorvoegsels_partner, achternaam_partner)/@value), '-'))"/>
@@ -194,8 +194,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:when test="$localName = 'contactpersoon' and $profile = 'nl-core-ContactPerson'">
                     <xsl:value-of select="concat('cp-', string-join((naamgegevens[1]/geslachtsnaam/(voorvoegsels, achternaam)/@value, naamgegevens[1]/geslachtsnaam_partner/(voorvoegsels_partner, achternaam_partner)/@value), '-'))"/>
                 </xsl:when>
-                <xsl:when test="$localName = 'registratie_gegevens' and $profile = $profileNameCioRegistrationData">
-                    <xsl:value-of select="concat('regdata-', identificatienummer/@value)"/>
+                <xsl:when test="$localName = 'registratie_informatie' and $profile = $profileNameCioRegistrationInformation">
+                    <xsl:value-of select="concat('reginfo-', identificatienummer/@value)"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="$localName"/>

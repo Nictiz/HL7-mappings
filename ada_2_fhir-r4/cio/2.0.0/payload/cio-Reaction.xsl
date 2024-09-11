@@ -37,16 +37,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">    
             <AllergyIntolerance>
-                <xsl:variable name="registrationData" select="../../bouwstenen/registratie_gegevens[@id = current()/registratie_gegevens/@value]"/>
-                <xsl:variable name="identificationNumber" select="$registrationData/identificatienummer"/>
-                <xsl:variable name="author" select="$registrationData/auteur/*"/>
-                <xsl:variable name="registrationDateTime" select="$registrationData/registratie_datum_tijd"/>
+                <xsl:variable name="registrationInformation" select="../../bouwstenen/registratie_informatie[@id = current()/registratie_informatie/@value]"/>
+                <xsl:variable name="identificationNumber" select="$registrationInformation/identificatienummer"/>
+                <xsl:variable name="author" select="$registrationInformation/auteur/*"/>
+                <xsl:variable name="registrationDateTime" select="$registrationInformation/ontstaans_datum_tijd"/>
                 
-                <xsl:variable name="relationHypersensitivityRegistrationData" select="../../bouwstenen/registratie_gegevens[identificatienummer/@value = current()/relatie_overgevoeligheid/identificatie/@value]"/>
-                <xsl:variable name="relationHypersensitivity" select="../../geneesmiddelovergevoeligheid/overgevoeligheid[registratie_gegevens/@value = $relationHypersensitivityRegistrationData/@id]"/>
+                <xsl:variable name="relationHypersensitivityIntoleranceRegistrationInformation" select="../../bouwstenen/registratie_informatie[identificatienummer/@value = current()/relatie_overgevoeligheid_intolerantie/identificatie/@value]"/>
+                <xsl:variable name="relationHypersensitivityIntolerance" select="../../geneesmiddelovergevoeligheid/overgevoeligheid[registratie_informatie/@value = $relationHypersensitivityIntoleranceRegistrationInformation/@id]"/>
                 
-                <xsl:variable name="relationReactionRegistrationData" select="../../bouwstenen/registratie_gegevens[identificatienummer/@value = current()/relatie_reactie/identificatie/@value]"/>
-                <xsl:variable name="relationReaction" select="../../geneesmiddelovergevoeligheid/reactie[registratie_gegevens/@value = $relationReactionRegistrationData/@id]"/>
+                <xsl:variable name="relationConditionRegistrationInformation" select="../../bouwstenen/registratie_informatie[identificatienummer/@value = current()/relatie_aandoening_of_gesteldheid/identificatie/@value]"/>
+                <xsl:variable name="relationCondition" select="../../geneesmiddelovergevoeligheid/aandoening_of_gesteldheid[registratie_informatie/@value = $relationConditionRegistrationInformation/@id]"/>
                 
                 <xsl:call-template name="insertLogicalId">
                     <xsl:with-param name="profile" select="$profileNameCioReaction"/>
@@ -90,33 +90,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RelationCondition">
                     <valueReference>
                         <xsl:call-template name="makeReference">
-                            <xsl:with-param name="in" select="."/>
+                            <xsl:with-param name="in" select="$relationCondition"/>
                             <xsl:with-param name="profile" select="$profileNameCioCondition"/>
                         </xsl:call-template>
                     </valueReference>
                 </extension>
                 
-                <xsl:if test="$relationHypersensitivity">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RelationHypersensitivity">
+                <xsl:if test="$relationHypersensitivityIntolerance">
+                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RelationHypersensitivityIntolerance">
                         <valueReference>
                             <xsl:call-template name="makeReference">
-                                <xsl:with-param name="in" select="$relationHypersensitivity"/>
-                                <xsl:with-param name="profile" select="$profileNameCioHypersensitivity"/>
+                                <xsl:with-param name="in" select="$relationHypersensitivityIntolerance"/>
+                                <xsl:with-param name="profile" select="$profileNameCioHypersensitivityIntolerance"/>
                             </xsl:call-template>
                         </valueReference>
                     </extension>
                 </xsl:if>
                 
-                <xsl:if test="$relationReaction">
-                    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Reaction.RelationReaction">
-                        <valueReference>
-                            <xsl:call-template name="makeReference">
-                                <xsl:with-param name="in" select="$relationReaction"/>
-                                <xsl:with-param name="profile" select="$profileNameCioReaction"/>
-                            </xsl:call-template>
-                        </valueReference>
-                    </extension>
-                </xsl:if>
+                <!-- medicationHypersensitivityIdentifier -->
+                <xsl:for-each select="../identificatie_gmo">
+                    <xsl:call-template name="ext-MedicationHypersensitivityIdentifier">
+                        <xsl:with-param name="in" select="."/>
+                    </xsl:call-template>
+                </xsl:for-each>
                 
                 <xsl:for-each select="$identificationNumber[@value]">
                     <identifier>
@@ -124,23 +120,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
                     </identifier>
-                </xsl:for-each>
-                
-                <xsl:for-each select="aandoening_aanwezigheid[@code]">
-                    <clinicalStatus>
-                        <xsl:call-template name="code-to-CodeableConcept">
-                            <xsl:with-param name="in" select="."/>
-                            <xsl:with-param name="codeMap" as="element()*">
-                                <map inCode="410515003" inCodeSystem="{$oidSNOMEDCT}" code="active" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical" displayName="Active"/>
-                                <map inCode="350361000146109" inCodeSystem="{$oidSNOMEDCT}" code="resolved" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical" displayName="Resolved"/>
-                                <map inCode="410516002" inCodeSystem="{$oidSNOMEDCT}" code="inactive" codeSystem="http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical" displayName="Inactive"/>
-                            </xsl:with-param>
-                        </xsl:call-template>
-                        
-                        <xsl:call-template name="code-to-CodeableConcept">
-                            <xsl:with-param name="in" select="."/>
-                        </xsl:call-template>
-                    </clinicalStatus>
                 </xsl:for-each>
                 
                 <xsl:for-each select="zekerheid_status[@code]">
@@ -176,7 +155,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="wrapIn" select="'patient'"/>
                 </xsl:call-template>
                 
-                <xsl:for-each select="$registrationDateTime[@value]">
+                <xsl:for-each select="$creationDateTime[@value]">
                     <recordedDate>
                         <xsl:attribute name="value">
                             <xsl:call-template name="format2FHIRDate">
@@ -203,35 +182,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each>
                 
                 <reaction>
-                    <xsl:for-each select="blootstelling_datum_tijd[@value]">
-                        <extension url="http://hl7.org/fhir/StructureDefinition/openEHR-exposureDate">
-                            <valueDateTime>
-                                <xsl:attribute name="value">
-                                    <xsl:call-template name="format2FHIRDate">
-                                        <xsl:with-param name="dateTime" select="xs:string(@value)"/>
-                                    </xsl:call-template>
-                                </xsl:attribute>
-                            </valueDateTime>
-                        </extension>
-                    </xsl:for-each>
-                    
-                    <xsl:for-each select="latentietijd_reactie[@value]">
-                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Reaction.LatencyReaction">
-                            <valueDuration>
+                    <xsl:for-each select="latentie_tijd/bereik/nominale_waarde[@value]">
+                        <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-Reaction.LatencyTime">
+                            <valueQuantity>
                                 <xsl:call-template name="hoeveelheid-to-Duration">
                                     <xsl:with-param name="in" select="."/>
                                 </xsl:call-template>
-                            </valueDuration>
-                        </extension>
-                    </xsl:for-each>
-                    
-                    <xsl:for-each select="tijdsduur_reactie[@value]">
-                        <extension url="http://hl7.org/fhir/StructureDefinition/allergyintolerance-duration">
-                            <valueDuration>
-                                <xsl:call-template name="hoeveelheid-to-Duration">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
-                            </valueDuration>
+                            </valueQuantity>
                         </extension>
                     </xsl:for-each>
                     
@@ -241,26 +198,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 <xsl:with-param name="in" select="."/>
                             </xsl:call-template>
                         </substance>
-                    </xsl:for-each>
-                    
-                    <xsl:for-each select="reactie_verschijnsel[@value]">
-                        <manifestation>
-                            <text>
-                                <xsl:call-template name="string-to-string">
-                                    <xsl:with-param name="in" select="."/>
-                                </xsl:call-template>
-                            </text>
-                        </manifestation>
-                    </xsl:for-each>
-                    
-                    <xsl:for-each select="aandoening_begin_datum_tijd[@value]">
-                        <onset>
-                            <xsl:attribute name="value">
-                                <xsl:call-template name="format2FHIRDate">
-                                    <xsl:with-param name="dateTime" select="xs:string(@value)"/>
-                                </xsl:call-template>
-                            </xsl:attribute>
-                        </onset>
                     </xsl:for-each>
                     
                     <xsl:for-each select="wijze_van_blootstelling[@code]">
@@ -297,14 +234,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="parts" as="item()*">
                     <xsl:text>Reactie</xsl:text>
                     <xsl:value-of select="veroorzaker/veroorzakende_stof/@displayName"/>
-                    <xsl:value-of select="concat('diagnosedatum: ', diagnostisch_inzicht_datum/@value)"/>
-                </xsl:variable>
-                <xsl:value-of select="string-join($parts[. != ''], ', ')"/>
-            </xsl:when>
-            <xsl:when test="$profile = $profileNameCioCondition">
-                <xsl:variable name="parts" as="item()*">
-                    <xsl:text>Aandoening</xsl:text>
-                    <xsl:value-of select="diagnose/diagnose_naam/@displayName"/>
                     <xsl:value-of select="concat('diagnosedatum: ', diagnostisch_inzicht_datum/@value)"/>
                 </xsl:variable>
                 <xsl:value-of select="string-join($parts[. != ''], ', ')"/>

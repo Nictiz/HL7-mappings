@@ -24,12 +24,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="2.0">
     
+    <xsl:variable name="profileNameCioReplyProposalContraIndicationBundle">cio-ReplyProposalContraIndication-Bundle</xsl:variable>
+    
     <xsl:import href="../../payload/all_profiles.xsl"/>
     
     <xd:doc>
         <xd:desc>If true, write all generated resources to disk in the fhir_instance directory. Otherwise, return all the output in a FHIR Bundle.</xd:desc>
     </xd:doc>
-    <xsl:param name="writeOutputToDisk" select="true()" as="xs:boolean"/>
+    <xsl:param name="writeOutputToDisk" select="false()" as="xs:boolean"/>
     
     <xsl:param name="referencingStrategy" select="'logicalId'" as="xs:string"/>
     <!-- If the desired output is to be a Bundle, then a self link string of type url is required. 
@@ -40,16 +42,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="fhirMetadata" as="element()*">
         <xsl:call-template name="buildFhirMetadata">
             <xsl:with-param name="in" select="//(
-                beschikbaarstellen_geneesmiddelovergevoeligheden/patient | 
-                beschikbaarstellen_geneesmiddelovergevoeligheden/geneesmiddelovergevoeligheid/bewaking_besluit | 
-                beschikbaarstellen_geneesmiddelovergevoeligheden/geneesmiddelovergevoeligheid/overgevoeligheid_intolerantie |
-                beschikbaarstellen_geneesmiddelovergevoeligheden/geneesmiddelovergevoeligheid/reactie |
-                beschikbaarstellen_geneesmiddelovergevoeligheden/geneesmiddelovergevoeligheid/symptoom |
-                beschikbaarstellen_geneesmiddelovergevoeligheden/geneesmiddelovergevoeligheid/aandoening_of_gesteldheid |
-                beschikbaarstellen_geneesmiddelovergevoeligheden/bouwstenen/zorgverlener |
-                beschikbaarstellen_geneesmiddelovergevoeligheden/bouwstenen/zorgaanbieder |
-                beschikbaarstellen_geneesmiddelovergevoeligheden/bouwstenen/contactpersoon |
-                beschikbaarstellen_geneesmiddelovergevoeligheden/bouwstenen/registratie_informatie
+                beschikbaarstellen_medicatie_contra_indicaties/patient | 
+                beschikbaarstellen_medicatie_contra_indicaties/voorstel_gegevens/antwoord_voorstel_contra_indicatie |
+                beschikbaarstellen_medicatie_contra_indicaties/bouwstenen/zorgverlener |
+                beschikbaarstellen_medicatie_contra_indicaties/bouwstenen/zorgaanbieder |
+                beschikbaarstellen_medicatie_contra_indicaties/bouwstenen/registratie_informatie
                 )"/>
         </xsl:call-template>
     </xsl:param>
@@ -57,49 +54,17 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc>
         <xd:desc/>
     </xd:doc>
-    <xsl:template match="beschikbaarstellen_geneesmiddelovergevoeligheden">
+    <xsl:template match="sturen_antwoord_voorstel_contra_indicaties">
         
         <xsl:variable name="resources" as="element(f:entry)*">
-            <xsl:variable name="bewakingsbesluiten" as="element()*">
-                <xsl:for-each-group select="geneesmiddelovergevoeligheid/bewaking_besluit" group-by="nf:getGroupingKeyDefault(.)">
-                    <xsl:call-template name="cio-SurveillanceDecision">
+            <xsl:variable name="antwoordvoorstelcontraindicaties" as="element()*">
+                <xsl:for-each-group select="voorstel_gegevens/antwoord_voorstel_contra_indicatie" group-by="nf:getGroupingKeyDefault(.)">
+                    <xsl:call-template name="cio-ReplyProposalContraIndication">
                         <xsl:with-param name="in" select="current-group()[1]"/>
                     </xsl:call-template>
                 </xsl:for-each-group>
             </xsl:variable>
-            
-            <xsl:variable name="overgevoeligheden" as="element()*">
-                <xsl:for-each-group select="geneesmiddelovergevoeligheid/overgevoeligheid_intolerantie" group-by="nf:getGroupingKeyDefault(.)">
-                    <xsl:call-template name="cio-HypersensitivityIntolerance">
-                        <xsl:with-param name="in" select="current-group()[1]"/>
-                    </xsl:call-template>
-                </xsl:for-each-group>
-            </xsl:variable>
-            
-            <xsl:variable name="reacties" as="element()*">
-                <xsl:for-each-group select="geneesmiddelovergevoeligheid/reactie" group-by="nf:getGroupingKeyDefault(.)">
-                    <xsl:call-template name="cio-Reaction">
-                        <xsl:with-param name="in" select="current-group()[1]"/>
-                    </xsl:call-template>
-                </xsl:for-each-group>
-            </xsl:variable>
- 
-<!--             <xsl:variable name="symptomen" as="element()*">
-                 <xsl:for-each-group select="geneesmiddelovergevoeligheid/symptoom" group-by="nf:getGroupingKeyDefault(.)">
-                     <xsl:call-template name="cio-Symptom">
-                         <xsl:with-param name="in" select="current-group()[1]"/>
-                     </xsl:call-template>
-                 </xsl:for-each-group>
-             </xsl:variable>-->
-                    
-             <xsl:variable name="aandoeningen" as="element()*">
-                 <xsl:for-each-group select="geneesmiddelovergevoeligheid/aandoening_of_gesteldheid" group-by="nf:getGroupingKeyDefault(.)">
-                      <xsl:call-template name="cio-Condition">
-                          <xsl:with-param name="in" select="current-group()[1]"/>
-                      </xsl:call-template>
-                 </xsl:for-each-group>
-             </xsl:variable>
-            
+           
             <xsl:variable name="patient" as="element()?">
                 <xsl:for-each select="patient">
                     <xsl:call-template name="nl-core-Patient"/>
@@ -126,15 +91,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each-group>
             </xsl:variable>
             
-            <xsl:variable name="contactpersonen" as="element()*">
-                <xsl:for-each-group select="bouwstenen/contactpersoon" group-by="nf:getGroupingKeyDefault(.)">
-                    <xsl:call-template name="nl-core-ContactPerson">
-                        <xsl:with-param name="in" select="current-group()[1]"/>
-                        <xsl:with-param name="patient" select="../../patient"/>
-                    </xsl:call-template>
-                </xsl:for-each-group>
-            </xsl:variable>
-            
             <xsl:variable name="registratieinformaties" as="element()*">
                 <xsl:for-each-group select="bouwstenen/registratie_informatie" group-by="nf:getGroupingKeyDefault(.)">
                     <xsl:call-template name="cio-RegistrationInformation">
@@ -143,7 +99,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:for-each-group>
             </xsl:variable>
             
-            <xsl:for-each select="$bewakingsbesluiten | $overgevoeligheden | $reacties | $symptomen | $aandoeningen | $patient | $zorgverleners | $zorgaanbieders | $contactpersonen | $registratieinformaties">
+            <xsl:for-each select="$antwoordvoorstelcontraindicaties | $patient | $zorgverleners | $zorgaanbieders | $registratieinformaties">
                 <entry xmlns="http://hl7.org/fhir">
                     <xsl:call-template name="_insertFullUrlById"/>
                     <resource>
@@ -176,7 +132,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <xsl:otherwise>
                 <Bundle xmlns="http://hl7.org/fhir">
                     <id value="{nf:assure-logicalid-length(nf:removeSpecialCharacters(@id))}"/>
-                    <type value="searchset"/>
+                    <meta>
+                        <profile value="{concat($urlBaseNictizProfile, $profileNameCioReplyProposalContraIndicationBundle)}"/>
+                    </meta>
+                    <type value="transaction"/>
                     <!-- What should we count? -->
                     <total value="TODO"/>
                     <!--<total value="{count($resources/f:resource/*)}"/>-->
@@ -211,25 +170,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <xsl:variable name="localName" select="local-name()"/>
         <xsl:variable name="logicalId">
             <xsl:choose>
-                <xsl:when test="$localName = 'bewaking_besluit' and $profile = $profileNameCioSurveillanceDecision">
+                <xsl:when test="$localName = 'antwoord_voorstel_contra_indicatie' and $profile = $profileNameCioReplyProposalContraIndication">
                     <xsl:variable name="registrationInformation" select="../../bouwstenen/registratie_informatie[@id = current()/registratie_informatie/@value]"/>
-                    <xsl:value-of select="concat('bb-', $registrationInformation/identificatienummer/@value)"/>
-                </xsl:when>
-                <xsl:when test="$localName = 'overgevoeligheid' and $profile = $profileNameCioHypersensitivityIntolerance">
-                    <xsl:variable name="registrationInformation" select="../../bouwstenen/registratie_informatie[@id = current()/registratie_informatie/@value]"/>
-                    <xsl:value-of select="concat('ov-', $registrationInformation/identificatienummer/@value)"/>
-                </xsl:when>
-                <xsl:when test="$localName = 'aandoening_of_gesteldheid' and $profile = $profileNameCioCondition">
-                    <xsl:variable name="registrationInformation" select="../../bouwstenen/registratie_informatie[@id = current()/registratie_informatie/@value]"/>
-                    <xsl:value-of select="concat('ov-cond-', $registrationInformation/identificatienummer/@value)"/>
-                </xsl:when>
-                <xsl:when test="$localName = 'reactie' and $profile = $profileNameCioReaction">
-                    <xsl:variable name="registrationInformation" select="../../bouwstenen/registratie_informatie[@id = current()/registratie_informatie/@value]"/>
-                    <xsl:value-of select="concat('reac-', $registrationInformation/identificatienummer/@value)"/>
-                </xsl:when>
-                <xsl:when test="$localName = 'symptoom' and $profile = $profileNameCioSymptom">
-                    <xsl:variable name="registrationInformation" select="../../bouwstenen/registratie_informatie[@id = current()/registratie_informatie/@value]"/>
-                    <xsl:value-of select="concat('reac-cond-', $registrationInformation/identificatienummer/@value)"/>
+                    <xsl:value-of select="concat('mci-', $registrationInformation/identificatienummer/@value)"/>
                 </xsl:when>
                 <xsl:when test="$localName = 'patient'">
                     <xsl:value-of select="concat('patient-', string-join((naamgegevens[1]/geslachtsnaam/(voorvoegsels, achternaam)/@value, naamgegevens[1]/geslachtsnaam_partner/(voorvoegsels_partner, achternaam_partner)/@value), '-'))"/>
@@ -242,9 +185,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:when>
                 <xsl:when test="$localName = 'zorgaanbieder' and $profile = 'nl-core-HealthcareProvider-Organization'">
                     <xsl:value-of select="concat('org-', string-join((zorgaanbieder_identificatienummer/@value, afdeling_specialisme/@code)[. != ''], '-'))"/>
-                </xsl:when>
-                <xsl:when test="$localName = 'contactpersoon' and $profile = 'nl-core-ContactPerson'">
-                    <xsl:value-of select="concat('cp-', string-join((naamgegevens[1]/geslachtsnaam/(voorvoegsels, achternaam)/@value, naamgegevens[1]/geslachtsnaam_partner/(voorvoegsels_partner, achternaam_partner)/@value), '-'))"/>
                 </xsl:when>
                 <xsl:when test="$localName = 'registratie_informatie' and $profile = $profileNameCioRegistrationInformation">
                     <xsl:value-of select="concat('reginfo-', identificatienummer/@value)"/>
