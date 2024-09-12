@@ -52,7 +52,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="{concat($urlBaseNictizProfile, $profileNameCioCondition)}"/>
                 </meta>
                 
-                <!-- medicationHypersensitivityIdentifier -->
+                <xsl:for-each select="diagnostisch_inzicht_datum[@value]">
+                    <extension url="http://hl7.org/fhir/StructureDefinition/allergyintolerance-assertedDate">
+                        <valueDateTime>
+                            <xsl:attribute name="value">
+                                <xsl:call-template name="format2FHIRDate">
+                                    <xsl:with-param name="dateTime" select="xs:string(@value)"/>
+                                </xsl:call-template>
+                            </xsl:attribute>
+                        </valueDateTime>
+                    </extension>
+                </xsl:for-each>
+                
                 <xsl:for-each select="../identificatie_gmo">
                     <xsl:call-template name="ext-MedicationHypersensitivityIdentifier">
                         <xsl:with-param name="in" select="."/>
@@ -80,6 +91,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:call-template name="code-to-CodeableConcept">
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
+                    </code>
+                </xsl:for-each>
+                
+                <xsl:for-each select="($hypersensitivityIntolerance | $reaction)/diagnose/nadere_specificatie_diagnose_naam[@value]">
+                    <code>
+                        <text>
+                            <xsl:call-template name="string-to-string">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </text>
                     </code>
                 </xsl:for-each>
             
@@ -126,7 +147,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:call-template>
                 </xsl:for-each>
                 
-                <xsl:for-each select="diagnose_steller/*">
+                <xsl:for-each select="($hypersensitivityIntolerance | $reaction)/diagnose_steller/*">
                     <xsl:call-template name="makeReference">
                         <xsl:with-param name="in" select="."/>
                         <xsl:with-param name="wrapIn" select="'asserter'"/>

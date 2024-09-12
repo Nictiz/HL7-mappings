@@ -107,7 +107,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </extension>
                 </xsl:if>
                 
-                <!-- medicationHypersensitivityIdentifier -->
                 <xsl:for-each select="../identificatie_gmo">
                     <xsl:call-template name="ext-MedicationHypersensitivityIdentifier">
                         <xsl:with-param name="in" select="."/>

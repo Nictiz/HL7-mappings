@@ -27,6 +27,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="cio-ProposalContraIndication-Bundle.xsl"/>
     <xsl:import href="cio-ReplyProposalContraIndication.xsl"/>
 
+    <xsl:import href="ext-MedicationHypersensitivityIdentifier.xsl"/>
+
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 

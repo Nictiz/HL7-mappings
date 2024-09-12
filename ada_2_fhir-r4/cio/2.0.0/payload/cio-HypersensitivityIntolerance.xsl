@@ -181,7 +181,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </code>
                 </xsl:for-each>
                 
-<!--                <xsl:for-each select="diagnose/nadere_specificatie_diagnose_naam[@value]">
+                <xsl:for-each select="diagnose/nadere_specificatie_diagnose_naam[@value]">
                     <code>
                         <text>
                             <xsl:call-template name="string-to-string">
@@ -189,7 +189,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             </xsl:call-template>
                         </text>
                     </code>
-                </xsl:for-each>-->
+                </xsl:for-each>
                 
                 <xsl:call-template name="makeReference">
                     <xsl:with-param name="in" select="$subject"/>
