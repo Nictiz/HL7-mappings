@@ -17,8 +17,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         If a bug is found and fixed, this fix should apply to the mapping in all versions of the package that use this mapping.
         If a profile is edited in a non-backwards compatible way, a new version of the ada2fhir mapping should be made for that profile. -->
     <xsl:import href="../0.7-beta1/nl-core-AbilityToDressOneself.xsl"/>
-    <xsl:import href="../0.8.0-beta.1/nl-core-AbilityToDrink.xsl"/>
-    <xsl:import href="../0.8.0-beta.1/nl-core-AbilityToEat.xsl"/>
+    <xsl:import href="nl-core-AbilityToDrink.xsl"/>
+    <xsl:import href="nl-core-AbilityToEat.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-AbilityToGroom.xsl"/>
     <xsl:import href="nl-core-AbilityToUseToilet.xsl"/>
     <xsl:import href="../0.7-beta1/nl-core-AbilityToWashOneself.xsl"/>
@@ -56,7 +56,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../0.5-beta1/nl-core-HealthProfessional.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-HealthcareProvider.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-HearingFunction.xsl"/>
-    <xsl:import href="../0.5-beta1/nl-core-HeartRate.xsl"/>
+    <xsl:import href="nl-core-HeartRate.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-HelpFromOthers.xsl"/>
     <xsl:import href="nl-core-IllnessPerception.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-LaboratoryTestResult.xsl"/>
@@ -78,7 +78,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../0.10.0-beta.1/nl-core-Pregnancy.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-Problem.xsl"/>
     <xsl:import href="../0.5-beta1/nl-core-Procedure.xsl"/>
-    <xsl:import href="../0.9.0-beta.1/nl-core-PulseRate.xsl"/>
+    <xsl:import href="nl-core-PulseRate.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-Refraction.xsl"/>
     <xsl:import href="../0.9.0-beta.1/nl-core-SkinDisorder.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-SOAPReport.xsl"/>

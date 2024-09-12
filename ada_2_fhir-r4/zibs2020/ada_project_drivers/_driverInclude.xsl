@@ -135,7 +135,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     'ziekte_inzicht_van_patient','omgaan_met_ziekteproces_door_patient','omgaan_met_ziekteproces_door_naasten',
                     'toiletgebruik','zorg_bij_menstruatie',
                     'feces_continentie','frequentie','defecatie_consistentie','defecatie_kleur', 'zindelijkheid_urine','zindelijkheid_feces','leeftijd_eerste_menstruatie','ontwikkeling_motoriek','ontwikkeling_sociaal','ontwikkeling_taal','ontwikkeling_verstandelijk',
-                    'vocht_totaal_in','vocht_totaal_uit')">
+                    'vocht_totaal_in','vocht_totaal_uit',
+                    'hartslag_regelmatigheid','interpretatie_frequentie')">
                     <xsl:value-of select="$baseId"/>
                     <xsl:value-of select="substring-after($profile, $baseId)"/>
                     <xsl:text>-</xsl:text>
@@ -146,6 +147,18 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:value-of select="substring-after($profile, $baseId)"/>
                     <xsl:text>-LaboratoryTest-</xsl:text>
                     <xsl:value-of select="format-number(count(preceding-sibling::*[local-name() = 'laboratorium_test'])+1, '00')"/>
+                </xsl:when>
+                <xsl:when test="$localName = 'eet_beperkingen'">
+                    <xsl:value-of select="$baseId"/>
+                    <xsl:value-of select="substring-after($profile, $baseId)"/>
+                    <xsl:text>-</xsl:text>
+                    <xsl:value-of select="format-number(count(preceding-sibling::*[local-name() = 'eet_beperkingen'])+1, '00')"/>
+                </xsl:when>
+                <xsl:when test="$localName = 'drink_beperkingen'">
+                    <xsl:value-of select="$baseId"/>
+                    <xsl:value-of select="substring-after($profile, $baseId)"/>
+                    <xsl:text>-</xsl:text>
+                    <xsl:value-of select="format-number(count(preceding-sibling::*[local-name() = 'drink_beperkingen'])+1, '00')"/>
                 </xsl:when>
                 <xsl:when test="$profile = $baseId or not(starts-with($profile, $baseId))">
                     <xsl:value-of select="$id"/>
@@ -415,6 +428,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="$in" mode="nl-core-HeartRate">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
+                <xsl:for-each select="hartslag_regelmatigheid">
+                    <xsl:call-template name="nl-core-HeartRate.HeartbeatRegularity">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
+                <xsl:for-each select="interpretatie_frequentie">
+                    <xsl:call-template name="nl-core-HeartRate.InterpretationHeartRate">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
             </xsl:when>
             <xsl:when test="$localName = 'glasgow_coma_scale'">
                 <xsl:apply-templates select="$in" mode="nl-core-GlasgowComaScale">
@@ -631,6 +654,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="$in" mode="nl-core-PulseRate">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
+                <xsl:for-each select="pols_regelmatigheid">
+                    <xsl:call-template name="nl-core-PulseRate.PulseRegularity">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
             </xsl:when>
             <xsl:when test="$localName = 'probleem'">
                 <xsl:apply-templates select="$in" mode="nl-core-Problem">
@@ -705,11 +733,21 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:apply-templates select="$in" mode="nl-core-AbilityToDrink">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
+                <xsl:for-each select="drink_beperkingen">
+                    <xsl:call-template name="nl-core-AbilityToDrink.DrinkingLimitations">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
             </xsl:when>
             <xsl:when test="$localName = 'vermogen_tot_eten'">
                 <xsl:apply-templates select="$in" mode="nl-core-AbilityToEat">
                     <xsl:with-param name="subject" select="$subject"/>
                 </xsl:apply-templates>
+                <xsl:for-each select="eet_beperkingen">
+                    <xsl:call-template name="nl-core-AbilityToEat.EatingLimitations">
+                        <xsl:with-param name="subject" select="$subject" as="element()"/>
+                    </xsl:call-template>
+                </xsl:for-each>
             </xsl:when>
             <xsl:when test="$localName = 'vermogen_tot_zich_kleden'">
                 <xsl:apply-templates select="$in" mode="nl-core-AbilityToDressOneself">

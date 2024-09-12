@@ -88,6 +88,8 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="functie_zien" resource="Observation" profile="nl-core-VisualFunction"/>
         <nm:map ada="functionele_of_mentale_status" resource="Observation" profile="nl-core-FunctionalOrMentalStatus"/>
         <nm:map ada="hartfrequentie" resource="Observation" profile="nl-core-HeartRate"/>
+        <nm:map ada="hartslag_regelmatigheid" resource="Observation" profile="nl-core-HeartRate.HeartbeatRegularity"/>
+        <nm:map ada="interpretatie_frequentie" resource="Observation" profile="nl-core-HeartRate.InterpretationHeartRate"/>
         <nm:map ada="huidaandoening" resource="Condition" profile="nl-core-SkinDisorder"/>
         <nm:map ada="hulp_van_anderen" resource="CarePlan" profile="nl-core-HelpFromOthers"/>
         <nm:map ada="juridische_situatie" resource="Condition" profile="nl-core-LegalSituation-LegalStatus"/>
@@ -138,6 +140,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="patient" resource="Patient" profile="nl-core-Patient"/>
         <nm:map ada="pijn_score" resource="Observation" profile="nl-core-PainScore"/>
         <nm:map ada="polsfrequentie" resource="Observation" profile="nl-core-PulseRate"/>
+        <nm:map ada="pols_regelmatigheid" resource="Observation" profile="nl-core-PulseRate.PulseRegularity"/>
         <nm:map ada="probleem" resource="Condition" profile="nl-core-Problem"/>
         <nm:map ada="product" resource="Device" profile="nl-core-MedicalDevice.Product"/>
         <nm:map ada="product" resource="Device" profile="nl-core-HearingFunction.HearingAid.Product"/>
@@ -169,7 +172,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <nm:map ada="vaccinatie" resource="Immunization" profile="nl-core-Vaccination-event"/>
         <nm:map ada="vaccinatie" resource="ImmunizationRecommendation" profile="nl-core-Vaccination-request"/>
         <nm:map ada="vermogen_tot_drinken" resource="Observation" profile="nl-core-AbilityToDrink"/>
+        <nm:map ada="drink_beperkingen" resource="Observation" profile="nl-core-AbilityToDrink.DrinkingLimitations"/>
         <nm:map ada="vermogen_tot_eten" resource="Observation" profile="nl-core-AbilityToEat"/>
+        <nm:map ada="eet_beperkingen" resource="Observation" profile="nl-core-AbilityToEat.EatingLimitations"/>
         <nm:map ada="vermogen_tot_toiletgang" resource="Observation" profile="nl-core-AbilityToUseToilet"/>
         <nm:map ada="toiletgebruik" resource="Observation" profile="nl-core-AbilityToUseToilet.ToiletUse"/>
         <nm:map ada="zorg_bij_menstruatie" resource="Observation" profile="nl-core-AbilityToUseToilet.MenstrualCare"/>
@@ -334,7 +339,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 $in//ontwikkeling_taal[parent::ontwikkeling_kind],
                 $in//ontwikkeling_verstandelijk[parent::ontwikkeling_kind],
                 $in//vocht_totaal_in[parent::vochtbalans],
-                $in//vocht_totaal_uit[parent::vochtbalans]
+                $in//vocht_totaal_uit[parent::vochtbalans],
+                $in//drink_beperkingen[parent::vermogen_tot_drinken],
+                $in//eet_beperkingen[parent::vermogen_tot_eten],
+                $in//hartslag_regelmatigheid[parent::hartfrequentie],
+                $in//interpretatie_frequentie[parent::hartfrequentie],
+                $in//pols_regelmatigheid[parent::polsfrequentie]
                 )[.//(@value | @code | @nullFlavor)]" group-by="local-name()">
             <xsl:for-each-group select="current-group()" group-by="nf:getGroupingKeyDefault(.)">
                 <xsl:call-template name="_buildFhirMetadataForAdaEntry">
