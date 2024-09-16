@@ -21,7 +21,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xd:doc scope="stylesheet">
         <xd:desc>Converts ADA medicatie_gebruik to FHIR MedicationStatement conforming to profile mp-MedicationUse2</xd:desc>
     </xd:doc>
-
+    
+    <xsl:variable name="mgbCode930" select="$mgbCode[1]"/>
+    
     <xd:doc>
         <xd:desc>Create an mp-MedicationUse2 instance as a MedicationStatement FHIR instance from ADA medicatie_gebruik.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
@@ -50,7 +52,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationUse2.Prescriber">
                         <valueReference>
                             <xsl:call-template name="makeReference">
-                                <xsl:with-param name="profile">nl-core-HealthProfessional-PractitionerRole</xsl:with-param>
+                                <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
                             </xsl:call-template>
                         </valueReference>
                     </extension>
@@ -82,16 +84,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                         <xsl:with-param name="in" select="$subject"/>
                                     </xsl:call-template>
                                 </xsl:when>
-                                <xsl:when test="auteur_is_zorgaanbieder/zorgaanbieder[@value]">
-                                    <xsl:call-template name="makeReference">
-                                        <xsl:with-param name="in" select="ancestor::data/*//zorgaanbieder[@id = current()/auteur_is_zorgaanbieder/zorgaanbieder/@value]"/>
-                                        <xsl:with-param name="profile" select="$profilenameHealthcareProvider"/>
-                                    </xsl:call-template>
-                                </xsl:when>
-                                <xsl:when test="auteur_is_zorgverlener/zorgverlener[@value]">
+                                <xsl:when test="ancestor::data/*//zorgverlener[@id = current()/auteur_is_zorgverlener/zorgverlener/@value]">
                                     <xsl:call-template name="makeReference">
                                         <xsl:with-param name="in" select="ancestor::data/*//zorgverlener[@id = current()/auteur_is_zorgverlener/zorgverlener/@value]"/>
                                         <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
+                                    </xsl:call-template>
+                                </xsl:when>
+                                <xsl:when test="ancestor::data/*//zorgaanbieder[@id = current()/auteur_is_zorgaanbieder/zorgaanbieder/@value]">
+                                    <xsl:call-template name="makeReference">
+                                        <xsl:with-param name="in" select="ancestor::data/*//zorgaanbieder[@id = current()/auteur_is_zorgaanbieder/zorgaanbieder/@value]"/>
+                                        <xsl:with-param name="profile" select="$profileNameHealthcareProvider"/>
                                     </xsl:call-template>
                                 </xsl:when>
                             </xsl:choose>
@@ -121,9 +123,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <status>
                     <xsl:attribute name="value">
                         <xsl:choose>
-                            <xsl:when test="medicatie_gebruik_stop_type[@code = $stoptypeMap[@stoptype = 'tijdelijk']/@code]">on-hold</xsl:when>
-                        <xsl:when test="medicatie_gebruik_stop_type[@code = $stoptypeMap[@stoptype = 'definitief']/@code]">stopped</xsl:when>
-                            <xsl:when test="gebruik_indicator/@value = 'false'">not-taken</xsl:when>
+                            <xsl:when test="(medicatie_gebruik_stop_type | medicatiegebruik_stop_type)[@code = $stoptypeMap[@stoptype = ('onderbroken', 'tijdelijk')]/@code]">on-hold</xsl:when>
+                            <xsl:when test="(medicatie_gebruik_stop_type | medicatiegebruik_stop_type)[@code = $stoptypeMap[@stoptype = ('stopgezet','definitief')]/@code]">stopped</xsl:when>
+                            <xsl:when test="gebruik_indicator/@value = 'false' and not((medicatie_gebruik_stop_type | medicatiegebruik_stop_type)[@code][not(@codesystem = $oidHL7NullFlavor)])">not-taken</xsl:when>
                             <xsl:otherwise>active</xsl:otherwise>
                         </xsl:choose>
                         </xsl:attribute>
@@ -140,7 +142,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <category>
                     <coding>
                         <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                        <code value="422979000"/>
+                        <code value="{$mgbCode930}"/>
                         <display value="bevinding betreffende gedrag met betrekking tot medicatieregime"/>
                     </coding>
                 </category>
@@ -171,7 +173,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- relatie_episode when there is no relatie_contact -->
                 <xsl:if test="relatie_zorgepisode/(identificatie | identificatienummer)[@value] and not(relatie_contact/(identificatie | identificatienummer)[@value])">
                     <context>
-                        <xsl:apply-templates select="relatie_zorgepisode/identificatienummer[@value]" mode="nl-core-EpisodeOfCare-RefIdentifier"/>
+                        <xsl:if test="count(relatie_zorgepisode[(identificatie | identificatienummer)[@value]]) gt 1">
+                            <xsl:for-each select="relatie_zorgepisode[(identificatie | identificatienummer)[@value]][position() gt 1]">
+                                <xsl:call-template name="ext-Context-EpisodeOfCare">
+                                    <xsl:with-param name="in" select="identificatie | identificatienummer"/>
+                                </xsl:call-template>
+                            </xsl:for-each>
+                        </xsl:if>
+
+                        <xsl:apply-templates select="relatie_zorgepisode[(identificatie | identificatienummer)[@value]][position() = 1]/(identificatie | identificatienummer)" mode="nl-core-EpisodeOfCare-RefIdentifier"/>
                     </context>
                 </xsl:if>
 
@@ -194,10 +204,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <!-- informant -->
                 <xsl:for-each select="informant/*">
                     <xsl:choose>
-                        <xsl:when test="self::persoon/contactpersoon[@value]">
+                        <xsl:when test="ancestor::data/*//contactpersoon[@id = current()/self::persoon/contactpersoon/@value]">
                             <informationSource>
                                 <xsl:call-template name="makeReference">
-                                    <xsl:with-param name="in" select="ancestor::data/*//contactpersoon[@id = current()/contactpersoon/@value]"/>
+                                    <xsl:with-param name="in" select="ancestor::data/*//contactpersoon[@id = current()/self::persoon/contactpersoon/@value]"/>
                                 </xsl:call-template>
                             </informationSource>
                         </xsl:when>
@@ -208,10 +218,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </xsl:call-template>
                             </informationSource>
                         </xsl:when>
-                        <xsl:when test="self::informant_is_zorgverlener/zorgverlener[@value]">
+                        <xsl:when test="ancestor::data/*//zorgverlener[@id = current()/self::informant_is_zorgverlener/zorgverlener/@value]">
                             <informationSource>
                                 <xsl:call-template name="makeReference">
-                                    <xsl:with-param name="in" select="ancestor::data/*//zorgverlener[@id = current()/zorgverlener/@value]"/>
+                                    <xsl:with-param name="in" select="ancestor::data/*//zorgverlener[@id = current()/self::informant_is_zorgverlener/zorgverlener/@value]"/>
                                     <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
                                 </xsl:call-template>
                             </informationSource>
@@ -233,6 +243,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                 </coding>
                             </valueCodeableConcept>
                         </extension>
+                        <type value="MedicationRequest"/>
                         <identifier>
                             <xsl:call-template name="id-to-Identifier">
                                 <xsl:with-param name="in" select="."/>
@@ -247,11 +258,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <valueCodeableConcept>
                                 <coding>
                                     <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                                    <code value="422037009"/>
+                                    <code value="{$taCode930}"/>
                                     <display value="toedieningsafspraak"/>
                                 </coding>
                             </valueCodeableConcept>
                         </extension>
+                        <type value="MedicationRequest"/>
                         <identifier>
                             <xsl:call-template name="id-to-Identifier">
                                 <xsl:with-param name="in" select="."/>
@@ -266,11 +278,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <valueCodeableConcept>
                                 <coding>
                                     <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                                    <code value="373784005"/>
+                                    <code value="{$mveCode920}"/>
                                     <display value="verstrekken van medicatie"/>
                                 </coding>
                             </valueCodeableConcept>
                         </extension>
+                        <type value="MedicationRequest"/>
                         <identifier>
                             <xsl:call-template name="id-to-Identifier">
                                 <xsl:with-param name="in" select="."/>

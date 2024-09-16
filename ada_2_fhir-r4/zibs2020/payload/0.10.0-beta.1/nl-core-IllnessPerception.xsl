@@ -28,11 +28,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada ziektebeleving to FHIR Observation conforming to profile nl-core-IllnessPerception</xd:desc>
+        <xd:desc>Converts ADA ziektebeleving to FHIR Observation resource conforming to profile nl-core-IllnessPerception.</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameIllnessPerception">nl-core-IllnessPerception</xsl:variable>
+    
     <xd:doc>
-        <xd:desc>Create an nl-core-IllnessPerception instance as an Observation FHIR instance from ada ziektebeleving element.</xd:desc>
+        <xd:desc>Creates an nl-core-IllnessPerception instance as an Observation FHIR instance from ADA ziektebeleving element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
@@ -42,14 +44,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Observation>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNameIllnessPerception"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-IllnessPerception"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <code>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="363910003"/>
                         <display value="kenmerk van psychosociaal functioneren"/>
                     </coding>
@@ -62,7 +66,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="27026000"/>
                                 <display value="inzicht"/>
                             </coding>
@@ -78,7 +82,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="364667003"/>
                                 <display value="vermogen tot coping"/>
                             </coding>
@@ -94,7 +98,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="405199009"/>
                                 <display value="copinggedrag van familie"/>
                             </coding>

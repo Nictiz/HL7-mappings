@@ -24,7 +24,9 @@
     <xd:doc>
         <xd:desc>Add a temp reference id for the groups that will be moved to bouwstenen group</xd:desc>
     </xd:doc>
-    <xsl:template match="(product | zorgverlener[not(zorgverlener)] | zorgaanbieder[not(zorgaanbieder)][not(ancestor::documentgegevens)] | contactpersoon | informant/persoon)[not(adaextension/reference_id/@value)]" mode="addReferenceId">
+<!--    <xsl:template match="(product | zorgverlener[not(zorgverlener)] | zorgaanbieder[not(zorgaanbieder)][not(ancestor::documentgegevens)] | contactpersoon | informant/persoon)[not(adaextension/reference_id/@value)]" mode="addReferenceId">-->
+    <!-- Match expression was not XSLT2 compliant. Changed to: -->
+    <xsl:template match="product[not(adaextension/reference_id/@value)] | zorgverlener[not(zorgverlener)][not(adaextension/reference_id/@value)] | zorgaanbieder[not(zorgaanbieder)][not(ancestor::documentgegevens)][not(adaextension/reference_id/@value)] | contactpersoon[not(adaextension/reference_id/@value)] | informant/persoon[not(adaextension/reference_id/@value)]" mode="addReferenceId">
         <xsl:variable name="precedingNodesCount" select="count(preceding::*[local-name() = current()/local-name()])"/>
 
         <xsl:copy>
@@ -401,7 +403,9 @@
     <xd:doc>
         <xd:desc> datum van 9.0.7 naar 9 2.0 </xd:desc>
     </xd:doc>
-    <xsl:template match="(medicatieafspraak | toedieningsafspraak)/afspraakdatum" mode="ada907_2_920">
+    <!--<xsl:template match="(medicatieafspraak | toedieningsafspraak)/afspraakdatum" mode="ada907_2_920">-->
+    <!-- Match expression was not XSLT2 compliant. Changed to: -->
+    <xsl:template match="medicatieafspraak/afspraakdatum | toedieningsafspraak/afspraakdatum" mode="ada907_2_920">
         <xsl:element name="{concat(local-name(..), '_datum_tijd')}">
             <xsl:apply-templates select="@* | node()" mode="#current"/>
         </xsl:element>
@@ -501,7 +505,9 @@
     <xd:doc>
         <xd:desc> stoptype van 9.0.7 naar 9 2.0 </xd:desc>
     </xd:doc>
-    <xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatie_gebruik)/stoptype" mode="ada907_2_920">
+    <!--<xsl:template match="(medicatieafspraak | toedieningsafspraak | medicatie_gebruik)/stoptype" mode="ada907_2_920">-->
+    <!-- Match expression was not XSLT2 compliant. Changed to: -->
+    <xsl:template match="medicatieafspraak/stoptype | toedieningsafspraak/stoptype | medicatie_gebruik/stoptype" mode="ada907_2_920">
         <xsl:element name="{concat(local-name(..), '_stop_type')}">
             <xsl:apply-templates select="@* | node()" mode="#current"/>
         </xsl:element>
@@ -547,7 +553,9 @@
     <xd:doc>
         <xd:desc>this is a reference thing in the dataset</xd:desc>
     </xd:doc>
-    <xsl:template match="(verstrekkingsverzoek/beoogd_verstrekker | toedieningsafspraak/verstrekker | verstrekking/verstrekker | zorgverlener/zorgaanbieder)[zorgaanbieder] | auteur_is_zorgaanbieder[not(ancestor::documentgegevens)]" mode="ada907_2_920">
+<!--    <xsl:template match="(verstrekkingsverzoek/beoogd_verstrekker | toedieningsafspraak/verstrekker | verstrekking/verstrekker | zorgverlener/zorgaanbieder)[zorgaanbieder] | auteur_is_zorgaanbieder[not(ancestor::documentgegevens)]" mode="ada907_2_920">-->
+    <!-- Match expression was not XSLT2 compliant. Changed to: -->
+    <xsl:template match="verstrekkingsverzoek/beoogd_verstrekker[zorgaanbieder] | toedieningsafspraak/verstrekker[zorgaanbieder] | verstrekking/verstrekker[zorgaanbieder] | zorgverlener/zorgaanbieder[zorgaanbieder] | auteur_is_zorgaanbieder[not(ancestor::documentgegevens)]" mode="ada907_2_920">
         <xsl:copy>
             <zorgaanbieder datatype="reference" value="{zorgaanbieder/adaextension/reference_id/@value}"/>
         </xsl:copy>

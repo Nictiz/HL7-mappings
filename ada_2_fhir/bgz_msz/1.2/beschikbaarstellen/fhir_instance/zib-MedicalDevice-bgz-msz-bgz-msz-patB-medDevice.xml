@@ -1,0 +1,83 @@
+<DeviceUseStatement xmlns="http://hl7.org/fhir">
+   <id value="zib-MedicalDevice-bgz-msz-bgz-msz-patB-medDevice"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Beschrijving apparaatgebruik. Subject: Francisca F. Fransje Gigase Verheul. Id: bgz-msz-patB-medDevice (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6), Status: actief</caption>
+            <tfoot>
+               <tr>
+                  <td colspan="2">Vanwege spierzwakte rechterarm</td>
+               </tr>
+            </tfoot>
+            <tbody>
+               <tr>
+                  <th>Apparaat/Systeem</th>
+                  <td>positioneringssteun voor arm armondersteuning bij eten en drinken en computerwerk</td>
+               </tr>
+               <tr>
+                  <th>Deel van lichaam</th>
+                  <td>
+                     <span title="structuur van bovenste extremiteit (53120007 - SNOMED CT)">structuur van bovenste extremiteit</span>
+                     <span title="rechts (24028007 - SNOMED CT)">rechts</span>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Gebruiksperiode</th>
+                  <td>Vanaf 3 februari 2016</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Organization">
+      <valueReference>
+         <reference value="Organization/nl-core-organization-bgz-msz-2-16-840-1-113883-2-4-6-1-20000004"/>
+         <display value="Huisartsenpraktijk Betrokken"/>
+      </valueReference>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-MedicalDevice-Practitioner">
+      <valueReference>
+         <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-840-1-113883-2-4-6-1-00131313"/>
+         <display value="Huisdokter H. Huisdokter Behulpzaam"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"/>
+      <value value="bgz-msz-patB-medDevice"/>
+   </identifier>
+   <status value="active"/>
+   <subject>
+      <reference value="Patient/FRANCISCA-F--FRANSJE-GIGASE-VERHEUL"/>
+      <display value="Francisca F. Fransje Gigase Verheul"/>
+   </subject>
+   <whenUsed>
+      <start value="2016-02-03"/>
+   </whenUsed>
+   <device>
+      <reference value="Device/zib-MedicalDeviceProduct-bgz-msz-bgz-msz-patB-medDevice"/>
+      <display value="positioneringssteun voor arm armondersteuning bij eten en drinken en computerwerk"/>
+   </device>
+   <bodySite>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/BodySite-Qualifier">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="24028007"/>
+               <display value="rechts"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="53120007"/>
+         <display value="structuur van bovenste extremiteit"/>
+      </coding>
+   </bodySite>
+   <note>
+      <text value="Vanwege spierzwakte rechterarm"/>
+   </note>
+</DeviceUseStatement>

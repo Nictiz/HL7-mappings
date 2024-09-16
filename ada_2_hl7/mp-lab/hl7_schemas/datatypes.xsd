@@ -6107,8 +6107,7 @@ etc.) Used for names, symbols, and formal expressions.
     </xsd:simpleType>
     <xsd:complexType name="CD">
         <xsd:annotation>
-            <xsd:documentation> A concept descriptor represents any kind of concept usually by     giving a code defined in a code system. A concept descriptor can contain the     original text or phrase that served as the basis of the coding and one or more     translations into different coding systems. A concept descriptor can also contain     qualifiers to describe, e.g., the concept of a "left foot" as a postcoordinated term     built from the primary code "FOOT" and the qualifier "LEFT". In exceptional cases,     the concept descriptor need not contain a code but only the original text
-                describing     that concept.</xsd:documentation>
+            <xsd:documentation> A concept descriptor represents any kind of concept usually by     giving a code defined in a code system. A concept descriptor can contain the     original text or phrase that served as the basis of the coding and one or more     translations into different coding systems. A concept descriptor can also contain     qualifiers to describe, e.g., the concept of a "left foot" as a postcoordinated term     built from the primary code "FOOT" and the qualifier "LEFT". In exceptional cases,     the concept descriptor need not contain a code but only the original text describing     that concept.</xsd:documentation>
             <xsd:appinfo/>
         </xsd:annotation>
         <xsd:complexContent>
@@ -6525,6 +6524,10 @@ etc.) Used for names, symbols, and formal expressions.
             <xsd:enumeration value="EC"/>
             <xsd:enumeration value="PG"/>
             <xsd:enumeration value="MC"/>
+            <!-- 2021-08-11 https://decor.nictiz.nl/art-decor/decor-issues-\-zib2017bbr-?id=2.16.840.1.113883.2.4.3.11.60.7.6.45&amp;language=nl-NL -->
+            <xsd:enumeration value="TMP"/>
+            <xsd:enumeration value="PUB"/>
+            <xsd:enumeration value="DIR"/>
         </xsd:restriction>
     </xsd:simpleType>
     <xsd:complexType name="TEL">
@@ -7081,16 +7084,14 @@ etc.) Used for names, symbols, and formal expressions.
     </xsd:complexType>
     <xsd:simpleType name="real">
         <xsd:annotation>
-            <xsd:documentation> Fractional numbers. Typically used whenever quantities are measured,     estimated, or computed from other real numbers. The typical representation is     decimal, where the number of significant decimal digits is known as the precision.     Real numbers are needed beyond integers whenever quantities of the real world are     measured, estimated, or computed from other real numbers. The term "Real number" in     this specification is used to mean that fractional values are covered without     necessarily implying the full set of the mathematical real
-                numbers.</xsd:documentation>
+            <xsd:documentation> Fractional numbers. Typically used whenever quantities are measured,     estimated, or computed from other real numbers. The typical representation is     decimal, where the number of significant decimal digits is known as the precision.     Real numbers are needed beyond integers whenever quantities of the real world are     measured, estimated, or computed from other real numbers. The term "Real number" in     this specification is used to mean that fractional values are covered without     necessarily implying the full set of the mathematical real numbers.</xsd:documentation>
             <xsd:appinfo/>
         </xsd:annotation>
         <xsd:union memberTypes="xsd:decimal xsd:double"/>
     </xsd:simpleType>
     <xsd:complexType name="REAL">
         <xsd:annotation>
-            <xsd:documentation> Fractional numbers. Typically used whenever quantities are measured,     estimated, or computed from other real numbers. The typical representation is     decimal, where the number of significant decimal digits is known as the precision.     Real numbers are needed beyond integers whenever quantities of the real world are     measured, estimated, or computed from other real numbers. The term "Real number" in     this specification is used to mean that fractional values are covered without     necessarily implying the full set of the mathematical real
-                numbers.</xsd:documentation>
+            <xsd:documentation> Fractional numbers. Typically used whenever quantities are measured,     estimated, or computed from other real numbers. The typical representation is     decimal, where the number of significant decimal digits is known as the precision.     Real numbers are needed beyond integers whenever quantities of the real world are     measured, estimated, or computed from other real numbers. The term "Real number" in     this specification is used to mean that fractional values are covered without     necessarily implying the full set of the mathematical real numbers.</xsd:documentation>
             <xsd:appinfo>
                 <diff>REAL</diff>
                 <sch:pattern name="validate REAL">

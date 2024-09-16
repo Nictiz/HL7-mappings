@@ -1,0 +1,98 @@
+<Encounter xmlns="http://hl7.org/fhir">
+   <id value="zib-Encounter-bgz-msz-patA-encounter3"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Contact. Subject: Dennis D. Dennis Janse. Id: bgz-msz-patA-encounter3 (urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6), Status: onbekend</caption>
+            <tbody>
+               <tr>
+                  <th>Type contact</th>
+                  <td>
+                     <div>
+                        <span title="ambulatory (AMB - v3/ActCode)">ambulatory</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>Vanaf ${DATE, T, D, -1}T09:00:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Probleem/Verrichting</th>
+                  <td>externe fixatie van fractuur van malleolus</td>
+               </tr>
+               <tr>
+                  <th>Participant</th>
+                  <td>
+                     <div>
+                        <span title="Responsible Party (RESP - v3/ParticipationType)">Responsible Party</span> - Beendokter B. Beendokter Aangenaam || Orthopedisch chirurg || Ziekenhuis de Aandacht</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Zorgaanbieder</th>
+                  <td>Ziekenhuis de Aandacht</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.40.1.0.0.6"/>
+      <value value="bgz-msz-patA-encounter3"/>
+   </identifier>
+   <status value="unknown"/>
+   <class>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://hl7.org/fhir/v3/ActCode"/>
+               <code value="AMB"/>
+               <display value="ambulatory"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <system value="http://hl7.org/fhir/v3/ActCode"/>
+      <code value="AMB"/>
+      <display value="ambulatory"/>
+   </class>
+   <subject>
+      <reference value="Patient/DENNIS-D--DENNIS-JANSE"/>
+      <display value="Dennis D. Dennis Janse"/>
+   </subject>
+   <participant>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/v3/ParticipationType"/>
+            <code value="RESP"/>
+            <display value="Responsible Party"/>
+         </coding>
+      </type>
+      <individual>
+         <extension url="http://nictiz.nl/fhir/StructureDefinition/practitionerrole-reference">
+            <valueReference>
+               <reference value="PractitionerRole/nl-core-practitionerrole-bgz-msz-4567891201-03220000002"/>
+               <display value="Beendokter B. Beendokter Aangenaam || Orthopedisch chirurg || Ziekenhuis de Aandacht"/>
+            </valueReference>
+         </extension>
+         <reference value="Practitioner/nl-core-practitioner-bgz-msz-2-16-840-1-113883-2-4-6-1-45678912"/>
+         <display value="Beendokter B. Beendokter Aangenaam"/>
+      </individual>
+   </participant>
+   <period>
+      <start value="${DATE, T, D, -1}T09:00:00+02:00"/>
+   </period>
+   <diagnosis>
+      <condition>
+         <reference value="Procedure/zib-Procedure-bgz-msz-bgz-msz-patA-procedure1"/>
+         <display value="externe fixatie van fractuur van malleolus"/>
+      </condition>
+   </diagnosis>
+   <serviceProvider>
+      <reference value="Organization/nl-core-organization-bgz-msz-2-16-840-1-113883-2-4-6-1-20000002"/>
+      <display value="Ziekenhuis de Aandacht"/>
+   </serviceProvider>
+</Encounter>

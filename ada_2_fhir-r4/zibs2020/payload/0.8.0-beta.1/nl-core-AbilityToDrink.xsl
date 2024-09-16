@@ -28,11 +28,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ada vermogen_tot_drinken to FHIR Observation conforming to profile nl-core-AbilityToDrink.</xd:desc>
+        <xd:desc>Converts ADA vermogen_tot_drinken to FHIR Observation resource conforming to profile nl-core-AbilityToDrink.</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameAbilityToDrink">nl-core-AbilityToDrink</xsl:variable>
+    
     <xd:doc>
-        <xd:desc>Create an nl-core-AbilityToDrink instance as an Observation FHIR instance from ada vermogen_tot_drinken element.</xd:desc>
+        <xd:desc>Creates an nl-core-AbilityToDrink instance as an Observation FHIR instance from ADA vermogen_tot_drinken element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
@@ -42,14 +44,16 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Observation>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNameAbilityToDrink"></xsl:with-param>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-AbilityToDrink"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 <status value="final"/>
                 <code>
                     <coding>
-                        <system value="http://snomed.info/sct"/>
+                        <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                         <code value="288852001"/>
                         <display value="vermogen om te drinken"/>
                     </coding>
@@ -69,7 +73,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <component>
                         <code>
                             <coding>
-                                <system value="http://snomed.info/sct"/>
+                                <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
                                 <code value="288851008"/>
                                 <display value="vermogen tot drinken"/>
                             </coding>

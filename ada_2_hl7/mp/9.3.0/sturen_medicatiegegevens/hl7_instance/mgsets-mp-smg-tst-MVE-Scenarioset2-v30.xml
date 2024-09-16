@@ -1,14 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xmlns:hl7nl="urn:hl7-nl:v3"
-           xmlns:pharm="urn:ihe:pharm:medication"
-           xmlns:f="http://hl7.org/fhir"
-           xmlns:sdtc="urn:hl7-org:sdtc"
-           xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
-           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+<organizer classCode="CLUSTER"
+           moodCode="EVN"
            xmlns="urn:hl7-org:v3"
-           classCode="CLUSTER"
-           moodCode="EVN">
+           xmlns:pharm="urn:ihe:pharm:medication">
    <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9411"/>
    <code code="102"
          displayName="Medicatiegegevens"
@@ -17,19 +10,23 @@
    <statusCode nullFlavor="NI"/>
    <recordTarget>
       <patientRole>
-         <id extension="999900420" root="2.16.840.1.113883.2.4.6.3"/>
+         <id extension="999900420"
+             root="2.16.840.1.113883.2.4.6.3"/>
          <patient>
             <name>
                <given qualifier="IN">C.</given>
                <family qualifier="BR">XXX_Coenen</family>
             </name>
-            <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+            <administrativeGenderCode code="F"
+                                      codeSystem="2.16.840.1.113883.5.1"
+                                      displayName="Vrouw"/>
             <birthTime value="19631017"/>
          </patient>
       </patientRole>
    </recordTarget>
    <component typeCode="COMP">
-      <supply classCode="SPLY" moodCode="EVN">
+      <supply classCode="SPLY"
+              moodCode="EVN">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9364"/>
          <id extension="MBH_300_toelichting_MVE"
              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
@@ -38,7 +35,8 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <effectiveTime value="20221211090200"/>
-         <quantity value="30" unit="1">
+         <quantity value="30"
+                   unit="1">
             <translation value="30"
                          code="245"
                          displayName="stuk"
@@ -48,7 +46,8 @@
          <product>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+               <manufacturedMaterial classCode="MMAT"
+                                     determinerCode="KIND">
                   <code code="598860"
                         codeSystem="2.16.840.1.113883.2.4.4.7"
                         displayName="FUROSEMIDE SANDOZ TABLET 40MG"
@@ -69,13 +68,16 @@
             <assignedEntity>
                <id nullFlavor="NI"/>
                <representedOrganization>
-                  <id extension="01236578" root="2.16.528.1.1007.3.3"/>
+                  <id extension="01236578"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Apotheek De Gulle Gaper</name>
                </representedOrganization>
             </assignedEntity>
          </performer>
-         <entryRelationship typeCode="SUBJ" inversionInd="true">
-            <act classCode="ACT" moodCode="EVN">
+         <entryRelationship typeCode="SUBJ"
+                            inversionInd="true">
+            <act classCode="ACT"
+                 moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.3.10.0.32"/>
                <code code="48767-8"
                      codeSystem="2.16.840.1.113883.6.1"
@@ -85,7 +87,8 @@
             </act>
          </entryRelationship>
          <entryRelationship typeCode="REFR">
-            <supply classCode="SPLY" moodCode="RQO">
+            <supply classCode="SPLY"
+                    moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9312"/>
                <id extension="MBH_300_toelichting_VV"
                    root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
@@ -95,8 +98,10 @@
                      codeSystemName="SNOMED CT"/>
             </supply>
          </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
+         <entryRelationship typeCode="COMP"
+                            inversionInd="true">
+            <procedure classCode="PROC"
+                       moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                    extension="MBH_300_toelichting"/>
@@ -108,7 +113,8 @@
       </supply>
    </component>
    <component typeCode="COMP">
-      <supply classCode="SPLY" moodCode="EVN">
+      <supply classCode="SPLY"
+              moodCode="EVN">
          <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9364"/>
          <id extension="MBH_300_aanvullendeinformatiewensen_MVE"
              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
@@ -117,7 +123,8 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <effectiveTime value="20221227090600"/>
-         <quantity value="30" unit="1">
+         <quantity value="30"
+                   unit="1">
             <translation value="30"
                          code="245"
                          displayName="stuk"
@@ -127,7 +134,8 @@
          <product>
             <manufacturedProduct>
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9362"/>
-               <manufacturedMaterial classCode="MMAT" determinerCode="KIND">
+               <manufacturedMaterial classCode="MMAT"
+                                     determinerCode="KIND">
                   <code code="425087"
                         codeSystem="2.16.840.1.113883.2.4.4.7"
                         displayName="BROXIL CAPSULE 500MG"
@@ -148,13 +156,15 @@
             <assignedEntity>
                <id nullFlavor="NI"/>
                <representedOrganization>
-                  <id extension="01236578" root="2.16.528.1.1007.3.3"/>
+                  <id extension="01236578"
+                      root="2.16.528.1.1007.3.3"/>
                   <name>Apotheek De Gulle Gaper</name>
                </representedOrganization>
             </assignedEntity>
          </performer>
          <entryRelationship typeCode="REFR">
-            <supply classCode="SPLY" moodCode="RQO">
+            <supply classCode="SPLY"
+                    moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9312"/>
                <id extension="MBH_300_aanvullendeinformatiewensen_VV"
                    root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
@@ -164,8 +174,10 @@
                      codeSystemName="SNOMED CT"/>
             </supply>
          </entryRelationship>
-         <entryRelationship typeCode="COMP" inversionInd="true">
-            <procedure classCode="PROC" moodCode="EVN">
+         <entryRelationship typeCode="COMP"
+                            inversionInd="true">
+            <procedure classCode="PROC"
+                       moodCode="EVN">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9084"/>
                <id root="2.16.840.1.113883.2.4.3.11.999.77.1.1"
                    extension="MBH_300_aanvullendeinformatiewensen"/>
