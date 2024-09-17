@@ -25,11 +25,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
     
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA ontwikkeling_kind to FHIR resource conforming to profile nl-core-DevelopmentChild</xd:desc>
+        <xd:desc>Converts ADA ontwikkeling_kind to FHIR Observation resource conforming to profile nl-core-DevelopmentChild.</xd:desc>
     </xd:doc>
     
+    <xsl:variable name="profileNameDevelopmentChild">nl-core-DevelopmentChild</xsl:variable>
+    
     <xd:doc>
-        <xd:desc>Create an nl-core-DevelopmentChild instance as an Observation FHIR instance from ADA ontwikkeling_kind.</xd:desc>
+        <xd:desc>Creates an nl-core-DevelopmentChild instance as an Observation FHIR instance from ADA ontwikkeling_kind element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
     </xd:doc>
     <xsl:template match="ontwikkeling_kind" name="nl-core-DevelopmentChild" mode="nl-core-DevelopmentChild" as="element(f:Observation)">
@@ -38,9 +40,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         
         <xsl:for-each select="$in">
             <Observation>
-                <xsl:call-template name="insertLogicalId"/>
+                <xsl:call-template name="insertLogicalId">
+                    <xsl:with-param name="profile" select="$profileNameDevelopmentChild"/>
+                </xsl:call-template>
                 <meta>
-                    <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-DevelopmentChild"/>
+                    <profile value="{nf:get-full-profilename-from-adaelement(.)}"/>
                 </meta>
                 
                 <status value="final"/>

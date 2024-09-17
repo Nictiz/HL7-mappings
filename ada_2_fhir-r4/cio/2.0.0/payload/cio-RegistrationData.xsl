@@ -132,8 +132,12 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     <xsl:when test="self::zorgverlener">
                                         <xsl:value-of select="$profileNameHealthProfessionalPractitionerRole"/>
                                     </xsl:when>
-                                    <xsl:when test="self::contactpersoon">nl-core-ContactPerson</xsl:when>
-                                    <xsl:when test="self::patient">nl-core-Patient</xsl:when>
+                                    <xsl:when test="self::contactpersoon">
+                                        <xsl:value-of select="$profileNameContactPerson"/>
+                                    </xsl:when>
+                                    <xsl:when test="self::patient">
+                                        <xsl:value-of select="$profileNamePatient"/>
+                                    </xsl:when>
                                 </xsl:choose>
                             </xsl:with-param>
                         </xsl:call-template>

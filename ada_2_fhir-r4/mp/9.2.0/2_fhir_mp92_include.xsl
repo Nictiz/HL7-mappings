@@ -392,7 +392,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:for-each select="ancestor::*[bouwstenen]/bouwstenen/zorgverlener[@id = current()/auteur/zorgverlener/@value]">
                             <sender>
                                 <xsl:call-template name="makeReference">
-                                    <xsl:with-param name="profile">nl-core-HealthProfessional-PractitionerRole</xsl:with-param>
+                                    <xsl:with-param name="profile" select="$profileNameHealthProfessionalPractitionerRole"/>
                                 </xsl:call-template>
                             </sender>
                         </xsl:for-each>
