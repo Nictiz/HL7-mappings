@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Immunization xmlns="http://hl7.org/fhir">
+   <id value="39d98ab0-6aca-11ec-0000-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/imm-Vaccination-event"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-imm-Vaccination.PharmaceuticalProduct">
+      <valueReference>
+         <reference value="Medication/nl-core-PhPrd--18954-21684011138832447-2924528"/>
+         <type value="Medication"/>
+         <display value="COVID-19 VACCIN PFIZER INJVLST 0,3ML"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.131.2"/>
+      <value value="d90e19"/>
+   </identifier>
+   <status value="completed"/>
+   <vaccineCode>
+      <coding>
+         <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+         <code value="2924528"/>
+         <display value="COVID-19 VACCIN PFIZER INJVLST 0,3ML"/>
+      </coding>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="28531000087107"/>
+         <display value="vaccin tegen 'Severe acute respiratory syndrome'-coronavirus 2"/>
+      </coding>
+   </vaccineCode>
+   <patient>
+      <reference value="Patient/core-Patient--JohannaPetronellaMariaJ-P-M-vanGiessenvanderPutten"/>
+      <type value="Patient"/>
+      <display value="Patient, Johanna Petronella Maria van Giessen-van der Putten"/>
+   </patient>
+   <occurrenceDateTime value="2020-08-26"/>
+   <location>
+      <reference value="Location/nl-core-HPrv--2165281100733-10000006"/>
+      <type value="Location"/>
+      <display value="Healthcare provider (location), GGD test 06"/>
+   </location>
+   <site>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AnatomicalLocation.Laterality">
+         <valueCodeableConcept>
+            <coding>
+               <system value="http://snomed.info/sct"/>
+               <code value="7771000"/>
+               <display value="links"/>
+            </coding>
+         </valueCodeableConcept>
+      </extension>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="40983000"/>
+         <display value="bovenarm"/>
+      </coding>
+   </site>
+   <performer>
+      <function>
+         <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/v2-0443"/>
+            <code value="AP"/>
+            <display value="Administering Provider"/>
+         </coding>
+      </function>
+      <actor>
+         <reference value="Organization/nl-core-HPrv-Org--Org-2165281100733-20000006"/>
+         <type value="Organization"/>
+         <display value="Healthcare provider (organization), Huisartsenpraktijk test 06"/>
+      </actor>
+   </performer>
+   <reasonCode>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="404904002"/>
+         <display value="Kwetsbare oudere (bevinding)"/>
+      </coding>
+   </reasonCode>
+   <reasonCode>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="159741000146107"/>
+         <display value="Immunisatie nodig vanuit vaccinatieprogramma (situatie)"/>
+      </coding>
+   </reasonCode>
+</Immunization>

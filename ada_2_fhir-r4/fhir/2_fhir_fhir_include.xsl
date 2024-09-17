@@ -270,7 +270,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
         <!-- General rule for all zib root concepts that need to be converted into a FHIR resource -->
         <xsl:for-each-group select="
                 (
-                $in[not(self::patient or self::zorgverlener or self::zorgaanbieder)],
+                $in[not(self::patient | self::zorgverlener | self::zorgaanbieder)],
                 $in//horen_hulpmiddel/medisch_hulpmiddel,
                 $in//zien_hulpmiddel/medisch_hulpmiddel,
                 $in//product[parent::medisch_hulpmiddel],
