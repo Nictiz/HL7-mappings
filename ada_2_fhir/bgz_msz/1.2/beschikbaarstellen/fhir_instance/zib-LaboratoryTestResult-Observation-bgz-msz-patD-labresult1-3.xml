@@ -1,0 +1,100 @@
+<Observation xmlns="http://hl7.org/fhir">
+   <id value="zib-LaboratoryTestResult-Observation-bgz-msz-patD-labresult1-3"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-LaboratoryTestResult-Observation"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Observatie/bepaling. Subject: Fatima Saïda F.S.K. Fatima Al Ksar el Kebir Çelik. Categorie: <span title="bevinding betreffende laboratoriumonderzoek (49581000146104 - SNOMED CT)">bevinding betreffende laboratoriumonderzoek</span>, Status: <i>onbekend (ontbrekend gegeven)</i>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Bepalingdatum/tijd</th>
+                  <td colspan="3">10:30:00, 22 juni 2008</td>
+               </tr>
+               <tr>
+                  <th>Code</th>
+                  <th>Waarde</th>
+                  <th>Interpretatie</th>
+                  <th>Referentiewaarden</th>
+               </tr>
+               <tr>
+                  <td>
+                     <span title="Trombocyten [aantal/volume] in bloed d.m.v. geautomatiseerde telling (777-3 - LOINC)">Trombocyten [aantal/volume] in bloed d.m.v. geautomatiseerde telling</span>
+                  </td>
+                  <td>278 10*3/uL</td>
+                  <td>
+                     <span title="Intermediate (I - v2/0078)">Intermediate</span>
+                  </td>
+                  <td>
+                     <div>
+                        <span title="Normal Range (normal - referencerange-meaning)">Normal Range</span>
+
+150 10*3/uL - 400 10*3/uL</div>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <status>
+      <extension url="http://hl7.org/fhir/StructureDefinition/data-absent-reason">
+         <valueCode value="unknown"/>
+      </extension>
+   </status>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="49581000146104"/>
+         <display value="bevinding betreffende laboratoriumonderzoek"/>
+      </coding>
+   </category>
+   <code>
+      <coding>
+         <system value="http://loinc.org"/>
+         <code value="777-3"/>
+         <display value="Trombocyten [aantal/volume] in bloed d.m.v. geautomatiseerde telling"/>
+      </coding>
+   </code>
+   <subject>
+      <reference value="Patient/FATIMA-SAIDA-F-S-K--FATIMA-AL-KSAR-EL-KEBIR-ELIK"/>
+      <display value="Fatima Saïda F.S.K. Fatima Al Ksar el Kebir Çelik"/>
+   </subject>
+   <effectiveDateTime value="2008-06-22T10:30:00+02:00"/>
+   <valueQuantity>
+      <value value="278"/>
+      <unit value="10*3/uL"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="10*3/uL"/>
+   </valueQuantity>
+   <interpretation>
+      <coding>
+         <system value="http://hl7.org/fhir/v2/0078"/>
+         <code value="I"/>
+         <display value="Intermediate"/>
+      </coding>
+   </interpretation>
+   <referenceRange>
+      <low>
+         <value value="150"/>
+         <unit value="10*3/uL"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="10*3/uL"/>
+      </low>
+      <high>
+         <value value="400"/>
+         <unit value="10*3/uL"/>
+         <system value="http://unitsofmeasure.org"/>
+         <code value="10*3/uL"/>
+      </high>
+      <type>
+         <coding>
+            <system value="http://hl7.org/fhir/referencerange-meaning"/>
+            <code value="normal"/>
+            <display value="Normal Range"/>
+         </coding>
+      </type>
+   </referenceRange>
+</Observation>

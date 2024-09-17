@@ -22,6 +22,10 @@
                   <td>${DATE, T, D, -3}T07:00:00+02:00 - ${DATE, T, D, -2}T09:00:00+02:00</td>
                </tr>
                <tr>
+                  <th>Probleem/Verrichting</th>
+                  <td>eenvoudige mastectomie</td>
+               </tr>
+               <tr>
                   <th>Zorgaanbieder</th>
                   <td>Organisatie met id '20000003' in identificerend systeem '2.16.840.1.113883.2.4.6.1'.</td>
                </tr>
@@ -46,15 +50,6 @@
    </identifier>
    <status value="finished"/>
    <class>
-      <extension url="http://nictiz.nl/fhir/StructureDefinition/code-specification">
-         <valueCodeableConcept>
-            <coding>
-               <system value="http://hl7.org/fhir/v3/ActCode"/>
-               <code value="IMP"/>
-               <display value="Klinisch"/>
-            </coding>
-         </valueCodeableConcept>
-      </extension>
       <system value="http://hl7.org/fhir/v3/ActCode"/>
       <code value="IMP"/>
       <display value="Klinisch"/>
@@ -67,6 +62,12 @@
       <start value="${DATE, T, D, -3}T07:00:00+02:00"/>
       <end value="${DATE, T, D, -2}T09:00:00+02:00"/>
    </period>
+   <diagnosis>
+      <condition>
+         <reference value="Procedure/zib-Procedure-msz-39703471-6ad7-11ec-0000-2"/>
+         <display value="eenvoudige mastectomie"/>
+      </condition>
+   </diagnosis>
    <hospitalization>
       <admitSource>
          <coding>
