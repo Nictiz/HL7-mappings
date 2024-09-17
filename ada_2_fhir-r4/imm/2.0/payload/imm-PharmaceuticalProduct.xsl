@@ -18,15 +18,15 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:strip-space elements="*"/>
 
     <xd:doc scope="stylesheet">
-        <xd:desc>Converts ADA farmaceutisch_product to FHIR Medication conforming to profile mp-PharmaceuticalProduct.</xd:desc>
+        <xd:desc>Converts ADA farmaceutisch_product to FHIR Medication conforming to profile imm-PharmaceuticalProduct.</xd:desc>
     </xd:doc>
 
     <xd:doc>
-        <xd:desc>Create a mp-PharmaceuticalProduct instance as a Medication FHIR instance from ADA farmaceutisch_product.</xd:desc>
+        <xd:desc>Create a imm-PharmaceuticalProduct instance as a Medication FHIR instance from ADA farmaceutisch_product.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="profile">The ADA-element name may or may not be enough to determine the profile from. For Immunization it is not, so allow explicit setting of the profile</xd:param>
     </xd:doc>
-    <xsl:template match="farmaceutisch_product" name="mp-PharmaceuticalProduct" mode="mp-PharmaceuticalProduct" as="element(f:Medication)">
+    <xsl:template match="farmaceutisch_product" name="imm-PharmaceuticalProduct" mode="mp-PharmaceuticalProduct" as="element(f:Medication)">
         <xsl:param name="in" as="element()?" select="."/>
         <xsl:param name="profile" as="xs:string?"/>
 
@@ -63,21 +63,27 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <code>
                             <!--Temporary fix for imm. TODO: fix this xsl:for-each to include SNOMED CT as used in imm-->
                             <!--<xsl:for-each select="product_code[@codeSystem = $oidsGstandaardMedication][@code]">-->
-                            <xsl:for-each select="product_code">
-                                <xsl:choose>
-                                    <xsl:when test="@codeSystem = $most-specific-product-code/@codeSystem">
-                                        <xsl:call-template name="code-to-CodeableConcept">
-                                            <xsl:with-param name="in" select="."/>
-                                            <xsl:with-param name="userSelected">true</xsl:with-param>
-                                        </xsl:call-template>
-                                    </xsl:when>
-                                    <xsl:otherwise>
-                                        <xsl:call-template name="code-to-CodeableConcept">
-                                            <xsl:with-param name="in" select="."/>
-                                        </xsl:call-template>
-                                    </xsl:otherwise>
-                                </xsl:choose>
-                            </xsl:for-each>
+                            <xsl:variable name="codingsAndText" as="node()*">
+                                <xsl:for-each select="product_code">
+                                    <xsl:choose>
+                                        <xsl:when test="@codeSystem = $most-specific-product-code/@codeSystem">
+                                            <xsl:call-template name="code-to-CodeableConcept">
+                                                <xsl:with-param name="in" select="."/>
+                                                <xsl:with-param name="userSelected">true</xsl:with-param>
+                                            </xsl:call-template>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:call-template name="code-to-CodeableConcept">
+                                                <xsl:with-param name="in" select="."/>
+                                            </xsl:call-template>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                </xsl:for-each>
+                            </xsl:variable>
+                            <!-- Prevent 2 text nodes when the code is a nullFlavor -->
+                            <!-- This should have worked but doesn't hence the next line  -->
+                            <!--<xsl:copy-of select="$codingsAndText except f:text"/>-->
+                            <xsl:copy-of select="for $n in $codingsAndText[not(self::f:text)] return $n"/>
                             <!-- Gemaakt om product_naam te kunnen toevoegen in code.text -->
                             <xsl:choose>
                                 <xsl:when test="product_specificatie/product_naam">
@@ -86,22 +92,29 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                                     </xsl:for-each>
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <xsl:for-each select="$most-specific-product-code[@displayName]">
+                                    <xsl:for-each select="$most-specific-product-code[@displayName[not(. = '')] | @originalText[not(. = '')]][1]">
                                         <!-- MP-1295, call string function to get rid of leading/trailing spaces which FHIR does not appreciate -->
                                         <text>
                                             <xsl:call-template name="string-to-string">
                                                 <xsl:with-param name="in" select="."/>
-                                                <xsl:with-param name="inAttributeName">displayName</xsl:with-param>
+                                                <xsl:with-param name="inAttributeName">
+                                                    <xsl:choose>
+                                                        <xsl:when test="empty(@originalText[not(. = '')])">displayName</xsl:when>
+                                                        <xsl:otherwise>originalText</xsl:otherwise>
+                                                    </xsl:choose>
+                                                </xsl:with-param>
                                             </xsl:call-template>
                                         </text>
                                     </xsl:for-each>
                                 </xsl:otherwise>
                             </xsl:choose>
-
                         </code>
                     </xsl:when>
                     <!-- magistraal -->
+                    <!-- Dit deel is niet bereikbaar door de eerste xsl:when -->
                     <xsl:when test="product_code[@codeSystem = $oidHL7NullFlavor]">
+                        <xsl:message terminate="yes">Template farmaceutisch_product - fix this code for duplicate text elements fore using!</xsl:message>
+                        
                         <code>
                             <xsl:call-template name="code-to-CodeableConcept">
                                 <xsl:with-param name="in" select="product_code"/>
@@ -114,7 +127,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </code>
                     </xsl:when>
                     <!-- 90 miljoen -->
+                    <!-- Dit deel is niet bereikbaar door de eerste xsl:when en kan dubbele f:text elementen leveren -->
                     <xsl:when test="product_code[not(@codeSystem = ($oidHL7NullFlavor, $oidsGstandaardMedication))]">
+                        <xsl:message terminate="yes">Template farmaceutisch_product - fix this code for duplicate text elements fore using!</xsl:message>
+                        
                         <code>
                             <xsl:call-template name="code-to-CodeableConcept">
                                 <!-- do not input @originalText -->
@@ -136,11 +152,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </xsl:when>
                     <xsl:when test="product_specificatie/product_naam[@value]">
                         <code>
-                            <coding>
+                            <extension url="{$urlExtHL7NullFlavor}">
+                                <valueCode value="OTH"/>
+                            </extension>
+                            <!--<coding>
                                 <system value="http://terminology.hl7.org/CodeSystem/v3-NullFlavor"/>
                                 <code value="OTH"/>
                                 <display value="overig"/>
-                            </coding>
+                            </coding>-->
                             <text value="{product_specificatie/product_naam/@value}"/>
                         </code>
                     </xsl:when>
@@ -207,9 +226,14 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         </ingredient>
                     </xsl:if>
                 </xsl:for-each>
+                <!-- 1..1 R ADA better have a nullFlavor if unknown ... -->
                 <xsl:if test="batchnummer">
                     <batch>
-                        <lotNumber value="{batchnummer/@value}"/>
+                        <lotNumber>
+                            <xsl:call-template name="string-to-string">
+                                <xsl:with-param name="in" select="batchnummer"/>
+                            </xsl:call-template>
+                        </lotNumber>
                     </batch>
                 </xsl:if>
             </Medication>
@@ -221,17 +245,24 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xd:doc>
     <xsl:template match="farmaceutisch_product" mode="_generateId">
 
+        <!-- You may have more than one Medication resource, each with its own batchNumber to differentiate them. Just the code will not do -->
         <xsl:variable name="uniqueString" as="xs:string?">
             <xsl:choose>
                 <xsl:when test="product_code[@codeSystem = ($oidGStandaardZInummer, $oidGStandaardHPK, $oidGStandaardPRK, $oidGStandaardGPK, $oidGStandaardSNK, $oidGStandaardSSK)][@code]">
                     <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)" as="element(product_code)?"/>
-                    <xsl:value-of select="concat(replace($most-specific-product-code/@codeSystem, '\.', ''), '-', $most-specific-product-code/@code)"/>
+                    <xsl:value-of select="string-join((batchnummer/@nullFlavor, batchnummer/@value, concat(replace($most-specific-product-code/@codeSystem, '\.', ''), '-', $most-specific-product-code/@code)), '-')"/>
                 </xsl:when>
                 <xsl:when test="product_code[not(@codeSystem = $oidHL7NullFlavor)]">
                     <!-- own 90-million product-code which will fit in a logicalId -->
                     <xsl:variable name="productCode" select="product_code[not(@codeSystem = $oidHL7NullFlavor)][1]" as="element(product_code)?"/>
                     <!-- we remove '.' in codeSystem to enlarge the chance of staying in 64 chars -->
-                    <xsl:value-of select="concat(replace($productCode/@codeSystem, '\.', ''), '-', $productCode/@code)"/>
+                    <xsl:value-of select="string-join((batchnummer/@nullFlavor, batchnummer/@value, concat(replace($productCode/@codeSystem, '\.', ''), '-', $productCode/@code)), '-')"/>
+                </xsl:when>
+                <xsl:when test="product_code[@codeSystem = $oidHL7NullFlavor][@originalText]">
+                    <!-- own 90-million product-code which will fit in a logicalId -->
+                    <xsl:variable name="productCode" select="product_code[@codeSystem = $oidHL7NullFlavor][1]" as="element(product_code)?"/>
+                    <!-- we remove '.' in codeSystem to enlarge the chance of staying in 64 chars -->
+                    <xsl:value-of select="string-join((batchnummer/@nullFlavor, batchnummer/@value, $productCode/@originalText), '-')"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <!-- we do not have anything to create a stable logicalId, lets return a UUID -->
@@ -251,11 +282,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:template match="farmaceutisch_product" mode="_generateDisplay">
         <xsl:variable name="most-specific-product-code" select="nf:get-specific-productcode(product_code)" as="element(product_code)?"/>
         <xsl:choose>
-            <xsl:when test="$most-specific-product-code[@displayName]">
-                <xsl:value-of select="normalize-space($most-specific-product-code/@displayName)"/>
+            <xsl:when test="$most-specific-product-code[@displayName | @originalText]">
+                <xsl:value-of select="normalize-space(($most-specific-product-code/(@originalText, @displayName))[1])"/>
             </xsl:when>
-            <xsl:when test="product_code[@displayName]">
-                <xsl:value-of select="normalize-space((product_code/@displayName)[1])"/>
+            <xsl:when test="product_code[@displayName | @originalText]">
+                <xsl:value-of select="normalize-space((product_code/(@originalText, @displayName))[1])"/>
             </xsl:when>
             <xsl:when test="product_specificatie[product_naam/@value]">
                 <xsl:value-of select="product_specificatie/product_naam/@value"/>

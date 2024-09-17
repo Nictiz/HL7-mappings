@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Immunization xmlns="http://hl7.org/fhir">
+   <id value="555c5ee6-6b39-11ec-0000-020000000000"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/imm-Vaccination-event"/>
+   </meta>
+   <contained>
+      <Location>
+         <id value="locatie1"/>
+         <telecom>
+            <system value="phone"/>
+            <value value="0707654321"/>
+         </telecom>
+         <address>
+            <line value="Knolweg 2001">
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-streetName">
+                  <valueString value="Knolweg"/>
+               </extension>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-houseNumber">
+                  <valueString value="2001"/>
+               </extension>
+               <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-unitID">
+                  <valueString value="Sporthal"/>
+               </extension>
+            </line>
+            <city value="Stitswerd"/>
+            <postalCode value="9999AA"/>
+            <country value="Nederland">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="urn:iso:std:iso:3166"/>
+                        <version value="2020-10-26T00:00:00"/>
+                        <code value="NL"/>
+                        <display value="Nederland"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </country>
+         </address>
+      </Location>
+   </contained>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-imm-Vaccination.PharmaceuticalProduct">
+      <valueReference>
+         <reference value="Medication/nl-core-PhPrd--FF4213-2168401113883696-28531000087107"/>
+         <type value="Medication"/>
+         <display value="vaccin tegen 'Severe acute respiratory syndrome'-coronavirus 2"/>
+      </valueReference>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.60.131.2"/>
+      <value value="d90e188"/>
+   </identifier>
+   <status value="completed"/>
+   <vaccineCode>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="28531000087107"/>
+         <display value="vaccin tegen 'Severe acute respiratory syndrome'-coronavirus 2"/>
+      </coding>
+   </vaccineCode>
+   <patient>
+      <reference value="Patient/nl-core-Patient--AnnemarieA-AnnavandeXXX-BeversdeBoomMSc-"/>
+      <type value="Patient"/>
+      <display value="Patient, Annemarie (Anna) van de XXX_Bevers"/>
+   </patient>
+   <occurrenceDateTime value="${DATE, T, Y, -2}"/>
+   <location>
+      <reference value="#locatie1"/>
+      <type value="Location"/>
+      <display value="Adres: Knolweg 2001 9999AA Stitswerd Nederland Sporthal. Contact: 0707654321."/>
+   </location>
+   <performer>
+      <function>
+         <coding>
+            <system value="http://terminology.hl7.org/CodeSystem/v2-0443"/>
+            <code value="AP"/>
+            <display value="Administering Provider"/>
+         </coding>
+      </function>
+      <actor>
+         <reference value="Organization/nl-core-HPrv-Org--Org-2165281100733-10000006"/>
+         <type value="Organization"/>
+         <display value="Healthcare provider (organization), GGD test 06"/>
+      </actor>
+   </performer>
+</Immunization>
