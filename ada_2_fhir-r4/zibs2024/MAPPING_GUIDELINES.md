@@ -11,6 +11,8 @@ Files and folders are organized in the following way:
 
 ## Metadata
 
+Transforming ADA instances to FHIR is a two-pass process: first all metadata like instance id's is built for every (possible) translation of ADA to FHIR, and this metadata is than used during the actual transformations for constructing references and such. In order to construct this metadata, a mapping between ADA and the possible resulting resource types and profile names is defined in the `ada2resourceType` variable in 2_fhir_fhir_include.xsl.
+
 ## The profile template(s)
 
 In each zib stylesheet, a "profile template" is created for each profile that represents the zib or a part of it. This template has a name _and_ mode equal to the profile id, and a match on the ADA element that is transformed. In most circumstances, it is the only (transformation) template in the stylesheet, but there are some special situations which are described below.
@@ -71,3 +73,6 @@ In this situation, there is no stylesheet of profile template for the "guest" zi
 
 For each profile template, there must be a template with mode set to `_generateDisplay` and a match on the ADA instance element. This template is used to generate a display for references to the resulting instance.
 
+## Branching strategy
+
+For each new stylesheet, a branch is made from master. When the profile is added to the package, the new work is merged with master.
