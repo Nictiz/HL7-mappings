@@ -169,6 +169,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                         <xsl:with-param name="in" select="."/>
                     </xsl:call-template>
                 </valueCodeableConcept>
+                <xsl:for-each select="../hartslag_meet_methode">
+                    <method>
+                        <xsl:call-template name="code-to-CodeableConcept">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </method>
+                </xsl:for-each>
             </Observation>
         </xsl:for-each>
     </xsl:template>
@@ -221,6 +228,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                             <xsl:with-param name="in" select="."/>
                         </xsl:call-template>
                     </valueCodeableConcept>
+                    <xsl:for-each select="../hartslag_meet_methode">
+                        <method>
+                            <xsl:call-template name="code-to-CodeableConcept">
+                                <xsl:with-param name="in" select="."/>
+                            </xsl:call-template>
+                        </method>
+                    </xsl:for-each>
                 </Observation>
             </xsl:for-each>
         </xsl:template>

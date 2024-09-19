@@ -178,6 +178,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="in" select="$subject"/>
                     <xsl:with-param name="wrapIn" select="'subject'"/>
                 </xsl:call-template>
+                <xsl:for-each select="../ontwikkeling_kind_datum_tijd">
+                    <effectiveDateTime>
+                        <xsl:call-template name="date-to-datetime">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </effectiveDateTime>
+                </xsl:for-each>
                 <valueCodeableConcept>
                     <xsl:call-template name="code-to-CodeableConcept">
                         <xsl:with-param name="in" select="."/>
@@ -216,6 +223,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="in" select="$subject"/>
                     <xsl:with-param name="wrapIn" select="'subject'"/>
                 </xsl:call-template>
+                <xsl:for-each select="../ontwikkeling_kind_datum_tijd">
+                    <effectiveDateTime>
+                        <xsl:call-template name="date-to-datetime">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </effectiveDateTime>
+                </xsl:for-each>
                 <valueCodeableConcept>
                     <xsl:call-template name="code-to-CodeableConcept">
                         <xsl:with-param name="in" select="."/>
@@ -254,6 +268,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="in" select="$subject"/>
                     <xsl:with-param name="wrapIn" select="'subject'"/>
                 </xsl:call-template>
+                <xsl:for-each select="../ontwikkeling_kind_datum_tijd">
+                    <effectiveDateTime>
+                        <xsl:call-template name="date-to-datetime">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </effectiveDateTime>
+                </xsl:for-each>
                 <valueQuantity>
                     <xsl:call-template name="hoeveelheid-to-Quantity">
                         <xsl:with-param name="in" select="."/>
@@ -293,6 +314,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="in" select="$subject"/>
                     <xsl:with-param name="wrapIn" select="'subject'"/>
                 </xsl:call-template>
+                <xsl:for-each select="../ontwikkeling_kind_datum_tijd">
+                    <effectiveDateTime>
+                        <xsl:call-template name="date-to-datetime">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </effectiveDateTime>
+                </xsl:for-each>
                 <valueCodeableConcept>
                     <xsl:call-template name="code-to-CodeableConcept">
                         <xsl:with-param name="in" select="."/>
@@ -331,6 +359,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="in" select="$subject"/>
                     <xsl:with-param name="wrapIn" select="'subject'"/>
                 </xsl:call-template>
+                <xsl:for-each select="../ontwikkeling_kind_datum_tijd">
+                    <effectiveDateTime>
+                        <xsl:call-template name="date-to-datetime">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </effectiveDateTime>
+                </xsl:for-each>
                 <valueCodeableConcept>
                     <xsl:call-template name="code-to-CodeableConcept">
                         <xsl:with-param name="in" select="."/>
@@ -369,6 +404,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="in" select="$subject"/>
                     <xsl:with-param name="wrapIn" select="'subject'"/>
                 </xsl:call-template>
+                <xsl:for-each select="../ontwikkeling_kind_datum_tijd">
+                    <effectiveDateTime>
+                        <xsl:call-template name="date-to-datetime">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </effectiveDateTime>
+                </xsl:for-each>
                 <valueCodeableConcept>
                     <xsl:call-template name="code-to-CodeableConcept">
                         <xsl:with-param name="in" select="."/>
@@ -407,6 +449,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="in" select="$subject"/>
                     <xsl:with-param name="wrapIn" select="'subject'"/>
                 </xsl:call-template>
+                <xsl:for-each select="../ontwikkeling_kind_datum_tijd">
+                    <effectiveDateTime>
+                        <xsl:call-template name="date-to-datetime">
+                            <xsl:with-param name="in" select="."/>
+                        </xsl:call-template>
+                    </effectiveDateTime>
+                </xsl:for-each>
                 <valueCodeableConcept>
                     <xsl:call-template name="code-to-CodeableConcept">
                         <xsl:with-param name="in" select="."/>
