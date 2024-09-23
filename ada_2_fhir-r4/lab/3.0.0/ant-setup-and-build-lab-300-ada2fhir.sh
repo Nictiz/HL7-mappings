@@ -15,4 +15,4 @@ ant -Drun-ivy=false -f `dirname $0`/_ant-buildfiles/ant-publish/build-ada2fhir-l
 #ant -Drun-ivy=false -f `dirname $0`/_ant-buildfiles/ant-publish/build-ada2fhir-lab-300.xml convert_ada_2_fhir_examples_300 2>&1 | tee `dirname $0`/ant-setup.log
 
 echo "Done"
-
+pause
