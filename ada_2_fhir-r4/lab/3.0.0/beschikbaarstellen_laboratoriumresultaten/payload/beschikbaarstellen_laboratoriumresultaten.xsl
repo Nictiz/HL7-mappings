@@ -14,7 +14,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 -->
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:util="urn:hl7:utilities" xmlns:f="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nm="http://www.nictiz.nl/mappings" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 
-    <xsl:import href="../../../../zibs2020/payload/0.6-beta2/all_zibs.xsl"/>
+    <xsl:import href="../../../../zibs2020/payload/zib_latest_package.xsl"/>
 
     <xd:doc>
         <xd:desc>If true, write all generated resources to disk in the fhir_instance directory. Otherwise, return all the output in a FHIR Bundle.</xd:desc>
@@ -53,7 +53,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 
             <xsl:variable name="device" as="element()*">
                 <xsl:for-each-group select="onderzoeksresultaat/laboratorium_uitslag/monster/bron_monster" group-by="nf:getGroupingKeyDefault(.)">
-                    <xsl:call-template name="nl-core-LaboratoryTestResult.Specimen.Source">
+                    <xsl:call-template name="nl-core-LaboratoryTestResult.SpecimenSource">
                         <xsl:with-param name="in" select="current-group()[1]"/>
                         <xsl:with-param name="subject" select="../../../../patientgegevens/patient"/>
                     </xsl:call-template>
