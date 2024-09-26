@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bundle xmlns="http://hl7.org/fhir">
+   <id value="lr-slr-KWAL-l2z-1Maximaal-bericht-2MMBNHG"/>
+   <type value="transaction"/>
+   <entry>
+      <fullUrl value="urn:uuid:c09a03d8-799f-11ef-6138-020000000000"/>
+      <resource>
+         <Observation>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult"/>
+            </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-EdifactReferenceNumber">
+               <valueString value="77889"/>
+            </extension>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4296.3"/>
+               <value value="77889"/>
+            </identifier>
+            <status value="final"/>
+            <category>
+               <coding>
+                  <system value="http://terminology.hl7.org/CodeSystem/observation-category"/>
+                  <code value="laboratory"/>
+                  <display value="Laboratory"/>
+               </coding>
+            </category>
+            <code>
+               <coding>
+                  <system value="https://referentiemodel.nhg.org/tabellen/nhg-tabel-45-diagnostische-bepalingen"/>
+                  <code value="2159"/>
+                  <display value="adenovirus Ag. feces[aanwezigheid] in feces"/>
+               </coding>
+            </code>
+            <subject>
+               <reference value="urn:uuid:c09a037e-799f-11ef-6138-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, Patricia XXX_Sacht"/>
+            </subject>
+            <effectiveDateTime value="${DATE, T, D, -5}"/>
+            <performer>
+               <reference value="urn:uuid:c09a039c-799f-11ef-6138-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Microbiologisch Lab Flagel"/>
+            </performer>
+            <valueCodeableConcept>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="260415000"/>
+                  <display value="niet aangetoond"/>
+               </coding>
+            </valueCodeableConcept>
+            <interpretation>
+               <text value="Adenovirus niet aanwezig"/>
+            </interpretation>
+            <method>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="258048005"/>
+                  <display value="Microbiological method (qualifier value)"/>
+               </coding>
+            </method>
+            <specimen>
+               <reference value="urn:uuid:c09a0414-799f-11ef-6138-020000000000"/>
+               <type value="Specimen"/>
+               <display value="monster"/>
+            </specimen>
+         </Observation>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Observation"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c09a0414-799f-11ef-6138-020000000000"/>
+      <resource>
+         <Specimen>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-LaboratoryTestResult.Specimen"/>
+            </meta>
+            <identifier>
+               <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.25.4267.3"/>
+               <value value="110068"/>
+            </identifier>
+            <type>
+               <coding>
+                  <system value="http://snomed.info/sct"/>
+                  <code value="39477002"/>
+                  <display value="Feces (substance)"/>
+               </coding>
+            </type>
+            <subject>
+               <reference value="urn:uuid:c09a037e-799f-11ef-6138-020000000000"/>
+               <type value="Patient"/>
+               <display value="Patient, Patricia XXX_Sacht"/>
+            </subject>
+            <collection>
+               <collectedDateTime value="${DATE, T, D, -6}"/>
+               <method>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="225105004"/>
+                  </coding>
+               </method>
+            </collection>
+            <container>
+               <extension url="http://hl7.org/fhir/StructureDefinition/specimen-sequenceNumber">
+                  <valueInteger value="5"/>
+               </extension>
+               <type>
+                  <coding>
+                     <system value="http://snomed.info/sct"/>
+                     <code value="434746001"/>
+                     <display value="Monsterpotje"/>
+                  </coding>
+               </type>
+            </container>
+         </Specimen>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Specimen"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c09a039c-799f-11ef-6138-020000000000"/>
+      <resource>
+         <Organization>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthcareProvider-Organization"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/ura"/>
+               <value value="00003334"/>
+            </identifier>
+            <name value="Microbiologisch Lab Flagel"/>
+            <telecom>
+               <system value="phone"/>
+               <value value="06-11122244"/>
+               <use value="work"/>
+            </telecom>
+         </Organization>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Organization"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:c09a037e-799f-11ef-6138-020000000000"/>
+      <resource>
+         <Patient>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-Patient"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/bsn"/>
+               <value value="999901011"/>
+            </identifier>
+            <name>
+               <use value="official"/>
+               <text value="Patricia XXX_Sacht"/>
+               <family value="XXX_Sacht">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="XXX_Sacht"/>
+                  </extension>
+               </family>
+               <given value="Patricia">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+            <gender value="female">
+               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-CodeSpecification">
+                  <valueCodeableConcept>
+                     <coding>
+                        <system value="http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender"/>
+                        <code value="F"/>
+                        <display value="Vrouw"/>
+                     </coding>
+                  </valueCodeableConcept>
+               </extension>
+            </gender>
+            <birthDate value="2000-11-13"/>
+         </Patient>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Patient"/>
+      </request>
+   </entry>
+</Bundle>
