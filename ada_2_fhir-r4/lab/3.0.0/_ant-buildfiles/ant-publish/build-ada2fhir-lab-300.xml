@@ -56,6 +56,15 @@
             <param name="fileset.include" value="*.xml"/>
             <param name="refs.dir" value="${refs.dir}/${usecase.labbr}"/>
         </antcall>
+        
+        <!-- laboratoriumresultaten-->
+        <antcall target="setup_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.labsroa}"/>
+            <param name="schema.string" value="*${usecase.labsroa}.xsd"/>
+            <param name="fileset.dir" value="ada_instance"/>
+            <param name="fileset.include" value="*.xml"/>
+            <param name="refs.dir" value="${refs.dir}/${usecase.labsroa}"/>
+        </antcall>
 
         <!-- xml voorbeelden -->
         <!-- schemas -->
@@ -113,6 +122,16 @@
             <!--<param name="param.tdate" value="${date.T}}"/>-->
             <param name="param.writeOutputToDisk" value="false"/>
         </antcall>
+        
+        <!-- convert sturen_laboratoriumresultaten_op_aanvraag -->
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.labsroa}"/>
+            <param name="xsl.name" value="../${usecase.labsroa}/payload/${usecase.labsroa}.xsl"/>
+            <param name="xsl.in" value="ada_instance"/>
+            <param name="xsl.out" value="fhir_instance"/>
+            <!--<param name="param.tdate" value="${date.T}}"/>-->
+            <param name="param.writeOutputToDisk" value="false"/>
+        </antcall>
 
         <!-- also do the examples -->
         <!--<antcall target="convert_ada_2_fhir_examples_300"/>-->
@@ -123,6 +142,9 @@
                 <size value="0"/>
             </fileset>
             <fileset dir="${build.dir}/${usecase.labsr}/fhir_instance" includes="**/lr-slr*.xml">
+                <size value="0"/>
+            </fileset>
+            <fileset dir="${build.dir}/${usecase.labsroa}/fhir_instance" includes="**/lr-loa*.xml">
                 <size value="0"/>
             </fileset>
         </delete>
@@ -170,6 +192,23 @@
                 <classpath location="${xsl.saxon}"/>
             </xslt>
         </sequential>
+        
+        <!-- sturen_laboratoriumresultaten_op_aanvraag -->
+        <sequential>
+            <fileset id="inputfiles" dir="${build.dir}/xml-voorbeelden/ada_instance" includes="lu*.xml"/>
+            
+            <echo/>
+            <echo>${echo.label} ${build.dir}/${usecase.labsroa}/payload/${usecase.labsroa}.xsl input dir ${build.dir}/xml-voorbeelden/ada_instance</echo>
+            <xslt force="true" style="${build.dir}/${usecase.labsroa}/payload/${usecase.labsroa}.xsl" destdir="${build.dir}/xml-voorbeelden/fhir_instance" extension=".xml" useimplicitfileset="false" failonnoresources="false">
+                <fileset refid="inputfiles"/>
+                <param name="generateInstructionText" expression="true"/>
+                <!--<param name="dateT" expression="${date.T}" if="date.T"/>-->
+                <param name="schematronRef" expression="${gen.schematron.ref}" if="gen.schematron.ref"/>
+                <param name="bundleSelfLink" expression="http://dummy.nictiz.nl/dummyquery"/>
+                <factory name="${xsl.saxon.class}"/>
+                <classpath location="${xsl.saxon}"/>
+            </xslt>
+        </sequential>
 
     </target>
 
@@ -202,6 +241,13 @@
             <param name="input.dir" value="${basedir}/../../${usecase.labsr}/validate_fhir_instance"/>
             <param name="input.fileset" value="*.xml"/>
         </antcall>
+        
+        <!-- sturen_laboratoriumresultaten_op_aanvraag fhir organizer -->
+        <antcall target="schematronresults_fhir_300_sub">
+            <param name="result.xml" value="${build.dir}/validate/fhir_${usecase.labsroa}.xml"/>
+            <param name="input.dir" value="${basedir}/../../${usecase.labsroa}/validate_fhir_instance"/>
+            <param name="input.fileset" value="*.xml"/>
+        </antcall>
 
     </target>
 
@@ -218,6 +264,14 @@
         <!-- sturen_laboratoriumresultaten -->
         <antcall target="validate_fhir_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.labsr}"/>
+            <param name="xsl.input" value="fhir_instance"/>
+            <param name="xsl.output" value="validate_fhir_instance"/>
+            <param name="xsl.lab" value="${schematron.fhir}"/>
+        </antcall>
+        
+        <!-- sturen_laboratoriumresultaten_op_aanvraag -->
+        <antcall target="validate_fhir_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.labsroa}"/>
             <param name="xsl.input" value="fhir_instance"/>
             <param name="xsl.output" value="validate_fhir_instance"/>
             <param name="xsl.lab" value="${schematron.fhir}"/>

@@ -22,6 +22,7 @@
 
     <property name="usecase.labbr" value="beschikbaarstellen_laboratoriumresultaten"/>
     <property name="usecase.labsr" value="sturen_laboratoriumresultaten"/>
+    <property name="usecase.labsroa" value="sturen_laboratoriumresultaat_op_aanvraag"/>
 
     <target name="setup" description="Setup subdirectories, schemas, ada instance xmls in ${build.dir}">
 
@@ -41,6 +42,15 @@
             <param name="fileset.dir" value="ada_instance"/>
             <param name="fileset.include" value="*.xml"/>
             <param name="refs.dir" value="${refs.dir}/${usecase.labsr}"/>
+        </antcall>
+        
+        <!-- sturen_laboratoriumgegevens_op_aanvraag copies schemas for project dir and appropriate ada instances from refs.dir -->
+        <antcall target="setup_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.labsroa}"/>
+            <param name="schema.string" value="*${usecase.labsroa}.xsd"/>
+            <param name="fileset.dir" value="ada_instance"/>
+            <param name="fileset.include" value="*.xml"/>
+            <param name="refs.dir" value="${refs.dir}/${usecase.labsroa}"/>
         </antcall>
 
         <!--<!-\- xml voorbeelden -\->
@@ -87,6 +97,15 @@
         <antcall target="convert_ada_2_fhir_sub">
             <param name="sub.build.dir" value="${build.dir}/${usecase.labsr}"/>
             <param name="xsl.name" value="payload/${usecase.labsr}.xsl"/>
+            <param name="xsl.in" value="ada_instance"/>
+            <param name="xsl.out" value="fhir_instance"/>
+            <param name="param.bundleSelfLink" value="http://dummy.nictiz.nl/dummyquery"/>
+        </antcall>
+        
+        <!-- sturen_laboratoriumgegevens_op_aanvraag -->
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="sub.build.dir" value="${build.dir}/${usecase.labsroa}"/>
+            <param name="xsl.name" value="payload/${usecase.labsroa}.xsl"/>
             <param name="xsl.in" value="ada_instance"/>
             <param name="xsl.out" value="fhir_instance"/>
             <param name="param.bundleSelfLink" value="http://dummy.nictiz.nl/dummyquery"/>

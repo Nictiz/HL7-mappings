@@ -1,0 +1,63 @@
+<Encounter xmlns="http://hl7.org/fhir">
+   <id value="zib-Encounter-msz-0e66d6a6-6b65-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Contact. Subject: Jan Adrianus J.A.K. Jan Kooyman. Status: onbekend</caption>
+            <tbody>
+               <tr>
+                  <th>Type contact</th>
+                  <td>
+                     <div>
+                        <span title="Poliklinisch (AMB - v3/ActCode)">Poliklinisch</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>Vanaf ${DATE, T, D, -1}T09:00:00+02:00</td>
+               </tr>
+               <tr>
+                  <th>Probleem/Verrichting</th>
+                  <td>externe fixatie van fractuur van malleolus</td>
+               </tr>
+               <tr>
+                  <th>Zorgaanbieder</th>
+                  <td>Ziekenhuis de Aandacht</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="207fae83-6ae8-11ec-0000-2"/>
+   </identifier>
+   <status value="unknown"/>
+   <class>
+      <system value="http://hl7.org/fhir/v3/ActCode"/>
+      <code value="AMB"/>
+      <display value="Poliklinisch"/>
+   </class>
+   <subject>
+      <reference value="Patient/JAN-ADRIANUS-J-A-K--JAN-KOOYMAN"/>
+      <display value="Jan Adrianus J.A.K. Jan Kooyman"/>
+   </subject>
+   <period>
+      <start value="${DATE, T, D, -1}T09:00:00+02:00"/>
+   </period>
+   <diagnosis>
+      <condition>
+         <reference value="Procedure/zib-Procedure-msz-68e808ea-6b40-11ec-0000-2"/>
+         <display value="externe fixatie van fractuur van malleolus"/>
+      </condition>
+   </diagnosis>
+   <serviceProvider>
+      <reference value="Organization/nl-core-organization-msz-2-16-840-1-113883-2-4-6-1-20000002"/>
+      <display value="Ziekenhuis de Aandacht"/>
+   </serviceProvider>
+</Encounter>

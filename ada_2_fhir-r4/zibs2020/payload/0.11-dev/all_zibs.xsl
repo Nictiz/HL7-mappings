@@ -84,6 +84,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:import href="../0.9.0-beta.1/nl-core-PulseRate.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-Refraction.xsl"/>
     <xsl:import href="../0.9.0-beta.1/nl-core-SkinDisorder.xsl"/>
+    <xsl:import href="nl-core-SNAQ65plusScore.xsl"/>
+    <xsl:import href="nl-core-SNAQrcScore.xsl"/>
+    <xsl:import href="nl-core-SNAQScore.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-SOAPReport.xsl"/>
     <xsl:import href="../0.8.0-beta.1/nl-core-Stoma.xsl"/>
     <xsl:import href="../0.9.0-beta.1/nl-core-StrongKidsScore.xsl"/>

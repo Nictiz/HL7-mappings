@@ -27,34 +27,6 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     <xsl:param name="usecase" as="xs:string?"/>
 
     <xd:doc>
-        <xd:desc>Create the ext-RenderedDosageInstruction extension from ADA InstructionsForUse.</xd:desc>
-        <xd:param name="in">The ADA instance to extract the rendered dosage instruction from. 
-            Override for default function in mp-InstructionsForUse so that we can generate instruction text based on structured data.</xd:param>
-    </xd:doc>
-    <xsl:template name="ext-RenderedDosageInstruction" mode="ext-RenderedDosageInstruction" match="gebruiksinstructie" as="element(f:extension)?">
-        <xsl:param name="in" as="element()?" select="."/>
-
-        <xsl:for-each select="$in">
-            <xsl:for-each select="omschrijving[@value != '']">
-                <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-                    <valueString>
-                        <xsl:attribute name="value">
-                            <xsl:choose>
-                                <xsl:when test="$generateInstructionText">
-                                    <xsl:value-of select="nf:gebruiksintructie-string(..)"/>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:value-of select="@value"/>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:attribute>
-                    </valueString>
-                </extension>
-            </xsl:for-each>
-        </xsl:for-each>
-    </xsl:template>
-
-    <xd:doc>
         <xd:desc>Helper template for creating logicalId for Touchstone. Adheres to requirements in MM-1752. Profilename-usecase-uniquestring.</xd:desc>
         <xd:param name="in">The ada element for which to create a logical id. Optional. Used to find profileName. Defaults to context.</xd:param>
         <xd:param name="uniqueString">The unique string with which to create a logical id. Optional. If not given a uuid will be generated.</xd:param>
@@ -79,6 +51,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 </xsl:when>
                 <xsl:when test="self::medicatieafspraak | self::wisselend_doseerschema | self::verstrekkingsverzoek | self::toedieningsafspraak | self::medicatieverstrekking | self::medicatiegebruik | self::medicatietoediening">
                     <xsl:value-of select="replace(replace(replace(replace(replace(replace($profile, 'Agreement', 'Agr'), 'Medication', 'Med'), 'Administration', 'Adm'), 'Dispense', 'Dsp'), 'Request', 'Req'), 'VariableDosingRegimen', 'VarDosReg')"/>
+                </xsl:when>
+                <xsl:when test="self::vaccinatie">
+                    <xsl:value-of select="replace($profile, 'nl-core-Vaccination-event', 'Imm')"/>                    
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="$profile"/>

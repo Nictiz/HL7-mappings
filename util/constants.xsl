@@ -419,6 +419,9 @@
                 <map oid="{$oidQuestionnaireItemUsageMode}" uri="http://hl7.org/fhir/questionnaire-usage-mode" displayName="QuestionnaireItemUsageMode Item UI Control Codes"/>
                 <map uri="http://hl7.org/fhir/v2/0078" displayName="HL7 Version 2 Table 0078 v2 Interpretation Codes"/>
                 <map oid="{$oidHL7V3MaritalStatus}" uri="http://hl7.org/fhir/v3/MaritalStatus" displayName="HL7 MaritalStatus"/>
+                
+                <map oid="2.16.840.1.113883.5.1123" uri="http://hl7.org/fhir/v3/DataOperation" displayName="HL7 DataOperation"/>
+                <map oid="2.16.840.1.113883.5.33 http://hl7.org/fhir/v3/DocumentCompletion" displayName="HL7 DocumentCompletion"/>
             </xsl:when>
             <xsl:when test="$fhirVersion = 'R4'">
                 <map oid="{$oidChoiceListOrientation}" uri="http://terminology.hl7.org/CodeSystem/choice-list-orientation" displayName="ChoiceListOrientation"/>
@@ -440,6 +443,9 @@
 
                 <map oid="{$oidQuestionnaireItemUsageMode}" uri="http://terminology.hl7.org/CodeSystem/questionnaire-usage-mode" displayName="QuestionnaireItemUsageMode Item UI Control Codes"/>
                 <map uri="http://terminology.hl7.org/CodeSystem/v2-0078" displayName="HL7 Version 2 Table 0078 v2 Interpretation Codes"/>
+                
+                <map oid="2.16.840.1.113883.5.1123" uri="http://terminology.hl7.org/CodeSystem/v3-DataOperation" displayName="HL7 DataOperation"/>
+                <map oid="2.16.840.1.113883.5.33" uri="http://terminology.hl7.org/CodeSystem/v3-DocumentCompletion" displayName="HL7 DocumentCompletion"/>
             </xsl:when>
         </xsl:choose>
     </xsl:variable>
