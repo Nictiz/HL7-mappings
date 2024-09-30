@@ -77,9 +77,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </coding>
                 </category>
                 <xsl:for-each select="brandwond_soort">
-                    <coding>
+                    <code>
                         <xsl:call-template name="code-to-CodeableConcept"/>
-                    </coding>
+                    </code>
                 </xsl:for-each>
 
                 <!-- Zib Burnwound contains a bug where Laterality is still defined as a separate concept, while it is
@@ -144,7 +144,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
     </xsl:template>
     
     <xd:doc>
-        <xd:desc>Creates an nl-core-Burnwound.Extension instance as an Observation FHIR instance from ADA uitgebreidheid element.</xd:desc>
+        <xd:desc>Creates an nl-core-Burnwound.Extent instance as an Observation FHIR instance from ADA uitgebreidheid element.</xd:desc>
         <xd:param name="in">ADA element as input. Defaults to self.</xd:param>
         <xd:param name="subject">Optional ADA instance or ADA reference element for the patient.</xd:param>
     </xd:doc>
@@ -170,9 +170,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <xsl:with-param name="in" select="$subject"/>
                     <xsl:with-param name="wrapIn" select="'subject'"/>
                 </xsl:call-template>
-                <valueCodeableConcept>
+                <valueQuantity>
                     <xsl:call-template name="hoeveelheid-to-Quantity"/>
-                </valueCodeableConcept>
+                </valueQuantity>
             </Observation>
         </xsl:for-each>
     </xsl:template>
