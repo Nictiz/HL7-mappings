@@ -1,0 +1,55 @@
+<Encounter xmlns="http://hl7.org/fhir">
+   <id value="zib-Encounter-msz-10166aaf-6afa-11ec-0000-2"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Encounter"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Contact. Subject: de Boer. Status: onbekend</caption>
+            <tbody>
+               <tr>
+                  <th>Type contact</th>
+                  <td>
+                     <div>
+                        <span title="Poliklinisch (AMB - v3/ActCode)">Poliklinisch</span>
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>Periode</th>
+                  <td>Vanaf ${DATE, T, D, -44}</td>
+               </tr>
+               <tr>
+                  <th>Probleem/Verrichting</th>
+                  <td>implantatie van cardiale pacemaker</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7.6"/>
+      <value value="8cb467f3-6b32-11ec-0000-2"/>
+   </identifier>
+   <status value="unknown"/>
+   <class>
+      <system value="http://hl7.org/fhir/v3/ActCode"/>
+      <code value="AMB"/>
+      <display value="Poliklinisch"/>
+   </class>
+   <subject>
+      <reference value="Patient/DE-BOER"/>
+      <display value="de Boer"/>
+   </subject>
+   <period>
+      <start value="${DATE, T, D, -44}"/>
+   </period>
+   <diagnosis>
+      <condition>
+         <reference value="Procedure/zib-Procedure-msz-d35a4029-6b75-11ec-0000-2"/>
+         <display value="implantatie van cardiale pacemaker"/>
+      </condition>
+   </diagnosis>
+</Encounter>
