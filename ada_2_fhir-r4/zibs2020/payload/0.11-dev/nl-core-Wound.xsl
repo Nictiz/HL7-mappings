@@ -88,9 +88,9 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     </coding>
                 </category>
                 <xsl:for-each select="wond_soort">
-                    <coding>
+                    <code>
                         <xsl:call-template name="code-to-CodeableConcept"/>
-                    </coding>
+                    </code>
                 </xsl:for-each>
                 <xsl:for-each select="anatomische_locatie">
                     <bodySite>
@@ -157,7 +157,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <code>
                     <coding>
                         <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                        <code value="301112006"/>
+                        <code value="148641000146109"/>
                         <display value="observatie betreffende wondweefsel"/>
                     </coding>
                 </code>
@@ -225,7 +225,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <code>
                     <coding>
                         <system value="{$oidMap[@oid=$oidSNOMEDCT]/@uri}"/>
-                        <code value="301112006"/>
+                        <code value="298007001"/>
                         <display value="vochtigheid van verwonding"/>
                     </coding>
                 </code>
