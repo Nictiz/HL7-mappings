@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet exclude-result-prefixes="#all" xmlns:f="http://hl7.org/fhir" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nwf="http://www.nictiz.nl/wiki-functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xsl:stylesheet exclude-result-prefixes="#all" version="2.0" xmlns:f="http://hl7.org/fhir" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nwf="http://www.nictiz.nl/wiki-functions" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <!-- give dateT a value when you need conversion of relative T dates, typically only needed for test instances -->
     <!--    <xsl:param name="dateT" as="xs:date?" select="current-date()"/>-->
     <xsl:param name="dateT" as="xs:date?"/>
@@ -351,19 +351,18 @@
         <xsl:param name="end-date" as="element()?"/>
         <xsl:param name="criterium" as="element()?"/>
 
-            <xsl:variable name="waarde" as="xs:string*">
-                <xsl:if test="$start-date[@value]">Vanaf <xsl:value-of select="nf:formatDate(nf:calculate-t-date($start-date/@value, $dateT))"/></xsl:if>
-                <xsl:if test="$start-date[@value] and ($periode[@value] | $end-date[@value])">
-                    <xsl:value-of select="', '"/>
-                </xsl:if>
+        <xsl:variable name="waarde" as="xs:string*">
+            <xsl:if test="$start-date[@value]">Vanaf <xsl:value-of select="nf:formatDate(nf:calculate-t-date($start-date/@value, $dateT))"/></xsl:if>
+            <xsl:if test="$start-date[@value] and ($periode[@value] | $end-date[@value])">
+                <xsl:value-of select="', '"/>
+            </xsl:if>
             <xsl:if test="$periode[@value]">gedurende <xsl:value-of select="concat($periode/@value, ' ', nwf:unit-string($periode/@value, $periode/@unit))"/></xsl:if>
-                <xsl:if test="$end-date[@value]"> tot en met <xsl:value-of select="nf:formatDate(nf:calculate-t-date($end-date/@value, $dateT))"/>
-                </xsl:if>
+            <xsl:if test="$end-date[@value]"> tot en met <xsl:value-of select="nf:formatDate(nf:calculate-t-date($end-date/@value, $dateT))"/></xsl:if>
             <xsl:if test="$criterium[@value]"> (<xsl:value-of select="$criterium/@value"/>)</xsl:if>
-                <!-- projectgroep wil geen tekst 'tot nader order' in omschrijving, teams app Marijke dd 30 mrt 2020 -->
-                <!--                <xsl:if test="not($periode[@value]) and not($end-date[@value])"><xsl:if test="$start-date[@value]">, </xsl:if>tot nader order</xsl:if>-->
-            </xsl:variable>
-            <xsl:value-of select="normalize-space(string-join($waarde, ''))"/>
+            <!-- projectgroep wil geen tekst 'tot nader order' in omschrijving, teams app Marijke dd 30 mrt 2020 -->
+            <!--                <xsl:if test="not($periode[@value]) and not($end-date[@value])"><xsl:if test="$start-date[@value]">, </xsl:if>tot nader order</xsl:if>-->
+        </xsl:variable>
+        <xsl:value-of select="normalize-space(string-join($waarde, ''))"/>
     </xsl:function>
 
     <xd:doc>

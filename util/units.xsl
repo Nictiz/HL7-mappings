@@ -6,7 +6,7 @@
 
     <xsl:variable name="strUcumEssence">ucum-essence.xml</xsl:variable>
     <xsl:variable name="docUcumEssence" select="doc($strUcumEssence)/ucum:root" as="element(ucum:root)?"/>
-    
+
     <xsl:variable name="UCUM2GstdMap" as="element()+">
         <map UCUMCode="cm" GstdCode="205" GstdDisplayName="centimeter"/>
         <map UCUMCode="g" GstdCode="215" GstdDisplayName="gram"/>
@@ -21,7 +21,7 @@
         <map UCUMCode="ul" GstdCode="254" GstdDisplayName="microliter"/>
         <map UCUMCode="[drp]" GstdCode="303" GstdDisplayName="druppel"/>
     </xsl:variable>
-    
+
     <!--
     <base-unit Code="m" CODE="M" dim="L">
       <name>meter</name>
@@ -414,7 +414,7 @@
                 <xsl:when test="$ADAunit = $ada-unit-diopter">[diop]</xsl:when>
                 <xsl:when test="$ADAunit = $ada-unit-prism-diopter">[p'diop]</xsl:when>
                 <xsl:when test="$ADAunit = $ada-unit-degrees">deg</xsl:when>
-                
+
                 <xsl:when test="nf:isValidUCUMUnit($ADAunit)">
                     <xsl:value-of select="$ADAunit"/>
                 </xsl:when>
