@@ -17,7 +17,7 @@
     <xsl:variable name="genericMBHidPRK">2.16.840.1.113883.2.4.3.11.61.2</xsl:variable>
     <xsl:variable name="genericMBHidHPK">2.16.840.1.113883.2.4.3.11.61.3</xsl:variable>
     <xsl:variable name="concatOidMBH">1.3.6.1.4.1.58606.1.2.</xsl:variable>
-    <xsl:variable name="concatOidTA">1.3.6.1.4.1.58606.1.1.</xsl:variable>    
+    <xsl:variable name="concatOidTA">1.3.6.1.4.1.58606.1.1.</xsl:variable>
 
     <xsl:variable name="stoptypeMap" as="element()+">
         <map stoptype="onderbroken" code="385655000" codeSystem="2.16.840.1.113883.6.96" displayName="onderbroken" version="930"/>
@@ -244,15 +244,23 @@
                                 <xsl:if test="$toedieningssnelheid">
                                     <xsl:variable name="unitString" as="xs:string?">
                                         <xsl:choose>
-                                            <xsl:when test="$toedieningssnelheid/tijdseenheid/@value ne '1'">
+                                            <xsl:when test="$toedieningssnelheid[tijdseenheid]/tijdseenheid/@value ne '1'">
                                                 <xsl:value-of select="concat($toedieningssnelheid/tijdseenheid/@value, ' ', nwf:unit-string($toedieningssnelheid/tijdseenheid/@value, $toedieningssnelheid/tijdseenheid/@unit))"/>
                                             </xsl:when>
-                                            <xsl:otherwise>
+                                            <xsl:when test="$toedieningssnelheid[tijdseenheid[@value or @unit]]">
                                                 <xsl:value-of select="concat('', nwf:unit-string($toedieningssnelheid/tijdseenheid/@value, $toedieningssnelheid/tijdseenheid/@unit))"/>
-                                            </xsl:otherwise>
+                                            </xsl:when>
                                         </xsl:choose>
                                     </xsl:variable>
-                                    <xsl:value-of select="concat(nwf:unit-string(1, $toedieningssnelheid/eenheid/@displayName), ' per ', $unitString)"/>
+                                    <xsl:choose>
+                                        <xsl:when test="$toedieningssnelheid[not(tijdseenheid)][eenheid[@unit][not(@value) or @value = '1']]">
+                                            <!-- new dataset structure in MP9 3.0.0-beta.3 -->
+                                            <xsl:value-of select="$toedieningssnelheid/eenheid/@unit"/>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:value-of select="concat(nwf:unit-string(1, $toedieningssnelheid/eenheid/@displayName), ' per ', $unitString)"/>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
                                 </xsl:if>
                             </xsl:variable>
                             <xsl:variable name="toedieningsduur" select="(toedieningsduur | toedieningsduur/tijds_duur)[(@value | @unit)]"/>
@@ -342,20 +350,20 @@
         <xsl:param name="periode" as="element()?"/>
         <xsl:param name="end-date" as="element()?"/>
         <xsl:param name="criterium" as="element()?"/>
-            
-            <xsl:variable name="waarde" as="xs:string*">
-                <xsl:if test="$start-date[@value]">Vanaf <xsl:value-of select="nf:formatDate(nf:calculate-t-date($start-date/@value, $dateT))"/></xsl:if>
-                <xsl:if test="$start-date[@value] and ($periode[@value] | $end-date[@value])">
-                    <xsl:value-of select="', '"/>
-                </xsl:if>
-                <xsl:if test="$periode[@value]">gedurende <xsl:value-of select="concat($periode/@value, ' ', nwf:unit-string($periode/@value, $periode/@unit))"/></xsl:if>
-                <xsl:if test="$end-date[@value]"> tot en met <xsl:value-of select="nf:formatDate(nf:calculate-t-date($end-date/@value, $dateT))"/>
-                </xsl:if>
-                <xsl:if test="$criterium[@value]"> (<xsl:value-of select="$criterium/@value"/>)</xsl:if>                
-                <!-- projectgroep wil geen tekst 'tot nader order' in omschrijving, teams app Marijke dd 30 mrt 2020 -->
-                <!--                <xsl:if test="not($periode[@value]) and not($end-date[@value])"><xsl:if test="$start-date[@value]">, </xsl:if>tot nader order</xsl:if>-->
-            </xsl:variable>
-            <xsl:value-of select="normalize-space(string-join($waarde, ''))"/>
+
+        <xsl:variable name="waarde" as="xs:string*">
+            <xsl:if test="$start-date[@value]">Vanaf <xsl:value-of select="nf:formatDate(nf:calculate-t-date($start-date/@value, $dateT))"/></xsl:if>
+            <xsl:if test="$start-date[@value] and ($periode[@value] | $end-date[@value])">
+                <xsl:value-of select="', '"/>
+            </xsl:if>
+            <xsl:if test="$periode[@value]">gedurende <xsl:value-of select="concat($periode/@value, ' ', nwf:unit-string($periode/@value, $periode/@unit))"/></xsl:if>
+            <xsl:if test="$end-date[@value]"> tot en met <xsl:value-of select="nf:formatDate(nf:calculate-t-date($end-date/@value, $dateT))"/>
+            </xsl:if>
+            <xsl:if test="$criterium[@value]"> (<xsl:value-of select="$criterium/@value"/>)</xsl:if>
+            <!-- projectgroep wil geen tekst 'tot nader order' in omschrijving, teams app Marijke dd 30 mrt 2020 -->
+            <!--                <xsl:if test="not($periode[@value]) and not($end-date[@value])"><xsl:if test="$start-date[@value]">, </xsl:if>tot nader order</xsl:if>-->
+        </xsl:variable>
+        <xsl:value-of select="normalize-space(string-join($waarde, ''))"/>
     </xsl:function>
 
     <xd:doc>
@@ -374,9 +382,19 @@
             <!-- generate omschrijving using structured fields -->
             <xsl:variable name="theOmschrijving" as="xs:string*">
 
+                <!-- first the stoptype cancelled -->
+                <xsl:variable name="theStoptype" select="../(stoptype | medicatieafspraak_stop_type | toedieningsafspraak_stop_type | medicatiegebruik_stop_type | medicatie_gebruik_stop_type | stop_type | wisselend_doseerschema_stop_type)[@code]"/>
+                <xsl:variable name="theGebruiksperiodeStart" select="../(gebruiksperiode_start | gebruiksperiode/start_datum_tijd)"/>
+                <xsl:variable name="theGebruiksperiodeEnd" select="../(gebruiksperiode_eind | gebruiksperiode/eind_datum_tijd)"/>
+                <xsl:variable name="cancelledBouwsteen" select="$stoptypeMap[@stoptype = 'geannuleerd'][@code = $theStoptype/@code][@codeSystem = $theStoptype/@codeSystem] and $theGebruiksperiodeStart/@value = $theGebruiksperiodeEnd/@value"/>
+
+                <xsl:if test="$cancelledBouwsteen">
+                    <xsl:value-of select="concat('Geannuleerd: start niet per ', nf:formatDate(nf:calculate-t-date($theGebruiksperiodeStart/@value, $dateT)))"/>
+                </xsl:if>
+
                 <!-- gebruiksperiode -->
-                <xsl:variable name="periodeString" select="nf:periode-string(../(gebruiksperiode_start | gebruiksperiode/start_datum_tijd), ../(gebruiksperiode[@value] | gebruiksperiode/tijds_duur), ../(gebruiksperiode_eind | gebruiksperiode/eind_datum_tijd), ../gebruiksperiode/criterium)"/>
-                <xsl:if test="string-length($periodeString) gt 0">
+                <xsl:variable name="periodeString" select="nf:periode-string($theGebruiksperiodeStart, ../(gebruiksperiode[@value] | gebruiksperiode/tijds_duur), $theGebruiksperiodeEnd, ../gebruiksperiode/criterium)"/>
+                <xsl:if test="not($cancelledBouwsteen) and string-length($periodeString) gt 0">
                     <xsl:value-of select="$periodeString"/>
                 </xsl:if>
 
@@ -434,9 +452,12 @@
                 </xsl:if>
 
                 <!-- en ten slotte hoort het stoptype ook in de omschrijving -->
-                <xsl:for-each select="../(stoptype | medicatieafspraak_stop_type | toedieningsafspraak_stop_type | medicatiegebruik_stop_type | medicatie_gebruik_stop_type | stop_type | wisselend_doseerschema_stop_type)[@code]">
-                    <xsl:value-of select="$stoptypeMap[@code = current()/@code][@codeSystem = current()/@codeSystem]/@displayName"/>
-                </xsl:for-each>
+                <xsl:if test="not($cancelledBouwsteen)">
+                    <xsl:for-each select="$theStoptype">
+                        <xsl:value-of select="$stoptypeMap[@code = current()/@code][@codeSystem = current()/@codeSystem]/@displayName"/>
+                    </xsl:for-each>
+                </xsl:if>
+
             </xsl:variable>
             <xsl:value-of select="string-join($theOmschrijving, ', ')"/>
         </xsl:for-each>
@@ -582,7 +603,7 @@
         <xd:desc>Formats ada relativeDate(time) to a display date(Time)</xd:desc>
         <xd:param name="relativeDate">Input ada relativeDate(Time)</xd:param>
         <xd:param name="output0time">Whether or not a time of 00:00 should be outputted in the text. Defaults to true.</xd:param>
-        <xd:param name="outputEndtime">Whether or not a time of 23:59 should be outputted in the text.  Defaults to true.</xd:param>
+        <xd:param name="outputEndtime">Whether or not a time of 23:59 should be outputted in the text. Defaults to true.</xd:param>
     </xd:doc>
     <xsl:function name="nf:formatTDate" as="xs:string*">
         <xsl:param name="relativeDate" as="xs:string?"/>
