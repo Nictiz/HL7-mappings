@@ -1,11 +1,11 @@
 <Bundle xmlns="http://hl7.org/fhir">
-   <id value="mv-example-93-1-v30"/>
+   <id value="e1251ac7-4807-11ef-1125-020000000000"/>
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationPrescription-Bundle"/>
    </meta>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:a67b635b-6b2b-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:e1251c74-4807-11ef-1125-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -15,8 +15,11 @@
                   <code value="actionable"/>
                </tag>
             </meta>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="2022-12-02T11:32:00+01:00"/>
+            </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-               <valueString value="Vanaf 2 dec 2022, 1 maal per dag 1 stuk, Oraal"/>
+               <valueString value="Vanaf &lt;T-30D{00:00:00}&gt;, 1 maal per dag 1 stuk, oraal"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
                <valuePeriod>
@@ -43,18 +46,17 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:4e6646e9-6ae8-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:e1251cb0-4807-11ef-1125-020000000000"/>
                <type value="Medication"/>
                <display value="APACOF 250/250/50MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:02eb1278-6ac3-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:e1251b48-4807-11ef-1125-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, A. van de XXX_Boschman"/>
             </subject>
-            <authoredOn value="2022-12-02T11:32:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:7511682e-6ad7-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:e1251b70-4807-11ef-1125-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
@@ -98,7 +100,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:d656229d-6b0f-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:e1251c92-4807-11ef-1125-020000000000"/>
       <resource>
          <MedicationRequest>
             <meta>
@@ -136,23 +138,23 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:4e6646e9-6ae8-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:e1251cb0-4807-11ef-1125-020000000000"/>
                <type value="Medication"/>
                <display value="APACOF 250/250/50MG TABLET"/>
             </medicationReference>
             <subject>
-               <reference value="urn:uuid:02eb1278-6ac3-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:e1251b48-4807-11ef-1125-020000000000"/>
                <type value="Patient"/>
                <display value="Patient, A. van de XXX_Boschman"/>
             </subject>
             <authoredOn value="2022-12-02T11:32:00+01:00"/>
             <requester>
-               <reference value="urn:uuid:7511682e-6ad7-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:e1251b70-4807-11ef-1125-020000000000"/>
                <type value="PractitionerRole"/>
                <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
             </requester>
             <performer>
-               <reference value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:e1251c38-4807-11ef-1125-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Apotheek De Gulle Gaper"/>
             </performer>
@@ -188,7 +190,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:02eb1278-6ac3-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:e1251b48-4807-11ef-1125-020000000000"/>
       <resource>
          <Patient>
             <meta>
@@ -238,19 +240,19 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7511682e-6ad7-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:e1251b70-4807-11ef-1125-020000000000"/>
       <resource>
          <PractitionerRole>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
             </meta>
             <practitioner>
-               <reference value="urn:uuid:ec485824-6b36-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:e1251b98-4807-11ef-1125-020000000000"/>
                <type value="Practitioner"/>
                <display value="Healthcare professional (person), Peter van Pulver"/>
             </practitioner>
             <organization>
-               <reference value="urn:uuid:7fa869d8-6b44-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:e1251bde-4807-11ef-1125-020000000000"/>
                <type value="Organization"/>
                <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
             </organization>
@@ -274,7 +276,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:ec485824-6b36-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:e1251b98-4807-11ef-1125-020000000000"/>
       <resource>
          <Practitioner>
             <meta>
@@ -313,7 +315,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:7fa869d8-6b44-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:e1251bde-4807-11ef-1125-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -354,7 +356,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:98d231d8-6b0c-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:e1251c38-4807-11ef-1125-020000000000"/>
       <resource>
          <Organization>
             <meta>
@@ -373,7 +375,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:4e6646e9-6ae8-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:e1251cb0-4807-11ef-1125-020000000000"/>
       <resource>
          <Medication>
             <meta>

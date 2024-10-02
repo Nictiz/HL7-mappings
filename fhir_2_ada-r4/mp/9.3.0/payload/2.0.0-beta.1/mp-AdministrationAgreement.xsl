@@ -54,6 +54,7 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             <!-- distributievorm, added as part of MP-257, borrowed from MedicationDispense -->
             <xsl:apply-templates select="f:extension[@url = $urlExtMedicationMedicationDispenseDistributionForm]" mode="nl-core-MedicationDispense"/>
             <!-- aanvullende_informatie -->
+            <!-- MP-1176 aanvullende_informatie nolonger supported in MP9.3.0.0 beta.3 but is kept in the stylesheet to ensure backwards compatibility-->
             <xsl:apply-templates select="f:extension[@url = $urlExtAdministrationAgreementAdditionalInformation]" mode="#current"/>
             <!-- toelichting -->
             <xsl:apply-templates select="f:note" mode="nl-core-Note"/>

@@ -3,11 +3,11 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-AdministrationAgreement"/>
    </meta>
-   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AdministrationAgreement.AdministrationAgreementDateTime">
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
       <valueDateTime value="${DATE, T, D, -15}T10:15:00+02:00"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-      <valueString value="Vanaf T - 14 dagen, gedurende 28 dagen, Bij pijn 1 maal per dag 1 stuk 's avonds, oraal"/>
+      <valueString value="Vanaf T - 14 dagen, gedurende 28 dagen, Bij pijn 1 stuk 's avonds, oraal"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
       <valuePeriod>
@@ -68,9 +68,6 @@
    <dosageInstruction>
       <timing>
          <repeat>
-            <frequency value="1"/>
-            <period value="1"/>
-            <periodUnit value="d"/>
             <when value="EVE"/>
          </repeat>
       </timing>

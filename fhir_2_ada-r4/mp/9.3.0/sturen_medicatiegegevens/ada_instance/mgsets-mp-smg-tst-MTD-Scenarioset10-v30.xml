@@ -1,0 +1,112 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../ada_schemas/ada_sturen_medicatiegegevens.xsd">
+   <meta status="new" created-by="generated" last-update-by="generated"/>
+   <data>
+      <sturen_medicatiegegevens app="mp-mp93"
+                                shortName="sturen_medicatiegegevens"
+                                formName="medicatiegegevens"
+                                transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.376"
+                                transactionEffectiveDate="2022-06-30T00:00:00"
+                                prefix="mp-"
+                                language="nl-NL"
+                                title="Generated from HL7 FHIR medicatiegegevens"
+                                id="dbdf401f-4807-11ef-4003-020000000000">
+         <patient>
+            <naamgegevens>
+               <initialen value="M."/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam>
+                  <achternaam value="XXX_Niesing"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900845" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1985-10-29" datatype="datetime"/>
+            <geslacht code="M" codeSystem="2.16.840.1.113883.5.1" displayName="Man"/>
+         </patient>
+         <medicamenteuze_behandeling>
+            <identificatie value="MBH_300_ZINRvoorschrijven"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatietoediening>
+               <identificatie value="MBH_300_ZINRvoorschrijven_MTD"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.18629005.1"/>
+               <toedienings_product>
+                  <farmaceutisch_product value="urn-uuid-dbdf4186-4807-11ef-4003-020000000000"
+                                         datatype="reference"/>
+               </toedienings_product>
+               <registratie_datum_tijd value="2023-01-01T15:36:00+01:00" datatype="datetime"/>
+               <toedienings_datum_tijd value="2023-01-01T15:36:00+01:00" datatype="datetime"/>
+               <toegediende_hoeveelheid>
+                  <aantal value="1"/>
+                  <eenheid code="245"
+                           displayName="stuk"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"/>
+               </toegediende_hoeveelheid>
+               <toedieningsweg code="9"
+                               codeSystem="2.16.840.1.113883.2.4.4.9"
+                               codeSystemName="G-Standaard Toedieningswegen (tabel 7)"
+                               displayName="Oraal"/>
+               <relatie_toedieningsafspraak>
+                  <identificatie value="MBH_300_ZINRvoorschrijven_TA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               </relatie_toedieningsafspraak>
+               <toediener>
+                  <zorgverlener>
+                     <zorgverlener value="urn-uuid-dbdf40be-4807-11ef-4003-020000000000"
+                                   datatype="reference"/>
+                  </zorgverlener>
+               </toediener>
+            </medicatietoediening>
+         </medicamenteuze_behandeling>
+         <bouwstenen>
+            <farmaceutisch_product id="urn-uuid-dbdf4186-4807-11ef-4003-020000000000">
+               <product_code code="13627163"
+                             codeSystem="2.16.840.1.113883.2.4.4.8"
+                             codeSystemName="G-Standaard ZI-nummer"
+                             displayName="INDAPAMIDE PCH TABET OMHULD 2,5MG"
+                             preferred="true"/>
+               <product_code code="695734"
+                             codeSystem="2.16.840.1.113883.2.4.4.7"
+                             codeSystemName="G-Standaard HPK"
+                             displayName="INDAPAMIDE PCH TABET OMHULD 2,5MG"/>
+               <product_code code="2941"
+                             codeSystem="2.16.840.1.113883.2.4.4.10"
+                             codeSystemName="G-Standaard PRK"
+                             displayName="INDAPAMIDE 2,5MG TABLET"/>
+               <product_code code="83593"
+                             codeSystem="2.16.840.1.113883.2.4.4.1"
+                             codeSystemName="G-Standaard GPK"
+                             displayName="INDAPAMIDE 2,5MG TABLET"/>
+            </farmaceutisch_product>
+            <zorgverlener id="urn-uuid-dbdf40be-4807-11ef-4003-020000000000">
+               <zorgverlener_identificatienummer value="222220000" root="2.16.528.1.1007.3.1"/>
+               <naamgegevens>
+                  <voornamen value="Jantien"/>
+                  <geslachtsnaam>
+                     <achternaam value="Toedien"/>
+                  </geslachtsnaam>
+               </naamgegevens>
+               <specialisme code="9100"
+                            codeSystem="2.16.840.1.113883.2.4.6.7"
+                            codeSystemName="Vektis AGB-medische specialismen"
+                            codeSystemVersion="2020-10-23T00:00:00"
+                            displayName="Verpleegkundigen, niet nader gespecificeerd"/>
+               <zorgaanbieder>
+                  <zorgaanbieder datatype="reference"
+                                 value="urn-uuid-dbdf412c-4807-11ef-4003-020000000000"/>
+               </zorgaanbieder>
+            </zorgverlener>
+            <zorgaanbieder id="urn-uuid-dbdf412c-4807-11ef-4003-020000000000">
+               <zorgaanbieder_identificatienummer value="11110000" root="2.16.528.1.1007.3.3"/>
+               <organisatie_naam value="Thuiszorg Om en Bij"/>
+               <organisatie_type code="T2"
+                                 codeSystem="2.16.840.1.113883.2.4.15.1060"
+                                 codeSystemName="HL7 RoleCodeNL Care provider type (organizations)"
+                                 displayName="Thuiszorg"/>
+            </zorgaanbieder>
+         </bouwstenen>
+      </sturen_medicatiegegevens>
+   </data>
+</adaxml>

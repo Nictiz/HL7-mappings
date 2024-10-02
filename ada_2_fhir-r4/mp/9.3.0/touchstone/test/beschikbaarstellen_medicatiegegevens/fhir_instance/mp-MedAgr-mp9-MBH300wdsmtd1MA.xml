@@ -3,12 +3,15 @@
    <meta>
       <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAgreement"/>
    </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+      <valueDateTime value="${DATE, T, D, -20}T08:00:00+02:00"/>
+   </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
       <valueString value="Vanaf T - 20 dagen, Volgens schema trombosedienst, Oraal"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
       <valuePeriod>
-         <start value="${DATE, T, D, -20}T00:00:00+02:00"/>
+         <start value="${DATE, T, D, -20}"/>
       </valuePeriod>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
@@ -40,7 +43,6 @@
       <type value="Patient"/>
       <display value="Patient, M. van de XXX_Roelofs"/>
    </subject>
-   <authoredOn value="${DATE, T, D, -20}T08:00:00+02:00"/>
    <requester>
       <reference value="PractitionerRole/nl-core-HPrf-PracRol-mp9-PrcRol-2165281100731-000001111"/>
       <type value="PractitionerRole"/>

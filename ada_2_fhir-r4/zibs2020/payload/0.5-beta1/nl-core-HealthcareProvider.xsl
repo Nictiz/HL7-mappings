@@ -41,13 +41,23 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                     <profile value="{concat($urlBaseNictizProfile, $profileNameHealthcareProvider)}"/>
                 </meta>
 
-                <xsl:for-each select="organisatie_locatie/locatie_naam">
-                    <name>
-                        <xsl:call-template name="string-to-string"/>
-                    </name>
-                </xsl:for-each>
+                <xsl:choose>
+                    <xsl:when test="organisatie_locatie/locatie_naam[@value]">
+                        <name>
+                            <xsl:call-template name="string-to-string"/>
+                        </name>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <!-- fallback on organisation name -->
+                        <xsl:for-each select="organisatie_naam[@value]">
+                            <name>
+                                <xsl:call-template name="string-to-string"/>
+                            </name>
+                        </xsl:for-each>
+                    </xsl:otherwise>
+                </xsl:choose>
 
-                <xsl:for-each select="organisatie_locatie/locatie_nummer">
+                <xsl:for-each select="organisatie_locatie/locatie_nummer[@value]">
                     <name>
                         <xsl:call-template name="string-to-string"/>
                     </name>
@@ -130,7 +140,10 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
                 <xsl:variable name="parts" as="item()*">
                     <xsl:text>Healthcare provider (location)</xsl:text>
                     <xsl:value-of select="organisatie_naam/@value"/>
-                    <xsl:value-of select="organisatie_locatie/locatie_naam/@value"/>
+                    <!-- only output location name if it is actually different from the organisation name -->
+                    <xsl:if test="organisatie_naam/@value != organisatie_locatie/locatie_naam/@value">
+                        <xsl:value-of select="organisatie_locatie/locatie_naam/@value"/>
+                    </xsl:if>
                     <xsl:if test="not(organisatie_naam/@value | organisatie_locatie/locatie_naam/@value)">
                         <xsl:value-of select="concat('organisation-id ', zorgaanbieder_identificatienummer/@value, ' in system ', zorgaanbieder_identificatienummer/@root)"/>
                     </xsl:if>
@@ -223,6 +236,11 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
+
+    <xd:doc>
+        <xd:desc>_nl-core-HealthProfessional-PractionerRole_toOrganization</xd:desc>
+        <xd:param name="in">the element to be handled, defaults to context item</xd:param>
+    </xd:doc>
 
     <xsl:template match="zorgaanbieder" mode="_nl-core-HealthProfessional-PractitionerRole_toOrganization" name="_nl-core-HealthProfessional-PractionerRole_toOrganization" as="element(f:PractitionerRole)?">
         <xsl:param name="in" select="." as="element()?"/>

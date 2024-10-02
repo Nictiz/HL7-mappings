@@ -2,17 +2,14 @@
    <id value="mgsets-mp-smg-tst-MTD-Scenarioset13-v30"/>
    <type value="transaction"/>
    <entry>
-      <fullUrl value="urn:uuid:f44a105d-6b51-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:95f56c96-6ab5-11ec-0000-020000000000"/>
       <resource>
          <MedicationAdministration>
             <meta>
                <profile value="http://nictiz.nl/fhir/StructureDefinition/mp-MedicationAdministration2"/>
             </meta>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AgreedDateTime">
-               <valueDateTime value="${DATE, T, D, -20}T20:00:00+02:00"/>
-            </extension>
-            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-AsAgreedIndicator">
-               <valueBoolean value="true"/>
+            <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+               <valueDateTime value="${DATE, T, D, -20}T20:30:00+02:00"/>
             </extension>
             <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-PharmaceuticalTreatment.Identifier">
                <valueIdentifier>
@@ -33,9 +30,9 @@
                </coding>
             </category>
             <medicationReference>
-               <reference value="urn:uuid:ca0c3ae9-6aff-11ec-0000-020000000000"/>
+               <reference value="urn:uuid:d6d3451d-6ae0-11ec-0000-020000000000"/>
                <type value="Medication"/>
-               <display value="ACENOCOUMAROL TABLET 1MG"/>
+               <display value="ACENOCOUMAROL CF TABLET 1MG"/>
             </medicationReference>
             <subject>
                <reference value="urn:uuid:8caf345e-6af8-11ec-0000-020000000000"/>
@@ -63,9 +60,9 @@
             <effectiveDateTime value="${DATE, T, D, -20}T20:30:00+02:00"/>
             <performer>
                <actor>
-                  <reference value="urn:uuid:e0717824-6afe-11ec-0000-020000000000"/>
+                  <reference value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
                   <type value="PractitionerRole"/>
-                  <display value="Healthcare provider (organization via PractitionerRole), Huisartsenpraktijk Pulver &amp; Partners"/>
+                  <display value="Healthcare professional (role), Peter van Pulver, Huisartsen, niet nader gespecificeerd, Huisartsenpraktijk Pulver &amp; Partners"/>
                </actor>
             </performer>
             <request>
@@ -86,22 +83,6 @@
                <display value="relatie naar wisselend doseerschema met identificatie: MBH_300_QA1_WDS1 || 2.16.840.1.113883.2.4.3.11.999.77.632.1"/>
             </request>
             <dosage>
-               <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-MedicationAdministration2.AgreedAmount">
-                  <valueQuantity>
-                     <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
-                        <valueQuantity>
-                           <value value="2"/>
-                           <unit value="stuk"/>
-                           <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                           <code value="245"/>
-                        </valueQuantity>
-                     </extension>
-                     <value value="2"/>
-                     <unit value="stuk"/>
-                     <system value="http://unitsofmeasure.org"/>
-                     <code value="1"/>
-                  </valueQuantity>
-               </extension>
                <route>
                   <coding>
                      <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
@@ -179,6 +160,73 @@
       </request>
    </entry>
    <entry>
+      <fullUrl value="urn:uuid:36322824-6aed-11ec-0000-020000000000"/>
+      <resource>
+         <PractitionerRole>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
+            </meta>
+            <practitioner>
+               <reference value="urn:uuid:4a573558-6ad5-11ec-0000-020000000000"/>
+               <type value="Practitioner"/>
+               <display value="Healthcare professional (person), Peter van Pulver"/>
+            </practitioner>
+            <organization>
+               <reference value="urn:uuid:7fa869d8-6b44-11ec-0000-020000000000"/>
+               <type value="Organization"/>
+               <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
+            </organization>
+            <specialty>
+               <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.6.7"/>
+                  <version value="2020-10-23T00:00:00"/>
+                  <code value="0100"/>
+                  <display value="Huisartsen, niet nader gespecificeerd"/>
+               </coding>
+            </specialty>
+         </PractitionerRole>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="PractitionerRole"/>
+      </request>
+   </entry>
+   <entry>
+      <fullUrl value="urn:uuid:4a573558-6ad5-11ec-0000-020000000000"/>
+      <resource>
+         <Practitioner>
+            <meta>
+               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-Practitioner"/>
+            </meta>
+            <identifier>
+               <system value="http://fhir.nl/fhir/NamingSystem/uzi-nr-pers"/>
+               <value value="000001111"/>
+            </identifier>
+            <name>
+               <use value="official"/>
+               <text value="Peter van Pulver"/>
+               <family value="van Pulver">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-prefix">
+                     <valueString value="van"/>
+                  </extension>
+                  <extension url="http://hl7.org/fhir/StructureDefinition/humanname-own-name">
+                     <valueString value="Pulver"/>
+                  </extension>
+               </family>
+               <given value="Peter">
+                  <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-EN-qualifier">
+                     <valueCode value="BR"/>
+                  </extension>
+               </given>
+            </name>
+         </Practitioner>
+      </resource>
+      <request>
+         <method value="POST"/>
+         <url value="Practitioner"/>
+      </request>
+   </entry>
+   <entry>
       <fullUrl value="urn:uuid:7fa869d8-6b44-11ec-0000-020000000000"/>
       <resource>
          <Organization>
@@ -220,26 +268,7 @@
       </request>
    </entry>
    <entry>
-      <fullUrl value="urn:uuid:e0717824-6afe-11ec-0000-020000000000"/>
-      <resource>
-         <PractitionerRole>
-            <meta>
-               <profile value="http://nictiz.nl/fhir/StructureDefinition/nl-core-HealthProfessional-PractitionerRole"/>
-            </meta>
-            <organization>
-               <reference value="urn:uuid:7fa869d8-6b44-11ec-0000-020000000000"/>
-               <type value="Organization"/>
-               <display value="Healthcare provider (organization), Huisartsenpraktijk Pulver &amp; Partners"/>
-            </organization>
-         </PractitionerRole>
-      </resource>
-      <request>
-         <method value="POST"/>
-         <url value="PractitionerRole"/>
-      </request>
-   </entry>
-   <entry>
-      <fullUrl value="urn:uuid:ca0c3ae9-6aff-11ec-0000-020000000000"/>
+      <fullUrl value="urn:uuid:d6d3451d-6ae0-11ec-0000-020000000000"/>
       <resource>
          <Medication>
             <meta>
@@ -247,17 +276,22 @@
             </meta>
             <code>
                <coding>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.7"/>
+                  <code value="856126"/>
+                  <display value="ACENOCOUMAROL CF TABLET 1MG"/>
+                  <userSelected value="true"/>
+               </coding>
+               <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.10"/>
                   <code value="7323"/>
                   <display value="ACENOCOUMAROL TABLET 1MG"/>
-                  <userSelected value="true"/>
                </coding>
                <coding>
                   <system value="urn:oid:2.16.840.1.113883.2.4.4.1"/>
                   <code value="20303"/>
                   <display value="ACENOCOUMAROL TABLET 1MG"/>
                </coding>
-               <text value="ACENOCOUMAROL TABLET 1MG"/>
+               <text value="ACENOCOUMAROL CF TABLET 1MG"/>
             </code>
          </Medication>
       </resource>
