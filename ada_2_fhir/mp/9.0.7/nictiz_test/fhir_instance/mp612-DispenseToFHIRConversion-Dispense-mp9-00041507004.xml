@@ -1,0 +1,96 @@
+<MedicationDispense xmlns="http://hl7.org/fhir">
+   <id value="mp612-DispenseToFHIRConversion-Dispense-mp9-00041507004"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/mp612-DispenseToFHIRConversion-Dispense"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>MedicationDispense. Subject: van de XXX Kruk. Id: 00041507004 (urn:oid:2.16.840.1.113883.2.4.3.39.6101.57947.10005159.3), Categorie: <span title="Dispensing medication (procedure) (373784005 - SNOMED CT)">Dispensing medication (procedure)</span>
+               <span style="display: block;">Uitvoerende: Klatter Apo</span>
+            </caption>
+            <tbody>
+               <tr>
+                  <th>Medicamenteuze behandel-id</th>
+                  <td>00041507004 (urn:oid:2.16.840.1.113883.2.4.3.39.6101.57947.10005159.3)</td>
+               </tr>
+               <tr>
+                  <th>Aanvraagdatum</th>
+                  <td>16 april 2021</td>
+               </tr>
+               <tr>
+                  <th>Medicatie</th>
+                  <td>PARACETAMOL TEVA TABLET 500MG</td>
+               </tr>
+               <tr>
+                  <th>Hoeveelheid</th>
+                  <td>30.0000 ST</td>
+               </tr>
+               <tr>
+                  <th>Dagen voorraad</th>
+                  <td>69 dag</td>
+               </tr>
+               <tr>
+                  <th>Datum overhandigd</th>
+                  <td>
+                     <i>geen informatie (ontbrekend gegeven)</i>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Dispense-RequestDate">
+      <valueDateTime value="2021-04-16"/>
+   </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Medication-MedicationTreatment">
+      <valueIdentifier>
+         <system value="urn:oid:2.16.840.1.113883.2.4.3.39.6101.57947.10005159.3"/>
+         <value value="00041507004"/>
+      </valueIdentifier>
+   </extension>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.39.6101.57947.10005159.3"/>
+      <value value="00041507004"/>
+   </identifier>
+   <category>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="373784005"/>
+         <display value="Dispensing medication (procedure)"/>
+      </coding>
+      <text value="Medicatieverstrekking"/>
+   </category>
+   <medicationReference>
+      <reference value="Medication/eToFHIRConversion-Product-mp9-2-16-840-1-113883-2-4-4-8-15375641"/>
+      <display value="PARACETAMOL TEVA TABLET 500MG"/>
+   </medicationReference>
+   <subject>
+      <reference value="Patient/VAN-DE-XXX-KRUK"/>
+      <display value="van de XXX Kruk"/>
+   </subject>
+   <performer>
+      <actor>
+         <reference value="Organization/seToFHIRConversion-Organization-mp9-2-16-528-1-1007-3-3-00057947"/>
+         <display value="Klatter Apo"/>
+      </actor>
+   </performer>
+   <quantity>
+      <value value="30.0000"/>
+      <unit value="ST"/>
+      <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+      <code value="245"/>
+   </quantity>
+   <daysSupply>
+      <value value="69"/>
+      <unit value="dag"/>
+      <system value="http://unitsofmeasure.org"/>
+      <code value="d"/>
+   </daysSupply>
+   <whenHandedOver>
+      <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor">
+         <valueCode value="NI"/>
+      </extension>
+   </whenHandedOver>
+</MedicationDispense>

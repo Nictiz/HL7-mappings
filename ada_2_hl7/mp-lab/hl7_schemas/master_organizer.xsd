@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema elementFormDefault="qualified" targetNamespace="urn:hl7-org:v3" xmlns="urn:hl7-org:v3" xmlns:ex="urn:hl7-org/v3-example" xmlns:hl7="urn:hl7-org:v3" xmlns:hl7nl="urn:hl7-nl:v3" xmlns:lab="urn:hl7:lab" xmlns:mif="urn:hl7-org:v3/mif" xmlns:pharm="urn:ihe:pharm:medication" xmlns:sch="http://www.ascc.net/xml/schematron" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <xs:include schemaLocation="CDAr2ClinicalStatement.xsd"/>    
+    <xs:element name="organizer">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="organizer" type="CDAr2ClinicalStatement.Organizer" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

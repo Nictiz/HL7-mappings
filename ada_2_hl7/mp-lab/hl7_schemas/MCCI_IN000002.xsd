@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MCCI_IN000002 - Ontvangstbevestiging --><!--Note: this file was generated. DO NOT EDIT HERE.--><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:hl7-org:v3"
+           targetNamespace="urn:hl7-org:v3"
+           elementFormDefault="qualified">
+   <xs:include schemaLocation="MCCI_MT000200.xsd"/>
+   <xs:element name="MCCI_IN000002" type="MCCI_IN000002.MCCI_MT000200.Message"/>
+   <xs:complexType name="MCCI_IN000002.MCCI_MT000200.Message">
+      <xs:sequence>
+         <xs:element name="id" type="II"/>
+         <xs:element name="creationTime" type="TS"/>
+         <xs:element name="versionCode" type="CS" minOccurs="1"/>
+         <xs:element name="interactionId" type="II"/>
+         <xs:element name="profileId" type="II" minOccurs="1" maxOccurs="unbounded"/>
+         <xs:element name="processingCode" type="CS"/>
+         <xs:element name="processingModeCode" type="CS"/>
+         <xs:element name="acceptAckCode" type="CS"/>
+         <xs:element name="acknowledgement" type="MCCI_MT000200.Acknowledgement" minOccurs="1"
+                     maxOccurs="1"/>
+         <xs:element name="attentionLine" type="MCCI_MT000200.AttentionLine" minOccurs="0"
+                     maxOccurs="unbounded"/>
+         <xs:element name="receiver" type="MCCI_MT000200.Receiver"/>
+         <xs:element name="respondTo" type="MCCI_MT000200.RespondTo" minOccurs="0"
+                     maxOccurs="unbounded"/>
+         <xs:element name="sender" type="MCCI_MT000200.Sender"/>
+      </xs:sequence>
+      <xs:attribute name="type" type="Classes" default="Message"/>
+      <xs:attribute name="templateId" use="optional">
+         <xs:simpleType>
+            <xs:list itemType="oid"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="typeID" use="optional">
+         <xs:simpleType>
+            <xs:list itemType="oid"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="realmCode" use="optional">
+         <xs:simpleType>
+            <xs:list itemType="cs"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="nullFlavor" type="cs" use="optional"/>
+   </xs:complexType>
+</xs:schema>

@@ -1,0 +1,38 @@
+<List xmlns="http://hl7.org/fhir">
+   <id value="d2521e36"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview"/>
+   </meta>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-Verification">
+      <extension url="VerificationPatient">
+         <valueBoolean value="false"/>
+      </extension>
+      <extension url="VerificationHealthProfessional">
+         <valueBoolean value="false"/>
+      </extension>
+   </extension>
+   <status value="current"/>
+   <mode value="snapshot"/>
+   <code>
+      <coding>
+         <system value="http://snomed.info/sct"/>
+         <code value="11181000146103"/>
+         <display value="Actual medication overview (record artifact)"/>
+      </coding>
+      <text value="Medicatieoverzicht"/>
+   </code>
+   <subject>
+      <reference value="Patient/J-XXX-LEV-TEST-A"/>
+      <display value="J. XXX-LEV-TEST-A"/>
+   </subject>
+   <date value="${DATE, T, D, +0}"/>
+   <source>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/MedicationOverview-SourceOrganization">
+         <valueReference>
+            <reference value="Organization/nl-core-organization-mp9-2-16-528-1-1007-3-3-00001111"/>
+            <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
+         </valueReference>
+      </extension>
+      <display value="Huisartsenpraktijk Pulver &amp; Partners"/>
+   </source>
+</List>

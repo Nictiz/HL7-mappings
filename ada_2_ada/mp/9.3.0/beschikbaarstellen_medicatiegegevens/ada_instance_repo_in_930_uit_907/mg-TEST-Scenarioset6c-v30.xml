@@ -1,0 +1,1870 @@
+<adaxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../9.0.7/beschikbaarstellen_medicatiegegevens/ada_schemas/ada_beschikbaarstellen_medicatiegegevens.xsd">
+   <meta status="new"
+         created-by="medicatieprocesada"
+         last-update-by="medicatieprocesada"
+         creation-date="2023-01-09T17:55:42.391+01:00"
+         last-update-date="2023-01-09T17:55:42.391+01:00"/>
+   <data>
+      <beschikbaarstellen_medicatiegegevens app="mp-mp907"
+                                            shortName="beschikbaarstellen_medicatiegegevens"
+                                            formName="uitwisselen_medicatiegegevens"
+                                            transactionRef="2.16.840.1.113883.2.4.3.11.60.20.77.4.102"
+                                            transactionEffectiveDate="2016-03-23T16:32:43"
+                                            prefix="mp-"
+                                            language="nl-NL"
+                                            title="TEST REPO Scenarioset 6 c (Doseerschemas)"
+                                            id="mg-TEST-Scenarioset6c-v30">
+         <patient comment="">
+            <naamgegevens comment="">
+               <initialen value="G. "/>
+               <naamgebruik code="NL1"
+                            codeSystem="2.16.840.1.113883.2.4.3.11.60.101.5.4"
+                            displayName="Eigen geslachtsnaam"/>
+               <geslachtsnaam comment="">
+                  <achternaam value="XXX_Hemsbergen"/>
+               </geslachtsnaam>
+            </naamgegevens>
+            <identificatienummer value="999900602" root="2.16.840.1.113883.2.4.6.3"/>
+            <geboortedatum value="1963-11-02" datatype="datetime"/>
+            <geslacht code="F" codeSystem="2.16.840.1.113883.5.1" displayName="Vrouw"/>
+         </patient>
+         <medicamenteuze_behandeling comment="">
+            <identificatie value="MBH_300_dagdeel" root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak comment="">
+               <gebruiksperiode_start value="T+0D{00:00:00}" datatype="datetime"/>
+               <identificatie value="MBH_300_dagdeel_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <afspraakdatum value="T+0D{08:27:00}" datatype="datetime"/>
+               <voorschrijver comment="">
+                  <zorgverlener>
+                     <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Peter"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van"/>
+                              <achternaam value="Pulver"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                  codeSystemVersion="2020-10-23T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="Peter_van_Pulver"/>
+                     </adaextension>
+                  </zorgverlener>
+               </voorschrijver>
+               <afgesproken_geneesmiddel comment="">
+                  <product>
+                     <product_code code="77038"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="EZETIMIB/SIMVASTATINE 10/20"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="123129"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="EZETIMIB/SIMVASTATINE 10/20"/>
+                     <adaextension>
+                        <reference_id value="PRK_EZETIMIB_SIMVASTATINE_77038"/>
+                     </adaextension>
+                  </product>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt;, 1 maal per dag 1 stuk ’s avonds, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <dagdeel code="3157002"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    displayName="'s avonds"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <verstrekkingsverzoek comment="">
+               <identificatie value="MBH_300_dagdeel_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <datum value="T+0D{08:27:00}" datatype="datetime"/>
+               <auteur comment="">
+                  <zorgverlener>
+                     <zorgverlener_identificatie_nummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Peter"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van"/>
+                              <achternaam value="Pulver"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                  codeSystemVersion="2020-10-23T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatie_nummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="Peter_van_Pulver"/>
+                     </adaextension>
+                  </zorgverlener>
+               </auteur>
+               <te_verstrekken_hoeveelheid comment="">
+                  <aantal value="60"/>
+                  <eenheid codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           code="245"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <te_verstrekken_geneesmiddel comment="">
+                  <product>
+                     <product_code code="77038"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="EZETIMIB/SIMVASTATINE 10/20"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="123129"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="EZETIMIB/SIMVASTATINE 10/20"/>
+                     <adaextension>
+                        <reference_id value="PRK_EZETIMIB_SIMVASTATINE_77038"/>
+                     </adaextension>
+                  </product>
+               </te_verstrekken_geneesmiddel>
+               <beoogd_verstrekker comment="">
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek de Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="Apotheek_de_Gulle_Gaper"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </beoogd_verstrekker>
+               <relatie_naar_medicatieafspraak comment="">
+                  <identificatie value="MBH_300_dagdeel_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_naar_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak comment="">
+               <gebruiksperiode_start value="T+0D{00:00:00}" datatype="datetime"/>
+               <identificatie value="MBH_300_dagdeel_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <afspraakdatum value="T+0D{09:27:00}" datatype="datetime"/>
+               <verstrekker comment="">
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek de Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="Apotheek_de_Gulle_Gaper"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak comment="">
+                  <product>
+                     <product_code code="1719785"
+                                   codeSystem="2.16.840.1.113883.2.4.4.7"
+                                   codeSystemName="G-Standaard HPK"
+                                   displayName="INEGY TABLET 10/20MG"/>
+                     <product_code code="77038"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="EZETIMIB/SIMVASTATINE 10/20"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="123129"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="EZETIMIB/SIMVASTATINE 10/20"/>
+                     <adaextension>
+                        <reference_id value="HPK_EZETIMIB_SIMVASTATINE_1719785"/>
+                     </adaextension>
+                  </product>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt;, 1 maal per dag 1 stuk ’s avonds, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <dagdeel code="3157002"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    displayName="'s avonds"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_naar_medicatieafspraak comment="">
+                  <identificatie value="MBH_300_dagdeel_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_naar_medicatieafspraak>
+            </toedieningsafspraak>
+            <verstrekking comment="">
+               <identificatie value="MBH_300_dagdeel_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <datum value="T+0D{09:27:00}" datatype="datetime"/>
+               <verstrekker comment="">
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek de Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="Apotheek_de_Gulle_Gaper"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="60"/>
+                  <eenheid codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           code="245"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel comment="">
+                  <product>
+                     <product_code code="1719785"
+                                   codeSystem="2.16.840.1.113883.2.4.4.7"
+                                   codeSystemName="G-Standaard HPK"
+                                   displayName="INEGY TABLET 10/20MG"/>
+                     <product_code code="77038"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="EZETIMIB/SIMVASTATINE 10/20"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="123129"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="EZETIMIB/SIMVASTATINE 10/20"/>
+                     <adaextension>
+                        <reference_id value="HPK_EZETIMIB_SIMVASTATINE_1719785"/>
+                     </adaextension>
+                  </product>
+               </verstrekt_geneesmiddel>
+               <relatie_naar_verstrekkingsverzoek comment="">
+                  <identificatie value="MBH_300_dagdeel_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_naar_verstrekkingsverzoek>
+            </verstrekking>
+            <medicatie_gebruik comment="">
+               <gebruiksperiode_start value="T+0D{00:00:00}" datatype="datetime"/>
+               <gebruiksperiode_eind value="T+14D{23:59:59}" datatype="datetime"/>
+               <identificatie value="MBH_300_dagdeel_MGB"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <registratiedatum value="T+14D{23:59:59}" datatype="datetime"/>
+               <gebruik_indicator value="true"/>
+               <volgens_afspraak_indicator value="true"/>
+               <gebruiks_product>
+                  <product>
+                     <product_code code="77038"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="EZETIMIB/SIMVASTATINE 10/20"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="123129"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="EZETIMIB/SIMVASTATINE 10/20"/>
+                     <adaextension>
+                        <reference_id value="PRK_EZETIMIB_SIMVASTATINE_77038"/>
+                     </adaextension>
+                  </product>
+               </gebruiks_product>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt;, 1 maal per dag 1 stuk ’s avonds, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <dagdeel code="3157002"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    displayName="'s avonds"/>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <gerelateerde_afspraak>
+                  <identificatie_medicatieafspraak value="MBH_300_dagdeel_MA"
+                                                   root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </gerelateerde_afspraak>
+               <voorschrijver comment="">
+                  <zorgverlener>
+                     <zorgverlener_identificatie_nummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Peter"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van"/>
+                              <achternaam value="Pulver"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                  codeSystemVersion="2020-10-23T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatie_nummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="Peter_van_Pulver"/>
+                     </adaextension>
+                  </zorgverlener>
+               </voorschrijver>
+               <informant comment="">
+                  <informant_is_patient value="true"/>
+               </informant>
+               <auteur comment="">
+                  <auteur_is_zorgverlener comment="">
+                     <zorgverlener>
+                        <zorgverlener_identificatie_nummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                        <zorgverlener_naam>
+                           <naamgegevens>
+                              <voornamen value="Peter"/>
+                              <geslachtsnaam comment="">
+                                 <voorvoegsels value="van"/>
+                                 <achternaam value="Pulver"/>
+                              </geslachtsnaam>
+                           </naamgegevens>
+                        </zorgverlener_naam>
+                        <specialisme code="0100"
+                                     codeSystem="2.16.840.1.113883.2.4.6.7"
+                                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                     codeSystemVersion="2020-10-23T00:00:00"
+                                     displayName="Huisartsen, niet nader gespecificeerd"/>
+                        <zorgaanbieder>
+                           <zorgaanbieder>
+                              <zorgaanbieder_identificatie_nummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                              <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                              <adresgegevens comment="">
+                                 <straat value="Dorpsstraat"/>
+                                 <huisnummer value="1"/>
+                                 <postcode value="1234AA"/>
+                                 <woonplaats value="Ons Dorp"/>
+                                 <adres_soort code="WP"
+                                              codeSystem="2.16.840.1.113883.5.1119"
+                                              displayName="Werkadres"/>
+                              </adresgegevens>
+                              <adaextension>
+                                 <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                              </adaextension>
+                           </zorgaanbieder>
+                        </zorgaanbieder>
+                        <adaextension>
+                           <reference_id value="Peter_van_Pulver"/>
+                        </adaextension>
+                     </zorgverlener>
+                  </auteur_is_zorgverlener>
+               </auteur>
+            </medicatie_gebruik>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling comment="">
+            <identificatie value="MBH_300_cyclischschema"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak comment="">
+               <gebruiksperiode_start value="T+0D{00:00:00}" datatype="datetime"/>
+               <identificatie value="MBH_300_cyclischschema_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <afspraakdatum value="T+0D{08:33:00}" datatype="datetime"/>
+               <voorschrijver comment="">
+                  <zorgverlener>
+                     <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Peter"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van"/>
+                              <achternaam value="Pulver"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                  codeSystemVersion="2020-10-23T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="Peter_van_Pulver"/>
+                     </adaextension>
+                  </zorgverlener>
+               </voorschrijver>
+               <afgesproken_geneesmiddel comment="">
+                  <product>
+                     <product_code code="16292"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="ETHINYLESTRADIOL/DESOGESTREL TABLET 30/150UG"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="39578"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="ETHINYLESTRADIOL/DESOGESTREL TABLET 30/150UG"/>
+                     <adaextension>
+                        <reference_id value="PRK_ETHINYLESTRADIOL_DESOGESTREL_16292"/>
+                     </adaextension>
+                  </product>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D&gt;, cyclus van 28 dagen: gedurende 21 dagen 1 x per dag 1 tablet, dan 7 dagen niet, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <herhaalperiode_cyclisch_schema value="28" unit="d"/>
+                  <doseerinstructie>
+                     <doseerduur value="21" unit="dag"/>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <verstrekkingsverzoek comment="">
+               <identificatie value="MBH_300_cyclischschema_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <datum value="T+0D{08:33:00}" datatype="datetime"/>
+               <auteur comment="">
+                  <zorgverlener>
+                     <zorgverlener_identificatie_nummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Peter"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van"/>
+                              <achternaam value="Pulver"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                  codeSystemVersion="2020-10-23T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatie_nummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="Peter_van_Pulver"/>
+                     </adaextension>
+                  </zorgverlener>
+               </auteur>
+               <te_verstrekken_hoeveelheid comment="">
+                  <aantal value="126"/>
+                  <eenheid codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           code="245"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <te_verstrekken_geneesmiddel comment="">
+                  <product>
+                     <product_code code="16292"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="ETHINYLESTRADIOL/DESOGESTREL TABLET 30/150UG"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="39578"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="ETHINYLESTRADIOL/DESOGESTREL TABLET 30/150UG"/>
+                     <adaextension>
+                        <reference_id value="PRK_ETHINYLESTRADIOL_DESOGESTREL_16292"/>
+                     </adaextension>
+                  </product>
+               </te_verstrekken_geneesmiddel>
+               <beoogd_verstrekker comment="">
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek de Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="Apotheek_de_Gulle_Gaper"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </beoogd_verstrekker>
+               <relatie_naar_medicatieafspraak comment="">
+                  <identificatie value="MBH_300_cyclischschema_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_naar_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak comment="">
+               <gebruiksperiode_start value="T+0D{00:00:00}" datatype="datetime"/>
+               <identificatie value="MBH_300_cyclischschema_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <afspraakdatum value="T+0D{09:33:00}" datatype="datetime"/>
+               <verstrekker comment="">
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek de Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="Apotheek_de_Gulle_Gaper"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak comment="">
+                  <product>
+                     <product_code code="16705"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   codeSystemName="G-Standaard PRK"
+                                   displayName="Fusidinezuur creme 20mg/g"/>
+                     <product_code code="73466"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="Fusidinezuur creme 20mg/g"/>
+                     <adaextension>
+                        <reference_id value="PRK_Fusidinezuur_16705"/>
+                     </adaextension>
+                  </product>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D&gt;, cyclus van 28 dagen: gedurende 21 dagen 1 x per dag 1 tablet, dan 7 dagen niet, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <herhaalperiode_cyclisch_schema value="28" unit="d"/>
+                  <doseerinstructie>
+                     <doseerduur value="21" unit="dag"/>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_naar_medicatieafspraak comment="">
+                  <identificatie value="MBH_300_cyclischschema_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_naar_medicatieafspraak>
+            </toedieningsafspraak>
+            <verstrekking comment="">
+               <identificatie value="MBH_300_cyclischschema_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <datum value="T+0D{09:33:00}" datatype="datetime"/>
+               <verstrekker comment="">
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek de Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="Apotheek_de_Gulle_Gaper"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="126"/>
+                  <eenheid codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           code="245"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel comment="">
+                  <product>
+                     <product_code code="416681"
+                                   codeSystem="2.16.840.1.113883.2.4.4.7"
+                                   codeSystemName="G-Standaard HPK"
+                                   displayName="MARVELON TABLET"/>
+                     <product_code code="16292"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="ETHINYLESTRADIOL/DESOGESTREL TABLET 30/150UG"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="39578"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="ETHINYLESTRADIOL/DESOGESTREL TABLET 30/150UG"/>
+                     <adaextension>
+                        <reference_id value="HPK_ETHINYLESTRADIOL_DESOGESTREL_416681"/>
+                     </adaextension>
+                  </product>
+               </verstrekt_geneesmiddel>
+               <relatie_naar_verstrekkingsverzoek comment="">
+                  <identificatie value="MBH_300_cyclischschema_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_naar_verstrekkingsverzoek>
+            </verstrekking>
+            <medicatie_gebruik comment="">
+               <gebruiksperiode_start value="T+0D{00:00:00}" datatype="datetime"/>
+               <gebruiksperiode_eind value="T+14D{23:59:59}" datatype="datetime"/>
+               <identificatie value="MBH_300_cyclischschema_MGB"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <registratiedatum value="T+14D{23:59:59}" datatype="datetime"/>
+               <gebruik_indicator value="true"/>
+               <volgens_afspraak_indicator value="true"/>
+               <gebruiks_product>
+                  <product>
+                     <product_code code="16292"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="ETHINYLESTRADIOL/DESOGESTREL TABLET 30/150UG"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="39578"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="ETHINYLESTRADIOL/DESOGESTREL TABLET 30/150UG"/>
+                     <adaextension>
+                        <reference_id value="PRK_ETHINYLESTRADIOL_DESOGESTREL_16292"/>
+                     </adaextension>
+                  </product>
+               </gebruiks_product>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D&gt;, cyclus van 28 dagen: gedurende 21 dagen 1 x per dag 1 tablet, dan 7 dagen niet, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <herhaalperiode_cyclisch_schema value="28" unit="d"/>
+                  <doseerinstructie>
+                     <doseerduur value="21" unit="dag"/>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <gerelateerde_afspraak>
+                  <identificatie_medicatieafspraak value="MBH_300_cyclischschema_MA"
+                                                   root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </gerelateerde_afspraak>
+               <voorschrijver comment="">
+                  <zorgverlener>
+                     <zorgverlener_identificatie_nummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Peter"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van"/>
+                              <achternaam value="Pulver"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                  codeSystemVersion="2020-10-23T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatie_nummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="Peter_van_Pulver"/>
+                     </adaextension>
+                  </zorgverlener>
+               </voorschrijver>
+               <informant comment="">
+                  <informant_is_patient value="true"/>
+               </informant>
+               <auteur comment="">
+                  <auteur_is_zorgverlener comment="">
+                     <zorgverlener>
+                        <zorgverlener_identificatie_nummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                        <zorgverlener_naam>
+                           <naamgegevens>
+                              <voornamen value="Peter"/>
+                              <geslachtsnaam comment="">
+                                 <voorvoegsels value="van"/>
+                                 <achternaam value="Pulver"/>
+                              </geslachtsnaam>
+                           </naamgegevens>
+                        </zorgverlener_naam>
+                        <specialisme code="0100"
+                                     codeSystem="2.16.840.1.113883.2.4.6.7"
+                                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                     codeSystemVersion="2020-10-23T00:00:00"
+                                     displayName="Huisartsen, niet nader gespecificeerd"/>
+                        <zorgaanbieder>
+                           <zorgaanbieder>
+                              <zorgaanbieder_identificatie_nummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                              <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                              <adresgegevens comment="">
+                                 <straat value="Dorpsstraat"/>
+                                 <huisnummer value="1"/>
+                                 <postcode value="1234AA"/>
+                                 <woonplaats value="Ons Dorp"/>
+                                 <adres_soort code="WP"
+                                              codeSystem="2.16.840.1.113883.5.1119"
+                                              displayName="Werkadres"/>
+                              </adresgegevens>
+                              <adaextension>
+                                 <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                              </adaextension>
+                           </zorgaanbieder>
+                        </zorgaanbieder>
+                        <adaextension>
+                           <reference_id value="Peter_van_Pulver"/>
+                        </adaextension>
+                     </zorgverlener>
+                  </auteur_is_zorgverlener>
+               </auteur>
+            </medicatie_gebruik>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling comment="">
+            <identificatie value="MBH_300_afbouwschema"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak comment="">
+               <gebruiksperiode_start value="T+0D{00:00:00}" datatype="datetime"/>
+               <gebruiksperiode_eind value="T+41D{23:59:59}" datatype="datetime"/>
+               <identificatie value="MBH_300_afbouwschema_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <afspraakdatum value="T+0D{08:40:00}" datatype="datetime"/>
+               <voorschrijver comment="">
+                  <zorgverlener>
+                     <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Peter"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van"/>
+                              <achternaam value="Pulver"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                  codeSystemVersion="2020-10-23T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="Peter_van_Pulver"/>
+                     </adaextension>
+                  </zorgverlener>
+               </voorschrijver>
+               <afgesproken_geneesmiddel comment="">
+                  <product>
+                     <product_code code="16705"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   codeSystemName="G-Standaard PRK"
+                                   displayName="Fusidinezuur creme 20mg/g"/>
+                     <product_code code="73466"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="Fusidinezuur creme 20mg/g"/>
+                     <adaextension>
+                        <reference_id value="PRK_Fusidinezuur_16705"/>
+                     </adaextension>
+                  </product>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+41D{23:59:59}&gt;, eerst gedurende 2 weken 3gram per dag, dan gedurende 3 weken 2gram per dag, dan gedurende 6 dagen 1gram per dag, dun aanbrengen, cutaan"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="53"
+                                  displayName="cutaan"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <doseerduur value="2" unit="week"/>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="3"/>
+                           </aantal>
+                           <eenheid code="215"
+                                    displayName="gram"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie>
+                     <volgnummer value="2"/>
+                     <doseerduur value="3" unit="week"/>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="215"
+                                    displayName="gram"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie>
+                     <volgnummer value="3"/>
+                     <doseerduur value="6" unit="dag"/>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="215"
+                                    displayName="gram"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <verstrekkingsverzoek comment="">
+               <identificatie value="MBH_300_afbouwschema_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <datum value="T+0D{08:40:00}" datatype="datetime"/>
+               <auteur comment="">
+                  <zorgverlener>
+                     <zorgverlener_identificatie_nummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Peter"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van"/>
+                              <achternaam value="Pulver"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                  codeSystemVersion="2020-10-23T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatie_nummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="Peter_van_Pulver"/>
+                     </adaextension>
+                  </zorgverlener>
+               </auteur>
+               <te_verstrekken_hoeveelheid comment="">
+                  <aantal value="90"/>
+                  <eenheid code="215"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="gram"/>
+               </te_verstrekken_hoeveelheid>
+               <te_verstrekken_geneesmiddel comment="">
+                  <product>
+                     <product_code code="16705"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   codeSystemName="G-Standaard PRK"
+                                   displayName="Fusidinezuur creme 20mg/g"/>
+                     <product_code code="73466"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="Fusidinezuur creme 20mg/g"/>
+                     <adaextension>
+                        <reference_id value="PRK_Fusidinezuur_16705"/>
+                     </adaextension>
+                  </product>
+               </te_verstrekken_geneesmiddel>
+               <beoogd_verstrekker comment="">
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek de Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="Apotheek_de_Gulle_Gaper"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </beoogd_verstrekker>
+               <relatie_naar_medicatieafspraak comment="">
+                  <identificatie value="MBH_300_afbouwschema_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_naar_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak comment="">
+               <gebruiksperiode_start value="T+0D{00:00:00}" datatype="datetime"/>
+               <gebruiksperiode_eind value="T+41D{23:59:59}" datatype="datetime"/>
+               <identificatie value="MBH_300_afbouwschema_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <afspraakdatum value="T+0D{09:40:00}" datatype="datetime"/>
+               <verstrekker comment="">
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek de Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="Apotheek_de_Gulle_Gaper"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak comment="">
+                  <product>
+                     <product_code code="2292556"
+                                   codeSystem="2.16.840.1.113883.2.4.4.7"
+                                   codeSystemName="G-Standaard HPK"
+                                   displayName="AFFUSINE CREME 20MG/G"/>
+                     <product_code code="16705"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="Fusidinezuur creme 20mg/g"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="73466"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="Fusidinezuur creme 20mg/g"/>
+                     <adaextension>
+                        <reference_id value="HPK_Fusidinezuur_2292556"/>
+                     </adaextension>
+                  </product>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+41D{23:59:59}&gt;, eerst gedurende 2 weken 3gram per dag, dan gedurende 3 weken 2gram per dag, dan gedurende 6 dagen 1gram per dag, dun aanbrengen, cutaan"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="53"
+                                  displayName="cutaan"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <doseerduur value="2" unit="week"/>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="3"/>
+                           </aantal>
+                           <eenheid code="215"
+                                    displayName="gram"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie>
+                     <volgnummer value="2"/>
+                     <doseerduur value="3" unit="week"/>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="215"
+                                    displayName="gram"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie>
+                     <volgnummer value="3"/>
+                     <doseerduur value="6" unit="dag"/>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="215"
+                                    displayName="gram"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_naar_medicatieafspraak comment="">
+                  <identificatie value="MBH_300_afbouwschema_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_naar_medicatieafspraak>
+            </toedieningsafspraak>
+            <verstrekking comment="">
+               <identificatie value="MBH_300_afbouwschema_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <datum value="T+0D{09:40:00}" datatype="datetime"/>
+               <verstrekker comment="">
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek de Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="Apotheek_de_Gulle_Gaper"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="90"/>
+                  <eenheid code="215"
+                           codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           displayName="gram"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel comment="">
+                  <product>
+                     <product_code code="2292556"
+                                   codeSystem="2.16.840.1.113883.2.4.4.7"
+                                   codeSystemName="G-Standaard HPK"
+                                   displayName="AFFUSINE CREME 20MG/G"/>
+                     <product_code code="16705"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="Fusidinezuur creme 20mg/g"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="73466"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="Fusidinezuur creme 20mg/g"/>
+                     <adaextension>
+                        <reference_id value="HPK_Fusidinezuur_2292556"/>
+                     </adaextension>
+                  </product>
+               </verstrekt_geneesmiddel>
+               <relatie_naar_verstrekkingsverzoek comment="">
+                  <identificatie value="MBH_300_afbouwschema_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_naar_verstrekkingsverzoek>
+            </verstrekking>
+            <medicatie_gebruik comment="">
+               <gebruiksperiode_start value="T+0D{00:00:00}" datatype="datetime"/>
+               <gebruiksperiode_eind value="T+21D{23:59:59}" datatype="datetime"/>
+               <identificatie value="MBH_300_afbouwschema_MGB"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <registratiedatum value="T+21D{23:59:59}" datatype="datetime"/>
+               <gebruik_indicator value="true"/>
+               <volgens_afspraak_indicator value="true"/>
+               <gebruiks_product>
+                  <product>
+                     <product_code code="16705"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   codeSystemName="G-Standaard PRK"
+                                   displayName="Fusidinezuur creme 20mg/g"/>
+                     <product_code code="73466"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="Fusidinezuur creme 20mg/g"/>
+                     <adaextension>
+                        <reference_id value="PRK_Fusidinezuur_16705"/>
+                     </adaextension>
+                  </product>
+               </gebruiks_product>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+41D{23:59:59}&gt;, eerst gedurende 2 weken 3gram per dag, dan gedurende 3 weken 2gram per dag, dan gedurende 6 dagen 1gram per dag, dun aanbrengen, cutaan"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="53"
+                                  displayName="cutaan"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <volgnummer value="1"/>
+                     <doseerduur value="2" unit="week"/>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="3"/>
+                           </aantal>
+                           <eenheid code="215"
+                                    displayName="gram"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie>
+                     <volgnummer value="2"/>
+                     <doseerduur value="3" unit="week"/>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="2"/>
+                           </aantal>
+                           <eenheid code="215"
+                                    displayName="gram"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+                  <doseerinstructie>
+                     <volgnummer value="3"/>
+                     <doseerduur value="6" unit="dag"/>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <vaste_waarde value="1"/>
+                           </aantal>
+                           <eenheid code="215"
+                                    displayName="gram"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <toedieningsschema comment="">
+                           <frequentie comment="">
+                              <aantal comment="">
+                                 <vaste_waarde value="1"/>
+                              </aantal>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </frequentie>
+                        </toedieningsschema>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <gerelateerde_afspraak>
+                  <identificatie_medicatieafspraak value="MBH_300_afbouwschema_MA"
+                                                   root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </gerelateerde_afspraak>
+               <voorschrijver comment="">
+                  <zorgverlener>
+                     <zorgverlener_identificatie_nummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Peter"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van"/>
+                              <achternaam value="Pulver"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                  codeSystemVersion="2020-10-23T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatie_nummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="Peter_van_Pulver"/>
+                     </adaextension>
+                  </zorgverlener>
+               </voorschrijver>
+               <informant comment="">
+                  <informant_is_patient value="true"/>
+               </informant>
+               <auteur comment="">
+                  <auteur_is_zorgverlener comment="">
+                     <zorgverlener>
+                        <zorgverlener_identificatie_nummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                        <zorgverlener_naam>
+                           <naamgegevens>
+                              <voornamen value="Peter"/>
+                              <geslachtsnaam comment="">
+                                 <voorvoegsels value="van"/>
+                                 <achternaam value="Pulver"/>
+                              </geslachtsnaam>
+                           </naamgegevens>
+                        </zorgverlener_naam>
+                        <specialisme code="0100"
+                                     codeSystem="2.16.840.1.113883.2.4.6.7"
+                                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                     codeSystemVersion="2020-10-23T00:00:00"
+                                     displayName="Huisartsen, niet nader gespecificeerd"/>
+                        <zorgaanbieder>
+                           <zorgaanbieder>
+                              <zorgaanbieder_identificatie_nummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                              <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                              <adresgegevens comment="">
+                                 <straat value="Dorpsstraat"/>
+                                 <huisnummer value="1"/>
+                                 <postcode value="1234AA"/>
+                                 <woonplaats value="Ons Dorp"/>
+                                 <adres_soort code="WP"
+                                              codeSystem="2.16.840.1.113883.5.1119"
+                                              displayName="Werkadres"/>
+                              </adresgegevens>
+                              <adaextension>
+                                 <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                              </adaextension>
+                           </zorgaanbieder>
+                        </zorgaanbieder>
+                        <adaextension>
+                           <reference_id value="Peter_van_Pulver"/>
+                        </adaextension>
+                     </zorgverlener>
+                  </auteur_is_zorgverlener>
+               </auteur>
+            </medicatie_gebruik>
+         </medicamenteuze_behandeling>
+         <medicamenteuze_behandeling comment="">
+            <identificatie value="MBH_300_variabelehoeveelheidenmaximum"
+                           root="2.16.840.1.113883.2.4.3.11.999.77.1.1"/>
+            <medicatieafspraak comment="">
+               <gebruiksperiode_start value="T+0D{00:00:00}" datatype="datetime"/>
+               <gebruiksperiode_eind value="T+21D{23:59:59}" datatype="datetime"/>
+               <identificatie value="MBH_300_variabelehoeveelheidenmaximum_MA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               <afspraakdatum value="T+0D{08:45:00}" datatype="datetime"/>
+               <voorschrijver comment="">
+                  <zorgverlener>
+                     <zorgverlener_identificatienummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Peter"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van"/>
+                              <achternaam value="Pulver"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                  codeSystemVersion="2020-10-23T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatienummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="Peter_van_Pulver"/>
+                     </adaextension>
+                  </zorgverlener>
+               </voorschrijver>
+               <afgesproken_geneesmiddel comment="">
+                  <product>
+                     <product_code code="42773"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="CODEINE TABLET 10MG (FOSFAAT)"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="23086"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="CODEINE TABLET 10MG (FOSFAAT)"/>
+                     <adaextension>
+                        <reference_id value="PRK_CODEINE_42773"/>
+                     </adaextension>
+                  </product>
+               </afgesproken_geneesmiddel>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+21D{23:59:59}&gt;, 1 a 2 stuks bij hoest, maximaal 6 stuks per dag, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <min value="1"/>
+                              <max value="2"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <zo_nodig comment="">
+                           <criterium>
+                              <code code="1387"
+                                    codeSystem="2.16.840.1.113883.2.4.4.5"
+                                    displayName="Bij hoest"/>
+                           </criterium>
+                           <maximale_dosering comment="">
+                              <aantal value="6"/>
+                              <eenheid code="245"
+                                       codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                       codeSystemName="G-Standaard thesaurus basiseenheden"
+                                       displayName="stuk"/>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </maximale_dosering>
+                        </zo_nodig>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+            </medicatieafspraak>
+            <verstrekkingsverzoek comment="">
+               <identificatie value="MBH_300_variabelehoeveelheidenmaximum_VV"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               <datum value="T+0D{08:45:00}" datatype="datetime"/>
+               <auteur comment="">
+                  <zorgverlener>
+                     <zorgverlener_identificatie_nummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Peter"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van"/>
+                              <achternaam value="Pulver"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                  codeSystemVersion="2020-10-23T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatie_nummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="Peter_van_Pulver"/>
+                     </adaextension>
+                  </zorgverlener>
+               </auteur>
+               <te_verstrekken_hoeveelheid comment="">
+                  <aantal value="120"/>
+                  <eenheid codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           code="245"
+                           displayName="stuk"/>
+               </te_verstrekken_hoeveelheid>
+               <te_verstrekken_geneesmiddel comment="">
+                  <product>
+                     <product_code code="42773"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="CODEINE TABLET 10MG (FOSFAAT)"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="23086"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="CODEINE TABLET 10MG (FOSFAAT)"/>
+                     <adaextension>
+                        <reference_id value="PRK_CODEINE_42773"/>
+                     </adaextension>
+                  </product>
+               </te_verstrekken_geneesmiddel>
+               <beoogd_verstrekker comment="">
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatienummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek de Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="Apotheek_de_Gulle_Gaper"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </beoogd_verstrekker>
+               <relatie_naar_medicatieafspraak comment="">
+                  <identificatie value="MBH_300_variabelehoeveelheidenmaximum_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_naar_medicatieafspraak>
+            </verstrekkingsverzoek>
+            <toedieningsafspraak comment="">
+               <gebruiksperiode_start value="T+0D{00:00:00}" datatype="datetime"/>
+               <gebruiksperiode_eind value="T+21D{23:59:59}" datatype="datetime"/>
+               <identificatie value="MBH_300_variabelehoeveelheidenmaximum_TA"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.422037009.1"/>
+               <afspraakdatum value="T+0D{09:45:00}" datatype="datetime"/>
+               <verstrekker comment="">
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek de Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="Apotheek_de_Gulle_Gaper"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </verstrekker>
+               <geneesmiddel_bij_toedieningsafspraak comment="">
+                  <product>
+                     <product_code code="874965"
+                                   codeSystem="2.16.840.1.113883.2.4.4.7"
+                                   codeSystemName="G-Standaard HPK"
+                                   displayName="CODEINEFOSFAAT PCH TABLET 10MG"/>
+                     <product_code code="42773"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="CODEINE TABLET 10MG (FOSFAAT)"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="23086"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="CODEINE TABLET 10MG (FOSFAAT)"/>
+                     <adaextension>
+                        <reference_id value="HPK_CODEINE_874965"/>
+                     </adaextension>
+                  </product>
+               </geneesmiddel_bij_toedieningsafspraak>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+21D{23:59:59}&gt;, 1 a 2 stuks bij hoest, maximaal 6 stuks per dag, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <min value="1"/>
+                              <max value="2"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <zo_nodig comment="">
+                           <criterium>
+                              <code code="1387"
+                                    codeSystem="2.16.840.1.113883.2.4.4.5"
+                                    displayName="Bij hoest"/>
+                           </criterium>
+                           <maximale_dosering comment="">
+                              <aantal value="6"/>
+                              <eenheid code="245"
+                                       codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                       codeSystemName="G-Standaard thesaurus basiseenheden"
+                                       displayName="stuk"/>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </maximale_dosering>
+                        </zo_nodig>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <relatie_naar_medicatieafspraak comment="">
+                  <identificatie value="MBH_300_variabelehoeveelheidenmaximum_MA"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </relatie_naar_medicatieafspraak>
+            </toedieningsafspraak>
+            <verstrekking comment="">
+               <identificatie value="MBH_300_variabelehoeveelheidenmaximum_MVE"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.373784005.1"/>
+               <datum value="T+0D{09:45:00}" datatype="datetime"/>
+               <verstrekker comment="">
+                  <zorgaanbieder>
+                     <zorgaanbieder_identificatie_nummer value="01236578" root="2.16.528.1.1007.3.3"/>
+                     <organisatie_naam value="Apotheek de Gulle Gaper"/>
+                     <adaextension>
+                        <reference_id value="Apotheek_de_Gulle_Gaper"/>
+                     </adaextension>
+                  </zorgaanbieder>
+               </verstrekker>
+               <verstrekte_hoeveelheid comment="">
+                  <aantal value="120"/>
+                  <eenheid codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                           codeSystemName="G-Standaard thesaurus basiseenheden"
+                           code="245"
+                           displayName="stuk"/>
+               </verstrekte_hoeveelheid>
+               <verstrekt_geneesmiddel comment="">
+                  <product>
+                     <product_code code="874965"
+                                   codeSystem="2.16.840.1.113883.2.4.4.7"
+                                   codeSystemName="G-Standaard HPK"
+                                   displayName="CODEINEFOSFAAT PCH TABLET 10MG"/>
+                     <product_code code="42773"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="CODEINE TABLET 10MG (FOSFAAT)"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="23086"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="CODEINE TABLET 10MG (FOSFAAT)"/>
+                     <adaextension>
+                        <reference_id value="HPK_CODEINE_874965"/>
+                     </adaextension>
+                  </product>
+               </verstrekt_geneesmiddel>
+               <relatie_naar_verstrekkingsverzoek comment="">
+                  <identificatie value="MBH_300_variabelehoeveelheidenmaximum_VV"
+                                 root="2.16.840.1.113883.2.4.3.11.999.77.52711000146108.1"/>
+               </relatie_naar_verstrekkingsverzoek>
+            </verstrekking>
+            <medicatie_gebruik comment="">
+               <gebruiksperiode_start value="T+0D{00:00:00}" datatype="datetime"/>
+               <gebruiksperiode_eind value="T+21D{23:59:59}" datatype="datetime"/>
+               <identificatie value="MBH_300_variabelehoeveelheidenmaximum_MGB"
+                              root="2.16.840.1.113883.2.4.3.11.999.77.6.1"/>
+               <registratiedatum value="T+21D{23:59:59}" datatype="datetime"/>
+               <gebruik_indicator value="true"/>
+               <volgens_afspraak_indicator value="true"/>
+               <gebruiks_product>
+                  <product>
+                     <product_code code="42773"
+                                   codeSystem="2.16.840.1.113883.2.4.4.10"
+                                   displayName="CODEINE TABLET 10MG (FOSFAAT)"
+                                   codeSystemName="G-Standaard PRK"/>
+                     <product_code code="23086"
+                                   codeSystem="2.16.840.1.113883.2.4.4.1"
+                                   codeSystemName="G-Standaard GPK"
+                                   displayName="CODEINE TABLET 10MG (FOSFAAT)"/>
+                     <adaextension>
+                        <reference_id value="PRK_CODEINE_42773"/>
+                     </adaextension>
+                  </product>
+               </gebruiks_product>
+               <gebruiksinstructie comment="">
+                  <omschrijving value="Vanaf &lt;T+0D{00:00:00}&gt; t/m &lt;T+21D{23:59:59}&gt;, 1 a 2 stuks bij hoest, maximaal 6 stuks per dag, oraal"/>
+                  <toedieningsweg codeSystem="2.16.840.1.113883.2.4.4.9"
+                                  code="9"
+                                  displayName="oraal"
+                                  codeSystemName="G-Standaard Toedieningswegen"/>
+                  <doseerinstructie>
+                     <dosering comment="">
+                        <keerdosis comment="">
+                           <aantal comment="">
+                              <min value="1"/>
+                              <max value="2"/>
+                           </aantal>
+                           <eenheid code="245"
+                                    displayName="stuk"
+                                    codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                    codeSystemName="G-Standaard thesaurus basiseenheden"/>
+                        </keerdosis>
+                        <zo_nodig comment="">
+                           <criterium>
+                              <code code="1387"
+                                    codeSystem="2.16.840.1.113883.2.4.4.5"
+                                    displayName="Bij hoest"/>
+                           </criterium>
+                           <maximale_dosering comment="">
+                              <aantal value="6"/>
+                              <eenheid code="245"
+                                       codeSystem="2.16.840.1.113883.2.4.4.1.900.2"
+                                       codeSystemName="G-Standaard thesaurus basiseenheden"
+                                       displayName="stuk"/>
+                              <tijdseenheid value="1" unit="dag"/>
+                           </maximale_dosering>
+                        </zo_nodig>
+                     </dosering>
+                  </doseerinstructie>
+               </gebruiksinstructie>
+               <gerelateerde_afspraak>
+                  <identificatie_medicatieafspraak value="MBH_300_variabelehoeveelheidenmaximum_MA"
+                                                   root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
+               </gerelateerde_afspraak>
+               <voorschrijver comment="">
+                  <zorgverlener>
+                     <zorgverlener_identificatie_nummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                     <naamgegevens>
+                        <naamgegevens>
+                           <voornamen value="Peter"/>
+                           <geslachtsnaam comment="">
+                              <voorvoegsels value="van"/>
+                              <achternaam value="Pulver"/>
+                           </geslachtsnaam>
+                        </naamgegevens>
+                     </naamgegevens>
+                     <specialisme code="0100"
+                                  codeSystem="2.16.840.1.113883.2.4.6.7"
+                                  codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                  codeSystemVersion="2020-10-23T00:00:00"
+                                  displayName="Huisartsen, niet nader gespecificeerd"/>
+                     <zorgaanbieder>
+                        <zorgaanbieder_identificatie_nummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                        <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                        <adresgegevens comment="">
+                           <straat value="Dorpsstraat"/>
+                           <huisnummer value="1"/>
+                           <postcode value="1234AA"/>
+                           <woonplaats value="Ons Dorp"/>
+                           <adres_soort code="WP"
+                                        codeSystem="2.16.840.1.113883.5.1119"
+                                        displayName="Werkadres"/>
+                        </adresgegevens>
+                        <adaextension>
+                           <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                        </adaextension>
+                     </zorgaanbieder>
+                     <adaextension>
+                        <reference_id value="Peter_van_Pulver"/>
+                     </adaextension>
+                  </zorgverlener>
+               </voorschrijver>
+               <informant comment="">
+                  <informant_is_patient value="true"/>
+               </informant>
+               <auteur comment="">
+                  <auteur_is_zorgverlener comment="">
+                     <zorgverlener>
+                        <zorgverlener_identificatie_nummer value="000001111" root="2.16.528.1.1007.3.1"/>
+                        <zorgverlener_naam>
+                           <naamgegevens>
+                              <voornamen value="Peter"/>
+                              <geslachtsnaam comment="">
+                                 <voorvoegsels value="van"/>
+                                 <achternaam value="Pulver"/>
+                              </geslachtsnaam>
+                           </naamgegevens>
+                        </zorgverlener_naam>
+                        <specialisme code="0100"
+                                     codeSystem="2.16.840.1.113883.2.4.6.7"
+                                     codeSystemName="COD016-VEKT Vektis Zorgverlenersspecificatie (subberoepsgroep)"
+                                     codeSystemVersion="2020-10-23T00:00:00"
+                                     displayName="Huisartsen, niet nader gespecificeerd"/>
+                        <zorgaanbieder>
+                           <zorgaanbieder>
+                              <zorgaanbieder_identificatie_nummer value="00001111" root="2.16.528.1.1007.3.3"/>
+                              <organisatie_naam value="Huisartsenpraktijk Pulver &amp; Partners"/>
+                              <adresgegevens comment="">
+                                 <straat value="Dorpsstraat"/>
+                                 <huisnummer value="1"/>
+                                 <postcode value="1234AA"/>
+                                 <woonplaats value="Ons Dorp"/>
+                                 <adres_soort code="WP"
+                                              codeSystem="2.16.840.1.113883.5.1119"
+                                              displayName="Werkadres"/>
+                              </adresgegevens>
+                              <adaextension>
+                                 <reference_id value="Huisartsenpraktijk_Pulver_en_Partners"/>
+                              </adaextension>
+                           </zorgaanbieder>
+                        </zorgaanbieder>
+                        <adaextension>
+                           <reference_id value="Peter_van_Pulver"/>
+                        </adaextension>
+                     </zorgverlener>
+                  </auteur_is_zorgverlener>
+               </auteur>
+            </medicatie_gebruik>
+         </medicamenteuze_behandeling>
+      </beschikbaarstellen_medicatiegegevens>
+   </data>
+</adaxml>

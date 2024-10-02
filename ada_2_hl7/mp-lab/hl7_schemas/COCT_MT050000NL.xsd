@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:hl7-org:v3" elementFormDefault="qualified" xmlns="urn:hl7-org:v3"
+   xmlns:hl7="urn:hl7-org:v3">
+   <xs:include schemaLocation="../coreschemas/datatypes.xsd"/>
+   <xs:include schemaLocation="../coreschemas/voc.xsd"/>
+   <!--
+   *****************************************************************************************************************
+   * XML schema for message type COCT_MT050000NL (R_Patient NL [universal]).
+   *
+   * Deze CMET is een Nederlandse restrictie op de internationale R_Patient CMET.
+   * Laatste update: september 2005.
+   *****************************************************************************************************************
+   -->
+   <xs:include schemaLocation="COCT_MT030200NL.xsd"/>
+   <xs:include schemaLocation="COCT_MT150001.xsd"/>
+   <xs:group name="COCT_MT050000NL">
+      <xs:sequence>
+         <xs:element name="Patient" type="COCT_MT050000NL.Patient"/>
+      </xs:sequence>
+   </xs:group>
+   <xs:complexType name="COCT_MT050000NL.Patient">
+      <xs:sequence>
+         <xs:element name="typeId" type="II" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="templateId" type="II" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="id" nillable="true" type="II" minOccurs="1" maxOccurs="unbounded"/>
+         <xs:element name="addr" type="AD" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="telecom" type="TEL" minOccurs="0" maxOccurs="unbounded"/>
+         <xs:element name="statusCode" type="CS" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="effectiveTime" type="IVL_TS" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="confidentialityCode" type="CE" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="veryImportantPersonCode" type="CE" minOccurs="0" maxOccurs="1"/>
+         <xs:element name="Person" type="COCT_MT030200NL.Person" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="Organization" type="COCT_MT150001.Organization" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+      <xs:attribute name="type" type="Classes" default="Patient"/>
+      <xs:attribute name="classCode" type="RoleClass" use="optional" default="PAT"/>
+      <xs:attribute name="realmCode" use="optional">
+         <xs:simpleType>
+            <xs:list itemType="cs"/>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="nullFlavor" type="cs" use="optional"/>
+   </xs:complexType>
+</xs:schema>

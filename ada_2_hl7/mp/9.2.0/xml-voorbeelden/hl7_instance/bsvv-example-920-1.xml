@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?nictiz status="example"?>
-<?xml-model phase="#ALL" href="../../../../../../../../../SVN/AORTA/branches/Onderhoud_Mp_v90/Publicaties/20210714/mp-xml-20210714T175740/schematron_closed_warnings/mp-mp92_mg_vv.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron" phase="#ALL"?>
 <organizer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xmlns="urn:hl7-org:v3"
            xmlns:cda="urn:hl7-org:v3"
@@ -41,6 +39,7 @@
                codeSystem="2.16.840.1.113883.6.96"
                codeSystemName="SNOMED CT"/>
          <statusCode code="nullified"/>
+         <repeatNumber value="3"/>
          <quantity value="20" unit="1">
             <translation value="20"
                          code="245"
@@ -81,7 +80,7 @@
             </assignedEntity>
          </performer>
          <author>
-            <time value="20210101085300"/>
+            <time value="20220101085300"/>
             <assignedAuthor>
                <id extension="000001111" root="2.16.528.1.1007.3.1"/>
                <code code="0100"
@@ -111,7 +110,7 @@
          <entryRelationship typeCode="REFR">
             <substanceAdministration classCode="SBADM" moodCode="RQO">
                <templateId root="2.16.840.1.113883.2.4.3.11.60.20.77.10.9384"/>
-               <id extension="MBH_920_mg_example-1_MA1"
+               <id extension="MBH_920_mg_example-1-MA1"
                    root="2.16.840.1.113883.2.4.3.11.999.77.16076005.1"/>
                <code code="33633005"
                      codeSystem="2.16.840.1.113883.6.96"
@@ -129,6 +128,22 @@
                      displayName="Medicamenteuze behandeling"
                      codeSystem="2.16.840.1.113883.2.4.3.11.60.20.77.5.3"/>
             </procedure>
+         </entryRelationship>
+         <entryRelationship typeCode="REFR">
+            <encounter classCode="ENC" moodCode="EVN">
+               <id extension="MBH_920_mg_example-1-contact0"
+                   root="2.16.840.1.113883.2.4.3.11.999.66.2709"/>
+            </encounter>
+         </entryRelationship>
+         <entryRelationship typeCode="REFR">
+            <act classCode="ACT" moodCode="EVN">
+               <id extension="MBH_920_mg_example-1-episode0"
+                   root="2.16.840.1.113883.2.4.3.11.999.66.9200"/>
+               <code code="CONC"
+                     codeSystem="2.16.840.1.113883.5.6"
+                     displayName="Concern"
+                     codeSystemName="ActClass"/>
+            </act>
          </entryRelationship>
       </supply>
    </component>
@@ -174,7 +189,7 @@
             </assignedEntity>
          </performer>
          <author>
-            <time value="20201202113200"/>
+            <time value="20211202113200"/>
             <assignedAuthor>
                <id extension="000001111" root="2.16.528.1.1007.3.1"/>
                <code code="0100"

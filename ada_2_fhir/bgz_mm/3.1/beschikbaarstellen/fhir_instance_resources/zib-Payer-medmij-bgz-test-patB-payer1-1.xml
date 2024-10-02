@@ -1,0 +1,57 @@
+<Coverage xmlns="http://hl7.org/fhir">
+   <id value="zib-Payer-medmij-bgz-test-patB-payer1-1"/>
+   <meta>
+      <profile value="http://nictiz.nl/fhir/StructureDefinition/zib-Payer"/>
+   </meta>
+   <text>
+      <status value="extensions"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">
+         <table>
+            <caption>Verzekering/garantstelling. Id: patB-payer (urn:oid:2.16.840.1.113883.2.4.3.11.999.7)</caption>
+            <tbody>
+               <tr>
+                  <th>abonnee</th>
+                  <td>Joeri J. Joeri XXX_Hoff</td>
+               </tr>
+               <tr>
+                  <th>Betaler</th>
+                  <td>J. XXX_Hoff<div>
+                        <div>Bank naam: ABN Bank</div>
+                        <div>Rekeningnummer: NL64ABNC0417164300</div>Bank code: ABNANL2A</div>
+                  </td>
+               </tr>
+               <tr>
+                  <th>begunstigde</th>
+                  <td>Joeri J. Joeri XXX_Hoff</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </text>
+   <identifier>
+      <system value="urn:oid:2.16.840.1.113883.2.4.3.11.999.7"/>
+      <value value="patB-payer"/>
+   </identifier>
+   <subscriber>
+      <reference value="Patient/medmij-bgz-test-patB"/>
+      <display value="Joeri J. Joeri XXX_Hoff"/>
+   </subscriber>
+   <beneficiary>
+      <reference value="Patient/medmij-bgz-test-patB"/>
+      <display value="Joeri J. Joeri XXX_Hoff"/>
+   </beneficiary>
+   <payor>
+      <extension url="http://nictiz.nl/fhir/StructureDefinition/zib-Payer-BankInformation">
+         <extension url="BankName">
+            <valueString value="ABN Bank"/>
+         </extension>
+         <extension url="AccountNumber">
+            <valueString value="NL64ABNC0417164300"/>
+         </extension>
+         <extension url="Bankcode">
+            <valueString value="ABNANL2A"/>
+         </extension>
+      </extension>
+      <display value="J. XXX_Hoff"/>
+   </payor>
+</Coverage>
