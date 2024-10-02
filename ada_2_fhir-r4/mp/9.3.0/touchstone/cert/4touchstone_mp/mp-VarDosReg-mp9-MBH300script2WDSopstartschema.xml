@@ -9,8 +9,11 @@
          <value value="MBH_300_script2"/>
       </valueIdentifier>
    </extension>
+   <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RegistrationDateTime">
+      <valueDateTime value="${DATE, T, D, -40}T10:34:00+02:00"/>
+   </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-RenderedDosageInstruction">
-      <valueString value="Vanaf T - 40 dagen, tot en met T - 37 dagen, eerst gedurende 2 dagen elke dag om 18:00 3 stuks - let op, tijden exact aanhouden, dan gedurende 2 dagen elke dag om 18:00 2 stuks - let op, tijden exact aanhouden, Oraal"/>
+      <valueString value="Vanaf T - 40 dagen, tot en met T - 37 dagen, eerst gedurende 1 dag elke dag om 18:00 2 stuks - let op, tijden exact aanhouden, dan gedurende 1 dag elke dag om 18:00 2 stuks - let op, tijden exact aanhouden, dan gedurende 1 uur elke dag om 18:00 3 stuks - let op, tijden exact aanhouden, Oraal"/>
    </extension>
    <extension url="http://nictiz.nl/fhir/StructureDefinition/ext-TimeInterval.Period">
       <valuePeriod>
@@ -41,7 +44,6 @@
       <type value="Patient"/>
       <display value="Patient, M. XXX_Oorschot"/>
    </subject>
-   <authoredOn value="${DATE, T, D, -40}T10:34:00+02:00"/>
    <requester>
       <reference value="PractitionerRole/nl-core-HPrf-PracRol-mp9-PrcRol-2165281100731-000001111"/>
       <type value="PractitionerRole"/>
@@ -66,47 +68,7 @@
                <valueBoolean value="true"/>
             </extension>
             <boundsDuration>
-               <value value="2"/>
-               <unit value="dag"/>
-               <system value="http://unitsofmeasure.org"/>
-               <code value="d"/>
-            </boundsDuration>
-            <timeOfDay value="18:00:00"/>
-         </repeat>
-      </timing>
-      <route>
-         <coding>
-            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
-            <code value="9"/>
-            <display value="Oraal"/>
-         </coding>
-      </route>
-      <doseAndRate>
-         <doseQuantity>
-            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
-               <valueQuantity>
-                  <value value="3"/>
-                  <unit value="stuk"/>
-                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
-                  <code value="245"/>
-               </valueQuantity>
-            </extension>
-            <value value="3"/>
-            <unit value="stuk"/>
-            <system value="http://unitsofmeasure.org"/>
-            <code value="1"/>
-         </doseQuantity>
-      </doseAndRate>
-   </dosageInstruction>
-   <dosageInstruction>
-      <sequence value="2"/>
-      <timing>
-         <repeat>
-            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
-               <valueBoolean value="true"/>
-            </extension>
-            <boundsDuration>
-               <value value="2"/>
+               <value value="1"/>
                <unit value="dag"/>
                <system value="http://unitsofmeasure.org"/>
                <code value="d"/>
@@ -132,6 +94,86 @@
                </valueQuantity>
             </extension>
             <value value="2"/>
+            <unit value="stuk"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="1"/>
+         </doseQuantity>
+      </doseAndRate>
+   </dosageInstruction>
+   <dosageInstruction>
+      <sequence value="2"/>
+      <timing>
+         <repeat>
+            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+               <valueBoolean value="true"/>
+            </extension>
+            <boundsDuration>
+               <value value="1"/>
+               <unit value="dag"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="d"/>
+            </boundsDuration>
+            <timeOfDay value="18:00:00"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+      <doseAndRate>
+         <doseQuantity>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+               <valueQuantity>
+                  <value value="2"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </valueQuantity>
+            </extension>
+            <value value="2"/>
+            <unit value="stuk"/>
+            <system value="http://unitsofmeasure.org"/>
+            <code value="1"/>
+         </doseQuantity>
+      </doseAndRate>
+   </dosageInstruction>
+   <dosageInstruction>
+      <sequence value="3"/>
+      <timing>
+         <repeat>
+            <extension url="http://hl7.org/fhir/StructureDefinition/timing-exact">
+               <valueBoolean value="true"/>
+            </extension>
+            <boundsDuration>
+               <value value="1"/>
+               <unit value="uur"/>
+               <system value="http://unitsofmeasure.org"/>
+               <code value="h"/>
+            </boundsDuration>
+            <timeOfDay value="18:00:00"/>
+         </repeat>
+      </timing>
+      <route>
+         <coding>
+            <system value="urn:oid:2.16.840.1.113883.2.4.4.9"/>
+            <code value="9"/>
+            <display value="Oraal"/>
+         </coding>
+      </route>
+      <doseAndRate>
+         <doseQuantity>
+            <extension url="http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation">
+               <valueQuantity>
+                  <value value="3"/>
+                  <unit value="stuk"/>
+                  <system value="urn:oid:2.16.840.1.113883.2.4.4.1.900.2"/>
+                  <code value="245"/>
+               </valueQuantity>
+            </extension>
+            <value value="3"/>
             <unit value="stuk"/>
             <system value="http://unitsofmeasure.org"/>
             <code value="1"/>

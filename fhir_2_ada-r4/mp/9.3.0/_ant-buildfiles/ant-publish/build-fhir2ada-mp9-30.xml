@@ -65,6 +65,7 @@
             <param name="generateInstructionText" expression="true"/>
             <param name="dateT" expression="${date.T}" if="date.T"/>
             <param name="mask-ids" expression="${param.maskids}" if="param.maskids"/>
+            <param name="populateId" expression="${param.populateId}" if="param.populateId"/>
         </xslt>
 
     </target>
@@ -134,8 +135,16 @@
             <param name="xsl.in" value="fhir_instance"/>
             <param name="xsl.out" value="ada_instance"/>
         </antcall>
-
-    </target>
+        
+        <!-- nictiz_test -->
+        <antcall target="convert_fhir_2_ada_sub">
+            <param name="usecase" value="${usecase.mg}"/>
+            <param name="build.dir" value="${build.dir}"/>
+            <param name="xsl.in" value="../nictiz_test/fhir_instance"/>
+            <param name="xsl.out" value="../nictiz_test/ada_instance"/>
+        </antcall>
+        
+      </target>
 
     <target name="convert_fhir_2_ada_sub">
         <property name="xsl_mp" value="${build.dir}/${usecase}/payload/${usecase}_2_ada.xsl"/>
@@ -165,12 +174,24 @@
 
     <target name="roundtrip_fhir_2_ada_2_fhir">
 
-        <!-- hl7 2 ada first -->
+        <!-- fhir 2 ada first -->
         <antcall target="convert_fhir_2_ada"/>
 
         <!-- roundtrip -->
         <antcall target="roundtrip_ada_2_fhir"/>
 
+    </target>
+    
+    <target name="roundtrip_fhir_2_ada_again">
+        
+        <!-- fhir 2 ada again -->
+        <!-- nictiz_test -->
+        <antcall target="convert_fhir_2_ada_sub">
+            <param name="usecase" value="${usecase.mg}"/>
+            <param name="build.dir" value="${build.dir}"/>
+            <param name="xsl.in" value="../nictiz_test/roundtrip_fhir_instance"/>
+            <param name="xsl.out" value="../nictiz_test/roundtrip_ada_instance"/>
+        </antcall>   
     </target>
 
     <target name="roundtrip_ada_2_fhir">
@@ -184,11 +205,24 @@
             <param name="xsl.in.include" value="*.xml"/>
             <param name="xsl.out" value="${build.dir}/${usecase.mg}/roundtrip_fhir_instance"/>
             <param name="param.maskids" value="${mask.ids}"/>
+            <param name="param.populateId" value="false"/>
         </antcall>
+        
+        <!-- sturen_medicatiegegegevens -->
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.3.0/${usecase.mg.st}/payload/${usecase.mg.st}_2_fhir.xsl"/>
+            <!--<param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.3.0/${usecase.fhir.fixtures}/payload/${usecase.mg}_2_fhir.xsl"/>-->
+            <param name="xsl.in" value="${build.dir}/${usecase.mg.st}/ada_instance"/>
+            <param name="xsl.in.include" value="*.xml"/>
+            <param name="xsl.out" value="${build.dir}/${usecase.mg.st}/roundtrip_fhir_instance"/>
+            <param name="param.maskids" value="${mask.ids}"/>
+        </antcall>
+        
         <!-- sturen_medicatievoorschrift -->
         <antcall target="convert_ada_2_fhir_sub">
          
-            <param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.3.0/${usecase.fhir.fixtures}/payload/${usecase.mv}_2_fhir.xsl"/>
+          <!--  <param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.3.0/${usecase.fhir.fixtures}/payload/${usecase.mv}_2_fhir.xsl"/>-->
+            <param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.3.0/${usecase.mv}/payload/${usecase.mv}_2_fhir.xsl"/>
             <param name="xsl.in" value="${build.dir}/${usecase.mv}/ada_instance"/>
             <param name="xsl.in.include" value="*.xml"/>
             <param name="xsl.out" value="${build.dir}/${usecase.mv}/roundtrip_fhir_instance"/>
@@ -197,7 +231,7 @@
         <!-- sturen_afhandeling_medicatievoorschrift -->
         <antcall target="convert_ada_2_fhir_sub">
            
-            <param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.3.0/${usecase.fhir.fixtures}/payload/${usecase.av}_2_fhir.xsl"/>
+            <param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.3.0/${usecase.av}/payload/${usecase.av}_2_fhir.xsl"/>
             <param name="xsl.in" value="${build.dir}/${usecase.av}/ada_instance"/>
             <param name="xsl.in.include" value="*.xml"/>
             <param name="xsl.out" value="${build.dir}/${usecase.av}/roundtrip_fhir_instance"/>
@@ -206,7 +240,7 @@
         <!-- voorsteltransacties -->
         <antcall target="convert_ada_2_fhir_sub">
        
-            <param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.3.0/${usecase.fhir.fixtures}/payload/${usecase.vma}_2_fhir.xsl"/>
+            <param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.3.0/${usecase.vma}/payload/${usecase.vma}_2_fhir.xsl"/>
             <param name="xsl.in" value="${build.dir}/${usecase.vma}/ada_instance"/>
             <param name="xsl.in.include" value="*.xml"/>
             <param name="xsl.out" value="${build.dir}/${usecase.vma}/roundtrip_fhir_instance"/>
@@ -214,7 +248,7 @@
         </antcall>
         <antcall target="convert_ada_2_fhir_sub">
       
-            <param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.3.0/${usecase.fhir.fixtures}/payload/${usecase.avma}_2_fhir.xsl"/>
+            <param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.3.0/${usecase.avma}/payload/${usecase.avma}_2_fhir.xsl"/>
             <param name="xsl.in" value="${build.dir}/${usecase.avma}/ada_instance"/>
             <param name="xsl.in.include" value="*.xml"/>
             <param name="xsl.out" value="${build.dir}/${usecase.avma}/roundtrip_fhir_instance"/>
@@ -222,7 +256,7 @@
         </antcall>
         <antcall target="convert_ada_2_fhir_sub">
          
-            <param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.3.0/${usecase.fhir.fixtures}/payload/${usecase.vvv}_2_fhir.xsl"/>
+            <param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.3.0/${usecase.vvv}/payload/${usecase.vvv}_2_fhir.xsl"/>
             <param name="xsl.in" value="${build.dir}/${usecase.vvv}/ada_instance"/>
             <param name="xsl.in.include" value="*.xml"/>
             <param name="xsl.out" value="${build.dir}/${usecase.vvv}/roundtrip_fhir_instance"/>
@@ -230,10 +264,20 @@
         </antcall>
         <antcall target="convert_ada_2_fhir_sub">
      
-            <param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.3.0/${usecase.fhir.fixtures}/payload/${usecase.avvv}_2_fhir.xsl"/>
+            <param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.3.0/${usecase.avvv}/payload/${usecase.avvv}_2_fhir.xsl"/>
             <param name="xsl.in" value="${build.dir}/${usecase.avvv}/ada_instance"/>
             <param name="xsl.in.include" value="*.xml"/>
             <param name="xsl.out" value="${build.dir}/${usecase.avvv}/roundtrip_fhir_instance"/>
+            <param name="param.maskids" value="${mask.ids}"/>
+        </antcall>
+        
+        <!-- nictiz_test (beschikbaarstellen_medicatiegegegevens) -->
+        <antcall target="convert_ada_2_fhir_sub">
+            <param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.3.0/${usecase.mg}/payload/${usecase.mg}_2_fhir.xsl"/>
+            <!--<param name="xsl.convert" value="${build.dir}/../../../ada_2_fhir-r4/mp/9.3.0/${usecase.fhir.fixtures}/payload/${usecase.mg}_2_fhir.xsl"/>-->
+            <param name="xsl.in" value="${build.dir}/nictiz_test/ada_instance"/>
+            <param name="xsl.in.include" value="*.xml"/>
+            <param name="xsl.out" value="${build.dir}/nictiz_test/roundtrip_fhir_instance"/>
             <param name="param.maskids" value="${mask.ids}"/>
         </antcall>
         
@@ -297,6 +341,27 @@
             <param name="folder.name" value="fhir_instance"/>
             <param name="include.files" value="*.xml"/>
         </antcall>
+        
+        <!-- nictiz_test schemas -->
+        <echo/>
+        <echo>Setup ${build.dir}/nictiz_test/ada_schemas containing refreshed ada schemas (${schema.string})</echo>
+        
+        <mkdir dir="${build.dir}/nictiz_test/ada_schemas"/>
+        <delete>
+            <fileset dir="${build.dir}/nictiz_test/ada_schemas" includes="*.xsd"/>
+        </delete>
+        
+        <copy todir="${build.dir}/nictiz_test/ada_schemas" failonerror="true">
+            <fileset dir="${ada.project.source.dir}/schemas">
+                <include name="*${usecase.mg}.xsd"/>
+                <include name="ada_meta.xsd"/>
+            </fileset>
+        </copy>
+        <copy todir="${build.dir}/nictiz_test/ada_schemas" failonerror="true">
+            <fileset dir="${ada.project.source.dir}/schemas">
+                <include name="*${usecase.mv}.xsd"/>
+            </fileset>
+        </copy>       
 
     </target>
 
