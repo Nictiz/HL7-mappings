@@ -15,13 +15,13 @@ The full text of the license is available at http://www.gnu.org/copyleft/lesser.
 <xsl:stylesheet exclude-result-prefixes="#all" xmlns="http://hl7.org/fhir" xmlns:f="http://hl7.org/fhir" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:local="urn:fhir:stu3:functions" xmlns:nf="http://www.nictiz.nl/functions" xmlns:nm="http://www.nictiz.nl/mappings" xmlns:uuid="http://www.uuid.org" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0">
 
     <!-- moved import of util here to prevent duplicate import warnings due to fhir use in ada-hl7v3 conversions (dosageInstructions in FHIR) -->
-    <xsl:import href="../../../../util/constants.xsl"/>
-    <xsl:import href="../../../../util/datetime.xsl"/>
-    <xsl:import href="../../../../util/units.xsl"/>
-    <xsl:import href="../../../../util/utilities.xsl"/>
+    <xsl:import href="../../../../../YATC-shared/xsl/util/constants.xsl"/>
+    <xsl:import href="../../../../../YATC-shared/xsl/util/datetime.xsl"/>
+    <xsl:import href="../../../../../YATC-shared/xsl/util/units.xsl"/>
+    <xsl:import href="../../../../../YATC-shared/xsl/util/utilities.xsl"/>
 
     <xsl:import href="../../../fhir/fhir_2_ada_fhir_include.xsl"/>
-    <xsl:import href="../../../../util/mp-functions.xsl"/>
+    <xsl:import href="../../../../../YATC-shared/xsl/util/mp-functions.xsl"/>
 
     <xsl:import href="contextContactEpisodeOfCare.xsl"/>
     <xsl:import href="ext-CopyIndicator.xsl"/>

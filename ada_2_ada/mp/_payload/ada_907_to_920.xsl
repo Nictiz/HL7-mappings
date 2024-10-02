@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet exclude-result-prefixes="#all" version="2.0" xmlns:nfa2a="http://www.nictiz.nl/functions/ada2ada" xmlns:nf="http://www.nictiz.nl/functions" xmlns:uuid="http://www.uuid.org" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xsl:import href="ada_2_ada_mp.xsl"/>
-    <xsl:import href="../../../util/uuid.xsl"/>
-    <xsl:import href="../../../util/mp-functions.xsl"/>
-    <xsl:import href="../../../util/datetime.xsl"/>
+    <xsl:import href="../../../../YATC-shared/xsl/util/uuid.xsl"/>
+    <xsl:import href="../../../../YATC-shared/xsl/util/mp-functions.xsl"/>
+    <xsl:import href="../../../../YATC-shared/xsl/util/datetime.xsl"/>
     <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all" omit-xml-declaration="yes"/>
     <xsl:strip-space elements="*"/>
 
