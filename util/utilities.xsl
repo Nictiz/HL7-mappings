@@ -41,6 +41,27 @@
     </xd:doc>
     <xsl:key name="util-i18nkey" match="translation" use="@key"/>
     
+    <xsl:param name="logLevel" select="$logINFO" as="xs:string"/>
+    
+    <!-- provide a mapping from string logLevel to numeric value -->
+    <xsl:variable name="logALL" select="'ALL'"/>
+    <xsl:variable name="logDEBUG" select="'DEBUG'"/>
+    <xsl:variable name="logINFO" select="'INFO'"/>
+    <xsl:variable name="logWARN" select="'WARN'"/>
+    <xsl:variable name="logERROR" select="'ERROR'"/>
+    <xsl:variable name="logFATAL" select="'FATAL'"/>
+    <xsl:variable name="logOFF" select="'OFF'"/>
+    <xsl:variable name="logLevelMap" as="element(level)*">
+        <level name="{$logALL}" int="6" desc="The ALL has the lowest possible rank and is intended to turn on all logging."/>
+        <level name="{$logDEBUG}" int="5" desc="The DEBUG Level designates fine-grained informational events that are most useful to debug an application."/>
+        <level name="{$logINFO}" int="4" desc="The INFO level designates informational messages that highlight the progress of the application at coarse-grained level."/>
+        <level name="{$logWARN}" int="3" desc="The WARN level designates potentially harmful situations."/>
+        <level name="{$logERROR}" int="2" desc="The ERROR level designates error events that might still allow the application to continue running."/>
+        <level name="{$logFATAL}" int="1" desc="The FATAL level designates very severe error events that will presumably lead the application to abort."/>
+        <level name="{$logOFF}" int="0" desc="The OFF level has the highest possible rank and is intended to turn off logging."/>
+    </xsl:variable>
+    <xsl:variable name="util:chkdLogLevel" select="if ($logLevelMap[@name = $logLevel]) then $logLevel else $logINFO"/>
+    
     <xd:doc>
         <xd:desc>
             <xd:p>Retrieves a language dependant string from our <xd:ref name="vocFile" type="parameter">language file</xd:ref> such as a label based on a key. Returns string based on <xd:ref name="textLang" type="parameter">textLang</xd:ref>, <xd:ref name="textLangDefault" type="parameter">textLangDefault</xd:ref>, the first two characters of the textLangDefault, e.g. 'en' in 'en-US' and finally if all else fails just the key text.</xd:p>
@@ -256,27 +277,6 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    
-    <xsl:param name="logLevel" select="$logINFO" as="xs:string"/>
-    
-    <!-- provide a mapping from string logLevel to numeric value -->
-    <xsl:variable name="logALL" select="'ALL'"/>
-    <xsl:variable name="logDEBUG" select="'DEBUG'"/>
-    <xsl:variable name="logINFO" select="'INFO'"/>
-    <xsl:variable name="logWARN" select="'WARN'"/>
-    <xsl:variable name="logERROR" select="'ERROR'"/>
-    <xsl:variable name="logFATAL" select="'FATAL'"/>
-    <xsl:variable name="logOFF" select="'OFF'"/>
-    <xsl:variable name="logLevelMap" as="element(level)*">
-        <level name="{$logALL}" int="6" desc="The ALL has the lowest possible rank and is intended to turn on all logging."/>
-        <level name="{$logDEBUG}" int="5" desc="The DEBUG Level designates fine-grained informational events that are most useful to debug an application."/>
-        <level name="{$logINFO}" int="4" desc="The INFO level designates informational messages that highlight the progress of the application at coarse-grained level."/>
-        <level name="{$logWARN}" int="3" desc="The WARN level designates potentially harmful situations."/>
-        <level name="{$logERROR}" int="2" desc="The ERROR level designates error events that might still allow the application to continue running."/>
-        <level name="{$logFATAL}" int="1" desc="The FATAL level designates very severe error events that will presumably lead the application to abort."/>
-        <level name="{$logOFF}" int="0" desc="The OFF level has the highest possible rank and is intended to turn off logging."/>
-    </xsl:variable>
-    <xsl:variable name="util:chkdLogLevel" select="if ($logLevelMap[@name = $logLevel]) then $logLevel else $logINFO"/>
     
     <xd:doc>
         <xd:desc>Emit message text if the level of the message is smaller than or equal to logLevel </xd:desc>
